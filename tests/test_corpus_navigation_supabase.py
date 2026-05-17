@@ -184,6 +184,57 @@ def test_write_navigation_nodes_can_replace_explicit_empty_scope(monkeypatch):
     assert report.scopes_replaced == (("us-co", "statute", "2026-05-13"),)
 
 
+def test_write_navigation_nodes_deletes_same_path_rows_from_old_versions(monkeypatch):
+    import axiom_corpus.corpus.navigation_supabase as module
+
+    nodes = build_navigation_nodes(
+        [
+            _record(
+                "us/rulemaking/federal-register",
+                jurisdiction="us",
+                document_class="rulemaking",
+                version="2026-05-17",
+            )
+        ]
+    )
+
+    calls: list[tuple[str, str]] = []
+    fetch_responses = iter(
+        [
+            b"[]",
+            json.dumps(
+                [
+                    {
+                        "path": "us/rulemaking/federal-register",
+                        "version": "2026-05-15",
+                    }
+                ]
+            ).encode(),
+        ]
+    )
+
+    def fake_urlopen(req, timeout):  # noqa: ARG001
+        method = getattr(req, "method", None) or "GET"
+        calls.append((req.full_url, method))
+        if "/navigation_nodes?" in req.full_url and method == "GET":
+            return _FakeResponse(next(fetch_responses))
+        return _FakeResponse()
+
+    monkeypatch.setattr(module.urllib.request, "urlopen", fake_urlopen)
+
+    report = write_navigation_nodes_to_supabase(
+        nodes,
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    delete_urls = [url for url, method in calls if method == "DELETE"]
+    assert len(delete_urls) == 1
+    assert "version=eq.2026-05-15" in delete_urls[0]
+    assert report.rows_deleted == 1
+    assert report.delete_chunk_count == 1
+
+
 def test_fetch_provisions_for_navigation_resolves_parent_paths(monkeypatch):
     import axiom_corpus.corpus.navigation_supabase as module
 

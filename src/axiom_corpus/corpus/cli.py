@@ -3426,6 +3426,8 @@ def _cmd_state_statute_completion(args: argparse.Namespace) -> int:
             prefixes=prefixes,
             document_class=DocumentClass.STATUTE.value,
             supabase_counts_path=args.supabase_counts,
+            release_name=release.name,
+            release_scopes=release.scope_keys,
         )
     else:
         artifact_report = build_artifact_report(
@@ -3433,6 +3435,8 @@ def _cmd_state_statute_completion(args: argparse.Namespace) -> int:
             prefixes=prefixes,
             document_class=DocumentClass.STATUTE.value,
             supabase_counts_path=args.supabase_counts,
+            release_name=release.name,
+            release_scopes=release.scope_keys,
         )
     report = build_state_statute_completion_report(
         args.base,
@@ -3477,6 +3481,8 @@ def _cmd_regulation_completion(args: argparse.Namespace) -> int:
             prefixes=prefixes,
             document_class=DocumentClass.REGULATION.value,
             supabase_counts_path=args.supabase_counts,
+            release_name=release.name,
+            release_scopes=release.scope_keys,
         )
     else:
         artifact_report = build_artifact_report(
@@ -3484,6 +3490,8 @@ def _cmd_regulation_completion(args: argparse.Namespace) -> int:
             prefixes=prefixes,
             document_class=DocumentClass.REGULATION.value,
             supabase_counts_path=args.supabase_counts,
+            release_name=release.name,
+            release_scopes=release.scope_keys,
         )
     report = build_regulation_completion_report(
         args.base,

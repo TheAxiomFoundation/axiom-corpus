@@ -124,6 +124,25 @@ def write_navigation_nodes_to_supabase(
             )
             rows_deleted += scope_rows_deleted
             delete_chunk_count += scope_chunks
+            if version is not None and scope_nodes:
+                conflict_rows_deleted, conflict_chunks = _delete_conflicting_version_paths(
+                    jurisdiction=jurisdiction,
+                    doc_type=doc_type,
+                    version=version,
+                    paths={node.path for node in scope_nodes},
+                    service_key=service_key,
+                    rest_url=rest_url,
+                    delete_chunk_size=delete_chunk_size,
+                )
+                rows_deleted += conflict_rows_deleted
+                delete_chunk_count += conflict_chunks
+                if progress_stream is not None and conflict_rows_deleted:
+                    print(
+                        f"navigation: pruned {conflict_rows_deleted} conflicting "
+                        f"rows from older versions in ({jurisdiction}, {doc_type})",
+                        file=progress_stream,
+                        flush=True,
+                    )
             if progress_stream is not None:
                 print(
                     f"navigation: pruned {scope_rows_deleted} stale rows in "
@@ -196,6 +215,92 @@ def _delete_scope_excluding_paths(
         )
         rows_deleted += len(chunk)
     return rows_deleted, chunk_count
+
+
+def _delete_conflicting_version_paths(
+    *,
+    jurisdiction: str,
+    doc_type: str,
+    version: str,
+    paths: set[str],
+    service_key: str,
+    rest_url: str,
+    delete_chunk_size: int,
+) -> tuple[int, int]:
+    rows_deleted = 0
+    chunk_count = 0
+    for path_chunk in _chunked_strings(sorted(paths), delete_chunk_size):
+        conflicts = _fetch_path_versions(
+            jurisdiction=jurisdiction,
+            doc_type=doc_type,
+            paths=path_chunk,
+            service_key=service_key,
+            rest_url=rest_url,
+        )
+        paths_by_version: dict[str | None, list[str]] = {}
+        for path, existing_version in conflicts:
+            if existing_version == version:
+                continue
+            paths_by_version.setdefault(existing_version, []).append(path)
+        for existing_version, conflicting_paths in paths_by_version.items():
+            _delete_navigation_paths(
+                conflicting_paths,
+                jurisdiction=jurisdiction,
+                doc_type=doc_type,
+                version=existing_version,
+                service_key=service_key,
+                rest_url=rest_url,
+            )
+            rows_deleted += len(conflicting_paths)
+            chunk_count += 1
+    return rows_deleted, chunk_count
+
+
+def _fetch_path_versions(
+    *,
+    jurisdiction: str,
+    doc_type: str,
+    paths: list[str],
+    service_key: str,
+    rest_url: str,
+) -> tuple[tuple[str, str | None], ...]:
+    if not paths:
+        return ()
+    in_clause = "in.(" + ",".join(_postgrest_in_value(value) for value in paths) + ")"
+    query = urllib.parse.urlencode(
+        {
+            "select": "path,version",
+            "jurisdiction": f"eq.{jurisdiction}",
+            "doc_type": f"eq.{doc_type}",
+            "path": in_clause,
+        }
+    )
+    req = urllib.request.Request(
+        f"{rest_url}/navigation_nodes?{query}",
+        headers={
+            "apikey": service_key,
+            "Authorization": f"Bearer {service_key}",
+            "Accept": "application/json",
+            "Accept-Profile": "corpus",
+            "User-Agent": USER_AGENT,
+        },
+    )
+    with urllib.request.urlopen(req, timeout=180) as resp:
+        rows = json.loads(resp.read())
+    if not isinstance(rows, list):
+        raise RuntimeError("unexpected Supabase navigation_nodes response")
+    out: list[tuple[str, str | None]] = []
+    for row in rows:
+        if not isinstance(row, dict) or not row.get("path"):
+            continue
+        raw_version = row.get("version")
+        out.append(
+            (
+                str(row["path"]),
+                str(raw_version) if raw_version is not None else None,
+            )
+        )
+    return tuple(out)
 
 
 def _fetch_scope_paths(
