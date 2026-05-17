@@ -314,6 +314,20 @@ def _uuid_or_none(value: str | None) -> str | None:
         return None
 
 
+def _sanitize_supabase_value(value: object) -> object:
+    """Remove characters Postgres cannot store from text/jsonb values."""
+    if isinstance(value, str):
+        return value.replace("\x00", "")
+    if isinstance(value, dict):
+        return {
+            str(_sanitize_supabase_value(key)): _sanitize_supabase_value(item)
+            for key, item in value.items()
+        }
+    if isinstance(value, (list, tuple)):
+        return [_sanitize_supabase_value(item) for item in value]
+    return value
+
+
 def provision_to_supabase_row(
     record: ProvisionRecord,
     *,
@@ -365,7 +379,7 @@ def provision_to_supabase_row(
         "legal_identifier": record.legal_identifier,
         "identifiers": identifiers,
     }
-    return row
+    return {key: _sanitize_supabase_value(value) for key, value in row.items()}
 
 
 def iter_supabase_rows(

@@ -147,6 +147,32 @@ derived from the base version, for example
 `2026-04-29-title-7-part-273`. Part-scoped eCFR extraction snapshots the part
 XML endpoint, not a whole-title XML file.
 
+## Federal Register Activity
+
+The Federal Register adapter is for regulatory activity, not compiled law. It
+uses `document_class=rulemaking` and snapshots FederalRegister.gov API result
+pages plus per-document metadata and raw text when available. This covers the
+feed Marci Harris's institutional AI proposal calls out: proposed rules, final
+rules, notices, guidance-like notices, enforcement-related notices, comment
+deadlines, effective dates, agencies, dockets, RINs, and CFR references.
+
+FederalRegister.gov's API does not require an API key. Treat this as the
+activity stream that may later amend compiled eCFR text; do not merge it into
+the eCFR `regulation` scope.
+
+```bash
+axiom-corpus-ingest extract-federal-register \
+  --base data/corpus \
+  --version 2026-05-15 \
+  --start-date 2026-05-01 \
+  --end-date 2026-05-15
+```
+
+The default types are `RULE`, `PRORULE`, and `NOTICE`. Narrow smoke runs can
+use `--document-type`, `--term`, and `--limit`; those filters become part of the
+run id so a targeted sample is not confused with a complete daily or monthly
+feed.
+
 ## Federal US Code
 
 The US Code adapter ingests official USLM XML by title. It snapshots the XML

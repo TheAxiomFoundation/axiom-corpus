@@ -65,6 +65,12 @@ static URL lists under `sources/policyengine-us/`. It powers the Axiom `/ops`
 Source Discovery Backlog section and should be refreshed when the offline
 inventory changes.
 
+Federal Register URLs in the discovery report should be promoted through the
+`extract-federal-register` adapter, not through the generic official-document
+path. That keeps the activity feed as `document_class=rulemaking` with agency,
+docket, RIN, CFR-reference, comment-deadline, and effective-date metadata
+instead of flattening each notice into an isolated policy document.
+
 For agent assignment, prefer `ready_for_manifest` rows whose source status is
 `primary_official`. Do not assign vendor-only or source-access-blocked items to
 ingestion agents until there is an explicit official export, license, or access

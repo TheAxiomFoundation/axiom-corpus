@@ -97,6 +97,25 @@ def test_supabase_projection_keeps_uuid_source_document_id_column():
     assert row["identifiers"] == {}
 
 
+def test_supabase_projection_strips_postgres_invalid_nul_characters():
+    record = ProvisionRecord(
+        jurisdiction="us",
+        document_class="rulemaking",
+        citation_path="us/rulemaking/federal-register/2026-05-15/2026-09722",
+        heading="Notice\x00",
+        body="Federal Register\x00 text",
+        identifiers={"federal-register:\x00document-number": "2026-09722\x00"},
+    )
+
+    row = provision_to_supabase_row(record)
+
+    assert row["heading"] == "Notice"
+    assert row["body"] == "Federal Register text"
+    assert row["identifiers"] == {
+        "federal-register:document-number": "2026-09722"
+    }
+
+
 def test_write_supabase_rows_jsonl_uses_projection_contract(tmp_path):
     out = tmp_path / "rows.jsonl"
     count = write_supabase_rows_jsonl(

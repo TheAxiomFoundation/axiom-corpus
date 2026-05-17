@@ -25,6 +25,10 @@ from axiom_corpus.corpus.colorado import extract_colorado_ccr
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.documents import extract_official_documents
 from axiom_corpus.corpus.ecfr import build_ecfr_inventory, ecfr_run_id, extract_ecfr
+from axiom_corpus.corpus.federal_register import (
+    DEFAULT_DOCUMENT_TYPES,
+    extract_federal_register,
+)
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import (
     CorpusManifest,
@@ -3127,6 +3131,60 @@ def _cmd_extract_ny_state_register(args: argparse.Namespace) -> int:
     return 0 if report.coverage.complete or args.allow_incomplete else 2
 
 
+def _cmd_extract_federal_register(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    start_date = date.fromisoformat(args.start_date)
+    end_date = date.fromisoformat(args.end_date) if args.end_date else start_date
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_federal_register(
+        store,
+        version=args.version,
+        start_date=start_date,
+        end_date=end_date,
+        document_types=tuple(args.document_type or DEFAULT_DOCUMENT_TYPES),
+        term=args.term,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        limit=args.limit,
+        per_page=args.per_page,
+        fetch_full_text=not args.skip_full_text,
+        timeout_seconds=args.timeout_seconds,
+        request_attempts=args.request_attempts,
+        request_delay_seconds=args.request_delay_seconds,
+        progress_stream=sys.stderr,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "start_date": report.start_date,
+                "end_date": report.end_date,
+                "document_types": list(report.document_types),
+                "page_count": report.page_count,
+                "document_count": report.document_count,
+                "text_error_count": report.text_error_count,
+                "errors": list(report.errors[:20]),
+                "source_file_count": len(report.source_paths),
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
 def _cmd_extract_official_documents(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -4083,6 +4141,45 @@ def build_parser() -> argparse.ArgumentParser:
     extract_ny_state_register_cmd.add_argument("--limit", type=int)
     extract_ny_state_register_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_ny_state_register_cmd.set_defaults(func=_cmd_extract_ny_state_register)
+
+    extract_federal_register_cmd = sub.add_parser(
+        "extract-federal-register",
+        help="Snapshot Federal Register rulemaking and regulatory activity documents.",
+    )
+    extract_federal_register_cmd.add_argument("--base", type=Path, required=True)
+    extract_federal_register_cmd.add_argument("--version", required=True)
+    extract_federal_register_cmd.add_argument("--start-date", required=True)
+    extract_federal_register_cmd.add_argument(
+        "--end-date",
+        help="Inclusive publication-date end. Defaults to --start-date.",
+    )
+    extract_federal_register_cmd.add_argument(
+        "--document-type",
+        action="append",
+        choices=["RULE", "PRORULE", "NOTICE", "PRESDOCU"],
+        help=(
+            "Federal Register type to include. Repeatable. Defaults to "
+            "RULE, PRORULE, and NOTICE."
+        ),
+    )
+    extract_federal_register_cmd.add_argument(
+        "--term",
+        help="Optional Federal Register full-text search term.",
+    )
+    extract_federal_register_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_federal_register_cmd.add_argument("--expression-date")
+    extract_federal_register_cmd.add_argument("--limit", type=int)
+    extract_federal_register_cmd.add_argument("--per-page", type=int, default=100)
+    extract_federal_register_cmd.add_argument("--skip-full-text", action="store_true")
+    extract_federal_register_cmd.add_argument("--timeout-seconds", type=float, default=30.0)
+    extract_federal_register_cmd.add_argument("--request-attempts", type=int, default=3)
+    extract_federal_register_cmd.add_argument(
+        "--request-delay-seconds",
+        type=float,
+        default=0.1,
+    )
+    extract_federal_register_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_federal_register_cmd.set_defaults(func=_cmd_extract_federal_register)
 
     extract_documents_cmd = sub.add_parser(
         "extract-official-documents",
