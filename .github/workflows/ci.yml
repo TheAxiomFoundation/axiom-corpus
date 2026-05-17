@@ -102,6 +102,10 @@ jobs:
     #   daily cron.
     if: github.event_name == 'push' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
+    env:
+      # Reuse the anon (read-only, RLS-gated) Supabase key already
+      # provisioned as an org secret for the foundation.org deploy.
+      SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
     steps:
       - uses: actions/checkout@v6.0.2
 
@@ -116,16 +120,12 @@ jobs:
           pip install -e .
 
       - name: Verify release coverage
-        env:
-          # Reuse the anon (read-only, RLS-gated) Supabase key already
-          # provisioned as an org secret for the foundation.org deploy.
-          # The check only needs SELECT on corpus.navigation_nodes and
-          # corpus.current_provision_counts (both GRANTed to anon per
-          # 20260507150000_restrict_public_corpus_base_reads.sql and
-          # 20260505120000_corpus_navigation_nodes.sql) plus EXECUTE
-          # on corpus.get_navigation_node_counts() (GRANTed in the
-          # 20260512170000 migration). No write capability needed.
-          SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        if: env.SUPABASE_ANON_KEY != ''
         run: |
           axiom-corpus-ingest verify-release-coverage \
             --service-key-env SUPABASE_ANON_KEY
+
+      - name: Skip release coverage without Supabase secret
+        if: env.SUPABASE_ANON_KEY == ''
+        run: |
+          echo "Skipping release coverage: NEXT_PUBLIC_SUPABASE_ANON_KEY is not available in this GitHub Actions context."
