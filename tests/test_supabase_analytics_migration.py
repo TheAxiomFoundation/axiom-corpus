@@ -37,6 +37,15 @@ BACKFILL_US_GUIDANCE_MIGRATION = Path(
 TIGHTEN_VERSION_VIEWS_MIGRATION = Path(
     "supabase/migrations/20260513180000_tighten_version_aware_views.sql"
 )
+RELEASE_MANIFEST_COUNT_RPC_MIGRATION = Path(
+    "supabase/migrations/20260518020000_release_manifest_count_rpc.sql"
+)
+RELEASE_MANIFEST_COUNT_RPC_TIMEOUT_MIGRATION = Path(
+    "supabase/migrations/20260518023000_release_manifest_count_rpc_timeout.sql"
+)
+PROVISION_SCOPE_COUNTS_MIGRATION = Path(
+    "supabase/migrations/20260518024500_provision_scope_counts.sql"
+)
 
 
 def test_corpus_analytics_migration_is_document_class_aware():
@@ -249,13 +258,54 @@ def test_tighten_version_views_drops_null_fallback():
     assert "DROP POLICY IF EXISTS authenticated_read ON corpus.navigation_nodes" in sql
     assert "s.version = navigation_nodes.version" in sql
     assert "navigation_nodes.version IS NULL" not in sql
-    # MV refresh uses CONCURRENTLY with statement_timeout=0 so it
-    # survives the pooler's default statement_timeout on large MVs.
-    assert "SET LOCAL statement_timeout = 0" in sql
+    # MV refresh uses CONCURRENTLY with statement_timeout=0 before the
+    # refresh statement starts, so it survives the pooler's default timeout.
+    assert "SET statement_timeout = 0" in sql
     assert (
         "REFRESH MATERIALIZED VIEW CONCURRENTLY corpus.current_provision_counts"
         in sql
     )
+    assert "RESET statement_timeout" in sql
+
+
+def test_release_manifest_count_rpc_counts_requested_scopes():
+    sql = RELEASE_MANIFEST_COUNT_RPC_MIGRATION.read_text()
+
+    assert "CREATE OR REPLACE FUNCTION corpus.get_release_provision_counts(p_scopes jsonb)" in sql
+    assert "jsonb_array_elements(COALESCE(p_scopes, '[]'::jsonb))" in sql
+    assert "SELECT DISTINCT" in sql
+    assert "LEFT JOIN corpus.provisions" in sql
+    assert "COALESCE(NULLIF(provisions.doc_type, ''), 'unknown')" in sql
+    assert "provisions.version = requested_scopes.version" in sql
+    assert "COUNT(provisions.id)::bigint AS provision_count" in sql
+    assert "WHERE provisions.parent_id IS NULL" in sql
+    assert "GRANT EXECUTE ON FUNCTION corpus.get_release_provision_counts(jsonb)" in sql
+    assert "TO postgres, service_role" in sql
+    assert "REVOKE EXECUTE ON FUNCTION corpus.get_release_provision_counts(jsonb)" in sql
+    assert "FROM anon, authenticated, PUBLIC" in sql
+
+
+def test_release_manifest_count_rpc_disables_statement_timeout():
+    sql = RELEASE_MANIFEST_COUNT_RPC_TIMEOUT_MIGRATION.read_text()
+
+    assert "ALTER FUNCTION corpus.get_release_provision_counts(jsonb)" in sql
+    assert "SET statement_timeout TO 0" in sql
+    assert "NOTIFY pgrst, 'reload schema'" in sql
+
+
+def test_provision_scope_counts_precomputes_release_scope_counts():
+    sql = PROVISION_SCOPE_COUNTS_MIGRATION.read_text()
+
+    assert "CREATE MATERIALIZED VIEW IF NOT EXISTS corpus.provision_scope_counts" in sql
+    assert "GROUP BY jurisdiction, COALESCE(NULLIF(doc_type, ''), 'unknown'), version" in sql
+    assert "REFRESH MATERIALIZED VIEW corpus.provision_scope_counts" in sql
+    assert "CREATE UNIQUE INDEX IF NOT EXISTS idx_provision_scope_counts_scope" in sql
+    assert "CREATE OR REPLACE FUNCTION corpus.get_release_provision_counts(p_scopes jsonb)" in sql
+    assert "LEFT JOIN corpus.provision_scope_counts" in sql
+    assert "SUM(provision_scope_counts.provision_count)" in sql
+    assert "SET statement_timeout = 0" in sql
+    assert "REFRESH MATERIALIZED VIEW CONCURRENTLY corpus.provision_scope_counts" in sql
+    assert "REVOKE SELECT ON corpus.provision_scope_counts FROM anon, authenticated, PUBLIC" in sql
 
 
 def test_all_corpus_rpcs_are_service_only():

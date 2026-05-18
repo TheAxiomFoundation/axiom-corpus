@@ -449,10 +449,79 @@ def fetch_release_provision_counts(
 ) -> tuple[dict[str, object], ...]:
     """Count provisions directly for a release manifest.
 
-    This is slower than reading ``current_provision_counts`` but avoids stale
-    analytics when the Supabase refresh RPC times out.
+    Prefer the server-side manifest-count RPC so a full release count is a
+    single database aggregate instead of hundreds of HTTP count requests.
+    Falling back keeps older databases usable before the RPC migration lands.
     """
     rest_url = _rest_url(supabase_url)
+    try:
+        return _fetch_release_provision_counts_rpc(
+            release,
+            service_key=service_key,
+            rest_url=rest_url,
+        )
+    except urllib.error.HTTPError as exc:
+        if not _is_missing_release_counts_rpc(exc):
+            raise
+    return _fetch_release_provision_counts_direct(
+        release,
+        service_key=service_key,
+        rest_url=rest_url,
+    )
+
+
+def _fetch_release_provision_counts_rpc(
+    release: ReleaseManifest,
+    *,
+    service_key: str,
+    rest_url: str,
+) -> tuple[dict[str, object], ...]:
+    payload = {
+        "p_scopes": [
+            {
+                "jurisdiction": scope.jurisdiction,
+                "document_class": scope.document_class,
+                "version": scope.version,
+            }
+            for scope in release.scopes
+        ]
+    }
+    req = urllib.request.Request(
+        f"{rest_url}/rpc/get_release_provision_counts",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "apikey": service_key,
+            "Authorization": f"Bearer {service_key}",
+            "Accept": "application/json",
+            "Accept-Profile": "corpus",
+            "Content-Type": "application/json",
+            "Content-Profile": "corpus",
+            "User-Agent": USER_AGENT,
+        },
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=180) as resp:
+        data = json.loads(resp.read())
+    if not isinstance(data, list):
+        raise RuntimeError("unexpected Supabase release-count response")
+    return tuple(_normalize_count_row(row) for row in data if isinstance(row, dict))
+
+
+def _is_missing_release_counts_rpc(exc: urllib.error.HTTPError) -> bool:
+    if exc.code == 404:
+        return True
+    if exc.code != 400:
+        return False
+    body = exc.read().decode("utf-8", errors="replace")
+    return "PGRST202" in body or "get_release_provision_counts" in body
+
+
+def _fetch_release_provision_counts_direct(
+    release: ReleaseManifest,
+    *,
+    service_key: str,
+    rest_url: str,
+) -> tuple[dict[str, object], ...]:
     refreshed_at = datetime.now(UTC).isoformat()
     grouped: dict[tuple[str, str], dict[str, object]] = {}
     for scope in release.scopes:

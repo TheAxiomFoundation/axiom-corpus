@@ -236,21 +236,32 @@ def test_fetch_release_provision_counts_counts_manifest_scopes(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
     calls = []
-    counts = iter([10, 8, 1, 2, 3, 2, 1, 0])
 
     class FakeResponse:
-        def __init__(self, count):
-            self.headers = {"Content-Range": f"0-0/{count}"}
-
         def __enter__(self):
             return self
 
         def __exit__(self, *args):
             return None
 
+        def read(self):
+            return json.dumps(
+                [
+                    {
+                        "jurisdiction": "us",
+                        "document_class": "guidance",
+                        "provision_count": 13,
+                        "body_count": 10,
+                        "top_level_count": 2,
+                        "rulespec_count": 2,
+                        "refreshed_at": "2026-05-18T01:35:41+00:00",
+                    }
+                ]
+            ).encode()
+
     def fake_urlopen(req, timeout):
-        calls.append((req.full_url, req.get_method(), timeout))
-        return FakeResponse(next(counts))
+        calls.append((req.full_url, req.get_method(), req.data, req.headers, timeout))
+        return FakeResponse()
 
     monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
 
@@ -277,13 +288,27 @@ def test_fetch_release_provision_counts_counts_manifest_scopes(monkeypatch):
             "refreshed_at": rows[0]["refreshed_at"],
         },
     )
-    assert len(calls) == 8
-    assert calls[0][0].startswith("https://example.supabase.co/rest/v1/provisions?")
-    assert calls[0][1] == "HEAD"
-    assert calls[0][2] == 180
-    assert "version=eq.2026-a" in calls[0][0]
-    assert "body=not.is.null" in calls[1][0]
-    assert "parent_id=is.null" in calls[2][0]
+    assert len(calls) == 1
+    assert calls[0][0] == "https://example.supabase.co/rest/v1/rpc/get_release_provision_counts"
+    assert calls[0][1] == "POST"
+    assert calls[0][3]["Accept-profile"] == "corpus"
+    assert calls[0][3]["Content-profile"] == "corpus"
+    assert calls[0][4] == 180
+    payload = json.loads(calls[0][2])
+    assert payload == {
+        "p_scopes": [
+            {
+                "jurisdiction": "us",
+                "document_class": "guidance",
+                "version": "2026-a",
+            },
+            {
+                "jurisdiction": "us",
+                "document_class": "guidance",
+                "version": "2026-b",
+            },
+        ]
+    }
 
 
 def test_fetch_release_provision_counts_falls_back_when_exact_count_times_out(
@@ -320,6 +345,14 @@ def test_fetch_release_provision_counts_falls_back_when_exact_count_times_out(
         if len(calls) == 1:
             raise urllib.error.HTTPError(
                 req.full_url,
+                400,
+                "Bad Request",
+                {},
+                io.BytesIO(b'{"code":"PGRST202"}'),
+            )
+        if len(calls) == 2:
+            raise urllib.error.HTTPError(
+                req.full_url,
                 500,
                 "Internal Server Error",
                 {},
@@ -341,9 +374,10 @@ def test_fetch_release_provision_counts_falls_back_when_exact_count_times_out(
     )
 
     assert rows[0]["provision_count"] == 2
-    assert calls[0][1] == "HEAD"
-    assert calls[1][1] == "GET"
-    assert "order=id.asc" in calls[1][0]
+    assert calls[0][1] == "POST"
+    assert calls[1][1] == "HEAD"
+    assert calls[2][1] == "GET"
+    assert "order=id.asc" in calls[2][0]
 
 
 class _SyncFakeResponse:

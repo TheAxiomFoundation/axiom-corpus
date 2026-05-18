@@ -99,10 +99,8 @@ CREATE POLICY authenticated_read ON corpus.navigation_nodes
 -- statement_timeout for the refresh only.
 -- ============================================================================
 
-DO $$
-BEGIN
-  SET LOCAL statement_timeout = 0;
-  REFRESH MATERIALIZED VIEW CONCURRENTLY corpus.current_provision_counts;
-END $$;
+SET statement_timeout = 0;
+REFRESH MATERIALIZED VIEW CONCURRENTLY corpus.current_provision_counts;
+RESET statement_timeout;
 
 NOTIFY pgrst, 'reload schema';
