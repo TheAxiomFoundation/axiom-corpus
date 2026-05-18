@@ -30,6 +30,7 @@ from axiom_corpus.corpus.federal_register import (
     extract_federal_register,
 )
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.maryland_comar import extract_maryland_comar
 from axiom_corpus.corpus.models import (
     CorpusManifest,
     CorpusSource,
@@ -3042,6 +3043,53 @@ def _cmd_extract_virginia_vac(args: argparse.Namespace) -> int:
     return 0 if report.coverage.complete or args.allow_incomplete else 2
 
 
+def _cmd_extract_maryland_comar(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_maryland_comar(
+        store,
+        version=args.version,
+        source_dir=args.source_dir,
+        download_dir=args.download_dir,
+        publication_branch=args.publication_branch,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        only_title=args.only_title,
+        only_subtitle=args.only_subtitle,
+        only_chapter=args.only_chapter,
+        limit=args.limit,
+        progress_stream=sys.stderr,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "publication_branch": report.publication_branch,
+                "title_count": report.title_count,
+                "subtitle_count": report.subtitle_count,
+                "chapter_count": report.chapter_count,
+                "regulation_count": report.regulation_count,
+                "source_file_count": len(report.source_paths),
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
 def _cmd_extract_nycrr(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -4179,6 +4227,24 @@ def build_parser() -> argparse.ArgumentParser:
     extract_virginia_vac_cmd.add_argument("--workers", type=int, default=8)
     extract_virginia_vac_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_virginia_vac_cmd.set_defaults(func=_cmd_extract_virginia_vac)
+
+    extract_maryland_comar_cmd = sub.add_parser(
+        "extract-maryland-comar",
+        help="Snapshot official Maryland COMAR bulk XML.",
+    )
+    extract_maryland_comar_cmd.add_argument("--base", type=Path, required=True)
+    extract_maryland_comar_cmd.add_argument("--version", required=True)
+    extract_maryland_comar_cmd.add_argument("--source-dir", type=Path)
+    extract_maryland_comar_cmd.add_argument("--download-dir", type=Path)
+    extract_maryland_comar_cmd.add_argument("--publication-branch")
+    extract_maryland_comar_cmd.add_argument("--only-title")
+    extract_maryland_comar_cmd.add_argument("--only-subtitle")
+    extract_maryland_comar_cmd.add_argument("--only-chapter")
+    extract_maryland_comar_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_maryland_comar_cmd.add_argument("--expression-date")
+    extract_maryland_comar_cmd.add_argument("--limit", type=int)
+    extract_maryland_comar_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_maryland_comar_cmd.set_defaults(func=_cmd_extract_maryland_comar)
 
     extract_nycrr_cmd = sub.add_parser(
         "extract-nycrr",

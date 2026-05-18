@@ -300,9 +300,18 @@ def _build_regulation_completion_row(
 
 
 def _looks_statewide_regulation_version(version: str) -> bool:
-    """Date-only release versions denote complete jurisdiction-wide regulation corpora."""
+    """Recognize complete jurisdiction-wide regulation corpus release versions."""
 
-    parts = version.split("-")
+    if "-publication-" in version:
+        extracted_at, publication_date = version.split("-publication-", 1)
+        return _looks_iso_date(extracted_at) and _looks_iso_date(publication_date)
+    return _looks_iso_date(version)
+
+
+def _looks_iso_date(value: str) -> bool:
+    """Return whether a string is a YYYY-MM-DD date token."""
+
+    parts = value.split("-")
     return (
         len(parts) == 3
         and len(parts[0]) == 4

@@ -311,6 +311,80 @@ def test_fetch_release_provision_counts_counts_manifest_scopes(monkeypatch):
     }
 
 
+def test_fetch_release_provision_counts_corrects_stale_zero_rows(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    calls = []
+
+    class FakeRpc:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+        def read(self):
+            return json.dumps(
+                [
+                    {
+                        "jurisdiction": "us-md",
+                        "document_class": "regulation",
+                        "provision_count": 0,
+                        "body_count": 0,
+                        "top_level_count": 0,
+                        "rulespec_count": 0,
+                        "refreshed_at": "2026-05-18T01:35:41+00:00",
+                    }
+                ]
+            ).encode()
+
+    class FakeHead:
+        def __init__(self, total):
+            self.headers = {"Content-Range": f"0-0/{total}"}
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+    def fake_urlopen(req, timeout):  # noqa: ARG001
+        calls.append((req.full_url, req.get_method()))
+        if req.get_method() == "POST":
+            return FakeRpc()
+        if "body=not.is.null" in req.full_url:
+            return FakeHead(29637)
+        if "parent_id=is.null" in req.full_url:
+            return FakeHead(1)
+        if "has_rulespec=eq.true" in req.full_url:
+            return FakeHead(0)
+        return FakeHead(34174)
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+
+    rows = fetch_release_provision_counts(
+        ReleaseManifest(
+            name="current",
+            scopes=(ReleaseScope("us-md", "regulation", "2026-05-18"),),
+        ),
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    assert rows == (
+        {
+            "jurisdiction": "us-md",
+            "document_class": "regulation",
+            "provision_count": 34174,
+            "body_count": 29637,
+            "top_level_count": 1,
+            "rulespec_count": 0,
+            "refreshed_at": rows[0]["refreshed_at"],
+        },
+    )
+    assert [call[1] for call in calls] == ["POST", "HEAD", "HEAD", "HEAD", "HEAD"]
+
+
 def test_fetch_release_provision_counts_falls_back_when_exact_count_times_out(
     monkeypatch,
 ):

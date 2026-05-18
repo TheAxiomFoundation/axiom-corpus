@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any, TextIO
 
 import boto3
+from botocore.config import Config
 
 from axiom_corpus.corpus.analytics import load_provision_count_snapshot
 from axiom_corpus.corpus.releases import ScopeKey
@@ -370,6 +371,11 @@ def make_r2_client(config: R2Config) -> Any:
         aws_access_key_id=config.access_key_id,
         aws_secret_access_key=config.secret_access_key,
         region_name="auto",
+        config=Config(
+            connect_timeout=10,
+            read_timeout=30,
+            retries={"max_attempts": 5, "mode": "standard"},
+        ),
     )
 
 

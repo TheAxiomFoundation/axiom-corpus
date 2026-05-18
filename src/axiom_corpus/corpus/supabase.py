@@ -455,7 +455,13 @@ def fetch_release_provision_counts(
     """
     rest_url = _rest_url(supabase_url)
     try:
-        return _fetch_release_provision_counts_rpc(
+        rows = _fetch_release_provision_counts_rpc(
+            release,
+            service_key=service_key,
+            rest_url=rest_url,
+        )
+        return _fill_zero_release_counts_from_provisions(
+            rows,
             release,
             service_key=service_key,
             rest_url=rest_url,
@@ -468,6 +474,47 @@ def fetch_release_provision_counts(
         service_key=service_key,
         rest_url=rest_url,
     )
+
+
+def _fill_zero_release_counts_from_provisions(
+    rows: tuple[dict[str, object], ...],
+    release: ReleaseManifest,
+    *,
+    service_key: str,
+    rest_url: str,
+) -> tuple[dict[str, object], ...]:
+    """Correct stale zero rows from materialized scope-count snapshots."""
+
+    zero_keys = {
+        (str(row.get("jurisdiction") or ""), str(row.get("document_class") or ""))
+        for row in rows
+        if int(row.get("provision_count") or 0) == 0
+    }
+    if not zero_keys:
+        return rows
+    fallback_scopes = tuple(
+        scope for scope in release.scopes if (scope.jurisdiction, scope.document_class) in zero_keys
+    )
+    if not fallback_scopes:
+        return rows
+    fallback_rows = _fetch_release_provision_counts_direct(
+        ReleaseManifest(name=f"{release.name}-zero-count-fallback", scopes=fallback_scopes),
+        service_key=service_key,
+        rest_url=rest_url,
+    )
+    fallback_by_key = {
+        (str(row["jurisdiction"]), str(row["document_class"])): row
+        for row in fallback_rows
+    }
+    corrected: list[dict[str, object]] = []
+    for row in rows:
+        key = (str(row.get("jurisdiction") or ""), str(row.get("document_class") or ""))
+        fallback = fallback_by_key.get(key)
+        if fallback is not None:
+            corrected.append(fallback)
+        else:
+            corrected.append(row)
+    return tuple(corrected)
 
 
 def _fetch_release_provision_counts_rpc(

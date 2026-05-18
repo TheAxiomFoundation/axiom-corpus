@@ -11,6 +11,7 @@ from axiom_corpus.corpus.r2 import (
     build_artifact_report_with_r2,
     build_release_artifact_manifest,
     load_r2_config,
+    make_r2_client,
     sync_artifacts_to_r2,
 )
 
@@ -72,6 +73,32 @@ def test_load_r2_config_uses_env_without_exposing_secret():
     assert config.endpoint_url == "https://acct.r2.cloudflarestorage.com"
     assert config.access_key_id == "key"
     assert config.secret_access_key == "secret"
+
+
+def test_make_r2_client_uses_bounded_network_timeouts(monkeypatch):
+    captured = {}
+
+    def fake_client(service_name, **kwargs):
+        captured["service_name"] = service_name
+        captured.update(kwargs)
+        return object()
+
+    monkeypatch.setattr("axiom_corpus.corpus.r2.boto3.client", fake_client)
+
+    make_r2_client(
+        R2Config(
+            bucket="axiom-corpus",
+            endpoint_url="https://example.r2.cloudflarestorage.com",
+            access_key_id="key",
+            secret_access_key="secret",
+        )
+    )
+
+    assert captured["service_name"] == "s3"
+    assert captured["region_name"] == "auto"
+    assert captured["config"].connect_timeout == 10
+    assert captured["config"].read_timeout == 30
+    assert captured["config"].retries == {"max_attempts": 5, "mode": "standard"}
 
 
 def test_sync_artifacts_to_r2_uploads_missing_and_size_changed_files(tmp_path):
