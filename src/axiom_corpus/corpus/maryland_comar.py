@@ -11,7 +11,7 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path, PurePosixPath
 from tempfile import TemporaryDirectory
-from typing import Any, TextIO
+from typing import Any, TextIO, cast
 from urllib.parse import quote
 
 import requests
@@ -720,7 +720,7 @@ def _detect_source_as_of(source_root: Path, publication_branch: str | None) -> s
     if publication_branch:
         dates = _BRANCH_DATE_RE.findall(publication_branch)
         if dates:
-            return dates[-1]
+            return cast(str, dates[-1])
     return None
 
 
@@ -1056,7 +1056,7 @@ def _normal_token(value: str) -> str:
 
 
 def _tag(element: Any) -> str:
-    return etree.QName(element).localname
+    return cast(str, etree.QName(element).localname)
 
 
 def _publication_branch_key(branch: str) -> tuple[tuple[str, ...], str]:

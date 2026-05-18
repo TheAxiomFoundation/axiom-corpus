@@ -488,7 +488,7 @@ def _fill_zero_release_counts_from_provisions(
     zero_keys = {
         (str(row.get("jurisdiction") or ""), str(row.get("document_class") or ""))
         for row in rows
-        if int(row.get("provision_count") or 0) == 0
+        if _row_int(row.get("provision_count")) == 0
     }
     if not zero_keys:
         return rows
@@ -515,6 +515,14 @@ def _fill_zero_release_counts_from_provisions(
         else:
             corrected.append(row)
     return tuple(corrected)
+
+
+def _row_int(value: object) -> int:
+    if isinstance(value, int):
+        return value
+    if isinstance(value, str):
+        return int(value)
+    return 0
 
 
 def _fetch_release_provision_counts_rpc(
