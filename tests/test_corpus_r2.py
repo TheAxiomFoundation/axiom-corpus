@@ -231,6 +231,59 @@ def test_sync_artifacts_to_r2_filters_scope(tmp_path):
     assert client.list_prefixes == ["provisions/us-co/policy/2026-04-30.jsonl"]
 
 
+def test_sync_artifacts_to_r2_filters_supabase_exports_by_scope(tmp_path):
+    root = tmp_path / "corpus"
+    export = root / "exports" / "supabase" / "us-il" / "regulation" / "2026-05-18" / "provisions.jsonl"
+    export.parent.mkdir(parents=True, exist_ok=True)
+    export.write_text('{"id":"il"}\n', encoding="utf-8")
+    other = root / "exports" / "supabase" / "us-md" / "regulation" / "2026-05-18" / "provisions.jsonl"
+    other.parent.mkdir(parents=True, exist_ok=True)
+    other.write_text('{"id":"md"}\n', encoding="utf-8")
+    client = FakeR2Client()
+    config = R2Config(
+        bucket="axiom-corpus",
+        endpoint_url="https://example.r2.cloudflarestorage.com",
+        access_key_id="key",
+        secret_access_key="secret",
+    )
+
+    report = sync_artifacts_to_r2(
+        root,
+        config=config,
+        client=client,
+        prefixes=("exports",),
+        jurisdiction="us-il",
+        document_class="regulation",
+        version="2026-05-18",
+        dry_run=True,
+    )
+
+    assert report.local_count == 1
+    assert report.planned_upload_count == 1
+    assert report.bytes_planned == export.stat().st_size
+    assert client.list_prefixes == [
+        "exports/supabase/us-il/regulation/2026-05-18/"
+    ]
+
+
+def test_artifact_report_does_not_treat_exports_as_release_completeness(tmp_path):
+    root = tmp_path / "corpus"
+    export = root / "exports" / "supabase" / "us-il" / "regulation" / "2026-05-18" / "provisions.jsonl"
+    export.parent.mkdir(parents=True, exist_ok=True)
+    export.write_text('{"id":"il"}\n', encoding="utf-8")
+
+    report = build_artifact_report(
+        root,
+        prefixes=("exports",),
+        jurisdiction="us-il",
+        document_class="regulation",
+        version="2026-05-18",
+    )
+
+    assert report.local_count == 1
+    assert report.rows == ()
+
+
 def test_artifact_report_flags_r2_and_supabase_mismatches(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     store.write_inventory(

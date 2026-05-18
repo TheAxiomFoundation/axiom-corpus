@@ -42,6 +42,7 @@ DEFAULT_RELEASE_ARTIFACT_PREFIXES = (
     "coverage",
 )
 SCOPE_ARTIFACT_PREFIXES = frozenset(DEFAULT_RELEASE_ARTIFACT_PREFIXES)
+FILTERABLE_SCOPE_ARTIFACT_PREFIXES = SCOPE_ARTIFACT_PREFIXES | {"exports"}
 SINGLE_FILE_ARTIFACT_SUFFIXES = {
     "inventory": ".json",
     "provisions": ".jsonl",
@@ -424,7 +425,7 @@ def _remote_listing_prefixes(
 
     if release_scope_keys is not None:
         for artifact_prefix in prefix_tuple:
-            if artifact_prefix not in SCOPE_ARTIFACT_PREFIXES:
+            if artifact_prefix not in FILTERABLE_SCOPE_ARTIFACT_PREFIXES:
                 continue
             for scope_jurisdiction, scope_document_class, scope_version in sorted(
                 release_scope_keys
@@ -446,7 +447,7 @@ def _remote_listing_prefixes(
         return tuple(object_prefixes)
 
     for artifact_prefix in prefix_tuple:
-        if filters_supplied and artifact_prefix not in SCOPE_ARTIFACT_PREFIXES:
+        if filters_supplied and artifact_prefix not in FILTERABLE_SCOPE_ARTIFACT_PREFIXES:
             continue
         add(
             _remote_listing_prefix_for_filter(
@@ -466,8 +467,19 @@ def _remote_listing_prefix_for_filter(
     document_class: str | None,
     version: str | None,
 ) -> str:
-    if artifact_prefix not in SCOPE_ARTIFACT_PREFIXES or jurisdiction is None:
+    if artifact_prefix not in FILTERABLE_SCOPE_ARTIFACT_PREFIXES or jurisdiction is None:
         return f"{artifact_prefix}/"
+    if artifact_prefix == "exports":
+        if document_class is None:
+            return f"{artifact_prefix}/supabase/{jurisdiction}/"
+        if version is None:
+            return f"{artifact_prefix}/supabase/{jurisdiction}/{document_class}/"
+        return _remote_listing_prefix_for_scope(
+            artifact_prefix,
+            jurisdiction,
+            document_class,
+            version,
+        )
     if document_class is None:
         return f"{artifact_prefix}/{jurisdiction}/"
     if version is None:
@@ -486,6 +498,8 @@ def _remote_listing_prefix_for_scope(
     document_class: str,
     version: str,
 ) -> str:
+    if artifact_prefix == "exports":
+        return f"{artifact_prefix}/supabase/{jurisdiction}/{document_class}/{version}/"
     if artifact_prefix == "sources":
         return f"{artifact_prefix}/{jurisdiction}/{document_class}/{version}/"
     suffix = SINGLE_FILE_ARTIFACT_SUFFIXES.get(artifact_prefix)
@@ -882,6 +896,8 @@ def _merge_local_scope(
     if parsed is None:
         return
     artifact_type, jurisdiction, document_class, row_version = parsed
+    if artifact_type not in SCOPE_ARTIFACT_PREFIXES:
+        return
     data = builders[(jurisdiction, document_class, row_version)]
     if artifact_type == "inventory":
         data["local_inventory"] = True
@@ -906,6 +922,8 @@ def _merge_remote_scope(
     if parsed is None:
         return
     artifact_type, jurisdiction, document_class, row_version = parsed
+    if artifact_type not in SCOPE_ARTIFACT_PREFIXES:
+        return
     data = builders[(jurisdiction, document_class, row_version)]
     if artifact_type == "inventory":
         data["remote_inventory"] = True
@@ -921,7 +939,13 @@ def _merge_remote_scope(
 
 
 def _parse_scope(parts: list[str]) -> tuple[str, str, str, str] | None:
-    if len(parts) < 4 or parts[0] not in {"sources", "inventory", "provisions", "coverage"}:
+    if (
+        len(parts) >= 6
+        and parts[0] == "exports"
+        and parts[1] == "supabase"
+    ):
+        return parts[0], parts[2], parts[3], parts[4]
+    if len(parts) < 4 or parts[0] not in SCOPE_ARTIFACT_PREFIXES:
         return None
     artifact_type, jurisdiction, document_class = parts[0], parts[1], parts[2]
     row_version = parts[3] if artifact_type == "sources" else Path(parts[3]).stem
