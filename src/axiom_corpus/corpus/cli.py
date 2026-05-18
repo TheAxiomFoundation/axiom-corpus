@@ -50,6 +50,7 @@ from axiom_corpus.corpus.navigation_supabase import (
 from axiom_corpus.corpus.ny_rulemaking import extract_ny_state_register
 from axiom_corpus.corpus.nycrr import extract_nycrr
 from axiom_corpus.corpus.ohio_admin_code import extract_ohio_admin_code
+from axiom_corpus.corpus.oregon_admin_rules import extract_oregon_admin_rules
 from axiom_corpus.corpus.r2 import (
     DEFAULT_ARTIFACT_PREFIXES,
     DEFAULT_RELEASE_ARTIFACT_PREFIXES,
@@ -3197,6 +3198,57 @@ def _cmd_extract_ohio_admin_code(args: argparse.Namespace) -> int:
     )
 
 
+def _cmd_extract_oregon_admin_rules(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_oregon_admin_rules(
+        store,
+        version=args.version,
+        source_dir=args.source_dir,
+        download_dir=args.download_dir,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        only_chapter=args.only_chapter,
+        only_division=args.only_division,
+        limit=args.limit,
+        workers=args.workers,
+        progress_stream=sys.stderr,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "chapter_count": report.chapter_count,
+                "division_count": report.division_count,
+                "rule_count": report.rule_count,
+                "skipped_source_count": report.skipped_source_count,
+                "error_count": len(report.errors),
+                "errors": list(report.errors[:20]),
+                "source_file_count": len(report.source_paths),
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return (
+        0
+        if (report.coverage.complete and report.skipped_source_count == 0) or args.allow_incomplete
+        else 2
+    )
+
+
 def _cmd_extract_nycrr(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -4385,6 +4437,23 @@ def build_parser() -> argparse.ArgumentParser:
     extract_ohio_admin_code_cmd.add_argument("--workers", type=int, default=8)
     extract_ohio_admin_code_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_ohio_admin_code_cmd.set_defaults(func=_cmd_extract_ohio_admin_code)
+
+    extract_oregon_admin_rules_cmd = sub.add_parser(
+        "extract-oregon-administrative-rules",
+        help="Snapshot official Oregon Administrative Rules HTML.",
+    )
+    extract_oregon_admin_rules_cmd.add_argument("--base", type=Path, required=True)
+    extract_oregon_admin_rules_cmd.add_argument("--version", required=True)
+    extract_oregon_admin_rules_cmd.add_argument("--source-dir", type=Path)
+    extract_oregon_admin_rules_cmd.add_argument("--download-dir", type=Path)
+    extract_oregon_admin_rules_cmd.add_argument("--only-chapter")
+    extract_oregon_admin_rules_cmd.add_argument("--only-division")
+    extract_oregon_admin_rules_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_oregon_admin_rules_cmd.add_argument("--expression-date")
+    extract_oregon_admin_rules_cmd.add_argument("--limit", type=int)
+    extract_oregon_admin_rules_cmd.add_argument("--workers", type=int, default=8)
+    extract_oregon_admin_rules_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_oregon_admin_rules_cmd.set_defaults(func=_cmd_extract_oregon_admin_rules)
 
     extract_nycrr_cmd = sub.add_parser(
         "extract-nycrr",
