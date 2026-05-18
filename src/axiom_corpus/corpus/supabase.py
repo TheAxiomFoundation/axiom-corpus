@@ -469,30 +469,53 @@ def fetch_release_provision_counts(
                 "refreshed_at": refreshed_at,
             },
         )
-        row["provision_count"] = int(row["provision_count"]) + _count_provisions_scope(
-            scope,
-            service_key=service_key,
-            rest_url=rest_url,
+        _add_count(
+            row,
+            "provision_count",
+            _count_provisions_scope(
+                scope,
+                service_key=service_key,
+                rest_url=rest_url,
+            ),
         )
-        row["body_count"] = int(row["body_count"]) + _count_provisions_scope(
-            scope,
-            service_key=service_key,
-            rest_url=rest_url,
-            extra_filters={"body": "not.is.null"},
+        _add_count(
+            row,
+            "body_count",
+            _count_provisions_scope(
+                scope,
+                service_key=service_key,
+                rest_url=rest_url,
+                extra_filters={"body": "not.is.null"},
+            ),
         )
-        row["top_level_count"] = int(row["top_level_count"]) + _count_provisions_scope(
-            scope,
-            service_key=service_key,
-            rest_url=rest_url,
-            extra_filters={"parent_id": "is.null"},
+        _add_count(
+            row,
+            "top_level_count",
+            _count_provisions_scope(
+                scope,
+                service_key=service_key,
+                rest_url=rest_url,
+                extra_filters={"parent_id": "is.null"},
+            ),
         )
-        row["rulespec_count"] = int(row["rulespec_count"]) + _count_provisions_scope(
-            scope,
-            service_key=service_key,
-            rest_url=rest_url,
-            extra_filters={"has_rulespec": "eq.true"},
+        _add_count(
+            row,
+            "rulespec_count",
+            _count_provisions_scope(
+                scope,
+                service_key=service_key,
+                rest_url=rest_url,
+                extra_filters={"has_rulespec": "eq.true"},
+            ),
         )
     return tuple(grouped[key] for key in sorted(grouped))
+
+
+def _add_count(row: dict[str, object], key: str, increment: int) -> None:
+    current = row.get(key)
+    if not isinstance(current, int):
+        raise RuntimeError(f"release count field is not an integer: {key}")
+    row[key] = current + increment
 
 
 def _count_provisions_scope(
