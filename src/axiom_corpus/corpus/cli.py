@@ -171,6 +171,7 @@ from axiom_corpus.corpus.supabase import (
     backfill_version_chunk,
     delete_supabase_provisions_scope,
     fetch_provision_counts,
+    fetch_release_provision_counts,
     list_release_scopes,
     list_single_active_release_scopes,
     load_provisions_to_supabase,
@@ -391,12 +392,25 @@ def _cmd_snapshot_provision_counts(args: argparse.Namespace) -> int:
         service_key_env=args.service_key_env,
         access_token_env=args.access_token_env,
     )
-    rows = fetch_provision_counts(
-        service_key=service_key,
-        supabase_url=args.supabase_url,
-        include_legacy=args.include_legacy,
-    )
+    release_path = None
+    if args.release:
+        if args.base is None:
+            raise ValueError("--base is required with --release")
+        release_path = resolve_release_manifest_path(args.base, args.release)
+        rows = fetch_release_provision_counts(
+            ReleaseManifest.load(release_path),
+            service_key=service_key,
+            supabase_url=args.supabase_url,
+        )
+    else:
+        rows = fetch_provision_counts(
+            service_key=service_key,
+            supabase_url=args.supabase_url,
+            include_legacy=args.include_legacy,
+        )
     payload: dict[str, object] = {"rows": list(rows)}
+    if release_path is not None:
+        payload["release_path"] = str(release_path)
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
@@ -4401,6 +4415,15 @@ def build_parser() -> argparse.ArgumentParser:
         default=os.environ.get("AXIOM_SUPABASE_URL", DEFAULT_AXIOM_SUPABASE_URL),
     )
     snapshot_counts.add_argument("--output", type=Path)
+    snapshot_counts.add_argument("--base", type=Path)
+    snapshot_counts.add_argument(
+        "--release",
+        help=(
+            "Release manifest name or path. When provided, count matching "
+            "corpus.provisions rows directly instead of reading the materialized "
+            "current_provision_counts view."
+        ),
+    )
     snapshot_counts.add_argument(
         "--include-legacy",
         action="store_true",

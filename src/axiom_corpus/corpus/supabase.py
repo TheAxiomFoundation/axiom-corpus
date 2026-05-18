@@ -441,6 +441,159 @@ def fetch_provision_counts(
     return tuple(_normalize_count_row(row) for row in rows if isinstance(row, dict))
 
 
+def fetch_release_provision_counts(
+    release: ReleaseManifest,
+    *,
+    service_key: str,
+    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+) -> tuple[dict[str, object], ...]:
+    """Count provisions directly for a release manifest.
+
+    This is slower than reading ``current_provision_counts`` but avoids stale
+    analytics when the Supabase refresh RPC times out.
+    """
+    rest_url = _rest_url(supabase_url)
+    refreshed_at = datetime.now(UTC).isoformat()
+    grouped: dict[tuple[str, str], dict[str, object]] = {}
+    for scope in release.scopes:
+        key = (scope.jurisdiction, scope.document_class)
+        row = grouped.setdefault(
+            key,
+            {
+                "jurisdiction": scope.jurisdiction,
+                "document_class": scope.document_class,
+                "provision_count": 0,
+                "body_count": 0,
+                "top_level_count": 0,
+                "rulespec_count": 0,
+                "refreshed_at": refreshed_at,
+            },
+        )
+        row["provision_count"] = int(row["provision_count"]) + _count_provisions_scope(
+            scope,
+            service_key=service_key,
+            rest_url=rest_url,
+        )
+        row["body_count"] = int(row["body_count"]) + _count_provisions_scope(
+            scope,
+            service_key=service_key,
+            rest_url=rest_url,
+            extra_filters={"body": "not.is.null"},
+        )
+        row["top_level_count"] = int(row["top_level_count"]) + _count_provisions_scope(
+            scope,
+            service_key=service_key,
+            rest_url=rest_url,
+            extra_filters={"parent_id": "is.null"},
+        )
+        row["rulespec_count"] = int(row["rulespec_count"]) + _count_provisions_scope(
+            scope,
+            service_key=service_key,
+            rest_url=rest_url,
+            extra_filters={"has_rulespec": "eq.true"},
+        )
+    return tuple(grouped[key] for key in sorted(grouped))
+
+
+def _count_provisions_scope(
+    scope: ReleaseScope,
+    *,
+    service_key: str,
+    rest_url: str,
+    extra_filters: Mapping[str, str] | None = None,
+) -> int:
+    params = {
+        "select": "id",
+        "jurisdiction": f"eq.{scope.jurisdiction}",
+        "doc_type": f"eq.{scope.document_class}",
+        "version": f"eq.{scope.version}",
+    }
+    if extra_filters:
+        params.update(extra_filters)
+    query = urllib.parse.urlencode(params)
+    req = urllib.request.Request(
+        f"{rest_url}/provisions?{query}",
+        headers={
+            "apikey": service_key,
+            "Authorization": f"Bearer {service_key}",
+            "Accept": "application/json",
+            "Accept-Profile": "corpus",
+            "Prefer": "count=exact",
+            "Range": "0-0",
+            "User-Agent": USER_AGENT,
+        },
+        method="HEAD",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            return _count_from_content_range(resp.headers.get("Content-Range"))
+    except urllib.error.HTTPError as exc:
+        if exc.code < 500:
+            raise
+        return _count_provisions_scope_by_pages(
+            scope,
+            service_key=service_key,
+            rest_url=rest_url,
+            extra_filters=extra_filters,
+        )
+
+
+def _count_from_content_range(value: str | None) -> int:
+    if not value or "/" not in value:
+        raise RuntimeError("Supabase count response missing Content-Range")
+    total = value.rsplit("/", 1)[1]
+    if total == "*":
+        raise RuntimeError("Supabase count response did not include an exact total")
+    return int(total)
+
+
+def _count_provisions_scope_by_pages(
+    scope: ReleaseScope,
+    *,
+    service_key: str,
+    rest_url: str,
+    extra_filters: Mapping[str, str] | None = None,
+    page_size: int = 1_000,
+) -> int:
+    count = 0
+    last_id: str | None = None
+    while True:
+        params = {
+            "select": "id",
+            "jurisdiction": f"eq.{scope.jurisdiction}",
+            "doc_type": f"eq.{scope.document_class}",
+            "version": f"eq.{scope.version}",
+            "order": "id.asc",
+            "limit": str(page_size),
+        }
+        if extra_filters:
+            params.update(extra_filters)
+        if last_id is not None:
+            params["id"] = f"gt.{last_id}"
+        query = urllib.parse.urlencode(params)
+        req = urllib.request.Request(
+            f"{rest_url}/provisions?{query}",
+            headers={
+                "apikey": service_key,
+                "Authorization": f"Bearer {service_key}",
+                "Accept": "application/json",
+                "Accept-Profile": "corpus",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            rows = json.loads(resp.read())
+        if not isinstance(rows, list):
+            raise RuntimeError("unexpected Supabase provisions response")
+        count += len(rows)
+        if len(rows) < page_size:
+            return count
+        last_row = rows[-1]
+        if not isinstance(last_row, dict) or not last_row.get("id"):
+            return count
+        last_id = str(last_row["id"])
+
+
 def sync_release_scopes_to_supabase(
     release: ReleaseManifest,
     *,

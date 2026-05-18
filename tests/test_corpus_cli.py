@@ -952,6 +952,72 @@ def test_snapshot_provision_counts_cli_writes_supabase_counts(tmp_path, capsys, 
     }
 
 
+def test_snapshot_provision_counts_cli_can_count_release_manifest(
+    tmp_path, capsys, monkeypatch
+):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    release_dir = base / "releases"
+    release_dir.mkdir(parents=True)
+    (release_dir / "current.json").write_text(
+        json.dumps(
+            {
+                "name": "current",
+                "scopes": [
+                    {
+                        "jurisdiction": "us",
+                        "document_class": "guidance",
+                        "version": "2026-05-01",
+                    }
+                ],
+            }
+        )
+    )
+    out = tmp_path / "provision-counts.json"
+    monkeypatch.setattr(cli, "resolve_service_key", lambda *args, **kwargs: "service")
+
+    def fake_fetch(release, **kwargs):
+        assert release.name == "current"
+        assert release.scopes[0].jurisdiction == "us"
+        assert kwargs["service_key"] == "service"
+        return (
+            {
+                "jurisdiction": "us",
+                "document_class": "guidance",
+                "provision_count": 49,
+            },
+        )
+
+    monkeypatch.setattr(cli, "fetch_release_provision_counts", fake_fetch)
+
+    exit_code = main(
+        [
+            "snapshot-provision-counts",
+            "--base",
+            str(base),
+            "--release",
+            "current",
+            "--output",
+            str(out),
+        ]
+    )
+    payload = json.loads(capsys.readouterr().out)
+
+    assert exit_code == 0
+    assert payload["release_path"] == str(release_dir / "current.json")
+    assert json.loads(out.read_text()) == {
+        "release_path": str(release_dir / "current.json"),
+        "rows": [
+            {
+                "document_class": "guidance",
+                "jurisdiction": "us",
+                "provision_count": 49,
+            }
+        ],
+    }
+
+
 def test_sync_release_scopes_cli_uses_manifest(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 

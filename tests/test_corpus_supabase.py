@@ -1,4 +1,6 @@
+import io
 import json
+import urllib.error
 
 import pytest
 
@@ -8,6 +10,7 @@ from axiom_corpus.corpus.supabase import (
     delete_supabase_provisions_scope,
     deterministic_provision_id,
     fetch_provision_counts,
+    fetch_release_provision_counts,
     list_release_scopes,
     load_provisions_to_supabase,
     provision_to_supabase_row,
@@ -227,6 +230,120 @@ def test_fetch_provision_counts_can_include_legacy(monkeypatch):
     )
 
     assert calls[0].startswith("https://example.supabase.co/rest/v1/provision_counts?")
+
+
+def test_fetch_release_provision_counts_counts_manifest_scopes(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    calls = []
+    counts = iter([10, 8, 1, 2, 3, 2, 1, 0])
+
+    class FakeResponse:
+        def __init__(self, count):
+            self.headers = {"Content-Range": f"0-0/{count}"}
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+    def fake_urlopen(req, timeout):
+        calls.append((req.full_url, req.get_method(), timeout))
+        return FakeResponse(next(counts))
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+
+    rows = fetch_release_provision_counts(
+        ReleaseManifest(
+            name="current",
+            scopes=(
+                ReleaseScope("us", "guidance", "2026-a"),
+                ReleaseScope("us", "guidance", "2026-b"),
+            ),
+        ),
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    assert rows == (
+        {
+            "jurisdiction": "us",
+            "document_class": "guidance",
+            "provision_count": 13,
+            "body_count": 10,
+            "top_level_count": 2,
+            "rulespec_count": 2,
+            "refreshed_at": rows[0]["refreshed_at"],
+        },
+    )
+    assert len(calls) == 8
+    assert calls[0][0].startswith("https://example.supabase.co/rest/v1/provisions?")
+    assert calls[0][1] == "HEAD"
+    assert calls[0][2] == 180
+    assert "version=eq.2026-a" in calls[0][0]
+    assert "body=not.is.null" in calls[1][0]
+    assert "parent_id=is.null" in calls[2][0]
+
+
+def test_fetch_release_provision_counts_falls_back_when_exact_count_times_out(
+    monkeypatch,
+):
+    import axiom_corpus.corpus.supabase as supabase
+
+    calls = []
+
+    class FakePage:
+        def __init__(self, rows):
+            self._rows = rows
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+        def read(self):
+            return json.dumps(self._rows).encode()
+
+    class FakeHead:
+        headers = {"Content-Range": "0-0/0"}
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+    def fake_urlopen(req, timeout):  # noqa: ARG001
+        calls.append((req.full_url, req.get_method()))
+        if len(calls) == 1:
+            raise urllib.error.HTTPError(
+                req.full_url,
+                500,
+                "Internal Server Error",
+                {},
+                io.BytesIO(b'{"code":"57014"}'),
+            )
+        if req.get_method() == "GET":
+            return FakePage([{"id": "a"}, {"id": "b"}])
+        return FakeHead()
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+
+    rows = fetch_release_provision_counts(
+        ReleaseManifest(
+            name="current",
+            scopes=(ReleaseScope("us", "form", "2026-05-01"),),
+        ),
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    assert rows[0]["provision_count"] == 2
+    assert calls[0][1] == "HEAD"
+    assert calls[1][1] == "GET"
+    assert "order=id.asc" in calls[1][0]
 
 
 class _SyncFakeResponse:
