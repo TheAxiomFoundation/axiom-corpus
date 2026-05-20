@@ -38,6 +38,7 @@ from axiom_corpus.corpus.models import (
     DocumentClass,
     ProvisionRecord,
 )
+from axiom_corpus.corpus.montana_admin_rules import extract_montana_admin_rules
 from axiom_corpus.corpus.navigation import (
     NavigationNode,
     build_navigation_nodes,
@@ -3309,6 +3310,60 @@ def _cmd_extract_pennsylvania_code(args: argparse.Namespace) -> int:
     )
 
 
+def _cmd_extract_montana_admin_rules(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_montana_admin_rules(
+        store,
+        version=args.version,
+        source_dir=args.source_dir,
+        download_dir=args.download_dir,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        only_title=args.only_title,
+        only_section=args.only_section,
+        include_not_effective=args.include_not_effective,
+        limit_sections=args.limit_sections,
+        limit_rules=args.limit_rules,
+        workers=args.workers,
+        progress_stream=sys.stderr,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "title_count": report.title_count,
+                "chapter_count": report.chapter_count,
+                "subchapter_count": report.subchapter_count,
+                "rule_count": report.rule_count,
+                "skipped_source_count": report.skipped_source_count,
+                "error_count": len(report.errors),
+                "errors": list(report.errors[:20]),
+                "source_file_count": len(report.source_paths),
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return (
+        0
+        if (report.coverage.complete and report.skipped_source_count == 0) or args.allow_incomplete
+        else 2
+    )
+
+
 def _cmd_extract_nycrr(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -4532,6 +4587,30 @@ def build_parser() -> argparse.ArgumentParser:
     extract_pennsylvania_code_cmd.add_argument("--workers", type=int, default=8)
     extract_pennsylvania_code_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_pennsylvania_code_cmd.set_defaults(func=_cmd_extract_pennsylvania_code)
+
+    extract_montana_admin_rules_cmd = sub.add_parser(
+        "extract-montana-administrative-rules",
+        aliases=["extract-montana-admin-rules"],
+        help="Snapshot official Montana Administrative Rules JSON and HTML.",
+    )
+    extract_montana_admin_rules_cmd.add_argument("--base", type=Path, required=True)
+    extract_montana_admin_rules_cmd.add_argument("--version", required=True)
+    extract_montana_admin_rules_cmd.add_argument("--source-dir", type=Path)
+    extract_montana_admin_rules_cmd.add_argument("--download-dir", type=Path)
+    extract_montana_admin_rules_cmd.add_argument("--only-title")
+    extract_montana_admin_rules_cmd.add_argument("--only-section")
+    extract_montana_admin_rules_cmd.add_argument(
+        "--include-not-effective",
+        action="store_true",
+        help="Include repealed and otherwise not-effective ARM entries.",
+    )
+    extract_montana_admin_rules_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_montana_admin_rules_cmd.add_argument("--expression-date")
+    extract_montana_admin_rules_cmd.add_argument("--limit-sections", type=int)
+    extract_montana_admin_rules_cmd.add_argument("--limit-rules", type=int)
+    extract_montana_admin_rules_cmd.add_argument("--workers", type=int, default=12)
+    extract_montana_admin_rules_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_montana_admin_rules_cmd.set_defaults(func=_cmd_extract_montana_admin_rules)
 
     extract_nycrr_cmd = sub.add_parser(
         "extract-nycrr",
