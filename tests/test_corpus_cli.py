@@ -461,6 +461,13 @@ def test_load_supabase_cli_rebuilds_navigation_after_provisions_load(tmp_path, c
                 version="2026-05-05",
                 metadata={"status": "current"},
             ),
+            ProvisionRecord(
+                jurisdiction="us-co",
+                document_class="statute",
+                citation_path="us-co/statute/title-39/article-22",
+                parent_citation_path="us-co/statute/title-39",
+                version="2026-05-05",
+            ),
         ],
     )
 
@@ -474,31 +481,10 @@ def test_load_supabase_cli_rebuilds_navigation_after_provisions_load(tmp_path, c
     )
     captured: dict[str, object] = {}
 
-    def fake_fetch_for_navigation(**kwargs):
-        captured["fetch_scope"] = (
-            kwargs["jurisdiction"],
-            kwargs["doc_type"],
-            kwargs["version"],
-        )
-        return (
-            ProvisionRecord(
-                id="11111111-1111-1111-1111-111111111111",
-                jurisdiction="us-co",
-                document_class="statute",
-                citation_path="us-co/statute/title-39",
-                version="2026-05-05",
-            ),
-            ProvisionRecord(
-                id="22222222-2222-2222-2222-222222222222",
-                jurisdiction="us-co",
-                document_class="statute",
-                citation_path="us-co/statute/title-39/article-22",
-                parent_citation_path="us-co/statute/title-39",
-                version="2026-05-05",
-            ),
-        )
+    def fail_fetch_for_navigation(**kwargs):
+        raise AssertionError("default navigation rebuild should use local provisions")
 
-    monkeypatch.setattr(cli, "fetch_provisions_for_navigation", fake_fetch_for_navigation)
+    monkeypatch.setattr(cli, "fetch_provisions_for_navigation", fail_fetch_for_navigation)
     monkeypatch.setattr(
         cli,
         "fetch_navigation_statuses",
@@ -526,16 +512,11 @@ def test_load_supabase_cli_rebuilds_navigation_after_provisions_load(tmp_path, c
     payload = json.loads(capsys.readouterr().out)
 
     assert exit_code == 0
-    assert captured["fetch_scope"] == ("us-co", "statute", "2026-05-05")
     assert captured["replace_scope"] is True
     assert captured["replace_scopes"] == (("us-co", "statute", "2026-05-05"),)
     assert set(captured["node_paths"]) == {
         "us-co/statute/title-39",
         "us-co/statute/title-39/article-22",
-    }
-    assert set(captured["provision_ids"]) == {
-        "11111111-1111-1111-1111-111111111111",
-        "22222222-2222-2222-2222-222222222222",
     }
     assert captured["statuses"] == {
         "us-co/statute/title-39": "current",
@@ -543,6 +524,88 @@ def test_load_supabase_cli_rebuilds_navigation_after_provisions_load(tmp_path, c
     }
     assert payload["navigation"]["rows_loaded"] == 2
     assert payload["navigation"]["scopes_replaced"] == [["us-co", "statute", "2026-05-05"]]
+    assert payload["navigation"]["source"] == "local"
+
+
+def test_load_supabase_cli_can_rebuild_navigation_from_supabase(
+    tmp_path, capsys, monkeypatch
+):
+    import axiom_corpus.corpus.cli as cli
+    from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+    from axiom_corpus.corpus.navigation_supabase import NavigationSupabaseWriteReport
+    from axiom_corpus.corpus.supabase import SupabaseLoadReport
+
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    provisions = store.provisions_path("us-co", "statute", "2026-05-05")
+    store.write_provisions(
+        provisions,
+        [
+            ProvisionRecord(
+                jurisdiction="us-co",
+                document_class="statute",
+                citation_path="us-co/statute/title-39",
+                version="2026-05-05",
+            ),
+        ],
+    )
+
+    monkeypatch.setattr(cli, "resolve_service_key", lambda *a, **kw: "service")
+    monkeypatch.setattr(
+        cli,
+        "load_provisions_to_supabase",
+        lambda *a, **kw: SupabaseLoadReport(
+            rows_total=1, rows_loaded=1, chunk_count=1, refreshed=True
+        ),
+    )
+    captured: dict[str, object] = {}
+
+    def fake_fetch_for_navigation(**kwargs):
+        captured["fetch_scope"] = (
+            kwargs["jurisdiction"],
+            kwargs["doc_type"],
+            kwargs["version"],
+        )
+        return (
+            ProvisionRecord(
+                id="11111111-1111-1111-1111-111111111111",
+                jurisdiction="us-co",
+                document_class="statute",
+                citation_path="us-co/statute/title-39",
+                version="2026-05-05",
+            ),
+        )
+
+    monkeypatch.setattr(cli, "fetch_provisions_for_navigation", fake_fetch_for_navigation)
+    monkeypatch.setattr(cli, "fetch_navigation_statuses", lambda **kwargs: {})
+
+    def fake_writer(nodes, **kwargs):
+        captured["provision_ids"] = [n.provision_id for n in nodes]
+        return NavigationSupabaseWriteReport(
+            rows_total=len(captured["provision_ids"]),
+            rows_loaded=len(captured["provision_ids"]),
+            chunk_count=1,
+            scopes_replaced=(("us-co", "statute", "2026-05-05"),),
+            rows_deleted=0,
+            delete_chunk_count=0,
+        )
+
+    monkeypatch.setattr(cli, "write_navigation_nodes_to_supabase", fake_writer)
+
+    exit_code = main(
+        [
+            "load-supabase",
+            "--provisions",
+            str(provisions),
+            "--navigation-source",
+            "supabase",
+        ]
+    )
+    payload = json.loads(capsys.readouterr().out)
+
+    assert exit_code == 0
+    assert captured["fetch_scope"] == ("us-co", "statute", "2026-05-05")
+    assert captured["provision_ids"] == ["11111111-1111-1111-1111-111111111111"]
+    assert payload["navigation"]["source"] == "supabase"
 
 
 def test_build_navigation_index_all_requires_input_source():

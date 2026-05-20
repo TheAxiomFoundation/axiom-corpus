@@ -343,16 +343,21 @@ def _cmd_load_supabase(args: argparse.Namespace) -> int:
     if args.build_navigation and not args.dry_run and report.rows_loaded:
         navigation_records: list[ProvisionRecord] = []
         existing_navigation_statuses: dict[str, str] = {}
-        for jurisdiction, document_class, version in _provision_release_scopes(records):
-            navigation_records.extend(
-                fetch_provisions_for_navigation(
-                    service_key=service_key,
-                    supabase_url=args.supabase_url,
-                    jurisdiction=jurisdiction,
-                    doc_type=document_class,
-                    version=version,
+        release_scopes = _provision_release_scopes(records)
+        if args.navigation_source == "local":
+            navigation_records.extend(records)
+        else:
+            for jurisdiction, document_class, version in release_scopes:
+                navigation_records.extend(
+                    fetch_provisions_for_navigation(
+                        service_key=service_key,
+                        supabase_url=args.supabase_url,
+                        jurisdiction=jurisdiction,
+                        doc_type=document_class,
+                        version=version,
+                    )
                 )
-            )
+        for jurisdiction, document_class, version in release_scopes:
             if args.preserve_navigation_statuses:
                 existing_navigation_statuses.update(
                     fetch_navigation_statuses(
@@ -364,7 +369,7 @@ def _cmd_load_supabase(args: argparse.Namespace) -> int:
                     )
                 )
         encoded_paths = _resolve_encoded_paths(
-            args, {jurisdiction for jurisdiction, _, _ in _provision_release_scopes(records)}
+            args, {jurisdiction for jurisdiction, _, _ in release_scopes}
         )
         nodes = build_navigation_nodes(
             _apply_navigation_status_overrides(
@@ -380,11 +385,12 @@ def _cmd_load_supabase(args: argparse.Namespace) -> int:
             supabase_url=args.supabase_url,
             chunk_size=args.chunk_size,
             replace_scope=True,
-            replace_scopes=_provision_release_scopes(records),
+            replace_scopes=release_scopes,
             dry_run=False,
             progress_stream=sys.stderr,
         )
         payload["navigation"] = navigation_report.to_mapping()
+        payload["navigation"]["source"] = args.navigation_source
     elif args.build_navigation and args.dry_run:
         payload["navigation"] = {"skipped": "dry-run"}
 
@@ -4704,6 +4710,17 @@ def build_parser() -> argparse.ArgumentParser:
         help=(
             "Carry curated corpus.navigation_nodes.status values across the "
             "post-load nav rebuild. Disable with --no-preserve-navigation-statuses."
+        ),
+    )
+    load_supabase.add_argument(
+        "--navigation-source",
+        choices=("local", "supabase"),
+        default="local",
+        help=(
+            "Input used for post-load navigation rebuilds. Default local builds "
+            "from the provisions JSONL just loaded, avoiding a large readback "
+            "from Supabase. Use supabase for legacy migration loads that need "
+            "database-assigned provision IDs."
         ),
     )
     load_supabase.add_argument(
