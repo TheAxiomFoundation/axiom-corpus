@@ -335,7 +335,7 @@ def _cmd_load_supabase(args: argparse.Namespace) -> int:
         auto_register_scopes=not args.no_auto_register,
         auto_publish=not args.stage,
     )
-    payload = report.to_mapping()
+    payload: dict[str, Any] = report.to_mapping()
     if replace_report is not None:
         payload["replace_scope"] = replace_report.to_mapping()
     payload["provisions"] = str(args.provisions)
