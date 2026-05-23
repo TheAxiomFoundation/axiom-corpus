@@ -15,7 +15,8 @@ from threading import local
 from typing import Any, TextIO
 
 import requests
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup
+from bs4.element import NavigableString, Tag
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment, sha256_bytes
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
@@ -287,7 +288,8 @@ def extract_montana_admin_rules(
         (nodes_by_uuid[uuid] for uuid in needed_node_uuids if uuid in nodes_by_uuid),
         key=lambda item: tree_order[item.uuid],
     ):
-        snapshot = section_by_uuid.get(node.uuid).snapshot if node.uuid in section_by_uuid else None
+        section_result = section_by_uuid.get(node.uuid)
+        snapshot = section_result.snapshot if section_result is not None else None
         source_snapshot = snapshot or tree_snapshot
         _append_section_node(
             node,
@@ -298,9 +300,7 @@ def extract_montana_admin_rules(
             version=run_id,
             source_as_of=source_as_of_text,
             expression_date=expression_date_text,
-            direct_rule_count=len(section_by_uuid.get(node.uuid).policies)
-            if node.uuid in section_by_uuid
-            else 0,
+            direct_rule_count=len(section_result.policies) if section_result is not None else 0,
             tree_source_path=tree_snapshot.source_key,
         )
 
@@ -324,18 +324,18 @@ def extract_montana_admin_rules(
         )
     )
     rule_count = 0
-    for result in policy_results:
-        if result.policy_snapshot is not None:
-            source_paths.append(result.policy_snapshot.source_path)
-        if result.html_snapshot is not None:
-            source_paths.append(result.html_snapshot.source_path)
-        if result.error:
-            errors.append(result.error)
+    for policy_result in policy_results:
+        if policy_result.policy_snapshot is not None:
+            source_paths.append(policy_result.policy_snapshot.source_path)
+        if policy_result.html_snapshot is not None:
+            source_paths.append(policy_result.html_snapshot.source_path)
+        if policy_result.error:
+            errors.append(policy_result.error)
             skipped_source_count += 1
-        if result.policy is None:
+        if policy_result.policy is None:
             continue
         _append_rule(
-            result,
+            policy_result,
             collection_uuid=collection_uuid,
             inventory=inventory,
             records=records,
