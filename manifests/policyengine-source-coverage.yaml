@@ -514,7 +514,7 @@ document_groups:
   owner: null
   notes: Local official-document extraction completed for 10 Connecticut income-tax PDFs / 193 provisions.
 - group_key: us-id/form/tax_forms
-  status: backlog
+  status: ingested
   priority: p0
   jurisdiction: us-id
   document_class: form
@@ -537,17 +537,17 @@ document_groups:
   target_release_scope:
     jurisdiction: us-id
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-id-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-id/form/2026-05-23-id-tax-forms/
+    inventory: data/corpus/inventory/us-id/form/2026-05-23-id-tax-forms.json
+    provisions: data/corpus/provisions/us-id/form/2026-05-23-id-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-id/form/2026-05-23-id-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 19 Idaho tax-form PDFs / 420 provisions. One superseded 2025 instructions URL was excluded because the updated official PDF is already present in the group.
 - group_key: us-md/form/tax_forms
   status: backlog
   priority: p0
