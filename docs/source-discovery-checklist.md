@@ -161,3 +161,17 @@ manifest candidates by jurisdiction, document class, and source family. This is
 especially important for forms, where the raw inventory often contains multiple
 yearly tax booklet, schedule, and instruction URLs that should be scoped as a
 coherent current-year manifest before historical years are added.
+
+When working down the PolicyEngine checklist, prioritize by expected impact on
+net income rather than by raw URL count:
+
+- `p0`: tax forms/instructions, tax law and regulations, refundable credits,
+  payroll/social-insurance rules, and cash-benefit rules used directly in net
+  income calculations.
+- `p1`: means-tested benefit manuals, eligibility guidance, state plans, and
+  program tables that determine benefit amounts or eligibility but may need more
+  adapter work.
+- `p2`: broad statutes, regulations, rulemaking, and official guidance that are
+  useful for legal grounding but less directly parameterized in the model.
+- `p3`: reference-only, historical, mixed, or adapter-blocked groups that should
+  wait until higher-impact source families are covered.
