@@ -1,6 +1,10 @@
 import json
 
 from axiom_corpus.corpus.cli import main
+from axiom_corpus.corpus.policyengine_references import (
+    PolicyEngineReferenceScope,
+    scan_policyengine_references,
+)
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.source_discovery import (
     DiscoveryDisposition,
@@ -210,3 +214,174 @@ def test_source_discovery_cli_uses_inventory_urls_for_release_coverage(tmp_path,
     assert rows["cbo.gov"]["release_scope_present"] is False
     assert "us/form/federal_tax_parameters" in group_keys
     assert "us/form/medicaid_chip_eligibility_levels" not in group_keys
+
+
+def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):
+    repo = tmp_path / "policyengine-us"
+    parameter = (
+        repo
+        / "policyengine_us"
+        / "parameters"
+        / "gov"
+        / "irs"
+        / "standard_deduction.yaml"
+    )
+    variable = (
+        repo
+        / "policyengine_us"
+        / "variables"
+        / "gov"
+        / "irs"
+        / "income_tax.py"
+    )
+    readme = repo / "README.md"
+    parameter.parent.mkdir(parents=True)
+    variable.parent.mkdir(parents=True)
+    parameter.write_text(
+        "\n".join(
+            [
+                "description: Standard deduction.",
+                "metadata:",
+                "  reference:",
+                "  - title: 26 U.S.C. § 63(c)",
+                "    href: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title26-section63",
+                "CO:",
+                "  # https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492",
+                "  2026-01-01: 1",
+            ]
+        )
+    )
+    variable.write_text(
+        "\n".join(
+            [
+                "class income_tax:",
+                "    reference = [",
+                '        "https://www.law.cornell.edu/uscode/text/26/1",',
+                '        "26 U.S.C. § 1",',
+                "    ]",
+            ]
+        )
+    )
+    readme.write_text("https://policyengine.org/us\n")
+
+    records = scan_policyengine_references(
+        repo,
+        project="policyengine-us",
+        upstream_commit="abc123",
+        scope=PolicyEngineReferenceScope.POLICY,
+    )
+    mappings = [record.to_mapping() for record in records]
+    urls = {record.reference_url for record in records if record.reference_url}
+    citations = {record.citation_text for record in records if record.citation_text}
+
+    assert "https://policyengine.org/us" not in urls
+    assert "https://www.law.cornell.edu/uscode/text/26/1" in urls
+    assert (
+        "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title26-section63"
+        in urls
+    )
+    assert "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492" in urls
+    assert "26 U.S.C. § 63(c)" in citations
+    assert "26 U.S.C. § 1" in citations
+    assert {
+        (row["file_path"], row["source_type"], row["symbol_path"])
+        for row in mappings
+        if row["reference_url"] == "https://www.law.cornell.edu/uscode/text/26/1"
+    } == {
+        (
+            "policyengine_us/variables/gov/irs/income_tax.py",
+            "variable",
+            "income_tax",
+        )
+    }
+    assert {
+        row["symbol_path"]
+        for row in mappings
+        if row["reference_url"]
+        == "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title26-section63"
+    } == {"gov.irs.standard_deduction"}
+
+
+def test_policyengine_references_cli_writes_jsonl_and_url_inventory(tmp_path, capsys):
+    repo = tmp_path / "policyengine-uk"
+    parameter = (
+        repo
+        / "policyengine_uk"
+        / "parameters"
+        / "gov"
+        / "hmrc"
+        / "personal_allowance.yaml"
+    )
+    readme = repo / "docs" / "notes.md"
+    parameter.parent.mkdir(parents=True)
+    readme.parent.mkdir(parents=True)
+    parameter.write_text(
+        "\n".join(
+            [
+                "metadata:",
+                "  reference:",
+                "  - href: https://www.legislation.gov.uk/ukpga/2007/3/section/35",
+                "  - Income Tax Act 2007 s. 35",
+            ]
+        )
+    )
+    readme.write_text("https://policyengine.org/uk/research/example\n")
+    output = tmp_path / "references.jsonl"
+    url_output = tmp_path / "urls.txt"
+
+    exit_code = main(
+        [
+            "policyengine-references",
+            "--repo",
+            str(repo),
+            "--scope",
+            "policy",
+            "--output",
+            str(output),
+            "--url-output",
+            str(url_output),
+        ]
+    )
+    printed = json.loads(capsys.readouterr().out)
+    rows = [json.loads(line) for line in output.read_text().splitlines()]
+    urls = url_output.read_text().splitlines()
+
+    assert exit_code == 0
+    assert printed["reference_count"] == 2
+    assert printed["url_reference_count"] == 1
+    assert printed["citation_reference_count"] == 1
+    assert printed["project_counts"] == {"policyengine-uk": 2}
+    assert urls == ["https://www.legislation.gov.uk/ukpga/2007/3/section/35"]
+    assert rows[0]["file_path"] == (
+        "policyengine_uk/parameters/gov/hmrc/personal_allowance.yaml"
+    )
+    assert rows[0]["symbol_path"] == "gov.hmrc.personal_allowance"
+
+    discovery_output = tmp_path / "source-discovery.json"
+    discovery_exit_code = main(
+        [
+            "source-discovery",
+            "--base",
+            str(tmp_path),
+            "--release",
+            "",
+            "--reference-input",
+            str(output),
+            "--output",
+            str(discovery_output),
+        ]
+    )
+    capsys.readouterr()
+    discovery = json.loads(discovery_output.read_text())
+
+    assert discovery_exit_code == 0
+    assert discovery["unique_url_count"] == 1
+    assert discovery["rows"][0]["source_list"] == "policyengine-uk"
+    assert discovery["rows"][0]["reference_count"] == 1
+    assert discovery["rows"][0]["sample_reference_paths"] == [
+        (
+            "policyengine-uk#"
+            "policyengine_uk/parameters/gov/hmrc/personal_allowance.yaml:3#"
+            "gov.hmrc.personal_allowance"
+        )
+    ]

@@ -56,7 +56,7 @@ fill_in_fields:
   target_release_scope: Corpus release scope expected after ingestion.
   corpus_artifacts: Concrete sources/inventory/provisions/coverage artifact paths after ingestion.
 known_limitations:
-- This seed is URL-based. Non-URL legal citations in PolicyEngine, such as bare Act or Code references, need a second extraction pass and should be added under additional_source_sets or merged into existing groups.
+- This coverage seed is URL-group based. The PolicyEngine reference extractor can preserve non-URL legal citations, such as bare Act or Code references, but those citations need a resolver before they can be added under additional_source_sets or merged into existing groups.
 - Rows classified as unknown, secondary, analytical, or vendor-only stay in the JSON report for review but are not promoted into document_groups until an official source path is identified.
 - PolicyEngine references are discovery provenance only; every target manifest must refetch and hash official source documents independently.
 document_groups:

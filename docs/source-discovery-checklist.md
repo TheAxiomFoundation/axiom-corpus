@@ -20,7 +20,8 @@ Use this as an offline checklist only:
 
 - [x] Export static URL inventories from PolicyEngine-US and PolicyEngine-UK into
       review artifacts.
-- [ ] Preserve the citing parameter or variable path in the generated inventory.
+- [x] Add an offline PolicyEngine reference extractor that preserves the citing
+      parameter or variable path in generated JSONL inventories.
 - [x] Normalize URL variants, strip page anchors into separate metadata, and
       deduplicate by canonical URL.
 - [x] Classify each URL by source status: primary official, official-but-not-
@@ -71,20 +72,62 @@ static URL lists under `sources/policyengine-us/`. It powers the Axiom `/ops`
 Source Discovery Backlog section and should be refreshed when the offline
 inventory changes.
 
-The broader PolicyEngine coverage seed can be regenerated as
-`data/corpus/analytics/source-discovery-policyengine-current.json` from:
+Generate provenance-rich PolicyEngine reference inventories from clean upstream
+checkouts before regenerating the broader coverage seed:
+
+```bash
+uv run --extra dev axiom-corpus-ingest policyengine-references \
+  --repo /tmp/policyengine-us-source-scan \
+  --project policyengine-us \
+  --scope policy \
+  --output data/corpus/analytics/policyengine-us-policy-references-current.jsonl \
+  --url-output sources/policyengine-us/policy_url_references.txt
+
+uv run --extra dev axiom-corpus-ingest policyengine-references \
+  --repo /tmp/policyengine-uk-source-scan \
+  --project policyengine-uk \
+  --scope policy \
+  --output data/corpus/analytics/policyengine-uk-policy-references-current.jsonl \
+  --url-output sources/policyengine-uk/policy_url_references.txt
+```
+
+The extractor records `project`, `upstream_commit`, `file_path`, `line`,
+`source_type`, `symbol_path`, `reference_url`, and `citation_text`. The `policy`
+scope scans `parameters` and `variables`; use `--scope all` only when rebuilding
+the broad URL inventories from all supported `.yaml`, `.yml`, `.py`, and `.md`
+files.
+
+The broader PolicyEngine coverage seed can then be regenerated as
+`data/corpus/analytics/source-discovery-policyengine-current.json` either from
+the existing static URL inventories:
 
 - `sources/policyengine-us/all_url_references.txt`
 - `sources/policyengine-uk/all_url_references.txt`
 
-Its `group_rows` are materialized into
+or directly from the provenance JSONL:
+
+```bash
+uv run --extra dev axiom-corpus-ingest source-discovery \
+  --base data/corpus \
+  --reference-input data/corpus/analytics/policyengine-us-policy-references-current.jsonl \
+  --reference-input data/corpus/analytics/policyengine-uk-policy-references-current.jsonl \
+  --source-name policyengine \
+  --release current \
+  --output data/corpus/analytics/source-discovery-policyengine-current.json
+```
+
+Rows generated from JSONL include `reference_count` and
+`sample_reference_paths`, which should be used for discovery provenance when a
+source group is promoted into a corpus manifest.
+
+The report's `group_rows` are materialized into
 `manifests/policyengine-source-coverage.yaml`. Fill that manifest in first,
 then promote reviewed groups into source-first ingestion manifests.
 
-The current seed is URL-based. Non-URL legal citations in PolicyEngine, such as
-bare Act, Code, or regulation references without `href` values, need a second
-extraction pass and should be added to `additional_source_sets` or merged into
-existing document groups.
+The current coverage manifest remains URL-group based. The PolicyEngine
+reference JSONL also preserves bare Act, Code, and regulation citations without
+`href` values, but those need a resolver before they can be merged into existing
+document groups.
 
 Federal Register URLs in the discovery report should be promoted through the
 `extract-federal-register` adapter, not through the generic official-document

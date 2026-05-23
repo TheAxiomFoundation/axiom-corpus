@@ -53,6 +53,13 @@ from axiom_corpus.corpus.nycrr import extract_nycrr
 from axiom_corpus.corpus.ohio_admin_code import extract_ohio_admin_code
 from axiom_corpus.corpus.oregon_admin_rules import extract_oregon_admin_rules
 from axiom_corpus.corpus.pennsylvania_code import extract_pennsylvania_code
+from axiom_corpus.corpus.policyengine_references import (
+    PolicyEngineReferenceScope,
+    scan_policyengine_references,
+    summarize_policyengine_references,
+    write_policyengine_references_jsonl,
+    write_policyengine_url_inventory,
+)
 from axiom_corpus.corpus.r2 import (
     DEFAULT_ARTIFACT_PREFIXES,
     DEFAULT_RELEASE_ARTIFACT_PREFIXES,
@@ -3896,6 +3903,15 @@ def _cmd_regulation_completion(args: argparse.Namespace) -> int:
 
 
 def _cmd_source_discovery(args: argparse.Namespace) -> int:
+    if not args.input and not args.reference_input:
+        print(
+            json.dumps(
+                {"error": "source-discovery requires --input or --reference-input"},
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return 2
     release = None
     release_path = None
     covered_source_urls = None
@@ -3907,7 +3923,8 @@ def _cmd_source_discovery(args: argparse.Namespace) -> int:
             release,
         )
     report = build_source_discovery_report(
-        tuple(args.input),
+        tuple(args.input or ()),
+        reference_input_paths=tuple(args.reference_input or ()),
         release=release,
         covered_source_urls=covered_source_urls,
         source_name=args.source_name,
@@ -3919,6 +3936,48 @@ def _cmd_source_discovery(args: argparse.Namespace) -> int:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
         payload["written_to"] = str(args.output)
+    print(json.dumps(payload, indent=2, sort_keys=True))
+    return 0
+
+
+def _cmd_policyengine_references(args: argparse.Namespace) -> int:
+    projects = tuple(args.project or ())
+    repos = tuple(args.repo)
+    if projects and len(projects) != len(repos):
+        print(
+            json.dumps(
+                {
+                    "error": "--project must be supplied once per --repo when used",
+                    "project_count": len(projects),
+                    "repo_count": len(repos),
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return 2
+
+    records = []
+    for index, repo in enumerate(repos):
+        project = projects[index] if projects else None
+        records.extend(
+            scan_policyengine_references(
+                repo,
+                project=project,
+                scope=PolicyEngineReferenceScope(args.scope),
+            )
+        )
+    references = tuple(records)
+    write_policyengine_references_jsonl(references, args.output)
+    if args.url_output:
+        write_policyengine_url_inventory(references, args.url_output)
+
+    payload = summarize_policyengine_references(references)
+    payload["repo_count"] = len(repos)
+    payload["scope"] = args.scope
+    payload["written_to"] = str(args.output)
+    if args.url_output:
+        payload["url_inventory_written_to"] = str(args.url_output)
     print(json.dumps(payload, indent=2, sort_keys=True))
     return 0
 
@@ -5332,8 +5391,16 @@ def build_parser() -> argparse.ArgumentParser:
         "--input",
         type=Path,
         action="append",
-        required=True,
         help="Static URL-list file to classify. Repeatable.",
+    )
+    source_discovery.add_argument(
+        "--reference-input",
+        type=Path,
+        action="append",
+        help=(
+            "PolicyEngine reference JSONL file to classify by its reference_url "
+            "records. Repeatable."
+        ),
     )
     source_discovery.add_argument(
         "--source-name",
@@ -5347,6 +5414,47 @@ def build_parser() -> argparse.ArgumentParser:
     )
     source_discovery.add_argument("--output", type=Path)
     source_discovery.set_defaults(func=_cmd_source_discovery)
+
+    policyengine_references = sub.add_parser(
+        "policyengine-references",
+        help=(
+            "Extract offline PolicyEngine reference provenance into JSONL and "
+            "optional URL inventories."
+        ),
+    )
+    policyengine_references.add_argument(
+        "--repo",
+        type=Path,
+        action="append",
+        required=True,
+        help="PolicyEngine checkout to scan. Repeatable.",
+    )
+    policyengine_references.add_argument(
+        "--project",
+        action="append",
+        help="Project label matching each --repo, e.g. policyengine-us. Repeatable.",
+    )
+    policyengine_references.add_argument(
+        "--scope",
+        choices=[scope.value for scope in PolicyEngineReferenceScope],
+        default=PolicyEngineReferenceScope.POLICY.value,
+        help=(
+            "policy scans parameters/variables only; all scans supported files "
+            "throughout the checkout."
+        ),
+    )
+    policyengine_references.add_argument(
+        "--output",
+        type=Path,
+        required=True,
+        help="JSONL path for provenance-rich reference records.",
+    )
+    policyengine_references.add_argument(
+        "--url-output",
+        type=Path,
+        help="Optional static URL-list path consumable by source-discovery.",
+    )
+    policyengine_references.set_defaults(func=_cmd_policyengine_references)
 
     return parser
 
