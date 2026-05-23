@@ -71,6 +71,48 @@ def test_source_discovery_classifies_static_external_urls(tmp_path):
     )
 
 
+def test_source_discovery_classifies_uk_official_policy_sources(tmp_path):
+    urls = tmp_path / "policyengine_uk_urls.txt"
+    urls.write_text(
+        "\n".join(
+            [
+                "https://www.legislation.gov.uk/ukpga/2003/1/section/1",
+                "https://www.legislation.gov.uk/uksi/2013/376/regulation/36",
+                "https://www.gov.uk/government/publications/benefit-and-pension-rates-2024-to-2025",
+                "https://obr.uk/docs/dlm_uploads/NICS-Cut-Impact-on-Labour-Supply-Note.pdf",
+                "https://www.lexisnexis.co.uk/example",
+            ]
+        )
+    )
+
+    report = build_source_discovery_report(
+        (urls,),
+        release=ReleaseManifest(name="current", scopes=()),
+        generated_at="2026-05-23T12:00:00+00:00",
+        source_name="policyengine",
+    )
+    rows = {row.canonical_url: row for row in report.rows}
+
+    act = rows["https://legislation.gov.uk/ukpga/2003/1/section/1"]
+    instrument = rows["https://legislation.gov.uk/uksi/2013/376/regulation/36"]
+    govuk = rows[
+        "https://gov.uk/government/publications/benefit-and-pension-rates-2024-to-2025"
+    ]
+    obr = rows[
+        "https://obr.uk/docs/dlm_uploads/NICS-Cut-Impact-on-Labour-Supply-Note.pdf"
+    ]
+    vendor = rows["https://lexisnexis.co.uk/example"]
+
+    assert act.source_status is SourceStatus.PRIMARY_OFFICIAL
+    assert act.jurisdiction == "uk"
+    assert act.document_class == "statute"
+    assert instrument.document_class == "regulation"
+    assert govuk.jurisdiction == "uk"
+    assert govuk.disposition is DiscoveryDisposition.READY_FOR_MANIFEST
+    assert obr.source_status is SourceStatus.PRIMARY_OFFICIAL
+    assert vendor.disposition is DiscoveryDisposition.BLOCKED_VENDOR_ONLY
+
+
 def test_source_discovery_cli_writes_report(tmp_path, capsys):
     source = tmp_path / "state_references.txt"
     source.write_text("https://leg.colorado.gov/colorado-revised-statutes\n")

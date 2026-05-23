@@ -337,6 +337,26 @@ KNOWN_OFFICIAL_HOSTS: dict[str, str | None] = {
     "twc.texas.gov": "us-tx",
     "webserver.rilin.state.ri.us": "us-ri",
     "workingfamiliescredit.wa.gov": "us-wa",
+    "assets.publishing.service.gov.uk": "uk",
+    "bankofengland.co.uk": "uk",
+    "bills.parliament.uk": "uk",
+    "childcarechoices.gov.uk": "uk",
+    "commonslibrary.parliament.uk": "uk",
+    "dataportal.orr.gov.uk": "uk",
+    "finance-ni.gov.uk": "uk",
+    "fiscalcommission.scot": "uk",
+    "gov.scot": "uk",
+    "gov.uk": "uk",
+    "legislation.gov.uk": "uk",
+    "mygov.scot": "uk",
+    "obr.uk": "uk",
+    "ofgem.gov.uk": "uk",
+    "ofwat.gov.uk": "uk",
+    "ons.gov.uk": "uk",
+    "publications.parliament.uk": "uk",
+    "researchbriefings.files.parliament.uk": "uk",
+    "socialsecurity.gov.scot": "uk",
+    "statswales.gov.wales": "uk",
 }
 
 STATE_HOST_SUBSTRINGS: dict[str, str] = {
@@ -390,6 +410,7 @@ VENDOR_HOSTS = (
     "bloombergtax.com",
     "govt.westlaw.com",
     "lexis.com",
+    "lexisnexis.co.uk",
     "lexisnexis.com",
     "westlaw.com",
 )
@@ -644,13 +665,26 @@ def classify_source_status(host: str) -> SourceStatus:
         return SourceStatus.ANALYTICAL_OR_REPORT
     if _host_matches(host, PRIVATE_OR_UNOWNED_HOSTS):
         return SourceStatus.UNKNOWN
-    if _known_official_host(host) or host.endswith(".gov") or ".state." in host:
+    if (
+        _known_official_host(host)
+        or host.endswith(".gov")
+        or host.endswith(".gov.uk")
+        or ".state." in host
+    ):
         return SourceStatus.PRIMARY_OFFICIAL
     return SourceStatus.UNKNOWN
 
 
 def infer_document_class(url: str, host: str) -> str:
     text = f"{host} {url}".lower()
+    if "legislation.gov.uk" in text:
+        if any(token in text for token in ("/uksi/", "/wsi/", "/ssi/", "/nisr/")):
+            return DocumentClass.REGULATION.value
+        return DocumentClass.STATUTE.value
+    if host in {"gov.uk", "assets.publishing.service.gov.uk"} and (
+        "/government/publications/" in text or "/government/statistics/" in text
+    ):
+        return DocumentClass.GUIDANCE.value
     if any(
         token in text
         for token in (
@@ -725,6 +759,8 @@ def infer_jurisdiction(host: str, url: str) -> str | None:
             return jurisdiction
     if host.endswith(".gov"):
         return "us"
+    if host.endswith(".gov.uk") or host.endswith(".parliament.uk"):
+        return "uk"
     if "dccouncil" in host or ".dc.gov" in host:
         return "us-dc"
     lower_url = url.lower()

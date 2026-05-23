@@ -10,15 +10,17 @@ models, datasets, reports, and citation lists are only gap-finding aids.
 
 ## PolicyEngine References
 
-PolicyEngine-US contains thousands of claim-level references to statutes,
-regulations, agency manuals, tax forms, tables, and guidance documents. These
-references are useful for discovering public policy source documents, but they
-must not become a runtime dependency or privileged upstream for Axiom.
+PolicyEngine-US and PolicyEngine-UK contain thousands of claim-level references
+to statutes, regulations, agency manuals, tax forms, tables, and guidance
+documents. These references are useful for discovering public policy source
+documents, but they must not become a runtime dependency or privileged upstream
+for Axiom.
 
 Use this as an offline checklist only:
 
-- [ ] Export a static URL inventory from PolicyEngine-US references into a
-      review artifact, preserving the citing parameter or variable path.
+- [x] Export static URL inventories from PolicyEngine-US and PolicyEngine-UK into
+      review artifacts.
+- [ ] Preserve the citing parameter or variable path in the generated inventory.
 - [x] Normalize URL variants, strip page anchors into separate metadata, and
       deduplicate by canonical URL.
 - [x] Classify each URL by source status: primary official, official-but-not-
@@ -28,7 +30,9 @@ Use this as an offline checklist only:
       instruction, data table, or other policy document.
 - [ ] Prioritize official/open URLs that are not already covered by current
       release artifacts.
-- [ ] For each selected URL, create or extend a corpus manifest that points to
+- [x] Seed a fillable coverage manifest from ready official source groups:
+      `manifests/policyengine-source-coverage.yaml`.
+- [ ] For each selected URL or source group, create or extend a corpus manifest that points to
       the official source directly. Do not ingest from PolicyEngine files.
 - [ ] Preserve the external citation path only as discovery provenance, such as
       `discovered_via: policyengine-us:<parameter-or-variable-path>`, not as a
@@ -50,12 +54,14 @@ Do not:
 - treat PolicyEngine parameter values as source text
 - let a PE citation substitute for official source discovery or coverage
 
-Useful initial scale from a local PolicyEngine-US checkout:
+Useful current scale from fresh upstream PolicyEngine-US and PolicyEngine-UK
+clones:
 
-- about 6,259 unique URLs across `policyengine_us`
-- about 5,175 unique URLs under `policyengine_us/parameters`
-- about 4,226 unique state-level parameter URLs
-- about 4,115 parameter YAML files with a reference or URL
+- 9,830 raw URL references across `.yaml`, `.yml`, `.py`, and `.md` files
+- 7,197 canonical URLs after normalization
+- 1,437 official/open URLs ready for manifest review
+- 158 fillable source groups in `manifests/policyengine-source-coverage.yaml`
+- 5,050 URLs needing review and 710 blocked/excluded URLs retained in the JSON report
 
 Those counts are discovery scope, not corpus coverage.
 
@@ -64,6 +70,21 @@ The current ops artifact is
 static URL lists under `sources/policyengine-us/`. It powers the Axiom `/ops`
 Source Discovery Backlog section and should be refreshed when the offline
 inventory changes.
+
+The broader PolicyEngine coverage seed can be regenerated as
+`data/corpus/analytics/source-discovery-policyengine-current.json` from:
+
+- `sources/policyengine-us/all_url_references.txt`
+- `sources/policyengine-uk/all_url_references.txt`
+
+Its `group_rows` are materialized into
+`manifests/policyengine-source-coverage.yaml`. Fill that manifest in first,
+then promote reviewed groups into source-first ingestion manifests.
+
+The current seed is URL-based. Non-URL legal citations in PolicyEngine, such as
+bare Act, Code, or regulation references without `href` values, need a second
+extraction pass and should be added to `additional_source_sets` or merged into
+existing document groups.
 
 Federal Register URLs in the discovery report should be promoted through the
 `extract-federal-register` adapter, not through the generic official-document
