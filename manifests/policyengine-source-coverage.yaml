@@ -479,7 +479,7 @@ document_groups:
   owner: null
   notes: Local official-document extraction completed for 6 Virginia tax-form PDFs / 247 provisions.
 - group_key: us-ct/form/individual_income_tax_forms
-  status: backlog
+  status: ingested
   priority: p0
   jurisdiction: us-ct
   document_class: form
@@ -502,17 +502,17 @@ document_groups:
   target_release_scope:
     jurisdiction: us-ct
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-ct-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-ct/form/2026-05-23-ct-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-ct/form/2026-05-23-ct-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-ct/form/2026-05-23-ct-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-ct/form/2026-05-23-ct-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 10 Connecticut income-tax PDFs / 193 provisions.
 - group_key: us-id/form/tax_forms
   status: backlog
   priority: p0
