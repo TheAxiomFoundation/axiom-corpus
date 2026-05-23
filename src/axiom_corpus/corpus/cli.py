@@ -81,6 +81,7 @@ from axiom_corpus.corpus.rulespec_paths import (
     discover_encoded_paths_for_jurisdictions,
 )
 from axiom_corpus.corpus.source_discovery import build_source_discovery_report
+from axiom_corpus.corpus.source_promotion import promote_source_discovery_group
 from axiom_corpus.corpus.state_adapters.alabama import extract_alabama_code
 from axiom_corpus.corpus.state_adapters.alaska import (
     ALASKA_STATUTES_DEFAULT_YEAR,
@@ -3941,6 +3942,34 @@ def _cmd_source_discovery(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_promote_source_discovery_group(args: argparse.Namespace) -> int:
+    report = promote_source_discovery_group(
+        report_path=args.report,
+        group_key=args.group_key,
+        output_path=args.output,
+        source_as_of=args.source_as_of,
+        expression_date=args.expression_date,
+        limit=args.limit,
+        exclude_urls=tuple(args.exclude_url or ()),
+        url_rewrites=_parse_url_rewrites(args.rewrite_url or ()),
+        fail_on_unsupported=not args.allow_unsupported,
+    )
+    print(json.dumps(report.to_mapping(), indent=2, sort_keys=True))
+    return 0
+
+
+def _parse_url_rewrites(values: Iterable[str]) -> dict[str, str]:
+    rewrites: dict[str, str] = {}
+    for value in values:
+        if "=" not in value:
+            raise ValueError(f"--rewrite-url must be FROM=TO: {value}")
+        source, target = value.split("=", 1)
+        if not source or not target:
+            raise ValueError(f"--rewrite-url must be FROM=TO: {value}")
+        rewrites[source] = target
+    return rewrites
+
+
 def _cmd_policyengine_references(args: argparse.Namespace) -> int:
     projects = tuple(args.project or ())
     repos = tuple(args.repo)
@@ -5415,6 +5444,47 @@ def build_parser() -> argparse.ArgumentParser:
     )
     source_discovery.add_argument("--output", type=Path)
     source_discovery.set_defaults(func=_cmd_source_discovery)
+
+    promote_source_discovery = sub.add_parser(
+        "promote-source-discovery-group",
+        help="Create an official-document manifest from one ready source-discovery group.",
+    )
+    promote_source_discovery.add_argument(
+        "--report",
+        type=Path,
+        required=True,
+        help="Source-discovery JSON report containing rows and group_rows.",
+    )
+    promote_source_discovery.add_argument(
+        "--group-key",
+        required=True,
+        help="Ready group key, e.g. uk/statute/statute.",
+    )
+    promote_source_discovery.add_argument(
+        "--output",
+        type=Path,
+        required=True,
+        help="Official-document manifest path to write.",
+    )
+    promote_source_discovery.add_argument("--source-as-of")
+    promote_source_discovery.add_argument("--expression-date")
+    promote_source_discovery.add_argument("--limit", type=int)
+    promote_source_discovery.add_argument(
+        "--exclude-url",
+        action="append",
+        help="Canonical source-discovery URL to omit from the generated manifest. Repeatable.",
+    )
+    promote_source_discovery.add_argument(
+        "--rewrite-url",
+        action="append",
+        help="Rewrite one canonical source-discovery URL as FROM=TO. Repeatable.",
+    )
+    promote_source_discovery.add_argument(
+        "--allow-unsupported",
+        action="store_true",
+        help="Skip non-HTML/PDF rows instead of failing.",
+    )
+    promote_source_discovery.set_defaults(func=_cmd_promote_source_discovery_group)
 
     policyengine_references = sub.add_parser(
         "policyengine-references",

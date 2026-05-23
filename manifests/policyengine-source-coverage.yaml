@@ -61,7 +61,7 @@ known_limitations:
 - PolicyEngine references are discovery provenance only; every target manifest must refetch and hash official source documents independently.
 document_groups:
 - group_key: uk/regulation/regulation
-  status: backlog
+  status: ingested
   priority: null
   jurisdiction: uk
   document_class: regulation
@@ -85,19 +85,19 @@ document_groups:
   target_release_scope:
     jurisdiction: uk
     document_class: regulation
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-uk-regulation
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/uk/regulation/2026-05-23-uk-regulation/
+    inventory: data/corpus/inventory/uk/regulation/2026-05-23-uk-regulation.json
+    provisions: data/corpus/provisions/uk/regulation/2026-05-23-uk-regulation.jsonl
+    coverage: data/corpus/coverage/uk/regulation/2026-05-23-uk-regulation.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 132 documents / 3,134 provisions. Three stale PolicyEngine URLs were rewritten to reachable official legislation.gov.uk paths in the generated manifest.
 - group_key: us-wi/form/tax_forms
-  status: backlog
+  status: ingested
   priority: null
   jurisdiction: us-wi
   document_class: form
@@ -120,19 +120,19 @@ document_groups:
   target_release_scope:
     jurisdiction: us-wi
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-wi-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-wi/form/2026-05-23-wi-tax-forms/
+    inventory: data/corpus/inventory/us-wi/form/2026-05-23-wi-tax-forms.json
+    provisions: data/corpus/provisions/us-wi/form/2026-05-23-wi-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-wi/form/2026-05-23-wi-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 46 Wisconsin tax-form PDFs / 649 provisions.
 - group_key: uk/statute/statute
-  status: backlog
+  status: ingested
   priority: null
   jurisdiction: uk
   document_class: statute
@@ -155,17 +155,17 @@ document_groups:
   target_release_scope:
     jurisdiction: uk
     document_class: statute
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-uk-statute
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/uk/statute/2026-05-23-uk-statute/
+    inventory: data/corpus/inventory/uk/statute/2026-05-23-uk-statute.json
+    provisions: data/corpus/provisions/uk/statute/2026-05-23-uk-statute.jsonl
+    coverage: data/corpus/coverage/uk/statute/2026-05-23-uk-statute.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 104 documents / 3,210 provisions.
 - group_key: us/manual/manuals
   status: backlog
   priority: null

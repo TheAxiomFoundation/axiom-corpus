@@ -124,6 +124,21 @@ The report's `group_rows` are materialized into
 `manifests/policyengine-source-coverage.yaml`. Fill that manifest in first,
 then promote reviewed groups into source-first ingestion manifests.
 
+To promote a reviewed ready group into a generic official-document manifest:
+
+```bash
+uv run --extra dev axiom-corpus-ingest promote-source-discovery-group \
+  --report data/corpus/analytics/source-discovery-policyengine-current.json \
+  --group-key uk/statute/statute \
+  --output manifests/uk-statute.yaml \
+  --source-as-of 2026-05-23
+```
+
+Use repeatable `--rewrite-url FROM=TO` flags for confirmed official URL
+corrections, and repeatable `--exclude-url` flags only when a lead is reviewed
+and intentionally left out of that manifest. The generated manifest still keeps
+the original source-discovery URL in metadata.
+
 The current coverage manifest remains URL-group based. The PolicyEngine
 reference JSONL also preserves bare Act, Code, and regulation citations without
 `href` values, but those need a resolver before they can be merged into existing
