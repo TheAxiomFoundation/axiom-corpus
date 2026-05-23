@@ -54,6 +54,7 @@ from axiom_corpus.corpus.ohio_admin_code import extract_ohio_admin_code
 from axiom_corpus.corpus.oregon_admin_rules import extract_oregon_admin_rules
 from axiom_corpus.corpus.pennsylvania_code import extract_pennsylvania_code
 from axiom_corpus.corpus.policyengine_references import (
+    PolicyEngineReference,
     PolicyEngineReferenceScope,
     scan_policyengine_references,
     summarize_policyengine_references,
@@ -3957,7 +3958,7 @@ def _cmd_policyengine_references(args: argparse.Namespace) -> int:
         )
         return 2
 
-    records = []
+    records: list[PolicyEngineReference] = []
     for index, repo in enumerate(repos):
         project = projects[index] if projects else None
         records.extend(
