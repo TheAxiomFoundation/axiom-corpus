@@ -1,0 +1,5406 @@
+schema_version: axiom-corpus/policyengine-source-coverage/v1
+generated_at: '2026-05-23T14:19:37.371383+00:00'
+coverage_goal: Track every source document family cited anywhere in upstream PolicyEngine US and UK, then promote official primary sources into source-first Axiom corpus manifests.
+source_policy:
+  policyengine_is_discovery_only: true
+  ingest_only_primary_sources_by_default: true
+  do_not_ingest_values_from_policyengine: true
+  do_not_treat_secondary_mirrors_as_canonical: true
+upstream_reference_inventories:
+- project: policyengine-us
+  url_inventory: sources/policyengine-us/all_url_references.txt
+  reference_scope: fresh upstream clone; all .yaml/.yml/.py/.md URL references
+  upstream_commit: f9259c6dcd1db91c3f77573df8c14ae3a482bf62
+- project: policyengine-uk
+  url_inventory: sources/policyengine-uk/all_url_references.txt
+  reference_scope: fresh upstream clone; all .yaml/.yml/.py/.md URL references
+  upstream_commit: ca90dddf0d700f8d3fa45b5f2be6af857cb5141e
+source_discovery_report:
+  generated_path: data/corpus/analytics/source-discovery-policyengine-current.json
+  tracked_in_git: false
+  command: uv run --extra dev axiom-corpus-ingest source-discovery --base data/corpus --input sources/policyengine-us/all_url_references.txt --input sources/policyengine-uk/all_url_references.txt --source-name policyengine --release current --output data/corpus/analytics/source-discovery-policyengine-current.json
+source_discovery_summary:
+  raw_url_count: 9830
+  invalid_url_count: 0
+  unique_url_count: 7197
+  ready_for_manifest_count: 1437
+  ready_group_count: 158
+  needs_review_count: 5050
+  blocked_or_excluded_count: 710
+  release_scope_present_count: 12
+fill_in_fields:
+  status:
+  - backlog
+  - triaged
+  - manifested
+  - ingested
+  - published
+  - covered
+  - blocked
+  priority:
+  - p0
+  - p1
+  - p2
+  - p3
+  coverage_status:
+  - not_started
+  - needs_official_source_review
+  - manifest_ready
+  - adapter_needed
+  - ingested_local
+  - published_r2
+  - loaded_supabase
+  - covered
+  - blocked_secondary_or_vendor
+  target_manifest: Path to the source-first corpus manifest that owns this document family.
+  target_release_scope: Corpus release scope expected after ingestion.
+  corpus_artifacts: Concrete sources/inventory/provisions/coverage artifact paths after ingestion.
+known_limitations:
+- This coverage seed is URL-group based. The PolicyEngine reference extractor can preserve non-URL legal citations, such as bare Act or Code references, but those citations need a resolver before they can be added under additional_source_sets or merged into existing groups.
+- Rows classified as unknown, secondary, analytical, or vendor-only stay in the JSON report for review but are not promoted into document_groups until an official source path is identified.
+- PolicyEngine references are discovery provenance only; every target manifest must refetch and hash official source documents independently.
+document_groups:
+- group_key: uk/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: uk
+  document_class: regulation
+  source_family: regulation
+  url_count: 132
+  input_count: 139
+  host_counts:
+    gov.scot: 1
+    legislation.gov.uk: 131
+  source_list_counts:
+    all_url: 132
+  sample_urls:
+  - https://legislation.gov.uk/uksi/2006/213/data.pdf
+  - https://legislation.gov.uk/uksi/1987/1967/data.pdf
+  - https://legislation.gov.uk/uksi/2013/376/data.pdf
+  - https://legislation.gov.uk/uksi/2022/232/regulation/3/made
+  - https://gov.scot/publications/draft-two-child-limit-payment-scotland-regulations-2026
+  suggested_manifest_stem: uk-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/uk-regulation.yaml
+  target_release_scope:
+    jurisdiction: uk
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wi/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-wi
+  document_class: form
+  source_family: tax_forms
+  url_count: 46
+  input_count: 110
+  host_counts:
+    revenue.wi.gov: 46
+  source_list_counts:
+    all_url: 46
+  sample_urls:
+  - https://revenue.wi.gov/TaxForms2025/2025-Form1-inst.pdf
+  - https://revenue.wi.gov/TaxForms2021/2021-Form1-Inst.pdf
+  - https://revenue.wi.gov/TaxForms2022/2022-Form1-Inst.pdf
+  - https://revenue.wi.gov/TaxForms2024/2024-Form1-inst.pdf
+  - https://revenue.wi.gov/TaxForms2022/2022-ScheduleH.pdf
+  suggested_manifest_stem: us-wi-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-wi-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-wi
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: uk/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: uk
+  document_class: statute
+  source_family: statute
+  url_count: 104
+  input_count: 104
+  host_counts:
+    legislation.gov.uk: 104
+  source_list_counts:
+    all_url: 104
+  sample_urls:
+  - https://legislation.gov.uk/asp/2013/11/schedule/2A/part/3/crossheading/additional-amount/2022-12-16
+  - https://legislation.gov.uk/asp/2013/11/schedule/4A/paragraph/3
+  - https://legislation.gov.uk/asp/2014/8/section/48
+  - https://legislation.gov.uk/asp/2014/8/section/49
+  - https://legislation.gov.uk/asp/2018/9/part/4
+  suggested_manifest_stem: uk-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/uk-statute.yaml
+  target_release_scope:
+    jurisdiction: uk
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: manual
+  source_family: manuals
+  url_count: 51
+  input_count: 72
+  host_counts:
+    acf.gov: 1
+    dbmefaapolicy.azdes.gov: 2
+    dfs.wyo.gov: 4
+    eclkc.ohs.acf.hhs.gov: 1
+    epolicy.dpss.lacounty.gov: 2
+    ers.usda.gov: 1
+    headstart.gov: 1
+    khap.kdhe.ks.gov: 1
+    ldh.la.gov: 3
+    medicaid.gov: 1
+    my.dpss.lacounty.gov: 1
+    nd.gov: 10
+    pamms.dhs.ga.gov: 1
+    ssa.gov: 22
+  source_list_counts:
+    all_url: 51
+  sample_urls:
+  - http://epolicy.dpss.lacounty.gov/epolicy/epolicy/server/general/projects_responsive/ePolicyMaster/index.htm?area=general&ctxid=&project=ePolicyMaster&type=responsivehelp
+  - https://epolicy.dpss.lacounty.gov/epolicy/epolicy/server/general/projects_responsive/ePolicyMaster/index.htm?area=general&ctxid=&project=ePolicyMaster&type=responsivehelp
+  - https://dbmefaapolicy.azdes.gov/index.html
+  - https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-800.pdf
+  - https://medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf
+  suggested_manifest_stem: us-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-manuals.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mi/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-mi
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 17
+  input_count: 70
+  host_counts:
+    michigan.gov: 17
+  source_list_counts:
+    all_url: 17
+  sample_urls:
+  - https://michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/2023/2023-IIT-Forms/BOOK_MI-1040.pdf
+  - https://michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/2022/2022-IIT-Forms/BOOK_MI-1040.pdf
+  - https://michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2024/MI-1040-Instructions.pdf
+  - https://michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2025/MI-1040-Book.pdf
+  - https://michigan.gov/-/media/Project/Websites/taxes/2022RM/IIT/Book_1040_Instructions_Only.pdf
+  suggested_manifest_stem: us-mi-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-mi-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-mi
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-az/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-az
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 24
+  input_count: 69
+  host_counts:
+    azdor.gov: 24
+  source_list_counts:
+    all_url: 24
+  sample_urls:
+  - https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_140i.pdf
+  - https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2021_140BOOKLET.pdf
+  - https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2022_140BOOKLET.pdf
+  - https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2024_140Booklet.pdf
+  - https://azdor.gov/sites/default/files/2023-03/FORMS_INDIVIDUAL_2021_140i-2D.pdf
+  suggested_manifest_stem: us-az-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-az-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-az
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: form
+  source_family: official_forms
+  url_count: 49
+  input_count: 68
+  host_counts:
+    acf.hhs.gov: 1
+    cbo.gov: 16
+    cms.gov: 4
+    fsapartners.ed.gov: 14
+    hacienda.pr.gov: 3
+    irs.gov: 4
+    klrd.gov: 1
+    medicaid.gov: 2
+    nces.ed.gov: 1
+    oui.doleta.gov: 1
+    rides.harriscountytx.gov: 1
+    tn.gov: 1
+  source_list_counts:
+    all_url: 49
+  sample_urls:
+  - https://fsapartners.ed.gov/sites/default/files/2021-08/2223EFCFormulaGuide.pdf
+  - https://hacienda.pr.gov/sites/default/files/individuals_2024_rev._jul_12_24_9-30-24_informative.pdf
+  - https://hacienda.pr.gov/sites/default/files/schedule_ct_rev._jul_5_23_informative_-_instructions.pdf
+  - https://cms.gov/cciio/programs-and-initiatives/health-insurance-market-reforms/state-rating
+  - https://fsapartners.ed.gov/sites/default/files/2022-08/2324EFCFormulaGuide.pdf
+  suggested_manifest_stem: us-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-official-forms.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ca/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ca
+  document_class: form
+  source_family: official_forms
+  url_count: 46
+  input_count: 61
+  host_counts:
+    cdss.ca.gov: 1
+    dhcs.ca.gov: 1
+    ftb.ca.gov: 44
+  source_list_counts:
+    all_url: 46
+  sample_urls:
+  - https://ftb.ca.gov/forms/2021/2021-540.pdf
+  - https://ftb.ca.gov/forms/2022/2022-540.pdf
+  - https://ftb.ca.gov/forms/2025/2025-540.pdf
+  - https://cdss.ca.gov/cdssweb/entres/forms/English/TEMP2250.pdf
+  - https://ftb.ca.gov/forms/2022/2022-3514.pdf
+  suggested_manifest_stem: us-ca-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ca-official-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ca
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-oh/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-oh
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 11
+  input_count: 59
+  host_counts:
+    dam.assets.ohio.gov: 5
+    tax.ohio.gov: 6
+  source_list_counts:
+    all_url: 11
+  sample_urls:
+  - https://dam.assets.ohio.gov/image/upload/tax.ohio.gov/forms/ohio_individual/individual/2023/it1040-sd100-instructionbooklet.pdf
+  - https://dam.assets.ohio.gov/image/upload/v1735920104/tax.ohio.gov/forms/ohio_individual/individual/2024/it1040-booklet.pdf
+  - https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf
+  - https://tax.ohio.gov/static/forms/ohio_individual/individual/2021/pit-it1040-booklet.pdf
+  - https://tax.ohio.gov/static/forms/ohio_individual/individual/2022/it1040-sd100-instruction-booklet.pdf
+  suggested_manifest_stem: us-oh-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-oh-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-oh
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-or/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-or
+  document_class: form
+  source_family: tax_forms
+  url_count: 19
+  input_count: 58
+  host_counts:
+    oregon.gov: 19
+  source_list_counts:
+    all_url: 19
+  sample_urls:
+  - https://oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2023.pdf
+  - https://oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2021.pdf
+  - https://oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2025.pdf
+  - https://oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2022.pdf
+  - https://oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2024.pdf
+  suggested_manifest_stem: us-or-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-or-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-or
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-va/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-va
+  document_class: form
+  source_family: tax_forms
+  url_count: 6
+  input_count: 58
+  host_counts:
+    tax.virginia.gov: 6
+  source_list_counts:
+    all_url: 6
+  sample_urls:
+  - https://tax.virginia.gov/sites/default/files/vatax-pdf/2024-760-instructions.pdf
+  - https://tax.virginia.gov/sites/default/files/vatax-pdf/2022-760-instructions.pdf
+  - https://tax.virginia.gov/sites/default/files/vatax-pdf/2023-760-instructions.pdf
+  - https://tax.virginia.gov/sites/default/files/vatax-pdf/2021-760-instructions.pdf
+  - https://tax.virginia.gov/sites/default/files/vatax-pdf/2025-760-instructions.pdf
+  suggested_manifest_stem: us-va-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-va-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-va
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ct/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ct
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 10
+  input_count: 57
+  host_counts:
+    portal.ct.gov: 10
+  source_list_counts:
+    all_url: 10
+  sample_urls:
+  - https://portal.ct.gov/-/media/drs/forms/2024/income/2024-ct-1040-instructions_1224.pdf
+  - https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf
+  - https://portal.ct.gov/-/media/DRS/Forms/2022/Income/2022-CT-1040-Instructions_1222.pdf
+  - https://portal.ct.gov/-/media/DRS/Forms/2023/Income/2023-CT-1040-Instructions_1223.pdf
+  - https://portal.ct.gov/-/media/DRS/Forms/2021/Income/CT-1040-Online-Booklet_1221.pdf
+  suggested_manifest_stem: us-ct-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-ct-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ct
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-id/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-id
+  document_class: form
+  source_family: tax_forms
+  url_count: 20
+  input_count: 56
+  host_counts:
+    tax.idaho.gov: 20
+  source_list_counts:
+    all_url: 20
+  sample_urls:
+  - https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_09-29-2025.pdf
+  - https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_10-23-2024.pdf
+  - https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_11-15-2021.pdf
+  - https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_03-01-2023.pdf
+  - https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_11-06-2023.pdf
+  suggested_manifest_stem: us-id-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-id-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-id
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-md/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-md
+  document_class: form
+  source_family: tax_forms
+  url_count: 12
+  input_count: 49
+  host_counts:
+    marylandtaxes.gov: 12
+  source_list_counts:
+    all_url: 12
+  sample_urls:
+  - https://marylandtaxes.gov/forms/23_forms/Resident-Booklet.pdf
+  - https://marylandtaxes.gov/forms/21_forms/Resident_Booklet.pdf
+  - https://marylandtaxes.gov/forms/24-forms/Resident-Booklet.pdf
+  - https://marylandtaxes.gov/forms/22_forms/Resident_Booklet.pdf
+  - https://marylandtaxes.gov/forms/21_forms/502CR.pdf
+  suggested_manifest_stem: us-md-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-md-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-md
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: uk/guidance/official_guidance
+  status: backlog
+  priority: null
+  jurisdiction: uk
+  document_class: guidance
+  source_family: official_guidance
+  url_count: 47
+  input_count: 48
+  host_counts:
+    assets.publishing.service.gov.uk: 1
+    gov.scot: 1
+    gov.uk: 45
+  source_list_counts:
+    all_url: 47
+  sample_urls:
+  - https://gov.uk/government/statistics/child-benefit-statistics-annual-release-august-2022/child-benefit-statistics-annual-release-data-at-august-2022
+  - https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/251256/hb-claims-processing-guidance.pdf
+  - https://gov.scot/publications/early-learning-childcare-statutory-guidance-july-2021/pages/8
+  - https://gov.uk/government/publications/16-to-19-bursary-fund-guidance/16-to-19-bursary-fund-guide-2025-to-2026
+  - https://gov.uk/government/publications/autumn-statement-2023-national-insurance-factsheet/autumn-statement-2023-national-insurance-factsheet
+  suggested_manifest_stem: uk-official-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/uk-official-guidance.yaml
+  target_release_scope:
+    jurisdiction: uk
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mn/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-mn
+  document_class: statute
+  source_family: statute
+  url_count: 27
+  input_count: 48
+  host_counts:
+    revisor.mn.gov: 27
+  source_list_counts:
+    all_url: 27
+  sample_urls:
+  - https://revisor.mn.gov/statutes/cite/290.0132
+  - https://revisor.mn.gov/statutes/cite/290.0123
+  - https://revisor.mn.gov/statutes/cite/142G.16
+  - https://revisor.mn.gov/statutes/2021/cite/290.0671
+  - https://revisor.mn.gov/statutes/cite/142G.17
+  suggested_manifest_stem: us-mn-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-mn-statute.yaml
+  target_release_scope:
+    jurisdiction: us-mn
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-dc/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-dc
+  document_class: statute
+  source_family: statute
+  url_count: 28
+  input_count: 47
+  host_counts:
+    code.dccouncil.gov: 28
+  source_list_counts:
+    all_url: 28
+  sample_urls:
+  - https://code.dccouncil.gov/us/dc/council/code/sections/4-205.05a
+  - https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.17
+  - https://code.dccouncil.gov/us/dc/council/code/sections/4-205.19b
+  - https://code.dccouncil.gov/us/dc/council/code/sections/4-205.52
+  - https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.15
+  suggested_manifest_stem: us-dc-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-dc-statute.yaml
+  target_release_scope:
+    jurisdiction: us-dc
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: statute
+  source_family: statute
+  url_count: 31
+  input_count: 44
+  host_counts:
+    akleg.gov: 5
+    congress.gov: 1
+    flsenate.gov: 2
+    ksrevisor.gov: 4
+    oklegislature.gov: 1
+    sdlegislature.gov: 1
+    tile.loc.gov: 1
+    uscode.house.gov: 7
+    webserver.rilegislature.gov: 7
+    wyoleg.gov: 2
+  source_list_counts:
+    all_url: 31
+  sample_urls:
+  - https://akleg.gov/statutesPDF/aac%20Title%207.pdf
+  - https://akleg.gov/basis/statutes.asp
+  - https://oklegislature.gov/OK_Statutes/CompleteTitles/os68.pdf
+  - https://wyoleg.gov/statutes/compress/title42.pdf
+  - https://wyoleg.gov/statutes/compress/title27.pdf
+  suggested_manifest_stem: us-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-statute.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ma/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ma
+  document_class: form
+  source_family: official_forms
+  url_count: 16
+  input_count: 42
+  host_counts:
+    mass.gov: 16
+  source_list_counts:
+    all_url: 16
+  sample_urls:
+  - https://mass.gov/doc/2023-form-1-instructions/download
+  - https://mass.gov/doc/2022-form-1-instructions/download
+  - https://mass.gov/doc/2024-form-1-instructions/download
+  - https://mass.gov/doc/2021-form-1-instructions/download
+  - https://mass.gov/doc/2011-form-1-instructions/download
+  suggested_manifest_stem: us-ma-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ma-official-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ma
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ms/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ms
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 8
+  input_count: 41
+  host_counts:
+    dor.ms.gov: 8
+  source_list_counts:
+    all_url: 8
+  sample_urls:
+  - https://dor.ms.gov/sites/default/files/Forms/Individual/80100221.pdf
+  - https://dor.ms.gov/sites/default/files/tax-forms/individual/80100251%202.pdf
+  - https://dor.ms.gov/sites/default/files/Forms/Individual/80100241.pdf
+  - https://dor.ms.gov/sites/default/files/Forms/Individual/80100231.pdf
+  - https://dor.ms.gov/sites/default/files/Forms/Individual/80105228.pdf
+  suggested_manifest_stem: us-ms-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-ms-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ms
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wv/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-wv
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 4
+  input_count: 41
+  host_counts:
+    tax.wv.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://tax.wv.gov/Documents/PIT/2024/it140.PersonalIncomeTaxFormsAndInstructions.2024.pdf
+  - https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf
+  - https://tax.wv.gov/Documents/PIT/2022/PersonalIncomeTaxFormsAndInstructions.2022.pdf
+  - https://tax.wv.gov/Documents/PIT/2023/it140.PersonalIncomeTaxFormsAndInstructions.2023.pdf
+  suggested_manifest_stem: us-wv-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-wv-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-wv
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mo/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-mo
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 12
+  input_count: 39
+  host_counts:
+    dor.mo.gov: 12
+  source_list_counts:
+    all_url: 12
+  sample_urls:
+  - https://dor.mo.gov/forms/MO-1040%20Instructions_2021.pdf
+  - https://dor.mo.gov/forms/MO-1040%20Instructions_2025.pdf
+  - https://dor.mo.gov/forms/MO-1040%20Instructions_2024.pdf
+  - https://dor.mo.gov/forms/MO-1040%20Instructions_2023.pdf
+  - https://dor.mo.gov/forms/MO-1040%20Fillable%20Calculating_2021.pdf
+  suggested_manifest_stem: us-mo-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-mo-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-mo
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: regulation
+  source_family: regulation
+  url_count: 27
+  input_count: 37
+  host_counts:
+    acf.gov: 1
+    ecfr.gov: 13
+    rules.sos.ri.gov: 3
+    sdlegislature.gov: 10
+  source_list_counts:
+    all_url: 27
+  sample_urls:
+  - https://rules.sos.ri.gov/regulations/part/218-20-00-4
+  - https://ecfr.gov/current/title-7/part-247
+  - https://acf.gov/ocs/law-regulation/liheap-statute-and-regulations
+  - https://ecfr.gov/current/title-20/section-416.1131
+  - https://ecfr.gov/current/title-29/subtitle-B/chapter-V/subchapter-A/part-541
+  suggested_manifest_stem: us-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-regulation.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-nd/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-nd
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 13
+  input_count: 37
+  host_counts:
+    tax.nd.gov: 13
+  source_list_counts:
+    all_url: 13
+  sample_urls:
+  - https://tax.nd.gov/sites/www/files/documents/forms/individual/2022-iit/2022-individual-income-tax-booklet.pdf
+  - https://tax.nd.gov/sites/www/files/documents/forms/individual/2021-iit/individual-income-tax-booklet-2021.pdf
+  - https://tax.nd.gov/sites/www/files/documents/forms/individual/2023-iit/2023-individual-income-tax-booklet.pdf
+  - https://tax.nd.gov/sites/www/files/documents/forms/individual/2024-iit/2024-individual-income-tax-booklet.pdf
+  - https://tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/2025-individual-income-tax-booklet.pdf
+  suggested_manifest_stem: us-nd-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-nd-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-nd
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ky/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ky
+  document_class: form
+  source_family: tax_forms
+  url_count: 29
+  input_count: 36
+  host_counts:
+    revenue.ky.gov: 29
+  source_list_counts:
+    all_url: 29
+  sample_urls:
+  - https://revenue.ky.gov/Forms/740%20Packet%20Instructions%202023.pdf
+  - https://revenue.ky.gov/Forms/740%20Packet%20Instructions%205-9-23.pdf
+  - https://revenue.ky.gov/Forms/Form%20740%205-9-23.pdf
+  - https://revenue.ky.gov/Forms/Schedule%20P%202022.pdf
+  - https://revenue.ky.gov/Forms/1999_42a740p.pdf
+  suggested_manifest_stem: us-ky-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ky-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ky
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mt/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-mt
+  document_class: form
+  source_family: tax_forms
+  url_count: 8
+  input_count: 36
+  host_counts:
+    mtrevenue.gov: 8
+  source_list_counts:
+    all_url: 8
+  sample_urls:
+  - https://mtrevenue.gov/wp-content/uploads/dlm_uploads/2022/12/Form-2-2022-Instructions.pdf
+  - https://mtrevenue.gov/wp-content/uploads/dlm_uploads/2025/02/Form-2-Instructions-2024-2.pdf
+  - https://mtrevenue.gov/wp-content/uploads/mdocs/form%202%202021%20instructions.pdf
+  - https://mtrevenue.gov/wp-content/uploads/mdocs/form%202%202021.pdf
+  - https://mtrevenue.gov/wp-content/uploads/dlm_uploads/2023/12/Form_2_2023_Instructions.pdf
+  suggested_manifest_stem: us-mt-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-mt-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-mt
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-hi/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-hi
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 10
+  input_count: 34
+  host_counts:
+    files.hawaii.gov: 10
+  source_list_counts:
+    all_url: 10
+  sample_urls:
+  - https://files.hawaii.gov/tax/forms/2022/n11ins.pdf
+  - https://files.hawaii.gov/tax/forms/2021/n11ins.pdf
+  - https://files.hawaii.gov/tax/forms/2024/n11ins.pdf
+  - https://files.hawaii.gov/tax/forms/2023/n11ins.pdf
+  - https://files.hawaii.gov/tax/forms/2018/n11ins.pdf
+  suggested_manifest_stem: us-hi-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-hi-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-hi
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ia/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ia
+  document_class: form
+  source_family: tax_forms
+  url_count: 2
+  input_count: 34
+  host_counts:
+    revenue.iowa.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://revenue.iowa.gov/sites/default/files/2023-01/2021%20Expanded%20Instructions_010323.pdf
+  - https://revenue.iowa.gov/sites/default/files/2023-03/2022%20Expanded%20Instructions_022023.pdf
+  suggested_manifest_stem: us-ia-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ia-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ia
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mi/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-mi
+  document_class: manual
+  source_family: manuals
+  url_count: 15
+  input_count: 33
+  host_counts:
+    dhhs.michigan.gov: 2
+    mdhhs-pres-prod.michigan.gov: 11
+    michigan.gov: 2
+  source_list_counts:
+    all_url: 15
+  sample_urls:
+  - https://michigan.gov/taxes/-/media/Project/Websites/taxes/MISC/Tax-Professionals/Taxpayer_Assistance_Manual.pdf
+  - https://michigan.gov/-/media/Project/Websites/taxes/2022RM/UNCAT/2019_Taxpayer_Assistance_Manual.pdf
+  - https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BEM/520.pdf
+  - https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BEM/660.pdf
+  - https://mdhhs-pres-prod.michigan.gov/olmweb/EX/BP/Public/BEM/400.pdf
+  suggested_manifest_stem: us-mi-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-mi-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-mi
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-sc/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-sc
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 12
+  input_count: 33
+  host_counts:
+    dor.sc.gov: 12
+  source_list_counts:
+    all_url: 12
+  sample_urls:
+  - https://dor.sc.gov/sites/dor/files/forms/SC1040Instr_2025.pdf
+  - https://dor.sc.gov/forms-site/Forms/SC1040Instr_2024.pdf
+  - https://dor.sc.gov/forms-site/Forms/SC1040_2021.pdf
+  - https://dor.sc.gov/forms-site/Forms/SC1040_2022.pdf
+  - https://dor.sc.gov/forms-site/Forms/SC1040ES_2023.pdf
+  suggested_manifest_stem: us-sc-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-sc-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-sc
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ny/form/property_tax_relief_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ny
+  document_class: form
+  source_family: property_tax_relief_forms
+  url_count: 10
+  input_count: 30
+  host_counts:
+    tax.ny.gov: 10
+  source_list_counts:
+    all_url: 10
+  sample_urls:
+  - https://tax.ny.gov/pdf/current_forms/it/it201i.pdf
+  - https://tax.ny.gov/pdf/current_forms/it/it214i.pdf
+  - https://tax.ny.gov/pdf/current_forms/it/it216i.pdf
+  - https://tax.ny.gov/pdf/current_forms/it/it215_fill_in.pdf
+  - https://tax.ny.gov/pdf/current_forms/it/it272_fill_in.pdf
+  suggested_manifest_stem: us-ny-property-tax-relief-forms
+  suggested_action: Manifest current official property-tax relief forms and instructions as one scope.
+  target_manifest: manifests/us-ny-property-tax-relief-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ny
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ok/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ok
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 9
+  input_count: 29
+  host_counts:
+    oklahoma.gov: 9
+  source_list_counts:
+    all_url: 9
+  sample_urls:
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2023/511-Pkt.pdf
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2024/511-Pkt.pdf
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2021/511-Pkt-2021.pdf
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2022/511-Pkt-2022.pdf
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2021/538-H-2021.pdf
+  suggested_manifest_stem: us-ok-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-ok-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ok
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ne/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ne
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 5
+  input_count: 28
+  host_counts:
+    revenue.nebraska.gov: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_Individual_Income_Tax_Booklet.pdf
+  - https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf
+  - https://revenue.nebraska.gov/sites/revenue.nebraska.gov/files/doc/tax-forms/2023/incometax/f_1040n_booklet_2023_Final.pdf
+  - https://revenue.nebraska.gov/files/doc/tax-forms/2021/f_1040n_booklet.pdf
+  - https://revenue.nebraska.gov/sites/revenue.nebraska.gov/files/doc/tax-forms/2023/incometax/f_2441N_2023_Final.pdf
+  suggested_manifest_stem: us-ne-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-ne-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ne
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-nc/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-nc
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 12
+  input_count: 27
+  host_counts:
+    ncdor.gov: 12
+  source_list_counts:
+    all_url: 12
+  sample_urls:
+  - https://ncdor.gov/2024-d-401-individual-income-tax-instructions/open
+  - https://ncdor.gov/2022-d-401-individual-income-tax-instructions/open
+  - https://ncdor.gov/2023-d-401-individual-income-tax-instructions/open
+  - https://ncdor.gov/2025-d-401-individual-income-tax-instructions/open
+  - https://ncdor.gov/2021-d-401-individual-income-tax-instructions/open
+  suggested_manifest_stem: us-nc-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-nc-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-nc
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/rulemaking/rulemaking
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: rulemaking
+  source_family: rulemaking
+  url_count: 26
+  input_count: 26
+  host_counts:
+    federalregister.gov: 25
+    hca.nm.gov: 1
+  source_list_counts:
+    all_url: 26
+  sample_urls:
+  - https://federalregister.gov/d/2016-27424
+  - https://federalregister.gov/d/2017-24953
+  - https://federalregister.gov/d/2018-25944
+  - https://federalregister.gov/d/2019-26207
+  - https://federalregister.gov/d/2020-26387
+  suggested_manifest_stem: us-rulemaking
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-rulemaking.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: rulemaking
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-sc/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-sc
+  document_class: form
+  source_family: tax_forms
+  url_count: 8
+  input_count: 26
+  host_counts:
+    dor.sc.gov: 8
+  source_list_counts:
+    all_url: 8
+  sample_urls:
+  - https://dor.sc.gov/forms-site/Forms/IITPacket_2023.pdf
+  - https://dor.sc.gov/forms-site/Forms/IITPacket_2021.pdf
+  - https://dor.sc.gov/forms-site/Forms/IITPacket_2022.pdf
+  - https://dor.sc.gov/forms-site/Forms/I319_2021.pdf
+  - https://dor.sc.gov/forms-site/Forms/IITPacket_2020.pdf
+  suggested_manifest_stem: us-sc-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-sc-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-sc
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-de/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-de
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 5
+  input_count: 26
+  host_counts:
+    revenuefiles.delaware.gov: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://revenuefiles.delaware.gov/2023/PIT-RES_TY23_2023-01_Instructions.pdf
+  - https://revenuefiles.delaware.gov/2024/PIT_2024_Forms/PIT_Instructions/PIT-RES_TY24_2024-01_Instructions.pdf
+  - https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf
+  - https://revenuefiles.delaware.gov/2022/PIT-RES_TY22_2022-02_Instructions.pdf
+  - https://revenuefiles.delaware.gov/2021/PIT-RES_TY21_2021-01_Instructions.pdf
+  suggested_manifest_stem: us-de-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-de-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-de
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-pa/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-pa
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 10
+  input_count: 25
+  host_counts:
+    pa.gov: 5
+    revenue.pa.gov: 5
+  source_list_counts:
+    all_url: 10
+  sample_urls:
+  - https://pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/ptrr/documents/2025_pa-1000_inst.pdf
+  - https://revenue.pa.gov/FormsandPublications/FormsforIndividuals/PIT/Documents/2021/2021_pa-40in.pdf
+  - https://pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2024/2024_pa-40in.pdf
+  - https://pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2025/2025_pa-40in.pdf
+  - https://revenue.pa.gov/FormsandPublications/FormsforIndividuals/PIT/Documents/2022/2022_pa-40dc.pdf
+  suggested_manifest_stem: us-pa-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-pa-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-pa
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-va/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-va
+  document_class: manual
+  source_family: manuals
+  url_count: 4
+  input_count: 24
+  host_counts:
+    dss.virginia.gov: 3
+    ris.dls.virginia.gov: 1
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://dss.virginia.gov/files/division/bp/tanf/manual/300_11-20.pdf
+  - https://ris.dls.virginia.gov/uploads/22VAC40/dibr/VDOE%20Child%20Care%20Program%20Guidance%20Manual%205.3.2023-20240822104447.pdf
+  - https://dss.virginia.gov/files/division/bp/tanf/manual/200_7-20.pdf
+  - https://dss.virginia.gov/files/division/bp/tanf/manual/700_07-20.pdf
+  suggested_manifest_stem: us-va-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-va-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-va
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-me/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-me
+  document_class: statute
+  source_family: statute
+  url_count: 23
+  input_count: 23
+  host_counts:
+    legislature.maine.gov: 11
+    mainelegislature.org: 12
+  source_list_counts:
+    all_url: 23
+  sample_urls:
+  - https://legislature.maine.gov/legis/statutes/26/title26sec1043.html
+  - https://legislature.maine.gov/legis/statutes/26/title26sec1221.html
+  - https://legislature.maine.gov/legis/statutes/26/title26sec850-F.html
+  - https://legislature.maine.gov/statutes/20-A/title20-Asec6602.html
+  - https://legislature.maine.gov/statutes/22/title22sec3174-LLL.html
+  suggested_manifest_stem: us-me-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-me-statute.yaml
+  target_release_scope:
+    jurisdiction: us-me
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/guidance/official_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: guidance
+  source_family: official_guidance
+  url_count: 22
+  input_count: 23
+  host_counts:
+    acf.gov: 2
+    content.dcf.ks.gov: 1
+    dhhs.ne.gov: 1
+    fcc.gov: 1
+    fns-prod.azureedge.us: 1
+    headstart.gov: 2
+    irs.gov: 1
+    scdhhs.gov: 1
+    ssa.gov: 12
+  source_list_counts:
+    all_url: 22
+  sample_urls:
+  - https://irs.gov/pub/irs-tege/cola-table.pdf
+  - https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM%202024-02_Att4SMITable.pdf
+  - https://acf.gov/sites/default/files/documents/ocs/COMM_LIHEAP_IM2025-02_SMIStateTable_Att4.pdf
+  - https://content.dcf.ks.gov/ees/keesm/implem_memo/2008_0326_TAF_ei_disregard.htm
+  - https://dhhs.ne.gov/Guidance%20Docs/Title%20468%20-%20Aid%20to%20Dependent%20Children.pdf
+  suggested_manifest_stem: us-official-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-official-guidance.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ca/guidance/official_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-ca
+  document_class: guidance
+  source_family: official_guidance
+  url_count: 20
+  input_count: 22
+  host_counts:
+    cdss.ca.gov: 20
+  source_list_counts:
+    all_url: 20
+  sample_urls:
+  - https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2023/23-74.pdf
+  - https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2025/25-93.pdf
+  - https://cdss.ca.gov/Portals/9/ACL/2017/17-44.pdf
+  - https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2020/20-60.pdf
+  - https://cdss.ca.gov/Portals/9/Additional-Resources/Letters-and-Notices/ACLs/2021/21-123.pdf?ver=2021-10-08-140950-570
+  suggested_manifest_stem: us-ca-official-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-ca-official-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-ca
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mo/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-mo
+  document_class: form
+  source_family: tax_forms
+  url_count: 14
+  input_count: 22
+  host_counts:
+    dor.mo.gov: 14
+  source_list_counts:
+    all_url: 14
+  sample_urls:
+  - https://dor.mo.gov/forms/MO-A_2021.pdf
+  - https://dor.mo.gov/forms/4711_2021.pdf
+  - https://dor.mo.gov/forms/MO-A_2024.pdf
+  - https://dor.mo.gov/forms/MO-PTC%20Instructions_2025.pdf
+  - https://dor.mo.gov/forms/MO-PTS_2021.pdf
+  suggested_manifest_stem: us-mo-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-mo-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-mo
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: form
+  source_family: tax_forms
+  url_count: 10
+  input_count: 21
+  host_counts:
+    cassia.gov: 1
+    cbo.gov: 3
+    marylandcomptroller.gov: 5
+    pfd.alaska.gov: 1
+  source_list_counts:
+    all_url: 10
+  sample_urls:
+  - https://marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf
+  - https://cassia.gov/media/Assessor/Forms/Forms_Property/PTR_Tax%20Form-40.pdf
+  - https://cbo.gov/system/files/2024-06/51138-2024-06-Revenue.xlsx
+  - https://cbo.gov/system/files/2025-01/51138-2025-01-Revenue-Projections.xlsx
+  - https://cbo.gov/system/files/2026-02/51138-2026-02-Revenue-Projections.xlsx
+  suggested_manifest_stem: us-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ar/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ar
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 4
+  input_count: 21
+  host_counts:
+    dfa.arkansas.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://dfa.arkansas.gov/images/uploads/incomeTaxOffice/2022_AR1000F_and_AR1000NR_Instructions.pdf
+  - https://dfa.arkansas.gov/images/uploads/incomeTaxOffice/2021_AR1000F_and_AR1000NR_Instructions.pdf
+  - https://dfa.arkansas.gov/images/uploads/incomeTaxOffice/2023_AR1000F_and_AR1000NR_Instructions.pdf
+  - https://dfa.arkansas.gov/images/uploads/incomeTaxOffice/2024_AR1000F_and_AR1000NR_Instructions.pdf
+  suggested_manifest_stem: us-ar-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-ar-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ar
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mt/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-mt
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 7
+  input_count: 18
+  host_counts:
+    mtrevenue.gov: 1
+    revenue.mt.gov: 2
+    revenuefiles.mt.gov: 4
+  source_list_counts:
+    all_url: 7
+  sample_urls:
+  - https://mtrevenue.gov/wp-content/uploads/dlm_uploads/2023/05/Montana-Idividiual-Income-Tax-Return-Form-2-2022v6.2.pdf
+  - https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2-Instructions/2025_Montana_Individual_Income_Tax_Return_Form_2_Instructions.pdf
+  - https://revenue.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2024_Montana_Individual_Income_Tax_Return_Form_2.pdf
+  - https://revenue.mt.gov/publications/montana-form-2-individual-income-tax-return-forms-and-instructions-includes-form-2ec
+  - https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2023_Montana_Individual_Income_Tax_Return_Form_2.pdf
+  suggested_manifest_stem: us-mt-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-mt-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-mt
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ut/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ut
+  document_class: form
+  source_family: tax_forms
+  url_count: 5
+  input_count: 18
+  host_counts:
+    tax.utah.gov: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://tax.utah.gov/forms/drafts/tc-40inst.pdf
+  - https://tax.utah.gov/forms/2023/tc-40inst.pdf
+  - https://tax.utah.gov/forms/2022/tc-40inst.pdf
+  - https://tax.utah.gov/forms/2021/tc-40.pdf
+  - https://tax.utah.gov/forms/2021/tc-40inst.pdf
+  suggested_manifest_stem: us-ut-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ut-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ut
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wi/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-wi
+  document_class: statute
+  source_family: statute
+  url_count: 17
+  input_count: 17
+  host_counts:
+    docs.legis.wisconsin.gov: 17
+  source_list_counts:
+    all_url: 17
+  sample_urls:
+  - https://docs.legis.wisconsin.gov/code/admin_code/dcf/101_199/101/09
+  - https://docs.legis.wisconsin.gov/code/admin_code/dcf/101_199/101/09/3/a
+  - https://docs.legis.wisconsin.gov/code/admin_code/dcf/101_199/101/09/3/b
+  - https://docs.legis.wisconsin.gov/code/admin_code/dcf/101_199/101/18/2
+  - https://docs.legis.wisconsin.gov/statutes/statutes/108/02/26
+  suggested_manifest_stem: us-wi-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-wi-statute.yaml
+  target_release_scope:
+    jurisdiction: us-wi
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mo/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-mo
+  document_class: manual
+  source_family: manuals
+  url_count: 13
+  input_count: 17
+  host_counts:
+    dssmanuals.mo.gov: 13
+  source_list_counts:
+    all_url: 13
+  sample_urls:
+  - https://dssmanuals.mo.gov/wp-content/uploads/2018/10/appendix_k.pdf
+  - https://dssmanuals.mo.gov/wp-content/uploads/2022/07/mhabd-appendix-j.pdf
+  - https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0405-000-00/0405-050-00
+  - https://dssmanuals.mo.gov/supplemental-aid-to-the-blind/0415-000-00/0415-005-00
+  - https://dssmanuals.mo.gov/supplemental-nursing-care/0610-000-00/0610-005-00
+  suggested_manifest_stem: us-mo-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-mo-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-mo
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-va/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-va
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 10
+  input_count: 16
+  host_counts:
+    tax.virginia.gov: 10
+  source_list_counts:
+    all_url: 10
+  sample_urls:
+  - https://tax.virginia.gov/sites/default/files/taxforms/individual-income-tax/2021/schedule-2021.pdf
+  - https://tax.virginia.gov/sites/default/files/taxforms/individual-income-tax/2022/760-2022.pdf
+  - https://tax.virginia.gov/sites/default/files/taxforms/individual-income-tax/2022/schedule-2022.pdf
+  - https://tax.virginia.gov/sites/default/files/taxforms/individual-income-tax/2023/schedule-2023.pdf
+  - https://tax.virginia.gov/sites/default/files/taxforms/individual-income-tax/2024/schedule-2024.pdf
+  suggested_manifest_stem: us-va-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-va-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-va
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-in/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-in
+  document_class: statute
+  source_family: statute
+  url_count: 3
+  input_count: 16
+  host_counts:
+    iar.iga.in.gov: 1
+    iga.in.gov: 2
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - http://iga.in.gov/legislative/laws/2021/ic/titles/006
+  - https://iar.iga.in.gov/code/2026/470/10.3
+  - http://iga.in.gov/legislative/laws/2021/ic/titles/6
+  suggested_manifest_stem: us-in-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-in-statute.yaml
+  target_release_scope:
+    jurisdiction: us-in
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ne/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-ne
+  document_class: statute
+  source_family: statute
+  url_count: 14
+  input_count: 15
+  host_counts:
+    nebraskalegislature.gov: 14
+  source_list_counts:
+    all_url: 14
+  sample_urls:
+  - https://nebraskalegislature.gov/laws/statutes.php?statute=77-2716
+  - https://nebraskalegislature.gov/laws/statutes.php?statute=43-512
+  - https://nebraskalegislature.gov/laws/statutes.php?statute=43-513
+  - https://nebraskalegislature.gov/laws/statutes.php?statute=48-648
+  - https://nebraskalegislature.gov/laws/statutes.php?statute=48-649.02
+  suggested_manifest_stem: us-ne-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ne-statute.yaml
+  target_release_scope:
+    jurisdiction: us-ne
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-hi/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-hi
+  document_class: form
+  source_family: tax_forms
+  url_count: 13
+  input_count: 15
+  host_counts:
+    dev1-tax.hawaii.gov: 1
+    files.hawaii.gov: 11
+    tax.hawaii.gov: 1
+  source_list_counts:
+    all_url: 13
+  sample_urls:
+  - https://files.hawaii.gov/tax/forms/2021/schx_i.pdf
+  - https://files.hawaii.gov/tax/forms/2022/schx_i.pdf
+  - https://dev1-tax.hawaii.gov/forms/d_25table-on/d_25table-on_p13
+  - https://files.hawaii.gov/tax/forms/2018/schx_i.pdf
+  - https://files.hawaii.gov/tax/forms/2019/schx_i.pdf
+  suggested_manifest_stem: us-hi-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-hi-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-hi
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-il/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-il
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 12
+  input_count: 15
+  host_counts:
+    tax.illinois.gov: 12
+  source_list_counts:
+    all_url: 12
+  sample_urls:
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/2021/individual/il-1040-instr.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/2022/individual/il-1040-instr.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/2024/individual/il-1040-instr.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/2021/individual/il-1040-schedule-icr.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/2021/individual/il-1040.pdf
+  suggested_manifest_stem: us-il-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-il-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-il
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-al/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-al
+  document_class: form
+  source_family: tax_forms
+  url_count: 8
+  input_count: 15
+  host_counts:
+    revenue.alabama.gov: 8
+  source_list_counts:
+    all_url: 8
+  sample_urls:
+  - https://revenue.alabama.gov/ultraviewer/viewer/basic_viewer/index.html?form=2024%2F01%2F23f40bk.pdf
+  - https://revenue.alabama.gov/ultraviewer/viewer/basic_viewer/index.html?form=2023%2F01%2F22f40bk.pdf
+  - https://revenue.alabama.gov/ultraviewer/viewer/basic_viewer/index.html?form=2023%2F01%2F22f40abk.pdf
+  - https://revenue.alabama.gov/ultraviewer/viewer/basic_viewer/index.html?form=2022%2F06%2F21f40schabdc_blk.pdf
+  - https://revenue.alabama.gov/ultraviewer/viewer/basic_viewer/index.html?form=2023%2F01%2F22f40schabdc_blk.pdf
+  suggested_manifest_stem: us-al-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-al-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-al
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-id/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-id
+  document_class: statute
+  source_family: statute
+  url_count: 13
+  input_count: 14
+  host_counts:
+    legislature.idaho.gov: 12
+    tax.idaho.gov: 1
+  source_list_counts:
+    all_url: 13
+  sample_urls:
+  - https://legislature.idaho.gov/statutesrules/idstat/title63/t63ch30/sect63-3024
+  - https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3004
+  - https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3022
+  - https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3029L
+  - https://legislature.idaho.gov/statutesrules/idstat/Title72/T72CH13
+  suggested_manifest_stem: us-id-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-id-statute.yaml
+  target_release_scope:
+    jurisdiction: us-id
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ri/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ri
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 5
+  input_count: 14
+  host_counts:
+    tax.ri.gov: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-12/2025%201040R%20Instructions%20122025.pdf
+  - https://tax.ri.gov/sites/g/files/xkgbur541/files/2021-12/2021-1040r-instructions.pdf
+  - https://tax.ri.gov/sites/g/files/xkgbur541/files/2023-12/2023%201040R%20Instructions.pdf
+  - https://tax.ri.gov/sites/g/files/xkgbur541/files/2024-12/2024%201040R%20Instructions%20-%20updated%2012092024.pdf
+  - https://tax.ri.gov/sites/g/files/xkgbur541/files/forms/2020/Income/2020-RI-1040H_w.pdf
+  suggested_manifest_stem: us-ri-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-ri-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ri
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ut/form/property_tax_relief_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ut
+  document_class: form
+  source_family: property_tax_relief_forms
+  url_count: 3
+  input_count: 14
+  host_counts:
+    files.tax.utah.gov: 1
+    tax.utah.gov: 2
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://tax.utah.gov/forms/current/tc-40inst.pdf
+  - https://tax.utah.gov/forms/current/tc-40.pdf
+  - https://files.tax.utah.gov/tax/forms/current/tc-90cb.pdf
+  suggested_manifest_stem: us-ut-property-tax-relief-forms
+  suggested_action: Manifest current official property-tax relief forms and instructions as one scope.
+  target_manifest: manifests/us-ut-property-tax-relief-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ut
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ok/form/property_tax_relief_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ok
+  document_class: form
+  source_family: property_tax_relief_forms
+  url_count: 4
+  input_count: 13
+  host_counts:
+    oklahoma.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-NR-Pkt.pdf
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/538-H.pdf
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/538-S.pdf
+  suggested_manifest_stem: us-ok-property-tax-relief-forms
+  suggested_action: Manifest current official property-tax relief forms and instructions as one scope.
+  target_manifest: manifests/us-ok-property-tax-relief-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ok
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-vt/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-vt
+  document_class: statute
+  source_family: statute
+  url_count: 12
+  input_count: 12
+  host_counts:
+    legislature.vermont.gov: 12
+  source_list_counts:
+    all_url: 12
+  sample_urls:
+  - http://legislature.vermont.gov/statutes/section/32/151/05811
+  - https://legislature.vermont.gov/statutes/fullchapter/32/246
+  - https://legislature.vermont.gov/statutes/fullchapter/33/011
+  - https://legislature.vermont.gov/statutes/section/16/133/04017
+  - https://legislature.vermont.gov/statutes/section/21/017/01321
+  suggested_manifest_stem: us-vt-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-vt-statute.yaml
+  target_release_scope:
+    jurisdiction: us-vt
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ky/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-ky
+  document_class: statute
+  source_family: statute
+  url_count: 11
+  input_count: 12
+  host_counts:
+    apps.legislature.ky.gov: 11
+  source_list_counts:
+    all_url: 11
+  sample_urls:
+  - https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=53500
+  - https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=29058
+  - https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=29060
+  - https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=29067
+  - https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=49188
+  suggested_manifest_stem: us-ky-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ky-statute.yaml
+  target_release_scope:
+    jurisdiction: us-ky
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-il/form/individual_income_tax_eitc_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-il
+  document_class: form
+  source_family: individual_income_tax_eitc_forms
+  url_count: 5
+  input_count: 12
+  host_counts:
+    tax.illinois.gov: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/2024/individual/il-1040-schedule-il-e-eic.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-il-e-eic.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/2021/individual/il-1040-schedule-il-e-eic.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/2022/individual/il-1040-schedule-il-e-eic.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/2023/individual/il-1040-schedule-il-e-eic.pdf
+  suggested_manifest_stem: us-il-individual-income-tax-eitc-forms
+  suggested_action: Manifest the current-year official EITC form/instructions with the related return booklet if needed.
+  target_manifest: manifests/us-il-individual-income-tax-eitc-forms.yaml
+  target_release_scope:
+    jurisdiction: us-il
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ar/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ar
+  document_class: form
+  source_family: official_forms
+  url_count: 2
+  input_count: 12
+  host_counts:
+    dfa.arkansas.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://dfa.arkansas.gov/wp-content/uploads/2024_AR1000F_and_AR1000NR_Instructions.pdf
+  - https://dfa.arkansas.gov/wp-content/uploads/2025_AR1000F_and_AR1000NR_Instructions.pdf
+  suggested_manifest_stem: us-ar-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ar-official-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ar
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-nj/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-nj
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 2
+  input_count: 12
+  host_counts:
+    nj.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2022/1040i.pdf
+  - https://nj.gov/treasury/taxation/pdf/other_forms/tgi-ee/2021/1040i.pdf
+  suggested_manifest_stem: us-nj-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-nj-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-nj
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-md/guidance/official_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-md
+  document_class: guidance
+  source_family: official_guidance
+  url_count: 11
+  input_count: 11
+  host_counts:
+    dhs.maryland.gov: 11
+  source_list_counts:
+    all_url: 11
+  sample_urls:
+  - https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2018/18-11%20AT%20COLA%20Increase%202018.doc
+  - https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2019/19-04-AT-TEMPORARY-CASH-ASSISTANCE-BENEFIT-INCREASE-1.pdf
+  - https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2020/20-06%20AT-TCA%20Benefit%20Increase.pdf
+  - https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2022/22-09%20AT-%20COLA%20Mass%20Mod%20FFY22.pdf
+  - https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2022/22-28%20AT%20-%20INCREASE%20IN%20PERSONAL%20NEEDS%20ALLOWANCE.pdf
+  suggested_manifest_stem: us-md-official-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-md-official-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-md
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-nh/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-nh
+  document_class: form
+  source_family: tax_forms
+  url_count: 9
+  input_count: 11
+  host_counts:
+    revenue.nh.gov: 9
+  source_list_counts:
+    all_url: 9
+  sample_urls:
+  - https://revenue.nh.gov/forms/2021/documents/dp-10-2020-print.pdf
+  - https://revenue.nh.gov/sites/g/files/ehbemt736/files/documents/dp-10-instructions-2024.pdf
+  - https://revenue.nh.gov/forms/2022/documents/dp-10-2021-print.pdf
+  - https://revenue.nh.gov/forms/2023/documents/dp-10-2022-print.pdf
+  - https://revenue.nh.gov/forms/2023/documents/dp-10-instructions-2022.pdf
+  suggested_manifest_stem: us-nh-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-nh-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-nh
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mt/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-mt
+  document_class: manual
+  source_family: manuals
+  url_count: 8
+  input_count: 11
+  host_counts:
+    dphhs.mt.gov: 8
+  source_list_counts:
+    all_url: 8
+  sample_urls:
+  - https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF001.pdf
+  - https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF604-1Jan012018.pdf
+  - https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF4021May012021.pdf
+  - https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF403-1Jan012018.pdf
+  - https://dphhs.mt.gov/assets/hcsd/tanfmanual/TANF501-1Jan012018.pdf
+  suggested_manifest_stem: us-mt-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-mt-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-mt
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ny/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-ny
+  document_class: manual
+  source_family: manuals
+  url_count: 5
+  input_count: 11
+  host_counts:
+    nyserda.ny.gov: 1
+    otda.ny.gov: 4
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://otda.ny.gov/policy/directives/2022/ADM/22-ADM-11.pdf
+  - https://otda.ny.gov/policy/tanf/TANF-State-Plan-2024-2026.pdf
+  - https://nyserda.ny.gov/-/media/Project/Nyserda/Files/Programs/Drive-Clean-NY/implementation-manual.pdf
+  - https://otda.ny.gov/policy/directives/1997/ADM/97_ADM-23.pdf
+  - https://otda.ny.gov/policy/gis/2022/22DC052.pdf
+  suggested_manifest_stem: us-ny-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ny-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-ny
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-hi/form/property_tax_relief_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-hi
+  document_class: form
+  source_family: property_tax_relief_forms
+  url_count: 4
+  input_count: 11
+  host_counts:
+    files.hawaii.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://files.hawaii.gov/tax/forms/current/n11ins.pdf
+  - https://files.hawaii.gov/tax/forms/current/schx_i.pdf
+  - https://files.hawaii.gov/tax/forms/current/n311_i.pdf
+  - https://files.hawaii.gov/tax/forms/current/n356_i.pdf
+  suggested_manifest_stem: us-hi-property-tax-relief-forms
+  suggested_action: Manifest current official property-tax relief forms and instructions as one scope.
+  target_manifest: manifests/us-hi-property-tax-relief-forms.yaml
+  target_release_scope:
+    jurisdiction: us-hi
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-la/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-la
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 10
+  input_count: 10
+  host_counts:
+    revenue.louisiana.gov: 10
+  source_list_counts:
+    all_url: 10
+  sample_urls:
+  - https://revenue.louisiana.gov/TaxForms/IT540(2022
+  - https://revenue.louisiana.gov/TaxForms/IT540(2023
+  - https://revenue.louisiana.gov/TaxForms/IT540WEB(2021
+  - https://revenue.louisiana.gov/TaxForms/IT540WEB(2022
+  - https://revenue.louisiana.gov/TaxForms/IT540WEB(2023
+  suggested_manifest_stem: us-la-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-la-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-la
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/guidance/snap_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: guidance
+  source_family: snap_guidance
+  url_count: 9
+  input_count: 9
+  host_counts:
+    fns-prod.azureedge.us: 2
+    fns.usda.gov: 7
+  source_list_counts:
+    all_url: 9
+  sample_urls:
+  - https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-covid-emergency-allotments-phase-3-guidance.pdf
+  - https://fns-prod.azureedge.us/sites/default/files/resource-files/snap-fy-2023-cola-adjustments.pdf
+  - https://fns.usda.gov/snap/allotment/COLA
+  - https://fns.usda.gov/snap/allotment/cola/fy26
+  - https://fns.usda.gov/snap/covid-19-emergency-allotments-guidance
+  suggested_manifest_stem: us-snap-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-snap-guidance.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-de/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-de
+  document_class: statute
+  source_family: statute
+  url_count: 5
+  input_count: 9
+  host_counts:
+    delcode.delaware.gov: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://delcode.delaware.gov/title30/c011/sc02/index.html
+  - https://delcode.delaware.gov/title19/c033/sc01/index.html
+  - https://delcode.delaware.gov/title19/c033/sc03/index.html
+  - https://delcode.delaware.gov/title19/c037
+  - https://delcode.delaware.gov/title30/c011/sc01/index.html
+  suggested_manifest_stem: us-de-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-de-statute.yaml
+  target_release_scope:
+    jurisdiction: us-de
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ia/guidance/tax_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-ia
+  document_class: guidance
+  source_family: tax_guidance
+  url_count: 8
+  input_count: 8
+  host_counts:
+    revenue.iowa.gov: 8
+  source_list_counts:
+    all_url: 8
+  sample_urls:
+  - https://revenue.iowa.gov/retirement-income-tax-guidance
+  - https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/child-dependent-care-credit
+  - https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/exemption-credits
+  - https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/ia-1040-schedule-1
+  - https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/iowa-earned-income-tax-credit
+  suggested_manifest_stem: us-ia-tax-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-ia-tax-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-ia
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wi/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-wi
+  document_class: manual
+  source_family: manuals
+  url_count: 8
+  input_count: 8
+  host_counts:
+    dcf.wisconsin.gov: 7
+    emhandbooks.wisconsin.gov: 1
+  source_list_counts:
+    all_url: 8
+  sample_urls:
+  - https://dcf.wisconsin.gov/manuals/w-2-manual/Production/03/03.2.1_115_Percent_Gross_Income_Test.htm
+  - https://dcf.wisconsin.gov/manuals/w-2-manual/Production/03/03.2.7_Counting_Income.htm
+  - https://dcf.wisconsin.gov/manuals/w-2-manual/Production/03/03.2.8_DISREGARDING_INCOME.htm
+  - https://dcf.wisconsin.gov/manuals/w-2-manual/Production/03/03.3.4_COUNTING_ASSETS.htm
+  - https://dcf.wisconsin.gov/manuals/w-2-manual/Production/07/7.4.1_Community_Service_Jobs_(CSJ
+  suggested_manifest_stem: us-wi-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-wi-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-wi
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-il/form/property_tax_relief_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-il
+  document_class: form
+  source_family: property_tax_relief_forms
+  url_count: 4
+  input_count: 8
+  host_counts:
+    tax.illinois.gov: 3
+    www2.illinois.gov: 1
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-instr.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-icr.pdf
+  - https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040.pdf
+  - https://www2.illinois.gov/rev/forms/incometax/Documents/currentyear/individual/il-1040-schedule-m.pdf
+  suggested_manifest_stem: us-il-property-tax-relief-forms
+  suggested_action: Manifest current official property-tax relief forms and instructions as one scope.
+  target_manifest: manifests/us-il-property-tax-relief-forms.yaml
+  target_release_scope:
+    jurisdiction: us-il
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ma/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-ma
+  document_class: manual
+  source_family: manuals
+  url_count: 3
+  input_count: 8
+  host_counts:
+    mass.gov: 3
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://mass.gov/doc/eecs-financial-assistance-policy-guide-february-1-2022/download
+  - https://mass.gov/doc/eecs-financial-assistance-procedures-manual-february-1-2022/download
+  - https://mass.gov/doc/financial-assistance-policy-guide
+  suggested_manifest_stem: us-ma-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ma-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-ma
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wv/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-wv
+  document_class: form
+  source_family: tax_forms
+  url_count: 3
+  input_count: 8
+  host_counts:
+    tax.wv.gov: 3
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://tax.wv.gov/Documents/TaxForms/2021/it140.pdf
+  - https://tax.wv.gov/Documents/TaxForms/2020/it140.booklet.pdf
+  - https://tax.wv.gov/Documents/TaxForms/2021/it140.booklet.pdf
+  suggested_manifest_stem: us-wv-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-wv-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-wv
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: uk/guidance/tax_guidance
+  status: backlog
+  priority: null
+  jurisdiction: uk
+  document_class: guidance
+  source_family: tax_guidance
+  url_count: 7
+  input_count: 7
+  host_counts:
+    gov.uk: 7
+  source_list_counts:
+    all_url: 7
+  sample_urls:
+  - https://gov.uk/government/publications/high-value-council-tax-surcharge/high-value-council-tax-surcharge
+  - https://gov.uk/government/publications/rates-and-allowances-income-tax/income-tax-rates-and-allowances-current-and-past
+  - https://gov.uk/government/publications/rates-and-allowances-tax-credits-child-benefit-and-guardians-allowance/tax-credits-child-benefit-and-guardians-allowance
+  - https://gov.uk/government/statistics/uk-stamp-tax-statistics
+  - https://gov.uk/government/statistics/value-added-tax-vat-annual-statistics
+  suggested_manifest_stem: uk-tax-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/uk-tax-guidance.yaml
+  target_release_scope:
+    jurisdiction: uk
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ks/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-ks
+  document_class: statute
+  source_family: statute
+  url_count: 6
+  input_count: 7
+  host_counts:
+    kslegislature.org: 6
+  source_list_counts:
+    all_url: 6
+  sample_urls:
+  - http://kslegislature.org/li/b2023_24/statute/079_000_0000_chapter/079_032_0000_article/079_032_0271_section/079_032_0271_k
+  - http://kslegislature.org/li/b2023_24/statute/079_000_0000_chapter/079_032_0000_article/079_032_0110_section/079_032_0110_k
+  - http://kslegislature.org/li/b2023_24/statute/079_000_0000_chapter/079_032_0000_article/079_032_0111c_section/079_032_0111c_k
+  - http://kslegislature.org/li/b2023_24/statute/079_000_0000_chapter/079_032_0000_article/079_032_0119_section/079_032_0119_k
+  - http://kslegislature.org/li/b2023_24/statute/079_000_0000_chapter/079_032_0000_article/079_032_0205_section/079_032_0205_k
+  suggested_manifest_stem: us-ks-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ks-statute.yaml
+  target_release_scope:
+    jurisdiction: us-ks
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-pa/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-pa
+  document_class: manual
+  source_family: manuals
+  url_count: 5
+  input_count: 7
+  host_counts:
+    services.dpw.state.pa.us: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - http://services.dpw.state.pa.us/oimpolicymanuals/cash/index.htm
+  - http://services.dpw.state.pa.us/oimpolicymanuals/cash/137_Cash_Initiatives/137.4_Work_Expense_Reimbursement.htm
+  - http://services.dpw.state.pa.us/oimpolicymanuals/cash/160_Income_Deductions/160_2_TANF_Earned_Income_Deductions.htm
+  - http://services.dpw.state.pa.us/oimpolicymanuals/cash/168_Determining_Eligibility_and_Payment_Amount/168_Appendix_A.htm
+  - http://services.dpw.state.pa.us/oimpolicymanuals/cash/168_Determining_Eligibility_and_Payment_Amount/168_Appendix_B.htm
+  suggested_manifest_stem: us-pa-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-pa-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-pa
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-id/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-id
+  document_class: regulation
+  source_family: regulation
+  url_count: 3
+  input_count: 7
+  host_counts:
+    adminrules.idaho.gov: 3
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://adminrules.idaho.gov/rules/current/16/160305.pdf
+  - https://adminrules.idaho.gov/rules/2022%20Archive/16/160305.pdf
+  - https://adminrules.idaho.gov/rules/current/35/350101.pdf
+  suggested_manifest_stem: us-id-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-id-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-id
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-vt/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-vt
+  document_class: regulation
+  source_family: regulation
+  url_count: 1
+  input_count: 7
+  host_counts:
+    outside.vermont.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://outside.vermont.gov/dept/DCF/Shared%20Documents/CDD/CCFAP/CCFAP-Regulations.pdf
+  suggested_manifest_stem: us-vt-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-vt-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-vt
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-sc/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-sc
+  document_class: manual
+  source_family: manuals
+  url_count: 1
+  input_count: 6
+  host_counts:
+    dss.sc.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://dss.sc.gov/media/ojqddxsk/tanf-policy-manual-volume-65.pdf
+  suggested_manifest_stem: us-sc-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-sc-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-sc
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/guidance/poverty_guidelines
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: guidance
+  source_family: poverty_guidelines
+  url_count: 5
+  input_count: 5
+  host_counts:
+    aspe.hhs.gov: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://aspe.hhs.gov/2006-hhs-poverty-guidelines
+  - https://aspe.hhs.gov/2015-poverty-guidelines
+  - https://aspe.hhs.gov/2016-poverty-guidelines
+  - https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines
+  - https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines/prior-hhs-poverty-guidelines-federal-register-references
+  suggested_manifest_stem: us-poverty-guidelines
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-poverty-guidelines.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ca/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ca
+  document_class: form
+  source_family: tax_forms
+  url_count: 5
+  input_count: 5
+  host_counts:
+    ftb.ca.gov: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://ftb.ca.gov/forms/2021/2021-540-tax-rate-schedules.pdf
+  - https://ftb.ca.gov/forms/2022/2022-540-tax-rate-schedules.pdf
+  - https://ftb.ca.gov/forms/2023/2023-540-tax-rate-schedules.pdf
+  - https://ftb.ca.gov/forms/2024/2024-540-tax-rate-schedules.pdf
+  - https://ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf
+  suggested_manifest_stem: us-ca-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ca-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ca
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-in/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-in
+  document_class: form
+  source_family: official_forms
+  url_count: 5
+  input_count: 5
+  host_counts:
+    forms.in.gov: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - https://forms.in.gov/Download.aspx?id=15784
+  - https://forms.in.gov/Download.aspx?id=15792
+  - https://forms.in.gov/Download.aspx?id=16379
+  - https://forms.in.gov/Download.aspx?id=16915
+  - https://forms.in.gov/Download.aspx?id=16925
+  suggested_manifest_stem: us-in-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-in-official-forms.yaml
+  target_release_scope:
+    jurisdiction: us-in
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ri/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-ri
+  document_class: statute
+  source_family: statute
+  url_count: 5
+  input_count: 5
+  host_counts:
+    webserver.rilin.state.ri.us: 5
+  source_list_counts:
+    all_url: 5
+  sample_urls:
+  - http://webserver.rilin.state.ri.us/Statutes/TITLE40/40-5.2/INDEX.htm
+  - http://webserver.rilin.state.ri.us/Statutes/TITLE44/44-30/44-30-2.6.HTM
+  - http://webserver.rilin.state.ri.us/Statutes/TITLE44/44-33/44-33-3.htm
+  - http://webserver.rilin.state.ri.us/Statutes/TITLE44/44-33/44-33-9.htm
+  - http://webserver.rilin.state.ri.us/Statutes/title44/44-30/44-30-12.HTM
+  suggested_manifest_stem: us-ri-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ri-statute.yaml
+  target_release_scope:
+    jurisdiction: us-ri
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 4
+  input_count: 5
+  host_counts:
+    dam.ldr.la.gov: 2
+    irs.gov: 2
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://irs.gov/instructions/i1040sca
+  - https://dam.ldr.la.gov/taxforms/IT540i%20WEB%20(2024
+  - https://dam.ldr.la.gov/taxforms/IT540i%20WEB(2025
+  - https://irs.gov/instructions/i1040gi
+  suggested_manifest_stem: us-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mi/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-mi
+  document_class: form
+  source_family: tax_forms
+  url_count: 4
+  input_count: 5
+  host_counts:
+    michigan.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/2022/2022-IIT-Forms/4884.pdf
+  - https://michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/2022/2022-IIT-Forms/Form-4884-Section-C-worksheet.pdf
+  - https://michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/2022/2022-IIT-Forms/Schedule-1.pdf
+  - https://michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/SUW/TY2025/446_Withholding-Guide_2025.pdf
+  suggested_manifest_stem: us-mi-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-mi-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-mi
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ne/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ne
+  document_class: form
+  source_family: tax_forms
+  url_count: 4
+  input_count: 5
+  host_counts:
+    revenue.nebraska.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2024/f_2441N.pdf
+  - https://revenue.nebraska.gov/files/doc/tax-forms/2021/f_2441n.pdf
+  - https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_2441N.pdf
+  - https://revenue.nebraska.gov/sites/revenue.nebraska.gov/files/doc/Form_2441N_Ne_Child_and_Dependent_Care_Expenses_8-618-2022_final_2.pdf
+  suggested_manifest_stem: us-ne-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ne-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ne
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ca/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-ca
+  document_class: regulation
+  source_family: regulation
+  url_count: 1
+  input_count: 5
+  host_counts:
+    cdss.ca.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://cdss.ca.gov/Portals/9/CAPI/CAPI_Regulations-Accessible.pdf
+  suggested_manifest_stem: us-ca-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ca-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-ca
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-dc/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-dc
+  document_class: manual
+  source_family: manuals
+  url_count: 1
+  input_count: 5
+  host_counts:
+    osse.dc.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://osse.dc.gov/sites/default/files/dc/sites/osse/publication/attachments/DC%20Child%20Care%20Subsidy%20Program%20Policy%20Manual.pdf
+  suggested_manifest_stem: us-dc-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-dc-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-dc
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ct/form/individual_income_tax_eitc_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ct
+  document_class: form
+  source_family: individual_income_tax_eitc_forms
+  url_count: 4
+  input_count: 4
+  host_counts:
+    portal.ct.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://portal.ct.gov/-/media/DRS/Forms/2020/Income/Schedule-CT-EITC_0121.pdf
+  - https://portal.ct.gov/-/media/DRS/Forms/2021/Income/Schedule-CT-EITC_1221.pdf
+  - https://portal.ct.gov/-/media/DRS/Forms/2022/Income/Schedule-CT-EITC_1222.pdf
+  - https://portal.ct.gov/-/media/DRS/Forms/2023/Income/Schedule-CT-EITC_1223.pdf
+  suggested_manifest_stem: us-ct-individual-income-tax-eitc-forms
+  suggested_action: Manifest the current-year official EITC form/instructions with the related return booklet if needed.
+  target_manifest: manifests/us-ct-individual-income-tax-eitc-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ct
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-md/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-md
+  document_class: regulation
+  source_family: regulation
+  url_count: 4
+  input_count: 4
+  host_counts:
+    dsd.maryland.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://dsd.maryland.gov/regulations/Pages/07.03.03.03.aspx
+  - https://dsd.maryland.gov/regulations/Pages/07.03.03.12.aspx
+  - https://dsd.maryland.gov/regulations/Pages/07.03.03.13.aspx
+  - https://dsd.maryland.gov/regulations/Pages/07.03.03.17.aspx
+  suggested_manifest_stem: us-md-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-md-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-md
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-md/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-md
+  document_class: statute
+  source_family: statute
+  url_count: 4
+  input_count: 4
+  host_counts:
+    mgaleg.maryland.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&enactments=false&section=8-607
+  - https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gle&enactments=false&section=8-609
+  - https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&enession=2024RS&section=10-208
+  - https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtg&section=10-207
+  suggested_manifest_stem: us-md-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-md-statute.yaml
+  target_release_scope:
+    jurisdiction: us-md
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-nc/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-nc
+  document_class: statute
+  source_family: statute
+  url_count: 4
+  input_count: 4
+  host_counts:
+    ncleg.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_105/GS_105-153.10.html
+  - https://ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_96/GS_96-9.2.html
+  - https://ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_96/GS_96-9.3.html
+  - https://ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_105/GS_105-269.14.pdf
+  suggested_manifest_stem: us-nc-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-nc-statute.yaml
+  target_release_scope:
+    jurisdiction: us-nc
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-tx/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-tx
+  document_class: statute
+  source_family: statute
+  url_count: 4
+  input_count: 4
+  host_counts:
+    statutes.capitol.texas.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://statutes.capitol.texas.gov/Docs/HR/htm/HR.32.htm
+  - https://statutes.capitol.texas.gov/Docs/UT/htm/UT.55.htm
+  - https://statutes.capitol.texas.gov/StatutesByDate.aspx?code=LA&date=9%2F1%2F2025&level=SE&value=201.082
+  - https://statutes.capitol.texas.gov/StatutesByDate.aspx?code=LA&date=9%2F1%2F2025&level=SE&value=204.006
+  suggested_manifest_stem: us-tx-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-tx-statute.yaml
+  target_release_scope:
+    jurisdiction: us-tx
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ut/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-ut
+  document_class: manual
+  source_family: manuals
+  url_count: 4
+  input_count: 4
+  host_counts:
+    jobs.utah.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://jobs.utah.gov/Infosource/eligibilitymanual/Tables
+  - https://jobs.utah.gov/Infosource/eligibilitymanual/Tables,_Appendicies,_and_Charts/Tables,_Appendicies,_and_Charts/Table_1_-_Financial_Monthly_Income_Limits_and_Assistance_Amounts.htm
+  - https://jobs.utah.gov/infosource/eligibilitymanual/Obsolete_Policy/Obsolete_Tables%2c_Appendices%2c_and_Charts/Table_1/ObsoleteTable1_(2008_to_4_30_12
+  - https://jobs.utah.gov/infosource/eligibilitymanual/Obsolete_Policy/Obsolete_Tables%2c_Appendices%2c_and_Charts/Table_1/Obsolete_Table_1_(05_01_12_to_09_30_22
+  suggested_manifest_stem: us-ut-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ut-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-ut
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ma/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-ma
+  document_class: statute
+  source_family: statute
+  url_count: 3
+  input_count: 4
+  host_counts:
+    mass.gov: 3
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://mass.gov/info-details/mass-general-laws-c62-ss-6
+  - https://mass.gov/info-details/mass-general-laws-c62-ss-2
+  - https://mass.gov/info-details/mass-general-laws-c62-ss-3
+  suggested_manifest_stem: us-ma-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ma-statute.yaml
+  target_release_scope:
+    jurisdiction: us-ma
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-me/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-me
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 3
+  input_count: 4
+  host_counts:
+    maine.gov: 3
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_Form1040me_Sch%20A_ff.pdf
+  - https://maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_Form%201040ME_Sch%201S_ff.pdf
+  - https://maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/24_Form%201040ME_Sch%20PTFC_ff_0.pdf
+  suggested_manifest_stem: us-me-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-me-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-me
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-tx/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-tx
+  document_class: manual
+  source_family: manuals
+  url_count: 3
+  input_count: 4
+  host_counts:
+    hhs.texas.gov: 2
+    twc.texas.gov: 1
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://twc.texas.gov/sites/default/files/wf/policy-letter/wd/19-24-ch1-twc.pdf
+  - https://hhs.texas.gov/handbooks/texas-works-handbook/a-1210-general-policy
+  - https://hhs.texas.gov/handbooks/texas-works-handbook/a-2410-general-policy
+  suggested_manifest_stem: us-tx-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-tx-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-tx
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/form/medicaid_chip_eligibility_levels
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: form
+  source_family: medicaid_chip_eligibility_levels
+  url_count: 2
+  input_count: 4
+  host_counts:
+    medicaid.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels
+  - https://medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels/index.html
+  suggested_manifest_stem: us-medicaid-chip-eligibility-levels
+  suggested_action: Create a federal Medicaid/CHIP eligibility-levels guidance or data manifest.
+  target_manifest: manifests/us-medicaid-chip-eligibility-levels.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-vt/guidance/official_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-vt
+  document_class: guidance
+  source_family: official_guidance
+  url_count: 2
+  input_count: 4
+  host_counts:
+    outside.vermont.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/CDD-Guidance-CCFAP-Capped-Rates.pdf
+  - https://outside.vermont.gov/dept/DCF/Policies%20Procedures%20Guidance/ESD-Procedure-P2230A.pdf
+  suggested_manifest_stem: us-vt-official-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-vt-official-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-vt
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ar/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-ar
+  document_class: manual
+  source_family: manuals
+  url_count: 1
+  input_count: 4
+  host_counts:
+    humanservices.arkansas.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://humanservices.arkansas.gov/wp-content/uploads/TEA_MANUAL-10.1.24.pdf
+  suggested_manifest_stem: us-ar-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ar-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-ar
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-nj/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-nj
+  document_class: statute
+  source_family: statute
+  url_count: 1
+  input_count: 4
+  host_counts:
+    nj.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://nj.gov/labor/myunemployment/assets/pdfs/UI_statute.pdf
+  suggested_manifest_stem: us-nj-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-nj-statute.yaml
+  target_release_scope:
+    jurisdiction: us-nj
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: uk/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: uk
+  document_class: manual
+  source_family: manuals
+  url_count: 3
+  input_count: 3
+  host_counts:
+    bankofengland.co.uk: 1
+    gov.uk: 2
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://bankofengland.co.uk/monetary-policy/inflation
+  - https://gov.uk/hmrc-internal-manuals/child-benefit-technical-manual/cbtm07020
+  - https://gov.uk/hmrc-internal-manuals/tax-credits-technical-manual/tctm02220
+  suggested_manifest_stem: uk-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/uk-manuals.yaml
+  target_release_scope:
+    jurisdiction: uk
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/form/federal_tax_parameters
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: form
+  source_family: federal_tax_parameters
+  url_count: 3
+  input_count: 3
+  host_counts:
+    cbo.gov: 3
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://cbo.gov/system/files/2024-02/53724-2024-02-Tax-Parameters.xlsx
+  - https://cbo.gov/system/files/2024-06/53724-2024-06-Tax-Parameters.xlsx
+  - https://cbo.gov/system/files/2025-01/53724-2025-01-Tax-Parameters.xlsx
+  suggested_manifest_stem: us-federal-tax-parameters
+  suggested_action: Create a federal tax-parameter data manifest; prefer workbook-aware extraction.
+  target_manifest: manifests/us-federal-tax-parameters.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ct/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-ct
+  document_class: regulation
+  source_family: regulation
+  url_count: 3
+  input_count: 3
+  host_counts:
+    eregulations.ct.gov: 3
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://eregulations.ct.gov/eRegsPortal/Browse/RCSA/Title_17bSubtitle_17b-749Section_17b-749-04
+  - https://eregulations.ct.gov/eRegsPortal/Browse/RCSA/Title_17bSubtitle_17b-749Section_17b-749-05
+  - https://eregulations.ct.gov/eRegsPortal/Browse/RCSA/Title_17bSubtitle_17b-749Section_17b-749-13
+  suggested_manifest_stem: us-ct-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ct-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-ct
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ok/form/individual_income_tax_eitc_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ok
+  document_class: form
+  source_family: individual_income_tax_eitc_forms
+  url_count: 3
+  input_count: 3
+  host_counts:
+    oklahoma.gov: 3
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-EIC.pdf
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2023/511-EIC.pdf
+  - https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2024/511-EIC.pdf
+  suggested_manifest_stem: us-ok-individual-income-tax-eitc-forms
+  suggested_action: Manifest the current-year official EITC form/instructions with the related return booklet if needed.
+  target_manifest: manifests/us-ok-individual-income-tax-eitc-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ok
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-sc/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-sc
+  document_class: statute
+  source_family: statute
+  url_count: 3
+  input_count: 3
+  host_counts:
+    scstatehouse.gov: 3
+  source_list_counts:
+    all_url: 3
+  sample_urls:
+  - https://scstatehouse.gov/code/t12c006.php
+  - https://scstatehouse.gov/code/t41c027.php
+  - https://scstatehouse.gov/code/t41c031.php
+  suggested_manifest_stem: us-sc-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-sc-statute.yaml
+  target_release_scope:
+    jurisdiction: us-sc
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-az/form/property_tax_relief_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-az
+  document_class: form
+  source_family: property_tax_relief_forms
+  url_count: 1
+  input_count: 3
+  host_counts:
+    azdor.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://azdor.gov/forms/tax-credits-forms/property-tax-refund-credit-claim-form-fillable
+  suggested_manifest_stem: us-az-property-tax-relief-forms
+  suggested_action: Manifest current official property-tax relief forms and instructions as one scope.
+  target_manifest: manifests/us-az-property-tax-relief-forms.yaml
+  target_release_scope:
+    jurisdiction: us-az
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wi/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-wi
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 1
+  input_count: 3
+  host_counts:
+    docs.legis.wisconsin.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://docs.legis.wisconsin.gov/misc/lfb/informational_papers/january_2023/0002_individual_income_tax_informational_paper_2.pdf
+  suggested_manifest_stem: us-wi-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-wi-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-wi
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wi/form/property_tax_relief_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-wi
+  document_class: form
+  source_family: property_tax_relief_forms
+  url_count: 1
+  input_count: 3
+  host_counts:
+    docs.legis.wisconsin.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://docs.legis.wisconsin.gov/misc/lfb/informational_papers/january_2021/0013_homestead_tax_credit_informational_paper_13.pdf
+  suggested_manifest_stem: us-wi-property-tax-relief-forms
+  suggested_action: Manifest current official property-tax relief forms and instructions as one scope.
+  target_manifest: manifests/us-wi-property-tax-relief-forms.yaml
+  target_release_scope:
+    jurisdiction: us-wi
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-az/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-az
+  document_class: form
+  source_family: tax_forms
+  url_count: 2
+  input_count: 2
+  host_counts:
+    azdor.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://azdor.gov/forms/tax-credits-forms/credit-contributions-qualifying-charitable-organizations
+  - https://azdor.gov/forms/tax-credits-forms/credit-contributions-qualifying-foster-care-charitable-organizations
+  suggested_manifest_stem: us-az-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-az-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-az
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-de/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-de
+  document_class: regulation
+  source_family: regulation
+  url_count: 2
+  input_count: 2
+  host_counts:
+    regulations.delaware.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://regulations.delaware.gov/AdminCode/title16/Department%20of%20Health%20and%20Social%20Services/Division%20of%20Social%20Services/11003.shtml
+  - https://regulations.delaware.gov/AdminCode/title16/Department%20of%20Health%20and%20Social%20Services/Division%20of%20Social%20Services/11004.shtml
+  suggested_manifest_stem: us-de-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-de-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-de
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-de/rulemaking/rulemaking
+  status: backlog
+  priority: null
+  jurisdiction: us-de
+  document_class: rulemaking
+  source_family: rulemaking
+  url_count: 2
+  input_count: 2
+  host_counts:
+    regulations.delaware.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://regulations.delaware.gov/register/august2005/proposed/9%20DE%20Reg%20168%2008-01-05.htm
+  - https://regulations.delaware.gov/register/january2021/final/24%20DE%20Reg%20704%2001-01-21.htm
+  suggested_manifest_stem: us-de-rulemaking
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-de-rulemaking.yaml
+  target_release_scope:
+    jurisdiction: us-de
+    document_class: rulemaking
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ia/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-ia
+  document_class: statute
+  source_family: statute
+  url_count: 2
+  input_count: 2
+  host_counts:
+    legis.iowa.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://legis.iowa.gov/docs/code/2026/96.pdf
+  - https://legis.iowa.gov/docs/code/422.7.pdf
+  suggested_manifest_stem: us-ia-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ia-statute.yaml
+  target_release_scope:
+    jurisdiction: us-ia
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ks/guidance/tax_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-ks
+  document_class: guidance
+  source_family: tax_guidance
+  url_count: 2
+  input_count: 2
+  host_counts:
+    ksrevenue.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://ksrevenue.gov/taxnotices/notice24-08.pdf
+  - https://ksrevenue.gov/taxnotices/notice24-09.pdf
+  suggested_manifest_stem: us-ks-tax-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-ks-tax-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-ks
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ma/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ma
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 2
+  input_count: 2
+  host_counts:
+    mass.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://mass.gov/doc/2021-form-1-massachusetts-resident-income-tax-return/download
+  - https://mass.gov/doc/2022-form-1-massachusetts-resident-income-tax-return/download
+  suggested_manifest_stem: us-ma-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-ma-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ma
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-md/form/property_tax_relief_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-md
+  document_class: form
+  source_family: property_tax_relief_forms
+  url_count: 2
+  input_count: 2
+  host_counts:
+    marylandtaxes.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://marylandtaxes.gov/forms/current_forms/Md_Tax_Computation.pdf
+  - https://marylandtaxes.gov/forms/current_forms/Resident-Booklet.pdf
+  suggested_manifest_stem: us-md-property-tax-relief-forms
+  suggested_action: Manifest current official property-tax relief forms and instructions as one scope.
+  target_manifest: manifests/us-md-property-tax-relief-forms.yaml
+  target_release_scope:
+    jurisdiction: us-md
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-md/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-md
+  document_class: manual
+  source_family: manuals
+  url_count: 2
+  input_count: 2
+  host_counts:
+    dhs.maryland.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://dhs.maryland.gov/documents/FIA/Manuals/Public%20Assistance%20to%20Adults%20%28PAA%29%20Manual/PAA%20300%20Technical%20Eligibility%20rev%2011.22.docx
+  - https://dhs.maryland.gov/documents/FIA/Manuals/Public%20Assistance%20to%20Adults%20%28PAA%29%20Manual/PAA%20900%20Calculation%20of%20Benefits%20rev%2011.22.docx
+  suggested_manifest_stem: us-md-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-md-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-md
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mi/guidance/tax_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-mi
+  document_class: guidance
+  source_family: tax_guidance
+  url_count: 2
+  input_count: 2
+  host_counts:
+    michigan.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://michigan.gov/taxes/iit/tax-guidance/tax-situations/retirement-and-pension-benefits
+  - https://michigan.gov/treasury/reference/taxpayer-notices/2025-tax-year-income-tax-rate-for-individuals-and-fiduciaries
+  suggested_manifest_stem: us-mi-tax-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-mi-tax-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-mi
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mi/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-mi
+  document_class: regulation
+  source_family: regulation
+  url_count: 2
+  input_count: 2
+  host_counts:
+    michigan.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://michigan.gov/mdhhs/-/media/Project/Websites/mdhhs/Inside-MDHHS/Reports-and-Statistics---Human-Services/State-Plans-and-Federal-Regulations/TANF_State_Plan_2023.pdf
+  - https://michigan.gov/mdhhs/-/media/Project/Websites/mdhhs/Inside-MDHHS/Reports-and-Statistics---Human-Services/State-Plans-and-Federal-Regulations/TANF_State_Plan_Effective_01-01-23_Rev-07-01-25.pdf
+  suggested_manifest_stem: us-mi-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-mi-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-mi
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-nc/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-nc
+  document_class: form
+  source_family: tax_forms
+  url_count: 2
+  input_count: 2
+  host_counts:
+    ncdor.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://ncdor.gov/taxes-forms/sales-and-use-tax/use-tax
+  - https://ncdor.gov/taxes-forms/tax-rate-schedules
+  suggested_manifest_stem: us-nc-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-nc-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-nc
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-tx/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-tx
+  document_class: regulation
+  source_family: regulation
+  url_count: 2
+  input_count: 2
+  host_counts:
+    hhs.texas.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://hhs.texas.gov/sites/default/files/documents/laws-regulations/handbooks/twh/bulletin2020/19-08.pdf
+  - https://hhs.texas.gov/sites/default/files/documents/laws-regulations/handbooks/umcm/6-3.pdf
+  suggested_manifest_stem: us-tx-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-tx-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-tx
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ms/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-ms
+  document_class: regulation
+  source_family: regulation
+  url_count: 1
+  input_count: 2
+  host_counts:
+    mdes.ms.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://mdes.ms.gov/media/456617/mdes_lawsandregulation_web_02152024.pdf
+  suggested_manifest_stem: us-ms-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ms-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-ms
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-nh/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-nh
+  document_class: form
+  source_family: official_forms
+  url_count: 1
+  input_count: 2
+  host_counts:
+    dhhs.nh.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://dhhs.nh.gov/sites/g/files/ehbemt476/files/documents2/bcdhsc-form-2533.pdf
+  suggested_manifest_stem: us-nh-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-nh-official-forms.yaml
+  target_release_scope:
+    jurisdiction: us-nh
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wa/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-wa
+  document_class: form
+  source_family: tax_forms
+  url_count: 1
+  input_count: 2
+  host_counts:
+    dor.wa.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://dor.wa.gov/forms-publications/publications-subject/tax-topics/2021-tax-legislation
+  suggested_manifest_stem: us-wa-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-wa-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-wa
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: uk/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: uk
+  document_class: form
+  source_family: official_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    ofgem.gov.uk: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://ofgem.gov.uk/information-consumers/energy-advice-households/energy-price-cap
+  suggested_manifest_stem: uk-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/uk-official-forms.yaml
+  target_release_scope:
+    jurisdiction: uk
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/form/child_care_subsidy
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: form
+  source_family: child_care_subsidy
+  url_count: 1
+  input_count: 1
+  host_counts:
+    dhhs.ne.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://dhhs.ne.gov/Pages/Child-Care-Subsidy-Information-for-Parents.aspx
+  suggested_manifest_stem: us-child-care-subsidy
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-child-care-subsidy.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/form/snap_utility_allowance_data
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: form
+  source_family: snap_utility_allowance_data
+  url_count: 1
+  input_count: 1
+  host_counts:
+    fns.usda.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://fns.usda.gov/sites/default/files/resource-files/2024-09-30-SUA-Table-FY25-508-Update.xlsx
+  suggested_manifest_stem: us-snap-utility-allowance-data
+  suggested_action: Create a current federal SNAP utility-allowance data manifest from the official workbook.
+  target_manifest: manifests/us-snap-utility-allowance-data.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us/rulemaking/poverty_guidelines
+  status: backlog
+  priority: null
+  jurisdiction: us
+  document_class: rulemaking
+  source_family: poverty_guidelines
+  url_count: 1
+  input_count: 1
+  host_counts:
+    federalregister.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://federalregister.gov/documents/2024/01/17/2024-00796/annual-update-of-the-hhs-poverty-guidelines
+  suggested_manifest_stem: us-poverty-guidelines
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-poverty-guidelines.yaml
+  target_release_scope:
+    jurisdiction: us
+    document_class: rulemaking
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-al/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-al
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    revenue.alabama.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://revenue.alabama.gov/forms/2021-alabama-individual-income-tax-return-2
+  suggested_manifest_stem: us-al-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-al-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-al
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-al/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-al
+  document_class: manual
+  source_family: manuals
+  url_count: 1
+  input_count: 1
+  host_counts:
+    dhr.alabama.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://dhr.alabama.gov/wp-content/uploads/2022/04/Appendix-N-Sec-2-Public-Assistance-Payment-Manual.pdf
+  suggested_manifest_stem: us-al-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-al-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-al
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-al/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-al
+  document_class: statute
+  source_family: statute
+  url_count: 1
+  input_count: 1
+  host_counts:
+    alisondb.legislature.state.al.us: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://alisondb.legislature.state.al.us/alison/CodeOfAlabama/1975/Coatoc.htm
+  suggested_manifest_stem: us-al-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-al-statute.yaml
+  target_release_scope:
+    jurisdiction: us-al
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-dc/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-dc
+  document_class: form
+  source_family: official_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    dcpaidfamilyleave.dc.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://dcpaidfamilyleave.dc.gov/employer-information
+  suggested_manifest_stem: us-dc-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-dc-official-forms.yaml
+  target_release_scope:
+    jurisdiction: us-dc
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-de/guidance/official_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-de
+  document_class: guidance
+  source_family: official_guidance
+  url_count: 1
+  input_count: 1
+  host_counts:
+    dhss.delaware.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://dhss.delaware.gov/wp-content/uploads/sites/11/dss/pdf/OCT2022COLA.pdf
+  suggested_manifest_stem: us-de-official-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-de-official-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-de
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ga/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ga
+  document_class: form
+  source_family: tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    apps.dor.ga.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://apps.dor.ga.gov/FillableForms/PDFViewer/Index?form=2022GA500
+  suggested_manifest_stem: us-ga-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ga-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ga
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ga/statute/statute
+  status: backlog
+  priority: null
+  jurisdiction: us-ga
+  document_class: statute
+  source_family: statute
+  url_count: 1
+  input_count: 1
+  host_counts:
+    legis.ga.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://legis.ga.gov/api/document/docs/default-source/general-statutes/2012sumdoc.pdf?sfvrsn=77e95ae6_2
+  suggested_manifest_stem: us-ga-statute
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ga-statute.yaml
+  target_release_scope:
+    jurisdiction: us-ga
+    document_class: statute
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-id/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-id
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    tax.idaho.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://tax.idaho.gov/pressrelease/update-on-filing-2025-idaho-income-taxes-now-that-conformity-is-law
+  suggested_manifest_stem: us-id-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-id-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-id
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-in/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-in
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    in.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://in.gov/dor/tax-forms/2023-individual-income-tax-forms
+  suggested_manifest_stem: us-in-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-in-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-in
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-in/guidance/official_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-in
+  document_class: guidance
+  source_family: official_guidance
+  url_count: 1
+  input_count: 1
+  host_counts:
+    in.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://in.gov/dlgf/files/2025-memos/250612-Cockerill-Memo-Legislation-Affecting-Deductions%2C-Exemptions%2C-and-Credits.pdf
+  suggested_manifest_stem: us-in-official-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-in-official-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-in
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-la/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-la
+  document_class: form
+  source_family: tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    revenue.louisiana.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://revenue.louisiana.gov/taxforms/6935(11_02
+  suggested_manifest_stem: us-la-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-la-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-la
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ma/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ma
+  document_class: form
+  source_family: tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    mass.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://mass.gov/technical-information-release/tir-01-19-real-estate-tax-credit-for-certain-persons-age-65-and-older-as-revised
+  suggested_manifest_stem: us-ma-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ma-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ma
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mi/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-mi
+  document_class: form
+  source_family: official_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    michigan.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://michigan.gov/mdhhs/assistance-programs/healthcare/childrenteens/michild/qanda/michild-program-general-information
+  suggested_manifest_stem: us-mi-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-mi-official-forms.yaml
+  target_release_scope:
+    jurisdiction: us-mi
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mn/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-mn
+  document_class: form
+  source_family: tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    revenue.state.mn.us: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://revenue.state.mn.us/crp-instructions
+  suggested_manifest_stem: us-mn-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-mn-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-mn
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-mt/form/property_tax_relief_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-mt
+  document_class: form
+  source_family: property_tax_relief_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    mtrevenue.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://mtrevenue.gov/wp-content/uploads/dlm_uploads/2023/08/2022-Montana-Property-Tax-Rebate-Form-MPTR22.pdf
+  suggested_manifest_stem: us-mt-property-tax-relief-forms
+  suggested_action: Manifest current official property-tax relief forms and instructions as one scope.
+  target_manifest: manifests/us-mt-property-tax-relief-forms.yaml
+  target_release_scope:
+    jurisdiction: us-mt
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ne/regulation/regulation
+  status: backlog
+  priority: null
+  jurisdiction: us-ne
+  document_class: regulation
+  source_family: regulation
+  url_count: 1
+  input_count: 1
+  host_counts:
+    revenue.nebraska.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://revenue.nebraska.gov/about/legal-information/regulations/chapter-22-individual-income-tax
+  suggested_manifest_stem: us-ne-regulation
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ne-regulation.yaml
+  target_release_scope:
+    jurisdiction: us-ne
+    document_class: regulation
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-nj/guidance/official_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-nj
+  document_class: guidance
+  source_family: official_guidance
+  url_count: 1
+  input_count: 1
+  host_counts:
+    nj.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://nj.gov/humanservices/providers/grants/public/publicnoticefiles/Draft%20New%20Jersey%20State%20Plan%20for%20Temporary%20Assistance%20for%20Needy%20Families%20(TANF
+  suggested_manifest_stem: us-nj-official-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-nj-official-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-nj
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ny/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ny
+  document_class: form
+  source_family: tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    tax.ny.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://tax.ny.gov/forms/html-instructions/2025/it/it201i-2025.htm
+  suggested_manifest_stem: us-ny-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ny-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ny
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ny/guidance/official_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-ny
+  document_class: guidance
+  source_family: official_guidance
+  url_count: 1
+  input_count: 1
+  host_counts:
+    wcb.ny.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://wcb.ny.gov/content/main/forms/PFLDocs/pfl-pay-deduction-notice-2026.pdf
+  suggested_manifest_stem: us-ny-official-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-ny-official-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-ny
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-oh/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-oh
+  document_class: manual
+  source_family: manuals
+  url_count: 1
+  input_count: 1
+  host_counts:
+    emanuals.jfs.ohio.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://emanuals.jfs.ohio.gov/CashFoodAssist/CAM/ACT
+  suggested_manifest_stem: us-oh-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-oh-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-oh
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ok/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-ok
+  document_class: manual
+  source_family: manuals
+  url_count: 1
+  input_count: 1
+  host_counts:
+    oklahoma.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://oklahoma.gov/okdhs/library/policy/current/oac-340/chapter-10/subchapter-3/parts-3/earned-income-disregard.html
+  suggested_manifest_stem: us-ok-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-ok-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-ok
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-or/form/individual_income_tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-or
+  document_class: form
+  source_family: individual_income_tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    oregon.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://oregon.gov/dor/programs/individuals/Documents/Part-year%20and%20nonresident,%20Form%20OR-40-P%20and%20OR-40-N%20filers.pdf.pdf
+  suggested_manifest_stem: us-or-individual-income-tax-forms
+  suggested_action: Manifest the current-year official tax booklet/forms first, then decide whether to add historical years.
+  target_manifest: manifests/us-or-individual-income-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-or
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-pa/form/official_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-pa
+  document_class: form
+  source_family: official_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    pa.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://pa.gov/content/dam/copapwp-pagov/en/dli/documents/uc/ucp-forms/ucp-1.pdf
+  suggested_manifest_stem: us-pa-official-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-pa-official-forms.yaml
+  target_release_scope:
+    jurisdiction: us-pa
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-ri/form/tax_forms
+  status: backlog
+  priority: null
+  jurisdiction: us-ri
+  document_class: form
+  source_family: tax_forms
+  url_count: 1
+  input_count: 1
+  host_counts:
+    tax.ri.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://tax.ri.gov/sites/g/files/xkgbur541/files/2022-12/2022%20NR%20Instructions_v4_w.pdf
+  suggested_manifest_stem: us-ri-tax-forms
+  suggested_action: Review the group and create one source-first manifest for the coherent current official form set.
+  target_manifest: manifests/us-ri-tax-forms.yaml
+  target_release_scope:
+    jurisdiction: us-ri
+    document_class: form
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wa/guidance/tax_guidance
+  status: backlog
+  priority: null
+  jurisdiction: us-wa
+  document_class: guidance
+  source_family: tax_guidance
+  url_count: 1
+  input_count: 1
+  host_counts:
+    dor.wa.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://dor.wa.gov/forms-publications/publications-subject/special-notices/new-tiered-rates-washingtons-capital-gains-tax
+  suggested_manifest_stem: us-wa-tax-guidance
+  suggested_action: Review the group and create one source-first manifest for the coherent official guidance set.
+  target_manifest: manifests/us-wa-tax-guidance.yaml
+  target_release_scope:
+    jurisdiction: us-wa
+    document_class: guidance
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+- group_key: us-wv/manual/manuals
+  status: backlog
+  priority: null
+  jurisdiction: us-wv
+  document_class: manual
+  source_family: manuals
+  url_count: 1
+  input_count: 1
+  host_counts:
+    dhhr.wv.gov: 1
+  source_list_counts:
+    all_url: 1
+  sample_urls:
+  - https://dhhr.wv.gov/bcf/Services/familyassistance/PolicyManual/Documents/Chapter%2011/ch11_3.pdf
+  suggested_manifest_stem: us-wv-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-wv-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-wv
+    document_class: manual
+    version: null
+  coverage_status: not_started
+  corpus_artifacts:
+    sources: null
+    inventory: null
+    provisions: null
+    coverage: null
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: null
+additional_source_sets: []

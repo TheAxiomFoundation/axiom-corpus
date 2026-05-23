@@ -7,6 +7,7 @@ reviewing before creating source-first manifests.
 
 from __future__ import annotations
 
+import json
 from collections import Counter, defaultdict
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -62,6 +63,8 @@ class SourceDiscoveryRow:
     release_scope_present: bool
     fragment: str | None
     reason: str
+    reference_count: int = 0
+    sample_reference_paths: tuple[str, ...] = ()
 
     def to_mapping(self) -> dict[str, Any]:
         return {
@@ -77,6 +80,8 @@ class SourceDiscoveryRow:
             "release_scope_present": self.release_scope_present,
             "fragment": self.fragment,
             "reason": self.reason,
+            "reference_count": self.reference_count,
+            "sample_reference_paths": list(self.sample_reference_paths),
         }
 
 
@@ -147,6 +152,7 @@ class SourceDiscoveryReport:
     generated_at: str
     source_name: str
     input_paths: tuple[Path, ...]
+    reference_input_paths: tuple[Path, ...]
     raw_url_count: int
     invalid_url_count: int
     unique_url_count: int
@@ -193,6 +199,7 @@ class SourceDiscoveryReport:
             "generated_at": self.generated_at,
             "source_name": self.source_name,
             "input_paths": [str(path) for path in self.input_paths],
+            "reference_input_paths": [str(path) for path in self.reference_input_paths],
             "raw_url_count": self.raw_url_count,
             "invalid_url_count": self.invalid_url_count,
             "unique_url_count": self.unique_url_count,
@@ -230,6 +237,7 @@ class _InputUrl:
     raw_url: str
     source_list: str
     canonical: CanonicalUrl
+    reference_path: str | None = None
 
 
 KNOWN_OFFICIAL_HOSTS: dict[str, str | None] = {
@@ -337,6 +345,26 @@ KNOWN_OFFICIAL_HOSTS: dict[str, str | None] = {
     "twc.texas.gov": "us-tx",
     "webserver.rilin.state.ri.us": "us-ri",
     "workingfamiliescredit.wa.gov": "us-wa",
+    "assets.publishing.service.gov.uk": "uk",
+    "bankofengland.co.uk": "uk",
+    "bills.parliament.uk": "uk",
+    "childcarechoices.gov.uk": "uk",
+    "commonslibrary.parliament.uk": "uk",
+    "dataportal.orr.gov.uk": "uk",
+    "finance-ni.gov.uk": "uk",
+    "fiscalcommission.scot": "uk",
+    "gov.scot": "uk",
+    "gov.uk": "uk",
+    "legislation.gov.uk": "uk",
+    "mygov.scot": "uk",
+    "obr.uk": "uk",
+    "ofgem.gov.uk": "uk",
+    "ofwat.gov.uk": "uk",
+    "ons.gov.uk": "uk",
+    "publications.parliament.uk": "uk",
+    "researchbriefings.files.parliament.uk": "uk",
+    "socialsecurity.gov.scot": "uk",
+    "statswales.gov.wales": "uk",
 }
 
 STATE_HOST_SUBSTRINGS: dict[str, str] = {
@@ -390,6 +418,7 @@ VENDOR_HOSTS = (
     "bloombergtax.com",
     "govt.westlaw.com",
     "lexis.com",
+    "lexisnexis.co.uk",
     "lexisnexis.com",
     "westlaw.com",
 )
@@ -433,6 +462,7 @@ TRACKING_QUERY_KEYS = {
 def build_source_discovery_report(
     input_paths: tuple[str | Path, ...],
     *,
+    reference_input_paths: tuple[str | Path, ...] = (),
     release: ReleaseManifest | None = None,
     covered_source_urls: Iterable[str] | None = None,
     source_name: str = "policyengine-us",
@@ -441,7 +471,8 @@ def build_source_discovery_report(
     """Build a source-discovery report from static URL-list files."""
 
     paths = tuple(Path(path) for path in input_paths)
-    loaded = _load_input_urls(paths)
+    reference_paths = tuple(Path(path) for path in reference_input_paths)
+    loaded = _load_input_urls(paths) + _load_reference_input_urls(reference_paths)
     grouped: dict[str, list[_InputUrl]] = defaultdict(list)
     invalid_url_count = 0
     for item in loaded:
@@ -453,6 +484,7 @@ def build_source_discovery_report(
                 raw_url=item.raw_url,
                 source_list=item.source_list,
                 canonical=item.canonical,
+                reference_path=item.reference_path,
             )
         )
 
@@ -481,6 +513,7 @@ def build_source_discovery_report(
         generated_at=generated_at or datetime.now(UTC).isoformat(),
         source_name=source_name,
         input_paths=paths,
+        reference_input_paths=reference_paths,
         raw_url_count=len(loaded),
         invalid_url_count=invalid_url_count,
         unique_url_count=len(rows),
@@ -497,6 +530,7 @@ class _LoadedInputUrl:
     raw_url: str
     source_list: str
     canonical: CanonicalUrl | None
+    reference_path: str | None = None
 
 
 def _load_input_urls(paths: tuple[Path, ...]) -> tuple[_LoadedInputUrl, ...]:
@@ -515,6 +549,56 @@ def _load_input_urls(paths: tuple[Path, ...]) -> tuple[_LoadedInputUrl, ...]:
                 )
             )
     return tuple(rows)
+
+
+def _load_reference_input_urls(paths: tuple[Path, ...]) -> tuple[_LoadedInputUrl, ...]:
+    rows: list[_LoadedInputUrl] = []
+    for path in paths:
+        source_list = _source_list_name(path)
+        for line in path.read_text().splitlines():
+            if not line.strip():
+                continue
+            payload = json.loads(line)
+            if not isinstance(payload, dict):
+                continue
+            raw_url = payload.get("reference_url")
+            if not isinstance(raw_url, str) or not raw_url:
+                continue
+            project = payload.get("project")
+            rows.append(
+                _LoadedInputUrl(
+                    raw_url=raw_url,
+                    source_list=project if isinstance(project, str) else source_list,
+                    canonical=canonicalize_url(raw_url),
+                    reference_path=_reference_path_label(
+                        project=project,
+                        file_path=payload.get("file_path"),
+                        line_number=payload.get("line"),
+                        symbol_path=payload.get("symbol_path"),
+                    ),
+                )
+            )
+    return tuple(rows)
+
+
+def _reference_path_label(
+    *,
+    project: Any,
+    file_path: Any,
+    line_number: Any,
+    symbol_path: Any,
+) -> str | None:
+    if not isinstance(file_path, str):
+        return None
+    parts = []
+    if isinstance(project, str):
+        parts.append(project)
+    parts.append(file_path)
+    if isinstance(line_number, int):
+        parts[-1] = f"{parts[-1]}:{line_number}"
+    if isinstance(symbol_path, str) and symbol_path:
+        parts.append(symbol_path)
+    return "#".join(parts)
 
 
 def canonicalize_url(raw_url: str) -> CanonicalUrl | None:
@@ -606,6 +690,9 @@ def _build_row(
 ) -> SourceDiscoveryRow:
     canonical = items[0].canonical
     host = canonical.host
+    sample_reference_paths = tuple(
+        sorted({item.reference_path for item in items if item.reference_path})[:5]
+    )
     source_status = classify_source_status(host)
     document_class = infer_document_class(canonical_url, host)
     jurisdiction = infer_jurisdiction(host, canonical_url)
@@ -632,6 +719,8 @@ def _build_row(
         release_scope_present=release_scope_present,
         fragment=canonical.fragment,
         reason=reason,
+        reference_count=sum(1 for item in items if item.reference_path),
+        sample_reference_paths=sample_reference_paths,
     )
 
 
@@ -644,13 +733,26 @@ def classify_source_status(host: str) -> SourceStatus:
         return SourceStatus.ANALYTICAL_OR_REPORT
     if _host_matches(host, PRIVATE_OR_UNOWNED_HOSTS):
         return SourceStatus.UNKNOWN
-    if _known_official_host(host) or host.endswith(".gov") or ".state." in host:
+    if (
+        _known_official_host(host)
+        or host.endswith(".gov")
+        or host.endswith(".gov.uk")
+        or ".state." in host
+    ):
         return SourceStatus.PRIMARY_OFFICIAL
     return SourceStatus.UNKNOWN
 
 
 def infer_document_class(url: str, host: str) -> str:
     text = f"{host} {url}".lower()
+    if "legislation.gov.uk" in text:
+        if any(token in text for token in ("/uksi/", "/wsi/", "/ssi/", "/nisr/")):
+            return DocumentClass.REGULATION.value
+        return DocumentClass.STATUTE.value
+    if host in {"gov.uk", "assets.publishing.service.gov.uk"} and (
+        "/government/publications/" in text or "/government/statistics/" in text
+    ):
+        return DocumentClass.GUIDANCE.value
     if any(
         token in text
         for token in (
@@ -725,6 +827,8 @@ def infer_jurisdiction(host: str, url: str) -> str | None:
             return jurisdiction
     if host.endswith(".gov"):
         return "us"
+    if host.endswith(".gov.uk") or host.endswith(".parliament.uk"):
+        return "uk"
     if "dccouncil" in host or ".dc.gov" in host:
         return "us-dc"
     lower_url = url.lower()
