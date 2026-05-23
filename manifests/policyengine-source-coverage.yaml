@@ -444,7 +444,7 @@ document_groups:
   owner: null
   notes: Local official-document extraction completed for 19 Oregon tax-form PDFs / 987 provisions.
 - group_key: us-va/form/tax_forms
-  status: backlog
+  status: ingested
   priority: p0
   jurisdiction: us-va
   document_class: form
@@ -467,17 +467,17 @@ document_groups:
   target_release_scope:
     jurisdiction: us-va
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-va-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-va/form/2026-05-23-va-tax-forms/
+    inventory: data/corpus/inventory/us-va/form/2026-05-23-va-tax-forms.json
+    provisions: data/corpus/provisions/us-va/form/2026-05-23-va-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-va/form/2026-05-23-va-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 6 Virginia tax-form PDFs / 247 provisions.
 - group_key: us-ct/form/individual_income_tax_forms
   status: backlog
   priority: p0
