@@ -409,7 +409,7 @@ document_groups:
   owner: null
   notes: Local official-document extraction completed for 11 Ohio income-tax PDFs / 393 provisions.
 - group_key: us-or/form/tax_forms
-  status: backlog
+  status: ingested
   priority: p0
   jurisdiction: us-or
   document_class: form
@@ -432,17 +432,17 @@ document_groups:
   target_release_scope:
     jurisdiction: us-or
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-or-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-or/form/2026-05-23-or-tax-forms/
+    inventory: data/corpus/inventory/us-or/form/2026-05-23-or-tax-forms.json
+    provisions: data/corpus/provisions/us-or/form/2026-05-23-or-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-or/form/2026-05-23-or-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 19 Oregon tax-form PDFs / 987 provisions.
 - group_key: us-va/form/tax_forms
   status: backlog
   priority: p0
