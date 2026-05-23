@@ -8,9 +8,11 @@ source-discovery reports without making PolicyEngine a corpus input.
 from __future__ import annotations
 
 import ast
+import io
 import json
 import re
 import subprocess
+import tokenize
 from collections import Counter
 from dataclasses import dataclass
 from enum import StrEnum
@@ -56,6 +58,7 @@ class PolicyEngineReference:
 
 
 URL_RE = re.compile(r"https?://[^\s'\"<>)\]}]+")
+URL_START_RE = re.compile(r"https?://")
 YAML_REFERENCE_RE = re.compile(r"^(\s*)(?:-\s*)?reference\s*:\s*(.*)$", re.I)
 REFERENCE_COMMENT_RE = re.compile(r"#\s*(?:Reference|Source|Citation)\s*:\s*(.+)$", re.I)
 SKIP_DIR_NAMES = {
@@ -74,6 +77,7 @@ POLICYENGINE_PACKAGE_PROJECTS = {
     "policyengine_us": "policyengine-us",
     "policyengine_uk": "policyengine-uk",
 }
+POLICYENGINE_PARAMETER_DIR_NAMES = ("parameters", "params_on_demand")
 
 
 def scan_policyengine_references(
@@ -85,9 +89,10 @@ def scan_policyengine_references(
 ) -> tuple[PolicyEngineReference, ...]:
     """Scan a PolicyEngine checkout for URL and textual source references.
 
-    The default ``policy`` scope walks ``parameters`` and ``variables`` only.
-    ``all`` additionally scans supported source/documentation files throughout
-    the checkout, which is useful for rebuilding broad URL inventories.
+    The default ``policy`` scope walks ``parameters``, ``params_on_demand``, and
+    ``variables`` only. ``all`` additionally scans supported source/documentation
+    files throughout the checkout, which is useful for rebuilding broad URL
+    inventories.
     """
 
     repo = Path(repo_path)
@@ -187,7 +192,7 @@ def _iter_reference_files(
 ) -> tuple[Path, ...]:
     roots: tuple[Path, ...]
     if scope is PolicyEngineReferenceScope.POLICY:
-        roots = (package_dir / "parameters", package_dir / "variables")
+        roots = (*_parameter_roots(package_dir), package_dir / "variables")
     else:
         roots = (repo,)
 
@@ -261,11 +266,13 @@ def _scan_python_file(
         tree = ast.parse(text)
     except SyntaxError:
         tree = None
+    class_ranges = _python_class_ranges(tree) if tree is not None else ()
 
     if tree is not None:
         records.extend(
             _python_reference_assignments(
                 tree=tree,
+                source_text=text,
                 project=project,
                 upstream_commit=upstream_commit,
                 file_path=relative_path,
@@ -280,6 +287,11 @@ def _scan_python_file(
         if record.reference_url is not None
     }
     for line_number, line in enumerate(text.splitlines(), start=1):
+        line_symbol_path = _python_symbol_for_line(
+            class_ranges,
+            line_number,
+            fallback_symbol_path,
+        )
         for url in _extract_urls(line):
             if (line_number, url) in ast_url_line_keys:
                 continue
@@ -290,7 +302,7 @@ def _scan_python_file(
                     file_path=relative_path,
                     line=line_number,
                     source_type=source_type,
-                    symbol_path=fallback_symbol_path,
+                    symbol_path=line_symbol_path,
                     url=url,
                 )
             )
@@ -304,16 +316,38 @@ def _scan_python_file(
                 file_path=relative_path,
                 line=line_number,
                 source_type=source_type,
-                symbol_path=fallback_symbol_path,
+                symbol_path=line_symbol_path,
                 citation_text=citation,
             )
         )
     return tuple(records)
 
 
+def _python_class_ranges(tree: ast.AST) -> tuple[tuple[int, int, str], ...]:
+    ranges: list[tuple[int, int, str]] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.ClassDef):
+            continue
+        end_line = node.end_lineno if node.end_lineno is not None else node.lineno
+        ranges.append((node.lineno, end_line, node.name))
+    return tuple(sorted(ranges))
+
+
+def _python_symbol_for_line(
+    class_ranges: tuple[tuple[int, int, str], ...],
+    line_number: int,
+    fallback_symbol_path: str | None,
+) -> str | None:
+    for start_line, end_line, symbol_path in class_ranges:
+        if start_line <= line_number <= end_line:
+            return symbol_path
+    return fallback_symbol_path
+
+
 def _python_reference_assignments(
     *,
     tree: ast.AST,
+    source_text: str,
     project: str,
     upstream_commit: str | None,
     file_path: str,
@@ -330,6 +364,7 @@ def _python_reference_assignments(
                 records.extend(
                     _records_from_python_reference_value(
                         value=value,
+                        source_text=source_text,
                         symbol_path=node.name,
                         project=project,
                         upstream_commit=upstream_commit,
@@ -344,6 +379,7 @@ def _python_reference_assignments(
             records.extend(
                 _records_from_python_reference_value(
                     value=value,
+                    source_text=source_text,
                     symbol_path=fallback_symbol_path,
                     project=project,
                     upstream_commit=upstream_commit,
@@ -371,6 +407,7 @@ def _is_reference_target(target: ast.AST) -> bool:
 def _records_from_python_reference_value(
     *,
     value: ast.AST,
+    source_text: str,
     symbol_path: str | None,
     project: str,
     upstream_commit: str | None,
@@ -378,12 +415,18 @@ def _records_from_python_reference_value(
     source_type: str,
 ) -> tuple[PolicyEngineReference, ...]:
     records: list[PolicyEngineReference] = []
-    for text, line in _iter_string_literals(value):
+    for text, line, is_folded_literal in _iter_string_literals(value, source_text):
         text = _clean_reference_text(text)
         if not text:
             continue
         urls = tuple(_extract_urls(text))
         if urls:
+            if (
+                is_folded_literal
+                or len(tuple(URL_START_RE.finditer(text))) != 1
+                or urls[0] != text
+            ):
+                continue
             for url in urls:
                 records.append(
                     _url_record(
@@ -411,23 +454,46 @@ def _records_from_python_reference_value(
     return tuple(records)
 
 
-def _iter_string_literals(node: ast.AST) -> tuple[tuple[str, int], ...]:
-    strings: list[tuple[str, int]] = []
+def _iter_string_literals(
+    node: ast.AST,
+    source_text: str,
+) -> tuple[tuple[str, int, bool], ...]:
+    strings: list[tuple[str, int, bool]] = []
     if isinstance(node, ast.Constant) and isinstance(node.value, str):
-        strings.append((node.value, node.lineno))
+        strings.append(
+            (node.value, node.lineno, _is_folded_string_literal(node, source_text))
+        )
     elif isinstance(node, (ast.List, ast.Tuple, ast.Set)):
         for element in node.elts:
-            strings.extend(_iter_string_literals(element))
+            strings.extend(_iter_string_literals(element, source_text))
     elif isinstance(node, ast.Dict):
-        for key in node.keys:
-            if key is not None:
-                strings.extend(_iter_string_literals(key))
         for value in node.values:
-            strings.extend(_iter_string_literals(value))
+            strings.extend(_iter_string_literals(value, source_text))
+    elif isinstance(node, ast.Call) and _is_dict_call(node):
+        for arg in node.args:
+            if isinstance(arg, ast.Dict):
+                strings.extend(_iter_string_literals(arg, source_text))
+        for keyword in node.keywords:
+            strings.extend(_iter_string_literals(keyword.value, source_text))
     elif isinstance(node, ast.BinOp) and isinstance(node.op, ast.Add):
-        strings.extend(_iter_string_literals(node.left))
-        strings.extend(_iter_string_literals(node.right))
+        strings.extend(_iter_string_literals(node.left, source_text))
+        strings.extend(_iter_string_literals(node.right, source_text))
     return tuple(strings)
+
+
+def _is_folded_string_literal(node: ast.AST, source_text: str) -> bool:
+    segment = ast.get_source_segment(source_text, node)
+    if segment is None:
+        return False
+    try:
+        tokens = tokenize.generate_tokens(io.StringIO(segment).readline)
+        return sum(1 for token in tokens if token.type == tokenize.STRING) > 1
+    except (IndentationError, tokenize.TokenError):
+        return False
+
+
+def _is_dict_call(node: ast.Call) -> bool:
+    return isinstance(node.func, ast.Name) and node.func.id == "dict"
 
 
 def _scan_text_file(
@@ -615,9 +681,8 @@ def _citation_record(
 
 
 def _source_type(package_dir: Path, path: Path) -> str:
-    parameters_dir = package_dir / "parameters"
     variables_dir = package_dir / "variables"
-    if _is_relative_to(path, parameters_dir):
+    if any(_is_relative_to(path, root) for root in _parameter_roots(package_dir)):
         return "parameter"
     if _is_relative_to(path, variables_dir):
         return "variable"
@@ -631,13 +696,17 @@ def _source_type(package_dir: Path, path: Path) -> str:
 
 
 def _symbol_path(package_dir: Path, path: Path) -> str | None:
-    parameters_dir = package_dir / "parameters"
     variables_dir = package_dir / "variables"
-    if _is_relative_to(path, parameters_dir):
-        return _dotted_path(path.relative_to(parameters_dir))
+    for parameter_root in _parameter_roots(package_dir):
+        if _is_relative_to(path, parameter_root):
+            return _dotted_path(path.relative_to(parameter_root))
     if _is_relative_to(path, variables_dir):
         return path.stem
     return None
+
+
+def _parameter_roots(package_dir: Path) -> tuple[Path, ...]:
+    return tuple(package_dir / name for name in POLICYENGINE_PARAMETER_DIR_NAMES)
 
 
 def _dotted_path(relative_path: Path) -> str | None:

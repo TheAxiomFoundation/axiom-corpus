@@ -234,9 +234,20 @@ def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):
         / "irs"
         / "income_tax.py"
     )
+    on_demand_parameter = (
+        repo
+        / "policyengine_us"
+        / "params_on_demand"
+        / "gov"
+        / "hhs"
+        / "medicaid"
+        / "geography"
+        / "medicaid_rating_area.yaml"
+    )
     readme = repo / "README.md"
     parameter.parent.mkdir(parents=True)
     variable.parent.mkdir(parents=True)
+    on_demand_parameter.parent.mkdir(parents=True)
     parameter.write_text(
         "\n".join(
             [
@@ -255,10 +266,50 @@ def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):
         "\n".join(
             [
                 "class income_tax:",
+                "    reference = {",
+                '        "title": "26 U.S.C. § 1",',
+                '        "href": "https://www.law.cornell.edu/uscode/text/26/1",',
+                "    }",
+                "",
+                "class income_tax_pre_charges:",
+                "    reference = dict(",
+                '        title="Income Tax Act 2007 s. 23",',
+                '        href="https://www.legislation.gov.uk/ukpga/2007/3/section/23",',
+                "    )",
+                "",
+                "class adjacent_literal_urls:",
+                "    reference = (",
+                '        "https://first.example/statute"',
+                '        "https://second.example/regulation"',
+                "    )",
+                "",
+                "class adjacent_slash_literal_urls:",
+                "    reference = (",
+                '        "https://slash-first.example/"',
+                '        "https://slash-second.example/"',
+                "    )",
+                "",
+                "class adjacent_prefix_suffix_url:",
+                "    reference = (",
+                '        "https://prefix.example/"',
+                '        "source"',
+                "    )",
+                "",
+                "class nested_url_wrappers:",
                 "    reference = [",
-                '        "https://www.law.cornell.edu/uscode/text/26/1",',
-                '        "26 U.S.C. § 1",',
+                '        "https://web.archive.org/web/20250324135334/https://example.gov/source",',
+                '        "https://www.azleg.gov/viewdocument/?docName=https://example.gov/source",',
                 "    ]",
+            ]
+        )
+    )
+    on_demand_parameter.write_text(
+        "\n".join(
+            [
+                "metadata:",
+                "  reference:",
+                "    - title: CMS rating area data",
+                "      href: https://www.cms.gov/cciio/programs-and-initiatives/health-insurance-market-reforms/state-gra",
             ]
         )
     )
@@ -281,8 +332,35 @@ def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):
         in urls
     )
     assert "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492" in urls
+    assert "https://www.legislation.gov.uk/ukpga/2007/3/section/23" in urls
+    assert (
+        "https://www.cms.gov/cciio/programs-and-initiatives/health-insurance-market-reforms/state-gra"
+        in urls
+    )
+    assert "https://first.example/statute" in urls
+    assert "https://second.example/regulation" in urls
+    assert "https://slash-first.example/" in urls
+    assert "https://slash-second.example/" in urls
+    assert "https://prefix.example/" in urls
+    assert (
+        "https://web.archive.org/web/20250324135334/https://example.gov/source"
+        in urls
+    )
+    assert "https://www.azleg.gov/viewdocument/?docName=https://example.gov/source" in urls
+    assert "https://web.archive.org/web/20250324135334/" not in urls
+    assert "https://www.azleg.gov/viewdocument/?docName=" not in urls
+    assert (
+        "https://first.example/statutehttps://second.example/regulation"
+        not in urls
+    )
+    assert "https://slash-first.example/https://slash-second.example/" not in urls
+    assert "https://prefix.example/source" not in urls
     assert "26 U.S.C. § 63(c)" in citations
     assert "26 U.S.C. § 1" in citations
+    assert "Income Tax Act 2007 s. 23" in citations
+    assert "CMS rating area data" in citations
+    assert "title" not in citations
+    assert "href" not in citations
     assert {
         (row["file_path"], row["source_type"], row["symbol_path"])
         for row in mappings
@@ -300,6 +378,27 @@ def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):
         if row["reference_url"]
         == "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title26-section63"
     } == {"gov.irs.standard_deduction"}
+    assert {
+        (row["source_type"], row["symbol_path"])
+        for row in mappings
+        if row["reference_url"]
+        == "https://www.cms.gov/cciio/programs-and-initiatives/health-insurance-market-reforms/state-gra"
+    } == {("parameter", "gov.hhs.medicaid.geography.medicaid_rating_area")}
+    assert {
+        (row["symbol_path"], row["line"])
+        for row in mappings
+        if row["reference_url"] == "https://second.example/regulation"
+    } == {("adjacent_literal_urls", 16)}
+    assert {
+        (row["symbol_path"], row["line"])
+        for row in mappings
+        if row["reference_url"] == "https://slash-second.example/"
+    } == {("adjacent_slash_literal_urls", 22)}
+    assert {
+        (row["symbol_path"], row["line"])
+        for row in mappings
+        if row["reference_url"] == "https://prefix.example/"
+    } == {("adjacent_prefix_suffix_url", 27)}
 
 
 def test_policyengine_references_cli_writes_jsonl_and_url_inventory(tmp_path, capsys):

@@ -93,9 +93,9 @@ uv run --extra dev axiom-corpus-ingest policyengine-references \
 
 The extractor records `project`, `upstream_commit`, `file_path`, `line`,
 `source_type`, `symbol_path`, `reference_url`, and `citation_text`. The `policy`
-scope scans `parameters` and `variables`; use `--scope all` only when rebuilding
-the broad URL inventories from all supported `.yaml`, `.yml`, `.py`, and `.md`
-files.
+scope scans `parameters`, `params_on_demand`, and `variables`; use `--scope all`
+only when rebuilding the broad URL inventories from all supported `.yaml`,
+`.yml`, `.py`, and `.md` files.
 
 The broader PolicyEngine coverage seed can then be regenerated as
 `data/corpus/analytics/source-discovery-policyengine-current.json` either from

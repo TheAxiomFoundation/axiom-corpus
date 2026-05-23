@@ -5440,8 +5440,8 @@ def build_parser() -> argparse.ArgumentParser:
         choices=[scope.value for scope in PolicyEngineReferenceScope],
         default=PolicyEngineReferenceScope.POLICY.value,
         help=(
-            "policy scans parameters/variables only; all scans supported files "
-            "throughout the checkout."
+            "policy scans parameters, params_on_demand, and variables only; "
+            "all scans supported files throughout the checkout."
         ),
     )
     policyengine_references.add_argument(
