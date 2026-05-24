@@ -124,6 +124,21 @@ The report's `group_rows` are materialized into
 `manifests/policyengine-source-coverage.yaml`. Fill that manifest in first,
 then promote reviewed groups into source-first ingestion manifests.
 
+To promote a reviewed ready group into a generic official-document manifest:
+
+```bash
+uv run --extra dev axiom-corpus-ingest promote-source-discovery-group \
+  --report data/corpus/analytics/source-discovery-policyengine-current.json \
+  --group-key uk/statute/statute \
+  --output manifests/uk-statute.yaml \
+  --source-as-of 2026-05-23
+```
+
+Use repeatable `--rewrite-url FROM=TO` flags for confirmed official URL
+corrections, and repeatable `--exclude-url` flags only when a lead is reviewed
+and intentionally left out of that manifest. The generated manifest still keeps
+the original source-discovery URL in metadata.
+
 The current coverage manifest remains URL-group based. The PolicyEngine
 reference JSONL also preserves bare Act, Code, and regulation citations without
 `href` values, but those need a resolver before they can be merged into existing
@@ -146,3 +161,17 @@ manifest candidates by jurisdiction, document class, and source family. This is
 especially important for forms, where the raw inventory often contains multiple
 yearly tax booklet, schedule, and instruction URLs that should be scoped as a
 coherent current-year manifest before historical years are added.
+
+When working down the PolicyEngine checklist, prioritize by expected impact on
+net income rather than by raw URL count:
+
+- `p0`: tax forms/instructions, tax law and regulations, refundable credits,
+  payroll/social-insurance rules, and cash-benefit rules used directly in net
+  income calculations.
+- `p1`: means-tested benefit manuals, eligibility guidance, state plans, and
+  program tables that determine benefit amounts or eligibility but may need more
+  adapter work.
+- `p2`: broad statutes, regulations, rulemaking, and official guidance that are
+  useful for legal grounding but less directly parameterized in the model.
+- `p3`: reference-only, historical, mixed, or adapter-blocked groups that should
+  wait until higher-impact source families are covered.

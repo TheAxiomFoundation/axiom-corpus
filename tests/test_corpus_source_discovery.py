@@ -1,5 +1,8 @@
 import json
 
+import pytest
+import yaml
+
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.policyengine_references import (
     PolicyEngineReferenceScope,
@@ -11,6 +14,7 @@ from axiom_corpus.corpus.source_discovery import (
     SourceStatus,
     build_source_discovery_report,
 )
+from axiom_corpus.corpus.source_promotion import promote_source_discovery_group
 
 
 def test_source_discovery_classifies_static_external_urls(tmp_path):
@@ -214,6 +218,198 @@ def test_source_discovery_cli_uses_inventory_urls_for_release_coverage(tmp_path,
     assert rows["cbo.gov"]["release_scope_present"] is False
     assert "us/form/federal_tax_parameters" in group_keys
     assert "us/form/medicaid_chip_eligibility_levels" not in group_keys
+
+
+def test_promote_source_discovery_group_cli_writes_official_document_manifest(
+    tmp_path,
+    capsys,
+):
+    report_path = tmp_path / "source-discovery.json"
+    output_path = tmp_path / "manifests" / "us-snap-guidance.yaml"
+    report_path.write_text(
+        json.dumps(
+            {
+                "rows": [
+                    {
+                        "raw_url": "https://fns.usda.gov/snap/current-guidance.pdf#page=3",
+                        "canonical_url": "https://fns.usda.gov/snap/current-guidance.pdf",
+                        "host": "fns.usda.gov",
+                        "source_list": "policyengine-us",
+                        "input_count": 4,
+                        "source_status": "primary_official",
+                        "disposition": "ready_for_manifest",
+                        "document_class": "guidance",
+                        "jurisdiction": "us",
+                        "release_scope_present": False,
+                        "fragment": "page=3",
+                        "reason": "ready",
+                        "reference_count": 2,
+                        "sample_reference_paths": [
+                            "policyengine-us#policyengine_us/parameters/snap.yaml:5#snap"
+                        ],
+                    },
+                    {
+                        "raw_url": "https://fns.usda.gov/snap/html-guidance",
+                        "canonical_url": "https://fns.usda.gov/snap/html-guidance",
+                        "host": "fns.usda.gov",
+                        "source_list": "policyengine-us",
+                        "input_count": 1,
+                        "source_status": "primary_official",
+                        "disposition": "ready_for_manifest",
+                        "document_class": "guidance",
+                        "jurisdiction": "us",
+                        "release_scope_present": False,
+                        "fragment": None,
+                        "reason": "ready",
+                    },
+                    {
+                        "raw_url": "https://example.com/snap-summary",
+                        "canonical_url": "https://example.com/snap-summary",
+                        "host": "example.com",
+                        "source_list": "policyengine-us",
+                        "input_count": 5,
+                        "source_status": "unknown",
+                        "disposition": "needs_review",
+                        "document_class": "guidance",
+                        "jurisdiction": "us",
+                        "release_scope_present": False,
+                        "fragment": None,
+                        "reason": "review",
+                    },
+                ]
+            }
+        )
+    )
+
+    exit_code = main(
+        [
+            "promote-source-discovery-group",
+            "--report",
+            str(report_path),
+            "--group-key",
+            "us/guidance/snap_guidance",
+            "--output",
+            str(output_path),
+            "--source-as-of",
+            "2026-05-23",
+            "--rewrite-url",
+            (
+                "https://fns.usda.gov/snap/html-guidance="
+                "https://fns.usda.gov/snap/html-guidance-current"
+            ),
+        ]
+    )
+    printed = json.loads(capsys.readouterr().out)
+    manifest = yaml.safe_load(output_path.read_text())
+
+    assert exit_code == 0
+    assert printed["document_count"] == 2
+    assert [doc["source_format"] for doc in manifest["documents"]] == ["pdf", "html"]
+    assert manifest["documents"][0]["source_as_of"] == "2026-05-23"
+    assert manifest["documents"][0]["citation_path"].startswith(
+        "us/guidance/snap_guidance/fns.usda.gov/"
+    )
+    assert manifest["documents"][0]["metadata"]["discovered_via"] == [
+        "policyengine-us#policyengine_us/parameters/snap.yaml:5#snap"
+    ]
+    assert (
+        manifest["documents"][1]["source_url"]
+        == "https://fns.usda.gov/snap/html-guidance-current"
+    )
+    assert (
+        manifest["documents"][1]["metadata"]["source_discovery_canonical_url"]
+        == "https://fns.usda.gov/snap/html-guidance"
+    )
+    assert manifest["documents"][1]["metadata"]["source_url_rewritten"] is True
+
+
+def test_promote_source_discovery_group_requires_adapter_for_unsupported_formats(
+    tmp_path,
+):
+    report_path = tmp_path / "source-discovery.json"
+    report_path.write_text(
+        json.dumps(
+            {
+                "rows": [
+                    {
+                        "raw_url": "https://irs.gov/pub/irs-soi/tax-parameters.xlsx",
+                        "canonical_url": "https://irs.gov/pub/irs-soi/tax-parameters.xlsx",
+                        "host": "irs.gov",
+                        "source_list": "policyengine-us",
+                        "input_count": 1,
+                        "source_status": "primary_official",
+                        "disposition": "ready_for_manifest",
+                        "document_class": "form",
+                        "jurisdiction": "us",
+                        "release_scope_present": False,
+                        "fragment": None,
+                        "reason": "ready",
+                    }
+                ]
+            }
+        )
+    )
+
+    with pytest.raises(ValueError, match="need a non-HTML/PDF adapter"):
+        promote_source_discovery_group(
+            report_path=report_path,
+            group_key="us/form/federal_tax_parameters",
+            output_path=tmp_path / "manifest.yaml",
+        )
+
+
+def test_promote_source_discovery_group_disambiguates_duplicate_citation_paths(
+    tmp_path,
+):
+    report_path = tmp_path / "source-discovery.json"
+    output_path = tmp_path / "manifest.yaml"
+    report_path.write_text(
+        json.dumps(
+            {
+                "rows": [
+                    {
+                        "raw_url": "https://revenue.wi.gov/TaxForms2021/FormA.pdf",
+                        "canonical_url": "https://revenue.wi.gov/TaxForms2021/FormA.pdf",
+                        "host": "revenue.wi.gov",
+                        "source_list": "policyengine-us",
+                        "input_count": 1,
+                        "source_status": "primary_official",
+                        "disposition": "ready_for_manifest",
+                        "document_class": "form",
+                        "jurisdiction": "us-wi",
+                        "release_scope_present": False,
+                        "fragment": None,
+                        "reason": "ready",
+                    },
+                    {
+                        "raw_url": "https://revenue.wi.gov/TaxForms2021/forma.pdf",
+                        "canonical_url": "https://revenue.wi.gov/TaxForms2021/forma.pdf",
+                        "host": "revenue.wi.gov",
+                        "source_list": "policyengine-us",
+                        "input_count": 1,
+                        "source_status": "primary_official",
+                        "disposition": "ready_for_manifest",
+                        "document_class": "form",
+                        "jurisdiction": "us-wi",
+                        "release_scope_present": False,
+                        "fragment": None,
+                        "reason": "ready",
+                    },
+                ]
+            }
+        )
+    )
+
+    promote_source_discovery_group(
+        report_path=report_path,
+        group_key="us-wi/form/tax_forms",
+        output_path=output_path,
+    )
+    documents = yaml.safe_load(output_path.read_text())["documents"]
+    citation_paths = [document["citation_path"] for document in documents]
+
+    assert len(citation_paths) == len(set(citation_paths))
+    assert all("source_discovery_base_citation_path" in doc["metadata"] for doc in documents)
 
 
 def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):

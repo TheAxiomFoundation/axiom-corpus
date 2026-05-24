@@ -6,6 +6,11 @@ source_policy:
   ingest_only_primary_sources_by_default: true
   do_not_ingest_values_from_policyengine: true
   do_not_treat_secondary_mirrors_as_canonical: true
+priority_policy:
+  p0: Tax forms/instructions, tax law and regulations, refundable credits, payroll/social-insurance rules, and cash-benefit rules used directly in net income calculations.
+  p1: Means-tested benefit manuals, eligibility guidance, state plans, and program tables that determine benefit amounts or eligibility but may need more adapter work.
+  p2: Broad statutes, regulations, rulemaking, and official guidance that are useful for legal grounding but less directly parameterized in the model.
+  p3: Reference-only, historical, mixed, or adapter-blocked groups that should wait until higher-impact source families are covered.
 upstream_reference_inventories:
 - project: policyengine-us
   url_inventory: sources/policyengine-us/all_url_references.txt
@@ -61,8 +66,8 @@ known_limitations:
 - PolicyEngine references are discovery provenance only; every target manifest must refetch and hash official source documents independently.
 document_groups:
 - group_key: uk/regulation/regulation
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: uk
   document_class: regulation
   source_family: regulation
@@ -85,20 +90,20 @@ document_groups:
   target_release_scope:
     jurisdiction: uk
     document_class: regulation
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-uk-regulation
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/uk/regulation/2026-05-23-uk-regulation/
+    inventory: data/corpus/inventory/uk/regulation/2026-05-23-uk-regulation.json
+    provisions: data/corpus/provisions/uk/regulation/2026-05-23-uk-regulation.jsonl
+    coverage: data/corpus/coverage/uk/regulation/2026-05-23-uk-regulation.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 132 documents / 3,134 provisions. Three stale PolicyEngine URLs were rewritten to reachable official legislation.gov.uk paths in the generated manifest.
 - group_key: us-wi/form/tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-wi
   document_class: form
   source_family: tax_forms
@@ -120,20 +125,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-wi
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-wi-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-wi/form/2026-05-23-wi-tax-forms/
+    inventory: data/corpus/inventory/us-wi/form/2026-05-23-wi-tax-forms.json
+    provisions: data/corpus/provisions/us-wi/form/2026-05-23-wi-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-wi/form/2026-05-23-wi-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 46 Wisconsin tax-form PDFs / 649 provisions.
 - group_key: uk/statute/statute
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: uk
   document_class: statute
   source_family: statute
@@ -155,20 +160,20 @@ document_groups:
   target_release_scope:
     jurisdiction: uk
     document_class: statute
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-uk-statute
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/uk/statute/2026-05-23-uk-statute/
+    inventory: data/corpus/inventory/uk/statute/2026-05-23-uk-statute.json
+    provisions: data/corpus/provisions/uk/statute/2026-05-23-uk-statute.jsonl
+    coverage: data/corpus/coverage/uk/statute/2026-05-23-uk-statute.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 104 documents / 3,210 provisions.
 - group_key: us/manual/manuals
   status: backlog
-  priority: null
+  priority: p1
   jurisdiction: us
   document_class: manual
   source_family: manuals
@@ -215,8 +220,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-mi/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-mi
   document_class: form
   source_family: individual_income_tax_forms
@@ -238,20 +243,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-mi
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-mi-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-mi/form/2026-05-23-mi-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-mi/form/2026-05-23-mi-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-mi/form/2026-05-23-mi-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-mi/form/2026-05-23-mi-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 11 Michigan income-tax PDFs / 256 provisions. Five stale historical Home Heating Credit URLs and one duplicate historical instruction URL were left out until current official equivalents are resolved.
 - group_key: us-az/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-az
   document_class: form
   source_family: individual_income_tax_forms
@@ -273,20 +278,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-az
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-az-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-az/form/2026-05-23-az-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-az/form/2026-05-23-az-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-az/form/2026-05-23-az-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-az/form/2026-05-23-az-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 24 Arizona income-tax PDFs / 653 provisions.
 - group_key: us/form/official_forms
   status: backlog
-  priority: null
+  priority: p0
   jurisdiction: us
   document_class: form
   source_family: official_forms
@@ -368,8 +373,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-oh/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-oh
   document_class: form
   source_family: individual_income_tax_forms
@@ -392,20 +397,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-oh
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-oh-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-oh/form/2026-05-23-oh-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-oh/form/2026-05-23-oh-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-oh/form/2026-05-23-oh-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-oh/form/2026-05-23-oh-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 11 Ohio income-tax PDFs / 393 provisions.
 - group_key: us-or/form/tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-or
   document_class: form
   source_family: tax_forms
@@ -427,20 +432,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-or
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-or-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-or/form/2026-05-23-or-tax-forms/
+    inventory: data/corpus/inventory/us-or/form/2026-05-23-or-tax-forms.json
+    provisions: data/corpus/provisions/us-or/form/2026-05-23-or-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-or/form/2026-05-23-or-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 19 Oregon tax-form PDFs / 987 provisions.
 - group_key: us-va/form/tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-va
   document_class: form
   source_family: tax_forms
@@ -462,20 +467,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-va
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-va-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-va/form/2026-05-23-va-tax-forms/
+    inventory: data/corpus/inventory/us-va/form/2026-05-23-va-tax-forms.json
+    provisions: data/corpus/provisions/us-va/form/2026-05-23-va-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-va/form/2026-05-23-va-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 6 Virginia tax-form PDFs / 247 provisions.
 - group_key: us-ct/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-ct
   document_class: form
   source_family: individual_income_tax_forms
@@ -497,20 +502,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-ct
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-ct-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-ct/form/2026-05-23-ct-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-ct/form/2026-05-23-ct-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-ct/form/2026-05-23-ct-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-ct/form/2026-05-23-ct-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 10 Connecticut income-tax PDFs / 193 provisions.
 - group_key: us-id/form/tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-id
   document_class: form
   source_family: tax_forms
@@ -532,20 +537,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-id
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-id-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-id/form/2026-05-23-id-tax-forms/
+    inventory: data/corpus/inventory/us-id/form/2026-05-23-id-tax-forms.json
+    provisions: data/corpus/provisions/us-id/form/2026-05-23-id-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-id/form/2026-05-23-id-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 19 Idaho tax-form PDFs / 420 provisions. One superseded 2025 instructions URL was excluded because the updated official PDF is already present in the group.
 - group_key: us-md/form/tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-md
   document_class: form
   source_family: tax_forms
@@ -567,20 +572,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-md
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-23-md-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-md/form/2026-05-23-md-tax-forms/
+    inventory: data/corpus/inventory/us-md/form/2026-05-23-md-tax-forms.json
+    provisions: data/corpus/provisions/us-md/form/2026-05-23-md-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-md/form/2026-05-23-md-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 5 Maryland tax-form PDFs / 168 provisions. 2023/2024 links were rewritten to the live Comptroller content-dam host; stale 2020-2022 archive paths were left out pending an official archive path.
 - group_key: uk/guidance/official_guidance
   status: backlog
-  priority: null
+  priority: p1
   jurisdiction: uk
   document_class: guidance
   source_family: official_guidance

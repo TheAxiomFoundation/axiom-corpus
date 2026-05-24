@@ -3,7 +3,14 @@ import json
 import fitz  # type: ignore[import-untyped]
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
-from axiom_corpus.corpus.documents import extract_official_documents, google_drive_download_url
+from axiom_corpus.corpus.documents import (
+    OFFICIAL_DOCUMENT_BROWSER_USER_AGENT,
+    OFFICIAL_DOCUMENT_USER_AGENT,
+    OfficialDocumentSource,
+    _download_document,
+    extract_official_documents,
+    google_drive_download_url,
+)
 from axiom_corpus.corpus.io import load_provisions
 
 
@@ -13,6 +20,49 @@ def test_google_drive_download_url_converts_file_view():
     assert (
         google_drive_download_url(url) == "https://drive.google.com/uc?export=download&id=abc123XYZ"
     )
+
+
+def test_download_document_retries_browser_user_agent_on_forbidden():
+    class FakeResponse:
+        def __init__(self, status_code: int, content: bytes = b""):
+            self.status_code = status_code
+            self.content = content
+            self.headers = {"content-type": "application/pdf"}
+            self.url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            if self.status_code >= 400:
+                raise AssertionError("final response should not be an error")
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+            self.calls: list[dict[str, str]] = []
+
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None):
+            del url, timeout, allow_redirects
+            self.calls.append(dict(headers or self.headers))
+            if len(self.calls) == 1:
+                return FakeResponse(403)
+            return FakeResponse(200, b"%PDF-1.7")
+
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="form",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+    )
+    session = FakeSession()
+
+    downloaded = _download_document(source, session=session)  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == b"%PDF-1.7"
+    assert session.calls[0]["User-Agent"] == OFFICIAL_DOCUMENT_USER_AGENT
+    assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
 
 
 def test_extract_official_documents_from_local_html_and_pdf(tmp_path):

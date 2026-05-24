@@ -24,6 +24,11 @@ OFFICIAL_DOCUMENT_USER_AGENT = (
     "Axiom/1.0 (Legal Archive; contact@axiom-foundation.org) "
     "https://github.com/TheAxiomFoundation/axiom-corpus"
 )
+OFFICIAL_DOCUMENT_BROWSER_USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+)
+_BROWSER_FALLBACK_STATUSES = {403, 404, 406}
 _GOOGLE_DRIVE_FILE_RE = re.compile(r"https?://drive\.google\.com/file/d/([^/]+)/")
 _HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 _TEXT_TAGS = _HEADING_TAGS | {"p", "li", "table", "blockquote"}
@@ -310,6 +315,11 @@ def _download_document(
         source.download_url or google_drive_download_url(source.source_url) or source.source_url
     )
     response = session.get(download_url, timeout=90, allow_redirects=True)
+    if response.status_code in _BROWSER_FALLBACK_STATUSES:
+        response.close()
+        headers = dict(session.headers)
+        headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+        response = session.get(download_url, headers=headers, timeout=90, allow_redirects=True)
     response.raise_for_status()
     return _DownloadedDocument(
         source=source,
