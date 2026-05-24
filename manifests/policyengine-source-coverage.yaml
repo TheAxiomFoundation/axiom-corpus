@@ -336,8 +336,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-ca/form/official_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-ca
   document_class: form
   source_family: official_forms
@@ -361,17 +361,17 @@ document_groups:
   target_release_scope:
     jurisdiction: us-ca
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-24-ca-official-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-ca/form/2026-05-24-ca-official-forms/
+    inventory: data/corpus/inventory/us-ca/form/2026-05-24-ca-official-forms.json
+    provisions: data/corpus/provisions/us-ca/form/2026-05-24-ca-official-forms.jsonl
+    coverage: data/corpus/coverage/us-ca/form/2026-05-24-ca-official-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 44 California FTB/CDSS/DHCS form documents / 2,239 provisions. One dead FTB 2024 instruction URL and one FTB search-confirmation URL were excluded from the generated manifest.
 - group_key: us-oh/form/individual_income_tax_forms
   status: ingested
   priority: p0
@@ -735,8 +735,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-ma/form/official_forms
-  status: backlog
-  priority: null
+  status: triaged
+  priority: p0
   jurisdiction: us-ma
   document_class: form
   source_family: official_forms
@@ -759,7 +759,7 @@ document_groups:
     jurisdiction: us-ma
     document_class: form
     version: null
-  coverage_status: not_started
+  coverage_status: needs_official_source_review
   corpus_artifacts:
     sources: null
     inventory: null
@@ -768,10 +768,10 @@ document_groups:
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Mass.gov /doc/.../download endpoints need source cleanup before ingestion; at least one cited endpoint returns 403 and these extensionless download URLs need explicit PDF handling or direct official file URLs.
 - group_key: us-ms/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: triaged
+  priority: p0
   jurisdiction: us-ms
   document_class: form
   source_family: individual_income_tax_forms
@@ -794,7 +794,7 @@ document_groups:
     jurisdiction: us-ms
     document_class: form
     version: null
-  coverage_status: not_started
+  coverage_status: needs_official_source_review
   corpus_artifacts:
     sources: null
     inventory: null
@@ -803,10 +803,10 @@ document_groups:
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Mississippi DOR cited PDF URLs currently redirect to official 404 pages; needs updated official archive/current-year paths before ingestion.
 - group_key: us-wv/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-wv
   document_class: form
   source_family: individual_income_tax_forms
@@ -827,20 +827,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-wv
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-24-wv-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-wv/form/2026-05-24-wv-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-wv/form/2026-05-24-wv-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-wv/form/2026-05-24-wv-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-wv/form/2026-05-24-wv-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 4 West Virginia income-tax PDFs / 228 provisions.
 - group_key: us-mo/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-mo
   document_class: form
   source_family: individual_income_tax_forms
@@ -862,17 +862,17 @@ document_groups:
   target_release_scope:
     jurisdiction: us-mo
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-24-mo-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-mo/form/2026-05-24-mo-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-mo/form/2026-05-24-mo-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-mo/form/2026-05-24-mo-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-mo/form/2026-05-24-mo-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 12 Missouri income-tax PDFs / 550 provisions.
 - group_key: us/regulation/regulation
   status: backlog
   priority: null
@@ -912,8 +912,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-nd/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-nd
   document_class: form
   source_family: individual_income_tax_forms
@@ -935,20 +935,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-nd
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-24-nd-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-nd/form/2026-05-24-nd-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-nd/form/2026-05-24-nd-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-nd/form/2026-05-24-nd-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-nd/form/2026-05-24-nd-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 13 North Dakota income-tax PDFs / 229 provisions.
 - group_key: us-ky/form/tax_forms
-  status: backlog
-  priority: null
+  status: triaged
+  priority: p0
   jurisdiction: us-ky
   document_class: form
   source_family: tax_forms
@@ -971,7 +971,7 @@ document_groups:
     jurisdiction: us-ky
     document_class: form
     version: null
-  coverage_status: not_started
+  coverage_status: needs_official_source_review
   corpus_artifacts:
     sources: null
     inventory: null
@@ -980,10 +980,10 @@ document_groups:
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Kentucky revenue group includes stale historical URLs and malformed/truncated 2025 URLs from discovery; needs URL cleanup before ingestion.
 - group_key: us-mt/form/tax_forms
-  status: backlog
-  priority: null
+  status: triaged
+  priority: p0
   jurisdiction: us-mt
   document_class: form
   source_family: tax_forms
@@ -1006,7 +1006,7 @@ document_groups:
     jurisdiction: us-mt
     document_class: form
     version: null
-  coverage_status: not_started
+  coverage_status: needs_official_source_review
   corpus_artifacts:
     sources: null
     inventory: null
@@ -1015,10 +1015,10 @@ document_groups:
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Montana revenue group has moved or removed at least one cited historical PDF; needs updated official archive paths before ingestion.
 - group_key: us-hi/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-hi
   document_class: form
   source_family: individual_income_tax_forms
@@ -1040,20 +1040,20 @@ document_groups:
   target_release_scope:
     jurisdiction: us-hi
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-24-hi-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-hi/form/2026-05-24-hi-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-hi/form/2026-05-24-hi-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-hi/form/2026-05-24-hi-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-hi/form/2026-05-24-hi-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 10 Hawaii income-tax PDFs / 326 provisions.
 - group_key: us-ia/form/tax_forms
-  status: backlog
-  priority: null
+  status: triaged
+  priority: p0
   jurisdiction: us-ia
   document_class: form
   source_family: tax_forms
@@ -1073,7 +1073,7 @@ document_groups:
     jurisdiction: us-ia
     document_class: form
     version: null
-  coverage_status: not_started
+  coverage_status: needs_official_source_review
   corpus_artifacts:
     sources: null
     inventory: null
@@ -1082,7 +1082,7 @@ document_groups:
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Iowa cited historical expanded-instruction PDFs currently return official 404 pages; needs updated official archive paths before ingestion.
 - group_key: us-mi/manual/manuals
   status: backlog
   priority: null
@@ -1121,8 +1121,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-sc/form/individual_income_tax_forms
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p0
   jurisdiction: us-sc
   document_class: form
   source_family: individual_income_tax_forms
@@ -1144,17 +1144,17 @@ document_groups:
   target_release_scope:
     jurisdiction: us-sc
     document_class: form
-    version: null
-  coverage_status: not_started
+    version: 2026-05-24-sc-individual-income-tax-forms
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-sc/form/2026-05-24-sc-individual-income-tax-forms/
+    inventory: data/corpus/inventory/us-sc/form/2026-05-24-sc-individual-income-tax-forms.json
+    provisions: data/corpus/provisions/us-sc/form/2026-05-24-sc-individual-income-tax-forms.jsonl
+    coverage: data/corpus/coverage/us-sc/form/2026-05-24-sc-individual-income-tax-forms.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 10 South Carolina income-tax PDFs / 105 provisions. One dead 2023 estimated-tax PDF and one extensionless PDF-like conformity update were excluded pending source cleanup.
 - group_key: us-ny/form/property_tax_relief_forms
   status: backlog
   priority: null
