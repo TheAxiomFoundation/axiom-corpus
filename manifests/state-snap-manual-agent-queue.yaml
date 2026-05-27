@@ -1,0 +1,379 @@
+version: "2026-05-27"
+document_family: state_snap_policy_sources
+program: SNAP
+policy:
+  canonical_pipeline: source-first
+  source_policy: primary_official_only
+  durable_artifacts:
+    - sources
+    - inventory
+    - provisions
+    - coverage
+  forbidden_sources:
+    - secondary summaries
+    - State Options Reports
+    - benefitswiki
+    - policy manuals reposted by non-government sites
+  notes:
+    - This queue covers state/DC SNAP manuals and equivalent primary official SNAP policy sources.
+    - Some states publish SNAP policy as administrative regulations rather than a handbook.
+    - BenefitsWiki was used only as a discovery lead list; corpus artifacts must cite official primary sources.
+states:
+  - jurisdiction: us-al
+    name: Alabama
+    queue_status: needs_source_review
+    source_kind: official_portal
+    primary_source_url: https://apps.dhr.alabama.gov/POE/POEhome
+    notes: Public portal lead needs review for complete policy text access.
+  - jurisdiction: us-ak
+    name: Alaska
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: http://dpaweb.hss.state.ak.us/manuals/fs/fsp.htm#t=title_page_alaska_fsp_manual.htm
+    target_manifest: manifests/us-ak-snap-manual.yaml
+  - jurisdiction: us-az
+    name: Arizona
+    queue_status: published_current
+    source_kind: official_html_manual
+    primary_source_url: https://dbmefaapolicy.azdes.gov/#page/How_To_Use_This_Manual/Customer_Info.html
+    target_manifest: manifests/us-az-des-faa5-manual.yaml
+    target_scope:
+      jurisdiction: us-az
+      document_class: manual
+      version: 2025-10-30-az-des-faa5-manual
+    notes: Live DES pages challenge unattended clients; current manifest uses archived snapshots of official DES pages.
+  - jurisdiction: us-ar
+    name: Arkansas
+    queue_status: published_current
+    source_kind: official_pdf_manual
+    primary_source_url: https://humanservices.arkansas.gov/wp-content/uploads/Supplemental-Nutrition-Assistance-Program-Policy-Manual.pdf
+    target_manifest: manifests/us-ar-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-ar
+      document_class: manual
+      version: 2026-05-27-ar-snap-manual
+  - jurisdiction: us-ca
+    name: California
+    queue_status: manifest_ready_partial
+    source_kind: official_docx_manual_regulations
+    primary_source_url: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/CalFresh-Regulations
+    target_manifest: manifests/us-ca-cdss-mpp-calfresh.yaml
+    notes: Existing manifest is an encoding-essential subset of CalFresh MPP Division 63; full coverage remains to be expanded.
+  - jurisdiction: us-co
+    name: Colorado
+    queue_status: published_current
+    source_kind: official_administrative_regulation
+    primary_source_url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2818
+    target_scope:
+      jurisdiction: us-co
+      document_class: regulation
+      version: "2026-04-29"
+    notes: Colorado SNAP policy is covered through 10 CCR 2506-1 plus supplemental CDHS policy documents.
+  - jurisdiction: us-ct
+    name: Connecticut
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://portal.ct.gov/dss/snap/snap-policy-manual
+    target_manifest: manifests/us-ct-snap-manual.yaml
+  - jurisdiction: us-de
+    name: Delaware
+    queue_status: agent_ready
+    source_kind: official_administrative_code
+    primary_source_url: https://regulations.delaware.gov/AdminCode/title16/9000
+    target_manifest: manifests/us-de-snap-rules.yaml
+  - jurisdiction: us-dc
+    name: District of Columbia
+    queue_status: needs_source_review
+    source_kind: official_policy_manual_page
+    primary_source_url: https://dhs.dc.gov/publication/esa-policy-manuals
+    target_manifest: manifests/us-dc-snap-manual.yaml
+    notes: Existing DC manual artifact is child care, not SNAP.
+  - jurisdiction: us-fl
+    name: Florida
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://www.myflfamilies.com/services/public-assistance/additional-resources-and-services/ess-program-manual
+    target_manifest: manifests/us-fl-ess-manual.yaml
+  - jurisdiction: us-ga
+    name: Georgia
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://pamms.dhs.ga.gov/dfcs/snap/
+    target_manifest: manifests/us-ga-snap-manual.yaml
+  - jurisdiction: us-hi
+    name: Hawaii
+    queue_status: needs_source_review
+    source_kind: official_administrative_rules
+    primary_source_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+    target_manifest: manifests/us-hi-snap-rules.yaml
+  - jurisdiction: us-id
+    name: Idaho
+    queue_status: published_current
+    source_kind: official_administrative_rules_pdf
+    primary_source_url: https://adminrules.idaho.gov/rules/current/16/160304.pdf
+    target_manifest: manifests/us-id-snap-rules.yaml
+    target_scope:
+      jurisdiction: us-id
+      document_class: regulation
+      version: 2026-05-27-id-food-stamp-rules
+  - jurisdiction: us-il
+    name: Illinois
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://www.dhs.state.il.us/page.aspx?item=16111
+    target_manifest: manifests/us-il-snap-manual.yaml
+  - jurisdiction: us-in
+    name: Indiana
+    queue_status: agent_ready
+    source_kind: official_policy_manual_page
+    primary_source_url: https://www.in.gov/fssa/dfr/forms-documents-and-tools/policy-manual/
+    target_manifest: manifests/us-in-snap-manual.yaml
+  - jurisdiction: us-ia
+    name: Iowa
+    queue_status: needs_source_review
+    source_kind: official_manual_index_pdf
+    primary_source_url: https://hhs.iowa.gov/media/4035/download?inline
+    target_manifest: manifests/us-ia-snap-manual.yaml
+    notes: Lead URL is the Employees' Manual table of contents, not the SNAP manual text itself.
+  - jurisdiction: us-ks
+    name: Kansas
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://content.dcf.ks.gov/EES/KEESM/Current/Home.htm
+    target_manifest: manifests/us-ks-keesm.yaml
+  - jurisdiction: us-ky
+    name: Kentucky
+    queue_status: needs_source_review
+    source_kind: official_agency_page
+    primary_source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    target_manifest: manifests/us-ky-snap-manual.yaml
+  - jurisdiction: us-la
+    name: Louisiana
+    queue_status: needs_source_review
+    source_kind: official_powerdms_document
+    primary_source_url: https://public.powerdms.com/LADCFS/tree/documents/398463
+    target_manifest: manifests/us-la-snap-manual.yaml
+  - jurisdiction: us-me
+    name: Maine
+    queue_status: needs_source_review
+    source_kind: official_agency_rules
+    primary_source_url: https://www.maine.gov/sos/rulemaking/agency-rules/department-health-and-human-services-rules
+    target_manifest: manifests/us-me-snap-rules.yaml
+  - jurisdiction: us-md
+    name: Maryland
+    queue_status: agent_ready
+    source_kind: official_pdf_or_html_manual
+    primary_source_url: https://dhs.maryland.gov/supplemental-nutrition-assistance-program/food-supplement-program-manual/
+    target_manifest: manifests/us-md-fsp-manual.yaml
+  - jurisdiction: us-ma
+    name: Massachusetts
+    queue_status: agent_ready
+    source_kind: official_regulations
+    primary_source_url: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
+    target_manifest: manifests/us-ma-dta-snap-regulations.yaml
+  - jurisdiction: us-mi
+    name: Michigan
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/html/
+    target_manifest: manifests/us-mi-bridges-manual.yaml
+  - jurisdiction: us-mn
+    name: Minnesota
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=lp_cm_0022
+    target_manifest: manifests/us-mn-combined-manual.yaml
+  - jurisdiction: us-ms
+    name: Mississippi
+    queue_status: published_current
+    source_kind: official_pdf_manual
+    primary_source_url: https://www.sos.ms.gov/adminsearch/ACCode/00000331c.pdf
+    target_manifest: manifests/us-ms-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-ms
+      document_class: manual
+      version: 2026-05-27-ms-snap-manual
+  - jurisdiction: us-mo
+    name: Missouri
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://dssmanuals.mo.gov/food-stamps/
+    target_manifest: manifests/us-mo-food-stamp-manual.yaml
+  - jurisdiction: us-mt
+    name: Montana
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://dphhs.mt.gov/HCSD/snapmanual
+    target_manifest: manifests/us-mt-snap-manual.yaml
+  - jurisdiction: us-ne
+    name: Nebraska
+    queue_status: agent_ready
+    source_kind: official_administrative_rules
+    primary_source_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
+    target_manifest: manifests/us-ne-snap-rules.yaml
+  - jurisdiction: us-nv
+    name: Nevada
+    queue_status: needs_source_review
+    source_kind: official_manual_page
+    primary_source_url: https://dwss.nv.gov/Home/Features/eligibility/eligibility-n-payment-info-manual/
+    target_manifest: manifests/us-nv-eligibility-payment-manual.yaml
+  - jurisdiction: us-nh
+    name: New Hampshire
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://www.dhhs.nh.gov/fsm_htm/newfsm.htm
+    target_manifest: manifests/us-nh-food-stamp-manual.yaml
+  - jurisdiction: us-nj
+    name: New Jersey
+    queue_status: needs_source_review
+    source_kind: official_regulations_page
+    primary_source_url: https://www.nj.gov/humanservices/providers/rulefees/regs/
+    target_manifest: manifests/us-nj-snap-rules.yaml
+  - jurisdiction: us-nm
+    name: New Mexico
+    queue_status: needs_source_review
+    source_kind: official_agency_page
+    primary_source_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    target_manifest: manifests/us-nm-snap-manual.yaml
+  - jurisdiction: us-ny
+    name: New York
+    queue_status: partial_primary_policy
+    source_kind: official_pdf_or_regulation
+    primary_source_url: https://otda.ny.gov/programs/snap/snapsb.pdf
+    target_manifest: manifests/us-ny-snap-manual.yaml
+    notes: Existing corpus has SNAP eligibility and SUA regulation slices; complete source manual needs direct PDF or equivalent official source handling.
+  - jurisdiction: us-nc
+    name: North Carolina
+    queue_status: agent_ready
+    source_kind: official_html_or_pdf_manuals
+    primary_source_url: https://policies.ncdhhs.gov/divisional-n-z/social-services/food-and-nutrition-services/fns-policies-manuals/
+    target_manifest: manifests/us-nc-fns-manuals.yaml
+  - jurisdiction: us-nd
+    name: North Dakota
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+    target_manifest: manifests/us-nd-snap-manual.yaml
+  - jurisdiction: us-oh
+    name: Ohio
+    queue_status: needs_source_review
+    source_kind: official_rules_page
+    primary_source_url: https://jfs.ohio.gov/help-center/Programs+Rules+and+Resources/cash-food-assistance/01-cash-food-assistance
+    target_manifest: manifests/us-oh-snap-rules.yaml
+  - jurisdiction: us-ok
+    name: Oklahoma
+    queue_status: needs_source_review
+    source_kind: official_administrative_code
+    primary_source_url: https://oklahoma.gov/okdhs/library/policy/current/oac-340.html
+    target_manifest: manifests/us-ok-snap-rules.yaml
+  - jurisdiction: us-or
+    name: Oregon
+    queue_status: needs_source_review
+    source_kind: official_pdf_manual
+    primary_source_url: https://sharedsystems.dhsoha.state.or.us/DHSForms/Served/de2818.pdf
+    target_manifest: manifests/us-or-snap-manual.yaml
+    notes: Official PDF is reachable but currently fails default TLS certificate verification in unattended requests.
+  - jurisdiction: us-pa
+    name: Pennsylvania
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: http://services.dpw.state.pa.us/oimpolicymanuals/snap/index.htm#t=SNAP_Handbook_Title_Page.htm
+    target_manifest: manifests/us-pa-snap-handbook.yaml
+  - jurisdiction: us-ri
+    name: Rhode Island
+    queue_status: agent_ready
+    source_kind: official_administrative_regulation
+    primary_source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-1
+    target_manifest: manifests/us-ri-snap-rules.yaml
+  - jurisdiction: us-sc
+    name: South Carolina
+    queue_status: agent_ready
+    source_kind: official_manuals_page
+    primary_source_url: https://dss.sc.gov/about/data-and-resources/manuals/
+    target_manifest: manifests/us-sc-snap-manual.yaml
+  - jurisdiction: us-sd
+    name: South Dakota
+    queue_status: published_current
+    source_kind: official_pdf_manual
+    primary_source_url: https://dss.sd.gov/docs/economicassistance/snap/snapmanual.pdf
+    target_manifest: manifests/us-sd-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-sd
+      document_class: manual
+      version: 2026-05-27-sd-snap-manual
+  - jurisdiction: us-tn
+    name: Tennessee
+    queue_status: needs_source_review
+    source_kind: official_publications_page
+    primary_source_url: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
+    target_manifest: manifests/us-tn-snap-manual.yaml
+  - jurisdiction: us-tx
+    name: Texas
+    queue_status: published_current
+    source_kind: official_html_handbook
+    primary_source_url: https://www.hhs.texas.gov/handbooks/texas-works-handbook
+    target_manifest: manifests/us-tx-manuals.yaml
+    target_scope:
+      jurisdiction: us-tx
+      document_class: manual
+      version: 2026-05-27-tx-manuals
+    notes: Current manifest covers PolicyEngine-relevant Texas Works Handbook sections, not yet the complete handbook.
+  - jurisdiction: us-ut
+    name: Utah
+    queue_status: published_current_needs_cleanup
+    source_kind: official_html_manual
+    primary_source_url: https://jobs.utah.gov/customereducation/policy.html
+    target_manifest: manifests/us-ut-manuals.yaml
+    target_scope:
+      jurisdiction: us-ut
+      document_class: manual
+      version: 2026-05-27-ut-manuals
+    notes: Existing output should be reviewed for stale or missing InfoSource table pages.
+  - jurisdiction: us-vt
+    name: Vermont
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/assets/BRM/100GenInfo.htm
+    target_manifest: manifests/us-vt-benefits-rules-manual.yaml
+  - jurisdiction: us-va
+    name: Virginia
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://www.dss.virginia.gov/benefit/snap/manual.cgi
+    target_manifest: manifests/us-va-snap-manual.yaml
+  - jurisdiction: us-wa
+    name: Washington
+    queue_status: agent_ready
+    source_kind: official_html_manual
+    primary_source_url: https://www.dshs.wa.gov/esa/manuals/eaz
+    target_manifest: manifests/us-wa-eaz-manual.yaml
+  - jurisdiction: us-wv
+    name: West Virginia
+    queue_status: published_current
+    source_kind: official_html_manual
+    primary_source_url: https://bfa.wv.gov/page/income-maintenance-manual
+    target_manifest: manifests/us-wv-manuals.yaml
+    target_scope:
+      jurisdiction: us-wv
+      document_class: manual
+      version: 2026-05-27-wv-manuals
+  - jurisdiction: us-wi
+    name: Wisconsin
+    queue_status: published_current
+    source_kind: official_pdf_handbook
+    primary_source_url: https://www.emhandbooks.wisconsin.gov/fsh/fsh.htm#t=home.htm
+    target_manifest: manifests/us-wi-foodshare-manual.yaml
+    target_scope:
+      jurisdiction: us-wi
+      document_class: manual
+      version: 2026-05-27-wi-foodshare-manual
+  - jurisdiction: us-wy
+    name: Wyoming
+    queue_status: published_current
+    source_kind: official_pdf_manual
+    primary_source_url: https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+    target_manifest: manifests/us-wy-manuals.yaml
+    target_scope:
+      jurisdiction: us-wy
+      document_class: manual
+      version: 2026-05-27-wy-manuals

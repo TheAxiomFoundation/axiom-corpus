@@ -1,0 +1,18 @@
+documents:
+  - source_id: ms-mdhs-snap-policy-manual-part-14
+    jurisdiction: us-ms
+    document_class: manual
+    citation_path: us-ms/manual/mdhs/snap-policy-manual/part-14
+    title: Mississippi SNAP Policy Manual
+    source_url: https://www.sos.ms.gov/adminsearch/ACCode/00000331c.pdf
+    source_format: pdf
+    source_as_of: "2026-05-27"
+    expression_date: "2025-12-20"
+    metadata:
+      primary_source: true
+      source_authority: Mississippi Department of Human Services
+      document_subtype: policy_manual
+      program: SNAP
+      extraction_granularity: pdf_page
+      source_discovery_group: us-ms/manual/snap
+      discovered_via: manual-review:state-snap-manual-agent-queue
