@@ -353,11 +353,15 @@ states:
     target_manifest: manifests/us-ok-snap-rules.yaml
   - jurisdiction: us-or
     name: Oregon
-    queue_status: needs_source_review
-    source_kind: official_pdf_manual
+    queue_status: published_current
+    source_kind: official_integrated_pdf_manual
     primary_source_url: https://sharedsystems.dhsoha.state.or.us/DHSForms/Served/de2818.pdf
     target_manifest: manifests/us-or-snap-manual.yaml
-    notes: Official PDF is reachable but currently fails default TLS certificate verification in unattended requests.
+    notes: Oregon SNAP policy is in the integrated Oregon Programs Eligibility Notebook PDF.
+    target_scope:
+      jurisdiction: us-or
+      document_class: manual
+      version: 2026-05-27-or-programs-eligibility-notebook
   - jurisdiction: us-pa
     name: Pennsylvania
     queue_status: published_current

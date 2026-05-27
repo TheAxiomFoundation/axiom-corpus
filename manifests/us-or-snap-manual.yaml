@@ -1,0 +1,25 @@
+documents:
+- source_id: or-open-2818
+  jurisdiction: us-or
+  document_class: manual
+  title: Oregon Programs Eligibility Notebook (OPEN)
+  source_url: https://sharedsystems.dhsoha.state.or.us/DHSForms/Served/de2818.pdf
+  source_format: pdf
+  source_as_of: '2026-04-15'
+  expression_date: '2026-04-01'
+  citation_path: us-or/manual/odhs/open
+  request:
+    verify_tls: false
+  metadata:
+    primary_source: true
+    document_subtype: integrated_eligibility_manual
+    manual: Oregon Programs Eligibility Notebook (OPEN)
+    form_number: DHS 2818
+    programs:
+    - SNAP
+    - TANF
+    - ERDC
+    - Medical assistance
+    includes_snap_policy: true
+    source_discovery_group: us-or/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
