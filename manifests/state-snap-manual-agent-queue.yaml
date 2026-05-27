@@ -87,11 +87,15 @@ states:
     target_manifest: manifests/us-de-snap-rules.yaml
   - jurisdiction: us-dc
     name: District of Columbia
-    queue_status: needs_source_review
+    queue_status: published_current
     source_kind: official_policy_manual_page
     primary_source_url: https://dhs.dc.gov/publication/esa-policy-manuals
     target_manifest: manifests/us-dc-snap-manual.yaml
-    notes: Existing DC manual artifact is child care, not SNAP.
+    target_scope:
+      jurisdiction: us-dc
+      document_class: manual
+      version: 2026-05-27-dc-snap-manual
+    notes: Existing DC child care manual artifact remains separate from this SNAP manual scope.
   - jurisdiction: us-fl
     name: Florida
     queue_status: published_current
