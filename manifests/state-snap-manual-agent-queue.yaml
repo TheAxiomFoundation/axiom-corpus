@@ -350,10 +350,14 @@ states:
     target_manifest: manifests/us-vt-benefits-rules-manual.yaml
   - jurisdiction: us-va
     name: Virginia
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
-    primary_source_url: https://www.dss.virginia.gov/benefit/snap/manual.cgi
+    primary_source_url: https://www.dss.virginia.gov/relief/food-assistance/snap/snap-policy--procedures/snap-manual/
     target_manifest: manifests/us-va-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-va
+      document_class: manual
+      version: 2026-05-27-va-snap-manual
   - jurisdiction: us-wa
     name: Washington
     queue_status: published_current
