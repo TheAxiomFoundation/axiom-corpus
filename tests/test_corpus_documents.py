@@ -1,4 +1,5 @@
 import json
+import zipfile
 from pathlib import Path
 
 import fitz  # type: ignore[import-untyped]
@@ -250,6 +251,66 @@ documents:
     assert block.heading == "4000 Assistance Planning"
     assert "Food assistance household composition rules apply" in (block.body or "")
     assert "04-26" not in (block.body or "")
+
+
+def test_extract_official_documents_reads_docx_sections(tmp_path: Path) -> None:
+    docx_path = tmp_path / "chapter-365.docx"
+    document_xml = """\
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>
+    <w:p>
+      <w:pPr><w:pStyle w:val="Heading1"/></w:pPr>
+      <w:r><w:t>365.100 Special Situation Households</w:t></w:r>
+    </w:p>
+    <w:p><w:r><w:t>SNAP households may include special living arrangements.</w:t></w:r></w:p>
+    <w:tbl>
+      <w:tr>
+        <w:tc><w:p><w:r><w:t>Household</w:t></w:r></w:p></w:tc>
+        <w:tc><w:p><w:r><w:t>Treatment</w:t></w:r></w:p></w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p>
+      <w:pPr><w:pStyle w:val="Heading2"/></w:pPr>
+      <w:r><w:t>365.110 Residents of Institutions</w:t></w:r>
+    </w:p>
+    <w:p><w:r><w:t>Institution residents are subject to program rules.</w:t></w:r></w:p>
+  </w:body>
+</w:document>
+"""
+    with zipfile.ZipFile(docx_path, "w") as archive:
+        archive.writestr("word/document.xml", document_xml)
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ma-dta-chapter-365
+    jurisdiction: us-ma
+    document_class: regulation
+    title: "Massachusetts DTA Chapter 365"
+    source_url: https://www.mass.gov/doc/chapter-365-special-situation-households/download
+    source_format: docx
+    local_path: {json.dumps(str(docx_path))}
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-ma-dta-regulations",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    first_block = records[1]
+    assert first_block.heading == "365.100 Special Situation Households"
+    assert "SNAP households may include special living arrangements" in (
+        first_block.body or ""
+    )
+    assert "Household | Treatment" in (first_block.body or "")
+    second_block = records[2]
+    assert second_block.heading == "365.110 Residents of Institutions"
 
 
 def test_extract_official_documents_reads_webworks_policy_divs(tmp_path: Path) -> None:

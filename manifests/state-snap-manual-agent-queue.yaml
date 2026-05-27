@@ -175,10 +175,14 @@ states:
     target_manifest: manifests/us-md-fsp-manual.yaml
   - jurisdiction: us-ma
     name: Massachusetts
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_regulations
     primary_source_url: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     target_manifest: manifests/us-ma-dta-snap-regulations.yaml
+    target_scope:
+      jurisdiction: us-ma
+      document_class: regulation
+      version: 2026-05-27-ma-dta-snap-regulations
   - jurisdiction: us-mi
     name: Michigan
     queue_status: agent_ready

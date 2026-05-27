@@ -4,10 +4,13 @@ from __future__ import annotations
 
 import re
 import sys
+import zipfile
 from dataclasses import dataclass
 from datetime import date
+from io import BytesIO
 from pathlib import Path
 from typing import Any, Self, TextIO
+from xml.etree import ElementTree
 
 import fitz
 import requests
@@ -38,6 +41,7 @@ _NON_HEADING_UPPERCASE_LINES = {
     "HANDBOOK CONTINUE",
     "HANDBOOK ENDS HERE",
 }
+_WORD_NS = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
 
 
 @dataclass(frozen=True)
@@ -337,6 +341,12 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
         return "pdf"
     if "html" in content_type or downloaded.content.lstrip().startswith((b"<!doctype", b"<html")):
         return "html"
+    if (
+        "wordprocessingml" in content_type
+        or downloaded.content.startswith(b"PK")
+        and _zip_contains(downloaded.content, "word/document.xml")
+    ):
+        return "docx"
     raise ValueError(f"cannot infer source format for {source.source_id}")
 
 
@@ -361,6 +371,8 @@ def _extract_blocks(
         return _extract_html_blocks(
             content, source_url=source_url, extraction=extraction
         )
+    if source_format == "docx":
+        return _extract_docx_blocks(content)
     raise ValueError(f"unsupported official document source_format: {source_format}")
 
 
@@ -527,6 +539,101 @@ def _extract_labeled_pdf_section_blocks(
         index += 1
     flush()
     return tuple(sections)
+
+
+def _extract_docx_blocks(content: bytes) -> tuple[_DocumentBlock, ...]:
+    with zipfile.ZipFile(BytesIO(content)) as document:
+        xml = document.read("word/document.xml")
+    root = ElementTree.fromstring(xml)
+    body = root.find("w:body", _WORD_NS)
+    if body is None:
+        return ()
+
+    blocks: list[_DocumentBlock] = []
+    heading: str | None = None
+    parts: list[str] = []
+
+    def flush() -> None:
+        nonlocal parts
+        body_text = _normalize_text("\n\n".join(parts))
+        if body_text:
+            blocks.append(
+                _DocumentBlock(
+                    kind="block",
+                    ordinal=len(blocks) + 1,
+                    heading=heading,
+                    body=body_text,
+                    metadata={},
+                )
+            )
+        parts = []
+
+    for child in body:
+        if child.tag == _word_tag("p"):
+            text = _docx_paragraph_text(child)
+            if not text:
+                continue
+            if _docx_paragraph_is_heading(child):
+                flush()
+                heading = text
+            else:
+                parts.append(text)
+        elif child.tag == _word_tag("tbl"):
+            table_text = _docx_table_text(child)
+            if table_text:
+                parts.append(table_text)
+    flush()
+    return tuple(blocks)
+
+
+def _zip_contains(content: bytes, name: str) -> bool:
+    try:
+        with zipfile.ZipFile(BytesIO(content)) as archive:
+            return name in archive.namelist()
+    except zipfile.BadZipFile:
+        return False
+
+
+def _word_tag(local_name: str) -> str:
+    return f"{{{_WORD_NS['w']}}}{local_name}"
+
+
+def _docx_paragraph_is_heading(paragraph: ElementTree.Element) -> bool:
+    style = paragraph.find("w:pPr/w:pStyle", _WORD_NS)
+    value = style.get(_word_tag("val")) if style is not None else None
+    if not value:
+        return False
+    normalized = value.lower().replace(" ", "")
+    return normalized.startswith("heading") or normalized in {"title", "subtitle"}
+
+
+def _docx_paragraph_text(paragraph: ElementTree.Element) -> str:
+    return _normalize_text("".join(_docx_text_chunks(paragraph)))
+
+
+def _docx_table_text(table: ElementTree.Element) -> str:
+    rows: list[str] = []
+    for row in table.findall("w:tr", _WORD_NS):
+        cells = [
+            _normalize_text(" ".join(_docx_text_chunks(cell)))
+            for cell in row.findall("w:tc", _WORD_NS)
+        ]
+        cells = [cell for cell in cells if cell]
+        if cells:
+            rows.append(" | ".join(cells))
+    return "\n".join(rows)
+
+
+def _docx_text_chunks(node: ElementTree.Element) -> tuple[str, ...]:
+    chunks: list[str] = []
+    for descendant in node.iter():
+        if descendant.tag == _word_tag("t") and descendant.text:
+            chunks.append(descendant.text)
+        elif descendant.tag == _word_tag("tab"):
+            chunks.append("\t")
+        elif descendant.tag == _word_tag("br"):
+            chunks.append("\n")
+    return tuple(chunks)
 
 
 def _match_labeled_pdf_section(
