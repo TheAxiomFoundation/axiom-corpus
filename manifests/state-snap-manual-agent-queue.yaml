@@ -146,11 +146,15 @@ states:
     target_manifest: manifests/us-in-snap-manual.yaml
   - jurisdiction: us-ia
     name: Iowa
-    queue_status: needs_source_review
+    queue_status: published_current
     source_kind: official_manual_index_pdf
     primary_source_url: https://hhs.iowa.gov/media/4035/download?inline
     target_manifest: manifests/us-ia-snap-manual.yaml
-    notes: Lead URL is the Employees' Manual table of contents, not the SNAP manual text itself.
+    target_scope:
+      jurisdiction: us-ia
+      document_class: manual
+      version: 2026-05-27-ia-snap-manual
+    notes: Lead URL is the Employees' Manual table of contents; current scope includes the TOC and individual Title 7 SNAP chapters, excluding the duplicate omnibus PDF.
   - jurisdiction: us-ks
     name: Kansas
     queue_status: published_current
