@@ -257,10 +257,15 @@ states:
       version: 2026-05-27-mi-bridges-manual
   - jurisdiction: us-mn
     name: Minnesota
-    queue_status: agent_ready
-    source_kind: official_html_manual
-    primary_source_url: https://www.dhs.state.mn.us/main/idcplg?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=lp_cm_0022
+    queue_status: published_current
+    source_kind: official_combined_manual_pdf
+    primary_source_url: https://www.dhs.state.mn.us/main/groups/county_access/documents/pub/dhs-327301.pdf
     target_manifest: manifests/us-mn-combined-manual.yaml
+    target_scope:
+      jurisdiction: us-mn
+      document_class: manual
+      version: 2026-05-27-mn-combined-manual
+    notes: Current scope uses the official full Combined Manual PDF because dynamic HTML manual pages redirect to an access-protected service.
   - jurisdiction: us-ms
     name: Mississippi
     queue_status: published_current
