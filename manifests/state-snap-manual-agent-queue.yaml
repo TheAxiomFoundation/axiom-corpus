@@ -118,10 +118,14 @@ states:
       version: 2026-05-27-ga-snap-manual
   - jurisdiction: us-hi
     name: Hawaii
-    queue_status: needs_source_review
+    queue_status: published_current
     source_kind: official_administrative_rules
     primary_source_url: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
     target_manifest: manifests/us-hi-snap-rules.yaml
+    target_scope:
+      jurisdiction: us-hi
+      document_class: regulation
+      version: 2026-05-27-hi-snap-rules
   - jurisdiction: us-id
     name: Idaho
     queue_status: published_current
