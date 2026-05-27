@@ -152,6 +152,55 @@ documents:
     assert page_record.metadata["document_subtype"] == "waiver_approval"
 
 
+def test_extract_official_documents_uses_html_content_selector(tmp_path: Path) -> None:
+    html_path = tmp_path / "wa-eaz.html"
+    html_path.write_text(
+        """
+        <html>
+          <head><title>Browser title</title></head>
+          <body>
+            <h1>Basic Food - Work Requirements</h1>
+            <div class="site-shell">Navigation text should be ignored.</div>
+            <div class="field-name-body">
+              <p>Revised June 1, 2026</p>
+              <h2>Purpose</h2>
+              <p>Basic Food applicants must meet work registration rules.</p>
+            </div>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: wa-eaz-work-requirements
+    jurisdiction: us-wa
+    document_class: manual
+    title: Basic Food - Work Requirements
+    source_url: https://www.dshs.wa.gov/esa/example
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    extraction:
+      html_content_selector: .field-name-body
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-wa-eaz-manual",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    bodies = "\n".join(record.body or "" for record in records)
+    assert "Basic Food applicants must meet work registration rules" in bodies
+    assert "Navigation text should be ignored" not in bodies
+
+
 def test_extract_official_documents_reads_webworks_policy_divs(tmp_path: Path) -> None:
     html_path = tmp_path / "az-faa5.html"
     html_path.write_text(

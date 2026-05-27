@@ -358,7 +358,9 @@ def _extract_blocks(
     if source_format == "pdf":
         return _extract_pdf_blocks(content, extraction=extraction)
     if source_format == "html":
-        return _extract_html_blocks(content, source_url=source_url)
+        return _extract_html_blocks(
+            content, source_url=source_url, extraction=extraction
+        )
     raise ValueError(f"unsupported official document source_format: {source_format}")
 
 
@@ -612,7 +614,12 @@ def _looks_like_labeled_heading_continuation(
     return _looks_like_section_heading_line(line)
 
 
-def _extract_html_blocks(content: bytes, *, source_url: str) -> tuple[_DocumentBlock, ...]:
+def _extract_html_blocks(
+    content: bytes,
+    *,
+    source_url: str,
+    extraction: dict[str, Any] | None,
+) -> tuple[_DocumentBlock, ...]:
     soup = BeautifulSoup(content, "html.parser", from_encoding="utf-8")
     for selector in (
         "script",
@@ -630,7 +637,7 @@ def _extract_html_blocks(content: bytes, *, source_url: str) -> tuple[_DocumentB
     ):
         for node in soup.select(selector):
             node.decompose()
-    root = _main_content(soup)
+    root = _html_content_root(soup, extraction=extraction)
     title = _document_title(soup)
     webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
     if webworks_blocks:
@@ -680,6 +687,20 @@ def _extract_html_blocks(content: bytes, *, source_url: str) -> tuple[_DocumentB
             metadata={"source_url": source_url},
         ),
     )
+
+
+def _html_content_root(
+    soup: BeautifulSoup, *, extraction: dict[str, Any] | None
+) -> Tag:
+    selector = (extraction or {}).get("html_content_selector") or (
+        extraction or {}
+    ).get("content_selector")
+    if selector is not None:
+        root = soup.select_one(str(selector))
+        if isinstance(root, Tag):
+            return root
+        raise ValueError(f"html content selector did not match: {selector!r}")
+    return _main_content(soup)
 
 
 _WEBWORKS_TEXT_CLASS_PREFIXES = (

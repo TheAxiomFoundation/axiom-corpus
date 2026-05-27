@@ -352,10 +352,14 @@ states:
     target_manifest: manifests/us-va-snap-manual.yaml
   - jurisdiction: us-wa
     name: Washington
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.dshs.wa.gov/esa/manuals/eaz
     target_manifest: manifests/us-wa-eaz-manual.yaml
+    target_scope:
+      jurisdiction: us-wa
+      document_class: manual
+      version: 2026-05-27-wa-eaz-manual
   - jurisdiction: us-wv
     name: West Virginia
     queue_status: published_current
