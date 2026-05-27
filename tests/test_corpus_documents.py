@@ -3,7 +3,9 @@ import zipfile
 from pathlib import Path
 
 import fitz  # type: ignore[import-untyped]
+import requests
 
+from axiom_corpus.corpus import documents as documents_module
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.documents import (
     OFFICIAL_DOCUMENT_BROWSER_USER_AGENT,
@@ -72,6 +74,47 @@ def test_download_document_retries_browser_user_agent_on_forbidden():
     assert downloaded.content == b"%PDF-1.7"
     assert session.calls[0]["User-Agent"] == OFFICIAL_DOCUMENT_USER_AGENT
     assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+
+
+def test_download_document_retries_transient_request_errors(monkeypatch):
+    class FakeResponse:
+        status_code = 200
+        content = b"<html><body>ok</body></html>"
+        headers = {"content-type": "text/html"}
+        url = "https://example.test/doc.html"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+            self.calls = 0
+
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None):
+            del url, headers, timeout, allow_redirects
+            self.calls += 1
+            if self.calls == 1:
+                raise requests.exceptions.ChunkedEncodingError("connection reset")
+            return FakeResponse()
+
+    monkeypatch.setattr(documents_module.time, "sleep", lambda seconds: None)
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="manual",
+        title="Document",
+        source_url="https://example.test/doc.html",
+    )
+    session = FakeSession()
+
+    downloaded = _download_document(source, session=session)  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == b"<html><body>ok</body></html>"
+    assert session.calls == 2
 
 
 def test_extract_official_documents_from_local_html_and_pdf(tmp_path):

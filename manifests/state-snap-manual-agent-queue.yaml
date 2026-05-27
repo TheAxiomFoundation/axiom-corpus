@@ -348,10 +348,14 @@ states:
     notes: Official PDF is reachable but currently fails default TLS certificate verification in unattended requests.
   - jurisdiction: us-pa
     name: Pennsylvania
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: http://services.dpw.state.pa.us/oimpolicymanuals/snap/index.htm#t=SNAP_Handbook_Title_Page.htm
     target_manifest: manifests/us-pa-snap-handbook.yaml
+    target_scope:
+      jurisdiction: us-pa
+      document_class: manual
+      version: 2026-05-27-pa-snap-handbook
   - jurisdiction: us-ri
     name: Rhode Island
     queue_status: published_current

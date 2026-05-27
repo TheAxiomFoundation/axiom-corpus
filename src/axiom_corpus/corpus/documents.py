@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 import sys
+import time
 import zipfile
 from dataclasses import dataclass
 from datetime import date
@@ -32,6 +33,9 @@ OFFICIAL_DOCUMENT_BROWSER_USER_AGENT = (
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 )
 _BROWSER_FALLBACK_STATUSES = {403, 404, 406}
+_REQUEST_RETRY_STATUSES = {429, 500, 502, 503, 504}
+_REQUEST_RETRY_ATTEMPTS = 4
+_REQUEST_RETRY_BASE_DELAY_SECONDS = 0.5
 _GOOGLE_DRIVE_FILE_RE = re.compile(r"https?://drive\.google\.com/file/d/([^/]+)/")
 _HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 _TEXT_TAGS = _HEADING_TAGS | {"p", "li", "table", "blockquote"}
@@ -318,12 +322,12 @@ def _download_document(
     download_url = (
         source.download_url or google_drive_download_url(source.source_url) or source.source_url
     )
-    response = session.get(download_url, timeout=90, allow_redirects=True)
+    response = _get_with_retries(session, download_url)
     if response.status_code in _BROWSER_FALLBACK_STATUSES:
         response.close()
         headers = dict(session.headers)
         headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
-        response = session.get(download_url, headers=headers, timeout=90, allow_redirects=True)
+        response = _get_with_retries(session, download_url, headers=headers)
     response.raise_for_status()
     return _DownloadedDocument(
         source=source,
@@ -331,6 +335,40 @@ def _download_document(
         content_type=response.headers.get("content-type"),
         final_url=response.url,
     )
+
+
+def _get_with_retries(
+    session: requests.Session,
+    url: str,
+    *,
+    headers: dict[str, str] | None = None,
+) -> requests.Response:
+    """Fetch a small official document, retrying transient server/network failures."""
+    for attempt in range(1, _REQUEST_RETRY_ATTEMPTS + 1):
+        try:
+            response = session.get(
+                url,
+                headers=headers,
+                timeout=90,
+                allow_redirects=True,
+            )
+            if (
+                response.status_code in _REQUEST_RETRY_STATUSES
+                and attempt < _REQUEST_RETRY_ATTEMPTS
+            ):
+                response.close()
+                _sleep_before_retry(attempt)
+                continue
+            return response
+        except requests.RequestException:
+            if attempt >= _REQUEST_RETRY_ATTEMPTS:
+                raise
+            _sleep_before_retry(attempt)
+    raise RuntimeError(f"failed to fetch official document: {url}")
+
+
+def _sleep_before_retry(attempt: int) -> None:
+    time.sleep(_REQUEST_RETRY_BASE_DELAY_SECONDS * attempt)
 
 
 def _infer_source_format(source: OfficialDocumentSource, downloaded: _DownloadedDocument) -> str:
