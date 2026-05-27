@@ -167,10 +167,14 @@ states:
       version: 2026-05-27-ks-keesm
   - jurisdiction: us-ky
     name: Kentucky
-    queue_status: needs_source_review
+    queue_status: published_current
     source_kind: official_agency_page
     primary_source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
     target_manifest: manifests/us-ky-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-ky
+      document_class: manual
+      version: 2026-05-27-ky-snap-manual
   - jurisdiction: us-la
     name: Louisiana
     queue_status: needs_source_review
