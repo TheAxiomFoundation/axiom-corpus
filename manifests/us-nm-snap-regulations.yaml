@@ -1,0 +1,733 @@
+documents:
+- source_id: nm-srca-nmac-8-100-100
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.100.100 NMAC General Operating Procedures
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0100.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/100
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.100\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.100
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '100'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 1
+- source_id: nm-srca-nmac-8-100-110
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.100.110 NMAC General Operating Policies \u2013 Applications"
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0110.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/110
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.110\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.110
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '110'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 2
+- source_id: nm-srca-nmac-8-100-120
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.100.120 NMAC General Operating Policies \u2013 Case Management"
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0120.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/120
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.120\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.120
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '120'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 3
+- source_id: nm-srca-nmac-8-100-130
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.100.130 NMAC General Operating \u2013 Eligibility and Verification Standards"
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0130.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/130
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.130\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.130
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '130'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 4
+- source_id: nm-srca-nmac-8-100-140
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.100.140 NMAC General Operating Policies \u2013 Case Files"
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0140.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/140
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.140\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.140
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '140'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 5
+- source_id: nm-srca-nmac-8-100-150
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.100.150 NMAC General Operating Policies \u2013 Record Retention Management"
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0150.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/150
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.150\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.150
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '150'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 6
+- source_id: nm-srca-nmac-8-100-180
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.100.180 NMAC General Operating Policies \u2013 External Communications"
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0180.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/180
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.180\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.180
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '180'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 7
+- source_id: nm-srca-nmac-8-100-390
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.100.390 NMAC General Support \u2013 Information Systems"
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0390.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/390
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.390\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.390
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '390'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 8
+- source_id: nm-srca-nmac-8-100-640
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.100.640 NMAC Restoration and Claims
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0640.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/640
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.640\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.640
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '640'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 9
+- source_id: nm-srca-nmac-8-100-970
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.100.970 NMAC Oversight \u2013 Program Participation Hearings"
+  source_url: https://www.srca.nm.gov/parts/title08/08.100.0970.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/100/970
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.100\.970\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: Public assistance programs
+    nmac_citation: 8.100.970
+    nmac_title: '8'
+    nmac_chapter: '100'
+    nmac_part: '970'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 10
+- source_id: nm-srca-nmac-8-139-100
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.139.100 NMAC General Provisions for the Food Stamp Program
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0100.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/100
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.100\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.100
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '100'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 11
+- source_id: nm-srca-nmac-8-139-110
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.110 NMAC General Administration \u2013 Application Processing"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0110.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/110
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.110\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.110
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '110'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 12
+- source_id: nm-srca-nmac-8-139-120
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.120 NMAC Case Administration \u2013 Case Management"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0120.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/120
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.120\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.120
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '120'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 13
+- source_id: nm-srca-nmac-8-139-400
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.400 NMAC Recipient Policy \u2013 Who Can Be a Recipient"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0400.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/400
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.400\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.400
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '400'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 14
+- source_id: nm-srca-nmac-8-139-410
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.410 NMAC General Recipient Requirements \u2013 Non-Financial Eligibility\
+    \ Criteria"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0410.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/410
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.410\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.410
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '410'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 15
+- source_id: nm-srca-nmac-8-139-420
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.420 NMAC Recipient Requirements \u2013 Special Households"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0420.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/420
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.420\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.420
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '420'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 16
+- source_id: nm-srca-nmac-8-139-500
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.500 NMAC Financial Eligibility \u2013 Need Determination"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0500.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/500
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.500\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.500
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '500'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 17
+- source_id: nm-srca-nmac-8-139-501
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.139.501 NMAC Transitional Food Stamp Benefit Eligibility
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0501.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/501
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.501\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.501
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '501'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 18
+- source_id: nm-srca-nmac-8-139-502
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.139.502 NMAC State Food Stamp Supplement
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0502.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/502
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.502\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.502
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '502'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 19
+- source_id: nm-srca-nmac-8-139-503
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.139.503 NMAC New Mexico Modified Combined Application Project
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0503.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/503
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.503\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.503
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '503'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 20
+- source_id: nm-srca-nmac-8-139-504
+  jurisdiction: us-nm
+  document_class: regulation
+  title: 8.139.504 NMAC New Mexico Extra Help SNAP (Being Repealed)
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0504.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/504
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.504\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.504
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '504'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 21
+- source_id: nm-srca-nmac-8-139-510
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.510 NMAC Eligibility Policy \u2013 Resources and Property"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0510.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/510
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.510\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.510
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '510'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 22
+- source_id: nm-srca-nmac-8-139-520
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.520 NMAC Eligibility Policy \u2013 Income and Deductions"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0520.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/520
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.520\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.520
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '520'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 23
+- source_id: nm-srca-nmac-8-139-527
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.527 NMAC Food Stamp Program \u2013 Income and Resources Excluded by\
+    \ Federal Law"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0527.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/527
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.527\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.527
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '527'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 24
+- source_id: nm-srca-nmac-8-139-610
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.610 NMAC Program Benefits \u2013 Issuance and Receipt"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0610.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/610
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.610\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.610
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '610'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 25
+- source_id: nm-srca-nmac-8-139-647
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.647 NMAC Food Stamp Program \u2013 Administrative Disqualification\
+    \ Procedures"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0647.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/647
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.647\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.647
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '647'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 26
+- source_id: nm-srca-nmac-8-139-650
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.650 NMAC Food Stamp Definitions \u2013 Terms and Abbreviations [Repealed]"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0650.html
+  source_format: html
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-nm/regulation/nmac/8/139/650
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.139\.650\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.650
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '650'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 27

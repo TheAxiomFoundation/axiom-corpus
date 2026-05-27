@@ -291,6 +291,68 @@ documents:
     assert "Navigation text should be ignored" not in bodies
 
 
+def test_extract_official_documents_splits_labeled_html_sections(tmp_path: Path) -> None:
+    html_path = tmp_path / "nm-nmac.html"
+    html_path.write_text(
+        """
+        <html>
+          <head><title>8.139.520 NMAC</title></head>
+          <body>
+            <div class="WordSection1">
+              <p>TITLE 8 SOCIAL SERVICES</p>
+              <p>8.139.520.1 ISSUING AGENCY: New Mexico Health Care Authority.</p>
+              <p>[8.139.520.1 NMAC - Rp, 11/21/2023]</p>
+              <p>8.139.520.2 SCOPE: General public.</p>
+              <p>[8.139.520.2 NMAC - Rp, 11/21/2023]</p>
+            </div>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: nm-nmac-8-139-520
+    jurisdiction: us-nm
+    document_class: regulation
+    title: 8.139.520 NMAC Eligibility Policy - Income and Deductions
+    source_url: https://www.srca.nm.gov/parts/title08/08.139.0520.html
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    citation_path: us-nm/regulation/nmac/8/139/520
+    extraction:
+      html_content_selector: .WordSection1
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>8\\.139\\.520\\.\\d+)\\s+(?P<heading>[A-Z][A-Z ]+:)(?:\\s+(?P<body>.*))?$'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-nm-snap-regulations",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    assert [
+        record.citation_path for record in records if record.kind == "section"
+    ] == [
+        "us-nm/regulation/nmac/8/139/520/8.139.520.1",
+        "us-nm/regulation/nmac/8/139/520/8.139.520.2",
+    ]
+    section_body = next(
+        record.body for record in records if record.citation_path.endswith("8.139.520.1")
+    )
+    assert section_body == (
+        "New Mexico Health Care Authority.\n\n"
+        "[8.139.520.1 NMAC - Rp, 11/21/2023]"
+    )
+
+
 def test_extract_official_documents_keeps_content_inside_aspnet_form(
     tmp_path: Path,
 ) -> None:

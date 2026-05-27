@@ -834,6 +834,13 @@ def _extract_html_blocks(
     webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
     if webworks_blocks:
         return webworks_blocks
+    if (extraction or {}).get("segmentation") == "labeled_sections":
+        return _extract_labeled_html_section_blocks(
+            root,
+            title=title,
+            source_url=source_url,
+            extraction=extraction or {},
+        )
     blocks: list[_DocumentBlock] = []
     heading = title
     parts: list[str] = []
@@ -911,6 +918,94 @@ def _json_path(data: Any, path: str) -> Any:
             continue
         raise ValueError(f"json path did not resolve: {path}")
     return current
+
+
+def _extract_labeled_html_section_blocks(
+    root: Tag,
+    *,
+    title: str | None,
+    source_url: str,
+    extraction: dict[str, Any],
+) -> tuple[_DocumentBlock, ...]:
+    """Extract HTML documents whose provisions begin with stable text labels."""
+    heading_pattern = extraction.get("section_heading_pattern")
+    label_pattern = extraction.get("section_label_pattern")
+    if heading_pattern is None and label_pattern is None:
+        raise ValueError(
+            "labeled_sections HTML extraction requires section_heading_pattern "
+            "or section_label_pattern"
+        )
+    section_heading_re = (
+        re.compile(str(heading_pattern)) if heading_pattern is not None else None
+    )
+    section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
+
+    sections: list[_DocumentBlock] = []
+    current_label: str | None = None
+    current_heading: str | None = None
+    current_body: list[str] = []
+
+    def flush() -> None:
+        nonlocal current_label, current_heading, current_body
+        if current_label is None:
+            return
+        heading = current_heading or title or current_label
+        sections.append(
+            _DocumentBlock(
+                kind="section",
+                ordinal=len(sections) + 1,
+                heading=heading,
+                body=_normalize_text("\n\n".join(current_body)),
+                metadata={
+                    "citation_suffix": current_label,
+                    "section_label": current_label,
+                    "source_url": source_url,
+                },
+            )
+        )
+        current_label = None
+        current_heading = None
+        current_body = []
+
+    for node in root.find_all(_TEXT_TAGS):
+        if not isinstance(node, Tag) or _inside_text_tag(node):
+            continue
+        text = _normalize_text(node.get_text(" ", strip=True))
+        if not text:
+            continue
+        match = _match_labeled_html_section(text, section_heading_re, section_label_re)
+        if match is not None:
+            label, heading, body = match
+            flush()
+            current_label = label
+            current_heading = heading or label
+            current_body = [body] if body else []
+            continue
+        if current_label is not None:
+            current_body.append(text)
+    flush()
+    return tuple(sections)
+
+
+def _match_labeled_html_section(
+    text: str,
+    section_heading_re: re.Pattern[str] | None,
+    section_label_re: re.Pattern[str] | None,
+) -> tuple[str, str, str] | None:
+    if section_heading_re is not None:
+        match = section_heading_re.match(text)
+        if match:
+            groups = match.groupdict()
+            return (
+                match.group("label").strip(),
+                (groups.get("heading") or "").strip(),
+                (groups.get("body") or "").strip(),
+            )
+    if section_label_re is not None:
+        match = section_label_re.match(text)
+        if match:
+            return match.group("label").strip(), "", ""
+    return None
 
 
 def _html_content_root(
