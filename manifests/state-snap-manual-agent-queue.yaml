@@ -148,10 +148,14 @@ states:
     target_manifest: manifests/us-il-snap-manual.yaml
   - jurisdiction: us-in
     name: Indiana
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_policy_manual_page
     primary_source_url: https://www.in.gov/fssa/dfr/forms-documents-and-tools/policy-manual/
     target_manifest: manifests/us-in-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-in
+      document_class: manual
+      version: 2026-05-27-in-snap-manual
   - jurisdiction: us-ia
     name: Iowa
     queue_status: published_current
