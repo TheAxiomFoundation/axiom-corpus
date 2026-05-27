@@ -544,3 +544,71 @@ documents:
     assert eligibility.body == "HANDBOOK BEGINS HERE .1 Eligibility text."
     assert eligibility.metadata is not None
     assert eligibility.metadata["page_start"] == 2
+
+
+def test_extract_labeled_pdf_sections_supports_label_heading_next_line(
+    tmp_path: Path,
+) -> None:
+    pdf_path = tmp_path / "delaware.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "9001",
+                "Legal Base",
+                "Legal base text.",
+                "9002 Penalties",
+                "Penalty text.",
+                "9064.7 Households Entitled to a Deduction in DSSM",
+                "9060",
+                "[273.10(d)(7)]",
+                "Continuation text.",
+                "9065",
+                "Calculating Net Income",
+                "Net income text.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: de-snap-rules
+    jurisdiction: us-de
+    document_class: regulation
+    title: Delaware SNAP Rules
+    source_url: https://regulations.delaware.gov/AdminCode/title16/9000
+    citation_path: us-de/regulation/title-16/9000-food-stamp-program
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>9\\d{{3}}(?:\\.\\d+)*)\\s+(?P<heading>[A-Z][A-Za-z0-9 ().,''/-]+)$'
+      section_label_pattern: '^(?P<label>9\\d{{3}}(?:\\.\\d+)*)$'
+      label_only_heading_pattern: '^[A-Z][A-Za-z0-9 ().,''/-]+$'
+      label_only_requires_heading: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-de-snap-rules",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-de/regulation/title-16/9000-food-stamp-program",
+        "us-de/regulation/title-16/9000-food-stamp-program/9001",
+        "us-de/regulation/title-16/9000-food-stamp-program/9002",
+        "us-de/regulation/title-16/9000-food-stamp-program/9064.7",
+        "us-de/regulation/title-16/9000-food-stamp-program/9065",
+    ]
+    assert records[1].heading == "9001 Legal Base"
+    assert "9060 [273.10(d)(7)] Continuation text." in (records[3].body or "")

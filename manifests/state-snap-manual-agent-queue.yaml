@@ -81,10 +81,14 @@ states:
       version: 2026-05-27-ct-snap-manual
   - jurisdiction: us-de
     name: Delaware
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://regulations.delaware.gov/AdminCode/title16/9000
     target_manifest: manifests/us-de-snap-rules.yaml
+    target_scope:
+      jurisdiction: us-de
+      document_class: regulation
+      version: 2026-05-27-de-snap-rules
   - jurisdiction: us-dc
     name: District of Columbia
     queue_status: published_current

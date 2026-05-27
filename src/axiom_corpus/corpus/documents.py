@@ -471,6 +471,11 @@ def _extract_labeled_pdf_section_blocks(
         re.compile(str(heading_pattern)) if heading_pattern is not None else None
     )
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
+    label_heading_pattern = extraction.get("label_only_heading_pattern")
+    label_heading_re = (
+        re.compile(str(label_heading_pattern)) if label_heading_pattern is not None else None
+    )
+    label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     lines = _filtered_pdf_lines(content, extraction=extraction)
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
 
@@ -513,6 +518,7 @@ def _extract_labeled_pdf_section_blocks(
         match = _match_labeled_pdf_section(line, section_heading_re, section_label_re)
         if match:
             label, heading_text = match
+            consumed_label_heading = False
             if drop_repeated and label == current_label:
                 index += 1
                 while index < len(lines) and _looks_like_labeled_heading_continuation(
@@ -520,9 +526,21 @@ def _extract_labeled_pdf_section_blocks(
                 ):
                     index += 1
                 continue
+            if not heading_text and label_heading_re is not None:
+                if index + 1 < len(lines) and label_heading_re.match(lines[index + 1][0]):
+                    heading_text = lines[index + 1][0]
+                    consumed_label_heading = True
+                elif label_requires_heading:
+                    if current_label is not None:
+                        current_body.append(line)
+                        current_body_pages.append(page)
+                    index += 1
+                    continue
             flush()
-            heading_lines = [heading_text]
+            heading_lines = [heading_text] if heading_text else []
             index += 1
+            if consumed_label_heading:
+                index += 1
             while index < len(lines) and _looks_like_labeled_heading_continuation(
                 lines[index][0], section_heading_re, section_label_re
             ):
