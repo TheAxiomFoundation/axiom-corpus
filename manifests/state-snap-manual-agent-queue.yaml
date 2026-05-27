@@ -63,11 +63,15 @@ states:
       version: 2026-05-27-ar-snap-manual
   - jurisdiction: us-ca
     name: California
-    queue_status: manifest_ready_partial
-    source_kind: official_docx_manual_regulations
+    queue_status: published_current
+    source_kind: official_docx_pdf_manual_regulations
     primary_source_url: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/CalFresh-Regulations
-    target_manifest: manifests/us-ca-cdss-mpp-calfresh.yaml
-    notes: Existing manifest is an encoding-essential subset of CalFresh MPP Division 63; full coverage remains to be expanded.
+    target_manifest: manifests/us-ca-cdss-mpp-calfresh-complete.yaml
+    target_scope:
+      jurisdiction: us-ca
+      document_class: regulation
+      version: 2026-05-27-ca-cdss-mpp-calfresh
+    notes: Current scope includes all 15 official CDSS Food Stamp Manual files linked from the CalFresh Regulations page.
   - jurisdiction: us-co
     name: Colorado
     queue_status: published_current
