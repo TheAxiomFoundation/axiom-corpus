@@ -31,8 +31,8 @@ source_discovery_summary:
   ready_for_manifest_count: 1450
   ready_group_count: 164
   needs_review_count: 5037
-  blocked_or_excluded_count: 710
-  release_scope_present_count: 30
+  blocked_or_excluded_count: 708
+  release_scope_present_count: 31
 fill_in_fields:
   status:
   - backlog
@@ -214,7 +214,7 @@ document_groups:
   owner: null
   notes: Refreshed source-discovery classification splits state agency manuals such as AZ DES and Wyoming DFS out of this formerly mixed federal/state bucket. Remaining URLs are mixed federal/local manual-like sources and should be promoted only after source-specific review.
 - group_key: us-az/manual/manuals
-  status: blocked
+  status: ingested
   priority: p1
   jurisdiction: us-az
   document_class: manual
@@ -229,22 +229,22 @@ document_groups:
   - https://dbmefaapolicy.azdes.gov/index.html
   - https://dbmefaapolicy.azdes.gov/Archived_Policy/baggage/2023-11-27_WhatChanged.pdf
   suggested_manifest_stem: us-az-manuals
-  suggested_action: Obtain an official export or allowlisted source path for the Arizona DES FAA policy manual before ingestion.
-  target_manifest: null
+  suggested_action: Keep the Wayback-backed DES FAA5 manifest current until DES provides an unattended official export or allowlisted endpoint.
+  target_manifest: manifests/us-az-des-faa5-manual.yaml
   target_release_scope:
     jurisdiction: us-az
     document_class: manual
-    version: null
-  coverage_status: blocked
+    version: 2025-10-30-az-des-faa5-manual
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-az/manual/2025-10-30-az-des-faa5-manual/
+    inventory: data/corpus/inventory/us-az/manual/2025-10-30-az-des-faa5-manual.json
+    provisions: data/corpus/provisions/us-az/manual/2025-10-30-az-des-faa5-manual.jsonl
+    coverage: data/corpus/coverage/us-az/manual/2025-10-30-az-des-faa5-manual.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: The official AZ DES FAA manual, including https://dbmefaapolicy.azdes.gov/#page/How_To_Use_This_Manual/Customer_Info.html, returns a Cloudflare challenge/403 to the pipeline. The hash route is also client-side state, so it cannot be snapshotted as content over HTTP until AZ provides an accessible export or allowlisted endpoint.
+  notes: Local official-document extraction completed for the Arizona DES FAA5 Cash and Nutrition Assistance manual from the 2025-10-30 Internet Archive snapshot of official DES pages / 345 provisions. Live DES pages still return a Cloudflare challenge to unattended HTTP clients, so the manifest keeps DES as canonical source_url and uses archived official-page download_url values.
 - group_key: us-wy/manual/manuals
   status: ingested
   priority: p1
