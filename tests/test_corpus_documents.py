@@ -291,6 +291,56 @@ documents:
     assert "Navigation text should be ignored" not in bodies
 
 
+def test_extract_official_documents_keeps_content_inside_aspnet_form(
+    tmp_path: Path,
+) -> None:
+    html_path = tmp_path / "il-dhs.html"
+    html_path.write_text(
+        """
+        <html>
+          <body>
+            <form id="aspnetForm">
+              <input type="hidden" name="__VIEWSTATE" value="ignored" />
+              <div id="Main2">
+                <h1>PM 13: SNAP Eligibility and Benefit Amount</h1>
+                <p>SNAP eligibility rules are published in the manual body.</p>
+              </div>
+            </form>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: il-dhs-pm13
+    jurisdiction: us-il
+    document_class: manual
+    title: "PM 13: SNAP Eligibility and Benefit Amount"
+    source_url: https://www.dhs.state.il.us/page.aspx?item=16111
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    extraction:
+      html_content_selector: "#Main2"
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-il-snap-manual",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    bodies = "\n".join(record.body or "" for record in records)
+    assert "SNAP eligibility rules are published in the manual body" in bodies
+    assert "__VIEWSTATE" not in bodies
+
+
 def test_extract_official_documents_from_json_html_field(tmp_path: Path) -> None:
     json_path = tmp_path / "ne-title-475-chapter-1.json"
     json_path.write_text(

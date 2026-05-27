@@ -146,10 +146,14 @@ states:
       version: 2026-05-27-id-food-stamp-rules
   - jurisdiction: us-il
     name: Illinois
-    queue_status: agent_ready
-    source_kind: official_html_manual
-    primary_source_url: https://www.dhs.state.il.us/page.aspx?item=16111
+    queue_status: published_current
+    source_kind: official_integrated_html_manual
+    primary_source_url: https://www.dhs.state.il.us/page.aspx?item=13473
     target_manifest: manifests/us-il-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-il
+      document_class: manual
+      version: 2026-05-27-il-cash-snap-medical-manual
   - jurisdiction: us-in
     name: Indiana
     queue_status: published_current
