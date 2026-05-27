@@ -90,10 +90,14 @@ states:
     notes: Existing DC manual artifact is child care, not SNAP.
   - jurisdiction: us-fl
     name: Florida
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.myflfamilies.com/services/public-assistance/additional-resources-and-services/ess-program-manual
     target_manifest: manifests/us-fl-ess-manual.yaml
+    target_scope:
+      jurisdiction: us-fl
+      document_class: manual
+      version: 2026-05-27-fl-ess-manual
   - jurisdiction: us-ga
     name: Georgia
     queue_status: agent_ready
@@ -195,10 +199,11 @@ states:
       version: 2026-05-27-ms-snap-manual
   - jurisdiction: us-mo
     name: Missouri
-    queue_status: agent_ready
+    queue_status: blocked_access
     source_kind: official_html_manual
     primary_source_url: https://dssmanuals.mo.gov/food-stamps/
     target_manifest: manifests/us-mo-food-stamp-manual.yaml
+    notes: Landing page is public, but current chapter pages are password-protected.
   - jurisdiction: us-mt
     name: Montana
     queue_status: agent_ready
