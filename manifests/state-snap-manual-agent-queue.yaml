@@ -169,10 +169,14 @@ states:
     target_manifest: manifests/us-me-snap-rules.yaml
   - jurisdiction: us-md
     name: Maryland
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_pdf_or_html_manual
     primary_source_url: https://dhs.maryland.gov/supplemental-nutrition-assistance-program/food-supplement-program-manual/
     target_manifest: manifests/us-md-fsp-manual.yaml
+    target_scope:
+      jurisdiction: us-md
+      document_class: manual
+      version: 2026-05-27-md-snap-manual
   - jurisdiction: us-ma
     name: Massachusetts
     queue_status: published_current
