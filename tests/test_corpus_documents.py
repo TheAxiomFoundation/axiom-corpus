@@ -53,8 +53,8 @@ def test_download_document_retries_browser_user_agent_on_forbidden():
             self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
             self.calls: list[dict[str, str]] = []
 
-        def get(self, url, *, headers=None, timeout=None, allow_redirects=None):
-            del url, timeout, allow_redirects
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None, verify=None):
+            del url, timeout, allow_redirects, verify
             self.calls.append(dict(headers or self.headers))
             if len(self.calls) == 1:
                 return FakeResponse(403)
@@ -94,8 +94,8 @@ def test_download_document_retries_transient_request_errors(monkeypatch):
             self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
             self.calls = 0
 
-        def get(self, url, *, headers=None, timeout=None, allow_redirects=None):
-            del url, headers, timeout, allow_redirects
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None, verify=None):
+            del url, headers, timeout, allow_redirects, verify
             self.calls += 1
             if self.calls == 1:
                 raise requests.exceptions.ChunkedEncodingError("connection reset")
@@ -115,6 +115,45 @@ def test_download_document_retries_transient_request_errors(monkeypatch):
 
     assert downloaded.content == b"<html><body>ok</body></html>"
     assert session.calls == 2
+
+
+def test_download_document_can_disable_tls_verification():
+    class FakeResponse:
+        status_code = 200
+        content = b'{"ok": true}'
+        headers = {"content-type": "application/json"}
+        url = "https://example.test/doc.json"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+            self.verify_values: list[bool | None] = []
+
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None, verify=None):
+            del url, headers, timeout, allow_redirects
+            self.verify_values.append(verify)
+            return FakeResponse()
+
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="regulation",
+        title="Document",
+        source_url="https://example.test/doc.json",
+        request={"verify_tls": False},
+    )
+    session = FakeSession()
+
+    downloaded = _download_document(source, session=session)  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == b'{"ok": true}'
+    assert session.verify_values == [False]
 
 
 def test_extract_official_documents_from_local_html_and_pdf(tmp_path):
@@ -250,6 +289,52 @@ documents:
     bodies = "\n".join(record.body or "" for record in records)
     assert "Basic Food applicants must meet work registration rules" in bodies
     assert "Navigation text should be ignored" not in bodies
+
+
+def test_extract_official_documents_from_json_html_field(tmp_path: Path) -> None:
+    json_path = tmp_path / "ne-title-475-chapter-1.json"
+    json_path.write_text(
+        json.dumps(
+            {
+                "isSuccess": True,
+                "output": {
+                    "chapterHtml": (
+                        "<p><strong>TITLE 475</strong></p>"
+                        "<p><strong>CHAPTER 1 GENERAL PROVISIONS</strong></p>"
+                        "<p>SNAP is a federal low income nutrition program.</p>"
+                    )
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ne-title-475-chapter-1
+    jurisdiction: us-ne
+    document_class: regulation
+    title: "Nebraska Title 475 NAC Chapter 1: General Provisions"
+    source_url: https://rules.nebraska.gov/api/chapter/1741
+    source_format: json
+    local_path: {json.dumps(str(json_path))}
+    extraction:
+      json_html_field: output.chapterHtml
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-ne-snap-rules",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert records[1].source_format == "json"
+    assert "SNAP is a federal low income nutrition program" in (records[1].body or "")
 
 
 def test_extract_official_documents_drops_configured_html_selectors(

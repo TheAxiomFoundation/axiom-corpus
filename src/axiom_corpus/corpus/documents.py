@@ -5,10 +5,12 @@ from __future__ import annotations
 import re
 import sys
 import time
+import warnings
 import zipfile
 from dataclasses import dataclass
 from datetime import date
 from io import BytesIO
+from json import loads as json_loads
 from pathlib import Path
 from typing import Any, Self, TextIO
 from xml.etree import ElementTree
@@ -18,6 +20,7 @@ import requests
 import yaml
 from bs4 import BeautifulSoup
 from bs4.element import Tag
+from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
@@ -63,11 +66,15 @@ class OfficialDocumentSource:
     source_as_of: str | None = None
     expression_date: str | None = None
     local_path: str | None = None
+    request: dict[str, Any] | None = None
     extraction: dict[str, Any] | None = None
     metadata: dict[str, Any] | None = None
 
     @classmethod
     def from_mapping(cls, data: dict[str, Any]) -> Self:
+        request = data.get("request")
+        if request is not None and not isinstance(request, dict):
+            raise ValueError("official document request config must be a mapping")
         extraction = data.get("extraction")
         if extraction is not None and not isinstance(extraction, dict):
             raise ValueError("official document extraction config must be a mapping")
@@ -83,6 +90,7 @@ class OfficialDocumentSource:
             source_as_of=data.get("source_as_of"),
             expression_date=data.get("expression_date"),
             local_path=data.get("local_path"),
+            request=request,
             extraction=extraction,
             metadata=data.get("metadata"),
         )
@@ -221,6 +229,7 @@ def extract_official_documents(
                 downloaded.content,
                 source_format,
                 source_url=source.source_url,
+                title=source.title,
                 extraction=source.extraction,
             )
         )
@@ -322,12 +331,13 @@ def _download_document(
     download_url = (
         source.download_url or google_drive_download_url(source.source_url) or source.source_url
     )
-    response = _get_with_retries(session, download_url)
+    verify = bool((source.request or {}).get("verify_tls", True))
+    response = _get_with_retries(session, download_url, verify=verify)
     if response.status_code in _BROWSER_FALLBACK_STATUSES:
         response.close()
         headers = dict(session.headers)
         headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
-        response = _get_with_retries(session, download_url, headers=headers)
+        response = _get_with_retries(session, download_url, headers=headers, verify=verify)
     response.raise_for_status()
     return _DownloadedDocument(
         source=source,
@@ -342,16 +352,21 @@ def _get_with_retries(
     url: str,
     *,
     headers: dict[str, str] | None = None,
+    verify: bool = True,
 ) -> requests.Response:
     """Fetch a small official document, retrying transient server/network failures."""
     for attempt in range(1, _REQUEST_RETRY_ATTEMPTS + 1):
         try:
-            response = session.get(
-                url,
-                headers=headers,
-                timeout=90,
-                allow_redirects=True,
-            )
+            with warnings.catch_warnings():
+                if not verify:
+                    warnings.simplefilter("ignore", InsecureRequestWarning)
+                response = session.get(
+                    url,
+                    headers=headers,
+                    timeout=90,
+                    allow_redirects=True,
+                    verify=verify,
+                )
             if (
                 response.status_code in _REQUEST_RETRY_STATUSES
                 and attempt < _REQUEST_RETRY_ATTEMPTS
@@ -401,13 +416,21 @@ def _extract_blocks(
     source_format: str,
     *,
     source_url: str,
+    title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
     if source_format == "pdf":
         return _extract_pdf_blocks(content, extraction=extraction)
     if source_format == "html":
         return _extract_html_blocks(
-            content, source_url=source_url, extraction=extraction
+            content, source_url=source_url, fallback_title=title, extraction=extraction
+        )
+    if source_format == "json":
+        return _extract_json_html_blocks(
+            content,
+            source_url=source_url,
+            fallback_title=title,
+            extraction=extraction,
         )
     if source_format == "docx":
         return _extract_docx_blocks(content)
@@ -781,6 +804,7 @@ def _extract_html_blocks(
     content: bytes,
     *,
     source_url: str,
+    fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
     soup = BeautifulSoup(content, "html.parser", from_encoding="utf-8")
@@ -803,7 +827,7 @@ def _extract_html_blocks(
         for node in soup.select(selector):
             node.decompose()
     root = _html_content_root(soup, extraction=extraction)
-    title = _document_title(soup)
+    title = _document_title(soup) or fallback_title
     webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
     if webworks_blocks:
         return webworks_blocks
@@ -852,6 +876,38 @@ def _extract_html_blocks(
             metadata={"source_url": source_url},
         ),
     )
+
+
+def _extract_json_html_blocks(
+    content: bytes,
+    *,
+    source_url: str,
+    fallback_title: str | None,
+    extraction: dict[str, Any] | None,
+) -> tuple[_DocumentBlock, ...]:
+    html_field = (extraction or {}).get("json_html_field")
+    if not isinstance(html_field, str) or not html_field:
+        raise ValueError("json official document extraction requires json_html_field")
+    data = json_loads(content.decode("utf-8"))
+    html_text = _json_path(data, html_field)
+    if not isinstance(html_text, str) or not html_text.strip():
+        raise ValueError(f"json_html_field did not resolve to HTML text: {html_field}")
+    return _extract_html_blocks(
+        html_text.encode("utf-8"),
+        source_url=source_url,
+        fallback_title=fallback_title,
+        extraction=extraction,
+    )
+
+
+def _json_path(data: Any, path: str) -> Any:
+    current = data
+    for part in path.split("."):
+        if isinstance(current, dict) and part in current:
+            current = current[part]
+            continue
+        raise ValueError(f"json path did not resolve: {path}")
+    return current
 
 
 def _html_content_root(
