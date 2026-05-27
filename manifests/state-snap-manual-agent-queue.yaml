@@ -254,10 +254,14 @@ states:
     target_manifest: manifests/us-ne-snap-rules.yaml
   - jurisdiction: us-nv
     name: Nevada
-    queue_status: needs_source_review
+    queue_status: published_current
     source_kind: official_manual_page
     primary_source_url: https://dwss.nv.gov/Home/Features/eligibility/eligibility-n-payment-info-manual/
-    target_manifest: manifests/us-nv-eligibility-payment-manual.yaml
+    target_manifest: manifests/us-nv-eligibility-payments-manual.yaml
+    target_scope:
+      jurisdiction: us-nv
+      document_class: manual
+      version: 2026-05-27-nv-eligibility-payments-manual
   - jurisdiction: us-nh
     name: New Hampshire
     queue_status: agent_ready
