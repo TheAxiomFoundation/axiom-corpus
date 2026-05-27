@@ -353,6 +353,63 @@ documents:
     )
 
 
+def test_extract_official_documents_formats_labeled_html_section_labels(
+    tmp_path: Path,
+) -> None:
+    html_path = tmp_path / "nh-he-w-700.html"
+    html_path.write_text(
+        """
+        <html>
+          <body>
+            <div class="WordSection1">
+              <p>He-W 701 .02 Definitions F - O .</p>
+              <p>(a) "Fraud" means an intentional program violation.</p>
+              <p>He-W 702.03 Telephone Application .</p>
+              <p>(a) Applicants may request assistance by telephone.</p>
+              <p>APPENDIX A</p>
+              <p>He-W 701.02 RSA 161:4-a, IV</p>
+            </div>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: nh-he-w-700
+    jurisdiction: us-nh
+    document_class: regulation
+    title: New Hampshire He-W 700 SNAP Rules
+    source_url: https://gc.nh.gov/rules/state_agencies/he-w700.html
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    citation_path: us-nh/regulation/he-w-700
+    extraction:
+      html_content_selector: .WordSection1
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<prefix>He-W)\\s+(?P<part>\\d+)\\s*\\.\\s*(?P<section>\\d+)\\s*(?P<heading>.+?)\\.?$'
+      section_label_template: '{{prefix}} {{part}}.{{section}}'
+      stop_text_pattern: '^APPENDIX A$'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-nh-he-w-700-snap-rules",
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records if record.kind == "section"] == [
+        "us-nh/regulation/he-w-700/He-W 701.02",
+        "us-nh/regulation/he-w-700/He-W 702.03",
+    ]
+    assert records[-1].body == "(a) Applicants may request assistance by telephone."
+
+
 def test_extract_official_documents_keeps_content_inside_aspnet_form(
     tmp_path: Path,
 ) -> None:

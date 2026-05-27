@@ -1,0 +1,24 @@
+documents:
+  - source_id: nh-gencourt-he-w-700-snap-rules
+    jurisdiction: us-nh
+    document_class: regulation
+    citation_path: us-nh/regulation/he-w-700
+    title: New Hampshire Code of Administrative Rules Chapter He-W 700 Supplemental Nutrition Assistance Program (SNAP)
+    source_url: https://gc.nh.gov/rules/state_agencies/he-w700.html
+    source_format: html
+    source_as_of: "2026-05-27"
+    expression_date: "2026-03-05"
+    extraction:
+      html_content_selector: .WordSection1
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<prefix>He-W)\s+(?P<part>\d+)\s*\.\s*(?P<section>\d+)\s*(?:[-\u2013]\s*)?(?P<heading>.*?)(?:\s+\.\s+(?P<body>.+))?\.?$'
+      section_label_template: "{prefix} {part}.{section}"
+      stop_text_pattern: ^APPENDIX A$
+    metadata:
+      primary_source: true
+      source_authority: New Hampshire General Court, Office of Legislative Services Administrative Rules
+      document_subtype: administrative_code
+      program: SNAP
+      manual_landing_page: https://www.dhhs.nh.gov/fsm_htm/newfsm.htm
+      source_discovery_group: us-nh/regulation/he-w-700
+      discovered_via: manual-review:state-snap-manual-agent-queue

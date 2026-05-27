@@ -939,6 +939,9 @@ def _extract_labeled_html_section_blocks(
         re.compile(str(heading_pattern)) if heading_pattern is not None else None
     )
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
+    label_template = extraction.get("section_label_template")
+    stop_pattern = extraction.get("stop_text_pattern")
+    stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
 
     sections: list[_DocumentBlock] = []
     current_label: str | None = None
@@ -973,7 +976,15 @@ def _extract_labeled_html_section_blocks(
         text = _normalize_text(node.get_text(" ", strip=True))
         if not text:
             continue
-        match = _match_labeled_html_section(text, section_heading_re, section_label_re)
+        if stop_re is not None and stop_re.match(text):
+            flush()
+            break
+        match = _match_labeled_html_section(
+            text,
+            section_heading_re,
+            section_label_re,
+            label_template=str(label_template) if label_template is not None else None,
+        )
         if match is not None:
             label, heading, body = match
             flush()
@@ -991,21 +1002,44 @@ def _match_labeled_html_section(
     text: str,
     section_heading_re: re.Pattern[str] | None,
     section_label_re: re.Pattern[str] | None,
+    *,
+    label_template: str | None = None,
 ) -> tuple[str, str, str] | None:
     if section_heading_re is not None:
         match = section_heading_re.match(text)
         if match:
             groups = match.groupdict()
+            label = _labeled_section_label(match, label_template=label_template)
             return (
-                match.group("label").strip(),
+                label,
                 (groups.get("heading") or "").strip(),
                 (groups.get("body") or "").strip(),
             )
     if section_label_re is not None:
         match = section_label_re.match(text)
         if match:
-            return match.group("label").strip(), "", ""
+            return _labeled_section_label(match, label_template=label_template), "", ""
     return None
+
+
+def _labeled_section_label(
+    match: re.Match[str], *, label_template: str | None
+) -> str:
+    groups = {key: (value or "").strip() for key, value in match.groupdict().items()}
+    if label_template:
+        try:
+            return label_template.format(**groups).strip()
+        except KeyError as exc:
+            raise ValueError(
+                f"section_label_template references unknown group: {exc.args[0]}"
+            ) from exc
+    label = groups.get("label")
+    if label:
+        return label
+    raise ValueError(
+        "labeled_sections extraction requires a label group unless "
+        "section_label_template is configured"
+    )
 
 
 def _html_content_root(

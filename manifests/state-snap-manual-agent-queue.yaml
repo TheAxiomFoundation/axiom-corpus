@@ -315,10 +315,15 @@ states:
       version: 2026-05-27-nv-eligibility-payments-manual
   - jurisdiction: us-nh
     name: New Hampshire
-    queue_status: agent_ready
-    source_kind: official_html_manual
-    primary_source_url: https://www.dhhs.nh.gov/fsm_htm/newfsm.htm
-    target_manifest: manifests/us-nh-food-stamp-manual.yaml
+    queue_status: published_current
+    source_kind: official_administrative_code
+    primary_source_url: https://gc.nh.gov/rules/state_agencies/he-w700.html
+    target_manifest: manifests/us-nh-snap-rules.yaml
+    target_scope:
+      jurisdiction: us-nh
+      document_class: regulation
+      version: 2026-05-27-nh-he-w-700-snap-rules
+    notes: DHHS Food Stamp Manual HTML remains access-blocked from unattended clients; current scope uses official General Court Chapter He-W 700 SNAP administrative rules.
   - jurisdiction: us-nj
     name: New Jersey
     queue_status: partial_primary_policy
