@@ -28,11 +28,11 @@ source_discovery_summary:
   raw_url_count: 9830
   invalid_url_count: 0
   unique_url_count: 7197
-  ready_for_manifest_count: 1437
-  ready_group_count: 158
-  needs_review_count: 5050
-  blocked_or_excluded_count: 710
-  release_scope_present_count: 12
+  ready_for_manifest_count: 1450
+  ready_group_count: 164
+  needs_review_count: 5037
+  blocked_or_excluded_count: 708
+  release_scope_present_count: 31
 fill_in_fields:
   status:
   - backlog
@@ -172,36 +172,30 @@ document_groups:
   owner: null
   notes: Local official-document extraction completed for 104 documents / 3,210 provisions.
 - group_key: us/manual/manuals
-  status: backlog
+  status: triaged
   priority: p1
   jurisdiction: us
   document_class: manual
   source_family: manuals
-  url_count: 51
-  input_count: 72
+  url_count: 30
+  input_count: 48
   host_counts:
     acf.gov: 1
-    dbmefaapolicy.azdes.gov: 2
-    dfs.wyo.gov: 4
     eclkc.ohs.acf.hhs.gov: 1
     epolicy.dpss.lacounty.gov: 2
     ers.usda.gov: 1
     headstart.gov: 1
-    khap.kdhe.ks.gov: 1
-    ldh.la.gov: 3
     medicaid.gov: 1
     my.dpss.lacounty.gov: 1
-    nd.gov: 10
-    pamms.dhs.ga.gov: 1
     ssa.gov: 22
   source_list_counts:
-    all_url: 51
+    all_url: 30
   sample_urls:
   - http://epolicy.dpss.lacounty.gov/epolicy/epolicy/server/general/projects_responsive/ePolicyMaster/index.htm?area=general&ctxid=&project=ePolicyMaster&type=responsivehelp
   - https://epolicy.dpss.lacounty.gov/epolicy/epolicy/server/general/projects_responsive/ePolicyMaster/index.htm?area=general&ctxid=&project=ePolicyMaster&type=responsivehelp
-  - https://dbmefaapolicy.azdes.gov/index.html
-  - https://ldh.la.gov/assets/medicaid/MedicaidEligibilityPolicy/H-800.pdf
   - https://medicaid.gov/federal-policy-guidance/downloads/cib12082025.pdf
+  - https://ssa.gov/policy/docs/progdesc/ssi_st_asst/2011/ak.pdf
+  - https://acf.gov/ocs/policy-guidance/liheap-im-2018-3-state-median-income-estimates-optional-use-fy-2018-and
   suggested_manifest_stem: us-manuals
   suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
   target_manifest: manifests/us-manuals.yaml
@@ -209,7 +203,7 @@ document_groups:
     jurisdiction: us
     document_class: manual
     version: null
-  coverage_status: not_started
+  coverage_status: needs_official_source_review
   corpus_artifacts:
     sources: null
     inventory: null
@@ -218,7 +212,73 @@ document_groups:
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Refreshed source-discovery classification splits state agency manuals such as AZ DES and Wyoming DFS out of this formerly mixed federal/state bucket. Remaining URLs are mixed federal/local manual-like sources and should be promoted only after source-specific review.
+- group_key: us-az/manual/manuals
+  status: ingested
+  priority: p1
+  jurisdiction: us-az
+  document_class: manual
+  source_family: manuals
+  url_count: 2
+  input_count: 3
+  host_counts:
+    dbmefaapolicy.azdes.gov: 2
+  source_list_counts:
+    all_url: 2
+  sample_urls:
+  - https://dbmefaapolicy.azdes.gov/index.html
+  - https://dbmefaapolicy.azdes.gov/Archived_Policy/baggage/2023-11-27_WhatChanged.pdf
+  suggested_manifest_stem: us-az-manuals
+  suggested_action: Keep the Wayback-backed DES FAA5 manifest current until DES provides an unattended official export or allowlisted endpoint.
+  target_manifest: manifests/us-az-des-faa5-manual.yaml
+  target_release_scope:
+    jurisdiction: us-az
+    document_class: manual
+    version: 2025-10-30-az-des-faa5-manual
+  coverage_status: ingested_local
+  corpus_artifacts:
+    sources: data/corpus/sources/us-az/manual/2025-10-30-az-des-faa5-manual/
+    inventory: data/corpus/inventory/us-az/manual/2025-10-30-az-des-faa5-manual.json
+    provisions: data/corpus/provisions/us-az/manual/2025-10-30-az-des-faa5-manual.jsonl
+    coverage: data/corpus/coverage/us-az/manual/2025-10-30-az-des-faa5-manual.json
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: Local official-document extraction completed for the Arizona DES FAA5 Cash and Nutrition Assistance manual from the 2025-10-30 Internet Archive snapshot of official DES pages / 345 provisions. Live DES pages still return a Cloudflare challenge to unattended HTTP clients, so the manifest keeps DES as canonical source_url and uses archived official-page download_url values.
+- group_key: us-wy/manual/manuals
+  status: ingested
+  priority: p1
+  jurisdiction: us-wy
+  document_class: manual
+  source_family: manuals
+  url_count: 4
+  input_count: 4
+  host_counts:
+    dfs.wyo.gov: 4
+  source_list_counts:
+    all_url: 4
+  sample_urls:
+  - https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/
+  - https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/table-ii-power-income-limits/
+  - https://dfs.wyo.gov/accordions/snap-and-power-policy-manual-1100-extended-menu/
+  - https://dfs.wyo.gov/accordions/snap-and-power-policy-manual-900-extended-menu/
+  suggested_manifest_stem: us-wy-manuals
+  suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
+  target_manifest: manifests/us-wy-manuals.yaml
+  target_release_scope:
+    jurisdiction: us-wy
+    document_class: manual
+    version: 2026-05-27-wy-manuals
+  coverage_status: ingested_local
+  corpus_artifacts:
+    sources: data/corpus/sources/us-wy/manual/2026-05-27-wy-manuals/
+    inventory: data/corpus/inventory/us-wy/manual/2026-05-27-wy-manuals.json
+    provisions: data/corpus/provisions/us-wy/manual/2026-05-27-wy-manuals.jsonl
+    coverage: data/corpus/coverage/us-wy/manual/2026-05-27-wy-manuals.json
+  r2_status: not_published
+  supabase_status: not_loaded
+  owner: null
+  notes: Local official-document extraction completed for 4 Wyoming SNAP/POWER policy manual HTML sources / 9 provisions.
 - group_key: us-mi/form/individual_income_tax_forms
   status: ingested
   priority: p0
@@ -2671,8 +2731,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-wi/manual/manuals
-  status: backlog
-  priority: null
+  status: triaged
+  priority: p1
   jurisdiction: us-wi
   document_class: manual
   source_family: manuals
@@ -2696,7 +2756,7 @@ document_groups:
     jurisdiction: us-wi
     document_class: manual
     version: null
-  coverage_status: not_started
+  coverage_status: needs_official_source_review
   corpus_artifacts:
     sources: null
     inventory: null
@@ -2705,7 +2765,7 @@ document_groups:
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: FoodShare Wisconsin Handbook Release 26-01 was ingested separately from its official DHS PDF under manifests/us-wi-foodshare-manual.yaml / 2026-05-27-wi-foodshare-manual. This PolicyEngine group is mostly W-2 manual pages plus one BadgerCare Plus handbook page, so it remains open for a follow-up cash-benefit/manual manifest.
 - group_key: us-il/form/property_tax_relief_forms
   status: backlog
   priority: null
@@ -3483,8 +3543,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-ut/manual/manuals
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p1
   jurisdiction: us-ut
   document_class: manual
   source_family: manuals
@@ -3505,17 +3565,17 @@ document_groups:
   target_release_scope:
     jurisdiction: us-ut
     document_class: manual
-    version: null
-  coverage_status: not_started
+    version: 2026-05-27-ut-manuals
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-ut/manual/2026-05-27-ut-manuals/
+    inventory: data/corpus/inventory/us-ut/manual/2026-05-27-ut-manuals.json
+    provisions: data/corpus/provisions/us-ut/manual/2026-05-27-ut-manuals.jsonl
+    coverage: data/corpus/coverage/us-ut/manual/2026-05-27-ut-manuals.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for the two current Utah DWS eligibility manual/table pages / 5 provisions. Two obsolete historical table URLs were intentionally left out.
 - group_key: us-ma/statute/statute
   status: backlog
   priority: null
@@ -3583,21 +3643,23 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-tx/manual/manuals
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p1
   jurisdiction: us-tx
   document_class: manual
   source_family: manuals
-  url_count: 3
-  input_count: 4
+  url_count: 13
+  input_count: 15
   host_counts:
-    hhs.texas.gov: 2
+    hhs.texas.gov: 12
     twc.texas.gov: 1
   source_list_counts:
-    all_url: 3
+    all_url: 13
   sample_urls:
-  - https://twc.texas.gov/sites/default/files/wf/policy-letter/wd/19-24-ch1-twc.pdf
   - https://hhs.texas.gov/handbooks/texas-works-handbook/a-1210-general-policy
+  - https://hhs.texas.gov/handbooks/texas-works-handbook/a-1220-limits
+  - https://hhs.texas.gov/handbooks/texas-works-handbook/a-1320-types-income
+  - https://hhs.texas.gov/handbooks/texas-works-handbook/a-1420-types-deductions
   - https://hhs.texas.gov/handbooks/texas-works-handbook/a-2410-general-policy
   suggested_manifest_stem: us-tx-manuals
   suggested_action: Review the group and create one source-first manifest when the documents share a policy scope.
@@ -3605,17 +3667,17 @@ document_groups:
   target_release_scope:
     jurisdiction: us-tx
     document_class: manual
-    version: null
-  coverage_status: not_started
+    version: 2026-05-27-tx-manuals
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-tx/manual/2026-05-27-tx-manuals/
+    inventory: data/corpus/inventory/us-tx/manual/2026-05-27-tx-manuals.json
+    provisions: data/corpus/provisions/us-tx/manual/2026-05-27-tx-manuals.jsonl
+    coverage: data/corpus/coverage/us-tx/manual/2026-05-27-tx-manuals.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 11 current Texas Works Handbook pages / 550 provisions. Stale A-2421 returns the official Texas HHS 404 page, the TWC workforce policy letter is outside this Texas Works/SNAP manual scope, and archived web.archive.org mirrors remain excluded.
 - group_key: us/form/medicaid_chip_eligibility_levels
   status: backlog
   priority: null
@@ -5192,8 +5254,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-oh/manual/manuals
-  status: backlog
-  priority: null
+  status: blocked
+  priority: p1
   jurisdiction: us-oh
   document_class: manual
   source_family: manuals
@@ -5212,7 +5274,7 @@ document_groups:
     jurisdiction: us-oh
     document_class: manual
     version: null
-  coverage_status: not_started
+  coverage_status: blocked
   corpus_artifacts:
     sources: null
     inventory: null
@@ -5221,10 +5283,10 @@ document_groups:
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Ohio eManuals host emanuals.jfs.ohio.gov did not resolve from the ingestion environment on 2026-05-27 over HTTP or HTTPS. Recheck DNS/network path or find an official Ohio JFS export before ingesting.
 - group_key: us-ok/manual/manuals
-  status: backlog
-  priority: null
+  status: blocked
+  priority: p1
   jurisdiction: us-ok
   document_class: manual
   source_family: manuals
@@ -5243,7 +5305,7 @@ document_groups:
     jurisdiction: us-ok
     document_class: manual
     version: null
-  coverage_status: not_started
+  coverage_status: blocked
   corpus_artifacts:
     sources: null
     inventory: null
@@ -5252,7 +5314,7 @@ document_groups:
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Oklahoma OKDHS policy page returned a Cloudflare challenge/403 to the pipeline on 2026-05-27. Do not ingest until an official export, downloadable policy file, or allowlisted endpoint is available.
 - group_key: us-or/form/individual_income_tax_forms
   status: backlog
   priority: null
@@ -5378,8 +5440,8 @@ document_groups:
   owner: null
   notes: null
 - group_key: us-wv/manual/manuals
-  status: backlog
-  priority: null
+  status: ingested
+  priority: p1
   jurisdiction: us-wv
   document_class: manual
   source_family: manuals
@@ -5397,15 +5459,15 @@ document_groups:
   target_release_scope:
     jurisdiction: us-wv
     document_class: manual
-    version: null
-  coverage_status: not_started
+    version: 2026-05-27-wv-manuals
+  coverage_status: ingested_local
   corpus_artifacts:
-    sources: null
-    inventory: null
-    provisions: null
-    coverage: null
+    sources: data/corpus/sources/us-wv/manual/2026-05-27-wv-manuals/
+    inventory: data/corpus/inventory/us-wv/manual/2026-05-27-wv-manuals.json
+    provisions: data/corpus/provisions/us-wv/manual/2026-05-27-wv-manuals.jsonl
+    coverage: data/corpus/coverage/us-wv/manual/2026-05-27-wv-manuals.json
   r2_status: not_published
   supabase_status: not_loaded
   owner: null
-  notes: null
+  notes: Local official-document extraction completed for 1 West Virginia Income Maintenance Manual PDF / 2 provisions.
 additional_source_sets: []

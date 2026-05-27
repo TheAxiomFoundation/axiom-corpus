@@ -121,6 +121,40 @@ def test_source_discovery_classifies_uk_official_policy_sources(tmp_path):
     assert vendor.disposition is DiscoveryDisposition.BLOCKED_VENDOR_ONLY
 
 
+def test_source_discovery_classifies_state_manual_and_handbook_sources(tmp_path):
+    urls = tmp_path / "state_manual_urls.txt"
+    urls.write_text(
+        "\n".join(
+            [
+                "https://www.hhs.texas.gov/handbooks/texas-works-handbook/a-1320-types-income",
+                "https://dfs.wyo.gov/about/policy-manuals/snap-and-power-policy-manual/",
+                "https://dbmefaapolicy.azdes.gov/index.html#page/FAA5/CA_Benefit_Determination.html",
+                "https://emhandbooks.wisconsin.gov/fsh/home.htm",
+            ]
+        )
+    )
+
+    report = build_source_discovery_report(
+        (urls,),
+        release=ReleaseManifest(name="current", scopes=()),
+        generated_at="2026-05-27T12:00:00+00:00",
+        source_name="policyengine",
+    )
+    rows = {row.host: row for row in report.rows}
+
+    assert rows["hhs.texas.gov"].jurisdiction == "us-tx"
+    assert rows["hhs.texas.gov"].document_class == "manual"
+    assert rows["dfs.wyo.gov"].jurisdiction == "us-wy"
+    assert rows["dbmefaapolicy.azdes.gov"].jurisdiction == "us-az"
+    assert rows["emhandbooks.wisconsin.gov"].document_class == "manual"
+    assert {row.group_key for row in report.group_rows} == {
+        "us-az/manual/manuals",
+        "us-tx/manual/manuals",
+        "us-wi/manual/manuals",
+        "us-wy/manual/manuals",
+    }
+
+
 def test_source_discovery_cli_writes_report(tmp_path, capsys):
     source = tmp_path / "state_references.txt"
     source.write_text("https://leg.colorado.gov/colorado-revised-statutes\n")
