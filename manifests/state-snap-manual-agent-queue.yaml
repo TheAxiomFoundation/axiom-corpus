@@ -21,10 +21,15 @@ policy:
 states:
   - jurisdiction: us-al
     name: Alabama
-    queue_status: needs_source_review
-    source_kind: official_portal
+    queue_status: published_current
+    source_kind: official_pdf_chapter_manual
     primary_source_url: https://apps.dhr.alabama.gov/POE/POEhome
-    notes: Public portal lead needs review for complete policy text access.
+    target_manifest: manifests/us-al-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-al
+      document_class: manual
+      version: 2026-05-27-al-snap-poe-manual
+    notes: Current scope includes all 17 official DHR POE Online Manual PDF chapters linked from the public portal.
   - jurisdiction: us-ak
     name: Alaska
     queue_status: published_current
