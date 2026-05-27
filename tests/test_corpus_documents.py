@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import fitz  # type: ignore[import-untyped]
 
@@ -149,6 +150,79 @@ documents:
     assert page_record.source_document_id is None
     assert page_record.metadata is not None
     assert page_record.metadata["document_subtype"] == "waiver_approval"
+
+
+def test_extract_official_documents_reads_webworks_policy_divs(tmp_path: Path) -> None:
+    html_path = tmp_path / "az-faa5.html"
+    html_path.write_text(
+        """
+        <html>
+          <head><title>A CA Benefit Determination</title></head>
+          <body>
+            <div id="ww_content_container">
+              <div id="page_content_container">
+                <div id="page_content">
+                  <div class="Heading_Subject">CA Benefit Determination</div>
+                  <div class="WebWorks_MiniTOC">
+                    <a class="WebWorks_MiniTOC_Link" href="#policy">Policy</a>
+                  </div>
+                  <div class="Body_Text_Public">
+                    This section identifies how benefit amounts are determined.
+                  </div>
+                  <div class="Heading_Section_Public">Policy</div>
+                  <div class="Body_Text_Public">
+                    Countable income is compared to the payment standard.
+                  </div>
+                  <div class="List_Bullet_Public">
+                    <span class="WebWorks_Number">-</span> Net income is subtracted.
+                  </div>
+                  <div class="Heading_Section_Public">Examples</div>
+                  <div class="ww_skin_page_overflow">
+                    <table>
+                      <tr>
+                        <td><div class="Body_Text_Bullet_Public">Individual</div></td>
+                        <td><div class="Body_Text_Bullet_Public">Family Member</div></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: az-faa5-ca-benefit
+    jurisdiction: us-az
+    document_class: manual
+    title: Arizona DES FAA5 CA Benefit Determination
+    source_url: https://dbmefaapolicy.azdes.gov/FAA5/CA_Benefit_Determination.html
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2025-10-30-az-des-faa5-manual",
+    )
+
+    assert report.block_count == 3
+    records = load_provisions(report.provisions_path)
+    policy_block = next(record for record in records if record.heading == "Policy")
+    policy_body = policy_block.body or ""
+    assert "Countable income is compared to the payment standard" in policy_body
+    assert "Net income is subtracted" in policy_body
+    assert "WebWorks_MiniTOC" not in policy_body
+    examples_block = next(record for record in records if record.heading == "Examples")
+    assert "Individual" in (examples_block.body or "")
 
 
 def test_extract_official_documents_splits_numbered_pdf_sections(tmp_path):
