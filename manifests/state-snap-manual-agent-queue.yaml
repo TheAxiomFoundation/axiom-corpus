@@ -179,10 +179,14 @@ states:
     target_manifest: manifests/us-la-snap-manual.yaml
   - jurisdiction: us-me
     name: Maine
-    queue_status: needs_source_review
+    queue_status: published_current
     source_kind: official_agency_rules
     primary_source_url: https://www.maine.gov/sos/rulemaking/agency-rules/department-health-and-human-services-rules
     target_manifest: manifests/us-me-snap-rules.yaml
+    target_scope:
+      jurisdiction: us-me
+      document_class: regulation
+      version: 2026-05-27-me-snap-rules
   - jurisdiction: us-md
     name: Maryland
     queue_status: published_current
