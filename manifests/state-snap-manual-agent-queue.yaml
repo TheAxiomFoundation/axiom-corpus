@@ -27,10 +27,14 @@ states:
     notes: Public portal lead needs review for complete policy text access.
   - jurisdiction: us-ak
     name: Alaska
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: http://dpaweb.hss.state.ak.us/manuals/fs/fsp.htm#t=title_page_alaska_fsp_manual.htm
     target_manifest: manifests/us-ak-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-ak
+      document_class: manual
+      version: 2026-05-27-ak-snap-manual
   - jurisdiction: us-az
     name: Arizona
     queue_status: published_current
