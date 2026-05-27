@@ -1099,6 +1099,7 @@ def _date_text(value: date | str | None, fallback: str) -> str:
 
 
 def _normalize_text(text: str) -> str:
+    text = text.replace("\u200b", "").replace("\ufeff", "")
     lines = [" ".join(line.split()) for line in text.splitlines()]
     paragraphs: list[str] = []
     current: list[str] = []

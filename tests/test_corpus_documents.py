@@ -10,6 +10,7 @@ from axiom_corpus.corpus.documents import (
     OFFICIAL_DOCUMENT_USER_AGENT,
     OfficialDocumentSource,
     _download_document,
+    _normalize_text,
     extract_official_documents,
     google_drive_download_url,
 )
@@ -21,6 +22,12 @@ def test_google_drive_download_url_converts_file_view():
 
     assert (
         google_drive_download_url(url) == "https://drive.google.com/uc?export=download&id=abc123XYZ"
+    )
+
+
+def test_normalize_text_removes_invisible_markers():
+    assert _normalize_text("\ufeff\u200b Requirements\n\nA rule applies.") == (
+        "Requirements\n\nA rule applies."
     )
 
 

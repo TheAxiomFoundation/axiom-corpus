@@ -100,10 +100,14 @@ states:
       version: 2026-05-27-fl-ess-manual
   - jurisdiction: us-ga
     name: Georgia
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://pamms.dhs.ga.gov/dfcs/snap/
     target_manifest: manifests/us-ga-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-ga
+      document_class: manual
+      version: 2026-05-27-ga-snap-manual
   - jurisdiction: us-hi
     name: Hawaii
     queue_status: needs_source_review
