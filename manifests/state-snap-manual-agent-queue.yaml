@@ -302,10 +302,17 @@ states:
     target_manifest: manifests/us-nh-food-stamp-manual.yaml
   - jurisdiction: us-nj
     name: New Jersey
-    queue_status: needs_source_review
+    queue_status: partial_primary_policy
     source_kind: official_regulations_page
-    primary_source_url: https://www.nj.gov/humanservices/providers/rulefees/regs/
+    primary_source_url: https://www.nj.gov/humanservices/notices/rules-and-fees/rules-and-regulations/
     target_manifest: manifests/us-nj-snap-rules.yaml
+    target_scope:
+      jurisdiction: us-nj
+      document_class: regulation
+      version: 2026-05-27-nj-snap-rules-partial
+    notes: Official rules-and-regulations page links a current N.J.A.C. 10:87 PDF,
+      but the PDF currently extracts only through section 10:87-5.5; subchapters
+      5.6+ remain to source from a complete official publication.
   - jurisdiction: us-nm
     name: New Mexico
     queue_status: needs_source_review
