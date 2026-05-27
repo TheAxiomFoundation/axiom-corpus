@@ -269,10 +269,14 @@ states:
     notes: Existing corpus has SNAP eligibility and SUA regulation slices; complete source manual needs direct PDF or equivalent official source handling.
   - jurisdiction: us-nc
     name: North Carolina
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_or_pdf_manuals
     primary_source_url: https://policies.ncdhhs.gov/divisional-n-z/social-services/food-and-nutrition-services/fns-policies-manuals/
     target_manifest: manifests/us-nc-fns-manuals.yaml
+    target_scope:
+      jurisdiction: us-nc
+      document_class: manual
+      version: 2026-05-27-nc-fns-manuals
   - jurisdiction: us-nd
     name: North Dakota
     queue_status: published_current
