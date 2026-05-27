@@ -1,0 +1,33 @@
+documents:
+  - source_id: ut-dws-eligibility-manual-tables
+    jurisdiction: us-ut
+    document_class: manual
+    citation_path: us-ut/manual/dws/eligibility-manual/tables
+    title: Utah Eligibility Manual Tables
+    source_url: https://jobs.utah.gov/Infosource/eligibilitymanual/Tables
+    source_format: html
+    source_as_of: "2026-05-27"
+    expression_date: "2026-05-27"
+    metadata:
+      primary_source: true
+      source_authority: Utah Department of Workforce Services
+      document_subtype: manual_index
+      program: eligibility_programs
+      source_discovery_group: us-ut/manual/manuals
+      discovered_via: policyengine-us:source-discovery
+  - source_id: ut-dws-eligibility-manual-table-1
+    jurisdiction: us-ut
+    document_class: manual
+    citation_path: us-ut/manual/dws/eligibility-manual/table-1-financial-monthly-income-limits
+    title: Utah Eligibility Manual Table 1 - Financial Monthly Income Limits and Assistance Amounts
+    source_url: https://jobs.utah.gov/Infosource/eligibilitymanual/Tables,_Appendicies,_and_Charts/Tables,_Appendicies,_and_Charts/Table_1_-_Financial_Monthly_Income_Limits_and_Assistance_Amounts.htm
+    source_format: html
+    source_as_of: "2026-05-27"
+    expression_date: "2026-05-27"
+    metadata:
+      primary_source: true
+      source_authority: Utah Department of Workforce Services
+      document_subtype: handbook_table
+      program: SNAP
+      source_discovery_group: us-ut/manual/manuals
+      discovered_via: policyengine-us:source-discovery

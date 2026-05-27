@@ -250,6 +250,7 @@ KNOWN_OFFICIAL_HOSTS: dict[str, str | None] = {
     "apps.legislature.ky.gov": "us-ky",
     "aspe.hhs.gov": "us",
     "azdor.gov": "us-az",
+    "azdes.gov": "us-az",
     "azleg.gov": "us-az",
     "capitol.hawaii.gov": "us-hi",
     "cdss.ca.gov": "us-ca",
@@ -378,19 +379,23 @@ STATE_HOST_SUBSTRINGS: dict[str, str] = {
     ".delaware.gov": "us-de",
     ".florida.gov": "us-fl",
     ".georgia.gov": "us-ga",
+    ".ga.gov": "us-ga",
     ".hawaii.gov": "us-hi",
     ".idaho.gov": "us-id",
     ".illinois.gov": "us-il",
     ".in.gov": "us-in",
     ".iowa.gov": "us-ia",
     ".kansas.gov": "us-ks",
+    ".ks.gov": "us-ks",
     ".kentucky.gov": "us-ky",
     ".louisiana.gov": "us-la",
+    ".la.gov": "us-la",
     ".maine.gov": "us-me",
     ".maryland.gov": "us-md",
     ".mass.gov": "us-ma",
     ".michigan.gov": "us-mi",
     ".mn.gov": "us-mn",
+    ".nd.gov": "us-nd",
     ".ms.gov": "us-ms",
     ".mo.gov": "us-mo",
     ".mt.gov": "us-mt",
@@ -410,6 +415,7 @@ STATE_HOST_SUBSTRINGS: dict[str, str] = {
     ".virginia.gov": "us-va",
     ".wa.gov": "us-wa",
     ".wv.gov": "us-wv",
+    ".wyo.gov": "us-wy",
     ".wisconsin.gov": "us-wi",
 }
 
@@ -795,7 +801,20 @@ def infer_document_class(url: str, host: str) -> str:
         )
     ):
         return DocumentClass.STATUTE.value
-    if any(token in text for token in ("manual", "epolicy", "policy", "olmweb")):
+    if any(
+        token in text
+        for token in (
+            "manual",
+            "handbook",
+            "handbooks",
+            "eligibilitymanual",
+            "emhandbook",
+            "emhandbooks",
+            "epolicy",
+            "policy",
+            "olmweb",
+        )
+    ):
         return DocumentClass.MANUAL.value
     if any(
         token in text
