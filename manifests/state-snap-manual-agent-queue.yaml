@@ -189,10 +189,14 @@ states:
       version: 2026-05-27-ma-dta-snap-regulations
   - jurisdiction: us-mi
     name: Michigan
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/html/
     target_manifest: manifests/us-mi-bridges-manual.yaml
+    target_scope:
+      jurisdiction: us-mi
+      document_class: manual
+      version: 2026-05-27-mi-bridges-manual
   - jurisdiction: us-mn
     name: Minnesota
     queue_status: agent_ready
