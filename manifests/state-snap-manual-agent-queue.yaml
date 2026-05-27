@@ -437,15 +437,15 @@ states:
     notes: Current manifest covers PolicyEngine-relevant Texas Works Handbook sections, not yet the complete handbook.
   - jurisdiction: us-ut
     name: Utah
-    queue_status: published_current_needs_cleanup
+    queue_status: published_current
     source_kind: official_html_manual
-    primary_source_url: https://jobs.utah.gov/customereducation/policy.html
+    primary_source_url: https://jobs.utah.gov/infosource/eligibilitymanual/eligibility_manual.htm
     target_manifest: manifests/us-ut-manuals.yaml
     target_scope:
       jurisdiction: us-ut
       document_class: manual
       version: 2026-05-27-ut-manuals
-    notes: Existing output should be reviewed for stale or missing InfoSource table pages.
+    notes: Utah SNAP policy is in the integrated Child Care, Financial and SNAP Eligibility Policy Manual.
   - jurisdiction: us-vt
     name: Vermont
     queue_status: published_current
