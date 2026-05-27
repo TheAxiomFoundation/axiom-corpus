@@ -279,10 +279,10 @@ states:
   - jurisdiction: us-mo
     name: Missouri
     queue_status: blocked_access
-    source_kind: official_html_manual
+    source_kind: official_html_manual_or_administrative_code
     primary_source_url: https://dssmanuals.mo.gov/food-stamps/
     target_manifest: manifests/us-mo-food-stamp-manual.yaml
-    notes: Landing page is public, but current chapter pages are password-protected.
+    notes: DSS manual landing page is public, but current chapter and sampled section pages are password-protected. Official SOS 13 CSR 40-15 SNAP regulation PDF exists at https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-15.pdf, but Cloudflare currently blocks unattended source capture.
   - jurisdiction: us-mt
     name: Montana
     queue_status: published_current
@@ -334,9 +334,7 @@ states:
       jurisdiction: us-nj
       document_class: regulation
       version: 2026-05-27-nj-snap-rules-partial
-    notes: Official rules-and-regulations page links a current N.J.A.C. 10:87 PDF,
-      but the PDF currently extracts only through section 10:87-5.5; subchapters
-      5.6+ remain to source from a complete official publication.
+    notes: Official rules-and-regulations page links one current N.J.A.C. 10:87 PDF, but that PDF physically ends at section 10:87-5.5; subchapters 5.6+ remain to source from a complete official publication. Older official provider/rulefees PDF paths found in search currently return 404.
   - jurisdiction: us-nm
     name: New Mexico
     queue_status: published_current
@@ -354,7 +352,7 @@ states:
     source_kind: official_pdf_or_regulation
     primary_source_url: https://otda.ny.gov/programs/snap/snapsb.pdf
     target_manifest: manifests/us-ny-snap-manual.yaml
-    notes: Existing corpus has SNAP eligibility and SUA regulation slices; complete source manual needs direct PDF or equivalent official source handling.
+    notes: Existing corpus has SNAP eligibility and SUA regulation slices; complete source manual needs direct PDF or equivalent official source handling. Direct OTDA SNAP Source Book PDF and SNAP program paths reset curl/requests connections; browser/curl-cffi probes receive bot-challenge HTML rather than PDF bytes.
   - jurisdiction: us-nc
     name: North Carolina
     queue_status: published_current
@@ -388,10 +386,11 @@ states:
     notes: Division 5101:4 SNAP rules are covered by the full Ohio Administrative Code ingestion.
   - jurisdiction: us-ok
     name: Oklahoma
-    queue_status: needs_source_review
+    queue_status: blocked_access
     source_kind: official_administrative_code
     primary_source_url: https://oklahoma.gov/okdhs/library/policy/current/oac-340.html
     target_manifest: manifests/us-ok-snap-rules.yaml
+    notes: OKDHS current OAC 340 Chapter 50 URLs redirect to https://rules.ok.gov/home; rules.ok.gov currently Cloudflare-blocks unattended extraction. Search engines show official snippets, but no durable primary-source artifact has been captured.
   - jurisdiction: us-or
     name: Oregon
     queue_status: published_current
