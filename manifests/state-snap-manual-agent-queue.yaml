@@ -360,10 +360,14 @@ states:
       version: 2026-05-27-sd-snap-manual
   - jurisdiction: us-tn
     name: Tennessee
-    queue_status: needs_source_review
+    queue_status: published_current
     source_kind: official_publications_page
     primary_source_url: https://www.tn.gov/humanservices/information-and-resources/dhs-publications.html
-    target_manifest: manifests/us-tn-snap-manual.yaml
+    target_manifest: manifests/us-tn-snap-policies.yaml
+    target_scope:
+      jurisdiction: us-tn
+      document_class: manual
+      version: 2026-05-27-tn-snap-policies
   - jurisdiction: us-tx
     name: Texas
     queue_status: published_current
