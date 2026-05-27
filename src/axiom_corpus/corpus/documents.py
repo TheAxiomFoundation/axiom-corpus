@@ -621,7 +621,7 @@ def _extract_html_blocks(
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
     soup = BeautifulSoup(content, "html.parser", from_encoding="utf-8")
-    for selector in (
+    drop_selectors = [
         "script",
         "style",
         "noscript",
@@ -634,7 +634,9 @@ def _extract_html_blocks(
         ".breadcrumb",
         ".breadcrumbs",
         "[aria-label='breadcrumb']",
-    ):
+        *_html_drop_selectors(extraction),
+    ]
+    for selector in drop_selectors:
         for node in soup.select(selector):
             node.decompose()
     root = _html_content_root(soup, extraction=extraction)
@@ -701,6 +703,17 @@ def _html_content_root(
             return root
         raise ValueError(f"html content selector did not match: {selector!r}")
     return _main_content(soup)
+
+
+def _html_drop_selectors(extraction: dict[str, Any] | None) -> tuple[str, ...]:
+    selectors = (extraction or {}).get("html_drop_selectors") or (
+        extraction or {}
+    ).get("drop_selectors")
+    if selectors is None:
+        return ()
+    if isinstance(selectors, str):
+        return (selectors,)
+    return tuple(str(selector) for selector in selectors)
 
 
 _WEBWORKS_TEXT_CLASS_PREFIXES = (

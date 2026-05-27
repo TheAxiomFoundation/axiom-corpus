@@ -201,6 +201,57 @@ documents:
     assert "Navigation text should be ignored" not in bodies
 
 
+def test_extract_official_documents_drops_configured_html_selectors(
+    tmp_path: Path,
+) -> None:
+    html_path = tmp_path / "ks-keesm.html"
+    html_path.write_text(
+        """
+        <html>
+          <head><title>4200 Assistance Planning</title></head>
+          <body>
+            <h1>Kansas Economic and Employment Services Manual</h1>
+            <h2>4000 Assistance Planning</h2>
+            <h6>04-26</h6>
+            <p>Food assistance household composition rules apply.</p>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ks-keesm-4200
+    jurisdiction: us-ks
+    document_class: manual
+    title: "Kansas KEESM: 4200 Assistance Planning"
+    source_url: https://content.dcf.ks.gov/EES/KEESM/Current/keesm4200.htm
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    extraction:
+      html_drop_selectors:
+        - h1
+        - h6
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-ks-keesm",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    block = records[1]
+    assert block.heading == "4000 Assistance Planning"
+    assert "Food assistance household composition rules apply" in (block.body or "")
+    assert "04-26" not in (block.body or "")
+
+
 def test_extract_official_documents_reads_webworks_policy_divs(tmp_path: Path) -> None:
     html_path = tmp_path / "az-faa5.html"
     html_path.write_text(

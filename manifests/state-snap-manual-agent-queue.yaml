@@ -141,10 +141,14 @@ states:
     notes: Lead URL is the Employees' Manual table of contents, not the SNAP manual text itself.
   - jurisdiction: us-ks
     name: Kansas
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://content.dcf.ks.gov/EES/KEESM/Current/Home.htm
     target_manifest: manifests/us-ks-keesm.yaml
+    target_scope:
+      jurisdiction: us-ks
+      document_class: manual
+      version: 2026-05-27-ks-keesm
   - jurisdiction: us-ky
     name: Kentucky
     queue_status: needs_source_review
