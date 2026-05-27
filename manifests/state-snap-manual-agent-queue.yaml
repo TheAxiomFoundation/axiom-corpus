@@ -298,10 +298,14 @@ states:
     target_manifest: manifests/us-pa-snap-handbook.yaml
   - jurisdiction: us-ri
     name: Rhode Island
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_administrative_regulation
     primary_source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-1
     target_manifest: manifests/us-ri-snap-rules.yaml
+    target_scope:
+      jurisdiction: us-ri
+      document_class: regulation
+      version: 2026-05-27-ri-snap-rules
   - jurisdiction: us-sc
     name: South Carolina
     queue_status: agent_ready

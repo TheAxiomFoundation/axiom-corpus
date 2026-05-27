@@ -1,0 +1,21 @@
+documents:
+  - source_id: ri-dhs-snap-218-20-00-1
+    jurisdiction: us-ri
+    document_class: regulation
+    citation_path: us-ri/regulation/218-ricr/20/00/1
+    title: Rhode Island SNAP Regulations
+    source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-1
+    source_format: html
+    source_as_of: "2026-05-27"
+    expression_date: "2026-04-05"
+    extraction:
+      html_content_selector: "#first"
+    metadata:
+      primary_source: true
+      source_authority: Rhode Island Department of Human Services
+      official_publisher: Rhode Island Department of State
+      document_subtype: administrative_regulation
+      program: SNAP
+      legal_identifier: 218-RICR-20-00-1
+      source_discovery_group: us-ri/regulation/snap
+      discovered_via: manual-review:state-snap-manual-agent-queue
