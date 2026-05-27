@@ -632,6 +632,9 @@ def _extract_html_blocks(content: bytes, *, source_url: str) -> tuple[_DocumentB
             node.decompose()
     root = _main_content(soup)
     title = _document_title(soup)
+    webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
+    if webworks_blocks:
+        return webworks_blocks
     blocks: list[_DocumentBlock] = []
     heading = title
     parts: list[str] = []
@@ -677,6 +680,78 @@ def _extract_html_blocks(content: bytes, *, source_url: str) -> tuple[_DocumentB
             metadata={"source_url": source_url},
         ),
     )
+
+
+_WEBWORKS_TEXT_CLASS_PREFIXES = (
+    "Body_Text",
+    "List_",
+    "Note_",
+    "Numbered_",
+    "Cell_",
+    "Table_",
+)
+
+
+def _extract_webworks_html_blocks(
+    root: Tag,
+    *,
+    title: str | None,
+    source_url: str,
+) -> tuple[_DocumentBlock, ...]:
+    page = root.select_one("#page_content")
+    if not isinstance(page, Tag):
+        return ()
+    for selector in (".WebWorks_MiniTOC", ".ww_skin_page_globalization"):
+        for node in page.select(selector):
+            node.decompose()
+
+    blocks: list[_DocumentBlock] = []
+    heading = title
+    parts: list[str] = []
+
+    def flush() -> None:
+        nonlocal parts
+        body = _normalize_text("\n\n".join(parts))
+        if body:
+            blocks.append(
+                _DocumentBlock(
+                    kind="block",
+                    ordinal=len(blocks) + 1,
+                    heading=heading,
+                    body=body,
+                    metadata={"source_url": source_url},
+                )
+            )
+        parts = []
+
+    for node in page.find_all(_is_webworks_content_node):
+        text = _normalize_text(node.get_text(" ", strip=True))
+        if not text:
+            continue
+        if _has_webworks_heading_class(node):
+            flush()
+            heading = text
+            continue
+        parts.append(text)
+    flush()
+    return tuple(blocks)
+
+
+def _is_webworks_content_node(node: Tag) -> bool:
+    return _has_webworks_heading_class(node) or any(
+        _has_class_prefix(node, prefix) for prefix in _WEBWORKS_TEXT_CLASS_PREFIXES
+    )
+
+
+def _has_webworks_heading_class(node: Tag) -> bool:
+    return _has_class_prefix(node, "Heading_")
+
+
+def _has_class_prefix(node: Tag, prefix: str) -> bool:
+    classes = node.get("class")
+    if not isinstance(classes, list):
+        return False
+    return any(isinstance(item, str) and item.startswith(prefix) for item in classes)
 
 
 def _main_content(soup: BeautifulSoup) -> Tag:
