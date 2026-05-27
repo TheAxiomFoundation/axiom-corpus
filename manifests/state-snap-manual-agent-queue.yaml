@@ -348,10 +348,14 @@ states:
     notes: Existing output should be reviewed for stale or missing InfoSource table pages.
   - jurisdiction: us-vt
     name: Vermont
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/assets/BRM/100GenInfo.htm
-    target_manifest: manifests/us-vt-benefits-rules-manual.yaml
+    target_manifest: manifests/us-vt-3squaresvt-manual.yaml
+    target_scope:
+      jurisdiction: us-vt
+      document_class: manual
+      version: 2026-05-27-vt-3squaresvt-manual
   - jurisdiction: us-va
     name: Virginia
     queue_status: published_current
