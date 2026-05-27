@@ -197,10 +197,15 @@ states:
       version: 2026-05-27-ky-snap-manual
   - jurisdiction: us-la
     name: Louisiana
-    queue_status: needs_source_review
-    source_kind: official_powerdms_document
+    queue_status: published_current
+    source_kind: official_powerdms_manual_pdfs
     primary_source_url: https://public.powerdms.com/LADCFS/tree/documents/398463
     target_manifest: manifests/us-la-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-la
+      document_class: manual
+      version: 2026-05-27-la-snap-manual
+    notes: Current scope includes official DCFS Economic Independence manual policy PDFs from public PowerDMS, excluding forms/instructions.
   - jurisdiction: us-me
     name: Maine
     queue_status: published_current
