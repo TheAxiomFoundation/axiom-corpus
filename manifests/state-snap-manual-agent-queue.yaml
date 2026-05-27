@@ -259,10 +259,14 @@ states:
     target_manifest: manifests/us-nc-fns-manuals.yaml
   - jurisdiction: us-nd
     name: North Dakota
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
     target_manifest: manifests/us-nd-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-nd
+      document_class: manual
+      version: 2026-05-27-nd-snap-manual
   - jurisdiction: us-oh
     name: Ohio
     queue_status: needs_source_review
