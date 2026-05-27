@@ -341,10 +341,15 @@ states:
       version: 2026-05-27-nd-snap-manual
   - jurisdiction: us-oh
     name: Ohio
-    queue_status: needs_source_review
-    source_kind: official_rules_page
-    primary_source_url: https://jfs.ohio.gov/help-center/Programs+Rules+and+Resources/cash-food-assistance/01-cash-food-assistance
+    queue_status: published_current
+    source_kind: official_administrative_code
+    primary_source_url: https://codes.ohio.gov/ohio-administrative-code/5101%3A4
     target_manifest: manifests/us-oh-snap-rules.yaml
+    target_scope:
+      jurisdiction: us-oh
+      document_class: regulation
+      version: 2026-05-18
+    notes: Division 5101:4 SNAP rules are covered by the full Ohio Administrative Code ingestion.
   - jurisdiction: us-ok
     name: Oklahoma
     queue_status: needs_source_review
