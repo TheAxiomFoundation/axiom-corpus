@@ -360,10 +360,14 @@ states:
       version: 2026-05-27-ri-snap-rules
   - jurisdiction: us-sc
     name: South Carolina
-    queue_status: agent_ready
+    queue_status: published_current
     source_kind: official_manuals_page
     primary_source_url: https://dss.sc.gov/about/data-and-resources/manuals/
     target_manifest: manifests/us-sc-snap-manual.yaml
+    target_scope:
+      jurisdiction: us-sc
+      document_class: manual
+      version: 2026-05-27-sc-snap-manual
   - jurisdiction: us-sd
     name: South Dakota
     queue_status: published_current
