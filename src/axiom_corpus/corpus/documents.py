@@ -895,9 +895,19 @@ def _extract_json_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
+    if (extraction or {}).get("segmentation") == "records":
+        return _extract_json_record_blocks(
+            content,
+            source_url=source_url,
+            fallback_title=fallback_title,
+            extraction=extraction or {},
+        )
     html_field = (extraction or {}).get("json_html_field")
     if not isinstance(html_field, str) or not html_field:
-        raise ValueError("json official document extraction requires json_html_field")
+        raise ValueError(
+            "json official document extraction requires json_html_field "
+            "or segmentation: records"
+        )
     data = json_loads(content.decode("utf-8"))
     html_text = _json_path(data, html_field)
     if not isinstance(html_text, str) or not html_text.strip():
@@ -910,6 +920,104 @@ def _extract_json_html_blocks(
     )
 
 
+def _extract_json_record_blocks(
+    content: bytes,
+    *,
+    source_url: str,
+    fallback_title: str | None,
+    extraction: dict[str, Any],
+) -> tuple[_DocumentBlock, ...]:
+    """Extract structured JSON API records with one HTML/text body per record."""
+    records_path = extraction.get("json_records_path")
+    text_field = extraction.get("json_record_text_field")
+    label_field = extraction.get("json_record_label_field")
+    heading_field = extraction.get("json_record_heading_field")
+    kind_field = extraction.get("json_record_kind_field")
+    status_field = extraction.get("json_record_status_field")
+    include_statuses = extraction.get("json_record_include_statuses")
+    exclude_statuses = extraction.get("json_record_exclude_statuses", ())
+    metadata_fields = extraction.get("json_record_metadata_fields", ())
+    text_is_html = bool(extraction.get("json_record_text_is_html", True))
+
+    if not isinstance(text_field, str) or not text_field:
+        raise ValueError("records JSON extraction requires json_record_text_field")
+    if label_field is not None and not isinstance(label_field, str):
+        raise ValueError("json_record_label_field must be a string when configured")
+    if heading_field is not None and not isinstance(heading_field, str):
+        raise ValueError("json_record_heading_field must be a string when configured")
+    if kind_field is not None and not isinstance(kind_field, str):
+        raise ValueError("json_record_kind_field must be a string when configured")
+    if status_field is not None and not isinstance(status_field, str):
+        raise ValueError("json_record_status_field must be a string when configured")
+    if isinstance(include_statuses, str):
+        include_statuses = (include_statuses,)
+    if isinstance(exclude_statuses, str):
+        exclude_statuses = (exclude_statuses,)
+    if isinstance(metadata_fields, str):
+        metadata_fields = (metadata_fields,)
+    include_status_set = {str(status) for status in include_statuses or ()}
+    exclude_status_set = {str(status) for status in exclude_statuses or ()}
+    metadata_field_names = tuple(str(field) for field in metadata_fields)
+
+    data = json_loads(content.decode("utf-8"))
+    rows = _json_path(data, str(records_path)) if records_path else data
+    if not isinstance(rows, list):
+        raise ValueError("json_records_path must resolve to a list")
+
+    blocks: list[_DocumentBlock] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        status = _json_record_value(row, status_field)
+        if include_status_set and str(status) not in include_status_set:
+            continue
+        if exclude_status_set and str(status) in exclude_status_set:
+            continue
+
+        raw_text = _json_record_value(row, text_field)
+        if not isinstance(raw_text, str) or not raw_text.strip():
+            continue
+        body = (
+            _html_fragment_text(raw_text)
+            if text_is_html
+            else _normalize_text(raw_text)
+        )
+        if not body:
+            continue
+
+        label_value = _json_record_value(row, label_field)
+        heading_value = _json_record_value(row, heading_field)
+        kind_value = _json_record_value(row, kind_field)
+        label = str(label_value).strip() if label_value not in {None, ""} else ""
+        heading_text = (
+            str(heading_value).strip()
+            if heading_value not in {None, ""}
+            else fallback_title or label or "Record"
+        )
+        heading = f"{label} {heading_text}".strip() if label else heading_text
+        metadata = {
+            "source_url": source_url,
+            **{
+                field: row.get(field)
+                for field in metadata_field_names
+                if field in row and field != text_field
+            },
+        }
+        if label:
+            metadata["citation_suffix"] = label
+            metadata["section_label"] = label
+        blocks.append(
+            _DocumentBlock(
+                kind=str(kind_value or "record").strip().lower(),
+                ordinal=len(blocks) + 1,
+                heading=heading,
+                body=body,
+                metadata=metadata,
+            )
+        )
+    return tuple(blocks)
+
+
 def _json_path(data: Any, path: str) -> Any:
     current = data
     for part in path.split("."):
@@ -918,6 +1026,26 @@ def _json_path(data: Any, path: str) -> Any:
             continue
         raise ValueError(f"json path did not resolve: {path}")
     return current
+
+
+def _json_record_value(row: dict[str, Any], field: str | None) -> Any:
+    if not field:
+        return None
+    current: Any = row
+    for part in field.split("."):
+        if isinstance(current, dict) and part in current:
+            current = current[part]
+            continue
+        return None
+    return current
+
+
+def _html_fragment_text(html_text: str) -> str:
+    soup = BeautifulSoup(html_text, "html.parser")
+    for selector in ("script", "style", "noscript", "svg"):
+        for node in soup.select(selector):
+            node.decompose()
+    return _normalize_text(soup.get_text(" ", strip=True))
 
 
 def _extract_labeled_html_section_blocks(

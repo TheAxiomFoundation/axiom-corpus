@@ -506,6 +506,94 @@ documents:
     assert "SNAP is a federal low income nutrition program" in (records[1].body or "")
 
 
+def test_extract_official_documents_from_json_records(tmp_path: Path) -> None:
+    json_path = tmp_path / "ok-oac-340-50.json"
+    json_path.write_text(
+        json.dumps(
+            [
+                {
+                    "id": 1,
+                    "sectionNum": "340:50-1-1",
+                    "description": "Purpose, legal base, and responsibilities",
+                    "name": "Section",
+                    "statusName": "Undefined",
+                    "text": (
+                        "<div>(a) <b>Purpose.</b> SNAP policy text.</div>"
+                        "<div>(b) Other text.</div>"
+                    ),
+                },
+                {
+                    "id": 2,
+                    "sectionNum": "340:50-1-2",
+                    "description": "Legal basis",
+                    "name": "Section",
+                    "statusName": "Revoked",
+                    "text": "<div>Old revoked text.</div>",
+                },
+                {
+                    "id": 3,
+                    "sectionNum": None,
+                    "description": "General Provisions",
+                    "name": "Subchapter",
+                    "statusName": "Undefined",
+                    "text": None,
+                },
+            ]
+        ),
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ok-oac-340-50-snap
+    jurisdiction: us-ok
+    document_class: regulation
+    title: "Oklahoma OAC 340:50 Supplemental Nutrition Assistance Program"
+    source_url: https://rules.ok.gov/home
+    source_format: json
+    local_path: {json.dumps(str(json_path))}
+    citation_path: us-ok/regulation/oac/340/50
+    extraction:
+      segmentation: records
+      json_record_text_field: text
+      json_record_text_is_html: true
+      json_record_label_field: sectionNum
+      json_record_heading_field: description
+      json_record_kind_field: name
+      json_record_status_field: statusName
+      json_record_exclude_statuses:
+        - Revoked
+      json_record_metadata_fields:
+        - id
+        - sectionNum
+        - statusName
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-ok-snap-rules",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-ok/regulation/oac/340/50",
+        "us-ok/regulation/oac/340/50/340-50-1-1",
+    ]
+    assert records[1].heading == (
+        "340:50-1-1 Purpose, legal base, and responsibilities"
+    )
+    assert records[1].kind == "section"
+    assert records[1].metadata is not None
+    assert records[1].metadata["id"] == 1
+    assert "SNAP policy text" in (records[1].body or "")
+    assert "Old revoked text" not in (records[1].body or "")
+
+
 def test_extract_official_documents_drops_configured_html_selectors(
     tmp_path: Path,
 ) -> None:
