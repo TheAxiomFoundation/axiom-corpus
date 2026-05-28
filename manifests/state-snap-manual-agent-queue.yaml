@@ -81,6 +81,11 @@ states:
       jurisdiction: us-co
       document_class: regulation
       version: "2026-04-29"
+    supporting_manifest: manifests/us-co-snap-primary-policy.yaml
+    supporting_scope:
+      jurisdiction: us-co
+      document_class: policy
+      version: "2026-04-30"
     notes: Colorado SNAP policy is covered through 10 CCR 2506-1 plus supplemental CDHS policy documents.
   - jurisdiction: us-ct
     name: Connecticut
@@ -386,12 +391,11 @@ states:
     queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://codes.ohio.gov/ohio-administrative-code/5101%3A4
-    target_manifest: manifests/us-oh-snap-rules.yaml
     target_scope:
       jurisdiction: us-oh
       document_class: regulation
-      version: 2026-05-18
-    notes: Division 5101:4 SNAP rules are covered by the full Ohio Administrative Code ingestion.
+      version: "2026-05-18"
+    notes: Division 5101:4 SNAP rules are covered by the full Ohio Administrative Code ingestion, not a separate official-document manifest.
   - jurisdiction: us-ok
     name: Oklahoma
     queue_status: published_current
