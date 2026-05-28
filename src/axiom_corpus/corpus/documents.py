@@ -335,7 +335,7 @@ def _download_document(
     response = _get_with_retries(session, download_url, verify=verify)
     if response.status_code in _BROWSER_FALLBACK_STATUSES:
         response.close()
-        headers = dict(session.headers)
+        headers = {str(key): str(value) for key, value in session.headers.items()}
         headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
         response = _get_with_retries(session, download_url, headers=headers, verify=verify)
     response.raise_for_status()
