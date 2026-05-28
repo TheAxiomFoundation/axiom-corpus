@@ -278,15 +278,15 @@ states:
       version: 2026-05-27-ms-snap-manual
   - jurisdiction: us-mo
     name: Missouri
-    queue_status: partial_primary_policy
-    source_kind: official_html_manual_partial
+    queue_status: published_current
+    source_kind: official_html_manual_with_archived_pages
     primary_source_url: https://dssmanuals.mo.gov/food-stamps/
     target_manifest: manifests/us-mo-food-stamp-manual.yaml
     target_scope:
       jurisdiction: us-mo
       document_class: manual
-      version: 2026-05-27-mo-snap-manual-partial
-    notes: Official DSS sitemap lists 516 SNAP manual pages; current scope includes the 452 visible text-bearing pages. The remaining 64 pages are password-only shells, including all 1100 overview and 1102 verification pages. Official SOS 13 CSR 40-15 SNAP regulation PDF exists at https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-15.pdf, but Cloudflare currently blocks unattended source capture.
+      version: 2026-05-27-mo-snap-manual
+    notes: Official DSS sitemap lists 516 SNAP manual pages. Current scope includes 452 live visible text-bearing pages plus 63 archived official DSS captures for pages that now return password-only shells. The omitted 1142.000.00 parent page has no substantive live or archived body, while its child policy sections are included. Official SOS 13 CSR 40-15 SNAP regulation PDF exists at https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-15.pdf, but Cloudflare currently blocks unattended source capture.
   - jurisdiction: us-mt
     name: Montana
     queue_status: published_current
