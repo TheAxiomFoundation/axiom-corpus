@@ -343,7 +343,17 @@ states:
       jurisdiction: us-nj
       document_class: regulation
       version: 2026-05-27-nj-snap-rules-partial
-    notes: Official rules-and-regulations page links one current N.J.A.C. 10:87 PDF, but that PDF physically ends at section 10:87-5.5; subchapters 5.6+ remain to source from a complete current official publication. Archived official DHS provider/rulefees snapshots are also incomplete for 2024-2025; a 2017 archived official courtesy PDF is complete but stale and should not be treated as current policy. The 2017 official courtesy PDF states that official New Jersey Administrative Rules are available through LexisNexis, the publisher licensed by the New Jersey Office of Administrative Law, or through local public libraries.
+    historical_base_manifest: manifests/us-nj-snap-rules-2017-base.yaml
+    historical_base_scope:
+      jurisdiction: us-nj
+      document_class: regulation
+      version: 2017-02-06-nj-snap-rules-base
+    supporting_manifest: manifests/us-nj-snap-rulemaking-notices.yaml
+    supporting_scope:
+      jurisdiction: us-nj
+      document_class: rulemaking
+      version: 2026-05-28-nj-snap-rulemaking-notices
+    notes: Official rules-and-regulations page links one current N.J.A.C. 10:87 PDF, but that PDF physically ends at section 10:87-5.5; subchapters 5.6+ remain to source from a complete current official publication. Archived official DHS provider/rulefees snapshots are also incomplete for 2024-2025. The corpus now includes the complete 2017 archived official DHS courtesy PDF as a historical base plus official DHS/NJ Register rulemaking notices that modify N.J.A.C. 10:87 after that base. Those sources support a future reconstruction adapter, but should not be treated as a complete current compiled code until amendment merging is implemented or LexisNexis/OAL compiled access is obtained. The 2017 official courtesy PDF states that official New Jersey Administrative Rules are available through LexisNexis, the publisher licensed by the New Jersey Office of Administrative Law, or through local public libraries.
   - jurisdiction: us-nm
     name: New Mexico
     queue_status: published_current
