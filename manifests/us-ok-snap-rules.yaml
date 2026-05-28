@@ -1,0 +1,57 @@
+documents:
+  - source_id: ok-oac-340-50-snap-rules
+    jurisdiction: us-ok
+    document_class: regulation
+    citation_path: us-ok/regulation/oac/340/50
+    title: Oklahoma Administrative Code Title 340 Chapter 50 Supplemental Nutrition Assistance Program
+    source_url: https://rules.ok.gov/home
+    download_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=50
+    source_format: json
+    source_as_of: "2026-05-27"
+    expression_date: "2026-05-27"
+    extraction:
+      segmentation: records
+      json_record_text_field: text
+      json_record_text_is_html: true
+      json_record_label_field: sectionNum
+      json_record_heading_field: description
+      json_record_kind_field: name
+      json_record_status_field: statusName
+      json_record_exclude_statuses:
+        - Revoked
+        - Reserved
+      json_record_metadata_fields:
+        - id
+        - parentId
+        - name
+        - titleNum
+        - chapterNum
+        - subChapterNum
+        - partNum
+        - sectionNum
+        - appendixNum
+        - description
+        - statusName
+        - segmentStatusId
+        - segmentTypeId
+        - recordStatus
+        - effectiveDate
+        - filingId
+        - hasEmergency
+        - segmentNotes
+    metadata:
+      primary_source: true
+      source_authority: Oklahoma Department of Human Services
+      official_publisher: Oklahoma Secretary of State Office of Administrative Rules
+      document_subtype: administrative_code_chapter
+      program: SNAP
+      federal_program: SNAP
+      rules_landing_page: https://rules.ok.gov/home
+      rules_api_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=50
+      legacy_okdhs_chapter_url: https://oklahoma.gov/okdhs/library/policy/current/oac-340/chapter-50.html
+      title_number: "340"
+      title_name: Department of Human Services
+      chapter_number: "50"
+      chapter_name: Supplemental Nutrition Assistance Program
+      source_discovery_group: us-ok/regulation/snap
+      discovered_via: manual-review:state-snap-manual-agent-queue

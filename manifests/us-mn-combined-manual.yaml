@@ -1,0 +1,27 @@
+documents:
+- source_id: mn-dhs-combined-manual-current
+  jurisdiction: us-mn
+  document_class: manual
+  title: Minnesota DHS Combined Manual Current Version
+  source_url: https://www.dhs.state.mn.us/main/groups/county_access/documents/pub/dhs-327301.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-mn/manual/dhs/combined-manual/current
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Human Services
+    document_subtype: combined_policy_manual_pdf
+    manual: Minnesota DHS Combined Manual
+    programs:
+    - SNAP
+    - MFIP
+    - HSP
+    - RCA
+    - MSA
+    - GA
+    - Emergency programs
+    includes_snap_policy: true
+    source_index_url: https://www.dhs.state.mn.us/main/idcplg/?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=id_016956
+    source_discovery_group: us-mn/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue

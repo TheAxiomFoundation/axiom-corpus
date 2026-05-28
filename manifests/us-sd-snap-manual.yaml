@@ -1,0 +1,18 @@
+documents:
+  - source_id: sd-dss-snap-policy-procedure-manual
+    jurisdiction: us-sd
+    document_class: manual
+    citation_path: us-sd/manual/dss/snap-policy-procedure-manual
+    title: South Dakota SNAP Policy and Procedure Manual
+    source_url: https://dss.sd.gov/docs/economicassistance/snap/snapmanual.pdf
+    source_format: pdf
+    source_as_of: "2026-05-27"
+    expression_date: "2026-04-01"
+    metadata:
+      primary_source: true
+      source_authority: South Dakota Department of Social Services
+      document_subtype: policy_manual
+      program: SNAP
+      extraction_granularity: pdf_page
+      source_discovery_group: us-sd/manual/snap
+      discovered_via: manual-review:state-snap-manual-agent-queue

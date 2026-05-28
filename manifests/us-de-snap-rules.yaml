@@ -1,0 +1,33 @@
+documents:
+  - source_id: de-dhss-dss-9000-food-stamp-program
+    jurisdiction: us-de
+    document_class: regulation
+    citation_path: us-de/regulation/title-16/9000-food-stamp-program
+    title: Delaware Administrative Code Title 16, 9000 Food Stamp Program
+    source_url: https://regulations.delaware.gov/AdminCode/title16/9000
+    download_url: https://regulations.delaware.gov/api/AdminCode/title16/9000/35bc7e34-2cc2-40d0-a90a-cb238e3b496c
+    source_format: pdf
+    source_as_of: "2026-04-22"
+    expression_date: "2026-04-22"
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>9\d{3}(?:\.\d+)*)\s+(?P<heading>[A-Z][A-Za-z0-9 ().,''/-]+)$'
+      section_label_pattern: '^(?P<label>9\d{3}(?:\.\d+)*)$'
+      label_only_heading_pattern: '^[A-Z][A-Za-z0-9 ().,''/-]+$'
+      label_only_requires_heading: true
+      drop_lines:
+        - TITLE 16 HEALTH AND SAFETY
+        - DELAWARE ADMINISTRATIVE CODE
+        - Office of the Registrar of Regulations,
+        - Legislative Council,
+        - State of Delaware
+      drop_line_patterns:
+        - '^\d{1,3}$'
+    metadata:
+      primary_source: true
+      source_authority: Delaware Department of Health and Social Services, Division of Social Services
+      document_subtype: administrative_code
+      program: SNAP
+      api_pdf_file_id: 35bc7e34-2cc2-40d0-a90a-cb238e3b496c
+      source_discovery_group: us-de/regulation/title-16-9000
+      discovered_via: manual-review:state-snap-manual-agent-queue

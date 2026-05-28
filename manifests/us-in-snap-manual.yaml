@@ -1,0 +1,23 @@
+documents:
+  - source_id: in-dfr-snap-tanf-program-policy-manual
+    jurisdiction: us-in
+    document_class: manual
+    citation_path: us-in/manual/dfr/snap-tanf-program-policy-manual
+    title: Indiana SNAP/TANF Program Policy Manual
+    source_url: https://www.in.gov/fssa/dfr/forms-documents-and-tools/policy-manual/
+    download_url: https://www.in.gov/fssa/dfr/files/ICES_Program_Policy_Manual.pdf
+    source_format: pdf
+    source_as_of: "2026-05-18"
+    expression_date: "2026-05-18"
+    metadata:
+      primary_source: true
+      source_authority: Indiana Family and Social Services Administration, Division of Family Resources
+      document_subtype: policy_manual
+      program: SNAP
+      related_programs:
+        - TANF
+        - IMPACT
+        - burial_assistance
+      extraction_granularity: pdf_page
+      source_discovery_group: us-in/manual/policy-manual
+      discovered_via: manual-review:state-snap-manual-agent-queue

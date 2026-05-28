@@ -1,0 +1,18 @@
+documents:
+  - source_id: ar-dhs-snap-policy-manual
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-policy-manual
+    title: Arkansas SNAP Policy Manual
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/Supplemental-Nutrition-Assistance-Program-Policy-Manual.pdf
+    source_format: pdf
+    source_as_of: "2026-05-27"
+    expression_date: "2026-05-27"
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services
+      document_subtype: policy_manual
+      program: SNAP
+      extraction_granularity: pdf_page
+      source_discovery_group: us-ar/manual/snap
+      discovered_via: manual-review:state-snap-manual-agent-queue

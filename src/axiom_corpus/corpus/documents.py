@@ -4,16 +4,23 @@ from __future__ import annotations
 
 import re
 import sys
+import time
+import warnings
+import zipfile
 from dataclasses import dataclass
 from datetime import date
+from io import BytesIO
+from json import loads as json_loads
 from pathlib import Path
 from typing import Any, Self, TextIO
+from xml.etree import ElementTree
 
 import fitz
 import requests
 import yaml
 from bs4 import BeautifulSoup
 from bs4.element import Tag
+from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
@@ -29,6 +36,9 @@ OFFICIAL_DOCUMENT_BROWSER_USER_AGENT = (
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 )
 _BROWSER_FALLBACK_STATUSES = {403, 404, 406}
+_REQUEST_RETRY_STATUSES = {429, 500, 502, 503, 504}
+_REQUEST_RETRY_ATTEMPTS = 4
+_REQUEST_RETRY_BASE_DELAY_SECONDS = 0.5
 _GOOGLE_DRIVE_FILE_RE = re.compile(r"https?://drive\.google\.com/file/d/([^/]+)/")
 _HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 _TEXT_TAGS = _HEADING_TAGS | {"p", "li", "table", "blockquote"}
@@ -38,6 +48,7 @@ _NON_HEADING_UPPERCASE_LINES = {
     "HANDBOOK CONTINUE",
     "HANDBOOK ENDS HERE",
 }
+_WORD_NS = {"w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main"}
 
 
 @dataclass(frozen=True)
@@ -55,11 +66,15 @@ class OfficialDocumentSource:
     source_as_of: str | None = None
     expression_date: str | None = None
     local_path: str | None = None
+    request: dict[str, Any] | None = None
     extraction: dict[str, Any] | None = None
     metadata: dict[str, Any] | None = None
 
     @classmethod
     def from_mapping(cls, data: dict[str, Any]) -> Self:
+        request = data.get("request")
+        if request is not None and not isinstance(request, dict):
+            raise ValueError("official document request config must be a mapping")
         extraction = data.get("extraction")
         if extraction is not None and not isinstance(extraction, dict):
             raise ValueError("official document extraction config must be a mapping")
@@ -75,6 +90,7 @@ class OfficialDocumentSource:
             source_as_of=data.get("source_as_of"),
             expression_date=data.get("expression_date"),
             local_path=data.get("local_path"),
+            request=request,
             extraction=extraction,
             metadata=data.get("metadata"),
         )
@@ -213,6 +229,7 @@ def extract_official_documents(
                 downloaded.content,
                 source_format,
                 source_url=source.source_url,
+                title=source.title,
                 extraction=source.extraction,
             )
         )
@@ -314,12 +331,13 @@ def _download_document(
     download_url = (
         source.download_url or google_drive_download_url(source.source_url) or source.source_url
     )
-    response = session.get(download_url, timeout=90, allow_redirects=True)
+    verify = bool((source.request or {}).get("verify_tls", True))
+    response = _get_with_retries(session, download_url, verify=verify)
     if response.status_code in _BROWSER_FALLBACK_STATUSES:
         response.close()
-        headers = dict(session.headers)
+        headers = {str(key): str(value) for key, value in session.headers.items()}
         headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
-        response = session.get(download_url, headers=headers, timeout=90, allow_redirects=True)
+        response = _get_with_retries(session, download_url, headers=headers, verify=verify)
     response.raise_for_status()
     return _DownloadedDocument(
         source=source,
@@ -327,6 +345,45 @@ def _download_document(
         content_type=response.headers.get("content-type"),
         final_url=response.url,
     )
+
+
+def _get_with_retries(
+    session: requests.Session,
+    url: str,
+    *,
+    headers: dict[str, str] | None = None,
+    verify: bool = True,
+) -> requests.Response:
+    """Fetch a small official document, retrying transient server/network failures."""
+    for attempt in range(1, _REQUEST_RETRY_ATTEMPTS + 1):
+        try:
+            with warnings.catch_warnings():
+                if not verify:
+                    warnings.simplefilter("ignore", InsecureRequestWarning)
+                response = session.get(
+                    url,
+                    headers=headers,
+                    timeout=90,
+                    allow_redirects=True,
+                    verify=verify,
+                )
+            if (
+                response.status_code in _REQUEST_RETRY_STATUSES
+                and attempt < _REQUEST_RETRY_ATTEMPTS
+            ):
+                response.close()
+                _sleep_before_retry(attempt)
+                continue
+            return response
+        except requests.RequestException:
+            if attempt >= _REQUEST_RETRY_ATTEMPTS:
+                raise
+            _sleep_before_retry(attempt)
+    raise RuntimeError(f"failed to fetch official document: {url}")
+
+
+def _sleep_before_retry(attempt: int) -> None:
+    time.sleep(_REQUEST_RETRY_BASE_DELAY_SECONDS * attempt)
 
 
 def _infer_source_format(source: OfficialDocumentSource, downloaded: _DownloadedDocument) -> str:
@@ -337,6 +394,12 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
         return "pdf"
     if "html" in content_type or downloaded.content.lstrip().startswith((b"<!doctype", b"<html")):
         return "html"
+    if (
+        "wordprocessingml" in content_type
+        or downloaded.content.startswith(b"PK")
+        and _zip_contains(downloaded.content, "word/document.xml")
+    ):
+        return "docx"
     raise ValueError(f"cannot infer source format for {source.source_id}")
 
 
@@ -353,12 +416,24 @@ def _extract_blocks(
     source_format: str,
     *,
     source_url: str,
+    title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
     if source_format == "pdf":
         return _extract_pdf_blocks(content, extraction=extraction)
     if source_format == "html":
-        return _extract_html_blocks(content, source_url=source_url)
+        return _extract_html_blocks(
+            content, source_url=source_url, fallback_title=title, extraction=extraction
+        )
+    if source_format == "json":
+        return _extract_json_html_blocks(
+            content,
+            source_url=source_url,
+            fallback_title=title,
+            extraction=extraction,
+        )
+    if source_format == "docx":
+        return _extract_docx_blocks(content)
     raise ValueError(f"unsupported official document source_format: {source_format}")
 
 
@@ -457,6 +532,12 @@ def _extract_labeled_pdf_section_blocks(
         re.compile(str(heading_pattern)) if heading_pattern is not None else None
     )
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
+    label_heading_pattern = extraction.get("label_only_heading_pattern")
+    label_heading_re = (
+        re.compile(str(label_heading_pattern)) if label_heading_pattern is not None else None
+    )
+    label_template = extraction.get("section_label_template")
+    label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     lines = _filtered_pdf_lines(content, extraction=extraction)
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
 
@@ -496,21 +577,45 @@ def _extract_labeled_pdf_section_blocks(
 
     while index < len(lines):
         line, page = lines[index]
-        match = _match_labeled_pdf_section(line, section_heading_re, section_label_re)
+        match = _match_labeled_pdf_section(
+            line,
+            section_heading_re,
+            section_label_re,
+            label_template=str(label_template) if label_template is not None else None,
+        )
         if match:
             label, heading_text = match
+            consumed_label_heading = False
             if drop_repeated and label == current_label:
                 index += 1
                 while index < len(lines) and _looks_like_labeled_heading_continuation(
-                    lines[index][0], section_heading_re, section_label_re
+                    lines[index][0],
+                    section_heading_re,
+                    section_label_re,
+                    label_template=str(label_template) if label_template is not None else None,
                 ):
                     index += 1
                 continue
+            if not heading_text and label_heading_re is not None:
+                if index + 1 < len(lines) and label_heading_re.match(lines[index + 1][0]):
+                    heading_text = lines[index + 1][0]
+                    consumed_label_heading = True
+                elif label_requires_heading:
+                    if current_label is not None:
+                        current_body.append(line)
+                        current_body_pages.append(page)
+                    index += 1
+                    continue
             flush()
-            heading_lines = [heading_text]
+            heading_lines = [heading_text] if heading_text else []
             index += 1
+            if consumed_label_heading:
+                index += 1
             while index < len(lines) and _looks_like_labeled_heading_continuation(
-                lines[index][0], section_heading_re, section_label_re
+                lines[index][0],
+                section_heading_re,
+                section_label_re,
+                label_template=str(label_template) if label_template is not None else None,
             ):
                 heading_lines.append(lines[index][0])
                 index += 1
@@ -527,19 +632,119 @@ def _extract_labeled_pdf_section_blocks(
     return tuple(sections)
 
 
+def _extract_docx_blocks(content: bytes) -> tuple[_DocumentBlock, ...]:
+    with zipfile.ZipFile(BytesIO(content)) as document:
+        xml = document.read("word/document.xml")
+    root = ElementTree.fromstring(xml)
+    body = root.find("w:body", _WORD_NS)
+    if body is None:
+        return ()
+
+    blocks: list[_DocumentBlock] = []
+    heading: str | None = None
+    parts: list[str] = []
+
+    def flush() -> None:
+        nonlocal parts
+        body_text = _normalize_text("\n\n".join(parts))
+        if body_text:
+            blocks.append(
+                _DocumentBlock(
+                    kind="block",
+                    ordinal=len(blocks) + 1,
+                    heading=heading,
+                    body=body_text,
+                    metadata={},
+                )
+            )
+        parts = []
+
+    for child in body:
+        if child.tag == _word_tag("p"):
+            text = _docx_paragraph_text(child)
+            if not text:
+                continue
+            if _docx_paragraph_is_heading(child):
+                flush()
+                heading = text
+            else:
+                parts.append(text)
+        elif child.tag == _word_tag("tbl"):
+            table_text = _docx_table_text(child)
+            if table_text:
+                parts.append(table_text)
+    flush()
+    return tuple(blocks)
+
+
+def _zip_contains(content: bytes, name: str) -> bool:
+    try:
+        with zipfile.ZipFile(BytesIO(content)) as archive:
+            return name in archive.namelist()
+    except zipfile.BadZipFile:
+        return False
+
+
+def _word_tag(local_name: str) -> str:
+    return f"{{{_WORD_NS['w']}}}{local_name}"
+
+
+def _docx_paragraph_is_heading(paragraph: ElementTree.Element) -> bool:
+    style = paragraph.find("w:pPr/w:pStyle", _WORD_NS)
+    value = style.get(_word_tag("val")) if style is not None else None
+    if not value:
+        return False
+    normalized = value.lower().replace(" ", "")
+    return normalized.startswith("heading") or normalized in {"title", "subtitle"}
+
+
+def _docx_paragraph_text(paragraph: ElementTree.Element) -> str:
+    return _normalize_text("".join(_docx_text_chunks(paragraph)))
+
+
+def _docx_table_text(table: ElementTree.Element) -> str:
+    rows: list[str] = []
+    for row in table.findall("w:tr", _WORD_NS):
+        cells = [
+            _normalize_text(" ".join(_docx_text_chunks(cell)))
+            for cell in row.findall("w:tc", _WORD_NS)
+        ]
+        cells = [cell for cell in cells if cell]
+        if cells:
+            rows.append(" | ".join(cells))
+    return "\n".join(rows)
+
+
+def _docx_text_chunks(node: ElementTree.Element) -> tuple[str, ...]:
+    chunks: list[str] = []
+    for descendant in node.iter():
+        if descendant.tag == _word_tag("t") and descendant.text:
+            chunks.append(descendant.text)
+        elif descendant.tag == _word_tag("tab"):
+            chunks.append("\t")
+        elif descendant.tag == _word_tag("br"):
+            chunks.append("\n")
+    return tuple(chunks)
+
+
 def _match_labeled_pdf_section(
     line: str,
     section_heading_re: re.Pattern[str] | None,
     section_label_re: re.Pattern[str] | None,
+    *,
+    label_template: str | None = None,
 ) -> tuple[str, str] | None:
     if section_heading_re is not None:
         match = section_heading_re.match(line)
         if match:
-            return match.group("label"), match.groupdict().get("heading", "").strip()
+            return (
+                _labeled_section_label(match, label_template=label_template),
+                match.groupdict().get("heading", "").strip(),
+            )
     if section_label_re is not None:
         match = section_label_re.match(line)
         if match:
-            return match.group("label"), ""
+            return _labeled_section_label(match, label_template=label_template), ""
     return None
 
 
@@ -606,35 +811,60 @@ def _looks_like_labeled_heading_continuation(
     line: str,
     section_heading_re: re.Pattern[str] | None,
     section_label_re: re.Pattern[str] | None,
+    *,
+    label_template: str | None = None,
 ) -> bool:
-    if _match_labeled_pdf_section(line, section_heading_re, section_label_re):
+    if _match_labeled_pdf_section(
+        line,
+        section_heading_re,
+        section_label_re,
+        label_template=label_template,
+    ):
         return False
     return _looks_like_section_heading_line(line)
 
 
-def _extract_html_blocks(content: bytes, *, source_url: str) -> tuple[_DocumentBlock, ...]:
+def _extract_html_blocks(
+    content: bytes,
+    *,
+    source_url: str,
+    fallback_title: str | None,
+    extraction: dict[str, Any] | None,
+) -> tuple[_DocumentBlock, ...]:
     soup = BeautifulSoup(content, "html.parser", from_encoding="utf-8")
-    for selector in (
+    drop_selectors = [
         "script",
         "style",
         "noscript",
         "svg",
-        "form",
+        "button",
+        "input",
         "nav",
+        "select",
         "header",
         "footer",
+        "textarea",
         "aside",
         ".breadcrumb",
         ".breadcrumbs",
         "[aria-label='breadcrumb']",
-    ):
+        *_html_drop_selectors(extraction),
+    ]
+    for selector in drop_selectors:
         for node in soup.select(selector):
             node.decompose()
-    root = _main_content(soup)
-    title = _document_title(soup)
+    root = _html_content_root(soup, extraction=extraction)
+    title = _document_title(soup) or fallback_title
     webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
     if webworks_blocks:
         return webworks_blocks
+    if (extraction or {}).get("segmentation") == "labeled_sections":
+        return _extract_labeled_html_section_blocks(
+            root,
+            title=title,
+            source_url=source_url,
+            extraction=extraction or {},
+        )
     blocks: list[_DocumentBlock] = []
     heading = title
     parts: list[str] = []
@@ -680,6 +910,313 @@ def _extract_html_blocks(content: bytes, *, source_url: str) -> tuple[_DocumentB
             metadata={"source_url": source_url},
         ),
     )
+
+
+def _extract_json_html_blocks(
+    content: bytes,
+    *,
+    source_url: str,
+    fallback_title: str | None,
+    extraction: dict[str, Any] | None,
+) -> tuple[_DocumentBlock, ...]:
+    if (extraction or {}).get("segmentation") == "records":
+        return _extract_json_record_blocks(
+            content,
+            source_url=source_url,
+            fallback_title=fallback_title,
+            extraction=extraction or {},
+        )
+    html_field = (extraction or {}).get("json_html_field")
+    if not isinstance(html_field, str) or not html_field:
+        raise ValueError(
+            "json official document extraction requires json_html_field "
+            "or segmentation: records"
+        )
+    data = json_loads(content.decode("utf-8"))
+    html_text = _json_path(data, html_field)
+    if not isinstance(html_text, str) or not html_text.strip():
+        raise ValueError(f"json_html_field did not resolve to HTML text: {html_field}")
+    return _extract_html_blocks(
+        html_text.encode("utf-8"),
+        source_url=source_url,
+        fallback_title=fallback_title,
+        extraction=extraction,
+    )
+
+
+def _extract_json_record_blocks(
+    content: bytes,
+    *,
+    source_url: str,
+    fallback_title: str | None,
+    extraction: dict[str, Any],
+) -> tuple[_DocumentBlock, ...]:
+    """Extract structured JSON API records with one HTML/text body per record."""
+    records_path = extraction.get("json_records_path")
+    text_field = extraction.get("json_record_text_field")
+    label_field = extraction.get("json_record_label_field")
+    heading_field = extraction.get("json_record_heading_field")
+    kind_field = extraction.get("json_record_kind_field")
+    status_field = extraction.get("json_record_status_field")
+    include_statuses = extraction.get("json_record_include_statuses")
+    exclude_statuses = extraction.get("json_record_exclude_statuses", ())
+    metadata_fields = extraction.get("json_record_metadata_fields", ())
+    text_is_html = bool(extraction.get("json_record_text_is_html", True))
+
+    if not isinstance(text_field, str) or not text_field:
+        raise ValueError("records JSON extraction requires json_record_text_field")
+    if label_field is not None and not isinstance(label_field, str):
+        raise ValueError("json_record_label_field must be a string when configured")
+    if heading_field is not None and not isinstance(heading_field, str):
+        raise ValueError("json_record_heading_field must be a string when configured")
+    if kind_field is not None and not isinstance(kind_field, str):
+        raise ValueError("json_record_kind_field must be a string when configured")
+    if status_field is not None and not isinstance(status_field, str):
+        raise ValueError("json_record_status_field must be a string when configured")
+    if isinstance(include_statuses, str):
+        include_statuses = (include_statuses,)
+    if isinstance(exclude_statuses, str):
+        exclude_statuses = (exclude_statuses,)
+    if isinstance(metadata_fields, str):
+        metadata_fields = (metadata_fields,)
+    include_status_set = {str(status) for status in include_statuses or ()}
+    exclude_status_set = {str(status) for status in exclude_statuses or ()}
+    metadata_field_names = tuple(str(field) for field in metadata_fields)
+
+    data = json_loads(content.decode("utf-8"))
+    rows = _json_path(data, str(records_path)) if records_path else data
+    if not isinstance(rows, list):
+        raise ValueError("json_records_path must resolve to a list")
+
+    blocks: list[_DocumentBlock] = []
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        status = _json_record_value(row, status_field)
+        if include_status_set and str(status) not in include_status_set:
+            continue
+        if exclude_status_set and str(status) in exclude_status_set:
+            continue
+
+        raw_text = _json_record_value(row, text_field)
+        if not isinstance(raw_text, str) or not raw_text.strip():
+            continue
+        body = (
+            _html_fragment_text(raw_text)
+            if text_is_html
+            else _normalize_text(raw_text)
+        )
+        if not body:
+            continue
+
+        label_value = _json_record_value(row, label_field)
+        heading_value = _json_record_value(row, heading_field)
+        kind_value = _json_record_value(row, kind_field)
+        label = str(label_value).strip() if label_value not in {None, ""} else ""
+        heading_text = (
+            str(heading_value).strip()
+            if heading_value not in {None, ""}
+            else fallback_title or label or "Record"
+        )
+        heading = f"{label} {heading_text}".strip() if label else heading_text
+        metadata = {
+            "source_url": source_url,
+            **{
+                field: row.get(field)
+                for field in metadata_field_names
+                if field in row and field != text_field
+            },
+        }
+        if label:
+            metadata["citation_suffix"] = label
+            metadata["section_label"] = label
+        blocks.append(
+            _DocumentBlock(
+                kind=str(kind_value or "record").strip().lower(),
+                ordinal=len(blocks) + 1,
+                heading=heading,
+                body=body,
+                metadata=metadata,
+            )
+        )
+    return tuple(blocks)
+
+
+def _json_path(data: Any, path: str) -> Any:
+    current = data
+    for part in path.split("."):
+        if isinstance(current, dict) and part in current:
+            current = current[part]
+            continue
+        raise ValueError(f"json path did not resolve: {path}")
+    return current
+
+
+def _json_record_value(row: dict[str, Any], field: str | None) -> Any:
+    if not field:
+        return None
+    current: Any = row
+    for part in field.split("."):
+        if isinstance(current, dict) and part in current:
+            current = current[part]
+            continue
+        return None
+    return current
+
+
+def _html_fragment_text(html_text: str) -> str:
+    soup = BeautifulSoup(html_text, "html.parser")
+    for selector in ("script", "style", "noscript", "svg"):
+        for node in soup.select(selector):
+            node.decompose()
+    return _normalize_text(soup.get_text(" ", strip=True))
+
+
+def _extract_labeled_html_section_blocks(
+    root: Tag,
+    *,
+    title: str | None,
+    source_url: str,
+    extraction: dict[str, Any],
+) -> tuple[_DocumentBlock, ...]:
+    """Extract HTML documents whose provisions begin with stable text labels."""
+    heading_pattern = extraction.get("section_heading_pattern")
+    label_pattern = extraction.get("section_label_pattern")
+    if heading_pattern is None and label_pattern is None:
+        raise ValueError(
+            "labeled_sections HTML extraction requires section_heading_pattern "
+            "or section_label_pattern"
+        )
+    section_heading_re = (
+        re.compile(str(heading_pattern)) if heading_pattern is not None else None
+    )
+    section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
+    label_template = extraction.get("section_label_template")
+    stop_pattern = extraction.get("stop_text_pattern")
+    stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
+
+    sections: list[_DocumentBlock] = []
+    current_label: str | None = None
+    current_heading: str | None = None
+    current_body: list[str] = []
+
+    def flush() -> None:
+        nonlocal current_label, current_heading, current_body
+        if current_label is None:
+            return
+        heading = current_heading or title or current_label
+        sections.append(
+            _DocumentBlock(
+                kind="section",
+                ordinal=len(sections) + 1,
+                heading=heading,
+                body=_normalize_text("\n\n".join(current_body)),
+                metadata={
+                    "citation_suffix": current_label,
+                    "section_label": current_label,
+                    "source_url": source_url,
+                },
+            )
+        )
+        current_label = None
+        current_heading = None
+        current_body = []
+
+    for node in root.find_all(_TEXT_TAGS):
+        if not isinstance(node, Tag) or _inside_text_tag(node):
+            continue
+        text = _normalize_text(node.get_text(" ", strip=True))
+        if not text:
+            continue
+        if stop_re is not None and stop_re.match(text):
+            flush()
+            break
+        match = _match_labeled_html_section(
+            text,
+            section_heading_re,
+            section_label_re,
+            label_template=str(label_template) if label_template is not None else None,
+        )
+        if match is not None:
+            label, heading, body = match
+            flush()
+            current_label = label
+            current_heading = heading or label
+            current_body = [body] if body else []
+            continue
+        if current_label is not None:
+            current_body.append(text)
+    flush()
+    return tuple(sections)
+
+
+def _match_labeled_html_section(
+    text: str,
+    section_heading_re: re.Pattern[str] | None,
+    section_label_re: re.Pattern[str] | None,
+    *,
+    label_template: str | None = None,
+) -> tuple[str, str, str] | None:
+    if section_heading_re is not None:
+        match = section_heading_re.match(text)
+        if match:
+            groups = match.groupdict()
+            label = _labeled_section_label(match, label_template=label_template)
+            return (
+                label,
+                (groups.get("heading") or "").strip(),
+                (groups.get("body") or "").strip(),
+            )
+    if section_label_re is not None:
+        match = section_label_re.match(text)
+        if match:
+            return _labeled_section_label(match, label_template=label_template), "", ""
+    return None
+
+
+def _labeled_section_label(
+    match: re.Match[str], *, label_template: str | None
+) -> str:
+    groups = {key: (value or "").strip() for key, value in match.groupdict().items()}
+    if label_template:
+        try:
+            return label_template.format(**groups).strip()
+        except KeyError as exc:
+            raise ValueError(
+                f"section_label_template references unknown group: {exc.args[0]}"
+            ) from exc
+    label = groups.get("label")
+    if label:
+        return label
+    raise ValueError(
+        "labeled_sections extraction requires a label group unless "
+        "section_label_template is configured"
+    )
+
+
+def _html_content_root(
+    soup: BeautifulSoup, *, extraction: dict[str, Any] | None
+) -> Tag:
+    selector = (extraction or {}).get("html_content_selector") or (
+        extraction or {}
+    ).get("content_selector")
+    if selector is not None:
+        root = soup.select_one(str(selector))
+        if isinstance(root, Tag):
+            return root
+        raise ValueError(f"html content selector did not match: {selector!r}")
+    return _main_content(soup)
+
+
+def _html_drop_selectors(extraction: dict[str, Any] | None) -> tuple[str, ...]:
+    selectors = (extraction or {}).get("html_drop_selectors") or (
+        extraction or {}
+    ).get("drop_selectors")
+    if selectors is None:
+        return ()
+    if isinstance(selectors, str):
+        return (selectors,)
+    return tuple(str(selector) for selector in selectors)
 
 
 _WEBWORKS_TEXT_CLASS_PREFIXES = (
@@ -958,6 +1495,7 @@ def _date_text(value: date | str | None, fallback: str) -> str:
 
 
 def _normalize_text(text: str) -> str:
+    text = text.replace("\u200b", "").replace("\ufeff", "")
     lines = [" ".join(line.split()) for line in text.splitlines()]
     paragraphs: list[str] = []
     current: list[str] = []

@@ -1,0 +1,19 @@
+documents:
+- source_id: dc-dhs-esa-snap-policy-manual
+  jurisdiction: us-dc
+  document_class: manual
+  citation_path: us-dc/manual/dhs/esa/snap-policy-manual
+  title: District of Columbia ESA SNAP Policy Manual
+  source_url: https://dhs.dc.gov/sites/default/files/dc/sites/dhs/publication/attachments/Final%20ESA%20SNAP%20Policy%20Manual%201.24.25.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  metadata:
+    primary_source: true
+    source_authority: District of Columbia Department of Human Services
+    document_subtype: policy_manual
+    program: SNAP
+    federal_program: SNAP
+    manual_landing_page: https://dhs.dc.gov/publication/esa-policy-manuals
+    source_discovery_group: us-dc/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue

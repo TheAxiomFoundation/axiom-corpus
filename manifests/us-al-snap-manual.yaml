@@ -1,0 +1,496 @@
+documents:
+- source_id: al-dhr-poe-chapter-01
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 1: Household Concept'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%201.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-01-household-concept
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>1\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>1\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 1$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 1
+    chapter_title: Household Concept
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 1
+- source_id: al-dhr-poe-chapter-02
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 2: Application Processing'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%202.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-02-application-processing
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>2\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>2\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 2$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 2
+    chapter_title: Application Processing
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 2
+- source_id: al-dhr-poe-chapter-03
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 3: Residency'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%203.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-03-residency
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>3\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>3\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 3$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 3
+    chapter_title: Residency
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 3
+- source_id: al-dhr-poe-chapter-04
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 4: Citizenship and Alien Status'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%204.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-04-citizenship-and-alien-status
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>4\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>4\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 4$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 4
+    chapter_title: Citizenship and Alien Status
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 4
+- source_id: al-dhr-poe-chapter-05
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 5: Students'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%205.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-05-students
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>5\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>5\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 5$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 5
+    chapter_title: Students
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 5
+- source_id: al-dhr-poe-chapter-06
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 6: Social Security Numbers'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%206.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-06-social-security-numbers
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>6\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>6\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 6$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 6
+    chapter_title: Social Security Numbers
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 6
+- source_id: al-dhr-poe-chapter-07
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 7: Work Requirements'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%207.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-07-work-requirements
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>7\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>7\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 7$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 7
+    chapter_title: Work Requirements
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 7
+- source_id: al-dhr-poe-chapter-08
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 8: Resource Eligibility Standards'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%208.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-08-resource-eligibility-standards
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>8\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 8$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 8
+    chapter_title: Resource Eligibility Standards
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 8
+- source_id: al-dhr-poe-chapter-09
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 9: Income and Deductions'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%209.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-09-income-and-deductions
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>9\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>9\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 9$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 9
+    chapter_title: Income and Deductions
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 9
+- source_id: al-dhr-poe-chapter-10
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 10: Determining Household Eligibility and
+    Benefit Levels'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%2010.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-10-determining-household-eligibility-and-benefit-levels
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>10\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>10\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 10$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 10
+    chapter_title: Determining Household Eligibility and Benefit Levels
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 10
+- source_id: al-dhr-poe-chapter-11
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 11: Action on Households with Special Circumstances'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%2011.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-11-action-on-households-with-special-circumstances
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>11\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>11\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 11$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 11
+    chapter_title: Action on Households with Special Circumstances
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 11
+- source_id: al-dhr-poe-chapter-12
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 12: Reporting Changes'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%2012.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-12-reporting-changes
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>12\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>12\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 12$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 12
+    chapter_title: Reporting Changes
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 12
+- source_id: al-dhr-poe-chapter-13
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 13: Notice of Adverse Action'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%2013.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-13-notice-of-adverse-action
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>13\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>13\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 13$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 13
+    chapter_title: Notice of Adverse Action
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 13
+- source_id: al-dhr-poe-chapter-14
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 14: Recertification'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%2014.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-14-recertification
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>14\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>14\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 14$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 14
+    chapter_title: Recertification
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 14
+- source_id: al-dhr-poe-chapter-15
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 15: Fair Hearings'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%2015.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-15-fair-hearings
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>15\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>15\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 15$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 15
+    chapter_title: Fair Hearings
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 15
+- source_id: al-dhr-poe-chapter-16
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 16: Restoration of Lost Benefits'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%2016.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-16-restoration-of-lost-benefits
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>16\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>16\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 16$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 16
+    chapter_title: Restoration of Lost Benefits
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 16
+- source_id: al-dhr-poe-chapter-17
+  jurisdiction: us-al
+  document_class: manual
+  title: 'Alabama SNAP POE Manual Chapter 17: Simplified Reporting Procedures for
+    All Households'
+  source_url: https://apps.dhr.alabama.gov/POE/chapters/Chapter%2017.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  citation_path: us-al/manual/dhr/poe/chapter-17-simplified-reporting-procedures-for-all-households
+  extraction:
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>17\d{2}[A-Z]?)\s+(?P<heading>[A-Z].+)$
+    section_label_pattern: ^(?P<label>17\d{2}[A-Z]?)$
+    label_only_heading_pattern: ^[A-Z][A-Za-z0-9 ().,;:/\'\u2019\u201c\u201d-]+$
+    label_only_requires_heading: true
+    drop_line_patterns:
+    - ^Chapter 17$
+    - ^Page \d+ of \d+$
+  metadata:
+    primary_source: true
+    source_authority: Alabama Department of Human Resources
+    document_subtype: policy_manual_chapter_pdf
+    manual: Alabama SNAP Points of Eligibility Manual
+    program: SNAP
+    chapter_number: 17
+    chapter_title: Simplified Reporting Procedures for All Households
+    source_discovery_group: us-al/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovery_ordinal: 17

@@ -1,0 +1,21 @@
+documents:
+  - source_id: sc-dss-snap-policy-manual-vol-69
+    jurisdiction: us-sc
+    document_class: manual
+    citation_path: us-sc/manual/dss/snap-policy-manual
+    title: South Carolina Supplemental Nutrition Assistance Program Policy Manual Volume 69
+    source_url: https://dss.sc.gov/about/data-and-resources/manuals/
+    download_url: https://dss.sc.gov/media/iyclkptq/snap-manual-volume-69.pdf
+    source_format: pdf
+    source_as_of: "2025-12-30"
+    expression_date: "2026-01-01"
+    metadata:
+      primary_source: true
+      source_authority: South Carolina Department of Social Services
+      document_subtype: policy_manual
+      program: SNAP
+      manual_volume: "69"
+      manual_release_date: "2026-01"
+      extraction_granularity: pdf_page
+      source_discovery_group: us-sc/manual/manuals
+      discovered_via: manual-review:state-snap-manual-agent-queue

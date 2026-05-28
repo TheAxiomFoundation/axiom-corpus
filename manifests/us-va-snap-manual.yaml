@@ -1,0 +1,19 @@
+documents:
+  - source_id: va-dss-snap-full-manual-2025-10-01
+    jurisdiction: us-va
+    document_class: manual
+    citation_path: us-va/manual/dss/snap/full-manual
+    title: Virginia SNAP Full Manual
+    source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/snap/snap-manual/Entire-Manual-eff-10012025.pdf
+    source_format: pdf
+    source_as_of: "2026-05-27"
+    expression_date: "2025-10-01"
+    metadata:
+      primary_source: true
+      source_authority: Virginia Department of Social Services
+      document_subtype: policy_manual
+      program: SNAP
+      manual_landing_page: https://www.dss.virginia.gov/relief/food-assistance/snap/snap-policy--procedures/snap-manual/
+      extraction_granularity: pdf_page
+      source_discovery_group: us-va/manual/snap
+      discovered_via: manual-review:state-snap-manual-agent-queue

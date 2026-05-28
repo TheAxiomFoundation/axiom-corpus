@@ -1,0 +1,182 @@
+documents:
+- source_id: ne-dhhs-title-475-chapter-1
+  jurisdiction: us-ne
+  document_class: regulation
+  citation_path: us-ne/regulation/title-475/chapter-1
+  title: 'Nebraska Title 475 NAC Chapter 1: GENERAL PROVISIONS'
+  source_url: https://rules.nebraska.gov/api/chapter/1741
+  source_format: json
+  source_as_of: '2026-05-27'
+  expression_date: '2025-12-24'
+  request:
+    verify_tls: false
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: administrative_regulation_chapter
+    program: SNAP
+    federal_program: SNAP
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/230
+    agency_id: 37
+    agency_name: Health and Human Services, Department of
+    title_id: 230
+    title_number: 475
+    title_name: SUPPLEMENTAL NUTRITION ASSISTANCE PROGRAM
+    chapter_id: 1741
+    chapter_number: '1'
+    chapter_name: GENERAL PROVISIONS
+    effective_date: '2025-12-24'
+    date_filed: '2024-09-12'
+    pdf_blob_name: 475 NAC 1 (12-24-2025).pdf
+    official_pdf_blob_name: 475 NAC 1 (12-24-2025)_Official.pdf
+    toc_order: 1
+    source_discovery_group: us-ne/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+  extraction:
+    json_html_field: output.chapterHtml
+- source_id: ne-dhhs-title-475-chapter-2
+  jurisdiction: us-ne
+  document_class: regulation
+  citation_path: us-ne/regulation/title-475/chapter-2
+  title: 'Nebraska Title 475 NAC Chapter 2: HOUSEHOLD PROCESSING'
+  source_url: https://rules.nebraska.gov/api/chapter/1742
+  source_format: json
+  source_as_of: '2026-05-27'
+  expression_date: '2024-09-17'
+  request:
+    verify_tls: false
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: administrative_regulation_chapter
+    program: SNAP
+    federal_program: SNAP
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/230
+    agency_id: 37
+    agency_name: Health and Human Services, Department of
+    title_id: 230
+    title_number: 475
+    title_name: SUPPLEMENTAL NUTRITION ASSISTANCE PROGRAM
+    chapter_id: 1742
+    chapter_number: '2'
+    chapter_name: HOUSEHOLD PROCESSING
+    effective_date: '2024-09-17'
+    date_filed: '2024-09-12'
+    pdf_blob_name: 475 NAC 2 (09-17-2024).pdf
+    official_pdf_blob_name: null
+    toc_order: 2
+    source_discovery_group: us-ne/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+  extraction:
+    json_html_field: output.chapterHtml
+- source_id: ne-dhhs-title-475-chapter-3
+  jurisdiction: us-ne
+  document_class: regulation
+  citation_path: us-ne/regulation/title-475/chapter-3
+  title: 'Nebraska Title 475 NAC Chapter 3: ELIGIBILITY'
+  source_url: https://rules.nebraska.gov/api/chapter/1743
+  source_format: json
+  source_as_of: '2026-05-27'
+  expression_date: '2024-09-17'
+  request:
+    verify_tls: false
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: administrative_regulation_chapter
+    program: SNAP
+    federal_program: SNAP
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/230
+    agency_id: 37
+    agency_name: Health and Human Services, Department of
+    title_id: 230
+    title_number: 475
+    title_name: SUPPLEMENTAL NUTRITION ASSISTANCE PROGRAM
+    chapter_id: 1743
+    chapter_number: '3'
+    chapter_name: ELIGIBILITY
+    effective_date: '2024-09-17'
+    date_filed: '2024-09-12'
+    pdf_blob_name: 475 NAC 3 (09-17-2024).pdf
+    official_pdf_blob_name: null
+    toc_order: 3
+    source_discovery_group: us-ne/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+  extraction:
+    json_html_field: output.chapterHtml
+- source_id: ne-dhhs-title-475-chapter-4
+  jurisdiction: us-ne
+  document_class: regulation
+  citation_path: us-ne/regulation/title-475/chapter-4
+  title: 'Nebraska Title 475 NAC Chapter 4: BENEFITS'
+  source_url: https://rules.nebraska.gov/api/chapter/1744
+  source_format: json
+  source_as_of: '2026-05-27'
+  expression_date: '2024-09-17'
+  request:
+    verify_tls: false
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: administrative_regulation_chapter
+    program: SNAP
+    federal_program: SNAP
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/230
+    agency_id: 37
+    agency_name: Health and Human Services, Department of
+    title_id: 230
+    title_number: 475
+    title_name: SUPPLEMENTAL NUTRITION ASSISTANCE PROGRAM
+    chapter_id: 1744
+    chapter_number: '4'
+    chapter_name: BENEFITS
+    effective_date: '2024-09-17'
+    date_filed: '2024-09-12'
+    pdf_blob_name: 475 NAC 4 (09-17-2024).pdf
+    official_pdf_blob_name: null
+    toc_order: 4
+    source_discovery_group: us-ne/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+  extraction:
+    json_html_field: output.chapterHtml
+- source_id: ne-dhhs-title-475-chapter-5
+  jurisdiction: us-ne
+  document_class: regulation
+  citation_path: us-ne/regulation/title-475/chapter-5
+  title: 'Nebraska Title 475 NAC Chapter 5: ELECTRONIC BENEFITS TRANSFER CARD ISSUANCE AND
+    ACCOUNTABILITY'
+  source_url: https://rules.nebraska.gov/api/chapter/1745
+  source_format: json
+  source_as_of: '2026-05-27'
+  expression_date: '2020-07-04'
+  request:
+    verify_tls: false
+  metadata:
+    primary_source: true
+    source_authority: Nebraska Department of Health and Human Services
+    document_subtype: administrative_regulation_chapter
+    program: SNAP
+    federal_program: SNAP
+    rules_landing_page: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
+    rules_api_url: https://rules.nebraska.gov/api/chapter/GetByTitleId/230
+    agency_id: 37
+    agency_name: Health and Human Services, Department of
+    title_id: 230
+    title_number: 475
+    title_name: SUPPLEMENTAL NUTRITION ASSISTANCE PROGRAM
+    chapter_id: 1745
+    chapter_number: '5'
+    chapter_name: ELECTRONIC BENEFITS TRANSFER CARD ISSUANCE AND ACCOUNTABILITY
+    effective_date: '2020-07-04'
+    date_filed: null
+    pdf_blob_name: 475 NAC 5 (07-04-2020).pdf
+    official_pdf_blob_name: null
+    toc_order: 5
+    source_discovery_group: us-ne/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+  extraction:
+    json_html_field: output.chapterHtml

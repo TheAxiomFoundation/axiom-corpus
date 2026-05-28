@@ -1,0 +1,39 @@
+documents:
+- source_id: ky-dcbs-dfs-om-vol-ii
+  jurisdiction: us-ky
+  document_class: manual
+  citation_path: us-ky/manual/dcbs/dfs/volume-ii-snap
+  title: Kentucky DFS Manual Volume II - Supplemental Nutrition Assistance Program
+  source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLII.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department for Community Based Services Division of
+      Family Support
+    document_subtype: policy_manual
+    program: SNAP
+    federal_program: SNAP
+    manual_landing_page: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    source_discovery_group: us-ky/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
+- source_id: ky-dcbs-dfs-om-vol-iia
+  jurisdiction: us-ky
+  document_class: manual
+  citation_path: us-ky/manual/dcbs/dfs/volume-iia-snap-work-requirements
+  title: Kentucky DFS Manual Volume IIA - SNAP Work Requirements
+  source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Documents/OMVOLIIA.pdf
+  source_format: pdf
+  source_as_of: '2026-05-27'
+  expression_date: '2026-05-27'
+  metadata:
+    primary_source: true
+    source_authority: Kentucky Department for Community Based Services Division of
+      Family Support
+    document_subtype: policy_manual_supplement
+    program: SNAP
+    federal_program: SNAP
+    manual_landing_page: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
+    source_discovery_group: us-ky/manual/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue
