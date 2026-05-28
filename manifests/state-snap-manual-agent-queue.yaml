@@ -77,6 +77,7 @@ states:
     queue_status: published_current
     source_kind: official_administrative_regulation
     primary_source_url: https://www.sos.state.co.us/CCR/DisplayRule.do?action=ruleinfo&ruleId=2818
+    target_manifest: manifests/us-co-snap-regulations.yaml
     target_scope:
       jurisdiction: us-co
       document_class: regulation
@@ -401,6 +402,7 @@ states:
     queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://codes.ohio.gov/ohio-administrative-code/5101%3A4
+    target_manifest: manifests/us-oh-snap-rules.yaml
     target_scope:
       jurisdiction: us-oh
       document_class: regulation
