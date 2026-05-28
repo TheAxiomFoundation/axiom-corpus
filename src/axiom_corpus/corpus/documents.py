@@ -536,6 +536,7 @@ def _extract_labeled_pdf_section_blocks(
     label_heading_re = (
         re.compile(str(label_heading_pattern)) if label_heading_pattern is not None else None
     )
+    label_template = extraction.get("section_label_template")
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     lines = _filtered_pdf_lines(content, extraction=extraction)
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
@@ -576,14 +577,22 @@ def _extract_labeled_pdf_section_blocks(
 
     while index < len(lines):
         line, page = lines[index]
-        match = _match_labeled_pdf_section(line, section_heading_re, section_label_re)
+        match = _match_labeled_pdf_section(
+            line,
+            section_heading_re,
+            section_label_re,
+            label_template=str(label_template) if label_template is not None else None,
+        )
         if match:
             label, heading_text = match
             consumed_label_heading = False
             if drop_repeated and label == current_label:
                 index += 1
                 while index < len(lines) and _looks_like_labeled_heading_continuation(
-                    lines[index][0], section_heading_re, section_label_re
+                    lines[index][0],
+                    section_heading_re,
+                    section_label_re,
+                    label_template=str(label_template) if label_template is not None else None,
                 ):
                     index += 1
                 continue
@@ -603,7 +612,10 @@ def _extract_labeled_pdf_section_blocks(
             if consumed_label_heading:
                 index += 1
             while index < len(lines) and _looks_like_labeled_heading_continuation(
-                lines[index][0], section_heading_re, section_label_re
+                lines[index][0],
+                section_heading_re,
+                section_label_re,
+                label_template=str(label_template) if label_template is not None else None,
             ):
                 heading_lines.append(lines[index][0])
                 index += 1
@@ -719,15 +731,20 @@ def _match_labeled_pdf_section(
     line: str,
     section_heading_re: re.Pattern[str] | None,
     section_label_re: re.Pattern[str] | None,
+    *,
+    label_template: str | None = None,
 ) -> tuple[str, str] | None:
     if section_heading_re is not None:
         match = section_heading_re.match(line)
         if match:
-            return match.group("label"), match.groupdict().get("heading", "").strip()
+            return (
+                _labeled_section_label(match, label_template=label_template),
+                match.groupdict().get("heading", "").strip(),
+            )
     if section_label_re is not None:
         match = section_label_re.match(line)
         if match:
-            return match.group("label"), ""
+            return _labeled_section_label(match, label_template=label_template), ""
     return None
 
 
@@ -794,8 +811,15 @@ def _looks_like_labeled_heading_continuation(
     line: str,
     section_heading_re: re.Pattern[str] | None,
     section_label_re: re.Pattern[str] | None,
+    *,
+    label_template: str | None = None,
 ) -> bool:
-    if _match_labeled_pdf_section(line, section_heading_re, section_label_re):
+    if _match_labeled_pdf_section(
+        line,
+        section_heading_re,
+        section_label_re,
+        label_template=label_template,
+    ):
         return False
     return _looks_like_section_heading_line(line)
 

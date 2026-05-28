@@ -1,0 +1,36 @@
+documents:
+  - source_id: ny-otda-snap-source-book
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/snap-source-book
+    title: New York SNAP Source Book
+    source_url: https://otda.ny.gov/programs/snap/SNAPSB.pdf
+    download_url: https://web.archive.org/web/20251031071939id_/https://otda.ny.gov/programs/snap/SNAPSB.pdf
+    source_format: pdf
+    source_as_of: "2025-10-31"
+    expression_date: "2025-09-24"
+    extraction:
+      segmentation: labeled_sections
+      start_page: 7
+      section_heading_pattern: "^(?P<label>SECTION\\s+(?P<number>\\d+))(?::|\\s+[\\u2013-]\\s+)\\s*(?P<heading>.+)$"
+      section_label_template: section-{number}
+      drop_repeated_section_headings: true
+      drop_line_patterns:
+        - ^NYS OFFICE OF TEMPORARY AND DISABILITY ASSISTANCE
+        - ^Rev\.
+        - ^\d+-\d+$
+    metadata:
+      primary_source: true
+      source_authority: New York State Office of Temporary and Disability Assistance
+      document_subtype: policy_manual
+      program: SNAP
+      federal_program: SNAP
+      official_manual_version: Sept 2025
+      archived_official_source: true
+      archive_url: https://web.archive.org/web/20251031071939id_/https://otda.ny.gov/programs/snap/SNAPSB.pdf
+      archive_timestamp: "20251031071939"
+      original_last_modified: "2025-09-24"
+      manual_landing_page: https://otda.ny.gov/programs/snap/
+      source_discovery_group: us-ny/manual/snap
+      discovered_via: manual-review:state-snap-manual-agent-queue
+      notes: Live OTDA PDF requests return request-validation HTML to unattended clients; this scope uses an Internet Archive capture of the official OTDA PDF URL.

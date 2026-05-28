@@ -352,11 +352,15 @@ states:
     notes: Current scope includes HCA-linked SRCA NMAC Chapter 100 general public assistance provisions and Chapter 139 food stamp program regulations.
   - jurisdiction: us-ny
     name: New York
-    queue_status: partial_primary_policy
-    source_kind: official_pdf_or_regulation
+    queue_status: published_current
+    source_kind: archived_official_pdf_manual
     primary_source_url: https://otda.ny.gov/programs/snap/snapsb.pdf
     target_manifest: manifests/us-ny-snap-manual.yaml
-    notes: Existing corpus has SNAP eligibility and SUA regulation slices; complete source manual needs direct PDF or equivalent official source handling. Direct OTDA SNAP Source Book PDF and SNAP program paths reset curl/requests connections; browser/curl-cffi probes receive bot-challenge HTML rather than PDF bytes.
+    target_scope:
+      jurisdiction: us-ny
+      document_class: manual
+      version: 2026-05-27-ny-snap-source-book
+    notes: Current scope uses a 2025-10-31 Internet Archive capture of the official OTDA SNAP Source Book PDF URL because live OTDA PDF requests return request-validation HTML to unattended clients. Existing SNAP eligibility and SUA regulation slices remain separate.
   - jurisdiction: us-nc
     name: North Carolina
     queue_status: published_current

@@ -931,6 +931,63 @@ documents:
     assert eligibility.metadata["page_start"] == 2
 
 
+def test_extract_labeled_pdf_sections_formats_section_labels(
+    tmp_path: Path,
+) -> None:
+    pdf_path = tmp_path / "source-book.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "SECTION 1 \u2013 FORWARD/NOTICE",
+                "SECTION 1: Forward/Notice",
+                "Forward text.",
+                "SECTION 2: Eligibility",
+                "Eligibility text.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ny-source-book
+    jurisdiction: us-ny
+    document_class: manual
+    title: New York SNAP Source Book
+    source_url: https://otda.ny.gov/programs/snap/SNAPSB.pdf
+    citation_path: us-ny/manual/otda/snap-source-book
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: "^(?P<label>SECTION\\\\s+(?P<number>\\\\d+))(?::|\\\\s+[\\\\u2013-]\\\\s+)\\\\s*(?P<heading>.+)$"
+      section_label_template: "section-{{number}}"
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-27-ny-source-book",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-ny/manual/otda/snap-source-book",
+        "us-ny/manual/otda/snap-source-book/section-1",
+        "us-ny/manual/otda/snap-source-book/section-2",
+    ]
+    assert records[1].metadata is not None
+    assert records[1].metadata["section_label"] == "section-1"
+
+
 def test_extract_labeled_pdf_sections_supports_label_heading_next_line(
     tmp_path: Path,
 ) -> None:
