@@ -1,0 +1,24 @@
+version: 2026-05-28-nj-snap-rules-reconstructed
+sources:
+- source_id: us-nj-snap-rules-reconstructed
+  jurisdiction: us-nj
+  document_class: regulation
+  adapter: new_jersey_snap_reconstruction
+  source_url: https://www.nj.gov/humanservices/notices/rules-and-fees/rules-and-regulations/
+  version: 2026-05-28-nj-snap-rules-reconstructed
+  options:
+    base_manifest: manifests/us-nj-snap-rules-2017-base.yaml
+    base_provisions: data/corpus/provisions/us-nj/regulation/2017-02-06-nj-snap-rules-base.jsonl
+    rulemaking_manifest: manifests/us-nj-snap-rulemaking-notices.yaml
+    rulemaking_provisions: data/corpus/provisions/us-nj/rulemaking/2026-05-28-nj-snap-rulemaking-notices.jsonl
+    source_as_of: "2026-05-28"
+    expression_date: "2025-09-15"
+  metadata:
+    primary_source: true
+    document_subtype: reconstructed_administrative_code
+    manual: New Jersey Supplemental Nutrition Assistance Program (NJ SNAP) Manual
+    regulation_chapter: N.J.A.C. 10:87
+    program: SNAP
+    source_note: Current scope reconstructed from official DHS 2017 complete base and later official DHS/NJ Register adoption, correction, readoption, and administrative-change notices.
+    source_discovery_group: us-nj/regulation/snap
+    discovered_via: manual-review:state-snap-manual-agent-queue

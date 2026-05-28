@@ -48,6 +48,7 @@ from axiom_corpus.corpus.navigation_supabase import (
     fetch_provisions_for_navigation,
     write_navigation_nodes_to_supabase,
 )
+from axiom_corpus.corpus.new_jersey_snap import reconstruct_new_jersey_snap_rules
 from axiom_corpus.corpus.ny_rulemaking import extract_ny_state_register
 from axiom_corpus.corpus.nycrr import extract_nycrr
 from axiom_corpus.corpus.ohio_admin_code import extract_ohio_admin_code
@@ -3617,6 +3618,43 @@ def _cmd_extract_official_documents(args: argparse.Namespace) -> int:
     return 0 if report.coverage.complete or args.allow_incomplete else 2
 
 
+def _cmd_reconstruct_new_jersey_snap_rules(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    report = reconstruct_new_jersey_snap_rules(
+        store,
+        version=args.version,
+        base_provisions_path=args.base_provisions,
+        rulemaking_provisions_path=args.rulemaking_provisions,
+        source_as_of=args.source_as_of,
+        expression_date=args.expression_date,
+        progress_stream=sys.stderr,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+                "modified_count": len(report.modified_citation_paths),
+                "added_count": len(report.added_citation_paths),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
 def _cmd_coverage(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     source_inventory = load_source_inventory(args.source_inventory)
@@ -4802,6 +4840,19 @@ def build_parser() -> argparse.ArgumentParser:
     extract_documents_cmd.add_argument("--limit", type=int)
     extract_documents_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_documents_cmd.set_defaults(func=_cmd_extract_official_documents)
+
+    reconstruct_nj_snap_cmd = sub.add_parser(
+        "reconstruct-new-jersey-snap-rules",
+        help="Compile current N.J.A.C. 10:87 SNAP rules from official base and notices.",
+    )
+    reconstruct_nj_snap_cmd.add_argument("--base", type=Path, required=True)
+    reconstruct_nj_snap_cmd.add_argument("--version", required=True)
+    reconstruct_nj_snap_cmd.add_argument("--base-provisions", type=Path, required=True)
+    reconstruct_nj_snap_cmd.add_argument("--rulemaking-provisions", type=Path, required=True)
+    reconstruct_nj_snap_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of", required=True)
+    reconstruct_nj_snap_cmd.add_argument("--expression-date", required=True)
+    reconstruct_nj_snap_cmd.add_argument("--allow-incomplete", action="store_true")
+    reconstruct_nj_snap_cmd.set_defaults(func=_cmd_reconstruct_new_jersey_snap_rules)
 
     coverage = sub.add_parser(
         "coverage",
