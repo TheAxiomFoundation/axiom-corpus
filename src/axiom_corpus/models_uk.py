@@ -35,6 +35,15 @@ UK_LEGISLATION_TYPES = {
     "eur": "EU Regulation (Retained)",
 }
 
+UK_REGULATION_TYPES = {
+    "uksi",
+    "ssi",
+    "wsi",
+    "nisr",
+    "ukmo",
+    "uksro",
+}
+
 # Common short titles mapped to citations
 UK_ACT_SHORT_TITLES = {
     "ITEPA": ("ukpga", 2003, 1),  # Income Tax (Earnings and Pensions) Act
@@ -54,7 +63,7 @@ UK_CITATION_PATTERN = re.compile(
     r"^([a-z]{2,5})"  # Type (ukpga, uksi, asp, etc.)
     r"/(\d{4})"  # Year
     r"/(\d+)"  # Number
-    r"(?:/section/(\d+[A-Za-z]?))?"  # Optional section
+    r"(?:/(?:section|regulation)/(\d+[A-Za-z]?))?"  # Optional provision
     r"(?:/(\d+[a-z]?(?:/[a-z])?))?$",  # Optional subsection path
     re.IGNORECASE,
 )
@@ -159,7 +168,7 @@ class UKCitation(BaseModel):
         """
         url = f"https://www.legislation.gov.uk/{self.type}/{self.year}/{self.number}"
         if self.section:
-            url += f"/section/{self.section}"
+            url += f"/{self.provision_segment}/{self.section}"
         return url
 
     @property
@@ -185,8 +194,14 @@ class UKCitation(BaseModel):
             cite = f"{self.type.upper()} {self.year}/{self.number}"  # pragma: no cover
 
         if self.section:
-            cite += f" s. {self.section}"
+            marker = "reg." if self.provision_segment == "regulation" else "s."
+            cite += f" {marker} {self.section}"
         return cite
+
+    @property
+    def provision_segment(self) -> str:
+        """Return the legislation.gov.uk URL segment for a numbered provision."""
+        return "regulation" if self.type in UK_REGULATION_TYPES else "section"
 
     @property
     def path(self) -> str:

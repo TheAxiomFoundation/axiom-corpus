@@ -6,6 +6,10 @@ from axiom_corpus.corpus.documents import OfficialDocumentExtractReport
 from axiom_corpus.corpus.ecfr import EcfrExtractReport, EcfrInventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
+from axiom_corpus.corpus.uk_legislation import (
+    UKLegislationClassExtractReport,
+    UKLegislationExtractReport,
+)
 from axiom_corpus.corpus.usc import UscExtractReport
 
 SAMPLE_USLM_CLI = """
@@ -246,6 +250,69 @@ def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
 
     assert exit_code == 0
     assert '"provisions_written": 2' in output
+
+
+def test_extract_uk_legislation_cli(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "uk.xml"
+    source_xml.write_text("<Legislation />")
+    coverage = ProvisionCoverageReport(
+        jurisdiction="uk",
+        document_class="regulation",
+        version="2026-05-29-uk-benefits",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["source_xmls"] == (source_xml,)
+        assert kwargs["citations"] == ("uksi/2006/965/regulation/2",)
+        return UKLegislationExtractReport(
+            version="2026-05-29-uk-benefits",
+            source_count=1,
+            provisions_written=1,
+            class_reports=(
+                UKLegislationClassExtractReport(
+                    document_class="regulation",
+                    source_count=1,
+                    provisions_written=1,
+                    inventory_path=base / "inventory/uk/regulation/2026-05-29-uk-benefits.json",
+                    provisions_path=base / "provisions/uk/regulation/2026-05-29-uk-benefits.jsonl",
+                    coverage_path=base / "coverage/uk/regulation/2026-05-29-uk-benefits.json",
+                    coverage=coverage,
+                    source_paths=(
+                        base
+                        / "sources/uk/regulation/2026-05-29-uk-benefits/uksi/2006/965/regulation-2.xml",
+                    ),
+                ),
+            ),
+        )
+
+    monkeypatch.setattr(cli, "extract_uk_legislation_sections", fake_extract)
+
+    exit_code = main(
+        [
+            "extract-uk-legislation",
+            "--base",
+            str(base),
+            "--version",
+            "2026-05-29-uk-benefits",
+            "--source-xml",
+            str(source_xml),
+            "--citation",
+            "uksi/2006/965/regulation/2",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"jurisdiction": "uk"' in output
+    assert '"document_class": "regulation"' in output
 
 
 def test_extract_usc_dir_cli(tmp_path, capsys, monkeypatch):
@@ -527,9 +594,7 @@ def test_load_supabase_cli_rebuilds_navigation_after_provisions_load(tmp_path, c
     assert payload["navigation"]["source"] == "local"
 
 
-def test_load_supabase_cli_can_rebuild_navigation_from_supabase(
-    tmp_path, capsys, monkeypatch
-):
+def test_load_supabase_cli_can_rebuild_navigation_from_supabase(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
     from axiom_corpus.corpus.artifacts import CorpusArtifactStore
     from axiom_corpus.corpus.navigation_supabase import NavigationSupabaseWriteReport
@@ -1015,9 +1080,7 @@ def test_snapshot_provision_counts_cli_writes_supabase_counts(tmp_path, capsys, 
     }
 
 
-def test_snapshot_provision_counts_cli_can_count_release_manifest(
-    tmp_path, capsys, monkeypatch
-):
+def test_snapshot_provision_counts_cli_can_count_release_manifest(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 
     base = tmp_path / "corpus"

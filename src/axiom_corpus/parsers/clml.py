@@ -30,6 +30,7 @@ NAMESPACES = {
     "ukm": "http://www.legislation.gov.uk/namespaces/metadata",
     "dc": "http://purl.org/dc/elements/1.1/",
     "atom": "http://www.w3.org/2005/Atom",
+    "xhtml": "http://www.w3.org/1999/xhtml",
 }
 
 
@@ -93,6 +94,51 @@ def _get_text_content(elem: ET.Element) -> str:
     return "".join(elem.itertext())
 
 
+def _clean_text(text: str) -> str:
+    """Normalize XML text content without flattening meaningful line breaks."""
+    return re.sub(r"[ \t\r\f\v]+", " ", text).strip()
+
+
+def _operative_text_parts(parent: ET.Element, ns: dict) -> list[str]:
+    """Extract operative provision text, including embedded XHTML tables."""
+    parts = [
+        _clean_text(_get_text_content(text_elem)) for text_elem in parent.findall(".//leg:Text", ns)
+    ]
+    parts.extend(_extract_xhtml_tables(parent, ns))
+    return [part for part in parts if part]
+
+
+def _extract_xhtml_tables(parent: ET.Element, ns: dict) -> list[str]:
+    tables: list[str] = []
+    for table in parent.findall(".//xhtml:table", ns):
+        rows: list[list[str]] = []
+        for row in table.findall(".//xhtml:tr", ns):
+            cells = [
+                _clean_text(_get_text_content(cell))
+                for cell in row.findall("./xhtml:th", ns) + row.findall("./xhtml:td", ns)
+            ]
+            if any(cells):
+                rows.append(cells)
+        if rows:
+            tables.append(_format_table_rows(rows))
+    return tables
+
+
+def _format_table_rows(rows: list[list[str]]) -> str:
+    column_count = max(len(row) for row in rows)
+    padded_rows = [row + [""] * (column_count - len(row)) for row in rows]
+
+    def format_row(row: list[str]) -> str:
+        return "| " + " | ".join(row) + " |"
+
+    if len(padded_rows) == 1:
+        return format_row(padded_rows[0])
+    separator = "| " + " | ".join("---" for _ in range(column_count)) + " |"
+    return "\n".join(
+        [format_row(padded_rows[0]), separator, *(format_row(row) for row in padded_rows[1:])]
+    )
+
+
 def _parse_subsections(parent: ET.Element, ns: dict) -> list[UKSubsection]:
     """Parse P2/P3 elements into UKSubsection objects."""
     subsections = []
@@ -104,31 +150,31 @@ def _parse_subsections(parent: ET.Element, ns: dict) -> list[UKSubsection]:
         pnum_text = pnum.text if pnum is not None else ""
 
         # Get text from P2para
-        p2_text_parts = []
-        for text_elem in p2.findall(".//leg:Text", ns):
-            p2_text_parts.append(_get_text_content(text_elem))
+        p2_text_parts = _operative_text_parts(p2, ns)
 
         # Parse nested P3 elements
         children = []
         for p3 in p2.findall(".//leg:P3", ns):
             p3_pnum = p3.find("leg:Pnumber", ns)
             p3_id = p3_pnum.text if p3_pnum is not None else ""
-            p3_text_parts = []
-            for text_elem in p3.findall(".//leg:Text", ns):
-                p3_text_parts.append(_get_text_content(text_elem))
+            p3_text_parts = _operative_text_parts(p3, ns)
 
             if p3_text_parts:
-                children.append(UKSubsection(
-                    id=p3_id,
-                    text=" ".join(p3_text_parts),
-                ))
+                children.append(
+                    UKSubsection(
+                        id=p3_id,
+                        text=" ".join(p3_text_parts),
+                    )
+                )
 
         if p2_text_parts or children:
-            subsections.append(UKSubsection(
-                id=pnum_text or p2_id.split("-")[-1] if p2_id else "",
-                text=" ".join(p2_text_parts),
-                children=children,
-            ))
+            subsections.append(
+                UKSubsection(
+                    id=pnum_text or p2_id.split("-")[-1] if p2_id else "",
+                    text=" ".join(p2_text_parts),
+                    children=children,
+                )
+            )
 
     return subsections
 
@@ -138,10 +184,11 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
     if not uri:
         return None
 
-    # Extract type/year/number/section from URI
+    # Extract type/year/number/provision from URI
     # e.g., http://www.legislation.gov.uk/ukpga/2003/1/section/62
+    #       http://www.legislation.gov.uk/uksi/2013/376/regulation/36
     match = re.search(
-        r"legislation\.gov\.uk/([a-z]+)/(\d+)/(\d+)(?:/section/(\d+[A-Za-z]?))?",
+        r"legislation\.gov\.uk/([a-z]+)/(\d+)/(\d+)(?:/(?:section|regulation)/(\d+[A-Za-z]?))?",
         uri,
     )
     if match:
@@ -190,13 +237,15 @@ def _parse_amendments(root: ET.Element, ns: dict) -> list[UKAmendment]:
                     if match:
                         amending_act = match.group(1)
 
-                amendments.append(UKAmendment(
-                    type="substitution",
-                    amending_act=amending_act,
-                    description=text[:200] if text else None,
-                    effective_date=eff_date,
-                    change_id=change_id,
-                ))
+                amendments.append(
+                    UKAmendment(
+                        type="substitution",
+                        amending_act=amending_act,
+                        description=text[:200] if text else None,
+                        effective_date=eff_date,
+                        change_id=change_id,
+                    )
+                )
 
     return amendments
 
@@ -249,12 +298,12 @@ def parse_section(xml_str: str) -> UKSection:
 
     # If this is a section-level doc, use section number as title
     if citation.section:
-        title = f"Section {citation.section}"
+        title_prefix = "Regulation" if citation.provision_segment == "regulation" else "Section"
+        title = f"{title_prefix} {citation.section}"
 
     # Extract full text
-    text_parts = []
-    for text_elem in root.findall(".//leg:Text", ns):
-        text_parts.append(_get_text_content(text_elem))
+    content_root = p1 if p1 is not None else root
+    text_parts = _operative_text_parts(content_root, ns)
     full_text = "\n".join(text_parts)
 
     # Parse subsections
@@ -317,7 +366,9 @@ def parse_act_metadata(xml_str: str) -> UKAct:
         year_elem = root.find(".//ukm:Year", ns)  # pragma: no cover
         number_elem = root.find(".//ukm:Number", ns)  # pragma: no cover
         year = int(year_elem.get("Value", "0")) if year_elem is not None else 0  # pragma: no cover
-        number = int(number_elem.get("Value", "0")) if number_elem is not None else 0  # pragma: no cover
+        number = (
+            int(number_elem.get("Value", "0")) if number_elem is not None else 0
+        )  # pragma: no cover
         citation = UKCitation(type="ukpga", year=year, number=number)  # pragma: no cover
 
     # Extract title
@@ -355,10 +406,12 @@ def parse_act_metadata(xml_str: str) -> UKAct:
         number_elem = part_elem.find("leg:Number", ns)
         title_elem = part_elem.find("leg:Title", ns)
         if number_elem is not None or title_elem is not None:
-            parts.append(UKPart(
-                number=number_elem.text if number_elem is not None else "",
-                title=title_elem.text if title_elem is not None else "",
-            ))
+            parts.append(
+                UKPart(
+                    number=number_elem.text if number_elem is not None else "",
+                    title=title_elem.text if title_elem is not None else "",
+                )
+            )
 
     # Parse extent
     extent_str = root.get("RestrictExtent", "")
