@@ -1,7 +1,24 @@
 """Adapter shape tests for the CDSS MPP CalFresh extractor."""
 
+import zipfile
+from io import BytesIO
+
+import pytest
+
 from axiom_corpus.corpus.california_mpp import _subsection_provision
-from axiom_corpus.parsers.us_ca.regulations import MppSubsection
+from axiom_corpus.parsers.us_ca.regulations import (
+    MppParagraph,
+    MppSubsection,
+    extract_paragraphs,
+    parse_mpp_sections,
+)
+
+
+def _docx_bytes(document_xml: str) -> bytes:
+    buffer = BytesIO()
+    with zipfile.ZipFile(buffer, "w") as archive:
+        archive.writestr("word/document.xml", document_xml)
+    return buffer.getvalue()
 
 
 def _make_subsection(num: str, title: str, body: str) -> MppSubsection:
@@ -64,3 +81,80 @@ def test_subsection_with_both_fields_empty_emits_null_body():
     sub = _make_subsection(num="999", title="", body="")
     prov = _provision(sub)
     assert prov.body is None
+
+
+def test_extract_paragraphs_reads_docx_text_tabs_and_breaks():
+    document_xml = """
+    <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+      <w:body>
+        <w:p>
+          <w:r><w:t>One</w:t></w:r>
+          <w:r><w:tab/></w:r>
+          <w:r><w:t>Two</w:t></w:r>
+          <w:r><w:br/></w:r>
+          <w:r><w:t>Three</w:t></w:r>
+        </w:p>
+        <w:p><w:r><w:t>   </w:t></w:r></w:p>
+      </w:body>
+    </w:document>
+    """
+
+    paragraphs = extract_paragraphs(_docx_bytes(document_xml))
+
+    assert paragraphs == (MppParagraph(text="One Two Three", index=1),)
+
+
+def test_extract_paragraphs_rejects_docx_without_text():
+    document_xml = """
+    <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+      <w:body><w:p /></w:body>
+    </w:document>
+    """
+
+    with pytest.raises(ValueError, match="no text paragraphs"):
+        extract_paragraphs(_docx_bytes(document_xml))
+
+
+def test_parse_mpp_sections_skips_toc_noise_and_repeated_headers():
+    paragraphs = (
+        MppParagraph("Table of contents", 1),
+        MppParagraph("63-299 TABLE OF CONTENTS", 2),
+        MppParagraph("63-300 APPLICATION PROCESS 63-300", 3),
+        MppParagraph("CALIFORNIA-DSS-MANUAL-FS", 4),
+        MppParagraph("63-300 APPLICATION PROCESS (Continued) 63-300", 5),
+        MppParagraph(".1 General eligibility", 6),
+        MppParagraph("First paragraph.", 7),
+        MppParagraph("Second paragraph.", 8),
+        MppParagraph(".2 Single line rule", 9),
+        MppParagraph("63-300 APPLICATION PROCESS", 10),
+        MppParagraph("63-301 ELIGIBILITY Regulations", 11),
+        MppParagraph(".1 New section body", 12),
+        MppParagraph("Final paragraph.", 13),
+    )
+
+    sections = parse_mpp_sections(
+        paragraphs,
+        source_file="fsman06.docx",
+        expected_sections=("63-300", "63-301"),
+    )
+
+    assert [section.num for section in sections] == ["63-300", "63-301"]
+    assert sections[0].title == "APPLICATION PROCESS"
+    assert [sub.num for sub in sections[0].subsections] == ["1", "2"]
+    assert sections[0].subsections[0].body == "First paragraph. Second paragraph."
+    assert sections[0].subsections[1].body == ""
+    assert sections[1].title == "ELIGIBILITY"
+    assert sections[1].subsections[0].body == "Final paragraph."
+
+
+def test_parse_mpp_sections_falls_back_to_first_paragraph_without_body_marker():
+    paragraphs = (
+        MppParagraph("Preface", 1),
+        MppParagraph("63-300 Application Process", 2),
+    )
+
+    sections = parse_mpp_sections(paragraphs, source_file="fsman06.docx")
+
+    assert len(sections) == 1
+    assert sections[0].num == "63-300"
+    assert sections[0].title == "Application Process"

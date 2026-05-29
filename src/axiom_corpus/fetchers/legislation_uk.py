@@ -179,7 +179,7 @@ class UKLegislationFetcher:
         """
         url = f"{self.base_url}/{citation.type}/{citation.year}/{citation.number}"
         if citation.section:
-            url += f"/section/{citation.section}"
+            url += f"/{citation.provision_segment}/{citation.section}"
         if version:
             url += f"/{version}"
         url += "/data.xml"
@@ -250,7 +250,7 @@ class UKLegislationFetcher:
         """Get cache file path for a citation."""
         path = self.data_dir / citation.type / str(citation.year) / str(citation.number)
         if citation.section:
-            return path / f"section-{citation.section}.xml"
+            return path / f"{citation.provision_segment}-{citation.section}.xml"
         return path / "act.xml"
 
     async def fetch_section(

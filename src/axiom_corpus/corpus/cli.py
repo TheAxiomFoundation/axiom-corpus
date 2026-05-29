@@ -197,6 +197,10 @@ from axiom_corpus.corpus.supabase import (
     verify_release_coverage,
     write_supabase_rows_jsonl,
 )
+from axiom_corpus.corpus.uk_legislation import (
+    UKLegislationExtractReport,
+    extract_uk_legislation_sections,
+)
 from axiom_corpus.corpus.usc import (
     build_usc_inventory_from_xml,
     decode_uslm_bytes,
@@ -565,9 +569,7 @@ def _cmd_backfill_versions(args: argparse.Namespace) -> int:
                 s for s in scopes_to_process if s["document_class"] == args.doc_type
             )
 
-    tables = (
-        ("provisions", "navigation_nodes") if not args.table else (args.table,)
-    )
+    tables = ("provisions", "navigation_nodes") if not args.table else (args.table,)
 
     summary: list[dict[str, object]] = []
     for scope in scopes_to_process:
@@ -766,10 +768,10 @@ def _provision_release_scopes(
     records: tuple[ProvisionRecord, ...],
 ) -> tuple[tuple[str, str, str | None], ...]:
     return tuple(
-        sorted({
-            (record.jurisdiction, record.document_class, record.version)
-            for record in records
-        }, key=lambda scope: (scope[0], scope[1], scope[2] or ""))
+        sorted(
+            {(record.jurisdiction, record.document_class, record.version) for record in records},
+            key=lambda scope: (scope[0], scope[1], scope[2] or ""),
+        )
     )
 
 
@@ -1039,6 +1041,52 @@ def _cmd_extract_usc_dir(args: argparse.Namespace) -> int:
         )
     )
     return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
+def _cmd_extract_uk_legislation(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_uk_legislation_sections(
+        store,
+        version=args.version,
+        source_xmls=tuple(args.source_xml or ()),
+        citations=tuple(args.citation or ()),
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+    )
+    print(json.dumps(_uk_legislation_report_json(report), indent=2, sort_keys=True))
+    return (
+        0
+        if all(class_report.coverage.complete for class_report in report.class_reports)
+        or args.allow_incomplete
+        else 2
+    )
+
+
+def _uk_legislation_report_json(report: UKLegislationExtractReport) -> dict[str, Any]:
+    return {
+        "jurisdiction": "uk",
+        "version": report.version,
+        "source_count": report.source_count,
+        "provisions_written": report.provisions_written,
+        "classes": [
+            {
+                "document_class": class_report.document_class,
+                "source_file_count": len(class_report.source_paths),
+                "provisions_written": class_report.provisions_written,
+                "inventory_path": str(class_report.inventory_path),
+                "provisions_path": str(class_report.provisions_path),
+                "coverage_path": str(class_report.coverage_path),
+                "coverage_complete": class_report.coverage.complete,
+                "source_count": class_report.coverage.source_count,
+                "provision_count": class_report.coverage.provision_count,
+                "matched_count": class_report.coverage.matched_count,
+                "missing_count": len(class_report.coverage.missing_from_provisions),
+                "extra_count": len(class_report.coverage.extra_provisions),
+            }
+            for class_report in report.class_reports
+        ],
+    }
 
 
 def _cmd_extract_dc_code(args: argparse.Namespace) -> int:
@@ -1843,8 +1891,7 @@ def _extract_state_statute_source(
             store,
             version=version,
             source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
-            source_year=_optional_int(options.get("source_year"))
-            or ALASKA_STATUTES_DEFAULT_YEAR,
+            source_year=_optional_int(options.get("source_year")) or ALASKA_STATUTES_DEFAULT_YEAR,
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
@@ -1899,8 +1946,7 @@ def _extract_state_statute_source(
             store,
             version=version,
             source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
-            source_year=_optional_int(options.get("source_year"))
-            or FLORIDA_STATUTES_DEFAULT_YEAR,
+            source_year=_optional_int(options.get("source_year")) or FLORIDA_STATUTES_DEFAULT_YEAR,
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
@@ -1958,8 +2004,7 @@ def _extract_state_statute_source(
             only_title=only_title,
             limit=limit,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
-            base_url=_optional_text(options.get("base_url"))
-            or "https://www.legis.la.gov/Legis/",
+            base_url=_optional_text(options.get("base_url")) or "https://www.legis.la.gov/Legis/",
             root_folder=_optional_text(options.get("root_folder")) or "75",
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.02,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 60.0,
@@ -2220,8 +2265,7 @@ def _extract_state_statute_source(
             limit=limit,
             workers=_optional_int(options.get("workers")) or 8,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
-            base_url=_optional_text(options.get("base_url"))
-            or "https://revisor.mo.gov/main/",
+            base_url=_optional_text(options.get("base_url")) or "https://revisor.mo.gov/main/",
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.02,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 60.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
@@ -2237,8 +2281,7 @@ def _extract_state_statute_source(
             limit=limit,
             workers=_optional_int(options.get("workers")) or 1,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
-            base_url=_optional_text(options.get("base_url"))
-            or "https://gc.nh.gov/rsa/html/",
+            base_url=_optional_text(options.get("base_url")) or "https://gc.nh.gov/rsa/html/",
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.25,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 30.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 2,
@@ -2320,8 +2363,7 @@ def _extract_state_statute_source(
             source_url=_optional_text(options.get("source_url"))
             or source.source_url
             or WISCONSIN_STATUTES_TOC_URL,
-            base_url=_optional_text(options.get("base_url"))
-            or "https://docs.legis.wisconsin.gov",
+            base_url=_optional_text(options.get("base_url")) or "https://docs.legis.wisconsin.gov",
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
@@ -2579,11 +2621,7 @@ def _state_statute_row_success(row: dict[str, Any]) -> bool:
 
 
 def _state_statute_report_success(report: StateStatuteExtractReport) -> bool:
-    return (
-        report.coverage.complete
-        and report.skipped_source_count == 0
-        and len(report.errors) == 0
-    )
+    return report.coverage.complete and report.skipped_source_count == 0 and len(report.errors) == 0
 
 
 def _state_source_options(source: CorpusSource) -> dict[str, Any]:
@@ -3836,9 +3874,7 @@ def _cmd_state_statute_completion(args: argparse.Namespace) -> int:
     release_path = resolve_release_manifest_path(args.base, args.release)
     release = ReleaseManifest.load(release_path)
     prefixes = tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES)
-    source_access_queue = _resolve_state_source_access_queue(
-        args.base, args.source_access_queue
-    )
+    source_access_queue = _resolve_state_source_access_queue(args.base, args.source_access_queue)
     validation_report_path = args.validation_report
     if validation_report_path is None:
         candidate = args.base / "analytics" / f"validate-release-{release.name}.json"
@@ -4202,6 +4238,28 @@ def build_parser() -> argparse.ArgumentParser:
     extract_usc_dir_cmd.add_argument("--limit", type=int)
     extract_usc_dir_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_usc_dir_cmd.set_defaults(func=_cmd_extract_usc_dir)
+
+    extract_uk_cmd = sub.add_parser(
+        "extract-uk-legislation",
+        help="Snapshot UK CLML section XML and extract normalized provision JSONL.",
+    )
+    extract_uk_cmd.add_argument("--base", type=Path, required=True)
+    extract_uk_cmd.add_argument("--version", required=True)
+    extract_uk_cmd.add_argument(
+        "--source-xml",
+        type=Path,
+        action="append",
+        help="Local legislation.gov.uk CLML section/regulation XML file.",
+    )
+    extract_uk_cmd.add_argument(
+        "--citation",
+        action="append",
+        help="Fetch one UK citation, e.g. ukpga/2007/3/section/35.",
+    )
+    extract_uk_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_uk_cmd.add_argument("--expression-date")
+    extract_uk_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_uk_cmd.set_defaults(func=_cmd_extract_uk_legislation)
 
     extract_dc_cmd = sub.add_parser(
         "extract-dc-code",
@@ -4804,8 +4862,7 @@ def build_parser() -> argparse.ArgumentParser:
         action="append",
         choices=["RULE", "PRORULE", "NOTICE", "PRESDOCU"],
         help=(
-            "Federal Register type to include. Repeatable. Defaults to "
-            "RULE, PRORULE, and NOTICE."
+            "Federal Register type to include. Repeatable. Defaults to RULE, PRORULE, and NOTICE."
         ),
     )
     extract_federal_register_cmd.add_argument(
@@ -4849,7 +4906,9 @@ def build_parser() -> argparse.ArgumentParser:
     reconstruct_nj_snap_cmd.add_argument("--version", required=True)
     reconstruct_nj_snap_cmd.add_argument("--base-provisions", type=Path, required=True)
     reconstruct_nj_snap_cmd.add_argument("--rulemaking-provisions", type=Path, required=True)
-    reconstruct_nj_snap_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of", required=True)
+    reconstruct_nj_snap_cmd.add_argument(
+        "--source-as-of", "--as-of", dest="source_as_of", required=True
+    )
     reconstruct_nj_snap_cmd.add_argument("--expression-date", required=True)
     reconstruct_nj_snap_cmd.add_argument("--allow-incomplete", action="store_true")
     reconstruct_nj_snap_cmd.set_defaults(func=_cmd_reconstruct_new_jersey_snap_rules)
@@ -5146,10 +5205,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     unpublish_cmd = sub.add_parser(
         "unpublish",
-        help=(
-            "Mark one corpus scope version as hidden (active=false). "
-            "Inverse of `publish`."
-        ),
+        help=("Mark one corpus scope version as hidden (active=false). Inverse of `publish`."),
     )
     unpublish_cmd.add_argument("--jurisdiction", required=True)
     unpublish_cmd.add_argument("--doc-type", required=True, dest="doc_type")
@@ -5206,7 +5262,9 @@ def build_parser() -> argparse.ArgumentParser:
         help="Restrict to one table. Default: both.",
     )
     backfill_versions_cmd.add_argument(
-        "--chunk-size", type=int, default=10000,
+        "--chunk-size",
+        type=int,
+        default=10000,
         help=(
             "Rows per RPC call. Default 10000. Larger chunks risk hitting "
             "the pooler's statement_timeout; smaller chunks slow the run."
@@ -5235,12 +5293,8 @@ def build_parser() -> argparse.ArgumentParser:
         "--supabase-url",
         default=os.environ.get("AXIOM_SUPABASE_URL", DEFAULT_AXIOM_SUPABASE_URL),
     )
-    verify_release_coverage_cmd.add_argument(
-        "--service-key-env", default=DEFAULT_SERVICE_KEY_ENV
-    )
-    verify_release_coverage_cmd.add_argument(
-        "--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV
-    )
+    verify_release_coverage_cmd.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)
+    verify_release_coverage_cmd.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
     verify_release_coverage_cmd.set_defaults(func=_cmd_verify_release_coverage)
 
     analytics = sub.add_parser(
