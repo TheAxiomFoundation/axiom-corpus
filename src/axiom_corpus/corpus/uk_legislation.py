@@ -299,9 +299,7 @@ def _fetch_lex_sources(
         citation = UKCitation.from_string(raw_citation)
         act_id = f"{citation.type}/{citation.year}/{citation.number}"
         if act_id not in act_cache:
-            legislation = client.lookup_legislation(
-                citation.type, citation.year, citation.number
-            )
+            legislation = client.lookup_legislation(citation.type, citation.year, citation.number)
             reference_date = legislation.reference_date
             if reference_date is None:
                 raise ValueError(f"Lex returned no usable date for {act_id}")
@@ -321,7 +319,7 @@ def _fetch_lex_sources(
             if token is None:
                 continue
             provision = token[1]
-            if citation.section is not None and provision != citation.section:
+            if citation.section is not None and provision.lower() != citation.section.lower():
                 continue
             section_citation = UKCitation(
                 type=citation.type,
@@ -332,12 +330,10 @@ def _fetch_lex_sources(
             )
             prepared.append(
                 _PreparedSource(
-                    section=_lex_section_to_uksection(
-                        section_citation, lex_section, enacted_date
+                    section=_lex_section_to_uksection(section_citation, lex_section, enacted_date),
+                    raw_bytes=json.dumps(raw_section, ensure_ascii=False, sort_keys=True).encode(
+                        "utf-8"
                     ),
-                    raw_bytes=json.dumps(
-                        raw_section, ensure_ascii=False, sort_keys=True
-                    ).encode("utf-8"),
                     source_format=LEX_SOURCE_FORMAT,
                     relative_name=_lex_relative_name(section_citation),
                     source_name=lex_section.id,

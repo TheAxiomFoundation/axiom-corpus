@@ -385,9 +385,7 @@ def test_extract_uk_legislation_lex_falls_back_to_valid_date(tmp_path, monkeypat
     import axiom_corpus.corpus.uk_legislation as uk_legislation
 
     # Statutory instruments carry no enactment date in Lex.
-    fake = _FakeLexClient(
-        enactment_date=None, valid_date="2026-04-06", sections=_LEX_UC_SECTIONS
-    )
+    fake = _FakeLexClient(enactment_date=None, valid_date="2026-04-06", sections=_LEX_UC_SECTIONS)
     monkeypatch.setattr(uk_legislation, "LexClient", lambda *a, **k: fake)
     base = tmp_path / "data" / "corpus"
 
@@ -429,3 +427,37 @@ def test_extract_uk_legislation_lex_missing_section_raises(tmp_path, monkeypatch
             citations=("uksi/2013/376/regulation/999",),
             source="lex",
         )
+
+
+def test_extract_uk_legislation_lex_matches_section_case_insensitively(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    # Lex uppercases alphanumeric provision tokens (e.g. "11D"); citations in
+    # the standard legislation.gov.uk form are lowercase ("11d").
+    sections = [
+        {
+            "id": "http://www.legislation.gov.uk/id/ukpga/2007/3/section/11D",
+            "uri": "http://www.legislation.gov.uk/ukpga/2007/3/section/11D",
+            "title": "Income charged at the savings nil rate",
+            "text": "Savings nil rate.",
+            "number": None,
+            "provision_type": "section",
+        }
+    ]
+    fake = _FakeLexClient(enactment_date="2007-03-20", sections=sections)
+    monkeypatch.setattr(uk_legislation, "LexClient", lambda *a, **k: fake)
+    base = tmp_path / "data" / "corpus"
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-06-01-uk-statute",
+        citations=("ukpga/2007/3/section/11d",),
+        source="lex",
+    )
+
+    assert report.provisions_written == 1
+    row = json.loads(
+        (base / "provisions/uk/statute/2026-06-01-uk-statute.jsonl").read_text().strip()
+    )
+    assert row["citation_path"] == "uk/statute/ukpga/2007/3/11D"
+    assert row["body"] == "Savings nil rate."

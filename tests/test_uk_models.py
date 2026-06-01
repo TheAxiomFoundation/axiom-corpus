@@ -28,6 +28,13 @@ class TestUKCitation:
         assert cite.number == 3
         assert cite.section == "1"
 
+    def test_parse_section_with_multi_letter_suffix(self):
+        """Parse inserted sections with multi-letter suffixes (e.g. 228ZA)."""
+        from axiom_corpus.models_uk import UKCitation
+
+        cite = UKCitation.from_string("ukpga/2004/12/section/228za")
+        assert cite.section == "228za"
+
     def test_parse_statutory_instrument(self):
         """Parse UK Statutory Instrument citation."""
         from axiom_corpus.models_uk import UKCitation
