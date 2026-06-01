@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import asyncio
+import json
+import re
 from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
@@ -21,10 +23,28 @@ from axiom_corpus.corpus.models import (
 )
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.fetchers.legislation_uk import UKLegislationFetcher
+from axiom_corpus.fetchers.lex import LexClient, LexSection
 from axiom_corpus.models_uk import UK_REGULATION_TYPES, UKCitation, UKSection
 from axiom_corpus.parsers.clml import parse_section
 
 UK_SOURCE_FORMAT = "legislation.gov.uk-clml"
+LEX_SOURCE_FORMAT = "lex.lab.i.ai.gov.uk"
+
+# Default ceiling when an act's provision count is unknown.
+_LEX_DEFAULT_LIMIT = 2000
+
+_PROVISION_URI_RE = re.compile(r"/(section|regulation|schedule)/([0-9A-Za-z]+)")
+
+
+@dataclass(frozen=True)
+class _PreparedSource:
+    """A normalized provision ready to be written, plus its raw source bytes."""
+
+    section: UKSection
+    raw_bytes: bytes
+    source_format: str
+    relative_name: str
+    source_name: str
 
 
 @dataclass(frozen=True)
@@ -57,41 +77,62 @@ def extract_uk_legislation_sections(
     version: str,
     source_xmls: Sequence[str | Path] = (),
     citations: Sequence[str] = (),
+    source: str = "clml",
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
+    lex_limit: int | None = None,
 ) -> UKLegislationExtractReport:
-    """Extract UK section/regulation CLML into normalized corpus artifacts."""
+    """Extract UK section/regulation text into normalized corpus artifacts.
+
+    Local ``source_xmls`` are always parsed as legislation.gov.uk CLML. Remote
+    ``citations`` are fetched from CLML by default, or from the Lex API when
+    ``source="lex"``. Lex citations may be act-level (e.g. ``ukpga/2007/3``) to
+    ingest every section of an instrument, or section-level to ingest one.
+    """
     if not source_xmls and not citations:
         raise ValueError("at least one source XML path or citation is required")
+    if source not in ("clml", "lex"):
+        raise ValueError(f"unknown source backend: {source}")
 
     source_as_of_text = source_as_of or version
     expression_date_text = _date_text(expression_date, source_as_of_text)
-    parsed_sources = list(_iter_source_xmls(source_xmls))
-    parsed_sources.extend(asyncio.run(_fetch_citation_xmls(citations)) if citations else [])
+
+    prepared: list[_PreparedSource] = [
+        _prepare_clml_source(name, source_bytes)
+        for name, source_bytes in _iter_source_xmls(source_xmls)
+    ]
+    if citations:
+        if source == "lex":
+            prepared.extend(_fetch_lex_sources(citations, limit=lex_limit))
+        else:
+            prepared.extend(
+                _prepare_clml_source(name, source_bytes)
+                for name, source_bytes in asyncio.run(_fetch_citation_xmls(citations))
+            )
 
     grouped_records: dict[str, list[ProvisionRecord]] = defaultdict(list)
     grouped_inventory: dict[str, list[SourceInventoryItem]] = defaultdict(list)
     grouped_sources: dict[str, list[tuple[str, bytes]]] = defaultdict(list)
 
-    for source_name, source_bytes in parsed_sources:
-        section = parse_section(source_bytes.decode("utf-8"))
+    for item in prepared:
+        section = item.section
         document_class = uk_document_class(section.citation)
         citation_path = uk_citation_path(section)
-        source_relative_name = _source_relative_name(section)
         source_artifact_path = store.source_path(
             "uk",
             document_class,
             version,
-            source_relative_name,
+            item.relative_name,
         )
-        source_key = _source_key(version, document_class, source_relative_name)
-        source_sha256 = store.write_bytes(source_artifact_path, source_bytes)
+        source_key = _source_key(version, document_class, item.relative_name)
+        source_sha256 = store.write_bytes(source_artifact_path, item.raw_bytes)
         record = _section_record(
             section,
             citation_path=citation_path,
             document_class=document_class,
             version=version,
             source_path=source_key,
+            source_format=item.source_format,
             source_as_of=source_as_of_text,
             expression_date=expression_date_text,
         )
@@ -101,17 +142,17 @@ def extract_uk_legislation_sections(
                 citation_path=citation_path,
                 source_url=section.source_url or section.citation.legislation_url,
                 source_path=source_key,
-                source_format=UK_SOURCE_FORMAT,
+                source_format=item.source_format,
                 sha256=source_sha256,
                 metadata={
-                    "source_name": source_name,
+                    "source_name": item.source_name,
                     "legislation_type": section.citation.type,
                     "provision_segment": section.citation.provision_segment,
                     "heading": section.title,
                 },
             )
         )
-        grouped_sources[document_class].append((source_relative_name, source_bytes))
+        grouped_sources[document_class].append((item.relative_name, item.raw_bytes))
 
     class_reports: list[UKLegislationClassExtractReport] = []
     for document_class in sorted(grouped_records):
@@ -185,6 +226,7 @@ def _section_record(
     document_class: str,
     version: str,
     source_path: str,
+    source_format: str,
     source_as_of: str,
     expression_date: str,
 ) -> ProvisionRecord:
@@ -202,7 +244,7 @@ def _section_record(
         source_url=section.source_url or citation.legislation_url,
         source_path=source_path,
         source_id=section.source_url or citation.legislation_url,
-        source_format=UK_SOURCE_FORMAT,
+        source_format=source_format,
         source_document_id=f"{citation.type}/{citation.year}/{citation.number}",
         source_as_of=source_as_of,
         expression_date=expression_date,
@@ -224,6 +266,120 @@ def _section_record(
             "retrieved_at": (section.retrieved_at.isoformat() if section.retrieved_at else None),
         },
     )
+
+
+def _prepare_clml_source(source_name: str, source_bytes: bytes) -> _PreparedSource:
+    section = parse_section(source_bytes.decode("utf-8"))
+    return _PreparedSource(
+        section=section,
+        raw_bytes=source_bytes,
+        source_format=UK_SOURCE_FORMAT,
+        relative_name=_source_relative_name(section),
+        source_name=source_name,
+    )
+
+
+def _fetch_lex_sources(
+    citations: Sequence[str],
+    *,
+    limit: int | None,
+    client: LexClient | None = None,
+) -> list[_PreparedSource]:
+    """Fetch normalized provision text from the Lex API.
+
+    Each citation's act is fetched once and cached; section-level citations
+    filter the act's provisions to the requested number. Schedules are skipped
+    because the citation model does not yet represent them.
+    """
+    client = client or LexClient()
+    prepared: list[_PreparedSource] = []
+    act_cache: dict[str, tuple[date, list[dict[str, object]]]] = {}
+
+    for raw_citation in citations:
+        citation = UKCitation.from_string(raw_citation)
+        act_id = f"{citation.type}/{citation.year}/{citation.number}"
+        if act_id not in act_cache:
+            legislation = client.lookup_legislation(
+                citation.type, citation.year, citation.number
+            )
+            reference_date = legislation.reference_date
+            if reference_date is None:
+                raise ValueError(f"Lex returned no usable date for {act_id}")
+            fetch_limit = limit or legislation.number_of_provisions or _LEX_DEFAULT_LIMIT
+            act_cache[act_id] = (
+                reference_date,
+                client.lookup_sections_raw(act_id, fetch_limit),
+            )
+        enacted_date, raw_sections = act_cache[act_id]
+
+        matched = 0
+        for raw_section in raw_sections:
+            lex_section = LexSection.model_validate(raw_section)
+            if lex_section.provision_type != "section":
+                continue
+            token = _provision_token(lex_section.uri or lex_section.id)
+            if token is None:
+                continue
+            provision = token[1]
+            if citation.section is not None and provision != citation.section:
+                continue
+            section_citation = UKCitation(
+                type=citation.type,
+                year=citation.year,
+                number=citation.number,
+                section=provision,
+                subsection=None,
+            )
+            prepared.append(
+                _PreparedSource(
+                    section=_lex_section_to_uksection(
+                        section_citation, lex_section, enacted_date
+                    ),
+                    raw_bytes=json.dumps(
+                        raw_section, ensure_ascii=False, sort_keys=True
+                    ).encode("utf-8"),
+                    source_format=LEX_SOURCE_FORMAT,
+                    relative_name=_lex_relative_name(section_citation),
+                    source_name=lex_section.id,
+                )
+            )
+            matched += 1
+
+        if citation.section is not None and matched == 0:
+            raise ValueError(f"Lex returned no section matching {raw_citation}")
+
+    return prepared
+
+
+def _lex_section_to_uksection(
+    citation: UKCitation,
+    lex_section: LexSection,
+    enacted_date: date,
+) -> UKSection:
+    return UKSection(
+        citation=citation,
+        title=lex_section.title or citation.short_cite,
+        text=lex_section.text,
+        enacted_date=enacted_date,
+        commencement_date=None,
+        source_url=lex_section.uri or citation.legislation_url,
+        retrieved_at=date.today(),
+    )
+
+
+def _lex_relative_name(citation: UKCitation) -> str:
+    provision = citation.section or "document"
+    return (
+        f"{citation.type}/{citation.year}/{citation.number}/"
+        f"{citation.provision_segment}-{provision}.json"
+    )
+
+
+def _provision_token(uri: str) -> tuple[str, str] | None:
+    match = _PROVISION_URI_RE.search(uri)
+    if not match:
+        return None
+    return match.group(1), match.group(2)
 
 
 def _iter_source_xmls(source_xmls: Iterable[str | Path]) -> Iterable[tuple[str, bytes]]:
