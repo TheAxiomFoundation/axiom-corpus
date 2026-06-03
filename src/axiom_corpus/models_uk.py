@@ -63,7 +63,7 @@ UK_CITATION_PATTERN = re.compile(
     r"^([a-z]{2,5})"  # Type (ukpga, uksi, asp, etc.)
     r"/(\d{4})"  # Year
     r"/(\d+)"  # Number
-    r"(?:/(?:section|regulation)/(\d+[A-Za-z]?))?"  # Optional provision
+    r"(?:/(?:section|regulation)/(\d+[A-Za-z]*))?"  # Optional provision
     r"(?:/(\d+[a-z]?(?:/[a-z])?))?$",  # Optional subsection path
     re.IGNORECASE,
 )

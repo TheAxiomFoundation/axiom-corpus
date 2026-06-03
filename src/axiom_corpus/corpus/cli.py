@@ -1051,8 +1051,10 @@ def _cmd_extract_uk_legislation(args: argparse.Namespace) -> int:
         version=args.version,
         source_xmls=tuple(args.source_xml or ()),
         citations=tuple(args.citation or ()),
+        source=args.source,
         source_as_of=args.source_as_of,
         expression_date=expression_date,
+        lex_limit=args.lex_limit,
     )
     print(json.dumps(_uk_legislation_report_json(report), indent=2, sort_keys=True))
     return (
@@ -4241,7 +4243,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     extract_uk_cmd = sub.add_parser(
         "extract-uk-legislation",
-        help="Snapshot UK CLML section XML and extract normalized provision JSONL.",
+        help="Snapshot UK legislation text and extract normalized provision JSONL.",
     )
     extract_uk_cmd.add_argument("--base", type=Path, required=True)
     extract_uk_cmd.add_argument("--version", required=True)
@@ -4254,7 +4256,23 @@ def build_parser() -> argparse.ArgumentParser:
     extract_uk_cmd.add_argument(
         "--citation",
         action="append",
-        help="Fetch one UK citation, e.g. ukpga/2007/3/section/35.",
+        help=(
+            "Fetch a UK citation. With --source lex, act-level (ukpga/2007/3) "
+            "ingests every section; section-level (ukpga/2007/3/section/35) "
+            "ingests one. CLML requires section-level."
+        ),
+    )
+    extract_uk_cmd.add_argument(
+        "--source",
+        choices=("clml", "lex"),
+        default="clml",
+        help="Backend for --citation fetches (default: clml).",
+    )
+    extract_uk_cmd.add_argument(
+        "--lex-limit",
+        type=int,
+        default=None,
+        help="Max sections to request per act from Lex (default: act provision count).",
     )
     extract_uk_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_uk_cmd.add_argument("--expression-date")

@@ -273,3 +273,191 @@ def test_extract_uk_legislation_fetch_rejects_document_level_citations(tmp_path)
             version="2026-05-29-uk-benefits",
             citations=("uksi/2006/965",),
         )
+
+
+class _FakeLexClient:
+    """Stub Lex client returning a fixed act plus its raw sections."""
+
+    def __init__(self, enactment_date="2013-02-25", valid_date=None, sections=None):
+        self.enactment_date = enactment_date
+        self.valid_date = valid_date
+        self.sections = sections or []
+        self.section_requests = []
+
+    def lookup_legislation(self, leg_type, year, number):
+        from axiom_corpus.fetchers.lex import LexLegislation
+
+        return LexLegislation(
+            id=f"http://www.legislation.gov.uk/id/{leg_type}/{year}/{number}",
+            type=leg_type,
+            year=year,
+            number=number,
+            enactment_date=self.enactment_date,
+            valid_date=self.valid_date,
+            number_of_provisions=len(self.sections),
+        )
+
+    def lookup_sections_raw(self, legislation_id, limit):
+        self.section_requests.append((legislation_id, limit))
+        return self.sections
+
+
+_LEX_UC_SECTIONS = [
+    {
+        "id": "http://www.legislation.gov.uk/id/uksi/2013/376/regulation/36",
+        "uri": "http://www.legislation.gov.uk/uksi/2013/376/regulation/36",
+        "title": "Table of amounts",
+        "text": "The amounts are given in the following table.",
+        "number": 36,
+        "provision_type": "section",
+    },
+    {
+        "id": "http://www.legislation.gov.uk/id/uksi/2013/376/schedule/1",
+        "uri": "http://www.legislation.gov.uk/uksi/2013/376/schedule/1",
+        "title": "Schedule 1",
+        "text": "Schedule body.",
+        "number": 1,
+        "provision_type": "schedule",
+    },
+]
+
+
+def test_extract_uk_legislation_ingests_full_act_from_lex(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    fake = _FakeLexClient(sections=_LEX_UC_SECTIONS)
+    monkeypatch.setattr(uk_legislation, "LexClient", lambda *a, **k: fake)
+    base = tmp_path / "data" / "corpus"
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-05-29-uk-benefits",
+        citations=("uksi/2013/376",),
+        source="lex",
+    )
+
+    # The schedule provision is skipped; only the regulation is written.
+    assert report.provisions_written == 1
+    assert fake.section_requests == [("uksi/2013/376", 2)]
+
+    provisions_path = base / "provisions/uk/regulation/2026-05-29-uk-benefits.jsonl"
+    row = json.loads(provisions_path.read_text().strip())
+    assert row["citation_path"] == "uk/regulation/uksi/2013/376/36"
+    assert row["kind"] == "regulation"
+    assert row["body"] == "The amounts are given in the following table."
+    assert row["source_format"] == "lex.lab.i.ai.gov.uk"
+    assert row["source_url"] == "http://www.legislation.gov.uk/uksi/2013/376/regulation/36"
+
+
+def test_extract_uk_legislation_lex_filters_to_requested_section(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    sections = _LEX_UC_SECTIONS + [
+        {
+            "id": "http://www.legislation.gov.uk/id/uksi/2013/376/regulation/37",
+            "uri": "http://www.legislation.gov.uk/uksi/2013/376/regulation/37",
+            "title": "Other",
+            "text": "Other body.",
+            "number": 37,
+            "provision_type": "section",
+        }
+    ]
+    fake = _FakeLexClient(sections=sections)
+    monkeypatch.setattr(uk_legislation, "LexClient", lambda *a, **k: fake)
+    base = tmp_path / "data" / "corpus"
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-05-29-uk-benefits",
+        citations=("uksi/2013/376/regulation/37",),
+        source="lex",
+    )
+
+    assert report.provisions_written == 1
+    row = json.loads(
+        (base / "provisions/uk/regulation/2026-05-29-uk-benefits.jsonl").read_text().strip()
+    )
+    assert row["citation_path"] == "uk/regulation/uksi/2013/376/37"
+    assert row["body"] == "Other body."
+
+
+def test_extract_uk_legislation_lex_falls_back_to_valid_date(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    # Statutory instruments carry no enactment date in Lex.
+    fake = _FakeLexClient(enactment_date=None, valid_date="2026-04-06", sections=_LEX_UC_SECTIONS)
+    monkeypatch.setattr(uk_legislation, "LexClient", lambda *a, **k: fake)
+    base = tmp_path / "data" / "corpus"
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-05-29-uk-benefits",
+        citations=("uksi/2013/376",),
+        source="lex",
+    )
+
+    assert report.provisions_written == 1
+
+
+def test_extract_uk_legislation_lex_no_usable_date_raises(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    fake = _FakeLexClient(enactment_date=None, valid_date=None, sections=_LEX_UC_SECTIONS)
+    monkeypatch.setattr(uk_legislation, "LexClient", lambda *a, **k: fake)
+
+    with pytest.raises(ValueError, match="no usable date"):
+        extract_uk_legislation_sections(
+            CorpusArtifactStore(tmp_path / "data" / "corpus"),
+            version="2026-05-29-uk-benefits",
+            citations=("uksi/2013/376",),
+            source="lex",
+        )
+
+
+def test_extract_uk_legislation_lex_missing_section_raises(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    fake = _FakeLexClient(sections=_LEX_UC_SECTIONS)
+    monkeypatch.setattr(uk_legislation, "LexClient", lambda *a, **k: fake)
+
+    with pytest.raises(ValueError, match="no section matching"):
+        extract_uk_legislation_sections(
+            CorpusArtifactStore(tmp_path / "data" / "corpus"),
+            version="2026-05-29-uk-benefits",
+            citations=("uksi/2013/376/regulation/999",),
+            source="lex",
+        )
+
+
+def test_extract_uk_legislation_lex_matches_section_case_insensitively(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    # Lex uppercases alphanumeric provision tokens (e.g. "11D"); citations in
+    # the standard legislation.gov.uk form are lowercase ("11d").
+    sections = [
+        {
+            "id": "http://www.legislation.gov.uk/id/ukpga/2007/3/section/11D",
+            "uri": "http://www.legislation.gov.uk/ukpga/2007/3/section/11D",
+            "title": "Income charged at the savings nil rate",
+            "text": "Savings nil rate.",
+            "number": None,
+            "provision_type": "section",
+        }
+    ]
+    fake = _FakeLexClient(enactment_date="2007-03-20", sections=sections)
+    monkeypatch.setattr(uk_legislation, "LexClient", lambda *a, **k: fake)
+    base = tmp_path / "data" / "corpus"
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-06-01-uk-statute",
+        citations=("ukpga/2007/3/section/11d",),
+        source="lex",
+    )
+
+    assert report.provisions_written == 1
+    row = json.loads(
+        (base / "provisions/uk/statute/2026-06-01-uk-statute.jsonl").read_text().strip()
+    )
+    assert row["citation_path"] == "uk/statute/ukpga/2007/3/11D"
+    assert row["body"] == "Savings nil rate."
