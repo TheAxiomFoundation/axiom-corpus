@@ -329,6 +329,7 @@ def _fetch_lex_sources(
                 year=citation.year,
                 number=citation.number,
                 section=provision,
+                provision_kind=citation.provision_kind,
                 subsection=None,
             )
             prepared.append(
