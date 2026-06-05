@@ -1,0 +1,73 @@
+documents:
+  - source_id: az-aac-title-6-chapter-14
+    jurisdiction: us-az
+    document_class: regulation
+    citation_path: us-az/regulation/aac/6/14
+    title: AAC Title 6 Chapter 14 - Nutrition Assistance Program
+    source_url: https://apps.azsos.gov/public_services/Title_06/6-14.pdf
+    source_format: pdf
+    metadata:
+      primary_source: true
+      source_authority: Arizona Department of Economic Security
+      document_subtype: agency_regulation_chapter
+      manual: Arizona Administrative Code
+      title_number: "6"
+      chapter: "14"
+      program: SNAP
+      topics:
+        - nutrition_assistance
+        - eligibility
+        - benefit_calculation
+
+  - source_id: az-des-faa-policy-manual-page
+    jurisdiction: us-az
+    document_class: policy
+    title: AZ DES FAA Policy Manual
+    source_url: https://dbmefaapolicy.azdes.gov/
+    source_format: html
+    metadata:
+      primary_source: true
+      source_authority: Arizona Department of Economic Security - Family Assistance Administration
+      document_subtype: agency_policy_manual_index
+      program: SNAP
+      note: Index page for the Cash and Nutrition Assistance Policy Manual (CNAP); individual chapter URLs to be enumerated once confirmed.
+
+  - source_id: az-des-nutrition-assistance-page
+    jurisdiction: us-az
+    document_class: policy
+    title: AZ DES Nutrition Assistance Program
+    source_url: https://des.az.gov/services/basic-needs/food-assistance/nutrition-assistance
+    source_format: html
+    metadata:
+      primary_source: true
+      source_authority: Arizona Department of Economic Security
+      document_subtype: agency_page
+      program: SNAP
+
+  - source_id: az-fns-abawd-waiver-fy2025-2029-index
+    jurisdiction: us-az
+    document_class: policy
+    title: FNS ABAWD Waivers FY 2025-2029 (Arizona entries)
+    source_url: https://www.fns.usda.gov/snap/abawd/waivers/2025-2029
+    source_format: html
+    metadata:
+      primary_source: true
+      source_authority: USDA Food and Nutrition Service
+      document_subtype: waiver_index
+      program: SNAP
+      topic: ABAWD
+      note: Specific Arizona ABAWD waiver approval URL to be filled once confirmed.
+
+  - source_id: az-fns-et-state-plans-index
+    jurisdiction: us-az
+    document_class: policy
+    title: FNS SNAP E&T State Plans (Arizona entries)
+    source_url: https://www.fns.usda.gov/snap/et/state-plans
+    source_format: html
+    metadata:
+      primary_source: true
+      source_authority: USDA Food and Nutrition Service
+      document_subtype: state_plan_index
+      program: SNAP
+      topic: employment_and_training
+      note: Specific Arizona E&T state plan PDF URL to be filled once confirmed.
