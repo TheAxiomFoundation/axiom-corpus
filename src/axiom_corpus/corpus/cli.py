@@ -139,6 +139,7 @@ from axiom_corpus.corpus.state_adapters.new_york import (
     extract_new_york_consolidated_laws,
     extract_new_york_openleg_api,
 )
+from axiom_corpus.corpus.state_adapters.nyc_admin_code import extract_nyc_admin_code
 from axiom_corpus.corpus.state_adapters.oklahoma import extract_oklahoma_statutes
 from axiom_corpus.corpus.state_adapters.oregon import (
     OREGON_ORS_DEFAULT_YEAR,
@@ -1634,6 +1635,35 @@ def _cmd_extract_new_york_openleg_api(args: argparse.Namespace) -> int:
     return 0 if _state_statute_report_success(report) or args.allow_incomplete else 2
 
 
+def _cmd_extract_nyc_admin_code(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_nyc_admin_code(
+        store,
+        version=args.version,
+        sections=tuple(args.section) if args.section is not None else None,
+        urls=tuple(args.url) if args.url is not None else None,
+        source_dir=args.source_dir,
+        download_dir=args.download_dir,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        timeout_seconds=args.timeout_seconds,
+    )
+    print(
+        json.dumps(
+            _state_statute_report_payload(
+                report,
+                source_id="us-ny-nyc-admin-code",
+                adapter="nyc-admin-code",
+                version=args.version,
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if _state_statute_report_success(report) or args.allow_incomplete else 2
+
+
 def _cmd_extract_delaware_code(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -2795,6 +2825,9 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "new-york-consolidated-laws": "new-york-consolidated-laws",
         "nysenate": "new-york-consolidated-laws",
         "ny-senate": "new-york-consolidated-laws",
+        "nyc-admin-code": "nyc-admin-code",
+        "new-york-city-admin-code": "nyc-admin-code",
+        "new-york-city-administrative-code": "nyc-admin-code",
         "de": "delaware-code",
         "delaware": "delaware-code",
         "delaware-code": "delaware-code",
@@ -2901,6 +2934,7 @@ def _state_statute_source_path_for_plan(
         "wisconsin-statutes",
         "new-york-consolidated-laws",
         "new-york-openleg-api",
+        "nyc-admin-code",
         "delaware-code",
         "oregon-ors",
         "pennsylvania-statutes",
@@ -4543,6 +4577,30 @@ def build_parser() -> argparse.ArgumentParser:
     )
     extract_new_york_api_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_new_york_api_cmd.set_defaults(func=_cmd_extract_new_york_openleg_api)
+
+    extract_nyc_admin_code_cmd = sub.add_parser(
+        "extract-nyc-admin-code",
+        help="Snapshot selected NYC Administrative Code section HTML from CodeLibrary.",
+    )
+    extract_nyc_admin_code_cmd.add_argument("--base", type=Path, required=True)
+    extract_nyc_admin_code_cmd.add_argument("--version", required=True)
+    extract_nyc_admin_code_cmd.add_argument("--source-dir", type=Path)
+    extract_nyc_admin_code_cmd.add_argument("--download-dir", type=Path)
+    extract_nyc_admin_code_cmd.add_argument(
+        "--section",
+        action="append",
+        help="NYC Administrative Code section to extract; defaults to the NYC income-tax core sections.",
+    )
+    extract_nyc_admin_code_cmd.add_argument(
+        "--url",
+        action="append",
+        help="Additional SECTION=URL mapping for a CodeLibrary section page.",
+    )
+    extract_nyc_admin_code_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_nyc_admin_code_cmd.add_argument("--expression-date")
+    extract_nyc_admin_code_cmd.add_argument("--timeout-seconds", type=float, default=20.0)
+    extract_nyc_admin_code_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_nyc_admin_code_cmd.set_defaults(func=_cmd_extract_nyc_admin_code)
 
     extract_delaware_code_cmd = sub.add_parser(
         "extract-delaware-code",
