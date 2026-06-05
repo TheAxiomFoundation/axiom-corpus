@@ -1,0 +1,20 @@
+documents:
+  - source_id: ny-otda-tanf-state-plan-2024-2026
+    jurisdiction: us-ny
+    document_class: policy
+    citation_path: us-ny/policy/otda/tanf-state-plan-2024-2026
+    title: New York Temporary Assistance for Needy Families State Plan 2024-2026
+    source_url: https://otda.ny.gov/policy/tanf/TANF-State-Plan-2024-2026.pdf
+    download_url: https://web.archive.org/web/20240314142010if_/https://otda.ny.gov/policy/tanf/TANF-State-Plan-2024-2026.pdf
+    local_path: /tmp/ny-tanf-source/TANF-State-Plan-2024-2026.pdf
+    source_format: pdf
+    source_as_of: "2026-06-05"
+    expression_date: "2024-10-01"
+    metadata:
+      primary_source: true
+      source_authority: New York State Office of Temporary and Disability Assistance
+      document_subtype: state_plan
+      program: TANF
+      federal_program: TANF
+      plan_period: "2024-2026"
+      discovered_via: policyengine-us:state_references
