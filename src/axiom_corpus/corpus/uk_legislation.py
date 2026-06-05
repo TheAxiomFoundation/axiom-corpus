@@ -215,7 +215,10 @@ def uk_citation_path(section: UKSection) -> str:
         str(citation.number),
     ]
     if citation.section:
-        parts.append(citation.section)
+        if citation.provision_segment == "schedule":
+            parts.extend(["schedule", citation.section])
+        else:
+            parts.append(citation.section)
     return "/".join(parts)
 
 
@@ -390,7 +393,7 @@ async def _fetch_citation_xmls(citations: Sequence[str]) -> list[tuple[str, byte
     for raw_citation in citations:
         citation = UKCitation.from_string(raw_citation)
         if not citation.section:
-            raise ValueError(f"section or regulation required: {raw_citation}")
+            raise ValueError(f"section, regulation, or schedule required: {raw_citation}")
         url = fetcher.build_url(citation)
         xml = await fetcher._fetch_xml(url)
         fetched.append((_source_relative_name_from_citation(citation), xml.encode()))

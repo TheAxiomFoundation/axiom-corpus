@@ -162,6 +162,55 @@ SAMPLE_UKSI_SINGLE_ROW_TABLE_XML = """<?xml version="1.0" encoding="UTF-8"?>
 """
 
 
+SAMPLE_UKSI_SCHEDULE_XML = """<?xml version="1.0" encoding="UTF-8"?>
+<Legislation xmlns="http://www.legislation.gov.uk/namespaces/legislation"
+             xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata"
+             xmlns:dc="http://purl.org/dc/elements/1.1/"
+             xmlns:xhtml="http://www.w3.org/1999/xhtml"
+             DocumentURI="http://www.legislation.gov.uk/uksi/2002/2005/2026-04-06">
+<ukm:Metadata>
+    <dc:title>The Working Tax Credit (Entitlement and Maximum Rate) Regulations 2002</dc:title>
+    <ukm:SecondaryMetadata>
+        <ukm:Year Value="2002"/>
+        <ukm:Number Value="2005"/>
+        <ukm:Made Date="2002-07-30"/>
+    </ukm:SecondaryMetadata>
+</ukm:Metadata>
+<Secondary>
+    <Schedules>
+        <Schedule DocumentURI="http://www.legislation.gov.uk/uksi/2002/2005/schedule/2/2026-04-06"
+                  id="schedule-2"
+                  RestrictExtent="E+W+S+N.I.">
+            <Number>SCHEDULE 2</Number>
+            <TitleBlock>
+                <Title>MAXIMUM RATES OF THE ELEMENTS OF A WORKING TAX CREDIT</Title>
+            </TitleBlock>
+            <ScheduleBody>
+                <Tabular>
+                    <xhtml:table>
+                        <xhtml:tbody>
+                            <xhtml:tr>
+                                <xhtml:td>Relevant element of working tax credit</xhtml:td>
+                                <xhtml:td>Maximum annual rate</xhtml:td>
+                            </xhtml:tr>
+                            <xhtml:tr>
+                                <xhtml:td>1. Basic element</xhtml:td>
+                                <xhtml:td>£2,435</xhtml:td>
+                            </xhtml:tr>
+                        </xhtml:tbody>
+                    </xhtml:table>
+                </Tabular>
+            </ScheduleBody>
+        </Schedule>
+    </Schedules>
+</Secondary>
+<Commentaries>
+    <Commentary id="c1"><Para><Text>Sch. 2 modified by another instrument.</Text></Para></Commentary>
+</Commentaries>
+</Legislation>
+"""
+
+
 def test_parse_section_preserves_xhtml_tables():
     section = parse_section(SAMPLE_UKSI_TABLE_XML)
 
@@ -174,6 +223,20 @@ def test_parse_section_preserves_single_row_xhtml_tables():
     section = parse_section(SAMPLE_UKSI_SINGLE_ROW_TABLE_XML)
 
     assert section.text == "| Single row | £1.00 |"
+
+
+def test_parse_section_handles_schedule_citation_and_text():
+    section = parse_section(SAMPLE_UKSI_SCHEDULE_XML)
+
+    assert section.citation.type == "uksi"
+    assert section.citation.year == 2002
+    assert section.citation.number == 2005
+    assert section.citation.section == "2"
+    assert section.citation.provision_segment == "schedule"
+    assert section.title == "Schedule 2"
+    assert section.source_url == "http://www.legislation.gov.uk/uksi/2002/2005/schedule/2/2026-04-06"
+    assert "| 1. Basic element | £2,435 |" in section.text
+    assert "modified by another instrument" not in section.text
 
 
 def test_extract_uk_legislation_requires_source_or_citation(tmp_path):
@@ -237,6 +300,38 @@ def test_extract_uk_legislation_writes_statute_artifacts(tmp_path):
     assert row["expression_date"] == "2026-04-06"
 
 
+def test_extract_uk_legislation_writes_schedule_artifacts(tmp_path):
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "wtc-schedule-2.xml"
+    source_xml.write_text(SAMPLE_UKSI_SCHEDULE_XML)
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-06-05-uk-tax-credits",
+        source_xmls=(source_xml,),
+        expression_date="2026-04-06",
+    )
+
+    assert report.source_count == 1
+    assert report.provisions_written == 1
+    class_report = report.class_reports[0]
+    assert class_report.document_class == "regulation"
+    assert class_report.coverage.complete
+
+    provisions_path = base / "provisions/uk/regulation/2026-06-05-uk-tax-credits.jsonl"
+    row = json.loads(provisions_path.read_text().strip())
+    assert row["citation_path"] == "uk/regulation/uksi/2002/2005/schedule/2"
+    assert row["citation_label"] == "UKSI 2002/2005 Sch. 2"
+    assert row["kind"] == "schedule"
+    assert row["ordinal"] == 2
+    assert row["source_url"] == "http://www.legislation.gov.uk/uksi/2002/2005/schedule/2/2026-04-06"
+    assert row["source_path"] == (
+        "sources/uk/regulation/2026-06-05-uk-tax-credits/"
+        "uksi/2002/2005/schedule-2.xml"
+    )
+    assert "| 1. Basic element | £2,435 |" in row["body"]
+
+
 def test_extract_uk_legislation_fetches_citation_xml(tmp_path, monkeypatch):
     import axiom_corpus.corpus.uk_legislation as uk_legislation
 
@@ -267,7 +362,7 @@ def test_extract_uk_legislation_fetches_citation_xml(tmp_path, monkeypatch):
 
 
 def test_extract_uk_legislation_fetch_rejects_document_level_citations(tmp_path):
-    with pytest.raises(ValueError, match="section or regulation required"):
+    with pytest.raises(ValueError, match="section, regulation, or schedule required"):
         extract_uk_legislation_sections(
             CorpusArtifactStore(tmp_path / "data" / "corpus"),
             version="2026-05-29-uk-benefits",
