@@ -151,6 +151,18 @@ class TestUKCLMLConverter:
         assert citation.year == 2024
         assert citation.number == 3
         assert citation.section == "1"
+        assert citation.provision_segment == "section"
+
+    def test_parse_citation_with_schedule(self):
+        """Parse citation with schedule from reference string."""
+        converter = UKCLMLConverter()
+        citation = converter.parse_reference("uksi/2002/2005/schedule/2")
+        assert citation.type == "uksi"
+        assert citation.year == 2002
+        assert citation.number == 2005
+        assert citation.section == "2"
+        assert citation.provision_segment == "schedule"
+        assert citation.legislation_url == "https://www.legislation.gov.uk/uksi/2002/2005/schedule/2"
 
 
 class TestUKCLMLParseSection:

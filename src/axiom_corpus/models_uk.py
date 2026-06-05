@@ -63,7 +63,7 @@ UK_CITATION_PATTERN = re.compile(
     r"^([a-z]{2,5})"  # Type (ukpga, uksi, asp, etc.)
     r"/(\d{4})"  # Year
     r"/(\d+)"  # Number
-    r"(?:/(?:section|regulation)/(\d+[A-Za-z]*))?"  # Optional provision
+    r"(?:/(section|regulation|schedule)/(\d+[A-Za-z]*))?"  # Optional provision
     r"(?:/(\d+[a-z]?(?:/[a-z])?))?$",  # Optional subsection path
     re.IGNORECASE,
 )
@@ -92,6 +92,10 @@ class UKCitation(BaseModel):
     year: int = Field(..., description="Year of enactment")
     number: int = Field(..., description="Act/SI number within the year")
     section: str | None = Field(None, description="Section number")
+    provision_kind: str | None = Field(
+        None,
+        description="Legislation URL provision segment, such as section, regulation, or schedule",
+    )
     subsection: str | None = Field(None, description="Subsection path (e.g., '1/a')")
 
     model_config = {"extra": "forbid"}
@@ -117,14 +121,16 @@ class UKCitation(BaseModel):
             leg_type = match.group(1).lower()
             year = int(match.group(2))
             number = int(match.group(3))
-            section = match.group(4)
-            subsection = match.group(5)
+            provision_kind = match.group(4)
+            section = match.group(5)
+            subsection = match.group(6)
 
             return cls(
                 type=leg_type,
                 year=year,
                 number=number,
                 section=section,
+                provision_kind=provision_kind,
                 subsection=subsection,
             )
 
@@ -145,6 +151,7 @@ class UKCitation(BaseModel):
                         year=act_info[1],
                         number=act_info[2],
                         section=section,
+                        provision_kind="section",
                         subsection=subsection,
                     )
 
@@ -194,13 +201,18 @@ class UKCitation(BaseModel):
             cite = f"{self.type.upper()} {self.year}/{self.number}"  # pragma: no cover
 
         if self.section:
-            marker = "reg." if self.provision_segment == "regulation" else "s."
+            marker = {
+                "regulation": "reg.",
+                "schedule": "Sch.",
+            }.get(self.provision_segment, "s.")
             cite += f" {marker} {self.section}"
         return cite
 
     @property
     def provision_segment(self) -> str:
         """Return the legislation.gov.uk URL segment for a numbered provision."""
+        if self.provision_kind:
+            return self.provision_kind
         return "regulation" if self.type in UK_REGULATION_TYPES else "section"
 
     @property
@@ -212,7 +224,10 @@ class UKCitation(BaseModel):
         """
         parts = ["uk", self.type, str(self.year), str(self.number)]
         if self.section:
-            parts.append(self.section)
+            if self.provision_segment == "schedule":
+                parts.extend(["schedule", self.section])
+            else:
+                parts.append(self.section)
         if self.subsection:
             parts.extend(self.subsection.split("/"))
         return "/".join(parts)

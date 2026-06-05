@@ -187,8 +187,9 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
     # Extract type/year/number/provision from URI
     # e.g., http://www.legislation.gov.uk/ukpga/2003/1/section/62
     #       http://www.legislation.gov.uk/uksi/2013/376/regulation/36
+    #       http://www.legislation.gov.uk/uksi/2002/2005/schedule/2
     match = re.search(
-        r"legislation\.gov\.uk/([a-z]+)/(\d+)/(\d+)(?:/(?:section|regulation)/(\d+[A-Za-z]?))?",
+        r"legislation\.gov\.uk/([a-z]+)/(\d+)/(\d+)(?:/(section|regulation|schedule)/(\d+[A-Za-z]*))?",
         uri,
     )
     if match:
@@ -196,9 +197,18 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
             type=match.group(1),
             year=int(match.group(2)),
             number=int(match.group(3)),
-            section=match.group(4),
+            provision_kind=match.group(4),
+            section=match.group(5),
         )
     return None  # pragma: no cover
+
+
+def _find_provision_root(root: ET.Element, ns: dict) -> ET.Element | None:
+    """Find the provision element for section/regulation/schedule CLML snippets."""
+    p1 = root.find(".//leg:P1", ns)
+    if p1 is not None:
+        return p1
+    return root.find(".//leg:Schedule", ns)
 
 
 def _parse_amendments(root: ET.Element, ns: dict) -> list[UKAmendment]:
@@ -264,12 +274,13 @@ def parse_section(xml_str: str) -> UKSection:
     # Use namespaces
     ns = NAMESPACES
 
-    # Get DocumentURI - prefer P1 element's URI (has section) over root (Act-level)
-    # Real API responses have DocumentURI on P1, but test fixtures may only have it on root
-    p1 = root.find(".//leg:P1", ns)
+    # Get DocumentURI - prefer the provision URI over root-level document URI.
+    # Schedule snippets have a Schedule DocumentURI while the root can point to
+    # the instrument/version instead of the schedule.
+    provision_root = _find_provision_root(root, ns)
     doc_uri = ""
-    if p1 is not None:
-        doc_uri = p1.get("DocumentURI", "")
+    if provision_root is not None:
+        doc_uri = provision_root.get("DocumentURI", "")
     if not doc_uri:
         doc_uri = root.get("DocumentURI", "")
 
@@ -282,11 +293,12 @@ def parse_section(xml_str: str) -> UKSection:
         year = int(year_elem.get("Value", "0")) if year_elem is not None else 0
         number = int(number_elem.get("Value", "0")) if number_elem is not None else 0
 
-        # Try to find section number from P1
+        # Try to find provision number from the provision element.
         section = None
-        p1 = root.find(".//leg:P1", ns)
-        if p1 is not None:
-            pnum = p1.find("leg:Pnumber", ns)
+        if provision_root is not None:
+            pnum = provision_root.find("leg:Pnumber", ns)
+            if pnum is None:
+                pnum = provision_root.find("leg:Number", ns)
             if pnum is not None:
                 section = pnum.text
 
@@ -298,11 +310,14 @@ def parse_section(xml_str: str) -> UKSection:
 
     # If this is a section-level doc, use section number as title
     if citation.section:
-        title_prefix = "Regulation" if citation.provision_segment == "regulation" else "Section"
+        title_prefix = {
+            "regulation": "Regulation",
+            "schedule": "Schedule",
+        }.get(citation.provision_segment, "Section")
         title = f"{title_prefix} {citation.section}"
 
     # Extract full text
-    content_root = p1 if p1 is not None else root
+    content_root = provision_root if provision_root is not None else root
     text_parts = _operative_text_parts(content_root, ns)
     full_text = "\n".join(text_parts)
 
