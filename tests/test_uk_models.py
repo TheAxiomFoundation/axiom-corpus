@@ -56,6 +56,20 @@ class TestUKCitation:
         assert cite.provision_segment == "regulation"
         assert cite.legislation_url == "https://www.legislation.gov.uk/uksi/2006/965/regulation/2"
 
+    def test_parse_statutory_instrument_article(self):
+        """Parse a numbered article in a UK statutory instrument."""
+        from axiom_corpus.models_uk import UKCitation
+
+        cite = UKCitation.from_string("uksi/2026/148/article/14")
+        assert cite.type == "uksi"
+        assert cite.year == 2026
+        assert cite.number == 148
+        assert cite.section == "14"
+        assert cite.provision_segment == "article"
+        assert cite.legislation_url == "https://www.legislation.gov.uk/uksi/2026/148/article/14"
+        assert cite.short_cite == "UKSI 2026/148 art. 14"
+        assert cite.path == "uk/uksi/2026/148/article/14"
+
     def test_parse_scottish_act(self):
         """Parse Acts of the Scottish Parliament."""
         from axiom_corpus.models_uk import UKCitation

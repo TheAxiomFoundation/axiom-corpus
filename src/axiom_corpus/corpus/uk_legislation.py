@@ -219,6 +219,8 @@ def uk_citation_path(section: UKSection) -> str:
             parts.extend(["schedule", citation.section])
             if citation.paragraph:
                 parts.extend(["paragraph", citation.paragraph])
+        elif citation.provision_segment == "article":
+            parts.extend([citation.provision_segment, citation.section])
         else:
             parts.append(citation.section)
     return "/".join(parts)
@@ -413,7 +415,7 @@ async def _fetch_citation_xmls(citations: Sequence[str]) -> list[tuple[str, byte
     for raw_citation in citations:
         citation = UKCitation.from_string(raw_citation)
         if not citation.section:
-            raise ValueError(f"section, regulation, or schedule required: {raw_citation}")
+            raise ValueError(f"section, regulation, article, or schedule required: {raw_citation}")
         url = fetcher.build_url(citation)
         xml = await fetcher._fetch_xml(url)
         fetched.append((_source_relative_name_from_citation(citation), xml.encode()))
@@ -426,10 +428,7 @@ def _source_relative_name(section: UKSection) -> str:
 
 def _source_relative_name_from_citation(citation: UKCitation) -> str:
     provision = _source_provision_name(citation)
-    return (
-        f"{citation.type}/{citation.year}/{citation.number}/"
-        f"{provision}.xml"
-    )
+    return f"{citation.type}/{citation.year}/{citation.number}/{provision}.xml"
 
 
 def _source_provision_name(citation: UKCitation) -> str:
@@ -443,6 +442,8 @@ def _source_provision_name(citation: UKCitation) -> str:
 
 def _parent_citation_path(citation: UKCitation, citation_path: str) -> str:
     if citation.provision_segment == "schedule" and citation.paragraph:
+        return "/".join(citation_path.split("/")[:-2])
+    if citation.provision_segment == "article":
         return "/".join(citation_path.split("/")[:-2])
     return "/".join(citation_path.split("/")[:-1])
 
@@ -458,6 +459,8 @@ def _legislation_provision_identifier(citation: UKCitation) -> str:
         return ""
     if citation.provision_segment == "schedule" and citation.paragraph:
         return f"schedule/{citation.section}/paragraph/{citation.paragraph}"
+    if citation.provision_segment == "article":
+        return f"{citation.provision_segment}/{citation.section}"
     return citation.section
 
 

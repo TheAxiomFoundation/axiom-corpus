@@ -63,7 +63,7 @@ UK_CITATION_PATTERN = re.compile(
     r"^([a-z]{2,5})"  # Type (ukpga, uksi, asp, etc.)
     r"/(\d{4})"  # Year
     r"/(\d+)"  # Number
-    r"(?:/(section|regulation|schedule)/(\d+[A-Za-z]*))?"  # Optional provision
+    r"(?:/(section|regulation|schedule|article)/(\d+[A-Za-z]*))?"  # Optional provision
     r"(?:/(\d+[a-z]?(?:/[a-z])?))?$",  # Optional subsection path
     re.IGNORECASE,
 )
@@ -232,6 +232,7 @@ class UKCitation(BaseModel):
 
         if self.section:
             marker = {
+                "article": "art.",
                 "regulation": "reg.",
                 "schedule": "Sch.",
             }.get(self.provision_segment, "s.")
@@ -260,6 +261,8 @@ class UKCitation(BaseModel):
                 parts.extend(["schedule", self.section])
                 if self.paragraph:
                     parts.extend(["paragraph", self.paragraph])
+            elif self.provision_segment == "article":
+                parts.extend([self.provision_segment, self.section])
             else:
                 parts.append(self.section)
         if self.subsection:
