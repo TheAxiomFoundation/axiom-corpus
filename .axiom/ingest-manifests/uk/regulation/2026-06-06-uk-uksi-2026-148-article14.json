@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-06-06-uk-uksi-2026-148-article14.json",
+      "sha256": "a0ce4dd23051930c0b0d34a809501a40673dbc313bb73eed225257411b0b5a4a"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-06-06-uk-uksi-2026-148-article14.json",
+      "sha256": "a5dcd99f0e2aed92fcc9a1691cc65a69657be315ff0e9f5d2c38a35950422504"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-06-06-uk-uksi-2026-148-article14.jsonl",
+      "sha256": "3583b34a42dfb0346f709274b40bd2b69a845ab18c8f1880a0249bdc74b5775b"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-06-06-uk-uksi-2026-148-article14/uksi/2026/148/article-14.xml",
+      "sha256": "cf4f888dfcface1909f28998038a48b38e3fdca1c4a7e36d795f0408642bfb87"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "64efd968625682ec514661b3c87e728f0502560c",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-uksi-2026-148-art14-20260606"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-06-06-uk-uksi-2026-148-article14 --source clml --citation uksi/2026/148/article/14 --source-as-of 2026-06-06 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-06-06T22:43:08.090754+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TRuV+Bd0wcuKaad8PQodFU9+fyDWClV0ZvJJBNeF7+ybMxJl1SrYNgo/1w4gKpY8HHo1QbPpKP3GHGjifchuDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-06-uk-uksi-2026-148-article14"
+}

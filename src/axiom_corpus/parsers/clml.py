@@ -204,9 +204,10 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
     # Extract type/year/number/provision from URI
     # e.g., http://www.legislation.gov.uk/ukpga/2003/1/section/62
     #       http://www.legislation.gov.uk/uksi/2013/376/regulation/36
+    #       http://www.legislation.gov.uk/uksi/2026/148/article/14
     #       http://www.legislation.gov.uk/uksi/2002/2005/schedule/2
     match = re.search(
-        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)(?:/(section|regulation|schedule)/(\d+[A-Za-z]*))?",
+        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)(?:/(section|regulation|article|schedule)/(\d+[A-Za-z]*))?",
         uri,
     )
     if match:
@@ -223,7 +224,7 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
 
 
 def _find_provision_root(root: ET.Element, ns: dict) -> ET.Element | None:
-    """Find the provision element for section/regulation/schedule CLML snippets."""
+    """Find the provision element for section/regulation/article/schedule snippets."""
     target_paragraph = _document_target_schedule_paragraph(root, ns)
     if target_paragraph is not None:
         schedule_number, paragraph_number = target_paragraph
@@ -407,6 +408,7 @@ def parse_section(xml_str: str) -> UKSection:
                 title += f" - {paragraph_heading}"
         else:
             title_prefix = {
+                "article": "Article",
                 "regulation": "Regulation",
                 "schedule": "Schedule",
             }.get(citation.provision_segment, "Section")

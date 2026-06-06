@@ -42,6 +42,45 @@ SAMPLE_UKSI_REGULATION_XML = """<?xml version="1.0" encoding="UTF-8"?>
 """
 
 
+SAMPLE_UKSI_ARTICLE_XML = """<?xml version="1.0" encoding="UTF-8"?>
+<Legislation xmlns="http://www.legislation.gov.uk/namespaces/legislation"
+             xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata"
+             xmlns:dc="http://purl.org/dc/elements/1.1/"
+             DocumentURI="http://www.legislation.gov.uk/uksi/2026/148/article/14"
+             RestrictExtent="E+W+S">
+<ukm:Metadata>
+    <dc:title>The Social Security Benefits Up-rating Order 2026</dc:title>
+    <ukm:PrimaryMetadata>
+        <ukm:Year Value="2026"/>
+        <ukm:Number Value="148"/>
+        <ukm:EnactmentDate Date="2026-03-11"/>
+    </ukm:PrimaryMetadata>
+</ukm:Metadata>
+<Secondary>
+    <Body>
+        <P1 DocumentURI="http://www.legislation.gov.uk/uksi/2026/148/article/14" id="article-14">
+            <Pnumber>14</Pnumber>
+            <P1para>
+                <P2 id="article-14-a">
+                    <Pnumber>a</Pnumber>
+                    <P2para>
+                        <Text>in paragraph (1)(a) for "£110.40" substitute "£114.60";</Text>
+                    </P2para>
+                </P2>
+                <P2 id="article-14-b">
+                    <Pnumber>b</Pnumber>
+                    <P2para>
+                        <Text>in paragraph (2)(a) for "£77.05" substitute "£80.00".</Text>
+                    </P2para>
+                </P2>
+            </P1para>
+        </P1>
+    </Body>
+</Secondary>
+</Legislation>
+"""
+
+
 SAMPLE_UKPGA_SECTION_XML = """<?xml version="1.0" encoding="UTF-8"?>
 <Legislation xmlns="http://www.legislation.gov.uk/namespaces/legislation"
              xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata"
@@ -314,7 +353,9 @@ def test_parse_section_handles_schedule_citation_and_text():
     assert section.citation.section == "2"
     assert section.citation.provision_segment == "schedule"
     assert section.title == "Schedule 2"
-    assert section.source_url == "http://www.legislation.gov.uk/uksi/2002/2005/schedule/2/2026-04-06"
+    assert (
+        section.source_url == "http://www.legislation.gov.uk/uksi/2002/2005/schedule/2/2026-04-06"
+    )
     assert "Maximum annual rate" in section.text
     assert "Basic element" in section.text
     assert "£2,435" in section.text
@@ -331,7 +372,9 @@ def test_parse_section_handles_schedule_paragraph_citation_and_text():
     assert section.citation.provision_segment == "schedule"
     assert section.citation.paragraph == "7"
     assert section.title == "Schedule 4 paragraph 7 - Relevant payments calculated monthly"
-    assert section.source_url == "http://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7"
+    assert (
+        section.source_url == "http://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7"
+    )
     assert section.text == (
         "The amount of that payment is to be calculated as a monthly amount.\n"
         "Weekly payments are multiplied by 52 and divided by 12."
@@ -425,8 +468,7 @@ def test_extract_uk_legislation_writes_schedule_artifacts(tmp_path):
     assert row["ordinal"] == 2
     assert row["source_url"] == "http://www.legislation.gov.uk/uksi/2002/2005/schedule/2/2026-04-06"
     assert row["source_path"] == (
-        "sources/uk/regulation/2026-06-05-uk-tax-credits/"
-        "uksi/2002/2005/schedule-2.xml"
+        "sources/uk/regulation/2026-06-05-uk-tax-credits/uksi/2002/2005/schedule-2.xml"
     )
     assert "Basic element" in row["body"]
     assert "£2,435" in row["body"]
@@ -451,8 +493,7 @@ def test_extract_uk_legislation_writes_schedule_paragraph_artifacts(tmp_path):
     assert class_report.coverage.complete
 
     provisions_path = (
-        base
-        / "provisions/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.jsonl"
+        base / "provisions/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.jsonl"
     )
     row = json.loads(provisions_path.read_text().strip())
     assert row["citation_path"] == "uk/regulation/uksi/2013/376/schedule/4/paragraph/7"
@@ -535,8 +576,46 @@ def test_extract_uk_legislation_fetches_schedule_paragraph_citation_xml(tmp_path
     assert row["citation_path"] == "uk/regulation/uksi/2013/376/schedule/4/paragraph/7"
 
 
+def test_extract_uk_legislation_fetches_article_citation_xml(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    fetched_urls = []
+
+    class FakeFetcher:
+        def build_url(self, citation):
+            return citation.data_xml_url
+
+        async def _fetch_xml(self, url):
+            fetched_urls.append(url)
+            return SAMPLE_UKSI_ARTICLE_XML
+
+    monkeypatch.setattr(uk_legislation, "UKLegislationFetcher", FakeFetcher)
+    base = tmp_path / "data" / "corpus"
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-06-06-uk-uksi-2026-148-article14",
+        citations=("uksi/2026/148/article/14",),
+        expression_date=date(2026, 4, 6),
+    )
+
+    assert fetched_urls == ["https://www.legislation.gov.uk/uksi/2026/148/article/14/data.xml"]
+    assert report.source_count == 1
+    row = json.loads(
+        (base / "provisions/uk/regulation/2026-06-06-uk-uksi-2026-148-article14.jsonl").read_text()
+    )
+    assert row["citation_path"] == "uk/regulation/uksi/2026/148/article/14"
+    assert row["citation_label"] == "UKSI 2026/148 art. 14"
+    assert row["kind"] == "article"
+    assert row["parent_citation_path"] == "uk/regulation/uksi/2026/148"
+    assert row["identifiers"]["legislation.gov.uk:provision"] == "article/14"
+    assert row["source_path"] == (
+        "sources/uk/regulation/2026-06-06-uk-uksi-2026-148-article14/uksi/2026/148/article-14.xml"
+    )
+
+
 def test_extract_uk_legislation_fetch_rejects_document_level_citations(tmp_path):
-    with pytest.raises(ValueError, match="section, regulation, or schedule required"):
+    with pytest.raises(ValueError, match="section, regulation, article, or schedule required"):
         extract_uk_legislation_sections(
             CorpusArtifactStore(tmp_path / "data" / "corpus"),
             version="2026-05-29-uk-benefits",
