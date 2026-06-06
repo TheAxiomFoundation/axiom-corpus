@@ -21,16 +21,57 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v6.2.0
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Install corpus artifact guard
+        if: github.event_name != 'schedule'
+        run: |
+          cd "$RUNNER_TEMP"
+          python -I -m pip install --upgrade pip
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_REF="${{ github.event.pull_request.base.sha }}"
+            VERIFIER_DIR="$RUNNER_TEMP/axiom-corpus-verifier"
+            git clone --no-checkout "$GITHUB_SERVER_URL/${{ github.repository }}.git" "$VERIFIER_DIR"
+            git -C "$VERIFIER_DIR" fetch --depth 1 origin "$BASE_REF"
+            git -C "$VERIFIER_DIR" checkout --detach "$BASE_REF"
+            if [ -f "$VERIFIER_DIR/src/axiom_corpus/corpus/ingest_manifests.py" ]; then
+              python -I -m pip install "$VERIFIER_DIR"
+            else
+              echo "Base commit has no ingest guard yet; using checked-out bootstrap guard."
+              python -I -m pip install -e "$GITHUB_WORKSPACE"
+            fi
+          else
+            python -I -m pip install -e "$GITHUB_WORKSPACE"
+          fi
+
+      - name: Guard generated corpus artifacts
+        if: github.event_name != 'schedule'
+        env:
+          AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_REF="${{ github.event.pull_request.base.sha }}"
+          else
+            BASE_REF="${{ github.event.before }}"
+          fi
+          if [ -z "$BASE_REF" ] || [ "$BASE_REF" = "0000000000000000000000000000000000000000" ]; then
+            BASE_REF="HEAD~1"
+          fi
+          axiom-corpus-ingest guard-ingested \
+            --base-ref "$BASE_REF" \
+            --head-ref "${{ github.sha }}"
+
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -e ".[dev]"
+          cd "$RUNNER_TEMP"
+          python -I -m pip install --upgrade pip
+          python -I -m pip install -e "$GITHUB_WORKSPACE[dev]"
 
       - name: Check changelog fragments
         run: python -m towncrier build --draft --version 0.0.0
@@ -45,7 +86,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          pip install pytest-cov pytest-timeout
+          python -I -m pip install pytest-cov pytest-timeout
           pytest -v --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
 
   postgres:

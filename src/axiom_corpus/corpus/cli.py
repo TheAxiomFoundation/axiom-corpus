@@ -30,6 +30,12 @@ from axiom_corpus.corpus.federal_register import (
     extract_federal_register,
 )
 from axiom_corpus.corpus.illinois_admin_code import extract_illinois_admin_code
+from axiom_corpus.corpus.ingest_manifests import (
+    INGEST_MANIFEST_PRIVATE_KEY_ENV,
+    build_ingest_manifest,
+    guard_ingested_artifacts,
+    write_signed_ingest_manifest,
+)
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.maryland_comar import extract_maryland_comar
 from axiom_corpus.corpus.models import (
@@ -229,6 +235,68 @@ def _cmd_validate_manifest(args: argparse.Namespace) -> int:
         )
     )
     return 0
+
+
+def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
+    private_key = os.environ.get(INGEST_MANIFEST_PRIVATE_KEY_ENV)
+    if not private_key:
+        print(f"{INGEST_MANIFEST_PRIVATE_KEY_ENV} is required to sign ingest manifests.")
+        return 2
+    repo = args.repo.resolve()
+    applied_files: list[Path] | None = None
+    if args.file:
+        applied_files = list(args.file)
+    deleted_files: list[Path] = list(args.deleted_file or [])
+    reasoning_logs: list[Path] = list(args.reasoning_log or [])
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=args.base,
+        jurisdiction=args.jurisdiction,
+        document_class=args.document_class,
+        version=args.version,
+        command=args.command,
+        applied_files=applied_files,
+        deleted_files=deleted_files,
+        reasoning_logs=reasoning_logs,
+    )
+    manifest_path = write_signed_ingest_manifest(
+        repo=repo,
+        manifest=manifest,
+        private_key=private_key,
+        output=args.output,
+        key_id=args.key_id,
+    )
+    print(
+        json.dumps(
+            {
+                "manifest": str(manifest_path),
+                "applied_files": len(manifest["applied_files"]),
+                "reasoning_logs": len(manifest["reasoning_logs"]),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0
+
+
+def _cmd_guard_ingested(args: argparse.Namespace) -> int:
+    result = guard_ingested_artifacts(
+        repo=args.repo,
+        base_ref=args.base_ref,
+        head_ref=args.head_ref,
+    )
+    if args.json:
+        print(json.dumps(result.to_mapping(), indent=2, sort_keys=True))
+    elif result.passed:
+        if result.protected_changes:
+            print("All changed corpus artifacts have signed ingest manifests.")
+        else:
+            print("No protected corpus artifact changes.")
+    else:
+        for issue in result.issues:
+            print(issue)
+    return 0 if result.passed else 1
 
 
 def _cmd_inventory_ecfr(args: argparse.Namespace) -> int:
@@ -4205,6 +4273,52 @@ def build_parser() -> argparse.ArgumentParser:
     validate = sub.add_parser("validate-manifest", help="Validate a corpus manifest.")
     validate.add_argument("path", type=Path)
     validate.set_defaults(func=_cmd_validate_manifest)
+
+    sign_ingest = sub.add_parser(
+        "sign-ingest-manifest",
+        help="Sign generated corpus artifacts for one ingestion scope.",
+    )
+    sign_ingest.add_argument("--repo", type=Path, default=Path("."))
+    sign_ingest.add_argument("--base", type=Path, default=Path("data/corpus"))
+    sign_ingest.add_argument("--jurisdiction", required=True)
+    sign_ingest.add_argument("--document-class", required=True)
+    sign_ingest.add_argument("--version", required=True)
+    sign_ingest.add_argument(
+        "--command",
+        required=True,
+        help="Exact ingestion command or run description to record in the manifest.",
+    )
+    sign_ingest.add_argument(
+        "--file",
+        type=Path,
+        action="append",
+        help="Specific artifact file to include; defaults to inferred scope artifacts.",
+    )
+    sign_ingest.add_argument(
+        "--deleted-file",
+        type=Path,
+        action="append",
+        help="Deleted artifact path to mark as removed in the signed manifest.",
+    )
+    sign_ingest.add_argument(
+        "--reasoning-log",
+        type=Path,
+        action="append",
+        help="Optional reasoning or run log file to hash into the manifest.",
+    )
+    sign_ingest.add_argument("--output", type=Path)
+    sign_ingest.add_argument("--key-id", default="axiom-corpus-ingest-v1")
+    sign_ingest.set_defaults(func=_cmd_sign_ingest_manifest)
+
+    guard_ingested = sub.add_parser(
+        "guard-ingested",
+        help="Reject generated corpus artifact changes without signed ingest manifests.",
+    )
+    guard_ingested.add_argument("--repo", type=Path, default=Path("."))
+    guard_ingested.add_argument("--base-ref")
+    guard_ingested.add_argument("--head-ref", default="HEAD")
+    guard_ingested.add_argument("--json", action="store_true")
+    guard_ingested.set_defaults(func=_cmd_guard_ingested)
 
     inventory_ecfr = sub.add_parser(
         "inventory-ecfr",

@@ -1,4 +1,9 @@
 import json
+import subprocess
+from base64 import b64encode
+
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport
@@ -27,12 +32,434 @@ SAMPLE_USLM_CLI = """
 """
 
 
+def _git(repo, *args):
+    subprocess.run(["git", *args], cwd=repo, check=True, capture_output=True, text=True)
+
+
+def _init_git_repo(repo):
+    repo.mkdir()
+    _git(repo, "init", "-b", "main")
+    _git(repo, "config", "user.email", "test@example.com")
+    _git(repo, "config", "user.name", "Test User")
+    (repo / "README.md").write_text("test repo\n")
+    _git(repo, "add", "README.md")
+    _git(repo, "commit", "-m", "Initial commit")
+    return repo
+
+
+def _test_ingest_keys():
+    private_key = Ed25519PrivateKey.generate()
+    private_key_text = b64encode(
+        private_key.private_bytes(
+            encoding=serialization.Encoding.Raw,
+            format=serialization.PrivateFormat.Raw,
+            encryption_algorithm=serialization.NoEncryption(),
+        )
+    ).decode("ascii")
+    public_key_text = b64encode(
+        private_key.public_key().public_bytes(
+            encoding=serialization.Encoding.Raw,
+            format=serialization.PublicFormat.Raw,
+        )
+    ).decode("ascii")
+    return private_key_text, public_key_text
+
+
+def _set_ingest_keys(monkeypatch):
+    private_key, public_key = _test_ingest_keys()
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PRIVATE_KEY", private_key)
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PUBLIC_KEY", public_key)
+    return private_key, public_key
+
+
 def test_validate_manifest_cli(capsys):
     exit_code = main(["validate-manifest", "manifests/corpus.example.yaml"])
     output = capsys.readouterr().out
 
     assert exit_code == 0
     assert '"ok": true' in output
+
+
+def test_sign_ingest_manifest_cli_writes_signed_scope_manifest(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+
+    exit_code = main(
+        [
+            "sign-ingest-manifest",
+            "--repo",
+            str(repo),
+            "--jurisdiction",
+            "us",
+            "--document-class",
+            "statute",
+            "--version",
+            "2026-06-06",
+            "--command",
+            "axiom-corpus-ingest extract-example --version 2026-06-06",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"applied_files": 1' in output
+    manifest_path = repo / ".axiom/ingest-manifests/us/statute/2026-06-06.json"
+    manifest = json.loads(manifest_path.read_text())
+    assert manifest["schema_version"] == "axiom-corpus/ingest-manifest/v1"
+    assert manifest["command"]["text"].startswith("axiom-corpus-ingest extract-example")
+    assert manifest["applied_files"][0]["path"] == (
+        "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    )
+    assert manifest["signature"]["algorithm"] == "ed25519"
+
+
+def test_guard_ingested_cli_rejects_unmanifested_corpus_artifact_change(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "commit", "-m", "Add unmanifested corpus row")
+    _set_ingest_keys(monkeypatch)
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "Unmanifested corpus artifact change" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_accepts_signed_corpus_artifact_change(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "add", ".axiom/ingest-manifests/us/statute/2026-06-06.json")
+    _git(repo, "commit", "-m", "Add manifested corpus row")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    payload = json.loads(output)
+    assert payload["passed"] is True
+    assert payload["issues"] == []
+    assert payload["protected_changes"] == [
+        "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    ]
+
+
+def test_guard_ingested_cli_rejects_signed_change_without_public_key(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "add", ".axiom/ingest-manifests/us/statute/2026-06-06.json")
+    _git(repo, "commit", "-m", "Add manifested corpus row")
+    monkeypatch.delenv("AXIOM_CORPUS_INGEST_PUBLIC_KEY")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "AXIOM_CORPUS_INGEST_PUBLIC_KEY is required" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_rejects_tampered_ingest_manifest(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    manifest_path = repo / ".axiom/ingest-manifests/us/statute/2026-06-06.json"
+    manifest = json.loads(manifest_path.read_text())
+    manifest["command"]["text"] = "manual edit"
+    manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "add", ".axiom/ingest-manifests/us/statute/2026-06-06.json")
+    _git(repo, "commit", "-m", "Add tampered manifest")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "Invalid ingest manifest signature" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_rejects_committed_tampered_artifact(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    provision.write_text('{"citation_path":"us/statute/example","body":"Changed."}\n')
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "add", ".axiom/ingest-manifests/us/statute/2026-06-06.json")
+    _git(repo, "commit", "-m", "Add tampered manifested corpus row")
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "sha256 does not match ingest manifest" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_rejects_rename_out_of_protected_corpus_path(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "commit", "-m", "Add corpus row")
+    _git(repo, "checkout", "-b", "feature")
+    moved = repo / "tmp/2026-06-06.jsonl"
+    moved.parent.mkdir()
+    _git(repo, "mv", "data/corpus/provisions/us/statute/2026-06-06.jsonl", "tmp/2026-06-06.jsonl")
+    _git(repo, "commit", "-m", "Move corpus row out of protected path")
+    _set_ingest_keys(monkeypatch)
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["protected_changes"] == [
+        "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    ]
+    assert "Unmanifested corpus artifact change" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_accepts_signed_deleted_corpus_artifact(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "commit", "-m", "Add corpus row")
+    _git(repo, "checkout", "-b", "feature")
+    provision.unlink()
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--deleted-file",
+                "data/corpus/provisions/us/statute/2026-06-06.jsonl",
+                "--command",
+                "axiom-corpus-ingest remove-obsolete-scope --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    _git(repo, "add", "-A")
+    _git(repo, "commit", "-m", "Remove manifested corpus row")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    payload = json.loads(output)
+    assert payload["passed"] is True
+    assert payload["issues"] == []
 
 
 def test_inventory_ecfr_cli(tmp_path, capsys, monkeypatch):
