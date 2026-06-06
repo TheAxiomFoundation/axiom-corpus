@@ -205,10 +205,22 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
 
 def _find_provision_root(root: ET.Element, ns: dict) -> ET.Element | None:
     """Find the provision element for section/regulation/schedule CLML snippets."""
+    schedule = root.find(".//leg:Schedule", ns)
+    if schedule is not None and _document_targets_schedule(root, ns):
+        return schedule
     p1 = root.find(".//leg:P1", ns)
     if p1 is not None:
         return p1
-    return root.find(".//leg:Schedule", ns)
+    return schedule
+
+
+def _document_targets_schedule(root: ET.Element, ns: dict) -> bool:
+    """Return true when a CLML document is a schedule-level snippet."""
+    candidates = [root.get("DocumentURI", ""), root.get("IdURI", "")]
+    identifier = root.find(".//dc:identifier", ns)
+    if identifier is not None and identifier.text:
+        candidates.append(identifier.text)
+    return any("/schedule/" in value for value in candidates)
 
 
 def _parse_amendments(root: ET.Element, ns: dict) -> list[UKAmendment]:
