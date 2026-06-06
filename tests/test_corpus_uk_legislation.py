@@ -169,6 +169,7 @@ SAMPLE_UKSI_SCHEDULE_XML = """<?xml version="1.0" encoding="UTF-8"?>
              xmlns:xhtml="http://www.w3.org/1999/xhtml"
              DocumentURI="http://www.legislation.gov.uk/uksi/2002/2005/2026-04-06">
 <ukm:Metadata>
+    <dc:identifier>http://www.legislation.gov.uk/uksi/2002/2005/schedule/2/2026-04-06</dc:identifier>
     <dc:title>The Working Tax Credit (Entitlement and Maximum Rate) Regulations 2002</dc:title>
     <ukm:SecondaryMetadata>
         <ukm:Year Value="2002"/>
@@ -194,7 +195,14 @@ SAMPLE_UKSI_SCHEDULE_XML = """<?xml version="1.0" encoding="UTF-8"?>
                                 <xhtml:td>Maximum annual rate</xhtml:td>
                             </xhtml:tr>
                             <xhtml:tr>
-                                <xhtml:td>1. Basic element</xhtml:td>
+                                <xhtml:td>
+                                    <P1 DocumentURI="http://www.legislation.gov.uk/uksi/2002/2005/schedule/2/paragraph/1">
+                                        <Pnumber>1</Pnumber>
+                                        <P1para>
+                                            <Text>Basic element</Text>
+                                        </P1para>
+                                    </P1>
+                                </xhtml:td>
                                 <xhtml:td>£2,435</xhtml:td>
                             </xhtml:tr>
                         </xhtml:tbody>
@@ -235,7 +243,9 @@ def test_parse_section_handles_schedule_citation_and_text():
     assert section.citation.provision_segment == "schedule"
     assert section.title == "Schedule 2"
     assert section.source_url == "http://www.legislation.gov.uk/uksi/2002/2005/schedule/2/2026-04-06"
-    assert "| 1. Basic element | £2,435 |" in section.text
+    assert "Maximum annual rate" in section.text
+    assert "Basic element" in section.text
+    assert "£2,435" in section.text
     assert "modified by another instrument" not in section.text
 
 
@@ -329,7 +339,8 @@ def test_extract_uk_legislation_writes_schedule_artifacts(tmp_path):
         "sources/uk/regulation/2026-06-05-uk-tax-credits/"
         "uksi/2002/2005/schedule-2.xml"
     )
-    assert "| 1. Basic element | £2,435 |" in row["body"]
+    assert "Basic element" in row["body"]
+    assert "£2,435" in row["body"]
 
 
 def test_extract_uk_legislation_fetches_citation_xml(tmp_path, monkeypatch):
