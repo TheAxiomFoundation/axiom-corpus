@@ -204,7 +204,7 @@ def uk_document_class(citation: UKCitation) -> str:
 
 
 def uk_citation_path(section: UKSection) -> str:
-    """Return the canonical corpus citation path for a UK section/regulation."""
+    """Return the canonical corpus citation path for a UK provision."""
     citation = section.citation
     document_class = uk_document_class(citation)
     parts = [
@@ -217,6 +217,8 @@ def uk_citation_path(section: UKSection) -> str:
     if citation.section:
         if citation.provision_segment == "schedule":
             parts.extend(["schedule", citation.section])
+            if citation.paragraph:
+                parts.extend(["paragraph", citation.paragraph])
         else:
             parts.append(citation.section)
     return "/".join(parts)
@@ -234,7 +236,22 @@ def _section_record(
     expression_date: str,
 ) -> ProvisionRecord:
     citation = section.citation
-    parent_path = "/".join(citation_path.split("/")[:-1])
+    parent_path = _parent_citation_path(citation, citation_path)
+    kind = _provision_kind(citation)
+    ordinal = _provision_ordinal(citation.paragraph or citation.section)
+    identifiers = {
+        "legislation.gov.uk:type": citation.type,
+        "legislation.gov.uk:year": str(citation.year),
+        "legislation.gov.uk:number": str(citation.number),
+        "legislation.gov.uk:provision": _legislation_provision_identifier(citation),
+    }
+    metadata = {
+        "extent": section.extent,
+        "references_to": section.references_to,
+        "retrieved_at": (section.retrieved_at.isoformat() if section.retrieved_at else None),
+    }
+    if citation.provision_segment == "schedule" and citation.paragraph:
+        metadata["schedule"] = citation.section
     return ProvisionRecord(
         id=deterministic_provision_id(citation_path),
         jurisdiction="uk",
@@ -253,33 +270,34 @@ def _section_record(
         expression_date=expression_date,
         parent_citation_path=parent_path,
         parent_id=deterministic_provision_id(parent_path),
-        level=1,
-        ordinal=_provision_ordinal(citation.section),
-        kind=citation.provision_segment,
+        level=2 if citation.paragraph else 1,
+        ordinal=ordinal,
+        kind=kind,
         legal_identifier=citation.short_cite,
-        identifiers={
-            "legislation.gov.uk:type": citation.type,
-            "legislation.gov.uk:year": str(citation.year),
-            "legislation.gov.uk:number": str(citation.number),
-            "legislation.gov.uk:provision": citation.section or "",
-        },
-        metadata={
-            "extent": section.extent,
-            "references_to": section.references_to,
-            "retrieved_at": (section.retrieved_at.isoformat() if section.retrieved_at else None),
-        },
+        identifiers=identifiers,
+        metadata=metadata,
     )
 
 
 def _prepare_clml_source(source_name: str, source_bytes: bytes) -> _PreparedSource:
-    section = parse_section(source_bytes.decode("utf-8"))
+    normalized_source_bytes = _normalize_clml_source_bytes(source_bytes)
+    section = parse_section(normalized_source_bytes.decode("utf-8"))
     return _PreparedSource(
         section=section,
-        raw_bytes=source_bytes,
+        raw_bytes=normalized_source_bytes,
         source_format=UK_SOURCE_FORMAT,
         relative_name=_source_relative_name(section),
         source_name=source_name,
     )
+
+
+def _normalize_clml_source_bytes(source_bytes: bytes) -> bytes:
+    """Normalize CLML source bytes for stable storage without changing XML content."""
+    text = source_bytes.decode("utf-8")
+    normalized_text = "\n".join(line.rstrip() for line in text.splitlines())
+    if text.endswith(("\n", "\r")):
+        normalized_text += "\n"
+    return normalized_text.encode("utf-8")
 
 
 def _fetch_lex_sources(
@@ -330,6 +348,7 @@ def _fetch_lex_sources(
                 number=citation.number,
                 section=provision,
                 provision_kind=citation.provision_kind,
+                paragraph=None,
                 subsection=None,
             )
             prepared.append(
@@ -406,11 +425,40 @@ def _source_relative_name(section: UKSection) -> str:
 
 
 def _source_relative_name_from_citation(citation: UKCitation) -> str:
-    provision = citation.section or "document"
+    provision = _source_provision_name(citation)
     return (
         f"{citation.type}/{citation.year}/{citation.number}/"
-        f"{citation.provision_segment}-{provision}.xml"
+        f"{provision}.xml"
     )
+
+
+def _source_provision_name(citation: UKCitation) -> str:
+    if citation.section is None:
+        return f"{citation.provision_segment}-document"
+    name = f"{citation.provision_segment}-{citation.section}"
+    if citation.paragraph:
+        name += f"-paragraph-{citation.paragraph}"
+    return name
+
+
+def _parent_citation_path(citation: UKCitation, citation_path: str) -> str:
+    if citation.provision_segment == "schedule" and citation.paragraph:
+        return "/".join(citation_path.split("/")[:-2])
+    return "/".join(citation_path.split("/")[:-1])
+
+
+def _provision_kind(citation: UKCitation) -> str:
+    if citation.provision_segment == "schedule" and citation.paragraph:
+        return "paragraph"
+    return citation.provision_segment
+
+
+def _legislation_provision_identifier(citation: UKCitation) -> str:
+    if not citation.section:
+        return ""
+    if citation.provision_segment == "schedule" and citation.paragraph:
+        return f"schedule/{citation.section}/paragraph/{citation.paragraph}"
+    return citation.section
 
 
 def _source_key(version: str, document_class: str, relative_name: str) -> str:

@@ -5,6 +5,8 @@ import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.uk_legislation import extract_uk_legislation_sections
+from axiom_corpus.fetchers.legislation_uk import UKLegislationFetcher
+from axiom_corpus.models_uk import UKCitation
 from axiom_corpus.parsers.clml import parse_section
 
 SAMPLE_UKSI_REGULATION_XML = """<?xml version="1.0" encoding="UTF-8"?>
@@ -219,6 +221,76 @@ SAMPLE_UKSI_SCHEDULE_XML = """<?xml version="1.0" encoding="UTF-8"?>
 """
 
 
+SAMPLE_UKSI_SCHEDULE_PARAGRAPH_XML = """<?xml version="1.0" encoding="UTF-8"?>
+<Legislation xmlns="http://www.legislation.gov.uk/namespaces/legislation"
+             xmlns:ukm="http://www.legislation.gov.uk/namespaces/metadata"
+             xmlns:dc="http://purl.org/dc/elements/1.1/"
+             DocumentURI="http://www.legislation.gov.uk/uksi/2013/376"
+             RestrictExtent="E+W+S">
+<ukm:Metadata>
+    <dc:identifier>http://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7</dc:identifier>
+    <dc:title>The Universal Credit Regulations 2013</dc:title>
+    <ukm:SecondaryMetadata>
+        <ukm:Year Value="2013"/>
+        <ukm:Number Value="376"/>
+        <ukm:Made Date="2013-02-25"/>
+    </ukm:SecondaryMetadata>
+</ukm:Metadata>
+<Secondary>
+    <Schedules>
+        <Schedule DocumentURI="http://www.legislation.gov.uk/uksi/2013/376/schedule/4"
+                  id="schedule-4">
+            <Number>SCHEDULE 4</Number>
+            <ScheduleBody>
+                <P1group>
+                    <Title>Relevant payments calculated monthly</Title>
+                    <P1 DocumentURI="http://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7"
+                        IdURI="http://www.legislation.gov.uk/id/uksi/2013/376/schedule/4/paragraph/7"
+                        id="schedule-4-paragraph-7">
+                        <Pnumber>7</Pnumber>
+                        <P1para>
+                            <P2 DocumentURI="http://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7/1">
+                                <Pnumber>1</Pnumber>
+                                <P2para>
+                                    <Text>The amount of that payment is to be calculated as a monthly amount.</Text>
+                                </P2para>
+                            </P2>
+                            <P2 DocumentURI="http://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7/2">
+                                <Pnumber>2</Pnumber>
+                                <P2para>
+                                    <Text>Weekly payments are multiplied by 52 and divided by 12.</Text>
+                                </P2para>
+                            </P2>
+                        </P1para>
+                    </P1>
+                </P1group>
+            </ScheduleBody>
+        </Schedule>
+    </Schedules>
+</Secondary>
+</Legislation>
+"""
+
+
+def test_uk_citation_parses_schedule_paragraph():
+    citation = UKCitation.from_string("uksi/2013/376/schedule/4/paragraph/7")
+
+    assert citation.type == "uksi"
+    assert citation.year == 2013
+    assert citation.number == 376
+    assert citation.section == "4"
+    assert citation.provision_segment == "schedule"
+    assert citation.paragraph == "7"
+    assert citation.legislation_url == (
+        "https://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7"
+    )
+    assert UKLegislationFetcher().build_url(citation) == (
+        "https://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7/data.xml"
+    )
+    assert citation.short_cite == "UKSI 2013/376 Sch. 4 para. 7"
+    assert citation.path == "uk/uksi/2013/376/schedule/4/paragraph/7"
+
+
 def test_parse_section_preserves_xhtml_tables():
     section = parse_section(SAMPLE_UKSI_TABLE_XML)
 
@@ -247,6 +319,23 @@ def test_parse_section_handles_schedule_citation_and_text():
     assert "Basic element" in section.text
     assert "£2,435" in section.text
     assert "modified by another instrument" not in section.text
+
+
+def test_parse_section_handles_schedule_paragraph_citation_and_text():
+    section = parse_section(SAMPLE_UKSI_SCHEDULE_PARAGRAPH_XML)
+
+    assert section.citation.type == "uksi"
+    assert section.citation.year == 2013
+    assert section.citation.number == 376
+    assert section.citation.section == "4"
+    assert section.citation.provision_segment == "schedule"
+    assert section.citation.paragraph == "7"
+    assert section.title == "Schedule 4 paragraph 7 - Relevant payments calculated monthly"
+    assert section.source_url == "http://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7"
+    assert section.text == (
+        "The amount of that payment is to be calculated as a monthly amount.\n"
+        "Weekly payments are multiplied by 52 and divided by 12."
+    )
 
 
 def test_extract_uk_legislation_requires_source_or_citation(tmp_path):
@@ -343,6 +432,44 @@ def test_extract_uk_legislation_writes_schedule_artifacts(tmp_path):
     assert "£2,435" in row["body"]
 
 
+def test_extract_uk_legislation_writes_schedule_paragraph_artifacts(tmp_path):
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "uc-schedule-4-paragraph-7.xml"
+    source_xml.write_text(SAMPLE_UKSI_SCHEDULE_PARAGRAPH_XML)
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-06-06-uk-universal-credit-schedule4-paragraph7",
+        source_xmls=(source_xml,),
+        expression_date="2026-04-30",
+    )
+
+    assert report.source_count == 1
+    assert report.provisions_written == 1
+    class_report = report.class_reports[0]
+    assert class_report.document_class == "regulation"
+    assert class_report.coverage.complete
+
+    provisions_path = (
+        base
+        / "provisions/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.jsonl"
+    )
+    row = json.loads(provisions_path.read_text().strip())
+    assert row["citation_path"] == "uk/regulation/uksi/2013/376/schedule/4/paragraph/7"
+    assert row["citation_label"] == "UKSI 2013/376 Sch. 4 para. 7"
+    assert row["parent_citation_path"] == "uk/regulation/uksi/2013/376/schedule/4"
+    assert row["kind"] == "paragraph"
+    assert row["level"] == 2
+    assert row["ordinal"] == 7
+    assert row["identifiers"]["legislation.gov.uk:provision"] == "schedule/4/paragraph/7"
+    assert row["metadata"]["schedule"] == "4"
+    assert row["source_path"] == (
+        "sources/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7/"
+        "uksi/2013/376/schedule-4-paragraph-7.xml"
+    )
+    assert "monthly amount" in row["body"]
+
+
 def test_extract_uk_legislation_fetches_citation_xml(tmp_path, monkeypatch):
     import axiom_corpus.corpus.uk_legislation as uk_legislation
 
@@ -370,6 +497,42 @@ def test_extract_uk_legislation_fetches_citation_xml(tmp_path, monkeypatch):
     assert report.source_count == 1
     row = json.loads((base / "provisions/uk/regulation/2026-05-29-uk-benefits.jsonl").read_text())
     assert row["expression_date"] == "2026-04-06"
+
+
+def test_extract_uk_legislation_fetches_schedule_paragraph_citation_xml(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.uk_legislation as uk_legislation
+
+    fetched_urls = []
+
+    class FakeFetcher:
+        def build_url(self, citation):
+            return citation.data_xml_url
+
+        async def _fetch_xml(self, url):
+            fetched_urls.append(url)
+            return SAMPLE_UKSI_SCHEDULE_PARAGRAPH_XML
+
+    monkeypatch.setattr(uk_legislation, "UKLegislationFetcher", FakeFetcher)
+    base = tmp_path / "data" / "corpus"
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-06-06-uk-universal-credit-schedule4-paragraph7",
+        citations=("uksi/2013/376/schedule/4/paragraph/7",),
+        expression_date=date(2026, 4, 30),
+    )
+
+    assert fetched_urls == [
+        "https://www.legislation.gov.uk/uksi/2013/376/schedule/4/paragraph/7/data.xml"
+    ]
+    assert report.source_count == 1
+    row = json.loads(
+        (
+            base
+            / "provisions/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.jsonl"
+        ).read_text()
+    )
+    assert row["citation_path"] == "uk/regulation/uksi/2013/376/schedule/4/paragraph/7"
 
 
 def test_extract_uk_legislation_fetch_rejects_document_level_citations(tmp_path):
