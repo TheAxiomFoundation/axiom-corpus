@@ -68,6 +68,16 @@ UK_CITATION_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+UK_SCHEDULE_PARAGRAPH_PATTERN = re.compile(
+    r"^([a-z]{2,5})"  # Type (uksi, ssi, etc.)
+    r"/(\d{4})"  # Year
+    r"/(\d+)"  # Number
+    r"/schedule/(\d+[A-Za-z]*)"  # Schedule number
+    r"/paragraph/(\d+[A-Za-z]*)"  # Paragraph number
+    r"(?:/([0-9A-Za-z]+(?:/[0-9A-Za-z]+)*))?$",  # Optional sub-paragraph path
+    re.IGNORECASE,
+)
+
 # Human-readable citation pattern (e.g., "ITEPA 2003 s.1")
 UK_SHORT_CITE_PATTERN = re.compile(
     r"^([A-Z]{2,6})\s+"  # Short title
@@ -85,6 +95,7 @@ class UKCitation(BaseModel):
         - ukpga/2003/1 (ITEPA 2003)
         - ukpga/2003/1/section/62 (Section 62 of ITEPA)
         - uksi/2024/832 (Statutory Instrument)
+        - uksi/2013/376/schedule/4/paragraph/7
         - asp/2020/13 (Scottish Act)
     """
 
@@ -96,6 +107,7 @@ class UKCitation(BaseModel):
         None,
         description="Legislation URL provision segment, such as section, regulation, or schedule",
     )
+    paragraph: str | None = Field(None, description="Schedule paragraph number")
     subsection: str | None = Field(None, description="Subsection path (e.g., '1/a')")
 
     model_config = {"extra": "forbid"}
@@ -115,6 +127,18 @@ class UKCitation(BaseModel):
         """
         citation_str = citation_str.strip()
 
+        schedule_paragraph_match = UK_SCHEDULE_PARAGRAPH_PATTERN.match(citation_str)
+        if schedule_paragraph_match:
+            return cls(
+                type=schedule_paragraph_match.group(1).lower(),
+                year=int(schedule_paragraph_match.group(2)),
+                number=int(schedule_paragraph_match.group(3)),
+                section=schedule_paragraph_match.group(4),
+                provision_kind="schedule",
+                paragraph=schedule_paragraph_match.group(5),
+                subsection=schedule_paragraph_match.group(6),
+            )
+
         # Try standard format first
         match = UK_CITATION_PATTERN.match(citation_str)
         if match:
@@ -131,6 +155,7 @@ class UKCitation(BaseModel):
                 number=number,
                 section=section,
                 provision_kind=provision_kind,
+                paragraph=None,
                 subsection=subsection,
             )
 
@@ -152,6 +177,7 @@ class UKCitation(BaseModel):
                         number=act_info[2],
                         section=section,
                         provision_kind="section",
+                        paragraph=None,
                         subsection=subsection,
                     )
 
@@ -161,6 +187,8 @@ class UKCitation(BaseModel):
                 year=year,
                 number=1,
                 section=section,
+                provision_kind="section",
+                paragraph=None,
                 subsection=subsection,
             )
 
@@ -176,6 +204,8 @@ class UKCitation(BaseModel):
         url = f"https://www.legislation.gov.uk/{self.type}/{self.year}/{self.number}"
         if self.section:
             url += f"/{self.provision_segment}/{self.section}"
+        if self.paragraph:
+            url += f"/paragraph/{self.paragraph}"
         return url
 
     @property
@@ -206,6 +236,8 @@ class UKCitation(BaseModel):
                 "schedule": "Sch.",
             }.get(self.provision_segment, "s.")
             cite += f" {marker} {self.section}"
+        if self.paragraph:
+            cite += f" para. {self.paragraph}"
         return cite
 
     @property
@@ -226,6 +258,8 @@ class UKCitation(BaseModel):
         if self.section:
             if self.provision_segment == "schedule":
                 parts.extend(["schedule", self.section])
+                if self.paragraph:
+                    parts.extend(["paragraph", self.paragraph])
             else:
                 parts.append(self.section)
         if self.subsection:
