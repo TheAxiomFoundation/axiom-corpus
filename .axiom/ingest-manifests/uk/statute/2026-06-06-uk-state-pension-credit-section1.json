@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/statute/2026-06-06-uk-state-pension-credit-section1.jsonl",
-      "sha256": "ec3a9aec8ef83cfcbb655cab63a8ed8d774cdb4f555f47e0ad29c40bf056a7cc"
+      "sha256": "a1c6cf145eea7af0e64b6105ea6fb94ecc77db00e327629e3437cace8edc76cc"
     },
     {
       "path": "data/corpus/sources/uk/statute/2026-06-06-uk-state-pension-credit-section1/ukpga/2002/16/section-1.xml",
@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7fed3d687f26f1814c54028ff2dfa9b1b6437f95",
+    "commit": "de9b2eb9bcd03356cc8d5855216f2c83e7a085ab",
     "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-sign-uk-manual-provisions-20260606"
+    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-issue-95-uk-legislation"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "statute",
-  "generated_at": "2026-06-06T20:31:47.557848+00:00",
+  "generated_at": "2026-06-07T15:11:57.649647+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
-    "key_id": "codex-agent-2026-06-06",
-    "value": "pNx0d2PkUT3TmHW36c9P0eueFMkoM252lOo++QyrYoqf3BpPtrx7hfSyAbggo/YmW0N0imUFtOfVqoU43RQJAg=="
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AqwMG4EduGBvxnnvEbc57gbCI0GsCci5xMkawiHXiczKsJqO5PQ1hamcu92mY0F8ERP8Y6hdUjq/TvydGZ3BCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-06-uk-state-pension-credit-section1"
