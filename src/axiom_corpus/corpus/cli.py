@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from collections.abc import Iterable
 from dataclasses import replace
@@ -27,7 +28,9 @@ from axiom_corpus.corpus.documents import extract_official_documents
 from axiom_corpus.corpus.ecfr import build_ecfr_inventory, ecfr_run_id, extract_ecfr
 from axiom_corpus.corpus.federal_register import (
     DEFAULT_DOCUMENT_TYPES,
+    FederalRegisterCfrSectionRef,
     extract_federal_register,
+    extract_federal_register_cfr_sections,
 )
 from axiom_corpus.corpus.illinois_admin_code import extract_illinois_admin_code
 from axiom_corpus.corpus.ingest_manifests import (
@@ -3720,6 +3723,71 @@ def _cmd_extract_federal_register(args: argparse.Namespace) -> int:
     return 0 if report.coverage.complete or args.allow_incomplete else 2
 
 
+def _cmd_extract_federal_register_cfr_sections(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    report = extract_federal_register_cfr_sections(
+        store,
+        version=args.version,
+        source_text_path=args.source_text,
+        sections=tuple(_parse_cfr_section_ref(value) for value in args.section),
+        document_number=args.document_number,
+        document_citation=args.document_citation,
+        document_title=args.document_title,
+        document_type=args.document_type,
+        source_url=args.source_url,
+        source_as_of=args.source_as_of,
+        expression_date=args.expression_date,
+        source_document_citation_path=args.source_document_citation_path,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "requested_sections": list(report.requested_sections),
+                "sections_written": report.sections_written,
+                "source_file_count": len(report.source_paths),
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
+def _parse_cfr_section_ref(value: str) -> FederalRegisterCfrSectionRef:
+    cleaned = value.strip()
+    match = re.fullmatch(
+        r"(?:(?P<title>\d+)\s*CFR\s+)?(?P<part>\d+)\.(?P<section>\d+[A-Za-z]?)",
+        cleaned,
+        flags=re.I,
+    )
+    if match is None:
+        match = re.fullmatch(
+            r"(?P<title>\d+)[:/](?P<part>\d+)[:/](?P<section>\d+[A-Za-z]?)",
+            cleaned,
+        )
+    if match is None:
+        raise ValueError("CFR section must look like '42 CFR 431.213' or '42:431:213'")
+    title = int(match.group("title") or 42)
+    return FederalRegisterCfrSectionRef(
+        title=title,
+        part=int(match.group("part")),
+        section=match.group("section"),
+    )
+
+
 def _cmd_extract_official_documents(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -5073,6 +5141,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     extract_federal_register_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_federal_register_cmd.set_defaults(func=_cmd_extract_federal_register)
+
+    extract_federal_register_cfr_cmd = sub.add_parser(
+        "extract-federal-register-cfr-sections",
+        help="Slice CFR section records from a saved Federal Register raw-text document.",
+    )
+    extract_federal_register_cfr_cmd.add_argument("--base", type=Path, required=True)
+    extract_federal_register_cfr_cmd.add_argument("--version", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--source-text", type=Path, required=True)
+    extract_federal_register_cfr_cmd.add_argument(
+        "--section",
+        action="append",
+        required=True,
+        help="CFR section to extract, e.g. '42 CFR 431.213' or '42:431:213'.",
+    )
+    extract_federal_register_cfr_cmd.add_argument("--document-number", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--document-citation", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--document-title", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--document-type", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--source-url", required=True)
+    extract_federal_register_cfr_cmd.add_argument(
+        "--source-as-of",
+        "--as-of",
+        dest="source_as_of",
+        required=True,
+    )
+    extract_federal_register_cfr_cmd.add_argument("--expression-date", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--source-document-citation-path")
+    extract_federal_register_cfr_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_federal_register_cfr_cmd.set_defaults(func=_cmd_extract_federal_register_cfr_sections)
 
     extract_documents_cmd = sub.add_parser(
         "extract-official-documents",
