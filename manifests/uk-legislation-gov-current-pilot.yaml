@@ -1,0 +1,118 @@
+version: "2026-06-07"
+document_family: uk_legislation_gov_current_revised
+jurisdiction: uk
+source_authority: legislation.gov.uk
+source_format: legislation.gov.uk-clml
+release_manifest: manifests/releases/uk-legislation-pilot.json
+github_issue: https://github.com/TheAxiomFoundation/axiom-corpus/issues/95
+policy:
+  canonical_pipeline: source-first
+  source_policy: primary_official_only
+  source_scope:
+    - Current revised legislation.gov.uk CLML provision XML.
+    - UK Public General Acts and statutory instruments cited by PE-UK or RuleSpec-UK.
+    - Devolved primary and secondary legislation when cited by PE-UK or RuleSpec-UK.
+  durable_artifacts:
+    - sources
+    - inventory
+    - provisions
+    - coverage
+  excluded_from_this_release:
+    - GOV.UK, HMRC, DWP, DfE, and other non-legislation guidance or manuals.
+    - Lex API artifacts until they are re-extracted or mirrored as official legislation.gov.uk CLML.
+    - Legacy HTML compatibility artifacts until they are re-extracted as CLML.
+    - Historical, made-only, amending, private, and local legislation unless needed for current-law interpretation.
+pilot_scopes:
+  - jurisdiction: uk
+    document_class: statute
+    version: 2026-06-03-uk-universal-credit
+    queue_status: published_current
+    source_kind: official_clml_current_revised
+    provision_count: 41
+    signed_manifest: .axiom/ingest-manifests/uk/statute/2026-06-03-uk-universal-credit.json
+    notes: Welfare Reform Act 2012 sections needed for Universal Credit grounding.
+  - jurisdiction: uk
+    document_class: regulation
+    version: 2026-06-03-uk-universal-credit
+    queue_status: published_current
+    source_kind: official_clml_current_revised
+    provision_count: 52
+    signed_manifest: .axiom/ingest-manifests/uk/regulation/2026-06-03-uk-universal-credit.json
+    notes: Universal Credit Regulations 2013 provisions and schedule paragraphs cited by PE-UK/RuleSpec-UK.
+  - jurisdiction: uk
+    document_class: regulation
+    version: 2026-06-05-uk-pension-credit-reg6
+    queue_status: published_current
+    source_kind: official_clml_current_revised
+    provision_count: 1
+    signed_manifest: .axiom/ingest-manifests/uk/regulation/2026-06-05-uk-pension-credit-reg6.json
+  - jurisdiction: uk
+    document_class: statute
+    version: 2026-06-05-uk-child-benefit-sscba
+    queue_status: published_current
+    source_kind: official_clml_current_revised
+    provision_count: 1
+    signed_manifest: .axiom/ingest-manifests/uk/statute/2026-06-05-uk-child-benefit-sscba.json
+  - jurisdiction: uk
+    document_class: statute
+    version: 2026-06-06-uk-national-insurance-final
+    queue_status: published_current
+    source_kind: official_clml_current_revised
+    provision_count: 1
+    signed_manifest: .axiom/ingest-manifests/uk/statute/2026-06-06-uk-national-insurance-final.json
+  - jurisdiction: uk
+    document_class: regulation
+    version: 2026-06-06-uk-national-insurance-final
+    queue_status: published_current
+    source_kind: official_clml_current_revised
+    provision_count: 1
+    signed_manifest: .axiom/ingest-manifests/uk/regulation/2026-06-06-uk-national-insurance-final.json
+  - jurisdiction: uk
+    document_class: statute
+    version: 2026-06-06-uk-state-pension-credit-section1
+    queue_status: published_current
+    source_kind: official_clml_current_revised
+    provision_count: 1
+    signed_manifest: .axiom/ingest-manifests/uk/statute/2026-06-06-uk-state-pension-credit-section1.json
+  - jurisdiction: uk
+    document_class: regulation
+    version: 2026-06-06-uk-uksi-2026-148-article14
+    queue_status: published_current
+    source_kind: official_clml_current_revised
+    provision_count: 1
+    signed_manifest: .axiom/ingest-manifests/uk/regulation/2026-06-06-uk-uksi-2026-148-article14.json
+deduplicated_tracked_uk_legislation_scopes:
+  - jurisdiction: uk
+    document_class: regulation
+    version: 2026-06-06-uk-universal-credit-schedule4-paragraph7
+    source_kind: official_clml_current_revised
+    provision_count: 1
+    signed_manifest: .axiom/ingest-manifests/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.json
+    reason: Covered by 2026-06-03-uk-universal-credit; do not publish duplicate citation_path in the same release.
+excluded_tracked_uk_legislation_scopes:
+  - jurisdiction: uk
+    document_class: regulation
+    version: 2026-06-01-uk-frs-microsim
+    reason: Lex API source format; re-extract or mirror as official legislation.gov.uk CLML before promoting.
+  - jurisdiction: uk
+    document_class: statute
+    version: 2026-06-01-uk-frs-microsim
+    reason: Lex API source format; re-extract or mirror as official legislation.gov.uk CLML before promoting.
+  - jurisdiction: uk
+    document_class: regulation
+    version: 2026-05-29-uk-pe-parity
+    reason: Older targeted compatibility release; keep out of the CLML-current pilot.
+  - jurisdiction: uk
+    document_class: statute
+    version: 2026-05-29-uk-pe-parity
+    reason: Contains legacy HTML compatibility artifacts; re-extract as CLML before promoting.
+expansion_batches:
+  - name: pe_uk_rulespec_cited_legislation
+    status: next
+    description: Resolve all PE-UK and RuleSpec-UK legislation.gov.uk URLs into section/regulation/schedule CLML citations.
+  - name: current_revised_tax_benefit_core
+    status: planned
+    description: Add current revised tax, benefits, social security, childcare, pension, housing, and devolved benefit/tax legislation.
+  - name: broader_current_revised_corpus
+    status: planned
+    description: Classify legislation.gov.uk current revised corpus into bounded batches by type, topic, and adapter support.
