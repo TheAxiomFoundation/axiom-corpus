@@ -2509,3 +2509,56 @@ def test_validate_release_cli_gates_release(tmp_path, capsys):
     assert payload["ok"] is True
     assert payload["error_count"] == 0
     assert payload["warning_count"] == 0
+
+
+def test_resolve_encoded_paths_supports_monorepo_and_legacy_layouts(tmp_path):
+    from argparse import Namespace
+
+    from axiom_corpus.corpus.cli import (
+        _jurisdictions_for_repo_checkout,
+        _resolve_encoded_paths,
+    )
+
+    def _touch(path):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("rule: {}\n")
+
+    # Monorepo layout: federal + state dirs inside one rulespec-us checkout.
+    monorepo = tmp_path / "monorepo-root" / "rulespec-us"
+    _touch(monorepo / "us" / "statutes" / "26" / "3111" / "a.yaml")
+    _touch(monorepo / "us-ca" / "regulations" / "mpp" / "63-300" / "1.yaml")
+
+    # Legacy layout: sibling per-jurisdiction checkouts under another root.
+    legacy_root = tmp_path / "legacy-root"
+    _touch(legacy_root / "rulespec-us" / "statutes" / "7" / "2014" / "e.yaml")
+    _touch(legacy_root / "rulespec-us-ny" / "regulations" / "18-nycrr" / "387.1.yaml")
+
+    encoded = _resolve_encoded_paths(
+        Namespace(
+            rulespec_repo=[],
+            rulespec_root=[str(monorepo.parent), str(legacy_root)],
+            rulespec_auto=False,
+        ),
+        ["us", "us-ca", "us-ny"],
+    )
+
+    assert encoded == {
+        "us/statute/26/3111/a",
+        "us/statute/7/2014/e",
+        "us-ca/regulation/mpp/63-300/1",
+        "us-ny/regulation/18-nycrr/387.1",
+    }
+
+    # An explicit --rulespec-repo pointing at a monorepo checkout covers every
+    # jurisdiction directory inside it; legacy checkouts keep covering one.
+    assert _jurisdictions_for_repo_checkout(monorepo) == ["us", "us-ca"]
+    assert _jurisdictions_for_repo_checkout(legacy_root / "rulespec-us-ny") == ["us-ny"]
+
+    encoded_explicit = _resolve_encoded_paths(
+        Namespace(rulespec_repo=[str(monorepo)], rulespec_root=[], rulespec_auto=False),
+        ["us", "us-ca"],
+    )
+    assert encoded_explicit == {
+        "us/statute/26/3111/a",
+        "us-ca/regulation/mpp/63-300/1",
+    }

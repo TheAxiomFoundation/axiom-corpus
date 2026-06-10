@@ -89,6 +89,9 @@ from axiom_corpus.corpus.rulespec_paths import (
     JURISDICTION_REPO_MAP,
     discover_encoded_paths,
     discover_encoded_paths_for_jurisdictions,
+    monorepo_dir_name_for_jurisdiction,
+    repo_prefix_for_jurisdiction,
+    resolve_jurisdiction_dir,
 )
 from axiom_corpus.corpus.source_discovery import build_source_discovery_report
 from axiom_corpus.corpus.source_promotion import promote_source_discovery_group
@@ -869,11 +872,13 @@ def _resolve_encoded_paths(
     canonical encoded citation paths for the given jurisdictions.
 
     ``--rulespec-repo`` is a repeatable explicit checkout, paired with the
-    jurisdiction it covers. ``--rulespec-root`` points at a directory holding
-    sibling ``rulespec-*`` checkouts and discovers each jurisdiction's repo by
-    name. ``--rulespec-auto`` (the default) silently looks for
-    ``../rulespec-{repo}`` next to this corpus checkout. Empty when no repo is
-    on disk for any input jurisdiction.
+    jurisdiction(s) it covers — a legacy per-jurisdiction repo covers one
+    jurisdiction, a country monorepo covers every jurisdiction directory it
+    holds. ``--rulespec-root`` points at a directory holding ``rulespec-*``
+    checkouts and resolves each jurisdiction in the monorepo layout first,
+    then the legacy sibling layout. ``--rulespec-auto`` (the default) silently
+    runs the same resolution against the directory next to this corpus
+    checkout. Empty when no repo is on disk for any input jurisdiction.
     """
     encoded: set[str] = set()
     juris_list = sorted({j for j in jurisdictions if j})
@@ -881,15 +886,16 @@ def _resolve_encoded_paths(
     repos: list[tuple[str, Path]] = []
     for repo_arg in args.rulespec_repo or []:
         repo_path = Path(repo_arg)
-        # Infer the jurisdiction from the repo dir name (rulespec-us-co -> us-co).
-        repo_juris = _jurisdiction_for_repo_dir(repo_path.name)
-        if repo_juris is None:
+        # Infer the jurisdiction(s) from the repo dir name and contents
+        # (rulespec-us-co -> us-co; a rulespec-us monorepo -> us, us-ca, ...).
+        repo_jurisdictions = _jurisdictions_for_repo_checkout(repo_path)
+        if not repo_jurisdictions:
             print(
                 f"warning: cannot infer jurisdiction from rulespec repo path {repo_path}",
                 file=sys.stderr,
             )
             continue
-        repos.append((repo_juris, repo_path))
+        repos.extend((repo_juris, repo_path) for repo_juris in repo_jurisdictions)
 
     if args.rulespec_root:
         root_paths = [Path(p) for p in args.rulespec_root]
@@ -897,33 +903,50 @@ def _resolve_encoded_paths(
             for j, paths in discover_encoded_paths_for_jurisdictions(root, juris_list).items():
                 encoded.update(paths)
                 # Mark the repo seen so --rulespec-auto doesn't double-count.
-                repo_dir_name = JURISDICTION_REPO_MAP.get(j)
-                if repo_dir_name is not None:
-                    repos.append((j, root / repo_dir_name))
+                resolved = resolve_jurisdiction_dir(root, j)
+                if resolved is not None:
+                    repos.append((j, resolved))
 
     if args.rulespec_auto:
-        # Auto-discover sibling rulespec-* checkouts next to this corpus repo.
+        # Auto-discover rulespec-* checkouts next to this corpus repo, in
+        # either layout (monorepo jurisdiction dir first, legacy sibling next).
         sibling_root = Path.cwd().parent
         for j in juris_list:
-            repo_dir_name = JURISDICTION_REPO_MAP.get(j)
-            if repo_dir_name is None:
+            resolved = resolve_jurisdiction_dir(sibling_root, j)
+            if resolved is None:
                 continue
-            sibling = sibling_root / repo_dir_name
-            if any(p.samefile(sibling) for _, p in repos if p.exists()):
+            if any(p.exists() and p.samefile(resolved) for _, p in repos):
                 continue
-            if sibling.is_dir():
-                repos.append((j, sibling))
+            repos.append((j, resolved))
 
     for j, repo_path in repos:
         encoded.update(discover_encoded_paths(repo_path, j))
     return encoded
 
 
-def _jurisdiction_for_repo_dir(repo_dir_name: str) -> str | None:
-    for jurisdiction, name in JURISDICTION_REPO_MAP.items():
-        if name == repo_dir_name:
-            return jurisdiction
-    return None
+def _jurisdictions_for_repo_checkout(repo_path: Path) -> list[str]:
+    """Return the jurisdictions whose encodings live inside a checkout.
+
+    A legacy checkout name (``rulespec-us-co``) maps to its single
+    jurisdiction. A country monorepo checkout (``rulespec-us``) additionally
+    covers every known jurisdiction with a directory inside it
+    (``us/``, ``us-ca/``, ...).
+    """
+    name = repo_path.name
+    jurisdictions = [
+        jurisdiction
+        for jurisdiction, repo_dir in JURISDICTION_REPO_MAP.items()
+        if repo_dir == name
+    ]
+    for jurisdiction in JURISDICTION_REPO_MAP:
+        if jurisdiction in jurisdictions:
+            continue
+        if monorepo_dir_name_for_jurisdiction(jurisdiction) != name:
+            continue
+        prefix = repo_prefix_for_jurisdiction(jurisdiction)
+        if prefix is not None and (repo_path / prefix).is_dir():
+            jurisdictions.append(jurisdiction)
+    return jurisdictions
 
 
 def _apply_navigation_status_overrides(
