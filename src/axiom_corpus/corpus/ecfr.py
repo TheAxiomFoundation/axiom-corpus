@@ -156,6 +156,27 @@ def _element_text(elem: ET.Element) -> str:
     return _clean_text("".join(elem.itertext()))
 
 
+def _local_name(tag: str) -> str:
+    return tag.rsplit("}", 1)[-1].upper()
+
+
+def _table_text(elem: ET.Element) -> str:
+    rows: list[str] = []
+    for row in elem.iter():
+        if _local_name(row.tag) != "TR":
+            continue
+        cells = [
+            cell_text
+            for cell in row
+            if _local_name(cell.tag) in {"TH", "TD"}
+            for cell_text in [_element_text(cell)]
+            if cell_text
+        ]
+        if cells:
+            rows.append(" | ".join(cells))
+    return "\n".join(rows)
+
+
 def _ecfr_part_url(
     title: int,
     part: str,
@@ -494,8 +515,28 @@ def _section_heading(elem: ET.Element, part: str, section: str) -> str | None:
 
 
 def _section_body(elem: ET.Element) -> str:
-    paragraphs = [_element_text(p) for p in elem.findall(".//P")]
-    return "\n\n".join(paragraph for paragraph in paragraphs if paragraph)
+    blocks: list[str] = []
+
+    def visit(node: ET.Element) -> None:
+        for child in node:
+            tag = _local_name(child.tag)
+            if tag in {"HEAD", "CITA"}:
+                continue
+            if tag in {"P", "PSPACE"}:
+                text = _element_text(child)
+                if text:
+                    blocks.append(text)
+                continue
+            if tag == "TABLE":
+                text = _table_text(child)
+                if text:
+                    blocks.append(text)
+                continue
+            visit(child)
+
+    visit(elem)
+    return "\n\n".join(blocks)
+
 
 
 def _ecfr_identifiers(
