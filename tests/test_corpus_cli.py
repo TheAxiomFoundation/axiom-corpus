@@ -10,6 +10,10 @@ from axiom_corpus.corpus.coverage import ProvisionCoverageReport
 from axiom_corpus.corpus.documents import OfficialDocumentExtractReport
 from axiom_corpus.corpus.ecfr import EcfrExtractReport, EcfrInventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.nz_legislation import (
+    NZLegislationClassExtractReport,
+    NZLegislationExtractReport,
+)
 from axiom_corpus.corpus.states import StateStatuteExtractReport
 from axiom_corpus.corpus.uk_legislation import (
     UKLegislationClassExtractReport,
@@ -740,6 +744,80 @@ def test_extract_uk_legislation_cli(tmp_path, capsys, monkeypatch):
     assert exit_code == 0
     assert '"jurisdiction": "uk"' in output
     assert '"document_class": "regulation"' in output
+
+
+def test_extract_nz_legislation_cli(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "nz.xml"
+    source_xml.write_text("<act />")
+    source_dir = tmp_path / "pco"
+    source_dir.mkdir()
+    coverage = ProvisionCoverageReport(
+        jurisdiction="nz",
+        document_class="statute",
+        version="2026-06-16-nz",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["source_xmls"] == (source_xml,)
+        assert kwargs["source_dir"] == source_dir
+        assert kwargs["source_pattern"] == "*.xml"
+        assert kwargs["source_as_of"] == "2026-06-16"
+        assert kwargs["expression_date"].isoformat() == "2026-04-01"
+        assert kwargs["limit"] == 10
+        return NZLegislationExtractReport(
+            version="2026-06-16-nz",
+            source_count=1,
+            provisions_written=1,
+            class_reports=(
+                NZLegislationClassExtractReport(
+                    document_class="statute",
+                    source_count=1,
+                    provisions_written=1,
+                    inventory_path=base / "inventory/nz/statute/2026-06-16-nz.json",
+                    provisions_path=base / "provisions/nz/statute/2026-06-16-nz.jsonl",
+                    coverage_path=base / "coverage/nz/statute/2026-06-16-nz.json",
+                    coverage=coverage,
+                    source_paths=(
+                        base / "sources/nz/statute/2026-06-16-nz/act/public/2007/0097/wholeof.xml",
+                    ),
+                ),
+            ),
+        )
+
+    monkeypatch.setattr(cli, "extract_nz_legislation", fake_extract)
+
+    exit_code = main(
+        [
+            "extract-nz-legislation",
+            "--base",
+            str(base),
+            "--version",
+            "2026-06-16-nz",
+            "--source-xml",
+            str(source_xml),
+            "--source-dir",
+            str(source_dir),
+            "--as-of",
+            "2026-06-16",
+            "--expression-date",
+            "2026-04-01",
+            "--limit",
+            "10",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"jurisdiction": "nz"' in output
+    assert '"document_class": "statute"' in output
 
 
 def test_extract_usc_dir_cli(tmp_path, capsys, monkeypatch):

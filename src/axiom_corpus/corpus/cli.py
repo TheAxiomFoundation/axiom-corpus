@@ -60,6 +60,10 @@ from axiom_corpus.corpus.navigation_supabase import (
 from axiom_corpus.corpus.new_jersey_snap import reconstruct_new_jersey_snap_rules
 from axiom_corpus.corpus.ny_rulemaking import extract_ny_state_register
 from axiom_corpus.corpus.nycrr import extract_nycrr
+from axiom_corpus.corpus.nz_legislation import (
+    NZLegislationExtractReport,
+    extract_nz_legislation,
+)
 from axiom_corpus.corpus.ohio_admin_code import extract_ohio_admin_code
 from axiom_corpus.corpus.oregon_admin_rules import extract_oregon_admin_rules
 from axiom_corpus.corpus.pennsylvania_code import extract_pennsylvania_code
@@ -1163,6 +1167,54 @@ def _cmd_extract_uk_legislation(args: argparse.Namespace) -> int:
 def _uk_legislation_report_json(report: UKLegislationExtractReport) -> dict[str, Any]:
     return {
         "jurisdiction": "uk",
+        "version": report.version,
+        "source_count": report.source_count,
+        "provisions_written": report.provisions_written,
+        "classes": [
+            {
+                "document_class": class_report.document_class,
+                "source_file_count": len(class_report.source_paths),
+                "provisions_written": class_report.provisions_written,
+                "inventory_path": str(class_report.inventory_path),
+                "provisions_path": str(class_report.provisions_path),
+                "coverage_path": str(class_report.coverage_path),
+                "coverage_complete": class_report.coverage.complete,
+                "source_count": class_report.coverage.source_count,
+                "provision_count": class_report.coverage.provision_count,
+                "matched_count": class_report.coverage.matched_count,
+                "missing_count": len(class_report.coverage.missing_from_provisions),
+                "extra_count": len(class_report.coverage.extra_provisions),
+            }
+            for class_report in report.class_reports
+        ],
+    }
+
+
+def _cmd_extract_nz_legislation(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_nz_legislation(
+        store,
+        version=args.version,
+        source_xmls=tuple(args.source_xml or ()),
+        source_dir=args.source_dir,
+        source_pattern=args.source_pattern,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        limit=args.limit,
+    )
+    print(json.dumps(_nz_legislation_report_json(report), indent=2, sort_keys=True))
+    return (
+        0
+        if all(class_report.coverage.complete for class_report in report.class_reports)
+        or args.allow_incomplete
+        else 2
+    )
+
+
+def _nz_legislation_report_json(report: NZLegislationExtractReport) -> dict[str, Any]:
+    return {
+        "jurisdiction": "nz",
         "version": report.version,
         "source_count": report.source_count,
         "provisions_written": report.provisions_written,
@@ -4517,6 +4569,34 @@ def build_parser() -> argparse.ArgumentParser:
     extract_uk_cmd.add_argument("--expression-date")
     extract_uk_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_uk_cmd.set_defaults(func=_cmd_extract_uk_legislation)
+
+    extract_nz_cmd = sub.add_parser(
+        "extract-nz-legislation",
+        help="Snapshot NZ PCO XML and extract normalized provision JSONL.",
+    )
+    extract_nz_cmd.add_argument("--base", type=Path, required=True)
+    extract_nz_cmd.add_argument("--version", required=True)
+    extract_nz_cmd.add_argument(
+        "--source-xml",
+        type=Path,
+        action="append",
+        help="Local legislation.govt.nz PCO XML file.",
+    )
+    extract_nz_cmd.add_argument(
+        "--source-dir",
+        type=Path,
+        help="Directory containing legislation.govt.nz PCO XML files.",
+    )
+    extract_nz_cmd.add_argument(
+        "--source-pattern",
+        default="*.xml",
+        help="Glob used with --source-dir (default: *.xml).",
+    )
+    extract_nz_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_nz_cmd.add_argument("--expression-date")
+    extract_nz_cmd.add_argument("--limit", type=int)
+    extract_nz_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_nz_cmd.set_defaults(func=_cmd_extract_nz_legislation)
 
     extract_dc_cmd = sub.add_parser(
         "extract-dc-code",
