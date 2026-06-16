@@ -147,6 +147,51 @@ SAMPLE_NZ_NESTED_PROVISIONS_XML = """\
 </act>
 """
 
+SAMPLE_NZ_TABLE_PROVISION_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<act id="DLM900100" year="2026" act.no="2" act.type="public">
+  <cover><title>Rates Table Act 2026</title></cover>
+  <body>
+    <prov id="RATE1">
+      <label>1</label>
+      <heading>Rates</heading>
+      <prov.body>
+        <subprov id="RATE1SUB1">
+          <label>(1)</label>
+          <para>
+            <legtable>
+              <table>
+                <tgroup cols="3">
+                  <thead>
+                    <row>
+                      <entry>Row</entry>
+                      <entry>Range</entry>
+                      <entry>Tax rate</entry>
+                    </row>
+                  </thead>
+                  <tbody>
+                    <row>
+                      <entry>1</entry>
+                      <entry>$0 to $15,600</entry>
+                      <entry>0.105</entry>
+                    </row>
+                    <row>
+                      <entry>2</entry>
+                      <entry>$15,601 to $53,500</entry>
+                      <entry>0.175</entry>
+                    </row>
+                  </tbody>
+                </tgroup>
+              </table>
+            </legtable>
+          </para>
+        </subprov>
+      </prov.body>
+    </prov>
+  </body>
+</act>
+"""
+
 
 def test_extract_nz_legislation_requires_source_or_directory(tmp_path):
     with pytest.raises(ValueError, match="at least one source XML path or source directory"):
@@ -334,6 +379,28 @@ def test_extract_nz_legislation_writes_nested_provisions_without_label_collision
         "3",
         "1-SCHED1CLAUSE1",
     }
+
+
+def test_extract_nz_legislation_preserves_table_text_in_provision_body(tmp_path):
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "rates-table-act-2026.xml"
+    source_xml.write_text(SAMPLE_NZ_TABLE_PROVISION_XML)
+
+    report = extract_nz_legislation(
+        CorpusArtifactStore(base),
+        version="2026-06-16-nz-table",
+        source_xmls=(source_xml,),
+    )
+
+    assert report.provisions_written == 1
+    row = json.loads(
+        (base / "provisions/nz/statute/2026-06-16-nz-table.jsonl")
+        .read_text()
+        .strip()
+    )
+    assert "Row | Range | Tax rate" in row["body"]
+    assert "1 | $0 to $15,600 | 0.105" in row["body"]
+    assert "2 | $15,601 to $53,500 | 0.175" in row["body"]
 
 
 def test_extract_nz_legislation_directory_limit(tmp_path):

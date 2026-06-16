@@ -362,6 +362,8 @@ class NZPCOConverter:
                 text_elem = para.find("text")
                 if text_elem is not None:
                     text += self._extract_text_recursive(text_elem) + " "
+                for table_text in self._extract_table_texts(para):
+                    text += table_text + " "
 
                 # Parse label-paras within para
                 for lp in para.findall("label-para"):
@@ -407,6 +409,8 @@ class NZPCOConverter:
             text_elem = para.find("text")
             if text_elem is not None:
                 text += self._extract_text_recursive(text_elem) + " "
+            for table_text in self._extract_table_texts(para):
+                text += table_text + " "
 
             # Parse nested label-paras
             for lp in para.findall("label-para"):
@@ -515,6 +519,32 @@ class NZPCOConverter:
                 parts.append(child.tail.strip())
 
         return " ".join(filter(None, parts))
+
+    def _extract_table_texts(self, elem: ET.Element) -> list[str]:
+        """Extract table rows from a subtree as compact source text."""
+        return [
+            table_text
+            for table in elem.findall(".//table")
+            if (table_text := self._extract_table_text(table))
+        ]
+
+    def _extract_table_text(self, table: ET.Element) -> str:
+        rows: list[str] = []
+        for row in table.iter("row"):
+            cells: list[str] = []
+            for cell in row:
+                cell_text = self._extract_text_recursive(cell)
+                if cell_text:
+                    cells.append(cell_text)
+            if cells:
+                rows.append(" | ".join(cells))
+                continue
+            row_text = self._extract_text_recursive(row)
+            if row_text:
+                rows.append(row_text)
+        if rows:
+            return "\n".join(rows)
+        return self._extract_text_recursive(table)
 
     def _parse_date(self, date_str: str | None) -> date | None:
         """Parse a date string in YYYY-MM-DD format."""
