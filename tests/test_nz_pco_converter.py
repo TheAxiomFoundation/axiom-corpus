@@ -89,6 +89,23 @@ SAMPLE_REGULATION_XML = """\
 </regulation>
 """
 
+SAMPLE_SECONDARY_LEGISLATION_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<regulation id="DLM5178334" year="2013" sr.no="135" sr.type="regulation">
+  <cover><title>Road User Charges (Rates) Regulations 2013</title></cover>
+  <body></body>
+</regulation>
+"""
+
+SAMPLE_SOP_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<sop id="DLM5480800" year="2013" raised.by="Government" sop.no="307">
+  <date>Tuesday, 6 August 2013</date>
+  <billref>Government Communications Security Bureau and Related Legislation Amendment Bill</billref>
+  <body></body>
+</sop>
+"""
+
 SAMPLE_ATOM_RSS = """\
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -194,6 +211,19 @@ class TestParseXml:
         result = converter.parse_xml(SAMPLE_REGULATION_XML)
         assert result.legislation_type == "regulation"
         assert result.year == 2020
+        assert result.number == 10
+
+    def test_parse_secondary_legislation_sr_number(self, converter):
+        result = converter.parse_xml(SAMPLE_SECONDARY_LEGISLATION_XML)
+        assert result.legislation_type == "regulation"
+        assert result.year == 2013
+        assert result.number == 135
+
+    def test_parse_sop_number(self, converter):
+        result = converter.parse_xml(SAMPLE_SOP_XML)
+        assert result.legislation_type == "sop"
+        assert result.year == 2013
+        assert result.number == 307
 
     def test_unknown_root_defaults_to_act(self, converter):
         xml = '<unknown id="X" year="2020" act.no="1" act.type="public"><body></body></unknown>'
