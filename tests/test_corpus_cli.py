@@ -20,6 +20,10 @@ from axiom_corpus.corpus.uk_legislation import (
     UKLegislationExtractReport,
 )
 from axiom_corpus.corpus.usc import UscExtractReport
+from axiom_corpus.fetchers.nz_legislation_api import (
+    NZLegislationAPIDownloadReport,
+    NZLegislationAPISource,
+)
 
 SAMPLE_USLM_CLI = """
 <uscDoc identifier="/us/usc/t26">
@@ -818,6 +822,75 @@ def test_extract_nz_legislation_cli(tmp_path, capsys, monkeypatch):
     assert exit_code == 0
     assert '"jurisdiction": "nz"' in output
     assert '"document_class": "statute"' in output
+
+
+def test_download_nz_legislation_api_cli_uses_env_key(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    output_dir = tmp_path / "xml"
+    manifest_path = tmp_path / "manifest.json"
+    monkeypatch.setenv("NZ_LEGISLATION_API_KEY", "test-key")
+
+    def fake_download(*args, **kwargs):
+        assert args == (output_dir,)
+        assert kwargs["api_key"] == "test-key"
+        assert kwargs["legislation_types"] == ("act",)
+        assert kwargs["publisher"] == "Parliamentary Counsel Office"
+        assert kwargs["search_term"] == "Income Tax"
+        assert kwargs["per_page"] == 100
+        assert kwargs["max_pages"] == 1
+        assert kwargs["limit"] == 5
+        assert kwargs["resume"] is True
+        assert kwargs["allow_failures"] is False
+        assert kwargs["manifest_path"] == manifest_path
+        source = NZLegislationAPISource(
+            work_id="act_public_2007_97",
+            version_id="act_public_2007_97_en_2026-04-01",
+            title="Income Tax Act 2007",
+            legislation_type="act",
+            legislation_status="in_force",
+            xml_url="https://www.legislation.govt.nz/act/public/2007/97/en/2026-04-01.xml/",
+            relative_path="act/public/2007/97/act_public_2007_97_en_2026-04-01.xml",
+            metadata={},
+        )
+        return NZLegislationAPIDownloadReport(
+            output_dir=output_dir,
+            discovered_count=1,
+            downloaded_count=1,
+            skipped_count=0,
+            failed_count=0,
+            sources=(source,),
+            downloaded_paths=(output_dir / source.relative_path,),
+            skipped_paths=(),
+            failures=(),
+            manifest_path=manifest_path,
+        )
+
+    monkeypatch.setattr(cli, "download_nz_legislation_api_sources", fake_download)
+
+    exit_code = main(
+        [
+            "download-nz-legislation-api",
+            "--output-dir",
+            str(output_dir),
+            "--legislation-type",
+            "act",
+            "--search-term",
+            "Income Tax",
+            "--max-pages",
+            "1",
+            "--limit",
+            "5",
+            "--manifest-path",
+            str(manifest_path),
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"jurisdiction": "nz"' in output
+    assert '"downloaded_count": 1' in output
+    assert "test-key" not in output
 
 
 def test_extract_usc_dir_cli(tmp_path, capsys, monkeypatch):

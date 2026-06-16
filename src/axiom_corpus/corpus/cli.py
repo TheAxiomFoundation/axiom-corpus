@@ -228,6 +228,12 @@ from axiom_corpus.corpus.usc import (
 )
 from axiom_corpus.corpus.virginia_vac import extract_virginia_vac
 from axiom_corpus.corpus.washington_wac import extract_washington_wac
+from axiom_corpus.fetchers.nz_legislation_api import (
+    NZ_LEGISLATION_API_KEY_ENV,
+    NZ_LEGISLATION_DEFAULT_TYPES,
+    NZLegislationAPIDownloadReport,
+    download_nz_legislation_api_sources,
+)
 
 
 def _cmd_validate_manifest(args: argparse.Namespace) -> int:
@@ -1235,6 +1241,44 @@ def _nz_legislation_report_json(report: NZLegislationExtractReport) -> dict[str,
             }
             for class_report in report.class_reports
         ],
+    }
+
+
+def _cmd_download_nz_legislation_api(args: argparse.Namespace) -> int:
+    api_key = os.environ.get(args.api_key_env)
+    if not api_key:
+        raise ValueError(f"{args.api_key_env} is required")
+    report = download_nz_legislation_api_sources(
+        args.output_dir,
+        api_key=api_key,
+        legislation_types=tuple(args.legislation_type or NZ_LEGISLATION_DEFAULT_TYPES),
+        publisher=args.publisher,
+        search_term=args.search_term,
+        per_page=args.per_page,
+        max_pages=args.max_pages,
+        limit=args.limit,
+        resume=not args.no_resume,
+        allow_failures=args.allow_failures,
+        manifest_path=args.manifest_path,
+    )
+    print(json.dumps(_nz_legislation_api_download_report_json(report), indent=2, sort_keys=True))
+    return 0 if report.failed_count == 0 or args.allow_failures else 2
+
+
+def _nz_legislation_api_download_report_json(
+    report: NZLegislationAPIDownloadReport,
+) -> dict[str, Any]:
+    return {
+        "jurisdiction": "nz",
+        "output_dir": str(report.output_dir),
+        "discovered_count": report.discovered_count,
+        "downloaded_count": report.downloaded_count,
+        "skipped_count": report.skipped_count,
+        "failed_count": report.failed_count,
+        "manifest_path": str(report.manifest_path) if report.manifest_path else None,
+        "downloaded_paths": [str(path) for path in report.downloaded_paths],
+        "skipped_paths": [str(path) for path in report.skipped_paths],
+        "failures": list(report.failures),
     }
 
 
@@ -4597,6 +4641,39 @@ def build_parser() -> argparse.ArgumentParser:
     extract_nz_cmd.add_argument("--limit", type=int)
     extract_nz_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_nz_cmd.set_defaults(func=_cmd_extract_nz_legislation)
+
+    download_nz_api_cmd = sub.add_parser(
+        "download-nz-legislation-api",
+        help="Discover and download NZ Legislation API XML format URLs.",
+    )
+    download_nz_api_cmd.add_argument("--output-dir", type=Path, required=True)
+    download_nz_api_cmd.add_argument(
+        "--api-key-env",
+        default=NZ_LEGISLATION_API_KEY_ENV,
+        help=f"Environment variable containing the API key (default: {NZ_LEGISLATION_API_KEY_ENV}).",
+    )
+    download_nz_api_cmd.add_argument(
+        "--legislation-type",
+        action="append",
+        choices=NZ_LEGISLATION_DEFAULT_TYPES,
+        help="Legislation type to discover. May be repeated; defaults to all supported types.",
+    )
+    download_nz_api_cmd.add_argument(
+        "--publisher",
+        default="Parliamentary Counsel Office",
+        help="API publisher filter (default: Parliamentary Counsel Office).",
+    )
+    download_nz_api_cmd.add_argument(
+        "--search-term",
+        help="Optional title search term for scoped discovery smoke runs.",
+    )
+    download_nz_api_cmd.add_argument("--per-page", type=int, default=100)
+    download_nz_api_cmd.add_argument("--max-pages", type=int)
+    download_nz_api_cmd.add_argument("--limit", type=int)
+    download_nz_api_cmd.add_argument("--manifest-path", type=Path)
+    download_nz_api_cmd.add_argument("--no-resume", action="store_true")
+    download_nz_api_cmd.add_argument("--allow-failures", action="store_true")
+    download_nz_api_cmd.set_defaults(func=_cmd_download_nz_legislation_api)
 
     extract_dc_cmd = sub.add_parser(
         "extract-dc-code",
