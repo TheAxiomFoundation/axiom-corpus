@@ -33,6 +33,7 @@ Usage:
 
 import contextlib
 import re
+from collections import Counter
 from collections.abc import Iterator
 from dataclasses import dataclass, field
 from datetime import date, datetime
@@ -69,6 +70,12 @@ def _number_value(value: str | None) -> int:
     return int(match.group(0)) if match else 0
 
 
+def _provision_path_component(value: str) -> str:
+    token = value.strip().strip("()")
+    token = re.sub(r"[^0-9A-Za-z]+", "-", token).strip("-")
+    return token or "unnumbered"
+
+
 @dataclass
 class NZProvision:
     """A provision (section) in NZ legislation."""
@@ -79,6 +86,7 @@ class NZProvision:
     text: str = ""  # Direct text content
     subprovisions: list[NZProvision] = field(default_factory=list)
     paragraphs: list[NZLabeledParagraph] = field(default_factory=list)
+    path_token: str | None = None  # Collision-safe token for corpus citation paths
 
 
 @dataclass
@@ -289,14 +297,20 @@ class NZPCOConverter:
         if long_title_elem is not None:
             long_title = self._extract_text_recursive(long_title_elem)
 
-        # Parse body provisions
+        # Parse provisions. PCO documents nest most substantive provisions in
+        # parts, subparts, and schedules rather than as direct body children.
         provisions = []
-        body = root.find("body")
-        if body is not None:
-            for prov in body.findall("prov"):
-                parsed = self._parse_provision(prov)
-                if parsed:
-                    provisions.append(parsed)
+        seen_provision_ids: set[str] = set()
+        for prov in root.findall(".//prov"):
+            prov_id = prov.get("id", "")
+            if prov_id and prov_id in seen_provision_ids:
+                continue
+            parsed = self._parse_provision(prov)
+            if parsed:
+                provisions.append(parsed)
+            if prov_id:
+                seen_provision_ids.add(prov_id)
+        self._assign_path_tokens(provisions)
 
         return NZLegislation(
             id=leg_id,
@@ -366,6 +380,16 @@ class NZPCOConverter:
             subprovisions=subprovisions,
             paragraphs=paragraphs,
         )
+
+    def _assign_path_tokens(self, provisions: list[NZProvision]) -> None:
+        tokens = [_provision_path_component(provision.label) for provision in provisions]
+        token_counts = Counter(tokens)
+        for provision, token in zip(provisions, tokens, strict=True):
+            if token_counts[token] == 1:
+                provision.path_token = token
+                continue
+            id_token = _provision_path_component(provision.id)
+            provision.path_token = f"{token}-{id_token}" if id_token else token
 
     def _parse_subprovision(self, elem: ET.Element) -> NZProvision | None:
         """Parse a <subprov> element."""

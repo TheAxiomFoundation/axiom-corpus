@@ -209,7 +209,7 @@ def nz_citation_path(legislation: NZLegislation, provision: NZProvision) -> str:
             str(legislation.year),
             _document_number_token(legislation),
             _provision_kind(legislation),
-            _provision_token(provision.label or provision.id),
+            provision.path_token or _provision_token(provision.label or provision.id),
         ]
     )
 
@@ -268,6 +268,7 @@ def _provision_record(
             "administering_ministry": legislation.administering_ministry,
             "provision_id": provision.id,
             "provision_label": provision.label,
+            "provision_path_token": provision.path_token,
         },
     )
 

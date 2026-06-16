@@ -89,6 +89,40 @@ SAMPLE_REGULATION_XML = """\
 </regulation>
 """
 
+SAMPLE_NESTED_PROVISIONS_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<act id="DLM900000" year="2026" act.no="1" act.type="public">
+  <cover><title>Nested Provisions Act 2026</title></cover>
+  <body>
+    <prov id="BODY1">
+      <label>1</label>
+      <heading>Title</heading>
+      <prov.body><para><text>This Act has a direct section.</text></para></prov.body>
+    </prov>
+    <part>
+      <label>1</label>
+      <heading>Main rules</heading>
+      <prov id="PART3">
+        <label>3</label>
+        <heading>Nested body rule</heading>
+        <prov.body><para><text>This nested section must be extracted.</text></para></prov.body>
+      </prov>
+    </part>
+  </body>
+  <schedule.group>
+    <schedule id="SCHED1">
+      <label>1</label>
+      <heading>Rates</heading>
+      <prov id="SCHED1CLAUSE1">
+        <label>1</label>
+        <heading>Schedule clause</heading>
+        <prov.body><para><text>This schedule clause must not collide.</text></para></prov.body>
+      </prov>
+    </schedule>
+  </schedule.group>
+</act>
+"""
+
 SAMPLE_SECONDARY_LEGISLATION_XML = """\
 <?xml version="1.0" encoding="UTF-8"?>
 <regulation id="DLM5178334" year="2013" sr.no="135" sr.type="regulation">
@@ -212,6 +246,19 @@ class TestParseXml:
         assert result.legislation_type == "regulation"
         assert result.year == 2020
         assert result.number == 10
+
+    def test_parse_nested_provisions(self, converter):
+        result = converter.parse_xml(SAMPLE_NESTED_PROVISIONS_XML)
+        assert [provision.id for provision in result.provisions] == [
+            "BODY1",
+            "PART3",
+            "SCHED1CLAUSE1",
+        ]
+        assert [provision.path_token for provision in result.provisions] == [
+            "1-BODY1",
+            "3",
+            "1-SCHED1CLAUSE1",
+        ]
 
     def test_parse_secondary_legislation_sr_number(self, converter):
         result = converter.parse_xml(SAMPLE_SECONDARY_LEGISLATION_XML)

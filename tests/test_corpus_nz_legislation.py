@@ -113,6 +113,40 @@ SAMPLE_NZ_SPLIT_BILL_XML = """\
 </bill>
 """
 
+SAMPLE_NZ_NESTED_PROVISIONS_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<act id="DLM900000" year="2026" act.no="1" act.type="public">
+  <cover><title>Nested Provisions Act 2026</title></cover>
+  <body>
+    <prov id="BODY1">
+      <label>1</label>
+      <heading>Title</heading>
+      <prov.body><para><text>This Act has a direct section.</text></para></prov.body>
+    </prov>
+    <part>
+      <label>1</label>
+      <heading>Main rules</heading>
+      <prov id="PART3">
+        <label>3</label>
+        <heading>Nested body rule</heading>
+        <prov.body><para><text>This nested section must be extracted.</text></para></prov.body>
+      </prov>
+    </part>
+  </body>
+  <schedule.group>
+    <schedule id="SCHED1">
+      <label>1</label>
+      <heading>Rates</heading>
+      <prov id="SCHED1CLAUSE1">
+        <label>1</label>
+        <heading>Schedule clause</heading>
+        <prov.body><para><text>This schedule clause must not collide.</text></para></prov.body>
+      </prov>
+    </schedule>
+  </schedule.group>
+</act>
+"""
+
 
 def test_extract_nz_legislation_requires_source_or_directory(tmp_path):
     with pytest.raises(ValueError, match="at least one source XML path or source directory"):
@@ -270,6 +304,36 @@ def test_extract_nz_legislation_preserves_alphanumeric_api_number_tokens(tmp_pat
     assert row["source_url"] == (
         "https://www.legislation.govt.nz/bill/government/2013/150-B/latest/BILL150BP1.html"
     )
+
+
+def test_extract_nz_legislation_writes_nested_provisions_without_label_collisions(tmp_path):
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "nested-provisions-act-2026.xml"
+    source_xml.write_text(SAMPLE_NZ_NESTED_PROVISIONS_XML)
+
+    report = extract_nz_legislation(
+        CorpusArtifactStore(base),
+        version="2026-06-16-nz-nested",
+        source_xmls=(source_xml,),
+    )
+
+    assert report.provisions_written == 3
+    rows = [
+        json.loads(line)
+        for line in (base / "provisions/nz/statute/2026-06-16-nz-nested.jsonl")
+        .read_text()
+        .splitlines()
+    ]
+    assert {row["citation_path"] for row in rows} == {
+        "nz/statute/act/public/2026/0001/section/1-BODY1",
+        "nz/statute/act/public/2026/0001/section/3",
+        "nz/statute/act/public/2026/0001/section/1-SCHED1CLAUSE1",
+    }
+    assert {row["metadata"]["provision_path_token"] for row in rows} == {
+        "1-BODY1",
+        "3",
+        "1-SCHED1CLAUSE1",
+    }
 
 
 def test_extract_nz_legislation_directory_limit(tmp_path):
