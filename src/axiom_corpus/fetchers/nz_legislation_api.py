@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import re
 from collections.abc import Iterable, Mapping, Sequence
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -229,6 +230,7 @@ class NZLegislationAPIClient:
             url,
             headers={
                 "Accept": "application/xml,text/xml,*/*",
+                "X-Api-Key": self.api_key,
                 "User-Agent": "Axiom/1.0 (max@axiom-foundation.org)",
             },
         )
@@ -253,10 +255,13 @@ def download_nz_legislation_api_sources(
     limit: int | None = None,
     resume: bool = True,
     allow_failures: bool = False,
+    workers: int = 1,
     manifest_path: str | Path | None = None,
     client: NZLegislationAPIClient | None = None,
 ) -> NZLegislationAPIDownloadReport:
     """Discover and download XML source files from the official API."""
+    if workers < 1:
+        raise ValueError("workers must be at least 1")
     output_root = Path(output_dir)
     api_client = client or NZLegislationAPIClient(api_key)
     owns_client = client is None
@@ -272,28 +277,62 @@ def download_nz_legislation_api_sources(
         downloaded_paths: list[Path] = []
         skipped_paths: list[Path] = []
         failures: list[dict[str, str]] = []
+
+        def download_source(source: NZLegislationAPISource) -> tuple[NZLegislationAPISource, Path]:
+            target = output_root / source.relative_path
+            content = api_client.download_xml(source.xml_url)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(content)
+            return source, target
+
+        pending_sources: list[NZLegislationAPISource] = []
         for source in sources:
             target = output_root / source.relative_path
             if resume and target.exists():
                 skipped_paths.append(target)
-                continue
-            try:
-                content = api_client.download_xml(source.xml_url)
-            except Exception as exc:
-                failures.append(
-                    {
-                        "work_id": source.work_id,
-                        "version_id": source.version_id,
-                        "xml_url": source.xml_url,
-                        "error": str(exc),
-                    }
-                )
-                if not allow_failures:
-                    raise
-                continue
-            target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(content)
-            downloaded_paths.append(target)
+            else:
+                pending_sources.append(source)
+
+        if workers == 1:
+            for source in pending_sources:
+                try:
+                    _, target = download_source(source)
+                except Exception as exc:
+                    failures.append(
+                        {
+                            "work_id": source.work_id,
+                            "version_id": source.version_id,
+                            "xml_url": source.xml_url,
+                            "error": str(exc),
+                        }
+                    )
+                    if not allow_failures:
+                        raise
+                    continue
+                downloaded_paths.append(target)
+        else:
+            with ThreadPoolExecutor(max_workers=workers) as executor:
+                future_to_source = {
+                    executor.submit(download_source, source): source
+                    for source in pending_sources
+                }
+                for future in as_completed(future_to_source):
+                    source = future_to_source[future]
+                    try:
+                        _, target = future.result()
+                    except Exception as exc:
+                        failures.append(
+                            {
+                                "work_id": source.work_id,
+                                "version_id": source.version_id,
+                                "xml_url": source.xml_url,
+                                "error": str(exc),
+                            }
+                        )
+                        if not allow_failures:
+                            raise
+                        continue
+                    downloaded_paths.append(target)
         resolved_manifest_path = Path(manifest_path) if manifest_path is not None else None
         report = NZLegislationAPIDownloadReport(
             output_dir=output_root,

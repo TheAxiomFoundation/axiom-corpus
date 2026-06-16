@@ -70,6 +70,8 @@ def test_discover_latest_xml_sources_uses_api_key_and_filters_xml():
 
 
 def test_download_nz_legislation_api_sources_writes_xml_and_manifest(tmp_path):
+    xml_requests = []
+
     def handler(request):
         if request.url.host == "api.legislation.govt.nz":
             return httpx.Response(
@@ -81,6 +83,8 @@ def test_download_nz_legislation_api_sources_writes_xml_and_manifest(tmp_path):
                     "total": 1,
                 },
             )
+        xml_requests.append(request)
+        assert request.headers["x-api-key"] == "test-key"
         return httpx.Response(
             200,
             content=b'<?xml version="1.0"?><act id="DLM1" year="1990" act.no="109" />',
@@ -98,11 +102,13 @@ def test_download_nz_legislation_api_sources_writes_xml_and_manifest(tmp_path):
         api_key="test-key",
         legislation_types=("act",),
         manifest_path=manifest_path,
+        workers=2,
         client=client,
     )
 
     assert report.downloaded_count == 1
     assert report.failed_count == 0
+    assert len(xml_requests) == 1
     target = tmp_path / "xml/act/public/1990/109/act_public_1990_109_en_2022-08-30.xml"
     assert target.read_text().startswith("<?xml")
     payload = json.loads(manifest_path.read_text())
