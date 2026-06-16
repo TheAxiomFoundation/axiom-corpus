@@ -7,11 +7,12 @@ from collections import defaultdict
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from datetime import date
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 from axiom_corpus.converters.nz_pco import (
     NZLabeledParagraph,
     NZLegislation,
+    NZLegislationSubtype,
     NZPCOConverter,
     NZProvision,
 )
@@ -206,7 +207,7 @@ def nz_citation_path(legislation: NZLegislation, provision: NZProvision) -> str:
             legislation.legislation_type,
             legislation.subtype,
             str(legislation.year),
-            f"{legislation.number:04d}",
+            _document_number_token(legislation),
             _provision_kind(legislation),
             _provision_token(provision.label or provision.id),
         ]
@@ -288,11 +289,12 @@ def _prepare_sources(
     ):
         normalized = _normalize_source_bytes(source_bytes)
         legislation = converter.parse_xml(normalized.decode("utf-8"))
+        _apply_source_name_metadata(legislation, source_name)
         prepared.append(
             _PreparedLegislation(
                 legislation=legislation,
                 raw_bytes=normalized,
-                relative_name=_source_relative_name(legislation),
+                relative_name=_source_relative_name(legislation, source_name),
                 source_name=source_name,
             )
         )
@@ -306,13 +308,17 @@ def _iter_source_xmls(
     source_pattern: str,
     limit: int | None,
 ) -> Iterable[tuple[str, bytes]]:
-    paths = [Path(path) for path in source_xmls]
+    named_paths = [(Path(path).name, Path(path)) for path in source_xmls]
     if source_dir is not None:
-        paths.extend(sorted(Path(source_dir).rglob(source_pattern)))
+        source_root = Path(source_dir)
+        named_paths.extend(
+            (path.relative_to(source_root).as_posix(), path)
+            for path in sorted(source_root.rglob(source_pattern))
+        )
     if limit is not None:
-        paths = paths[:limit]
-    for path in paths:
-        yield path.name, path.read_bytes()
+        named_paths = named_paths[:limit]
+    for source_name, path in named_paths:
+        yield source_name, path.read_bytes()
 
 
 def _normalize_source_bytes(source_bytes: bytes) -> bytes:
@@ -323,10 +329,65 @@ def _normalize_source_bytes(source_bytes: bytes) -> bytes:
     return normalized_text.encode("utf-8")
 
 
-def _source_relative_name(legislation: NZLegislation) -> str:
+def _apply_source_name_metadata(legislation: NZLegislation, source_name: str) -> None:
+    parts = PurePosixPath(source_name).parts
+    if len(parts) < 4:
+        return
+
+    source_type, source_subtype, year_text, number_token = parts[:4]
+    if source_type not in {"act", "bill", "secondary-legislation", "amendment-paper"}:
+        return
+
+    legislation.source_document_path = "/".join(parts[:4])
+    if source_type == "act":
+        legislation.legislation_type = "act"
+    elif source_type == "bill":
+        legislation.legislation_type = "bill"
+    elif source_type == "secondary-legislation":
+        legislation.legislation_type = "regulation"
+    elif source_type == "amendment-paper":
+        legislation.legislation_type = "sop"
+
+    subtype = _source_subtype(source_subtype)
+    if subtype is not None:
+        legislation.subtype = subtype
+    if year_text.isdecimal():
+        legislation.year = int(year_text)
+
+    source_number = _source_number_value(number_token)
+    if source_number is not None:
+        legislation.number = source_number
+    if not number_token.isdecimal():
+        legislation.document_number_token = number_token
+
+
+def _source_number_value(number_token: str) -> int | None:
+    match = re.match(r"\d+", number_token)
+    return int(match.group(0)) if match else None
+
+
+def _source_subtype(source_subtype: str) -> NZLegislationSubtype | None:
+    if source_subtype == "public":
+        return "public"
+    if source_subtype == "private":
+        return "private"
+    if source_subtype == "local":
+        return "local"
+    if source_subtype == "government":
+        return "government"
+    if source_subtype == "members":
+        return "members"
+    if source_subtype == "imperial":
+        return "imperial"
+    return None
+
+
+def _source_relative_name(legislation: NZLegislation, source_name: str | None = None) -> str:
+    if source_name and "/" in source_name:
+        return source_name
     return (
         f"{legislation.legislation_type}/{legislation.subtype}/"
-        f"{legislation.year}/{legislation.number:04d}/wholeof.xml"
+        f"{legislation.year}/{_document_number_token(legislation)}/wholeof.xml"
     )
 
 
@@ -335,9 +396,11 @@ def _source_key(version: str, document_class: str, relative_name: str) -> str:
 
 
 def _source_document_id(legislation: NZLegislation) -> str:
+    if legislation.source_document_path:
+        return legislation.source_document_path
     return (
         f"{legislation.legislation_type}/{legislation.subtype}/"
-        f"{legislation.year}/{legislation.number:04d}"
+        f"{legislation.year}/{_document_number_token(legislation)}"
     )
 
 
@@ -349,7 +412,7 @@ def _parent_citation_path(legislation: NZLegislation) -> str:
             legislation.legislation_type,
             legislation.subtype,
             str(legislation.year),
-            f"{legislation.number:04d}",
+            _document_number_token(legislation),
         ]
     )
 
@@ -382,11 +445,18 @@ def _citation_label(legislation: NZLegislation, provision: NZProvision) -> str:
 def _provision_url(legislation: NZLegislation, provision: NZProvision) -> str:
     if provision.id:
         return (
-            f"https://www.legislation.govt.nz/{legislation.legislation_type}/"
-            f"{legislation.subtype}/{legislation.year}/{legislation.number:04d}/"
+            f"https://www.legislation.govt.nz/{_source_document_id(legislation)}/"
             f"latest/{provision.id}.html"
         )
     return legislation.url
+
+
+def _document_number_token(legislation: NZLegislation) -> str:
+    if legislation.document_number_token:
+        token = re.sub(r"[^0-9A-Za-z]+", "-", legislation.document_number_token).strip("-")
+        if token:
+            return token
+    return f"{legislation.number:04d}"
 
 
 def _provision_body(provision: NZProvision) -> str:

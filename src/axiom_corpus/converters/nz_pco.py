@@ -37,7 +37,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
-from typing import Literal
+from typing import Literal, cast
 from xml.etree import ElementTree as ET
 
 import httpx
@@ -46,6 +46,27 @@ from pydantic import BaseModel, Field
 # NZ legislation types
 NZLegislationType = Literal["act", "bill", "regulation", "sop"]
 NZLegislationSubtype = Literal["public", "private", "local", "government", "members", "imperial"]
+NZ_LEGISLATION_SUBTYPES: tuple[NZLegislationSubtype, ...] = (
+    "public",
+    "private",
+    "local",
+    "government",
+    "members",
+    "imperial",
+)
+
+
+def _coerce_subtype(value: str | None) -> NZLegislationSubtype:
+    if value in NZ_LEGISLATION_SUBTYPES:
+        return cast(NZLegislationSubtype, value)
+    return "public"
+
+
+def _number_value(value: str | None) -> int:
+    if not value:
+        return 0
+    match = re.match(r"\d+", value)
+    return int(match.group(0)) if match else 0
 
 
 @dataclass
@@ -94,6 +115,8 @@ class NZLegislation:
     # Administrative
     administering_ministry: str | None = None
     version_date: date | None = None
+    document_number_token: str | None = None
+    source_document_path: str | None = None
 
     @property
     def citation(self) -> str:
@@ -106,10 +129,11 @@ class NZLegislation:
     @property
     def url(self) -> str:
         """Return legislation.govt.nz URL."""
-        return (
-            f"https://www.legislation.govt.nz/{self.legislation_type}/"
-            f"{self.subtype}/{self.year}/{self.number:04d}/latest/contents.html"
+        document_path = self.source_document_path or (
+            f"{self.legislation_type}/{self.subtype}/"
+            f"{self.year}/{self.document_number_token or f'{self.number:04d}'}"
         )
+        return f"https://www.legislation.govt.nz/{document_path}/latest/contents.html"
 
 
 class NZRSSItem(BaseModel):
@@ -163,7 +187,7 @@ class NZPCOConverter:
     def __enter__(self) -> NZPCOConverter:
         return self
 
-    def __exit__(self, *args) -> None:
+    def __exit__(self, *args: object) -> None:
         self.close()
 
     # =========================================================================
@@ -212,15 +236,27 @@ class NZPCOConverter:
         # Extract attributes
         leg_id = root.get("id", "")
         year = int(root.get("year", "0"))
-        number = int(root.get("act.no", root.get("bill.no", root.get("regulation.no", "0"))))
+        number_text = (
+            root.get("act.no")
+            or root.get("bill.no")
+            or root.get("regulation.no")
+            or root.get("sr.no")
+            or root.get("sop.no")
+            or "0"
+        )
+        number = _number_value(number_text)
+        split_letter = root.get("split.letter")
+        document_number_token = (
+            f"{number_text}-{split_letter}" if split_letter else None
+        )
         subtype_raw = root.get(
-            "act.type", root.get("bill.type", root.get("regulation.type", "public"))
+            "act.type",
+            root.get(
+                "bill.type",
+                root.get("sop.type", root.get("regulation.type", root.get("sr.type", "public"))),
+            ),
         )
-        subtype: NZLegislationSubtype = (
-            subtype_raw
-            if subtype_raw in ("public", "private", "local", "government", "members", "imperial")
-            else "public"
-        )
+        subtype = _coerce_subtype(subtype_raw)
         stage = root.get("stage", "in-force")
 
         # Parse dates
@@ -275,6 +311,7 @@ class NZPCOConverter:
             provisions=provisions,
             administering_ministry=ministry,
             version_date=version_date,
+            document_number_token=document_number_token,
         )
 
     def _parse_provision(self, elem: ET.Element) -> NZProvision | None:
@@ -395,7 +432,7 @@ class NZPCOConverter:
             if child_lp == elem:  # pragma: no cover
                 continue  # pragma: no cover
             # Only parse direct children, not descendants
-            parent = child_lp  # pragma: no cover
+            parent: ET.Element | None = child_lp  # pragma: no cover
             while parent is not None:  # pragma: no cover
                 parent = self._find_parent(elem, parent)  # pragma: no cover
                 if parent == elem:  # pragma: no cover
@@ -516,7 +553,7 @@ class NZPCOConverter:
 
         return items
 
-    def _parse_atom_entry(self, entry: ET.Element, ns: dict) -> NZRSSItem | None:
+    def _parse_atom_entry(self, entry: ET.Element, ns: dict[str, str]) -> NZRSSItem | None:
         """Parse an Atom <entry> element."""
         # Get ID (usually the URL)
         id_elem = entry.find("atom:id", ns)
