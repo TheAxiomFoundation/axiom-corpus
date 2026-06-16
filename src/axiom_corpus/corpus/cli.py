@@ -1259,6 +1259,7 @@ def _cmd_download_nz_legislation_api(args: argparse.Namespace) -> int:
         limit=args.limit,
         resume=not args.no_resume,
         allow_failures=args.allow_failures,
+        workers=args.workers,
         manifest_path=args.manifest_path,
     )
     print(json.dumps(_nz_legislation_api_download_report_json(report), indent=2, sort_keys=True))
@@ -4673,6 +4674,12 @@ def build_parser() -> argparse.ArgumentParser:
     download_nz_api_cmd.add_argument("--manifest-path", type=Path)
     download_nz_api_cmd.add_argument("--no-resume", action="store_true")
     download_nz_api_cmd.add_argument("--allow-failures", action="store_true")
+    download_nz_api_cmd.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="Concurrent XML download workers (default: 1).",
+    )
     download_nz_api_cmd.set_defaults(func=_cmd_download_nz_legislation_api)
 
     extract_dc_cmd = sub.add_parser(
