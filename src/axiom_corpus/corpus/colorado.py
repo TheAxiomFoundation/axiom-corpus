@@ -609,6 +609,9 @@ def _ccr_sections_from_lines(
         current_source_id = None
 
     for line in lines:
+        if _is_ccr_terminal_editor_notes_heading(line):
+            finish()
+            break
         parsed = _parse_ccr_section_heading(line)
         if parsed is not None:
             finish()
@@ -625,13 +628,18 @@ def _ccr_sections_from_lines(
 def _parse_ccr_section_heading(line: str) -> tuple[str, str | None] | None:
     match = re.match(
         r"^(?P<section>\d+(?:\.\d+)+[A-Za-z]?)"
-        r"(?:\s+(?P<heading>[A-Z][A-Za-z0-9][^\n]{0,220}))?$",
+        r"(?:\s+(?P<heading>[A-Z][^\n]{0,220}))?$",
         line,
     )
     if not match:
         return None
     heading = _clean_text(match.group("heading")) or None
     return match.group("section"), heading
+
+
+def _is_ccr_terminal_editor_notes_heading(line: str) -> bool:
+    normalized = _clean_text(line).replace("’", "'")
+    return normalized == "Editor's Notes"
 
 
 def _ccr_section_variant(heading: str | None, body: str | None, occurrence: int) -> str:
