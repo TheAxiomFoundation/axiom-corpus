@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-06-20-ssi-title-xvi-title-42.json",
+      "sha256": "ebf1b01221733f9e95fa74a2c2b1a1eb41e2bdcf408ccd0d942f1e294b5af34b"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-06-20-ssi-title-xvi-title-42.json",
+      "sha256": "8d16ae165951a4d4009d0f5f687104439a94ba6ba14e8e0b0657aca40f02ff7e"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-06-20-ssi-title-xvi-title-42.jsonl",
+      "sha256": "58b503c6e4d8c524fb21c82e638b8a265bf25b2cd9f74e8340b54f4b4abb5601"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-06-20-ssi-title-xvi-title-42/uslm/usc42.xml",
+      "sha256": "92ad6fa75b4d5309883713e8f0bf7307b044734296dc7711ed10486019546303"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4a3ba8c8dac485816571e732ce13cdf701ca9601",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ssi-20260620"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-06-20-ssi-title-xvi --source-xml /tmp/axiom-usc-title42/usc42.xml --source-as-of 2025-12-08 --expression-date 2025-12-08 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/59/xml_usc42@119-59.zip --section 1381 --section 1382 --section 1382a --section 1382b --section 1382c --section 1382d --section 1382e --section 1382f --section 1382g --section 1382h --section 1382i --section 1382j"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 70,
+    "missing_count": 0,
+    "provision_count": 70,
+    "source_count": 70
+  },
+  "document_class": "statute",
+  "generated_at": "2026-06-20T15:34:18.070595+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-06-20-ssi-title-xvi.md",
+      "sha256": "1da74f46934cd06c8f0aaec31efe44639efe36e7729d5da2e81ecbb955725f6c"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qhmed7++dq72XxWA8lJDCeKg1+ljWm1ZfsD+1Qk4LGT9+ZXFZxmemMsDxlMEBxSmLPUUybjvNmPxdIqnue3xAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-20-ssi-title-xvi-title-42"
+}
