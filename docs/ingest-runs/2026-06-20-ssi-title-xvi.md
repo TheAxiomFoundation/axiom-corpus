@@ -16,6 +16,6 @@ Scope:
 Generated artifact:
 - Command used the US Code ingester with repeated --section filters; no corpus rows were written by hand.
 - Because full Title 42 USLM XML is too large for normal GitHub review, the ingester wrote a generated scoped USLM source artifact containing only the selected sections while retaining the official download URL in inventory metadata.
-- The US Code ingester emitted both section rows and first-level subsection rows from official USLM identifiers, so encoders can target paths such as `us/statute/42/1382/b` without seeing sibling subsections.
+- The US Code ingester emitted section rows, first-level subsection rows, and immediate paragraph rows from official USLM identifiers, so encoders can target paths such as `us/statute/42/1382/b` and `us/statute/42/1382a/b/2` without seeing sibling provisions.
 - Output run id: 2026-06-20-ssi-title-xvi-title-42.
-- Coverage result: complete; 70 source inventory rows matched 70 provision rows.
+- Coverage result: complete; 226 source inventory rows matched 226 provision rows.

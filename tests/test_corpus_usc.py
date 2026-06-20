@@ -141,10 +141,14 @@ def test_build_usc_inventory_from_xml_includes_subsections():
         "us/statute/42",
         "us/statute/42/1382",
         "us/statute/42/1382/a",
+        "us/statute/42/1382/a/1",
         "us/statute/42/1382/b",
+        "us/statute/42/1382/b/1",
     ]
     assert inventory.items[2].metadata["kind"] == "subsection"
     assert inventory.items[2].metadata["parent_citation_path"] == "us/statute/42/1382"
+    assert inventory.items[3].metadata["kind"] == "paragraph"
+    assert inventory.items[3].metadata["parent_citation_path"] == "us/statute/42/1382/a"
 
 
 def test_build_usc_inventory_from_xml_includes_subsections_for_allowed_section():
@@ -157,7 +161,9 @@ def test_build_usc_inventory_from_xml_includes_subsections_for_allowed_section()
     assert [item.citation_path for item in inventory.items] == [
         "us/statute/42/1382",
         "us/statute/42/1382/a",
+        "us/statute/42/1382/a/1",
         "us/statute/42/1382/b",
+        "us/statute/42/1382/b/1",
     ]
 
 
@@ -169,7 +175,20 @@ def test_build_usc_inventory_from_xml_respects_allowed_subsection():
     )
 
     assert [item.citation_path for item in inventory.items] == [
-        "us/statute/42/1382/b"
+        "us/statute/42/1382/b",
+        "us/statute/42/1382/b/1",
+    ]
+
+
+def test_build_usc_inventory_from_xml_respects_allowed_paragraph():
+    inventory = build_usc_inventory_from_xml(
+        SAMPLE_USLM_SUBSECTIONS,
+        run_id="2026-04-29-title-42",
+        allowed_citation_paths={"us/statute/42/1382/b/1"},
+    )
+
+    assert [item.citation_path for item in inventory.items] == [
+        "us/statute/42/1382/b/1"
     ]
 
 
@@ -219,20 +238,33 @@ def test_iter_usc_title_provisions_builds_subsection_records():
         "us/statute/42",
         "us/statute/42/1382",
         "us/statute/42/1382/a",
+        "us/statute/42/1382/a/1",
         "us/statute/42/1382/b",
+        "us/statute/42/1382/b/1",
     ]
-    assert records[3].kind == "subsection"
-    assert records[3].level == 2
-    assert records[3].legal_identifier == "42 U.S.C. § 1382(b)"
-    assert records[3].parent_citation_path == "us/statute/42/1382"
-    assert records[3].identifiers == {
+    assert records[4].kind == "subsection"
+    assert records[4].level == 2
+    assert records[4].legal_identifier == "42 U.S.C. § 1382(b)"
+    assert records[4].parent_citation_path == "us/statute/42/1382"
+    assert records[4].identifiers == {
         "usc:title": "42",
         "usc:section": "1382",
         "usc:subsection": "b",
         "uslm:identifier": "/us/usc/t42/s1382/b",
     }
-    assert records[3].metadata["references_to"] == ["us/statute/42/1382f"]
-    assert "$1,752" in records[3].body
+    assert records[4].metadata["references_to"] == ["us/statute/42/1382f"]
+    assert "$1,752" in records[4].body
+    assert records[5].kind == "paragraph"
+    assert records[5].level == 3
+    assert records[5].legal_identifier == "42 U.S.C. § 1382(b)(1)"
+    assert records[5].parent_citation_path == "us/statute/42/1382/b"
+    assert records[5].identifiers == {
+        "usc:title": "42",
+        "usc:section": "1382",
+        "usc:subsection": "b",
+        "usc:paragraph": "1",
+        "uslm:identifier": "/us/usc/t42/s1382/b/1",
+    }
 
 
 def test_iter_usc_title_provisions_respects_allowed_citations():
@@ -259,7 +291,23 @@ def test_iter_usc_title_provisions_respects_allowed_subsection():
     )
 
     assert [record.citation_path for record in records] == [
-        "us/statute/42/1382/b"
+        "us/statute/42/1382/b",
+        "us/statute/42/1382/b/1",
+    ]
+
+
+def test_iter_usc_title_provisions_respects_allowed_paragraph():
+    records = tuple(
+        iter_usc_title_provisions(
+            SAMPLE_USLM_SUBSECTIONS,
+            version="2026-04-29-title-42",
+            source_path="sources/us/statute/2026-04-29-title-42/uslm/usc42.xml",
+            allowed_citation_paths={"us/statute/42/1382/b/1"},
+        )
+    )
+
+    assert [record.citation_path for record in records] == [
+        "us/statute/42/1382/b/1"
     ]
 
 
@@ -350,11 +398,41 @@ def test_extract_usc_allowed_subsection_certifies_scoped_inventory(tmp_path):
     assert report.coverage.complete
     records = load_provisions(report.provisions_path)
     inventory = load_source_inventory(report.inventory_path)
-    assert [item.citation_path for item in inventory] == ["us/statute/42/1382/b"]
-    assert [record.citation_path for record in records] == ["us/statute/42/1382/b"]
+    assert [item.citation_path for item in inventory] == [
+        "us/statute/42/1382/b",
+        "us/statute/42/1382/b/1",
+    ]
+    assert [record.citation_path for record in records] == [
+        "us/statute/42/1382/b",
+        "us/statute/42/1382/b/1",
+    ]
     source_text = report.source_paths[0].read_text()
     assert 'identifier="/us/usc/t42/s1382"' in source_text
     assert 'identifier="/us/usc/t42/s1382/b"' in source_text
+    assert 'identifier="/us/usc/t42/s1382/a"' not in source_text
+
+
+def test_extract_usc_allowed_paragraph_certifies_scoped_inventory(tmp_path):
+    source_xml = tmp_path / "usc42.xml"
+    source_xml.write_text(SAMPLE_USLM_SUBSECTIONS)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_usc(
+        store,
+        version="2026-04-29-ssi",
+        source_xml=source_xml,
+        allowed_citation_paths={"us/statute/42/1382/b/1"},
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    inventory = load_source_inventory(report.inventory_path)
+    assert [item.citation_path for item in inventory] == ["us/statute/42/1382/b/1"]
+    assert [record.citation_path for record in records] == ["us/statute/42/1382/b/1"]
+    source_text = report.source_paths[0].read_text()
+    assert 'identifier="/us/usc/t42/s1382"' in source_text
+    assert 'identifier="/us/usc/t42/s1382/b"' in source_text
+    assert 'identifier="/us/usc/t42/s1382/b/1"' in source_text
     assert 'identifier="/us/usc/t42/s1382/a"' not in source_text
 
 
