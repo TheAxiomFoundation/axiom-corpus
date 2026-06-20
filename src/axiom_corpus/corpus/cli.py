@@ -353,6 +353,16 @@ def _cmd_inventory_usc(args: argparse.Namespace) -> int:
     source_bytes = args.source_xml.read_bytes()
     xml_content = decode_uslm_bytes(source_bytes)
     title = args.title or infer_uslm_title(xml_content)
+    try:
+        allowed_citation_paths = _usc_allowed_citation_paths(
+            title,
+            sections=args.section,
+            citation_paths=args.citation_path,
+            include_title=args.include_title,
+        )
+    except ValueError as exc:
+        print(str(exc))
+        return 2
     run_id = usc_run_id(args.version, title, args.limit)
     inventory = build_usc_inventory_from_xml(
         xml_content,
@@ -361,6 +371,7 @@ def _cmd_inventory_usc(args: argparse.Namespace) -> int:
         source_sha256=sha256_bytes(source_bytes),
         source_download_url=args.source_url,
         limit=args.limit,
+        allowed_citation_paths=allowed_citation_paths,
     )
     out = store.inventory_path("us", DocumentClass.STATUTE, run_id)
     store.write_inventory(out, inventory.items)
@@ -382,6 +393,51 @@ def _cmd_inventory_usc(args: argparse.Namespace) -> int:
         )
     )
     return 0
+
+
+def _usc_allowed_citation_paths(
+    title: str | int,
+    *,
+    sections: Iterable[str] | None = None,
+    citation_paths: Iterable[str] | None = None,
+    include_title: bool = False,
+) -> set[str] | None:
+    section_values = tuple(sections or ())
+    citation_path_values = tuple(citation_paths or ())
+    if not section_values and not citation_path_values:
+        return None
+
+    title_token = str(title).strip().lower().removeprefix("title ")
+    allowed: set[str] = set()
+    if include_title:
+        allowed.add(f"us/statute/{title_token}")
+
+    for section in section_values:
+        allowed.add(_usc_section_citation_path(title_token, section))
+    for citation_path in citation_path_values:
+        normalized = citation_path.strip().strip("/")
+        if not normalized.startswith("us/statute/"):
+            raise ValueError(f"invalid US Code citation path: {citation_path!r}")
+        allowed.add(normalized)
+    return allowed
+
+
+def _usc_section_citation_path(title: str, section: str) -> str:
+    value = section.strip()
+    if value.startswith("us/statute/"):
+        return value.strip("/")
+    match = re.fullmatch(
+        r"(?:(?P<title>[0-9]+[a-z]?)\s+(?:U\.?S\.?C\.?|USC)\s+)?"
+        r"(?:§+\s*)?(?P<section>[0-9A-Za-z][0-9A-Za-z.-]*)",
+        value,
+        re.I,
+    )
+    if not match:
+        raise ValueError(f"invalid US Code section: {section!r}")
+    section_title = (match.group("title") or title).lower()
+    if section_title != title:
+        raise ValueError(f"section {section!r} belongs to title {section_title}, not title {title}")
+    return f"us/statute/{title}/{match.group('section')}"
 
 
 def _cmd_export_supabase(args: argparse.Namespace) -> int:
@@ -944,9 +1000,7 @@ def _jurisdictions_for_repo_checkout(repo_path: Path) -> list[str]:
     """
     name = repo_path.name
     jurisdictions = [
-        jurisdiction
-        for jurisdiction, repo_dir in JURISDICTION_REPO_MAP.items()
-        if repo_dir == name
+        jurisdiction for jurisdiction, repo_dir in JURISDICTION_REPO_MAP.items() if repo_dir == name
     ]
     for jurisdiction in JURISDICTION_REPO_MAP:
         if jurisdiction in jurisdictions:
@@ -1069,6 +1123,16 @@ def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
 def _cmd_extract_usc(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    try:
+        allowed_citation_paths = _usc_allowed_citation_paths(
+            args.title or infer_uslm_title(decode_uslm_bytes(args.source_xml.read_bytes())),
+            sections=args.section,
+            citation_paths=args.citation_path,
+            include_title=args.include_title,
+        )
+    except ValueError as exc:
+        print(str(exc))
+        return 2
     report = extract_usc(
         store,
         version=args.version,
@@ -1078,6 +1142,7 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
         expression_date=expression_date,
         source_download_url=args.source_url,
         limit=args.limit,
+        allowed_citation_paths=allowed_citation_paths,
     )
     print(
         json.dumps(
@@ -4530,6 +4595,23 @@ def build_parser() -> argparse.ArgumentParser:
     inventory_usc.add_argument("--title")
     inventory_usc.add_argument("--source-url")
     inventory_usc.add_argument("--limit", type=int)
+    inventory_usc.add_argument(
+        "--section",
+        action="append",
+        default=[],
+        help="US Code section to include; repeat for multiple sections.",
+    )
+    inventory_usc.add_argument(
+        "--citation-path",
+        action="append",
+        default=[],
+        help="Exact corpus citation path to include; repeat for multiple paths.",
+    )
+    inventory_usc.add_argument(
+        "--include-title",
+        action="store_true",
+        help="Include the title-level provision when section filters are used.",
+    )
     inventory_usc.set_defaults(func=_cmd_inventory_usc)
 
     extract_ecfr_cmd = sub.add_parser(
@@ -4559,6 +4641,23 @@ def build_parser() -> argparse.ArgumentParser:
     extract_usc_cmd.add_argument("--expression-date")
     extract_usc_cmd.add_argument("--source-url")
     extract_usc_cmd.add_argument("--limit", type=int)
+    extract_usc_cmd.add_argument(
+        "--section",
+        action="append",
+        default=[],
+        help="US Code section to extract; repeat for multiple sections.",
+    )
+    extract_usc_cmd.add_argument(
+        "--citation-path",
+        action="append",
+        default=[],
+        help="Exact corpus citation path to extract; repeat for multiple paths.",
+    )
+    extract_usc_cmd.add_argument(
+        "--include-title",
+        action="store_true",
+        help="Include the title-level provision when section filters are used.",
+    )
     extract_usc_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_usc_cmd.set_defaults(func=_cmd_extract_usc)
 

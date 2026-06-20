@@ -88,9 +88,7 @@ def test_validate_manifest_cli(capsys):
     assert '"ok": true' in output
 
 
-def test_sign_ingest_manifest_cli_writes_signed_scope_manifest(
-    tmp_path, capsys, monkeypatch
-):
+def test_sign_ingest_manifest_cli_writes_signed_scope_manifest(tmp_path, capsys, monkeypatch):
     repo = _init_git_repo(tmp_path / "repo")
     provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
     provision.parent.mkdir(parents=True)
@@ -158,9 +156,7 @@ def test_guard_ingested_cli_rejects_unmanifested_corpus_artifact_change(
     assert "Unmanifested corpus artifact change" in payload["issues"][0]
 
 
-def test_guard_ingested_cli_accepts_signed_corpus_artifact_change(
-    tmp_path, capsys, monkeypatch
-):
+def test_guard_ingested_cli_accepts_signed_corpus_artifact_change(tmp_path, capsys, monkeypatch):
     repo = _init_git_repo(tmp_path / "repo")
     _git(repo, "checkout", "-b", "feature")
     provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
@@ -208,14 +204,10 @@ def test_guard_ingested_cli_accepts_signed_corpus_artifact_change(
     payload = json.loads(output)
     assert payload["passed"] is True
     assert payload["issues"] == []
-    assert payload["protected_changes"] == [
-        "data/corpus/provisions/us/statute/2026-06-06.jsonl"
-    ]
+    assert payload["protected_changes"] == ["data/corpus/provisions/us/statute/2026-06-06.jsonl"]
 
 
-def test_guard_ingested_cli_rejects_signed_change_without_public_key(
-    tmp_path, capsys, monkeypatch
-):
+def test_guard_ingested_cli_rejects_signed_change_without_public_key(tmp_path, capsys, monkeypatch):
     repo = _init_git_repo(tmp_path / "repo")
     _git(repo, "checkout", "-b", "feature")
     provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
@@ -266,9 +258,7 @@ def test_guard_ingested_cli_rejects_signed_change_without_public_key(
     assert "AXIOM_CORPUS_INGEST_PUBLIC_KEY is required" in payload["issues"][0]
 
 
-def test_guard_ingested_cli_rejects_tampered_ingest_manifest(
-    tmp_path, capsys, monkeypatch
-):
+def test_guard_ingested_cli_rejects_tampered_ingest_manifest(tmp_path, capsys, monkeypatch):
     repo = _init_git_repo(tmp_path / "repo")
     _git(repo, "checkout", "-b", "feature")
     provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
@@ -322,9 +312,7 @@ def test_guard_ingested_cli_rejects_tampered_ingest_manifest(
     assert "Invalid ingest manifest signature" in payload["issues"][0]
 
 
-def test_guard_ingested_cli_rejects_committed_tampered_artifact(
-    tmp_path, capsys, monkeypatch
-):
+def test_guard_ingested_cli_rejects_committed_tampered_artifact(tmp_path, capsys, monkeypatch):
     repo = _init_git_repo(tmp_path / "repo")
     _git(repo, "checkout", "-b", "feature")
     provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
@@ -408,15 +396,11 @@ def test_guard_ingested_cli_rejects_rename_out_of_protected_corpus_path(
 
     assert exit_code == 1
     payload = json.loads(output)
-    assert payload["protected_changes"] == [
-        "data/corpus/provisions/us/statute/2026-06-06.jsonl"
-    ]
+    assert payload["protected_changes"] == ["data/corpus/provisions/us/statute/2026-06-06.jsonl"]
     assert "Unmanifested corpus artifact change" in payload["issues"][0]
 
 
-def test_guard_ingested_cli_accepts_signed_deleted_corpus_artifact(
-    tmp_path, capsys, monkeypatch
-):
+def test_guard_ingested_cli_accepts_signed_deleted_corpus_artifact(tmp_path, capsys, monkeypatch):
     repo = _init_git_repo(tmp_path / "repo")
     provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
     provision.parent.mkdir(parents=True)
@@ -635,6 +619,36 @@ def test_inventory_usc_cli(tmp_path, capsys):
     ]
 
 
+def test_inventory_usc_cli_filters_sections(tmp_path, capsys):
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "usc26.xml"
+    source_xml.write_text(SAMPLE_USLM_CLI)
+
+    exit_code = main(
+        [
+            "inventory-usc",
+            "--base",
+            str(base),
+            "--run-id",
+            "2026-04-29-eitc",
+            "--source-xml",
+            str(source_xml),
+            "--section",
+            "32",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"items_written": 1' in output
+    inventory = json.loads(
+        (base / "inventory/us/statute/2026-04-29-eitc-title-26.json").read_text()
+    )
+    assert [item["citation_path"] for item in inventory["items"]] == [
+        "us/statute/26/32",
+    ]
+
+
 def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 
@@ -654,6 +668,7 @@ def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
 
     def fake_extract(*args, **kwargs):
         assert kwargs["source_xml"] == source_xml
+        assert kwargs["allowed_citation_paths"] is None
         return UscExtractReport(
             title="26",
             title_count=1,
@@ -685,6 +700,59 @@ def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
 
     assert exit_code == 0
     assert '"provisions_written": 2' in output
+
+
+def test_extract_usc_cli_filters_sections(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "usc26.xml"
+    source_xml.write_text(SAMPLE_USLM_CLI)
+    coverage = ProvisionCoverageReport(
+        jurisdiction="us",
+        document_class="statute",
+        version="2026-04-29-eitc-title-26",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["source_xml"] == source_xml
+        assert kwargs["allowed_citation_paths"] == {"us/statute/26/32"}
+        return UscExtractReport(
+            title="26",
+            title_count=1,
+            section_count=1,
+            provisions_written=1,
+            inventory_path=base / "inventory/us/statute/2026-04-29-eitc-title-26.json",
+            provisions_path=base / "provisions/us/statute/2026-04-29-eitc-title-26.jsonl",
+            coverage_path=base / "coverage/us/statute/2026-04-29-eitc-title-26.json",
+            coverage=coverage,
+            source_paths=(base / "sources/us/statute/2026-04-29-eitc-title-26/uslm/usc26.xml",),
+        )
+
+    monkeypatch.setattr(cli, "extract_usc", fake_extract)
+
+    exit_code = main(
+        [
+            "extract-usc",
+            "--base",
+            str(base),
+            "--version",
+            "2026-04-29-eitc",
+            "--source-xml",
+            str(source_xml),
+            "--section",
+            "32",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"provisions_written": 1' in output
 
 
 def test_extract_uk_legislation_cli(tmp_path, capsys, monkeypatch):
