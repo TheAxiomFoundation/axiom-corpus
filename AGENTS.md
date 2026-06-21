@@ -3,6 +3,12 @@
 This repository owns source-first legal corpus ingestion. Prefer the corpus
 pipeline under `src/axiom_corpus/corpus/` for new work.
 
+## Workflow Scope
+
+- Use this repository's corpus adapters, manifests, CLI commands, release tooling, and Axiom project instructions as the operating procedure for corpus work.
+- Do not use PolicyEngine workflow skills or PolicyEngine implementation skills for Axiom corpus, RuleSpec, encoding, or oracle-parity tasks. PolicyEngine may appear as downstream comparison context, but it does not define the ingestion workflow.
+- If a reusable workflow is missing, add or propose an Axiom-specific Codex skill or project instruction instead of borrowing a PolicyEngine skill.
+
 ## Corpus Architecture
 
 - Do not add durable AKN/Akoma Ntoso outputs to this repository, R2, or the
@@ -51,4 +57,3 @@ uv run --extra dev axiom-corpus-ingest coverage \
   --version <version> \
   --write
 ```
-
