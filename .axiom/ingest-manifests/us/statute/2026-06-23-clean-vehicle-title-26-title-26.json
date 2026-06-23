@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-06-23-clean-vehicle-title-26-title-26.json",
+      "sha256": "238030dd1d4017698dace7319e7babd8cf30d9f9639807408e810d4d2b625063"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-06-23-clean-vehicle-title-26-title-26.json",
+      "sha256": "a2663dcb68c442cc7caa2e250cc5c30116ab1f7757ef44977e1b5c7e735457b0"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-06-23-clean-vehicle-title-26-title-26.jsonl",
+      "sha256": "7b36d83c634bf9e9cdb5ee697713a69a69f38261d66be469ec95ef12c8bab9a6"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-06-23-clean-vehicle-title-26-title-26/uslm/usc26.xml",
+      "sha256": "973ab3ec90ec9bb59dbe3d81295065fd637d6c89f90e96d9b9237582523f3be9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "05fc2973265971abe77b68374ed24fac133088ba",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-us-clean-vehicle-20260623"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-usc --base data/corpus --version 2026-06-23-clean-vehicle-title-26 --source-xml /tmp/axiom-uscode-119-99-title26/usc26.xml --section 30D --section 25E --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/99/xml_usc26@119-99.zip"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 62,
+    "missing_count": 0,
+    "provision_count": 62,
+    "source_count": 62
+  },
+  "document_class": "statute",
+  "generated_at": "2026-06-23T20:05:20.911219+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-statute-2026-06-23-clean-vehicle-title-26.md",
+      "sha256": "ba47ea8b710638ade90fb7d16d0be82c5d37e90fd939303133c3a62f1a21cba9"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6SJVFv41/M9gT6Ve6n4/BD0Ao6834/n7V5N9BlPqNjwHDgPmfQeOhZmKHxVLqnTUrrlDYHK9/alU8ZLT7PTFAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-23-clean-vehicle-title-26-title-26"
+}
