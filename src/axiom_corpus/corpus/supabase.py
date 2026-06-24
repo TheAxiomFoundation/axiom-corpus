@@ -397,7 +397,10 @@ def iter_supabase_rows(
             and not isinstance(ordinal, bool)
             and not POSTGRES_INT32_MIN <= ordinal <= POSTGRES_INT32_MAX
         ):
-            identifiers = dict(row.get("identifiers") or {})
+            raw_identifiers = row.get("identifiers")
+            identifiers: dict[str, object] = (
+                dict(raw_identifiers) if isinstance(raw_identifiers, Mapping) else {}
+            )
             identifiers.setdefault("corpus:ordinal", ordinal)
             row["identifiers"] = identifiers
             # Production `corpus.provisions.ordinal` is still int4. Preserve
