@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-06-23-pell-title-20-title-20.json",
+      "sha256": "91d2ef5290596356c04ab2929c7023f753acafabbdf2ccdb84da4f6078ad41fe"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-06-23-pell-title-20-title-20.json",
+      "sha256": "515cad031b1e90c4c358b2637d44f19b02af0edc7d791f07830b45f6b1530165"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-06-23-pell-title-20-title-20.jsonl",
+      "sha256": "d587c4196ce4940be57c0e36ff4cc95c7c546f91455f331412939dcbf049f6eb"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-06-23-pell-title-20-title-20/uslm/usc20.xml",
+      "sha256": "191ff910f325a0793f4c417e4ceeb5402aa95b1f1487787b2780969dd6857e77"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "29314ba476d233abf232861fb803dd8bb8038212",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-us-pell-20260623"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-usc --base data/corpus --version 2026-06-23-pell-title-20 --source-xml /tmp/axiom-pell-title20/usc20.xml --title 20 --section 1070a --source-as-of 2026-06-12 --expression-date 2026-07-01 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/99/xml_usc20@119-99.zip"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 41,
+    "missing_count": 0,
+    "provision_count": 41,
+    "source_count": 41
+  },
+  "document_class": "statute",
+  "generated_at": "2026-06-23T21:26:25.999041+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-statute-2026-06-23-pell-title-20.md",
+      "sha256": "36e7b6d2a61dd4d006f3ad9e9c1717dd6076d13b337067d5aeb0e7ee7605934b"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7P47gTIRdlfb6IzHf/Wen8I2lSM3BcE33rKBLzx5aCQgZsJtkuoyohIhHPwCcGH31YorSIJNvW8Yzd+F+56zAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-23-pell-title-20-title-20"
+}

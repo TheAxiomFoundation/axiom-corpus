@@ -11,6 +11,7 @@ from axiom_corpus.corpus.supabase import (
     deterministic_provision_id,
     fetch_provision_counts,
     fetch_release_provision_counts,
+    iter_supabase_rows,
     list_release_scopes,
     load_provisions_to_supabase,
     provision_to_supabase_row,
@@ -117,6 +118,31 @@ def test_supabase_projection_strips_postgres_invalid_nul_characters():
     assert row["identifiers"] == {
         "federal-register:document-number": "2026-09722"
     }
+
+
+def test_iter_supabase_rows_compacts_ordinal_that_exceeds_postgres_int4():
+    rows = list(
+        iter_supabase_rows(
+            [
+                ProvisionRecord(
+                    jurisdiction="us",
+                    document_class="statute",
+                    citation_path="us/statute/20/1070a/a/1",
+                    ordinal=10701001001,
+                ),
+                ProvisionRecord(
+                    jurisdiction="us",
+                    document_class="statute",
+                    citation_path="us/statute/20/1070a/a/2",
+                    ordinal=10701001002,
+                ),
+            ]
+        )
+    )
+
+    assert [row["ordinal"] for row in rows] == [0, 1]
+    assert rows[0]["identifiers"]["corpus:ordinal"] == 10701001001
+    assert rows[1]["identifiers"]["corpus:ordinal"] == 10701001002
 
 
 def test_write_supabase_rows_jsonl_uses_projection_contract(tmp_path):
