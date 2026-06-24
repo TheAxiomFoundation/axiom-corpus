@@ -1,0 +1,41 @@
+documents:
+  - source_id: ga-dfcs-medicaid-2578-ssi-recipients
+    jurisdiction: us-ga
+    document_class: manual
+    citation_path: us-ga/manual/dfcs/medicaid/2578
+    title: "Georgia Medicaid Policy Manual: 2578 SSI Recipients"
+    source_url: https://pamms.dhs.ga.gov/dfcs/medicaid/2578/
+    source_format: html
+    source_as_of: "2026-06-24"
+    expression_date: "2026-06-24"
+    metadata:
+      primary_source: true
+      source_authority: Georgia Department of Human Services Division of Family and Children Services
+      document_subtype: policy_manual_section
+      program: ssi_state_supplement
+      federal_program: SSI
+      manual_landing_page: https://pamms.dhs.ga.gov/dfcs/medicaid/
+      source_discovery_group: us-ga/manual/medicaid
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: article.doc
+  - source_id: ga-dfcs-medicaid-2136-institutionalized-hospice
+    jurisdiction: us-ga
+    document_class: manual
+    citation_path: us-ga/manual/dfcs/medicaid/2136
+    title: "Georgia Medicaid Policy Manual: 2136 Institutionalized Hospice"
+    source_url: https://pamms.dhs.ga.gov/dfcs/medicaid/2136/
+    source_format: html
+    source_as_of: "2026-06-24"
+    expression_date: "2026-06-24"
+    metadata:
+      primary_source: true
+      source_authority: Georgia Department of Human Services Division of Family and Children Services
+      document_subtype: policy_manual_section
+      program: ssi_state_supplement
+      federal_program: SSI
+      manual_landing_page: https://pamms.dhs.ga.gov/dfcs/medicaid/
+      source_discovery_group: us-ga/manual/medicaid
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: article.doc
