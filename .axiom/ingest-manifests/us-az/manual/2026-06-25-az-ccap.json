@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/manual/2026-06-25-az-ccap.json",
+      "sha256": "f9bdaac2a885074c4026704d5ae3404231a171113962f0f9cc4f12ed337f9d72"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/manual/2026-06-25-az-ccap.json",
+      "sha256": "bd1dec8e06c9d640d037acccd185489bf85d207003c7b7b1f09446bd9c68925d"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/manual/2026-06-25-az-ccap.jsonl",
+      "sha256": "d83b08cbdf3d084112585529daeeb2aea3cdd92bc40a7ffe5d9651d7e045ae00"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2026-06-25-az-ccap/official-documents/az-des-ccap-how-to-apply.html",
+      "sha256": "2fd84eb18cbe48fbde40a6f57f766828acb0f28dd9c0c332377f1d1f6d298f08"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2026-06-25-az-ccap/official-documents/az-des-ccap-income-chart-ffy2026.pdf",
+      "sha256": "22158a1d0e0657f71bb1a50375bade632e26d94094bcb332cef7bf95ca0c2573"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2026-06-25-az-ccap/official-documents/az-des-ccap-provider-registration-agreement.pdf",
+      "sha256": "111f730661d3af95246d1bd6da4848e058af93c7034704afd01ac18ab98301bf"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2026-06-25-az-ccap/official-documents/az-des-ccap-reimbursement-rates.pdf",
+      "sha256": "a60b9d456db2d3520265e8a534a50d11a3bacd87b317f7456fe37d14819d080f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8e16988adf25f6ed625540a51c60acda4763acd8",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-06-25-az-ccap --manifest manifests/us-az-ccap-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 82,
+    "missing_count": 0,
+    "provision_count": 82,
+    "source_count": 82
+  },
+  "document_class": "manual",
+  "generated_at": "2026-06-25T14:54:46.395140+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-az-manual-2026-06-25-az-ccap.md",
+      "sha256": "ce0b1d99efa6d8fec7a46db2711634494e3daf8485b24ec9dc3cfd178dbaea2e"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PqwVNxZJFWQjo0+fyn8kob8J8t9mWvDf8EvmyIeliLBlFUCKBhUxRCE1fMmNZ1YVezMcJ57Kg+s8A6aQHI/SCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-25-az-ccap"
+}
