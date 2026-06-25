@@ -101,6 +101,41 @@ SAMPLE_TITLE_XML = """
 </ECFR>
 """
 
+SAMPLE_TITLE_WITH_TABLE_XML = """
+<ECFR>
+  <DIV5 N="275" TYPE="PART">
+    <HEAD>PART 275-PERFORMANCE REPORTING SYSTEM</HEAD>
+    <DIV8 N="§ 275.3" TYPE="SECTION" NODE="7:4.1.1.2.3.1.1.3">
+      <HEAD>§ 275.3 Federal monitoring.</HEAD>
+      <P>(A) The Federal review sample is determined as follows:</P>
+      <DIV width="100%">
+        <DIV class="gpotbl_div">
+          <TABLE class="gpo_table">
+            <THEAD>
+              <TR>
+                <TH>Average monthly reviewable caseload (N)</TH>
+                <TH>Federal subsample target (n′)</TH>
+              </TR>
+            </THEAD>
+            <TBODY>
+              <TR>
+                <TD>31,489 and over</TD>
+                <TD>n′ = 400</TD>
+              </TR>
+              <TR>
+                <TD>10,001 to 31,488</TD>
+                <TD>n′ = .011634 N + 33.66</TD>
+              </TR>
+            </TBODY>
+          </TABLE>
+        </DIV>
+      </DIV>
+      <P>(B) The next paragraph remains after the table.</P>
+    </DIV8>
+  </DIV5>
+</ECFR>
+"""
+
 SAMPLE_SUBPART_XML = """
 <ECFR>
   <DIV5 N="273" TYPE="PART">
@@ -186,6 +221,33 @@ def test_iter_ecfr_title_provisions_builds_normalized_records():
     assert records[1].parent_citation_path == "us/regulation/7/273"
     assert records[1].level == 1
     assert "General household" in records[1].body
+
+
+def test_iter_ecfr_title_provisions_preserves_table_rows():
+    records = tuple(
+        iter_ecfr_title_provisions(
+            SAMPLE_TITLE_WITH_TABLE_XML,
+            (EcfrPartTarget(title=7, part="275", chapter="II", subchapter="C"),),
+            version="2026-06-15-title-7-part-275",
+            source_path="sources/us/regulation/2026-06-15-title-7-part-275/ecfr/title-7-part-275.xml",
+        )
+    )
+
+    assert [record.citation_path for record in records] == [
+        "us/regulation/7/275",
+        "us/regulation/7/275/3",
+    ]
+    body = records[1].body
+    assert body is not None
+    assert "(A) The Federal review sample is determined as follows:" in body
+    assert "Average monthly reviewable caseload (N) | Federal subsample target (n′)" in body
+    assert "10,001 to 31,488 | n′ = .011634 N + 33.66" in body
+    assert body.index("(A) The Federal review sample") < body.index(
+        "Average monthly reviewable caseload"
+    )
+    assert body.index("10,001 to 31,488") < body.index(
+        "(B) The next paragraph remains after the table."
+    )
 
 
 def test_iter_ecfr_title_provisions_builds_subpart_hierarchy():

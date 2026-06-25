@@ -34,9 +34,12 @@ def _write_pdf(path: Path, lines: list[str]) -> None:
     document.close()
 
 
-def _write_ccr_release(release_dir: Path) -> None:
+def _write_ccr_release(
+    release_dir: Path,
+    lines: list[str] | None = None,
+) -> None:
     release_dir.mkdir(parents=True)
-    _write_pdf(release_dir / "10-ccr-2506-1.pdf", CCR_SAMPLE_LINES)
+    _write_pdf(release_dir / "10-ccr-2506-1.pdf", lines or CCR_SAMPLE_LINES)
     (release_dir / "Welcome.html").write_text(
         "The Code of Colorado Regulations is current with administrative rules "
         "effective on or before <b>04/13/2026.</b>"
@@ -98,6 +101,42 @@ def test_extract_colorado_ccr_local_release_writes_records(tmp_path):
     assert records[2].heading == "SNAP"
     assert "food assistance" in records[2].body
     assert records[3].legal_identifier == "10 CCR 2506-1 4.000.1"
+
+
+def test_extract_colorado_ccr_splits_hyphenated_heading_and_skips_editor_notes(
+    tmp_path,
+):
+    release_dir = tmp_path / "ccr-release"
+    _write_ccr_release(
+        release_dir,
+        [
+            *CCR_SAMPLE_LINES[:7],
+            "4.904 OUTREACH",
+            "All local offices shall perform program informational activities.",
+            "4.905 D-SNAP",
+            "D-SNAP may be implemented because of a major disaster.",
+            "Editor's Notes",
+            "History",
+            "Rules 4.904 eff. 01/01/2026.",
+        ],
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_colorado_ccr(
+        store,
+        version="2026-04-29",
+        release_dir=release_dir,
+    )
+
+    assert report.section_count == 2
+    records = load_provisions(report.provisions_path)
+    by_path = {record.citation_path: record for record in records}
+    assert by_path["us-co/regulation/10-ccr-2506-1/4.904"].heading == "OUTREACH"
+    assert "D-SNAP" not in by_path["us-co/regulation/10-ccr-2506-1/4.904"].body
+    assert by_path["us-co/regulation/10-ccr-2506-1/4.905"].heading == "D-SNAP"
+    assert "major disaster" in by_path["us-co/regulation/10-ccr-2506-1/4.905"].body
+    assert "Editor's Notes" not in by_path["us-co/regulation/10-ccr-2506-1/4.905"].body
+    assert "Rules 4.904" not in by_path["us-co/regulation/10-ccr-2506-1/4.905"].body
 
 
 def test_extract_colorado_ccr_cli_local_release(tmp_path, capsys):

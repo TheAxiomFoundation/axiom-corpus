@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/guidance/2026-06-25-ga-tanf.json",
+      "sha256": "1dabc4fd028c84aa476cbc2b4de665b75c65d6c3c1c01305a5efcbae78326e62"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/guidance/2026-06-25-ga-tanf.json",
+      "sha256": "c9f208c404448f383890e0ffeda440f199b31c37d308a995c434c201593d086e"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/guidance/2026-06-25-ga-tanf.jsonl",
+      "sha256": "248b2c5c4eebcc4c0b4c59b58afa4cda3b9e78e4373f2cdfd4057d9f125750ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-06-25-ga-tanf/official-documents/ga-dfcs-tanf-eligibility-income-resources.html",
+      "sha256": "f9deb16435c69c1e349c9bf0c5180d1e0dae5b9d9fa517cf7aaa809d3bd251de"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/guidance/2026-06-25-ga-tanf/official-documents/ga-dfcs-tanf-eligibility-requirements.html",
+      "sha256": "f9deb16435c69c1e349c9bf0c5180d1e0dae5b9d9fa517cf7aaa809d3bd251de"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "992aaf666d00b9d263b0ec509d4317c02b0d8b76",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ga-tanf-20260625"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-06-25-ga-tanf --manifest manifests/us-ga-tanf-guidance.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-06-25T08:58:47.976023+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8rqgDoqYSr3nLWpHnsImmlgJNL8fK2hBgPRnK+/aBPt+CkXwY5RIZh5qDsxqAX4N8kMyxV7qizJ//M/5e84eAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-25-ga-tanf"
+}

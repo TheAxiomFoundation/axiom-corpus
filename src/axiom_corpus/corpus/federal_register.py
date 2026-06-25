@@ -16,18 +16,17 @@ from urllib.parse import urlencode
 import requests
 from bs4 import BeautifulSoup
 
-from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 FEDERAL_REGISTER_API_URL = "https://www.federalregister.gov/api/v1/documents.json"
-FEDERAL_REGISTER_API_DOCS_URL = (
-    "https://www.federalregister.gov/developers/documentation/api/v1"
-)
+FEDERAL_REGISTER_API_DOCS_URL = "https://www.federalregister.gov/developers/documentation/api/v1"
 FEDERAL_REGISTER_SOURCE_ID = "federal-register"
 FEDERAL_REGISTER_API_SOURCE_FORMAT = "federal-register-api-json"
 FEDERAL_REGISTER_TEXT_SOURCE_FORMAT = "federal-register-raw-text"
+FEDERAL_REGISTER_TEXT_SLICE_SOURCE_FORMAT = "federal-register-raw-text-slice"
 DEFAULT_DOCUMENT_TYPES = ("RULE", "PRORULE", "NOTICE")
 FEDERAL_REGISTER_FIELDS = (
     "abstract",
@@ -101,6 +100,46 @@ class FederalRegisterExtractReport:
     page_count: int
     document_count: int
     text_error_count: int
+    provisions_written: int
+    inventory_path: Path
+    provisions_path: Path
+    coverage_path: Path
+    coverage: ProvisionCoverageReport
+    source_paths: tuple[Path, ...]
+    errors: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class FederalRegisterCfrSectionRef:
+    """A CFR section whose amendatory Federal Register text should be sliced."""
+
+    title: int
+    part: int
+    section: str
+
+    @property
+    def section_number(self) -> str:
+        return f"{self.part}.{self.section}"
+
+    @property
+    def citation_path(self) -> str:
+        return f"us/regulation/{self.title}/{self.part}/{self.section}"
+
+    @property
+    def citation_label(self) -> str:
+        return f"{self.title} CFR {self.section_number}"
+
+
+@dataclass(frozen=True)
+class FederalRegisterCfrSectionExtractReport:
+    """Result from slicing CFR section text out of a Federal Register document."""
+
+    jurisdiction: str
+    document_class: str
+    version: str
+    source_text_path: Path
+    requested_sections: tuple[str, ...]
+    sections_written: int
     provisions_written: int
     inventory_path: Path
     provisions_path: Path
@@ -387,6 +426,190 @@ def extract_federal_register(
     )
 
 
+def extract_federal_register_cfr_sections(
+    store: CorpusArtifactStore,
+    *,
+    version: str,
+    source_text_path: str | Path,
+    sections: Sequence[FederalRegisterCfrSectionRef],
+    document_number: str,
+    document_citation: str,
+    document_title: str,
+    document_type: str,
+    source_url: str,
+    source_as_of: date | str,
+    expression_date: date | str,
+    source_document_citation_path: str | None = None,
+) -> FederalRegisterCfrSectionExtractReport:
+    """Write regulation-section records from a saved Federal Register raw text.
+
+    This is for amendatory text that has not yet appeared as compiled eCFR XML,
+    but is still the authoritative source for the affected CFR section.
+    """
+    section_refs = tuple(sections)
+    if not section_refs:
+        raise ValueError("at least one CFR section reference is required")
+
+    source_path = Path(source_text_path)
+    source_text = source_path.read_text()
+    source_key = _source_key_for_path(store, source_path)
+    source_sha = sha256_bytes(source_text.encode("utf-8"))
+    source_as_of_text = _date_text(source_as_of)
+    expression_date_text = _date_text(expression_date)
+    source_document_path = source_document_citation_path or (
+        f"us/rulemaking/federal-register/{source_as_of_text}/{document_number}"
+    )
+
+    items: list[SourceInventoryItem] = []
+    records: list[ProvisionRecord] = []
+    errors: list[str] = []
+    part_refs = dict.fromkeys((ref.title, ref.part) for ref in section_refs)
+    for title, part in part_refs:
+        part_path = f"us/regulation/{title}/{part}"
+        part_label = f"{title} CFR Part {part}"
+        part_metadata = {
+            "chapter": "IV",
+            "part": str(part),
+            "source_document_citation_path": source_document_path,
+            "source_document_number": document_number,
+            "source_document_title": document_title,
+            "source_document_type": document_type,
+        }
+        part_identifiers = {
+            "cfr:title": str(title),
+            "cfr:part": str(part),
+            "federal-register:document-number": document_number,
+            "federal-register:citation": document_citation,
+        }
+        items.append(
+            SourceInventoryItem(
+                citation_path=part_path,
+                source_url=source_url,
+                source_path=source_key,
+                source_format=FEDERAL_REGISTER_TEXT_SLICE_SOURCE_FORMAT,
+                sha256=source_sha,
+                metadata=part_metadata,
+            )
+        )
+        records.append(
+            ProvisionRecord(
+                jurisdiction="us",
+                document_class=DocumentClass.REGULATION.value,
+                citation_path=part_path,
+                id=deterministic_provision_id(part_path),
+                heading=_federal_register_cfr_part_heading(source_text, title, part) or part_label,
+                citation_label=part_label,
+                version=version,
+                source_url=source_url,
+                source_path=source_key,
+                source_id=FEDERAL_REGISTER_SOURCE_ID,
+                source_format=FEDERAL_REGISTER_TEXT_SLICE_SOURCE_FORMAT,
+                source_document_id=document_number,
+                source_as_of=source_as_of_text,
+                expression_date=expression_date_text,
+                level=1,
+                ordinal=part,
+                kind="part",
+                legal_identifier=part_label,
+                identifiers=part_identifiers,
+                metadata=part_metadata,
+            )
+        )
+
+    section_count = 0
+    for ref in section_refs:
+        body = _federal_register_cfr_section_body(source_text, ref.section_number)
+        if body is None:
+            errors.append(f"missing CFR section block: {ref.citation_label}")
+            continue
+        section_count += 1
+        heading = _federal_register_cfr_heading(body, ref.section_number)
+        identifiers = {
+            "cfr:title": str(ref.title),
+            "cfr:part": str(ref.part),
+            "cfr:section": ref.section_number,
+            "federal-register:document-number": document_number,
+            "federal-register:citation": document_citation,
+        }
+        metadata = {
+            "chapter": "IV",
+            "part": str(ref.part),
+            "section": ref.section_number,
+            "source_document_citation_path": source_document_path,
+            "source_document_number": document_number,
+            "source_document_title": document_title,
+            "source_document_type": document_type,
+        }
+        items.append(
+            SourceInventoryItem(
+                citation_path=ref.citation_path,
+                source_url=source_url,
+                source_path=source_key,
+                source_format=FEDERAL_REGISTER_TEXT_SLICE_SOURCE_FORMAT,
+                sha256=source_sha,
+                metadata=metadata,
+            )
+        )
+        records.append(
+            ProvisionRecord(
+                jurisdiction="us",
+                document_class=DocumentClass.REGULATION.value,
+                citation_path=ref.citation_path,
+                id=deterministic_provision_id(ref.citation_path),
+                body=body,
+                heading=heading,
+                citation_label=ref.citation_label,
+                version=version,
+                source_url=source_url,
+                source_path=source_key,
+                source_id=FEDERAL_REGISTER_SOURCE_ID,
+                source_format=FEDERAL_REGISTER_TEXT_SLICE_SOURCE_FORMAT,
+                source_document_id=document_number,
+                source_as_of=source_as_of_text,
+                expression_date=expression_date_text,
+                parent_citation_path=f"us/regulation/{ref.title}/{ref.part}",
+                parent_id=deterministic_provision_id(f"us/regulation/{ref.title}/{ref.part}"),
+                level=2,
+                ordinal=_cfr_section_ordinal(ref.section),
+                kind="section",
+                legal_identifier=ref.citation_label,
+                identifiers=identifiers,
+                metadata=metadata,
+            )
+        )
+
+    if errors:
+        raise ValueError("; ".join(errors))
+
+    inventory_path = store.inventory_path("us", DocumentClass.REGULATION, version)
+    store.write_inventory(inventory_path, items)
+    provisions_path = store.provisions_path("us", DocumentClass.REGULATION, version)
+    store.write_provisions(provisions_path, records)
+    coverage = compare_provision_coverage(
+        tuple(items),
+        tuple(records),
+        jurisdiction="us",
+        document_class=DocumentClass.REGULATION.value,
+        version=version,
+    )
+    coverage_path = store.coverage_path("us", DocumentClass.REGULATION, version)
+    store.write_json(coverage_path, coverage.to_mapping())
+    return FederalRegisterCfrSectionExtractReport(
+        jurisdiction="us",
+        document_class=DocumentClass.REGULATION.value,
+        version=version,
+        source_text_path=source_path,
+        requested_sections=tuple(ref.citation_path for ref in section_refs),
+        sections_written=section_count,
+        provisions_written=len(records),
+        inventory_path=inventory_path,
+        provisions_path=provisions_path,
+        coverage_path=coverage_path,
+        coverage=coverage,
+        source_paths=(source_path,),
+    )
+
+
 def _snapshot_document(
     store: CorpusArtifactStore,
     *,
@@ -427,9 +650,7 @@ def _snapshot_document(
             body_text = _federal_register_text_body(raw_text)
             if raw_text:
                 text_relative = f"federal-register/documents/{document_number}.txt"
-                text_path = store.source_path(
-                    "us", DocumentClass.RULEMAKING, run_id, text_relative
-                )
+                text_path = store.source_path("us", DocumentClass.RULEMAKING, run_id, text_relative)
                 body_sha = store.write_text(text_path, raw_text + "\n")
                 body_source_key = (
                     f"sources/us/{DocumentClass.RULEMAKING.value}/{run_id}/{text_relative}"
@@ -496,6 +717,77 @@ def _document_item_and_record(
         metadata=metadata,
     )
     return item, record
+
+
+def _source_key_for_path(store: CorpusArtifactStore, source_path: Path) -> str:
+    resolved_source = source_path.resolve()
+    resolved_root = store.root.resolve()
+    try:
+        return resolved_source.relative_to(resolved_root).as_posix()
+    except ValueError:
+        return source_path.as_posix()
+
+
+def _federal_register_cfr_section_body(text: str, section_number: str) -> str | None:
+    start_pattern = re.compile(
+        rf"(?m)^Sec\.\s+{re.escape(section_number)}(?:\s|$)",
+    )
+    start_match = start_pattern.search(text)
+    if start_match is None:
+        return None
+    end_pattern = re.compile(
+        r"(?m)^(?:(?P<instruction>0\n\d+\.\s+Section\s+"
+        r"(?P<section>\d+\.\d+[A-Za-z]?)\b)|PART\s+\d+--|"
+        r"Robert F\. Kennedy|\[FR Doc\.)|\n\n+Sec\.\s+\d+\.\d+[A-Za-z]?\b"
+    )
+    position = start_match.end()
+    while True:
+        end_match = end_pattern.search(text, position)
+        if end_match is None:
+            end_index = len(text)
+            break
+        if end_match.group("section") == section_number:
+            position = end_match.end()
+            continue
+        end_index = end_match.start()
+        break
+    body = text[start_match.start() : end_index].strip()
+    return _strip_federal_register_tail(body)
+
+
+def _strip_federal_register_tail(body: str) -> str:
+    return re.sub(r"\n</pre>.*\Z", "", body, flags=re.S).strip()
+
+
+def _federal_register_cfr_part_heading(text: str, title: int, part: int) -> str | None:
+    del title
+    pattern = re.compile(rf"(?m)^PART\s+{part}--(?P<heading>.+)$")
+    match = pattern.search(text)
+    if match is None:
+        return None
+    return _clean_text(match.group("heading"))
+
+
+def _federal_register_cfr_heading(body: str, section_number: str) -> str:
+    heading_block = body.split("\n\n", 1)[0]
+    heading = re.sub(
+        rf"^Sec\.\s+{re.escape(section_number)}\s*",
+        "",
+        heading_block,
+    )
+    heading = _clean_text(heading)
+    return heading.rstrip(".") or section_number
+
+
+def _cfr_section_ordinal(section: str) -> int:
+    match = re.match(r"(?P<digits>\d+)(?P<suffix>[a-z]*)\Z", section, flags=re.I)
+    if match is None:
+        raise ValueError(f"unsupported CFR section number: {section!r}")
+    suffix = match.group("suffix").lower()
+    suffix_offset = 0
+    for char in suffix:
+        suffix_offset = suffix_offset * 26 + (ord(char) - ord("a") + 1)
+    return int(match.group("digits")) * 100 + suffix_offset
 
 
 def _documents_query_params(
@@ -586,7 +878,9 @@ def _document_metadata(
         "json_url": document.get("json_url"),
         "regulations_dot_gov_url": document.get("regulations_dot_gov_url"),
         "metadata_source_path": fetched.metadata_source_key,
-        "body_status": "raw_text" if fetched.body_source_format == FEDERAL_REGISTER_TEXT_SOURCE_FORMAT else "metadata_fallback",
+        "body_status": "raw_text"
+        if fetched.body_source_format == FEDERAL_REGISTER_TEXT_SOURCE_FORMAT
+        else "metadata_fallback",
     }
     if fetched.text_error:
         metadata["text_error"] = fetched.text_error

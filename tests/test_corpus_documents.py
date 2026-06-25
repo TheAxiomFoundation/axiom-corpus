@@ -931,6 +931,70 @@ documents:
     assert eligibility.metadata["page_start"] == 2
 
 
+def test_extract_official_documents_respects_labeled_pdf_end_page(tmp_path):
+    pdf_path = tmp_path / "rules.pdf"
+    document = fitz.open()
+    first_page = document.new_page()
+    first_page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "49-001",
+                "FIRST SECTION",
+                ".1 First section text.",
+            ]
+        ),
+    )
+    second_page = document.new_page()
+    second_page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "49-002",
+                "SECOND SECTION",
+                ".1 Second section text.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: bounded-rule
+    jurisdiction: us-az
+    document_class: regulation
+    title: Bounded Rules
+    source_url: https://apps.azsos.gov/public_services/Title_06/6-05.pdf
+    citation_path: us-az/regulation/aac/title-6/chapter-5/article-49
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_label_pattern: "^(?P<label>49-[0-9]{{3}})$"
+      label_only_heading_pattern: "^[A-Z ]+$"
+      start_page: 1
+      end_page: 1
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-05-12-bounded",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-az/regulation/aac/title-6/chapter-5/article-49",
+        "us-az/regulation/aac/title-6/chapter-5/article-49/49-001",
+    ]
+    assert records[1].body == ".1 First section text."
+
+
 def test_extract_labeled_pdf_sections_formats_section_labels(
     tmp_path: Path,
 ) -> None:

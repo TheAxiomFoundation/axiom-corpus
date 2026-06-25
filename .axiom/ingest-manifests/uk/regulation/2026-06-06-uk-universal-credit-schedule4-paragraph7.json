@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.json",
+      "sha256": "0abd506c0aa4eeec5795c34d002b843b8381009b5034dc4a56e239ef2e4f5af3"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.json",
+      "sha256": "fe34046600ece4a8a32e42fdbcbb3794fc4a46dc55c67bd4268823c5f9a6e792"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.jsonl",
+      "sha256": "ec0a934e808595ca780c67ef67f483cb1d6f2301e04e0010fe9e44358c56eea9"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7/uksi/2013/376/schedule-4-paragraph-7.xml",
+      "sha256": "9cfc83f34a14fa6e01645578e87ac95359fe3140873c8b4e56cb6db966b813be"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7fed3d687f26f1814c54028ff2dfa9b1b6437f95",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-sign-uk-manual-provisions-20260606"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-06-06-uk-universal-credit-schedule4-paragraph7 --source clml --citation uksi/2013/376/schedule/4/paragraph/7 --source-as-of 2026-06-06 --expression-date 2026-04-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-06-06T20:31:47.557836+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "codex-agent-2026-06-06",
+    "value": "xBIw7fO7u/sT2vmiQTRykk0p9dJEzf6j47BHA21YHPHV0uPhJ9HG+vanH/JQ6xKQVxAPI9SJv6hJYAAKh8fKDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-06-uk-universal-credit-schedule4-paragraph7"
+}

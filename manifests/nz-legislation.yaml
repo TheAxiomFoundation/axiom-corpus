@@ -1,0 +1,54 @@
+documents:
+- source_id: nz-legislation-bulk-xml
+  jurisdiction: nz
+  document_class: statute
+  citation_path: nz/statute/legislation.govt.nz
+  title: New Zealand Legislation bulk XML
+  source_url: https://catalogue.data.govt.nz/dataset/new-zealand-legislation
+  source_format: xml
+  source_as_of: '2026-06-16'
+  metadata:
+    primary_source: true
+    source_authority: New Zealand Parliamentary Counsel Office
+    source_family: statute
+    source_status: primary_official
+    source_discovery_group: nz/legislation/statute
+    source_note: >
+      Official XML directory structure for New Zealand Acts and historical
+      versions published through data.govt.nz by the Parliamentary Counsel Office.
+- source_id: nz-legislation-secondary-bulk-xml
+  jurisdiction: nz
+  document_class: regulation
+  citation_path: nz/regulation/legislation.govt.nz
+  title: New Zealand secondary legislation bulk XML
+  source_url: https://catalogue.data.govt.nz/dataset/new-zealand-legislation
+  source_format: xml
+  source_as_of: '2026-06-16'
+  metadata:
+    primary_source: true
+    source_authority: New Zealand Parliamentary Counsel Office
+    source_family: regulation
+    source_status: primary_official
+    source_discovery_group: nz/legislation/regulation
+    source_note: >
+      Official XML directory structure for New Zealand secondary legislation and
+      historical versions published through data.govt.nz by the Parliamentary
+      Counsel Office.
+- source_id: nz-legislation-bills-sops-bulk-xml
+  jurisdiction: nz
+  document_class: rulemaking
+  citation_path: nz/rulemaking/legislation.govt.nz
+  title: New Zealand Bills and Supplementary Order Papers bulk XML
+  source_url: https://catalogue.data.govt.nz/dataset/new-zealand-legislation
+  source_format: xml
+  source_as_of: '2026-06-16'
+  metadata:
+    primary_source: true
+    source_authority: New Zealand Parliamentary Counsel Office
+    source_family: rulemaking
+    source_status: primary_official
+    source_discovery_group: nz/legislation/rulemaking
+    source_note: >
+      Official XML directory structure for New Zealand Bills and Supplementary
+      Order Papers published through data.govt.nz by the Parliamentary Counsel
+      Office.

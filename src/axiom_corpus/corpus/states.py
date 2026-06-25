@@ -52,6 +52,7 @@ WASHINGTON_USER_AGENT = "axiom-corpus/0.1"
 CALIFORNIA_LEGINFO_BULK_URL = "https://downloads.leginfo.legislature.ca.gov/pubinfo_2025.zip"
 CALIFORNIA_LEGINFO_BASE_URL = "https://leginfo.legislature.ca.gov"
 CALIFORNIA_BULK_SOURCE_FORMAT = "california-leginfo-bulk"
+CALIFORNIA_SECTION_HTML_SOURCE_FORMAT = "california-leginfo-section-html"
 TEXAS_STATUTES_BASE_URL = "https://statutes.capitol.texas.gov"
 TEXAS_TCAS_API_BASE = "https://tcss.legis.texas.gov/api"
 TEXAS_TCAS_RESOURCE_BASE = "https://tcss.legis.texas.gov/resources"
@@ -2344,6 +2345,128 @@ def extract_california_codes_bulk(
         coverage=coverage,
         source_paths=tuple(source_paths),
         skipped_source_count=skipped_source_count,
+        errors=tuple(errors),
+    )
+
+
+def extract_california_code_sections(
+    store: CorpusArtifactStore,
+    *,
+    version: str,
+    sections: tuple[str, ...],
+    source_as_of: str | None = None,
+    expression_date: date | str | None = None,
+    download_dir: str | Path | None = None,
+    request_delay_seconds: float = 0.25,
+    timeout_seconds: float = 60.0,
+    request_attempts: int = 3,
+) -> StateStatuteExtractReport:
+    """Snapshot selected official California Legislative Counsel code sections."""
+    jurisdiction = "us-ca"
+    selected = tuple(dict.fromkeys(_california_section_spec(section) for section in sections))
+    if not selected:
+        raise ValueError("extract_california_code_sections: sections must be non-empty")
+    run_id = _california_sections_run_id(version, selected)
+    source_as_of_text = source_as_of or version
+    expression_date_text = _date_text(expression_date, source_as_of_text)
+    session = requests.Session()
+    session.headers.update({"User-Agent": "axiom-corpus/0.1"})
+    cache_root = Path(download_dir) if download_dir is not None else None
+
+    items: list[SourceInventoryItem] = []
+    records: list[ProvisionRecord] = []
+    source_paths: list[Path] = []
+    errors: list[str] = []
+    seen_citation_paths: set[str] = set()
+
+    for index, (law_code, section_num) in enumerate(selected):
+        if index:
+            time.sleep(max(request_delay_seconds, 0.0))
+        source_url = _california_section_url(law_code, section_num)
+        relative_name = _california_section_html_relative_name(law_code, section_num)
+        try:
+            html_bytes = _load_california_section_html(
+                session,
+                source_url=source_url,
+                download_root=cache_root,
+                relative_name=relative_name,
+                timeout_seconds=timeout_seconds,
+                request_attempts=request_attempts,
+            )
+        except requests.RequestException as exc:
+            errors.append(f"{law_code} {section_num}: {exc}")
+            continue
+        html_sha = sha256_bytes(html_bytes)
+        if not _california_html_has_section(html_bytes):
+            errors.append(f"{law_code} {section_num}: no single_law_section found")
+            continue
+        section = _california_section_from_html(
+            law_code=law_code,
+            section=section_num,
+            html_bytes=html_bytes,
+            content_sha256=html_sha,
+        )
+        if section.citation_path in seen_citation_paths:
+            continue
+        seen_citation_paths.add(section.citation_path)
+        artifact_path = store.source_path(
+            jurisdiction,
+            DocumentClass.STATUTE,
+            run_id,
+            relative_name,
+        )
+        store.write_bytes(artifact_path, html_bytes)
+        source_paths.append(artifact_path)
+        source_key = _state_source_key(jurisdiction, run_id, relative_name)
+        items.append(
+            SourceInventoryItem(
+                citation_path=section.citation_path,
+                source_url=section.source_url,
+                source_path=source_key,
+                source_format=CALIFORNIA_SECTION_HTML_SOURCE_FORMAT,
+                sha256=html_sha,
+                metadata=_california_section_metadata(section),
+            )
+        )
+        records.append(
+            _california_section_provision(
+                section,
+                version=run_id,
+                source_path=source_key,
+                source_format=CALIFORNIA_SECTION_HTML_SOURCE_FORMAT,
+                source_as_of=source_as_of_text,
+                expression_date=expression_date_text,
+            )
+        )
+
+    if not items:
+        detail = f": {'; '.join(errors)}" if errors else ""
+        raise ValueError(f"no California code sections extracted{detail}")
+
+    inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
+    store.write_inventory(inventory_path, items)
+    provisions_path = store.provisions_path(jurisdiction, DocumentClass.STATUTE, run_id)
+    store.write_provisions(provisions_path, records)
+    coverage = compare_provision_coverage(
+        tuple(items),
+        tuple(records),
+        jurisdiction=jurisdiction,
+        document_class=DocumentClass.STATUTE.value,
+        version=run_id,
+    )
+    coverage_path = store.coverage_path(jurisdiction, DocumentClass.STATUTE, run_id)
+    store.write_json(coverage_path, coverage.to_mapping())
+    return StateStatuteExtractReport(
+        jurisdiction=jurisdiction,
+        title_count=len({law_code for law_code, _ in selected}),
+        container_count=0,
+        section_count=len(records),
+        provisions_written=len(records),
+        inventory_path=inventory_path,
+        provisions_path=provisions_path,
+        coverage_path=coverage_path,
+        coverage=coverage,
+        source_paths=tuple(source_paths),
         errors=tuple(errors),
     )
 
@@ -5012,11 +5135,244 @@ def _california_section_from_row(
     )
 
 
+def _california_section_from_html(
+    *,
+    law_code: str,
+    section: str,
+    html_bytes: bytes,
+    content_sha256: str,
+) -> _CaliforniaSection:
+    soup = BeautifulSoup(html_bytes, "html.parser")
+    section_node = soup.find(id="single_law_section")
+    body = _california_html_section_body(section_node or soup)
+    heading = _california_html_section_heading(section_node or soup, section=section)
+    source_id = _california_html_source_id(html_bytes)
+    html_text = html_bytes.decode("utf-8", errors="replace")
+    history = _california_html_history(section_node or soup)
+    return _CaliforniaSection(
+        law_code=law_code,
+        section=section,
+        heading=heading,
+        body=body,
+        source_id=source_id or f"{law_code}-{section}",
+        source_url=_california_section_url(law_code, section),
+        parent_citation_path=f"us-ca/statute/{law_code.lower()}",
+        level=2,
+        ordinal=_section_ordinal(section),
+        references_to=_california_references(html_bytes, self_law_code=law_code, self_section=section),
+        effective_date=_california_html_effective_date(html_text),
+        law_section_version_id=source_id,
+        active_flg=None,
+        history=history,
+        op_statues=None,
+        op_chapter=None,
+        op_section=None,
+        division=None,
+        title=None,
+        part=None,
+        chapter=None,
+        article=None,
+        content_file=None,
+        content_sha256=content_sha256,
+    )
+
+
 def _california_section_url(law_code: str, section: str) -> str:
     return (
         f"{CALIFORNIA_LEGINFO_BASE_URL}/faces/codes_displaySection.xhtml"
         f"?lawCode={quote(law_code)}&sectionNum={quote(section)}"
     )
+
+
+def _california_section_spec(value: str) -> tuple[str, str]:
+    text = value.strip()
+    if not text:
+        raise ValueError("California section spec must not be empty")
+    parsed = urlparse(text)
+    if parsed.scheme and parsed.netloc:
+        query = parse_qs(parsed.query)
+        law_code = (query.get("lawCode") or query.get("lawcode") or [""])[0].strip().upper()
+        section = (query.get("sectionNum") or query.get("sectionnum") or [""])[0].strip()
+        if law_code and section:
+            return (law_code, section)
+        raise ValueError(f"California section URL must include lawCode and sectionNum: {value!r}")
+    if ":" in text:
+        law_code, section = text.split(":", 1)
+    else:
+        parts = text.split(None, 1)
+        if len(parts) != 2:
+            raise ValueError(
+                "California section specs must be LAW_CODE:SECTION, LAW_CODE SECTION, or a LegInfo URL"
+            )
+        law_code, section = parts
+    law_code = law_code.strip().upper()
+    section = section.strip()
+    if not re.fullmatch(r"[A-Z0-9]+", law_code) or not section:
+        raise ValueError(f"invalid California section spec: {value!r}")
+    return (law_code, section)
+
+
+def _california_sections_run_id(version: str, sections: tuple[tuple[str, str], ...]) -> str:
+    scope = "-".join(
+        f"{law_code.lower()}-{_california_section_token(section)}"
+        for law_code, section in sections
+    )
+    if len(scope) > 120:
+        scope = hashlib.sha256(scope.encode("utf-8")).hexdigest()[:16]
+    return f"{version}-us-ca-sections-{scope}"
+
+
+def _california_section_html_relative_name(law_code: str, section: str) -> str:
+    return (
+        "california-leginfo-sections/"
+        f"{law_code.upper()}-{_california_section_token(section)}.html"
+    )
+
+
+def _load_california_section_html(
+    session: requests.Session,
+    *,
+    source_url: str,
+    download_root: Path | None,
+    relative_name: str,
+    timeout_seconds: float,
+    request_attempts: int,
+) -> bytes:
+    cache_path = download_root / relative_name if download_root is not None else None
+    if cache_path is not None and cache_path.exists():
+        content = cache_path.read_bytes()
+        if _california_html_has_section(content):
+            return content
+    attempts = max(request_attempts, 1)
+    response: requests.Response | None = None
+    for attempt in range(attempts):
+        response = session.get(source_url, timeout=timeout_seconds)
+        if response.status_code < 500 or attempt == attempts - 1:
+            break
+        time.sleep(min(2**attempt, 8))
+    assert response is not None
+    response.raise_for_status()
+    content = _resolve_california_multiple_section_html(
+        session,
+        source_url=source_url,
+        html_bytes=response.content,
+        timeout_seconds=timeout_seconds,
+    )
+    if cache_path is not None:
+        cache_path.parent.mkdir(parents=True, exist_ok=True)
+        cache_path.write_bytes(content)
+    return content
+
+
+def _california_html_has_section(html_bytes: bytes) -> bool:
+    return BeautifulSoup(html_bytes, "html.parser").find(id="single_law_section") is not None
+
+
+def _resolve_california_multiple_section_html(
+    session: requests.Session,
+    *,
+    source_url: str,
+    html_bytes: bytes,
+    timeout_seconds: float,
+) -> bytes:
+    if _california_html_has_section(html_bytes):
+        return html_bytes
+    soup = BeautifulSoup(html_bytes, "html.parser")
+    form = soup.find("form", id="selectFromMultiples")
+    if not isinstance(form, Tag):
+        return html_bytes
+    inputs: dict[str, str] = {}
+    for input_tag in form.find_all("input"):
+        name = input_tag.get("name")
+        if not isinstance(name, str) or not name:
+            continue
+        value = input_tag.get("value", "")
+        inputs[name] = value if isinstance(value, str) else ""
+    action = form.get("action")
+    action_path = action if isinstance(action, str) and action else "/faces/selectFromMultiples.xhtml"
+    selected: bytes | None = None
+    for link in form.find_all("a", onclick=re.compile("op_statues")):
+        onclick = link.get("onclick")
+        if not isinstance(onclick, str):
+            continue
+        params = dict(re.findall(r"'([^']+)':'([^']*)'", onclick))
+        command_keys = [key for key in params if key.startswith("selectFromMultiples:")]
+        if not command_keys:
+            continue
+        command_key = command_keys[0]
+        payload = inputs | params | {command_key: params[command_key]}
+        response = session.post(
+            urljoin(source_url, action_path),
+            data=payload,
+            timeout=timeout_seconds,
+        )
+        try:
+            response.raise_for_status()
+        except requests.RequestException:
+            continue
+        if _california_html_has_section(response.content):
+            selected = response.content
+    return selected or html_bytes
+
+
+def _california_html_section_body(root: Tag | BeautifulSoup) -> str | None:
+    section_div = _california_html_current_section_div(root)
+    search_root: Tag | BeautifulSoup = section_div or root
+    blocks: list[str] = []
+    for elem in search_root.find_all(["p", "i"]):
+        text = _clean_text(elem.get_text(" ", strip=True))
+        if text:
+            blocks.append(text)
+    if blocks:
+        return "\n".join(dict.fromkeys(blocks)).strip() or None
+    text = _clean_multiline_text(search_root.get_text("\n", strip=True))
+    return text or None
+
+
+def _california_html_section_heading(
+    root: Tag | BeautifulSoup,
+    *,
+    section: str,
+) -> str | None:
+    section_div = _california_html_current_section_div(root)
+    if section_div is None:
+        return None
+    h6 = section_div.find("h6")
+    if not isinstance(h6, Tag):
+        return None
+    heading = _california_strip_section_prefix(h6.get_text(" ", strip=True), section)
+    return heading if heading and heading.rstrip(".") != section.rstrip(".") else None
+
+
+def _california_html_current_section_div(root: Tag | BeautifulSoup) -> Tag | None:
+    for heading in root.find_all(["h6", "h5", "h4"]):
+        text = _clean_text(heading.get_text(" ", strip=True))
+        if re.match(r"^\d+(?:\.\d+)*[A-Za-z0-9.-]*\.", text):
+            parent = heading.find_parent("div")
+            if isinstance(parent, Tag):
+                return parent
+    return None
+
+
+def _california_html_source_id(html_bytes: bytes) -> str | None:
+    html_text = html_bytes.decode("utf-8", errors="replace")
+    match = re.search(r"sectionuid':'(?P<id>[^']+)'", html_text)
+    return match.group("id") if match else None
+
+
+def _california_html_history(root: Tag | BeautifulSoup) -> str | None:
+    section_div = _california_html_current_section_div(root)
+    search_root: Tag | BeautifulSoup = section_div or root
+    italics = [
+        _clean_text(elem.get_text(" ", strip=True))
+        for elem in search_root.find_all("i")
+    ]
+    return next((text for text in reversed(italics) if text), None)
+
+
+def _california_html_effective_date(html_text: str) -> str | None:
+    match = re.search(r"Effective (?P<date>[A-Z][a-z]+ \d{1,2}, \d{4})", html_text)
+    return match.group("date") if match else None
 
 
 def _california_section_token(section: str) -> str:
@@ -5153,6 +5509,7 @@ def _california_section_provision(
     *,
     version: str,
     source_path: str,
+    source_format: str = CALIFORNIA_BULK_SOURCE_FORMAT,
     source_as_of: str,
     expression_date: str,
 ) -> ProvisionRecord:
@@ -5169,7 +5526,7 @@ def _california_section_provision(
         source_url=section.source_url,
         source_path=source_path,
         source_id=section.source_id,
-        source_format=CALIFORNIA_BULK_SOURCE_FORMAT,
+        source_format=source_format,
         source_as_of=source_as_of,
         expression_date=expression_date,
         parent_citation_path=section.parent_citation_path,

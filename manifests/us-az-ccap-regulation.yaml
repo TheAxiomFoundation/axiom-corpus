@@ -1,0 +1,38 @@
+documents:
+  - source_id: az-sos-aac-title-6-chapter-5
+    jurisdiction: us-az
+    document_class: regulation
+    citation_path: us-az/regulation/aac/title-6/chapter-5/article-49
+    title: Arizona Administrative Code Title 6, Chapter 5, Article 49 - Child Care Assistance
+    source_url: https://apps.azsos.gov/public_services/Title_06/6-05.pdf
+    download_url: https://web.archive.org/web/20251030203455if_/https://apps.azsos.gov/public_services/Title_06/6-05.pdf
+    source_format: pdf
+    source_as_of: "2025-10-30"
+    expression_date: "2025-10-30"
+    extraction:
+      segmentation: labeled_sections
+      section_label_pattern: "^(?P<label>R6-5-[0-9]+)\\.$"
+      label_only_heading_pattern: "^[A-Z][A-Za-z0-9,;:'’().\\- /]+$"
+      label_only_requires_heading: true
+      start_page: 20
+      end_page: 43
+      drop_line_patterns:
+        - "^TITLE 6\\. ECONOMIC SECURITY$"
+        - "^CHAPTER 5\\. DEPARTMENT OF ECONOMIC SECURITY$"
+        - "^Title 6$"
+        - "^6 A\\.A\\.C\\. 5$"
+        - "^Arizona Administrative Code$"
+        - "^CHAPTER 5\\. DEPARTMENT OF ECONOMIC SECURITY - SOCIAL SERVICES$"
+        - "^March 31, 2019$"
+        - "^Supp\\. [0-9-]+$"
+        - "^Page [0-9]+$"
+    metadata:
+      primary_source: true
+      source_authority: Arizona Secretary of State
+      document_subtype: administrative_code_chapter
+      program: Child Care Assistance
+      federal_program: CCDF
+      source_discovery_group: us-az/regulation/ccap
+      discovered_via: active_policyengine_parity_review
+      pe_surface: az_ccap
+      source_access_note: Live official AZSOS PDF URL returns a Cloudflare challenge to unattended HTTP clients; download_url uses the Internet Archive snapshot of the official PDF.

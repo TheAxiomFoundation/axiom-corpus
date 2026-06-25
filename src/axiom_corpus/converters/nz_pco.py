@@ -33,11 +33,12 @@ Usage:
 
 import contextlib
 import re
+from collections import Counter
 from collections.abc import Iterator
 from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
-from typing import Literal
+from typing import Literal, cast
 from xml.etree import ElementTree as ET
 
 import httpx
@@ -46,6 +47,33 @@ from pydantic import BaseModel, Field
 # NZ legislation types
 NZLegislationType = Literal["act", "bill", "regulation", "sop"]
 NZLegislationSubtype = Literal["public", "private", "local", "government", "members", "imperial"]
+NZ_LEGISLATION_SUBTYPES: tuple[NZLegislationSubtype, ...] = (
+    "public",
+    "private",
+    "local",
+    "government",
+    "members",
+    "imperial",
+)
+
+
+def _coerce_subtype(value: str | None) -> NZLegislationSubtype:
+    if value in NZ_LEGISLATION_SUBTYPES:
+        return cast(NZLegislationSubtype, value)
+    return "public"
+
+
+def _number_value(value: str | None) -> int:
+    if not value:
+        return 0
+    match = re.match(r"\d+", value)
+    return int(match.group(0)) if match else 0
+
+
+def _provision_path_component(value: str) -> str:
+    token = value.strip().strip("()")
+    token = re.sub(r"[^0-9A-Za-z]+", "-", token).strip("-")
+    return token or "unnumbered"
 
 
 @dataclass
@@ -58,6 +86,7 @@ class NZProvision:
     text: str = ""  # Direct text content
     subprovisions: list[NZProvision] = field(default_factory=list)
     paragraphs: list[NZLabeledParagraph] = field(default_factory=list)
+    path_token: str | None = None  # Collision-safe token for corpus citation paths
 
 
 @dataclass
@@ -94,6 +123,8 @@ class NZLegislation:
     # Administrative
     administering_ministry: str | None = None
     version_date: date | None = None
+    document_number_token: str | None = None
+    source_document_path: str | None = None
 
     @property
     def citation(self) -> str:
@@ -106,10 +137,11 @@ class NZLegislation:
     @property
     def url(self) -> str:
         """Return legislation.govt.nz URL."""
-        return (
-            f"https://www.legislation.govt.nz/{self.legislation_type}/"
-            f"{self.subtype}/{self.year}/{self.number:04d}/latest/contents.html"
+        document_path = self.source_document_path or (
+            f"{self.legislation_type}/{self.subtype}/"
+            f"{self.year}/{self.document_number_token or f'{self.number:04d}'}"
         )
+        return f"https://www.legislation.govt.nz/{document_path}/latest/contents.html"
 
 
 class NZRSSItem(BaseModel):
@@ -163,7 +195,7 @@ class NZPCOConverter:
     def __enter__(self) -> NZPCOConverter:
         return self
 
-    def __exit__(self, *args) -> None:
+    def __exit__(self, *args: object) -> None:
         self.close()
 
     # =========================================================================
@@ -212,15 +244,27 @@ class NZPCOConverter:
         # Extract attributes
         leg_id = root.get("id", "")
         year = int(root.get("year", "0"))
-        number = int(root.get("act.no", root.get("bill.no", root.get("regulation.no", "0"))))
+        number_text = (
+            root.get("act.no")
+            or root.get("bill.no")
+            or root.get("regulation.no")
+            or root.get("sr.no")
+            or root.get("sop.no")
+            or "0"
+        )
+        number = _number_value(number_text)
+        split_letter = root.get("split.letter")
+        document_number_token = (
+            f"{number_text}-{split_letter}" if split_letter else None
+        )
         subtype_raw = root.get(
-            "act.type", root.get("bill.type", root.get("regulation.type", "public"))
+            "act.type",
+            root.get(
+                "bill.type",
+                root.get("sop.type", root.get("regulation.type", root.get("sr.type", "public"))),
+            ),
         )
-        subtype: NZLegislationSubtype = (
-            subtype_raw
-            if subtype_raw in ("public", "private", "local", "government", "members", "imperial")
-            else "public"
-        )
+        subtype = _coerce_subtype(subtype_raw)
         stage = root.get("stage", "in-force")
 
         # Parse dates
@@ -253,14 +297,20 @@ class NZPCOConverter:
         if long_title_elem is not None:
             long_title = self._extract_text_recursive(long_title_elem)
 
-        # Parse body provisions
+        # Parse provisions. PCO documents nest most substantive provisions in
+        # parts, subparts, and schedules rather than as direct body children.
         provisions = []
-        body = root.find("body")
-        if body is not None:
-            for prov in body.findall("prov"):
-                parsed = self._parse_provision(prov)
-                if parsed:
-                    provisions.append(parsed)
+        seen_provision_ids: set[str] = set()
+        for prov in root.findall(".//prov"):
+            prov_id = prov.get("id", "")
+            if prov_id and prov_id in seen_provision_ids:
+                continue
+            parsed = self._parse_provision(prov)
+            if parsed:
+                provisions.append(parsed)
+            if prov_id:
+                seen_provision_ids.add(prov_id)
+        self._assign_path_tokens(provisions)
 
         return NZLegislation(
             id=leg_id,
@@ -275,6 +325,7 @@ class NZPCOConverter:
             provisions=provisions,
             administering_ministry=ministry,
             version_date=version_date,
+            document_number_token=document_number_token,
         )
 
     def _parse_provision(self, elem: ET.Element) -> NZProvision | None:
@@ -311,6 +362,8 @@ class NZPCOConverter:
                 text_elem = para.find("text")
                 if text_elem is not None:
                     text += self._extract_text_recursive(text_elem) + " "
+                for table_text in self._extract_table_texts(para):
+                    text += table_text + " "
 
                 # Parse label-paras within para
                 for lp in para.findall("label-para"):
@@ -330,6 +383,16 @@ class NZPCOConverter:
             paragraphs=paragraphs,
         )
 
+    def _assign_path_tokens(self, provisions: list[NZProvision]) -> None:
+        tokens = [_provision_path_component(provision.label) for provision in provisions]
+        token_counts = Counter(tokens)
+        for provision, token in zip(provisions, tokens, strict=True):
+            if token_counts[token] == 1:
+                provision.path_token = token
+                continue
+            id_token = _provision_path_component(provision.id)
+            provision.path_token = f"{token}-{id_token}" if id_token else token
+
     def _parse_subprovision(self, elem: ET.Element) -> NZProvision | None:
         """Parse a <subprov> element."""
         # Get label
@@ -346,6 +409,8 @@ class NZPCOConverter:
             text_elem = para.find("text")
             if text_elem is not None:
                 text += self._extract_text_recursive(text_elem) + " "
+            for table_text in self._extract_table_texts(para):
+                text += table_text + " "
 
             # Parse nested label-paras
             for lp in para.findall("label-para"):
@@ -395,7 +460,7 @@ class NZPCOConverter:
             if child_lp == elem:  # pragma: no cover
                 continue  # pragma: no cover
             # Only parse direct children, not descendants
-            parent = child_lp  # pragma: no cover
+            parent: ET.Element | None = child_lp  # pragma: no cover
             while parent is not None:  # pragma: no cover
                 parent = self._find_parent(elem, parent)  # pragma: no cover
                 if parent == elem:  # pragma: no cover
@@ -454,6 +519,32 @@ class NZPCOConverter:
                 parts.append(child.tail.strip())
 
         return " ".join(filter(None, parts))
+
+    def _extract_table_texts(self, elem: ET.Element) -> list[str]:
+        """Extract table rows from a subtree as compact source text."""
+        return [
+            table_text
+            for table in elem.findall(".//table")
+            if (table_text := self._extract_table_text(table))
+        ]
+
+    def _extract_table_text(self, table: ET.Element) -> str:
+        rows: list[str] = []
+        for row in table.iter("row"):
+            cells: list[str] = []
+            for cell in row:
+                cell_text = self._extract_text_recursive(cell)
+                if cell_text:
+                    cells.append(cell_text)
+            if cells:
+                rows.append(" | ".join(cells))
+                continue
+            row_text = self._extract_text_recursive(row)
+            if row_text:
+                rows.append(row_text)
+        if rows:
+            return "\n".join(rows)
+        return self._extract_text_recursive(table)
 
     def _parse_date(self, date_str: str | None) -> date | None:
         """Parse a date string in YYYY-MM-DD format."""
@@ -516,7 +607,7 @@ class NZPCOConverter:
 
         return items
 
-    def _parse_atom_entry(self, entry: ET.Element, ns: dict) -> NZRSSItem | None:
+    def _parse_atom_entry(self, entry: ET.Element, ns: dict[str, str]) -> NZRSSItem | None:
         """Parse an Atom <entry> element."""
         # Get ID (usually the URL)
         id_elem = entry.find("atom:id", ns)

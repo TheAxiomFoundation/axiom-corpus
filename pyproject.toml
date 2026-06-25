@@ -36,6 +36,7 @@ dependencies = [
     "modal>=0.50",
     "beautifulsoup4>=4.12",
     "boto3>=1.35",
+    "cryptography>=46.0",
     "playwright>=1.57.0",
     "pymupdf>=1.25.0",  # PDF text extraction for IRS guidance
     "openpyxl>=3.1.5",

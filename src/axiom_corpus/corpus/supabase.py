@@ -22,6 +22,8 @@ DEFAULT_AXIOM_SUPABASE_URL = "https://swocpijqqahhuwtuahwc.supabase.co"
 DEFAULT_SERVICE_KEY_ENV = "SUPABASE_SERVICE_ROLE_KEY"
 DEFAULT_ACCESS_TOKEN_ENV = "SUPABASE_ACCESS_TOKEN"
 USER_AGENT = "axiom-corpus/0.1"
+POSTGRES_INT32_MIN = -(2**31)
+POSTGRES_INT32_MAX = 2**31 - 1
 
 SUPABASE_PROVISIONS_COLUMNS = (
     "id",
@@ -387,8 +389,24 @@ def iter_supabase_rows(
     *,
     versioned_ids: bool = True,
 ) -> Iterator[dict[str, object]]:
-    for record in records:
-        yield provision_to_supabase_row(record, versioned_ids=versioned_ids)
+    for index, record in enumerate(records):
+        row = provision_to_supabase_row(record, versioned_ids=versioned_ids)
+        ordinal = row.get("ordinal")
+        if (
+            isinstance(ordinal, int)
+            and not isinstance(ordinal, bool)
+            and not POSTGRES_INT32_MIN <= ordinal <= POSTGRES_INT32_MAX
+        ):
+            raw_identifiers = row.get("identifiers")
+            identifiers: dict[str, object] = (
+                dict(raw_identifiers) if isinstance(raw_identifiers, Mapping) else {}
+            )
+            identifiers.setdefault("corpus:ordinal", ordinal)
+            row["identifiers"] = identifiers
+            # Production `corpus.provisions.ordinal` is still int4. Preserve
+            # sibling order for Supabase queries without mutating corpus JSON.
+            row["ordinal"] = index
+        yield row
 
 
 def write_supabase_rows_jsonl(path: str | Path, records: Iterable[ProvisionRecord]) -> int:

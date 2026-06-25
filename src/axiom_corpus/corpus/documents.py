@@ -752,6 +752,10 @@ def _filtered_pdf_lines(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[tuple[str, int], ...]:
     start_page = _positive_int(extraction.get("start_page"), default=1)
+    end_page = extraction.get("end_page")
+    parsed_end_page = _positive_int(end_page, default=0) if end_page is not None else None
+    if parsed_end_page is not None and parsed_end_page < start_page:
+        raise ValueError("end_page must be greater than or equal to start_page")
     drop_lines = {str(line).strip() for line in extraction.get("drop_lines", ())}
     drop_line_patterns = tuple(
         re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
@@ -761,6 +765,8 @@ def _filtered_pdf_lines(
         for page_index, page in enumerate(document, start=1):
             if page_index < start_page:
                 continue
+            if parsed_end_page is not None and page_index > parsed_end_page:
+                break
             for raw_line in page.get_text("text").splitlines():
                 line = _normalize_text(raw_line)
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):

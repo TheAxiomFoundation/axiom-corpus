@@ -1,0 +1,81 @@
+documents:
+  - source_id: ga-dfcs-tanf-1525
+    jurisdiction: us-ga
+    document_class: manual
+    citation_path: us-ga/manual/dfcs/tanf/1525
+    title: "Georgia TANF Policy Manual: 1525 Income"
+    source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1525/
+    source_format: html
+    source_as_of: "2026-06-25"
+    expression_date: "2026-06-25"
+    metadata:
+      primary_source: true
+      source_authority: Georgia Department of Human Services Division of Family and Children Services
+      document_subtype: policy_manual_section
+      program: TANF
+      federal_program: TANF
+      manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+      source_discovery_group: us-ga/manual/tanf
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: article.doc
+  - source_id: ga-dfcs-tanf-1605
+    jurisdiction: us-ga
+    document_class: manual
+    citation_path: us-ga/manual/dfcs/tanf/1605
+    title: "Georgia TANF Policy Manual: 1605 Basic Budgeting"
+    source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1605/
+    source_format: html
+    source_as_of: "2026-06-25"
+    expression_date: "2026-06-25"
+    metadata:
+      primary_source: true
+      source_authority: Georgia Department of Human Services Division of Family and Children Services
+      document_subtype: policy_manual_section
+      program: TANF
+      federal_program: TANF
+      manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+      source_discovery_group: us-ga/manual/tanf
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: article.doc
+  - source_id: ga-dfcs-tanf-1615
+    jurisdiction: us-ga
+    document_class: manual
+    citation_path: us-ga/manual/dfcs/tanf/1615
+    title: "Georgia TANF Policy Manual: 1615 Deductions"
+    source_url: https://pamms.dhs.ga.gov/dfcs/tanf/1615/
+    source_format: html
+    source_as_of: "2026-06-25"
+    expression_date: "2026-06-25"
+    metadata:
+      primary_source: true
+      source_authority: Georgia Department of Human Services Division of Family and Children Services
+      document_subtype: policy_manual_section
+      program: TANF
+      federal_program: TANF
+      manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+      source_discovery_group: us-ga/manual/tanf
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: article.doc
+  - source_id: ga-dfcs-tanf-appendix-a
+    jurisdiction: us-ga
+    document_class: manual
+    citation_path: us-ga/manual/dfcs/tanf/appendix-a
+    title: "Georgia TANF Policy Manual: Appendix A TANF Financial Standards"
+    source_url: https://pamms.dhs.ga.gov/dfcs/tanf/appendix-a/
+    source_format: html
+    source_as_of: "2026-06-25"
+    expression_date: "2026-06-25"
+    metadata:
+      primary_source: true
+      source_authority: Georgia Department of Human Services Division of Family and Children Services
+      document_subtype: policy_manual_section
+      program: TANF
+      federal_program: TANF
+      manual_landing_page: https://pamms.dhs.ga.gov/dfcs/tanf/
+      source_discovery_group: us-ga/manual/tanf
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: article.doc

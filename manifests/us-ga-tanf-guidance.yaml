@@ -1,0 +1,40 @@
+documents:
+  - source_id: ga-dfcs-tanf-eligibility-requirements
+    jurisdiction: us-ga
+    document_class: guidance
+    citation_path: us-ga/guidance/dfcs/tanf/eligibility-requirements
+    title: "Georgia DFCS TANF Eligibility Requirements"
+    source_url: https://dfcs.georgia.gov/services/temporary-assistance-needy-families/tanf-eligibility-requirements
+    source_format: html
+    source_as_of: "2026-06-25"
+    expression_date: "2026-06-25"
+    metadata:
+      primary_source: true
+      source_authority: Georgia Department of Human Services Division of Family and Children Services
+      document_subtype: eligibility_guidance
+      program: TANF
+      federal_program: TANF
+      source_discovery_group: us-ga/guidance/tanf
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: .content-page__main
+  - source_id: ga-dfcs-tanf-eligibility-income-resources
+    jurisdiction: us-ga
+    document_class: guidance
+    citation_path: us-ga/guidance/dfcs/tanf/eligibility-requirements/income-resources
+    title: "Georgia DFCS TANF Eligibility Requirements: Income/Resources"
+    source_url: https://dfcs.georgia.gov/services/temporary-assistance-needy-families/tanf-eligibility-requirements
+    source_format: html
+    source_as_of: "2026-06-25"
+    expression_date: "2026-06-25"
+    metadata:
+      primary_source: true
+      source_authority: Georgia Department of Human Services Division of Family and Children Services
+      document_subtype: eligibility_guidance
+      program: TANF
+      federal_program: TANF
+      topic: income_resources
+      source_discovery_group: us-ga/guidance/tanf
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: .content-page__main > p:nth-of-type(11)
