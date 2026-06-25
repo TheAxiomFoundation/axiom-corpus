@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters.massachusetts import (
@@ -285,3 +288,34 @@ def test_extract_massachusetts_general_laws_from_source_dir_writes_artifacts(tmp
     ]
     assert records[3].metadata is not None
     assert records[3].metadata["references_to"] == ["us-ma/statute/62/2"]
+
+
+def test_ma_snap_package_source_paths_are_available():
+    corpus_root = Path(__file__).resolve().parents[1] / "data" / "corpus" / "provisions"
+    sources = [
+        (
+            corpus_root
+            / "us-ma"
+            / "regulation"
+            / "2026-05-28-365-180-children.jsonl",
+            "us-ma/regulation/106-cmr/365/180/A",
+            "The following SNAP households are categorically eligible",
+        ),
+        (
+            corpus_root
+            / "us-ma"
+            / "guidance"
+            / "2025-11-17-dta-policy-online-snap-cola-sua-heating-cooling.jsonl",
+            (
+                "us-ma/guidance/dta/policy-online/snap-cola/2025-10-01/"
+                "standard-utility-allowances/heating-cooling"
+            ),
+            "Heating/Cooling SUA increase to $914",
+        ),
+    ]
+
+    for source_path, citation_path, expected_text in sources:
+        records = [json.loads(line) for line in source_path.read_text().splitlines()]
+        matches = [record for record in records if record.get("citation_path") == citation_path]
+        assert len(matches) == 1
+        assert expected_text in matches[0]["body"]
