@@ -1,0 +1,1 @@
+Added Tennessee SNAP primary-policy manifest (1240-01 chapters 02, 03, 04, 08, 12, 14 - DHS Family Assistance rules, 117 sections from Cornell LII) and the corresponding ingested provisions (351 provisions; 24 sections have substantive bodies).

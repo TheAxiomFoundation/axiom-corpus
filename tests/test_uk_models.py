@@ -28,6 +28,13 @@ class TestUKCitation:
         assert cite.number == 3
         assert cite.section == "1"
 
+    def test_parse_section_with_multi_letter_suffix(self):
+        """Parse inserted sections with multi-letter suffixes (e.g. 228ZA)."""
+        from axiom_corpus.models_uk import UKCitation
+
+        cite = UKCitation.from_string("ukpga/2004/12/section/228za")
+        assert cite.section == "228za"
+
     def test_parse_statutory_instrument(self):
         """Parse UK Statutory Instrument citation."""
         from axiom_corpus.models_uk import UKCitation
@@ -36,6 +43,32 @@ class TestUKCitation:
         assert cite.type == "uksi"
         assert cite.year == 2024
         assert cite.number == 832
+
+    def test_parse_statutory_instrument_regulation(self):
+        """Parse a numbered regulation in a UK statutory instrument."""
+        from axiom_corpus.models_uk import UKCitation
+
+        cite = UKCitation.from_string("uksi/2006/965/regulation/2")
+        assert cite.type == "uksi"
+        assert cite.year == 2006
+        assert cite.number == 965
+        assert cite.section == "2"
+        assert cite.provision_segment == "regulation"
+        assert cite.legislation_url == "https://www.legislation.gov.uk/uksi/2006/965/regulation/2"
+
+    def test_parse_statutory_instrument_article(self):
+        """Parse a numbered article in a UK statutory instrument."""
+        from axiom_corpus.models_uk import UKCitation
+
+        cite = UKCitation.from_string("uksi/2026/148/article/14")
+        assert cite.type == "uksi"
+        assert cite.year == 2026
+        assert cite.number == 148
+        assert cite.section == "14"
+        assert cite.provision_segment == "article"
+        assert cite.legislation_url == "https://www.legislation.gov.uk/uksi/2026/148/article/14"
+        assert cite.short_cite == "UKSI 2026/148 art. 14"
+        assert cite.path == "uk/uksi/2026/148/article/14"
 
     def test_parse_scottish_act(self):
         """Parse Acts of the Scottish Parliament."""
@@ -100,7 +133,9 @@ class TestUKCitation:
         from axiom_corpus.models_uk import UKCitation
 
         cite = UKCitation(type="ukpga", year=2007, number=3, section="23")
-        assert cite.data_xml_url == "https://www.legislation.gov.uk/ukpga/2007/3/section/23/data.xml"
+        assert (
+            cite.data_xml_url == "https://www.legislation.gov.uk/ukpga/2007/3/section/23/data.xml"
+        )
 
     def test_short_cite(self):
         """Generate short citation format."""

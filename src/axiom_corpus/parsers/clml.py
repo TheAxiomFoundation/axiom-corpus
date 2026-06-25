@@ -30,6 +30,7 @@ NAMESPACES = {
     "ukm": "http://www.legislation.gov.uk/namespaces/metadata",
     "dc": "http://purl.org/dc/elements/1.1/",
     "atom": "http://www.w3.org/2005/Atom",
+    "xhtml": "http://www.w3.org/1999/xhtml",
 }
 
 
@@ -78,11 +79,13 @@ def extract_citations(xml_str: str) -> list[str]:
 
     # Filter to legislation.gov.uk URIs
     citations = []
+    seen = set()
     for uri in matches:
         if "legislation.gov.uk" in uri:
             # Extract the citation part (e.g., ukpga/2017/32)
             match = re.search(r"legislation\.gov\.uk/([a-z]+/\d+/\d+)", uri)
-            if match:
+            if match and match.group(1) not in seen:
+                seen.add(match.group(1))
                 citations.append(match.group(1))
 
     return citations
@@ -91,6 +94,51 @@ def extract_citations(xml_str: str) -> list[str]:
 def _get_text_content(elem: ET.Element) -> str:
     """Get all text content from an element, including nested elements."""
     return "".join(elem.itertext())
+
+
+def _clean_text(text: str) -> str:
+    """Normalize XML text content without flattening meaningful line breaks."""
+    return re.sub(r"[ \t\r\f\v]+", " ", text).strip()
+
+
+def _operative_text_parts(parent: ET.Element, ns: dict) -> list[str]:
+    """Extract operative provision text, including embedded XHTML tables."""
+    parts = [
+        _clean_text(_get_text_content(text_elem)) for text_elem in parent.findall(".//leg:Text", ns)
+    ]
+    parts.extend(_extract_xhtml_tables(parent, ns))
+    return [part for part in parts if part]
+
+
+def _extract_xhtml_tables(parent: ET.Element, ns: dict) -> list[str]:
+    tables: list[str] = []
+    for table in parent.findall(".//xhtml:table", ns):
+        rows: list[list[str]] = []
+        for row in table.findall(".//xhtml:tr", ns):
+            cells = [
+                _clean_text(_get_text_content(cell))
+                for cell in row.findall("./xhtml:th", ns) + row.findall("./xhtml:td", ns)
+            ]
+            if any(cells):
+                rows.append(cells)
+        if rows:
+            tables.append(_format_table_rows(rows))
+    return tables
+
+
+def _format_table_rows(rows: list[list[str]]) -> str:
+    column_count = max(len(row) for row in rows)
+    padded_rows = [row + [""] * (column_count - len(row)) for row in rows]
+
+    def format_row(row: list[str]) -> str:
+        return "| " + " | ".join(row) + " |"
+
+    if len(padded_rows) == 1:
+        return format_row(padded_rows[0])
+    separator = "| " + " | ".join("---" for _ in range(column_count)) + " |"
+    return "\n".join(
+        [format_row(padded_rows[0]), separator, *(format_row(row) for row in padded_rows[1:])]
+    )
 
 
 def _parse_subsections(parent: ET.Element, ns: dict) -> list[UKSubsection]:
@@ -104,31 +152,31 @@ def _parse_subsections(parent: ET.Element, ns: dict) -> list[UKSubsection]:
         pnum_text = pnum.text if pnum is not None else ""
 
         # Get text from P2para
-        p2_text_parts = []
-        for text_elem in p2.findall(".//leg:Text", ns):
-            p2_text_parts.append(_get_text_content(text_elem))
+        p2_text_parts = _operative_text_parts(p2, ns)
 
         # Parse nested P3 elements
         children = []
         for p3 in p2.findall(".//leg:P3", ns):
             p3_pnum = p3.find("leg:Pnumber", ns)
             p3_id = p3_pnum.text if p3_pnum is not None else ""
-            p3_text_parts = []
-            for text_elem in p3.findall(".//leg:Text", ns):
-                p3_text_parts.append(_get_text_content(text_elem))
+            p3_text_parts = _operative_text_parts(p3, ns)
 
             if p3_text_parts:
-                children.append(UKSubsection(
-                    id=p3_id,
-                    text=" ".join(p3_text_parts),
-                ))
+                children.append(
+                    UKSubsection(
+                        id=p3_id,
+                        text=" ".join(p3_text_parts),
+                    )
+                )
 
         if p2_text_parts or children:
-            subsections.append(UKSubsection(
-                id=pnum_text or p2_id.split("-")[-1] if p2_id else "",
-                text=" ".join(p2_text_parts),
-                children=children,
-            ))
+            subsections.append(
+                UKSubsection(
+                    id=pnum_text or p2_id.split("-")[-1] if p2_id else "",
+                    text=" ".join(p2_text_parts),
+                    children=children,
+                )
+            )
 
     return subsections
 
@@ -138,10 +186,28 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
     if not uri:
         return None
 
-    # Extract type/year/number/section from URI
+    schedule_paragraph_match = re.search(
+        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)/schedule/(\d+[A-Za-z]*)/paragraph/(\d+[A-Za-z]*)",
+        uri,
+    )
+    if schedule_paragraph_match:
+        return UKCitation(
+            type=schedule_paragraph_match.group(1),
+            year=int(schedule_paragraph_match.group(2)),
+            number=int(schedule_paragraph_match.group(3)),
+            provision_kind="schedule",
+            section=schedule_paragraph_match.group(4),
+            paragraph=schedule_paragraph_match.group(5),
+            subsection=None,
+        )
+
+    # Extract type/year/number/provision from URI
     # e.g., http://www.legislation.gov.uk/ukpga/2003/1/section/62
+    #       http://www.legislation.gov.uk/uksi/2013/376/regulation/36
+    #       http://www.legislation.gov.uk/uksi/2026/148/article/14
+    #       http://www.legislation.gov.uk/uksi/2002/2005/schedule/2
     match = re.search(
-        r"legislation\.gov\.uk/([a-z]+)/(\d+)/(\d+)(?:/section/(\d+[A-Za-z]?))?",
+        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)(?:/(section|regulation|article|schedule)/(\d+[A-Za-z]*))?",
         uri,
     )
     if match:
@@ -149,9 +215,83 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
             type=match.group(1),
             year=int(match.group(2)),
             number=int(match.group(3)),
-            section=match.group(4),
+            provision_kind=match.group(4),
+            section=match.group(5),
+            paragraph=None,
+            subsection=None,
         )
     return None  # pragma: no cover
+
+
+def _find_provision_root(root: ET.Element, ns: dict) -> ET.Element | None:
+    """Find the provision element for section/regulation/article/schedule snippets."""
+    target_paragraph = _document_target_schedule_paragraph(root, ns)
+    if target_paragraph is not None:
+        schedule_number, paragraph_number = target_paragraph
+        for p1 in root.findall(".//leg:P1", ns):
+            if _element_matches_schedule_paragraph(p1, schedule_number, paragraph_number):
+                return p1
+
+    schedule = root.find(".//leg:Schedule", ns)
+    if schedule is not None and _document_targets_schedule(root, ns):
+        return schedule
+    p1 = root.find(".//leg:P1", ns)
+    if p1 is not None:
+        return p1
+    return schedule
+
+
+def _document_uri_candidates(root: ET.Element, ns: dict) -> list[str]:
+    """Return URI values that identify the requested CLML document."""
+    candidates = [root.get("DocumentURI", ""), root.get("IdURI", "")]
+    identifier = root.find(".//dc:identifier", ns)
+    if identifier is not None and identifier.text:
+        candidates.append(identifier.text)
+    return [candidate for candidate in candidates if candidate]
+
+
+def _document_target_schedule_paragraph(
+    root: ET.Element,
+    ns: dict,
+) -> tuple[str, str] | None:
+    """Return the requested schedule and paragraph when the document targets one."""
+    for value in _document_uri_candidates(root, ns):
+        match = re.search(r"/schedule/(\d+[A-Za-z]*)/paragraph/(\d+[A-Za-z]*)", value)
+        if match:
+            return match.group(1), match.group(2)
+    return None
+
+
+def _element_matches_schedule_paragraph(
+    elem: ET.Element,
+    schedule_number: str,
+    paragraph_number: str,
+) -> bool:
+    target = (
+        rf"/schedule/{re.escape(schedule_number)}"
+        rf"/paragraph/{re.escape(paragraph_number)}(?:/|$)"
+    )
+    candidates = [elem.get("DocumentURI", ""), elem.get("IdURI", "")]
+    return any(re.search(target, candidate) for candidate in candidates)
+
+
+def _document_targets_schedule(root: ET.Element, ns: dict) -> bool:
+    """Return true when a CLML document is a schedule-level snippet."""
+    return any("/schedule/" in value for value in _document_uri_candidates(root, ns))
+
+
+def _p1group_title(root: ET.Element, ns: dict, provision_root: ET.Element | None) -> str | None:
+    """Return the enclosing P1group title for a paragraph provision."""
+    if provision_root is None:
+        return None
+    for group in root.findall(".//leg:P1group", ns):
+        if any(p1 is provision_root for p1 in group.findall(".//leg:P1", ns)):
+            title_elem = group.find("leg:Title", ns)
+            if title_elem is not None:
+                title = _clean_text(_get_text_content(title_elem))
+                if title:
+                    return title
+    return None
 
 
 def _parse_amendments(root: ET.Element, ns: dict) -> list[UKAmendment]:
@@ -190,13 +330,15 @@ def _parse_amendments(root: ET.Element, ns: dict) -> list[UKAmendment]:
                     if match:
                         amending_act = match.group(1)
 
-                amendments.append(UKAmendment(
-                    type="substitution",
-                    amending_act=amending_act,
-                    description=text[:200] if text else None,
-                    effective_date=eff_date,
-                    change_id=change_id,
-                ))
+                amendments.append(
+                    UKAmendment(
+                        type="substitution",
+                        amending_act=amending_act,
+                        description=text[:200] if text else None,
+                        effective_date=eff_date,
+                        change_id=change_id,
+                    )
+                )
 
     return amendments
 
@@ -215,12 +357,13 @@ def parse_section(xml_str: str) -> UKSection:
     # Use namespaces
     ns = NAMESPACES
 
-    # Get DocumentURI - prefer P1 element's URI (has section) over root (Act-level)
-    # Real API responses have DocumentURI on P1, but test fixtures may only have it on root
-    p1 = root.find(".//leg:P1", ns)
+    # Get DocumentURI - prefer the provision URI over root-level document URI.
+    # Schedule snippets have a Schedule DocumentURI while the root can point to
+    # the instrument/version instead of the schedule.
+    provision_root = _find_provision_root(root, ns)
     doc_uri = ""
-    if p1 is not None:
-        doc_uri = p1.get("DocumentURI", "")
+    if provision_root is not None:
+        doc_uri = provision_root.get("DocumentURI", "")
     if not doc_uri:
         doc_uri = root.get("DocumentURI", "")
 
@@ -233,15 +376,24 @@ def parse_section(xml_str: str) -> UKSection:
         year = int(year_elem.get("Value", "0")) if year_elem is not None else 0
         number = int(number_elem.get("Value", "0")) if number_elem is not None else 0
 
-        # Try to find section number from P1
+        # Try to find provision number from the provision element.
         section = None
-        p1 = root.find(".//leg:P1", ns)
-        if p1 is not None:
-            pnum = p1.find("leg:Pnumber", ns)
+        if provision_root is not None:
+            pnum = provision_root.find("leg:Pnumber", ns)
+            if pnum is None:
+                pnum = provision_root.find("leg:Number", ns)
             if pnum is not None:
                 section = pnum.text
 
-        citation = UKCitation(type="ukpga", year=year, number=number, section=section)
+        citation = UKCitation(
+            type="ukpga",
+            year=year,
+            number=number,
+            section=section,
+            provision_kind="section",
+            paragraph=None,
+            subsection=None,
+        )
 
     # Extract title from dc:title or section heading
     title_elem = root.find(".//dc:title", ns)
@@ -249,12 +401,22 @@ def parse_section(xml_str: str) -> UKSection:
 
     # If this is a section-level doc, use section number as title
     if citation.section:
-        title = f"Section {citation.section}"
+        if citation.provision_segment == "schedule" and citation.paragraph:
+            title = f"Schedule {citation.section} paragraph {citation.paragraph}"
+            paragraph_heading = _p1group_title(root, ns, provision_root)
+            if paragraph_heading:
+                title += f" - {paragraph_heading}"
+        else:
+            title_prefix = {
+                "article": "Article",
+                "regulation": "Regulation",
+                "schedule": "Schedule",
+            }.get(citation.provision_segment, "Section")
+            title = f"{title_prefix} {citation.section}"
 
     # Extract full text
-    text_parts = []
-    for text_elem in root.findall(".//leg:Text", ns):
-        text_parts.append(_get_text_content(text_elem))
+    content_root = provision_root if provision_root is not None else root
+    text_parts = _operative_text_parts(content_root, ns)
     full_text = "\n".join(text_parts)
 
     # Parse subsections
@@ -317,8 +479,18 @@ def parse_act_metadata(xml_str: str) -> UKAct:
         year_elem = root.find(".//ukm:Year", ns)  # pragma: no cover
         number_elem = root.find(".//ukm:Number", ns)  # pragma: no cover
         year = int(year_elem.get("Value", "0")) if year_elem is not None else 0  # pragma: no cover
-        number = int(number_elem.get("Value", "0")) if number_elem is not None else 0  # pragma: no cover
-        citation = UKCitation(type="ukpga", year=year, number=number)  # pragma: no cover
+        number = (
+            int(number_elem.get("Value", "0")) if number_elem is not None else 0
+        )  # pragma: no cover
+        citation = UKCitation(  # pragma: no cover
+            type="ukpga",
+            year=year,
+            number=number,
+            section=None,
+            provision_kind=None,
+            paragraph=None,
+            subsection=None,
+        )
 
     # Extract title
     title_elem = root.find(".//dc:title", ns)
@@ -355,10 +527,12 @@ def parse_act_metadata(xml_str: str) -> UKAct:
         number_elem = part_elem.find("leg:Number", ns)
         title_elem = part_elem.find("leg:Title", ns)
         if number_elem is not None or title_elem is not None:
-            parts.append(UKPart(
-                number=number_elem.text if number_elem is not None else "",
-                title=title_elem.text if title_elem is not None else "",
-            ))
+            parts.append(
+                UKPart(
+                    number=number_elem.text if number_elem is not None else "",
+                    title=title_elem.text if title_elem is not None else "",
+                )
+            )
 
     # Parse extent
     extent_str = root.get("RestrictExtent", "")

@@ -89,6 +89,102 @@ SAMPLE_REGULATION_XML = """\
 </regulation>
 """
 
+SAMPLE_NESTED_PROVISIONS_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<act id="DLM900000" year="2026" act.no="1" act.type="public">
+  <cover><title>Nested Provisions Act 2026</title></cover>
+  <body>
+    <prov id="BODY1">
+      <label>1</label>
+      <heading>Title</heading>
+      <prov.body><para><text>This Act has a direct section.</text></para></prov.body>
+    </prov>
+    <part>
+      <label>1</label>
+      <heading>Main rules</heading>
+      <prov id="PART3">
+        <label>3</label>
+        <heading>Nested body rule</heading>
+        <prov.body><para><text>This nested section must be extracted.</text></para></prov.body>
+      </prov>
+    </part>
+  </body>
+  <schedule.group>
+    <schedule id="SCHED1">
+      <label>1</label>
+      <heading>Rates</heading>
+      <prov id="SCHED1CLAUSE1">
+        <label>1</label>
+        <heading>Schedule clause</heading>
+        <prov.body><para><text>This schedule clause must not collide.</text></para></prov.body>
+      </prov>
+    </schedule>
+  </schedule.group>
+</act>
+"""
+
+SAMPLE_TABLE_PROVISION_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<act id="DLM900100" year="2026" act.no="2" act.type="public">
+  <cover><title>Rates Table Act 2026</title></cover>
+  <body>
+    <prov id="RATE1">
+      <label>1</label>
+      <heading>Rates</heading>
+      <prov.body>
+        <subprov id="RATE1SUB1">
+          <label>(1)</label>
+          <para>
+            <legtable>
+              <table>
+                <tgroup cols="3">
+                  <thead>
+                    <row>
+                      <entry>Row</entry>
+                      <entry>Range</entry>
+                      <entry>Tax rate</entry>
+                    </row>
+                  </thead>
+                  <tbody>
+                    <row>
+                      <entry>1</entry>
+                      <entry>$0 to $15,600</entry>
+                      <entry>0.105</entry>
+                    </row>
+                    <row>
+                      <entry>2</entry>
+                      <entry>$15,601 to $53,500</entry>
+                      <entry>0.175</entry>
+                    </row>
+                  </tbody>
+                </tgroup>
+              </table>
+            </legtable>
+          </para>
+        </subprov>
+      </prov.body>
+    </prov>
+  </body>
+</act>
+"""
+
+SAMPLE_SECONDARY_LEGISLATION_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<regulation id="DLM5178334" year="2013" sr.no="135" sr.type="regulation">
+  <cover><title>Road User Charges (Rates) Regulations 2013</title></cover>
+  <body></body>
+</regulation>
+"""
+
+SAMPLE_SOP_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<sop id="DLM5480800" year="2013" raised.by="Government" sop.no="307">
+  <date>Tuesday, 6 August 2013</date>
+  <billref>Government Communications Security Bureau and Related Legislation Amendment Bill</billref>
+  <body></body>
+</sop>
+"""
+
 SAMPLE_ATOM_RSS = """\
 <?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -194,6 +290,40 @@ class TestParseXml:
         result = converter.parse_xml(SAMPLE_REGULATION_XML)
         assert result.legislation_type == "regulation"
         assert result.year == 2020
+        assert result.number == 10
+
+    def test_parse_nested_provisions(self, converter):
+        result = converter.parse_xml(SAMPLE_NESTED_PROVISIONS_XML)
+        assert [provision.id for provision in result.provisions] == [
+            "BODY1",
+            "PART3",
+            "SCHED1CLAUSE1",
+        ]
+        assert [provision.path_token for provision in result.provisions] == [
+            "1-BODY1",
+            "3",
+            "1-SCHED1CLAUSE1",
+        ]
+
+    def test_parse_table_text_in_subprovisions(self, converter):
+        result = converter.parse_xml(SAMPLE_TABLE_PROVISION_XML)
+
+        subprovision = result.provisions[0].subprovisions[0]
+        assert "Row | Range | Tax rate" in subprovision.text
+        assert "1 | $0 to $15,600 | 0.105" in subprovision.text
+        assert "2 | $15,601 to $53,500 | 0.175" in subprovision.text
+
+    def test_parse_secondary_legislation_sr_number(self, converter):
+        result = converter.parse_xml(SAMPLE_SECONDARY_LEGISLATION_XML)
+        assert result.legislation_type == "regulation"
+        assert result.year == 2013
+        assert result.number == 135
+
+    def test_parse_sop_number(self, converter):
+        result = converter.parse_xml(SAMPLE_SOP_XML)
+        assert result.legislation_type == "sop"
+        assert result.year == 2013
+        assert result.number == 307
 
     def test_unknown_root_defaults_to_act(self, converter):
         xml = '<unknown id="X" year="2020" act.no="1" act.type="public"><body></body></unknown>'

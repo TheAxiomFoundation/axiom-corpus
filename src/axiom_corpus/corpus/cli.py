@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from collections.abc import Iterable
 from dataclasses import replace
@@ -27,9 +28,17 @@ from axiom_corpus.corpus.documents import extract_official_documents
 from axiom_corpus.corpus.ecfr import build_ecfr_inventory, ecfr_run_id, extract_ecfr
 from axiom_corpus.corpus.federal_register import (
     DEFAULT_DOCUMENT_TYPES,
+    FederalRegisterCfrSectionRef,
     extract_federal_register,
+    extract_federal_register_cfr_sections,
 )
 from axiom_corpus.corpus.illinois_admin_code import extract_illinois_admin_code
+from axiom_corpus.corpus.ingest_manifests import (
+    INGEST_MANIFEST_PRIVATE_KEY_ENV,
+    build_ingest_manifest,
+    guard_ingested_artifacts,
+    write_signed_ingest_manifest,
+)
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.maryland_comar import extract_maryland_comar
 from axiom_corpus.corpus.models import (
@@ -51,6 +60,10 @@ from axiom_corpus.corpus.navigation_supabase import (
 from axiom_corpus.corpus.new_jersey_snap import reconstruct_new_jersey_snap_rules
 from axiom_corpus.corpus.ny_rulemaking import extract_ny_state_register
 from axiom_corpus.corpus.nycrr import extract_nycrr
+from axiom_corpus.corpus.nz_legislation import (
+    NZLegislationExtractReport,
+    extract_nz_legislation,
+)
 from axiom_corpus.corpus.ohio_admin_code import extract_ohio_admin_code
 from axiom_corpus.corpus.oregon_admin_rules import extract_oregon_admin_rules
 from axiom_corpus.corpus.pennsylvania_code import extract_pennsylvania_code
@@ -80,6 +93,9 @@ from axiom_corpus.corpus.rulespec_paths import (
     JURISDICTION_REPO_MAP,
     discover_encoded_paths,
     discover_encoded_paths_for_jurisdictions,
+    monorepo_dir_name_for_jurisdiction,
+    repo_prefix_for_jurisdiction,
+    resolve_jurisdiction_dir,
 )
 from axiom_corpus.corpus.source_discovery import build_source_discovery_report
 from axiom_corpus.corpus.source_promotion import promote_source_discovery_group
@@ -139,6 +155,7 @@ from axiom_corpus.corpus.state_adapters.new_york import (
     extract_new_york_consolidated_laws,
     extract_new_york_openleg_api,
 )
+from axiom_corpus.corpus.state_adapters.nyc_admin_code import extract_nyc_admin_code
 from axiom_corpus.corpus.state_adapters.oklahoma import extract_oklahoma_statutes
 from axiom_corpus.corpus.state_adapters.oregon import (
     OREGON_ORS_DEFAULT_YEAR,
@@ -168,6 +185,7 @@ from axiom_corpus.corpus.state_statute_completion import (
 )
 from axiom_corpus.corpus.states import (
     StateStatuteExtractReport,
+    extract_california_code_sections,
     extract_california_codes_bulk,
     extract_cic_html_release,
     extract_cic_odt_release,
@@ -197,6 +215,10 @@ from axiom_corpus.corpus.supabase import (
     verify_release_coverage,
     write_supabase_rows_jsonl,
 )
+from axiom_corpus.corpus.uk_legislation import (
+    UKLegislationExtractReport,
+    extract_uk_legislation_sections,
+)
 from axiom_corpus.corpus.usc import (
     build_usc_inventory_from_xml,
     decode_uslm_bytes,
@@ -207,6 +229,12 @@ from axiom_corpus.corpus.usc import (
 )
 from axiom_corpus.corpus.virginia_vac import extract_virginia_vac
 from axiom_corpus.corpus.washington_wac import extract_washington_wac
+from axiom_corpus.fetchers.nz_legislation_api import (
+    NZ_LEGISLATION_API_KEY_ENV,
+    NZ_LEGISLATION_DEFAULT_TYPES,
+    NZLegislationAPIDownloadReport,
+    download_nz_legislation_api_sources,
+)
 
 
 def _cmd_validate_manifest(args: argparse.Namespace) -> int:
@@ -224,6 +252,68 @@ def _cmd_validate_manifest(args: argparse.Namespace) -> int:
         )
     )
     return 0
+
+
+def _cmd_sign_ingest_manifest(args: argparse.Namespace) -> int:
+    private_key = os.environ.get(INGEST_MANIFEST_PRIVATE_KEY_ENV)
+    if not private_key:
+        print(f"{INGEST_MANIFEST_PRIVATE_KEY_ENV} is required to sign ingest manifests.")
+        return 2
+    repo = args.repo.resolve()
+    applied_files: list[Path] | None = None
+    if args.file:
+        applied_files = list(args.file)
+    deleted_files: list[Path] = list(args.deleted_file or [])
+    reasoning_logs: list[Path] = list(args.reasoning_log or [])
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=args.base,
+        jurisdiction=args.jurisdiction,
+        document_class=args.document_class,
+        version=args.version,
+        command=args.command,
+        applied_files=applied_files,
+        deleted_files=deleted_files,
+        reasoning_logs=reasoning_logs,
+    )
+    manifest_path = write_signed_ingest_manifest(
+        repo=repo,
+        manifest=manifest,
+        private_key=private_key,
+        output=args.output,
+        key_id=args.key_id,
+    )
+    print(
+        json.dumps(
+            {
+                "manifest": str(manifest_path),
+                "applied_files": len(manifest["applied_files"]),
+                "reasoning_logs": len(manifest["reasoning_logs"]),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0
+
+
+def _cmd_guard_ingested(args: argparse.Namespace) -> int:
+    result = guard_ingested_artifacts(
+        repo=args.repo,
+        base_ref=args.base_ref,
+        head_ref=args.head_ref,
+    )
+    if args.json:
+        print(json.dumps(result.to_mapping(), indent=2, sort_keys=True))
+    elif result.passed:
+        if result.protected_changes:
+            print("All changed corpus artifacts have signed ingest manifests.")
+        else:
+            print("No protected corpus artifact changes.")
+    else:
+        for issue in result.issues:
+            print(issue)
+    return 0 if result.passed else 1
 
 
 def _cmd_inventory_ecfr(args: argparse.Namespace) -> int:
@@ -264,6 +354,16 @@ def _cmd_inventory_usc(args: argparse.Namespace) -> int:
     source_bytes = args.source_xml.read_bytes()
     xml_content = decode_uslm_bytes(source_bytes)
     title = args.title or infer_uslm_title(xml_content)
+    try:
+        allowed_citation_paths = _usc_allowed_citation_paths(
+            title,
+            sections=args.section,
+            citation_paths=args.citation_path,
+            include_title=args.include_title,
+        )
+    except ValueError as exc:
+        print(str(exc))
+        return 2
     run_id = usc_run_id(args.version, title, args.limit)
     inventory = build_usc_inventory_from_xml(
         xml_content,
@@ -272,6 +372,7 @@ def _cmd_inventory_usc(args: argparse.Namespace) -> int:
         source_sha256=sha256_bytes(source_bytes),
         source_download_url=args.source_url,
         limit=args.limit,
+        allowed_citation_paths=allowed_citation_paths,
     )
     out = store.inventory_path("us", DocumentClass.STATUTE, run_id)
     store.write_inventory(out, inventory.items)
@@ -293,6 +394,51 @@ def _cmd_inventory_usc(args: argparse.Namespace) -> int:
         )
     )
     return 0
+
+
+def _usc_allowed_citation_paths(
+    title: str | int,
+    *,
+    sections: Iterable[str] | None = None,
+    citation_paths: Iterable[str] | None = None,
+    include_title: bool = False,
+) -> set[str] | None:
+    section_values = tuple(sections or ())
+    citation_path_values = tuple(citation_paths or ())
+    if not section_values and not citation_path_values:
+        return None
+
+    title_token = str(title).strip().lower().removeprefix("title ")
+    allowed: set[str] = set()
+    if include_title:
+        allowed.add(f"us/statute/{title_token}")
+
+    for section in section_values:
+        allowed.add(_usc_section_citation_path(title_token, section))
+    for citation_path in citation_path_values:
+        normalized = citation_path.strip().strip("/")
+        if not normalized.startswith("us/statute/"):
+            raise ValueError(f"invalid US Code citation path: {citation_path!r}")
+        allowed.add(normalized)
+    return allowed
+
+
+def _usc_section_citation_path(title: str, section: str) -> str:
+    value = section.strip()
+    if value.startswith("us/statute/"):
+        return value.strip("/")
+    match = re.fullmatch(
+        r"(?:(?P<title>[0-9]+[a-z]?)\s+(?:U\.?S\.?C\.?|USC)\s+)?"
+        r"(?:§+\s*)?(?P<section>[0-9A-Za-z][0-9A-Za-z.-]*)",
+        value,
+        re.I,
+    )
+    if not match:
+        raise ValueError(f"invalid US Code section: {section!r}")
+    section_title = (match.group("title") or title).lower()
+    if section_title != title:
+        raise ValueError(f"section {section!r} belongs to title {section_title}, not title {title}")
+    return f"us/statute/{title}/{match.group('section')}"
 
 
 def _cmd_export_supabase(args: argparse.Namespace) -> int:
@@ -565,9 +711,7 @@ def _cmd_backfill_versions(args: argparse.Namespace) -> int:
                 s for s in scopes_to_process if s["document_class"] == args.doc_type
             )
 
-    tables = (
-        ("provisions", "navigation_nodes") if not args.table else (args.table,)
-    )
+    tables = ("provisions", "navigation_nodes") if not args.table else (args.table,)
 
     summary: list[dict[str, object]] = []
     for scope in scopes_to_process:
@@ -766,10 +910,10 @@ def _provision_release_scopes(
     records: tuple[ProvisionRecord, ...],
 ) -> tuple[tuple[str, str, str | None], ...]:
     return tuple(
-        sorted({
-            (record.jurisdiction, record.document_class, record.version)
-            for record in records
-        }, key=lambda scope: (scope[0], scope[1], scope[2] or ""))
+        sorted(
+            {(record.jurisdiction, record.document_class, record.version) for record in records},
+            key=lambda scope: (scope[0], scope[1], scope[2] or ""),
+        )
     )
 
 
@@ -795,11 +939,13 @@ def _resolve_encoded_paths(
     canonical encoded citation paths for the given jurisdictions.
 
     ``--rulespec-repo`` is a repeatable explicit checkout, paired with the
-    jurisdiction it covers. ``--rulespec-root`` points at a directory holding
-    sibling ``rulespec-*`` checkouts and discovers each jurisdiction's repo by
-    name. ``--rulespec-auto`` (the default) silently looks for
-    ``../rulespec-{repo}`` next to this corpus checkout. Empty when no repo is
-    on disk for any input jurisdiction.
+    jurisdiction(s) it covers — a legacy per-jurisdiction repo covers one
+    jurisdiction, a country monorepo covers every jurisdiction directory it
+    holds. ``--rulespec-root`` points at a directory holding ``rulespec-*``
+    checkouts and resolves each jurisdiction in the monorepo layout first,
+    then the legacy sibling layout. ``--rulespec-auto`` (the default) silently
+    runs the same resolution against the directory next to this corpus
+    checkout. Empty when no repo is on disk for any input jurisdiction.
     """
     encoded: set[str] = set()
     juris_list = sorted({j for j in jurisdictions if j})
@@ -807,15 +953,16 @@ def _resolve_encoded_paths(
     repos: list[tuple[str, Path]] = []
     for repo_arg in args.rulespec_repo or []:
         repo_path = Path(repo_arg)
-        # Infer the jurisdiction from the repo dir name (rulespec-us-co -> us-co).
-        repo_juris = _jurisdiction_for_repo_dir(repo_path.name)
-        if repo_juris is None:
+        # Infer the jurisdiction(s) from the repo dir name and contents
+        # (rulespec-us-co -> us-co; a rulespec-us monorepo -> us, us-ca, ...).
+        repo_jurisdictions = _jurisdictions_for_repo_checkout(repo_path)
+        if not repo_jurisdictions:
             print(
                 f"warning: cannot infer jurisdiction from rulespec repo path {repo_path}",
                 file=sys.stderr,
             )
             continue
-        repos.append((repo_juris, repo_path))
+        repos.extend((repo_juris, repo_path) for repo_juris in repo_jurisdictions)
 
     if args.rulespec_root:
         root_paths = [Path(p) for p in args.rulespec_root]
@@ -823,33 +970,48 @@ def _resolve_encoded_paths(
             for j, paths in discover_encoded_paths_for_jurisdictions(root, juris_list).items():
                 encoded.update(paths)
                 # Mark the repo seen so --rulespec-auto doesn't double-count.
-                repo_dir_name = JURISDICTION_REPO_MAP.get(j)
-                if repo_dir_name is not None:
-                    repos.append((j, root / repo_dir_name))
+                resolved = resolve_jurisdiction_dir(root, j)
+                if resolved is not None:
+                    repos.append((j, resolved))
 
     if args.rulespec_auto:
-        # Auto-discover sibling rulespec-* checkouts next to this corpus repo.
+        # Auto-discover rulespec-* checkouts next to this corpus repo, in
+        # either layout (monorepo jurisdiction dir first, legacy sibling next).
         sibling_root = Path.cwd().parent
         for j in juris_list:
-            repo_dir_name = JURISDICTION_REPO_MAP.get(j)
-            if repo_dir_name is None:
+            resolved = resolve_jurisdiction_dir(sibling_root, j)
+            if resolved is None:
                 continue
-            sibling = sibling_root / repo_dir_name
-            if any(p.samefile(sibling) for _, p in repos if p.exists()):
+            if any(p.exists() and p.samefile(resolved) for _, p in repos):
                 continue
-            if sibling.is_dir():
-                repos.append((j, sibling))
+            repos.append((j, resolved))
 
     for j, repo_path in repos:
         encoded.update(discover_encoded_paths(repo_path, j))
     return encoded
 
 
-def _jurisdiction_for_repo_dir(repo_dir_name: str) -> str | None:
-    for jurisdiction, name in JURISDICTION_REPO_MAP.items():
-        if name == repo_dir_name:
-            return jurisdiction
-    return None
+def _jurisdictions_for_repo_checkout(repo_path: Path) -> list[str]:
+    """Return the jurisdictions whose encodings live inside a checkout.
+
+    A legacy checkout name (``rulespec-us-co``) maps to its single
+    jurisdiction. A country monorepo checkout (``rulespec-us``) additionally
+    covers every known jurisdiction with a directory inside it
+    (``us/``, ``us-ca/``, ...).
+    """
+    name = repo_path.name
+    jurisdictions = [
+        jurisdiction for jurisdiction, repo_dir in JURISDICTION_REPO_MAP.items() if repo_dir == name
+    ]
+    for jurisdiction in JURISDICTION_REPO_MAP:
+        if jurisdiction in jurisdictions:
+            continue
+        if monorepo_dir_name_for_jurisdiction(jurisdiction) != name:
+            continue
+        prefix = repo_prefix_for_jurisdiction(jurisdiction)
+        if prefix is not None and (repo_path / prefix).is_dir():
+            jurisdictions.append(jurisdiction)
+    return jurisdictions
 
 
 def _apply_navigation_status_overrides(
@@ -962,6 +1124,16 @@ def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
 def _cmd_extract_usc(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    try:
+        allowed_citation_paths = _usc_allowed_citation_paths(
+            args.title or infer_uslm_title(decode_uslm_bytes(args.source_xml.read_bytes())),
+            sections=args.section,
+            citation_paths=args.citation_path,
+            include_title=args.include_title,
+        )
+    except ValueError as exc:
+        print(str(exc))
+        return 2
     report = extract_usc(
         store,
         version=args.version,
@@ -971,6 +1143,7 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
         expression_date=expression_date,
         source_download_url=args.source_url,
         limit=args.limit,
+        allowed_citation_paths=allowed_citation_paths,
     )
     print(
         json.dumps(
@@ -1039,6 +1212,141 @@ def _cmd_extract_usc_dir(args: argparse.Namespace) -> int:
         )
     )
     return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
+def _cmd_extract_uk_legislation(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_uk_legislation_sections(
+        store,
+        version=args.version,
+        source_xmls=tuple(args.source_xml or ()),
+        citations=tuple(args.citation or ()),
+        source=args.source,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        lex_limit=args.lex_limit,
+    )
+    print(json.dumps(_uk_legislation_report_json(report), indent=2, sort_keys=True))
+    return (
+        0
+        if all(class_report.coverage.complete for class_report in report.class_reports)
+        or args.allow_incomplete
+        else 2
+    )
+
+
+def _uk_legislation_report_json(report: UKLegislationExtractReport) -> dict[str, Any]:
+    return {
+        "jurisdiction": "uk",
+        "version": report.version,
+        "source_count": report.source_count,
+        "provisions_written": report.provisions_written,
+        "classes": [
+            {
+                "document_class": class_report.document_class,
+                "source_file_count": len(class_report.source_paths),
+                "provisions_written": class_report.provisions_written,
+                "inventory_path": str(class_report.inventory_path),
+                "provisions_path": str(class_report.provisions_path),
+                "coverage_path": str(class_report.coverage_path),
+                "coverage_complete": class_report.coverage.complete,
+                "source_count": class_report.coverage.source_count,
+                "provision_count": class_report.coverage.provision_count,
+                "matched_count": class_report.coverage.matched_count,
+                "missing_count": len(class_report.coverage.missing_from_provisions),
+                "extra_count": len(class_report.coverage.extra_provisions),
+            }
+            for class_report in report.class_reports
+        ],
+    }
+
+
+def _cmd_extract_nz_legislation(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_nz_legislation(
+        store,
+        version=args.version,
+        source_xmls=tuple(args.source_xml or ()),
+        source_dir=args.source_dir,
+        source_pattern=args.source_pattern,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        limit=args.limit,
+    )
+    print(json.dumps(_nz_legislation_report_json(report), indent=2, sort_keys=True))
+    return (
+        0
+        if all(class_report.coverage.complete for class_report in report.class_reports)
+        or args.allow_incomplete
+        else 2
+    )
+
+
+def _nz_legislation_report_json(report: NZLegislationExtractReport) -> dict[str, Any]:
+    return {
+        "jurisdiction": "nz",
+        "version": report.version,
+        "source_count": report.source_count,
+        "provisions_written": report.provisions_written,
+        "classes": [
+            {
+                "document_class": class_report.document_class,
+                "source_file_count": len(class_report.source_paths),
+                "provisions_written": class_report.provisions_written,
+                "inventory_path": str(class_report.inventory_path),
+                "provisions_path": str(class_report.provisions_path),
+                "coverage_path": str(class_report.coverage_path),
+                "coverage_complete": class_report.coverage.complete,
+                "source_count": class_report.coverage.source_count,
+                "provision_count": class_report.coverage.provision_count,
+                "matched_count": class_report.coverage.matched_count,
+                "missing_count": len(class_report.coverage.missing_from_provisions),
+                "extra_count": len(class_report.coverage.extra_provisions),
+            }
+            for class_report in report.class_reports
+        ],
+    }
+
+
+def _cmd_download_nz_legislation_api(args: argparse.Namespace) -> int:
+    api_key = os.environ.get(args.api_key_env)
+    if not api_key:
+        raise ValueError(f"{args.api_key_env} is required")
+    report = download_nz_legislation_api_sources(
+        args.output_dir,
+        api_key=api_key,
+        legislation_types=tuple(args.legislation_type or NZ_LEGISLATION_DEFAULT_TYPES),
+        publisher=args.publisher,
+        search_term=args.search_term,
+        per_page=args.per_page,
+        max_pages=args.max_pages,
+        limit=args.limit,
+        resume=not args.no_resume,
+        allow_failures=args.allow_failures,
+        workers=args.workers,
+        manifest_path=args.manifest_path,
+    )
+    print(json.dumps(_nz_legislation_api_download_report_json(report), indent=2, sort_keys=True))
+    return 0 if report.failed_count == 0 or args.allow_failures else 2
+
+
+def _nz_legislation_api_download_report_json(
+    report: NZLegislationAPIDownloadReport,
+) -> dict[str, Any]:
+    return {
+        "jurisdiction": "nz",
+        "output_dir": str(report.output_dir),
+        "discovered_count": report.discovered_count,
+        "downloaded_count": report.downloaded_count,
+        "skipped_count": report.skipped_count,
+        "failed_count": report.failed_count,
+        "manifest_path": str(report.manifest_path) if report.manifest_path else None,
+        "downloaded_paths": [str(path) for path in report.downloaded_paths],
+        "skipped_paths": [str(path) for path in report.skipped_paths],
+        "failures": list(report.failures),
+    }
 
 
 def _cmd_extract_dc_code(args: argparse.Namespace) -> int:
@@ -1584,6 +1892,35 @@ def _cmd_extract_new_york_openleg_api(args: argparse.Namespace) -> int:
     return 0 if _state_statute_report_success(report) or args.allow_incomplete else 2
 
 
+def _cmd_extract_nyc_admin_code(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_nyc_admin_code(
+        store,
+        version=args.version,
+        sections=tuple(args.section) if args.section is not None else None,
+        urls=tuple(args.url) if args.url is not None else None,
+        source_dir=args.source_dir,
+        download_dir=args.download_dir,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        timeout_seconds=args.timeout_seconds,
+    )
+    print(
+        json.dumps(
+            _state_statute_report_payload(
+                report,
+                source_id="us-ny-nyc-admin-code",
+                adapter="nyc-admin-code",
+                version=args.version,
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if _state_statute_report_success(report) or args.allow_incomplete else 2
+
+
 def _cmd_extract_delaware_code(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -1697,6 +2034,35 @@ def _cmd_extract_california_codes_bulk(args: argparse.Namespace) -> int:
                 report,
                 source_id="us-ca-codes",
                 adapter="california-codes-bulk",
+                version=args.version,
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
+def _cmd_extract_california_code_sections(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_california_code_sections(
+        store,
+        version=args.version,
+        sections=tuple(args.section),
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        download_dir=args.download_dir,
+        request_delay_seconds=args.delay_seconds,
+        timeout_seconds=args.timeout_seconds,
+        request_attempts=args.request_attempts,
+    )
+    print(
+        json.dumps(
+            _state_statute_report_payload(
+                report,
+                source_id="us-ca-code-sections",
+                adapter="california-code-sections",
                 version=args.version,
             ),
             indent=2,
@@ -1843,8 +2209,7 @@ def _extract_state_statute_source(
             store,
             version=version,
             source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
-            source_year=_optional_int(options.get("source_year"))
-            or ALASKA_STATUTES_DEFAULT_YEAR,
+            source_year=_optional_int(options.get("source_year")) or ALASKA_STATUTES_DEFAULT_YEAR,
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
@@ -1899,8 +2264,7 @@ def _extract_state_statute_source(
             store,
             version=version,
             source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
-            source_year=_optional_int(options.get("source_year"))
-            or FLORIDA_STATUTES_DEFAULT_YEAR,
+            source_year=_optional_int(options.get("source_year")) or FLORIDA_STATUTES_DEFAULT_YEAR,
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
@@ -1958,8 +2322,7 @@ def _extract_state_statute_source(
             only_title=only_title,
             limit=limit,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
-            base_url=_optional_text(options.get("base_url"))
-            or "https://www.legis.la.gov/Legis/",
+            base_url=_optional_text(options.get("base_url")) or "https://www.legis.la.gov/Legis/",
             root_folder=_optional_text(options.get("root_folder")) or "75",
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.02,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 60.0,
@@ -2220,8 +2583,7 @@ def _extract_state_statute_source(
             limit=limit,
             workers=_optional_int(options.get("workers")) or 8,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
-            base_url=_optional_text(options.get("base_url"))
-            or "https://revisor.mo.gov/main/",
+            base_url=_optional_text(options.get("base_url")) or "https://revisor.mo.gov/main/",
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.02,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 60.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
@@ -2237,8 +2599,7 @@ def _extract_state_statute_source(
             limit=limit,
             workers=_optional_int(options.get("workers")) or 1,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
-            base_url=_optional_text(options.get("base_url"))
-            or "https://gc.nh.gov/rsa/html/",
+            base_url=_optional_text(options.get("base_url")) or "https://gc.nh.gov/rsa/html/",
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.25,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 30.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 2,
@@ -2320,8 +2681,7 @@ def _extract_state_statute_source(
             source_url=_optional_text(options.get("source_url"))
             or source.source_url
             or WISCONSIN_STATUTES_TOC_URL,
-            base_url=_optional_text(options.get("base_url"))
-            or "https://docs.legis.wisconsin.gov",
+            base_url=_optional_text(options.get("base_url")) or "https://docs.legis.wisconsin.gov",
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
@@ -2503,6 +2863,24 @@ def _extract_state_statute_source(
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
             include_inactive=bool(options.get("include_inactive", False)),
         )
+    if adapter == "california-code-sections":
+        raw_sections = options.get("sections", ())
+        sections = (
+            (str(raw_sections),)
+            if isinstance(raw_sections, str)
+            else tuple(str(item) for item in raw_sections)
+        )
+        return extract_california_code_sections(
+            store,
+            version=version,
+            sections=sections,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.25,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 60.0,
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+        )
     raise ValueError(f"unsupported state statute adapter: {source.adapter}")
 
 
@@ -2579,11 +2957,7 @@ def _state_statute_row_success(row: dict[str, Any]) -> bool:
 
 
 def _state_statute_report_success(report: StateStatuteExtractReport) -> bool:
-    return (
-        report.coverage.complete
-        and report.skipped_source_count == 0
-        and len(report.errors) == 0
-    )
+    return report.coverage.complete and report.skipped_source_count == 0 and len(report.errors) == 0
 
 
 def _state_source_options(source: CorpusSource) -> dict[str, Any]:
@@ -2755,6 +3129,9 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "new-york-consolidated-laws": "new-york-consolidated-laws",
         "nysenate": "new-york-consolidated-laws",
         "ny-senate": "new-york-consolidated-laws",
+        "nyc-admin-code": "nyc-admin-code",
+        "new-york-city-admin-code": "nyc-admin-code",
+        "new-york-city-administrative-code": "nyc-admin-code",
         "de": "delaware-code",
         "delaware": "delaware-code",
         "delaware-code": "delaware-code",
@@ -2798,6 +3175,11 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "california-codes-bulk": "california-codes-bulk",
         "california-leginfo": "california-codes-bulk",
         "ca-leginfo": "california-codes-bulk",
+        "california-code-sections": "california-code-sections",
+        "california-section": "california-code-sections",
+        "california-sections": "california-code-sections",
+        "ca-code-sections": "california-code-sections",
+        "ca-sections": "california-code-sections",
         "texas-tcas": "texas-tcas",
         "texas-api": "texas-tcas",
         "tcas": "texas-tcas",
@@ -2861,6 +3243,7 @@ def _state_statute_source_path_for_plan(
         "wisconsin-statutes",
         "new-york-consolidated-laws",
         "new-york-openleg-api",
+        "nyc-admin-code",
         "delaware-code",
         "oregon-ors",
         "pennsylvania-statutes",
@@ -2876,6 +3259,8 @@ def _state_statute_source_path_for_plan(
         )
     if adapter == "california-codes-bulk":
         return _optional_manifest_path(manifest_path, options, "source_zip")
+    if adapter == "california-code-sections":
+        return _optional_manifest_path(manifest_path, options, "download_dir")
     if adapter == "local-state-html":
         return _required_manifest_path(manifest_path, options, "source_dir")
     return _required_manifest_path(manifest_path, options, path_key)
@@ -3578,6 +3963,71 @@ def _cmd_extract_federal_register(args: argparse.Namespace) -> int:
     return 0 if report.coverage.complete or args.allow_incomplete else 2
 
 
+def _cmd_extract_federal_register_cfr_sections(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    report = extract_federal_register_cfr_sections(
+        store,
+        version=args.version,
+        source_text_path=args.source_text,
+        sections=tuple(_parse_cfr_section_ref(value) for value in args.section),
+        document_number=args.document_number,
+        document_citation=args.document_citation,
+        document_title=args.document_title,
+        document_type=args.document_type,
+        source_url=args.source_url,
+        source_as_of=args.source_as_of,
+        expression_date=args.expression_date,
+        source_document_citation_path=args.source_document_citation_path,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "requested_sections": list(report.requested_sections),
+                "sections_written": report.sections_written,
+                "source_file_count": len(report.source_paths),
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
+def _parse_cfr_section_ref(value: str) -> FederalRegisterCfrSectionRef:
+    cleaned = value.strip()
+    match = re.fullmatch(
+        r"(?:(?P<title>\d+)\s*CFR\s+)?(?P<part>\d+)\.(?P<section>\d+[A-Za-z]?)",
+        cleaned,
+        flags=re.I,
+    )
+    if match is None:
+        match = re.fullmatch(
+            r"(?P<title>\d+)[:/](?P<part>\d+)[:/](?P<section>\d+[A-Za-z]?)",
+            cleaned,
+        )
+    if match is None:
+        raise ValueError("CFR section must look like '42 CFR 431.213' or '42:431:213'")
+    title = int(match.group("title") or 42)
+    return FederalRegisterCfrSectionRef(
+        title=title,
+        part=int(match.group("part")),
+        section=match.group("section"),
+    )
+
+
 def _cmd_extract_official_documents(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -3836,9 +4286,7 @@ def _cmd_state_statute_completion(args: argparse.Namespace) -> int:
     release_path = resolve_release_manifest_path(args.base, args.release)
     release = ReleaseManifest.load(release_path)
     prefixes = tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES)
-    source_access_queue = _resolve_state_source_access_queue(
-        args.base, args.source_access_queue
-    )
+    source_access_queue = _resolve_state_source_access_queue(args.base, args.source_access_queue)
     validation_report_path = args.validation_report
     if validation_report_path is None:
         candidate = args.base / "analytics" / f"validate-release-{release.name}.json"
@@ -4134,6 +4582,52 @@ def build_parser() -> argparse.ArgumentParser:
     validate.add_argument("path", type=Path)
     validate.set_defaults(func=_cmd_validate_manifest)
 
+    sign_ingest = sub.add_parser(
+        "sign-ingest-manifest",
+        help="Sign generated corpus artifacts for one ingestion scope.",
+    )
+    sign_ingest.add_argument("--repo", type=Path, default=Path("."))
+    sign_ingest.add_argument("--base", type=Path, default=Path("data/corpus"))
+    sign_ingest.add_argument("--jurisdiction", required=True)
+    sign_ingest.add_argument("--document-class", required=True)
+    sign_ingest.add_argument("--version", required=True)
+    sign_ingest.add_argument(
+        "--command",
+        required=True,
+        help="Exact ingestion command or run description to record in the manifest.",
+    )
+    sign_ingest.add_argument(
+        "--file",
+        type=Path,
+        action="append",
+        help="Specific artifact file to include; defaults to inferred scope artifacts.",
+    )
+    sign_ingest.add_argument(
+        "--deleted-file",
+        type=Path,
+        action="append",
+        help="Deleted artifact path to mark as removed in the signed manifest.",
+    )
+    sign_ingest.add_argument(
+        "--reasoning-log",
+        type=Path,
+        action="append",
+        help="Optional reasoning or run log file to hash into the manifest.",
+    )
+    sign_ingest.add_argument("--output", type=Path)
+    sign_ingest.add_argument("--key-id", default="axiom-corpus-ingest-v1")
+    sign_ingest.set_defaults(func=_cmd_sign_ingest_manifest)
+
+    guard_ingested = sub.add_parser(
+        "guard-ingested",
+        help="Reject generated corpus artifact changes without signed ingest manifests.",
+    )
+    guard_ingested.add_argument("--repo", type=Path, default=Path("."))
+    guard_ingested.add_argument("--base-ref")
+    guard_ingested.add_argument("--head-ref", default="HEAD")
+    guard_ingested.add_argument("--json", action="store_true")
+    guard_ingested.set_defaults(func=_cmd_guard_ingested)
+
     inventory_ecfr = sub.add_parser(
         "inventory-ecfr",
         help="Build a source inventory from eCFR structure JSON.",
@@ -4156,6 +4650,23 @@ def build_parser() -> argparse.ArgumentParser:
     inventory_usc.add_argument("--title")
     inventory_usc.add_argument("--source-url")
     inventory_usc.add_argument("--limit", type=int)
+    inventory_usc.add_argument(
+        "--section",
+        action="append",
+        default=[],
+        help="US Code section to include; repeat for multiple sections.",
+    )
+    inventory_usc.add_argument(
+        "--citation-path",
+        action="append",
+        default=[],
+        help="Exact corpus citation path to include; repeat for multiple paths.",
+    )
+    inventory_usc.add_argument(
+        "--include-title",
+        action="store_true",
+        help="Include the title-level provision when section filters are used.",
+    )
     inventory_usc.set_defaults(func=_cmd_inventory_usc)
 
     extract_ecfr_cmd = sub.add_parser(
@@ -4185,6 +4696,23 @@ def build_parser() -> argparse.ArgumentParser:
     extract_usc_cmd.add_argument("--expression-date")
     extract_usc_cmd.add_argument("--source-url")
     extract_usc_cmd.add_argument("--limit", type=int)
+    extract_usc_cmd.add_argument(
+        "--section",
+        action="append",
+        default=[],
+        help="US Code section to extract; repeat for multiple sections.",
+    )
+    extract_usc_cmd.add_argument(
+        "--citation-path",
+        action="append",
+        default=[],
+        help="Exact corpus citation path to extract; repeat for multiple paths.",
+    )
+    extract_usc_cmd.add_argument(
+        "--include-title",
+        action="store_true",
+        help="Include the title-level provision when section filters are used.",
+    )
     extract_usc_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_usc_cmd.set_defaults(func=_cmd_extract_usc)
 
@@ -4202,6 +4730,111 @@ def build_parser() -> argparse.ArgumentParser:
     extract_usc_dir_cmd.add_argument("--limit", type=int)
     extract_usc_dir_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_usc_dir_cmd.set_defaults(func=_cmd_extract_usc_dir)
+
+    extract_uk_cmd = sub.add_parser(
+        "extract-uk-legislation",
+        help="Snapshot UK legislation text and extract normalized provision JSONL.",
+    )
+    extract_uk_cmd.add_argument("--base", type=Path, required=True)
+    extract_uk_cmd.add_argument("--version", required=True)
+    extract_uk_cmd.add_argument(
+        "--source-xml",
+        type=Path,
+        action="append",
+        help="Local legislation.gov.uk CLML section/regulation XML file.",
+    )
+    extract_uk_cmd.add_argument(
+        "--citation",
+        action="append",
+        help=(
+            "Fetch a UK citation. With --source lex, act-level (ukpga/2007/3) "
+            "ingests every section; section-level (ukpga/2007/3/section/35) "
+            "ingests one. CLML requires section-level."
+        ),
+    )
+    extract_uk_cmd.add_argument(
+        "--source",
+        choices=("clml", "lex"),
+        default="clml",
+        help="Backend for --citation fetches (default: clml).",
+    )
+    extract_uk_cmd.add_argument(
+        "--lex-limit",
+        type=int,
+        default=None,
+        help="Max sections to request per act from Lex (default: act provision count).",
+    )
+    extract_uk_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_uk_cmd.add_argument("--expression-date")
+    extract_uk_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_uk_cmd.set_defaults(func=_cmd_extract_uk_legislation)
+
+    extract_nz_cmd = sub.add_parser(
+        "extract-nz-legislation",
+        help="Snapshot NZ PCO XML and extract normalized provision JSONL.",
+    )
+    extract_nz_cmd.add_argument("--base", type=Path, required=True)
+    extract_nz_cmd.add_argument("--version", required=True)
+    extract_nz_cmd.add_argument(
+        "--source-xml",
+        type=Path,
+        action="append",
+        help="Local legislation.govt.nz PCO XML file.",
+    )
+    extract_nz_cmd.add_argument(
+        "--source-dir",
+        type=Path,
+        help="Directory containing legislation.govt.nz PCO XML files.",
+    )
+    extract_nz_cmd.add_argument(
+        "--source-pattern",
+        default="*.xml",
+        help="Glob used with --source-dir (default: *.xml).",
+    )
+    extract_nz_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_nz_cmd.add_argument("--expression-date")
+    extract_nz_cmd.add_argument("--limit", type=int)
+    extract_nz_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_nz_cmd.set_defaults(func=_cmd_extract_nz_legislation)
+
+    download_nz_api_cmd = sub.add_parser(
+        "download-nz-legislation-api",
+        help="Discover and download NZ Legislation API XML format URLs.",
+    )
+    download_nz_api_cmd.add_argument("--output-dir", type=Path, required=True)
+    download_nz_api_cmd.add_argument(
+        "--api-key-env",
+        default=NZ_LEGISLATION_API_KEY_ENV,
+        help=f"Environment variable containing the API key (default: {NZ_LEGISLATION_API_KEY_ENV}).",
+    )
+    download_nz_api_cmd.add_argument(
+        "--legislation-type",
+        action="append",
+        choices=NZ_LEGISLATION_DEFAULT_TYPES,
+        help="Legislation type to discover. May be repeated; defaults to all supported types.",
+    )
+    download_nz_api_cmd.add_argument(
+        "--publisher",
+        default="Parliamentary Counsel Office",
+        help="API publisher filter (default: Parliamentary Counsel Office).",
+    )
+    download_nz_api_cmd.add_argument(
+        "--search-term",
+        help="Optional title search term for scoped discovery smoke runs.",
+    )
+    download_nz_api_cmd.add_argument("--per-page", type=int, default=100)
+    download_nz_api_cmd.add_argument("--max-pages", type=int)
+    download_nz_api_cmd.add_argument("--limit", type=int)
+    download_nz_api_cmd.add_argument("--manifest-path", type=Path)
+    download_nz_api_cmd.add_argument("--no-resume", action="store_true")
+    download_nz_api_cmd.add_argument("--allow-failures", action="store_true")
+    download_nz_api_cmd.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="Concurrent XML download workers (default: 1).",
+    )
+    download_nz_api_cmd.set_defaults(func=_cmd_download_nz_legislation_api)
 
     extract_dc_cmd = sub.add_parser(
         "extract-dc-code",
@@ -4468,6 +5101,30 @@ def build_parser() -> argparse.ArgumentParser:
     extract_new_york_api_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_new_york_api_cmd.set_defaults(func=_cmd_extract_new_york_openleg_api)
 
+    extract_nyc_admin_code_cmd = sub.add_parser(
+        "extract-nyc-admin-code",
+        help="Snapshot selected NYC Administrative Code section HTML from CodeLibrary.",
+    )
+    extract_nyc_admin_code_cmd.add_argument("--base", type=Path, required=True)
+    extract_nyc_admin_code_cmd.add_argument("--version", required=True)
+    extract_nyc_admin_code_cmd.add_argument("--source-dir", type=Path)
+    extract_nyc_admin_code_cmd.add_argument("--download-dir", type=Path)
+    extract_nyc_admin_code_cmd.add_argument(
+        "--section",
+        action="append",
+        help="NYC Administrative Code section to extract; defaults to the NYC income-tax core sections.",
+    )
+    extract_nyc_admin_code_cmd.add_argument(
+        "--url",
+        action="append",
+        help="Additional SECTION=URL mapping for a CodeLibrary section page.",
+    )
+    extract_nyc_admin_code_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_nyc_admin_code_cmd.add_argument("--expression-date")
+    extract_nyc_admin_code_cmd.add_argument("--timeout-seconds", type=float, default=20.0)
+    extract_nyc_admin_code_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_nyc_admin_code_cmd.set_defaults(func=_cmd_extract_nyc_admin_code)
+
     extract_delaware_code_cmd = sub.add_parser(
         "extract-delaware-code",
         help="Snapshot official Delaware Code HTML.",
@@ -4548,6 +5205,27 @@ def build_parser() -> argparse.ArgumentParser:
     extract_california_codes_cmd.add_argument("--include-inactive", action="store_true")
     extract_california_codes_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_california_codes_cmd.set_defaults(func=_cmd_extract_california_codes_bulk)
+
+    extract_california_sections_cmd = sub.add_parser(
+        "extract-california-code-sections",
+        help="Snapshot selected official California Legislative Counsel code sections.",
+    )
+    extract_california_sections_cmd.add_argument("--base", type=Path, required=True)
+    extract_california_sections_cmd.add_argument("--version", required=True)
+    extract_california_sections_cmd.add_argument(
+        "--section",
+        action="append",
+        required=True,
+        help="California section spec such as WIC:11450.12 or a LegInfo section URL.",
+    )
+    extract_california_sections_cmd.add_argument("--download-dir", type=Path)
+    extract_california_sections_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_california_sections_cmd.add_argument("--expression-date")
+    extract_california_sections_cmd.add_argument("--delay-seconds", type=float, default=0.25)
+    extract_california_sections_cmd.add_argument("--timeout-seconds", type=float, default=60.0)
+    extract_california_sections_cmd.add_argument("--request-attempts", type=int, default=3)
+    extract_california_sections_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_california_sections_cmd.set_defaults(func=_cmd_extract_california_code_sections)
 
     extract_texas_tcas_cmd = sub.add_parser(
         "extract-texas-tcas",
@@ -4804,8 +5482,7 @@ def build_parser() -> argparse.ArgumentParser:
         action="append",
         choices=["RULE", "PRORULE", "NOTICE", "PRESDOCU"],
         help=(
-            "Federal Register type to include. Repeatable. Defaults to "
-            "RULE, PRORULE, and NOTICE."
+            "Federal Register type to include. Repeatable. Defaults to RULE, PRORULE, and NOTICE."
         ),
     )
     extract_federal_register_cmd.add_argument(
@@ -4826,6 +5503,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     extract_federal_register_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_federal_register_cmd.set_defaults(func=_cmd_extract_federal_register)
+
+    extract_federal_register_cfr_cmd = sub.add_parser(
+        "extract-federal-register-cfr-sections",
+        help="Slice CFR section records from a saved Federal Register raw-text document.",
+    )
+    extract_federal_register_cfr_cmd.add_argument("--base", type=Path, required=True)
+    extract_federal_register_cfr_cmd.add_argument("--version", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--source-text", type=Path, required=True)
+    extract_federal_register_cfr_cmd.add_argument(
+        "--section",
+        action="append",
+        required=True,
+        help="CFR section to extract, e.g. '42 CFR 431.213' or '42:431:213'.",
+    )
+    extract_federal_register_cfr_cmd.add_argument("--document-number", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--document-citation", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--document-title", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--document-type", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--source-url", required=True)
+    extract_federal_register_cfr_cmd.add_argument(
+        "--source-as-of",
+        "--as-of",
+        dest="source_as_of",
+        required=True,
+    )
+    extract_federal_register_cfr_cmd.add_argument("--expression-date", required=True)
+    extract_federal_register_cfr_cmd.add_argument("--source-document-citation-path")
+    extract_federal_register_cfr_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_federal_register_cfr_cmd.set_defaults(func=_cmd_extract_federal_register_cfr_sections)
 
     extract_documents_cmd = sub.add_parser(
         "extract-official-documents",
@@ -4849,7 +5555,9 @@ def build_parser() -> argparse.ArgumentParser:
     reconstruct_nj_snap_cmd.add_argument("--version", required=True)
     reconstruct_nj_snap_cmd.add_argument("--base-provisions", type=Path, required=True)
     reconstruct_nj_snap_cmd.add_argument("--rulemaking-provisions", type=Path, required=True)
-    reconstruct_nj_snap_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of", required=True)
+    reconstruct_nj_snap_cmd.add_argument(
+        "--source-as-of", "--as-of", dest="source_as_of", required=True
+    )
     reconstruct_nj_snap_cmd.add_argument("--expression-date", required=True)
     reconstruct_nj_snap_cmd.add_argument("--allow-incomplete", action="store_true")
     reconstruct_nj_snap_cmd.set_defaults(func=_cmd_reconstruct_new_jersey_snap_rules)
@@ -5146,10 +5854,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     unpublish_cmd = sub.add_parser(
         "unpublish",
-        help=(
-            "Mark one corpus scope version as hidden (active=false). "
-            "Inverse of `publish`."
-        ),
+        help=("Mark one corpus scope version as hidden (active=false). Inverse of `publish`."),
     )
     unpublish_cmd.add_argument("--jurisdiction", required=True)
     unpublish_cmd.add_argument("--doc-type", required=True, dest="doc_type")
@@ -5206,7 +5911,9 @@ def build_parser() -> argparse.ArgumentParser:
         help="Restrict to one table. Default: both.",
     )
     backfill_versions_cmd.add_argument(
-        "--chunk-size", type=int, default=10000,
+        "--chunk-size",
+        type=int,
+        default=10000,
         help=(
             "Rows per RPC call. Default 10000. Larger chunks risk hitting "
             "the pooler's statement_timeout; smaller chunks slow the run."
@@ -5235,12 +5942,8 @@ def build_parser() -> argparse.ArgumentParser:
         "--supabase-url",
         default=os.environ.get("AXIOM_SUPABASE_URL", DEFAULT_AXIOM_SUPABASE_URL),
     )
-    verify_release_coverage_cmd.add_argument(
-        "--service-key-env", default=DEFAULT_SERVICE_KEY_ENV
-    )
-    verify_release_coverage_cmd.add_argument(
-        "--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV
-    )
+    verify_release_coverage_cmd.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)
+    verify_release_coverage_cmd.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
     verify_release_coverage_cmd.set_defaults(func=_cmd_verify_release_coverage)
 
     analytics = sub.add_parser(

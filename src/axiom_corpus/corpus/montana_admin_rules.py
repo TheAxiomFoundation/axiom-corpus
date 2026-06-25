@@ -1116,7 +1116,9 @@ def _list_marker(list_class: str, item: Tag, index: int) -> str:
 def _references_to(html: bytes, text: str) -> tuple[str, ...]:
     refs: list[str] = []
     soup = BeautifulSoup(html, "html.parser")
-    for tag in soup.find_all(attrs={"citation-id": True}):
+    for tag in soup.find_all(True):
+        if not tag.has_attr("citation-id"):
+            continue
         citation = str(tag.get("citation-id") or "")
         refs.extend(_reference_from_citation_id(citation))
     for match in _ARM_REF_RE.finditer(text):

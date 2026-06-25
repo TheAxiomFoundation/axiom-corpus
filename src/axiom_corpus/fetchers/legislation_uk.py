@@ -65,7 +65,15 @@ class UKActReference:
     @property
     def citation(self) -> UKCitation:
         """Convert to UKCitation."""
-        return UKCitation(type="ukpga", year=self.year, number=self.number)
+        return UKCitation(
+            type="ukpga",
+            year=self.year,
+            number=self.number,
+            section=None,
+            provision_kind=None,
+            paragraph=None,
+            subsection=None,
+        )
 
     def __repr__(self) -> str:
         return f"UKActReference({self.act_id!r}, {self.title!r})"
@@ -179,7 +187,9 @@ class UKLegislationFetcher:
         """
         url = f"{self.base_url}/{citation.type}/{citation.year}/{citation.number}"
         if citation.section:
-            url += f"/section/{citation.section}"
+            url += f"/{citation.provision_segment}/{citation.section}"
+        if citation.paragraph:
+            url += f"/paragraph/{citation.paragraph}"
         if version:
             url += f"/{version}"
         url += "/data.xml"
@@ -250,7 +260,7 @@ class UKLegislationFetcher:
         """Get cache file path for a citation."""
         path = self.data_dir / citation.type / str(citation.year) / str(citation.number)
         if citation.section:
-            return path / f"section-{citation.section}.xml"
+            return path / f"{citation.provision_segment}-{citation.section}.xml"
         return path / "act.xml"
 
     async def fetch_section(
@@ -345,6 +355,9 @@ class UKLegislationFetcher:
                     year=citation.year,
                     number=citation.number,
                     section=str(i),
+                    provision_kind=citation.provision_kind,
+                    paragraph=None,
+                    subsection=None,
                 )
                 section = await self.fetch_section(section_citation)
                 sections.append(section)

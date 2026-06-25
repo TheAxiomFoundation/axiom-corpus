@@ -1,12 +1,29 @@
 import json
+import subprocess
+from base64 import b64encode
+
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport
 from axiom_corpus.corpus.documents import OfficialDocumentExtractReport
 from axiom_corpus.corpus.ecfr import EcfrExtractReport, EcfrInventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.nz_legislation import (
+    NZLegislationClassExtractReport,
+    NZLegislationExtractReport,
+)
 from axiom_corpus.corpus.states import StateStatuteExtractReport
+from axiom_corpus.corpus.uk_legislation import (
+    UKLegislationClassExtractReport,
+    UKLegislationExtractReport,
+)
 from axiom_corpus.corpus.usc import UscExtractReport
+from axiom_corpus.fetchers.nz_legislation_api import (
+    NZLegislationAPIDownloadReport,
+    NZLegislationAPISource,
+)
 
 SAMPLE_USLM_CLI = """
 <uscDoc identifier="/us/usc/t26">
@@ -23,12 +40,418 @@ SAMPLE_USLM_CLI = """
 """
 
 
+def _git(repo, *args):
+    subprocess.run(["git", *args], cwd=repo, check=True, capture_output=True, text=True)
+
+
+def _init_git_repo(repo):
+    repo.mkdir()
+    _git(repo, "init", "-b", "main")
+    _git(repo, "config", "user.email", "test@example.com")
+    _git(repo, "config", "user.name", "Test User")
+    (repo / "README.md").write_text("test repo\n")
+    _git(repo, "add", "README.md")
+    _git(repo, "commit", "-m", "Initial commit")
+    return repo
+
+
+def _test_ingest_keys():
+    private_key = Ed25519PrivateKey.generate()
+    private_key_text = b64encode(
+        private_key.private_bytes(
+            encoding=serialization.Encoding.Raw,
+            format=serialization.PrivateFormat.Raw,
+            encryption_algorithm=serialization.NoEncryption(),
+        )
+    ).decode("ascii")
+    public_key_text = b64encode(
+        private_key.public_key().public_bytes(
+            encoding=serialization.Encoding.Raw,
+            format=serialization.PublicFormat.Raw,
+        )
+    ).decode("ascii")
+    return private_key_text, public_key_text
+
+
+def _set_ingest_keys(monkeypatch):
+    private_key, public_key = _test_ingest_keys()
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PRIVATE_KEY", private_key)
+    monkeypatch.setenv("AXIOM_CORPUS_INGEST_PUBLIC_KEY", public_key)
+    return private_key, public_key
+
+
 def test_validate_manifest_cli(capsys):
     exit_code = main(["validate-manifest", "manifests/corpus.example.yaml"])
     output = capsys.readouterr().out
 
     assert exit_code == 0
     assert '"ok": true' in output
+
+
+def test_sign_ingest_manifest_cli_writes_signed_scope_manifest(tmp_path, capsys, monkeypatch):
+    repo = _init_git_repo(tmp_path / "repo")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+
+    exit_code = main(
+        [
+            "sign-ingest-manifest",
+            "--repo",
+            str(repo),
+            "--jurisdiction",
+            "us",
+            "--document-class",
+            "statute",
+            "--version",
+            "2026-06-06",
+            "--command",
+            "axiom-corpus-ingest extract-example --version 2026-06-06",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"applied_files": 1' in output
+    manifest_path = repo / ".axiom/ingest-manifests/us/statute/2026-06-06.json"
+    manifest = json.loads(manifest_path.read_text())
+    assert manifest["schema_version"] == "axiom-corpus/ingest-manifest/v1"
+    assert manifest["command"]["text"].startswith("axiom-corpus-ingest extract-example")
+    assert manifest["applied_files"][0]["path"] == (
+        "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    )
+    assert manifest["signature"]["algorithm"] == "ed25519"
+
+
+def test_guard_ingested_cli_rejects_unmanifested_corpus_artifact_change(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "commit", "-m", "Add unmanifested corpus row")
+    _set_ingest_keys(monkeypatch)
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "Unmanifested corpus artifact change" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_accepts_signed_corpus_artifact_change(tmp_path, capsys, monkeypatch):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "add", ".axiom/ingest-manifests/us/statute/2026-06-06.json")
+    _git(repo, "commit", "-m", "Add manifested corpus row")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    payload = json.loads(output)
+    assert payload["passed"] is True
+    assert payload["issues"] == []
+    assert payload["protected_changes"] == ["data/corpus/provisions/us/statute/2026-06-06.jsonl"]
+
+
+def test_guard_ingested_cli_rejects_signed_change_without_public_key(tmp_path, capsys, monkeypatch):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "add", ".axiom/ingest-manifests/us/statute/2026-06-06.json")
+    _git(repo, "commit", "-m", "Add manifested corpus row")
+    monkeypatch.delenv("AXIOM_CORPUS_INGEST_PUBLIC_KEY")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "AXIOM_CORPUS_INGEST_PUBLIC_KEY is required" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_rejects_tampered_ingest_manifest(tmp_path, capsys, monkeypatch):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    manifest_path = repo / ".axiom/ingest-manifests/us/statute/2026-06-06.json"
+    manifest = json.loads(manifest_path.read_text())
+    manifest["command"]["text"] = "manual edit"
+    manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "add", ".axiom/ingest-manifests/us/statute/2026-06-06.json")
+    _git(repo, "commit", "-m", "Add tampered manifest")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "Invalid ingest manifest signature" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_rejects_committed_tampered_artifact(tmp_path, capsys, monkeypatch):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    provision.write_text('{"citation_path":"us/statute/example","body":"Changed."}\n')
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "add", ".axiom/ingest-manifests/us/statute/2026-06-06.json")
+    _git(repo, "commit", "-m", "Add tampered manifested corpus row")
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "sha256 does not match ingest manifest" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_rejects_rename_out_of_protected_corpus_path(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "commit", "-m", "Add corpus row")
+    _git(repo, "checkout", "-b", "feature")
+    moved = repo / "tmp/2026-06-06.jsonl"
+    moved.parent.mkdir()
+    _git(repo, "mv", "data/corpus/provisions/us/statute/2026-06-06.jsonl", "tmp/2026-06-06.jsonl")
+    _git(repo, "commit", "-m", "Move corpus row out of protected path")
+    _set_ingest_keys(monkeypatch)
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["protected_changes"] == ["data/corpus/provisions/us/statute/2026-06-06.jsonl"]
+    assert "Unmanifested corpus artifact change" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_accepts_signed_deleted_corpus_artifact(tmp_path, capsys, monkeypatch):
+    repo = _init_git_repo(tmp_path / "repo")
+    provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
+    provision.parent.mkdir(parents=True)
+    provision.write_text('{"citation_path":"us/statute/example","body":"Example."}\n')
+    _git(repo, "add", "data/corpus/provisions/us/statute/2026-06-06.jsonl")
+    _git(repo, "commit", "-m", "Add corpus row")
+    _git(repo, "checkout", "-b", "feature")
+    provision.unlink()
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "us",
+                "--document-class",
+                "statute",
+                "--version",
+                "2026-06-06",
+                "--deleted-file",
+                "data/corpus/provisions/us/statute/2026-06-06.jsonl",
+                "--command",
+                "axiom-corpus-ingest remove-obsolete-scope --version 2026-06-06",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    _git(repo, "add", "-A")
+    _git(repo, "commit", "-m", "Remove manifested corpus row")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    payload = json.loads(output)
+    assert payload["passed"] is True
+    assert payload["issues"] == []
 
 
 def test_inventory_ecfr_cli(tmp_path, capsys, monkeypatch):
@@ -196,6 +619,36 @@ def test_inventory_usc_cli(tmp_path, capsys):
     ]
 
 
+def test_inventory_usc_cli_filters_sections(tmp_path, capsys):
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "usc26.xml"
+    source_xml.write_text(SAMPLE_USLM_CLI)
+
+    exit_code = main(
+        [
+            "inventory-usc",
+            "--base",
+            str(base),
+            "--run-id",
+            "2026-04-29-eitc",
+            "--source-xml",
+            str(source_xml),
+            "--section",
+            "32",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"items_written": 1' in output
+    inventory = json.loads(
+        (base / "inventory/us/statute/2026-04-29-eitc-title-26.json").read_text()
+    )
+    assert [item["citation_path"] for item in inventory["items"]] == [
+        "us/statute/26/32",
+    ]
+
+
 def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 
@@ -215,6 +668,7 @@ def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
 
     def fake_extract(*args, **kwargs):
         assert kwargs["source_xml"] == source_xml
+        assert kwargs["allowed_citation_paths"] is None
         return UscExtractReport(
             title="26",
             title_count=1,
@@ -246,6 +700,265 @@ def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
 
     assert exit_code == 0
     assert '"provisions_written": 2' in output
+
+
+def test_extract_usc_cli_filters_sections(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "usc26.xml"
+    source_xml.write_text(SAMPLE_USLM_CLI)
+    coverage = ProvisionCoverageReport(
+        jurisdiction="us",
+        document_class="statute",
+        version="2026-04-29-eitc-title-26",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["source_xml"] == source_xml
+        assert kwargs["allowed_citation_paths"] == {"us/statute/26/32"}
+        return UscExtractReport(
+            title="26",
+            title_count=1,
+            section_count=1,
+            provisions_written=1,
+            inventory_path=base / "inventory/us/statute/2026-04-29-eitc-title-26.json",
+            provisions_path=base / "provisions/us/statute/2026-04-29-eitc-title-26.jsonl",
+            coverage_path=base / "coverage/us/statute/2026-04-29-eitc-title-26.json",
+            coverage=coverage,
+            source_paths=(base / "sources/us/statute/2026-04-29-eitc-title-26/uslm/usc26.xml",),
+        )
+
+    monkeypatch.setattr(cli, "extract_usc", fake_extract)
+
+    exit_code = main(
+        [
+            "extract-usc",
+            "--base",
+            str(base),
+            "--version",
+            "2026-04-29-eitc",
+            "--source-xml",
+            str(source_xml),
+            "--section",
+            "32",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"provisions_written": 1' in output
+
+
+def test_extract_uk_legislation_cli(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "uk.xml"
+    source_xml.write_text("<Legislation />")
+    coverage = ProvisionCoverageReport(
+        jurisdiction="uk",
+        document_class="regulation",
+        version="2026-05-29-uk-benefits",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["source_xmls"] == (source_xml,)
+        assert kwargs["citations"] == ("uksi/2006/965/regulation/2",)
+        return UKLegislationExtractReport(
+            version="2026-05-29-uk-benefits",
+            source_count=1,
+            provisions_written=1,
+            class_reports=(
+                UKLegislationClassExtractReport(
+                    document_class="regulation",
+                    source_count=1,
+                    provisions_written=1,
+                    inventory_path=base / "inventory/uk/regulation/2026-05-29-uk-benefits.json",
+                    provisions_path=base / "provisions/uk/regulation/2026-05-29-uk-benefits.jsonl",
+                    coverage_path=base / "coverage/uk/regulation/2026-05-29-uk-benefits.json",
+                    coverage=coverage,
+                    source_paths=(
+                        base
+                        / "sources/uk/regulation/2026-05-29-uk-benefits/uksi/2006/965/regulation-2.xml",
+                    ),
+                ),
+            ),
+        )
+
+    monkeypatch.setattr(cli, "extract_uk_legislation_sections", fake_extract)
+
+    exit_code = main(
+        [
+            "extract-uk-legislation",
+            "--base",
+            str(base),
+            "--version",
+            "2026-05-29-uk-benefits",
+            "--source-xml",
+            str(source_xml),
+            "--citation",
+            "uksi/2006/965/regulation/2",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"jurisdiction": "uk"' in output
+    assert '"document_class": "regulation"' in output
+
+
+def test_extract_nz_legislation_cli(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_xml = tmp_path / "nz.xml"
+    source_xml.write_text("<act />")
+    source_dir = tmp_path / "pco"
+    source_dir.mkdir()
+    coverage = ProvisionCoverageReport(
+        jurisdiction="nz",
+        document_class="statute",
+        version="2026-06-16-nz",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["source_xmls"] == (source_xml,)
+        assert kwargs["source_dir"] == source_dir
+        assert kwargs["source_pattern"] == "*.xml"
+        assert kwargs["source_as_of"] == "2026-06-16"
+        assert kwargs["expression_date"].isoformat() == "2026-04-01"
+        assert kwargs["limit"] == 10
+        return NZLegislationExtractReport(
+            version="2026-06-16-nz",
+            source_count=1,
+            provisions_written=1,
+            class_reports=(
+                NZLegislationClassExtractReport(
+                    document_class="statute",
+                    source_count=1,
+                    provisions_written=1,
+                    inventory_path=base / "inventory/nz/statute/2026-06-16-nz.json",
+                    provisions_path=base / "provisions/nz/statute/2026-06-16-nz.jsonl",
+                    coverage_path=base / "coverage/nz/statute/2026-06-16-nz.json",
+                    coverage=coverage,
+                    source_paths=(
+                        base / "sources/nz/statute/2026-06-16-nz/act/public/2007/0097/wholeof.xml",
+                    ),
+                ),
+            ),
+        )
+
+    monkeypatch.setattr(cli, "extract_nz_legislation", fake_extract)
+
+    exit_code = main(
+        [
+            "extract-nz-legislation",
+            "--base",
+            str(base),
+            "--version",
+            "2026-06-16-nz",
+            "--source-xml",
+            str(source_xml),
+            "--source-dir",
+            str(source_dir),
+            "--as-of",
+            "2026-06-16",
+            "--expression-date",
+            "2026-04-01",
+            "--limit",
+            "10",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"jurisdiction": "nz"' in output
+    assert '"document_class": "statute"' in output
+
+
+def test_download_nz_legislation_api_cli_uses_env_key(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    output_dir = tmp_path / "xml"
+    manifest_path = tmp_path / "manifest.json"
+    monkeypatch.setenv("NZ_LEGISLATION_API_KEY", "test-key")
+
+    def fake_download(*args, **kwargs):
+        assert args == (output_dir,)
+        assert kwargs["api_key"] == "test-key"
+        assert kwargs["legislation_types"] == ("act",)
+        assert kwargs["publisher"] == "Parliamentary Counsel Office"
+        assert kwargs["search_term"] == "Income Tax"
+        assert kwargs["per_page"] == 100
+        assert kwargs["max_pages"] == 1
+        assert kwargs["limit"] == 5
+        assert kwargs["resume"] is True
+        assert kwargs["allow_failures"] is False
+        assert kwargs["manifest_path"] == manifest_path
+        source = NZLegislationAPISource(
+            work_id="act_public_2007_97",
+            version_id="act_public_2007_97_en_2026-04-01",
+            title="Income Tax Act 2007",
+            legislation_type="act",
+            legislation_status="in_force",
+            xml_url="https://www.legislation.govt.nz/act/public/2007/97/en/2026-04-01.xml/",
+            relative_path="act/public/2007/97/act_public_2007_97_en_2026-04-01.xml",
+            metadata={},
+        )
+        return NZLegislationAPIDownloadReport(
+            output_dir=output_dir,
+            discovered_count=1,
+            downloaded_count=1,
+            skipped_count=0,
+            failed_count=0,
+            sources=(source,),
+            downloaded_paths=(output_dir / source.relative_path,),
+            skipped_paths=(),
+            failures=(),
+            manifest_path=manifest_path,
+        )
+
+    monkeypatch.setattr(cli, "download_nz_legislation_api_sources", fake_download)
+
+    exit_code = main(
+        [
+            "download-nz-legislation-api",
+            "--output-dir",
+            str(output_dir),
+            "--legislation-type",
+            "act",
+            "--search-term",
+            "Income Tax",
+            "--max-pages",
+            "1",
+            "--limit",
+            "5",
+            "--manifest-path",
+            str(manifest_path),
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"jurisdiction": "nz"' in output
+    assert '"downloaded_count": 1' in output
+    assert "test-key" not in output
 
 
 def test_extract_usc_dir_cli(tmp_path, capsys, monkeypatch):
@@ -527,9 +1240,7 @@ def test_load_supabase_cli_rebuilds_navigation_after_provisions_load(tmp_path, c
     assert payload["navigation"]["source"] == "local"
 
 
-def test_load_supabase_cli_can_rebuild_navigation_from_supabase(
-    tmp_path, capsys, monkeypatch
-):
+def test_load_supabase_cli_can_rebuild_navigation_from_supabase(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
     from axiom_corpus.corpus.artifacts import CorpusArtifactStore
     from axiom_corpus.corpus.navigation_supabase import NavigationSupabaseWriteReport
@@ -1015,9 +1726,7 @@ def test_snapshot_provision_counts_cli_writes_supabase_counts(tmp_path, capsys, 
     }
 
 
-def test_snapshot_provision_counts_cli_can_count_release_manifest(
-    tmp_path, capsys, monkeypatch
-):
+def test_snapshot_provision_counts_cli_can_count_release_manifest(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 
     base = tmp_path / "corpus"
@@ -2019,3 +2728,56 @@ def test_validate_release_cli_gates_release(tmp_path, capsys):
     assert payload["ok"] is True
     assert payload["error_count"] == 0
     assert payload["warning_count"] == 0
+
+
+def test_resolve_encoded_paths_supports_monorepo_and_legacy_layouts(tmp_path):
+    from argparse import Namespace
+
+    from axiom_corpus.corpus.cli import (
+        _jurisdictions_for_repo_checkout,
+        _resolve_encoded_paths,
+    )
+
+    def _touch(path):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text("rule: {}\n")
+
+    # Monorepo layout: federal + state dirs inside one rulespec-us checkout.
+    monorepo = tmp_path / "monorepo-root" / "rulespec-us"
+    _touch(monorepo / "us" / "statutes" / "26" / "3111" / "a.yaml")
+    _touch(monorepo / "us-ca" / "regulations" / "mpp" / "63-300" / "1.yaml")
+
+    # Legacy layout: sibling per-jurisdiction checkouts under another root.
+    legacy_root = tmp_path / "legacy-root"
+    _touch(legacy_root / "rulespec-us" / "statutes" / "7" / "2014" / "e.yaml")
+    _touch(legacy_root / "rulespec-us-ny" / "regulations" / "18-nycrr" / "387.1.yaml")
+
+    encoded = _resolve_encoded_paths(
+        Namespace(
+            rulespec_repo=[],
+            rulespec_root=[str(monorepo.parent), str(legacy_root)],
+            rulespec_auto=False,
+        ),
+        ["us", "us-ca", "us-ny"],
+    )
+
+    assert encoded == {
+        "us/statute/26/3111/a",
+        "us/statute/7/2014/e",
+        "us-ca/regulation/mpp/63-300/1",
+        "us-ny/regulation/18-nycrr/387.1",
+    }
+
+    # An explicit --rulespec-repo pointing at a monorepo checkout covers every
+    # jurisdiction directory inside it; legacy checkouts keep covering one.
+    assert _jurisdictions_for_repo_checkout(monorepo) == ["us", "us-ca"]
+    assert _jurisdictions_for_repo_checkout(legacy_root / "rulespec-us-ny") == ["us-ny"]
+
+    encoded_explicit = _resolve_encoded_paths(
+        Namespace(rulespec_repo=[str(monorepo)], rulespec_root=[], rulespec_auto=False),
+        ["us", "us-ca"],
+    )
+    assert encoded_explicit == {
+        "us/statute/26/3111/a",
+        "us-ca/regulation/mpp/63-300/1",
+    }

@@ -1,0 +1,70 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/manual/2026-06-25-ga-caps.json",
+      "sha256": "2c3d2541fa43d21859090caf3f217ca4917cf623a6be5eba8693da1b03969d72"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/manual/2026-06-25-ga-caps.json",
+      "sha256": "38b9780dae33d5d33896c38e122f497d34354d605fcae86d4b0ef5ec27764e13"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/manual/2026-06-25-ga-caps.jsonl",
+      "sha256": "e5143513d0f11570afd7f0784df5d8b94899e72d6edc268e6483ea85d7bdab74"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-06-25-ga-caps/official-documents/ga-decal-caps-appendix-a-income-limits.pdf",
+      "sha256": "22cfbc0eecd6f965e8454ff99f4f2e116c279ab0e1a444825473cc1cc27105a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-06-25-ga-caps/official-documents/ga-decal-caps-appendix-c-reimbursement-rates.pdf",
+      "sha256": "d77ac81fe0d1df0548f84510af520ccc00ae2e176785f223117d78e190f652bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-06-25-ga-caps/official-documents/ga-decal-caps-appendix-d-family-fee-chart.pdf",
+      "sha256": "a343f699da0c531c08081f7f342b81fb67a1207ae4fa1b5a18fe49330133279f"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-06-25-ga-caps/official-documents/ga-decal-caps-policy-manual.pdf",
+      "sha256": "2d0ab52f91c1f54a6142a79e563b8c1e161f5377f2c6d2e5b4959eeeeffaf374"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-06-25-ga-caps/official-documents/ga-decal-ccdf-state-plan-2025-2027.pdf",
+      "sha256": "99379fd852f4f743c40b7af54aef2d927cc485d10eb7cdc76e2b3797412dd05b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "91ff64223b71361c17e52585b09b73a641cde8b9",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ga-caps-20260625"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-06-25-ga-caps --manifest manifests/us-ga-caps-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 506,
+    "missing_count": 0,
+    "provision_count": 506,
+    "source_count": 506
+  },
+  "document_class": "manual",
+  "generated_at": "2026-06-25T11:07:14.670519+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-ga-manual-2026-06-25-ga-caps.md",
+      "sha256": "8211b195031efc2c6debd1e0d8d9efeb2ef7d384bea1c2a2427c6c3579171f78"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PHeTdDDuBSnDLLSZ7j08Lz2w14XE/kZky0Ntrb9TO2unVjbpJdoV0uqjKEZI9p/aN5Bk0euzMSouSOn1HFgcDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-25-ga-caps"
+}

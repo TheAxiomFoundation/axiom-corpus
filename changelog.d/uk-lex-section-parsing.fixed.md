@@ -1,0 +1,1 @@
+Fixed UK citation parsing to accept multi-letter inserted-section suffixes (e.g. `228ZA`, `127BA`) and made Lex section matching case-insensitive, so lowercase legislation.gov.uk citations resolve against Lex's uppercased provision tokens.

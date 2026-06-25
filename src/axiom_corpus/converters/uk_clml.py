@@ -101,8 +101,8 @@ class UKCLMLConverter:
         """
         ref = ref.lstrip("/")
 
-        # Pattern: type/year/number[/section/num]
-        pattern = r"^([a-z]+)/(\d+)/(\d+)(?:/section/(\d+[A-Za-z]?))?$"
+        # Pattern: type/year/number[/section|regulation|schedule/num]
+        pattern = r"^([a-z]+)/(\d+)/(\d+)(?:/(section|regulation|schedule)/(\d+[A-Za-z]*))?$"
         match = re.match(pattern, ref, re.IGNORECASE)
 
         if not match:
@@ -112,7 +112,8 @@ class UKCLMLConverter:
             type=match.group(1).lower(),
             year=int(match.group(2)),
             number=int(match.group(3)),
-            section=match.group(4),
+            provision_kind=match.group(4),
+            section=match.group(5),
         )
 
     def _cache_path(self, ref: str) -> Path:
@@ -187,15 +188,16 @@ class UKCLMLConverter:
         return parse_act_metadata(xml_str)
 
     def _is_section_ref(self, ref: str) -> bool:
-        """Check if reference points to a specific section.
+        """Check if reference points to a specific provision.
 
         Args:
             ref: Reference string
 
         Returns:
-            True if reference includes a section number
+            True if reference includes a section, regulation, or schedule number.
         """
-        return "/section/" in ref.lower()
+        lowered = ref.lower()
+        return any(segment in lowered for segment in ("/section/", "/regulation/", "/schedule/"))
 
     async def fetch(
         self,
