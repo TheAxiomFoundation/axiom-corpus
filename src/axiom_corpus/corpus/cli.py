@@ -185,6 +185,7 @@ from axiom_corpus.corpus.state_statute_completion import (
 )
 from axiom_corpus.corpus.states import (
     StateStatuteExtractReport,
+    extract_california_code_sections,
     extract_california_codes_bulk,
     extract_cic_html_release,
     extract_cic_odt_release,
@@ -2042,6 +2043,35 @@ def _cmd_extract_california_codes_bulk(args: argparse.Namespace) -> int:
     return 0 if report.coverage.complete or args.allow_incomplete else 2
 
 
+def _cmd_extract_california_code_sections(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_california_code_sections(
+        store,
+        version=args.version,
+        sections=tuple(args.section),
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        download_dir=args.download_dir,
+        request_delay_seconds=args.delay_seconds,
+        timeout_seconds=args.timeout_seconds,
+        request_attempts=args.request_attempts,
+    )
+    print(
+        json.dumps(
+            _state_statute_report_payload(
+                report,
+                source_id="us-ca-code-sections",
+                adapter="california-code-sections",
+                version=args.version,
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
 def _cmd_extract_state_statutes(args: argparse.Namespace) -> int:
     manifest_path = args.manifest
     manifest = CorpusManifest.load(manifest_path)
@@ -2833,6 +2863,24 @@ def _extract_state_statute_source(
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
             include_inactive=bool(options.get("include_inactive", False)),
         )
+    if adapter == "california-code-sections":
+        raw_sections = options.get("sections", ())
+        sections = (
+            (str(raw_sections),)
+            if isinstance(raw_sections, str)
+            else tuple(str(item) for item in raw_sections)
+        )
+        return extract_california_code_sections(
+            store,
+            version=version,
+            sections=sections,
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.25,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 60.0,
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+        )
     raise ValueError(f"unsupported state statute adapter: {source.adapter}")
 
 
@@ -3127,6 +3175,11 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "california-codes-bulk": "california-codes-bulk",
         "california-leginfo": "california-codes-bulk",
         "ca-leginfo": "california-codes-bulk",
+        "california-code-sections": "california-code-sections",
+        "california-section": "california-code-sections",
+        "california-sections": "california-code-sections",
+        "ca-code-sections": "california-code-sections",
+        "ca-sections": "california-code-sections",
         "texas-tcas": "texas-tcas",
         "texas-api": "texas-tcas",
         "tcas": "texas-tcas",
@@ -3206,6 +3259,8 @@ def _state_statute_source_path_for_plan(
         )
     if adapter == "california-codes-bulk":
         return _optional_manifest_path(manifest_path, options, "source_zip")
+    if adapter == "california-code-sections":
+        return _optional_manifest_path(manifest_path, options, "download_dir")
     if adapter == "local-state-html":
         return _required_manifest_path(manifest_path, options, "source_dir")
     return _required_manifest_path(manifest_path, options, path_key)
@@ -5150,6 +5205,27 @@ def build_parser() -> argparse.ArgumentParser:
     extract_california_codes_cmd.add_argument("--include-inactive", action="store_true")
     extract_california_codes_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_california_codes_cmd.set_defaults(func=_cmd_extract_california_codes_bulk)
+
+    extract_california_sections_cmd = sub.add_parser(
+        "extract-california-code-sections",
+        help="Snapshot selected official California Legislative Counsel code sections.",
+    )
+    extract_california_sections_cmd.add_argument("--base", type=Path, required=True)
+    extract_california_sections_cmd.add_argument("--version", required=True)
+    extract_california_sections_cmd.add_argument(
+        "--section",
+        action="append",
+        required=True,
+        help="California section spec such as WIC:11450.12 or a LegInfo section URL.",
+    )
+    extract_california_sections_cmd.add_argument("--download-dir", type=Path)
+    extract_california_sections_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_california_sections_cmd.add_argument("--expression-date")
+    extract_california_sections_cmd.add_argument("--delay-seconds", type=float, default=0.25)
+    extract_california_sections_cmd.add_argument("--timeout-seconds", type=float, default=60.0)
+    extract_california_sections_cmd.add_argument("--request-attempts", type=int, default=3)
+    extract_california_sections_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_california_sections_cmd.set_defaults(func=_cmd_extract_california_code_sections)
 
     extract_texas_tcas_cmd = sub.add_parser(
         "extract-texas-tcas",

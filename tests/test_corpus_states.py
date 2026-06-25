@@ -35,6 +35,7 @@ from axiom_corpus.corpus.states import (
     _state_html_section_number,
     _state_html_to_section_args,
     _state_html_to_sections,
+    extract_california_code_sections,
     extract_california_codes_bulk,
     extract_cic_html_release,
     extract_cic_odt_release,
@@ -1183,6 +1184,132 @@ def test_extract_california_codes_bulk_writes_state_records(tmp_path):
     assert "A credit is allowed" in (records[-1].body or "")
 
 
+def test_extract_california_code_sections_writes_selected_leginfo_records(tmp_path):
+    download_dir = tmp_path / "downloads"
+    html_path = download_dir / "california-leginfo-sections" / "WIC-11450.12.html"
+    html_path.parent.mkdir(parents=True)
+    html_path.write_text(
+        """
+        <html><body>
+          <div id="single_law_section">
+            <HTML><BODY>
+              <div id="codeLawSectionNoHead">
+                <div><h4><b>Welfare and Institutions Code - WIC</b></h4></div>
+                <div><font face="Times New Roman">
+                  <h6><b>11450.12.  </b></h6>
+                  <p>(a) An applicant family shall not be eligible for aid unless income is less than the minimum basic standard of adequate care.</p>
+                  <p>(b) An applicant family shall not be eligible if reasonably anticipated income equals or exceeds the maximum aid payment.</p>
+                  <i>(Amended by Stats. 2021, Ch. 696, Sec. 23. Effective October 8, 2021.)</i>
+                </font></div>
+              </div>
+            </BODY></HTML>
+          </div>
+          <a onclick="mojarra.jsfcljs(document.getElementById('displayCodeSection'),{'sectionuid':'id_test'},'');return false">PDF</a>
+        </body></html>
+        """,
+        encoding="utf-8",
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_california_code_sections(
+        store,
+        version="2026-06-25",
+        sections=("WIC:11450.12",),
+        source_as_of="2026-06-25",
+        download_dir=download_dir,
+    )
+
+    assert report.coverage.complete
+    assert report.title_count == 1
+    assert report.container_count == 0
+    assert report.section_count == 1
+    assert report.errors == ()
+    records = load_provisions(report.provisions_path)
+    assert records[0].citation_path == "us-ca/statute/wic/11450.12"
+    assert records[0].source_format == "california-leginfo-section-html"
+    assert records[0].source_id == "id_test"
+    assert records[0].source_as_of == "2026-06-25"
+    assert "reasonably anticipated income equals or exceeds" in (records[0].body or "")
+    assert records[0].metadata["history"].startswith("(Amended by Stats. 2021")
+    inventory = load_source_inventory(report.inventory_path)
+    assert inventory[0].source_path.endswith(
+        "/california-leginfo-sections/WIC-11450.12.html"
+    )
+    assert report.source_paths[0].read_text(encoding="utf-8").startswith("\n        <html>")
+
+
+def test_extract_california_code_sections_resolves_leginfo_multiple_results(
+    tmp_path, monkeypatch
+):
+    download_dir = tmp_path / "downloads"
+    html_path = download_dir / "california-leginfo-sections" / "WIC-11451.5.html"
+    html_path.parent.mkdir(parents=True)
+    html_path.write_text(
+        """
+        <html><body>
+          <form id="selectFromMultiples" action="/faces/selectFromMultiples.xhtml">
+            <input type="hidden" name="selectFromMultiples" value="selectFromMultiples" />
+            <input type="hidden" name="javax.faces.ViewState" value="state" />
+            <a onclick="mojarra.jsfcljs(document.getElementById('selectFromMultiples'),{'selectFromMultiples:j_idt139:0:j_idt141':'selectFromMultiples:j_idt139:0:j_idt141','lawCode':'WIC','sectionNum':'11451.5.','op_statues':'2019','op_chapter':'27','op_section':'59','nodeTreePath':'16.6.2.18'},'');return false">old</a>
+            <a onclick="mojarra.jsfcljs(document.getElementById('selectFromMultiples'),{'selectFromMultiples:j_idt139:2:j_idt141':'selectFromMultiples:j_idt139:2:j_idt141','lawCode':'WIC','sectionNum':'11451.5.','op_statues':'2022','op_chapter':'588','op_section':'6','nodeTreePath':'16.6.2.18'},'');return false">current</a>
+          </form>
+        </body></html>
+        """,
+        encoding="utf-8",
+    )
+    current_html = b"""
+        <html><body>
+          <div id="single_law_section">
+            <div><font>
+              <h6><b>11451.5.  </b></h6>
+              <p>(a) Current recipient income disregard.</p>
+            </font></div>
+          </div>
+          <a onclick="mojarra.jsfcljs(document.getElementById('displayCodeSection'),{'sectionuid':'id_current'},'');return false">PDF</a>
+        </body></html>
+        """
+
+    class Response:
+        status_code = 200
+
+        def __init__(self, content):
+            self.content = content
+
+        def raise_for_status(self):
+            return None
+
+    class Session:
+        def __init__(self):
+            self.headers = {}
+
+        def get(self, url, timeout):
+            assert "sectionNum=11451.5" in url
+            assert timeout == 60.0
+            return Response(html_path.read_bytes())
+
+        def post(self, url, data, timeout):
+            assert url.endswith("/faces/selectFromMultiples.xhtml")
+            assert data["javax.faces.ViewState"] == "state"
+            assert timeout == 60.0
+            return Response(current_html)
+
+    monkeypatch.setattr("axiom_corpus.corpus.states.requests.Session", Session)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_california_code_sections(
+        store,
+        version="2026-06-25",
+        sections=("WIC:11451.5",),
+        download_dir=download_dir,
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert report.coverage.complete
+    assert records[0].source_id == "id_current"
+    assert records[0].body == "(a) Current recipient income disregard."
+    assert "selectFromMultiples" not in report.source_paths[0].read_text(encoding="utf-8")
+
+
 def test_extract_colorado_docx_release_writes_state_records(tmp_path):
     release_dir = tmp_path / "release2025"
     docx_dir = release_dir / "docx"
@@ -1471,6 +1598,45 @@ def test_extract_california_codes_cli_local_source(tmp_path, capsys):
     assert exit_code == 0
     assert '"jurisdiction": "us-ca"' in output
     assert '"provisions_written": 3' in output
+
+
+def test_extract_california_code_sections_cli_local_cache(tmp_path, capsys):
+    download_dir = tmp_path / "downloads"
+    html_path = download_dir / "california-leginfo-sections" / "WIC-11450.12.html"
+    html_path.parent.mkdir(parents=True)
+    html_path.write_text(
+        """
+        <html><body>
+          <div id="single_law_section">
+            <div><font>
+              <h6><b>11450.12.  </b></h6>
+              <p>(a) Applicant income test.</p>
+            </font></div>
+          </div>
+        </body></html>
+        """,
+        encoding="utf-8",
+    )
+    base = tmp_path / "corpus"
+
+    exit_code = main(
+        [
+            "extract-california-code-sections",
+            "--base",
+            str(base),
+            "--version",
+            "2026-06-25",
+            "--section",
+            "WIC:11450.12",
+            "--download-dir",
+            str(download_dir),
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"adapter": "california-code-sections"' in output
+    assert '"provisions_written": 1' in output
 
 
 @pytest.mark.parametrize(
