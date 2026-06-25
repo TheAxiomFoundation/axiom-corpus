@@ -44,30 +44,32 @@ documents:
       document_subtype: agency_page
       program: SNAP
 
-  - source_id: az-fns-abawd-waiver-fy2025-2029-index
+  - source_id: az-fna-abawd-waiver-fy2025
     jurisdiction: us-az
     document_class: policy
-    title: FNS ABAWD Waivers FY 2025-2029 (Arizona entries)
-    source_url: https://www.fns.usda.gov/snap/abawd/waivers/2025-2029
-    source_format: html
+    title: Arizona FY 2025 ABAWD Waiver - FNA Response
+    source_url: https://www.fna.usda.gov/sites/default/files/resource-files/az-abawd-response-fy2025.pdf
+    source_format: pdf
+    source_as_of: "2024-09-12"
+    expression_date: "2024-09-12"
     metadata:
       primary_source: true
-      source_authority: USDA Food and Nutrition Service
-      document_subtype: waiver_index
+      source_authority: USDA Food and Nutrition Administration
+      document_subtype: waiver_approval
       program: SNAP
       topic: ABAWD
-      note: Specific Arizona ABAWD waiver approval URL to be filled once confirmed.
+      effective_start: "2024-10-01"
+      effective_end: "2025-09-30"
 
-  - source_id: az-fns-et-state-plans-index
+  - source_id: az-fna-et-state-plan
     jurisdiction: us-az
     document_class: policy
-    title: FNS SNAP E&T State Plans (Arizona entries)
-    source_url: https://www.fns.usda.gov/snap/et/state-plans
+    title: Arizona SNAP E&T State Plan
+    source_url: https://www.fna.usda.gov/snap-et/stateplan/arizona
     source_format: html
     metadata:
       primary_source: true
-      source_authority: USDA Food and Nutrition Service
-      document_subtype: state_plan_index
+      source_authority: USDA Food and Nutrition Administration
+      document_subtype: state_plan
       program: SNAP
       topic: employment_and_training
-      note: Specific Arizona E&T state plan PDF URL to be filled once confirmed.
