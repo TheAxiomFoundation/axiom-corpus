@@ -27,3 +27,13 @@ uv run axiom-corpus-ingest extract-colorado-ccr --base data/corpus --version 202
 ```
 
 Result: full coverage; 92 provision records, 0 missing, 0 errors.
+
+## Artifact repair
+
+The initial corpus commit included this signed manifest and reasoning log but
+omitted the generated `data/corpus` artifacts. On 2026-06-25, the same ingester
+command was rerun to re-materialize the missing artifacts. The generated corpus
+again produced full coverage with 92 provision records, 92 source rows, 0
+missing provisions, and 0 extractor errors. The Colorado CCR PDF artifact hash
+remained stable; live Colorado HTML wrapper pages changed, so the manifest was
+re-signed against the regenerated artifacts.
