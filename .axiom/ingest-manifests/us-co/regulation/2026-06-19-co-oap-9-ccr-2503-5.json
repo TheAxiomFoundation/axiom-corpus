@@ -6,23 +6,23 @@
     },
     {
       "path": "data/corpus/inventory/us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5.json",
-      "sha256": "c1d35ae5018ec761ea44408ac6db66de690511974081d88558d4b7f3b30e2c46"
+      "sha256": "7899c89a07fe96c235250ebc2553c926cd8b1454b9c3c1a03287c249f1ddbb6f"
     },
     {
       "path": "data/corpus/provisions/us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5.jsonl",
-      "sha256": "d143c61c5d5a0f6d95522afca8cad9f520ba57f19c3b1d1f2c284d2e868f378f"
+      "sha256": "e5c9ffdad255c7aa1cb0c4a1aab1e801baa428b00f2b437d10bc342fe5a1adba"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5/colorado-ccr-html/NumericalDeptList.html",
-      "sha256": "56c2a3aa931f7b75a3fd38c6fdaec72abc919cfc4cc7e316fa19e1a0621fb26c"
+      "sha256": "1463a8f637ee8e9879e28860c2308f7dbc7e1bd93a03a773601b173cdfc1930d"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5/colorado-ccr-html/Welcome.html",
-      "sha256": "b91e9bce0df2de2e8e069850b59fdb383d5a34a3d9979493a2c8858fe50455b8"
+      "sha256": "583a6dde19c1ee61bac6e4df887b239f78e693039cdeb5c56bb375faadd222fd"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5/colorado-ccr-html/rule-info/9-ccr-2503-5.html",
-      "sha256": "f6d62a50ab5841cc428f68ffb6d60906436a663fcf00647979f6ae45b93ce3c3"
+      "sha256": "33eb19458b58a637b72abcfb909abbc30569c724319942e9191620dff11d77d7"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-06-19-co-oap-9-ccr-2503-5/colorado-ccr-pdf/9-ccr-2503-5.pdf",
@@ -30,9 +30,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2b0a843c13abf03854b9e93da88d77c41a0d38df",
+    "commit": "759e76154225bb24803476e851f361c79582ecfd",
     "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-co-oap-20260619"
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-co-oap-artifacts-20260625"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -47,19 +47,19 @@
     "source_count": 92
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-19T19:55:30.327939+00:00",
+  "generated_at": "2026-06-25T09:53:13.973506+00:00",
   "jurisdiction": "us-co",
   "reasoning_logs": [
     {
       "path": ".axiom/reasoning-logs/us-co-regulation-2026-06-19-co-oap-9-ccr-2503-5.md",
-      "sha256": "9ffeb343879465bbca3b8da5f3b7d8705697d29345e273542fa4656525a9a9e0"
+      "sha256": "a9640fa2f2f6c276e8fedb44b1dbef32842ab5f627370ebe4a2fe3fc230ceeb5"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "NnwwyU1VUOtqlLlf0l6o6ptlHw+0o/+Kr6XlhleZxanW5axc7NDUS8/r7rXYKr1GgmBa96iLgMyTN4e5vdhVDw=="
+    "value": "AI3XH1kC234crqBFl+zo8N1TpCiciwwfJCg1vRhGWBo3pcqfUO+LfQbFJ1gK+9s+ALXFORd6SM0A+eK3ZquWBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-19-co-oap-9-ccr-2503-5"
