@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/us-ma/guidance/2025-11-17-dta-policy-online-snap-cola.jsonl",
+      "sha256": "9b99431042270a6c02e44e89e152dcce20b5ef5466d85e8bba51cb3c94f8c072"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d7371611a875e90c18d00ad84973d5d7dc22547",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PavelMakarchuk source-backed MA SNAP package provision extraction from DTA Policy Online SNAP COLA guidance"
+  },
+  "coverage": null,
+  "document_class": "guidance",
+  "generated_at": "2026-06-25T23:27:37.433851+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "exyYWGQ6K9w6xfuGHPmRgfhuLiIBQBp0DQXEinpbVL244ug8LEVvqQh8TBnBOk9qRAyqKCOREgc2smR+7NXKBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2025-11-17-dta-policy-online-snap-cola"
+}

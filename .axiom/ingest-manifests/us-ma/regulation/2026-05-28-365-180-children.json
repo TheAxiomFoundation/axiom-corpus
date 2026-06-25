@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/us-ma/regulation/2026-05-28-365-180-children.jsonl",
+      "sha256": "78186f17929e16acd04636ba035b2df4620fd291c16552cbcb8b1cae0ebd8c47"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2d7371611a875e90c18d00ad84973d5d7dc22547",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PavelMakarchuk source-backed MA SNAP package provision extraction from 106 CMR 365.180 children regulation"
+  },
+  "coverage": null,
+  "document_class": "regulation",
+  "generated_at": "2026-06-25T23:27:43.415875+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "V/RuWLIO+lOqaw+tuHVFHWL/rotnwYXYgFZzocBYE/UkyU8wLrEOwJsajj9acmmt2YdSw5eWk11o0BUhQnbeCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-28-365-180-children"
+}
