@@ -1,0 +1,88 @@
+documents:
+  - source_id: az-des-ccap-how-to-apply
+    jurisdiction: us-az
+    document_class: manual
+    citation_path: us-az/manual/des/ccap/how-to-apply
+    title: Arizona DES Child Care Assistance - How to Apply
+    source_url: https://des.az.gov/services/child-and-family/child-care/how-apply-for-child-care-assistance
+    download_url: https://web.archive.org/web/20251212170404id_/https://des.az.gov/services/child-and-family/child-care/how-apply-for-child-care-assistance
+    source_format: html
+    source_as_of: "2025-12-12"
+    expression_date: "2025-12-12"
+    metadata:
+      primary_source: true
+      source_authority: Arizona Department of Economic Security
+      document_subtype: agency_policy_page
+      program: Child Care Assistance
+      federal_program: CCDF
+      source_discovery_group: us-az/manual/ccap
+      discovered_via: active_policyengine_parity_review
+      pe_surface: az_ccap
+      source_access_note: Live official DES pages return a Cloudflare challenge to unattended HTTP clients; download_url uses the Internet Archive snapshot of the official page.
+  - source_id: az-des-ccap-income-chart-ffy2026
+    jurisdiction: us-az
+    document_class: manual
+    citation_path: us-az/manual/des/ccap/income-chart-ffy2026
+    title: Arizona Child Care Assistance Gross Monthly Income Eligibility Chart and Fee Schedule FFY 2026
+    source_url: https://des.az.gov/sites/default/files/dl/CCA-0229AFY26.pdf
+    download_url: https://web.archive.org/web/20251223025049if_/https://des.az.gov/sites/default/files/dl/CCA-0229AFY26.pdf
+    source_format: pdf
+    source_as_of: "2025-12-23"
+    expression_date: "2025-10-01"
+    metadata:
+      primary_source: true
+      source_authority: Arizona Department of Economic Security
+      document_subtype: fee_schedule
+      program: Child Care Assistance
+      federal_program: CCDF
+      source_discovery_group: us-az/manual/ccap
+      discovered_via: active_policyengine_parity_review
+      pe_surface: az_ccap
+      form_number: CCA-0229A
+      fiscal_year: 2026
+      effective_date: "2025-10-01"
+      source_access_note: Live official DES PDF URLs return a Cloudflare challenge to unattended HTTP clients; download_url uses the Internet Archive snapshot of the official PDF.
+  - source_id: az-des-ccap-reimbursement-rates
+    jurisdiction: us-az
+    document_class: manual
+    citation_path: us-az/manual/des/ccap/reimbursement-rates
+    title: Arizona DES Maximum Reimbursement Rates for Child Care
+    source_url: https://des.az.gov/sites/default/files/dl/CCA-1227A.pdf
+    download_url: https://web.archive.org/web/20251030204137if_/https://des.az.gov/sites/default/files/dl/CCA-1227A.pdf
+    source_format: pdf
+    source_as_of: "2025-10-30"
+    expression_date: "2025-11-01"
+    metadata:
+      primary_source: true
+      source_authority: Arizona Department of Economic Security
+      document_subtype: reimbursement_rate_schedule
+      program: Child Care Assistance
+      federal_program: CCDF
+      source_discovery_group: us-az/manual/ccap
+      discovered_via: active_policyengine_parity_review
+      pe_surface: az_ccap
+      form_number: CCA-1227A
+      effective_date: "2025-11-01"
+      source_access_note: Live official DES PDF URLs return a Cloudflare challenge to unattended HTTP clients; download_url uses the Internet Archive snapshot of the official PDF.
+  - source_id: az-des-ccap-provider-registration-agreement
+    jurisdiction: us-az
+    document_class: manual
+    citation_path: us-az/manual/des/ccap/provider-registration-agreement
+    title: Arizona DES Child Care Provider Registration Agreement
+    source_url: https://des.az.gov/sites/default/files/dl/CCA-1210B.pdf
+    download_url: https://web.archive.org/web/20251031002516if_/https://des.az.gov/sites/default/files/dl/CCA-1210B.pdf
+    source_format: pdf
+    source_as_of: "2025-10-31"
+    expression_date: "2016-04-01"
+    metadata:
+      primary_source: true
+      source_authority: Arizona Department of Economic Security
+      document_subtype: provider_agreement
+      program: Child Care Assistance
+      federal_program: CCDF
+      source_discovery_group: us-az/manual/ccap
+      discovered_via: active_policyengine_parity_review
+      pe_surface: az_ccap
+      form_number: CCA-1210B
+      effective_date: "2016-04-01"
+      source_access_note: Live official DES PDF URLs return a Cloudflare challenge to unattended HTTP clients; download_url uses the Internet Archive snapshot of the official PDF.
