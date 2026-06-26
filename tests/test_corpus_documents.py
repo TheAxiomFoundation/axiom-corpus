@@ -242,6 +242,47 @@ documents:
     assert page_record.metadata["document_subtype"] == "waiver_approval"
 
 
+def test_extract_official_documents_scrubs_public_mapbox_tokens(tmp_path: Path) -> None:
+    html_path = tmp_path / "cms.html"
+    public_token = "pk." + "abc_123" + "." + "DEF-456"
+    html_path.write_text(
+        f"""
+        <html>
+          <body>
+            <main><h1>Medicare Eligibility</h1><p>People age 65 can get Medicare.</p></main>
+            <script>{{"mapboxToken":"{public_token}"}}</script>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: cms-medicare
+    jurisdiction: us
+    document_class: guidance
+    title: Medicare Eligibility
+    source_url: https://www.cms.gov/example
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-06-26-cms-medicare",
+    )
+
+    archived = report.source_paths[0].read_text(encoding="utf-8")
+    assert public_token not in archived
+    assert "[redacted-mapbox-public-token]" in archived
+    assert load_provisions(report.provisions_path)[1].body == "People age 65 can get Medicare."
+
+
 def test_extract_official_documents_uses_html_content_selector(tmp_path: Path) -> None:
     html_path = tmp_path / "wa-eaz.html"
     html_path.write_text(

@@ -40,6 +40,8 @@ _REQUEST_RETRY_STATUSES = {429, 500, 502, 503, 504}
 _REQUEST_RETRY_ATTEMPTS = 4
 _REQUEST_RETRY_BASE_DELAY_SECONDS = 0.5
 _GOOGLE_DRIVE_FILE_RE = re.compile(r"https?://drive\.google\.com/file/d/([^/]+)/")
+_MAPBOX_PUBLIC_TOKEN_RE = re.compile(rb"pk\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
+_MAPBOX_PUBLIC_TOKEN_PLACEHOLDER = b"[redacted-mapbox-public-token]"
 _HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 _TEXT_TAGS = _HEADING_TAGS | {"p", "li", "table", "blockquote"}
 _NON_HEADING_UPPERCASE_LINES = {
@@ -214,11 +216,12 @@ def extract_official_documents(
         _progress(progress_stream, f"extracting {source.source_id}")
         downloaded = _download_document(source, session=session)
         source_format = _infer_source_format(source, downloaded)
+        content = _sanitize_official_document_content(downloaded.content, source_format)
         relative_source = (
             f"official-documents/{safe_segment(source.source_id)}{_extension(source_format)}"
         )
         artifact_path = store.source_path(jurisdiction, document_class, run_id, relative_source)
-        source_sha = store.write_bytes(artifact_path, downloaded.content)
+        source_sha = store.write_bytes(artifact_path, content)
         source_paths.append(artifact_path)
         source_key = f"sources/{jurisdiction}/{document_class}/{run_id}/{relative_source}"
         source_as_of_text = source.source_as_of or default_source_as_of
@@ -226,7 +229,7 @@ def extract_official_documents(
 
         blocks = tuple(
             _extract_blocks(
-                downloaded.content,
+                content,
                 source_format,
                 source_url=source.source_url,
                 title=source.title,
@@ -401,6 +404,12 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
     ):
         return "docx"
     raise ValueError(f"cannot infer source format for {source.source_id}")
+
+
+def _sanitize_official_document_content(content: bytes, source_format: str) -> bytes:
+    if source_format.lower() not in {"html", "json"}:
+        return content
+    return _MAPBOX_PUBLIC_TOKEN_RE.sub(_MAPBOX_PUBLIC_TOKEN_PLACEHOLDER, content)
 
 
 def _extension(source_format: str) -> str:
