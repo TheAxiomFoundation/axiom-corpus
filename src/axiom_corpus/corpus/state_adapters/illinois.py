@@ -22,8 +22,18 @@ from axiom_corpus.corpus.states import StateStatuteExtractReport
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 ILLINOIS_ILCS_BASE_URL = "https://www.ilga.gov/ftp/ILCS/"
+ILLINOIS_ILCS_FULLTEXT_URL = "https://www.ilga.gov/legislation/ilcs/fulltext.asp"
 ILLINOIS_ILCS_SOURCE_FORMAT = "illinois-ilcs-html"
-ILLINOIS_USER_AGENT = "axiom-corpus/0.1"
+ILLINOIS_USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/126.0 Safari/537.36"
+)
+ILLINOIS_REQUEST_HEADERS = {
+    "User-Agent": ILLINOIS_USER_AGENT,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 
 _DOC_NAME_RE = re.compile(
     r"^(?P<chapter>\d{4})(?P<act>\d{5})(?P<doc_type>[AFHK])(?P<identifier>.*?)(?:\.html?)?$",
@@ -221,12 +231,10 @@ def extract_illinois_ilcs(
     )
     remote_errors: list[str] = []
     if source_root is not None:
-        source_entries: Iterable[tuple[IllinoisIlcsDocumentName, str, str | None, bytes]] = (
-            tuple(
-                sorted(
-                    _discover_local_sources(source_root),
-                    key=lambda entry: _source_sort_key(entry[0], entry[1], sequence),
-                )
+        source_entries: Iterable[tuple[IllinoisIlcsDocumentName, str, str | None, bytes]] = tuple(
+            sorted(
+                _discover_local_sources(source_root),
+                key=lambda entry: _source_sort_key(entry[0], entry[1], sequence),
             )
         )
     else:
@@ -499,7 +507,7 @@ def _iter_remote_sources(
     errors: list[str] | None = None,
 ) -> Iterator[tuple[IllinoisIlcsDocumentName, str, str | None, bytes]]:
     session = requests.Session()
-    session.headers.update({"User-Agent": ILLINOIS_USER_AGENT})
+    session.headers.update(ILLINOIS_REQUEST_HEADERS)
     paths = _remote_document_paths(
         session,
         base_url,
@@ -514,7 +522,7 @@ def _iter_remote_sources(
             document = parse_illinois_ilcs_doc_name(relative_name)
         except ValueError:
             continue
-        url = urljoin(base_url, quote(relative_name, safe="/%"))
+        url = _remote_source_url(base_url, document, relative_name)
         source_refs.append((document, relative_name, url))
     sorted_refs = tuple(
         sorted(
@@ -552,11 +560,22 @@ def _fetch_remote_source(
 ) -> tuple[IllinoisIlcsDocumentName, str, str, bytes, str | None]:
     document, relative_name, url = source_ref
     try:
-        response = requests.get(url, headers={"User-Agent": ILLINOIS_USER_AGENT}, timeout=20)
+        response = requests.get(url, headers=ILLINOIS_REQUEST_HEADERS, timeout=20)
         response.raise_for_status()
     except requests.RequestException as exc:
         return document, relative_name, url, b"", str(exc)
     return document, relative_name, url, response.content, None
+
+
+def _remote_source_url(
+    base_url: str,
+    document: IllinoisIlcsDocumentName,
+    relative_name: str,
+) -> str:
+    """Return the current official source URL for a discovered ILCS document."""
+    if document.doc_type == "K":
+        return f"{ILLINOIS_ILCS_FULLTEXT_URL}?DocName={quote(document.stem, safe='')}"
+    return urljoin(base_url, quote(relative_name, safe="/%"))
 
 
 def _remote_document_paths(
@@ -727,7 +746,7 @@ def _load_remote_section_sequence(base_url: str) -> dict[str, int]:
     try:
         response = requests.get(
             urljoin(base_url, "aReadMe/Section%20Sequence.txt"),
-            headers={"User-Agent": ILLINOIS_USER_AGENT},
+            headers=ILLINOIS_REQUEST_HEADERS,
             timeout=20,
         )
         response.raise_for_status()
@@ -741,8 +760,7 @@ def _html_text(html: str | bytes) -> str:
     for tag in soup(["script", "style"]):
         tag.decompose()
     lines = [
-        re.sub(r"\s+", " ", unescape(line)).strip()
-        for line in soup.get_text("\n").splitlines()
+        re.sub(r"\s+", " ", unescape(line)).strip() for line in soup.get_text("\n").splitlines()
     ]
     return "\n".join(line for line in lines if line)
 
