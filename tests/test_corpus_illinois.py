@@ -10,6 +10,8 @@ from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters.illinois import (
     ILLINOIS_ILCS_BASE_URL,
+    ILLINOIS_ILCS_FULLTEXT_URL,
+    ILLINOIS_REQUEST_HEADERS,
     _discover_local_sources,
     _discover_remote_sources,
     _load_local_section_sequence,
@@ -151,7 +153,9 @@ def test_parse_illinois_ilcs_section_rejects_uncited_container_document():
     document = parse_illinois_ilcs_doc_name("000500700K.html")
 
     with pytest.raises(ValueError, match="has no citation"):
-        parse_illinois_ilcs_section("<html><body>No citation here.</body></html>", document=document)
+        parse_illinois_ilcs_section(
+            "<html><body>No citation here.</body></html>", document=document
+        )
 
 
 class _FakeIllinoisResponse:
@@ -266,7 +270,7 @@ def test_discover_remote_sources_fetches_filtered_document_bytes(monkeypatch):
         <a href="/ftp/ILCS/Ch%200005/Act%200070/000500700K1.html">Sec. 1</a>
         """,
         f"{ILLINOIS_ILCS_BASE_URL}Ch%200005/Act%200070/000500700F.html": b"<h1>Act.</h1>",
-        f"{ILLINOIS_ILCS_BASE_URL}Ch%200005/Act%200070/000500700K1.html": SAMPLE_SECTION_1.encode(),
+        f"{ILLINOIS_ILCS_FULLTEXT_URL}?DocName=000500700K1": SAMPLE_SECTION_1.encode(),
     }
     session = _FakeIllinoisSession(pages)
     monkeypatch.setattr(
@@ -287,6 +291,9 @@ def test_discover_remote_sources_fetches_filtered_document_bytes(monkeypatch):
     )
     assert entries[0][0].doc_type == "F"
     assert entries[1][3] == SAMPLE_SECTION_1.encode()
+    assert entries[1][2] == f"{ILLINOIS_ILCS_FULLTEXT_URL}?DocName=000500700K1"
+    assert session.headers == ILLINOIS_REQUEST_HEADERS
+    assert session.headers["User-Agent"].startswith("Mozilla/5.0")
 
 
 def test_discover_remote_sources_records_fetch_errors(monkeypatch):
@@ -295,7 +302,7 @@ def test_discover_remote_sources_records_fetch_errors(monkeypatch):
         <a href="/ftp/ILCS/Ch%200005/Act%200070/000500700K1.html">Sec. 1</a>
         <a href="/ftp/ILCS/Ch%200005/Act%200070/000500700K2.html">Sec. 2</a>
         """,
-        f"{ILLINOIS_ILCS_BASE_URL}Ch%200005/Act%200070/000500700K1.html": SAMPLE_SECTION_1.encode(),
+        f"{ILLINOIS_ILCS_FULLTEXT_URL}?DocName=000500700K1": SAMPLE_SECTION_1.encode(),
     }
     session = _FakeIllinoisSession(pages)
     monkeypatch.setattr(
@@ -312,9 +319,7 @@ def test_discover_remote_sources_records_fetch_errors(monkeypatch):
         errors=errors,
     )
 
-    assert tuple(entry[1] for entry in entries) == (
-        "Ch 0005/Act 0070/000500700K1.html",
-    )
+    assert tuple(entry[1] for entry in entries) == ("Ch 0005/Act 0070/000500700K1.html",)
     assert len(errors) == 1
     assert "000500700K2.html" in errors[0]
 
