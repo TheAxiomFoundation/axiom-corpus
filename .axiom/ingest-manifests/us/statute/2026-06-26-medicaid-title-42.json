@@ -2,47 +2,52 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/statute/2026-06-26-medicaid-title-42.json",
-      "sha256": "b0b957cac0e6d0689c78a87c1a16a337f2d859036176461af8f34417b1771c82"
+      "sha256": "5fa07eff73943b50c2b2d9b6db67b887b238ae97fb9b64185a0ee7031a6a51db"
     },
     {
       "path": "data/corpus/inventory/us/statute/2026-06-26-medicaid-title-42.json",
-      "sha256": "e0f0ea80f71cb0abc0033aa0089ac2f9d3867437dc9009b0d016b389b46d6fd3"
+      "sha256": "5ebdca1f68fc90cf71161ea64bd1da146c5c03c4f7430d24b6a72bc86d939bd0"
     },
     {
       "path": "data/corpus/provisions/us/statute/2026-06-26-medicaid-title-42.jsonl",
-      "sha256": "5279ce7aad4f3dcae0c48b1d6828c1ba847cd0769bdc19c0f113a8404edc9265"
+      "sha256": "770afa118710cd056fb6528b6c0133577e502372af6d351bd3da2b3e2f21d214"
     },
     {
       "path": "data/corpus/sources/us/statute/2026-06-26-medicaid-title-42/uslm/usc42.xml",
-      "sha256": "f66c7efbdcf27f35446f86d39fa06ad987257d7a23aec4a96f4940f718837de8"
+      "sha256": "6ca494482ad0a9fff767098af1326065a414610010b2721ea08a15c23880176e"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5fdd8bb87b3c36beb52f2647a62668c6d6a2ad08",
-    "dirty_tracked": false,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+    "commit": "ef558d267db69a7ff0c08a0adccae0e9bb079e68",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-medicaid-title-xix-20260627"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-06-26-medicaid --source-xml /tmp/axiom-usc-inspect/usc42.xml --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/59/xml_usc42@119-59.zip --citation-path us/statute/42/1396a/a/10"
+    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-06-26-medicaid --source-xml /tmp/axiom-medicaid-usc42/usc42.xml --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/59/xml_usc42@119-59.zip --citation-path us/statute/42/1396a/a/10 --citation-path us/statute/42/1396a/e/14 --citation-path us/statute/42/1396a/l --citation-path us/statute/42/1396d/a --citation-path us/statute/42/1396d/n --citation-path us/statute/42/1396d/q --citation-path us/statute/42/1396d/p --citation-path us/statute/42/1396u-1"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 1,
+    "matched_count": 53,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 53,
+    "source_count": 53
   },
   "document_class": "statute",
-  "generated_at": "2026-06-26T13:55:39.959278+00:00",
+  "generated_at": "2026-06-27T03:36:08.313261+00:00",
   "jurisdiction": "us",
-  "reasoning_logs": [],
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-statute-2026-06-26-medicaid-title-xix.md",
+      "sha256": "392189f7d0b63c6dbac03cf41309153dbdf6f05235b0d218dc72687053dc2a50"
+    }
+  ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "CEYwiOIz2KVZbweBRpdm+VKIhASv2GTQR0ll1H0Hpa+zFtAVhoPmHgLwb22rEuMIDwWzAKxeUCDne9e0T3H3CA=="
+    "value": "gOWiGH8EI3XFyPadCdu0X5clE58vwa4M1s2SKGknbeAJWc/auI1GDiXVWRtKX48ZyE4JRNS5YuGpvI0wlRTQCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-26-medicaid-title-42"
