@@ -336,7 +336,7 @@ def _download_document(
     )
     verify = bool((source.request or {}).get("verify_tls", True))
     response = _get_with_retries(session, download_url, verify=verify)
-    if response.status_code in _BROWSER_FALLBACK_STATUSES:
+    if _needs_browser_fallback(source, response):
         response.close()
         headers = {str(key): str(value) for key, value in session.headers.items()}
         headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
@@ -348,6 +348,20 @@ def _download_document(
         content_type=response.headers.get("content-type"),
         final_url=response.url,
     )
+
+
+def _needs_browser_fallback(
+    source: OfficialDocumentSource,
+    response: requests.Response,
+) -> bool:
+    if response.status_code in _BROWSER_FALLBACK_STATUSES:
+        return True
+    declared_format = (source.source_format or "").lower()
+    content_type = (response.headers.get("content-type") or "").lower()
+    stripped = response.content.lstrip()
+    if declared_format == "pdf" and not response.content.startswith(b"%PDF"):
+        return "html" in content_type or stripped.startswith((b"<!doctype", b"<html"))
+    return False
 
 
 def _get_with_retries(
