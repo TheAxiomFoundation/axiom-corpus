@@ -1,0 +1,21 @@
+documents:
+  - source_id: ca-dor-ssi-ssp-newsletter-2026-01
+    jurisdiction: us-ca
+    document_class: guidance
+    citation_path: us-ca/guidance/dor/spotlight-on-social-security/2026-01
+    title: January 2026 Spotlight on Social Security Newsletter
+    source_url: https://www.dor.ca.gov/Home/ssn012026
+    source_format: html
+    source_as_of: "2026-06-27"
+    expression_date: "2026-01-01"
+    extraction:
+      html_content_selector: main.main-primary
+    metadata:
+      primary_source: true
+      source_authority: California Department of Rehabilitation
+      document_subtype: agency_newsletter
+      program: ssi_state_supplement
+      federal_program: SSI
+      state: CA
+      publication_month: "2026-01"
+      discovered_via: active_policyengine_parity_review
