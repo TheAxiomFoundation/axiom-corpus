@@ -3150,6 +3150,24 @@ documents:
     manual_landing_page: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/html/
     source_discovery_group: us-mi/manual/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
+- source_id: mi-mdhhs-rft-248
+  jurisdiction: us-mi
+  document_class: manual
+  citation_path: us-mi/manual/mdhhs/rft/248
+  title: 'Michigan Reference Tables Manual: RFT 248 STATE SSI PAYMENT LEVELS'
+  source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/RF/Public/RFT/248.pdf
+  source_format: pdf
+  source_as_of: '2026-06-27'
+  expression_date: '2026-06-27'
+  metadata:
+    primary_source: true
+    source_authority: Michigan Department of Health and Human Services
+    document_subtype: policy_manual_reference_table
+    program: state_supplemental_payment
+    contains_snap_policy: false
+    manual_landing_page: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/html/
+    source_discovery_group: us-mi/manual/ssp
+    discovered_via: policyengine-reference-review:mi-ssp
 - source_id: mi-mdhhs-bridges-bem-702
   jurisdiction: us-mi
   document_class: manual
