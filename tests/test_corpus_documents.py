@@ -422,9 +422,7 @@ documents:
 
     assert report.block_count == 2
     records = load_provisions(report.provisions_path)
-    assert [
-        record.citation_path for record in records if record.kind == "section"
-    ] == [
+    assert [record.citation_path for record in records if record.kind == "section"] == [
         "us-nm/regulation/nmac/8/139/520/8.139.520.1",
         "us-nm/regulation/nmac/8/139/520/8.139.520.2",
     ]
@@ -432,8 +430,7 @@ documents:
         record.body for record in records if record.citation_path.endswith("8.139.520.1")
     )
     assert section_body == (
-        "New Mexico Health Care Authority.\n\n"
-        "[8.139.520.1 NMAC - Rp, 11/21/2023]"
+        "New Mexico Health Care Authority.\n\n[8.139.520.1 NMAC - Rp, 11/21/2023]"
     )
 
 
@@ -602,8 +599,7 @@ def test_extract_official_documents_from_json_records(tmp_path: Path) -> None:
                     "name": "Section",
                     "statusName": "Undefined",
                     "text": (
-                        "<div>(a) <b>Purpose.</b> SNAP policy text.</div>"
-                        "<div>(b) Other text.</div>"
+                        "<div>(a) <b>Purpose.</b> SNAP policy text.</div><div>(b) Other text.</div>"
                     ),
                 },
                 {
@@ -668,9 +664,7 @@ documents:
         "us-ok/regulation/oac/340/50",
         "us-ok/regulation/oac/340/50/340-50-1-1",
     ]
-    assert records[1].heading == (
-        "340:50-1-1 Purpose, legal base, and responsibilities"
-    )
+    assert records[1].heading == ("340:50-1-1 Purpose, legal base, and responsibilities")
     assert records[1].kind == "section"
     assert records[1].metadata is not None
     assert records[1].metadata["id"] == 1
@@ -781,12 +775,74 @@ documents:
     records = load_provisions(report.provisions_path)
     first_block = records[1]
     assert first_block.heading == "365.100 Special Situation Households"
-    assert "SNAP households may include special living arrangements" in (
-        first_block.body or ""
-    )
+    assert "SNAP households may include special living arrangements" in (first_block.body or "")
     assert "Household | Treatment" in (first_block.body or "")
     second_block = records[2]
     assert second_block.heading == "365.110 Residents of Institutions"
+
+
+def test_extract_official_documents_segments_labeled_docx_sections(
+    tmp_path: Path,
+) -> None:
+    docx_path = tmp_path / "chapter-704.docx"
+    document_xml = """\
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+  <w:body>
+    <w:p><w:r><w:t>TABLE OF CONTENTS</w:t></w:r></w:p>
+    <w:p><w:r><w:t>704.000 Overview of Financial Eligibility</w:t></w:r></w:p>
+    <w:p><w:r><w:t>704.500 Calculation of Grant Amount</w:t></w:r></w:p>
+    <w:p><w:r><w:t>106 CMR: Department of Transitional Assistance | Page | 704.000</w:t></w:r></w:p>
+    <w:p><w:r><w:t>704.000: Overview of Financial Eligibility</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Applicants must meet financial eligibility requirements.</w:t></w:r></w:p>
+    <w:p><w:r><w:t>106 CMR: Department of Transitional Assistance</w:t></w:r></w:p>
+    <w:p><w:r><w:t>704.500: Calculation of Grant Amount</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Step 1: Identify earned income.</w:t></w:r></w:p>
+    <w:p><w:r><w:t>Step 2: Subtract disregarded income.</w:t></w:r></w:p>
+  </w:body>
+</w:document>
+"""
+    with zipfile.ZipFile(docx_path, "w") as archive:
+        archive.writestr("word/document.xml", document_xml)
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ma-dta-chapter-704
+    jurisdiction: us-ma
+    document_class: regulation
+    title: "Massachusetts DTA Chapter 704"
+    source_url: https://www.mass.gov/doc/chapter-704-financial-eligibility-0/download
+    source_format: docx
+    local_path: {json.dumps(str(docx_path))}
+    citation_path: us-ma/regulation/dta/106-cmr/704
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: 'Page\\s+\\|\\s+704\\.000$'
+      section_heading_pattern: '^(?P<label>704\\.\\d{{3}}):?\\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^106 CMR:'
+        - '^TABLE OF CONTENTS$'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-06-27-ma-tafdc-regulations",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records if record.kind == "section"] == [
+        "us-ma/regulation/dta/106-cmr/704/704.000",
+        "us-ma/regulation/dta/106-cmr/704/704.500",
+    ]
+    assert records[1].body == "Applicants must meet financial eligibility requirements."
+    assert records[2].body == (
+        "Step 1: Identify earned income.\n\nStep 2: Subtract disregarded income."
+    )
 
 
 def test_extract_official_documents_reads_webworks_policy_divs(tmp_path: Path) -> None:
