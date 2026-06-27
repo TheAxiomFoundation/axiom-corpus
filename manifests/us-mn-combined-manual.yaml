@@ -25,3 +25,21 @@ documents:
     source_index_url: https://www.dhs.state.mn.us/main/idcplg/?IdcService=GET_DYNAMIC_CONVERSION&RevisionSelectionMethod=LatestReleased&dDocName=id_016956
     source_discovery_group: us-mn/manual/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
+- source_id: mn-dhs-msa-revised-sections-2026-01
+  jurisdiction: us-mn
+  document_class: manual
+  title: Minnesota DHS Combined Manual MSA revised sections, issued 01/2026
+  source_url: https://www.dhs.state.mn.us/main/groups/county_access/documents/pub/mndhs-073585.pdf
+  source_format: pdf
+  source_as_of: '2026-06-27'
+  expression_date: '2026-01-01'
+  citation_path: us-mn/manual/dhs/combined-manual/msa-revised-sections-2026-01
+  metadata:
+    primary_source: true
+    source_authority: Minnesota Department of Human Services
+    document_subtype: combined_policy_manual_revised_sections_pdf
+    manual: Minnesota DHS Combined Manual
+    programs:
+    - MSA
+    source_discovery_group: us-mn/manual/msa
+    discovered_via: policyengine-parity:mn-msa

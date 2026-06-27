@@ -76,6 +76,49 @@ def test_download_document_retries_browser_user_agent_on_forbidden():
     assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
 
 
+def test_download_document_retries_browser_user_agent_on_declared_pdf_html_challenge():
+    class FakeResponse:
+        def __init__(self, content: bytes, content_type: str):
+            self.status_code = 200
+            self.content = content
+            self.headers = {"content-type": content_type}
+            self.url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+            self.calls: list[dict[str, str]] = []
+
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None, verify=None):
+            del url, timeout, allow_redirects, verify
+            self.calls.append(dict(headers or self.headers))
+            if len(self.calls) == 1:
+                return FakeResponse(b"<html><body>challenge</body></html>", "text/html")
+            return FakeResponse(b"%PDF-1.7", "application/pdf")
+
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="form",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+    )
+    session = FakeSession()
+
+    downloaded = _download_document(source, session=session)  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == b"%PDF-1.7"
+    assert session.calls[0]["User-Agent"] == OFFICIAL_DOCUMENT_USER_AGENT
+    assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+
+
 def test_download_document_retries_transient_request_errors(monkeypatch):
     class FakeResponse:
         status_code = 200
