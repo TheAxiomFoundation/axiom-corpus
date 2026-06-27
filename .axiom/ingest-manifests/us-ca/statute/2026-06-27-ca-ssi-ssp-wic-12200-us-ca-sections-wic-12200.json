@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/statute/2026-06-27-ca-ssi-ssp-wic-12200-us-ca-sections-wic-12200.json",
+      "sha256": "f96d43390fd75034aa4d39942c19432b0eac4fbad576fa02918350d02a2d4d44"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/statute/2026-06-27-ca-ssi-ssp-wic-12200-us-ca-sections-wic-12200.json",
+      "sha256": "fc764db38612b94e1c1b70554130669ae9e255366d681cb6222e33d7580c53cf"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/statute/2026-06-27-ca-ssi-ssp-wic-12200-us-ca-sections-wic-12200.jsonl",
+      "sha256": "cc8eb04679f7ac94fcf6b112c0b8a352da0ec2b5969161c556c0d1f5b45f6beb"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-06-27-ca-ssi-ssp-wic-12200-us-ca-sections-wic-12200/california-leginfo-sections/WIC-12200.html",
+      "sha256": "37fe26de6b51683ca1002811615c053584a7e7c779f1e9a1fed59f897d7712e7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "555bd9654631c3f54068b6c59908f7c60eefafa9",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ca-ssp-20260627"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-california-code-sections --base data/corpus --version 2026-06-27-ca-ssi-ssp-wic-12200 --source-as-of 2026-06-27 --expression-date 2026-06-27 --download-dir output/downloads --section WIC:12200"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "statute",
+  "generated_at": "2026-06-27T02:33:17.511165+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-ca-statute-2026-06-27-ca-ssi-ssp-wic-12200.md",
+      "sha256": "d6e07d23cc8ee9d918bad0ce0dd07aaccc07ff4d0829dae608a4356f7c0308b0"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZqWfre47iu4JXth0O8YTsw92/6Wy8p2VaacjPx/9IQf96vAUrKAqaWYAPcklVmMyZ/DiErojDvKkryhmqbnDDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-27-ca-ssi-ssp-wic-12200-us-ca-sections-wic-12200"
+}
