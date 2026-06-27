@@ -1,0 +1,46 @@
+{
+  "description": "Hotspot-safe pilot release for current revised UK legislation.gov.uk CLML artifacts. This release is limited to PE-UK and RuleSpec-UK relevant legislation already extracted from official legislation.gov.uk sources.",
+  "name": "uk-legislation-pilot",
+  "scopes": [
+    {
+      "document_class": "statute",
+      "jurisdiction": "uk",
+      "version": "2026-06-03-uk-universal-credit"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "uk",
+      "version": "2026-06-03-uk-universal-credit"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "uk",
+      "version": "2026-06-05-uk-pension-credit-reg6"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "uk",
+      "version": "2026-06-05-uk-child-benefit-sscba"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "uk",
+      "version": "2026-06-06-uk-national-insurance-final"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "uk",
+      "version": "2026-06-06-uk-national-insurance-final"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "uk",
+      "version": "2026-06-06-uk-state-pension-credit-section1"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "uk",
+      "version": "2026-06-06-uk-uksi-2026-148-article14"
+    }
+  ]
+}

@@ -498,7 +498,8 @@ def test_extract_uk_legislation_writes_schedule_paragraph_artifacts(tmp_path):
     row = json.loads(provisions_path.read_text().strip())
     assert row["citation_path"] == "uk/regulation/uksi/2013/376/schedule/4/paragraph/7"
     assert row["citation_label"] == "UKSI 2013/376 Sch. 4 para. 7"
-    assert row["parent_citation_path"] == "uk/regulation/uksi/2013/376/schedule/4"
+    assert "parent_citation_path" not in row
+    assert "parent_id" not in row
     assert row["kind"] == "paragraph"
     assert row["level"] == 2
     assert row["ordinal"] == 7
@@ -607,7 +608,8 @@ def test_extract_uk_legislation_fetches_article_citation_xml(tmp_path, monkeypat
     assert row["citation_path"] == "uk/regulation/uksi/2026/148/article/14"
     assert row["citation_label"] == "UKSI 2026/148 art. 14"
     assert row["kind"] == "article"
-    assert row["parent_citation_path"] == "uk/regulation/uksi/2026/148"
+    assert "parent_citation_path" not in row
+    assert "parent_id" not in row
     assert row["identifiers"]["legislation.gov.uk:provision"] == "article/14"
     assert row["source_path"] == (
         "sources/uk/regulation/2026-06-06-uk-uksi-2026-148-article14/uksi/2026/148/article-14.xml"

@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.jsonl",
-      "sha256": "ec0a934e808595ca780c67ef67f483cb1d6f2301e04e0010fe9e44358c56eea9"
+      "sha256": "b1cca08d9217f823d6438843289b7441d8f15ef6e1e5c8cb20c7dee43a20fd41"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7/uksi/2013/376/schedule-4-paragraph-7.xml",
@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7fed3d687f26f1814c54028ff2dfa9b1b6437f95",
+    "commit": "de9b2eb9bcd03356cc8d5855216f2c83e7a085ab",
     "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-sign-uk-manual-provisions-20260606"
+    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-issue-95-uk-legislation"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-06T20:31:47.557836+00:00",
+  "generated_at": "2026-06-07T15:11:58.138978+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
-    "key_id": "codex-agent-2026-06-06",
-    "value": "xBIw7fO7u/sT2vmiQTRykk0p9dJEzf6j47BHA21YHPHV0uPhJ9HG+vanH/JQ6xKQVxAPI9SJv6hJYAAKh8fKDA=="
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "J9rWjG+eGaTEis4FGZCR84q2IWVJoIKNlwGaHryCx50zYrvpLnMCm+dGKDPIlwKrA7d5pkbEH/GqfllMsIkfAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-06-uk-universal-credit-schedule4-paragraph7"

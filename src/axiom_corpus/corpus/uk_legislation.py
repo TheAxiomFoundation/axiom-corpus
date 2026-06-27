@@ -7,7 +7,7 @@ import json
 import re
 from collections import defaultdict
 from collections.abc import Iterable, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 
@@ -156,7 +156,7 @@ def extract_uk_legislation_sections(
 
     class_reports: list[UKLegislationClassExtractReport] = []
     for document_class in sorted(grouped_records):
-        records = _dedupe_records(grouped_records[document_class])
+        records = _drop_missing_parent_links(_dedupe_records(grouped_records[document_class]))
         inventory = _dedupe_inventory(grouped_inventory[document_class])
         inventory_path = store.inventory_path("uk", document_class, version)
         store.write_inventory(inventory_path, inventory)
@@ -487,6 +487,17 @@ def _dedupe_records(records: Iterable[ProvisionRecord]) -> tuple[ProvisionRecord
     for record in records:
         by_path[record.citation_path] = record
     return tuple(by_path[path] for path in sorted(by_path))
+
+
+def _drop_missing_parent_links(records: Iterable[ProvisionRecord]) -> tuple[ProvisionRecord, ...]:
+    materialized = tuple(records)
+    citation_paths = {record.citation_path for record in materialized}
+    return tuple(
+        replace(record, parent_citation_path=None, parent_id=None)
+        if record.parent_citation_path and record.parent_citation_path not in citation_paths
+        else record
+        for record in materialized
+    )
 
 
 def _dedupe_inventory(
