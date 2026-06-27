@@ -1,0 +1,240 @@
+documents:
+  - source_id: ma-dta-106-cmr-701
+    jurisdiction: us-ma
+    document_class: regulation
+    citation_path: us-ma/regulation/dta/106-cmr/701
+    title: "Massachusetts DTA Regulations: Chapter 701: General Policies"
+    source_url: https://www.mass.gov/doc/chapter-701-general-policies/download
+    source_format: docx
+    source_as_of: "2026-06-27"
+    expression_date: "2026-06-27"
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Transitional Assistance
+      official_publisher: Mass.gov
+      document_subtype: administrative_regulation
+      program: TAFDC
+      federal_program: TANF
+      legal_identifier: 106 CMR 701
+      regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
+      source_discovery_group: us-ma/regulation/tafdc
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: 'Page\s+\|\s+701\.000$'
+      section_heading_pattern: '^(?P<label>701\.\d{3}):?\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^106 CMR:\s*Department of Transitional Assistance'
+        - '^Trans\. by S\.L\.'
+        - '^TABLE OF CONTENTS$'
+        - '^SECTION$'
+        - '^701\.xxx$'
+  - source_id: ma-dta-106-cmr-702
+    jurisdiction: us-ma
+    document_class: regulation
+    citation_path: us-ma/regulation/dta/106-cmr/702
+    title: "Massachusetts DTA Regulations: Chapter 702: The Eligibility Process"
+    source_url: https://www.mass.gov/doc/chapter-702-the-eligibility-process/download
+    source_format: docx
+    source_as_of: "2026-06-27"
+    expression_date: "2026-06-27"
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Transitional Assistance
+      official_publisher: Mass.gov
+      document_subtype: administrative_regulation
+      program: TAFDC
+      federal_program: TANF
+      legal_identifier: 106 CMR 702
+      regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
+      source_discovery_group: us-ma/regulation/tafdc
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: 'Page\s+\|\s+702\.000$'
+      section_heading_pattern: '^(?P<label>702\.\d{3}):?\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^106 CMR:\s*Department of Transitional Assistance'
+        - '^Trans\. by S\.L\.'
+        - '^TABLE OF CONTENTS$'
+        - '^SECTION$'
+        - '^702\.xxx$'
+  - source_id: ma-dta-106-cmr-703
+    jurisdiction: us-ma
+    document_class: regulation
+    citation_path: us-ma/regulation/dta/106-cmr/703
+    title: "Massachusetts DTA Regulations: Chapter 703: Nonfinancial Eligibility"
+    source_url: https://www.mass.gov/doc/chapter-703-nonfinancial-eligibility/download
+    source_format: docx
+    source_as_of: "2026-06-27"
+    expression_date: "2026-06-27"
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Transitional Assistance
+      official_publisher: Mass.gov
+      document_subtype: administrative_regulation
+      program: TAFDC
+      federal_program: TANF
+      legal_identifier: 106 CMR 703
+      regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
+      source_discovery_group: us-ma/regulation/tafdc
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: 'Page\s+\|\s+703\.000$'
+      section_heading_pattern: '^(?P<label>703\.\d{3}):?\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^106 CMR:\s*Department of Transitional Assistance'
+        - '^Trans\. by S\.L\.'
+        - '^TABLE OF CONTENTS$'
+        - '^SECTION$'
+        - '^703\.xxx$'
+  - source_id: ma-dta-106-cmr-704
+    jurisdiction: us-ma
+    document_class: regulation
+    citation_path: us-ma/regulation/dta/106-cmr/704
+    title: "Massachusetts DTA Regulations: Chapter 704: Financial Eligibility"
+    source_url: https://www.mass.gov/doc/chapter-704-financial-eligibility-0/download
+    source_format: docx
+    source_as_of: "2026-06-27"
+    expression_date: "2026-06-27"
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Transitional Assistance
+      official_publisher: Mass.gov
+      document_subtype: administrative_regulation
+      program: TAFDC
+      federal_program: TANF
+      legal_identifier: 106 CMR 704
+      regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
+      source_discovery_group: us-ma/regulation/tafdc
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: 'Page\s+\|\s+704\.000$'
+      section_heading_pattern: '^(?P<label>704\.\d{3}):?\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^106 CMR:\s*Department of Transitional Assistance'
+        - '^Trans\. by S\.L\.'
+        - '^TABLE OF CONTENTS$'
+        - '^SECTION$'
+        - '^704\.xxx$'
+  - source_id: ma-dta-106-cmr-705
+    jurisdiction: us-ma
+    document_class: regulation
+    citation_path: us-ma/regulation/dta/106-cmr/705
+    title: "Massachusetts DTA Regulations: Chapter 705: Related Benefits"
+    source_url: https://www.mass.gov/doc/chapter-705-related-benefits/download
+    source_format: docx
+    source_as_of: "2026-06-27"
+    expression_date: "2026-06-27"
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Transitional Assistance
+      official_publisher: Mass.gov
+      document_subtype: administrative_regulation
+      program: TAFDC
+      federal_program: TANF
+      legal_identifier: 106 CMR 705
+      regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
+      source_discovery_group: us-ma/regulation/tafdc
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: 'Page\s+\|\s+705\.000$'
+      section_heading_pattern: '^(?P<label>705\.\d{3}):?\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^106 CMR:\s*Department of Transitional Assistance'
+        - '^Trans\. by S\.L\.'
+        - '^TABLE OF CONTENTS$'
+        - '^SECTION$'
+        - '^705\.xxx$'
+  - source_id: ma-dta-106-cmr-706
+    jurisdiction: us-ma
+    document_class: regulation
+    citation_path: us-ma/regulation/dta/106-cmr/706
+    title: "Massachusetts DTA Regulations: Chapter 706: Auxiliary Activities"
+    source_url: https://www.mass.gov/doc/chapter-706-auxiliary-activities/download
+    source_format: docx
+    source_as_of: "2026-06-27"
+    expression_date: "2026-06-27"
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Transitional Assistance
+      official_publisher: Mass.gov
+      document_subtype: administrative_regulation
+      program: TAFDC
+      federal_program: TANF
+      legal_identifier: 106 CMR 706
+      regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
+      source_discovery_group: us-ma/regulation/tafdc
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: 'Page\s+\|\s+706\.000$'
+      section_heading_pattern: '^(?P<label>706\.\d{3}):?\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^106 CMR:\s*Department of Transitional Assistance'
+        - '^Trans\. by S\.L\.'
+        - '^TABLE OF CONTENTS$'
+        - '^SECTION$'
+        - '^706\.xxx$'
+  - source_id: ma-dta-106-cmr-707
+    jurisdiction: us-ma
+    document_class: regulation
+    citation_path: us-ma/regulation/dta/106-cmr/707
+    title: "Massachusetts DTA Regulations: Chapter 707: Employment Services Program"
+    source_url: https://www.mass.gov/doc/chapter-707-employment-services-program-0/download
+    source_format: docx
+    source_as_of: "2026-06-27"
+    expression_date: "2026-06-27"
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Transitional Assistance
+      official_publisher: Mass.gov
+      document_subtype: administrative_regulation
+      program: TAFDC
+      federal_program: TANF
+      legal_identifier: 106 CMR 707
+      regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
+      source_discovery_group: us-ma/regulation/tafdc
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: 'Page\s+\|\s+707\.000$'
+      section_heading_pattern: '^(?P<label>707\.\d{3}):?\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^106 CMR:\s*Department of Transitional Assistance'
+        - '^Trans\. by S\.L\.'
+        - '^TABLE OF CONTENTS$'
+        - '^SECTION$'
+        - '^707\.xxx$'
+  - source_id: ma-dta-106-cmr-704-410-420-table
+    jurisdiction: us-ma
+    document_class: regulation
+    citation_path: us-ma/regulation/dta/106-cmr/704/410-420-table
+    title: "Massachusetts TAFDC Table of Need and Payment Standards 704.410-704.420"
+    source_url: https://www.mass.gov/lists/transitional-aid-to-families-with-dependent-children-tafdc-table-of-need-and-payment-standards-704410-704420
+    source_format: html
+    source_as_of: "2026-06-27"
+    expression_date: "2026-06-27"
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Transitional Assistance
+      official_publisher: Mass.gov
+      document_subtype: payment_standards_table
+      program: TAFDC
+      federal_program: TANF
+      legal_identifier: 106 CMR 704.410-704.420
+      regulation_landing_page: https://www.mass.gov/lists/transitional-aid-to-families-with-dependent-children-tafdc-table-of-need-and-payment-standards-704410-704420
+      source_discovery_group: us-ma/regulation/tafdc
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: "#main-content"
+      html_drop_selectors:
+        - ".ma__sticky-toc"
+        - ".ma__contact-list"
+        - ".ma__helpful-form"
+        - ".ma__feedback-form"
+        - ".ma__mass-feedback-form"
+        - ".ma__relationship-indicators"

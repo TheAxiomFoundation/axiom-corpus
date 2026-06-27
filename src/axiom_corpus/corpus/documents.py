@@ -456,7 +456,7 @@ def _extract_blocks(
             extraction=extraction,
         )
     if source_format == "docx":
-        return _extract_docx_blocks(content)
+        return _extract_docx_blocks(content, extraction=extraction)
     raise ValueError(f"unsupported official document source_format: {source_format}")
 
 
@@ -548,12 +548,9 @@ def _extract_labeled_pdf_section_blocks(
     label_pattern = extraction.get("section_label_pattern")
     if heading_pattern is None and label_pattern is None:
         raise ValueError(
-            "labeled_sections extraction requires section_heading_pattern "
-            "or section_label_pattern"
+            "labeled_sections extraction requires section_heading_pattern or section_label_pattern"
         )
-    section_heading_re = (
-        re.compile(str(heading_pattern)) if heading_pattern is not None else None
-    )
+    section_heading_re = re.compile(str(heading_pattern)) if heading_pattern is not None else None
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
     label_heading_pattern = extraction.get("label_only_heading_pattern")
     label_heading_re = (
@@ -655,7 +652,14 @@ def _extract_labeled_pdf_section_blocks(
     return tuple(sections)
 
 
-def _extract_docx_blocks(content: bytes) -> tuple[_DocumentBlock, ...]:
+def _extract_docx_blocks(
+    content: bytes, *, extraction: dict[str, Any] | None
+) -> tuple[_DocumentBlock, ...]:
+    if (extraction or {}).get("segmentation") == "labeled_sections":
+        return _extract_labeled_docx_section_blocks(
+            content,
+            extraction=extraction or {},
+        )
     with zipfile.ZipFile(BytesIO(content)) as document:
         xml = document.read("word/document.xml")
     root = ElementTree.fromstring(xml)
@@ -698,6 +702,106 @@ def _extract_docx_blocks(content: bytes) -> tuple[_DocumentBlock, ...]:
                 parts.append(table_text)
     flush()
     return tuple(blocks)
+
+
+def _extract_labeled_docx_section_blocks(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[_DocumentBlock, ...]:
+    """Extract DOCX documents whose provisions begin with stable labels."""
+    heading_pattern = extraction.get("section_heading_pattern")
+    label_pattern = extraction.get("section_label_pattern")
+    if heading_pattern is None and label_pattern is None:
+        raise ValueError(
+            "labeled_sections DOCX extraction requires section_heading_pattern "
+            "or section_label_pattern"
+        )
+    section_heading_re = re.compile(str(heading_pattern)) if heading_pattern is not None else None
+    section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
+    label_template = extraction.get("section_label_template")
+    start_after_pattern = extraction.get("start_after_pattern")
+    start_after_re = (
+        re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
+    )
+    stop_pattern = extraction.get("stop_text_pattern")
+    stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
+    drop_lines = {str(line).strip() for line in extraction.get("drop_lines", ())}
+    drop_line_patterns = tuple(
+        re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
+    )
+
+    sections: list[_DocumentBlock] = []
+    current_label: str | None = None
+    current_heading: str | None = None
+    current_body: list[str] = []
+    started = start_after_re is None
+
+    def flush() -> None:
+        nonlocal current_label, current_heading, current_body
+        if current_label is None:
+            return
+        sections.append(
+            _DocumentBlock(
+                kind="section",
+                ordinal=len(sections) + 1,
+                heading=f"{current_label} {current_heading or ''}".strip(),
+                body=_normalize_text("\n\n".join(current_body)),
+                metadata={
+                    "citation_suffix": current_label,
+                    "section_label": current_label,
+                },
+            )
+        )
+        current_label = None
+        current_heading = None
+        current_body = []
+
+    for line in _docx_lines(content):
+        if not started:
+            if start_after_re is not None and start_after_re.search(line):
+                started = True
+            continue
+        if _drop_pdf_line(line, drop_lines, drop_line_patterns):
+            continue
+        if stop_re is not None and stop_re.search(line):
+            flush()
+            break
+        match = _match_labeled_pdf_section(
+            line,
+            section_heading_re,
+            section_label_re,
+            label_template=str(label_template) if label_template is not None else None,
+        )
+        if match:
+            label, heading = match
+            flush()
+            current_label = label
+            current_heading = heading or label
+            current_body = []
+            continue
+        if current_label is not None:
+            current_body.append(line)
+    flush()
+    return tuple(sections)
+
+
+def _docx_lines(content: bytes) -> tuple[str, ...]:
+    with zipfile.ZipFile(BytesIO(content)) as document:
+        xml = document.read("word/document.xml")
+    root = ElementTree.fromstring(xml)
+    body = root.find("w:body", _WORD_NS)
+    if body is None:
+        return ()
+    lines: list[str] = []
+    for child in body:
+        if child.tag == _word_tag("p"):
+            text = _docx_paragraph_text(child)
+            if text:
+                lines.append(text)
+        elif child.tag == _word_tag("tbl"):
+            table_text = _docx_table_text(child)
+            if table_text:
+                lines.extend(line for line in table_text.splitlines() if line)
+    return tuple(lines)
 
 
 def _zip_contains(content: bytes, name: str) -> bool:
@@ -798,9 +902,7 @@ def _filtered_pdf_lines(
     return tuple(lines)
 
 
-_NUMBERED_SECTION_START_RE = re.compile(
-    r"^(?P<label>\d{3})\.(?:\s*--\s*(?P<end_label>\d{3})\.)?$"
-)
+_NUMBERED_SECTION_START_RE = re.compile(r"^(?P<label>\d{3})\.(?:\s*--\s*(?P<end_label>\d{3})\.)?$")
 
 
 def _positive_int(value: Any, *, default: int) -> int:
@@ -958,8 +1060,7 @@ def _extract_json_html_blocks(
     html_field = (extraction or {}).get("json_html_field")
     if not isinstance(html_field, str) or not html_field:
         raise ValueError(
-            "json official document extraction requires json_html_field "
-            "or segmentation: records"
+            "json official document extraction requires json_html_field or segmentation: records"
         )
     data = json_loads(content.decode("utf-8"))
     html_text = _json_path(data, html_field)
@@ -1030,11 +1131,7 @@ def _extract_json_record_blocks(
         raw_text = _json_record_value(row, text_field)
         if not isinstance(raw_text, str) or not raw_text.strip():
             continue
-        body = (
-            _html_fragment_text(raw_text)
-            if text_is_html
-            else _normalize_text(raw_text)
-        )
+        body = _html_fragment_text(raw_text) if text_is_html else _normalize_text(raw_text)
         if not body:
             continue
 
@@ -1116,9 +1213,7 @@ def _extract_labeled_html_section_blocks(
             "labeled_sections HTML extraction requires section_heading_pattern "
             "or section_label_pattern"
         )
-    section_heading_re = (
-        re.compile(str(heading_pattern)) if heading_pattern is not None else None
-    )
+    section_heading_re = re.compile(str(heading_pattern)) if heading_pattern is not None else None
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
     label_template = extraction.get("section_label_template")
     stop_pattern = extraction.get("stop_text_pattern")
@@ -1203,9 +1298,7 @@ def _match_labeled_html_section(
     return None
 
 
-def _labeled_section_label(
-    match: re.Match[str], *, label_template: str | None
-) -> str:
+def _labeled_section_label(match: re.Match[str], *, label_template: str | None) -> str:
     groups = {key: (value or "").strip() for key, value in match.groupdict().items()}
     if label_template:
         try:
@@ -1223,12 +1316,10 @@ def _labeled_section_label(
     )
 
 
-def _html_content_root(
-    soup: BeautifulSoup, *, extraction: dict[str, Any] | None
-) -> Tag:
-    selector = (extraction or {}).get("html_content_selector") or (
-        extraction or {}
-    ).get("content_selector")
+def _html_content_root(soup: BeautifulSoup, *, extraction: dict[str, Any] | None) -> Tag:
+    selector = (extraction or {}).get("html_content_selector") or (extraction or {}).get(
+        "content_selector"
+    )
     if selector is not None:
         root = soup.select_one(str(selector))
         if isinstance(root, Tag):
@@ -1238,9 +1329,9 @@ def _html_content_root(
 
 
 def _html_drop_selectors(extraction: dict[str, Any] | None) -> tuple[str, ...]:
-    selectors = (extraction or {}).get("html_drop_selectors") or (
-        extraction or {}
-    ).get("drop_selectors")
+    selectors = (extraction or {}).get("html_drop_selectors") or (extraction or {}).get(
+        "drop_selectors"
+    )
     if selectors is None:
         return ()
     if isinstance(selectors, str):
