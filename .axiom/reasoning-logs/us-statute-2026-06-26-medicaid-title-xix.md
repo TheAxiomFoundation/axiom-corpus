@@ -16,13 +16,17 @@ Scope:
 - Replaced the narrow Medicaid Title 42 corpus artifact with exact provision
   paths for the national Medicaid eligibility graph.
 - Included 42 U.S.C. 1396a(a)(10), 1396a(e), 1396a(e)(14), 1396a(f), 1396a(l),
-  1396a(m), 1396b(v), 1396d(a), 1396d(n), 1396d(p), 1396d(q), 1396p(f), and
-  1396u-1 as the USLM citation path `us/statute/42/1396u–1`.
+  1396a(m), 1396b(f), 1396b(v), 1396d(a), 1396d(n), 1396d(p), 1396d(q),
+  1396p(f), and 1396u-1 as the USLM citation path `us/statute/42/1396u–1`.
 - This adds child, pregnancy, MAGI methodology, 209(b), optional aged/blind/
-  disabled, emergency-alien, qualified pregnant woman or child, qualified
-  Medicare beneficiary, qualified severely impaired individual, service-category,
+  disabled, federal financial participation income-limitation/spenddown,
+  emergency-alien, qualified pregnant woman or child, qualified Medicare
+  beneficiary, qualified severely impaired individual, service-category,
   substantial-home-equity, and parent/caretaker statutory source rows for
   follow-on RuleSpec encoding.
+- 42 U.S.C. 1396a(f) depends directly on income determined under 42 U.S.C.
+  1396b(f), so 1396b(f) was added as the primary statutory source instead of
+  allowing a RuleSpec placeholder for that cross-reference.
 
 Generated artifact:
 - Command used the US Code ingester with repeated exact --citation-path filters;
@@ -32,5 +36,5 @@ Generated artifact:
   selected provisions while retaining the official download URL in inventory
   metadata.
 - Output run id: 2026-06-26-medicaid-title-42.
-- Coverage result: complete; 107 source inventory rows matched 107 provision
+- Coverage result: complete; 112 source inventory rows matched 112 provision
   rows.
