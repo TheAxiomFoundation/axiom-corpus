@@ -1,0 +1,31 @@
+documents:
+  - source_id: al-dhr-admin-code-660-2-4
+    jurisdiction: us-al
+    document_class: regulation
+    citation_path: us-al/regulation/alabama-administrative-code/660/2/4
+    title: "Alabama Administrative Code Chapter 660-2-4: Optional Supplementation"
+    source_url: https://admincode.legislature.state.al.us/api/chapter/660-2-4
+    source_format: pdf
+    source_as_of: "2026-06-30"
+    expression_date: "2026-06-30"
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 524288
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Alabama Department of Human Resources
+      document_subtype: administrative_code_chapter_pdf
+      manual: Alabama Administrative Code
+      title_number: "660"
+      chapter: "2"
+      subchapter: "4"
+      program: ssi_state_supplement
+      federal_program: SSI
+      state: AL
+      last_modified: "2025-12-08T21:23:10Z"
+      etag: W/"6e33ff-19affd8ce30"
+      content_length: 7222271
+      source_discovery_group: us-al/regulation/ssi-state-supplement
+      discovered_via: active_policyengine_parity_review

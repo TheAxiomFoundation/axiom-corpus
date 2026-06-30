@@ -90,6 +90,10 @@ def test_download_document_retries_browser_user_agent_on_declared_pdf_html_chall
         def raise_for_status(self):
             return None
 
+        def iter_content(self, chunk_size: int):
+            del chunk_size
+            yield self.content
+
     class FakeSession:
         def __init__(self):
             self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
@@ -132,6 +136,10 @@ def test_download_document_retries_transient_request_errors(monkeypatch):
         def raise_for_status(self):
             return None
 
+        def iter_content(self, chunk_size: int):
+            del chunk_size
+            yield self.content
+
     class FakeSession:
         def __init__(self):
             self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
@@ -173,6 +181,10 @@ def test_download_document_can_disable_tls_verification():
         def raise_for_status(self):
             return None
 
+        def iter_content(self, chunk_size: int):
+            del chunk_size
+            yield self.content
+
     class FakeSession:
         def __init__(self):
             self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
@@ -197,6 +209,142 @@ def test_download_document_can_disable_tls_verification():
 
     assert downloaded.content == b'{"ok": true}'
     assert session.verify_values == [False]
+
+
+def test_download_document_supports_range_fetch():
+    payload = b"%PDF-1.7\nexample"
+
+    class FakeResponse:
+        def __init__(
+            self,
+            content: bytes,
+            *,
+            start: int,
+            end: int,
+            total: int,
+        ):
+            self.status_code = 206
+            self.content = content
+            self.headers = {
+                "content-type": "application/pdf",
+                "content-range": f"bytes {start}-{end}/{total}",
+            }
+            self.url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+        def iter_content(self, chunk_size: int):
+            del chunk_size
+            yield self.content
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+            self.ranges: list[str] = []
+            self.user_agents: list[str] = []
+
+        def get(
+            self,
+            url,
+            *,
+            headers=None,
+            timeout=None,
+            allow_redirects=None,
+            verify=None,
+            stream=None,
+        ):
+            del url, timeout, allow_redirects, verify
+            assert stream is True
+            request_headers = headers or {}
+            range_header = str(request_headers["Range"])
+            self.ranges.append(range_header)
+            self.user_agents.append(str(request_headers["User-Agent"]))
+            requested = range_header.removeprefix("bytes=")
+            start_text, end_text = requested.split("-", 1)
+            start = int(start_text)
+            end = min(int(end_text), len(payload) - 1)
+            return FakeResponse(
+                payload[start : end + 1],
+                start=start,
+                end=end,
+                total=len(payload),
+            )
+
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="form",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+        request={"range_fetch": True, "range_chunk_size": 5, "browser_user_agent": True},
+    )
+    session = FakeSession()
+
+    downloaded = _download_document(source, session=session)  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == payload
+    assert session.ranges == ["bytes=0-4", "bytes=5-9", "bytes=10-14", "bytes=15-19"]
+    assert session.user_agents == [OFFICIAL_DOCUMENT_BROWSER_USER_AGENT] * 4
+
+
+def test_download_document_supports_curl_range_backend(monkeypatch):
+    payload = b"%PDF-1.7\nexample"
+    commands: list[list[str]] = []
+
+    def fake_run(command, check):
+        assert check is True
+        commands.append(list(command))
+        range_index = command.index("-H") + 1
+        while not str(command[range_index]).startswith("Range: "):
+            range_index = command.index("-H", range_index + 1) + 1
+        requested = str(command[range_index]).removeprefix("Range: bytes=")
+        start_text, end_text = requested.split("-", 1)
+        start = int(start_text)
+        end = min(int(end_text), len(payload) - 1)
+        header_path = Path(command[command.index("--dump-header") + 1])
+        body_path = Path(command[command.index("--output") + 1])
+        header_path.write_text(
+            "\r\n".join(
+                [
+                    "HTTP/1.1 206 Partial Content",
+                    "Content-Type: application/pdf",
+                    f"Content-Range: bytes {start}-{end}/{len(payload)}",
+                    "",
+                    "",
+                ]
+            )
+        )
+        body_path.write_bytes(payload[start : end + 1])
+
+    monkeypatch.setattr(documents_module.subprocess, "run", fake_run)
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="form",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+        request={
+            "range_fetch": True,
+            "range_backend": "curl",
+            "range_chunk_size": 5,
+            "browser_user_agent": True,
+            "verify_tls": False,
+        },
+    )
+
+    downloaded = _download_document(source, session=requests.Session())  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == payload
+    assert [command[command.index("-A") + 1] for command in commands] == [
+        OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+    ] * 4
+    assert all("--insecure" in command for command in commands)
 
 
 def test_extract_official_documents_from_local_html_and_pdf(tmp_path):
