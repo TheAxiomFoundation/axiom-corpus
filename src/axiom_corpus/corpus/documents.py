@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import re
+import subprocess
 import sys
+import tempfile
 import time
 import warnings
 import zipfile
@@ -39,6 +41,8 @@ _BROWSER_FALLBACK_STATUSES = {403, 404, 406}
 _REQUEST_RETRY_STATUSES = {429, 500, 502, 503, 504}
 _REQUEST_RETRY_ATTEMPTS = 4
 _REQUEST_RETRY_BASE_DELAY_SECONDS = 0.5
+_RANGE_FETCH_CHUNK_SIZE_BYTES = 1024 * 1024
+_CONTENT_RANGE_RE = re.compile(r"^bytes (?P<start>\d+)-(?P<end>\d+)/(?P<total>\d+|\*)$")
 _GOOGLE_DRIVE_FILE_RE = re.compile(r"https?://drive\.google\.com/file/d/([^/]+)/")
 _MAPBOX_PUBLIC_TOKEN_RE = re.compile(rb"pk\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 _MAPBOX_PUBLIC_TOKEN_PLACEHOLDER = b"[redacted-mapbox-public-token]"
@@ -334,8 +338,29 @@ def _download_document(
     download_url = (
         source.download_url or google_drive_download_url(source.source_url) or source.source_url
     )
-    verify = bool((source.request or {}).get("verify_tls", True))
-    response = _get_with_retries(session, download_url, verify=verify)
+    request_config = source.request or {}
+    verify = bool(request_config.get("verify_tls", True))
+    request_headers = _request_headers_from_config(request_config)
+    if request_config.get("range_fetch"):
+        if request_config.get("range_backend") == "curl":
+            return _download_document_by_curl_ranges(
+                source,
+                download_url,
+                headers=request_headers,
+                verify=verify,
+                chunk_size=int(
+                    request_config.get("range_chunk_size", _RANGE_FETCH_CHUNK_SIZE_BYTES)
+                ),
+            )
+        return _download_document_by_ranges(
+            source,
+            download_url,
+            session=session,
+            headers=request_headers,
+            verify=verify,
+            chunk_size=int(request_config.get("range_chunk_size", _RANGE_FETCH_CHUNK_SIZE_BYTES)),
+        )
+    response = _get_with_retries(session, download_url, headers=request_headers, verify=verify)
     if _needs_browser_fallback(source, response):
         response.close()
         headers = {str(key): str(value) for key, value in session.headers.items()}
@@ -348,6 +373,210 @@ def _download_document(
         content_type=response.headers.get("content-type"),
         final_url=response.url,
     )
+
+
+def _download_document_by_ranges(
+    source: OfficialDocumentSource,
+    download_url: str,
+    *,
+    session: requests.Session,
+    headers: dict[str, str] | None,
+    verify: bool,
+    chunk_size: int,
+) -> _DownloadedDocument:
+    """Fetch a document through HTTP Range requests for servers that stall full GETs."""
+    if chunk_size <= 0:
+        raise ValueError("range_chunk_size must be positive")
+    chunks: list[bytes] = []
+    start = 0
+    total: int | None = None
+    content_type: str | None = None
+    final_url = download_url
+    while total is None or start < total:
+        end = start + chunk_size - 1
+        response = _get_with_retries(
+            session,
+            download_url,
+            headers={**(headers or {}), "Range": f"bytes={start}-{end}"},
+            verify=verify,
+            stream=True,
+        )
+        response.raise_for_status()
+        content_type = response.headers.get("content-type") or content_type
+        final_url = response.url
+        response_content = b"".join(response.iter_content(chunk_size=min(65536, chunk_size)))
+        if response.status_code == 200:
+            if chunks:
+                response.close()
+                raise RuntimeError(
+                    f"range fetch for {source.source_id} returned full response after partial chunks"
+                )
+            return _DownloadedDocument(
+                source=source,
+                content=response_content,
+                content_type=content_type,
+                final_url=final_url,
+            )
+        if response.status_code != 206:
+            response.close()
+            raise RuntimeError(
+                f"range fetch for {source.source_id} returned HTTP {response.status_code}"
+            )
+        range_start, range_end, range_total = _parse_content_range(
+            str(response.headers.get("content-range") or "")
+        )
+        if range_start != start:
+            response.close()
+            raise RuntimeError(
+                f"range fetch for {source.source_id} returned unexpected start {range_start}"
+            )
+        chunks.append(response_content)
+        response.close()
+        start = range_end + 1
+        if range_total is not None:
+            total = range_total
+        if not chunks[-1] and total is None:
+            break
+    return _DownloadedDocument(
+        source=source,
+        content=b"".join(chunks),
+        content_type=content_type,
+        final_url=final_url,
+    )
+
+
+def _download_document_by_curl_ranges(
+    source: OfficialDocumentSource,
+    download_url: str,
+    *,
+    headers: dict[str, str] | None,
+    verify: bool,
+    chunk_size: int,
+) -> _DownloadedDocument:
+    """Fetch a document through curl Range requests for servers that stall urllib3."""
+    if chunk_size <= 0:
+        raise ValueError("range_chunk_size must be positive")
+    chunks: list[bytes] = []
+    start = 0
+    total: int | None = None
+    content_type: str | None = None
+    request_headers = headers or {}
+    user_agent = request_headers.get("User-Agent", OFFICIAL_DOCUMENT_USER_AGENT)
+    with tempfile.TemporaryDirectory() as tmpdir_text:
+        tmpdir = Path(tmpdir_text)
+        while total is None or start < total:
+            end = start + chunk_size - 1
+            header_path = tmpdir / "headers.txt"
+            body_path = tmpdir / "body.bin"
+            command = [
+                "curl",
+                "-L",
+                "--fail",
+                "--silent",
+                "--show-error",
+                "--connect-timeout",
+                "10",
+                "--max-time",
+                "60",
+                "-A",
+                user_agent,
+            ]
+            if not verify:
+                command.append("--insecure")
+            for key, value in request_headers.items():
+                if key.lower() == "user-agent":
+                    continue
+                command.extend(["-H", f"{key}: {value}"])
+            command.extend(
+                [
+                    "-H",
+                    f"Range: bytes={start}-{end}",
+                    "--dump-header",
+                    str(header_path),
+                    "--output",
+                    str(body_path),
+                    download_url,
+                ]
+            )
+            subprocess.run(command, check=True)
+            status_code, response_headers = _parse_curl_header_dump(
+                header_path.read_text(errors="replace")
+            )
+            response_content = body_path.read_bytes()
+            content_type = response_headers.get("content-type") or content_type
+            if status_code == 200:
+                if chunks:
+                    raise RuntimeError(
+                        f"curl range fetch for {source.source_id} returned full response after partial chunks"
+                    )
+                return _DownloadedDocument(
+                    source=source,
+                    content=response_content,
+                    content_type=content_type,
+                    final_url=download_url,
+                )
+            if status_code != 206:
+                raise RuntimeError(
+                    f"curl range fetch for {source.source_id} returned HTTP {status_code}"
+                )
+            range_start, range_end, range_total = _parse_content_range(
+                response_headers.get("content-range", "")
+            )
+            if range_start != start:
+                raise RuntimeError(
+                    f"curl range fetch for {source.source_id} returned unexpected start {range_start}"
+                )
+            chunks.append(response_content)
+            start = range_end + 1
+            if range_total is not None:
+                total = range_total
+            if not response_content and total is None:
+                break
+    return _DownloadedDocument(
+        source=source,
+        content=b"".join(chunks),
+        content_type=content_type,
+        final_url=download_url,
+    )
+
+
+def _parse_content_range(header: str) -> tuple[int, int, int | None]:
+    match = _CONTENT_RANGE_RE.match(header.strip())
+    if not match:
+        raise RuntimeError(f"invalid Content-Range header: {header!r}")
+    total_text = match.group("total")
+    return (
+        int(match.group("start")),
+        int(match.group("end")),
+        None if total_text == "*" else int(total_text),
+    )
+
+
+def _parse_curl_header_dump(header_dump: str) -> tuple[int, dict[str, str]]:
+    blocks = [
+        block
+        for block in re.split(r"(?:\r?\n){2,}", header_dump.strip())
+        if block.lower().startswith("http/")
+    ]
+    if not blocks:
+        raise RuntimeError("curl response did not include HTTP headers")
+    lines = blocks[-1].splitlines()
+    status_parts = lines[0].split()
+    if len(status_parts) < 2:
+        raise RuntimeError(f"invalid curl HTTP status line: {lines[0]!r}")
+    headers: dict[str, str] = {}
+    for line in lines[1:]:
+        if ":" not in line:
+            continue
+        key, value = line.split(":", 1)
+        headers[key.strip().lower()] = value.strip()
+    return int(status_parts[1]), headers
+
+
+def _request_headers_from_config(request_config: dict[str, Any]) -> dict[str, str] | None:
+    if not request_config.get("browser_user_agent"):
+        return None
+    return {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT}
 
 
 def _needs_browser_fallback(
@@ -370,6 +599,7 @@ def _get_with_retries(
     *,
     headers: dict[str, str] | None = None,
     verify: bool = True,
+    stream: bool = False,
 ) -> requests.Response:
     """Fetch a small official document, retrying transient server/network failures."""
     for attempt in range(1, _REQUEST_RETRY_ATTEMPTS + 1):
@@ -377,13 +607,15 @@ def _get_with_retries(
             with warnings.catch_warnings():
                 if not verify:
                     warnings.simplefilter("ignore", InsecureRequestWarning)
-                response = session.get(
-                    url,
-                    headers=headers,
-                    timeout=90,
-                    allow_redirects=True,
-                    verify=verify,
-                )
+                kwargs: dict[str, Any] = {
+                    "headers": headers,
+                    "timeout": 90,
+                    "allow_redirects": True,
+                    "verify": verify,
+                }
+                if stream:
+                    kwargs["stream"] = True
+                response = session.get(url, **kwargs)
             if (
                 response.status_code in _REQUEST_RETRY_STATUSES
                 and attempt < _REQUEST_RETRY_ATTEMPTS
