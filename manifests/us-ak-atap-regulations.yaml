@@ -1,0 +1,26 @@
+documents:
+  - source_id: ak-aac-title-7-chapter-45-atap
+    jurisdiction: us-ak
+    document_class: regulation
+    citation_path: us-ak/regulation/aac/title-7/chapter-45
+    title: "Alaska Administrative Code Title 7, Chapter 45: Alaska Temporary Assistance Program"
+    source_url: "https://www.akleg.gov/basis/aac.asp?media=print&secStart=7.45&secEnd=7.45.990"
+    source_format: html
+    source_as_of: "2026-07-01"
+    expression_date: "2026-07-01"
+    extraction:
+      html_content_selector: .statute
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?:Chapter 45\s+Alaska Temporary Assistance Program\s+)?(?P<label>7\s+AAC\s+45\.\d{3})\.\s+(?P<heading>[^.]+\.)(?:\s+(?P<body>.*))?$'
+    metadata:
+      primary_source: true
+      source_authority: Alaska State Legislature
+      official_publisher: Alaska Administrative Code
+      document_subtype: administrative_code_chapter
+      program: Alaska Temporary Assistance Program
+      federal_program: TANF
+      legal_identifier: 7 AAC 45
+      statute_authority: AS 47.27
+      pe_surface: ak_atap
+      source_discovery_group: us-ak/regulation/atap
+      discovered_via: active_policyengine_parity_review
