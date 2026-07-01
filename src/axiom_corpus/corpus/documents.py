@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -47,6 +48,7 @@ _CONTENT_RANGE_RE = re.compile(r"^bytes (?P<start>\d+)-(?P<end>\d+)/(?P<total>\d
 _GOOGLE_DRIVE_FILE_RE = re.compile(r"https?://drive\.google\.com/file/d/([^/]+)/")
 _MAPBOX_PUBLIC_TOKEN_RE = re.compile(rb"pk\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+")
 _MAPBOX_PUBLIC_TOKEN_PLACEHOLDER = b"[redacted-mapbox-public-token]"
+_LEGACY_WORD_DOCUMENT_MAGIC = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
 _HEADING_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6"}
 _TEXT_TAGS = _HEADING_TAGS | {"p", "li", "table", "blockquote"}
 _NON_HEADING_UPPERCASE_LINES = {
@@ -644,6 +646,8 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
         return "pdf"
     if "html" in content_type or downloaded.content.lstrip().startswith((b"<!doctype", b"<html")):
         return "html"
+    if "msword" in content_type or downloaded.content.startswith(_LEGACY_WORD_DOCUMENT_MAGIC):
+        return "doc"
     if (
         "wordprocessingml" in content_type
         or downloaded.content.startswith(b"PK")
@@ -690,6 +694,8 @@ def _extract_blocks(
         )
     if source_format == "docx":
         return _extract_docx_blocks(content, extraction=extraction)
+    if source_format == "doc":
+        return _extract_doc_blocks(content, title=title, extraction=extraction)
     raise ValueError(f"unsupported official document source_format: {source_format}")
 
 
@@ -935,6 +941,55 @@ def _extract_docx_blocks(
                 parts.append(table_text)
     flush()
     return tuple(blocks)
+
+
+def _extract_doc_blocks(
+    content: bytes, *, title: str | None, extraction: dict[str, Any] | None
+) -> tuple[_DocumentBlock, ...]:
+    if (extraction or {}).get("segmentation") not in {None, "single_block"}:
+        raise ValueError("legacy DOC extraction only supports single_block segmentation")
+    body = _legacy_word_document_text(content)
+    if not body:
+        return ()
+    heading = str((extraction or {}).get("heading") or title or "Document")
+    return (
+        _DocumentBlock(
+            kind="block",
+            ordinal=1,
+            heading=heading,
+            body=body,
+            metadata={},
+        ),
+    )
+
+
+def _legacy_word_document_text(content: bytes) -> str:
+    """Extract text from legacy binary Word documents using available system tools."""
+    with tempfile.TemporaryDirectory(prefix="axiom-doc-") as temp_dir:
+        doc_path = Path(temp_dir) / "source.doc"
+        doc_path.write_bytes(content)
+
+        command: list[str] | None = None
+        if shutil.which("textutil"):
+            command = ["textutil", "-convert", "txt", "-stdout", str(doc_path)]
+        elif shutil.which("antiword"):
+            command = ["antiword", str(doc_path)]
+        elif shutil.which("catdoc"):
+            command = ["catdoc", str(doc_path)]
+        if command is None:
+            raise RuntimeError("legacy DOC extraction requires textutil, antiword, or catdoc")
+
+        result = subprocess.run(
+            command,
+            check=False,
+            capture_output=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        if result.returncode != 0:
+            message = result.stderr.strip() or result.stdout.strip()
+            raise RuntimeError(f"legacy DOC extraction failed: {message}")
+        return _normalize_text(result.stdout)
 
 
 def _extract_labeled_docx_section_blocks(

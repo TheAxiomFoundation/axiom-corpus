@@ -1150,6 +1150,48 @@ documents:
     assert second_block.heading == "365.110 Residents of Institutions"
 
 
+def test_extract_official_documents_reads_legacy_word_doc(tmp_path: Path, monkeypatch) -> None:
+    doc_path = tmp_path / "5030_10.doc"
+    doc_path.write_bytes(b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1legacy-word-content")
+    monkeypatch.setattr(
+        documents_module,
+        "_legacy_word_document_text",
+        lambda content: (
+            "5030.10 Earned Income Disregard\n\n"
+            "$65.00 per month plus 1/2 of the remaining income is disregarded."
+        ),
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ct-upm-5030-10
+    jurisdiction: us-ct
+    document_class: policy
+    title: "UPM 5030.10 - Earned Income Disregards"
+    source_url: https://portal.ct.gov/dss/-/media/departments-and-agencies/dss/upms/upm5---treatment-of-income-income-eligibility/5030_10.doc
+    source_format: doc
+    local_path: {json.dumps(str(doc_path))}
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-02-ct-upm-ssp",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert records[1].source_format == "doc"
+    assert records[1].heading == "UPM 5030.10 - Earned Income Disregards"
+    assert "$65.00 per month plus 1/2" in (records[1].body or "")
+    assert len(report.source_paths) == 1
+    assert report.source_paths[0].suffix == ".doc"
+    assert report.source_paths[0].read_bytes().startswith(b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1")
+
+
 def test_extract_official_documents_segments_labeled_docx_sections(
     tmp_path: Path,
 ) -> None:
