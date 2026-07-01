@@ -13,11 +13,19 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 from axiom_corpus.corpus.analytics import (
     build_analytics_report,
     load_provision_count_snapshot,
 )
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
+from axiom_corpus.corpus.belgium_eli import (
+    BelgianELIExtractReport,
+    BelgianMoniteurDiscoveryReport,
+    discover_belgian_moniteur_sources,
+    extract_belgian_eli,
+)
 from axiom_corpus.corpus.california_mpp import (
     MppDocxSource,
     extract_california_mpp_calfresh,
@@ -1308,6 +1316,157 @@ def _nz_legislation_report_json(report: NZLegislationExtractReport) -> dict[str,
             for class_report in report.class_reports
         ],
     }
+
+
+def _cmd_extract_belgian_eli(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    source_urls = list(args.source_url or ())
+    if args.manifest:
+        manifest = CorpusManifest.load(args.manifest)
+        manifest.require_unique_sources()
+        unsupported = sorted(
+            {source.adapter for source in manifest.sources if source.adapter != "belgian-eli"}
+        )
+        if unsupported:
+            raise ValueError(
+                "extract-belgian-eli only supports belgian-eli manifest sources; "
+                f"found {', '.join(unsupported)}"
+            )
+        source_urls.extend(source.source_url for source in manifest.sources if source.source_url)
+    report = extract_belgian_eli(
+        store,
+        version=args.version,
+        source_htmls=tuple(args.source_html or ()),
+        source_dir=args.source_dir,
+        source_pattern=args.source_pattern,
+        source_urls=tuple(source_urls),
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        request_timeout=args.request_timeout,
+        limit=args.limit,
+    )
+    print(json.dumps(_belgian_eli_report_json(report), indent=2, sort_keys=True))
+    return (
+        0
+        if all(class_report.coverage.complete for class_report in report.class_reports)
+        or args.allow_incomplete
+        else 2
+    )
+
+
+def _belgian_eli_report_json(report: BelgianELIExtractReport) -> dict[str, Any]:
+    return {
+        "version": report.version,
+        "source_count": report.source_count,
+        "provisions_written": report.provisions_written,
+        "classes": [
+            {
+                "jurisdiction": class_report.jurisdiction,
+                "document_class": class_report.document_class,
+                "source_file_count": len(class_report.source_paths),
+                "provisions_written": class_report.provisions_written,
+                "inventory_path": str(class_report.inventory_path),
+                "provisions_path": str(class_report.provisions_path),
+                "coverage_path": str(class_report.coverage_path),
+                "coverage_complete": class_report.coverage.complete,
+                "source_count": class_report.coverage.source_count,
+                "provision_count": class_report.coverage.provision_count,
+                "matched_count": class_report.coverage.matched_count,
+                "missing_count": len(class_report.coverage.missing_from_provisions),
+                "extra_count": len(class_report.coverage.extra_provisions),
+            }
+            for class_report in report.class_reports
+        ],
+    }
+
+
+def _cmd_discover_belgian_moniteur(args: argparse.Namespace) -> int:
+    report = discover_belgian_moniteur_sources(
+        start_date=args.start_date,
+        end_date=args.end_date,
+        language=args.language,
+        request_timeout=args.request_timeout,
+        limit=args.limit,
+        max_editions=args.max_editions,
+    )
+    if args.manifest_output:
+        _write_belgian_moniteur_manifest(
+            args.manifest_output,
+            report=report,
+            version=args.version,
+        )
+    print(json.dumps(_belgian_moniteur_discovery_json(report), indent=2, sort_keys=True))
+    return 0
+
+
+def _belgian_moniteur_discovery_json(
+    report: BelgianMoniteurDiscoveryReport,
+) -> dict[str, Any]:
+    return {
+        "start_date": report.start_date,
+        "end_date": report.end_date,
+        "language": report.language,
+        "summary_pages_fetched": report.summary_pages_fetched,
+        "source_count": len(report.sources),
+        "sources": [
+            {
+                "source_id": source.source_id,
+                "source_url": source.source_url,
+                "jurisdiction": source.jurisdiction,
+                "document_class": source.document_class,
+                "document_type": source.document_type,
+                "numac": source.numac,
+                "title": source.title,
+                "publication_date": source.publication_date,
+                "edition": source.edition,
+                "section_title": source.section_title,
+                "moniteur_url": source.moniteur_url,
+                "justel_url": source.justel_url,
+                "authority": source.authority,
+            }
+            for source in report.sources
+        ],
+    }
+
+
+def _write_belgian_moniteur_manifest(
+    path: Path,
+    *,
+    report: BelgianMoniteurDiscoveryReport,
+    version: str,
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "version": version,
+        "sources": [
+            {
+                "source_id": source.source_id,
+                "jurisdiction": source.jurisdiction,
+                "document_class": source.document_class,
+                "adapter": "belgian-eli",
+                "source_url": source.source_url,
+                "metadata": {
+                    "source_authority": "Moniteur belge / Belgisch Staatsblad",
+                    "source_status": "official_original_publication",
+                    "source_family": "full-belgian-statutes-regulations",
+                    "publication_date": source.publication_date,
+                    "edition": source.edition,
+                    "section_title": source.section_title,
+                    "document_type": source.document_type,
+                    "numac": source.numac,
+                    "title": source.title,
+                    "legal_authority_url": source.moniteur_url,
+                    "justel_url": source.justel_url,
+                    "issuing_authority": source.authority,
+                },
+            }
+            for source in report.sources
+        ],
+    }
+    path.write_text(
+        yaml.safe_dump(payload, allow_unicode=True, sort_keys=False),
+    )
 
 
 def _cmd_download_nz_legislation_api(args: argparse.Namespace) -> int:
@@ -4796,6 +4955,66 @@ def build_parser() -> argparse.ArgumentParser:
     extract_nz_cmd.add_argument("--limit", type=int)
     extract_nz_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_nz_cmd.set_defaults(func=_cmd_extract_nz_legislation)
+
+    extract_be_cmd = sub.add_parser(
+        "extract-belgian-eli",
+        help="Snapshot Belgian ELI/Moniteur/Justel HTML and extract normalized provision JSONL.",
+    )
+    extract_be_cmd.add_argument("--base", type=Path, required=True)
+    extract_be_cmd.add_argument("--version", required=True)
+    extract_be_cmd.add_argument(
+        "--manifest",
+        type=Path,
+        help="Corpus manifest containing belgian-eli source URLs.",
+    )
+    extract_be_cmd.add_argument(
+        "--source-html",
+        type=Path,
+        action="append",
+        help="Local Belgian ELI, Moniteur, or Justel HTML file.",
+    )
+    extract_be_cmd.add_argument(
+        "--source-dir",
+        type=Path,
+        help="Directory containing Belgian ELI, Moniteur, or Justel HTML files.",
+    )
+    extract_be_cmd.add_argument(
+        "--source-pattern",
+        default="*.html",
+        help="Glob used with --source-dir (default: *.html).",
+    )
+    extract_be_cmd.add_argument(
+        "--source-url",
+        action="append",
+        help="Belgian ELI, Moniteur, or Justel URL to fetch; repeat for multiple URLs.",
+    )
+    extract_be_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_be_cmd.add_argument("--expression-date")
+    extract_be_cmd.add_argument("--request-timeout", type=float, default=30.0)
+    extract_be_cmd.add_argument("--limit", type=int)
+    extract_be_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_be_cmd.set_defaults(func=_cmd_extract_belgian_eli)
+
+    discover_be_cmd = sub.add_parser(
+        "discover-belgian-moniteur",
+        help=(
+            "Discover Moniteur belge statute/regulation article URLs from "
+            "official daily summary pages."
+        ),
+    )
+    discover_be_cmd.add_argument("--start-date", required=True)
+    discover_be_cmd.add_argument("--end-date", required=True)
+    discover_be_cmd.add_argument("--version", required=True)
+    discover_be_cmd.add_argument("--language", default="fr")
+    discover_be_cmd.add_argument("--request-timeout", type=float, default=30.0)
+    discover_be_cmd.add_argument("--limit", type=int)
+    discover_be_cmd.add_argument("--max-editions", type=int, default=5)
+    discover_be_cmd.add_argument(
+        "--manifest-output",
+        type=Path,
+        help="Optional corpus manifest path to write for extract-belgian-eli.",
+    )
+    discover_be_cmd.set_defaults(func=_cmd_discover_belgian_moniteur)
 
     download_nz_api_cmd = sub.add_parser(
         "download-nz-legislation-api",

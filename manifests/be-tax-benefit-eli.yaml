@@ -1,0 +1,190 @@
+version: "2026-06-30-be-tax-benefit"
+sources:
+  - source_id: be-income-tax-coordination-1992
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1992/04/10/1992003456/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1992/04/10/1992003456/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: personal-income-tax
+      source_status: official_original_with_consolidated_locator
+      source_note: Royal decree coordinating Belgian income tax legal provisions.
+  - source_id: be-income-tax-code-1992
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: personal-income-tax
+      source_status: official_original_with_suspended_justel_locator
+      source_note: Justel says the consolidated income tax code update has been suspended since 2002 and points users to FisconetPlus for later modifications.
+  - source_id: be-vat-code-1969
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1969/07/03/1969070305/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1969/07/03/1969070305/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: value-added-tax
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-vat-royal-decree-20-1970
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1970/07/20/1970072012/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1970/07/20/1970072012/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: value-added-tax
+      source_status: official_original_with_consolidated_locator
+      source_note: Royal Decree No. 20 fixes VAT rates and allocates goods and services across those rates; Moniteur publishes the original pre-1997 source as a scanned PDF.
+  - source_id: be-social-security-workers-law-1969
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1969/06/27/1969062710/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1969/06/27/1969062710/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-social-security-workers-royal-decree-1969
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1969/11/28/1969112813/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1969/11/28/1969112813/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-social-integration-law-2002
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/2002/05/26/2002022559/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/2002/05/26/2002022559/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-assistance
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-social-integration-royal-decree-2002
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2002/07/11/2002022564/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2002/07/11/2002022564/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-assistance
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-unemployment-royal-decree-1991
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1991/11/25/1991013192/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1991/11/25/1991013192/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: unemployment-insurance
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-health-insurance-law-1994
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: health-insurance-and-benefits
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-disability-allowances-law-1987
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1987/02/27/1987022077/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: disability-assistance
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-income-guarantee-older-persons-law-2001
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/2001/03/22/2001022201/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/2001/03/22/2001022201/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: old-age-income-support
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-guaranteed-family-benefits-law-1971
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1971/07/20/1971072007/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1971/07/20/1971072007/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-cpas-organic-law-brussels-form-1976
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1976/07/08/1976D70810/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1976/07/08/1976D70810/moniteur
+      regional_scope: be-bru
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: local-social-assistance
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-bru-family-benefits-ordinance-2019
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2019/04/25/2019012118/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2019/04/25/2019012118/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits
+      source_status: official_original_with_consolidated_locator
+  - source_id: be-vlg-family-benefits-decree-2018
+    jurisdiction: be-vlg
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/cgi/article_body.pl?language=nl&caller=summary&pub_date=2018-07-31&numac=2018040369
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/cgi/article_body.pl?language=nl&caller=summary&pub_date=2018-07-31&numac=2018040369
+      justel_url: https://www.ejustice.just.fgov.be/eli/decreet/2018/04/27/2018040369/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits
+      source_status: official_original_with_consolidated_locator
+      source_note: Flemish Groeipakket decree published in the Belgisch Staatsblad on 2018-07-31; Justel remains only the consolidated locator.
+  - source_id: be-wal-family-benefits-decree-2018
+    jurisdiction: be-wal
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/cgi/article_body.pl?language=fr&caller=summary&pub_date=2018-03-01&numac=2018201006
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/cgi/article_body.pl?language=fr&caller=summary&pub_date=2018-03-01&numac=2018201006
+      justel_url: https://www.ejustice.just.fgov.be/eli/decret/2018/02/08/2018201006/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits
+      source_status: official_original_with_consolidated_locator
+      source_note: Walloon family-benefits decree published in the Moniteur belge on 2018-03-01; Justel remains only the consolidated locator.
+  - source_id: be-bru-housing-code-2013
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2003/07/17/2013A31614/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: housing-assistance
+      source_status: official_original_with_consolidated_locator

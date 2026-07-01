@@ -1,0 +1,1 @@
+Added Belgian ELI/Moniteur/Justel corpus extraction and Moniteur discovery for source-first Belgium and Brussels policy ingestion, plus focused official-document manifests for current Belgian tax, federal excise, and Brussels vehicle-tax source snapshots. Added HTML anchor-range extraction for Justel article-level rate provisions.

@@ -1,0 +1,64 @@
+documents:
+  - source_id: be-wal-succession-code-article-48-current
+    jurisdiction: be-wal
+    document_class: statute
+    title: Walloon succession-duty code article 48 current and future rate tables
+    source_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/ca2f583c-67d6-4b0a-80fe-9d718adf1a1f
+    download_url: https://www.minfin.fgov.be/myminfin-rest/fisconetPlus/public/document/ca2f583c-67d6-4b0a-80fe-9d718adf1a1f
+    source_format: json
+    source_as_of: '2026-07-01'
+    citation_path: be-wal/statute/fisconetplus/succession-code/article-48/guid-ca2f583c-67d6-4b0a-80fe-9d718adf1a1f
+    extraction:
+      json_html_field: data.content.content
+      json_html_base64: true
+      json_html_as_single_block: true
+    metadata:
+      legal_authority_url: https://wallex.wallonie.be/eli/loi-decret/1936/03/31/1111111111
+      current_code_locator_url: https://wallex.wallonie.be/eli/loi-decret/1936/03/31/1111111111
+      consolidated_document_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/ca2f583c-67d6-4b0a-80fe-9d718adf1a1f
+      source_authority: SPF Finances FisconetPlus
+      source_family: inheritance-tax
+      source_status: current_consolidated_article_text_after_wallex_code_locator
+      source_note: Wallex identifies the succession code as M.B. 7 April 1936, Numac 1111111111, and links users to Fisconet for the current consolidated code text.
+  - source_id: be-wal-registration-code-article-131-current
+    jurisdiction: be-wal
+    document_class: statute
+    title: Walloon registration-duty code article 131 current and future immovable-gift rates
+    source_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/28aaa269-5a52-4081-b97d-b9a0bb83c305
+    download_url: https://www.minfin.fgov.be/myminfin-rest/fisconetPlus/public/document/28aaa269-5a52-4081-b97d-b9a0bb83c305
+    source_format: json
+    source_as_of: '2026-07-01'
+    citation_path: be-wal/statute/fisconetplus/registration-code/article-131/guid-28aaa269-5a52-4081-b97d-b9a0bb83c305
+    extraction:
+      json_html_field: data.content.content
+      json_html_base64: true
+      json_html_as_single_block: true
+    metadata:
+      legal_authority_url: https://wallex.wallonie.be/eli/loi-decret/1939/11/29/193913002
+      current_code_locator_url: https://wallex.wallonie.be/eli/loi-decret/1939/11/29/193913002
+      consolidated_document_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/28aaa269-5a52-4081-b97d-b9a0bb83c305
+      source_authority: SPF Finances FisconetPlus
+      source_family: gift-tax
+      source_status: current_consolidated_article_text_after_wallex_code_locator
+      source_note: Wallex identifies the registration-duty code as M.B. 30 November 1939, Numac 193913002, and links users to Fisconet for the current consolidated code text.
+  - source_id: be-wal-registration-code-article-131bis-current
+    jurisdiction: be-wal
+    document_class: statute
+    title: Walloon registration-duty code article 131bis current movable-gift rates
+    source_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/9bac3e5f-2e86-4a74-a79e-6466f91b104d
+    download_url: https://www.minfin.fgov.be/myminfin-rest/fisconetPlus/public/document/9bac3e5f-2e86-4a74-a79e-6466f91b104d
+    source_format: json
+    source_as_of: '2026-07-01'
+    citation_path: be-wal/statute/fisconetplus/registration-code/article-131bis/guid-9bac3e5f-2e86-4a74-a79e-6466f91b104d
+    extraction:
+      json_html_field: data.content.content
+      json_html_base64: true
+      json_html_as_single_block: true
+    metadata:
+      legal_authority_url: https://wallex.wallonie.be/eli/loi-decret/1939/11/29/193913002
+      current_code_locator_url: https://wallex.wallonie.be/eli/loi-decret/1939/11/29/193913002
+      consolidated_document_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/9bac3e5f-2e86-4a74-a79e-6466f91b104d
+      source_authority: SPF Finances FisconetPlus
+      source_family: gift-tax
+      source_status: current_consolidated_article_text_after_wallex_code_locator
+      source_note: Article 131bis contains the current Walloon movable-gift rates applying from 1 January 2022.

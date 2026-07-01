@@ -1,3 +1,4 @@
+import base64
 import json
 import zipfile
 from pathlib import Path
@@ -523,6 +524,138 @@ documents:
     assert "Navigation text should be ignored" not in bodies
 
 
+def test_extract_official_documents_segments_html_anchor_range(tmp_path: Path) -> None:
+    html_path = tmp_path / "be-program-law.html"
+    html_path.write_text(
+        """
+        <html>
+          <body>
+            <div id="list-title-3">
+              <p>Earlier consolidated text.</p>
+              <a name="Art.419">Art.</a> <a href="#Art.419bis">419</a>.
+              <br>
+              - droit d'accise : 245,4146 euros par 1 000 litres.
+              <br>
+              - droit d'accise special : 393,7887 euros par 1 000 litres.
+              <a name="Art.420">Art.</a> <a href="#Art.420bis">420</a>.
+              <br>
+              Next article text should not be included.
+            </div>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: be-program-law-article-419
+    jurisdiction: be
+    document_class: statute
+    title: Belgian Program Law Article 419
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/2004/12/27/2004021170/justel
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    citation_path: be/statute/justel/excise/energy-products/2004021170
+    extraction:
+      html_content_selector: "#list-title-3"
+      segmentation: anchor_range
+      html_start_selector: 'a[name="Art.419"]'
+      html_stop_selector: 'a[name="Art.420"]'
+      section_label: Article 419
+      section_heading: Article 419
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-06-30-be-excise",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    section = next(record for record in records if record.kind == "section")
+    assert section.citation_path == (
+        "be/statute/justel/excise/energy-products/2004021170/Article 419"
+    )
+    assert "245,4146 euros" in (section.body or "")
+    assert "393,7887 euros" in (section.body or "")
+    assert "Next article text should not be included" not in (section.body or "")
+
+
+def test_extract_official_documents_segments_multiple_html_anchor_ranges(
+    tmp_path: Path,
+) -> None:
+    html_path = tmp_path / "be-alcohol-law.html"
+    html_path.write_text(
+        """
+        <html>
+          <body>
+            <div id="list-title-3">
+              <a name="Art.5">Art.</a> <a href="#Art.6">5</a>.
+              Beer rate: 0,7933 EUR.
+              <a name="Art.6">Art.</a> <a href="#Art.7">6</a>.
+              Exemption text.
+              <a name="Art.9">Art.</a> <a href="#Art.10">9</a>.
+              Wine rate: 74,9086 EUR.
+              <a name="Art.10">Art.</a> <a href="#Art.11">10</a>.
+              Later article text.
+            </div>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: be-alcohol-law
+    jurisdiction: be
+    document_class: statute
+    title: Belgian Alcohol Excise Law
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1998/01/07/1998003047/justel
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    citation_path: be/statute/justel/excise/alcohol/1998003047
+    extraction:
+      html_content_selector: "#list-title-3"
+      segmentation: anchor_range
+      anchor_ranges:
+        - html_start_selector: 'a[name="Art.5"]'
+          html_stop_selector: 'a[name="Art.6"]'
+          section_label: Article 5
+          section_heading: Article 5
+        - html_start_selector: 'a[name="Art.9"]'
+          html_stop_selector: 'a[name="Art.10"]'
+          section_label: Article 9
+          section_heading: Article 9
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-06-30-be-alcohol",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    bodies_by_path = {
+        record.citation_path: record.body for record in records if record.kind == "section"
+    }
+    article_5_body = bodies_by_path["be/statute/justel/excise/alcohol/1998003047/Article 5"]
+    article_9_body = bodies_by_path["be/statute/justel/excise/alcohol/1998003047/Article 9"]
+    assert "0,7933 EUR" in (article_5_body or "")
+    assert "Exemption text" not in (article_5_body or "")
+    assert "74,9086 EUR" in (article_9_body or "")
+    assert "Later article text" not in (article_9_body or "")
+
+
 def test_extract_official_documents_splits_labeled_html_sections(tmp_path: Path) -> None:
     html_path = tmp_path / "nm-nmac.html"
     html_path.write_text(
@@ -733,6 +866,94 @@ documents:
     records = load_provisions(report.provisions_path)
     assert records[1].source_format == "json"
     assert "SNAP is a federal low income nutrition program" in (records[1].body or "")
+
+
+def test_extract_official_documents_from_json_html_field_as_single_block(
+    tmp_path: Path,
+) -> None:
+    json_path = tmp_path / "flanders-article.json"
+    json_path.write_text(
+        json.dumps(
+            {
+                "Tekst": (
+                    "§ 1. Opening text before a paragraph.<br><p>§ 2. Later paragraph text.</p>"
+                )
+            }
+        ),
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: flanders-article
+    jurisdiction: be-vlg
+    document_class: statute
+    title: "Flanders article"
+    source_url: https://example.test/flanders-article
+    source_format: json
+    local_path: {json.dumps(str(json_path))}
+    extraction:
+      json_html_field: Tekst
+      json_html_as_single_block: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-01-be-vlg-test",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert "Opening text before a paragraph" in (records[1].body or "")
+    assert "Later paragraph text" in (records[1].body or "")
+
+
+def test_extract_official_documents_from_json_base64_html_field(
+    tmp_path: Path,
+) -> None:
+    json_path = tmp_path / "fisconet-article.json"
+    encoded_html = base64.b64encode(
+        (
+            "<html><body><h1>Article 48</h1>"
+            "<p>Les droits sont perçus d'après le tarif.</p></body></html>"
+        ).encode()
+    ).decode("ascii")
+    json_path.write_text(
+        json.dumps({"data": {"content": {"content": encoded_html}}}),
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: fisconet-article-48
+    jurisdiction: be-bru
+    document_class: statute
+    title: "FisconetPlus article 48"
+    source_url: https://example.test/fisconet-article-48
+    source_format: json
+    local_path: {json.dumps(str(json_path))}
+    extraction:
+      json_html_field: data.content.content
+      json_html_base64: true
+      json_html_as_single_block: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-01-be-fisconet-test",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert "Les droits sont perçus d'après le tarif" in (records[1].body or "")
 
 
 def test_extract_official_documents_from_json_records(tmp_path: Path) -> None:

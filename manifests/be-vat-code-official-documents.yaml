@@ -1,0 +1,21 @@
+documents:
+  - source_id: be-vat-code-fisconetplus-current
+    jurisdiction: be
+    document_class: statute
+    title: Code de la taxe sur la valeur ajoutee, current FisconetPlus consolidation
+    source_url: https://www.ccnamur.be/Files/code%20tva.pdf
+    source_format: pdf
+    source_as_of: '2026-02-01'
+    citation_path: be/statute/fisconetplus/vat-code
+    extraction:
+      start_page: 55
+      end_page: 67
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>Article\s+(?:41|42|43|44))(?P<heading>.*)$'
+    metadata:
+      upstream_eli_locator: https://www.ejustice.just.fgov.be/eli/loi/1969/07/03/1969070305/justel
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1969/07/03/1969070305/moniteur
+      source_authority: SPF Finances / FisconetPlus mirror
+      source_family: value-added-tax
+      source_status: current_consolidated_text_after_original_moniteur_locator
+      source_note: PDF metadata identifies the title as Code de la TVA and the extracted pages carry SPF Finances and FisconetPlus headers; use as current consolidated article text after the upstream ELI/Moniteur locator is checked.

@@ -1,0 +1,60 @@
+documents:
+  - source_id: be-bru-succession-code-article-48-current
+    jurisdiction: be-bru
+    document_class: statute
+    title: Brussels-Capital succession-duty code article 48 current rate tables
+    source_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/d54670a2-10a7-456e-9d68-5fd1d991fb05
+    download_url: https://www.minfin.fgov.be/myminfin-rest/fisconetPlus/public/document/d54670a2-10a7-456e-9d68-5fd1d991fb05
+    source_format: json
+    source_as_of: '2026-07-01'
+    citation_path: be-bru/statute/fisconetplus/succession-code/article-48/guid-d54670a2-10a7-456e-9d68-5fd1d991fb05
+    extraction:
+      json_html_field: data.content.content
+      json_html_base64: true
+      json_html_as_single_block: true
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2023/07/06/2023045579/moniteur
+      consolidated_document_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/d54670a2-10a7-456e-9d68-5fd1d991fb05
+      source_authority: SPF Finances FisconetPlus
+      source_family: inheritance-tax
+      source_status: current_consolidated_article_text_after_moniteur_publication
+      source_note: FisconetPlus article metadata identifies the 6 July 2023 Brussels ordinance, published 27 September 2023, as the current article-48 amendment applying from 1 January 2024.
+  - source_id: be-bru-registration-code-article-131-current
+    jurisdiction: be-bru
+    document_class: statute
+    title: Brussels-Capital registration-duty code article 131 current gift-tax rates
+    source_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72
+    download_url: https://www.minfin.fgov.be/myminfin-rest/fisconetPlus/public/document/1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72
+    source_format: json
+    source_as_of: '2026-07-01'
+    citation_path: be-bru/statute/fisconetplus/registration-code/article-131/guid-1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72
+    extraction:
+      json_html_field: data.content.content
+      json_html_base64: true
+      json_html_as_single_block: true
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2023/07/06/2023045579/moniteur
+      consolidated_document_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/1f30bae2-f6ab-441f-85c4-9f7bb2d0ae72
+      source_authority: SPF Finances FisconetPlus
+      source_family: gift-tax
+      source_status: current_consolidated_article_text_after_moniteur_publication
+      source_note: FisconetPlus article metadata identifies the 6 July 2023 Brussels ordinance, published 27 September 2023, as the current article-131 amendment applying from 1 January 2024.
+  - source_id: be-bru-registration-code-article-131bis-current
+    jurisdiction: be-bru
+    document_class: statute
+    title: Brussels-Capital registration-duty code article 131bis current movable-gift exemption
+    source_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/f7c88ad4-32bc-4599-adcd-2409f7c71192
+    download_url: https://www.minfin.fgov.be/myminfin-rest/fisconetPlus/public/document/f7c88ad4-32bc-4599-adcd-2409f7c71192
+    source_format: json
+    source_as_of: '2026-07-01'
+    citation_path: be-bru/statute/fisconetplus/registration-code/article-131bis/guid-f7c88ad4-32bc-4599-adcd-2409f7c71192
+    extraction:
+      json_html_field: data.content.content
+      json_html_base64: true
+      json_html_as_single_block: true
+    metadata:
+      consolidated_document_url: https://eservices.minfin.fgov.be/myminfin-web/pages/public/fisconet/document/f7c88ad4-32bc-4599-adcd-2409f7c71192
+      source_authority: SPF Finances FisconetPlus
+      source_family: gift-tax
+      source_status: current_consolidated_article_text_after_moniteur_publication
+      source_note: Article 131bis is ingested for movable-gift context; the first RuleSpec batch encodes article 131 main rates and leaves pacte-successoral exemptions for a later module.

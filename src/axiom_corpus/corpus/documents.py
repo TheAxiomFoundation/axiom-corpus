@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import base64
 import re
 import subprocess
 import sys
@@ -1194,7 +1195,7 @@ def _extract_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
-    soup = BeautifulSoup(content, "html.parser", from_encoding="utf-8")
+    soup = BeautifulSoup(content, "html.parser")
     drop_selectors = [
         "script",
         "style",
@@ -1218,6 +1219,13 @@ def _extract_html_blocks(
             node.decompose()
     root = _html_content_root(soup, extraction=extraction)
     title = _document_title(soup) or fallback_title
+    if (extraction or {}).get("segmentation") == "anchor_range":
+        return _extract_anchor_range_html_blocks(
+            root,
+            title=title,
+            source_url=source_url,
+            extraction=extraction or {},
+        )
     webworks_blocks = _extract_webworks_html_blocks(root, title=title, source_url=source_url)
     if webworks_blocks:
         return webworks_blocks
@@ -1298,6 +1306,22 @@ def _extract_json_html_blocks(
     html_text = _json_path(data, html_field)
     if not isinstance(html_text, str) or not html_text.strip():
         raise ValueError(f"json_html_field did not resolve to HTML text: {html_field}")
+    if (extraction or {}).get("json_html_base64"):
+        html_text = base64.b64decode(html_text).decode("utf-8", errors="replace")
+    if (extraction or {}).get("json_html_as_single_block"):
+        soup = BeautifulSoup(html_text, "html.parser")
+        body = _normalize_text(soup.get_text(" ", strip=True))
+        if not body:
+            return ()
+        return (
+            _DocumentBlock(
+                kind="block",
+                ordinal=1,
+                heading=fallback_title,
+                body=body,
+                metadata={"source_url": source_url},
+            ),
+        )
     return _extract_html_blocks(
         html_text.encode("utf-8"),
         source_url=source_url,
@@ -1504,6 +1528,97 @@ def _extract_labeled_html_section_blocks(
             current_body.append(text)
     flush()
     return tuple(sections)
+
+
+def _extract_anchor_range_html_blocks(
+    root: Tag,
+    *,
+    title: str | None,
+    source_url: str,
+    extraction: dict[str, Any],
+) -> tuple[_DocumentBlock, ...]:
+    """Extract one HTML section from a start node through the next configured node."""
+    ranges = extraction.get("anchor_ranges")
+    if ranges is not None:
+        if not isinstance(ranges, list):
+            raise ValueError("anchor_ranges must be a list of mappings")
+        shared_config = {key: value for key, value in extraction.items() if key != "anchor_ranges"}
+        blocks: list[_DocumentBlock] = []
+        for range_config in ranges:
+            if not isinstance(range_config, dict):
+                raise ValueError("anchor_ranges entries must be mappings")
+            block = _extract_anchor_range_html_block(
+                root,
+                title=title,
+                source_url=source_url,
+                extraction={**shared_config, **range_config},
+                ordinal=len(blocks) + 1,
+            )
+            if block is not None:
+                blocks.append(block)
+        return tuple(blocks)
+    block = _extract_anchor_range_html_block(
+        root,
+        title=title,
+        source_url=source_url,
+        extraction=extraction,
+        ordinal=1,
+    )
+    return (block,) if block is not None else ()
+
+
+def _extract_anchor_range_html_block(
+    root: Tag,
+    *,
+    title: str | None,
+    source_url: str,
+    extraction: dict[str, Any],
+    ordinal: int,
+) -> _DocumentBlock | None:
+    start_selector = extraction.get("html_start_selector") or extraction.get("start_selector")
+    if not isinstance(start_selector, str) or not start_selector:
+        raise ValueError("anchor_range HTML extraction requires html_start_selector")
+    start = root.select_one(start_selector)
+    if not isinstance(start, Tag):
+        raise ValueError(f"html start selector did not match: {start_selector!r}")
+
+    stop_selector = extraction.get("html_stop_selector") or extraction.get("stop_selector")
+    stop = None
+    if stop_selector is not None:
+        if not isinstance(stop_selector, str) or not stop_selector:
+            raise ValueError("html_stop_selector must be a non-empty string")
+        stop = root.select_one(stop_selector)
+        if not isinstance(stop, Tag):
+            raise ValueError(f"html stop selector did not match: {stop_selector!r}")
+
+    html_parts: list[str] = []
+    for node in (start, *start.next_siblings):
+        if stop is not None and _html_node_contains(node, stop):
+            break
+        html_parts.append(str(node))
+
+    text = _html_fragment_text("".join(html_parts))
+    if not text:
+        return None
+    label = extraction.get("section_label") or extraction.get("citation_suffix")
+    heading = extraction.get("section_heading") or title or label
+    metadata = {"source_url": source_url}
+    if isinstance(label, str) and label:
+        metadata["citation_suffix"] = label
+        metadata["section_label"] = label
+    return _DocumentBlock(
+        kind="section",
+        ordinal=ordinal,
+        heading=str(heading) if heading else None,
+        body=text,
+        metadata=metadata,
+    )
+
+
+def _html_node_contains(node: Any, target: Tag) -> bool:
+    if node is target:
+        return True
+    return isinstance(node, Tag) and any(descendant is target for descendant in node.descendants)
 
 
 def _match_labeled_html_section(
