@@ -191,6 +191,17 @@ sources:
       source_authority: Moniteur belge / Belgisch Staatsblad
       source_family: health-insurance-and-benefits
       source_status: official_original_with_consolidated_locator
+  - source_id: be-health-insurance-royal-decree-1996
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1996/07/03/1996022344/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: health-insurance-and-benefits
+      source_status: official_original_with_consolidated_locator
+      source_note: Royal decree implementing the coordinated 14 July 1994 compulsory health-care and indemnity-insurance law, including maternity-indemnity and incapacity-benefit delegated rules.
   - source_id: be-disability-allowances-law-1987
     jurisdiction: be
     document_class: statute
@@ -211,6 +222,28 @@ sources:
       source_authority: Moniteur belge / Belgisch Staatsblad
       source_family: old-age-income-support
       source_status: official_original_with_consolidated_locator
+  - source_id: be-worker-retirement-survivor-pension-royal-decree-50-1967
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1967/10/24/1967102410/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/mopdf/1967/10/27_1.pdf#Page64
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: pensions
+      source_status: official_original_image_with_consolidated_locator
+      source_note: Royal Decree No. 50 governs retirement and survivor pensions for employed workers; the ELI Moniteur endpoint is unavailable, but the Justel locator links the scanned official publication image.
+  - source_id: be-worker-retirement-survivor-pension-royal-decree-1996
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1996/12/23/1997022010/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1996/12/23/1997022010/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: pensions
+      source_status: official_original_with_consolidated_locator
+      source_note: Royal decree implementing Articles 15, 16, and 17 of the 26 July 1996 social-security modernization law; it carries current worker retirement, survivor-pension, transition-allowance, and minimum-right calculation interfaces alongside Royal Decree No. 50.
   - source_id: be-guaranteed-family-benefits-law-1971
     jurisdiction: be
     document_class: statute
