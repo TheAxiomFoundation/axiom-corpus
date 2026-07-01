@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards.json",
+      "sha256": "901547fcdc4b1dc3acc3fa68dbac57d8b19b7cfa56a37ba1c7236007378f0e4c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards.json",
+      "sha256": "4a7ae06fe410984bfd8b2054323e2f17eb892e5078b1cdaa34901d6bdc01df8c"
+    },
+    {
+      "path": "data/corpus/provisions/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards.jsonl",
+      "sha256": "74ff9e902f76cad0d236199e417a7351a1ecca0e57574b5d398b143827a60bb4"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-dss-program-standards-2026-01-01.pdf",
+      "sha256": "bc1611861f6aaf2b090ee43274bdab0c28be6e440ce9c55bf7229b70754a99a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-4005-05.doc",
+      "sha256": "ea7db56bcbd9bde796a161fb71e15a42ae85893d6f1cf651e343fe86efc0eaeb"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-4005-10.doc",
+      "sha256": "3b2b140abb7cb4dde0a9b90e6b8041d9fa6d97b5774766f431e8bf3718b65242"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-4520-10.doc",
+      "sha256": "402397a8c1af42ee354d1d3e44ad079698ddac8a9590cba39b6ff59d9bf8c00d"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-4520-20.doc",
+      "sha256": "c5cc4fe24d83d1a57371d6dd56a49db1390fceba996b0ad6f8530e04ae4da55a"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-5030-10.doc",
+      "sha256": "0746e7c1e36279fad95c8dec4e25b68770054d2d89e9410afecb8473ff38907f"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-5030-15.doc",
+      "sha256": "ab7d8869688d1091b89e598ecc19c633614b3877087f8e4603129534655c79b9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "15de9481898913171c895ee0b1652a1fc0ad833d",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-legacy-doc-20260702"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-02-ct-ssp-upm-and-standards --manifest manifests/us-ct-ssp-official-documents.yaml --source-as-of 2026-07-02 --expression-date 2026-07-02"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-01T23:58:11.373080+00:00",
+  "jurisdiction": "us-ct",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZdG8bt7mUquksqf9zmaF5KoAi5N8zAwND0ZGerYOmk1m6/kp83vSeNSmaQ9rhrK0DZYhclKv2b3abHzQ6mnEAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-ct-ssp-upm-and-standards"
+}
