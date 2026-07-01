@@ -63,6 +63,94 @@ sources:
       source_authority: Moniteur belge / Belgisch Staatsblad
       source_family: social-security-contributions
       source_status: official_original_with_consolidated_locator
+  - source_id: be-social-provisions-law-1994
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1994/03/30/1994021117/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1994/03/30/1994021117/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_with_consolidated_locator
+      source_note: Articles 106 to 112 define the special annual social-security contribution for households.
+  - source_id: be-mobility-budget-law-2019
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/2019/03/17/2019030319/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/2019/03/17/2019030319/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_with_consolidated_locator
+      source_note: Article 22 inserts the 38.07 percent worker special contribution on cash-paid mobility-budget balances.
+  - source_id: be-social-security-principles-law-1981
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1981/06/29/1981001048/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1981/06/29/1981001048/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_with_consolidated_locator
+      source_note: Article 38 contains general and special employee/employer social-security contribution provisions, including several BEAMM Chapter 10 special contribution surfaces.
+  - source_id: be-public-sector-union-premium-law-1980
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1980/09/01/1980090102/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1980/09/01/1980090102/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_with_consolidated_locator
+      source_note: Article 4 establishes contributions used to finance public-sector union premiums, including local/provincial-government collection surfaces referenced from the social-security collection law.
+  - source_id: be-self-employed-social-status-royal-decree-38-1967
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1967/07/27/1967072702/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1967/07/27/1967072702/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_with_consolidated_locator
+      source_note: Royal Decree No. 38 organizes the social status of self-employed workers and includes the Article 12 contribution-rate surface used for BEAMM self-employed social-security scope.
+  - source_id: be-invalidity-prepension-withholding-royal-decree-33-1982
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1982/03/30/1982000477/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/mopdf/1982/04/01_1.pdf#Page28
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_image_with_consolidated_locator
+      source_note: Royal Decree No. 33 establishes the pension-sector withholding on invalidity indemnities and prepensions; the ELI Moniteur endpoint is unavailable, but the Justel locator links the scanned official publication image.
+  - source_id: be-invalidity-prepension-withholding-royal-decree-1982-execution
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1982/09/24/1982001524/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/mopdf/1982/10/06_1.pdf#Page2
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_image_with_consolidated_locator
+      source_note: Royal decree implementing Royal Decree No. 33 payment, debtor, family-charge, rounding, declaration, and collection mechanics.
+  - source_id: be-invalidity-prepension-withholding-ministerial-order-1982
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1982/09/29/1982001527/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/mopdf/1982/10/07_1.pdf#Page5
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_image_with_consolidated_locator
+      source_note: Ministerial order implementing declaration forms for the Royal Decree No. 33 withholding.
   - source_id: be-social-integration-law-2002
     jurisdiction: be
     document_class: statute
