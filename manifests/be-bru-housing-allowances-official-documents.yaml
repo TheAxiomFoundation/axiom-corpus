@@ -1,0 +1,24 @@
+version: "2026-07-01-be-bru-housing-allowances"
+sources:
+  - source_id: be-bru-rent-allowance-order-2021
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2021/07/15/2021032702/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2021/07/15/2021032702/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: housing-assistance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels-Capital Region Government order establishing a rent allowance; Justel is used only as the current consolidated locator.
+  - source_id: be-bru-relocation-accompaniment-order-2022
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: housing-assistance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels-Capital Region Government order establishing relocation-accompaniment allowance rules; Justel is used only as the current consolidated locator.
