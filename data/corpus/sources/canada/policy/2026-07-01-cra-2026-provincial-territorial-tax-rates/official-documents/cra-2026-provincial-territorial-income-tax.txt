@@ -2,6 +2,7 @@ Title: CRA 2026 provincial and territorial income tax rates.
 
 Sources:
 - https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html
+- https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html
 - https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/income-tax-rates/
 
 CRA current year tax rates and income brackets (2026):
@@ -33,3 +34,18 @@ Quebec 2026 income tax rates from Revenu Quebec: taxable income 54345 or less at
 Saskatchewan rate: 2026. Taxable income brackets and rates: 0 to 54532 at 10.5% (0.105); 54532.01 to 155805 at 12.5% (0.125); 155805.01 and above at 14.5% (0.145).
 
 Yukon rate: 2026. Taxable income brackets and rates: 0 to 58523 at 6.4% (0.064); 58523.01 to 117045 at 9% (0.09); 117045.01 to 181440 at 10.9% (0.109); 181440.01 to 500000 at 12.8% (0.128); 500000.01 and above at 15% (0.15).
+
+CRA T4127 Payroll Deductions Formulas, 122nd edition, effective January 1, 2026:
+Step 4 states that annual basic provincial or territorial tax T4 equals (V x A) - KP - K1P - K2P - K3P - K4P - K5P. If the result is negative, T4 equals 0.
+Step 5 states that annual provincial or territorial tax deduction T2 equals T4 + V1 + V2 - S - (P x LCP). If the result is negative, T2 equals 0. For employees in Quebec, T2 equals 0.
+K1P equals lowest provincial tax rate times TCP. K2P is the provincial or territorial CPP/EI credit. K3P is other provincial or territorial non-refundable tax credits. Unless specified, K4P, LCP, S, V1, and V2 equal 0.
+Table 8.2 gives 2026 basic amounts: Alberta 22769; British Columbia 13216; New Brunswick 13664; Newfoundland and Labrador 11188; Nova Scotia 11932; Northwest Territories 18198; Nunavut 19659; Ontario 12989; Prince Edward Island 15000; Saskatchewan 20381.
+Manitoba maximum BPAMB is 15780.
+Yukon maximum BPAYT is 16452.
+Alberta K5P supplemental non-refundable tax credit equals ((K1P + K2P) - 4896.00) x 0.25, floored at 0.
+British Columbia S equals the lesser of T4 and 575 where A is not more than 25570. Where A is more than 25570 and not more than 41722, S equals the lesser of T4 and 575 - ((A - 25570) x 0.0356). Where A is more than 41722, S equals 0.
+Manitoba LCP equals the lesser of 1800 and 15% (0.15) of the approved labour-sponsored share amount. New Brunswick LCP equals the lesser of 2000 and 20% (0.20). Nova Scotia LCP equals the lesser of 2000 and 20% (0.20). Saskatchewan LCP equals the lesser of 875 and 17.5% (0.175).
+Ontario V1 surtax equals 0 where T4 is not more than 5818, equals 0.20 x (T4 - 5818) where T4 is more than 5818 and not more than 7446, and equals (0.20 x (T4 - 5818)) + (0.36 x (T4 - 7446)) where T4 is more than 7446.
+Ontario V2 health premium equals 0 where A is not more than 20000. Where A is more than 20000 and not more than 36000, V2 is the lesser of 300 and 0.06 x (A - 20000). Where A is more than 36000 and not more than 48000, V2 is the lesser of 450 and 300 + 0.06 x (A - 36000). Where A is more than 48000 and not more than 72000, V2 is the lesser of 600 and 450 + 0.25 x (A - 48000). Where A is more than 72000 and not more than 200000, V2 is the lesser of 750 and 600 + 0.25 x (A - 72000). Where A is more than 200000, V2 is the lesser of 900 and 750 + 0.25 x (A - 200000).
+Ontario S reduction is the lesser of T4 + V1 and (2 x (300 + Y)) - (T4 + V1), floored at 0.
+Yukon K4P is the lesser of 0.064 x A, where A is annual gross employment income before deductions, and 0.064 x CEA. Table 8.2 gives Yukon CEA as 1501.
