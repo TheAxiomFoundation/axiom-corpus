@@ -1,0 +1,57 @@
+version: "2026-07-02-be-bru-apa"
+sources:
+  - source_id: be-bru-apa-ordinance-2020
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2020/12/10/2020044279/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2020/12/10/2020044279/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: elderly-care-allowance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels Common Community Commission ordinance on allowance for assistance to elderly people; Justel is used only as the current consolidated locator.
+  - source_id: be-bru-apa-implementation-order-2021
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2021/01/28/2021040498/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2021/01/28/2021040498/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: elderly-care-allowance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels Common Community Commission order implementing the 10 December 2020 APA ordinance; Justel is used only as the current consolidated locator.
+  - source_id: be-bru-apa-payment-amendment-order-2023
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2023/06/22/2023043248/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2023/06/22/2023043248/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: elderly-care-allowance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels Common Community Commission order amending payment provisions for the 28 January 2021 APA implementation order.
+  - source_id: be-bru-apa-implementation-amendment-order-2024
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2024/01/18/2024000625/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2024/01/18/2024000625/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: elderly-care-allowance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels Common Community Commission order amending autonomy assessment, income exclusions, and category provisions in the 28 January 2021 APA implementation order.
+  - source_id: be-bru-apa-age-alignment-amendment-ordinance-2026
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2026/02/12/2026001204/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2026/02/12/2026001204/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: elderly-care-allowance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels Common Community Commission ordinance aligning APA request age with the federal disability-allowance age boundary.
