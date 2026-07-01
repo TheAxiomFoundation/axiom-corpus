@@ -5,6 +5,12 @@ from base64 import b64encode
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
+from axiom_corpus.corpus.belgium_eli import (
+    BelgianELIClassExtractReport,
+    BelgianELIExtractReport,
+    BelgianMoniteurDiscoveryReport,
+    BelgianMoniteurSource,
+)
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport
 from axiom_corpus.corpus.documents import OfficialDocumentExtractReport
@@ -890,6 +896,179 @@ def test_extract_nz_legislation_cli(tmp_path, capsys, monkeypatch):
     assert exit_code == 0
     assert '"jurisdiction": "nz"' in output
     assert '"document_class": "statute"' in output
+
+
+def test_extract_belgian_eli_cli(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_html = tmp_path / "be.html"
+    source_html.write_text("<html></html>")
+    source_dir = tmp_path / "eli"
+    source_dir.mkdir()
+    manifest_path = tmp_path / "be-brussels.yaml"
+    manifest_path.write_text(
+        """
+version: "2026-06-30-be"
+sources:
+  - source_id: brussels-family-benefits
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2019/04/25/2019012118/justel
+""".lstrip()
+    )
+    coverage = ProvisionCoverageReport(
+        jurisdiction="be-bru",
+        document_class="statute",
+        version="2026-06-30-be",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["source_htmls"] == (source_html,)
+        assert kwargs["source_dir"] == source_dir
+        assert kwargs["source_pattern"] == "*.html"
+        assert kwargs["source_urls"] == (
+            "https://www.ejustice.just.fgov.be/eli/arrete/2002/07/11/2002022564/justel",
+            "https://www.ejustice.just.fgov.be/eli/ordonnance/2019/04/25/2019012118/justel",
+        )
+        assert kwargs["source_as_of"] == "2026-06-30"
+        assert kwargs["expression_date"].isoformat() == "2026-01-01"
+        assert kwargs["request_timeout"] == 5.0
+        assert kwargs["limit"] == 10
+        return BelgianELIExtractReport(
+            version="2026-06-30-be",
+            source_count=1,
+            provisions_written=1,
+            class_reports=(
+                BelgianELIClassExtractReport(
+                    jurisdiction="be-bru",
+                    document_class="statute",
+                    source_count=1,
+                    provisions_written=1,
+                    inventory_path=base / "inventory/be-bru/statute/2026-06-30-be.json",
+                    provisions_path=base / "provisions/be-bru/statute/2026-06-30-be.jsonl",
+                    coverage_path=base / "coverage/be-bru/statute/2026-06-30-be.json",
+                    coverage=coverage,
+                    source_paths=(
+                        base
+                        / "sources/be-bru/statute/2026-06-30-be/eli/ordonnance/2019/04/25/2019012118/justel.html",
+                    ),
+                ),
+            ),
+        )
+
+    monkeypatch.setattr(cli, "extract_belgian_eli", fake_extract)
+
+    exit_code = main(
+        [
+            "extract-belgian-eli",
+            "--base",
+            str(base),
+            "--version",
+            "2026-06-30-be",
+            "--manifest",
+            str(manifest_path),
+            "--source-html",
+            str(source_html),
+            "--source-dir",
+            str(source_dir),
+            "--source-url",
+            "https://www.ejustice.just.fgov.be/eli/arrete/2002/07/11/2002022564/justel",
+            "--as-of",
+            "2026-06-30",
+            "--expression-date",
+            "2026-01-01",
+            "--request-timeout",
+            "5",
+            "--limit",
+            "10",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"jurisdiction": "be-bru"' in output
+    assert '"document_class": "statute"' in output
+
+
+def test_discover_belgian_moniteur_cli_writes_manifest(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    manifest_path = tmp_path / "be-full-moniteur.yaml"
+
+    def fake_discover(*, start_date, end_date, language, request_timeout, limit, max_editions):
+        assert start_date == "2026-06-01"
+        assert end_date == "2026-06-01"
+        assert language == "fr"
+        assert request_timeout == 5.0
+        assert limit == 10
+        assert max_editions == 4
+        return BelgianMoniteurDiscoveryReport(
+            start_date="2026-06-01",
+            end_date="2026-06-01",
+            language="fr",
+            summary_pages_fetched=2,
+            sources=(
+                BelgianMoniteurSource(
+                    source_id="be-statute-loi-20260530-2026003986",
+                    source_url=(
+                        "https://www.ejustice.just.fgov.be/cgi/article.pl?"
+                        "language=fr&sum_date=2026-06-01&s_editie=2&"
+                        "numac_search=2026003986&view_numac="
+                    ),
+                    jurisdiction="be",
+                    document_class="statute",
+                    document_type="loi",
+                    numac="2026003986",
+                    title="30 mai 2026. - Loi-programme, p. 29687.",
+                    publication_date="2026-06-01",
+                    edition=2,
+                    section_title="Lois, décrets, ordonnances et règlements",
+                    moniteur_url=(
+                        "https://www.ejustice.just.fgov.be/eli/loi/2026/05/30/2026003986/moniteur"
+                    ),
+                    justel_url=(
+                        "https://www.ejustice.just.fgov.be/eli/loi/2026/05/30/2026003986/justel"
+                    ),
+                    authority="Service public fédéral Chancellerie du Premier Ministre",
+                ),
+            ),
+        )
+
+    monkeypatch.setattr(cli, "discover_belgian_moniteur_sources", fake_discover)
+
+    exit_code = main(
+        [
+            "discover-belgian-moniteur",
+            "--start-date",
+            "2026-06-01",
+            "--end-date",
+            "2026-06-01",
+            "--version",
+            "2026-06-30-be-full-moniteur",
+            "--request-timeout",
+            "5",
+            "--limit",
+            "10",
+            "--max-editions",
+            "4",
+            "--manifest-output",
+            str(manifest_path),
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"source_count": 1' in output
+    assert manifest_path.read_text().startswith("version: 2026-06-30-be-full-moniteur")
+    assert "adapter: belgian-eli" in manifest_path.read_text()
+    assert "source_status: official_original_publication" in manifest_path.read_text()
 
 
 def test_download_nz_legislation_api_cli_uses_env_key(tmp_path, capsys, monkeypatch):

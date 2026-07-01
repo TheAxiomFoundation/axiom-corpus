@@ -1,0 +1,23 @@
+documents:
+  - source_id: be-company-car-benefit-reference-co2-royal-decree-2025-12-17-moniteur
+    jurisdiction: be
+    document_class: regulation
+    title: Royal decree of 17 December 2025 setting 2026 reference CO2 emissions for company-car benefits in kind
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2025/12/17/2025009788/moniteur
+    download_url: 'https://www.ejustice.just.fgov.be/cgi/article.pl?language=fr&sum_date=2025-12-24&lg_txt=f&pd_search=2025-12-24&s_editie=&numac_search=2025009788&caller=&2025009788=&view_numac=2025009788fr'
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be/regulation/moniteur/arrete-2025-12-17/2025009788/company-car-reference-co2-2026
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: main.article-text
+      html_drop_selectors:
+        - .links
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2025/12/17/2025009788/moniteur
+      justel_url: https://www.ejustice.just.fgov.be/eli/arrete/2025/12/17/2025009788/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: personal-income-tax/company-car-benefit
+      source_status: delegated_regulation_primary_publication
+      source_note: Primary publication of the AR/CIR 92 amendment setting 2026 reference CO2 values for company-car benefits in kind under CIR 1992 article 36 paragraph 2.

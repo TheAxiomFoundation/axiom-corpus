@@ -1,0 +1,50 @@
+documents:
+  - source_id: be-bru-circulation-tax-fiscal-sheet-2026
+    jurisdiction: be-bru
+    document_class: guidance
+    title: Taxe de circulation / Verkeersbelasting, fiscal sheet, index 2026
+    source_url: https://admin.be.brussels/en/bhg/document/download/7104
+    source_format: pdf
+    source_as_of: '2026-06-26'
+    citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/circulation-tax-2026
+    metadata:
+      upstream_eli_locator: https://www.ejustice.just.fgov.be/eli/loi/1965/11/23/1965112350/justel
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1965/11/23/1965112350/moniteur
+      source_authority: Brussels Fiscality / Bruxelles Fiscalite
+      source_family: vehicle-tax
+      source_status: official_current_rate_guidance_after_code_locator
+      source_note: Official Brussels Fiscality rate sheet for amounts in force from 1 July 2026; use after identifying Code articles 3 to 42bis, especially articles 9 and 10, as the legal base.
+  - source_id: be-bru-entry-into-service-tax-fiscal-sheet-2026
+    jurisdiction: be-bru
+    document_class: guidance
+    title: Taxe de mise en circulation / Belasting op de inverkeerstelling, fiscal sheet, index 2026
+    source_url: https://admin.be.brussels/en/bhg/document/download/7101
+    source_format: pdf
+    source_as_of: '2026-06-26'
+    citation_path: be-bru/guidance/brussels-fiscality/vehicle-tax/entry-into-service-tax-2026
+    metadata:
+      upstream_eli_locator: https://www.ejustice.just.fgov.be/eli/loi/1965/11/23/1965112350/justel
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1965/11/23/1965112350/moniteur
+      source_authority: Brussels Fiscality / Bruxelles Fiscalite
+      source_family: vehicle-tax
+      source_status: official_current_rate_guidance_after_code_locator
+      source_note: Official Brussels Fiscality public sheet gives the legal base, 2026 minimum/maximum, and fixed boat/aircraft amounts; it refers detailed car and motorcycle rates to MyTax.
+  - source_id: be-bru-mytax-road-tax-tariffs-2025-2026
+    jurisdiction: be-bru
+    document_class: guidance
+    title: MyTax road-tax tariffs, valid 1 July 2025 to 30 June 2026
+    source_url: https://fisc.brussels/mytax/fr/contact
+    source_format: html
+    source_as_of: '2026-06-30'
+    citation_path: be-bru/guidance/brussels-fiscality/mytax/road-tax-tariffs-2025-2026
+    request:
+      verify_tls: false
+    extraction:
+      html_content_selector: "#BFContentPanel-ContactHelp-RoadTax-CalculationLinks"
+    metadata:
+      upstream_eli_locator: https://www.ejustice.just.fgov.be/eli/loi/1965/11/23/1965112350/justel
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1965/11/23/1965112350/moniteur
+      source_authority: Brussels Fiscality / Bruxelles Fiscalite
+      source_family: vehicle-tax
+      source_status: official_public_rate_guidance_after_code_locator
+      source_note: Official MyTax tariff page exposes the detailed Brussels road-tax tables for vehicle categories, including car and motorcycle tax-on-entry-into-service tables, for tariffs valid from 1 July 2025 through 30 June 2026.

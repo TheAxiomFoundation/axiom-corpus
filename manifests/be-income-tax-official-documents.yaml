@@ -1,0 +1,19 @@
+documents:
+  - source_id: be-cir92-fisconetplus-current-code-2025-income
+    jurisdiction: be
+    document_class: statute
+    title: Code des impots sur les revenus 1992, revenus 2025, exercice d'imposition 2026
+    source_url: https://finances.wallonie.be/files/NOSTRA/textes%20legaux/code%20des%20impots%20sur%20le%20revenu%20-%20exercice%202022.pdf
+    source_format: pdf
+    source_as_of: '2025-02-20'
+    citation_path: be/statute/fisconetplus/cir92/revenus-2025
+    extraction:
+      start_page: 182
+      end_page: 186
+    metadata:
+      upstream_eli_locator: https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/justel
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur
+      source_authority: SPF Finances / FisconetPlus, mirrored by Service public de Wallonie Finances
+      source_family: personal-income-tax
+      source_status: current_consolidated_text_after_justel_suspended_update
+      source_note: Justel states CIR 1992 consolidated updates are suspended since 2002 and points readers to FisconetPlus; this PDF carries the current indexed 2025-income PIT parameters.

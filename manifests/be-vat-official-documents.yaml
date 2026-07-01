@@ -1,0 +1,39 @@
+documents:
+  - source_id: be-vat-royal-decree-20-moniteur-original-pdf
+    jurisdiction: be
+    document_class: regulation
+    title: Arrete royal no. 20 du 20 juillet 1970 fixant les taux de la taxe sur la valeur ajoutee
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1970/07/20/1970072012/moniteur
+    download_url: https://www.ejustice.just.fgov.be/mopdf/1970/07/31_1.pdf
+    source_format: pdf
+    source_as_of: '1970-07-31'
+    citation_path: be/regulation/moniteur/1970/07/31/1970072012
+    extraction:
+      start_page: 18
+      end_page: 20
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1970/07/20/1970072012/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: value-added-tax
+      source_status: official_original_publication_pdf
+      source_note: eJustice exposes pre-June-1997 Moniteur text only as publication-image PDF; plain text extraction is expected to be sparse until OCR is added.
+  - source_id: be-vat-royal-decree-20-fisconetplus-current
+    jurisdiction: be
+    document_class: regulation
+    title: Arrete royal no. 20 VAT rates, current FisconetPlus consolidation
+    source_url: https://www.ccnamur.be/Files/ar.pdf
+    source_format: pdf
+    source_as_of: '2026-04-07'
+    citation_path: be/regulation/fisconetplus/vat/royal-decree-20
+    extraction:
+      start_page: 192
+      end_page: 233
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>(?:Article\s+(?:1|1bis|1ter|1quater|1quinquies|2|3)|TABLEAU\s+[ABC]))(?:\s+[-–]\s+)?(?P<heading>.*)$'
+    metadata:
+      upstream_eli_locator: https://www.ejustice.just.fgov.be/eli/arrete/1970/07/20/1970072012/justel
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1970/07/20/1970072012/moniteur
+      source_authority: SPF Finances / FisconetPlus mirror
+      source_family: value-added-tax
+      source_status: current_consolidated_text_after_original_moniteur_pdf
+      source_note: PDF metadata identifies the author as MINFIN and the extracted pages carry SPF Finances and FisconetPlus headers; use as a current consolidation, not as original law.

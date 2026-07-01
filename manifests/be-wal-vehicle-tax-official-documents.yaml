@@ -1,0 +1,97 @@
+documents:
+  - source_id: be-wal-tmc-decree-2023-09-07-moniteur
+    jurisdiction: be-wal
+    document_class: statute
+    title: Walloon decree of 7 September 2023 modifying the vehicle tax on entry into service
+    source_url: https://www.ejustice.just.fgov.be/eli/decret/2023/09/07/2023046826/moniteur
+    download_url: 'https://www.ejustice.just.fgov.be/cgi/article.pl?language=fr&sum_date=2023-11-06&lg_txt=f&pd_search=2023-11-06&s_editie=&numac_search=2023046826&caller=&2023046826=&view_numac=2023046826fr'
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be-wal/statute/moniteur/decret-2023-09-07/2023046826/tmc
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: main.article-text
+      html_drop_selectors:
+        - .links
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2023/09/07/2023046826/moniteur
+      justel_url: https://www.ejustice.just.fgov.be/eli/decret/2023/09/07/2023046826/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: vehicle-tax
+      source_status: primary_law_original_publication
+      source_note: Primary publication of the Walloon decree replacing the Code des taxes assimilees article 98 TMC formula, with article 3 effective 1 July 2025.
+  - source_id: be-wal-code-taxes-assimilees-wallex-current
+    jurisdiction: be-wal
+    document_class: statute
+    title: Wallex current Code des taxes assimilees vehicle-tax locator
+    source_url: https://wallex.wallonie.be/eli/loi-decret/1965/11/23/1111111111
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be-wal/statute/wallex/code-taxes-assimilees/vehicle-tax-current
+    extraction:
+      html_content_selector: '#content'
+      html_drop_selectors:
+        - '#top-widgets'
+        - .complete-structure
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1965/11/23/1965112350/moniteur
+      source_authority: Wallex
+      source_family: vehicle-tax
+      source_status: official_walloon_consolidated_locator_after_moniteur
+      source_note: Wallex identifies Walloon competence over circulation tax and tax on entry into service and links current Walloon modifications.
+  - source_id: be-wal-tmc-adaptation-decree-2025-05-30-moniteur
+    jurisdiction: be-wal
+    document_class: statute
+    title: Walloon decree of 30 May 2025 adapting the vehicle tax on entry into service
+    source_url: https://www.ejustice.just.fgov.be/eli/decret/2025/05/30/2025004290/moniteur
+    download_url: 'https://www.ejustice.just.fgov.be/cgi/article.pl?language=fr&sum_date=2025-06-12&lg_txt=f&pd_search=2025-06-12&s_editie=&numac_search=2025004290&caller=&2025004290=&view_numac=2025004290fr'
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be-wal/statute/moniteur/decret-2025-05-30/2025004290/tmc-adaptation
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: main.article-text
+      html_drop_selectors:
+        - .links
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2025/05/30/2025004290/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: vehicle-tax
+      source_status: primary_law_original_publication
+      source_note: Primary publication of the Walloon decree replacing TMC energy coefficients, raising the large-family reduction, adding the single-parent reduction from 1 July 2026, and adding default vehicle-characteristic rules.
+  - source_id: be-wal-tmc-spw-finances-2026-2027
+    jurisdiction: be-wal
+    document_class: statute
+    title: SPW Finances indexed TMC passenger-car table valid 1 July 2026 to 30 June 2027
+    source_url: https://finances.wallonie.be/home/fiscalite/fiscalite-des-vehicules/tableaux-des-baremes/taxe-de-mise-en-circulation.html
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be-wal/statute/spw-finances/vehicle-tax/tmc-passenger-cars-2026-2027
+    extraction:
+      html_content_selector: main.pagecontent .col-md-8
+      html_drop_selectors:
+        - .button_center
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2023/09/07/2023046826/moniteur
+      consolidated_document_url: https://wallex.wallonie.be/eli/loi-decret/2023/09/07/2023046826/2025/07/01
+      source_authority: SPW Finances
+      source_family: vehicle-tax
+      source_status: official_current_indexed_parameter_source_after_primary_law
+      source_note: Official SPW Finances page gives indexed passenger-car TMC amounts for 1 July 2026 through 30 June 2027 after the decree-authorized annual indexation.
+  - source_id: be-wal-circulation-tax-spw-finances-2026-2027
+    jurisdiction: be-wal
+    document_class: statute
+    title: SPW Finances indexed annual circulation-tax table valid 1 July 2026 to 30 June 2027
+    source_url: https://finances.wallonie.be/files/bar%C3%A8mes%20taxes%20v%C3%A9hicules/baremes_taxe_de_circulation.pdf
+    source_format: pdf
+    source_as_of: '2026-07-01'
+    citation_path: be-wal/statute/spw-finances/vehicle-tax/circulation-tax-2026-2027
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1965/11/23/1965112350/moniteur
+      consolidated_document_url: https://wallex.wallonie.be/eli/loi-decret/1965/11/23/1111111111
+      source_authority: SPW Finances
+      source_family: vehicle-tax
+      source_status: official_current_indexed_parameter_source_after_code_locator
+      source_note: Official SPW Finances PDF gives annual circulation-tax amounts, including decimes additionnels, for 1 July 2026 through 30 June 2027.

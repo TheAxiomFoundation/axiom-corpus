@@ -1,0 +1,81 @@
+documents:
+  - source_id: be-excise-alcohol-justel-current-law
+    jurisdiction: be
+    document_class: statute
+    title: Loi concernant la structure et les taux des droits d'accise sur l'alcool et les boissons alcoolisees
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1998/01/07/1998003047/justel
+    source_format: html
+    source_as_of: '2026-06-30'
+    citation_path: be/statute/justel/excise/alcohol/1998003047
+    extraction:
+      html_content_selector: "#list-title-3"
+      segmentation: anchor_range
+      anchor_ranges:
+        - html_start_selector: 'a[name="Art.5"]'
+          html_stop_selector: 'a[name="Art.6"]'
+          section_label: Article 5
+          section_heading: Article 5 - Beer excise rates
+        - html_start_selector: 'a[name="Art.9"]'
+          html_stop_selector: 'a[name="Art.10"]'
+          section_label: Article 9
+          section_heading: Article 9 - Wine excise rates
+        - html_start_selector: 'a[name="Art.12"]'
+          html_stop_selector: 'a[name="Art.13"]'
+          section_label: Article 12
+          section_heading: Article 12 - Other fermented beverage excise rates
+        - html_start_selector: 'a[name="Art.15"]'
+          html_stop_selector: 'a[name="Art.16"]'
+          section_label: Article 15
+          section_heading: Article 15 - Intermediate product excise rates
+        - html_start_selector: 'a[name="Art.17"]'
+          html_stop_selector: 'a[name="Art.18"]'
+          section_label: Article 17
+          section_heading: Article 17 - Ethyl alcohol excise rates
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1998/01/07/1998003047/moniteur
+      source_authority: SPF Justice / Justel
+      source_family: excise-alcohol
+      source_status: current_consolidated_text
+      source_note: Current consolidated Justel text exposes the rate articles for beer, wine, other fermented beverages, intermediate products, and ethyl alcohol.
+  - source_id: be-excise-tobacco-justel-current-law
+    jurisdiction: be
+    document_class: statute
+    title: Loi relative au regime fiscal des tabacs manufactures
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1997/04/03/1997003241/justel
+    source_format: html
+    source_as_of: '2026-06-30'
+    citation_path: be/statute/justel/excise/tobacco/1997003241
+    extraction:
+      html_content_selector: "#list-title-3"
+      segmentation: anchor_range
+      html_start_selector: 'a[name="Art.3"]'
+      html_stop_selector: 'a[name="Art.4"]'
+      section_label: Article 3
+      section_heading: Article 3 - Rates for manufactured tobacco
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1997/04/03/1997003241/moniteur
+      source_authority: SPF Justice / Justel
+      source_family: excise-tobacco
+      source_status: current_consolidated_text
+      source_note: Current consolidated Justel text exposes Article 3 rates for tobacco products and products assimilated to manufactured tobacco.
+  - source_id: be-excise-energy-products-justel-program-law
+    jurisdiction: be
+    document_class: statute
+    title: Loi-programme du 27 decembre 2004, produits energetiques et electricite
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/2004/12/27/2004021170/justel
+    source_format: html
+    source_as_of: '2026-06-30'
+    citation_path: be/statute/justel/excise/energy-products/2004021170
+    extraction:
+      html_content_selector: "#list-title-3"
+      segmentation: anchor_range
+      html_start_selector: 'a[name="Art.419"]'
+      html_stop_selector: 'a[name="Art.420"]'
+      section_label: Article 419
+      section_heading: Article 419 - Determination du montant de l'accise
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/2004/12/27/2004021170/moniteur
+      source_authority: SPF Justice / Justel
+      source_family: excise-energy-products
+      source_status: current_consolidated_text
+      source_note: Current consolidated Justel text exposes the Article 419 energy-product and fuel excise rate schedule.
