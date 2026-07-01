@@ -1322,6 +1322,7 @@ def _cmd_extract_belgian_eli(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
     source_urls = list(args.source_url or ())
+    source_jurisdiction_overrides: dict[str, str] = {}
     if args.manifest:
         manifest = CorpusManifest.load(args.manifest)
         manifest.require_unique_sources()
@@ -1334,6 +1335,13 @@ def _cmd_extract_belgian_eli(args: argparse.Namespace) -> int:
                 f"found {', '.join(unsupported)}"
             )
         source_urls.extend(source.source_url for source in manifest.sources if source.source_url)
+        source_jurisdiction_overrides.update(
+            {
+                source.source_url: source.jurisdiction
+                for source in manifest.sources
+                if source.source_url
+            }
+        )
     report = extract_belgian_eli(
         store,
         version=args.version,
@@ -1345,6 +1353,7 @@ def _cmd_extract_belgian_eli(args: argparse.Namespace) -> int:
         expression_date=expression_date,
         request_timeout=args.request_timeout,
         limit=args.limit,
+        source_jurisdiction_overrides=source_jurisdiction_overrides,
     )
     print(json.dumps(_belgian_eli_report_json(report), indent=2, sort_keys=True))
     return (

@@ -6,7 +6,7 @@ import re
 import time
 import unicodedata
 from collections import defaultdict
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, replace
 from datetime import date, timedelta
 from pathlib import Path
@@ -343,6 +343,7 @@ def extract_belgian_eli(
     expression_date: date | str | None = None,
     request_timeout: float = 30.0,
     limit: int | None = None,
+    source_jurisdiction_overrides: Mapping[str, str] | None = None,
 ) -> BelgianELIExtractReport:
     """Extract Belgian ELI HTML into normalized corpus artifacts.
 
@@ -363,6 +364,7 @@ def extract_belgian_eli(
         source_urls=source_urls,
         request_timeout=request_timeout,
         limit=limit,
+        source_jurisdiction_overrides=source_jurisdiction_overrides or {},
     )
 
     grouped_records: dict[tuple[str, str], list[ProvisionRecord]] = defaultdict(list)
@@ -516,6 +518,7 @@ def _prepare_sources(
     source_urls: Sequence[str],
     request_timeout: float,
     limit: int | None,
+    source_jurisdiction_overrides: Mapping[str, str],
 ) -> list[_PreparedBelgianELISource]:
     prepared: list[_PreparedBelgianELISource] = []
     for source_name, source_bytes in _iter_sources(
@@ -529,6 +532,20 @@ def _prepare_sources(
         normalized = _normalize_source_bytes(source_bytes)
         html_text = normalized.decode("utf-8")
         provisions = parse_belgian_eli_source(html_text, source_name=source_name)
+        jurisdiction_override = source_jurisdiction_overrides.get(
+            source_name,
+        ) or source_jurisdiction_overrides.get(_normalize_ejustice_url(source_name))
+        if jurisdiction_override is not None:
+            provisions = tuple(
+                replace(
+                    provision,
+                    document=replace(
+                        provision.document,
+                        jurisdiction_code=jurisdiction_override,
+                    ),
+                )
+                for provision in provisions
+            )
         if not provisions:
             raise ValueError(f"no Belgian ELI documents found in {source_name}")
         prepared.append(

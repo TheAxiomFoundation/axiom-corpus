@@ -265,6 +265,45 @@ def test_extract_belgian_eli_justel_article_page_writes_article_records(tmp_path
     )
 
 
+def test_extract_belgian_eli_manifest_jurisdiction_override_wins_over_title_notes(tmp_path):
+    base = tmp_path / "data" / "corpus"
+    source_url = "https://www.ejustice.just.fgov.be/eli/loi/1994/07/14/1994071451/justel"
+    source_dir = tmp_path / "eli-source"
+    source_html = source_dir / "eli/loi/1994/07/14/1994071451/justel.html"
+    source_html.parent.mkdir(parents=True)
+    source_html.write_text(
+        """
+<html>
+  <body>
+    <p class="list-item--title">
+      14 JUILLET 1994. - Loi relative à l'assurance obligatoire soins de santé
+      et indemnités. (NOTE : art. 36 modifié pour la Région flamande)
+    </p>
+    <div id="list-title-3" class="box plain-text">
+      <h2 id="text">Texte</h2>
+      <A NAME='Art.1'></A>Article <A HREF='#Art.2'> 1</A>.
+      La présente loi coordonnée institue un régime fédéral d'assurance obligatoire.<BR><BR>
+    </div>
+  </body>
+</html>
+""".lstrip()
+    )
+
+    report = extract_belgian_eli(
+        CorpusArtifactStore(base),
+        version="2026-06-30-be",
+        source_dir=source_dir,
+        source_jurisdiction_overrides={
+            "eli/loi/1994/07/14/1994071451/justel.html": "be",
+            source_url: "be",
+        },
+    )
+
+    assert report.class_reports[0].jurisdiction == "be"
+    records = _read_jsonl(base / "provisions/be/statute/2026-06-30-be.jsonl")
+    assert records[0]["citation_path"] == "be/statute/loi/1994/07/14/1994071451/article/1"
+
+
 def test_extract_belgian_eli_groups_federal_statute_and_regulation(tmp_path):
     base = tmp_path / "data" / "corpus"
     source_html = tmp_path / "federal-tax-and-social-security.html"

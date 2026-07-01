@@ -118,6 +118,39 @@ sources:
       source_family: social-security-contributions
       source_status: official_original_with_consolidated_locator
       source_note: Royal Decree No. 38 organizes the social status of self-employed workers and includes the Article 12 contribution-rate surface used for BEAMM self-employed social-security scope.
+  - source_id: be-invalidity-prepension-withholding-royal-decree-33-1982
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1982/03/30/1982000477/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/mopdf/1982/04/01_1.pdf#Page28
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_image_with_consolidated_locator
+      source_note: Royal Decree No. 33 establishes the pension-sector withholding on invalidity indemnities and prepensions; the ELI Moniteur endpoint is unavailable, but the Justel locator links the scanned official publication image.
+  - source_id: be-invalidity-prepension-withholding-royal-decree-1982-execution
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1982/09/24/1982001524/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/mopdf/1982/10/06_1.pdf#Page2
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_image_with_consolidated_locator
+      source_note: Royal decree implementing Royal Decree No. 33 payment, debtor, family-charge, rounding, declaration, and collection mechanics.
+  - source_id: be-invalidity-prepension-withholding-ministerial-order-1982
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1982/09/29/1982001527/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/mopdf/1982/10/07_1.pdf#Page5
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security-contributions
+      source_status: official_original_image_with_consolidated_locator
+      source_note: Ministerial order implementing declaration forms for the Royal Decree No. 33 withholding.
   - source_id: be-social-integration-law-2002
     jurisdiction: be
     document_class: statute
