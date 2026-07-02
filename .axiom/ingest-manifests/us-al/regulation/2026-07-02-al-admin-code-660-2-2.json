@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/regulation/2026-07-02-al-admin-code-660-2-2.json",
+      "sha256": "54443d57f8b6a03e6e9d5c828b8abbfcc4b47230871adf902fcd9b013d019fe7"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/regulation/2026-07-02-al-admin-code-660-2-2.json",
+      "sha256": "8dc6196e7e15e4a793263559cdc99ab9170fee2fb9e1371c4a6513efd749d46f"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/regulation/2026-07-02-al-admin-code-660-2-2.jsonl",
+      "sha256": "aecd0e5c7832720e6cf11782c95ff7b539b17c6454267027fa43ddbc1ccc253c"
+    },
+    {
+      "path": "data/corpus/sources/us-al/regulation/2026-07-02-al-admin-code-660-2-2/official-documents/al-dhr-admin-code-660-2-2.pdf",
+      "sha256": "3bc079c640cb6976fb53e3ce589c1d9efcc3f40f543959f3815d161a1a81117e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2aff80ae6af9715d7b2a5e4414c2db2d33783f40",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-al-tanf-20260702"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-02-al-admin-code-660-2-2 --manifest manifests/us-al-admin-code-660-2-2.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 45,
+    "missing_count": 0,
+    "provision_count": 45,
+    "source_count": 45
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-02T03:33:48.218907+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "T6QaBmT4HZfAwehPIj7NkhkXG2N7ulgYx9aJuD6K0tUZJb1sGmyrRplmPNuyUYK12L3dZYytD90XO9LPrPJJCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-al-admin-code-660-2-2"
+}
