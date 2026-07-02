@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards.json",
-      "sha256": "901547fcdc4b1dc3acc3fa68dbac57d8b19b7cfa56a37ba1c7236007378f0e4c"
+      "sha256": "4472bafda058ed5ea3e572c0b2116f18f54a69119559ba65287e2e7b260679ab"
     },
     {
       "path": "data/corpus/inventory/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards.json",
-      "sha256": "4a7ae06fe410984bfd8b2054323e2f17eb892e5078b1cdaa34901d6bdc01df8c"
+      "sha256": "b6f6413334991b98793287c41cddbd8d7fbca5be5771ac3fab5acf3c9c1c7e0e"
     },
     {
       "path": "data/corpus/provisions/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards.jsonl",
-      "sha256": "74ff9e902f76cad0d236199e417a7351a1ecca0e57574b5d398b143827a60bb4"
+      "sha256": "ef5f2681930c39b6edf73a473c46e6a41fa38ed21174517b8d10d3ec33c7dcde"
     },
     {
       "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-dss-program-standards-2026-01-01.pdf",
@@ -33,18 +33,34 @@
       "sha256": "c5cc4fe24d83d1a57371d6dd56a49db1390fceba996b0ad6f8530e04ae4da55a"
     },
     {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-5000.doc",
+      "sha256": "2dbe069e49af57ff4b79f024504c0dd553cba9df5d8248dcddd14d38f96945e1"
+    },
+    {
       "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-5030-10.doc",
       "sha256": "0746e7c1e36279fad95c8dec4e25b68770054d2d89e9410afecb8473ff38907f"
     },
     {
       "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-5030-15.doc",
       "sha256": "ab7d8869688d1091b89e598ecc19c633614b3877087f8e4603129534655c79b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-5045-10.doc",
+      "sha256": "13ab9cf0a6a47aee2a4e77397e6edce9cb0e2bc5d5c4009b2fa5b8c731e5113b"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-5050-13.doc",
+      "sha256": "812bd268484dddd5af4ac660011940599cdadd737a58c65b8cfc8d642c894c7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ct/policy/2026-07-02-ct-ssp-upm-and-standards/official-documents/ct-upm-5520-10.doc",
+      "sha256": "ee558b31538e9034d543c46ab74c2d41843f13449cbbf728dfc1b6b4bea291a0"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "15de9481898913171c895ee0b1652a1fc0ad833d",
-    "dirty_tracked": false,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-legacy-doc-20260702"
+    "commit": "61021509a5659f954726d9ecf66440c1d07f6852",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ct-ssp-final-20260702"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -53,20 +69,25 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 14,
+    "matched_count": 22,
     "missing_count": 0,
-    "provision_count": 14,
-    "source_count": 14
+    "provision_count": 22,
+    "source_count": 22
   },
   "document_class": "policy",
-  "generated_at": "2026-07-01T23:58:11.373080+00:00",
+  "generated_at": "2026-07-02T02:07:47.470599+00:00",
   "jurisdiction": "us-ct",
-  "reasoning_logs": [],
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-02-ct-ssp-final-income-tests.md",
+      "sha256": "9b6c8d48f5bb53aa2c5113e266197982894e8e7f0c9566f38ba5f801fb5a8594"
+    }
+  ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ZdG8bt7mUquksqf9zmaF5KoAi5N8zAwND0ZGerYOmk1m6/kp83vSeNSmaQ9rhrK0DZYhclKv2b3abHzQ6mnEAQ=="
+    "value": "6J7TMLwatEyO1hZNLnuy/iMUrqvaVs8gzJ5xiQvyu7+BQkhpkjDAP1N3upwHt5p5/XdXD7AkTAtKudDG4TXWAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-ct-ssp-upm-and-standards"
