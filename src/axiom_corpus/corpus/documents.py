@@ -22,7 +22,7 @@ from xml.etree import ElementTree
 import fitz
 import requests
 import yaml
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, FeatureNotFound
 from bs4.element import Tag
 from urllib3.exceptions import InsecureRequestWarning
 
@@ -1250,7 +1250,7 @@ def _extract_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
-    soup = BeautifulSoup(content, "html.parser")
+    soup = _html_soup(content)
     drop_selectors = [
         "script",
         "style",
@@ -1477,6 +1477,14 @@ def _extract_json_record_blocks(
             )
         )
     return tuple(blocks)
+
+
+def _html_soup(content: bytes) -> BeautifulSoup:
+    """Parse official HTML with a parser that preserves malformed void tags."""
+    try:
+        return BeautifulSoup(content, "lxml")
+    except FeatureNotFound:
+        return BeautifulSoup(content, "html.parser")
 
 
 def _json_path(data: Any, path: str) -> Any:

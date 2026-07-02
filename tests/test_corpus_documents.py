@@ -822,6 +822,55 @@ documents:
     assert "__VIEWSTATE" not in bodies
 
 
+def test_extract_official_documents_preserves_content_after_unclosed_hidden_input(
+    tmp_path: Path,
+) -> None:
+    html_path = tmp_path / "ssa-poms.html"
+    html_path.write_text(
+        """
+        <!DOCTYPE html>
+        <html>
+          <body>
+            <input id="Start" name="Start" type="hidden" value="">
+            <div id="divBody">
+              <h1>SI 01415.058</h1>
+              <h2>District of Columbia</h2>
+              <p>OS-A applies to recipients in Adult Foster Care Homes.</p>
+            </div>
+          </body>
+        </html>
+        """,
+        encoding="utf-8",
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ssa-poms-dc-ossp
+    jurisdiction: us
+    document_class: guidance
+    title: "POMS SI 01415.058"
+    source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    extraction:
+      html_content_selector: "#divBody"
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-03-dc-ossp-ssa-poms",
+    )
+
+    assert report.block_count == 1
+    bodies = "\n".join(record.body or "" for record in load_provisions(report.provisions_path))
+    assert "OS-A applies to recipients in Adult Foster Care Homes" in bodies
+    assert "hidden" not in bodies
+
+
 def test_extract_official_documents_from_json_html_field(tmp_path: Path) -> None:
     json_path = tmp_path / "ne-title-475-chapter-1.json"
     json_path.write_text(
