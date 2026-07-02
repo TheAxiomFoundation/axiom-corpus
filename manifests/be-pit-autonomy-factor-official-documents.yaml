@@ -1,0 +1,24 @@
+version: "2026-07-02-be-pit-autonomy-factor"
+sources:
+  - source_id: be-special-financing-law-1989
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1989/01/16/1989021010/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1989/01/16/1989021010/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: personal-income-tax-regionalization
+      source_status: official_original_with_consolidated_locator
+      source_note: Article 5/2 defines the reduced State tax and the autonomy factor used in Belgian PIT regionalization.
+  - source_id: be-pit-autonomy-factor-royal-decree-2017
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2017/12/19/2017032216/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/cgi/article_body.pl?language=fr&caller=summary&pub_date=17-12-22&numac=2017032216
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: personal-income-tax-regionalization
+      source_status: official_original_with_consolidated_locator
+      source_note: Article 1 fixes the definitive autonomy factor at 24.957 percent, applicable from assessment year 2018.

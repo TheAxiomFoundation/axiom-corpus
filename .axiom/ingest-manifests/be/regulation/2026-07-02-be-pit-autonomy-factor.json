@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/regulation/2026-07-02-be-pit-autonomy-factor.json",
+      "sha256": "93b7c404d778681aeaf3f11c680058648172d292954b085f238e657594b71c17"
+    },
+    {
+      "path": "data/corpus/inventory/be/regulation/2026-07-02-be-pit-autonomy-factor.json",
+      "sha256": "5d144ef5089bc51c03dc8329883c81607e07372e825df64427da0b7eb115727e"
+    },
+    {
+      "path": "data/corpus/provisions/be/regulation/2026-07-02-be-pit-autonomy-factor.jsonl",
+      "sha256": "f3403d746ddf16c93b47a45ed3ccc2d7412cbcab75324d844f92ad7f53b0a3d7"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-02-be-pit-autonomy-factor/eli/arrete/2017/12/19/2017032216/justel.html",
+      "sha256": "a75897b986c541cb4542d9ee8b7f0e10769950ae15ada6f14a3a3a2c64c72db7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b8a4cbffab013ce07a8505ed30045486e3c4ea03",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-be-workbonus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-belgian-eli --base data/corpus --version 2026-07-02-be-pit-autonomy-factor --manifest manifests/be-pit-autonomy-factor-official-documents.yaml --source-as-of 2026-07-02 --request-timeout 45"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-02T23:28:12.457482+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-02-be-pit-autonomy-factor.md",
+      "sha256": "1636559d0e8d5f6d2020607f6978aa3cb0c91d9d064044e5eb7857447137eb2b"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yNJ74X94km+0++d92eNwPEaVBQu+kJ4/2W2qIxOrnrD7S6XVd7F02PAkKJ6zSFwX2gg9ARdWaEHWJetiKsj7CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-be-pit-autonomy-factor"
+}
