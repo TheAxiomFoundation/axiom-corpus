@@ -1,0 +1,24 @@
+version: "2026-07-02-be-bru-be-home-property-tax-premium"
+sources:
+  - source_id: be-bru-property-tax-service-transfer-ordinance-2017
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2017/11/23/2017031630/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2017/11/23/2017031630/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: real-property-tax/be-home-premium
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels-Capital Region ordinance transferring immovable-withholding service rules and establishing the current BE HOME ownership-access premium; Justel is used only as the current consolidated locator.
+  - source_id: be-bru-be-home-indexation-amendment-ordinance-2020
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2020/04/30/2020041087/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2020/04/30/2020041087/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: real-property-tax/be-home-premium
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels-Capital Region ordinance replacing Article 14, paragraph 1 of the 2017 ordinance to set the 130 EUR base amount, CPI coefficient, and euro rounding rule for current BE HOME premiums.
