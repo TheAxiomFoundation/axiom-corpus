@@ -1,0 +1,20 @@
+version: "2026-07-02"
+sources:
+  - source_id: us-al-code-title-38
+    jurisdiction: us-al
+    document_class: statute
+    adapter: alabama-code
+    source_url: https://alison.legislature.state.al.us/code-of-alabama
+    version: "2026-07-02"
+    options:
+      only_title: "38"
+      source_as_of: "2026-07-02"
+      expression_date: "2026-07-02"
+      download_dir: ../data/corpus/downloads/us-al-code/2026-07-02-title-38
+      request_delay_seconds: 0.05
+      page_size: 1000
+    metadata:
+      primary_source: true
+      source_authority: Alabama Legislature ALISON
+      source_discovery_group: us-al/statute/tanf
+      discovered_via: active_policyengine_parity_review
