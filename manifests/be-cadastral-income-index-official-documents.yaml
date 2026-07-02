@@ -1,0 +1,18 @@
+documents:
+  - source_id: be-spf-finances-cadastral-income-definition-usage
+    jurisdiction: be
+    document_class: guidance
+    title: SPF Finances cadastral income definition and annual index coefficients
+    source_url: https://fin.belgium.be/fr/particuliers/habitation/revenu-cadastral/definition-usage
+    source_format: html
+    source_as_of: '2026-07-02'
+    citation_path: be/guidance/spf-finances/cadastral-income/definition-usage
+    extraction:
+      html_content_selector: .field--name-field-body
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur
+      current_law_corpus_citation_path: be/statute/fisconetplus/cir92/revenus-2025/page-721
+      source_authority: SPF Finances
+      source_family: real-property-tax/cadastral-income-indexation
+      source_status: official_current_guidance_after_cir92_article_518
+      source_note: Official SPF Finances page states the current annual cadastral-income index coefficients for revenue years 2024, 2025, and 2026 after CIR 1992 Article 518 establishes the indexation formula.
