@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/policy/2026-07-02-al-tanf-official-documents.json",
+      "sha256": "8125953edeed9a6578b3039bea75d93419a0a7e0047713bdb11cf31643ffeccc"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/policy/2026-07-02-al-tanf-official-documents.json",
+      "sha256": "9053ec5e9ceb3e8aa28f7340cb3a40d13b3a13e835a1546b8121c1c22878a6a3"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/policy/2026-07-02-al-tanf-official-documents.jsonl",
+      "sha256": "e624ca10ed00109ac9ad17943f56b5e53d8c024b3abc6a4bc90fd6dedb04f937"
+    },
+    {
+      "path": "data/corpus/sources/us-al/policy/2026-07-02-al-tanf-official-documents/official-documents/al-dhr-public-assistance-payment-manual-appendix-n-section-2.pdf",
+      "sha256": "71ce65de2cdf3e8b58a301f79a14d6045c7014008d7e968587a4984ecef88f9e"
+    },
+    {
+      "path": "data/corpus/sources/us-al/policy/2026-07-02-al-tanf-official-documents/official-documents/al-dhr-tanf-state-plan-2024.pdf",
+      "sha256": "0644630011360285a997e636449ba76db36127fb36436d9c6bfc7089f8c33896"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "08c703e805e45d977876fb0a398eaaabcf90c61b",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-al-tanf-20260702"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-02-al-tanf-official-documents --manifest manifests/us-al-tanf-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 137,
+    "missing_count": 0,
+    "provision_count": 137,
+    "source_count": 137
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-02T04:08:24.997628+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-02-al-tanf-payment-sources.md",
+      "sha256": "4affaa98edd7b39efb6867ff0daa69696727ee04c183e218b2ee13e61fa3189a"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "cXruU4F3VTZmptuJTzY9Cmnp6EXq04+RtZxb5SAAsY79mv40CRw5xH1EULF+ZPTyUWR6MwnTF9xUeNhIWOOYCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-al-tanf-official-documents"
+}
