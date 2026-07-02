@@ -1,0 +1,36 @@
+documents:
+  - source_id: ut-admin-rules-r986-200-current
+    jurisdiction: us-ut
+    document_class: regulation
+    citation_path: us-ut/regulation/admin-rules/r986/200
+    title: "Utah Administrative Code R986-200: Family Employment Program"
+    source_url: https://adminrules.utah.gov/api/public/getfile/uac-html/1a059e78-4927-4528-9bcd-97c534cd51cf.html/R986-200.html
+    source_format: html
+    source_as_of: "2026-07-02"
+    expression_date: "2026-07-02"
+    request:
+      browser_user_agent: true
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 4194304
+    metadata:
+      primary_source: true
+      source_authority: Utah Office of Administrative Rules
+      document_subtype: administrative_code_rule
+      program: Family Employment Program
+      federal_program: TANF
+      state_program: FEP
+      rule_id: 2196
+      reference_number: R986-200
+      effective_date: "2022-10-24"
+      notice_of_continuation: "2025-08-14"
+      agency: Workforce Services
+      program_name: Employment Development
+      official_rule_route: https://adminrules.utah.gov/public/rule/R986-200/Current%20Rules
+      public_html_api_url: https://adminrules.utah.gov/api/public/getHTML/uac-html/1a059e78-4927-4528-9bcd-97c534cd51cf.html
+      html_download: uac-html/1a059e78-4927-4528-9bcd-97c534cd51cf.html
+      html_download_name: R986-200.html
+      pdf_download: uac-pdf/1a059e78-4927-4528-9bcd-97c534cd51cf.pdf
+      pdf_download_name: R986-200.pdf
+      source_discovery_group: us-ut/regulation/tanf
+      discovered_via: active_policyengine_parity_review
