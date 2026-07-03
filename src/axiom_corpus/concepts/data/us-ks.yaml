@@ -1,0 +1,339 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-ks
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 2
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 41
+input_count: 20
+output_count: 21
+concepts:
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#input.application_day_of_month
+  kind: input
+  name: application_day_of_month
+  entity: Household
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#input.assistance_reinstated_after_required_information_or_cooperation_provided_in_month_following_closure
+  kind: input
+  name: assistance_reinstated_after_required_information_or_cooperation_provided_in_month_following_closure
+  entity: Household
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#input.assistance_suspended_and_reinstated_in_month_following_one_month_suspension
+  kind: input
+  name: assistance_suspended_and_reinstated_in_month_following_one_month_suspension
+  entity: Household
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#input.cash_application_filed_in_response_to_sanction_notice_with_cooperation_within_45_days_and_received_in_month_following_closure
+  kind: input
+  name: cash_application_filed_in_response_to_sanction_notice_with_cooperation_within_45_days_and_received_in_month_following_closure
+  entity: Household
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#input.cash_review_or_application_returned_in_month_following_end_of_review_period
+  kind: input
+  name: cash_review_or_application_returned_in_month_following_end_of_review_period
+  entity: Household
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#input.days_in_month
+  kind: input
+  name: days_in_month
+  entity: Household
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#input.floor
+  kind: input
+  name: floor
+  entity: Household
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#input.monthly_cash_benefit_before_proration
+  kind: input
+  name: monthly_cash_benefit_before_proration
+  entity: Household
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#input.tanf_case_reopened_in_month_following_effective_date_of_closure
+  kind: input
+  name: tanf_case_reopened_in_month_following_effective_date_of_closure
+  entity: Household
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.all_persons_in_home_in_same_assistance_plan
+  kind: input
+  name: all_persons_in_home_in_same_assistance_plan
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.assistance_plan_person_count
+  kind: input
+  name: assistance_plan_person_count
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.only_excluded_person_is_qualifying_ssi_recipient_or_joint_custody_child
+  kind: input
+  name: only_excluded_person_is_qualifying_ssi_recipient_or_joint_custody_child
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.shared_living_arrangement_is_commercial_bona_fide_landlord_tenant
+  kind: input
+  name: shared_living_arrangement_is_commercial_bona_fide_landlord_tenant
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.shared_living_arrangement_with_person_not_in_budget_plan
+  kind: input
+  name: shared_living_arrangement_with_person_not_in_budget_plan
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.shelter_group_i_applies
+  kind: input
+  name: shelter_group_i_applies
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.shelter_group_ii_applies
+  kind: input
+  name: shelter_group_ii_applies
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.shelter_group_iii_applies
+  kind: input
+  name: shelter_group_iii_applies
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.shelter_group_iv_applies
+  kind: input
+  name: shelter_group_iv_applies
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.shelter_group_v_applies
+  kind: input
+  name: shelter_group_v_applies
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#input.specialized_living_commercial_board_room_or_room_only_arrangement
+  kind: input
+  name: specialized_living_commercial_board_room_or_room_only_arrangement
+  entity: TanfUnit
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#cash_benefit_after_proration
+  kind: output
+  name: cash_benefit_after_proration
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#cash_proration_applies
+  kind: output
+  name: cash_proration_applies
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#first_day_of_month
+  kind: output
+  name: first_day_of_month
+  dtype: Count
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#inclusive_application_day_count
+  kind: output
+  name: inclusive_application_day_count
+  dtype: Count
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#remaining_days_in_application_month
+  kind: output
+  name: remaining_days_in_application_month
+  entity: Household
+  dtype: Count
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding#rounded_cash_payment
+  kind: output
+  name: rounded_cash_payment
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7400/cash-proration-rounding
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#ks_tanf_maximum_benefit
+  kind: output
+  name: ks_tanf_maximum_benefit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_basic_allowance
+  kind: output
+  name: tanf_basic_allowance
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_basic_allowance_by_person_count
+  kind: output
+  name: tanf_basic_allowance_by_person_count
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_basic_allowance_each_additional_person
+  kind: output
+  name: tanf_basic_allowance_each_additional_person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_basic_allowance_final_listed_person_count
+  kind: output
+  name: tanf_basic_allowance_final_listed_person_count
+  dtype: Count
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_energy_supplement_per_person_in_allowance
+  kind: output
+  name: tanf_energy_supplement_per_person_in_allowance
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_shelter_allowance
+  kind: output
+  name: tanf_shelter_allowance
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_shelter_allowance_by_group
+  kind: output
+  name: tanf_shelter_allowance_by_group
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_shelter_group_index
+  kind: output
+  name: tanf_shelter_group_index
+  entity: TanfUnit
+  dtype: Integer
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_table_i_applies
+  kind: output
+  name: tanf_table_i_applies
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_table_i_shelter_percentage
+  kind: output
+  name: tanf_table_i_shelter_percentage
+  dtype: Rate
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_table_ii_applies
+  kind: output
+  name: tanf_table_ii_applies
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_table_ii_shelter_percentage_by_person_count
+  kind: output
+  name: tanf_table_ii_shelter_percentage_by_person_count
+  dtype: Rate
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_table_ii_shelter_percentage_person_count_band
+  kind: output
+  name: tanf_table_ii_shelter_percentage_person_count_band
+  entity: TanfUnit
+  dtype: Integer
+  period: Month
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1
+- id: us-ks:policies/dcf/keesm/keesm7410#tanf_table_ii_six_or_more_person_count
+  kind: output
+  name: tanf_table_ii_six_or_more_person_count
+  dtype: Count
+  modules:
+  - us-ks:policies/dcf/keesm/keesm7410
+  occurrences: 1

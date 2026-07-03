@@ -1,0 +1,695 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-in
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 7
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 73
+input_count: 33
+output_count: 40
+concepts:
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards#input.assistance_group_size
+  kind: input
+  name: assistance_group_size
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards#input.countable_net_income
+  kind: input
+  name: countable_net_income
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#input.assistance_group_size
+  kind: input
+  name: assistance_group_size
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#input.gross_income
+  kind: input
+  name: gross_income
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#input.net_income
+  kind: input
+  name: net_income
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits#input.participating_members
+  kind: input
+  name: participating_members
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits-continuation#input.participating_members
+  kind: input
+  name: participating_members
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#input.assistance_group_has_recipient_parent_children_only
+  kind: input
+  name: assistance_group_has_recipient_parent_children_only
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#input.deemed_income
+  kind: input
+  name: deemed_income
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#input.incapacitated_adult_care_expenses
+  kind: input
+  name: incapacitated_adult_care_expenses
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#input.monthly_work_expense_disregard_amount
+  kind: input
+  name: monthly_work_expense_disregard_amount
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#input.non_exempt_gross_earned_income
+  kind: input
+  name: non_exempt_gross_earned_income
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#input.non_exempt_gross_unearned_income
+  kind: input
+  name: non_exempt_gross_unearned_income
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#input.participating_members
+  kind: input
+  name: participating_members
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#input.tanf_thirty_and_one_third_disregard_applies
+  kind: input
+  name: tanf_thirty_and_one_third_disregard_applies
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.assistance_group_has_recipient_parent_children_only
+  kind: input
+  name: assistance_group_has_recipient_parent_children_only
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.assistance_group_size
+  kind: input
+  name: assistance_group_size
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.deemed_income
+  kind: input
+  name: deemed_income
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.earned_income_is_sole_factor_for_adjusted_net_income_meeting_or_exceeding_adjusted_needs_and_no_penalties
+  kind: input
+  name: earned_income_is_sole_factor_for_adjusted_net_income_meeting_or_exceeding_adjusted_needs_and_no_penalties
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.incapacitated_adult_care_expenses
+  kind: input
+  name: incapacitated_adult_care_expenses
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.monthly_work_expense_disregard_amount
+  kind: input
+  name: monthly_work_expense_disregard_amount
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.non_exempt_gross_earned_income
+  kind: input
+  name: non_exempt_gross_earned_income
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.non_exempt_gross_unearned_income
+  kind: input
+  name: non_exempt_gross_unearned_income
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.participating_members
+  kind: input
+  name: participating_members
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#input.tanf_thirty_and_one_third_disregard_applies
+  kind: input
+  name: tanf_thirty_and_one_third_disregard_applies
+  entity: TanfUnit
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#input.assistance_group_is_tanf_or_refugee_cash_assistance_applicant
+  kind: input
+  name: assistance_group_is_tanf_or_refugee_cash_assistance_applicant
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#input.employed_nonparticipating_ag_member
+  kind: input
+  name: employed_nonparticipating_ag_member
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#input.employed_participating_ag_member
+  kind: input
+  name: employed_participating_ag_member
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#input.federal_income_poverty_level
+  kind: input
+  name: federal_income_poverty_level
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#input.gross_income
+  kind: input
+  name: gross_income
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#input.person_is_dependent_child_or_woman
+  kind: input
+  name: person_is_dependent_child_or_woman
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#input.person_is_part_of_assistance_group_that_meets_gross_income_test
+  kind: input
+  name: person_is_part_of_assistance_group_that_meets_gross_income_test
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#input.person_otherwise_qualifies_for_assistance
+  kind: input
+  name: person_otherwise_qualifies_for_assistance
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards#tanf_100_percent_fpl_countable_net_income_standard_by_ag_size
+  kind: output
+  name: tanf_100_percent_fpl_countable_net_income_standard_by_ag_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards#tanf_100_percent_income_standard_maximum_grant
+  kind: output
+  name: tanf_100_percent_income_standard_maximum_grant
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards#tanf_100_percent_income_standard_maximum_grant_by_ag_size
+  kind: output
+  name: tanf_100_percent_income_standard_maximum_grant_by_ag_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards#tanf_assistance_group_size_for_100_percent_income_standard
+  kind: output
+  name: tanf_assistance_group_size_for_100_percent_income_standard
+  entity: TanfUnit
+  dtype: Count
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards#tanf_countable_net_income_below_100_percent_fpl
+  kind: output
+  name: tanf_countable_net_income_below_100_percent_fpl
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-05-cash-assistance-100-percent-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#cash_assistance_gross_income_standard_rate
+  kind: output
+  name: cash_assistance_gross_income_standard_rate
+  dtype: Rate
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#cash_assistance_income_standards_met
+  kind: output
+  name: cash_assistance_income_standards_met
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#cash_assistance_initial_gross_income_standard_met
+  kind: output
+  name: cash_assistance_initial_gross_income_standard_met
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#cash_assistance_monthly_gross_income_standard
+  kind: output
+  name: cash_assistance_monthly_gross_income_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#cash_assistance_monthly_net_income_standard
+  kind: output
+  name: cash_assistance_monthly_net_income_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#cash_assistance_net_income_standard_met
+  kind: output
+  name: cash_assistance_net_income_standard_met
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards#cash_assistance_net_income_standard_rate_of_maximum_grant
+  kind: output
+  name: cash_assistance_net_income_standard_rate_of_maximum_grant
+  dtype: Rate
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3010-15-cash-assistance-income-standards
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits#cash_assistance_maximum_monthly_benefit_for_recipient_parent_or_caretaker_ag
+  kind: output
+  name: cash_assistance_maximum_monthly_benefit_for_recipient_parent_or_caretaker_ag
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits#cash_assistance_maximum_monthly_benefit_for_recipient_parent_or_caretaker_ag_table
+  kind: output
+  name: cash_assistance_maximum_monthly_benefit_for_recipient_parent_or_caretaker_ag_table
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits-continuation#cash_assistance_maximum_monthly_benefit_for_recipient_parent_children_only_ag
+  kind: output
+  name: cash_assistance_maximum_monthly_benefit_for_recipient_parent_children_only_ag
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits-continuation#cash_assistance_maximum_monthly_benefit_for_recipient_parent_children_only_ag_table
+  kind: output
+  name: cash_assistance_maximum_monthly_benefit_for_recipient_parent_children_only_ag_table
+  dtype: Money
+  unit: USD
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3050-10-cash-assistance-maximum-benefits-continuation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_applicable_earned_income_deductions
+  kind: output
+  name: tanf_applicable_earned_income_deductions
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_countable_income_for_eligibility
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_benefit_total_grant_amount_for_participating_ag_members
+  kind: output
+  name: tanf_benefit_total_grant_amount_for_participating_ag_members
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_maximum_benefit
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_net_countable_income_for_benefit_calculation
+  kind: output
+  name: tanf_net_countable_income_for_benefit_calculation
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_countable_income_for_eligibility
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_new_application_countable_income_for_benefit_amount
+  kind: output
+  name: tanf_new_application_countable_income_for_benefit_amount
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_countable_income_for_payment
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_new_application_financially_eligible_for_benefit_calculation
+  kind: output
+  name: tanf_new_application_financially_eligible_for_benefit_calculation
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_income_eligible
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_new_application_gross_earned_income_applied_for_benefit
+  kind: output
+  name: tanf_new_application_gross_earned_income_applied_for_benefit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_countable_earned_income
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_new_application_gross_earned_income_applied_rate
+  kind: output
+  name: tanf_new_application_gross_earned_income_applied_rate
+  dtype: Rate
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.in.fssa.tanf.income.deductions.benefit.earned_income_disregard.rate
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_new_application_gross_earned_income_disregard_rate
+  kind: output
+  name: tanf_new_application_gross_earned_income_disregard_rate
+  dtype: Rate
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.in.fssa.tanf.income.deductions.benefit.earned_income_disregard.rate
+      comparison: rate
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_new_application_gross_earned_income_disregarded_for_benefit
+  kind: output
+  name: tanf_new_application_gross_earned_income_disregarded_for_benefit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_countable_earned_income
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_new_application_monthly_benefit_entitlement
+  kind: output
+  name: tanf_new_application_monthly_benefit_entitlement
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_nonexempt_gross_income_for_benefit_calculation
+  kind: output
+  name: tanf_nonexempt_gross_income_for_benefit_calculation
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_countable_income_for_payment
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_one_third_earned_income_disregard_rate
+  kind: output
+  name: tanf_one_third_earned_income_disregard_rate
+  dtype: Rate
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.in.fssa.tanf.income.deductions.eligibility.earned_income_disregard.rate
+      comparison: rate
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_thirty_and_one_third_earned_income_disregard
+  kind: output
+  name: tanf_thirty_and_one_third_earned_income_disregard
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_countable_income_for_eligibility
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation#tanf_thirty_dollar_earned_income_disregard
+  kind: output
+  name: tanf_thirty_dollar_earned_income_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.in.fssa.tanf.income.deductions.eligibility.flat_disregard.amount
+      comparison: money
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#tanf_ongoing_adjusted_net_income_equals_or_exceeds_adjusted_needs
+  kind: output
+  name: tanf_ongoing_adjusted_net_income_equals_or_exceeds_adjusted_needs
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_payment_eligible
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#tanf_ongoing_countable_income_below_100_percent_fpl
+  kind: output
+  name: tanf_ongoing_countable_income_below_100_percent_fpl
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf_countable_income_eligible
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#tanf_ongoing_minimum_grant_with_earned_income
+  kind: output
+  name: tanf_ongoing_minimum_grant_with_earned_income
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation#tanf_ongoing_monthly_benefit_entitlement
+  kind: output
+  name: tanf_ongoing_monthly_benefit_entitlement
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-35-05-benefit-calculation-continuation
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: in_tanf
+      program: tanf
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#monthly_work_expense_disregard
+  kind: output
+  name: monthly_work_expense_disregard
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#monthly_work_expense_disregard_per_employed_ag_member
+  kind: output
+  name: monthly_work_expense_disregard_per_employed_ag_member
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#tanf_assistance_financially_eligible_under_gross_income_test
+  kind: output
+  name: tanf_assistance_financially_eligible_under_gross_income_test
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#tanf_gross_income_limit
+  kind: output
+  name: tanf_gross_income_limit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#tanf_gross_income_limit_rate
+  kind: output
+  name: tanf_gross_income_limit_rate
+  dtype: Rate
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1
+- id: us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation#tanf_gross_income_test_met
+  kind: output
+  name: tanf_gross_income_test_met
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-in:policies/dfr/snap-tanf-program-policy-manual/3450-financial-eligibility-benefit-calculation
+  occurrences: 1

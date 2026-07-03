@@ -1,0 +1,2475 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-ct
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 16
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 289
+input_count: 181
+output_count: 108
+concepts:
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#input.person_is_in_boarding_home
+  kind: input
+  name: person_is_in_boarding_home
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#input.person_is_in_new_horizons
+  kind: input
+  name: person_is_in_new_horizons
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#input.person_is_in_snf
+  kind: input
+  name: person_is_in_snf
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#input.person_is_in_waiver_w01
+  kind: input
+  name: person_is_in_waiver_w01
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#input.person_is_married
+  kind: input
+  name: person_is_married
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/shelter#input.person_has_aabd_community_individual_shelter_arrangement
+  kind: input
+  name: person_has_aabd_community_individual_shelter_arrangement
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/shelter
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/shelter#input.person_has_aabd_community_shared_shelter_arrangement
+  kind: input
+  name: person_has_aabd_community_shared_shelter_arrangement
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/shelter
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/special-needs#input.person_has_therapeutic_diet_special_need
+  kind: input
+  name: person_has_therapeutic_diet_special_need
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/special-needs
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards#input.person_is_in_boarding_home
+  kind: input
+  name: person_is_in_boarding_home
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards#input.person_is_in_shared_living
+  kind: input
+  name: person_is_in_shared_living
+  entity: Person
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.additional_low_income_medicare_beneficiaries_current_coverage_group
+  kind: input
+  name: additional_low_income_medicare_beneficiaries_current_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.applying_for_aabd_or_maabd_general_coverage_group
+  kind: input
+  name: applying_for_aabd_or_maabd_general_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.children_under_poverty_level_threshold_age_six_or_over_born_after_statutory_cutoff_coverage_group
+  kind: input
+  name: children_under_poverty_level_threshold_age_six_or_over_born_after_statutory_cutoff_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.children_under_poverty_level_threshold_between_age_one_and_six_coverage_group
+  kind: input
+  name: children_under_poverty_level_threshold_between_age_one_and_six_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.children_under_poverty_level_threshold_under_age_one_coverage_group
+  kind: input
+  name: children_under_poverty_level_threshold_under_age_one_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.countable_assets
+  kind: input
+  name: countable_assets
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.hmo_extension_coverage_group
+  kind: input
+  name: hmo_extension_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.increased_earnings_extension_coverage_group
+  kind: input
+  name: increased_earnings_extension_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.increased_support_extension_coverage_group
+  kind: input
+  name: increased_support_extension_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.needs_group_size
+  kind: input
+  name: needs_group_size
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.pregnant_women_extension_coverage_group
+  kind: input
+  name: pregnant_women_extension_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.pregnant_women_under_poverty_level_threshold_coverage_group
+  kind: input
+  name: pregnant_women_under_poverty_level_threshold_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.primary_work_transition_extension_coverage_group
+  kind: input
+  name: primary_work_transition_extension_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#input.women_diagnosed_with_breast_or_cervical_cancer_coverage_group
+  kind: input
+  name: women_diagnosed_with_breast_or_cervical_cancer_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#input.assistance_unit_moves_into_new_horizons_later_than_first_day_of_month
+  kind: input
+  name: assistance_unit_moves_into_new_horizons_later_than_first_day_of_month
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#input.assistance_unit_resides_in_licensed_boarding_facility_or_adult_family_living_home
+  kind: input
+  name: assistance_unit_resides_in_licensed_boarding_facility_or_adult_family_living_home
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#input.assistance_unit_resides_in_new_horizons_village
+  kind: input
+  name: assistance_unit_resides_in_new_horizons_village
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#input.days_assistance_unit_resided_in_facility_or_home_during_month
+  kind: input
+  name: days_assistance_unit_resided_in_facility_or_home_during_month
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#input.days_assistance_unit_resided_in_new_horizons_during_month
+  kind: input
+  name: days_assistance_unit_resided_in_new_horizons_during_month
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#input.facility_or_adult_family_living_home_remains_residence_for_entire_calendar_month
+  kind: input
+  name: facility_or_adult_family_living_home_remains_residence_for_entire_calendar_month
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#input.monthly_facility_rate
+  kind: input
+  name: monthly_facility_rate
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#input.per_diem_facility_rate
+  kind: input
+  name: per_diem_facility_rate
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#input.assistance_unit_resides_in_chronic_and_convalescent_nursing_home
+  kind: input
+  name: assistance_unit_resides_in_chronic_and_convalescent_nursing_home
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#input.assistance_unit_resides_in_chronic_disease_hospital
+  kind: input
+  name: assistance_unit_resides_in_chronic_disease_hospital
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#input.assistance_unit_resides_in_intermediate_care_facility_for_the_mentally_retarded
+  kind: input
+  name: assistance_unit_resides_in_intermediate_care_facility_for_the_mentally_retarded
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#input.assistance_unit_resides_in_rest_home_with_nursing_supervision
+  kind: input
+  name: assistance_unit_resides_in_rest_home_with_nursing_supervision
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#input.assistance_unit_resides_in_state_humane_institution
+  kind: input
+  name: assistance_unit_resides_in_state_humane_institution
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#input.cumulative_social_security_cola_multiplier_for_long_term_care_personal_needs_standard
+  kind: input
+  name: cumulative_social_security_cola_multiplier_for_long_term_care_personal_needs_standard
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#input.applicant_for_assistance_to_disabled_or_aged
+  kind: input
+  name: applicant_for_assistance_to_disabled_or_aged
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#input.applicant_or_recipient_of_assistance_to_blind
+  kind: input
+  name: applicant_or_recipient_of_assistance_to_blind
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#input.assistance_unit_monthly_total_available_gross_earned_income
+  kind: input
+  name: assistance_unit_monthly_total_available_gross_earned_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#input.assistance_unit_resides_in_long_term_care_facility
+  kind: input
+  name: assistance_unit_resides_in_long_term_care_facility
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#input.impairment_related_expenses
+  kind: input
+  name: impairment_related_expenses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#input.recipient_of_assistance_to_aged_with_prior_blind_assistance
+  kind: input
+  name: recipient_of_assistance_to_aged_with_prior_blind_assistance
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#input.recipient_of_assistance_to_aged_with_prior_disabled_assistance
+  kind: input
+  name: recipient_of_assistance_to_aged_with_prior_disabled_assistance
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#input.recipient_of_assistance_to_aged_without_prior_disabled_or_blind_assistance
+  kind: input
+  name: recipient_of_assistance_to_aged_without_prior_disabled_or_blind_assistance
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#input.recipient_of_assistance_to_disabled
+  kind: input
+  name: recipient_of_assistance_to_disabled
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.annual_social_security_cola_multiplier_for_unearned_income_disregards
+  kind: input
+  name: annual_social_security_cola_multiplier_for_unearned_income_disregards
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.applying_under_working_individuals_with_disabilities_medicaid_coverage_group
+  kind: input
+  name: applying_under_working_individuals_with_disabilities_medicaid_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.assistance_unit_resides_in_long_term_care_facility
+  kind: input
+  name: assistance_unit_resides_in_long_term_care_facility
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.determining_aabd_eligibility_or_benefit
+  kind: input
+  name: determining_aabd_eligibility_or_benefit
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.determining_maabd_eligibility
+  kind: input
+  name: determining_maabd_eligibility
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.determining_qmb_medicaid_coverage_group_eligibility
+  kind: input
+  name: determining_qmb_medicaid_coverage_group_eligibility
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.in_kind_income_not_otherwise_excluded
+  kind: input
+  name: in_kind_income_not_otherwise_excluded
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.individual_lives_as_roomer_in_home_of_others
+  kind: input
+  name: individual_lives_as_roomer_in_home_of_others
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.individual_pays_room_and_board_in_licensed_boarding_or_adult_family_living_home
+  kind: input
+  name: individual_pays_room_and_board_in_licensed_boarding_or_adult_family_living_home
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.individual_resides_in_battered_women_shelter_or_homeless_shelter
+  kind: input
+  name: individual_resides_in_battered_women_shelter_or_homeless_shelter
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.individual_resides_in_long_term_care_facility
+  kind: input
+  name: individual_resides_in_long_term_care_facility
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.individual_resides_in_own_home_in_community
+  kind: input
+  name: individual_resides_in_own_home_in_community
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.individual_shares_non_rated_housing_with_person_not_parent_spouse_or_child
+  kind: input
+  name: individual_shares_non_rated_housing_with_person_not_parent_spouse_or_child
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.month_is_january_february_or_march
+  kind: input
+  name: month_is_january_february_or_march
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.qmb_additional_social_security_cola_benefits_received
+  kind: input
+  name: qmb_additional_social_security_cola_benefits_received
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#input.unit_member_total_gross_monthly_unearned_income
+  kind: input
+  name: unit_member_total_gross_monthly_unearned_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.appropriate_unearned_income_disregard_based_on_living_arrangements
+  kind: input
+  name: appropriate_unearned_income_disregard_based_on_living_arrangements
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.assistance_unit_monthly_earnings
+  kind: input
+  name: assistance_unit_monthly_earnings
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.assistance_unit_resides_in_chronic_and_convalescent_nursing_home
+  kind: input
+  name: assistance_unit_resides_in_chronic_and_convalescent_nursing_home
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.assistance_unit_resides_in_chronic_disease_hospital
+  kind: input
+  name: assistance_unit_resides_in_chronic_disease_hospital
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.assistance_unit_resides_in_intermediate_care_facility_for_the_mentally_retarded
+  kind: input
+  name: assistance_unit_resides_in_intermediate_care_facility_for_the_mentally_retarded
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.assistance_unit_resides_in_rest_home_with_nursing_supervision
+  kind: input
+  name: assistance_unit_resides_in_rest_home_with_nursing_supervision
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.assistance_unit_resides_in_state_humane_institution
+  kind: input
+  name: assistance_unit_resides_in_state_humane_institution
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.blind_individual_qualifies_for_approved_plan_to_achieve_self_support_disregard
+  kind: input
+  name: blind_individual_qualifies_for_approved_plan_to_achieve_self_support_disregard
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.blind_work_expenses
+  kind: input
+  name: blind_work_expenses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.disabled_individual_qualifies_for_approved_plan_to_achieve_self_support_disregard
+  kind: input
+  name: disabled_individual_qualifies_for_approved_plan_to_achieve_self_support_disregard
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.earned_income_used_to_fulfill_approved_plan_to_achieve_self_support
+  kind: input
+  name: earned_income_used_to_fulfill_approved_plan_to_achieve_self_support
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.expenses_associated_with_self_support_plan
+  kind: input
+  name: expenses_associated_with_self_support_plan
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.gross_unearned_income
+  kind: input
+  name: gross_unearned_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.impairment_related_expenses
+  kind: input
+  name: impairment_related_expenses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.individual_is_aged_or_disabled_for_aabd_maabd_applied_income
+  kind: input
+  name: individual_is_aged_or_disabled_for_aabd_maabd_applied_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.individual_is_blind_for_aabd_maabd_applied_income
+  kind: input
+  name: individual_is_blind_for_aabd_maabd_applied_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.personal_employment_expenses
+  kind: input
+  name: personal_employment_expenses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.self_employment_expenses
+  kind: input
+  name: self_employment_expenses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#input.total_amount_deemed
+  kind: input
+  name: total_amount_deemed
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.annual_social_security_cola_multiplier_for_unearned_income_disregards
+  kind: input
+  name: annual_social_security_cola_multiplier_for_unearned_income_disregards
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.applying_under_working_individuals_with_disabilities_medicaid_coverage_group
+  kind: input
+  name: applying_under_working_individuals_with_disabilities_medicaid_coverage_group
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.assistance_unit_resides_in_long_term_care_facility
+  kind: input
+  name: assistance_unit_resides_in_long_term_care_facility
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.determining_aabd_eligibility_or_benefit
+  kind: input
+  name: determining_aabd_eligibility_or_benefit
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.determining_aabd_or_maabd_income_treatment
+  kind: input
+  name: determining_aabd_or_maabd_income_treatment
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.determining_aabd_state_supplement_eligibility_or_benefit
+  kind: input
+  name: determining_aabd_state_supplement_eligibility_or_benefit
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.determining_maabd_eligibility
+  kind: input
+  name: determining_maabd_eligibility
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.determining_qmb_medicaid_coverage_group_eligibility
+  kind: input
+  name: determining_qmb_medicaid_coverage_group_eligibility
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.in_kind_income_not_otherwise_excluded
+  kind: input
+  name: in_kind_income_not_otherwise_excluded
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.individual_lives_as_roomer_in_home_of_others
+  kind: input
+  name: individual_lives_as_roomer_in_home_of_others
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.individual_pays_room_and_board_in_licensed_boarding_or_adult_family_living_home
+  kind: input
+  name: individual_pays_room_and_board_in_licensed_boarding_or_adult_family_living_home
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.individual_resides_in_battered_women_shelter_or_homeless_shelter
+  kind: input
+  name: individual_resides_in_battered_women_shelter_or_homeless_shelter
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.individual_resides_in_long_term_care_facility
+  kind: input
+  name: individual_resides_in_long_term_care_facility
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.individual_resides_in_own_home_in_community
+  kind: input
+  name: individual_resides_in_own_home_in_community
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.individual_shares_non_rated_housing_with_person_not_parent_spouse_or_child
+  kind: input
+  name: individual_shares_non_rated_housing_with_person_not_parent_spouse_or_child
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.month_is_january_february_or_march
+  kind: input
+  name: month_is_january_february_or_march
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.monthly_social_security_benefits
+  kind: input
+  name: monthly_social_security_benefits
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.monthly_ssi_income
+  kind: input
+  name: monthly_ssi_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.monthly_veterans_benefits
+  kind: input
+  name: monthly_veterans_benefits
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.qmb_additional_social_security_cola_benefits_received
+  kind: input
+  name: qmb_additional_social_security_cola_benefits_received
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.spouse_of_deceased_veteran_resides_in_ltcf_and_va_pension_similarly_reduced_under_public_law_101_508_as_amended
+  kind: input
+  name: spouse_of_deceased_veteran_resides_in_ltcf_and_va_pension_similarly_reduced_under_public_law_101_508_as_amended
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.unit_member_total_gross_monthly_unearned_income
+  kind: input
+  name: unit_member_total_gross_monthly_unearned_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.veteran_resides_in_ltcf_and_va_pension_reduced_under_public_law_101_508
+  kind: input
+  name: veteran_resides_in_ltcf_and_va_pension_reduced_under_public_law_101_508
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5050-13#input.veterans_benefit_allowance_for_surviving_spouse_permanently_housebound_due_to_disability
+  kind: input
+  name: veterans_benefit_allowance_for_surviving_spouse_permanently_housebound_due_to_disability
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.applicant_and_eligible_spouse_total_basic_and_special_needs
+  kind: input
+  name: applicant_and_eligible_spouse_total_basic_and_special_needs
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.applicant_basic_and_special_needs_plus_ineligible_spouse_basic_needs
+  kind: input
+  name: applicant_basic_and_special_needs_plus_ineligible_spouse_basic_needs
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.appropriate_unearned_income_disregard_based_on_living_arrangements
+  kind: input
+  name: appropriate_unearned_income_disregard_based_on_living_arrangements
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.assistance_unit_monthly_earnings
+  kind: input
+  name: assistance_unit_monthly_earnings
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.assistance_unit_resides_in_chronic_and_convalescent_nursing_home
+  kind: input
+  name: assistance_unit_resides_in_chronic_and_convalescent_nursing_home
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.assistance_unit_resides_in_chronic_disease_hospital
+  kind: input
+  name: assistance_unit_resides_in_chronic_disease_hospital
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.assistance_unit_resides_in_intermediate_care_facility_for_the_mentally_retarded
+  kind: input
+  name: assistance_unit_resides_in_intermediate_care_facility_for_the_mentally_retarded
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.assistance_unit_resides_in_rest_home_with_nursing_supervision
+  kind: input
+  name: assistance_unit_resides_in_rest_home_with_nursing_supervision
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.assistance_unit_resides_in_state_humane_institution
+  kind: input
+  name: assistance_unit_resides_in_state_humane_institution
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.assistance_unit_total_gross_monthly_income
+  kind: input
+  name: assistance_unit_total_gross_monthly_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.blind_individual_qualifies_for_approved_plan_to_achieve_self_support_disregard
+  kind: input
+  name: blind_individual_qualifies_for_approved_plan_to_achieve_self_support_disregard
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.blind_work_expenses
+  kind: input
+  name: blind_work_expenses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.disabled_individual_qualifies_for_approved_plan_to_achieve_self_support_disregard
+  kind: input
+  name: disabled_individual_qualifies_for_approved_plan_to_achieve_self_support_disregard
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.earned_income_used_to_fulfill_approved_plan_to_achieve_self_support
+  kind: input
+  name: earned_income_used_to_fulfill_approved_plan_to_achieve_self_support
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.expenses_associated_with_self_support_plan
+  kind: input
+  name: expenses_associated_with_self_support_plan
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.gross_unearned_income
+  kind: input
+  name: gross_unearned_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.impairment_related_expenses
+  kind: input
+  name: impairment_related_expenses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.individual_is_aged_or_disabled_for_aabd_maabd_applied_income
+  kind: input
+  name: individual_is_aged_or_disabled_for_aabd_maabd_applied_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.individual_is_blind_for_aabd_maabd_applied_income
+  kind: input
+  name: individual_is_blind_for_aabd_maabd_applied_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.maximum_ssi_benefit_for_individual_with_no_income_living_in_own_home
+  kind: input
+  name: maximum_ssi_benefit_for_individual_with_no_income_living_in_own_home
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.needs_group_comprises_both_spouses
+  kind: input
+  name: needs_group_comprises_both_spouses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.needs_group_comprises_only_individual_applicant_or_recipient
+  kind: input
+  name: needs_group_comprises_only_individual_applicant_or_recipient
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.personal_employment_expenses
+  kind: input
+  name: personal_employment_expenses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.self_employment_expenses
+  kind: input
+  name: self_employment_expenses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.spouse_is_eligible
+  kind: input
+  name: spouse_is_eligible
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.spouse_is_ineligible
+  kind: input
+  name: spouse_is_ineligible
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.total_amount_deemed
+  kind: input
+  name: total_amount_deemed
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.total_gross_monthly_income_of_applicant_or_recipient_and_spouse
+  kind: input
+  name: total_gross_monthly_income_of_applicant_or_recipient_and_spouse
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5520-10#input.total_needs_of_individual
+  kind: input
+  name: total_needs_of_individual
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_applicant_and_eligible_spouse_basic_and_special_needs
+  kind: input
+  name: aabd_applicant_and_eligible_spouse_basic_and_special_needs
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_applicant_basic_and_special_needs_plus_ineligible_spouse_basic_needs
+  kind: input
+  name: aabd_applicant_basic_and_special_needs_plus_ineligible_spouse_basic_needs
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_applicant_or_recipient_applied_income_including_deemed_spouse
+  kind: input
+  name: aabd_applicant_or_recipient_applied_income_including_deemed_spouse
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_combined_applied_incomes_of_both_spouses
+  kind: input
+  name: aabd_combined_applied_incomes_of_both_spouses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_combined_needs_of_both_spouses
+  kind: input
+  name: aabd_combined_needs_of_both_spouses
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_spouse_is_eligible
+  kind: input
+  name: aabd_spouse_is_eligible
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_spouse_is_ineligible
+  kind: input
+  name: aabd_spouse_is_ineligible
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_unit_member_applied_income
+  kind: input
+  name: aabd_unit_member_applied_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_unit_member_living_with_spouse
+  kind: input
+  name: aabd_unit_member_living_with_spouse
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_unit_member_not_considered_living_with_spouse
+  kind: input
+  name: aabd_unit_member_not_considered_living_with_spouse
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.aabd_unit_total_needs
+  kind: input
+  name: aabd_unit_total_needs
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.afdc_assistance_unit_applied_income
+  kind: input
+  name: afdc_assistance_unit_applied_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.afdc_eligible_special_needs
+  kind: input
+  name: afdc_eligible_special_needs
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.afdc_non_fill_the_gap_income
+  kind: input
+  name: afdc_non_fill_the_gap_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.afdc_standard_of_need
+  kind: input
+  name: afdc_standard_of_need
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.both_spouses_applying_and_eligible_for_aabd
+  kind: input
+  name: both_spouses_applying_and_eligible_for_aabd
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.ceil
+  kind: input
+  name: ceil
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.floor
+  kind: input
+  name: floor
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.fs_assistance_unit_applied_income
+  kind: input
+  name: fs_assistance_unit_applied_income
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.fs_standard_of_assistance_for_unit_size
+  kind: input
+  name: fs_standard_of_assistance_for_unit_size
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:policies/dss/upm/6005#input.only_one_spouse_applying_and_eligible_for_aabd
+  kind: input
+  name: only_one_spouse_applying_and_eligible_for_aabd
+  entity: AssistanceUnit
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+- id: us-ct:statutes/17b-104#input.family_living_in_subsidized_housing
+  kind: input
+  name: family_living_in_subsidized_housing
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-104
+  occurrences: 1
+- id: us-ct:statutes/17b-104#input.federal_poverty_level
+  kind: input
+  name: federal_poverty_level
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-104
+  occurrences: 1
+- id: us-ct:statutes/17b-104#input.payment_standard_for_family
+  kind: input
+  name: payment_standard_for_family
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-104
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.consecutive_months_since_first_exceeding_fpl
+  kind: input
+  name: consecutive_months_since_first_exceeding_fpl
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.current_child_support_received
+  kind: input
+  name: current_child_support_received
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.family_assets
+  kind: input
+  name: family_assets
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.family_failed_to_cooperate_with_child_support_enforcement
+  kind: input
+  name: family_failed_to_cooperate_with_child_support_enforcement
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.family_leaving_assistance_at_sixty_month_limit
+  kind: input
+  name: family_leaving_assistance_at_sixty_month_limit
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.family_leaving_assistance_at_thirty_six_month_limit
+  kind: input
+  name: family_leaving_assistance_at_thirty_six_month_limit
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.federal_poverty_level
+  kind: input
+  name: federal_poverty_level
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.monthly_award_before_high_earnings_reduction
+  kind: input
+  name: monthly_award_before_high_earnings_reduction
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.total_gross_earnings
+  kind: input
+  name: total_gross_earnings
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#input.transitional_gross_earnings_disregard_applies
+  kind: input
+  name: transitional_gross_earnings_disregard_applies
+  entity: Family
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.available_income
+  kind: input
+  name: available_income
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.convincing_evidence_transaction_exclusively_for_other_purpose
+  kind: input
+  name: convincing_evidence_transaction_exclusively_for_other_purpose
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.disposition_made_to_qualifying_trust
+  kind: input
+  name: disposition_made_to_qualifying_trust
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.individual_resides_in_new_horizons_facility
+  kind: input
+  name: individual_resides_in_new_horizons_facility
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.individual_resides_in_residential_care_home
+  kind: input
+  name: individual_resides_in_residential_care_home
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.maximum_ssi_benefit_for_individual
+  kind: input
+  name: maximum_ssi_benefit_for_individual
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.private_rate_for_residential_care_home_or_new_horizons_facility
+  kind: input
+  name: private_rate_for_residential_care_home_or_new_horizons_facility
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.property_disposed_for_less_than_fair_market_value
+  kind: input
+  name: property_disposed_for_less_than_fair_market_value
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.property_disposition_made_within_transfer_lookback_period
+  kind: input
+  name: property_disposition_made_within_transfer_lookback_period
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.trust_funded_solely_with_excess_income
+  kind: input
+  name: trust_funded_solely_with_excess_income
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.trust_provides_required_state_recovery_after_medicaid_repayment
+  kind: input
+  name: trust_provides_required_state_recovery_after_medicaid_repayment
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:statutes/17b-600#input.uncompensated_value_of_disposed_resources
+  kind: input
+  name: uncompensated_value_of_disposed_resources
+  entity: Person
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#ct_ssp_personal_needs_allowance
+  kind: output
+  name: ct_ssp_personal_needs_allowance
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_personal_needs_allowance
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#ct_ssp_personal_needs_allowance_boarding_home
+  kind: output
+  name: ct_ssp_personal_needs_allowance_boarding_home
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.personal_needs_allowance
+      parameter_key: BOARDING_HOME
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#ct_ssp_personal_needs_allowance_individual
+  kind: output
+  name: ct_ssp_personal_needs_allowance_individual
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.personal_needs_allowance
+      parameter_key: COMMUNITY_ALONE
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#ct_ssp_personal_needs_allowance_married
+  kind: output
+  name: ct_ssp_personal_needs_allowance_married
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.personal_needs_allowance_married
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#ct_ssp_personal_needs_allowance_new_horizons
+  kind: output
+  name: ct_ssp_personal_needs_allowance_new_horizons
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.ct.dss.ssp.personal_needs_allowance
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#ct_ssp_personal_needs_allowance_snf
+  kind: output
+  name: ct_ssp_personal_needs_allowance_snf
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.personal_needs_allowance
+      parameter_key: MEDICAID_FACILITY
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/personal-needs#ct_ssp_personal_needs_allowance_waiver_w01
+  kind: output
+  name: ct_ssp_personal_needs_allowance_waiver_w01
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/personal-needs
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/shelter#ct_ssp_shelter_allowance
+  kind: output
+  name: ct_ssp_shelter_allowance
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/shelter
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_shelter_allowance
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/shelter#ct_ssp_shelter_allowance_community_individual
+  kind: output
+  name: ct_ssp_shelter_allowance_community_individual
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/shelter
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.shelter_allowance
+      parameter_key: COMMUNITY_ALONE
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/shelter#ct_ssp_shelter_allowance_community_shared
+  kind: output
+  name: ct_ssp_shelter_allowance_community_shared
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/shelter
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.shelter_allowance
+      parameter_key: COMMUNITY_SHARED
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/special-needs#ct_ssp_special_needs
+  kind: output
+  name: ct_ssp_special_needs
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/special-needs
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: ct_ssp_special_needs
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/special-needs#ct_ssp_therapeutic_diet_special_needs_amount
+  kind: output
+  name: ct_ssp_therapeutic_diet_special_needs_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/special-needs
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.special_needs.therapeutic_diet
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards#ct_ssp_unearned_income_disregard
+  kind: output
+  name: ct_ssp_unearned_income_disregard
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: ct_ssp_unearned_income_disregard
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards#ct_ssp_unearned_income_disregard_by_living_arrangement
+  kind: output
+  name: ct_ssp_unearned_income_disregard_by_living_arrangement
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.ct.dss.ssp.disregard.unearned
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards#ct_ssp_unearned_income_disregard_living_arrangement_index
+  kind: output
+  name: ct_ssp_unearned_income_disregard_living_arrangement_index
+  entity: Person
+  dtype: Integer
+  period: Month
+  modules:
+  - us-ct:policies/dss/program-standards/2026-01-01/unearned-disregards
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#aabd_maabd_general_one_person_asset_limit
+  kind: output
+  name: aabd_maabd_general_one_person_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.eligibility.asset_limit.individual
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/4005-10#aabd_maabd_general_two_person_asset_limit
+  kind: output
+  name: aabd_maabd_general_two_person_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.eligibility.asset_limit.couple
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/4005-10#afdc_fma_categorically_needy_needs_group_asset_limit
+  kind: output
+  name: afdc_fma_categorically_needy_needs_group_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#ct_ssp_resource_eligible
+  kind: output
+  name: ct_ssp_resource_eligible
+  entity: AssistanceUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_resource_eligible
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/4005-10#fma_medically_needy_additional_member_asset_limit_increment
+  kind: output
+  name: fma_medically_needy_additional_member_asset_limit_increment
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#fma_medically_needy_one_person_asset_limit
+  kind: output
+  name: fma_medically_needy_one_person_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#fma_medically_needy_two_person_asset_limit
+  kind: output
+  name: fma_medically_needy_two_person_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#maabd_alimb_prior_one_person_asset_limit
+  kind: output
+  name: maabd_alimb_prior_one_person_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#maabd_alimb_prior_two_person_asset_limit
+  kind: output
+  name: maabd_alimb_prior_two_person_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#maabd_qmb_slmb_qdwi_one_person_asset_limit
+  kind: output
+  name: maabd_qmb_slmb_qdwi_one_person_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#maabd_qmb_slmb_qdwi_two_person_asset_limit
+  kind: output
+  name: maabd_qmb_slmb_qdwi_two_person_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#maabd_working_individuals_disabilities_single_asset_limit
+  kind: output
+  name: maabd_working_individuals_disabilities_single_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#maabd_working_individuals_disabilities_with_spouse_asset_limit
+  kind: output
+  name: maabd_working_individuals_disabilities_with_spouse_asset_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#medicaid_child_under_poverty_level_first_age_threshold
+  kind: output
+  name: medicaid_child_under_poverty_level_first_age_threshold
+  dtype: Count
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#medicaid_child_under_poverty_level_second_age_threshold
+  kind: output
+  name: medicaid_child_under_poverty_level_second_age_threshold
+  dtype: Count
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#medicaid_coverage_group_not_required_to_pass_asset_test
+  kind: output
+  name: medicaid_coverage_group_not_required_to_pass_asset_test
+  entity: AssistanceUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#needs_group_size_one
+  kind: output
+  name: needs_group_size_one
+  dtype: Count
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#needs_group_size_two
+  kind: output
+  name: needs_group_size_two
+  dtype: Count
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#poverty_level_threshold_for_listed_no_asset_test_medicaid_groups
+  kind: output
+  name: poverty_level_threshold_for_listed_no_asset_test_medicaid_groups
+  dtype: Rate
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#snap_asset_limit_cpi_measurement_period_months
+  kind: output
+  name: snap_asset_limit_cpi_measurement_period_months
+  dtype: Count
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#snap_asset_limit_rounding_increment
+  kind: output
+  name: snap_asset_limit_rounding_increment
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4005-10#snap_elderly_household_age_threshold
+  kind: output
+  name: snap_elderly_household_age_threshold
+  dtype: Count
+  modules:
+  - us-ct:policies/dss/upm/4005-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#ct_ssp_shelter_allowance
+  kind: output
+  name: ct_ssp_shelter_allowance
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#licensed_boarding_or_adult_family_living_personal_needs_standard
+  kind: output
+  name: licensed_boarding_or_adult_family_living_personal_needs_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#new_horizons_monthly_shelter_standard
+  kind: output
+  name: new_horizons_monthly_shelter_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#new_horizons_per_diem_shelter_standard
+  kind: output
+  name: new_horizons_per_diem_shelter_standard
+  dtype: Money
+  unit: USD
+  period: Day
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-10#new_horizons_personal_needs_standard
+  kind: output
+  name: new_horizons_personal_needs_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4520-10
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#assistance_unit_resides_in_long_term_care_facility
+  kind: output
+  name: assistance_unit_resides_in_long_term_care_facility
+  entity: AssistanceUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#ct_ssp_long_term_care_shelter_allowance
+  kind: output
+  name: ct_ssp_long_term_care_shelter_allowance
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#ct_ssp_personal_needs_allowance
+  kind: output
+  name: ct_ssp_personal_needs_allowance
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/4520-20#long_term_care_personal_needs_base_standard
+  kind: output
+  name: long_term_care_personal_needs_base_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/4520-20
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-10#aged_disabled_general_monthly_base_disregard
+  kind: output
+  name: aged_disabled_general_monthly_base_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.disregard.earned.aged_disabled_initial
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5030-10#blind_monthly_base_disregard
+  kind: output
+  name: blind_monthly_base_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.disregard.earned.blind_initial
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5030-10#ct_ssp_earned_income_disregard
+  kind: output
+  name: ct_ssp_earned_income_disregard
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_earned_income_disregard
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5030-10#disabled_irwe_monthly_base_disregard
+  kind: output
+  name: disabled_irwe_monthly_base_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.disregard.earned.aged_disabled_initial
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5030-10#remaining_earned_income_disregard_rate
+  kind: output
+  name: remaining_earned_income_disregard_rate
+  dtype: Rate
+  modules:
+  - us-ct:policies/dss/upm/5030-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.disregard.earned.rate
+      comparison: numeric
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5030-15#boarding_home_unearned_income_base_disregard
+  kind: output
+  name: boarding_home_unearned_income_base_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#ct_ssp_unearned_income_disregard
+  kind: output
+  name: ct_ssp_unearned_income_disregard
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_unearned_income_disregard
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5030-15#special_unearned_income_base_disregard
+  kind: output
+  name: special_unearned_income_base_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#standard_unearned_income_base_disregard
+  kind: output
+  name: standard_unearned_income_base_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5030-15#working_individuals_disabilities_general_monthly_income_disregard
+  kind: output
+  name: working_individuals_disabilities_general_monthly_income_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5030-15
+  occurrences: 1
+- id: us-ct:policies/dss/upm/5045-10#aabd_maabd_applied_earnings
+  kind: output
+  name: aabd_maabd_applied_earnings
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_countable_income
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5045-10#aabd_maabd_applied_earnings_aged_disabled
+  kind: output
+  name: aabd_maabd_applied_earnings_aged_disabled
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_earned_income_disregard
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5045-10#aabd_maabd_applied_earnings_blind
+  kind: output
+  name: aabd_maabd_applied_earnings_blind
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_earned_income_disregard
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5045-10#aabd_maabd_applied_unearned_income
+  kind: output
+  name: aabd_maabd_applied_unearned_income
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_countable_income
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5045-10#aabd_maabd_total_applied_income
+  kind: output
+  name: aabd_maabd_total_applied_income
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5045-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_countable_income
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5050-13#aabd_maabd_excluded_surviving_spouse_housebound_veterans_allowance
+  kind: output
+  name: aabd_maabd_excluded_surviving_spouse_housebound_veterans_allowance
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5050-13#ct_ssp_countable_income
+  kind: output
+  name: ct_ssp_countable_income
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_countable_income
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5050-13#reduced_va_pension_personal_needs_allowance
+  kind: output
+  name: reduced_va_pension_personal_needs_allowance
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5050-13#reduced_va_pension_personal_needs_allowance_applied
+  kind: output
+  name: reduced_va_pension_personal_needs_allowance_applied
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5050-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5520-10#aabd_individual_gross_income_limit_multiplier
+  kind: output
+  name: aabd_individual_gross_income_limit_multiplier
+  dtype: Rate
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.eligibility.income_cap_rate
+      comparison: numeric
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5520-10#aabd_individual_gross_monthly_income_limit
+  kind: output
+  name: aabd_individual_gross_monthly_income_limit
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_income_eligible
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5520-10#aabd_spousal_gross_income_limit_multiplier
+  kind: output
+  name: aabd_spousal_gross_income_limit_multiplier
+  dtype: Rate
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.ct.dss.ssp.eligibility.income_cap_rate
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5520-10#aabd_spousal_gross_monthly_income_limit
+  kind: output
+  name: aabd_spousal_gross_monthly_income_limit
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_income_eligible
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/5520-10#ct_ssp_income_eligible
+  kind: output
+  name: ct_ssp_income_eligible
+  entity: AssistanceUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/5520-10
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_income_eligible
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/6005#aabd_monthly_benefit_determined
+  kind: output
+  name: aabd_monthly_benefit_determined
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_person
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/6005#afdc_fill_the_gap_rate
+  kind: output
+  name: afdc_fill_the_gap_rate
+  dtype: Rate
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-ct:policies/dss/upm/6005#afdc_monthly_benefit
+  kind: output
+  name: afdc_monthly_benefit
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-ct:policies/dss/upm/6005#ct_ssp_person
+  kind: output
+  name: ct_ssp_person
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ct_ssp_person
+      program: ssi_state_supplement
+- id: us-ct:policies/dss/upm/6005#fs_applied_income_rate
+  kind: output
+  name: fs_applied_income_rate
+  dtype: Rate
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-ct:policies/dss/upm/6005#fs_monthly_benefit
+  kind: output
+  name: fs_monthly_benefit
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:policies/dss/upm/6005
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-ct:statutes/17b-104#subsidized_housing_attributed_income
+  kind: output
+  name: subsidized_housing_attributed_income
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:statutes/17b-104
+  occurrences: 1
+- id: us-ct:statutes/17b-104#subsidized_housing_attributed_income_rate
+  kind: output
+  name: subsidized_housing_attributed_income_rate
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-104
+  occurrences: 1
+- id: us-ct:statutes/17b-104#temporary_family_assistance_payment_standard
+  kind: output
+  name: temporary_family_assistance_payment_standard
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:statutes/17b-104
+  occurrences: 1
+- id: us-ct:statutes/17b-104#temporary_family_assistance_payment_standard_rate
+  kind: output
+  name: temporary_family_assistance_payment_standard_rate
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-104
+  occurrences: 1
+- id: us-ct:statutes/17b-104#temporary_family_assistance_standard_of_need
+  kind: output
+  name: temporary_family_assistance_standard_of_need
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:statutes/17b-104
+  occurrences: 1
+- id: us-ct:statutes/17b-104#temporary_family_assistance_standard_of_need_fpl_rate
+  kind: output
+  name: temporary_family_assistance_standard_of_need_fpl_rate
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-104
+  occurrences: 1
+- id: us-ct:statutes/17b-112#asset_eligibility
+  kind: output
+  name: asset_eligibility
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#asset_eligibility_limit
+  kind: output
+  name: asset_eligibility_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#benefit_after_high_earnings_reduction
+  kind: output
+  name: benefit_after_high_earnings_reduction
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#benefit_reduction_lower_earnings_rate
+  kind: output
+  name: benefit_reduction_lower_earnings_rate
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#benefit_reduction_upper_earnings_rate
+  kind: output
+  name: benefit_reduction_upper_earnings_rate
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#child_support_cooperation_eligibility
+  kind: output
+  name: child_support_cooperation_eligibility
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#countable_current_child_support_for_eligibility
+  kind: output
+  name: countable_current_child_support_for_eligibility
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#current_child_support_monthly_disregard
+  kind: output
+  name: current_child_support_monthly_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#exit_interview_required
+  kind: output
+  name: exit_interview_required
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#gross_earnings_eligibility
+  kind: output
+  name: gross_earnings_eligibility
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#gross_earnings_fpl_limit_rate
+  kind: output
+  name: gross_earnings_fpl_limit_rate
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#high_earnings_benefit_reduction_rate
+  kind: output
+  name: high_earnings_benefit_reduction_rate
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#job_training_stipend_disregard_month_limit
+  kind: output
+  name: job_training_stipend_disregard_month_limit
+  dtype: Count
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#pilot_program_disregard_month_limit
+  kind: output
+  name: pilot_program_disregard_month_limit
+  dtype: Count
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#self_employment_standard_deduction_rate
+  kind: output
+  name: self_employment_standard_deduction_rate
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#tfa_time_limited_benefit_month_limit
+  kind: output
+  name: tfa_time_limited_benefit_month_limit
+  dtype: Count
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#transitional_gross_earnings_disregard_limit_rate
+  kind: output
+  name: transitional_gross_earnings_disregard_limit_rate
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-112#transitional_gross_earnings_disregard_month_limit
+  kind: output
+  name: transitional_gross_earnings_disregard_month_limit
+  dtype: Count
+  modules:
+  - us-ct:statutes/17b-112
+  occurrences: 1
+- id: us-ct:statutes/17b-600#ct_ssp_income_cap_multiplier
+  kind: output
+  name: ct_ssp_income_cap_multiplier
+  dtype: Rate
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:statutes/17b-600#ct_ssp_income_cap_rate
+  kind: output
+  name: ct_ssp_income_cap_rate
+  entity: Person
+  dtype: Rate
+  period: Month
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ct.dss.ssp.eligibility.income_cap_rate
+      comparison: numeric
+      program: ssi_state_supplement
+- id: us-ct:statutes/17b-600#extended_ineligibility_uncompensated_value_threshold
+  kind: output
+  name: extended_ineligibility_uncompensated_value_threshold
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:statutes/17b-600#ordinary_transfer_ineligibility_period_months
+  kind: output
+  name: ordinary_transfer_ineligibility_period_months
+  dtype: Count
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:statutes/17b-600#transfer_has_extended_ineligibility_period
+  kind: output
+  name: transfer_has_extended_ineligibility_period
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:statutes/17b-600#transfer_ineligibility_applies
+  kind: output
+  name: transfer_ineligibility_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:statutes/17b-600#transfer_lookback_period_months
+  kind: output
+  name: transfer_lookback_period_months
+  dtype: Count
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ct:statutes/17b-600#trust_income_disregard_applies
+  kind: output
+  name: trust_income_disregard_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ct:statutes/17b-600
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement

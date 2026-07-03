@@ -1,0 +1,500 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-id
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 17
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 55
+input_count: 32
+output_count: 23
+concepts:
+- id: us-id:regulations/idapa/16/03/04/page-13#input.days_between_notice_mailing_and_action_effective_date
+  kind: input
+  name: days_between_notice_mailing_and_action_effective_date
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-13#input.household_has_member_doing_seasonal_or_temporary_agricultural_work
+  kind: input
+  name: household_has_member_doing_seasonal_or_temporary_agricultural_work
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-13#input.notice_was_mailed_electronically
+  kind: input
+  name: notice_was_mailed_electronically
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-13#input.person_actively_earns_income_from_own_business_trade_or_profession
+  kind: input
+  name: person_actively_earns_income_from_own_business_trade_or_profession
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-13#input.person_age
+  kind: input
+  name: person_age
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-13#input.person_is_enrolled_at_least_half_time_in_institution_of_higher_education
+  kind: input
+  name: person_is_enrolled_at_least_half_time_in_institution_of_higher_education
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-13#input.person_is_physically_and_intellectually_fit
+  kind: input
+  name: person_is_physically_and_intellectually_fit
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-13#input.person_is_responsible_for_obtaining_or_providing_service_or_product_generating_income
+  kind: input
+  name: person_is_responsible_for_obtaining_or_providing_service_or_product_generating_income
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-13#input.persons_are_legally_married_under_idaho_law
+  kind: input
+  name: persons_are_legally_married_under_idaho_law
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.authorized_representative_improperly_used_food_stamps
+  kind: input
+  name: authorized_representative_improperly_used_food_stamps
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.authorized_representative_knowingly_gave_false_information
+  kind: input
+  name: authorized_representative_knowingly_gave_false_information
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.eligibility_decision_has_been_made
+  kind: input
+  name: eligibility_decision_has_been_made
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.field_office_supervisor_gave_written_approval
+  kind: input
+  name: field_office_supervisor_gave_written_approval
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.household_fails_to_act_without_sound_and_timely_excuse
+  kind: input
+  name: household_fails_to_act_without_sound_and_timely_excuse
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.household_has_cooperated_with_department
+  kind: input
+  name: household_has_cooperated_with_department
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.household_purposely_gave_false_information
+  kind: input
+  name: household_purposely_gave_false_information
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.household_refuses_to_cooperate
+  kind: input
+  name: household_refuses_to_cooperate
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.no_one_else_is_available
+  kind: input
+  name: no_one_else_is_available
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.person_designated_as_authorized_representative
+  kind: input
+  name: person_designated_as_authorized_representative
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.person_is_department_employee_in_certification_or_issuance
+  kind: input
+  name: person_is_department_employee_in_certification_or_issuance
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.person_is_disqualified_for_ipv_during_penalty_period
+  kind: input
+  name: person_is_disqualified_for_ipv_during_penalty_period
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.person_is_homeless_meal_provider
+  kind: input
+  name: person_is_homeless_meal_provider
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.person_is_only_adult_household_member
+  kind: input
+  name: person_is_only_adult_household_member
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-16#input.person_is_retailer_allowed_to_accept_food_stamps
+  kind: input
+  name: person_is_retailer_allowed_to_accept_food_stamps
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-20#input.certified_under_normal_standards_since_last_expedited_certification
+  kind: input
+  name: certified_under_normal_standards_since_last_expedited_certification
+  entity: Household
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-20#input.days_since_application_date
+  kind: input
+  name: days_since_application_date
+  entity: Household
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-20#input.granted_postponed_proof_at_last_expedited_certification
+  kind: input
+  name: granted_postponed_proof_at_last_expedited_certification
+  entity: Household
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-20#input.in_state_postponed_proof_completed
+  kind: input
+  name: in_state_postponed_proof_completed
+  entity: Household
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-20#input.migrant_postponed_proof_granted
+  kind: input
+  name: migrant_postponed_proof_granted
+  entity: Household
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-20#input.non_migrant_postponed_proof_granted
+  kind: input
+  name: non_migrant_postponed_proof_granted
+  entity: Household
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-20#input.out_of_state_postponed_proof_completed
+  kind: input
+  name: out_of_state_postponed_proof_completed
+  entity: Household
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-20#input.postponed_proof_completed
+  kind: input
+  name: postponed_proof_completed
+  entity: Household
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+- id: us-id:regulations/idapa/16/03/04/page-13#household_is_seasonal_farmworker_household
+  kind: output
+  name: household_is_seasonal_farmworker_household
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-13#notice_is_timely
+  kind: output
+  name: notice_is_timely
+  entity: Household
+  dtype: Judgment
+  period: Day
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-13#person_is_self_employed
+  kind: output
+  name: person_is_self_employed
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-13#person_qualifies_as_student
+  kind: output
+  name: person_qualifies_as_student
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-13#persons_are_spouses
+  kind: output
+  name: persons_are_spouses
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-13#student_maximum_age
+  kind: output
+  name: student_maximum_age
+  dtype: Integer
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-13#student_minimum_age
+  kind: output
+  name: student_minimum_age
+  dtype: Integer
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-13#timely_notice_minimum_days
+  kind: output
+  name: timely_notice_minimum_days
+  dtype: Integer
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-13
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-16#application_denied_for_refusal_to_cooperate
+  kind: output
+  name: application_denied_for_refusal_to_cooperate
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-16#application_may_be_withdrawn
+  kind: output
+  name: application_may_be_withdrawn
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-16#authorized_representative_may_be_removed
+  kind: output
+  name: authorized_representative_may_be_removed
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-16#authorized_representative_removal_maximum_period
+  kind: output
+  name: authorized_representative_removal_maximum_period
+  dtype: Integer
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-16#household_eligible_after_refusal_to_cooperate
+  kind: output
+  name: household_eligible_after_refusal_to_cooperate
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-16#person_has_conflict_of_interest_as_authorized_representative
+  kind: output
+  name: person_has_conflict_of_interest_as_authorized_representative
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-16#person_may_act_as_authorized_representative
+  kind: output
+  name: person_may_act_as_authorized_representative
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-16
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-20#migrant_case_closes_for_in_state_proof
+  kind: output
+  name: migrant_case_closes_for_in_state_proof
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-20#migrant_case_closes_for_out_of_state_proof
+  kind: output
+  name: migrant_case_closes_for_out_of_state_proof
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-20#migrant_late_out_of_state_issuance_days
+  kind: output
+  name: migrant_late_out_of_state_issuance_days
+  dtype: Integer
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-20#non_migrant_case_closes_for_postponed_proof
+  kind: output
+  name: non_migrant_case_closes_for_postponed_proof
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-20#postponed_proof_days_migrant_in_state
+  kind: output
+  name: postponed_proof_days_migrant_in_state
+  dtype: Integer
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-20#postponed_proof_days_migrant_out_of_state
+  kind: output
+  name: postponed_proof_days_migrant_out_of_state
+  dtype: Integer
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-20#postponed_proof_days_non_migrant
+  kind: output
+  name: postponed_proof_days_non_migrant
+  dtype: Integer
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-id:regulations/idapa/16/03/04/page-20#reapplying_household_requires_postponed_proof_for_expedited
+  kind: output
+  name: reapplying_household_requires_postponed_proof_for_expedited
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-id:regulations/idapa/16/03/04/page-20
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap

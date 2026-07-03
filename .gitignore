@@ -84,3 +84,9 @@ data/
 .env
 coverage.json
 .claude/
+
+# Concept registry package data is small, generated, and version-controlled
+# (unlike the R2-backed source corpora above). The bare `data/` pattern
+# matches this nested dir too, so re-include it explicitly.
+!src/axiom_corpus/concepts/data/
+!src/axiom_corpus/concepts/data/**

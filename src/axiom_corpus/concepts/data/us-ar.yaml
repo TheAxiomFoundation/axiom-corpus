@@ -1,0 +1,391 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-ar
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 6
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 37
+input_count: 14
+output_count: 23
+concepts:
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget#input.countable_unearned_income
+  kind: input
+  name: countable_unearned_income
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget#input.monthly_countable_gross_earned_income
+  kind: input
+  name: monthly_countable_gross_earned_income
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget#input.tanf_unit_is_recipient_family
+  kind: input
+  name: tanf_unit_is_recipient_family
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard#input.countable_unearned_income
+  kind: input
+  name: countable_unearned_income
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard#input.net_earned_income
+  kind: input
+  name: net_earned_income
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/payment-levels#input.ar_tea_payment_level_family_size
+  kind: input
+  name: ar_tea_payment_level_family_size
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/payment-levels
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/payment-levels#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/payment-levels
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#input.countable_monthly_gross_income_excluding_assigned_child_support_payments
+  kind: input
+  name: countable_monthly_gross_income_excluding_assigned_child_support_payments
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#input.countable_unearned_income
+  kind: input
+  name: countable_unearned_income
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#input.floor
+  kind: input
+  name: floor
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#input.monthly_countable_gross_earned_income
+  kind: input
+  name: monthly_countable_gross_earned_income
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#input.tanf_unit_is_recipient_family
+  kind: input
+  name: tanf_unit_is_recipient_family
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/resource-eligibility#input.countable_resources_on_first_day_of_month
+  kind: input
+  name: countable_resources_on_first_day_of_month
+  entity: TanfUnit
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/resource-eligibility
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/earned-income-deductions#ar_tea_work_incentive_earned_income_deduction_rate
+  kind: output
+  name: ar_tea_work_incentive_earned_income_deduction_rate
+  dtype: Rate
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/earned-income-deductions
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ar.dhs.tea.income.work_deduction.incentive_rate
+      comparison: rate
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/earned-income-deductions#ar_tea_work_related_earned_income_deduction_rate
+  kind: output
+  name: ar_tea_work_related_earned_income_deduction_rate
+  dtype: Rate
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/earned-income-deductions
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ar.dhs.tea.income.work_deduction.expense_rate
+      comparison: rate
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget#ar_tea_applicant_countable_earned_income
+  kind: output
+  name: ar_tea_applicant_countable_earned_income
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget#ar_tea_applicant_total_countable_income_for_income_eligibility
+  kind: output
+  name: ar_tea_applicant_total_countable_income_for_income_eligibility
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget#ar_tea_recipient_countable_earnings_after_work_related_deduction
+  kind: output
+  name: ar_tea_recipient_countable_earnings_after_work_related_deduction
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget#ar_tea_recipient_net_countable_earned_income
+  kind: output
+  name: ar_tea_recipient_net_countable_earned_income
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget#ar_tea_recipient_total_countable_income_for_income_eligibility
+  kind: output
+  name: ar_tea_recipient_total_countable_income_for_income_eligibility
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget#local_ar_tea_income_eligible
+  kind: output
+  name: local_ar_tea_income_eligible
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-budget
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard#ar_tea_income_eligibility_standard
+  kind: output
+  name: ar_tea_income_eligibility_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ar.dhs.tea.income.income_limit
+      comparison: money
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard#ar_tea_income_eligible
+  kind: output
+  name: ar_tea_income_eligible
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: ar_tea_income_eligible
+      comparison: bool
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard#ar_tea_income_limit
+  kind: output
+  name: ar_tea_income_limit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ar_tea_income_eligible
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard#ar_tea_total_countable_income_for_income_eligibility
+  kind: output
+  name: ar_tea_total_countable_income_for_income_eligibility
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/income-eligibility-standard
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/payment-levels#ar_tea_maximum_benefit
+  kind: output
+  name: ar_tea_maximum_benefit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/payment-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: ar_tea_maximum_benefit
+      comparison: money
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/payment-levels#ar_tea_maximum_payment_amount_by_family_size
+  kind: output
+  name: ar_tea_maximum_payment_amount_by_family_size
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/payment-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ar.dhs.tea.payment_standard.amount
+      comparison: money
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/payment-levels#ar_tea_maximum_payment_level_family_size_floor
+  kind: output
+  name: ar_tea_maximum_payment_level_family_size_floor
+  dtype: Count
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/payment-levels
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/payment-levels#ar_tea_maximum_payment_level_open_ended_family_size
+  kind: output
+  name: ar_tea_maximum_payment_level_open_ended_family_size
+  dtype: Count
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/payment-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ar.dhs.tea.payment_standard.max_unit_size
+      comparison: count
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/payment-levels#ar_tea_payment_level_family_size
+  kind: output
+  name: ar_tea_payment_level_family_size
+  entity: TanfUnit
+  dtype: Count
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/payment-levels
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#ar_tea
+  kind: output
+  name: ar_tea
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ar_tea
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#ar_tea_reduced_payment_gross_income_trigger
+  kind: output
+  name: ar_tea_reduced_payment_gross_income_trigger
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ar.dhs.tea.payment_standard.trigger.amount
+      comparison: money
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#ar_tea_reduced_payment_rate
+  kind: output
+  name: ar_tea_reduced_payment_rate
+  dtype: Rate
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ar.dhs.tea.payment_standard.trigger.reduction_rate
+      comparison: rate
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger#ar_tea_reduced_payment_rounding_increment
+  kind: output
+  name: ar_tea_reduced_payment_rounding_increment
+  dtype: Decimal
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/reduced-payment-gross-income-trigger
+  occurrences: 1
+- id: us-ar:policies/dhs/tea/manual/2024/resource-eligibility#ar_tea_resource_limit
+  kind: output
+  name: ar_tea_resource_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/resource-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ar.dhs.tea.resources.limit
+      comparison: money
+      program: tanf
+- id: us-ar:policies/dhs/tea/manual/2024/resource-eligibility#ar_tea_resources_eligible
+  kind: output
+  name: ar_tea_resources_eligible
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ar:policies/dhs/tea/manual/2024/resource-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: ar_tea_resources_eligible
+      comparison: bool
+      program: tanf

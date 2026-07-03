@@ -1,0 +1,2616 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-ny
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 22
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 339
+input_count: 166
+output_count: 173
+concepts:
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.all_household_members_experiencing_homelessness
+  kind: input
+  name: all_household_members_experiencing_homelessness
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.child_support_deduction
+  kind: input
+  name: child_support_deduction
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.count_where
+  kind: input
+  name: count_where
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.dependent_care_deduction
+  kind: input
+  name: dependent_care_deduction
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.homeless_household_free_shelter_all_month
+  kind: input
+  name: homeless_household_free_shelter_all_month
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.homeless_household_has_shelter_costs
+  kind: input
+  name: homeless_household_has_shelter_costs
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_billed_separately_for_non_telephone_standard_utility
+  kind: input
+  name: household_billed_separately_for_non_telephone_standard_utility
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_contains_individual_participating_in_more_than_one_household_or_project_area
+  kind: input
+  name: household_contains_individual_participating_in_more_than_one_household_or_project_area
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_entitled_to_heap_or_liheaa_payment
+  kind: input
+  name: household_entitled_to_heap_or_liheaa_payment
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_has_earned_income_budgeted_for_snap
+  kind: input
+  name: household_has_earned_income_budgeted_for_snap
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_has_out_of_pocket_dependent_care_expenses
+  kind: input
+  name: household_has_out_of_pocket_dependent_care_expenses
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_in_central_meter_housing_charged_only_for_excess_heating_or_cooling
+  kind: input
+  name: household_in_central_meter_housing_charged_only_for_excess_heating_or_cooling
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_in_project_area_solely_for_vacation
+  kind: input
+  name: household_in_project_area_solely_for_vacation
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_incurred_or_anticipated_basic_service_cost_for_one_telephone
+  kind: input
+  name: household_incurred_or_anticipated_basic_service_cost_for_one_telephone
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_incurred_or_anticipated_heating_or_cooling_costs_separate_from_rent_or_mortgage
+  kind: input
+  name: household_incurred_or_anticipated_heating_or_cooling_costs_separate_from_rent_or_mortgage
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_lives_in_application_state
+  kind: input
+  name: household_lives_in_application_state
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_member_disqualified_for_failure_to_comply_with_periodic_reporting_requirements
+  kind: input
+  name: household_member_disqualified_for_failure_to_comply_with_periodic_reporting_requirements
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_member_disqualified_for_failure_to_comply_with_work_requirements
+  kind: input
+  name: household_member_disqualified_for_failure_to_comply_with_work_requirements
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_member_disqualified_for_intentional_program_violation
+  kind: input
+  name: household_member_disqualified_for_intentional_program_violation
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_member_ineligible_to_participate_in_snap
+  kind: input
+  name: household_member_ineligible_to_participate_in_snap
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_resides_in_nassau_or_suffolk_county
+  kind: input
+  name: household_resides_in_nassau_or_suffolk_county
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_resides_in_new_york_city
+  kind: input
+  name: household_resides_in_new_york_city
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_shelter_costs_incurred
+  kind: input
+  name: household_shelter_costs_incurred
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.household_size
+  kind: input
+  name: household_size
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.medical_deduction
+  kind: input
+  name: medical_deduction
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.ny_snap_categorically_eligible
+  kind: input
+  name: ny_snap_categorically_eligible
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.resident_of_battered_women_and_children_shelter_and_prior_abusive_household_member
+  kind: input
+  name: resident_of_battered_women_and_children_shelter_and_prior_abusive_household_member
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_allowable_shelter_costs
+  kind: input
+  name: snap_allowable_shelter_costs
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_countable_earned_income
+  kind: input
+  name: snap_countable_earned_income
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_countable_financial_resources
+  kind: input
+  name: snap_countable_financial_resources
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_countable_unearned_income
+  kind: input
+  name: snap_countable_unearned_income
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_excess_shelter_income_share
+  kind: input
+  name: snap_excess_shelter_income_share
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_full_excess_shelter_deduction_applies
+  kind: input
+  name: snap_full_excess_shelter_deduction_applies
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_gross_monthly_earned_income
+  kind: input
+  name: snap_gross_monthly_earned_income
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_household_residency_eligible
+  kind: input
+  name: snap_household_residency_eligible
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_income_exclusions
+  kind: input
+  name: snap_income_exclusions
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_income_limit_exemption_for_categorically_eligible_household
+  kind: input
+  name: snap_income_limit_exemption_for_categorically_eligible_household
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_individual_utility_allowance
+  kind: input
+  name: snap_individual_utility_allowance
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_initial_month_minimum_issuance
+  kind: input
+  name: snap_initial_month_minimum_issuance
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_initial_month_prorated_allotment
+  kind: input
+  name: snap_initial_month_prorated_allotment
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_limited_utility_allowance
+  kind: input
+  name: snap_limited_utility_allowance
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_maximum_excess_shelter_deduction_48_states_dc
+  kind: input
+  name: snap_maximum_excess_shelter_deduction_48_states_dc
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_member_citizenship_or_alien_status_eligible
+  kind: input
+  name: snap_member_citizenship_or_alien_status_eligible
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_member_ssn_requirement_ineligible
+  kind: input
+  name: snap_member_ssn_requirement_ineligible
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_member_student_ineligible
+  kind: input
+  name: snap_member_student_ineligible
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_member_work_requirement_ineligible
+  kind: input
+  name: snap_member_work_requirement_ineligible
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_net_income_pre_shelter
+  kind: input
+  name: snap_net_income_pre_shelter
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_resource_eligible
+  kind: input
+  name: snap_resource_eligible
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_standard_income_eligible
+  kind: input
+  name: snap_standard_income_eligible
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_standard_utility_allowance
+  kind: input
+  name: snap_standard_utility_allowance
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.snap_total_monthly_unearned_income
+  kind: input
+  name: snap_total_monthly_unearned_income
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.verified_higher_homeless_shelter_costs
+  kind: input
+  name: verified_higher_homeless_shelter_costs
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#input.work_supplementation_earned_income
+  kind: input
+  name: work_supplementation_earned_income
+  entity: Household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_equity_value
+  kind: input
+  name: asset_equity_value
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_fair_market_value
+  kind: input
+  name: asset_fair_market_value
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_basic_maintenance_item_essential_to_day_to_day_living
+  kind: input
+  name: asset_is_basic_maintenance_item_essential_to_day_to_day_living
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_earned_income_tax_credit
+  kind: input
+  name: asset_is_earned_income_tax_credit
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_funds_in_individual_development_account
+  kind: input
+  name: asset_is_funds_in_individual_development_account
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_funds_in_new_york_able_account
+  kind: input
+  name: asset_is_funds_in_new_york_able_account
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_funds_in_qualified_tuition_program
+  kind: input
+  name: asset_is_funds_in_qualified_tuition_program
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_one_bona_fide_funeral_agreement_for_household_member
+  kind: input
+  name: asset_is_one_bona_fide_funeral_agreement_for_household_member
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_one_burial_plot_for_household_member
+  kind: input
+  name: asset_is_one_burial_plot_for_household_member
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_one_exempt_automobile
+  kind: input
+  name: asset_is_one_exempt_automobile
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_real_property_under_six_month_good_faith_sale_agreement
+  kind: input
+  name: asset_is_real_property_under_six_month_good_faith_sale_agreement
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_recipient_tuition_account_and_funds_not_misused
+  kind: input
+  name: asset_is_recipient_tuition_account_and_funds_not_misused
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_recipient_vehicle_purchase_account_and_funds_not_misused
+  kind: input
+  name: asset_is_recipient_vehicle_purchase_account_and_funds_not_misused
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_tangible_personal_property_necessary_for_business_or_employment
+  kind: input
+  name: asset_is_tangible_personal_property_necessary_for_business_or_employment
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_is_usual_residence_home
+  kind: input
+  name: asset_is_usual_residence_home
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.asset_value
+  kind: input
+  name: asset_value
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.earned_income
+  kind: input
+  name: earned_income
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.earned_income_is_from_otda_qualified_work_activity_or_training_program
+  kind: input
+  name: earned_income_is_from_otda_qualified_work_activity_or_training_program
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.federal_poverty_level
+  kind: input
+  name: federal_poverty_level
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.gross_earned_and_unearned_income_is_below_poverty_level
+  kind: input
+  name: gross_earned_and_unearned_income_is_below_poverty_level
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.months_since_job_entry
+  kind: input
+  name: months_since_job_entry
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.person_entered_unsubsidized_employment
+  kind: input
+  name: person_entered_unsubsidized_employment
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.person_failed_to_participate_in_screening_or_assessment_process
+  kind: input
+  name: person_failed_to_participate_in_screening_or_assessment_process
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.person_has_previously_used_lifetime_unsubsidized_employment_disregard
+  kind: input
+  name: person_has_previously_used_lifetime_unsubsidized_employment_disregard
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.person_is_tanf_recipient
+  kind: input
+  name: person_is_tanf_recipient
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.resulting_total_income
+  kind: input
+  name: resulting_total_income
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.standard_of_need
+  kind: input
+  name: standard_of_need
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.treatment_nonparticipation_instance_number
+  kind: input
+  name: treatment_nonparticipation_instance_number
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.unearned_income
+  kind: input
+  name: unearned_income
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.unit_has_disabled_member
+  kind: input
+  name: unit_has_disabled_member
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.unit_has_member_age_sixty_or_over
+  kind: input
+  name: unit_has_member_age_sixty_or_over
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.working_applicant_eligible_for_public_assistance_without_earned_income_disregard
+  kind: input
+  name: working_applicant_eligible_for_public_assistance_without_earned_income_disregard
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#input.working_applicant_received_public_assistance_in_one_of_previous_four_months
+  kind: input
+  name: working_applicant_received_public_assistance_in_one_of_previous_four_months
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#input.family_size
+  kind: input
+  name: family_size
+  entity: Household
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#input.household_has_verified_rental_obligation
+  kind: input
+  name: household_has_verified_rental_obligation
+  entity: Household
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#input.household_size
+  kind: input
+  name: household_size
+  entity: Household
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#input.monthly_rent_amount_actually_paid
+  kind: input
+  name: monthly_rent_amount_actually_paid
+  entity: Household
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#input.number_of_persons_in_household
+  kind: input
+  name: number_of_persons_in_household
+  entity: Household
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#input.nyc_school_tax_credit_rate_reduction_head_of_household_table_applies
+  kind: input
+  name: nyc_school_tax_credit_rate_reduction_head_of_household_table_applies
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#input.nyc_school_tax_credit_rate_reduction_joint_table_applies
+  kind: input
+  name: nyc_school_tax_credit_rate_reduction_joint_table_applies
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#input.nyc_school_tax_credit_rate_reduction_single_table_applies
+  kind: input
+  name: nyc_school_tax_credit_rate_reduction_single_table_applies
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#input.nyc_taxable_income
+  kind: input
+  name: nyc_taxable_income
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.fagi
+  kind: input
+  name: fagi
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.form_it216_line_14_amount
+  kind: input
+  name: form_it216_line_14_amount
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.form_it216_line_23_amount
+  kind: input
+  name: form_it216_line_23_amount
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.form_it216_line_3a_amount
+  kind: input
+  name: form_it216_line_3a_amount
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.form_it360_1_line_18_column_a_amount
+  kind: input
+  name: form_it360_1_line_18_column_a_amount
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.form_it360_1_line_18_column_b_amount
+  kind: input
+  name: form_it360_1_line_18_column_b_amount
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.has_child_under_four_years_old
+  kind: input
+  name: has_child_under_four_years_old
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.is_full_year_new_york_city_resident
+  kind: input
+  name: is_full_year_new_york_city_resident
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.is_part_year_new_york_city_resident
+  kind: input
+  name: is_part_year_new_york_city_resident
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.new_york_city_tax_liability_for_credit
+  kind: input
+  name: new_york_city_tax_liability_for_credit
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.nyc_child_dependent_care_credit_limitation_table_decimal_amount
+  kind: input
+  name: nyc_child_dependent_care_credit_limitation_table_decimal_amount
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#input.qualifies_for_new_york_state_child_dependent_care_credit
+  kind: input
+  name: qualifies_for_new_york_state_child_dependent_care_credit
+  entity: TaxUnit
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#input.household_entitled_to_heap_or_liheaa_payment
+  kind: input
+  name: household_entitled_to_heap_or_liheaa_payment
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#input.household_in_central_meter_housing_charged_only_for_excess_heating_or_cooling
+  kind: input
+  name: household_in_central_meter_housing_charged_only_for_excess_heating_or_cooling
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#input.household_incurred_or_anticipated_heating_or_cooling_costs_separate_from_rent_or_mortgage
+  kind: input
+  name: household_incurred_or_anticipated_heating_or_cooling_costs_separate_from_rent_or_mortgage
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#input.household_resides_in_nassau_or_suffolk_county
+  kind: input
+  name: household_resides_in_nassau_or_suffolk_county
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#input.household_resides_in_new_york_city
+  kind: input
+  name: household_resides_in_new_york_city
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#input.snap_household_has_elderly_or_disabled_member
+  kind: input
+  name: snap_household_has_elderly_or_disabled_member
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#input.household_billed_separately_for_non_telephone_standard_utility
+  kind: input
+  name: household_billed_separately_for_non_telephone_standard_utility
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#input.household_entitled_to_heap_or_liheaa_payment
+  kind: input
+  name: household_entitled_to_heap_or_liheaa_payment
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#input.household_in_central_meter_housing_charged_only_for_excess_heating_or_cooling
+  kind: input
+  name: household_in_central_meter_housing_charged_only_for_excess_heating_or_cooling
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#input.household_incurred_or_anticipated_heating_or_cooling_costs_separate_from_rent_or_mortgage
+  kind: input
+  name: household_incurred_or_anticipated_heating_or_cooling_costs_separate_from_rent_or_mortgage
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#input.household_resides_in_nassau_or_suffolk_county
+  kind: input
+  name: household_resides_in_nassau_or_suffolk_county
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#input.household_resides_in_new_york_city
+  kind: input
+  name: household_resides_in_new_york_city
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#input.snap_heating_cooling_standard_allowance_eligible
+  kind: input
+  name: snap_heating_cooling_standard_allowance_eligible
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#input.household_billed_separately_for_non_telephone_standard_utility
+  kind: input
+  name: household_billed_separately_for_non_telephone_standard_utility
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#input.household_entitled_to_heap_or_liheaa_payment
+  kind: input
+  name: household_entitled_to_heap_or_liheaa_payment
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#input.household_in_central_meter_housing_charged_only_for_excess_heating_or_cooling
+  kind: input
+  name: household_in_central_meter_housing_charged_only_for_excess_heating_or_cooling
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#input.household_incurred_or_anticipated_basic_service_cost_for_one_telephone
+  kind: input
+  name: household_incurred_or_anticipated_basic_service_cost_for_one_telephone
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#input.household_incurred_or_anticipated_heating_or_cooling_costs_separate_from_rent_or_mortgage
+  kind: input
+  name: household_incurred_or_anticipated_heating_or_cooling_costs_separate_from_rent_or_mortgage
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#input.household_resides_in_nassau_or_suffolk_county
+  kind: input
+  name: household_resides_in_nassau_or_suffolk_county
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#input.household_resides_in_new_york_city
+  kind: input
+  name: household_resides_in_new_york_city
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#input.snap_heating_cooling_standard_allowance_eligible
+  kind: input
+  name: snap_heating_cooling_standard_allowance_eligible
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#input.snap_utilities_standard_allowance_eligible
+  kind: input
+  name: snap_utilities_standard_allowance_eligible
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/vi#input.all_household_members_experiencing_homelessness
+  kind: input
+  name: all_household_members_experiencing_homelessness
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/vi
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/vi#input.homeless_household_free_shelter_all_month
+  kind: input
+  name: homeless_household_free_shelter_all_month
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/vi
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/vi#input.homeless_household_has_shelter_costs
+  kind: input
+  name: homeless_household_has_shelter_costs
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/vi
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/vi#input.shelter_costs
+  kind: input
+  name: shelter_costs
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/vi
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/vi#input.snap_homeless_shelter_deduction
+  kind: input
+  name: snap_homeless_shelter_deduction
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/vi
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/vi#input.verified_higher_homeless_shelter_costs
+  kind: input
+  name: verified_higher_homeless_shelter_costs
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/vi
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#input.first_full_month_benefit_level
+  kind: input
+  name: first_full_month_benefit_level
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#input.household_applies_following_more_than_30_days_not_certified
+  kind: input
+  name: household_applies_following_more_than_30_days_not_certified
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#input.household_certified_for_participation_in_food_stamp_program
+  kind: input
+  name: household_certified_for_participation_in_food_stamp_program
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#input.household_is_migrant_or_seasonal_farmworker_household
+  kind: input
+  name: household_is_migrant_or_seasonal_farmworker_household
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#input.household_was_not_certified_for_participation_during_prior_period
+  kind: input
+  name: household_was_not_certified_for_participation_during_prior_period
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#input.proration_factor_from_application_day_to_end_of_initial_month
+  kind: input
+  name: proration_factor_from_application_day_to_end_of_initial_month
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#input.proration_factor_from_release_day_to_end_of_month
+  kind: input
+  name: proration_factor_from_release_day_to_end_of_month
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#input.public_institution_prerelease_joint_ssi_food_stamp_applicant
+  kind: input
+  name: public_institution_prerelease_joint_ssi_food_stamp_applicant
+  entity: Household
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.count_where
+  kind: input
+  name: count_where
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.household_has_earned_income_budgeted_for_snap
+  kind: input
+  name: household_has_earned_income_budgeted_for_snap
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.household_has_out_of_pocket_dependent_care_expenses
+  kind: input
+  name: household_has_out_of_pocket_dependent_care_expenses
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.household_member_disqualified_for_failure_to_comply_with_periodic_reporting_requirements
+  kind: input
+  name: household_member_disqualified_for_failure_to_comply_with_periodic_reporting_requirements
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.household_member_disqualified_for_failure_to_comply_with_work_requirements
+  kind: input
+  name: household_member_disqualified_for_failure_to_comply_with_work_requirements
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.household_member_disqualified_for_intentional_program_violation
+  kind: input
+  name: household_member_disqualified_for_intentional_program_violation
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.household_member_ineligible_to_participate_in_snap
+  kind: input
+  name: household_member_ineligible_to_participate_in_snap
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.household_size
+  kind: input
+  name: household_size
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.member_authorized_to_receive_family_assistance_nonemergency_safety_net_or_ssi_benefits_but_not_yet_paid
+  kind: input
+  name: member_authorized_to_receive_family_assistance_nonemergency_safety_net_or_ssi_benefits_but_not_yet_paid
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.member_determined_eligible_for_family_assistance_or_nonemergency_safety_net_benefits
+  kind: input
+  name: member_determined_eligible_for_family_assistance_or_nonemergency_safety_net_benefits
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.member_family_assistance_nonemergency_safety_net_or_ssi_benefits_suspended_or_being_recouped
+  kind: input
+  name: member_family_assistance_nonemergency_safety_net_or_ssi_benefits_suspended_or_being_recouped
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.member_family_assistance_or_nonemergency_safety_net_grant_amount
+  kind: input
+  name: member_family_assistance_or_nonemergency_safety_net_grant_amount
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.member_paid_family_assistance_or_nonemergency_safety_net_benefits
+  kind: input
+  name: member_paid_family_assistance_or_nonemergency_safety_net_benefits
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.member_receives_family_assistance_nonemergency_safety_net_or_ssi_benefits
+  kind: input
+  name: member_receives_family_assistance_nonemergency_safety_net_or_ssi_benefits
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.snap_gross_monthly_earned_income
+  kind: input
+  name: snap_gross_monthly_earned_income
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.snap_income_exclusions
+  kind: input
+  name: snap_income_exclusions
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#input.snap_total_monthly_unearned_income
+  kind: input
+  name: snap_total_monthly_unearned_income
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#input.city_taxable_income
+  kind: input
+  name: city_taxable_income
+  entity: TaxUnit
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#input.city_taxable_income
+  kind: input
+  name: city_taxable_income
+  entity: TaxUnit
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1706#input.city_pass_through_entity_tax_due
+  kind: input
+  name: city_pass_through_entity_tax_due
+  entity: TaxUnit
+  modules:
+  - us-ny:statutes/NYC/11-1706
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1706#input.electing_city_entity_reported_sufficient_identifying_information
+  kind: input
+  name: electing_city_entity_reported_sufficient_identifying_information
+  entity: TaxUnit
+  modules:
+  - us-ny:statutes/NYC/11-1706
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1706#input.sum_of_direct_shares_of_city_pass_through_entity_tax
+  kind: input
+  name: sum_of_direct_shares_of_city_pass_through_entity_tax
+  entity: TaxUnit
+  modules:
+  - us-ny:statutes/NYC/11-1706
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1706#input.sum_of_reported_direct_shares_of_city_pass_through_entity_tax
+  kind: input
+  name: sum_of_reported_direct_shares_of_city_pass_through_entity_tax
+  entity: TaxUnit
+  modules:
+  - us-ny:statutes/NYC/11-1706
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#member_of_household
+  kind: output
+  name: member_of_household
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#ny_snap_excess_shelter_cost
+  kind: output
+  name: ny_snap_excess_shelter_cost
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#shelter_costs
+  kind: output
+  name: shelter_costs
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#snap_eligible
+  kind: output
+  name: snap_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#snap_excess_shelter_deduction
+  kind: output
+  name: snap_excess_shelter_deduction
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#snap_gross_monthly_income
+  kind: output
+  name: snap_gross_monthly_income
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#snap_initial_month_allotment_after_minimum_issuance
+  kind: output
+  name: snap_initial_month_allotment_after_minimum_issuance
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#snap_monthly_household_income
+  kind: output
+  name: snap_monthly_household_income
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#snap_residency_citizenship_eligible
+  kind: output
+  name: snap_residency_citizenship_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#snap_ssn_eligible
+  kind: output
+  name: snap_ssn_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#snap_student_eligible
+  kind: output
+  name: snap_student_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/snap/fy-2026-benefit-calculation#snap_work_requirement_eligible
+  kind: output
+  name: snap_work_requirement_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:policies/otda/snap/fy-2026-benefit-calculation
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#application_asset_limit
+  kind: output
+  name: application_asset_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#application_asset_limit_with_aged_or_disabled_member
+  kind: output
+  name: application_asset_limit_with_aged_or_disabled_member
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#application_resource_limit
+  kind: output
+  name: application_resource_limit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#asset_amount_exempt_from_resource_test
+  kind: output
+  name: asset_amount_exempt_from_resource_test
+  entity: Asset
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#assistance_amount_after_income_disregards
+  kind: output
+  name: assistance_amount_after_income_disregards
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#automobile_fair_market_value_exemption_limit
+  kind: output
+  name: automobile_fair_market_value_exemption_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#countable_asset_amount
+  kind: output
+  name: countable_asset_amount
+  entity: Asset
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#earned_income_disregard_applies_in_application_month
+  kind: output
+  name: earned_income_disregard_applies_in_application_month
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#earned_income_disregard_rate
+  kind: output
+  name: earned_income_disregard_rate
+  dtype: Rate
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#expanded_earned_income_disregard_fpl_limit_ratio
+  kind: output
+  name: expanded_earned_income_disregard_fpl_limit_ratio
+  dtype: Rate
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#funeral_agreement_equity_exemption_limit
+  kind: output
+  name: funeral_agreement_equity_exemption_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#person_ineligible_for_public_assistance_for_failing_screening_or_assessment
+  kind: output
+  name: person_ineligible_for_public_assistance_for_failing_screening_or_assessment
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#qualified_work_activity_earned_income_disregard_applies
+  kind: output
+  name: qualified_work_activity_earned_income_disregard_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#qualified_work_activity_earned_income_disregarded_amount
+  kind: output
+  name: qualified_work_activity_earned_income_disregarded_amount
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#recipient_asset_limit
+  kind: output
+  name: recipient_asset_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#recipient_resource_limit
+  kind: output
+  name: recipient_resource_limit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#recipient_tuition_account_exemption_limit
+  kind: output
+  name: recipient_tuition_account_exemption_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#recipient_vehicle_purchase_account_exemption_limit
+  kind: output
+  name: recipient_vehicle_purchase_account_exemption_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#regular_earned_income_disregarded_amount
+  kind: output
+  name: regular_earned_income_disregarded_amount
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#treatment_first_instance_disqualification_days
+  kind: output
+  name: treatment_first_instance_disqualification_days
+  dtype: Count
+  period: Day
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#treatment_nonparticipation_disqualification_minimum_days
+  kind: output
+  name: treatment_nonparticipation_disqualification_minimum_days
+  entity: Person
+  dtype: Count
+  period: Day
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#treatment_second_instance_disqualification_days
+  kind: output
+  name: treatment_second_instance_disqualification_days
+  dtype: Count
+  period: Day
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#treatment_third_or_subsequent_instance_disqualification_days
+  kind: output
+  name: treatment_third_or_subsequent_instance_disqualification_days
+  dtype: Count
+  period: Day
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#unsubsidized_employment_disregard_month_limit
+  kind: output
+  name: unsubsidized_employment_disregard_month_limit
+  dtype: Count
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#unsubsidized_employment_disregard_rate
+  kind: output
+  name: unsubsidized_employment_disregard_rate
+  dtype: Rate
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#unsubsidized_employment_earned_income_disregarded_amount
+  kind: output
+  name: unsubsidized_employment_earned_income_disregarded_amount
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#unsubsidized_employment_full_earned_income_disregard_applies
+  kind: output
+  name: unsubsidized_employment_full_earned_income_disregard_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards#work_disregard_amount
+  kind: output
+  name: work_disregard_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#household_size_threshold_for_each_additional_person
+  kind: output
+  name: household_size_threshold_for_each_additional_person
+  dtype: Count
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_grant_and_allowance_each_additional_person
+  kind: output
+  name: monthly_grant_and_allowance_each_additional_person
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_grant_and_allowance_exclusive_of_home_energy
+  kind: output
+  name: monthly_grant_and_allowance_exclusive_of_home_energy
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_grant_and_allowance_exclusive_of_home_energy_schedule
+  kind: output
+  name: monthly_grant_and_allowance_exclusive_of_home_energy_schedule
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_grant_and_allowance_with_home_energy
+  kind: output
+  name: monthly_grant_and_allowance_with_home_energy
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_home_energy_payment
+  kind: output
+  name: monthly_home_energy_payment
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_home_energy_payment_each_additional_person
+  kind: output
+  name: monthly_home_energy_payment_each_additional_person
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_home_energy_payment_schedule
+  kind: output
+  name: monthly_home_energy_payment_schedule
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_rent_allowance_with_children
+  kind: output
+  name: monthly_rent_allowance_with_children
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_shelter_allowance_with_children_maximum
+  kind: output
+  name: monthly_shelter_allowance_with_children_maximum
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_supplemental_home_energy_payment
+  kind: output
+  name: monthly_supplemental_home_energy_payment
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_supplemental_home_energy_payment_each_additional_person
+  kind: output
+  name: monthly_supplemental_home_energy_payment_each_additional_person
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#monthly_supplemental_home_energy_payment_schedule
+  kind: output
+  name: monthly_supplemental_home_energy_payment_schedule
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#regular_recurring_monthly_need
+  kind: output
+  name: regular_recurring_monthly_need
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#regular_recurring_monthly_need_each_additional_person
+  kind: output
+  name: regular_recurring_monthly_need_each_additional_person
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant#regular_recurring_monthly_need_schedule
+  kind: output
+  name: regular_recurring_monthly_need_schedule
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_head_of_household_first_band_upper_bound
+  kind: output
+  name: nyc_school_tax_credit_head_of_household_first_band_upper_bound
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_head_of_household_second_band_base_amount
+  kind: output
+  name: nyc_school_tax_credit_head_of_household_second_band_base_amount
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_head_of_household_second_band_upper_bound
+  kind: output
+  name: nyc_school_tax_credit_head_of_household_second_band_upper_bound
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_joint_first_band_upper_bound
+  kind: output
+  name: nyc_school_tax_credit_joint_first_band_upper_bound
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_joint_second_band_base_amount
+  kind: output
+  name: nyc_school_tax_credit_joint_second_band_base_amount
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_joint_second_band_upper_bound
+  kind: output
+  name: nyc_school_tax_credit_joint_second_band_upper_bound
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_rate_reduction_amount
+  kind: output
+  name: nyc_school_tax_credit_rate_reduction_amount
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: nyc_school_tax_credit_rate_reduction_amount
+      comparison: money
+      program: tax
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_rate_reduction_excess_rate
+  kind: output
+  name: nyc_school_tax_credit_rate_reduction_excess_rate
+  dtype: Rate
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_rate_reduction_low_rate
+  kind: output
+  name: nyc_school_tax_credit_rate_reduction_low_rate
+  dtype: Rate
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_single_first_band_upper_bound
+  kind: output
+  name: nyc_school_tax_credit_single_first_band_upper_bound
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_single_second_band_base_amount
+  kind: output
+  name: nyc_school_tax_credit_single_second_band_base_amount
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction#nyc_school_tax_credit_single_second_band_upper_bound
+  kind: output
+  name: nyc_school_tax_credit_single_second_band_upper_bound
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-201-instructions/nyc-school-tax-credit-rate-reduction
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#form_it216_line_24_nyc_child_dependent_care_credit
+  kind: output
+  name: form_it216_line_24_nyc_child_dependent_care_credit
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#form_it216_line_4_child_care_expense_ratio
+  kind: output
+  name: form_it216_line_4_child_care_expense_ratio
+  entity: TaxUnit
+  dtype: Rate
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#form_it216_line_5_prorated_state_credit
+  kind: output
+  name: form_it216_line_5_prorated_state_credit
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#maximum_nyc_credit_limitation_rate
+  kind: output
+  name: maximum_nyc_credit_limitation_rate
+  dtype: Rate
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#nyc_child_dependent_care_credit_before_part_year_allocation
+  kind: output
+  name: nyc_child_dependent_care_credit_before_part_year_allocation
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#nyc_credit_fagi_threshold
+  kind: output
+  name: nyc_credit_fagi_threshold
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#nyc_credit_limitation_decimal_amount
+  kind: output
+  name: nyc_credit_limitation_decimal_amount
+  entity: TaxUnit
+  dtype: Rate
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#part_year_excess_nyc_child_dependent_care_credit
+  kind: output
+  name: part_year_excess_nyc_child_dependent_care_credit
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#part_year_nonrefundable_nyc_child_dependent_care_credit
+  kind: output
+  name: part_year_nonrefundable_nyc_child_dependent_care_credit
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#part_year_resident_period_income_ratio
+  kind: output
+  name: part_year_resident_period_income_ratio
+  entity: TaxUnit
+  dtype: Rate
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#qualifies_for_nyc_child_dependent_care_credit
+  kind: output
+  name: qualifies_for_nyc_child_dependent_care_credit
+  entity: TaxUnit
+  dtype: Judgment
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#refundable_part_year_nyc_child_dependent_care_credit
+  kind: output
+  name: refundable_part_year_nyc_child_dependent_care_credit
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit#worksheet_ratio_cap
+  kind: output
+  name: worksheet_ratio_cap
+  dtype: Rate
+  modules:
+  - us-ny:policies/tax/it-216-instructions/nyc-child-dependent-care-credit
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/385/3#restates_abawd_time_limit_eligibility
+  kind: output
+  name: restates_abawd_time_limit_eligibility
+  modules:
+  - us-ny:regulations/18-nycrr/385/3
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/385/3#restates_general_work_requirement_eligibility
+  kind: output
+  name: restates_general_work_requirement_eligibility
+  modules:
+  - us-ny:regulations/18-nycrr/385/3
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/385/3#restates_work_requirement_eligibility
+  kind: output
+  name: restates_work_requirement_eligibility
+  modules:
+  - us-ny:regulations/18-nycrr/385/3
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/10#restates_gross_income_limit_130_percent_fpl
+  kind: output
+  name: restates_gross_income_limit_130_percent_fpl
+  modules:
+  - us-ny:regulations/18-nycrr/387/10
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/10#restates_net_income_limit_100_percent_fpl
+  kind: output
+  name: restates_net_income_limit_100_percent_fpl
+  modules:
+  - us-ny:regulations/18-nycrr/387/10
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/10#restates_standard_income_eligibility
+  kind: output
+  name: restates_standard_income_eligibility
+  modules:
+  - us-ny:regulations/18-nycrr/387/10
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/a#restates_standard_deduction
+  kind: output
+  name: restates_standard_deduction
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/b#restates_earned_income_deduction
+  kind: output
+  name: restates_earned_income_deduction
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#heating_cooling_standard_amount_nassau_suffolk
+  kind: output
+  name: heating_cooling_standard_amount_nassau_suffolk
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#heating_cooling_standard_amount_new_york_city
+  kind: output
+  name: heating_cooling_standard_amount_new_york_city
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#heating_cooling_standard_amount_rest_of_state
+  kind: output
+  name: heating_cooling_standard_amount_rest_of_state
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#sets_snap_heating_cooling_standard_allowance
+  kind: output
+  name: sets_snap_heating_cooling_standard_allowance
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#snap_heating_cooling_standard_allowance_eligible
+  kind: output
+  name: snap_heating_cooling_standard_allowance_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/a#snap_standard_utility_allowance
+  kind: output
+  name: snap_standard_utility_allowance
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/a
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: snap_standard_utility_allowance
+      comparison: money
+      program: snap
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#sets_snap_utilities_standard_allowance
+  kind: output
+  name: sets_snap_utilities_standard_allowance
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#snap_limited_utility_allowance
+  kind: output
+  name: snap_limited_utility_allowance
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: snap_limited_utility_allowance
+      comparison: money
+      program: snap
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#snap_utilities_standard_allowance_eligible
+  kind: output
+  name: snap_utilities_standard_allowance_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#utilities_standard_amount_nassau_suffolk
+  kind: output
+  name: utilities_standard_amount_nassau_suffolk
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#utilities_standard_amount_new_york_city
+  kind: output
+  name: utilities_standard_amount_new_york_city
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/b#utilities_standard_amount_rest_of_state
+  kind: output
+  name: utilities_standard_amount_rest_of_state
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/b
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#sets_snap_telephone_utility_allowance
+  kind: output
+  name: sets_snap_telephone_utility_allowance
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#snap_individual_utility_allowance
+  kind: output
+  name: snap_individual_utility_allowance
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: snap_individual_utility_allowance
+      comparison: money
+      program: snap
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#snap_telephone_standard_allowance_eligible
+  kind: output
+  name: snap_telephone_standard_allowance_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/v/c#telephone_standard_allowance_amount
+  kind: output
+  name: telephone_standard_allowance_amount
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/v/c
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/vi#restates_homeless_shelter_deduction
+  kind: output
+  name: restates_homeless_shelter_deduction
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/vi
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/12/f/3/vi#snap_allowable_shelter_costs
+  kind: output
+  name: snap_allowable_shelter_costs
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/12/f/3/vi
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#initial_month_benefit_level
+  kind: output
+  name: initial_month_benefit_level
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/1#initial_month_of_certification
+  kind: output
+  name: initial_month_of_certification
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#family_assistance_or_safety_net_minimum_payable_grant_amount
+  kind: output
+  name: family_assistance_or_safety_net_minimum_payable_grant_amount
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#member_has_family_assistance_nonemergency_safety_net_or_ssi_categorical_status
+  kind: output
+  name: member_has_family_assistance_nonemergency_safety_net_or_ssi_categorical_status
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_all_members_public_assistance_categorical_path_satisfied
+  kind: output
+  name: ny_snap_all_members_public_assistance_categorical_path_satisfied
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_categorical_eligibility_130_percent_fpl_ratio
+  kind: output
+  name: ny_snap_categorical_eligibility_130_percent_fpl_ratio
+  dtype: Rate
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_categorical_eligibility_150_percent_fpl_ratio
+  kind: output
+  name: ny_snap_categorical_eligibility_150_percent_fpl_ratio
+  dtype: Rate
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_categorical_eligibility_200_percent_fpl_ratio
+  kind: output
+  name: ny_snap_categorical_eligibility_200_percent_fpl_ratio
+  dtype: Rate
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_categorical_gross_income_limit_130_percent_fpl
+  kind: output
+  name: ny_snap_categorical_gross_income_limit_130_percent_fpl
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_categorical_gross_income_limit_150_percent_fpl
+  kind: output
+  name: ny_snap_categorical_gross_income_limit_150_percent_fpl
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_categorical_gross_income_limit_200_percent_fpl
+  kind: output
+  name: ny_snap_categorical_gross_income_limit_200_percent_fpl
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_categorical_member_of_household
+  kind: output
+  name: ny_snap_categorical_member_of_household
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_categorically_eligible
+  kind: output
+  name: ny_snap_categorically_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_dependent_care_200_percent_categorical_path_satisfied
+  kind: output
+  name: ny_snap_dependent_care_200_percent_categorical_path_satisfied
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_earned_income_150_percent_categorical_path_satisfied
+  kind: output
+  name: ny_snap_earned_income_150_percent_categorical_path_satisfied
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_elderly_disabled_200_percent_categorical_path_satisfied
+  kind: output
+  name: ny_snap_elderly_disabled_200_percent_categorical_path_satisfied
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#ny_snap_residual_130_percent_categorical_path_satisfied
+  kind: output
+  name: ny_snap_residual_130_percent_categorical_path_satisfied
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#relates_all_member_pa_ssi_status_to_federal_regular_categorical_eligibility
+  kind: output
+  name: relates_all_member_pa_ssi_status_to_federal_regular_categorical_eligibility
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#snap_categorically_eligible_for_resource_exemption
+  kind: output
+  name: snap_categorically_eligible_for_resource_exemption
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/14/a/5#snap_income_limit_exemption_for_categorically_eligible_household
+  kind: output
+  name: snap_income_limit_exemption_for_categorically_eligible_household
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ny:regulations/18-nycrr/387/14/a/5
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/9/a/1#restates_state_residency
+  kind: output
+  name: restates_state_residency
+  modules:
+  - us-ny:regulations/18-nycrr/387/9/a/1
+  occurrences: 1
+- id: us-ny:regulations/18-nycrr/387/9/a/2#restates_citizenship_or_alien_status_eligibility
+  kind: output
+  name: restates_citizenship_or_alien_status_eligibility
+  modules:
+  - us-ny:regulations/18-nycrr/387/9/a/2
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#head_of_household_excess_floor
+  kind: output
+  name: head_of_household_excess_floor
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#head_of_household_first_bracket_ceiling
+  kind: output
+  name: head_of_household_first_bracket_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#head_of_household_second_bracket_ceiling
+  kind: output
+  name: head_of_household_second_bracket_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#head_of_household_tax_band
+  kind: output
+  name: head_of_household_tax_band
+  entity: TaxUnit
+  dtype: Integer
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#head_of_household_third_bracket_ceiling
+  kind: output
+  name: head_of_household_third_bracket_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#joint_or_surviving_spouse_excess_floor
+  kind: output
+  name: joint_or_surviving_spouse_excess_floor
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#joint_or_surviving_spouse_first_bracket_ceiling
+  kind: output
+  name: joint_or_surviving_spouse_first_bracket_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#joint_or_surviving_spouse_second_bracket_ceiling
+  kind: output
+  name: joint_or_surviving_spouse_second_bracket_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#joint_or_surviving_spouse_tax_band
+  kind: output
+  name: joint_or_surviving_spouse_tax_band
+  entity: TaxUnit
+  dtype: Integer
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#joint_or_surviving_spouse_third_bracket_ceiling
+  kind: output
+  name: joint_or_surviving_spouse_third_bracket_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#other_resident_excess_floor
+  kind: output
+  name: other_resident_excess_floor
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#other_resident_first_bracket_ceiling
+  kind: output
+  name: other_resident_first_bracket_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#other_resident_second_bracket_ceiling
+  kind: output
+  name: other_resident_second_bracket_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#other_resident_tax_band
+  kind: output
+  name: other_resident_tax_band
+  entity: TaxUnit
+  dtype: Integer
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#other_resident_third_bracket_ceiling
+  kind: output
+  name: other_resident_third_bracket_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_a_head_of_household_base_tax
+  kind: output
+  name: subdivision_a_head_of_household_base_tax
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_a_head_of_household_bracket_rate
+  kind: output
+  name: subdivision_a_head_of_household_bracket_rate
+  dtype: Rate
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_a_head_of_household_tax
+  kind: output
+  name: subdivision_a_head_of_household_tax
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_a_joint_or_surviving_spouse_base_tax
+  kind: output
+  name: subdivision_a_joint_or_surviving_spouse_base_tax
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_a_joint_or_surviving_spouse_bracket_rate
+  kind: output
+  name: subdivision_a_joint_or_surviving_spouse_bracket_rate
+  dtype: Rate
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_a_joint_or_surviving_spouse_tax
+  kind: output
+  name: subdivision_a_joint_or_surviving_spouse_tax
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_a_other_resident_base_tax
+  kind: output
+  name: subdivision_a_other_resident_base_tax
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_a_other_resident_bracket_rate
+  kind: output
+  name: subdivision_a_other_resident_bracket_rate
+  dtype: Rate
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_a_other_resident_tax
+  kind: output
+  name: subdivision_a_other_resident_tax
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_b_head_of_household_base_tax
+  kind: output
+  name: subdivision_b_head_of_household_base_tax
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_b_head_of_household_bracket_rate
+  kind: output
+  name: subdivision_b_head_of_household_bracket_rate
+  dtype: Rate
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_b_head_of_household_tax
+  kind: output
+  name: subdivision_b_head_of_household_tax
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_b_joint_or_surviving_spouse_base_tax
+  kind: output
+  name: subdivision_b_joint_or_surviving_spouse_base_tax
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_b_joint_or_surviving_spouse_bracket_rate
+  kind: output
+  name: subdivision_b_joint_or_surviving_spouse_bracket_rate
+  dtype: Rate
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_b_joint_or_surviving_spouse_tax
+  kind: output
+  name: subdivision_b_joint_or_surviving_spouse_tax
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_b_other_resident_base_tax
+  kind: output
+  name: subdivision_b_other_resident_base_tax
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_b_other_resident_bracket_rate
+  kind: output
+  name: subdivision_b_other_resident_bracket_rate
+  dtype: Rate
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1701#subdivision_b_other_resident_tax
+  kind: output
+  name: subdivision_b_other_resident_tax
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1701
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#general_additional_tax_rate
+  kind: output
+  name: general_additional_tax_rate
+  dtype: Rate
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#general_head_of_household_additional_tax
+  kind: output
+  name: general_head_of_household_additional_tax
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#general_joint_or_surviving_spouse_additional_tax
+  kind: output
+  name: general_joint_or_surviving_spouse_additional_tax
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#general_other_resident_additional_tax
+  kind: output
+  name: general_other_resident_additional_tax
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#temporary_base_portion_additional_tax_rate
+  kind: output
+  name: temporary_base_portion_additional_tax_rate
+  dtype: Rate
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#temporary_excess_portion_additional_tax_rate
+  kind: output
+  name: temporary_excess_portion_additional_tax_rate
+  dtype: Rate
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#temporary_head_of_household_threshold
+  kind: output
+  name: temporary_head_of_household_threshold
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#temporary_joint_or_surviving_spouse_threshold
+  kind: output
+  name: temporary_joint_or_surviving_spouse_threshold
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1704/1#temporary_other_resident_threshold
+  kind: output
+  name: temporary_other_resident_threshold
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ny:statutes/NYC/11-1704/1
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1706#city_pass_through_entity_tax_credit
+  kind: output
+  name: city_pass_through_entity_tax_credit
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1706
+  occurrences: 1
+- id: us-ny:statutes/NYC/11-1706#city_pass_through_entity_tax_credit_overpayment
+  kind: output
+  name: city_pass_through_entity_tax_credit_overpayment
+  entity: TaxUnit
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ny:statutes/NYC/11-1706
+  occurrences: 1

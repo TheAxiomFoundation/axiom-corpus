@@ -1,0 +1,414 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-mi
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 2
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 35
+input_count: 14
+output_count: 21
+concepts:
+- id: us-mi:policies/mdhhs/bridges/bem/660#input.person_is_1619_recipient
+  kind: input
+  name: person_is_1619_recipient
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/bridges/bem/660
+  occurrences: 1
+- id: us-mi:policies/mdhhs/bridges/bem/660#input.person_is_ssi_recipient
+  kind: input
+  name: person_is_ssi_recipient
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/bridges/bem/660
+  occurrences: 1
+- id: us-mi:policies/mdhhs/bridges/bem/660#input.person_lives_in_household_of_another
+  kind: input
+  name: person_lives_in_household_of_another
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/bridges/bem/660
+  occurrences: 1
+- id: us-mi:policies/mdhhs/bridges/bem/660#input.person_lives_independently
+  kind: input
+  name: person_lives_independently
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/bridges/bem/660
+  occurrences: 1
+- id: us-mi:policies/mdhhs/bridges/bem/660#input.person_received_only_retroactive_or_supplemental_federal_ssi_benefit
+  kind: input
+  name: person_received_only_retroactive_or_supplemental_federal_ssi_benefit
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/bridges/bem/660
+  occurrences: 1
+- id: us-mi:policies/mdhhs/bridges/bem/660#input.person_received_regular_first_of_month_federal_ssi_benefit
+  kind: input
+  name: person_received_regular_first_of_month_federal_ssi_benefit
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/bridges/bem/660
+  occurrences: 1
+- id: us-mi:policies/mdhhs/rft/248#input.person_is_eligible_child
+  kind: input
+  name: person_is_eligible_child
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+- id: us-mi:policies/mdhhs/rft/248#input.person_is_member_of_intact_couple
+  kind: input
+  name: person_is_member_of_intact_couple
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+- id: us-mi:policies/mdhhs/rft/248#input.person_lives_in_domiciliary_care
+  kind: input
+  name: person_lives_in_domiciliary_care
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+- id: us-mi:policies/mdhhs/rft/248#input.person_lives_in_home_for_aged
+  kind: input
+  name: person_lives_in_home_for_aged
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+- id: us-mi:policies/mdhhs/rft/248#input.person_lives_in_household_of_another
+  kind: input
+  name: person_lives_in_household_of_another
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+- id: us-mi:policies/mdhhs/rft/248#input.person_lives_in_institution
+  kind: input
+  name: person_lives_in_institution
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+- id: us-mi:policies/mdhhs/rft/248#input.person_lives_in_personal_care
+  kind: input
+  name: person_lives_in_personal_care
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+- id: us-mi:policies/mdhhs/rft/248#input.person_lives_independently
+  kind: input
+  name: person_lives_independently
+  entity: Person
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+- id: us-mi:policies/mdhhs/bridges/bem/660#mi_ssp_eligible
+  kind: output
+  name: mi_ssp_eligible
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/bridges/bem/660
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mi_ssp_eligible
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#adult_foster_care_couple_recipient_retained_allowance
+  kind: output
+  name: adult_foster_care_couple_recipient_retained_allowance
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#adult_foster_care_individual_recipient_retained_allowance
+  kind: output
+  name: adult_foster_care_individual_recipient_retained_allowance
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#domiciliary_care_couple_dhs_supplement
+  kind: output
+  name: domiciliary_care_couple_dhs_supplement
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.couple
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#domiciliary_care_individual_dhs_supplement
+  kind: output
+  name: domiciliary_care_individual_dhs_supplement
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.individual
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#eligible_child_state_ssi_payment
+  kind: output
+  name: eligible_child_state_ssi_payment
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#essential_person_payment
+  kind: output
+  name: essential_person_payment
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#extended_care_waiver_income_limit
+  kind: output
+  name: extended_care_waiver_income_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#extended_care_waiver_income_limit_multiplier
+  kind: output
+  name: extended_care_waiver_income_limit_multiplier
+  dtype: Integer
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#federal_ssi_benefit_rate
+  kind: output
+  name: federal_ssi_benefit_rate
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#home_for_aged_couple_dhs_supplement
+  kind: output
+  name: home_for_aged_couple_dhs_supplement
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.couple
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#home_for_aged_individual_dhs_supplement
+  kind: output
+  name: home_for_aged_individual_dhs_supplement
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.individual
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#household_of_another_couple_state_ssi_payment
+  kind: output
+  name: household_of_another_couple_state_ssi_payment
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.couple
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#household_of_another_individual_state_ssi_payment
+  kind: output
+  name: household_of_another_individual_state_ssi_payment
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.individual
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#independent_living_couple_state_ssi_payment
+  kind: output
+  name: independent_living_couple_state_ssi_payment
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.couple
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#independent_living_individual_state_ssi_payment
+  kind: output
+  name: independent_living_individual_state_ssi_payment
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.individual
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#institution_couple_dhs_supplement
+  kind: output
+  name: institution_couple_dhs_supplement
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.couple
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#institution_individual_dhs_supplement
+  kind: output
+  name: institution_individual_dhs_supplement
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.individual
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#mi_ssp_person
+  kind: output
+  name: mi_ssp_person
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mi_ssp_person
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#personal_care_couple_dhs_supplement
+  kind: output
+  name: personal_care_couple_dhs_supplement
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.couple
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mi:policies/mdhhs/rft/248#personal_care_individual_dhs_supplement
+  kind: output
+  name: personal_care_individual_dhs_supplement
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mi:policies/mdhhs/rft/248
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mi.mdhhs.ssp.payment.individual
+      comparison: money
+      program: ssi_state_supplement

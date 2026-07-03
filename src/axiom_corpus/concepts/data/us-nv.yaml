@@ -1,0 +1,191 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-nv
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 1
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 24
+input_count: 13
+output_count: 11
+concepts:
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.ceil
+  kind: input
+  name: ceil
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.earned_income_in_terminating_household
+  kind: input
+  name: earned_income_in_terminating_household
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.employment_retention_payment_month_number
+  kind: input
+  name: employment_retention_payment_month_number
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.federal_poverty_level_for_family_size
+  kind: input
+  name: federal_poverty_level_for_family_size
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.floor
+  kind: input
+  name: floor
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.household_due_to_terminate_for_excess_income
+  kind: input
+  name: household_due_to_terminate_for_excess_income
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.maximum_snap_allotment_for_household_size
+  kind: input
+  name: maximum_snap_allotment_for_household_size
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.payment_after_overpayment_recoupment_processed
+  kind: input
+  name: payment_after_overpayment_recoupment_processed
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.snap_net_income
+  kind: input
+  name: snap_net_income
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.supplemental_payment_due
+  kind: input
+  name: supplemental_payment_due
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.tanf_net_income_after_disregards_and_dependent_care_deductions
+  kind: input
+  name: tanf_net_income_after_disregards_and_dependent_care_deductions
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.tanf_payment_allowance_for_household_size
+  kind: input
+  name: tanf_payment_allowance_for_household_size
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#input.total_income_for_tanf_gross_income_test
+  kind: input
+  name: total_income_for_tanf_gross_income_test
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#earned_income_for_employment_retention_payment_minimum
+  kind: output
+  name: earned_income_for_employment_retention_payment_minimum
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#employment_retention_payment
+  kind: output
+  name: employment_retention_payment
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#employment_retention_payment_amount
+  kind: output
+  name: employment_retention_payment_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#employment_retention_payment_duration_months
+  kind: output
+  name: employment_retention_payment_duration_months
+  dtype: Count
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#employment_retention_payment_eligible
+  kind: output
+  name: employment_retention_payment_eligible
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#monthly_snap_allotment
+  kind: output
+  name: monthly_snap_allotment
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#nv_tanf
+  kind: output
+  name: nv_tanf
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#snap_net_income_reduction_rate
+  kind: output
+  name: snap_net_income_reduction_rate
+  dtype: Rate
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#tanf_cash_gross_income_test_passes
+  kind: output
+  name: tanf_cash_gross_income_test_passes
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#tanf_gross_income_poverty_test_rate
+  kind: output
+  name: tanf_gross_income_poverty_test_rate
+  dtype: Rate
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1
+- id: us-nv:policies/dwss/eligibility-payments/a-600/page-38#tanf_minimum_issuable_benefit
+  kind: output
+  name: tanf_minimum_issuable_benefit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-nv:policies/dwss/eligibility-payments/a-600/page-38
+  occurrences: 1

@@ -79,6 +79,11 @@ Repository = "https://github.com/TheAxiomFoundation/axiom-corpus"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+# Ship the checked-in concept registry as package data so the loader resolves
+# it from an installed wheel, not just an editable checkout.
+"axiom_corpus.concepts" = ["data/*.yaml"]
+
 [tool.ruff]
 line-length = 100
 target-version = "py314"

@@ -1,0 +1,988 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-dc
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 5
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 100
+input_count: 28
+output_count: 72
+concepts:
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#input.federal_payment_code
+  kind: input
+  name: federal_payment_code
+  entity: Household
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#input.state_os_code
+  kind: input
+  name: state_os_code
+  entity: Household
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#input.federal_payment_code
+  kind: input
+  name: federal_payment_code
+  entity: Person
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#input.state_os_code
+  kind: input
+  name: state_os_code
+  entity: Person
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#input.adult_foster_care_home_resident_count
+  kind: input
+  name: adult_foster_care_home_resident_count
+  entity: Person
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#input.department_of_health_certification_received
+  kind: input
+  name: department_of_health_certification_received
+  entity: Person
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#input.recipient_eligible_for_optional_supplement
+  kind: input
+  name: recipient_eligible_for_optional_supplement
+  entity: Person
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#input.recipient_is_adult_foster_care_home_resident
+  kind: input
+  name: recipient_is_adult_foster_care_home_resident
+  entity: Person
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#input.recipient_is_title_xix_facility_resident
+  kind: input
+  name: recipient_is_title_xix_facility_resident
+  entity: Person
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#input.recipient_waived_optional_supplement
+  kind: input
+  name: recipient_waived_optional_supplement
+  entity: Person
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.assisted_living_residence_resident_count
+  kind: input
+  name: assisted_living_residence_resident_count
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.community_residence_facility_capacity
+  kind: input
+  name: community_residence_facility_capacity
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.community_residence_facility_resident_count
+  kind: input
+  name: community_residence_facility_resident_count
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.district_of_columbia_resident
+  kind: input
+  name: district_of_columbia_resident
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.mayor_rulemaking_clothing_and_personal_needs_increase
+  kind: input
+  name: mayor_rulemaking_clothing_and_personal_needs_increase
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.recipient_is_in_halfway_house_for_alcoholics_or_drug_addicts
+  kind: input
+  name: recipient_is_in_halfway_house_for_alcoholics_or_drug_addicts
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.recipient_is_in_nursing_home
+  kind: input
+  name: recipient_is_in_nursing_home
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.recipient_lives_in_assisted_living_residence
+  kind: input
+  name: recipient_lives_in_assisted_living_residence
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.recipient_lives_in_community_residence_facility
+  kind: input
+  name: recipient_lives_in_community_residence_facility
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.recipient_receives_general_public_assistance
+  kind: input
+  name: recipient_receives_general_public_assistance
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.recipient_receives_public_assistance
+  kind: input
+  name: recipient_receives_public_assistance
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.recipient_receives_supplemental_security_income
+  kind: input
+  name: recipient_receives_supplemental_security_income
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.recipient_receives_supplemental_security_income_payment_pursuant_to_this_section
+  kind: input
+  name: recipient_receives_supplemental_security_income_payment_pursuant_to_this_section
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.ssi_payment_increase_after_baseline
+  kind: input
+  name: ssi_payment_increase_after_baseline
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.subsection_e_1_applicability_date_has_arrived
+  kind: input
+  name: subsection_e_1_applicability_date_has_arrived
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.supplemental_funds_forwarded_by_district
+  kind: input
+  name: supplemental_funds_forwarded_by_district
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.total_persons_receiving_large_residence_payments_including_recipient
+  kind: input
+  name: total_persons_receiving_large_residence_payments_including_recipient
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#input.total_population_of_district_ssi_recipients_in_community_residence_facility_or_assisted_living_residence
+  kind: input
+  name: total_population_of_district_ssi_recipients_in_community_residence_facility_or_assisted_living_residence
+  entity: Person
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#adult_foster_care_large_couple_state_supplement_level
+  kind: output
+  name: adult_foster_care_large_couple_state_supplement_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.couple
+      parameter_key: OS_B
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#adult_foster_care_large_couple_total_payment_level
+  kind: output
+  name: adult_foster_care_large_couple_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#adult_foster_care_small_couple_state_supplement_level
+  kind: output
+  name: adult_foster_care_small_couple_state_supplement_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.couple
+      parameter_key: OS_A
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#adult_foster_care_small_couple_total_payment_level
+  kind: output
+  name: adult_foster_care_small_couple_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#dc_ossp_couple_federal_payment_level
+  kind: output
+  name: dc_ossp_couple_federal_payment_level
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#dc_ossp_couple_state_supplement_level
+  kind: output
+  name: dc_ossp_couple_state_supplement_level
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.couple
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#dc_ossp_couple_total_payment_level
+  kind: output
+  name: dc_ossp_couple_total_payment_level
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#federal_code_a_couple_fbr
+  kind: output
+  name: federal_code_a_couple_fbr
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#federal_code_a_no_supplement_couple_total_payment_level
+  kind: output
+  name: federal_code_a_no_supplement_couple_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#federal_code_b_couple_fbr_less_vtr
+  kind: output
+  name: federal_code_b_couple_fbr_less_vtr
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#federal_code_b_no_supplement_couple_total_payment_level
+  kind: output
+  name: federal_code_b_no_supplement_couple_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#federal_code_d_couple_title_xix_payment_cap
+  kind: output
+  name: federal_code_d_couple_title_xix_payment_cap
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#no_supplement_couple_state_supplement_level
+  kind: output
+  name: no_supplement_couple_state_supplement_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.couple
+      parameter_key: NONE
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#title_xix_couple_state_supplement_level
+  kind: output
+  name: title_xix_couple_state_supplement_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.couple
+      parameter_key: OS_G
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels#title_xix_couple_total_payment_level
+  kind: output
+  name: title_xix_couple_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-couple-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#adult_foster_care_large_individual_state_supplement_level
+  kind: output
+  name: adult_foster_care_large_individual_state_supplement_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.individual
+      parameter_key: OS_B
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#adult_foster_care_large_individual_total_payment_level
+  kind: output
+  name: adult_foster_care_large_individual_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#adult_foster_care_small_individual_state_supplement_level
+  kind: output
+  name: adult_foster_care_small_individual_state_supplement_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.individual
+      parameter_key: OS_A
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#adult_foster_care_small_individual_total_payment_level
+  kind: output
+  name: adult_foster_care_small_individual_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#dc_ossp_individual_federal_payment_level
+  kind: output
+  name: dc_ossp_individual_federal_payment_level
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#dc_ossp_individual_state_supplement_level
+  kind: output
+  name: dc_ossp_individual_state_supplement_level
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.individual
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#dc_ossp_individual_total_payment_level
+  kind: output
+  name: dc_ossp_individual_total_payment_level
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#federal_code_a_individual_fbr
+  kind: output
+  name: federal_code_a_individual_fbr
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#federal_code_a_no_supplement_individual_total_payment_level
+  kind: output
+  name: federal_code_a_no_supplement_individual_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#federal_code_b_individual_fbr_less_vtr
+  kind: output
+  name: federal_code_b_individual_fbr_less_vtr
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#federal_code_b_no_supplement_individual_total_payment_level
+  kind: output
+  name: federal_code_b_no_supplement_individual_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#federal_code_c_individual_fbr
+  kind: output
+  name: federal_code_c_individual_fbr
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#federal_code_c_no_supplement_individual_total_payment_level
+  kind: output
+  name: federal_code_c_no_supplement_individual_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#federal_code_d_individual_title_xix_payment_cap
+  kind: output
+  name: federal_code_d_individual_title_xix_payment_cap
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#no_supplement_individual_state_supplement_level
+  kind: output
+  name: no_supplement_individual_state_supplement_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.individual
+      parameter_key: NONE
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#title_xix_individual_state_supplement_level
+  kind: output
+  name: title_xix_individual_state_supplement_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.dc.dhcf.ossp.payment.individual
+      parameter_key: OS_G
+      comparison: money
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels#title_xix_individual_total_payment_level
+  kind: output
+  name: title_xix_individual_total_payment_level
+  dtype: Money
+  unit: USD
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-individual-state-supplement-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#adult_foster_care_home_os_code_resident_threshold
+  kind: output
+  name: adult_foster_care_home_os_code_resident_threshold
+  dtype: Count
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#adult_foster_care_large_os_code_applies
+  kind: output
+  name: adult_foster_care_large_os_code_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#adult_foster_care_small_os_code_applies
+  kind: output
+  name: adult_foster_care_small_os_code_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#dc_ossp_living_arrangement_os_code
+  kind: output
+  name: dc_ossp_living_arrangement_os_code
+  entity: Person
+  dtype: String
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#no_supplement_os_code_applies
+  kind: output
+  name: no_supplement_os_code_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#optional_supplement_waived_os_code_applies
+  kind: output
+  name: optional_supplement_waived_os_code_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations#title_xix_facility_os_code_applies
+  kind: output
+  name: title_xix_facility_os_code_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-dc:policies/ssa/poms/si-01415-058/2026/dc-ossp-living-arrangement-variations
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#additional_supplemental_room_board_care_payment_due
+  kind: output
+  name: additional_supplemental_room_board_care_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#halfway_house_clothing_and_personal_needs_amount
+  kind: output
+  name: halfway_house_clothing_and_personal_needs_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#halfway_house_clothing_and_personal_needs_payment_due
+  kind: output
+  name: halfway_house_clothing_and_personal_needs_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#halfway_house_room_board_care_amount
+  kind: output
+  name: halfway_house_room_board_care_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#halfway_house_room_board_care_payment_due
+  kind: output
+  name: halfway_house_room_board_care_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#halfway_house_total_monthly_payment_amount
+  kind: output
+  name: halfway_house_total_monthly_payment_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#halfway_house_total_payment_due
+  kind: output
+  name: halfway_house_total_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#large_assisted_living_residence_minimum_residents
+  kind: output
+  name: large_assisted_living_residence_minimum_residents
+  dtype: Count
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#large_community_residence_facility_capacity_threshold
+  kind: output
+  name: large_community_residence_facility_capacity_threshold
+  dtype: Count
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#large_residence_base_room_board_care_amount
+  kind: output
+  name: large_residence_base_room_board_care_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#large_residence_base_total_payment_amount
+  kind: output
+  name: large_residence_base_total_payment_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#large_residence_clothing_and_personal_needs_payment_due
+  kind: output
+  name: large_residence_clothing_and_personal_needs_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#large_residence_district_payment_person_cap
+  kind: output
+  name: large_residence_district_payment_person_cap
+  dtype: Count
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#large_residence_room_board_care_payment_due
+  kind: output
+  name: large_residence_room_board_care_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#large_residence_total_payment_due
+  kind: output
+  name: large_residence_total_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#nursing_home_clothing_and_personal_needs_amount
+  kind: output
+  name: nursing_home_clothing_and_personal_needs_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#nursing_home_clothing_and_personal_needs_payment_due
+  kind: output
+  name: nursing_home_clothing_and_personal_needs_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#residence_base_clothing_and_personal_needs_amount
+  kind: output
+  name: residence_base_clothing_and_personal_needs_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#small_assisted_living_residence_maximum_residents
+  kind: output
+  name: small_assisted_living_residence_maximum_residents
+  dtype: Count
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#small_community_residence_facility_maximum_residents
+  kind: output
+  name: small_community_residence_facility_maximum_residents
+  dtype: Count
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#small_residence_base_room_board_care_amount
+  kind: output
+  name: small_residence_base_room_board_care_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#small_residence_base_total_payment_amount
+  kind: output
+  name: small_residence_base_total_payment_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#small_residence_clothing_and_personal_needs_payment_due
+  kind: output
+  name: small_residence_clothing_and_personal_needs_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#small_residence_room_board_care_payment_due
+  kind: output
+  name: small_residence_room_board_care_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/49#small_residence_total_payment_due
+  kind: output
+  name: small_residence_total_payment_due
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/49
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/52#assistance_payment_level_by_family_size
+  kind: output
+  name: assistance_payment_level_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/52
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/52#fiscal_year_2014_reduction_rate
+  kind: output
+  name: fiscal_year_2014_reduction_rate
+  dtype: Rate
+  modules:
+  - us-dc:statutes/4/4-205/52
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/52#fiscal_year_2015_reduction_rate
+  kind: output
+  name: fiscal_year_2015_reduction_rate
+  dtype: Rate
+  modules:
+  - us-dc:statutes/4/4-205/52
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/52#fiscal_year_2017_assistance_level_increase_rate
+  kind: output
+  name: fiscal_year_2017_assistance_level_increase_rate
+  dtype: Rate
+  modules:
+  - us-dc:statutes/4/4-205/52
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/52#fiscal_year_2018_assistance_level_increase_rate
+  kind: output
+  name: fiscal_year_2018_assistance_level_increase_rate
+  dtype: Rate
+  modules:
+  - us-dc:statutes/4/4-205/52
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/52#fiscal_year_2019_assistance_level_increase_rate
+  kind: output
+  name: fiscal_year_2019_assistance_level_increase_rate
+  dtype: Rate
+  modules:
+  - us-dc:statutes/4/4-205/52
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/52#standard_payment_level_by_family_size
+  kind: output
+  name: standard_payment_level_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-dc:statutes/4/4-205/52
+  occurrences: 1
+- id: us-dc:statutes/4/4-205/52#time_limit_reduction_after_february_2011
+  kind: output
+  name: time_limit_reduction_after_february_2011
+  dtype: Rate
+  modules:
+  - us-dc:statutes/4/4-205/52
+  occurrences: 1

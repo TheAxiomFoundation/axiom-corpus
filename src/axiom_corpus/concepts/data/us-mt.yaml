@@ -1,0 +1,122 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-mt
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 1
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 9
+input_count: 3
+output_count: 6
+concepts:
+- id: us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420#input.tanf_assistance_unit_size
+  kind: input
+  name: tanf_assistance_unit_size
+  entity: TanfUnit
+  modules:
+  - us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420
+  occurrences: 1
+- id: us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420#input.tanf_cash_assistance_post_employment_program
+  kind: input
+  name: tanf_cash_assistance_post_employment_program
+  entity: TanfUnit
+  modules:
+  - us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420
+  occurrences: 1
+- id: us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420#input.tanf_cash_assistance_post_employment_program_month
+  kind: input
+  name: tanf_cash_assistance_post_employment_program_month
+  entity: TanfUnit
+  modules:
+  - us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420
+  occurrences: 1
+- id: us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420#mt_tanf_benefit_standard
+  kind: output
+  name: mt_tanf_benefit_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mt_tanf_benefit_standard
+      program: tanf
+- id: us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420#mt_tanf_cash_assistance_payment_standard
+  kind: output
+  name: mt_tanf_cash_assistance_payment_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mt_tanf_payment_standard
+      program: tanf
+- id: us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420#mt_tanf_gross_monthly_income_standard
+  kind: output
+  name: mt_tanf_gross_monthly_income_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mt_tanf_gross_income_standard
+      program: tanf
+- id: us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420#mt_tanf_net_monthly_income_standard
+  kind: output
+  name: mt_tanf_net_monthly_income_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mt_tanf_net_income_standard
+      program: tanf
+- id: us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420#mt_tanf_payment_standard
+  kind: output
+  name: mt_tanf_payment_standard
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mt_tanf_payment_standard
+      program: tanf
+- id: us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420#mt_tanf_post_employment_payment_standard
+  kind: output
+  name: mt_tanf_post_employment_payment_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mt:regulations/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf

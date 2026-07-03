@@ -1,0 +1,271 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-ut
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 3
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 28
+input_count: 12
+output_count: 16
+concepts:
+- id: us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits#input.household_size
+  kind: input
+  name: household_size
+  entity: Household
+  modules:
+  - us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.application_completion_requirement_met
+  kind: input
+  name: application_completion_requirement_met
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.household_contains_person_fleeing_felony_prosecution
+  kind: input
+  name: household_contains_person_fleeing_felony_prosecution
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.household_contains_person_violating_parole_or_probation
+  kind: input
+  name: household_contains_person_violating_parole_or_probation
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.household_has_medically_verified_pregnant_woman
+  kind: input
+  name: household_has_medically_verified_pregnant_woman
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.household_satisfies_other_fep_and_r986_100_eligibility_requirements
+  kind: input
+  name: household_satisfies_other_fep_and_r986_100_eligibility_requirements
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.parent_received_same_month_tanf_from_other_state_or_tribe
+  kind: input
+  name: parent_received_same_month_tanf_from_other_state_or_tribe
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.pregnant_woman_calendar_months_prior_to_expected_delivery
+  kind: input
+  name: pregnant_woman_calendar_months_prior_to_expected_delivery
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.qualifying_minor_dependent_child_count
+  kind: input
+  name: qualifying_minor_dependent_child_count
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.school_age_minor_children_attend_school_or_are_exempt
+  kind: input
+  name: school_age_minor_children_attend_school_or_are_exempt
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#input.unborn_child_if_born_and_living_with_woman_in_month_of_payment_would_be_eligible
+  kind: input
+  name: unborn_child_if_born_and_living_with_woman_in_month_of_payment_would_be_eligible
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/230#input.countable_available_asset_equity_value_on_first_day_of_month
+  kind: input
+  name: countable_available_asset_equity_value_on_first_day_of_month
+  entity: Household
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/230
+  occurrences: 1
+- id: us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits#fep_fep_tp_max_assistance
+  kind: output
+  name: fep_fep_tp_max_assistance
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ut_fep_payment_standard
+      program: tanf
+- id: us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits#gross_income_test_limit
+  kind: output
+  name: gross_income_test_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ut_fep_gross_income_eligible
+      program: tanf
+- id: us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits#net_income_test_snb
+  kind: output
+  name: net_income_test_snb
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ut_fep_net_income_eligible
+      program: tanf
+- id: us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits#ut_fep_payment_standard
+  kind: output
+  name: ut_fep_payment_standard
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ut:policies/dws/eligibility-manual/table-1-financial-monthly-income-limits
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: ut_fep_payment_standard
+      comparison: money
+      program: tanf
+- id: us-ut:regulations/admin-rules/r986/200/204#application_completion_deadline_days
+  kind: output
+  name: application_completion_deadline_days
+  dtype: Count
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#minor_child_age_limit
+  kind: output
+  name: minor_child_age_limit
+  dtype: Count
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#older_student_child_age_limit
+  kind: output
+  name: older_student_child_age_limit
+  dtype: Count
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#older_student_child_minimum_age
+  kind: output
+  name: older_student_child_minimum_age
+  dtype: Count
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#qualifying_pregnancy_months_before_expected_delivery
+  kind: output
+  name: qualifying_pregnancy_months_before_expected_delivery
+  dtype: Count
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#required_minor_dependent_child_count
+  kind: output
+  name: required_minor_dependent_child_count
+  dtype: Count
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#school_attendance_maximum_age
+  kind: output
+  name: school_attendance_maximum_age
+  dtype: Count
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#school_attendance_minimum_age
+  kind: output
+  name: school_attendance_minimum_age
+  dtype: Count
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#ut_fep_or_feptp_204_eligibility_component_met
+  kind: output
+  name: ut_fep_or_feptp_204_eligibility_component_met
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/204#ut_fep_or_feptp_demographic_requirement_met
+  kind: output
+  name: ut_fep_or_feptp_demographic_requirement_met
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/204
+  occurrences: 1
+- id: us-ut:regulations/admin-rules/r986/200/230#ut_fep_resource_limit
+  kind: output
+  name: ut_fep_resource_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/230
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ut.dwf.fep.resources.limit.amount
+      comparison: money
+      program: tanf
+- id: us-ut:regulations/admin-rules/r986/200/230#ut_fep_resources_eligible
+  kind: output
+  name: ut_fep_resources_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ut:regulations/admin-rules/r986/200/230
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: ut_fep_resources_eligible
+      comparison: bool
+      program: tanf
