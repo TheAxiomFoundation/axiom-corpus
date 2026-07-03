@@ -994,7 +994,12 @@ def crawl(
     min_files: int,
     log: bool,
 ):
-    """Crawl statutes from official sources.
+    """Crawl statutes from official sources. [DEPRECATED]
+
+    DEPRECATED: superseded by manifest-driven ingest (see CLAUDE.md and the
+    `axiom-corpus-ingest` commands). This command still works but is scheduled
+    for removal after 2026-Q3 unless a consumer objects. Prefer authoring a
+    source manifest and running `axiom-corpus-ingest extract-official-documents`.
 
     JURISDICTION can be:
       - 'all': Crawl all configured states
@@ -1015,7 +1020,26 @@ def crawl(
     """
     import asyncio
     import sys
+    import warnings
     from datetime import datetime
+
+    # Deprecated: superseded by manifest-driven ingest (axiom-corpus-ingest;
+    # see CLAUDE.md). Scheduled for removal after 2026-Q3 unless a consumer
+    # objects. DeprecationWarning is silent by default under the CLI, so also
+    # surface a visible notice on the console.
+    warnings.warn(
+        "`axiom crawl` is deprecated and superseded by manifest-driven ingest "
+        "(`axiom-corpus-ingest`; see CLAUDE.md). It is scheduled for removal "
+        "after 2026-Q3 unless a consumer objects.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    console.print(
+        "[yellow]⚠ `axiom crawl` is deprecated[/yellow] — superseded by "
+        "manifest-driven ingest ([cyan]axiom-corpus-ingest[/cyan]; see "
+        "CLAUDE.md). Scheduled for removal after 2026-Q3 unless a consumer "
+        "objects."
+    )
 
     from axiom_corpus.crawl import (
         ARCHIVE_ORG_STATES,

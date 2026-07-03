@@ -45,6 +45,12 @@ axiom-corpus stats                          # Show database stats
 axiom-corpus serve                          # Start REST API at localhost:8000
 ```
 
+> **Deprecated: `axiom crawl`.** The legacy web crawler (`axiom crawl`, backed
+> by `src/axiom_corpus/crawl.py`) is superseded by manifest-driven ingest — see
+> [CLAUDE.md](CLAUDE.md) and the `axiom-corpus-ingest` commands. It still works
+> and emits a `DeprecationWarning`; it is scheduled for removal after 2026-Q3
+> unless a consumer objects.
+
 ## Python API
 
 ```python
