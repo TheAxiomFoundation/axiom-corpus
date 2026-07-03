@@ -1,0 +1,31 @@
+documents:
+  - source_id: me-dhhs-tanf-125a-rule-pages-clean-2025-10
+    jurisdiction: us-me
+    document_class: regulation
+    citation_path: us-me/regulation/dhhs/ofi/chapter-331/tanf-rule-125a
+    title: Maine TANF Rule 125A clean rule pages, maximum benefit and standard of need chart
+    source_url: https://www.maine.gov/dhhs/sites/maine.gov.dhhs/files/rule-2025-10/TANF%20125A%20Rule%20Pages%20%28Clean%29.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2025-11-02"
+    extraction:
+      segmentation: labeled_sections
+      start_page: 2
+      end_page: 2
+      section_heading_pattern: "^(?P<heading>Maximum Benefit and Standard of Need)$"
+      section_label_template: maximum-benefit-and-standard-of-need
+    metadata:
+      primary_source: true
+      source_authority: Maine Department of Health and Human Services Office for Family Independence
+      publication_authority: Maine Department of Health and Human Services
+      document_subtype: adopted_rule_pages
+      program: TANF
+      federal_program: TANF
+      rule_chapter: 10-144 C.M.R. Chapter 331
+      rule_number: TANF Rule 125A
+      rulemaking_page: https://www.maine.gov/dhhs/about/rulemaking/10-144-cmr-ch-331-public-assistance-manual-maximum-benefit-and-standard-need-chart-2025-10-29
+      source_family: temporary-assistance-for-needy-families
+      source_status: adopted_rule_pages
+      source_discovery_group: us-me/regulation/tanf
+      discovered_via: active_policyengine_parity_review:me_tanf
+      source_note: Adopted clean rule pages for the October 2025 COLA update; this source preserves the FFY 2026 standard-of-need value that is garbled in the Secretary of State consolidated DOCX.
