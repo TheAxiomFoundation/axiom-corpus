@@ -1,0 +1,41 @@
+documents:
+  - source_id: ssa-poms-si-01415-058-2026-federally-administered-optional-supplements
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/ssa/poms/si-01415-058/2026
+    title: "POMS SI 01415.058: Federally Administered Optional Supplementary Payment Programs for January 2026"
+    source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415058
+    source_format: html
+    source_as_of: "2025-12-09"
+    expression_date: "2026-01-01"
+    extraction:
+      html_content_selector: "#divBody"
+    metadata:
+      primary_source: true
+      source_authority: Social Security Administration
+      document_subtype: program_operations_manual_system
+      program: ssi_state_supplement
+      federal_program: SSI
+      state: DC
+      poms_section: SI 01415.058
+      discovered_via: active_policyengine_parity_review
+  - source_id: ssa-poms-si-phi01415-009-dc-state-supplement
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/ssa/poms/si-phi01415-009
+    title: "POMS SI PHI01415.009: Administration of State Supplementary Programs - District of Columbia"
+    source_url: https://secure.ssa.gov/apps10/poms.nsf/lnx/0501415009PHI
+    source_format: html
+    source_as_of: "2022-09-12"
+    expression_date: "2022-09-12"
+    extraction:
+      html_content_selector: "#divBody"
+    metadata:
+      primary_source: true
+      source_authority: Social Security Administration
+      document_subtype: program_operations_manual_system
+      program: ssi_state_supplement
+      federal_program: SSI
+      state: DC
+      poms_section: SI PHI01415.009
+      discovered_via: active_policyengine_parity_review
