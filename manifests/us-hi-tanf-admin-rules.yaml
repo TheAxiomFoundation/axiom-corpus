@@ -1,0 +1,80 @@
+documents:
+  - source_id: hi-dhs-har-17-656-1-tanf
+    jurisdiction: us-hi
+    document_class: regulation
+    citation_path: us-hi/regulation/har/17/656-1
+    title: "Hawaii Administrative Rules Chapter 17-656.1: Temporary Assistance for Needy Families"
+    source_url: https://humanservices.hawaii.gov/wp-content/uploads/2018/09/656.1.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2026-07-03"
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^GENERAL PROVISIONS$'
+      section_heading_pattern: '^§(?P<label>17-656\.1-[0-9]+(?:\.[0-9]+)?)\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^656\.1-[0-9]+(?:\s+.*)?$'
+    metadata:
+      primary_source: true
+      source_authority: Hawaii Department of Human Services
+      document_subtype: administrative_rules
+      program: TANF
+      federal_program: TANF
+      rule_chapter: HAR Chapter 17-656.1
+      manual_landing_page: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+      source_discovery_group: us-hi/regulation/tanf
+      discovered_via: active_policyengine_parity_review:hi_tanf
+  - source_id: hi-dhs-har-17-676-income-tanf
+    jurisdiction: us-hi
+    document_class: regulation
+    citation_path: us-hi/regulation/har/17/676
+    title: "Hawaii Administrative Rules Chapter 17-676: Income"
+    source_url: https://humanservices.hawaii.gov/wp-content/uploads/2019/03/HAR-17-676-INCOME.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2026-07-03"
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^GENERAL PROVISIONS$'
+      section_heading_pattern: '^§(?P<label>17-676-[0-9]+(?:\.[0-9]+)?)\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^676-[0-9]+(?:\s+.*)?$'
+    metadata:
+      primary_source: true
+      source_authority: Hawaii Department of Human Services
+      document_subtype: administrative_rules
+      program: TANF
+      federal_program: TANF
+      rule_chapter: HAR Chapter 17-676
+      manual_landing_page: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+      source_discovery_group: us-hi/regulation/tanf
+      discovered_via: active_policyengine_parity_review:hi_tanf
+  - source_id: hi-dhs-har-17-678-financial-assistance-standards-2025
+    jurisdiction: us-hi
+    document_class: regulation
+    citation_path: us-hi/regulation/har/17/678
+    title: "Hawaii Administrative Rules Chapter 17-678: Financial Assistance Standards"
+    source_url: https://humanservices.hawaii.gov/wp-content/uploads/2025/02/17-678_Financial-Assistance-Standards-Adopted-01-26-25.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2025-01-26"
+    extraction:
+      ocr: true
+      ocr_dpi: 200
+      ocr_psm: 6
+      segmentation: labeled_sections
+      start_after_pattern: '^GENERAL PROVISIONS$'
+      section_heading_pattern: '^§(?P<label>17-678-[0-9]+(?:\.[0-9]+)?)\s+(?P<heading>.+)$'
+      drop_line_patterns:
+        - '^678-[0-9]+(?:\s+.*)?$'
+        - '^[0-9]{4}$'
+    metadata:
+      primary_source: true
+      source_authority: Hawaii Department of Human Services
+      document_subtype: administrative_rules
+      program: TANF
+      federal_program: TANF
+      rule_chapter: HAR Chapter 17-678
+      manual_landing_page: https://humanservices.hawaii.gov/admin-rules-2/admin-rules-for-programs/
+      source_discovery_group: us-hi/regulation/tanf
+      discovered_via: active_policyengine_parity_review:hi_tanf

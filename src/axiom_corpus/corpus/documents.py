@@ -702,15 +702,16 @@ def _extract_blocks(
 def _extract_pdf_blocks(
     content: bytes, *, extraction: dict[str, Any] | None
 ) -> tuple[_DocumentBlock, ...]:
-    segmentation = (extraction or {}).get("segmentation")
+    extraction_config = extraction or {}
+    segmentation = extraction_config.get("segmentation")
     if segmentation == "numbered_sections":
-        return _extract_numbered_pdf_section_blocks(content, extraction=extraction or {})
+        return _extract_numbered_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "labeled_sections":
-        return _extract_labeled_pdf_section_blocks(content, extraction=extraction or {})
+        return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
     blocks: list[_DocumentBlock] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         for index, page in enumerate(document, start=1):
-            text = _normalize_text(page.get_text("text"))
+            text = _normalize_text(_pdf_page_text(page, extraction=extraction_config))
             if not text:
                 continue
             blocks.append(
@@ -1175,6 +1176,11 @@ def _filtered_pdf_lines(
     drop_line_patterns = tuple(
         re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
     )
+    start_after_pattern = extraction.get("start_after_pattern")
+    start_after_re = (
+        re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
+    )
+    started = start_after_re is None
     lines: list[tuple[str, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         for page_index, page in enumerate(document, start=1):
@@ -1182,12 +1188,54 @@ def _filtered_pdf_lines(
                 continue
             if parsed_end_page is not None and page_index > parsed_end_page:
                 break
-            for raw_line in page.get_text("text").splitlines():
+            for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
                 line = _normalize_text(raw_line)
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
+                if not started:
+                    if start_after_re is not None and start_after_re.search(line):
+                        started = True
+                    continue
                 lines.append((line, page_index))
     return tuple(lines)
+
+
+def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
+    text = page.get_text("text")
+    if _normalize_text(text) or not extraction.get("ocr"):
+        return str(text)
+    return _ocr_pdf_page_text(page, extraction=extraction)
+
+
+def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
+    """Extract text from an image-only PDF page using the local Tesseract CLI."""
+    if not shutil.which("tesseract"):
+        raise RuntimeError("PDF OCR extraction requires tesseract on PATH")
+
+    dpi = _positive_int(extraction.get("ocr_dpi"), default=200)
+    language = str(extraction.get("ocr_language") or "eng")
+    page_segmentation_mode = extraction.get("ocr_psm")
+    zoom = dpi / 72
+
+    with tempfile.TemporaryDirectory(prefix="axiom-pdf-ocr-") as temp_dir:
+        image_path = Path(temp_dir) / "page.png"
+        pixmap = page.get_pixmap(matrix=fitz.Matrix(zoom, zoom), alpha=False)
+        pixmap.save(str(image_path))
+
+        command = ["tesseract", str(image_path), "stdout", "-l", language]
+        if page_segmentation_mode is not None:
+            command.extend(["--psm", str(page_segmentation_mode)])
+        result = subprocess.run(
+            command,
+            check=False,
+            capture_output=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        if result.returncode != 0:
+            message = result.stderr.strip() or result.stdout.strip()
+            raise RuntimeError(f"PDF OCR extraction failed: {message}")
+        return result.stdout
 
 
 _NUMBERED_SECTION_START_RE = re.compile(r"^(?P<label>\d{3})\.(?:\s*--\s*(?P<end_label>\d{3})\.)?$")
