@@ -89,6 +89,27 @@ jobs:
           python -I -m pip install pytest-cov pytest-timeout
           pytest -v --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
 
+  citation-path-grammar:
+    name: Citation-path grammar (A6)
+    # Additive gate: validates every corpus citation_path against the versioned
+    # grammar (schema/citation-path.v1.json) and enforces the irregular-family
+    # and identity-drift ratchets. Pure local scan — no Supabase, no secrets —
+    # so it runs on PRs too, unlike verify-release-coverage.
+    if: github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - name: Set up Python 3.14
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.14"
+
+      - name: Validate citation paths against the grammar
+        run: |
+          python scripts/validate_citation_paths.py
+
   postgres:
     runs-on: ubuntu-latest
     needs: test
