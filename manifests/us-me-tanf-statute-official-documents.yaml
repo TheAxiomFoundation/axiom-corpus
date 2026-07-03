@@ -1,0 +1,29 @@
+documents:
+  - source_id: me-title-22-section-3762-tanf-assistance-standards-current
+    jurisdiction: us-me
+    document_class: statute
+    title: Maine Revised Statutes Title 22, section 3762, Assistance standards
+    source_url: https://www.mainelegislature.org/legis/statutes/22/title22sec3762.html
+    source_format: html
+    source_as_of: "2026-07-03"
+    expression_date: "2026-07-03"
+    citation_path: us-me/statute/title-22/3762/assistance-standards
+    extraction:
+      html_content_selector: .section-content
+      html_drop_selectors:
+        - nav
+        - header
+        - footer
+        - script
+        - style
+    metadata:
+      primary_source: true
+      source_authority: Maine Legislature Office of the Revisor of Statutes
+      document_subtype: revised_statutes
+      program: TANF
+      federal_program: TANF
+      source_family: temporary-assistance-for-needy-families
+      source_status: current_official_statute
+      source_discovery_group: us-me/statute/tanf
+      discovered_via: active_policyengine_parity_review:me_tanf
+      source_note: Statutory assistance standards for Maine TANF/PaS, including income, resource, disregards, child support disregard, child care deduction, and benefit calculation authority.

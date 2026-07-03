@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/statute/2026-07-03-me-tanf-statute.json",
+      "sha256": "1207e4e97246c7618a276760684affe9de7047e99f4fa33dc4083a6bb6803e8b"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/statute/2026-07-03-me-tanf-statute.json",
+      "sha256": "539b94fef8dfa2d42e1d5451c94a5de4fe1ef0cf484d80bb7b30f23c11a855d1"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/statute/2026-07-03-me-tanf-statute.jsonl",
+      "sha256": "dd3cc6a5126cbcbd08093945dcb0a9b0b8b087632738e672521f19cadd9136b5"
+    },
+    {
+      "path": "data/corpus/sources/us-me/statute/2026-07-03-me-tanf-statute/official-documents/me-title-22-section-3762-tanf-assistance-standards-current.html",
+      "sha256": "4d5459b7fbafd1439ba4d3580fe132604a730d5b6a045c712c3436bb82381439"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f10f48ddbb3f58a62e27cdde00eb9084c3ad3fd9",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-me-tanf-20260703"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --project . axiom-corpus extract-official-documents --base data/corpus --version 2026-07-03-me-tanf-statute --manifest manifests/us-me-tanf-statute-official-documents.yaml --source-as-of 2026-07-03 --expression-date 2026-07-03"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-03T17:16:17.189462+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-03-me-tanf-primary-sources.md",
+      "sha256": "81bc7b45abf38fdb08f8cbd04acab045898d12af4ba91bdccc2d3a447b751d93"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8sk0QRDrdtG9TSJ8kiE8hWIFXC9MPBi2xZDavSv00ba8X6v9E6EDSB67aLdcO+TGzuhuQ4oH8OqCR/y1kPCIDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-me-tanf-statute"
+}
