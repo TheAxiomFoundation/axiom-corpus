@@ -532,11 +532,13 @@ def test_extract_official_documents_segments_html_anchor_range(tmp_path: Path) -
           <body>
             <div id="list-title-3">
               <p>Earlier consolidated text.</p>
+              <!-- field-start:statute -->
               <a name="Art.419">Art.</a> <a href="#Art.419bis">419</a>.
               <br>
               - droit d'accise : 245,4146 euros par 1 000 litres.
               <br>
               - droit d'accise special : 393,7887 euros par 1 000 litres.
+              <!-- field-end:statute -->
               <a name="Art.420">Art.</a> <a href="#Art.420bis">420</a>.
               <br>
               Next article text should not be included.
@@ -583,6 +585,8 @@ documents:
     )
     assert "245,4146 euros" in (section.body or "")
     assert "393,7887 euros" in (section.body or "")
+    assert "field-start:statute" not in (section.body or "")
+    assert "field-end:statute" not in (section.body or "")
     assert "Next article text should not be included" not in (section.body or "")
 
 
