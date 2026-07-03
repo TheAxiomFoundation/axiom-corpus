@@ -1,0 +1,24 @@
+version: "2026-07-03"
+sources:
+  - source_id: us-hi-hrs-chapter-346
+    jurisdiction: us-hi
+    document_class: statute
+    adapter: hawaii-revised-statutes
+    source_url: https://data.capitol.hawaii.gov/hrscurrent/
+    version: "2026-07-03-hi-hrs"
+    options:
+      source_as_of: "2026-07-03"
+      expression_date: "2026-07-03"
+      only_chapter: "346"
+      download_dir: ../data/corpus/downloads/us-hi-hrs/2026-07-03-chapter-346
+      base_url: https://data.capitol.hawaii.gov/hrscurrent/
+      request_delay_seconds: 0.02
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 4
+    metadata:
+      primary_source: true
+      source_authority: Hawaii State Legislature
+      source_scope_note: Current Hawaii Revised Statutes Chapter 346 from the official current HRS HTML mirror.
+      source_discovery_group: us-hi/statute/tanf
+      discovered_via: active_policyengine_parity_review:hi_tanf

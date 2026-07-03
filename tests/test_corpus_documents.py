@@ -434,6 +434,125 @@ documents:
     assert page_record.metadata["document_subtype"] == "waiver_approval"
 
 
+def test_extract_official_documents_can_ocr_scanned_pdf_sections(tmp_path, monkeypatch):
+    pdf_path = tmp_path / "scanned-rule.pdf"
+    document = fitz.open()
+    document.new_page()
+    document.save(pdf_path)
+    document.close()
+    ocr_calls = 0
+
+    def fake_ocr_page(page, *, extraction):
+        nonlocal ocr_calls
+        del page
+        ocr_calls += 1
+        assert extraction["ocr"] is True
+        return "\n".join(
+            [
+                "49-001",
+                "FIRST SECTION",
+                "OCR body text.",
+                "49-002 SECOND SECTION",
+                "More OCR body text.",
+            ]
+        )
+
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", fake_ocr_page)
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: scanned-rule
+    jurisdiction: us-test
+    document_class: regulation
+    title: Scanned Rule
+    source_url: https://example.test/scanned-rule.pdf
+    citation_path: us-test/regulation/scanned-rule
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      ocr: true
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>49-[0-9]{{3}})\\s+(?P<heading>[A-Z ]+)$'
+      section_label_pattern: '^(?P<label>49-[0-9]{{3}})$'
+      label_only_heading_pattern: '^[A-Z ]+$'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-03-scanned-rule",
+    )
+
+    assert ocr_calls == 1
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-test/regulation/scanned-rule",
+        "us-test/regulation/scanned-rule/49-001",
+        "us-test/regulation/scanned-rule/49-002",
+    ]
+    assert records[1].body == "OCR body text."
+    assert records[2].body == "More OCR body text."
+
+
+def test_extract_labeled_pdf_sections_can_start_after_pattern(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "rules-with-toc.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "TABLE OF CONTENTS",
+                "49-001 First Section",
+                "49-002 Second Section",
+                "BEGIN RULE TEXT",
+                "49-001 First Section. Actual text begins.",
+                "Body text.",
+                "49-002 Second Section. More text.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: toc-rule
+    jurisdiction: us-test
+    document_class: regulation
+    title: TOC Rule
+    source_url: https://example.test/toc-rule.pdf
+    citation_path: us-test/regulation/toc-rule
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^BEGIN RULE TEXT$'
+      section_heading_pattern: '^(?P<label>49-[0-9]{{3}})\\s+(?P<heading>.+)$'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-03-toc-rule",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    assert [record.heading for record in records[1:]] == [
+        "49-001 First Section. Actual text begins.",
+        "49-002 Second Section. More text.",
+    ]
+    assert records[1].body == "Body text."
+
+
 def test_extract_official_documents_scrubs_public_mapbox_tokens(tmp_path: Path) -> None:
     html_path = tmp_path / "cms.html"
     public_token = "pk." + "abc_123" + "." + "DEF-456"
