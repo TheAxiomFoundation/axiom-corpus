@@ -207,13 +207,33 @@ assertion frontier is the section. It is not a cap on depth:
   and baking its output into `uuid5(citation_path)` identity makes the
   heuristic load-bearing for every grounding, claim, and staleness pin.
   Hence rollup to the section, with the paragraph as metadata + span.
-- **Manuals and PDFs** often assert nothing below the document; they get
-  block/page provisions for the same reason.
+- **Manuals and PDFs** span two distinct sub-frontier tiers, and the policy
+  treats them differently:
+  - **Printed-but-not-machine-asserted structure.** Many "just text" sources
+    print real citations — a state manual's `365.180(A)`, eCFR's
+    `(d)(6)(iii)`. The *labels* are asserted in ink; the *boundaries* are
+    still inferred (where `(A)` ends versus chapeau/continuation text is the
+    judgment call even when the label is unambiguous). These become **named
+    spans**: the printed citation is a first-class, resolvable address —
+    `…/365/180/A` → (stored provision, char range) — extractable even by an
+    agent so long as every span passes mechanical gates (exact substring;
+    printed label at its head), but never a `uuid5` identity. Citability
+    without making boundary inference load-bearing. The two remaining us-ma
+    #14 entries (`365/180/A` stored as `block-1`) are exactly this tier
+    mishandled as the tier below; named spans over the stored blocks resolve
+    them.
+  - **Genuinely unstructured text** (narrative guidance, letters) asserts
+    nothing below the document: block/page provisions are pragmatic storage
+    chunking, and chunk boundaries are explicitly *meaningless* — never to be
+    read as legal structure. Addressing below the document is spans, and
+    claims that quote the text carry the grounding weight, because there is
+    no citation to lean on.
 
 The asymmetry that decides which layer absorbs sub-frontier structure: a
 wrong **span** is a re-derivation; a wrong **identity** is a migration event
 across every consumer. Asserted structure therefore lives in identity rows;
-inferred structure lives in annotations.
+inferred structure — including printed-label boundaries — lives in
+annotations.
 
 This is the pattern the federal `273.9(d)(6)(iii)` case **already uses** in
 production (rulespec-us #440); the recommendation is to make it the explicit,
