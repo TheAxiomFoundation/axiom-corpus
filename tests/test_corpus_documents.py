@@ -5,6 +5,7 @@ from pathlib import Path
 
 import fitz  # type: ignore[import-untyped]
 import requests
+from openpyxl import Workbook  # type: ignore[import-untyped]
 
 from axiom_corpus.corpus import documents as documents_module
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
@@ -432,6 +433,61 @@ documents:
     assert page_record.source_document_id is None
     assert page_record.metadata is not None
     assert page_record.metadata["document_subtype"] == "waiver_approval"
+
+
+def test_extract_official_documents_from_filtered_xlsx_rows(tmp_path: Path) -> None:
+    workbook_path = tmp_path / "index.xlsx"
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.title = "TA_ALL_BASE_YR"
+    sheet.append(["NM_YR", "NM_MTH", "MS_HLTH_IDX", "NM_BASE_YR"])
+    sheet.append([2020, 4, 110.22, 2013])
+    sheet.append([2024, 4, 130.85, 2013])
+    sheet.append([2024, 5, 131.12, 2013])
+    workbook.save(workbook_path)
+    workbook.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: statbel-health-index
+    jurisdiction: be
+    document_class: guidance
+    title: Statbel health index workbook
+    source_url: https://statbel.fgov.be/en/open-data/consumer-price-index-and-health-index
+    citation_path: be/guidance/statbel/health-index
+    source_format: xlsx
+    local_path: {json.dumps(str(workbook_path))}
+    extraction:
+      xlsx_sheet: TA_ALL_BASE_YR
+      xlsx_columns:
+        - NM_YR
+        - NM_MTH
+        - MS_HLTH_IDX
+        - NM_BASE_YR
+      xlsx_filters:
+        NM_BASE_YR: 2013
+        NM_MTH: 4
+        NM_YR:
+          - 2020
+          - 2024
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-03-statbel-health-index",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert records[1].citation_path == "be/guidance/statbel/health-index/sheet-1"
+    assert records[1].body is not None
+    assert "2020 | 4 | 110.22 | 2013" in records[1].body
+    assert "2024 | 4 | 130.85 | 2013" in records[1].body
+    assert "131.12" not in records[1].body
 
 
 def test_extract_official_documents_can_ocr_scanned_pdf_sections(tmp_path, monkeypatch):
