@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/statute/2026-06-30-be-excise-consolidated.json",
+      "sha256": "8c255c159c335879382f2909d7d388e3e547488b07a5db71e242041303532b49"
+    },
+    {
+      "path": "data/corpus/inventory/be/statute/2026-06-30-be-excise-consolidated.json",
+      "sha256": "44a5d42ff52f0b218521b7f0b8281cb4d8600f52bd78f5452e7ea4ec1105972e"
+    },
+    {
+      "path": "data/corpus/provisions/be/statute/2026-06-30-be-excise-consolidated.jsonl",
+      "sha256": "c0b7694412bc58d8ef6110a779f35620af8816021c2f3429a5fa2f71f9171593"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-excise-consolidated/official-documents/be-excise-alcohol-justel-current-law.html",
+      "sha256": "8bb3db57735f421836512190b8dcc1a250ef4b6d8cd17f9b428ff95711aba2c8"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-excise-consolidated/official-documents/be-excise-energy-products-justel-program-law.html",
+      "sha256": "35630e90e45f5d20a2ad891d62dfef4e89757bdc6c95cf92067261c826fcaaab"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-excise-consolidated/official-documents/be-excise-tobacco-justel-current-law.html",
+      "sha256": "89e7d50dd1762991028388ba36d95dfe60c59f1d84a9c32857ec716e21cfb691"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-03T17:17:58.980811+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4+1XGhoT9Xddi4L9BTR5krhVQyGTEnt3xdm+nuWH/Bwoi9+K+TvmB25vFZEw9+lZJ10hAuHHWiEXwfsYpu6SCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-30-be-excise-consolidated"
+}

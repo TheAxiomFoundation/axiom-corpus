@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-bru/guidance/2026-07-01-be-bru-mytax-road-tax-current.json",
+      "sha256": "968405d9fa95be3661da62ac2559636a273e630b9a80399e3f55b139433e165f"
+    },
+    {
+      "path": "data/corpus/inventory/be-bru/guidance/2026-07-01-be-bru-mytax-road-tax-current.json",
+      "sha256": "818e35ff4fb83eaeb269a0ed6f3caa72632b6696d7f31f22f877efea28cb4313"
+    },
+    {
+      "path": "data/corpus/provisions/be-bru/guidance/2026-07-01-be-bru-mytax-road-tax-current.jsonl",
+      "sha256": "ad8cd83f3a783b21e12c6344ce2971678ef9fb05813cf16e64c6a952753a6114"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/guidance/2026-07-01-be-bru-mytax-road-tax-current/official-documents/be-bru-mytax-road-tax-tariffs-current-2026-07-01.html",
+      "sha256": "227be8998d016e5c4dca6bea56d083f8dd6c930bacef3a9e4e45b0438748850a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-03T17:17:49.280046+00:00",
+  "jurisdiction": "be-bru",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+78pN6DLC0mkzmyDRHS5cIKbN5ipV6sQsv5h1LgrIV5pFxeW6KsGL6M4EdCJVpgG+PXKn1NL5jO++CE0yt27AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-be-bru-mytax-road-tax-current"
+}

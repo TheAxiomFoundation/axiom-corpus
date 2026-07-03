@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-vlg/regulation/2026-07-01-be-vlg-social-protection-regulation.json",
+      "sha256": "3bb4c4076555491f533db5315f6608852d734980b5148c34d8ad4f00d8d8eb10"
+    },
+    {
+      "path": "data/corpus/inventory/be-vlg/regulation/2026-07-01-be-vlg-social-protection-regulation.json",
+      "sha256": "025539801e48cadbbd829a4ea79b1d6b00f0d1eca3bbcc290d304c018c2d5609"
+    },
+    {
+      "path": "data/corpus/provisions/be-vlg/regulation/2026-07-01-be-vlg-social-protection-regulation.jsonl",
+      "sha256": "43a1db230ee8afe5813a60de3344beb501b345b3a3f61734ca4a5e422fa0ec49"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/regulation/2026-07-01-be-vlg-social-protection-regulation/official-documents/be-vlg-social-protection-implementation-order-current-codex.html",
+      "sha256": "555987c17bddcce4ec32b3a2831ac3a031980aaa78359ee72363bcffb081f5b7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 297,
+    "missing_count": 0,
+    "provision_count": 297,
+    "source_count": 297
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-03T17:17:52.375732+00:00",
+  "jurisdiction": "be-vlg",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ITTa+c9PvAPGsFiDIU1KL9dq9tCmX01qd1YFHsHbEJmvEqmwSACYzjHppnFQbNID3D3ldAOk2Jn7+HqnkUBvBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-be-vlg-social-protection-regulation"
+}

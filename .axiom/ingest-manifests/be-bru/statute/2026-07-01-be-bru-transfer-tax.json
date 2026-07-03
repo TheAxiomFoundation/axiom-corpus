@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-bru/statute/2026-07-01-be-bru-transfer-tax.json",
+      "sha256": "46a4a1903f84efcb20329d59b00dc60e83fc71082ff96959cf4fde71b6801cad"
+    },
+    {
+      "path": "data/corpus/inventory/be-bru/statute/2026-07-01-be-bru-transfer-tax.json",
+      "sha256": "3d686c71d2917f50bc9a11a744296f0e272ef5daa3f53366af1196fd638a9519"
+    },
+    {
+      "path": "data/corpus/provisions/be-bru/statute/2026-07-01-be-bru-transfer-tax.jsonl",
+      "sha256": "68e4619a413634a6c9f44fc4958045dba7e5129721352c72f66a4d3c43cc20d4"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-01-be-bru-transfer-tax/official-documents/be-bru-registration-code-article-131-current.json",
+      "sha256": "4fa11793831d9f7ab3103219f2b138442de40833d9779a7f4c0ee1d142a1fe89"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-01-be-bru-transfer-tax/official-documents/be-bru-registration-code-article-131bis-current.json",
+      "sha256": "cff1de88a165319889b9f8bb98d97b292caeea634369c33e58bb5d0167f9657f"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-01-be-bru-transfer-tax/official-documents/be-bru-succession-code-article-48-current.json",
+      "sha256": "67c0233476a92a6420c10d9f46333ae5a91d89055dde2a078d289b71d9bcdb5a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-03T17:17:50.841394+00:00",
+  "jurisdiction": "be-bru",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8p8Lku6KNWpM5hfsWaLKLsb90LESu5rn0xBCM8xZB5CcmrNBusdqKPxKSwjuSjIN9cTFon0xUC7nIEfMVTF1Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-be-bru-transfer-tax"
+}

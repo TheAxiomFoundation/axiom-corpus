@@ -1,0 +1,24 @@
+documents:
+  - source_id: be-dg-program-decree-2025-ii-family-benefits-moniteur-fr
+    jurisdiction: be-dg
+    document_class: statute
+    title: German-speaking Community program decree 2025 II family-benefit amendments
+    source_url: https://www.ejustice.just.fgov.be/eli/decret/2025/12/22/2026001207/moniteur
+    download_url: 'https://www.ejustice.just.fgov.be/cgi/article.pl?language=fr&sum_date=2026-03-02&lg_txt=f&pd_search=2026-03-02&s_editie=1&numac_search=2026001207&caller=&2026001207=&view_numac=2026001207'
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be-dg/statute/moniteur/decret-2025-12-22/2026001207/program-decree-2025-ii-family-benefits
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: main.article-text
+      html_drop_selectors:
+        - .links
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2025/12/22/2026001207/moniteur
+      official_publication_image_url: https://www.ejustice.just.fgov.be/mopdf/2026/03/02_1.pdf#page=170
+      justel_url: https://www.ejustice.just.fgov.be/eli/decret/2025/12/22/2026001207/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits-german-speaking-community
+      source_status: primary_law_original_publication
+      source_note: Moniteur publication for NUMAC 2026001207; articles 17 and 18 amend the 23 April 2018 family-benefits decree by extending the 2025-2027 indexation freeze and inserting the 2025 annual supplement.

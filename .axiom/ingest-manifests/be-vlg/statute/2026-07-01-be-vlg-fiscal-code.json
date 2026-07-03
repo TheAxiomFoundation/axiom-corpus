@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-vlg/statute/2026-07-01-be-vlg-fiscal-code.json",
+      "sha256": "30143d34bba8c912a9069d7b75a54954cb64fc5ae2be980908d43ae0c6940161"
+    },
+    {
+      "path": "data/corpus/inventory/be-vlg/statute/2026-07-01-be-vlg-fiscal-code.json",
+      "sha256": "66bd50a8ee741241edcdec50585b18fc5df21ef26d5a87d387cb700a6429ab8b"
+    },
+    {
+      "path": "data/corpus/provisions/be-vlg/statute/2026-07-01-be-vlg-fiscal-code.jsonl",
+      "sha256": "17db8f86d1102163155f2c93a5a75e645671ea9cb9f172b637909eddc3f310df"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-21401-comment-current.json",
+      "sha256": "7a6bd52837830f5c9baa028d992709b09e0fa9892cb9ac3bd9d2059a35b0c74b"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-21401-current.json",
+      "sha256": "7a6bd52837830f5c9baa028d992709b09e0fa9892cb9ac3bd9d2059a35b0c74b"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-21501-current.json",
+      "sha256": "eb948dd181f4d19c7df3850ce7a70e1f7d990a222adf29e06d2bb46af0b43f87"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-22401-current.json",
+      "sha256": "5c241be315a0e03da6173d7684c7c86695647b70bef48a270c758f010ce5cc1f"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-22404-current.json",
+      "sha256": "5ec3fa2dea2ede5271d7907e646b3b7508d2ffea1aa2bd558276cbf64bc64f72"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-22405-current.json",
+      "sha256": "b68d48f192437ea8e2f3e257c1f0b268875120ba869ca91886bed5bff92be394"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-23411-current.json",
+      "sha256": "ab4af8f016f682820cb55b054ce10c2521b58f636fe120f64ad2668edad005f7"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-234121-current.json",
+      "sha256": "7fe18c586651ee5dedb8264866cd9fc6d30579bfffde4592e0ad3305f7220e28"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-23413-current.json",
+      "sha256": "66d384f49a7d0f68ba8b026a7659ffe78eb6d32ff8ba06424e358682e8b4af79"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-23501-current.json",
+      "sha256": "56aec3dd8e8b099fcdcf69b59fe58ddcfa4bb9c140c3ef0559c67bb56e3d3240"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-27411-current.json",
+      "sha256": "a4d91b4ef40b345fb25e12ad5de85aa6847ec2416f6c22056d086b9b1b1ce69b"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-01-be-vlg-fiscal-code/official-documents/be-vlg-vcf-article-28411-current.json",
+      "sha256": "d7ebd0776f95fbcaefc8b425ae57bfaf520ccd245de1caa395206c7f1caa7c15"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 24,
+    "missing_count": 0,
+    "provision_count": 24,
+    "source_count": 24
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-03T17:17:53.142165+00:00",
+  "jurisdiction": "be-vlg",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1UyAJwnzBe8rVbDNYnF8+1d/XWa2I+HSKHDvLl4FVHiZnpLk56o/ggRl/vudfJwYTx4f6Q0IGafbfO4mE2+vCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-be-vlg-fiscal-code"
+}

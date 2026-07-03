@@ -1,0 +1,45 @@
+documents:
+  - source_id: be-dg-family-benefits-decree-2018-04-23-moniteur-de
+    jurisdiction: be-dg
+    document_class: statute
+    title: German-speaking Community decree of 23 April 2018 on family benefits
+    source_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/moniteur
+    download_url: 'https://www.ejustice.just.fgov.be/cgi/article.pl?language=de&sum_date=2018-06-12&lg_txt=d&pd_search=2018-06-12&s_editie=1&numac_search=2018202523&caller=&2018202523=&view_numac=2018202523de'
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be-dg/statute/moniteur/decret-2018-04-23/2018202523/family-benefits
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: main.article-text
+      html_drop_selectors:
+        - .links
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/moniteur
+      official_publication_image_url: https://www.ejustice.just.fgov.be/mopdf/2018/06/12_1.pdf#page=93
+      justel_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits-german-speaking-community
+      source_status: primary_law_original_publication
+      source_note: German-language primary publication identified through ELI NUMAC 2018202523; published in the Moniteur belge / Belgisch Staatsblad on 12 June 2018.
+  - source_id: be-dg-family-benefits-decree-2018-04-23-justel-current
+    jurisdiction: be-dg
+    document_class: statute
+    title: German-speaking Community decree of 23 April 2018 on family benefits current consolidated text
+    source_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/justel
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be-dg/statute/justel/decret-2018-04-23/2018202523/family-benefits-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: '#list-title-3'
+      html_drop_selectors:
+        - .links
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/moniteur
+      official_publication_image_url: https://www.ejustice.just.fgov.be/mopdf/2018/06/12_1.pdf#page=93
+      source_authority: Justel
+      source_family: family-benefits-german-speaking-community
+      source_status: non_authentic_current_consolidated_locator_after_moniteur
+      source_note: Justel current consolidated text observed 2026-07-01 after primary Moniteur identification; use as a current locator, not as the authentic publication.
