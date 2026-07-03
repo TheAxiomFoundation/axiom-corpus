@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8'?>
+<library xmlns="https://open.law/schemas/library" xmlns:codified="https://open.law/schemas/codified" xmlns:codify="https://open.law/schemas/codify" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <heading>Library of Maryland Regulations</heading>
+  <meta>
+    <description/>
+    <contact>
+      <email>help@openlawlib.org</email>
+    </contact>
+    <canonical-urls>
+      <xml-bulk>https://github.com/maryland-dsd/law-xml-codified</xml-bulk>
+      <html-bulk>https://github.com/maryland-dsd/law-html</html-bulk>
+      <xml-cc0-bulk>https://github.com/maryland-dsd/law-xml-codified-cc0</xml-cc0-bulk>
+      <html-cc0-bulk>https://github.com/maryland-dsd/law-html-cc0</html-cc0-bulk>
+      <static-assets>https://github.com/maryland-dsd/law-static-assets</static-assets>
+      <html>http://regs.maryland.gov/</html>
+      <law-git>https://github.com/maryland-dsd/law.git</law-git>
+    </canonical-urls>
+    <licenses>
+      <license>
+        <rights>
+          <p>This version of the laws and codes on this website is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> license with copyright held by the State of Maryland.</p>
+          <p>This version of the laws and codes on this website will be dedicated to the public domain under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a> license 180 days after publication.</p>
+        </rights>
+      </license>
+      <license>
+        <license>CC-BY-NC-SA-4.0</license>
+        <url>https://creativecommons.org/licenses/by-nc-sa/4.0/</url>
+        <rights>
+          <p>Copyright State of Maryland</p>
+          <p>This version of the laws and codes on this website is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> license.</p>
+          <p>This version of the laws and codes on this website will be dedicated to the public domain 180 days after publication here.</p>
+        </rights>
+      </license>
+      <license>
+        <license>CC0-1.0</license>
+        <url>https://creativecommons.org/publicdomain/zero/1.0/</url>
+        <rights>
+          <p>This version of the laws and codes on this website is dedicated to the public domain under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a> license.</p>
+        </rights>
+        <days-after-publication>180</days-after-publication>
+        <after-date>2027-05-30</after-date>
+      </license>
+    </licenses>
+    <history-start>2025-08-18</history-start>
+    <build xmlns:cache="https://open.law/schemas/cache" xmlns:citations="https://open.law/schemas/citations" xmlns:macro="https://open.law/schemas/macro" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <repositories>
+        <repository name="maryland-dsd/law-xml" commit="ec3046a0ac1ae36a6e818b0dc693e81b88aea4e6"/>
+      </repositories>
+      <platform version="2.20.17" reproducible="true"/>
+      <build-date>2026-06-29</build-date>
+      <codified-date>2026-12-01</codified-date>
+      <publication>publication/2026-06-19</publication>
+    </build>
+  </meta>
+  <xi:include href="./us/md/exec/comar/index.xml"/>
+  <collection name="us/md/exec/register">
+    <heading>Maryland Register</heading>
+    <xi:include href="./us/md/exec/register/53/index.xml"/>
+    <xi:include href="./us/md/exec/register/52/index.xml"/>
+  </collection>
+  <collection name="editorial-actions" display="false">
+    <xi:include href="./editorial-actions/2026-05-07.xml"/>
+    <xi:include href="./editorial-actions/2026-06-25.xml"/>
+    <xi:include href="./editorial-actions/2026-06-15.xml"/>
+    <xi:include href="./editorial-actions/2026-05-21.xml"/>
+    <xi:include href="./editorial-actions/2026-05-14.xml"/>
+    <xi:include href="./editorial-actions/2026-05-06.xml"/>
+    <xi:include href="./editorial-actions/2026-04-17.xml"/>
+    <xi:include href="./editorial-actions/2026-04-14.xml"/>
+    <xi:include href="./editorial-actions/2026-04-10.xml"/>
+    <xi:include href="./editorial-actions/2026-03-30.xml"/>
+    <xi:include href="./editorial-actions/2026-03-24.xml"/>
+    <xi:include href="./editorial-actions/2026-03-11.xml"/>
+    <xi:include href="./editorial-actions/2026-03-09.xml"/>
+    <xi:include href="./editorial-actions/2026-01-22.xml"/>
+  </collection>
+  <annotations>
+    <annotation>
+      <subheading>Code of Maryland Regulations</subheading>
+      <text>The Code of Maryland Regulations (COMAR) contains all regulations for Maryland State agencies and departments. There is no cost to use COMAR online.</text>
+      <text>COMAR is updated every two weeks.</text>
+      <text>Learn about the <a href="https://dsd.maryland.gov/Pages/COMARHome.aspx">COMAR numbering system</a>.</text>
+    </annotation>
+    <annotation>
+      <subheading>Maryland Register</subheading>
+      <text>Before a regulation is adopted and incorporated into COMAR, it is available in a proposed form in the <a href="https://dsd.maryland.gov/Pages/MDRegister.aspx">Maryland Register</a> for the public to review and provide feedback on. The Register is published every two weeks and includes:</text>
+      <text>
+        <ul>
+          <li>Governor's Executive Orders</li>
+          <li>General Assembly Synopses</li>
+          <li>Judiciary Notices and Opinions</li>
+          <li>Division of State Documents</li>
+          <li>Open Meetings and Compliance Board</li>
+          <li>Changes to Maryland Regulations</li>
+          <li>Regulatory Review and Evaluation</li>
+          <li>Agency Meeting and Hearing Notices</li>
+          <li>Other documents considered to be in the public interest</li>
+        </ul>
+      </text>
+    </annotation>
+    <annotation>
+      <subheading>Order Print and PDF Copies</subheading>
+      <text>The text appearing here was produced from materials provided by the Division of State Documents, Office of the Secretary of State, State of Maryland, and is current as of December 01, 2026. The text appearing here is not the official text. While this text has been prepared from data created and maintained by the Division of State Documents, only the printed or electronic version of the text obtained directly from the Division of State Documents is official, valid, and enforceable under Maryland law.</text>
+      <text>COMAR and the Maryland Register are available in print or PDF for purchase in an assembled, easy-to-read format. See <a href="https://dsd.maryland.gov/Pages/Publications-to-Order.aspx">Publications to Order</a> or call our Subscription Office at <a href="tel:410-260-3876">410-260-3876</a> to order by phone.</text>
+    </annotation>
+  </annotations>
+</library>

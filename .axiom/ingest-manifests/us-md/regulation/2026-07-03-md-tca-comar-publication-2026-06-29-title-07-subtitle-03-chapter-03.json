@@ -1,0 +1,74 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/regulation/2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03.json",
+      "sha256": "da1f2344df9bc79e632a72b6f0fd33877f7c754ed5e61a2edf8cdef0f425001d"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/regulation/2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03.json",
+      "sha256": "7cf0cef519c2f825a89317c1ccdbda8d17693d5288db2beeac1a6db3dcba8548"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/regulation/2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03.jsonl",
+      "sha256": "63258f6f0045d0c04dea247434eb99644b9e82349027fa2da155ac224280c771"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03/maryland-comar-xml/index.xml",
+      "sha256": "166fdb683b13610910693a96b94f1eeaddfb5865a7e5536efdd3904067c70c4d"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03/maryland-comar-xml/license.md",
+      "sha256": "a761bf991e0b5fb5d5259f60db10137b777333c54a49b9a40a6714e17b0af0d6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03/maryland-comar-xml/us/md/exec/comar/07/03/03.xml",
+      "sha256": "692b0520029ef41215f25a9717fdc9a60655a64c0afed7e18d73ec16d9cdff36"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03/maryland-comar-xml/us/md/exec/comar/07/03/index.xml",
+      "sha256": "45c4f854e5a67360ea3e671a37545a921d4900af57697559221f1ab1aaf7e4ca"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03/maryland-comar-xml/us/md/exec/comar/07/index.xml",
+      "sha256": "b5d39d14ee78375c6e3e24aab65c8da4a1ec5722d3c73ddcbbfd5af7af88fde0"
+    },
+    {
+      "path": "data/corpus/sources/us-md/regulation/2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03/maryland-comar-xml/us/md/exec/comar/index.xml",
+      "sha256": "39e90dd9728868ca2a6a23b9b928bd07f14444acd66f7a66ca69e14c2ac815b6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f42f706136ec4d146eb396e331daf71f8bf5f1b9",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-md-tca-20260703"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --project . axiom-corpus extract-maryland-comar --base data/corpus --version 2026-07-03-md-tca-comar --only-title 07 --only-subtitle 03 --only-chapter 03 --source-as-of 2026-07-03 --expression-date 2026-07-03"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 31,
+    "missing_count": 0,
+    "provision_count": 31,
+    "source_count": 31
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-03T16:51:50.781682+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-03-md-tca-primary-sources.md",
+      "sha256": "67131fd706a9657135d05f2b264d742885046110a5ab392db4bb8ce55d8988cc"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JjDqQOeCsXD/DqSLeGzC46uM8lZQOYWYyFaZYbe0WkZJoi2UJxmV6lMqb/rHQWJIXXcns7s1Tici6tCvs1zpAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-md-tca-comar-publication-2026-06-29-title-07-subtitle-03-chapter-03"
+}

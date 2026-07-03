@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/statute/2026-07-03-md-tca-statutes.json",
+      "sha256": "cf137ba3123bccbcb6e26a76e1a20a43c442229cb4777546c04e400f6663518b"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/statute/2026-07-03-md-tca-statutes.json",
+      "sha256": "24255a9e61e43d1a92585351394f95f3bd49278d5d09a24caeb60eb9eb626943"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/statute/2026-07-03-md-tca-statutes.jsonl",
+      "sha256": "72ba22c918f542d5e8b29ceb4258e1a0785c7fd8b5413dfe7919760c9f5d0bdd"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-07-03-md-tca-statutes/official-documents/md-human-services-5-312-temporary-cash-assistance-current.html",
+      "sha256": "5532ba2348e27338f5364047f6eddd8ce465f30fd47f541e2ce60644922fb2e9"
+    },
+    {
+      "path": "data/corpus/sources/us-md/statute/2026-07-03-md-tca-statutes/official-documents/md-human-services-5-316-fip-funding-current.html",
+      "sha256": "2f5da8ccfd4bf66bb5a6c4e2096ed84173a3ddf96f7b202ba90452b3013dbcf2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f42f706136ec4d146eb396e331daf71f8bf5f1b9",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-md-tca-20260703"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --project . axiom-corpus extract-official-documents --base data/corpus --version 2026-07-03-md-tca-statutes --manifest manifests/us-md-tca-statutes-official-documents.yaml --source-as-of 2026-07-03 --expression-date 2026-07-03"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-03T16:51:50.728266+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-03-md-tca-primary-sources.md",
+      "sha256": "67131fd706a9657135d05f2b264d742885046110a5ab392db4bb8ce55d8988cc"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Uyy+W9SAQpDyT747ePler3lOkGTkYYefOt1EsOpsHTli0j+mEOOYec3uQ8IjzUIXGkLfR2+lEACK7P7L9HkgBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-md-tca-statutes"
+}
