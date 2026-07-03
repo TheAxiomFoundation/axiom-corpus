@@ -1,0 +1,23 @@
+documents:
+  - source_id: nc-gs-108a-27-01-work-first-income-payment-level
+    jurisdiction: us-nc
+    document_class: statute
+    title: North Carolina General Statutes section 108A-27.01, Income eligibility and payment level for Work First Family Assistance
+    source_url: https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/BySection/Chapter_108A/GS_108A-27.01.html
+    source_format: html
+    source_as_of: "2026-07-03"
+    expression_date: "2026-07-03"
+    citation_path: us-nc/statute/chapter-108a/108a-27-01
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: North Carolina General Assembly
+      document_subtype: general_statutes
+      program: Work First
+      federal_program: TANF
+      source_family: temporary-assistance-for-needy-families
+      source_status: current_official_statute
+      source_discovery_group: us-nc/statute/tanf
+      discovered_via: active_policyengine_parity_review:nc_tanf
+      source_note: Statutory income eligibility standards and 50 percent payment level for Work First Family Assistance.
