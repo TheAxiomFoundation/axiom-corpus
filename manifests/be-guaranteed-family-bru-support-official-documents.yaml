@@ -1,0 +1,101 @@
+version: "2026-07-03-be-guaranteed-family-bru-support"
+sources:
+  - source_id: be-guaranteed-family-benefits-royal-decree-1971
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits
+      source_status: official_original_with_consolidated_locator
+      source_note: Royal decree implementing the 20 July 1971 guaranteed-family-benefits law, including resource ceilings, special allowance, stillbirth, placement, and payment mechanics.
+  - source_id: be-bru-be-home-ordinance-2017
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2017/11/23/2017031630/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2017/11/23/2017031630/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: property-tax
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels-Capital Region ordinance establishing the BE HOME premium for owner-occupied dwellings.
+  - source_id: be-bru-be-home-amending-ordinance-2020
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2020/04/30/2020041087/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2020/04/30/2020041087/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: property-tax
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels-Capital Region ordinance amending the BE HOME premium amount and indexation rule.
+  - source_id: be-bru-apa-ordinance-2020
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2020/12/10/2020044279/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2020/12/10/2020044279/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: disability-assistance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels Common Community Commission ordinance creating the allowance for assistance to elderly people.
+  - source_id: be-bru-apa-amending-ordinance-2026
+    jurisdiction: be-bru
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2026/02/12/2026001204/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/ordonnance/2026/02/12/2026001204/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: disability-assistance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels Common Community Commission ordinance amending elderly-care allowance residence and compatibility provisions.
+  - source_id: be-bru-apa-implementation-order-2021
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2021/01/28/2021040498/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2021/01/28/2021040498/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: disability-assistance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels Common Community Commission order implementing the allowance for assistance to elderly people.
+  - source_id: be-bru-apa-amending-order-2024
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2024/01/18/2024000625/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2024/01/18/2024000625/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: disability-assistance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels Common Community Commission order amending elderly-care allowance income and payment provisions.
+  - source_id: be-bru-rent-allowance-order-2021
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2021/07/15/2021032702/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2021/07/15/2021032702/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: housing-assistance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels-Capital Region Government order establishing the rent allowance.
+  - source_id: be-bru-relocation-allowance-order-2022
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2022/10/13/2022033858/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: housing-assistance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels-Capital Region Government order on the relocation accompaniment allowance.

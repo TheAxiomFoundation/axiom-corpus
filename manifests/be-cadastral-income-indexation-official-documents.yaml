@@ -1,0 +1,32 @@
+documents:
+  - source_id: be-spf-finances-cadastral-income-indexation-2026
+    jurisdiction: be
+    document_class: guidance
+    title: SPF Finances immovable income declaration, cadastral-income indexation coefficients
+    source_url: https://fin.belgium.be/fr/particuliers/habitation/revenus-immobiliers/declarer/pas-occuper-louer
+    source_format: html
+    source_as_of: '2026-07-03'
+    citation_path: be/guidance/spf-finances/cadastral-income/definition-usage
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur
+      upstream_statute_path: be/statute/fisconetplus/cir92/revenus-2025/page-721
+      source_authority: SPF Finances
+      source_family: personal-income-tax/cadastral-income-indexation
+      source_status: official_current_guidance_for_cir92_article_518_coefficients
+      source_note: Official SPF Finances page states the indexed cadastral-income formula and the 2025 and 2026 annual coefficients used with CIR 1992 article 518.
+
+  - source_id: be-spf-finances-cadastral-income-indexation-previous-years
+    jurisdiction: be
+    document_class: guidance
+    title: SPF Finances previous-year tax amounts, cadastral-income coefficients
+    source_url: https://fin.belgium.be/fr/montants-annees-precedentes
+    source_format: html
+    source_as_of: '2026-07-03'
+    citation_path: be/guidance/spf-finances/cadastral-income/previous-years
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1992/04/10/1992041050/moniteur
+      upstream_statute_path: be/statute/fisconetplus/cir92/revenus-2025/page-721
+      source_authority: SPF Finances
+      source_family: personal-income-tax/cadastral-income-indexation
+      source_status: official_previous_year_guidance_for_cir92_article_518_coefficients
+      source_note: Official SPF Finances previous-year tax amount page states the 2024-income cadastral-income indexation coefficient used with CIR 1992 article 518.
