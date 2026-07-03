@@ -23,7 +23,7 @@ import fitz
 import requests
 import yaml
 from bs4 import BeautifulSoup, FeatureNotFound
-from bs4.element import Tag
+from bs4.element import Comment, Tag
 from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
@@ -1511,6 +1511,8 @@ def _json_record_value(row: dict[str, Any], field: str | None) -> Any:
 
 def _html_fragment_text(html_text: str) -> str:
     soup = BeautifulSoup(html_text, "html.parser")
+    for comment in soup.find_all(string=lambda node: isinstance(node, Comment)):
+        comment.extract()
     for selector in ("script", "style", "noscript", "svg"):
         for node in soup.select(selector):
             node.decompose()
@@ -1656,6 +1658,8 @@ def _extract_anchor_range_html_block(
 
     html_parts: list[str] = []
     for node in (start, *start.next_siblings):
+        if isinstance(node, Comment):
+            continue
         if stop is not None and _html_node_contains(node, stop):
             break
         html_parts.append(str(node))
