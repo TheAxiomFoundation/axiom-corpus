@@ -180,13 +180,40 @@ us-ma tail.
 
 ## 4. Recommendation
 
-**Ratify section-rollup as the standing policy — the module may be as
-fine-grained as it needs to be (down to a subsection path), but its
-`corpus_citation_path` grounds on the section-level corpus provision and the
-exact subsection is carried as rule-level `source` metadata (and, where a spec
-must name it, an optional `anchor`). Reserve corpus-level subsection
-re-segmentation (Option A) for cases with an executable oracle at that
-granularity, done as a deliberate `split` with a path-mapping event.**
+**Ratify the assertion-frontier rule as the standing policy: the corpus
+stores provisions at exactly the structure the official source asserts —
+never shallower, never deeper — and a module's `corpus_citation_path`
+grounds on the deepest natively-asserted provision containing its text.
+Below the assertion frontier, precision is carried as rule-level `source`
+metadata plus, where needed, a span anchor — re-derivable annotation, never
+manufactured identity. Reserve corpus re-segmentation below the frontier
+(Option A) for cases with an executable oracle at that granularity, done as
+a deliberate `split` with a path-mapping event.**
+
+"Section-rollup" is the *special case* of this rule for sources whose
+assertion frontier is the section. It is not a cap on depth:
+
+- **USLM statutes assert structure to paragraph/clause level, and the corpus
+  already stores it that deep** — the CHIP Title 42 extraction carries
+  bodies at every depth (13 sections, 75 subsections, 310 paragraph-level
+  provisions such as `us/statute/42/1397aa/a/1`). Modules citing those
+  provisions ground on them directly; no rollup involved.
+- **eCFR asserts structure only to the section** — paragraph hierarchy
+  inside a CFR section is indentation typography, not identified nodes. Two
+  reasonable parsers disagree about where `(d)(6)(iii)` ends, and upstream
+  typography changes flip the answer while the law is unchanged. A
+  deterministic *program* applied to unasserted structure is a
+  deterministically-applied heuristic, not an authoritative segmentation —
+  and baking its output into `uuid5(citation_path)` identity makes the
+  heuristic load-bearing for every grounding, claim, and staleness pin.
+  Hence rollup to the section, with the paragraph as metadata + span.
+- **Manuals and PDFs** often assert nothing below the document; they get
+  block/page provisions for the same reason.
+
+The asymmetry that decides which layer absorbs sub-frontier structure: a
+wrong **span** is a re-derivation; a wrong **identity** is a migration event
+across every consumer. Asserted structure therefore lives in identity rows;
+inferred structure lives in annotations.
 
 This is the pattern the federal `273.9(d)(6)(iii)` case **already uses** in
 production (rulespec-us #440); the recommendation is to make it the explicit,
@@ -263,9 +290,13 @@ the bar should be a concrete provenance need, not tidiness.
 
 ## 5. Recommendation in one line
 
-**Ratify section-rollup — subsection-deep modules grounded on the section-level
-corpus provision, subsection in `source` metadata — as the standing default, and
-allow corpus subsection re-segmentation only where an executable oracle justifies
-a deliberate `split`; it is the pattern that already resolved the federal #14
-case (#440), preserves provision identity, and honors the v2 plan's rule against
-broad re-segmentation before oracle coverage exists.**
+**Ratify the assertion-frontier rule — the corpus mirrors exactly the
+structure the source asserts (leaf-deep for USLM statutes, section-deep for
+eCFR, blocks for manuals; never shallower, never deeper), modules ground on
+the deepest asserted provision, and everything below the frontier is carried
+as `source` metadata + span annotation rather than manufactured identity;
+corpus re-segmentation below the frontier only where an executable oracle
+justifies a deliberate `split`. This is the pattern that already resolved
+the federal #14 case (#440), it puts segmentation judgment in re-derivable
+annotations instead of load-bearing identity, and it honors the v2 plan's
+rule against broad re-segmentation before oracle coverage exists.**
