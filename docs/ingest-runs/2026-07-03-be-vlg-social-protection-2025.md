@@ -29,7 +29,7 @@ uv run --extra dev axiom-corpus-ingest extract-official-documents \
 
 Key premium citation:
 
-- `be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/block-26`
+- `be-vlg/regulation/codex-vlaanderen/social-protection/implementation-order-2025/chunk-26`
 
 ## Statbel Health Index Source
 
