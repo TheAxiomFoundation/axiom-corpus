@@ -1,0 +1,24 @@
+version: "2026-07-03-be-lgaf-bru-social-housing"
+sources:
+  - source_id: be-lgaf-family-allowances-law-1939
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits
+      source_status: official_original_with_consolidated_locator
+      source_note: Loi generale relative aux allocations familiales; current consolidated Justel article locator supplies the legacy LGAF amount schedule cited by federal guaranteed-family-benefits modules.
+  - source_id: be-bru-social-housing-rental-order-1996
+    jurisdiction: be-bru
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1996/09/26/1996031386/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1996/09/26/1996031386/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: housing-assistance
+      source_status: official_original_with_consolidated_locator
+      source_note: Brussels-Capital Region Government order organizing rental of dwellings managed by the Brussels Regional Housing Company or public-service real-estate companies.
