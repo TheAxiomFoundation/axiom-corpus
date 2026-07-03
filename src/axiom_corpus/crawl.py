@@ -1,5 +1,13 @@
 """Fast parallel statute crawler with R2 upload.
 
+.. deprecated::
+    Superseded by manifest-driven ingest (see CLAUDE.md and the
+    ``axiom-corpus-ingest`` commands). This module still backs the live
+    ``axiom crawl`` CLI command and is retained for now, but it is scheduled
+    for removal after 2026-Q3 unless a consumer objects. Prefer authoring a
+    source manifest and running
+    ``axiom-corpus-ingest extract-official-documents``.
+
 Usage:
     # Test single state
     uv run python -m axiom_corpus.crawl us-oh --max-sections 100

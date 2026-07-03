@@ -1,0 +1,30 @@
+documents:
+  - source_id: uscode-2024-title26-section85
+    jurisdiction: us
+    document_class: statute
+    citation_path: us/statute/26
+    title: 26 U.S.C. § 85 - Unemployment compensation
+    source_url: https://www.govinfo.gov/content/pkg/USCODE-2024-title26/html/USCODE-2024-title26-subtitleA-chap1-subchapB-partII-sec85.htm
+    source_format: html
+    source_as_of: "2025-01-06"
+    expression_date: "2025-01-06"
+    extraction:
+      segmentation: anchor_range
+      html_content_selector: body
+      html_start_selector: h3.section-head
+      html_stop_selector: p.source-credit
+      section_label: "85"
+      section_heading: 26 U.S.C. § 85 - Unemployment compensation
+    metadata:
+      primary_source: true
+      source_authority: U.S. Government Publishing Office
+      source_family: united_states_code
+      document_subtype: annual_us_code_section
+      title_number: "26"
+      section_number: "85"
+      current_olrc_verified_url: https://uscode.house.gov/view.xhtml?req=%28title%3A26+section%3A85+edition%3Aprelim%29
+      current_olrc_verified_through: "2026-06-24"
+      current_release_point_url: https://uscode.house.gov/download/download.shtml
+      current_release_point: Public Law 119-99
+      current_release_point_date: "2026-06-12"
+      source_access_note: The official OLRC current-release USLM zip timed out for unattended local HTTP download in this run; the official GovInfo annual section HTML was archived and checked against the current OLRC section page text.

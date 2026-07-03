@@ -70,6 +70,7 @@ verify = [
 axiom-corpus = "axiom_corpus.corpus.cli:main"
 axiom-corpus-build = "axiom_corpus.scripts.build_archive:main"
 axiom-corpus-ingest = "axiom_corpus.corpus.cli:main"
+axiom-corpus-release = "axiom_corpus.release.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/TheAxiomFoundation/axiom-corpus"
