@@ -1,0 +1,330 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-tx
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 3
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 39
+input_count: 14
+output_count: 25
+concepts:
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#input.floor
+  kind: input
+  name: floor
+  entity: Household
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#input.household_adjusted_gross_income
+  kind: input
+  name: household_adjusted_gross_income
+  entity: Household
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#input.household_passes_recognizable_needs_test
+  kind: input
+  name: household_passes_recognizable_needs_test
+  entity: Household
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#input.maximum_grant_amount_allowed_for_household_size_and_composition
+  kind: input
+  name: maximum_grant_amount_allowed_for_household_size_and_composition
+  entity: Household
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#input.payment_is_supplemental
+  kind: input
+  name: payment_is_supplemental
+  entity: Household
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#input.payment_made_after_processing_recoupment
+  kind: input
+  name: payment_made_after_processing_recoupment
+  entity: Household
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf#input.date_financial_eligibility_begins_day
+  kind: input
+  name: date_financial_eligibility_begins_day
+  entity: TanfUnit
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf#input.floor
+  kind: input
+  name: floor
+  entity: TanfUnit
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf#input.recommended_tanf_grant_amount_for_month
+  kind: input
+  name: recommended_tanf_grant_amount_for_month
+  entity: TanfUnit
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf#input.tanf_payment_is_one_time_tanf_or_one_time_tanf_for_relatives_payment
+  kind: input
+  name: tanf_payment_is_one_time_tanf_or_one_time_tanf_for_relatives_payment
+  entity: TanfUnit
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#input.tanf_case_is_caretaker_with_second_parent
+  kind: input
+  name: tanf_case_is_caretaker_with_second_parent
+  entity: TanfUnit
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#input.tanf_case_is_caretaker_without_second_parent
+  kind: input
+  name: tanf_case_is_caretaker_without_second_parent
+  entity: TanfUnit
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#input.tanf_case_is_non_caretaker
+  kind: input
+  name: tanf_case_is_non_caretaker
+  entity: TanfUnit
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#input.tanf_family_size
+  kind: input
+  name: tanf_family_size
+  entity: TanfUnit
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#approximate_tanf_grant_fpl_rate
+  kind: output
+  name: approximate_tanf_grant_fpl_rate
+  dtype: Rate
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#recommended_tanf_grant_amount
+  kind: output
+  name: recommended_tanf_grant_amount
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#tanf_minimum_grant_amount
+  kind: output
+  name: tanf_minimum_grant_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16#tx_tanf
+  kind: output
+  name: tx_tanf
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/a-1340-income-limits/block-16
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf#first_month_minimum_prorated_grant
+  kind: output
+  name: first_month_minimum_prorated_grant
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf#proration_file_date_day_limit
+  kind: output
+  name: proration_file_date_day_limit
+  dtype: Count
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf#tanf_first_month_grant_amount
+  kind: output
+  name: tanf_first_month_grant_amount
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf#tanf_proration_multiplier_by_financial_eligibility_begin_day
+  kind: output
+  name: tanf_proration_multiplier_by_financial_eligibility_begin_day
+  dtype: Rate
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#budgetary_need_additional_person
+  kind: output
+  name: budgetary_need_additional_person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#budgetary_need_percentage
+  kind: output
+  name: budgetary_need_percentage
+  dtype: Rate
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#caretaker_with_second_parent_budgetary_need_by_family_size
+  kind: output
+  name: caretaker_with_second_parent_budgetary_need_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#caretaker_with_second_parent_maximum_grant_by_family_size
+  kind: output
+  name: caretaker_with_second_parent_maximum_grant_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#caretaker_with_second_parent_minimum_family_size
+  kind: output
+  name: caretaker_with_second_parent_minimum_family_size
+  dtype: Count
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#caretaker_with_second_parent_recognizable_need_by_family_size
+  kind: output
+  name: caretaker_with_second_parent_recognizable_need_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#caretaker_without_second_parent_budgetary_need_by_family_size
+  kind: output
+  name: caretaker_without_second_parent_budgetary_need_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#caretaker_without_second_parent_maximum_grant_by_family_size
+  kind: output
+  name: caretaker_without_second_parent_maximum_grant_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#caretaker_without_second_parent_recognizable_need_by_family_size
+  kind: output
+  name: caretaker_without_second_parent_recognizable_need_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#maximum_grant_additional_person
+  kind: output
+  name: maximum_grant_additional_person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#maximum_listed_family_size
+  kind: output
+  name: maximum_listed_family_size
+  dtype: Count
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#non_caretaker_budgetary_need_by_family_size
+  kind: output
+  name: non_caretaker_budgetary_need_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#non_caretaker_maximum_grant_by_family_size
+  kind: output
+  name: non_caretaker_maximum_grant_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#non_caretaker_recognizable_need_by_family_size
+  kind: output
+  name: non_caretaker_recognizable_need_by_family_size
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#recognizable_need_additional_person
+  kind: output
+  name: recognizable_need_additional_person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#recognizable_need_percentage
+  kind: output
+  name: recognizable_need_percentage
+  dtype: Rate
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1
+- id: us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2#tx_tanf_payment_standard
+  kind: output
+  name: tx_tanf_payment_standard
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-tx:policies/hhs/texas-works-handbook/c-110-tanf/block-2
+  occurrences: 1

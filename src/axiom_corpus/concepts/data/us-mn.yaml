@@ -1,0 +1,345 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-mn
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 2
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 32
+input_count: 19
+output_count: 13
+concepts:
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#input.household_constitutes_separate_household
+  kind: input
+  name: household_constitutes_separate_household
+  entity: Household
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#input.household_is_married_couple
+  kind: input
+  name: household_is_married_couple
+  entity: Household
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#input.household_is_pre_1994_married_couple
+  kind: input
+  name: household_is_pre_1994_married_couple
+  entity: Household
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#input.household_lives_in_own_residence_without_others
+  kind: input
+  name: household_lives_in_own_residence_without_others
+  entity: Household
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#input.household_member_eligible_for_hcbs_waiver
+  kind: input
+  name: household_member_eligible_for_hcbs_waiver
+  entity: Household
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#input.household_member_eligible_for_msa_housing_assistance
+  kind: input
+  name: household_member_eligible_for_msa_housing_assistance
+  entity: Household
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#input.household_member_meets_county_plan_requirements_for_housing_support_placement
+  kind: input
+  name: household_member_meets_county_plan_requirements_for_housing_support_placement
+  entity: Household
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.family_wage_level_for_corresponding_payment_month
+  kind: input
+  name: family_wage_level_for_corresponding_payment_month
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.mfip_food_portion_amount_under_section_0020_09
+  kind: input
+  name: mfip_food_portion_amount_under_section_0020_09
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.net_earned_income_in_budget_month
+  kind: input
+  name: net_earned_income_in_budget_month
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.prorated_benefit_under_section_0022_12_03
+  kind: input
+  name: prorated_benefit_under_section_0022_12_03
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.recoupment_amount_if_applicable
+  kind: input
+  name: recoupment_amount_if_applicable
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.transitional_standard_for_corresponding_payment_month
+  kind: input
+  name: transitional_standard_for_corresponding_payment_month
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.unearned_income_in_budget_month
+  kind: input
+  name: unearned_income_in_budget_month
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.unit_has_both_earned_and_unearned_income
+  kind: input
+  name: unit_has_both_earned_and_unearned_income
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.unit_has_earned_income_only
+  kind: input
+  name: unit_has_earned_income_only
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.unit_is_applicant_case
+  kind: input
+  name: unit_is_applicant_case
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.unit_receives_no_income_other_than_mfip
+  kind: input
+  name: unit_receives_no_income_other_than_mfip
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#input.unit_receives_unearned_income_only
+  kind: input
+  name: unit_receives_unearned_income_only
+  entity: TanfUnit
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#mn_msa_assistance_standard
+  kind: output
+  name: mn_msa_assistance_standard
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mn_msa_assistance_standard
+      program: ssi_state_supplement
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#msa_living_alone_standard_applies
+  kind: output
+  name: msa_living_alone_standard_applies
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#msa_married_couple_living_alone_standard
+  kind: output
+  name: msa_married_couple_living_alone_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mn.dhs.msa.assistance_standard.amount
+      parameter_key: COUPLE_LIVING_ALONE
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#msa_married_couple_living_with_others_standard
+  kind: output
+  name: msa_married_couple_living_with_others_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mn.dhs.msa.assistance_standard.amount
+      parameter_key: COUPLE_LIVING_WITH_OTHERS
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#msa_person_living_alone_standard
+  kind: output
+  name: msa_person_living_alone_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mn.dhs.msa.assistance_standard.amount
+      parameter_key: INDIVIDUAL_LIVING_ALONE
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#msa_person_living_with_others_standard
+  kind: output
+  name: msa_person_living_with_others_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mn.dhs.msa.assistance_standard.amount
+      parameter_key: INDIVIDUAL_LIVING_WITH_OTHERS
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#msa_personal_needs_allowance
+  kind: output
+  name: msa_personal_needs_allowance
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.mn.dhs.msa.assistance_standard.amount
+      parameter_key: MEDICAID_FACILITY
+      comparison: money
+      program: ssi_state_supplement
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#msa_pre_1994_married_couple_living_alone_standard
+  kind: output
+  name: msa_pre_1994_married_couple_living_alone_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026#msa_pre_1994_married_couple_living_with_others_standard
+  kind: output
+  name: msa_pre_1994_married_couple_living_with_others_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0020-21/msa-assistance-standards-2026
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#final_total_mfip_grant
+  kind: output
+  name: final_total_mfip_grant
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mn_mfip
+      program: tanf
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#mfip_cash_portion_issued_as_cash
+  kind: output
+  name: mfip_cash_portion_issued_as_cash
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: mn_mfip
+      comparison: money
+      program: tanf
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#mfip_food_portion_issued_as_ebt
+  kind: output
+  name: mfip_food_portion_issued_as_ebt
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mn_mfip_food_portion
+      program: tanf
+- id: us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant#total_mfip_grant_before_proration
+  kind: output
+  name: total_mfip_grant_before_proration
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-mn:policies/dhs/combined-manual/0022-12/mfip-total-grant
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: mn_mfip
+      program: tanf

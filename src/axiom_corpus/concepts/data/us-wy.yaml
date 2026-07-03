@@ -1,0 +1,300 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-wy
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 1
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 39
+input_count: 25
+output_count: 14
+concepts:
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_alimony_or_child_support_paid_to_persons_not_in_household
+  kind: input
+  name: anticipated_alimony_or_child_support_paid_to_persons_not_in_household
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_child_or_spousal_support_paid_to_persons_not_in_home
+  kind: input
+  name: anticipated_child_or_spousal_support_paid_to_persons_not_in_home
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_dependent_payments_to_persons_not_in_home
+  kind: input
+  name: anticipated_dependent_payments_to_persons_not_in_home
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_dependent_payments_to_persons_not_in_household
+  kind: input
+  name: anticipated_dependent_payments_to_persons_not_in_household
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_gross_earned_income
+  kind: input
+  name: anticipated_gross_earned_income
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_gross_earned_income_of_parent_and_eligible_children
+  kind: input
+  name: anticipated_gross_earned_income_of_parent_and_eligible_children
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_gross_earned_income_or_net_self_employment
+  kind: input
+  name: anticipated_gross_earned_income_or_net_self_employment
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_unearned_income
+  kind: input
+  name: anticipated_unearned_income
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_unearned_income_available_to_parent_or_stepparent
+  kind: input
+  name: anticipated_unearned_income_available_to_parent_or_stepparent
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_unearned_income_available_to_stepparent
+  kind: input
+  name: anticipated_unearned_income_available_to_stepparent
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_unearned_income_excluding_state_assigned_child_or_spousal_support
+  kind: input
+  name: anticipated_unearned_income_excluding_state_assigned_child_or_spousal_support
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.anticipated_unearned_income_including_state_assigned_child_or_spousal_support
+  kind: input
+  name: anticipated_unearned_income_including_state_assigned_child_or_spousal_support
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.best_estimate_deemed_income
+  kind: input
+  name: best_estimate_deemed_income
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.child_support_amount_is_anticipated_ongoing
+  kind: input
+  name: child_support_amount_is_anticipated_ongoing
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.eligible_married_couple
+  kind: input
+  name: eligible_married_couple
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.floor
+  kind: input
+  name: floor
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.immigrant_has_40_qualifying_quarters_without_government_benefits
+  kind: input
+  name: immigrant_has_40_qualifying_quarters_without_government_benefits
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.immigrant_is_citizen
+  kind: input
+  name: immigrant_is_citizen
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.maximum_benefit_level_for_parent_stepparent_and_dependents
+  kind: input
+  name: maximum_benefit_level_for_parent_stepparent_and_dependents
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.maximum_benefit_level_for_power_eligible_individuals
+  kind: input
+  name: maximum_benefit_level_for_power_eligible_individuals
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.maximum_benefit_level_for_stepparent_household
+  kind: input
+  name: maximum_benefit_level_for_stepparent_household
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.nonexempt_child_support_anticipated_to_be_collected
+  kind: input
+  name: nonexempt_child_support_anticipated_to_be_collected
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.sponsor_and_spouse_assets
+  kind: input
+  name: sponsor_and_spouse_assets
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.sponsor_and_spouse_income
+  kind: input
+  name: sponsor_and_spouse_income
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#input.sponsor_has_died
+  kind: input
+  name: sponsor_has_died
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#applicable_power_earned_income_disregard
+  kind: output
+  name: applicable_power_earned_income_disregard
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#disqualified_person_available_income_for_power_payment
+  kind: output
+  name: disqualified_person_available_income_for_power_payment
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#minor_parent_parent_available_income_for_power
+  kind: output
+  name: minor_parent_parent_available_income_for_power
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#power_case_terminates_for_ongoing_child_support_ineligibility
+  kind: output
+  name: power_case_terminates_for_ongoing_child_support_ineligibility
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#power_earned_income_disregard
+  kind: output
+  name: power_earned_income_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#power_earned_income_disregard_for_eligible_married_couple
+  kind: output
+  name: power_earned_income_disregard_for_eligible_married_couple
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#power_maximum_benefit_level_countable_income
+  kind: output
+  name: power_maximum_benefit_level_countable_income
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#power_maximum_benefit_level_test_met
+  kind: output
+  name: power_maximum_benefit_level_test_met
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#power_performance_payment_amount
+  kind: output
+  name: power_performance_payment_amount
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#power_performance_payment_countable_income
+  kind: output
+  name: power_performance_payment_countable_income
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#sponsor_deemed_assets_for_immigrant_power
+  kind: output
+  name: sponsor_deemed_assets_for_immigrant_power
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#sponsor_deemed_income_for_immigrant_power
+  kind: output
+  name: sponsor_deemed_income_for_immigrant_power
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#sponsor_deeming_rate
+  kind: output
+  name: sponsor_deeming_rate
+  dtype: Rate
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1
+- id: us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations#stepparent_available_income_for_power
+  kind: output
+  name: stepparent_available_income_for_power
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wy:policies/dfs/snap-power-policy-manual/1101-power-payment-tests-computations
+  occurrences: 1

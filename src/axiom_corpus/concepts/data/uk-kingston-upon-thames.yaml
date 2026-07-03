@@ -1,0 +1,380 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: uk-kingston-upon-thames
+generated_from:
+  rulespec_repo: rulespec-uk
+  rulespec_sha: e6e8523471709630ab9e13872d8aa41c18a6576e
+  module_count: 1
+concept_count: 47
+input_count: 17
+output_count: 30
+concepts:
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.ceil
+  kind: input
+  name: ceil
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.council_tax_reduction_household_has_pensioner
+  kind: input
+  name: council_tax_reduction_household_has_pensioner
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.council_tax_reduction_household_in_england
+  kind: input
+  name: council_tax_reduction_household_in_england
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_applicable_income_for_year
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_applicable_income_for_year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_assessed_capital_for_year
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_assessed_capital_for_year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_is_non_dependant
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_is_non_dependant
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_legacy_applicable_amount_for_year
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_legacy_applicable_amount_for_year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_maximum_eligible_liability_for_year
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_maximum_eligible_liability_for_year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_non_dependant_deductions_for_year
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_non_dependant_deductions_for_year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_non_dependant_exempt
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_non_dependant_exempt
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_non_dependant_normal_gross_weekly_income
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_non_dependant_normal_gross_weekly_income
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_non_dependant_weekly_hours
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_non_dependant_weekly_hours
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_relevant_income_based_benefit
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_relevant_income_based_benefit
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_uc_maximum_amount_for_year
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_uc_maximum_amount_for_year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.kingston_upon_thames_council_tax_reduction_universal_credit_for_year
+  kind: input
+  name: kingston_upon_thames_council_tax_reduction_universal_credit_for_year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.local_authority_is_kingston_upon_thames
+  kind: input
+  name: local_authority_is_kingston_upon_thames
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#input.would_claim_council_tax_reduction
+  kind: input
+  name: would_claim_council_tax_reduction
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_annual_amount
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_annual_amount
+  entity: Household
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_annual_taper_denominator
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_annual_taper_denominator
+  dtype: Number
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_applicable_amount_for_year
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_applicable_amount_for_year
+  entity: Household
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_applicable_income_with_tariff_for_year
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_applicable_income_with_tariff_for_year
+  entity: Household
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_capital_eligible
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_capital_eligible
+  entity: Household
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_capital_limit
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_capital_limit
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_daily_taper_rate
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_daily_taper_rate
+  dtype: Rate
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_days_per_week
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_days_per_week
+  dtype: Number
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_excess_income_for_year
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_excess_income_for_year
+  entity: Household
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_has_universal_credit_award
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_has_universal_credit_award
+  entity: Household
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_high_non_dependant_deduction_weekly
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_high_non_dependant_deduction_weekly
+  dtype: Money
+  unit: GBP
+  period: Week
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_income_taper_deduction_for_year
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_income_taper_deduction_for_year
+  entity: Household
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_individual_non_dependant_deduction_for_year
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_individual_non_dependant_deduction_for_year
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_low_non_dependant_deduction_weekly
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_low_non_dependant_deduction_weekly
+  dtype: Money
+  unit: GBP
+  period: Week
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_maximum_support_rate
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_maximum_support_rate
+  dtype: Rate
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_mid_non_dependant_deduction_weekly
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_mid_non_dependant_deduction_weekly
+  dtype: Money
+  unit: GBP
+  period: Week
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_non_dependant_high_income_threshold_weekly
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_non_dependant_high_income_threshold_weekly
+  dtype: Money
+  unit: GBP
+  period: Week
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_non_dependant_in_remunerative_work
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_non_dependant_in_remunerative_work
+  entity: Person
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_non_dependant_mid_income_threshold_weekly
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_non_dependant_mid_income_threshold_weekly
+  dtype: Money
+  unit: GBP
+  period: Week
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_non_dependant_top_income_threshold_weekly
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_non_dependant_top_income_threshold_weekly
+  dtype: Money
+  unit: GBP
+  period: Week
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_remunerative_work_hours
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_remunerative_work_hours
+  dtype: Number
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_tariff_income_for_year
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_tariff_income_for_year
+  entity: Household
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_tariff_income_step
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_tariff_income_step
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_tariff_income_threshold
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_tariff_income_threshold
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_tariff_income_weekly_amount_per_step
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_tariff_income_weekly_amount_per_step
+  dtype: Money
+  unit: GBP
+  period: Week
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_top_non_dependant_deduction_weekly
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_top_non_dependant_deduction_weekly
+  dtype: Money
+  unit: GBP
+  period: Week
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_weeks_per_year
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_weeks_per_year
+  dtype: Number
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_withdrawal_rate
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_withdrawal_rate
+  dtype: Rate
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#kingston_upon_thames_council_tax_reduction_working_age_scheme_applies
+  kind: output
+  name: kingston_upon_thames_council_tax_reduction_working_age_scheme_applies
+  entity: Household
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1
+- id: uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction#simulated_kingston_upon_thames_council_tax_reduction_annual_amount
+  kind: output
+  name: simulated_kingston_upon_thames_council_tax_reduction_annual_amount
+  entity: Household
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk-kingston-upon-thames:policies/kingston-upon-thames/council-tax-reduction
+  occurrences: 1

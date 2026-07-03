@@ -1,0 +1,4242 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-ga
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 26
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 574
+input_count: 383
+output_count: 191
+concepts:
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#input.family_unit_size
+  kind: input
+  name: family_unit_size
+  entity: Family
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Appling
+  kind: input
+  name: Appling
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Atkinson
+  kind: input
+  name: Atkinson
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Bacon
+  kind: input
+  name: Bacon
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Baker
+  kind: input
+  name: Baker
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Baldwin
+  kind: input
+  name: Baldwin
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Banks
+  kind: input
+  name: Banks
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Barrow
+  kind: input
+  name: Barrow
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Bartow
+  kind: input
+  name: Bartow
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Ben
+  kind: input
+  name: Ben
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Berrien
+  kind: input
+  name: Berrien
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Bibb
+  kind: input
+  name: Bibb
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Bleckley
+  kind: input
+  name: Bleckley
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Brantley
+  kind: input
+  name: Brantley
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Brooks
+  kind: input
+  name: Brooks
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Bryan
+  kind: input
+  name: Bryan
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Bulloch
+  kind: input
+  name: Bulloch
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Burke
+  kind: input
+  name: Burke
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Butts
+  kind: input
+  name: Butts
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Calhoun
+  kind: input
+  name: Calhoun
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Camden
+  kind: input
+  name: Camden
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Candler
+  kind: input
+  name: Candler
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Carroll
+  kind: input
+  name: Carroll
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Catoosa
+  kind: input
+  name: Catoosa
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Charlton
+  kind: input
+  name: Charlton
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Chatham
+  kind: input
+  name: Chatham
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Chattahoochee
+  kind: input
+  name: Chattahoochee
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Chattooga
+  kind: input
+  name: Chattooga
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Cherokee
+  kind: input
+  name: Cherokee
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Clarke
+  kind: input
+  name: Clarke
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Clay
+  kind: input
+  name: Clay
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Clayton
+  kind: input
+  name: Clayton
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Clinch
+  kind: input
+  name: Clinch
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Cobb
+  kind: input
+  name: Cobb
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Coffee
+  kind: input
+  name: Coffee
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Colquitt
+  kind: input
+  name: Colquitt
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Columbia
+  kind: input
+  name: Columbia
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Cook
+  kind: input
+  name: Cook
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Coweta
+  kind: input
+  name: Coweta
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Crawford
+  kind: input
+  name: Crawford
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Crisp
+  kind: input
+  name: Crisp
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Dade
+  kind: input
+  name: Dade
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Davis
+  kind: input
+  name: Davis
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Dawson
+  kind: input
+  name: Dawson
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.DeKalb
+  kind: input
+  name: DeKalb
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Decatur
+  kind: input
+  name: Decatur
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Dodge
+  kind: input
+  name: Dodge
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Dooly
+  kind: input
+  name: Dooly
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Dougherty
+  kind: input
+  name: Dougherty
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Douglas
+  kind: input
+  name: Douglas
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Early
+  kind: input
+  name: Early
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Echols
+  kind: input
+  name: Echols
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Effingham
+  kind: input
+  name: Effingham
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Elbert
+  kind: input
+  name: Elbert
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Emanuel
+  kind: input
+  name: Emanuel
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Evans
+  kind: input
+  name: Evans
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Fannin
+  kind: input
+  name: Fannin
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Fayette
+  kind: input
+  name: Fayette
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Floyd
+  kind: input
+  name: Floyd
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Forsyth
+  kind: input
+  name: Forsyth
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Franklin
+  kind: input
+  name: Franklin
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Fulton
+  kind: input
+  name: Fulton
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Gilmer
+  kind: input
+  name: Gilmer
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Glascock
+  kind: input
+  name: Glascock
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Glynn
+  kind: input
+  name: Glynn
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Gordon
+  kind: input
+  name: Gordon
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Grady
+  kind: input
+  name: Grady
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Greene
+  kind: input
+  name: Greene
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Gwinnett
+  kind: input
+  name: Gwinnett
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Habersham
+  kind: input
+  name: Habersham
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Hall
+  kind: input
+  name: Hall
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Hancock
+  kind: input
+  name: Hancock
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Haralson
+  kind: input
+  name: Haralson
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Harris
+  kind: input
+  name: Harris
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Hart
+  kind: input
+  name: Hart
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Heard
+  kind: input
+  name: Heard
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Henry
+  kind: input
+  name: Henry
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Hill
+  kind: input
+  name: Hill
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Houston
+  kind: input
+  name: Houston
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Irwin
+  kind: input
+  name: Irwin
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Jackson
+  kind: input
+  name: Jackson
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Jasper
+  kind: input
+  name: Jasper
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Jeff
+  kind: input
+  name: Jeff
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Jefferson
+  kind: input
+  name: Jefferson
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Jenkins
+  kind: input
+  name: Jenkins
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Johnson
+  kind: input
+  name: Johnson
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Jones
+  kind: input
+  name: Jones
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Lamar
+  kind: input
+  name: Lamar
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Lanier
+  kind: input
+  name: Lanier
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Laurens
+  kind: input
+  name: Laurens
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Lee
+  kind: input
+  name: Lee
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Liberty
+  kind: input
+  name: Liberty
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Lincoln
+  kind: input
+  name: Lincoln
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Long
+  kind: input
+  name: Long
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Lowndes
+  kind: input
+  name: Lowndes
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Lumpkin
+  kind: input
+  name: Lumpkin
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Macon
+  kind: input
+  name: Macon
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Madison
+  kind: input
+  name: Madison
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Marion
+  kind: input
+  name: Marion
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.McDuffie
+  kind: input
+  name: McDuffie
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.McIntosh
+  kind: input
+  name: McIntosh
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Meriwether
+  kind: input
+  name: Meriwether
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Miller
+  kind: input
+  name: Miller
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Mitchell
+  kind: input
+  name: Mitchell
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Monroe
+  kind: input
+  name: Monroe
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Montgomery
+  kind: input
+  name: Montgomery
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Morgan
+  kind: input
+  name: Morgan
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Murray
+  kind: input
+  name: Murray
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Muscogee
+  kind: input
+  name: Muscogee
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Newton
+  kind: input
+  name: Newton
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Oconee
+  kind: input
+  name: Oconee
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Oglethorpe
+  kind: input
+  name: Oglethorpe
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Paulding
+  kind: input
+  name: Paulding
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Peach
+  kind: input
+  name: Peach
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Pickens
+  kind: input
+  name: Pickens
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Pierce
+  kind: input
+  name: Pierce
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Pike
+  kind: input
+  name: Pike
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Polk
+  kind: input
+  name: Polk
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Pulaski
+  kind: input
+  name: Pulaski
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Putnam
+  kind: input
+  name: Putnam
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Quitman
+  kind: input
+  name: Quitman
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Rabun
+  kind: input
+  name: Rabun
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Randolph
+  kind: input
+  name: Randolph
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Richmond
+  kind: input
+  name: Richmond
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Rockdale
+  kind: input
+  name: Rockdale
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Schley
+  kind: input
+  name: Schley
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Screven
+  kind: input
+  name: Screven
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Seminole
+  kind: input
+  name: Seminole
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Spalding
+  kind: input
+  name: Spalding
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Stephens
+  kind: input
+  name: Stephens
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Stewart
+  kind: input
+  name: Stewart
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Sumter
+  kind: input
+  name: Sumter
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Talbot
+  kind: input
+  name: Talbot
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Taliaferro
+  kind: input
+  name: Taliaferro
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Tattnall
+  kind: input
+  name: Tattnall
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Taylor
+  kind: input
+  name: Taylor
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Telfair
+  kind: input
+  name: Telfair
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Terrell
+  kind: input
+  name: Terrell
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Thomas
+  kind: input
+  name: Thomas
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Tift
+  kind: input
+  name: Tift
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Toombs
+  kind: input
+  name: Toombs
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Towns
+  kind: input
+  name: Towns
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Treutlen
+  kind: input
+  name: Treutlen
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Troup
+  kind: input
+  name: Troup
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Turner
+  kind: input
+  name: Turner
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Twiggs
+  kind: input
+  name: Twiggs
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Union
+  kind: input
+  name: Union
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Upson
+  kind: input
+  name: Upson
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Walker
+  kind: input
+  name: Walker
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Walton
+  kind: input
+  name: Walton
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Ware
+  kind: input
+  name: Ware
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Warren
+  kind: input
+  name: Warren
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Washington
+  kind: input
+  name: Washington
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Wayne
+  kind: input
+  name: Wayne
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Webster
+  kind: input
+  name: Webster
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Wheeler
+  kind: input
+  name: Wheeler
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.White
+  kind: input
+  name: White
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Whitfield
+  kind: input
+  name: Whitfield
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Wilcox
+  kind: input
+  name: Wilcox
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Wilkes
+  kind: input
+  name: Wilkes
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Wilkinson
+  kind: input
+  name: Wilkinson
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.Worth
+  kind: input
+  name: Worth
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#input.county_name
+  kind: input
+  name: county_name
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-reimbursement-rates#input.multiple_types_of_care_are_provided_for_same_child_within_same_service_week
+  kind: input
+  name: multiple_types_of_care_are_provided_for_same_child_within_same_service_week
+  entity: Person
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-reimbursement-rates
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-reimbursement-rates#input.selected_state_maximum_rate_for_care_provided
+  kind: input
+  name: selected_state_maximum_rate_for_care_provided
+  entity: Person
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-reimbursement-rates
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-reimbursement-rates#input.state_maximum_rate_for_full_time_care
+  kind: input
+  name: state_maximum_rate_for_full_time_care
+  entity: Person
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-reimbursement-rates
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#input.annual_gross_applicable_income
+  kind: input
+  name: annual_gross_applicable_income
+  entity: Family
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#input.children_in_care_count
+  kind: input
+  name: children_in_care_count
+  entity: Family
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#input.family_unit_size
+  kind: input
+  name: family_unit_size
+  entity: Family
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#input.floor
+  kind: input
+  name: floor
+  entity: Family
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.annual_gross_applicable_income
+  kind: input
+  name: annual_gross_applicable_income
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.caps_service_fee_assessment_event
+  kind: input
+  name: caps_service_fee_assessment_event
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.child_in_dfcs_custody
+  kind: input
+  name: child_in_dfcs_custody
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.children_in_care_count
+  kind: input
+  name: children_in_care_count
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.family_unit_size
+  kind: input
+  name: family_unit_size
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.initial_eligibility_or_redetermination
+  kind: input
+  name: initial_eligibility_or_redetermination
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.multiple_child_care_scholarships_for_same_child_during_same_service_week
+  kind: input
+  name: multiple_child_care_scholarships_for_same_child_during_same_service_week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.previously_assessed_weekly_family_fee
+  kind: input
+  name: previously_assessed_weekly_family_fee
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.scholarship_is_active
+  kind: input
+  name: scholarship_is_active
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#input.scholarship_is_part_time
+  kind: input
+  name: scholarship_is_part_time
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.allowable_state_reimbursement_rate_for_all_children_in_care
+  kind: input
+  name: allowable_state_reimbursement_rate_for_all_children_in_care
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.annual_gross_applicable_income
+  kind: input
+  name: annual_gross_applicable_income
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.any_child_is_receiving_care_through_caps_subsidies
+  kind: input
+  name: any_child_is_receiving_care_through_caps_subsidies
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.caps_maximum_reimbursement_rate
+  kind: input
+  name: caps_maximum_reimbursement_rate
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.children_in_care_count
+  kind: input
+  name: children_in_care_count
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.family_gross_applicable_income_as_percentage_of_poverty_guidelines
+  kind: input
+  name: family_gross_applicable_income_as_percentage_of_poverty_guidelines
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.family_unit_size
+  kind: input
+  name: family_unit_size
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.initial_eligibility_or_redetermination
+  kind: input
+  name: initial_eligibility_or_redetermination
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.parent_is_17_years_of_age_or_younger
+  kind: input
+  name: parent_is_17_years_of_age_or_younger
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.previously_assessed_weekly_family_fee
+  kind: input
+  name: previously_assessed_weekly_family_fee
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#input.provider_published_rate
+  kind: input
+  name: provider_published_rate
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.all_income_available_in_month_including_ssi
+  kind: input
+  name: all_income_available_in_month_including_ssi
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.approved_level_of_care
+  kind: input
+  name: approved_level_of_care
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.month_following_nursing_home_admission
+  kind: input
+  name: month_following_nursing_home_admission
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.month_is_admission_month_to_lad
+  kind: input
+  name: month_is_admission_month_to_lad
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.month_is_after_admission_month_to_lad
+  kind: input
+  name: month_is_after_admission_month_to_lad
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.months_before_application_of_resource_transfer
+  kind: input
+  name: months_before_application_of_resource_transfer
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.other_income
+  kind: input
+  name: other_income
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.receives_ssi_only
+  kind: input
+  name: receives_ssi_only
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.receives_ssi_prior_to_nursing_home_admission
+  kind: input
+  name: receives_ssi_prior_to_nursing_home_admission
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.resident_of_georgia
+  kind: input
+  name: resident_of_georgia
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.resource_transferred_for_less_than_fair_market_value
+  kind: input
+  name: resource_transferred_for_less_than_fair_market_value
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#input.ssi_entitled_in_lad
+  kind: input
+  name: ssi_entitled_in_lad
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3210/block-2#input.count_where
+  kind: input
+  name: count_where
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3210/block-2#input.member_authorized_to_receive_tanf_community_outreach_services
+  kind: input
+  name: member_authorized_to_receive_tanf_community_outreach_services
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3210/block-2#input.member_receives_supplemental_security_income
+  kind: input
+  name: member_receives_supplemental_security_income
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3210/block-2#input.member_receives_tanf
+  kind: input
+  name: member_receives_tanf
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3210/block-2#input.member_receives_tanf_community_outreach_services
+  kind: input
+  name: member_receives_tanf_community_outreach_services
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3210/block-2#input.member_receives_work_support_payments
+  kind: input
+  name: member_receives_work_support_payments
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3612#input.assistance_unit_failed_to_report_earned_income_timely
+  kind: input
+  name: assistance_unit_failed_to_report_earned_income_timely
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3612
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3612#input.total_countable_gross_earned_income
+  kind: input
+  name: total_countable_gross_earned_income
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3612
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.all_medical_expenses_verified
+  kind: input
+  name: all_medical_expenses_verified
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.assistance_unit_has_member_age_at_least_medical_deduction_elderly_member_age_threshold
+  kind: input
+  name: assistance_unit_has_member_age_at_least_medical_deduction_elderly_member_age_threshold
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.assistance_unit_has_snap_disabled_member
+  kind: input
+  name: assistance_unit_has_snap_disabled_member
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.client_statement_questionable
+  kind: input
+  name: client_statement_questionable
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.current_nonreimbursable_medical_expenses_verified
+  kind: input
+  name: current_nonreimbursable_medical_expenses_verified
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.household_opts_for_actual_medical_expenses
+  kind: input
+  name: household_opts_for_actual_medical_expenses
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.household_states_medical_expenses_continue_to_exceed_disregard
+  kind: input
+  name: household_states_medical_expenses_continue_to_exceed_disregard
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.monthly_qualifying_nonreimbursable_medical_expenses
+  kind: input
+  name: monthly_qualifying_nonreimbursable_medical_expenses
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.recertification_renewal
+  kind: input
+  name: recertification_renewal
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#input.recurring_qualifying_medical_expenses_verified
+  kind: input
+  name: recurring_qualifying_medical_expenses_verified
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.at_least_one_household_vehicle_used_for_transportation
+  kind: input
+  name: at_least_one_household_vehicle_used_for_transportation
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.childcare_expense_billed_to_au_verified_by_caps_unit_information
+  kind: input
+  name: childcare_expense_billed_to_au_verified_by_caps_unit_information
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.dependent_care_cost_verified_by_caps_disposition_parent_information_notice_or_child_care_certificate
+  kind: input
+  name: dependent_care_cost_verified_by_caps_disposition_parent_information_notice_or_child_care_certificate
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.dependent_care_cost_verified_by_receipt_from_provider
+  kind: input
+  name: dependent_care_cost_verified_by_receipt_from_provider
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.dependent_care_cost_verified_by_statement_from_provider
+  kind: input
+  name: dependent_care_cost_verified_by_statement_from_provider
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.dependent_care_cost_verified_by_subsidized_childcare_record_or_caps_worker
+  kind: input
+  name: dependent_care_cost_verified_by_subsidized_childcare_record_or_caps_worker
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.dependent_care_expense_information_appears_questionable
+  kind: input
+  name: dependent_care_expense_information_appears_questionable
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.dependent_care_recipient_age
+  kind: input
+  name: dependent_care_recipient_age
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.dependent_care_recipient_is_child
+  kind: input
+  name: dependent_care_recipient_is_child
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.dependent_care_recipient_is_incapacitated_person
+  kind: input
+  name: dependent_care_recipient_is_incapacitated_person
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.expense_already_allowed_as_medical_expense
+  kind: input
+  name: expense_already_allowed_as_medical_expense
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.expense_is_dependent_care_cost
+  kind: input
+  name: expense_is_dependent_care_cost
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.expense_is_meal_cost_associated_with_dependent_care
+  kind: input
+  name: expense_is_meal_cost_associated_with_dependent_care
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.expense_is_mileage_to_or_from_dependent_care_provider
+  kind: input
+  name: expense_is_mileage_to_or_from_dependent_care_provider
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.expense_is_other_cost_associated_with_care_and_maintenance_of_dependent
+  kind: input
+  name: expense_is_other_cost_associated_with_care_and_maintenance_of_dependent
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.expense_is_transportation_to_or_from_dependent_care_provider
+  kind: input
+  name: expense_is_transportation_to_or_from_dependent_care_provider
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.expense_paid_to_au_member_who_provides_care
+  kind: input
+  name: expense_paid_to_au_member_who_provides_care
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.expense_separate_and_identified_solely_as_educational
+  kind: input
+  name: expense_separate_and_identified_solely_as_educational
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.monthly_dependent_care_costs_incurred_or_billed_to_au
+  kind: input
+  name: monthly_dependent_care_costs_incurred_or_billed_to_au
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.monthly_dependent_care_costs_paid_under_title_iv_of_social_security_act
+  kind: input
+  name: monthly_dependent_care_costs_paid_under_title_iv_of_social_security_act
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.necessary_for_au_member_to_attend_training_or_pursue_education_preparatory_to_employment
+  kind: input
+  name: necessary_for_au_member_to_attend_training_or_pursue_education_preparatory_to_employment
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.necessary_for_au_member_to_comply_with_employment_and_training_requirements
+  kind: input
+  name: necessary_for_au_member_to_comply_with_employment_and_training_requirements
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.necessary_for_au_member_to_search_for_accept_or_continue_employment
+  kind: input
+  name: necessary_for_au_member_to_search_for_accept_or_continue_employment
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#input.vehicle_belongs_to_snap_au_member
+  kind: input
+  name: vehicle_belongs_to_snap_au_member
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_administrative_records
+  kind: input
+  name: actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_administrative_records
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_checks
+  kind: input
+  name: actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_checks
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_dcss_matches_or_records
+  kind: input
+  name: actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_dcss_matches_or_records
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_personal_money_logs
+  kind: input
+  name: actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_personal_money_logs
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_receipts
+  kind: input
+  name: actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_receipts
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_statement_from_individual_paying_support
+  kind: input
+  name: actual_payment_verified_for_most_current_child_support_payment_verification_lookback_months_by_statement_from_individual_paying_support
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.au_member_is_legally_obligated_to_pay_child_support_for_child_outside_au
+  kind: input
+  name: au_member_is_legally_obligated_to_pay_child_support_for_child_outside_au
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.child_support_paid_by_au_member_to_or_for_non_au_member
+  kind: input
+  name: child_support_paid_by_au_member_to_or_for_non_au_member
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.legal_obligation_verified_by_administrative_order
+  kind: input
+  name: legal_obligation_verified_by_administrative_order
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.legal_obligation_verified_by_court_order
+  kind: input
+  name: legal_obligation_verified_by_court_order
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.legal_obligation_verified_by_divorce_or_separation_documents
+  kind: input
+  name: legal_obligation_verified_by_divorce_or_separation_documents
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.legal_obligation_verified_by_verbal_confirmation_from_knowledgeable_source
+  kind: input
+  name: legal_obligation_verified_by_verbal_confirmation_from_knowledgeable_source
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.legally_obligated_child_support_amount_verified
+  kind: input
+  name: legally_obligated_child_support_amount_verified
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.monthly_actual_legally_obligated_child_support_paid_excluding_alimony
+  kind: input
+  name: monthly_actual_legally_obligated_child_support_paid_excluding_alimony
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.monthly_past_due_child_support_paid
+  kind: input
+  name: monthly_past_due_child_support_paid
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.past_due_child_support_amount_deducted_in_previous_snap_budget
+  kind: input
+  name: past_due_child_support_amount_deducted_in_previous_snap_budget
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.past_due_child_support_amount_verified
+  kind: input
+  name: past_due_child_support_amount_verified
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.past_due_legal_obligation_established_by_original_child_support_document
+  kind: input
+  name: past_due_legal_obligation_established_by_original_child_support_document
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.past_due_legal_obligation_separately_verified
+  kind: input
+  name: past_due_legal_obligation_separately_verified
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.payment_is_alimony
+  kind: input
+  name: payment_is_alimony
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.payment_is_cash_made_directly_to_or_for_non_au_individual
+  kind: input
+  name: payment_is_cash_made_directly_to_or_for_non_au_individual
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.payment_is_direct_third_party_payment_in_lieu_of_child_support
+  kind: input
+  name: payment_is_direct_third_party_payment_in_lieu_of_child_support
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#input.payment_is_support_such_as_clothing_or_infant_products
+  kind: input
+  name: payment_is_support_such_as_clothing_or_infant_products
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.actual_utility_expense_verified_by_third_party
+  kind: input
+  name: actual_utility_expense_verified_by_third_party
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_has_elderly_or_disabled_member
+  kind: input
+  name: assistance_unit_has_elderly_or_disabled_member
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_has_member_age_at_least_elderly_member_age_threshold
+  kind: input
+  name: assistance_unit_has_member_age_at_least_elderly_member_age_threshold
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_has_snap_disabled_member
+  kind: input
+  name: assistance_unit_has_snap_disabled_member
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_income_after_other_deductions
+  kind: input
+  name: assistance_unit_income_after_other_deductions
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_incurred_only_one_utility_expense_other_than_heating_or_cooling
+  kind: input
+  name: assistance_unit_incurred_only_one_utility_expense_other_than_heating_or_cooling
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_incurs_long_distance_telephone_service_only
+  kind: input
+  name: assistance_unit_incurs_long_distance_telephone_service_only
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_incurs_only_basic_telephone_service_expense
+  kind: input
+  name: assistance_unit_incurs_only_basic_telephone_service_expense
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_incurs_only_telephone_usage_fee
+  kind: input
+  name: assistance_unit_incurs_only_telephone_usage_fee
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_intends_to_return_to_home
+  kind: input
+  name: assistance_unit_intends_to_return_to_home
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_is_billed_or_expects_billing_for_excess_heating_or_cooling_expense_in_any_housing
+  kind: input
+  name: assistance_unit_is_billed_or_expects_billing_for_excess_heating_or_cooling_expense_in_any_housing
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_is_billed_or_expects_billing_for_heating_or_cooling_cost_separate_from_rent_or_mortgage
+  kind: input
+  name: assistance_unit_is_billed_or_expects_billing_for_heating_or_cooling_cost_separate_from_rent_or_mortgage
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.assistance_unit_is_billed_or_expects_billing_for_non_heating_non_cooling_excess_utility_cost_in_any_housing
+  kind: input
+  name: assistance_unit_is_billed_or_expects_billing_for_non_heating_non_cooling_excess_utility_cost_in_any_housing
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.current_occupants_are_not_claiming_shelter_costs_for_snap
+  kind: input
+  name: current_occupants_are_not_claiming_shelter_costs_for_snap
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.dwelling_is_eligible_for_heating_cooling_sua
+  kind: input
+  name: dwelling_is_eligible_for_heating_cooling_sua
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.dwelling_is_eligible_for_limited_sua
+  kind: input
+  name: dwelling_is_eligible_for_limited_sua
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.home_is_rented_or_leased_during_absence
+  kind: input
+  name: home_is_rented_or_leased_during_absence
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.liheap_payment_received_in_application_month_or_previous_12_months
+  kind: input
+  name: liheap_payment_received_in_application_month_or_previous_12_months
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.monthly_allowable_shelter_costs
+  kind: input
+  name: monthly_allowable_shelter_costs
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.non_heating_non_cooling_utility_cost_count_billed_separately_from_rent_or_mortgage
+  kind: input
+  name: non_heating_non_cooling_utility_cost_count_billed_separately_from_rent_or_mortgage
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.other_snap_household_members_in_dwelling_claim_an_sua_for_different_phone
+  kind: input
+  name: other_snap_household_members_in_dwelling_claim_an_sua_for_different_phone
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.residence_temporarily_unoccupied_due_to_employment_training_illness_natural_disaster_or_casualty_loss
+  kind: input
+  name: residence_temporarily_unoccupied_due_to_employment_training_illness_natural_disaster_or_casualty_loss
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#input.verified_utility_expenses_for_most_recent_12_months
+  kind: input
+  name: verified_utility_expenses_for_most_recent_12_months
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.claimed_allowable_shelter_expense_amount
+  kind: input
+  name: claimed_allowable_shelter_expense_amount
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.head_lacks_fixed_or_regular_nighttime_residence
+  kind: input
+  name: head_lacks_fixed_or_regular_nighttime_residence
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.head_primary_nighttime_residence_is_halfway_house_or_similar_temporary_institution
+  kind: input
+  name: head_primary_nighttime_residence_is_halfway_house_or_similar_temporary_institution
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.head_primary_nighttime_residence_is_place_not_designed_or_ordinarily_used_as_regular_sleeping_accommodation
+  kind: input
+  name: head_primary_nighttime_residence_is_place_not_designed_or_ordinarily_used_as_regular_sleeping_accommodation
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.head_primary_nighttime_residence_is_supervised_homeless_shelter
+  kind: input
+  name: head_primary_nighttime_residence_is_supervised_homeless_shelter
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.head_primary_nighttime_residence_is_temporary_accommodation_in_another_individual_residence_not_more_than_temporary_accommodation_maximum_days
+  kind: input
+  name: head_primary_nighttime_residence_is_temporary_accommodation_in_another_individual_residence_not_more_than_temporary_accommodation_maximum_days
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.homeless_shelter_deduction_is_most_beneficial_to_assistance_unit
+  kind: input
+  name: homeless_shelter_deduction_is_most_beneficial_to_assistance_unit
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.household_due_to_lose_primary_nighttime_residence_within_imminent_loss_nighttime_residence_days
+  kind: input
+  name: household_due_to_lose_primary_nighttime_residence_within_imminent_loss_nighttime_residence_days
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.household_has_no_alternative_residence
+  kind: input
+  name: household_has_no_alternative_residence
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.household_lacks_resources_to_secure_permanent_housing
+  kind: input
+  name: household_lacks_resources_to_secure_permanent_housing
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.household_not_receiving_free_shelter_throughout_month
+  kind: input
+  name: household_not_receiving_free_shelter_throughout_month
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.household_reports_payments_to_family_or_friends_for_temporary_housing_less_than_temporary_accommodation_maximum_days
+  kind: input
+  name: household_reports_payments_to_family_or_friends_for_temporary_housing_less_than_temporary_accommodation_maximum_days
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.household_reports_payments_to_homeless_shelter
+  kind: input
+  name: household_reports_payments_to_homeless_shelter
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.household_reports_payments_to_motel_hotel_or_extended_stay_for_temporary_lodging
+  kind: input
+  name: household_reports_payments_to_motel_hotel_or_extended_stay_for_temporary_lodging
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.household_reports_vehicle_payments_and_resides_in_vehicle
+  kind: input
+  name: household_reports_vehicle_payments_and_resides_in_vehicle
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#input.shelter_expense_verified_by_third_party
+  kind: input
+  name: shelter_expense_verified_by_third_party
+  entity: Household
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#input.allowable_earned_income_deductions
+  kind: input
+  name: allowable_earned_income_deductions
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#input.assistance_unit_has_employed_individual
+  kind: input
+  name: assistance_unit_has_employed_individual
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#input.assistance_unit_included_income
+  kind: input
+  name: assistance_unit_included_income
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#input.au_size
+  kind: input
+  name: au_size
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#input.determination_is_at_application
+  kind: input
+  name: determination_is_at_application
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#input.income_allocated_to_non_assistance_unit_members
+  kind: input
+  name: income_allocated_to_non_assistance_unit_members
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#input.income_deemed_from_non_assistance_unit_members
+  kind: input
+  name: income_deemed_from_non_assistance_unit_members
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#input.son_trial_budget_is_necessary
+  kind: input
+  name: son_trial_budget_is_necessary
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#input.son_trial_budget_net_countable_income
+  kind: input
+  name: son_trial_budget_net_countable_income
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-3#input.assistance_unit_included_income
+  kind: input
+  name: assistance_unit_included_income
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-3
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-3#input.au_size
+  kind: input
+  name: au_size
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-3
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-3#input.income_allocated_to_non_assistance_unit_members
+  kind: input
+  name: income_allocated_to_non_assistance_unit_members
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-3
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-3#input.income_deemed_from_non_assistance_unit_members
+  kind: input
+  name: income_deemed_from_non_assistance_unit_members
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-3
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#input.allowable_earned_income_deductions
+  kind: input
+  name: allowable_earned_income_deductions
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#input.assistance_unit_has_employed_individual
+  kind: input
+  name: assistance_unit_has_employed_individual
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#input.assistance_unit_included_income
+  kind: input
+  name: assistance_unit_included_income
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#input.au_size
+  kind: input
+  name: au_size
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#input.determination_is_at_application
+  kind: input
+  name: determination_is_at_application
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#input.income_allocated_to_non_assistance_unit_members
+  kind: input
+  name: income_allocated_to_non_assistance_unit_members
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#input.income_deemed_from_non_assistance_unit_members
+  kind: input
+  name: income_deemed_from_non_assistance_unit_members
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#input.son_trial_budget_net_countable_income
+  kind: input
+  name: son_trial_budget_net_countable_income
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#input.au_size
+  kind: input
+  name: au_size
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#input.net_countable_income
+  kind: input
+  name: net_countable_income
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#input.person_income
+  kind: input
+  name: person_income
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#input.person_is_assistance_unit_member
+  kind: input
+  name: person_is_assistance_unit_member
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#input.person_is_disqualified_individual
+  kind: input
+  name: person_is_disqualified_individual
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#input.person_is_non_assistance_unit_member
+  kind: input
+  name: person_is_non_assistance_unit_member
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#input.person_is_penalized_standard_filing_unit_member
+  kind: input
+  name: person_is_penalized_standard_filing_unit_member
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#input.sum_where
+  kind: input
+  name: sum_where
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-5#input.determination_is_at_application_renewal_or_change
+  kind: input
+  name: determination_is_at_application_renewal_or_change
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-5
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-5#input.earned_income_from_additional_jobs
+  kind: input
+  name: earned_income_from_additional_jobs
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-5
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-5#input.earned_income_from_primary_job
+  kind: input
+  name: earned_income_from_primary_job
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-5
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-5#input.individual_is_employed
+  kind: input
+  name: individual_is_employed
+  entity: Person
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-5
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#input.care_is_necessary_because_of_employment_of_assistance_unit_member
+  kind: input
+  name: care_is_necessary_because_of_employment_of_assistance_unit_member
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#input.dependent_care_expense
+  kind: input
+  name: dependent_care_expense
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#input.dependent_care_is_for_childcare
+  kind: input
+  name: dependent_care_is_for_childcare
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#input.dependent_care_is_for_incapacitated_individual_in_home
+  kind: input
+  name: dependent_care_is_for_incapacitated_individual_in_home
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#input.dependent_care_recipient_is_child_under_age_two
+  kind: input
+  name: dependent_care_recipient_is_child_under_age_two
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#input.determination_is_at_initial_application_review_or_interim_change
+  kind: input
+  name: determination_is_at_initial_application_review_or_interim_change
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#input.incapacitated_individual_care_need_verified_by_physician_statement
+  kind: input
+  name: incapacitated_individual_care_need_verified_by_physician_statement
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#input.sum_where
+  kind: input
+  name: sum_where
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.assistance_unit_cooperates_in_establishment_of_paternity
+  kind: input
+  name: assistance_unit_cooperates_in_establishment_of_paternity
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.assistance_unit_countable_assets
+  kind: input
+  name: assistance_unit_countable_assets
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.assistance_unit_gross_income
+  kind: input
+  name: assistance_unit_gross_income
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.assistance_unit_member_has_applied_for_social_security_number
+  kind: input
+  name: assistance_unit_member_has_applied_for_social_security_number
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.assistance_unit_member_has_social_security_number
+  kind: input
+  name: assistance_unit_member_has_social_security_number
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.at_least_one_parent_has_physical_or_mental_incapacity
+  kind: input
+  name: at_least_one_parent_has_physical_or_mental_incapacity
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.at_least_one_parent_is_continuously_absent_from_home
+  kind: input
+  name: at_least_one_parent_is_continuously_absent_from_home
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.au_size
+  kind: input
+  name: au_size
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.child_age_is_less_than_18
+  kind: input
+  name: child_age_is_less_than_18
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.child_age_is_less_than_19
+  kind: input
+  name: child_age_is_less_than_19
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.child_attends_school
+  kind: input
+  name: child_attends_school
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.child_has_satisfactory_school_attendance
+  kind: input
+  name: child_has_satisfactory_school_attendance
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.child_is_18_year_old_dependent
+  kind: input
+  name: child_is_18_year_old_dependent
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.child_is_age_6_through_18_without_high_school_graduation_or_equivalency
+  kind: input
+  name: child_is_age_6_through_18_without_high_school_graduation_or_equivalency
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.child_is_immunized
+  kind: input
+  name: child_is_immunized
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.child_is_in_two_parent_family_with_both_parents_able_bodied
+  kind: input
+  name: child_is_in_two_parent_family_with_both_parents_able_bodied
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.child_is_under_7
+  kind: input
+  name: child_is_under_7
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.countable_lifetime_cash_assistance_months_received_in_all_states
+  kind: input
+  name: countable_lifetime_cash_assistance_months_received_in_all_states
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.dependent_child_has_verification_of_full_time_enrollment
+  kind: input
+  name: dependent_child_has_verification_of_full_time_enrollment
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.good_cause_exists_for_lack_of_immunization
+  kind: input
+  name: good_cause_exists_for_lack_of_immunization
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.good_cause_exists_for_not_cooperating_with_division_of_child_support_services
+  kind: input
+  name: good_cause_exists_for_not_cooperating_with_division_of_child_support_services
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.lifetime_limit_extension_is_justified_due_to_hardship
+  kind: input
+  name: lifetime_limit_extension_is_justified_due_to_hardship
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.member_is_full_time_student
+  kind: input
+  name: member_is_full_time_student
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.one_parent_has_recent_connection_to_workforce
+  kind: input
+  name: one_parent_has_recent_connection_to_workforce
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.parent_is_deceased
+  kind: input
+  name: parent_is_deceased
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.parent_pregnant_woman_or_grantee_relative_is_work_eligible
+  kind: input
+  name: parent_pregnant_woman_or_grantee_relative_is_work_eligible
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.paternity_of_child_is_established_at_application_or_when_added_to_active_case
+  kind: input
+  name: paternity_of_child_is_established_at_application_or_when_added_to_active_case
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.person_cooperates_with_division_of_child_support_services
+  kind: input
+  name: person_cooperates_with_division_of_child_support_services
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.recipient_is_lawful_resident_alien
+  kind: input
+  name: recipient_is_lawful_resident_alien
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.recipient_is_us_citizen
+  kind: input
+  name: recipient_is_us_citizen
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.tanf_applicant_or_recipient_applied_for_and_accepts_other_monetary_benefits_for_which_member_may_be_eligible
+  kind: input
+  name: tanf_applicant_or_recipient_applied_for_and_accepts_other_monetary_benefits_for_which_member_may_be_eligible
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#input.weekly_work_activities_and_training_hours
+  kind: input
+  name: weekly_work_activities_and_training_hours
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements/income-resources#input.assistance_unit_countable_assets
+  kind: input
+  name: assistance_unit_countable_assets
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements/income-resources
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements/income-resources#input.assistance_unit_gross_income
+  kind: input
+  name: assistance_unit_gross_income
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements/income-resources
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements/income-resources#input.au_size
+  kind: input
+  name: au_size
+  entity: TanfUnit
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements/income-resources
+  occurrences: 1
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_adult_medicaid_expansion_available
+  kind: output
+  name: georgia_adult_medicaid_expansion_available
+  dtype: Boolean
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.hhs.medicaid.eligibility.categories.adult.income_limit
+      parameter_key: GA
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_children_medicaid_ages_0_to_1_effective_fpl_limit
+  kind: output
+  name: georgia_children_medicaid_ages_0_to_1_effective_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.hhs.medicaid.eligibility.categories.infant.income_limit
+      parameter_key: GA
+      comparison: rate
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_children_medicaid_ages_0_to_1_fpl_limit
+  kind: output
+  name: georgia_children_medicaid_ages_0_to_1_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.hhs.medicaid.eligibility.categories.infant.income_limit
+      parameter_key: GA
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_children_medicaid_ages_1_to_5_effective_fpl_limit
+  kind: output
+  name: georgia_children_medicaid_ages_1_to_5_effective_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.hhs.medicaid.eligibility.categories.young_child.income_limit
+      parameter_key: GA
+      comparison: rate
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_children_medicaid_ages_1_to_5_fpl_limit
+  kind: output
+  name: georgia_children_medicaid_ages_1_to_5_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.hhs.medicaid.eligibility.categories.young_child.income_limit
+      parameter_key: GA
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_children_medicaid_ages_6_to_18_effective_fpl_limit
+  kind: output
+  name: georgia_children_medicaid_ages_6_to_18_effective_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.hhs.medicaid.eligibility.categories.older_child.income_limit
+      parameter_key: GA
+      comparison: rate
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_children_medicaid_ages_6_to_18_fpl_limit
+  kind: output
+  name: georgia_children_medicaid_ages_6_to_18_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.hhs.medicaid.eligibility.categories.older_child.income_limit
+      parameter_key: GA
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_children_separate_chip_effective_fpl_limit
+  kind: output
+  name: georgia_children_separate_chip_effective_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.hhs.chip.child.income_limit
+      parameter_key: GA
+      comparison: rate
+      program: chip
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_children_separate_chip_fpl_limit
+  kind: output
+  name: georgia_children_separate_chip_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.hhs.chip.child.income_limit
+      parameter_key: GA
+      program: chip
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_parent_caretaker_adults_medicaid_fpl_limit
+  kind: output
+  name: georgia_parent_caretaker_adults_medicaid_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.hhs.medicaid.eligibility.categories.parent.income_limit
+      parameter_key: GA
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_parent_caretaker_standard_uses_dollar_amounts
+  kind: output
+  name: georgia_parent_caretaker_standard_uses_dollar_amounts
+  dtype: Boolean
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_pregnant_women_chip_available
+  kind: output
+  name: georgia_pregnant_women_chip_available
+  dtype: Boolean
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.hhs.chip.pregnant.income_limit
+      parameter_key: GA
+      program: chip
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_pregnant_women_medicaid_effective_fpl_limit
+  kind: output
+  name: georgia_pregnant_women_medicaid_effective_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.hhs.medicaid.eligibility.categories.pregnant.income_limit
+      parameter_key: GA
+      comparison: rate
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#georgia_pregnant_women_medicaid_fpl_limit
+  kind: output
+  name: georgia_pregnant_women_medicaid_fpl_limit
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.hhs.medicaid.eligibility.categories.pregnant.income_limit
+      parameter_key: GA
+      program: medicaid
+- id: us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels#magi_fpl_disregard_rate
+  kind: output
+  name: magi_fpl_disregard_rate
+  dtype: Rate
+  modules:
+  - us-ga:policies/cms/georgia-medicaid-chip-bhp-eligibility-levels
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: health
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#initial_eligibility_income_limit
+  kind: output
+  name: initial_eligibility_income_limit
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#initial_eligibility_income_limit_by_family_unit_size
+  kind: output
+  name: initial_eligibility_income_limit_by_family_unit_size
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#initial_eligibility_smi_percentage
+  kind: output
+  name: initial_eligibility_smi_percentage
+  dtype: Rate
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#ongoing_eligibility_and_redetermination_income_limit
+  kind: output
+  name: ongoing_eligibility_and_redetermination_income_limit
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#ongoing_eligibility_and_redetermination_income_limit_by_family_unit_size
+  kind: output
+  name: ongoing_eligibility_and_redetermination_income_limit_by_family_unit_size
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#ongoing_eligibility_and_redetermination_smi_percentage
+  kind: output
+  name: ongoing_eligibility_and_redetermination_smi_percentage
+  dtype: Rate
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#very_low_income_priority_group_fpl_percentage
+  kind: output
+  name: very_low_income_priority_group_fpl_percentage
+  dtype: Rate
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#very_low_income_priority_group_income_limit
+  kind: output
+  name: very_low_income_priority_group_income_limit
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-a-income-limits#very_low_income_priority_group_income_limit_by_family_unit_size
+  kind: output
+  name: very_low_income_priority_group_income_limit_by_family_unit_size
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-a-income-limits
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#caps_payment_zone
+  kind: output
+  name: caps_payment_zone
+  dtype: Integer
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_1
+  kind: output
+  name: county_in_payment_zone_1
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_2
+  kind: output
+  name: county_in_payment_zone_2
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_2_group_1
+  kind: output
+  name: county_in_payment_zone_2_group_1
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_2_group_2
+  kind: output
+  name: county_in_payment_zone_2_group_2
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_2_group_3
+  kind: output
+  name: county_in_payment_zone_2_group_3
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_3
+  kind: output
+  name: county_in_payment_zone_3
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_3_group_1
+  kind: output
+  name: county_in_payment_zone_3_group_1
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_3_group_2
+  kind: output
+  name: county_in_payment_zone_3_group_2
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_3_group_3
+  kind: output
+  name: county_in_payment_zone_3_group_3
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_3_group_4
+  kind: output
+  name: county_in_payment_zone_3_group_4
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-payment-zones#county_in_payment_zone_3_group_5
+  kind: output
+  name: county_in_payment_zone_3_group_5
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-payment-zones
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-reimbursement-rates#before_and_after_school_reimbursement_rate_by_rate_code
+  kind: output
+  name: before_and_after_school_reimbursement_rate_by_rate_code
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-reimbursement-rates
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-reimbursement-rates#full_time_reimbursement_rate_by_rate_code
+  kind: output
+  name: full_time_reimbursement_rate_by_rate_code
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-reimbursement-rates
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-reimbursement-rates#maximum_weekly_reimbursement_when_multiple_care_types_are_provided
+  kind: output
+  name: maximum_weekly_reimbursement_when_multiple_care_types_are_provided
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-reimbursement-rates
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-c-reimbursement-rates#part_time_reimbursement_rate_by_rate_code
+  kind: output
+  name: part_time_reimbursement_rate_by_rate_code
+  dtype: Money
+  unit: USD
+  period: Day
+  modules:
+  - us-ga:policies/decal/caps/appendix-c-reimbursement-rates
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#family_fee_income_band
+  kind: output
+  name: family_fee_income_band
+  entity: Family
+  dtype: Integer
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#family_fee_rate_by_income_band
+  kind: output
+  name: family_fee_rate_by_income_band
+  dtype: Rate
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#five_percent_fee_income_upper_limit_by_family_unit_size
+  kind: output
+  name: five_percent_fee_income_upper_limit_by_family_unit_size
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#no_family_fee_income_upper_limit_by_family_unit_size
+  kind: output
+  name: no_family_fee_income_upper_limit_by_family_unit_size
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#three_percent_fee_income_upper_limit_by_family_unit_size
+  kind: output
+  name: three_percent_fee_income_upper_limit_by_family_unit_size
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#weekly_family_fee
+  kind: output
+  name: weekly_family_fee
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#weekly_family_fee_divisor_weeks
+  kind: output
+  name: weekly_family_fee_divisor_weeks
+  dtype: Count
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/appendix-d-family-fee-chart#weekly_family_fee_per_child_in_care
+  kind: output
+  name: weekly_family_fee_per_child_in_care
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/appendix-d-family-fee-chart
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#active_non_part_time_scholarship_family_fee_applies
+  kind: output
+  name: active_non_part_time_scholarship_family_fee_applies
+  entity: ChildCareScholarship
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#assessed_weekly_family_fee_for_eligibility_period
+  kind: output
+  name: assessed_weekly_family_fee_for_eligibility_period
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#child_care_service_family_fee_assessed
+  kind: output
+  name: child_care_service_family_fee_assessed
+  entity: Family
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#weekly_family_fee_distributed_per_child_in_care
+  kind: output
+  name: weekly_family_fee_distributed_per_child_in_care
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-54#weekly_family_fee_for_all_children_in_care
+  kind: output
+  name: weekly_family_fee_for_all_children_in_care
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-54
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#application_denied_because_family_responsibility_exceeds_allowable_benefit
+  kind: output
+  name: application_denied_because_family_responsibility_exceeds_allowable_benefit
+  entity: Family
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#caps_weekly_reimbursement_after_assessed_family_fee
+  kind: output
+  name: caps_weekly_reimbursement_after_assessed_family_fee
+  entity: ChildCareScholarship
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#caps_weekly_reimbursement_before_family_fee
+  kind: output
+  name: caps_weekly_reimbursement_before_family_fee
+  entity: ChildCareScholarship
+  dtype: Money
+  unit: USD
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#family_fee_exceeds_allowable_state_reimbursement
+  kind: output
+  name: family_fee_exceeds_allowable_state_reimbursement
+  entity: Family
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#minor_parent_family_fee_not_assessed
+  kind: output
+  name: minor_parent_family_fee_not_assessed
+  entity: Family
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#no_fee_poverty_guideline_percentage
+  kind: output
+  name: no_fee_poverty_guideline_percentage
+  dtype: Rate
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#page55_family_fee_not_assessed
+  kind: output
+  name: page55_family_fee_not_assessed
+  entity: Family
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#parent_responsible_for_family_fee_to_provider
+  kind: output
+  name: parent_responsible_for_family_fee_to_provider
+  entity: Family
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/decal/caps/family-fees-policy-page-55#very_low_income_family_fee_not_assessed
+  kind: output
+  name: very_low_income_family_fee_not_assessed
+  entity: Family
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/decal/caps/family-fees-policy-page-55
+  occurrences: 1
+- id: us-ga:policies/dfcs/medicaid/2578#expected_ssi_only_payment_after_nursing_home_admission
+  kind: output
+  name: expected_ssi_only_payment_after_nursing_home_admission
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ga:policies/dfcs/medicaid/2578#expected_state_supplement_for_nursing_home_ssi_recipient
+  kind: output
+  name: expected_state_supplement_for_nursing_home_ssi_recipient
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: ga_ssp_person
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ga:policies/dfcs/medicaid/2578#nursing_home_state_supplement_amount
+  kind: output
+  name: nursing_home_state_supplement_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ga.dhs.ssp.amount
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ga:policies/dfcs/medicaid/2578#patient_liability_for_month_after_admission_to_lad
+  kind: output
+  name: patient_liability_for_month_after_admission_to_lad
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ga:policies/dfcs/medicaid/2578#patient_liability_for_month_of_admission_to_lad
+  kind: output
+  name: patient_liability_for_month_of_admission_to_lad
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ga:policies/dfcs/medicaid/2578#resource_transfer_lookback_months
+  kind: output
+  name: resource_transfer_lookback_months
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ga:policies/dfcs/medicaid/2578#ssi_only_nursing_home_payment_amount_after_admission
+  kind: output
+  name: ssi_only_nursing_home_payment_amount_after_admission
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ga:policies/dfcs/medicaid/2578#ssi_recipient_nursing_home_vendor_payment_authorizable
+  kind: output
+  name: ssi_recipient_nursing_home_vendor_payment_authorizable
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/medicaid/2578
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ga_ssp
+      program: ssi_state_supplement
+- id: us-ga:policies/dfcs/snap/3210/block-2#assistance_unit_member_receives_tanf_wsp_or_ssi
+  kind: output
+  name: assistance_unit_member_receives_tanf_wsp_or_ssi
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-ga:policies/dfcs/snap/3210/block-2#assistance_unit_members
+  kind: output
+  name: assistance_unit_members
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3210/block-2#categorically_eligible_for_snap
+  kind: output
+  name: categorically_eligible_for_snap
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: snap
+- id: us-ga:policies/dfcs/snap/3210/block-2#household_members
+  kind: output
+  name: household_members
+  modules:
+  - us-ga:policies/dfcs/snap/3210/block-2
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3612#earned_income_deduction
+  kind: output
+  name: earned_income_deduction
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3612
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3612#earned_income_deduction_allowed
+  kind: output
+  name: earned_income_deduction_allowed
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3612
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3612#earned_income_deduction_rate
+  kind: output
+  name: earned_income_deduction_rate
+  dtype: Rate
+  modules:
+  - us-ga:policies/dfcs/snap/3612
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3613#restates_snap_standard_deduction
+  kind: output
+  name: restates_snap_standard_deduction
+  modules:
+  - us-ga:policies/dfcs/snap/3613
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#actual_medical_expense_deduction_amount
+  kind: output
+  name: actual_medical_expense_deduction_amount
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#actual_medical_expense_deduction_eligible
+  kind: output
+  name: actual_medical_expense_deduction_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#actual_medical_expense_verification_met
+  kind: output
+  name: actual_medical_expense_verification_met
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#current_nonreimbursable_medical_expense_verification_met
+  kind: output
+  name: current_nonreimbursable_medical_expense_verification_met
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#medical_deduction
+  kind: output
+  name: medical_deduction
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#medical_deduction_elderly_member_age_threshold
+  kind: output
+  name: medical_deduction_elderly_member_age_threshold
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#medical_expense_disregard
+  kind: output
+  name: medical_expense_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#medical_expense_member_is_deduction_eligible
+  kind: output
+  name: medical_expense_member_is_deduction_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#standard_medical_deduction_amount
+  kind: output
+  name: standard_medical_deduction_amount
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#standard_medical_deduction_eligible
+  kind: output
+  name: standard_medical_deduction_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#standard_medical_deduction_gross_amount
+  kind: output
+  name: standard_medical_deduction_gross_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#standard_medical_deduction_net_amount
+  kind: output
+  name: standard_medical_deduction_net_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3614#standard_medical_deduction_verification_met
+  kind: output
+  name: standard_medical_deduction_verification_met
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3614
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#dependent_care_expense_eligible_for_deduction
+  kind: output
+  name: dependent_care_expense_eligible_for_deduction
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#dependent_care_expense_necessary_for_allowable_activity
+  kind: output
+  name: dependent_care_expense_necessary_for_allowable_activity
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#dependent_care_expense_not_disallowed
+  kind: output
+  name: dependent_care_expense_not_disallowed
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#dependent_care_expense_recipient_qualifies
+  kind: output
+  name: dependent_care_expense_recipient_qualifies
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#dependent_care_expense_type_is_allowable
+  kind: output
+  name: dependent_care_expense_type_is_allowable
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#dependent_care_expense_verification_met
+  kind: output
+  name: dependent_care_expense_verification_met
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#dependent_child_under_age_limit
+  kind: output
+  name: dependent_child_under_age_limit
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3615#snap_allowable_monthly_dependent_care_expenses
+  kind: output
+  name: snap_allowable_monthly_dependent_care_expenses
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3615
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#actual_child_support_payment_verification_met
+  kind: output
+  name: actual_child_support_payment_verification_met
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#child_support_legal_obligation_verification_met
+  kind: output
+  name: child_support_legal_obligation_verification_met
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#child_support_payment_type_allowable
+  kind: output
+  name: child_support_payment_type_allowable
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#child_support_payment_verification_lookback_months
+  kind: output
+  name: child_support_payment_verification_lookback_months
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#current_child_support_deduction_eligible
+  kind: output
+  name: current_child_support_deduction_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#past_due_child_support_deduction_eligible
+  kind: output
+  name: past_due_child_support_deduction_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3616#snap_child_support_deduction
+  kind: output
+  name: snap_child_support_deduction
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3616
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#actual_monthly_utility_expense
+  kind: output
+  name: actual_monthly_utility_expense
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#actual_utility_averaging_months
+  kind: output
+  name: actual_utility_averaging_months
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#elderly_member_age_threshold
+  kind: output
+  name: elderly_member_age_threshold
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#excess_shelter_deduction
+  kind: output
+  name: excess_shelter_deduction
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#excess_shelter_expense
+  kind: output
+  name: excess_shelter_expense
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#excess_shelter_income_percentage
+  kind: output
+  name: excess_shelter_income_percentage
+  dtype: Rate
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#heating_cooling_standard_utility_allowance_amount
+  kind: output
+  name: heating_cooling_standard_utility_allowance_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#liheap_minimum_payment_for_heating_cooling_allowance
+  kind: output
+  name: liheap_minimum_payment_for_heating_cooling_allowance
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#limited_standard_utility_allowance_amount
+  kind: output
+  name: limited_standard_utility_allowance_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#maximum_excess_shelter_deduction
+  kind: output
+  name: maximum_excess_shelter_deduction
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#sets_snap_individual_utility_allowance
+  kind: output
+  name: sets_snap_individual_utility_allowance
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#sets_snap_limited_utility_allowance
+  kind: output
+  name: sets_snap_limited_utility_allowance
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#sets_snap_standard_utility_allowance
+  kind: output
+  name: sets_snap_standard_utility_allowance
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#snap_individual_utility_allowance
+  kind: output
+  name: snap_individual_utility_allowance
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#snap_limited_utility_allowance
+  kind: output
+  name: snap_limited_utility_allowance
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#snap_limited_utility_allowance_eligible
+  kind: output
+  name: snap_limited_utility_allowance_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#snap_one_utility_allowance
+  kind: output
+  name: snap_one_utility_allowance
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#snap_standard_utility_allowance
+  kind: output
+  name: snap_standard_utility_allowance
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#snap_standard_utility_allowance_eligible
+  kind: output
+  name: snap_standard_utility_allowance_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#snap_telephone_allowance_eligible
+  kind: output
+  name: snap_telephone_allowance_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#telephone_standard_amount
+  kind: output
+  name: telephone_standard_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#temporarily_unoccupied_residence_shelter_costs_allowed
+  kind: output
+  name: temporarily_unoccupied_residence_shelter_costs_allowed
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3617#uncapped_excess_shelter_deduction_applies
+  kind: output
+  name: uncapped_excess_shelter_deduction_applies
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3617
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#allowable_homeless_shelter_expense_reported
+  kind: output
+  name: allowable_homeless_shelter_expense_reported
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#head_of_household_homeless
+  kind: output
+  name: head_of_household_homeless
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#homeless_household
+  kind: output
+  name: homeless_household
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#homeless_household_claims_expense_at_or_below_deduction_amount
+  kind: output
+  name: homeless_household_claims_expense_at_or_below_deduction_amount
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#homeless_shelter_deduction_amount
+  kind: output
+  name: homeless_shelter_deduction_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#homeless_shelter_deduction_applied_to_budget
+  kind: output
+  name: homeless_shelter_deduction_applied_to_budget
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#homeless_shelter_deduction_eligible
+  kind: output
+  name: homeless_shelter_deduction_eligible
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#household_imminently_homeless
+  kind: output
+  name: household_imminently_homeless
+  entity: Household
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#imminent_loss_nighttime_residence_days
+  kind: output
+  name: imminent_loss_nighttime_residence_days
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#snap_claimed_homeless_shelter_deduction
+  kind: output
+  name: snap_claimed_homeless_shelter_deduction
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/snap/3618#temporary_accommodation_maximum_days
+  kind: output
+  name: temporary_accommodation_maximum_days
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/snap/3618
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#cash_assistance_benefit_amount_after_financial_eligibility
+  kind: output
+  name: cash_assistance_benefit_amount_after_financial_eligibility
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#cash_assistance_financial_eligibility_established
+  kind: output
+  name: cash_assistance_financial_eligibility_established
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-14#son_trial_budget_step_satisfied
+  kind: output
+  name: son_trial_budget_step_satisfied
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-14
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-3#financially_eligible_under_gross_income_ceiling
+  kind: output
+  name: financially_eligible_under_gross_income_ceiling
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-3
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-3#gross_countable_income
+  kind: output
+  name: gross_countable_income
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-3
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#assistance_unit_has_employed_individual_qualified_by_son_trial_budget_at_application
+  kind: output
+  name: assistance_unit_has_employed_individual_qualified_by_son_trial_budget_at_application
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#financially_eligible_under_standard_of_need
+  kind: output
+  name: financially_eligible_under_standard_of_need
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#net_countable_income
+  kind: output
+  name: net_countable_income
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-4#standard_work_deduction_available_in_son_trial_budget_at_application
+  kind: output
+  name: standard_work_deduction_available_in_son_trial_budget_at_application
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-4
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#benefit_amount
+  kind: output
+  name: benefit_amount
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#budgeted_income_for_financial_eligibility_and_benefit_amount
+  kind: output
+  name: budgeted_income_for_financial_eligibility_and_benefit_amount
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#income_included_in_budget_for_financial_eligibility_and_benefit_amount
+  kind: output
+  name: income_included_in_budget_for_financial_eligibility_and_benefit_amount
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1605/block-6#tanf_budget_people
+  kind: output
+  name: tanf_budget_people
+  modules:
+  - us-ga:policies/dfcs/tanf/1605/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-5#earned_income_after_standard_work_deduction
+  kind: output
+  name: earned_income_after_standard_work_deduction
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-5
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-5#earned_income_base_for_standard_work_deduction
+  kind: output
+  name: earned_income_base_for_standard_work_deduction
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-5
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-5#standard_work_deduction
+  kind: output
+  name: standard_work_deduction
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-5
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-5#standard_work_deduction_amount
+  kind: output
+  name: standard_work_deduction_amount
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-5
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-5#standard_work_deduction_eligible
+  kind: output
+  name: standard_work_deduction_eligible
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-5
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#dependent_care_child_under_two_monthly_limit
+  kind: output
+  name: dependent_care_child_under_two_monthly_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#dependent_care_deduction
+  kind: output
+  name: dependent_care_deduction
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#dependent_care_deduction_verification_required
+  kind: output
+  name: dependent_care_deduction_verification_required
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#dependent_care_individual_age_two_or_above_monthly_limit
+  kind: output
+  name: dependent_care_individual_age_two_or_above_monthly_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#dependent_care_recipient_deduction
+  kind: output
+  name: dependent_care_recipient_deduction
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#dependent_care_recipient_deduction_allowed
+  kind: output
+  name: dependent_care_recipient_deduction_allowed
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#dependent_care_recipient_monthly_limit
+  kind: output
+  name: dependent_care_recipient_monthly_limit
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#dependent_care_recipients
+  kind: output
+  name: dependent_care_recipients
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/1615/block-6#dependent_care_verification_monthly_threshold
+  kind: output
+  name: dependent_care_verification_monthly_threshold
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/1615/block-6
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/appendix-a#additional_member_family_maximum_tanf_increment
+  kind: output
+  name: additional_member_family_maximum_tanf_increment
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/appendix-a
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/appendix-a#additional_member_grg_income_limit_160_percent_fpl_increment
+  kind: output
+  name: additional_member_grg_income_limit_160_percent_fpl_increment
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/appendix-a
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/appendix-a#additional_member_gross_income_ceiling_increment
+  kind: output
+  name: additional_member_gross_income_ceiling_increment
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/appendix-a
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/appendix-a#additional_member_standard_of_need_increment
+  kind: output
+  name: additional_member_standard_of_need_increment
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/appendix-a
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/appendix-a#family_maximum_tanf
+  kind: output
+  name: family_maximum_tanf
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/appendix-a
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/appendix-a#grg_income_limit_160_percent_fpl
+  kind: output
+  name: grg_income_limit_160_percent_fpl
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/appendix-a
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/appendix-a#gross_income_ceiling
+  kind: output
+  name: gross_income_ceiling
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/appendix-a
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/appendix-a#standard_of_need
+  kind: output
+  name: standard_of_need
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/appendix-a
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/appendix-a/block-3#assistance_unit_limit
+  kind: output
+  name: assistance_unit_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ga:policies/dfcs/tanf/appendix-a/block-3
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_applicant_or_recipient_other_benefits_requirement_satisfied
+  kind: output
+  name: tanf_applicant_or_recipient_other_benefits_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_child_support_cooperation_requirement_satisfied
+  kind: output
+  name: tanf_child_support_cooperation_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_dependent_child_age_requirement_satisfied
+  kind: output
+  name: tanf_dependent_child_age_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_deprivation_requirement_satisfied
+  kind: output
+  name: tanf_deprivation_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_enumeration_requirement_satisfied
+  kind: output
+  name: tanf_enumeration_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_financial_criteria_requirement_satisfied
+  kind: output
+  name: tanf_financial_criteria_requirement_satisfied
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_immunization_requirement_satisfied
+  kind: output
+  name: tanf_immunization_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_lifetime_cash_assistance_limit_months
+  kind: output
+  name: tanf_lifetime_cash_assistance_limit_months
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_lifetime_limit_requirement_satisfied
+  kind: output
+  name: tanf_lifetime_limit_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_paternity_requirement_satisfied
+  kind: output
+  name: tanf_paternity_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_recipient_citizenship_requirement_satisfied
+  kind: output
+  name: tanf_recipient_citizenship_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_school_attendance_requirement_satisfied
+  kind: output
+  name: tanf_school_attendance_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_work_requirement_satisfied
+  kind: output
+  name: tanf_work_requirement_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Week
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements#tanf_work_requirement_satisfied_scalar_limit
+  kind: output
+  name: tanf_work_requirement_satisfied_scalar_limit
+  dtype: Count
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements
+  occurrences: 1
+- id: us-ga:policies/dfcs/tanf/eligibility-requirements/income-resources#income_resources_financial_criteria_met
+  kind: output
+  name: income_resources_financial_criteria_met
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ga:policies/dfcs/tanf/eligibility-requirements/income-resources
+  occurrences: 1

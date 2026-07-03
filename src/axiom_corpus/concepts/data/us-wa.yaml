@@ -1,0 +1,908 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-wa
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 6
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 91
+input_count: 52
+output_count: 39
+concepts:
+- id: us-wa:regulations/388/388-450/388-450-0162#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: TanfUnit
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0162#input.countable_unearned_income_after_exclusions_and_disregards
+  kind: input
+  name: countable_unearned_income_after_exclusions_and_disregards
+  entity: TanfUnit
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0162#input.deemed_or_allocated_income_from_financially_responsible_nonmembers
+  kind: input
+  name: deemed_or_allocated_income_from_financially_responsible_nonmembers
+  entity: TanfUnit
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0162#input.household_gross_earned_income
+  kind: input
+  name: household_gross_earned_income
+  entity: TanfUnit
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0162#input.income_allocated_to_persons_outside_assistance_unit
+  kind: input
+  name: income_allocated_to_persons_outside_assistance_unit
+  entity: TanfUnit
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0162#input.other_cash_assistance_deductions_allowed_under_wac_388_450_0177_and_388_450_0178
+  kind: input
+  name: other_cash_assistance_deductions_allowed_under_wac_388_450_0177_and_388_450_0178
+  entity: TanfUnit
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0162#input.sum_where
+  kind: input
+  name: sum_where
+  entity: TanfUnit
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#input.care_paid_before_benefit_approval
+  kind: input
+  name: care_paid_before_benefit_approval
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#input.care_provider_is_not_parent_or_stepparent
+  kind: input
+  name: care_provider_is_not_parent_or_stepparent
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#input.dependent_care_amount_paid_prorated_to_eligibility_date
+  kind: input
+  name: dependent_care_amount_paid_prorated_to_eligibility_date
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#input.expense_verified
+  kind: input
+  name: expense_verified
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#input.gross_monthly_income
+  kind: input
+  name: gross_monthly_income
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#input.hours_worked_per_month
+  kind: input
+  name: hours_worked_per_month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#input.household_gross_earned_income
+  kind: input
+  name: household_gross_earned_income
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#input.recipient_gets_cash_assistance_with_person
+  kind: input
+  name: recipient_gets_cash_assistance_with_person
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#input.recipient_is_dependent_child_under_two_years_of_age
+  kind: input
+  name: recipient_is_dependent_child_under_two_years_of_age
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.developmental_disabilities_administration_determined_individual_eligible_for_ssp
+  kind: input
+  name: developmental_disabilities_administration_determined_individual_eligible_for_ssp
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_has_ineligible_spouse_under_wac_388_474_0001
+  kind: input
+  name: individual_has_ineligible_spouse_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_is_eligible_for_foster_care_reimbursement_under_title_iv_e
+  kind: input
+  name: individual_is_eligible_for_foster_care_reimbursement_under_title_iv_e
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_is_eligible_for_ssi
+  kind: input
+  name: individual_is_eligible_for_ssi
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_is_foster_child_receiving_childrens_administration_brs_services_for_part_or_all_of_month
+  kind: input
+  name: individual_is_foster_child_receiving_childrens_administration_brs_services_for_part_or_all_of_month
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_is_grandfathered_ssi_recipient_under_wac_388_474_0001
+  kind: input
+  name: individual_is_grandfathered_ssi_recipient_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_is_ssi_recipient_residing_in_medical_institution
+  kind: input
+  name: individual_is_ssi_recipient_residing_in_medical_institution
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_receives_ssi
+  kind: input
+  name: individual_receives_ssi
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_receives_ssi_because_age_65_or_older_under_wac_388_474_0001
+  kind: input
+  name: individual_receives_ssi_because_age_65_or_older_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_receives_ssi_because_blind_under_wac_388_474_0001
+  kind: input
+  name: individual_receives_ssi_because_blind_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_receives_ssi_because_disabled_under_wac_388_474_0001
+  kind: input
+  name: individual_receives_ssi_because_disabled_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-474/388-474-0012#input.individual_ssi_reduced_based_on_institutional_ssi_payment_standard
+  kind: input
+  name: individual_ssi_reduced_based_on_institutional_ssi_payment_standard
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0020#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: AssistanceUnit
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0020
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0020#input.cash_assistance_payment_standard_size_band
+  kind: input
+  name: cash_assistance_payment_standard_size_band
+  entity: AssistanceUnit
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0020
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0035#input.cash_assistance_earned_income_limit_family_size_band
+  kind: input
+  name: cash_assistance_earned_income_limit_family_size_band
+  entity: Family
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0035
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0035#input.cash_assistance_family_gross_earned_income
+  kind: input
+  name: cash_assistance_family_gross_earned_income
+  entity: Family
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0035
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0035#input.number_of_family_members
+  kind: input
+  name: number_of_family_members
+  entity: Family
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0035
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.developmental_disabilities_administration_determined_individual_eligible_for_ssp
+  kind: input
+  name: developmental_disabilities_administration_determined_individual_eligible_for_ssp
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.grandfathered_client_ssp_amount_based_on_federal_requirements
+  kind: input
+  name: grandfathered_client_ssp_amount_based_on_federal_requirements
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_has_ineligible_spouse
+  kind: input
+  name: individual_has_ineligible_spouse
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_has_ineligible_spouse_under_wac_388_474_0001
+  kind: input
+  name: individual_has_ineligible_spouse_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_is_aged_65_or_older
+  kind: input
+  name: individual_is_aged_65_or_older
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_is_blind_as_determined_by_ssa
+  kind: input
+  name: individual_is_blind_as_determined_by_ssa
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_is_disabled_as_determined_by_ssa
+  kind: input
+  name: individual_is_disabled_as_determined_by_ssa
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_is_eligible_for_foster_care_reimbursement_under_title_iv_e
+  kind: input
+  name: individual_is_eligible_for_foster_care_reimbursement_under_title_iv_e
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_is_eligible_for_ssi
+  kind: input
+  name: individual_is_eligible_for_ssi
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_is_foster_child_receiving_childrens_administration_brs_services_for_part_or_all_of_month
+  kind: input
+  name: individual_is_foster_child_receiving_childrens_administration_brs_services_for_part_or_all_of_month
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_is_grandfathered_client_as_defined_in_wac_388_474_0001
+  kind: input
+  name: individual_is_grandfathered_client_as_defined_in_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_is_grandfathered_ssi_recipient_under_wac_388_474_0001
+  kind: input
+  name: individual_is_grandfathered_ssi_recipient_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_is_ssi_recipient_residing_in_medical_institution
+  kind: input
+  name: individual_is_ssi_recipient_residing_in_medical_institution
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_receives_ssi
+  kind: input
+  name: individual_receives_ssi
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_receives_ssi_because_age_65_or_older_under_wac_388_474_0001
+  kind: input
+  name: individual_receives_ssi_because_age_65_or_older_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_receives_ssi_because_blind_under_wac_388_474_0001
+  kind: input
+  name: individual_receives_ssi_because_blind_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_receives_ssi_because_disabled_under_wac_388_474_0001
+  kind: input
+  name: individual_receives_ssi_because_disabled_under_wac_388_474_0001
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_resides_in_medical_institution
+  kind: input
+  name: individual_resides_in_medical_institution
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-478/388-478-0055#input.individual_ssi_reduced_based_on_institutional_ssi_payment_standard
+  kind: input
+  name: individual_ssi_reduced_based_on_institutional_ssi_payment_standard
+  entity: Person
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0162#cash_assistance_countable_income
+  kind: output
+  name: cash_assistance_countable_income
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_tanf_countable_income
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0162#cash_assistance_dependent_care_deduction
+  kind: output
+  name: cash_assistance_dependent_care_deduction
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_tanf_countable_income
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0162#cash_assistance_income_requirement_satisfied
+  kind: output
+  name: cash_assistance_income_requirement_satisfied
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_tanf_income_eligible
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0162#cash_assistance_monthly_benefit
+  kind: output
+  name: cash_assistance_monthly_benefit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_tanf
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0162#cash_assistance_unit_payment_standard
+  kind: output
+  name: cash_assistance_unit_payment_standard
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.wa.dshs.tanf.payment_standard.amount
+      comparison: money
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0162#dependent_care_recipients
+  kind: output
+  name: dependent_care_recipients
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0162#tanf_unit_payment_standard_size_band
+  kind: output
+  name: tanf_unit_payment_standard_size_band
+  entity: TanfUnit
+  dtype: Integer
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0162
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.wa.dshs.tanf.payment_standard.amount
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0170#counted_earned_income_after_work_deductions
+  kind: output
+  name: counted_earned_income_after_work_deductions
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: wa_tanf_countable_earned_income
+      comparison: money
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0170#dependent_care_age_two_or_incapacitated_adult_monthly_limit
+  kind: output
+  name: dependent_care_age_two_or_incapacitated_adult_monthly_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0170#dependent_care_child_under_two_monthly_limit
+  kind: output
+  name: dependent_care_child_under_two_monthly_limit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0170#dependent_care_deduction_allowed_for_recipient
+  kind: output
+  name: dependent_care_deduction_allowed_for_recipient
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0170#dependent_care_hours_band
+  kind: output
+  name: dependent_care_hours_band
+  entity: Person
+  dtype: Integer
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0170#dependent_care_hours_band_upper_bound
+  kind: output
+  name: dependent_care_hours_band_upper_bound
+  dtype: Decimal
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+- id: us-wa:regulations/388/388-450/388-450-0170#dependent_care_recipient_deduction
+  kind: output
+  name: dependent_care_recipient_deduction
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_tanf_countable_income
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0170#dependent_care_recipient_monthly_limit
+  kind: output
+  name: dependent_care_recipient_monthly_limit
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0170#earned_income_initial_deduction
+  kind: output
+  name: earned_income_initial_deduction
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.wa.dshs.tanf.income.deductions.earned_income_disregard.amount
+      comparison: money
+      program: tanf
+- id: us-wa:regulations/388/388-450/388-450-0170#remaining_earned_income_deduction_rate
+  kind: output
+  name: remaining_earned_income_deduction_rate
+  dtype: Rate
+  modules:
+  - us-wa:regulations/388/388-450/388-450-0170
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.wa.dshs.tanf.income.deductions.earned_income_disregard.rate
+      comparison: rate
+      program: tanf
+- id: us-wa:regulations/388/388-474/388-474-0012#individual_is_eligible_for_ssp_as_described
+  kind: output
+  name: individual_is_eligible_for_ssp_as_described
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_ssp
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-474/388-474-0012#ssp_eligibility_based_on_developmental_disabilities_administration_determination
+  kind: output
+  name: ssp_eligibility_based_on_developmental_disabilities_administration_determination
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_ssp
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-474/388-474-0012#ssp_eligibility_based_on_foster_child_brs_services
+  kind: output
+  name: ssp_eligibility_based_on_foster_child_brs_services
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_ssp
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-474/388-474-0012#ssp_eligibility_based_on_ineligible_spouse_status
+  kind: output
+  name: ssp_eligibility_based_on_ineligible_spouse_status
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-474/388-474-0012
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_ssp
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-478/388-478-0020#cash_assistance_maximum_monthly_payment_standard
+  kind: output
+  name: cash_assistance_maximum_monthly_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0020
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.wa.dshs.tanf.payment_standard.amount
+      comparison: money
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0020#cash_assistance_payment_standard_size_band
+  kind: output
+  name: cash_assistance_payment_standard_size_band
+  entity: AssistanceUnit
+  dtype: Integer
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0020
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.wa.dshs.tanf.payment_standard.amount
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0020#cash_assistance_payment_standard_size_floor_for_final_row
+  kind: output
+  name: cash_assistance_payment_standard_size_floor_for_final_row
+  dtype: Count
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0020
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.wa.dshs.tanf.maximum_family_size
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0020#cash_assistance_unit_maximum_monthly_payment_standard
+  kind: output
+  name: cash_assistance_unit_maximum_monthly_payment_standard
+  entity: AssistanceUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0020
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.wa.dshs.tanf.payment_standard.amount
+      comparison: money
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0035#cash_assistance_earned_income_limit_family_size_band
+  kind: output
+  name: cash_assistance_earned_income_limit_family_size_band
+  entity: Family
+  dtype: Integer
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0035
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.wa.dshs.tanf.income.limit
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0035#cash_assistance_earned_income_limit_final_family_size_floor
+  kind: output
+  name: cash_assistance_earned_income_limit_final_family_size_floor
+  dtype: Count
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0035
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.wa.dshs.tanf.maximum_family_size
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0035#cash_assistance_family_earnings_deduction
+  kind: output
+  name: cash_assistance_family_earnings_deduction
+  dtype: Money
+  unit: USD
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0035
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.wa.dshs.tanf.income.deductions.earned_income_disregard.amount
+      comparison: money
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0035#cash_assistance_family_maximum_monthly_gross_earned_income_level
+  kind: output
+  name: cash_assistance_family_maximum_monthly_gross_earned_income_level
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0035
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.wa.dshs.tanf.income.limit
+      comparison: money
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0035#cash_assistance_gross_earned_income_requirement_satisfied
+  kind: output
+  name: cash_assistance_gross_earned_income_requirement_satisfied
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0035
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_tanf_income_eligible
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0035#cash_assistance_maximum_monthly_gross_earned_income_level
+  kind: output
+  name: cash_assistance_maximum_monthly_gross_earned_income_level
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0035
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.wa.dshs.tanf.income.limit
+      comparison: money
+      program: tanf
+- id: us-wa:regulations/388/388-478/388-478-0055#federal_ssi_personal_needs_allowance
+  kind: output
+  name: federal_ssi_personal_needs_allowance
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-478/388-478-0055#fixed_monthly_ssp_rate_standard
+  kind: output
+  name: fixed_monthly_ssp_rate_standard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.wa.dshs.ssp.amount
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-478/388-478-0055#fixed_monthly_ssp_rate_standard_applies
+  kind: output
+  name: fixed_monthly_ssp_rate_standard_applies
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_ssp_payment_category
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-478/388-478-0055#grandfathered_monthly_ssp_maximum
+  kind: output
+  name: grandfathered_monthly_ssp_maximum
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-478/388-478-0055#grandfathered_monthly_ssp_minimum
+  kind: output
+  name: grandfathered_monthly_ssp_minimum
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-478/388-478-0055#grandfathered_monthly_ssp_rate_standard
+  kind: output
+  name: grandfathered_monthly_ssp_rate_standard
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-478/388-478-0055#medical_institution_monthly_ssp_base
+  kind: output
+  name: medical_institution_monthly_ssp_base
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.wa.dshs.ssp.amount
+      parameter_key: MEDICAL_INSTITUTION
+      comparison: money
+      program: ssi_state_supplement
+- id: us-wa:regulations/388/388-478/388-478-0055#wa_ssp
+  kind: output
+  name: wa_ssp
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-wa:regulations/388/388-478/388-478-0055
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: wa_ssp
+      program: ssi_state_supplement

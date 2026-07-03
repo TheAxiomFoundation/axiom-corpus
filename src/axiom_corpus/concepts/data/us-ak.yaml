@@ -1,0 +1,1222 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-ak
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 10
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 106
+input_count: 36
+output_count: 70
+concepts:
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#input.ak_ssp_household_type_code
+  kind: input
+  name: ak_ssp_household_type_code
+  entity: Household
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: Family
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included-gross-income-limit#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: Family
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included-gross-income-limit
+  occurrences: 1
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included-maximum-payment#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: Family
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included-maximum-payment
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit#input.oldest_individual_age_in_assistance_unit
+  kind: input
+  name: oldest_individual_age_in_assistance_unit
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit#input.total_nonexempt_resources_value_determined_under_7_aac_45_310
+  kind: input
+  name: total_nonexempt_resources_value_determined_under_7_aac_45_310
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income#input.atap_overpayment_resulted_from_retention_of_child_support_payment
+  kind: input
+  name: atap_overpayment_resulted_from_retention_of_child_support_payment
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income#input.cash_child_support_payments_actually_received_by_applicant_between_application_month_start_and_authorization
+  kind: input
+  name: cash_child_support_payments_actually_received_by_applicant_between_application_month_start_and_authorization
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income#input.cash_child_support_payments_actually_received_by_recipient_after_authorization_except_direct_retained_payments
+  kind: input
+  name: cash_child_support_payments_actually_received_by_recipient_after_authorization_except_direct_retained_payments
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income#input.child_support_payment_made_in_cash
+  kind: input
+  name: child_support_payment_made_in_cash
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income#input.direct_child_support_payments_kept_by_recipient_after_authorization
+  kind: input
+  name: direct_child_support_payments_kept_by_recipient_after_authorization
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#input.all_other_eligibility_requirements_of_this_chapter_met
+  kind: input
+  name: all_other_eligibility_requirements_of_this_chapter_met
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#input.applicable_deductions_and_disregards_from_income_under_7_aac_45_475_to_45_500
+  kind: input
+  name: applicable_deductions_and_disregards_from_income_under_7_aac_45_475_to_45_500
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#input.oldest_individual_age_in_assistance_unit
+  kind: input
+  name: oldest_individual_age_in_assistance_unit
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#input.total_gross_monthly_income
+  kind: input
+  name: total_gross_monthly_income
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#input.total_nonexempt_gross_monthly_income
+  kind: input
+  name: total_nonexempt_gross_monthly_income
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#input.total_nonexempt_resources_value_determined_under_7_aac_45_310
+  kind: input
+  name: total_nonexempt_resources_value_determined_under_7_aac_45_310
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#input.applicable_deductions_and_disregards_from_income_under_7_aac_45_475_to_45_500
+  kind: input
+  name: applicable_deductions_and_disregards_from_income_under_7_aac_45_475_to_45_500
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#input.resources_within_limits_under_7_aac_45_280
+  kind: input
+  name: resources_within_limits_under_7_aac_45_280
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#input.total_gross_monthly_income
+  kind: input
+  name: total_gross_monthly_income
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#input.total_nonexempt_gross_monthly_income
+  kind: input
+  name: total_nonexempt_gross_monthly_income
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#input.anticipated_paid_care_cost_for_dependent_children_two_or_older_included_in_atap
+  kind: input
+  name: anticipated_paid_care_cost_for_dependent_children_two_or_older_included_in_atap
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#input.anticipated_paid_care_cost_for_dependent_children_under_two_included_in_atap
+  kind: input
+  name: anticipated_paid_care_cost_for_dependent_children_under_two_included_in_atap
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#input.anticipated_paid_care_cost_for_incapacitated_parents_included_in_atap
+  kind: input
+  name: anticipated_paid_care_cost_for_incapacitated_parents_included_in_atap
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#input.care_disregard_displaced_by_7_aac_45_495
+  kind: input
+  name: care_disregard_displaced_by_7_aac_45_495
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#input.care_disregard_displaced_by_7_aac_45_500
+  kind: input
+  name: care_disregard_displaced_by_7_aac_45_500
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#input.dependent_children_two_or_older_included_in_atap_count
+  kind: input
+  name: dependent_children_two_or_older_included_in_atap_count
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#input.dependent_children_under_two_included_in_atap_count
+  kind: input
+  name: dependent_children_under_two_included_in_atap_count
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#input.incapacitated_parents_included_in_atap_count
+  kind: input
+  name: incapacitated_parents_included_in_atap_count
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount#input.countable_income_under_7_aac_45_470_b
+  kind: input
+  name: countable_income_under_7_aac_45_470_b
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount#input.floor
+  kind: input
+  name: floor
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount#input.low_shelter_cost_reduction_under_7_aac_45_527_to_45_530
+  kind: input
+  name: low_shelter_cost_reduction_under_7_aac_45_527_to_45_530
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount
+  occurrences: 1
+- id: us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount#input.mandatory_recoupment_deduction_under_7_aac_45_570
+  kind: input
+  name: mandatory_recoupment_deduction_under_7_aac_45_570
+  entity: Family
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount
+  occurrences: 1
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#a_couple_both_eligible_apa_payment_standard
+  kind: output
+  name: a_couple_both_eligible_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#a_couple_both_eligible_monthly_state_supplement
+  kind: output
+  name: a_couple_both_eligible_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#a_couple_both_eligible_ssi_payment_standard
+  kind: output
+  name: a_couple_both_eligible_ssi_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#a_couple_one_eligible_apa_payment_standard
+  kind: output
+  name: a_couple_one_eligible_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#a_couple_one_eligible_monthly_state_supplement
+  kind: output
+  name: a_couple_one_eligible_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#a_individual_apa_payment_standard
+  kind: output
+  name: a_individual_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#a_individual_monthly_state_supplement
+  kind: output
+  name: a_individual_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#a_individual_ssi_payment_standard
+  kind: output
+  name: a_individual_ssi_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#ak_ssp_payment_standard
+  kind: output
+  name: ak_ssp_payment_standard
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_ssp
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#alh_couple_both_eligible_apa_payment_standard
+  kind: output
+  name: alh_couple_both_eligible_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#alh_couple_both_eligible_monthly_state_supplement
+  kind: output
+  name: alh_couple_both_eligible_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#alh_couple_one_eligible_apa_payment_standard
+  kind: output
+  name: alh_couple_one_eligible_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#alh_couple_one_eligible_monthly_state_supplement
+  kind: output
+  name: alh_couple_one_eligible_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#alh_individual_apa_payment_standard
+  kind: output
+  name: alh_individual_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#alh_individual_monthly_state_supplement
+  kind: output
+  name: alh_individual_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#b_couple_both_eligible_apa_payment_standard
+  kind: output
+  name: b_couple_both_eligible_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#b_couple_both_eligible_monthly_state_supplement
+  kind: output
+  name: b_couple_both_eligible_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#b_couple_both_eligible_ssi_payment_standard
+  kind: output
+  name: b_couple_both_eligible_ssi_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#b_couple_one_eligible_apa_payment_standard
+  kind: output
+  name: b_couple_one_eligible_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#b_couple_one_eligible_monthly_state_supplement
+  kind: output
+  name: b_couple_one_eligible_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#b_individual_apa_payment_standard
+  kind: output
+  name: b_individual_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#b_individual_monthly_state_supplement
+  kind: output
+  name: b_individual_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#b_individual_ssi_payment_standard
+  kind: output
+  name: b_individual_ssi_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#eligible_institution_apa_payment_standard
+  kind: output
+  name: eligible_institution_apa_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#eligible_institution_monthly_state_supplement
+  kind: output
+  name: eligible_institution_monthly_state_supplement
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.ssp.payment_standard
+      comparison: money
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard#eligible_institution_ssi_payment_standard
+  kind: output
+  name: eligible_institution_ssi_payment_standard
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/apa/standards/2026/state-supplement-payment-standard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: ssi_state_supplement
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_185_percent_standard_by_family_size
+  kind: output
+  name: adult_included_185_percent_standard_by_family_size
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_gross_income_limit
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_185_percent_standard_each_additional
+  kind: output
+  name: adult_included_185_percent_standard_each_additional
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_gross_income_limit
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_family_size_lookup
+  kind: output
+  name: adult_included_family_size_lookup
+  entity: Family
+  dtype: Count
+  period: Month
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_family_size_minimum
+  kind: output
+  name: adult_included_family_size_minimum
+  dtype: Count
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_family_size_table_maximum
+  kind: output
+  name: adult_included_family_size_table_maximum
+  dtype: Count
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_max_payment_by_family_size
+  kind: output
+  name: adult_included_max_payment_by_family_size
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.ak.dpa.atap.payment.base
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_max_payment_each_additional
+  kind: output
+  name: adult_included_max_payment_each_additional
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.ak.dpa.atap.payment.additional_child
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_max_shelter_by_family_size
+  kind: output
+  name: adult_included_max_shelter_by_family_size
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_max_shelter_each_additional
+  kind: output
+  name: adult_included_max_shelter_each_additional
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_need_standard_by_family_size
+  kind: output
+  name: adult_included_need_standard_by_family_size
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      parameter: gov.states.ak.dpa.atap.need_standard.amount
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_need_standard_each_additional
+  kind: output
+  name: adult_included_need_standard_each_additional
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.atap.need_standard.additional_person
+      comparison: money
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#adult_included_ratable_reduction
+  kind: output
+  name: adult_included_ratable_reduction
+  dtype: Rate
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included#ak_atap_need_standard
+  kind: output
+  name: ak_atap_need_standard
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_need_standard
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included-gross-income-limit#ak_atap_gross_income_limit
+  kind: output
+  name: ak_atap_gross_income_limit
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included-gross-income-limit
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_gross_income_limit
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included-gross-income-limit#ak_atap_gross_income_limit_family_size_lookup
+  kind: output
+  name: ak_atap_gross_income_limit_family_size_lookup
+  entity: Family
+  dtype: Count
+  period: Month
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included-gross-income-limit
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_gross_income_limit
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included-maximum-payment#ak_atap_maximum_payment
+  kind: output
+  name: ak_atap_maximum_payment
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included-maximum-payment
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_maximum_payment
+      program: tanf
+- id: us-ak:policies/dpa/atap/standards/2026/adult-included-maximum-payment#ak_atap_maximum_payment_family_size_lookup
+  kind: output
+  name: ak_atap_maximum_payment_family_size_lookup
+  entity: Family
+  dtype: Count
+  period: Month
+  modules:
+  - us-ak:policies/dpa/atap/standards/2026/adult-included-maximum-payment
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_maximum_payment
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit#ak_atap_resources_eligible
+  kind: output
+  name: ak_atap_resources_eligible
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_resources_eligible
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit#atap_resource_limit_with_older_individual
+  kind: output
+  name: atap_resource_limit_with_older_individual
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.atap.resource_limit.elderly.amount
+      comparison: money
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit#atap_standard_resource_limit
+  kind: output
+  name: atap_standard_resource_limit
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.atap.resource_limit.standard.amount
+      comparison: money
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit#older_individual_resource_limit_minimum_age
+  kind: output
+  name: older_individual_resource_limit_minimum_age
+  dtype: Count
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-280-resource-limit
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.atap.resource_limit.elderly.age_threshold
+      comparison: count
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income#ak_atap_countable_unearned_income
+  kind: output
+  name: ak_atap_countable_unearned_income
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_countable_unearned_income
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income#atap_child_support_noncooperation_due_to_excess_retention
+  kind: output
+  name: atap_child_support_noncooperation_due_to_excess_retention
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_countable_unearned_income
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income#atap_child_support_overpayment_repayment_required
+  kind: output
+  name: atap_child_support_overpayment_repayment_required
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_countable_unearned_income
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income#atap_monthly_direct_child_support_retention_disregard
+  kind: output
+  name: atap_monthly_direct_child_support_retention_disregard
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-400-child-support-income
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.atap.income.deductions.child_support
+      comparison: money
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#ak_atap_countable_income_for_income_eligibility
+  kind: output
+  name: ak_atap_countable_income_for_income_eligibility
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_countable_income
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#ak_atap_gross_income_eligible
+  kind: output
+  name: ak_atap_gross_income_eligible
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_eligible
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#ak_atap_gross_income_initial_screen_met
+  kind: output
+  name: ak_atap_gross_income_initial_screen_met
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_gross_income_eligible
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#atap_gross_income_standard_percentage
+  kind: output
+  name: atap_gross_income_standard_percentage
+  dtype: Rate
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.atap.gross_income_limit_rate
+      comparison: ratio
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#atap_income_excess_denial_threshold
+  kind: output
+  name: atap_income_excess_denial_threshold
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#atap_income_excess_requires_denial_suspension_or_termination_under_gross_income_rule
+  kind: output
+  name: atap_income_excess_requires_denial_suspension_or_termination_under_gross_income_rule
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_eligible
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility#atap_payment_calculation_required_after_income_eligibility
+  kind: output
+  name: atap_payment_calculation_required_after_income_eligibility
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-gross-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_eligible
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#ak_atap_eligible
+  kind: output
+  name: ak_atap_eligible
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_eligible
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#atap_income_excess_requires_denial_suspension_or_termination
+  kind: output
+  name: atap_income_excess_requires_denial_suspension_or_termination
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_eligible
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#atap_initial_income_screen_met
+  kind: output
+  name: atap_initial_income_screen_met
+  entity: Family
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_gross_income_eligible
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#countable_income_under_7_aac_45_470_b
+  kind: output
+  name: countable_income_under_7_aac_45_470_b
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_countable_income
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility#income_excess_minimum_for_denial
+  kind: output
+  name: income_excess_minimum_for_denial
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-470-income-eligibility
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#ak_atap_childcare_deduction
+  kind: output
+  name: ak_atap_childcare_deduction
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_childcare_deduction
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#dependent_child_two_or_older_monthly_care_disregard_cap
+  kind: output
+  name: dependent_child_two_or_older_monthly_care_disregard_cap
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.atap.income.deductions.childcare
+      comparison: money
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#dependent_child_under_two_monthly_care_disregard_cap
+  kind: output
+  name: dependent_child_under_two_monthly_care_disregard_cap
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.ak.dpa.atap.income.deductions.childcare
+      comparison: money
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard#incapacitated_parent_monthly_care_disregard_cap
+  kind: output
+  name: incapacitated_parent_monthly_care_disregard_cap
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-485-care-disregard
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap_childcare_deduction
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount#ak_atap
+  kind: output
+  name: ak_atap
+  entity: Family
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount#assistance_unit_size_for_two_individuals
+  kind: output
+  name: assistance_unit_size_for_two_individuals
+  dtype: Count
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap
+      program: tanf
+- id: us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount#atap_minimum_payment_threshold
+  kind: output
+  name: atap_minimum_payment_threshold
+  dtype: Money
+  unit: USD
+  modules:
+  - us-ak:regulations/aac/title-7/chapter-45/45-525-payment-amount
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: ak_atap
+      program: tanf

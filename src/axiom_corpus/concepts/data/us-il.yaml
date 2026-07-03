@@ -1,0 +1,831 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-il
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 6
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 98
+input_count: 52
+output_count: 46
+concepts:
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#input.client_is_active
+  kind: input
+  name: client_is_active
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#input.client_is_bedfast
+  kind: input
+  name: client_is_bedfast
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#input.client_is_in_long_term_care
+  kind: input
+  name: client_is_in_long_term_care
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#input.persons_eating_together_count
+  kind: input
+  name: persons_eating_together_count
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15232/block-1#input.active_case
+  kind: input
+  name: active_case
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15232/block-1#input.gross_earned_income
+  kind: input
+  name: gross_earned_income
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15232/block-1#input.intake_or_swaps_medical_to_cash_and_family_eligible_after_first_test
+  kind: input
+  name: intake_or_swaps_medical_to_cash_and_family_eligible_after_first_test
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15232/block-1#input.person_failed_without_good_cause_to_report_income_timely
+  kind: input
+  name: person_failed_without_good_cause_to_report_income_timely
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15232/block-1#input.person_is_employed
+  kind: input
+  name: person_is_employed
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15232/block-1#input.person_quit_job_or_reduced_earnings_without_good_cause_within_30_day_period_before_month
+  kind: input
+  name: person_quit_job_or_reduced_earnings_without_good_cause_within_30_day_period_before_month
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15232/block-1#input.person_refused_bona_fide_or_job_service_employment_without_good_cause_within_30_day_period_before_month
+  kind: input
+  name: person_refused_bona_fide_or_job_service_employment_without_good_cause_within_30_day_period_before_month
+  entity: Person
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15820/block-1#input.floor
+  kind: input
+  name: floor
+  entity: TanfUnit
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15820/block-1#input.nonexempt_income
+  kind: input
+  name: nonexempt_income
+  entity: TanfUnit
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15820/block-1#input.payment_level
+  kind: input
+  name: payment_level
+  entity: TanfUnit
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15820/block-1#input.unrounded_initial_prorated_entitlement_payment
+  kind: input
+  name: unrounded_initial_prorated_entitlement_payment
+  entity: TanfUnit
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15820/block-1#input.unrounded_non_regular_roll_check_amount
+  kind: input
+  name: unrounded_non_regular_roll_check_amount
+  entity: TanfUnit
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15820/block-1#input.unrounded_regular_monthly_tanf_benefit
+  kind: input
+  name: unrounded_regular_monthly_tanf_benefit
+  entity: TanfUnit
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/25-06-01#input.certified_aabd_cash_case
+  kind: input
+  name: certified_aabd_cash_case
+  entity: Household
+  modules:
+  - us-il:policies/dhs/csmm/25-06-01
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.household_income
+  kind: input
+  name: household_income
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.property_is_income_producing
+  kind: input
+  name: property_is_income_producing
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.property_is_land_and_buildings_or_covered_dwelling_unit
+  kind: input
+  name: property_is_land_and_buildings_or_covered_dwelling_unit
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.property_not_disqualified_by_trust_rule
+  kind: input
+  name: property_not_disqualified_by_trust_rule
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.property_subject_to_unpaid_real_estate_tax_lien_when_claim_filed
+  kind: input
+  name: property_subject_to_unpaid_real_estate_tax_lien_when_claim_filed
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.taxpayer_certifies_owned_and_occupied_property_or_other_qualifying_property_in_state_for_at_least_last_3_years_except_temporary_nursing_or_sheltered_care_home_residence
+  kind: input
+  name: taxpayer_certifies_owned_and_occupied_property_or_other_qualifying_property_in_state_for_at_least_last_3_years_except_temporary_nursing_or_sheltered_care_home_residence
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.taxpayer_occupies_property_as_residence
+  kind: input
+  name: taxpayer_occupies_property_as_residence
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.taxpayer_or_taxpayer_and_spouse_own_or_are_purchasing_property_in_fee_simple_under_recorded_instrument
+  kind: input
+  name: taxpayer_or_taxpayer_and_spouse_own_or_are_purchasing_property_in_fee_simple_under_recorded_instrument
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.taxpayer_temporarily_unoccupied_property_because_residing_not_more_than_one_year_in_licensed_nursing_home_care_act_facility
+  kind: input
+  name: taxpayer_temporarily_unoccupied_property_because_residing_not_more_than_one_year_in_licensed_nursing_home_care_act_facility
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#input.taxpayer_will_be_65_or_older_by_june_1_of_tax_deferral_year
+  kind: input
+  name: taxpayer_will_be_65_or_older_by_june_1_of_tax_deferral_year
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.all_joint_owners_gave_written_prior_approval_for_agreement
+  kind: input
+  name: all_joint_owners_gave_written_prior_approval_for_agreement
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.application_filed_with_appropriate_collector_or_designated_official
+  kind: input
+  name: application_filed_with_appropriate_collector_or_designated_official
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.application_on_department_prescribed_form_furnished_by_collector
+  kind: input
+  name: application_on_department_prescribed_form_furnished_by_collector
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.application_on_or_before_march_1
+  kind: input
+  name: application_on_or_before_march_1
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.application_specifies_deferral_scope_and_amount_if_partial
+  kind: input
+  name: application_specifies_deferral_scope_and_amount_if_partial
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.property_has_separate_assessed_valuation
+  kind: input
+  name: property_has_separate_assessed_valuation
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.property_is_income_producing
+  kind: input
+  name: property_is_income_producing
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.property_is_land_and_buildings_or_covered_dwelling_unit
+  kind: input
+  name: property_is_land_and_buildings_or_covered_dwelling_unit
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.property_not_disqualified_by_trust_rule
+  kind: input
+  name: property_not_disqualified_by_trust_rule
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.property_subject_to_unpaid_real_estate_tax_lien_when_claim_filed
+  kind: input
+  name: property_subject_to_unpaid_real_estate_tax_lien_when_claim_filed
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.real_estate_taxes_or_special_assessment_installments_payable_during_year
+  kind: input
+  name: real_estate_taxes_or_special_assessment_installments_payable_during_year
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.requested_deferral_amount
+  kind: input
+  name: requested_deferral_amount
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.senior_citizens_real_estate_deferred_tax_revolving_fund_available_amount
+  kind: input
+  name: senior_citizens_real_estate_deferred_tax_revolving_fund_available_amount
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.tax_deferral_and_recovery_agreement_entered
+  kind: input
+  name: tax_deferral_and_recovery_agreement_entered
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.taxpayer_certifies_owned_and_occupied_property_or_other_qualifying_property_in_state_for_at_least_last_3_years_except_temporary_nursing_or_sheltered_care_home_residence
+  kind: input
+  name: taxpayer_certifies_owned_and_occupied_property_or_other_qualifying_property_in_state_for_at_least_last_3_years_except_temporary_nursing_or_sheltered_care_home_residence
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.taxpayer_eligible_for_low_income_senior_citizens_assessment_freeze_homestead_exemption
+  kind: input
+  name: taxpayer_eligible_for_low_income_senior_citizens_assessment_freeze_homestead_exemption
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.taxpayer_equity_interest_in_property
+  kind: input
+  name: taxpayer_equity_interest_in_property
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.taxpayer_filed_required_appraisal_and_appraiser_certificate
+  kind: input
+  name: taxpayer_filed_required_appraisal_and_appraiser_certificate
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.taxpayer_occupies_property_as_residence
+  kind: input
+  name: taxpayer_occupies_property_as_residence
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.taxpayer_or_agent_provided_sufficient_fire_or_casualty_insurance_evidence_for_total_deferred_taxes
+  kind: input
+  name: taxpayer_or_agent_provided_sufficient_fire_or_casualty_insurance_evidence_for_total_deferred_taxes
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.taxpayer_or_taxpayer_and_spouse_own_or_are_purchasing_property_in_fee_simple_under_recorded_instrument
+  kind: input
+  name: taxpayer_or_taxpayer_and_spouse_own_or_are_purchasing_property_in_fee_simple_under_recorded_instrument
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.taxpayer_temporarily_unoccupied_property_because_residing_not_more_than_one_year_in_licensed_nursing_home_care_act_facility
+  kind: input
+  name: taxpayer_temporarily_unoccupied_property_because_residing_not_more_than_one_year_in_licensed_nursing_home_care_act_facility
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.taxpayer_will_be_65_or_older_by_june_1_of_tax_deferral_year
+  kind: input
+  name: taxpayer_will_be_65_or_older_by_june_1_of_tax_deferral_year
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#input.total_deferred_taxes_plus_interest_before_current_deferral
+  kind: input
+  name: total_deferred_taxes_plus_interest_before_current_deferral
+  entity: Person
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#active_client_clothes_allowance_by_persons_eating_together
+  kind: output
+  name: active_client_clothes_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#active_client_food_allowance_by_persons_eating_together
+  kind: output
+  name: active_client_food_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#active_client_household_supplies_allowance_by_persons_eating_together
+  kind: output
+  name: active_client_household_supplies_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#active_client_personal_allowance_by_persons_eating_together
+  kind: output
+  name: active_client_personal_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#active_client_personal_needs_allowance_by_persons_eating_together
+  kind: output
+  name: active_client_personal_needs_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#bedfast_client_clothes_allowance_by_persons_eating_together
+  kind: output
+  name: bedfast_client_clothes_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#bedfast_client_food_allowance_by_persons_eating_together
+  kind: output
+  name: bedfast_client_food_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#bedfast_client_household_supplies_allowance_by_persons_eating_together
+  kind: output
+  name: bedfast_client_household_supplies_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#bedfast_client_personal_allowance_by_persons_eating_together
+  kind: output
+  name: bedfast_client_personal_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#bedfast_client_personal_needs_allowance_by_persons_eating_together
+  kind: output
+  name: bedfast_client_personal_needs_allowance_by_persons_eating_together
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#il_aabd_personal_allowance
+  kind: output
+  name: il_aabd_personal_allowance
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: direct_variable
+      variable: il_aabd_personal_allowance
+      comparison: money
+      program: ssi_state_supplement
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#long_term_care_personal_allowance
+  kind: output
+  name: long_term_care_personal_allowance
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#persons_eating_together_band
+  kind: output
+  name: persons_eating_together_band
+  entity: Person
+  dtype: Integer
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#persons_eating_together_eight_or_more_lower_bound
+  kind: output
+  name: persons_eating_together_eight_or_more_lower_bound
+  dtype: Count
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#persons_eating_together_one_person
+  kind: output
+  name: persons_eating_together_one_person
+  dtype: Count
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#persons_eating_together_three_to_seven_lower_bound
+  kind: output
+  name: persons_eating_together_three_to_seven_lower_bound
+  dtype: Count
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#persons_eating_together_three_to_seven_upper_bound
+  kind: output
+  name: persons_eating_together_three_to_seven_upper_bound
+  dtype: Count
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/11-01-01/personal-allowance#persons_eating_together_two_persons
+  kind: output
+  name: persons_eating_together_two_persons
+  dtype: Count
+  modules:
+  - us-il:policies/dhs/csmm/11-01-01/personal-allowance
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/15232/block-1#earned_income_deduction_rate
+  kind: output
+  name: earned_income_deduction_rate
+  dtype: Rate
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.il.dhs.tanf.income.disregard.rate
+      comparison: numeric
+      program: tanf
+- id: us-il:policies/dhs/csmm/15232/block-1#three_quarters_earned_income_deduction_allowed
+  kind: output
+  name: three_quarters_earned_income_deduction_allowed
+  entity: Person
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: il_tanf_countable_earned_income_for_grant_calculation
+      program: tanf
+- id: us-il:policies/dhs/csmm/15232/block-1#three_quarters_earned_income_deduction_amount
+  kind: output
+  name: three_quarters_earned_income_deduction_amount
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/15232/block-1
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: il_tanf_countable_earned_income_for_grant_calculation
+      program: tanf
+- id: us-il:policies/dhs/csmm/15820/block-1#initial_prorated_entitlement_payment
+  kind: output
+  name: initial_prorated_entitlement_payment
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: il_tanf
+      program: tanf
+- id: us-il:policies/dhs/csmm/15820/block-1#non_regular_roll_check_amount
+  kind: output
+  name: non_regular_roll_check_amount
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-il:policies/dhs/csmm/15820/block-1#non_regular_roll_minimum_check_amount
+  kind: output
+  name: non_regular_roll_minimum_check_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      program: tanf
+- id: us-il:policies/dhs/csmm/15820/block-1#regular_monthly_tanf_benefit
+  kind: output
+  name: regular_monthly_tanf_benefit
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: il_tanf
+      program: tanf
+- id: us-il:policies/dhs/csmm/15820/block-1#tanf_cash_eligible
+  kind: output
+  name: tanf_cash_eligible
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: il_tanf_income_eligible
+      program: tanf
+- id: us-il:policies/dhs/csmm/15820/block-1#tanf_minimum_cash_payment_amount
+  kind: output
+  name: tanf_minimum_cash_payment_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/15820/block-1
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: il_tanf
+      program: tanf
+- id: us-il:policies/dhs/csmm/25-06-01#aabd_grant_adjustment_amount
+  kind: output
+  name: aabd_grant_adjustment_amount
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/25-06-01
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: parameter_value
+      parameter: gov.states.il.dhs.aabd.payment.grant_amount
+      comparison: money
+      program: ssi_state_supplement
+- id: us-il:policies/dhs/csmm/25-06-01#aabd_grant_adjustment_requires_certified_cash_case
+  kind: output
+  name: aabd_grant_adjustment_requires_certified_cash_case
+  dtype: Integer
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/25-06-01
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/25-06-01#aabd_retrospective_budgeting_procedure_indicator
+  kind: output
+  name: aabd_retrospective_budgeting_procedure_indicator
+  dtype: Integer
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/25-06-01
+  occurrences: 1
+- id: us-il:policies/dhs/csmm/25-06-01#il_aabd_grant_amount
+  kind: output
+  name: il_aabd_grant_amount
+  entity: Household
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-il:policies/dhs/csmm/25-06-01
+  occurrences: 1
+  mappings:
+    policyengine_us:
+      mapping_type: not_comparable
+      variable: il_aabd_grant_amount
+      program: ssi_state_supplement
+- id: us-il:statutes/320/30/2#homestead
+  kind: output
+  name: homestead
+  entity: Asset
+  dtype: Judgment
+  period: Year
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#household_income_no_greater_than_maximum
+  kind: output
+  name: household_income_no_greater_than_maximum
+  entity: Household
+  dtype: Judgment
+  period: Year
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#maximum_household_income
+  kind: output
+  name: maximum_household_income
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#qualified_taxpayer
+  kind: output
+  name: qualified_taxpayer
+  entity: Person
+  dtype: Judgment
+  period: Year
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/2#qualifying_property
+  kind: output
+  name: qualifying_property
+  entity: Asset
+  dtype: Judgment
+  period: Year
+  modules:
+  - us-il:statutes/320/30/2
+  occurrences: 1
+- id: us-il:statutes/320/30/3#annual_per_taxpayer_deferral_cap
+  kind: output
+  name: annual_per_taxpayer_deferral_cap
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#application_requirements_satisfied
+  kind: output
+  name: application_requirements_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Year
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#equity_interest_limit_rate
+  kind: output
+  name: equity_interest_limit_rate
+  dtype: Rate
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#estate_recovery_deadline_years_after_death
+  kind: output
+  name: estate_recovery_deadline_years_after_death
+  dtype: Count
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#il_scretd_deferral_amount
+  kind: output
+  name: il_scretd_deferral_amount
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#nonqualifying_property_due_deadline_days
+  kind: output
+  name: nonqualifying_property_due_deadline_days
+  dtype: Count
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#remaining_equity_deferral_capacity
+  kind: output
+  name: remaining_equity_deferral_capacity
+  entity: Person
+  dtype: Money
+  unit: USD
+  period: Year
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#surviving_spouse_minimum_age_within_death_window
+  kind: output
+  name: surviving_spouse_minimum_age_within_death_window
+  dtype: Count
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#tax_deferral_and_recovery_agreement_requirements_satisfied
+  kind: output
+  name: tax_deferral_and_recovery_agreement_requirements_satisfied
+  entity: Person
+  dtype: Judgment
+  period: Year
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1
+- id: us-il:statutes/320/30/3#tax_deferred_interest_rate
+  kind: output
+  name: tax_deferred_interest_rate
+  dtype: Rate
+  period: Year
+  modules:
+  - us-il:statutes/320/30/3
+  occurrences: 1

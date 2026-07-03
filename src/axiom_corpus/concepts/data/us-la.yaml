@@ -1,0 +1,101 @@
+# Typed concept registry — GENERATED, do not edit by hand.
+# Regenerate with: uv run python scripts/build_concept_registry.py --write
+# One concept per input slot or rule output; see docs/concept-registry.md.
+schema_version: axiom-corpus/concept-registry/v1
+registry_version: 0.1.0
+jurisdiction: us-la
+generated_from:
+  rulespec_repo: rulespec-us
+  rulespec_sha: f286f811dc9aea118a106f5817032992e294461d
+  module_count: 1
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/us.yaml
+  policyengine_mappings_sha: e26ebc49bbc9693a1411e61dca1fc6377e184953
+concept_count: 10
+input_count: 3
+output_count: 7
+concepts:
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#input.assistance_unit_size
+  kind: input
+  name: assistance_unit_size
+  entity: TanfUnit
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#input.floor
+  kind: input
+  name: floor
+  entity: TanfUnit
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#input.total_countable_income
+  kind: input
+  name: total_countable_income
+  entity: TanfUnit
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#fitap_eligible
+  kind: output
+  name: fitap_eligible
+  entity: TanfUnit
+  dtype: Judgment
+  period: Month
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#fitap_flat_grant_amount
+  kind: output
+  name: fitap_flat_grant_amount
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#fitap_flat_grant_amount_by_person_count
+  kind: output
+  name: fitap_flat_grant_amount_by_person_count
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#fitap_flat_grant_max_listed_persons
+  kind: output
+  name: fitap_flat_grant_max_listed_persons
+  dtype: Count
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#fitap_large_unit_subtraction
+  kind: output
+  name: fitap_large_unit_subtraction
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#fitap_minimum_payable_deficit
+  kind: output
+  name: fitap_minimum_payable_deficit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
+- id: us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921#la_fitap
+  kind: output
+  name: la_fitap
+  entity: TanfUnit
+  dtype: Money
+  unit: USD
+  period: Month
+  modules:
+  - us-la:policies/dcfs/economic-independence/b-640-fitap-income-limits-398921
+  occurrences: 1
