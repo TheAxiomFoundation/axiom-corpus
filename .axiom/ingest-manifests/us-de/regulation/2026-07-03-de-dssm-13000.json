@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-de/regulation/2026-07-03-de-dssm-13000.json",
+      "sha256": "024e83483f55eb20fb02f25c18a45484d6f0cbc1708fb99d7d92f54229f793d9"
+    },
+    {
+      "path": "data/corpus/inventory/us-de/regulation/2026-07-03-de-dssm-13000.json",
+      "sha256": "3eb1e2e66572b72c349e87c1e23f538deb6598f3ced4dad7ef70be69ccb48f40"
+    },
+    {
+      "path": "data/corpus/provisions/us-de/regulation/2026-07-03-de-dssm-13000.jsonl",
+      "sha256": "3e746db676f9aa251b0bba8e2aa5761a6cd2890838d28cf5133470a80f90dea2"
+    },
+    {
+      "path": "data/corpus/sources/us-de/regulation/2026-07-03-de-dssm-13000/official-documents/de-dhss-dssm-13000.pdf",
+      "sha256": "e67d9d832fdc5f19f1bc5585195610bdc6df755a4a61934f81ae09cad05994e3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "871843a5a947e20f08acd066c6bf5291b03d0ef4",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-de-ssp-20260703"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-03-de-dssm-13000 --manifest manifests/us-de-dssm-13000.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-03T22:21:03.115499+00:00",
+  "jurisdiction": "us-de",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-03-de-ssi-state-supplement.md",
+      "sha256": "37a3bb1c72b02ce4ca4c9cd5f7b26e2c171eb19172c21d6e14f0b582f21664c1"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4MMjf+ZAJ2/tRpEr2E8pncIGV/Q3NdkgRcs7Z535MnwclKc1lFlErnZbl/BN1WY2CfffIK+8N9v621wGeJEGCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-de-dssm-13000"
+}
