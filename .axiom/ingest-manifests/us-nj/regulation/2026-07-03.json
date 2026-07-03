@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/regulation/2026-07-03.json",
+      "sha256": "09bec18f011993418e0a11bd10ef04c1483a2b4a1c70d5177f8bc70003ecbd38"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/regulation/2026-07-03.json",
+      "sha256": "7b2b00faaf6ec72dac881482c2cdb827c47714deb7390d64316ee3d28184a060"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/regulation/2026-07-03.jsonl",
+      "sha256": "85a4a18d43698178898ce0a4b8a4a40c17acb8db72ed0b7f9d4453fd3ed38978"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/regulation/2026-07-03/official-documents/njac-10-90-work-first-new-jersey-program.pdf",
+      "sha256": "687a14f299cad3038e27ea9c404d5461cf35b71a4db1ea0ae04ed4af11ef3cfe"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f5969d1686fbf747d869e80c390cc9f4bc62ef17",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-nj-wfnj-20260703"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-official-documents --base data/corpus --version 2026-07-03 --manifest manifests/us-nj-wfnj-rules.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 245,
+    "missing_count": 0,
+    "provision_count": 245,
+    "source_count": 245
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-03T20:10:03.077247+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-03-us-nj-wfnj-rules.md",
+      "sha256": "ad784e3f78229312a78fd00005c3f748927f4f768fab65b70ffc9687de18902a"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n5GbbmP4+0K7SY+fGPhNIOv1thGphqUwzlttUWdTUkRhr0oWh1HB++eVRe44h3w5i68+SgGweXysVTOSTqoQDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03"
+}
