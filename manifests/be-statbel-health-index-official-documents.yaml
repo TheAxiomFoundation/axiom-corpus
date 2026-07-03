@@ -1,0 +1,28 @@
+documents:
+  - source_id: be-statbel-consumer-price-index-health-index
+    jurisdiction: be
+    document_class: guidance
+    title: Statbel consumer price index and health index workbook
+    source_url: https://statbel.fgov.be/en/open-data/consumer-price-index-and-health-index
+    download_url: https://statbel.fgov.be/sites/default/files/files/opendata/Consumptieprijsindex%20en%20gezondheidsindex/CPI%20All%20base%20years.xlsx
+    source_format: xlsx
+    source_as_of: '2026-07-03'
+    citation_path: be/guidance/statbel/consumer-price-index-and-health-index
+    extraction:
+      xlsx_sheet: TA_ALL_BASE_YR
+      xlsx_columns:
+        - NM_YR
+        - NM_MTH
+        - MS_HLTH_IDX
+        - NM_BASE_YR
+      xlsx_filters:
+        NM_BASE_YR: 2013
+        NM_MTH: 4
+        NM_YR:
+          - 2020
+          - 2024
+    metadata:
+      source_authority: Statbel / Belgian statistical office
+      source_family: price-index/health-index
+      source_status: official_open_data_workbook
+      source_note: Official Statbel workbook rows for April 2020 and April 2024 health index on base year 2013, used by Flemish Social Protection article 68 to calculate the 2025 indexed premium.

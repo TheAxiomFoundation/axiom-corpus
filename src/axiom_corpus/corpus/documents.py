@@ -24,6 +24,7 @@ import requests
 import yaml
 from bs4 import BeautifulSoup, FeatureNotFound
 from bs4.element import Comment, Tag
+from openpyxl import load_workbook
 from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
@@ -654,6 +655,12 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
         and _zip_contains(downloaded.content, "word/document.xml")
     ):
         return "docx"
+    if (
+        "spreadsheetml" in content_type
+        or downloaded.content.startswith(b"PK")
+        and _zip_contains(downloaded.content, "xl/workbook.xml")
+    ):
+        return "xlsx"
     raise ValueError(f"cannot infer source format for {source.source_id}")
 
 
@@ -696,6 +703,8 @@ def _extract_blocks(
         return _extract_docx_blocks(content, extraction=extraction)
     if source_format == "doc":
         return _extract_doc_blocks(content, title=title, extraction=extraction)
+    if source_format == "xlsx":
+        return _extract_xlsx_blocks(content, extraction=extraction)
     raise ValueError(f"unsupported official document source_format: {source_format}")
 
 
@@ -966,6 +975,178 @@ def _extract_doc_blocks(
             metadata={},
         ),
     )
+
+
+def _extract_xlsx_blocks(
+    content: bytes, *, extraction: dict[str, Any] | None
+) -> tuple[_DocumentBlock, ...]:
+    """Extract selected spreadsheet rows into corpus text blocks."""
+    config = extraction or {}
+    workbook = load_workbook(filename=BytesIO(content), read_only=True, data_only=True)
+    try:
+        sheet_names = _xlsx_sheet_names(workbook.sheetnames, config)
+        blocks: list[_DocumentBlock] = []
+        for sheet_name in sheet_names:
+            worksheet = workbook[sheet_name]
+            header_row_number = int(config.get("xlsx_header_row") or config.get("header_row") or 1)
+            start_row_number = int(
+                config.get("xlsx_start_row") or config.get("start_row") or header_row_number + 1
+            )
+            headers: tuple[str, ...] | None = None
+            output_columns = _xlsx_configured_strings(
+                config.get("xlsx_columns") or config.get("columns")
+            )
+            filters = _xlsx_filters(config.get("xlsx_filters") or config.get("filters"))
+            max_rows = config.get("xlsx_max_rows") or config.get("max_rows")
+            row_limit = int(max_rows) if max_rows is not None else None
+            selected_rows: list[tuple[int, tuple[str, ...]]] = []
+
+            for row_number, row in enumerate(worksheet.iter_rows(values_only=True), start=1):
+                if row_number == header_row_number:
+                    headers = _xlsx_headers(row)
+                    continue
+                if row_number < start_row_number:
+                    continue
+                if headers is None:
+                    headers = _xlsx_default_headers(len(row))
+                index = _xlsx_header_index(headers)
+                if not _xlsx_row_matches_filters(row, index=index, filters=filters):
+                    continue
+                row_columns = output_columns or headers
+                selected_rows.append(
+                    (
+                        row_number,
+                        tuple(
+                            _xlsx_cell_text(row[index[column]])
+                            if column in index and index[column] < len(row)
+                            else ""
+                            for column in row_columns
+                        ),
+                    )
+                )
+                if row_limit is not None and len(selected_rows) >= row_limit:
+                    break
+
+            if not selected_rows:
+                continue
+            row_columns = output_columns or headers or ()
+            body_lines = [
+                f"Sheet: {sheet_name}",
+                "Row | " + " | ".join(row_columns),
+            ]
+            body_lines.extend(
+                f"{row_number} | " + " | ".join(values)
+                for row_number, values in selected_rows
+            )
+            blocks.append(
+                _DocumentBlock(
+                    kind="sheet",
+                    ordinal=len(blocks) + 1,
+                    heading=str(config.get("heading") or sheet_name),
+                    body=_normalize_text("\n".join(body_lines)),
+                    metadata={
+                        "sheet_name": sheet_name,
+                        "row_count": len(selected_rows),
+                    },
+                )
+            )
+        return tuple(blocks)
+    finally:
+        workbook.close()
+
+
+def _xlsx_sheet_names(available_sheet_names: list[str], config: dict[str, Any]) -> tuple[str, ...]:
+    raw_sheets = config.get("xlsx_sheets") or config.get("sheets")
+    raw_sheet = config.get("xlsx_sheet") or config.get("sheet")
+    if raw_sheets is None and raw_sheet is not None:
+        raw_sheets = (raw_sheet,)
+    if raw_sheets is None:
+        return tuple(available_sheet_names)
+    configured = _xlsx_configured_strings(raw_sheets)
+    missing = [sheet for sheet in configured if sheet not in available_sheet_names]
+    if missing:
+        raise ValueError(f"xlsx sheet not found: {', '.join(missing)}")
+    return configured
+
+
+def _xlsx_configured_strings(value: Any) -> tuple[str, ...]:
+    if value is None:
+        return ()
+    if isinstance(value, str):
+        return (value,)
+    if isinstance(value, (list, tuple)):
+        return tuple(str(item) for item in value)
+    raise ValueError("xlsx configuration value must be a string or list of strings")
+
+
+def _xlsx_filters(raw_filters: Any) -> dict[str, tuple[str, ...]]:
+    if raw_filters is None:
+        return {}
+    if not isinstance(raw_filters, dict):
+        raise ValueError("xlsx filters must be a mapping")
+    filters: dict[str, tuple[str, ...]] = {}
+    for key, value in raw_filters.items():
+        if isinstance(value, (list, tuple)):
+            filters[str(key)] = tuple(_xlsx_cell_text(item) for item in value)
+        else:
+            filters[str(key)] = (_xlsx_cell_text(value),)
+    return filters
+
+
+def _xlsx_headers(row: tuple[Any, ...]) -> tuple[str, ...]:
+    headers = tuple(_xlsx_cell_text(value) or f"column_{index}" for index, value in enumerate(row, start=1))
+    return _dedupe_xlsx_headers(headers)
+
+
+def _xlsx_default_headers(width: int) -> tuple[str, ...]:
+    return tuple(f"column_{index}" for index in range(1, width + 1))
+
+
+def _dedupe_xlsx_headers(headers: tuple[str, ...]) -> tuple[str, ...]:
+    counts: dict[str, int] = {}
+    deduped: list[str] = []
+    for header in headers:
+        count = counts.get(header, 0) + 1
+        counts[header] = count
+        deduped.append(header if count == 1 else f"{header}_{count}")
+    return tuple(deduped)
+
+
+def _xlsx_header_index(headers: tuple[str, ...]) -> dict[str, int]:
+    return {header: index for index, header in enumerate(headers)}
+
+
+def _xlsx_row_matches_filters(
+    row: tuple[Any, ...],
+    *,
+    index: dict[str, int],
+    filters: dict[str, tuple[str, ...]],
+) -> bool:
+    for column, allowed_values in filters.items():
+        if column not in index:
+            raise ValueError(f"xlsx filter column not found: {column}")
+        cell_index = index[column]
+        actual = _xlsx_cell_text(row[cell_index]) if cell_index < len(row) else ""
+        if actual not in allowed_values:
+            return False
+    return True
+
+
+def _xlsx_cell_text(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, bool):
+        return "TRUE" if value else "FALSE"
+    isoformat = getattr(value, "isoformat", None)
+    if callable(isoformat) and not isinstance(value, (int, float, str)):
+        return str(isoformat())
+    if isinstance(value, int):
+        return str(value)
+    if isinstance(value, float):
+        if value.is_integer():
+            return str(int(value))
+        return format(value, ".15g")
+    return _normalize_text(str(value))
 
 
 def _legacy_word_document_text(content: bytes) -> str:
