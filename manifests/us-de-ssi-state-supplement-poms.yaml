@@ -1,0 +1,22 @@
+documents:
+  - source_id: de-ssa-poms-si-01415-058-2026
+    jurisdiction: us-de
+    document_class: guidance
+    citation_path: us-de/guidance/ssa/poms/si-01415-058/delaware
+    title: "SSA POMS SI 01415.058: Delaware federally administered optional supplementary payment program for January 2026"
+    source_url: https://secure.ssa.gov/poms.nsf/lnx/0501415058
+    source_format: html
+    source_as_of: "2026-07-03"
+    expression_date: "2026-01-01"
+    metadata:
+      primary_source: true
+      source_authority: Social Security Administration
+      document_subtype: poms_section
+      program: ssi_state_supplement
+      federal_program: SSI
+      state: DE
+      poms_section: SI 01415.058
+      source_discovery_group: us-de/guidance/ssi-state-supplement
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      html_content_selector: '#content div.poms-subsection1:has(a[name="c"])'
