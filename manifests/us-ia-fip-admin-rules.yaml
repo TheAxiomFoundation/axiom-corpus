@@ -1,0 +1,102 @@
+documents:
+  - source_id: ia-hhs-iac-441-40-fip-application
+    jurisdiction: us-ia
+    document_class: regulation
+    citation_path: us-ia/regulation/iac/441/40
+    title: "Iowa Administrative Code Chapter 441-40: Application for Aid"
+    source_url: https://www.legis.iowa.gov/docs/iac/chapter/06-24-2026.441.40.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2026-06-24"
+    extraction: &iowa_iac_fip_extraction
+      segmentation: labeled_sections
+      section_heading_pattern: '^441(?:\u2014|-)(?P<chapter>\d+)\.(?P<section>\d+)\([^)]+\)\s+(?P<heading>[A-Z].+)$'
+      section_label_template: "{chapter}.{section}"
+      drop_line_patterns:
+        - '^IAC \d+/\d+/\d+\s+Human Services\[441\]\s+Ch \d+, p\.\d+$'
+        - '^Ch \d+, p\.\d+\s+Human Services\[441\]\s+IAC \d+/\d+/\d+$'
+        - '^Human Services\[441\]\s+IAC \d+/\d+/\d+\s+Ch \d+, p\.\d+$'
+        - '^Human Services\[441\]\s+Ch \d+, p\.\d+\s+IAC \d+/\d+/\d+$'
+        - '^Chapter rescission date pursuant to Iowa Code section 17A\.7: .*$'
+    metadata: &iowa_iac_fip_metadata
+      primary_source: true
+      source_authority: Iowa Legislative Services Agency
+      official_publisher: Iowa Legislature
+      document_subtype: administrative_rules
+      program: FIP
+      federal_program: TANF
+      agency: Iowa Department of Health and Human Services
+      regulation_landing_page: https://www.legis.iowa.gov/law/administrativerules/chapters?agency=441
+      source_discovery_group: us-ia/regulation/fip
+      discovered_via: active_policyengine_parity_review:ia_fip
+      legal_identifier: 441 IAC Chapter 40
+
+  - source_id: ia-hhs-iac-441-41-fip-granting-assistance
+    jurisdiction: us-ia
+    document_class: regulation
+    citation_path: us-ia/regulation/iac/441/41
+    title: "Iowa Administrative Code Chapter 441-41: Granting Assistance"
+    source_url: https://www.legis.iowa.gov/docs/iac/chapter/06-24-2026.441.41.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2026-06-24"
+    extraction: *iowa_iac_fip_extraction
+    metadata:
+      <<: *iowa_iac_fip_metadata
+      legal_identifier: 441 IAC Chapter 41
+
+  - source_id: ia-hhs-iac-441-45-fip-payment
+    jurisdiction: us-ia
+    document_class: regulation
+    citation_path: us-ia/regulation/iac/441/45
+    title: "Iowa Administrative Code Chapter 441-45: Payment"
+    source_url: https://www.legis.iowa.gov/docs/iac/chapter/06-24-2026.441.45.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2026-06-24"
+    extraction: *iowa_iac_fip_extraction
+    metadata:
+      <<: *iowa_iac_fip_metadata
+      legal_identifier: 441 IAC Chapter 45
+
+  - source_id: ia-hhs-iac-441-46-fip-overpayment-recovery
+    jurisdiction: us-ia
+    document_class: regulation
+    citation_path: us-ia/regulation/iac/441/46
+    title: "Iowa Administrative Code Chapter 441-46: Recovery of Assistance Overpayment"
+    source_url: https://www.legis.iowa.gov/docs/iac/chapter/06-24-2026.441.46.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2026-06-24"
+    extraction: *iowa_iac_fip_extraction
+    metadata:
+      <<: *iowa_iac_fip_metadata
+      legal_identifier: 441 IAC Chapter 46
+
+  - source_id: ia-hhs-iac-441-47-fip-diversion
+    jurisdiction: us-ia
+    document_class: regulation
+    citation_path: us-ia/regulation/iac/441/47
+    title: "Iowa Administrative Code Chapter 441-47: Diversion"
+    source_url: https://www.legis.iowa.gov/docs/iac/chapter/06-24-2026.441.47.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2026-06-24"
+    extraction: *iowa_iac_fip_extraction
+    metadata:
+      <<: *iowa_iac_fip_metadata
+      legal_identifier: 441 IAC Chapter 47
+
+  - source_id: ia-hhs-iac-441-93-promise-jobs
+    jurisdiction: us-ia
+    document_class: regulation
+    citation_path: us-ia/regulation/iac/441/93
+    title: "Iowa Administrative Code Chapter 441-93: PROMISE JOBS Program"
+    source_url: https://www.legis.iowa.gov/docs/iac/chapter/06-24-2026.441.93.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2026-06-24"
+    extraction: *iowa_iac_fip_extraction
+    metadata:
+      <<: *iowa_iac_fip_metadata
+      legal_identifier: 441 IAC Chapter 93
