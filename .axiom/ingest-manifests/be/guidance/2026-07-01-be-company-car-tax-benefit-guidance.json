@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/guidance/2026-07-01-be-company-car-tax-benefit-guidance.json",
+      "sha256": "ad66f55e7c61fcbc9bcd9701ee72efc20e36d8e19916d78c3700b45c3f733ad9"
+    },
+    {
+      "path": "data/corpus/inventory/be/guidance/2026-07-01-be-company-car-tax-benefit-guidance.json",
+      "sha256": "58500a7458200276f3162539d80b1f0024b5b201be388035f9f7edf2080bdca1"
+    },
+    {
+      "path": "data/corpus/provisions/be/guidance/2026-07-01-be-company-car-tax-benefit-guidance.jsonl",
+      "sha256": "89c44e5e026df24b4ba8ba1f0f862d573c43794f42d2850e7f51b02b559eee0b"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-01-be-company-car-tax-benefit-guidance/official-documents/be-company-car-benefit-spf-finances-faq-2026.pdf",
+      "sha256": "463a9c81976cb603dd6d2a01ad75833746531a5a6ff7eb0d5855a823113797d4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 34,
+    "missing_count": 0,
+    "provision_count": 34,
+    "source_count": 34
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-03T17:17:55.089182+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jLBzAxsrbijNXpifD6C09Ekh5jBnBnJQxbHXbbG8iK2fga99Ch7u0156+Q2TKlpBT6876IHsUh93ecNdAnKBAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-be-company-car-tax-benefit-guidance"
+}

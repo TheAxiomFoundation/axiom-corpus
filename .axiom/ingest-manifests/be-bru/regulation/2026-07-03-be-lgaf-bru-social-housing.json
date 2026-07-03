@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-bru/regulation/2026-07-03-be-lgaf-bru-social-housing.json",
+      "sha256": "5ab34a92233808e05d469e7cd857db775a44bbfa2a5ed968d011ec425824c858"
+    },
+    {
+      "path": "data/corpus/inventory/be-bru/regulation/2026-07-03-be-lgaf-bru-social-housing.json",
+      "sha256": "edb4ca86ac13a5f95e458c3f0d70a4301c66fddfb87f0a10c2d8c2824753f16b"
+    },
+    {
+      "path": "data/corpus/provisions/be-bru/regulation/2026-07-03-be-lgaf-bru-social-housing.jsonl",
+      "sha256": "e0d54a6b7e9b57544059c837a10a36c3da7c492b9d091eecafa98f937c41e844"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/regulation/2026-07-03-be-lgaf-bru-social-housing/eli/arrete/1996/09/26/1996031386/justel.html",
+      "sha256": "8147a88f1be07fb75ba239414b9a8e3de242d89157364bd67d9cf4b54cb01444"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 141,
+    "missing_count": 0,
+    "provision_count": 141,
+    "source_count": 141
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-03T17:17:50.055962+00:00",
+  "jurisdiction": "be-bru",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yB2ySyyJPxkK9ezsTpYXj+J+aPigpbgaKKmgpHBTbZLNTD86LSLS0SWFZa+dRSqMCOUA9xUWECW5FMRI3gcgDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-be-lgaf-bru-social-housing"
+}

@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-bru/statute/2026-07-03-be-guaranteed-family-bru-support.json",
+      "sha256": "d30db10ffc318e7053aee6edc8aed48bd519a70abb77d1911dadf58af1cc7a4c"
+    },
+    {
+      "path": "data/corpus/inventory/be-bru/statute/2026-07-03-be-guaranteed-family-bru-support.json",
+      "sha256": "f01b195b7c4fc4299c9f4e4fa835e03c0846affadc310c64bbc1088fafca2c86"
+    },
+    {
+      "path": "data/corpus/provisions/be-bru/statute/2026-07-03-be-guaranteed-family-bru-support.jsonl",
+      "sha256": "06cfed05a77bc0303e4d17bb3eaa548452324d3f8bf86e9b91b25858bc581853"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-03-be-guaranteed-family-bru-support/eli/ordonnance/2017/11/23/2017031630/justel.html",
+      "sha256": "7271f5855befb8875abf5f99e587fd6cfb799cc50a8c01ee3d2675469f02cf57"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-03-be-guaranteed-family-bru-support/eli/ordonnance/2020/04/30/2020041087/justel.html",
+      "sha256": "3642c190624bd46e88139d117b9dd7f1aad64732c4f9a60de372c4b970bd46b0"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-03-be-guaranteed-family-bru-support/eli/ordonnance/2020/12/10/2020044279/justel.html",
+      "sha256": "6ba9455cc61317b29f258d7e7da1c022bfd5dd8c90c594415d0c80228712d773"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-03-be-guaranteed-family-bru-support/eli/ordonnance/2026/02/12/2026001204/justel.html",
+      "sha256": "b87ae474338825abd3f73f695673f261dd2ca6da3f410ebf6dbe4c7a2024dfb9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 58,
+    "missing_count": 0,
+    "provision_count": 58,
+    "source_count": 58
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-03T17:17:51.225432+00:00",
+  "jurisdiction": "be-bru",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "C+71HzjDG34v1xruM6b+m3gWKqLPD1+Tfbk4nHo+PEciuCddwfpeO6eDE8Z8udBMbIZ7DSKR7jJBwzy+IPfFCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-be-guaranteed-family-bru-support"
+}
