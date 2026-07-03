@@ -19,12 +19,12 @@ from pathlib import Path
 from typing import Any, Self, TextIO
 from xml.etree import ElementTree
 
-import fitz  # type: ignore[import-untyped]
+import fitz
 import requests
 import yaml
 from bs4 import BeautifulSoup, FeatureNotFound
 from bs4.element import Comment, Tag
-from openpyxl import load_workbook  # type: ignore[import-untyped]
+from openpyxl import load_workbook
 from urllib3.exceptions import InsecureRequestWarning
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, safe_segment
