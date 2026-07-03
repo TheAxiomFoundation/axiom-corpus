@@ -1,0 +1,40 @@
+documents:
+  - source_id: njac-10-90-work-first-new-jersey-program
+    jurisdiction: us-nj
+    document_class: regulation
+    citation_path: us-nj/regulation/njac-10-90
+    title: "N.J.A.C. 10:90 Work First New Jersey Program"
+    source_url: https://www.nj.gov/humanservices/notices/documents/rules-and-regulations/WFNJ_Manual_12.17.24.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2024-12-16"
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: "^§\\s*(?P<label>10:90-[0-9A-Za-z.]+)\\s+(?P<heading>.+)$"
+      drop_line_patterns:
+        - ^This file includes all Regulations adopted and published through the New Jersey Register
+        - ^NJ - New Jersey Administrative Code\s+>\s+TITLE 10\. HUMAN SERVICES
+        - ^NJ - New Jersey Administrative Code\s+>\s+TITLE 10\. HUMAN SERVICES\s+>\s+CHAPTER 90\.
+        - ^CHAPTER 90\. WORK FIRST NEW JERSEY PROGRAM
+        - ^SUBCHAPTER\s+\d+\.
+        - ^NEW JERSEY ADMINISTRATIVE CODE
+        - ^Copyright © 2024 by the New Jersey Office of Administrative\s+Law
+        - ^End of Document$
+        - ^N\.J\.A\.C\. 10:90-
+        - ^Page \d+ of \d+$
+    metadata:
+      primary_source: true
+      source_authority: New Jersey Department of Human Services, Division of Family Development
+      official_publisher: New Jersey Office of Administrative Law
+      document_subtype: administrative_code_chapter
+      program: Work First New Jersey
+      federal_program: TANF
+      regulation_chapter: N.J.A.C. 10:90
+      pe_surface: nj_wfnj
+      upstream_statute_paths:
+        - us-nj/statute/30:1-12
+        - us-nj/statute/44:10-44
+        - us-nj/statute/44:10-55
+      source_discovery_group: us-nj/regulation/wfnj
+      discovered_via: active_policyengine_parity_review
+      source_note: Official DHS rules-and-regulations PDF of the current compiled N.J.A.C. 10:90 chapter, including regulations adopted and published through the New Jersey Register, Vol. 56 No. 24, December 16, 2024.
