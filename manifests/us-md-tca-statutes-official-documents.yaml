@@ -1,0 +1,43 @@
+documents:
+  - source_id: md-human-services-5-316-fip-funding-current
+    jurisdiction: us-md
+    document_class: statute
+    title: Maryland Human Services Code section 5-316, FIP funding and budget savings
+    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ghu&enactments=false&section=5-316
+    source_format: html
+    source_as_of: '2026-07-03'
+    citation_path: us-md/statute/human-services/5-316/fip-funding
+    extraction:
+      html_content_selector: body
+      html_drop_selectors:
+        - nav
+        - header
+        - footer
+        - script
+        - style
+    metadata:
+      source_authority: Maryland General Assembly
+      source_family: temporary-cash-assistance
+      source_status: current_official_statute
+      source_note: Statutory funding floor for Maryland temporary cash assistance and SNAP combined benefits relative to the State minimum living level.
+  - source_id: md-human-services-5-312-temporary-cash-assistance-current
+    jurisdiction: us-md
+    document_class: statute
+    title: Maryland Human Services Code section 5-312, Temporary cash assistance
+    source_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ghu&enactments=false&section=5-312
+    source_format: html
+    source_as_of: '2026-07-03'
+    citation_path: us-md/statute/human-services/5-312/temporary-cash-assistance
+    extraction:
+      html_content_selector: body
+      html_drop_selectors:
+        - nav
+        - header
+        - footer
+        - script
+        - style
+    metadata:
+      source_authority: Maryland General Assembly
+      source_family: temporary-cash-assistance
+      source_status: current_official_statute
+      source_note: Statutory entitlement and eligibility frame for Maryland Temporary Cash Assistance under the Family Investment Program.

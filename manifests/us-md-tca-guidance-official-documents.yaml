@@ -1,0 +1,23 @@
+documents:
+  - source_id: md-dhs-fia-im-25-12-2025-tca-tdap-rca-benefit-increase
+    jurisdiction: us-md
+    document_class: guidance
+    title: Maryland DHS FIA Information Memo 25-12, 2025 TCA TDAP RCA benefit increase
+    source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2025/25-12%20IM%202025%20TCA%20TDAP%20RCA%20Benefit%20Increase.pdf
+    download_url: https://www.dhr.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2025/25-12%20IM%202025%20TCA%20TDAP%20RCA%20Benefit%20Increase.pdf
+    source_format: pdf
+    source_as_of: '2026-07-03'
+    citation_path: us-md/guidance/dhs/fia/im-25-12/2025-tca-tdap-rca-benefit-increase
+    request:
+      browser_user_agent: true
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 262144
+    metadata:
+      canonical_source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2025/25-12%20IM%202025%20TCA%20TDAP%20RCA%20Benefit%20Increase.pdf
+      legal_authority_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ghu&enactments=false&section=5-316
+      regulation_locator_url: https://regs.maryland.gov/us/md/exec/comar/07.03.03.17
+      source_authority: Maryland Department of Human Services, Family Investment Administration
+      source_family: temporary-cash-assistance
+      source_status: current_official_agency_guidance
+      source_note: Official DHS FIA memo setting the January 1, 2025 TCA schedule used operationally under the statutory MLL funding rule and COMAR TCA benefit framework.
