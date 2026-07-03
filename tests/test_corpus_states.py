@@ -77,6 +77,20 @@ SAMPLE_DC_SECTION = """<?xml version="1.0" encoding="utf-8"?>
   <para>
     <num>(a)</num>
     <text>See <cite path="§1-102">section 1-102</cite>.</text>
+    <text>
+      <table>
+        <tbody>
+          <tr>
+            <th>Family Size</th>
+            <th>Benefit</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>$100</td>
+          </tr>
+        </tbody>
+      </table>
+    </text>
   </para>
   <annotations>
     <text type="History">Law 1-1.</text>
@@ -710,6 +724,8 @@ def test_extract_dc_code_writes_inventory_provisions_and_coverage(tmp_path):
     assert records[-1].parent_citation_path == "us-dc/statute/1/chapter-1"
     assert records[-1].metadata["references_to"] == ["us-dc/statute/1/1-102"]
     assert "District Charter" in records[-1].body
+    assert "Family Size | Benefit" in records[-1].body
+    assert "1 | $100" in records[-1].body
 
 
 def test_extract_cic_html_release_writes_state_records(tmp_path):

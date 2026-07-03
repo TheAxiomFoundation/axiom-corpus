@@ -3014,9 +3014,7 @@ def _parse_dc_section_xml(data: bytes) -> _DcSectionDocument:
 
 def _dc_section_body(root: ET.Element) -> str | None:
     lines: list[str] = []
-    text = _direct_local_text(root, "text")
-    if text:
-        lines.append(text)
+    lines.extend(_dc_direct_text_blocks(root))
     for child in root:
         if _local_name(child.tag) == "para":
             para = _dc_para_text(child, indent=0)
@@ -3030,15 +3028,81 @@ def _dc_para_text(para: ET.Element, indent: int) -> str:
     prefix = "  " * indent
     num = _direct_local_text(para, "num")
     heading = _direct_local_text(para, "heading")
-    text = _direct_local_text(para, "text")
-    first_parts = [part for part in (num, heading, text) if part]
-    lines = [prefix + " ".join(first_parts)] if first_parts else []
+    text_lines = [
+        line
+        for block in _dc_direct_text_blocks(para)
+        for line in block.splitlines()
+        if line
+    ]
+    first_parts = [part for part in (num, heading) if part]
+    if text_lines:
+        if first_parts:
+            lines = [prefix + " ".join([*first_parts, text_lines[0]])]
+        else:
+            lines = [prefix + text_lines[0]]
+        lines.extend(prefix + line for line in text_lines[1:])
+    else:
+        lines = [prefix + " ".join(first_parts)] if first_parts else []
     for child in para:
         if _local_name(child.tag) == "para":
             child_text = _dc_para_text(child, indent + 1)
             if child_text:
                 lines.append(child_text)
     return "\n".join(lines)
+
+
+def _dc_direct_text_blocks(elem: ET.Element) -> list[str]:
+    blocks: list[str] = []
+    for child in elem:
+        if _local_name(child.tag) != "text":
+            continue
+        block = _dc_text_block(child)
+        if block:
+            blocks.append(block)
+    return blocks
+
+
+def _dc_text_block(elem: ET.Element) -> str | None:
+    lines: list[str] = []
+    inline_parts: list[str] = []
+
+    def flush_inline() -> None:
+        text = _clean_text(" ".join(inline_parts))
+        inline_parts.clear()
+        if text:
+            lines.append(text)
+
+    if elem.text:
+        inline_parts.append(elem.text)
+    for child in elem:
+        if _local_name(child.tag) == "table":
+            flush_inline()
+            lines.extend(_dc_table_lines(child))
+        else:
+            text = _element_text(child)
+            if text:
+                inline_parts.append(text)
+        if child.tail:
+            inline_parts.append(child.tail)
+    flush_inline()
+    block = "\n".join(line for line in lines if line).strip()
+    return block or None
+
+
+def _dc_table_lines(table: ET.Element) -> list[str]:
+    rows: list[str] = []
+    for row in table.iter():
+        if _local_name(row.tag) != "tr":
+            continue
+        cells = [
+            text
+            for cell in row
+            if _local_name(cell.tag) in {"th", "td"}
+            if (text := _element_text(cell))
+        ]
+        if cells:
+            rows.append(" | ".join(cells))
+    return rows
 
 
 def _dc_references(root: ET.Element) -> tuple[str, ...]:
