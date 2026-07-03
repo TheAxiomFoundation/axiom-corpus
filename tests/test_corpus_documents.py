@@ -1654,6 +1654,62 @@ documents:
     assert eligibility.metadata["page_start"] == 2
 
 
+def test_extract_official_documents_replaces_labeled_pdf_section_labels(tmp_path):
+    pdf_path = tmp_path / "roman.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "I. FIRST POLICY HEADING",
+                "First body.",
+                "II. SECOND POLICY HEADING",
+                "Second body.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: roman-policy
+    jurisdiction: us-nc
+    document_class: manual
+    title: Roman Policy
+    source_url: https://policies.ncdhhs.gov/example.pdf
+    citation_path: us-nc/manual/dhhs/work-first/roman-policy
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: "^(?P<label>I|II)\\\\.\\\\s+(?P<heading>.+)$"
+      section_label_replacements:
+        I: section-i
+        II: section-ii
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-03-roman",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-nc/manual/dhhs/work-first/roman-policy",
+        "us-nc/manual/dhhs/work-first/roman-policy/section-i",
+        "us-nc/manual/dhhs/work-first/roman-policy/section-ii",
+    ]
+    assert records[1].heading == "section-i FIRST POLICY HEADING"
+    assert records[2].body == "Second body."
+
+
 def test_extract_official_documents_respects_labeled_pdf_end_page(tmp_path):
     pdf_path = tmp_path / "rules.pdf"
     document = fitz.open()

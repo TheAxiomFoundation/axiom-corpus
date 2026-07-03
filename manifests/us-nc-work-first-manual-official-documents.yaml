@@ -1,0 +1,54 @@
+documents:
+  - source_id: nc-dhhs-work-first-114-income-budgeting
+    jurisdiction: us-nc
+    document_class: manual
+    citation_path: us-nc/manual/dhhs/work-first/114-income-and-budgeting
+    title: North Carolina Work First Manual Section 114 - Income and Budgeting
+    source_url: https://policies.ncdhhs.gov/wp-content/uploads/wf-114_1-2-2024.pdf
+    source_format: pdf
+    source_as_of: "2026-07-03"
+    expression_date: "2024-01-01"
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 524288
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVI|XVII)\.\s+(?P<heading>[A-Z][A-Z0-9 /&(),''.-]+)$'
+      section_label_pattern: '^(?P<label>I|II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVI|XVII)\.$'
+      label_only_heading_pattern: '^[A-Z][A-Z0-9 /&(),''.-]+$'
+      label_only_requires_heading: true
+      section_label_replacements:
+        I: section-i
+        II: section-ii
+        III: section-iii
+        IV: section-iv
+        V: section-v
+        VI: section-vi
+        VII: section-vii
+        VIII: section-viii
+        IX: section-ix
+        X: section-x
+        XI: section-xi
+        XII: section-xii
+        XIII: section-xiii
+        XIV: section-xiv
+        XV: section-xv
+        XVI: section-xvi
+        XVII: section-xvii
+      drop_lines:
+        - WORK FIRST
+        - "Change # 04-2023 Income and Budgeting"
+        - January 1, 2024
+        - 114
+    metadata:
+      primary_source: true
+      source_authority: North Carolina Department of Health and Human Services
+      document_subtype: policy_manual_section
+      program: Work First
+      federal_program: TANF
+      manual_landing_page: https://policies.ncdhhs.gov/divisional-n-z/social-services/work-first/wf-policies-manuals/
+      source_discovery_group: us-nc/manual/tanf
+      discovered_via: active_policyengine_parity_review:nc_tanf
+      source_note: Current NCDHHS Work First income and budgeting manual section as listed on the official WF Policies/Manuals page on 2026-07-03.

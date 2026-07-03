@@ -797,6 +797,7 @@ def _extract_labeled_pdf_section_blocks(
         re.compile(str(label_heading_pattern)) if label_heading_pattern is not None else None
     )
     label_template = extraction.get("section_label_template")
+    label_replacements = _section_label_replacements(extraction)
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     lines = _filtered_pdf_lines(content, extraction=extraction)
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
@@ -842,6 +843,7 @@ def _extract_labeled_pdf_section_blocks(
             section_heading_re,
             section_label_re,
             label_template=str(label_template) if label_template is not None else None,
+            label_replacements=label_replacements,
         )
         if match:
             label, heading_text = match
@@ -853,6 +855,7 @@ def _extract_labeled_pdf_section_blocks(
                     section_heading_re,
                     section_label_re,
                     label_template=str(label_template) if label_template is not None else None,
+                    label_replacements=label_replacements,
                 ):
                     index += 1
                 continue
@@ -876,6 +879,7 @@ def _extract_labeled_pdf_section_blocks(
                 section_heading_re,
                 section_label_re,
                 label_template=str(label_template) if label_template is not None else None,
+                label_replacements=label_replacements,
             ):
                 heading_lines.append(lines[index][0])
                 index += 1
@@ -1007,6 +1011,7 @@ def _extract_labeled_docx_section_blocks(
     section_heading_re = re.compile(str(heading_pattern)) if heading_pattern is not None else None
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
     label_template = extraction.get("section_label_template")
+    label_replacements = _section_label_replacements(extraction)
     start_after_pattern = extraction.get("start_after_pattern")
     start_after_re = (
         re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
@@ -1059,6 +1064,7 @@ def _extract_labeled_docx_section_blocks(
             section_heading_re,
             section_label_re,
             label_template=str(label_template) if label_template is not None else None,
+            label_replacements=label_replacements,
         )
         if match:
             label, heading = match
@@ -1149,18 +1155,30 @@ def _match_labeled_pdf_section(
     section_label_re: re.Pattern[str] | None,
     *,
     label_template: str | None = None,
+    label_replacements: dict[str, str] | None = None,
 ) -> tuple[str, str] | None:
     if section_heading_re is not None:
         match = section_heading_re.match(line)
         if match:
             return (
-                _labeled_section_label(match, label_template=label_template),
+                _labeled_section_label(
+                    match,
+                    label_template=label_template,
+                    label_replacements=label_replacements,
+                ),
                 match.groupdict().get("heading", "").strip(),
             )
     if section_label_re is not None:
         match = section_label_re.match(line)
         if match:
-            return _labeled_section_label(match, label_template=label_template), ""
+            return (
+                _labeled_section_label(
+                    match,
+                    label_template=label_template,
+                    label_replacements=label_replacements,
+                ),
+                "",
+            )
     return None
 
 
@@ -1280,12 +1298,14 @@ def _looks_like_labeled_heading_continuation(
     section_label_re: re.Pattern[str] | None,
     *,
     label_template: str | None = None,
+    label_replacements: dict[str, str] | None = None,
 ) -> bool:
     if _match_labeled_pdf_section(
         line,
         section_heading_re,
         section_label_re,
         label_template=label_template,
+        label_replacements=label_replacements,
     ):
         return False
     return _looks_like_section_heading_line(line)
@@ -1585,6 +1605,7 @@ def _extract_labeled_html_section_blocks(
     section_heading_re = re.compile(str(heading_pattern)) if heading_pattern is not None else None
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
     label_template = extraction.get("section_label_template")
+    label_replacements = _section_label_replacements(extraction)
     stop_pattern = extraction.get("stop_text_pattern")
     stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
 
@@ -1629,6 +1650,7 @@ def _extract_labeled_html_section_blocks(
             section_heading_re,
             section_label_re,
             label_template=str(label_template) if label_template is not None else None,
+            label_replacements=label_replacements,
         )
         if match is not None:
             label, heading, body = match
@@ -1742,12 +1764,17 @@ def _match_labeled_html_section(
     section_label_re: re.Pattern[str] | None,
     *,
     label_template: str | None = None,
+    label_replacements: dict[str, str] | None = None,
 ) -> tuple[str, str, str] | None:
     if section_heading_re is not None:
         match = section_heading_re.match(text)
         if match:
             groups = match.groupdict()
-            label = _labeled_section_label(match, label_template=label_template)
+            label = _labeled_section_label(
+                match,
+                label_template=label_template,
+                label_replacements=label_replacements,
+            )
             return (
                 label,
                 (groups.get("heading") or "").strip(),
@@ -1756,26 +1783,57 @@ def _match_labeled_html_section(
     if section_label_re is not None:
         match = section_label_re.match(text)
         if match:
-            return _labeled_section_label(match, label_template=label_template), "", ""
+            return (
+                _labeled_section_label(
+                    match,
+                    label_template=label_template,
+                    label_replacements=label_replacements,
+                ),
+                "",
+                "",
+            )
     return None
 
 
-def _labeled_section_label(match: re.Match[str], *, label_template: str | None) -> str:
+def _labeled_section_label(
+    match: re.Match[str],
+    *,
+    label_template: str | None,
+    label_replacements: dict[str, str] | None = None,
+) -> str:
     groups = {key: (value or "").strip() for key, value in match.groupdict().items()}
     if label_template:
         try:
-            return label_template.format(**groups).strip()
+            return _replace_section_label(
+                label_template.format(**groups).strip(),
+                label_replacements,
+            )
         except KeyError as exc:
             raise ValueError(
                 f"section_label_template references unknown group: {exc.args[0]}"
             ) from exc
     label = groups.get("label")
     if label:
-        return label
+        return _replace_section_label(label, label_replacements)
     raise ValueError(
         "labeled_sections extraction requires a label group unless "
         "section_label_template is configured"
     )
+
+
+def _section_label_replacements(extraction: dict[str, Any]) -> dict[str, str] | None:
+    raw = extraction.get("section_label_replacements")
+    if raw is None:
+        return None
+    if not isinstance(raw, dict):
+        raise ValueError("section_label_replacements must be a mapping")
+    return {str(key): str(value).strip() for key, value in raw.items()}
+
+
+def _replace_section_label(label: str, replacements: dict[str, str] | None) -> str:
+    if not replacements:
+        return label
+    return replacements.get(label, label).strip()
 
 
 def _html_content_root(soup: BeautifulSoup, *, extraction: dict[str, Any] | None) -> Tag:
