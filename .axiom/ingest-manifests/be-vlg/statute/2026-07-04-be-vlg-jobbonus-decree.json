@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-vlg/statute/2026-07-04-be-vlg-jobbonus-decree.json",
+      "sha256": "70f6c4fae8324aa853b7aa395a26cfb3fcf664553dfcdd98faa0f8a7af3db71f"
+    },
+    {
+      "path": "data/corpus/inventory/be-vlg/statute/2026-07-04-be-vlg-jobbonus-decree.json",
+      "sha256": "88b7375b43310b40ff0d0fe6c143d7446088a1048338d985fe186b97b14a37f6"
+    },
+    {
+      "path": "data/corpus/provisions/be-vlg/statute/2026-07-04-be-vlg-jobbonus-decree.jsonl",
+      "sha256": "7654f3d53cb24563bdbb87d54a7835a4c4e4fd5cc1bfd5626ca9d8a5f929fd4b"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-04-be-vlg-jobbonus-decree/official-documents/be-vlg-jobbonus-decree-2022-current-codex.html",
+      "sha256": "7009bdf01454a87d0c5a73f1d1354e8463afe3a84f55f5c57c307e0719c1f641"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ab0f4cfc0d11e841f8378310198fe614d73a74fb",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-be-vlg-jobbonus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-04-be-vlg-jobbonus-decree --manifest manifests/be-vlg-jobbonus-decree-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-04T04:37:17.517518+00:00",
+  "jurisdiction": "be-vlg",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "svFRvActjyec2hIBnWukXtNcX+rSlpm/Hf5+U5et/7bK76oha66eMQOHIGy7YJc6IFV/Knv5PE5QpsCcWwFkBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-be-vlg-jobbonus-decree"
+}
