@@ -2773,6 +2773,57 @@ documents:
     assert records[2].body == "Second body."
 
 
+def test_extract_official_documents_handles_optional_labeled_pdf_heading(tmp_path):
+    pdf_path = tmp_path / "manual.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "5005.05.00",
+                "BENEFIT CALCULATION",
+                "Calculation text.",
+                "5010.00.00 PAYMENT METHOD",
+                "Payment text.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: manual-policy
+    jurisdiction: us-in
+    document_class: manual
+    title: Manual Policy
+    source_url: https://www.in.gov/example/manual.pdf
+    citation_path: us-in/manual/fssa/example
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: "^(?P<label>[0-9]{{4}}\\\\.[0-9]{{2}}\\\\.[0-9]{{2}})(?:\\\\s+(?P<heading>[A-Z][A-Z0-9 /()-]+))?$"
+      label_only_heading_pattern: "^[A-Z][A-Z0-9 /()-]+$"
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-04-manual",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "5005.05.00 BENEFIT CALCULATION"
+    assert records[1].body == "Calculation text."
+    assert records[2].heading == "5010.00.00 PAYMENT METHOD"
+
+
 def test_extract_official_documents_respects_labeled_pdf_end_page(tmp_path):
     pdf_path = tmp_path / "rules.pdf"
     document = fitz.open()
