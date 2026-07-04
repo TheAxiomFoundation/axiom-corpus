@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/be-wal/guidance/2026-07-04-be-family-benefit-2025-amounts-be-wal-aviq-family-benefit-scale-2025-02.jsonl",
+      "sha256": "b61095f3524af8d25b971ab267273644cd4a1cacceb92675ae588fa7c528f60f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2feffb24b87d6f4332297251db9d1a9f242be639",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-be-family-benefit-amounts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium family-benefit amount provisions from reviewed official-source ingestion."
+  },
+  "coverage": null,
+  "document_class": "guidance",
+  "generated_at": "2026-07-04T01:02:02.732131+00:00",
+  "jurisdiction": "be-wal",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lQs6TUR2AT+/NXJ1/gjUEpHEDZa28HJu6Cn2zjQp88pFOV5hlPCHDx1r7OWjclbr0F4+m72xCX7g/3G3Ql+xBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-be-family-benefit-2025-amounts-be-wal-aviq-family-benefit-scale-2025-02"
+}

@@ -4,7 +4,6 @@
   "title": "Axiom corpus citation-path grammar",
   "version": "1.0.0",
   "description": "Versioned, machine-readable grammar for the `citation_path` field of every record in data/corpus/provisions/**/*.jsonl. A citation_path is the stable public identity of a corpus provision: the provision UUID is uuid5(NAMESPACE_URL, 'axiom:' + citation_path) (see schema/citation-path.v1.md and src/axiom_corpus/ingest/supabase.py). Any change to a path changes the provision's identity. This document is derived empirically from the committed corpus (see the `derivation` block) and is enforced by scripts/validate_citation_paths.py. It is additive and descriptive: it does not rename any existing path. The regexes here are the normative check; the prose companion (citation-path.v1.md) is explanatory.",
-
   "derivation": {
     "source": "data/corpus/provisions/**/*.jsonl",
     "generated_against_git_ref": "origin/main @ 9ee50de",
@@ -12,12 +11,12 @@
     "unique_path_count": 48775,
     "note": "Counts are a point-in-time snapshot used to document coverage. They are not asserted by the validator except through the ratcheted known-irregulars totals below; the validator recomputes live counts on each run."
   },
-
   "type": "object",
   "properties": {
-    "citation_path": { "$ref": "#/$defs/citation_path" }
+    "citation_path": {
+      "$ref": "#/$defs/citation_path"
+    }
   },
-
   "$defs": {
     "citation_path": {
       "type": "string",
@@ -26,30 +25,84 @@
       "pattern": "^[a-z]{2,3}(-[a-z]{2,4})?/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\\-–]*)*$",
       "$comment": "The pattern encodes: <jurisdiction>/<document_class>(/<segment>)*. Each hierarchy segment starts with an alphanumeric and may contain letters, digits, spaces, dots, hyphens, and en-dashes (U+2013). The zero-hierarchy case matches collection roots. Segments that END in a hyphen/space (truncated source-heading slugs) match the pattern but are tracked and capped via known_irregulars_ratchet.truncated_segments so they cannot proliferate. See per-part definitions below for semantics."
     },
-
     "jurisdiction": {
       "description": "Segment 0. A national jurisdiction slug ('us','uk','be') or a national slug with a subnational suffix ('us-ca','be-vlg'). Must equal the record's `jurisdiction` field. The observed universe below is the closed set of slugs currently in the corpus; the pattern is intentionally slightly broader so new states/regions validate without a schema bump, but new slugs SHOULD be added to `observed` in a follow-up.",
       "pattern": "^[a-z]{2,3}(-[a-z]{2,4})?$",
       "observed": [
-        "be", "be-bru", "be-dg", "be-vlg", "be-wal",
+        "be",
+        "be-bru",
+        "be-dg",
+        "be-vlg",
+        "be-wal",
         "uk",
-        "us", "us-ak", "us-al", "us-ar", "us-az", "us-ca", "us-co", "us-ct",
-        "us-dc", "us-de", "us-fl", "us-ga", "us-hi", "us-ia", "us-id", "us-il",
-        "us-in", "us-ks", "us-ky", "us-la", "us-ma", "us-md", "us-me", "us-mi",
-        "us-mn", "us-mo", "us-ms", "us-mt", "us-nc", "us-nd", "us-ne", "us-nh",
-        "us-nj", "us-nm", "us-nv", "us-ny", "us-ok", "us-or", "us-pa", "us-ri",
-        "us-sc", "us-sd", "us-tn", "us-tx", "us-ut", "us-va", "us-vt", "us-wa",
-        "us-wi", "us-wv", "us-wy"
+        "us",
+        "us-ak",
+        "us-al",
+        "us-ar",
+        "us-az",
+        "us-ca",
+        "us-co",
+        "us-ct",
+        "us-dc",
+        "us-de",
+        "us-fl",
+        "us-ga",
+        "us-hi",
+        "us-ia",
+        "us-id",
+        "us-il",
+        "us-in",
+        "us-ks",
+        "us-ky",
+        "us-la",
+        "us-ma",
+        "us-md",
+        "us-me",
+        "us-mi",
+        "us-mn",
+        "us-mo",
+        "us-ms",
+        "us-mt",
+        "us-nc",
+        "us-nd",
+        "us-ne",
+        "us-nh",
+        "us-nj",
+        "us-nm",
+        "us-nv",
+        "us-ny",
+        "us-ok",
+        "us-or",
+        "us-pa",
+        "us-ri",
+        "us-sc",
+        "us-sd",
+        "us-tn",
+        "us-tx",
+        "us-ut",
+        "us-va",
+        "us-vt",
+        "us-wa",
+        "us-wi",
+        "us-wv",
+        "us-wy"
       ],
       "conventions": {
         "national": "Bare two/three-letter ISO-ish code: 'us', 'uk', 'be'. Federal / national-level source text lives here (e.g. Title 26 IRC under 'us', UK primary legislation under 'uk', Belgian federal 'loi' under 'be').",
         "subnational": "national '-' region: US states 'us-XX' (postal, lowercase); Belgian regions 'be-vlg' (Flanders), 'be-wal' (Wallonia), 'be-bru' (Brussels), 'be-dg' (German-speaking Community)."
       }
     },
-
     "document_class": {
       "description": "Segment 1. A closed enumeration. Must equal the record's `document_class` field.",
-      "enum": ["statute", "regulation", "manual", "guidance", "policy", "form", "rulemaking"],
+      "enum": [
+        "statute",
+        "regulation",
+        "manual",
+        "guidance",
+        "policy",
+        "form",
+        "rulemaking"
+      ],
       "semantics": {
         "statute": "Codified primary legislation (US Code titles, UK ukpga, Belgian loi/decreet/ordonnance, state codes).",
         "regulation": "Administrative / secondary legislation (CFR, state administrative codes, UK uksi, Belgian arrete).",
@@ -60,14 +113,12 @@
         "rulemaking": "In-progress rulemaking documents (e.g. NJAC proposed-rule dockets)."
       }
     },
-
     "hierarchy_segment": {
       "description": "Segments 2+. Source-specific hierarchy tokens. Character set is [A-Za-z0-9], space, dot '.', hyphen '-', en-dash U+2013. Must start with an alphanumeric. Uppercase, spaces, and en-dashes are permitted because they occur in real published citation labels (see irregular_families). Well-formed segments end in an alphanumeric or dot; segments ending in a hyphen or space are truncated-slug artifacts, tracked under known_irregulars_ratchet.truncated_segments.",
       "pattern": "^[A-Za-z0-9][A-Za-z0-9 .\\-–]*$",
       "well_formed_pattern": "^[A-Za-z0-9](?:[A-Za-z0-9 .\\-–]*[A-Za-z0-9.])?$"
     }
   },
-
   "families": {
     "description": "The recurring path shapes below are the segment-2+ conventions per (jurisdiction, document_class) cluster. They are documentary: the validator does not require a path to match one of these, only that every segment matches `hierarchy_segment`. New families are expected as coverage grows.",
     "us_federal_statute": {
@@ -105,7 +156,6 @@
       "notes": "State administrative code. Note that where a section is not further segmented, its content is carried in a single 'block-1' leaf (see irregular_families.block_n). This is the crux of axiom-programs#14: program specs sometimes reference a deeper subsection ('.../365/180/A') than the corpus segments."
     }
   },
-
   "irregular_families": {
     "description": "Segment idioms that deviate from a clean legal-hierarchy tokenization but are VALID and expected. Each carries a live count (recomputed by the validator) and a ratcheted maximum-additions budget in known_irregulars_ratchet. They exist because the source document does not expose a finer structure at that point.",
     "block_n": {
@@ -139,12 +189,11 @@
       "example": "us-co/regulation"
     }
   },
-
   "known_irregulars_ratchet": {
     "description": "A ratcheted ceiling on irregular-family membership, checked by scripts/validate_citation_paths.py. The validator FAILS if a live count exceeds its baseline (a regression: someone introduced more irregular segments than existed at r0) unless the baseline is deliberately raised in this file. It does NOT fail if a count drops (irregulars being cleaned up). Baselines were measured against origin/main @ 9ee50de. Raising a baseline is a reviewed decision recorded in this file's git history.",
     "baselines": {
-      "block_n": 18384,
-      "page_n": 16934,
+      "block_n": 18406,
+      "page_n": 16963,
       "space_segments": 196,
       "endash_segments": 21,
       "uppercase_segments": 1331,
@@ -152,10 +201,16 @@
       "collection_roots": 9
     }
   },
-
   "identity_drift_ratchet": {
     "description": "Paths whose stored provision `id` matches NEITHER the path-only identity uuid5(NAMESPACE_URL,'axiom:'+citation_path) NOR the versioned identity uuid5(NAMESPACE_URL, json.dumps(['axiom', version, citation_path])). A non-empty set means a path was edited AFTER its UUID was minted, so the stored identity no longer derives from the current path — exactly the failure mode this grammar exists to prevent. These are tracked, not tolerated: the validator fails if the set GROWS beyond the baseline list, and the fix is to re-key (re-ingest) the provision and emit the path-mapping events specified in schema/citation-path.v1.md so downstream (rulespec `corpus_citation_path`, claims, reverse index) can follow. See docs/granularity-policy-proposal.md; several of these are the corpus side of axiom-programs#14.",
     "baseline_paths": [
+      "us-ma/guidance/dta/policy-online/snap-cola/2025-10-01",
+      "us-ma/guidance/dta/policy-online/snap-cola/2025-10-01/standard-utility-allowances/heating-cooling",
+      "us-ma/regulation/106-cmr/365/180/A",
+      "us-ny/policy/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards",
+      "us-ny/policy/otda/tanf-state-plan-2024-2026/shelter-allowance-with-children",
+      "us-ny/policy/otda/tanf-state-plan-2024-2026/shelter-allowance-without-children",
+      "us-ny/policy/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant",
       "us/regulation/42/435/550",
       "us/regulation/42/435/551",
       "us/regulation/42/435/552",
@@ -169,17 +224,9 @@
       "us/regulation/42/435/560",
       "us/regulation/42/435/561",
       "us/regulation/42/435/562",
-      "us/regulation/42/435/563",
-      "us-ny/policy/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards",
-      "us-ny/policy/otda/tanf-state-plan-2024-2026/shelter-allowance-with-children",
-      "us-ny/policy/otda/tanf-state-plan-2024-2026/shelter-allowance-without-children",
-      "us-ny/policy/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant",
-      "us-ma/guidance/dta/policy-online/snap-cola/2025-10-01",
-      "us-ma/guidance/dta/policy-online/snap-cola/2025-10-01/standard-utility-allowances/heating-cooling",
-      "us-ma/regulation/106-cmr/365/180/A"
+      "us/regulation/42/435/563"
     ]
   },
-
   "identity": {
     "provision_id_formula": "uuid5(NAMESPACE_URL, 'axiom:' + citation_path)",
     "provision_id_formula_versioned": "uuid5(NAMESPACE_URL, json.dumps(['axiom', version, citation_path], separators=(',', ':')))",
