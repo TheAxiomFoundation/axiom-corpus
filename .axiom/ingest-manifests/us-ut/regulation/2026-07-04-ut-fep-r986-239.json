@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/regulation/2026-07-04-ut-fep-r986-239.json",
+      "sha256": "19e61857e7996b2d5c40061e6400bbc0c9d94fd4cbc744a45726f8eae460815a"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/regulation/2026-07-04-ut-fep-r986-239.json",
+      "sha256": "3d77fd0faae5ebc5804e9f9c940d894f00dcc37234c85502a9be8f202afa12e7"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/regulation/2026-07-04-ut-fep-r986-239.jsonl",
+      "sha256": "4799730ab96b8c50a87a838fbaa6ab493abe1574a80e005c0ef706e1b33a1cd5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/regulation/2026-07-04-ut-fep-r986-239/official-documents/ut-admin-rules-r986-200-239-current.html",
+      "sha256": "dfeea52232106a22928363299ce010d5c3aa5e74c8b9cc49c5e07b6fdfe7ecf0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "cd079a31c44841575ac129ff34aaca48d944682b",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-nc-work-first-20260704"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-04-ut-fep-r986-239 --manifest manifests/us-ut-fep-r986-239-official-document.yaml --source-as-of 2026-07-04 --expression-date 2026-07-04"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-04T01:53:40.319471+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-04-ut-fep-r986-239.md",
+      "sha256": "b5e5c003d24918bbb98df14ebcc97ca56c51027932b9d8e7e6e4a85a7f588788"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "77eTDU6JZfz/3wzBUePGf0MAPooOkRryIJPfKnmqryP0uR/4c8var6TM/RcUhuuIEzi1+Hcx2oZ0Ri3M+SHdBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-ut-fep-r986-239"
+}
