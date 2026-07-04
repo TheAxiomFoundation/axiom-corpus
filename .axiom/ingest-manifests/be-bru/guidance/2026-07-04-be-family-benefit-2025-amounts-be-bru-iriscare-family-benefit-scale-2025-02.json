@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/be-bru/guidance/2026-07-04-be-family-benefit-2025-amounts-be-bru-iriscare-family-benefit-scale-2025-02.jsonl",
+      "sha256": "74bb731f55b2d30bd7aaf8cf5a8b40a030e092d0226c05748612a0921bbd40d5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2feffb24b87d6f4332297251db9d1a9f242be639",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-be-family-benefit-amounts"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium family-benefit amount provisions from reviewed official-source ingestion."
+  },
+  "coverage": null,
+  "document_class": "guidance",
+  "generated_at": "2026-07-04T01:02:02.638902+00:00",
+  "jurisdiction": "be-bru",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Z4DBJxyjYoCNroN35YYLmudXSK5myKGqNVufSTz65O88Tqh4CbYiAKGfUJOqfKdxAIBHYQuOuc6rwe6OrBxCAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-be-family-benefit-2025-amounts-be-bru-iriscare-family-benefit-scale-2025-02"
+}
