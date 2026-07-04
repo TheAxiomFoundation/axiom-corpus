@@ -186,9 +186,27 @@ never shallower, never deeper — and a module's `corpus_citation_path`
 grounds on the deepest natively-asserted provision containing its text.
 Below the assertion frontier, precision is carried as rule-level `source`
 metadata plus, where needed, a span anchor — re-derivable annotation, never
-manufactured identity. Reserve corpus re-segmentation below the frontier
-(Option A) for cases with an executable oracle at that granularity, done as
-a deliberate `split` with a path-mapping event.**
+manufactured identity. Corpus re-segmentation below the current frontier
+(Option A) has exactly two triggers, both executed as deliberate `split`s
+with path-mapping events: (1) an executable oracle at that granularity, or
+(2) **source-format advancement** — the publisher starts asserting deeper
+structure, in which case re-segmenting to match is not an exception but the
+rule itself ("mirror what the source asserts") applied to the new format.**
+
+A clarification the frontier concept depends on: the frontier is where
+*machine verifiability* changes, not where *meaning* changes. Two hierarchies
+must not be conflated. The **drafted structure** (how deep the text itself
+subdivides — down to clause `(vi)`) is chosen per provision by drafters and
+carries the law's reference/amendment semantics at every level. The
+**format-asserted structure** (how deep the publisher's data format
+identifies those subdivisions as nodes) is set uniformly per publication
+pipeline — all of eCFR seams at the section, all of USLM reaches the clause —
+so seam depth cannot encode anything about any particular provision's
+policy. Text below the seam is exactly as legally authoritative as text
+above it; it is merely not machine-attested by the publisher. Consequently
+nothing downstream may *interpret* frontier depth (a leaf row does not mean
+"atomic policy unit"; a span does not mean "lesser law"), and because the
+frontier is a format artifact it can move — which is why trigger (2) exists.
 
 "Section-rollup" is the *special case* of this rule for sources whose
 assertion frontier is the section. It is not a cap on depth:
