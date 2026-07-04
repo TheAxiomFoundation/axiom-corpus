@@ -1437,13 +1437,14 @@ def _match_labeled_pdf_section(
     if section_heading_re is not None:
         match = section_heading_re.match(line)
         if match:
+            heading_text = match.groupdict().get("heading") or ""
             return (
                 _labeled_section_label(
                     match,
                     label_template=label_template,
                     label_replacements=label_replacements,
                 ),
-                match.groupdict().get("heading", "").strip(),
+                heading_text.strip(),
             )
     if section_label_re is not None:
         match = section_label_re.match(line)

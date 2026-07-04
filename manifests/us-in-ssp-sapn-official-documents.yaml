@@ -1,0 +1,33 @@
+documents:
+  - source_id: in-fssa-medicaid-pm-5000-sapn
+    jurisdiction: us-in
+    document_class: manual
+    citation_path: us-in/manual/fssa/medicaid-policy-manual/chapter-5000
+    title: "Indiana Health Coverage Program Policy Manual Chapter 5000: Supplemental Assistance for Personal Needs"
+    source_url: https://www.in.gov/fssa/ompp/files/Medicaid_PM_5000.pdf
+    source_format: pdf
+    source_as_of: "2026-07-04"
+    expression_date: "2026-06-19"
+    metadata:
+      primary_source: true
+      source_authority: Indiana Family and Social Services Administration, Office of Medicaid Policy and Planning
+      document_subtype: medicaid_policy_manual
+      program: ssi_state_supplement
+      state_program: Supplemental Assistance for Personal Needs
+      federal_program: SSI
+      state: IN
+      source_discovery_group: us-in/manual/ssp-sapn
+      discovered_via: active_policyengine_parity_review
+      source_access_note: "Direct official FSSA PDF; HTTP Last-Modified observed as 2026-06-19."
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>[0-9]{4}\.[0-9]{2}\.[0-9]{2})(?:\s+(?P<heading>[A-Z][A-Z0-9 /()&-]+))?$'
+      label_only_heading_pattern: '^[A-Z][A-Z0-9 /()&-]+$'
+      start_page: 2
+      drop_line_patterns:
+        - '^\\s*Indiana Health Coverage Program Policy Manual\\s*$'
+        - '^\\s*Chapter 5000\\s*$'
+        - '^\\s*SUPPLEMENTAL ASSISTANCE FOR PERSONAL NEEDS\\s*$'
+        - '^\\s*Sections 5000\\.00\\.00 – 5010\\.05\\.05\\s*$'
+        - '^\\s*Contents\\s*$'
+        - '^\\s*[0-9]+\\s*$'
