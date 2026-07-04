@@ -25,9 +25,7 @@ def corpus_repo(tmp_path: Path) -> Path:
     (base / "provisions" / "us" / "statute").mkdir(parents=True)
     (base / "coverage" / "us" / "statute").mkdir(parents=True)
     (root / "claims" / "us").mkdir(parents=True)
-    (base / "provisions" / "us" / "statute" / "a.jsonl").write_text(
-        '{"id": "1"}\n{"id": "2"}\n'
-    )
+    (base / "provisions" / "us" / "statute" / "a.jsonl").write_text('{"id": "1"}\n{"id": "2"}\n')
     (base / "coverage" / "us" / "statute" / "a.json").write_text('{"complete": true}\n')
     (root / "claims" / "us" / "c.jsonl").write_text('{"subject": {"id": "x"}}\n')
     (root / "DATA_INVENTORY.md").write_text("# Inventory\n")
@@ -86,6 +84,83 @@ def test_emit_unsigned_without_key(
     assert "not set" in captured.err
 
 
+def test_sign_in_place_signs_unsigned_manifest_without_touching_content(
+    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
+) -> None:
+    # Emit unsigned (no key), then sign the committed-unsigned manifest in place.
+    monkeypatch.delenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, raising=False)
+    out = tmp_path / "release_manifest.json"
+    _emit(corpus_repo, out)
+    capsys.readouterr()
+    unsigned = json.loads(out.read_text())
+    assert "signature" not in unsigned
+
+    monkeypatch.setenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, SIGNING_KEY)
+    rc = cli.main(["sign-release-manifest", "--manifest", str(out)])
+    report = json.loads(capsys.readouterr().out)
+    assert rc == 0
+    assert report["signed"] is True
+    assert report["already_valid"] is False
+
+    signed = json.loads(out.read_text())
+    assert signed["signature"]["algorithm"] == "hmac-sha256"
+    # Every field except the added signature is byte-identical.
+    signed_without_sig = {k: v for k, v in signed.items() if k != "signature"}
+    assert signed_without_sig == unsigned
+
+    # The signature verifies.
+    rc = cli.main(
+        [
+            "verify-release-manifest",
+            "--manifest",
+            str(out),
+            "--repo-root",
+            str(corpus_repo),
+            "--require-signature",
+        ]
+    )
+    report = json.loads(capsys.readouterr().out)
+    assert rc == 0
+    assert report["ok"] is True
+    assert report["signature_checked"] is True
+
+
+def test_sign_in_place_is_idempotent(
+    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
+) -> None:
+    monkeypatch.delenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, raising=False)
+    out = tmp_path / "release_manifest.json"
+    _emit(corpus_repo, out)
+    capsys.readouterr()
+
+    monkeypatch.setenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, SIGNING_KEY)
+    assert cli.main(["sign-release-manifest", "--manifest", str(out)]) == 0
+    capsys.readouterr()
+    first = out.read_text()
+
+    # Signing again with the same key reports already_valid and is a no-op.
+    assert cli.main(["sign-release-manifest", "--manifest", str(out)]) == 0
+    report = json.loads(capsys.readouterr().out)
+    assert report["already_valid"] is True
+    assert out.read_text() == first
+
+
+def test_sign_in_place_requires_key(
+    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
+) -> None:
+    monkeypatch.delenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, raising=False)
+    out = tmp_path / "release_manifest.json"
+    _emit(corpus_repo, out)
+    capsys.readouterr()
+
+    rc = cli.main(["sign-release-manifest", "--manifest", str(out)])
+    captured = capsys.readouterr()
+    assert rc == 2
+    assert "required to sign" in captured.err
+    # Manifest is left unsigned.
+    assert "signature" not in json.loads(out.read_text())
+
+
 def test_verify_passes_on_clean_tree(
     corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
 ) -> None:
@@ -120,15 +195,7 @@ def test_verify_detects_content_tamper(
     capsys.readouterr()
 
     # Mutate a hashed artifact on disk after the manifest was written.
-    prov = (
-        corpus_repo
-        / "data"
-        / "corpus"
-        / "provisions"
-        / "us"
-        / "statute"
-        / "a.jsonl"
-    )
+    prov = corpus_repo / "data" / "corpus" / "provisions" / "us" / "statute" / "a.jsonl"
     prov.write_text('{"id": "1"}\n{"id": "2"}\n{"id": "3"}\n')
 
     rc = cli.main(
