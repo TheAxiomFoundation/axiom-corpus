@@ -396,6 +396,8 @@ def test_delaware_helpers_cover_edge_metadata_and_filters():
     assert delaware_adapter._status("Redesignated", None, ()) == "redesignated"
     assert delaware_adapter._status("Reserved", None, ()) == "reserved"
     assert delaware_adapter._status("Rule", "Effective through 2026", ()) == "effective_until"
+    assert delaware_adapter._status("Rule", "[Repealed.]", ()) == "repealed"
+    assert delaware_adapter._status("Administration", "(9), (10) [Repealed.]", ()) is None
     assert delaware_adapter._variant_for_section("Rule [Plain duplicate]", 2) == "variant-2"
     assert delaware_adapter._normalize_chapter("00ab") == "00AB"
     assert delaware_adapter._title_filter(None) is None

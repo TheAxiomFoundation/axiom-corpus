@@ -1176,7 +1176,7 @@ def _status(
     body: str | None,
     history: tuple[str, ...],
 ) -> str | None:
-    text = " ".join([heading or "", body or "", *history]).lower()
+    text = " ".join([heading or "", *history]).lower()
     if "repealed" in text:
         return "repealed"
     if "expired" in text:
@@ -1191,6 +1191,33 @@ def _status(
         return "effective_until"
     if "effective upon" in text or "[effective" in text:
         return "future_or_conditional"
+    body_status = _body_status(body)
+    if body_status is not None:
+        return body_status
+    body_text = (body or "").lower()
+    if "effective until" in body_text or "effective through" in body_text:
+        return "effective_until"
+    if "effective upon" in body_text or "[effective" in body_text:
+        return "future_or_conditional"
+    return None
+
+
+def _body_status(body: str | None) -> str | None:
+    if body is None:
+        return None
+    text = _clean_text(body).strip()
+    if not text:
+        return None
+    normalized = text.strip("[](). ").lower()
+    for keyword, status in (
+        ("repealed", "repealed"),
+        ("expired", "expired"),
+        ("transferred", "transferred"),
+        ("redesignated", "redesignated"),
+        ("reserved", "reserved"),
+    ):
+        if normalized == keyword or normalized.startswith(f"{keyword} by "):
+            return status
     return None
 
 
