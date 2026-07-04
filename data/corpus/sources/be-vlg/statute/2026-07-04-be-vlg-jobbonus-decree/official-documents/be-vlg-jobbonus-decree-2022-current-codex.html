@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Decreet tot regeling van de toekenning van een jobbonus</title>
+
+    <style type="text/css">
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+            display: block;
+        }
+
+        audio, canvas, progress, video {
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+            audio:not([controls]) {
+                display: none;
+                height: 0;
+            }
+
+        [hidden], template {
+            display: none;
+        }
+
+        a {
+            background-color: transparent;
+        }
+
+            a:active, a:hover {
+                outline: 0;
+            }
+
+        abbr[title] {
+            border-bottom: 1px dotted;
+        }
+
+        b, strong {
+            font-weight: bold;
+        }
+
+        dfn {
+            font-style: italic;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0.67em 0;
+        }
+
+        mark {
+            background: #ff0;
+            color: #000;
+        }
+
+        small {
+            font-size: 80%;
+        }
+
+        sub, sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline;
+        }
+
+        sup {
+            top: -0.5em;
+        }
+
+        sub {
+            bottom: -0.25em;
+        }
+
+        img {
+            border: 0;
+        }
+
+        svg:not(:root) {
+            overflow: hidden;
+        }
+
+        figure {
+            margin: 1em 40px;
+        }
+
+        hr {
+            box-sizing: content-box;
+            height: 0;
+        }
+
+        pre {
+            overflow: auto;
+        }
+
+        code, kbd, pre, samp {
+            font-family: monospace, monospace;
+            font-size: 1em;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        td, th {
+            padding: 0;
+        }
+
+        @media print {
+            a, a:visited {
+                text-decoration: underline;
+            }
+
+            pre, blockquote {
+                border: 1px solid #999;
+                page-break-inside: avoid;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            tr, img {
+                page-break-inside: avoid;
+            }
+
+            img {
+                max-width: 100% !important;
+            }
+
+            p, h2, h3 {
+                orphans: 3;
+                widows: 3;
+            }
+
+            h2, h3 {
+                page-break-after: avoid;
+            }
+        }
+
+        /*** CUSTOM **/
+
+        body {
+            font-size: 14px;
+            padding: 20px;
+        }
+
+        .document-date {
+            margin-bottom: 20px;
+        }
+
+        .document-versionalert {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .info-tabel > *:first-child {
+            margin-top: 0;
+        }
+
+        .info-tabel > *:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-tabel table {
+            width: 100%;
+        }
+
+            .info-tabel table td {
+                vertical-align: top;
+                padding: 4px 0;
+            }
+
+                .info-tabel table td:first-child {
+                    width: 200px;
+                }
+
+        .inhoudstafel {
+            margin-bottom: 20px;
+        }
+
+            .inhoudstafel ol {
+                list-style: none;
+            }
+
+            .inhoudstafel li {
+                margin-bottom: 10px;
+            }
+
+            .inhoudstafel ol ol {
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+
+        .inhoud {
+            margin-top: 20px;
+        }
+
+            .inhoud h1 {
+                font-size: 16px;
+            }
+
+            .inhoud h2 {
+                font-size: 15px;
+            }
+
+            .inhoud h3 {
+                font-size: 15px;
+            }
+
+            .inhoud h4 {
+                font-size: 14px;
+            }
+
+            .inhoud h5 {
+                font-size: 14px;
+            }
+
+            .inhoud h6 {
+                font-size: 14px;
+            }
+
+        .document-relaties {
+            margin-bottom: 20px;
+        }
+
+            .document-relaties table {
+                width: 100%;
+            }
+
+                .document-relaties table thead {
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .document-relaties table th {
+                    vertical-align: top;
+                    text-align: left;
+                    padding: 4px 0;
+                }
+
+                .document-relaties table td {
+                    vertical-align: top;
+                    padding: 4px 0;
+                }
+
+        .document-relaties__type {
+            width: 200px;
+        }
+
+        .document-relaties__datum {
+            width: 120px;
+        }
+
+        .document-relaties__bsdatum {
+            width: 120px;
+        }
+
+        .document-relaties__pagina {
+            width: 120px;
+        }
+
+        .artikelversie-relaties table {
+            width: 100%;
+        }
+
+            .artikelversie-relaties table thead {
+                border-bottom: 1px solid #ddd;
+            }
+
+            .artikelversie-relaties table th {
+                vertical-align: top;
+                text-align: left;
+                padding: 4px 0;
+            }
+
+            .artikelversie-relaties table td {
+                vertical-align: top;
+                padding: 4px 0;
+            }
+
+        .artikelversie-relaties__type {
+            width: 200px;
+        }
+
+        .artikelversie-relaties__datum {
+            width: 120px;
+        }
+
+        .artikelversie-relaties__datum {
+            width: 120px;
+        }
+
+        .artikelversie-relaties__pagina {
+            width: 120px;
+        }
+
+        .artikelversie-relaties__artnr {
+            width: 120px;
+        }
+
+        .sectie-titel {
+            text-transform: uppercase;
+            background: #dedede;
+            border: 1px solid #c8c8c8;
+            padding: 10px;
+        }
+
+        .artikel {
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 24px;
+        }
+
+        .artikelversie-documentrelaties,
+        .artikelversie-artikelversierelaties,
+        .artikelversie-hoofdstukversierelaties,
+        .artikelversie-commentaar,
+        .artikelversie-documenten,
+        .artikelversie-inhoud {
+            text-transform: uppercase;
+            background: #efefef;
+            border: 1px solid #ddd;
+            padding: 2px 10px;
+        }
+
+        .hoofdstukversie-relaties {
+            margin-bottom: 20px;
+        }
+
+            .hoofdstukversie-relaties table {
+                width: 100%;
+            }
+
+                .hoofdstukversie-relaties table thead {
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .hoofdstukversie-relaties table th {
+                    vertical-align: top;
+                    text-align: left;
+                    padding: 4px 0;
+                }
+
+                .hoofdstukversie-relaties table td {
+                    vertical-align: top;
+                    padding: 4px 0;
+                }
+
+        .hoofdstukversie-relaties__type {
+            width: 200px;
+        }
+
+        .hoofdstukversie-relaties__datum {
+            width: 120px;
+        }
+    </style>
+    <script src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="/Resources/Libraries/jQuery/01_09_01/jquery.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var artikelVersieLink = "/PrintArtikelVersie.ashx?id=#artikelversieid#";
+            var documentLink = "/PrintDocument.ashx?id=#documentid#";
+
+            if (artikelVersieLink.indexOf('#') === 1) { artikelVersieLink = '/api/WetgevingArtikelVersie/#artikelversieid#/VolledigeArtikelVersie'; }
+            if (documentLink.indexOf('#') === 1) { documentLink = '/api/WetgevingDocument/#documentid#/VolledigDocument'; }
+
+            $('a').each(function () {
+                var artikelVersieId = $(this).attr('data-codex-params-artikelversieid');
+                var artikelId = $(this).attr('data-codex-params-artikelid');
+                var documentId = $(this).attr('data-codex-params-documentid');
+                if (typeof artikelVersieId !== typeof undefined && artikelVersieId !== false) {
+                    artikelVersieLink = artikelVersieLink.replace('#artikelversieid#', artikelVersieId);
+                    artikelVersieLink = artikelVersieLink.replace('#artikelid#', artikelId);
+                    artikelVersieLink = artikelVersieLink.replace('#documentid#', documentId);
+                    $(this).attr("href", artikelVersieLink);
+                    $(this).attr('target', '_blank');
+                }
+                else {
+                    if (typeof documentId !== typeof undefined && documentId !== false) {
+                        documentLink = documentLink.replace('#documentid#', documentId);
+                        $(this).attr("href", documentLink);
+                        $(this).attr('target', '_blank');
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="titel">
+        <h1>Decreet tot regeling van de toekenning van een jobbonus</h1>
+        <div class="document-date">Datum 20/05/2022</div>
+
+
+    </div>
+
+    <!-------------ALGEMENE INFO------------->
+    <!--------------------------------------->
+    <!-------------INHOUDSTABEL-------------->
+        <div class="inhoudstafel">
+            <h2 class="sectie-titel">Inhoudstafel</h2>
+                        <ol>
+                    <li>
+<a href='#H1107818'>HOOFDSTUK 1. Inleidende bepaling</a>                                <ol>
+                                </ol>
+                    </li>
+                    <li>
+<a href='#H1107819'>HOOFDSTUK 2. Definities</a>                                <ol>
+                                </ol>
+                    </li>
+                    <li>
+<a href='#H1107820'>HOOFDSTUK 3. Bepalingen over de doelgroep en de premie</a>                                <ol>
+                                </ol>
+                    </li>
+                    <li>
+<a href='#H1107821'>HOOFDSTUK 4. Procedure </a>                                <ol>
+                    <li>
+<a href='#H1107822'>Afdeling 1. Aanvraag en uitbetaling</a>                                <ol>
+                                </ol>
+                    </li>
+                    <li>
+<a href='#H1107823'>Afdeling 2. Bezwaar</a>                                <ol>
+                                </ol>
+                    </li>
+                                </ol>
+                    </li>
+                    <li>
+<a href='#H1107824'>HOOFDSTUK 5. Toezicht</a>                                <ol>
+                                </ol>
+                    </li>
+                    <li>
+<a href='#H1107825'>HOOFDSTUK 6. Verwerking van persoonsgegevens</a>                                <ol>
+                                </ol>
+                    </li>
+                    <li>
+<a href='#H1107826'>HOOFDSTUK 7. Wijzigingen van het decreet houdende sociaalrechtelijk toezicht van 30 april 2004</a>                                <ol>
+                                </ol>
+                    </li>
+                    <li>
+<a href='#H1107827'>HOOFDSTUK 8. Slotbepalingen</a>                                <ol>
+                                </ol>
+                    </li>
+                        </ol>
+
+
+        </div>
+    <!---------------------------------->
+    <!-------------RELATIES------------->
+    <!--------------------------------------->
+    <!-------------INHOUD-------------->
+        <h2 class="sectie-titel">Inhoud</h2>
+        <div class="inhoud">
+
+                            <h1 id="H1107818"><span class="hoofdstuk">HOOFDSTUK 1. Inleidende bepaling (... - ...)</span></h1>
+                            <p>
+                                    <span class="artikel">Artikel 1.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">Dit decreet regelt een gewestaangelegenheid.</span></p>
+                            <h1 id="H1107819"><span class="hoofdstuk">HOOFDSTUK 2. Definities (... - ...)</span></h1>
+                            <p>
+                                    <span class="artikel">Artikel 2.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">In dit decreet wordt verstaan onder:<br>
+1° algemene verordening gegevensbescherming: verordening (EU) 2016/679 van het Europees Parlement en de Raad van 27 april 2016 betreffende de bescherming van natuurlijke personen in verband met de verwerking van persoonsgegevens en betreffende het vrije verkeer van die gegevens en tot intrekking van Richtlijn 95/46/EG (algemene verordening gegevensbescherming);<br>
+2° begunstigde: de natuurlijke persoon die behoort tot een van de categorieën van personen, vermeld in artikel 3;<br>
+3° refertejaar: het jaar op basis waarvan de jobbonus wordt berekend;<br>
+4° dienstenintegrator: een instantie als vermeld in artikel 2, 3°, van het decreet van 13 juli 2012 houdende de oprichting en organisatie van een Vlaamse dienstenintegrator;<br>
+5° jobbonus: de premie, vermeld in artikel 3.</span></p>
+                            <h1 id="H1107820"><span class="hoofdstuk">HOOFDSTUK 3. Bepalingen over de doelgroep en de premie (... - ...)</span></h1>
+                            <p>
+                                    <span class="artikel">Artikel 3.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">Conform de voorwaarden, vermeld in dit decreet, en de uitvoeringsbesluiten ervan, wordt een jobbonus in de vorm van een premie toegekend aan begunstigden die behoren tot een of meer van de volgende categorieën:<br>
+1° de werknemers die onderworpen zijn aan een van de volgende regelingen:<br>
+a) de regeling, vermeld in artikel 21, § 1, 1° tot en met 3° en 5°, van de wet van 29 juni 1981 houdende de algemene beginselen van de sociale zekerheid voor werknemers;<br>
+b) de regeling, vermeld in artikel 1, 1° en 3°, van de besluitwet van 7 februari 1945 betreffende de maatschappelijke veiligheid van de zeelieden ter koopvaardij;<br>
+2° de natuurlijke personen, vermeld in artikel 3bis, 7, 8 en 9 tot en met 15 van het koninklijk besluit van 28 november 1969 tot uitvoering van de wet van 27 juni 1969 tot herziening van de besluitwet van 28 december 1944 betreffende de maatschappelijke zekerheid der arbeiders;<br>
+3° de natuurlijke personen die zijn tewerkgesteld in een lidstaat van de Europese Unie of van de Europese Economische Ruimte, en in principe dagelijks of minstens één keer per week terugkeren naar hun hoofdverblijfplaats, vermeld in artikel 4, 1°, van dit decreet.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 4.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De begunstigden voldoen aan al de volgende voorwaarden:<br>
+1° ze zijn gedomicilieerd in het Vlaamse Gewest op 1 januari van het jaar dat volgt op het refertejaar;<br>
+2° ze voldoen aan de voorwaarden van het gemiddelde maandelijks brutoloon of het gemiddelde maandelijks inkomen, vermeld in artikel 5 van dit decreet;<br>
+3° ze hebben de leeftijd, vermeld in artikel 2 van het koninklijk besluit van 23 december 1996 tot uitvoering van de artikelen 15, 16 en 17 van de wet van 26 juli 1996 tot modernisering van de sociale zekerheid en tot vrijwaring van de leefbaarheid van de wettelijke pensioenstelsels, niet bereikt op de eerste dag van het kwartaal waarin de prestaties worden verricht.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 5.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/11/2023
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">§1. De jobbonus voor de begunstigden, vermeld in artikel 3, bedraagt op jaarbasis bij voltijdse tewerkstelling gedurende het volledige refertejaar:<br>
+1° 600 euro bij een gemiddeld maandelijks brutoloon van maximaal 1800 euro;<br>
+2° 0 euro bij een gemiddeld maandelijks brutoloon hoger dan 2499,99 euro;<br>
+3° een bedrag dat degressief afneemt van 600 euro tot 20 euro bij een gemiddeld maandelijks brutoloon tussen 1800 euro en 2499,99 euro volgens een formule die de Vlaamse Regering bepaalt.<br>
+<br>
+De jobbonus wordt berekend op kwartaalbasis en toegekend in verhouding tot de gewerkte periode en het arbeidsregime. De Vlaamse Regering bepaalt de jobbonus voor de begunstigden, vermeld in het eerste lid, die niet het volledige refertejaar of voltijds hebben gewerkt.<br>
+<br>
+De Vlaamse Regering bepaalt de jobbonus voor de begunstigden, vermeld in het eerste lid, die in het kwartaal op basis waarvan de jobbonus wordt berekend de leeftijd, vermeld in artikel 4, 3°, bereiken.<br>
+<br>
+§2. De Vlaamse Regering bepaalt het bedrag en de berekeningswijze van de jobbonus voor de begunstigden, die behoren tot meer dan één categorie van de begunstigden, vermeld in artikel 3.<br>
+<br>
+§3. De Vlaamse Regering bepaalt wat wordt verstaan onder gemiddeld maandelijks brutoloon als vermeld in paragraaf 1. De Vlaamse Regering kan bepalen dat sommige inkomsten of delen van het loon, onder de voorwaarden die ze bepaalt, niet of maar gedeeltelijk in aanmerking worden genomen en kan daarbij een onderscheid maken op basis van de bron van het inkomen.<br>
+<br>
+§4. In de volgende gevallen is de jobbonus niet opeisbaar:<br>
+1° als de jobbonus bij voltijdse prestaties op jaarbasis minder dan 20 euro bedraagt;<br>
+2° als de jobbonus bij deeltijdse prestaties op jaarbasis minder dan 10 euro bedraagt.<br>
+<br>
+§5. Voor het refertejaar 2021 wordt de jobbonus, vermeld in paragraaf 1 tot en met 4, eenmalig verhoogd met een vast, onveranderlijk bedrag van 100 euro voor de begunstigden voor wie de jobbonus opeisbaar is en die niet tot de categorieën, vermeld in paragraaf 4, behoren.<br>
+<br>
+Voor het refertejaar 2022 wordt de jobbonus, vermeld in paragraaf 1 tot en met 4, eenmalig verhoogd met een vast, onveranderlijk bedrag van 50 euro voor de begunstigden voor wie de jobbonus opeisbaar is en die niet behoren tot de categorieën, vermeld in artikel 2, §6, tweede lid, van het besluit van de Vlaamse Regering van 1 juli 2022 tot uitvoering van het decreet van 20 mei 2022 tot regeling van de toekenning van een jobbonus.<br>
+<br>
+§6. De Vlaamse Regering kan bepalen dat de jobbonus voor een bepaald refertejaar vanaf het refertejaar 2023 wordt verhoogd met een vast, onveranderlijk bedrag.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 6.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/11/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De Vlaamse Regering kan de premiebedragen en de loon- en inkomensgrenzen, vermeld in artikel 5, § 1 en §4, aanpassen in functie van de evolutie van de lonen en de koopkracht.<br>
+<br>
+De Vlaamse Regering bepaalt de voorwaarden voor de aanpassing, vermeld in het eerste lid.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 7.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De jobbonus die conform dit decreet wordt toegekend, wordt niet in aanmerking genomen om inkomensgrenzen binnen het kader van een bevoegdheid van de Vlaamse Gemeenschap of het Vlaamse Gewest te berekenen, ongeacht of die inkomensgrenzen worden opgelegd door een decreet van de Vlaamse Gemeenschap of het Vlaamse Gewest of een besluit van de Vlaamse Regering.<br>
+<br>
+De jobbonus maakt geen deel uit van beroepsinkomsten noch van een andere vorm van inkomsten, zoals die worden vastgesteld binnen het kader van een bevoegdheid van de Vlaamse Gemeenschap of het Vlaamse Gewest.</span></p>
+                            <h1 id="H1107821"><span class="hoofdstuk">HOOFDSTUK 4. Procedure  (... - ...)</span></h1>
+                            <h2 id="H1107822"><span class="hoofdstuk">Afdeling 1. Aanvraag en uitbetaling (... - ...)</span></h2>
+                            <p>
+                                    <span class="artikel">Artikel 8.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De dienst van de Vlaamse overheid die de Vlaamse Regering aanwijst heeft de volgende taken in het kader van de toekenning van de jobbonus die conform dit decreet wordt toegekend:<br>
+1° de aanvraag ontvangen;<br>
+2° de toekenningsvoorwaarden onderzoeken;<br>
+3° de jobbonus berekenen en toekennen.<br>
+<br>
+De dienst van de Vlaamse overheid die de Vlaamse Regering aanwijst, betaalt de jobbonus uit.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 9.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                03/05/2026
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">§ 1. De jobbonus wordt automatisch toegekend op voorwaarde dat de diensten, vermeld in artikel 8, eerste en tweede lid, toegang verkrijgen tot de noodzakelijke gegevensbronnen, vermeld in artikel 16. De Vlaamse Regering kan bepalen welke begunstigden voor een automatische toekenning in aanmerking komen.<br>
+<br>
+De begunstigden, vermeld in het eerste lid, registreren eenmalig het rekeningnummer van een bankrekening die in een lidstaat van de Europese Unie werd geopend waarop de dienst, vermeld in artikel 8, tweede lid, de jobbonus kan uitbetalen. De Vlaamse Regering bepaalt de procedure voor de registratie.<br>
+<br>
+§ 2. Als de begunstigde niet in aanmerking komt voor een automatische toekenning, vraagt de begunstigde met een aanvraagformulier de jobbonus aan de dienst, vermeld in artikel 8, eerste lid.<br>
+<br>
+Het aanvraagformulier, vermeld in het eerste lid, bevat de volgende gegevens:<br>
+1° de identiteits- en adresgegevens;<br>
+2° het rijksregisternummer of BIS-nummer;<br>
+3° het rekeningnummer van een bankrekening die in een lidstaat van de Europese Unie werd geopend;<br>
+4° de loon- en tewerkstellingsgegevens.<br>
+<br>
+De Vlaamse Regering kan de gegevens, vermeld in het tweede lid, verder bepalen en uitbreiden.<br>
+<br>
+De begunstigde dient de aanvraag in binnen drie jaar nadat het refertejaar is verstreken.<br>
+<br>
+§ 3. De Vlaamse Regering bepaalt de verdere procedure voor de aanvraag van de jobbonus.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 10.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De Vlaamse Regering bepaalt het tijdstip en de frequentie om de jobbonus uit te betalen.</span></p>
+                            <h2 id="H1107823"><span class="hoofdstuk">Afdeling 2. Bezwaar (... - ...)</span></h2>
+                            <p>
+                                    <span class="artikel">Artikel 11.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">Een persoon kan tegen de weigering en het bedrag van de jobbonus schriftelijk bezwaar indienen bij de dienst, vermeld in artikel 8, tweede lid. Bezwaarindieners voegen bij het bezwaarschrift de nodige documenten met bewijskracht om hun bezwaar te staven.<br>
+<br>
+Een bezwaar wordt ingediend binnen een termijn van drie maanden na de derde werkdag die volgt op de verzendingsdatum, vermeld op de kennisgeving van de toekenning of de weigering van de jobbonus. Als er geen kennisgeving is ontvangen, wordt het bezwaar ingediend binnen drie jaar nadat het jaar volgend op het refertejaar is verstreken.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 12.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De dienst, vermeld in artikel 8, tweede lid, stuurt een ontvangstmelding naar de indiener van het bezwaarschrift. Die ontvangstmelding vermeldt de datum waarop de voormelde dienst het bezwaar heeft ontvangen.<br>
+<br>
+De dienst, vermeld in artikel 8, tweede lid, spreekt zich uit over de aangevoerde bezwaren en brengt de begunstigde schriftelijk op de hoogte van haar beslissing. Die kennisgeving vermeldt de wijze waarop de voormelde beslissing in rechte kan worden betwist.</span></p>
+                            <h1 id="H1107824"><span class="hoofdstuk">HOOFDSTUK 5. Toezicht (... - ...)</span></h1>
+                            <p>
+                                    <span class="artikel">Artikel 13.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">Het toezicht en de controle op de uitvoering van dit decreet en de uitvoeringsbesluiten ervan verlopen conform het decreet houdende sociaalrechtelijk toezicht van 30 april 2004.</span></p>
+                            <h1 id="H1107825"><span class="hoofdstuk">HOOFDSTUK 6. Verwerking van persoonsgegevens (... - ...)</span></h1>
+                            <p>
+                                    <span class="artikel">Artikel 14</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De diensten, vermeld in artikel 8 van dit decreet, treden ieder voor hun bevoegdheid op als verwerkingsverantwoordelijke als vermeld in artikel 4, 7), van de algemene verordening gegevensbescherming voor de verwerking van persoonsgegevens in het kader van de aanvraag en toekenning van de jobbonus.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 15.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De volgende categorieën van persoonsgegevens worden in het kader van de toekenning van de jobbonus verwerkt:<br>
+1° identificatie- en contactgegevens van de begunstigde;<br>
+2° tewerkstellingsgegevens van de begunstigde;<br>
+3° financiële gegevens van de begunstigde;<br>
+4° gegevens over de geleverde arbeidsprestaties van de begunstigde;<br>
+5° fiscale gegevens van de begunstigde.<br>
+<br>
+In het kader van rapportering worden de persoonlijke kenmerken van de begunstigde verwerkt.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 16.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">In het kader van de taken, vermeld in artikel 8, wisselen de diensten, vermeld in artikel 8, eerste en tweede lid, de volgende persoonsgegevens uit met de volgende instanties:<br>
+1° de identificatie- en contactgegevens met het Rijksregister van de natuurlijke personen;<br>
+2° de tewerkstellingsgegevens, de bezoldigingsgegevens en de gegevens over de geleverde prestaties met de Rijksdienst voor Sociale Zekerheid;<br>
+3° fiscale gegevens met de Federale Overheidsdienst Financiën;<br>
+4° het rekeningnummer van de begunstigde geregistreerd bij het agentschap Digitaal Vlaanderen.<br>
+<br>
+De diensten, vermeld in artikel 8, eerste en tweede lid, wisselen onderling de persoonsgegevens, vermeld in het eerste lid, met elkaar uit.<br>
+<br>
+De persoonsgegevens worden uitgewisseld met tussenkomst van de bevoegde dienstenintegratoren als dat van toepassing is.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 17.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">In de communicatie met de begunstigden worden de volgende vermeldingen met betrekking tot de verwerking van hun persoonsgegevens opgenomen:<br>
+1° het doel van de verwerking van de persoonsgegevens;<br>
+2° de categorieën van de te verwerken persoonsgegevens;<br>
+3° de entiteiten waaraan de persoonsgegevens worden verstrekt;<br>
+4° de opslagperiode;<br>
+5° de aanduiding van de verwerkingsverantwoordelijken.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 18.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">Onverminderd hun noodzakelijke bewaring voor de latere verwerking met het oog op archivering in het algemeen belang, voor wetenschappelijk of historisch onderzoek of voor statistische doeleinden, vermeld in artikel 89 van de algemene verordening gegevensbescherming, worden de persoonsgegevens bewaard gedurende de noodzakelijke duur voor de beoogde doeleinden voor dit decreet met een maximale bewaartermijn die niet meer mag bedragen dan tien jaar na de verjaring van alle vorderingen die tot de bevoegdheid van de verwerkingsverantwoordelijken behoren, en in voorkomend geval, de definitieve beëindiging van de gerechtelijke, administratieve en buitengerechtelijke procedures en beroepen, die voortvloeien uit de verwerking van die gegevens.</span></p>
+                            <h1 id="H1107826"><span class="hoofdstuk">HOOFDSTUK 7. Wijzigingen van het decreet houdende sociaalrechtelijk toezicht van 30 april 2004 (... - ...)</span></h1>
+                            <p>
+                                    <span class="artikel">Artikel 19.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">Aan artikel 2, § 1, eerste lid, van het decreet houdende sociaalrechtelijk toezicht van 30 april 2004, het laatst gewijzigd bij het decreet van 14 januari 2022, wordt een punt 63° toegevoegd, dat luidt als volgt:<br>
+"63° de toekenning van de jobbonus, vermeld in artikel 3 van het decreet van 20 mei 2022 tot regeling van de toekenning van een jobbonus.".</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 20.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">In hetzelfde decreet, het laatst gewijzigd bij het decreet van 14 januari 2022, wordt een artikel 21/3 ingevoegd, dat luidt als volgt:<br>
+<br>
+"Art. 21/3. Onder de voorwaarden, vermeld in deze afdeling, kan aan elke persoon die onjuiste of onvolledige inlichtingen verschaft of bepaalde inlichtingen achterhoudt met het oog op het verkrijgen van de premie, vermeld in artikel 3 van het decreet van 20 mei 2022 tot regeling van de toekenning van een jobbonus en de uitvoeringsbesluiten ervan, een administratieve geldboete opgelegd worden van 50 euro tot 500 euro.".</span></p>
+                            <h1 id="H1107827"><span class="hoofdstuk">HOOFDSTUK 8. Slotbepalingen (... - ...)</span></h1>
+                            <p>
+                                    <span class="artikel">Artikel 21.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De rechtsvorderingen die ontstaan uit de toepassing van dit decreet en de uitvoeringsbesluiten ervan, verjaren na verloop van vijf jaar na het feit waaruit die vordering is ontstaan.</span></p>
+                            <p>
+                                    <span class="artikel">Artikel 22.</span>
+                            <span class="artikel-versie-datum">
+
+                                (
+                                01/07/2022
+                                 - 
+                                ...
+                                )
+
+                            </span>
+                            </p>
+                                <p><span class="artikelversie">De Vlaamse Regering bepaalt voor iedere bepaling van dit decreet de datum van inwerkingtreding.</span></p>
+
+
+
+        </div>
+    <!---------------------------------->
+<br><p style='font-style:italic;color:darkgray;'>Vlaamse Codex, officiële website van de Vlaamse Overheid - <a href='https://codex.vlaanderen.be'>https://codex.vlaanderen.be</a><br>Geconsolideerde versie die geldt op 04/07/2026</p></body>
+
+</html>
