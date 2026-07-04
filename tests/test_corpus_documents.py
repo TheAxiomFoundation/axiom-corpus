@@ -2578,6 +2578,63 @@ documents:
     assert reserved_section.metadata["section_end_label"] == "009"
 
 
+def test_extract_official_documents_splits_inline_numbered_pdf_sections(tmp_path):
+    pdf_path = tmp_path / "rules-inline.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "IDAHO ADMINISTRATIVE CODE",
+                "000. LEGAL AUTHORITY.",
+                "Legal authority text.",
+                "001. SCOPE.",
+                "Scope text.",
+                "002. -- 009. (RESERVED)",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: idaho-rule-inline
+    jurisdiction: us-id
+    document_class: regulation
+    title: IDAPA 16.03.05 - AABD Rules
+    source_url: https://adminrules.idaho.gov/rules/current/16/160305.pdf
+    citation_path: us-id/regulation/idapa/16/03/05
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: numbered_sections
+      sort_text: true
+      drop_lines:
+        - IDAHO ADMINISTRATIVE CODE
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-04-idapa-16-03-05",
+    )
+
+    assert report.block_count == 3
+    records = load_provisions(report.provisions_path)
+    assert [record.heading for record in records[1:]] == [
+        "000. LEGAL AUTHORITY.",
+        "001. SCOPE.",
+        "002 -- 009. (RESERVED)",
+    ]
+    assert records[1].body == "Legal authority text."
+    assert records[2].body == "Scope text."
+
+
 def test_extract_official_documents_splits_labeled_pdf_sections(tmp_path):
     pdf_path = tmp_path / "capi.pdf"
     document = fitz.open()

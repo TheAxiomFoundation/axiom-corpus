@@ -760,7 +760,8 @@ def _extract_numbered_pdf_section_blocks(
         section_label = match.group("label")
         end_label = match.group("end_label")
         index += 1
-        heading_lines: list[str] = []
+        heading_text = match.group("heading")
+        heading_lines: list[str] = [heading_text] if heading_text else []
         while index < len(lines) and _looks_like_section_heading_line(lines[index][0]):
             heading_lines.append(lines[index][0])
             index += 1
@@ -1497,7 +1498,7 @@ def _filtered_pdf_lines(
 def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     if extraction.get("force_ocr"):
         return _ocr_pdf_page_text(page, extraction=extraction)
-    text = page.get_text("text")
+    text = page.get_text("text", sort=bool(extraction.get("sort_text")))
     if _normalize_text(text) or not extraction.get("ocr"):
         return str(text)
     return _ocr_pdf_page_text(page, extraction=extraction)
@@ -1534,7 +1535,9 @@ def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
         return result.stdout
 
 
-_NUMBERED_SECTION_START_RE = re.compile(r"^(?P<label>\d{3})\.(?:\s*--\s*(?P<end_label>\d{3})\.)?$")
+_NUMBERED_SECTION_START_RE = re.compile(
+    r"^(?P<label>\d{3})\.(?:\s*--\s*(?P<end_label>\d{3})\.)?(?:\s+(?P<heading>.+))?$"
+)
 
 
 def _positive_int(value: Any, *, default: int) -> int:

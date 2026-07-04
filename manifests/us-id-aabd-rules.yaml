@@ -1,0 +1,34 @@
+documents:
+  - source_id: id-dhw-aabd-rules-16-03-05
+    jurisdiction: us-id
+    document_class: regulation
+    citation_path: us-id/regulation/idapa/16/03/05
+    title: "IDAPA 16.03.05 Eligibility for Aid to the Aged, Blind, and Disabled (AABD)"
+    source_url: https://adminrules.idaho.gov/rules/current/16/160305.pdf
+    source_format: pdf
+    source_as_of: "2026-07-04"
+    expression_date: "2026-07-01"
+    metadata:
+      primary_source: true
+      source_authority: Idaho Department of Health and Welfare
+      document_subtype: administrative_rules
+      program: ssi_state_supplement
+      federal_program: SSI
+      state: ID
+      idapa_chapter: "16.03.05"
+      source_discovery_group: us-id/regulation/aabd
+      discovered_via: active_policyengine_parity_review
+    extraction:
+      segmentation: numbered_sections
+      start_page: 11
+      sort_text: true
+      drop_lines:
+        - IDAHO ADMINISTRATIVE CODE
+        - Department of Health and Welfare
+        - IDAPA 16.03.05 – Eligibility for Aid to
+        - the Aged, Blind, & Disabled (AABD)
+      drop_line_patterns:
+        - '^Section [0-9]+\s+Page [0-9]+.*$'
+        - '^IDAHO ADMINISTRATIVE CODE IDAPA 16\.03\.05 .*AABD\)$'
+        - '^IDAHO ADMINISTRATIVE CODE IDAPA 16\.03\.05 – Eligibility for Aid to$'
+        - '^Department of Health and Welfare the Aged, Blind, & Disabled \(AABD\)$'
