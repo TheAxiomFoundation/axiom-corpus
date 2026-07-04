@@ -1,0 +1,35 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/be-wal/guidance/2026-07-04-be-wallonia-family-benefit-amount-scale-2025.jsonl",
+      "sha256": "80fc888deca3140f7a9680fc74acb010644b33b0b1e8a170760f7f5fb4068159"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d01f5565017c774d6e5c4e7f786612abd9482e2e",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-wallonia-aviq-2025"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual official AVIQ 2025-07-01 income-ceiling extract for Wallonia family-benefit amount-scale guidance"
+  },
+  "coverage": null,
+  "document_class": "guidance",
+  "generated_at": "2026-07-04T03:48:24.531130+00:00",
+  "jurisdiction": "be-wal",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-04-be-wallonia-aviq-family-benefit-plafonds-2025.md",
+      "sha256": "d12702294775e77329fe01c569c0180c4b92058c7ec6c928938560d6ed62dc4e"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1iyq4UuLCiYbC52TXxdGXCeYhxxL5QrzZ1OfQBJ5oMxDzyfQCX4c7dsIarhxSsM3CB2MT7FgXcnSg8XE83dYAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-be-wallonia-family-benefit-amount-scale-2025"
+}
