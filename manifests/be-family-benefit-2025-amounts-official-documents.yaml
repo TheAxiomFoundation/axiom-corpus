@@ -1,4 +1,33 @@
 documents:
+  - source_id: be-vlg-gpedia-family-benefit-amount-scale-2024-09
+    jurisdiction: be-vlg
+    document_class: guidance
+    title: GPedia Flemish family-benefit amount scale from 1 September 2024
+    source_url: https://gpedia.groeipakket.be/sites/default/files/2024-08/01.09.2024%20-%20Bedragen%20na%20indexering%20%281%29.pdf
+    source_format: pdf
+    source_as_of: '2024-09-01'
+    citation_path: be-vlg/guidance/gpedia/family-benefits/amount-scale-2024-09
+    extraction:
+      ocr: true
+      force_ocr: true
+      ocr_dpi: 200
+      ocr_psm: 4
+      page_citation_prefix: schedule
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decreet/2018/04/27/2018040369/moniteur
+      upstream_statute_paths:
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/13
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/19
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/20
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/21
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/22
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/210
+        - be-vlg/statute/decreet/2018/04/27/2018040369/article/212
+      source_authority: GPedia / Agentschap Uitbetaling Groeipakket
+      source_family: family-benefits/child-benefit
+      source_status: official_indexed_amount_table
+      source_note: Official GPedia amount schedule effective 1 September 2024; the table includes the Article 13 current base amount, Articles 19-22 schoolbonus amounts, Article 210 old-system rank amounts, and Article 212 old-system age supplements used for 2025 pre-September payments.
+
   - source_id: be-vlg-gpedia-start-amount-decision-2025-112
     jurisdiction: be-vlg
     document_class: guidance
