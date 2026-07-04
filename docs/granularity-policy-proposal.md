@@ -253,6 +253,28 @@ across every consumer. Asserted structure therefore lives in identity rows;
 inferred structure — including printed-label boundaries — lives in
 annotations.
 
+**The annotation layer is a real table that goes to the drafted leaves**
+(ratified shape, 2026-07-04): `corpus.provision_anchors` — one row per
+drafted leaf, keyed by its citation path (`us/statute/26/32/c/2/B/vi`,
+`us-ma/regulation/dta/106-cmr/365/180/A`), carrying:
+
+- `parent_provision_id` — the asserted provision row it lives in;
+- `char_start` / `char_end` into the parent body;
+- the leaf's **text materialized as a verified-derived column** (constraint:
+  byte-equal to the parent slice), so leaf-level queries, encoder prompt
+  slicing, and leaf-level FTS need no second source of truth;
+- extraction provenance (extractor version / agent run) and a
+  confidence/status field.
+
+Disciplines: the table is **derived and rebuildable** from
+(provisions × extractor version) — a boundary correction is a rebuild plus a
+parent-hash-triggered re-check, never a migration; groundings of record cite
+`(asserted provision id, leaf path, span)`, not an anchor-row surrogate ID;
+and the leaf *path* is the stable key (paths are printed labels — a boundary
+fix changes offsets, not the key). Operationally this gives consumers a
+corpus that "really does go to the leaf" everywhere, while the provisions
+table refuses to launder boundary inference into identity.
+
 This is the pattern the federal `273.9(d)(6)(iii)` case **already uses** in
 production (rulespec-us #440); the recommendation is to make it the explicit,
 documented default and finish the us-ma tail the same way.
