@@ -1,0 +1,37 @@
+documents:
+  - source_id: be-vlg-vcf-article-21401-2025
+    jurisdiction: be-vlg
+    document_class: statute
+    title: Vlaamse Codex Fiscaliteit article 2.1.4.0.1 assessment-year 2025 immovable-withholding-tax rates
+    source_url: https://codex.vlaanderen.be/Zoeken/Document.aspx?DID=1023499&param=inhoud&AID=1170948
+    download_url: 'https://codex.vlaanderen.be/DesktopModules/VlaamseCodex/Search/HighlightGetHandler.ashx?endpoint=https%3A%2F%2Fcodex.opendata.api.vlaanderen.be%2Fapi%2FWetgevingArtikelVersie%2F1433495&searchwords='
+    source_format: json
+    source_as_of: '2026-07-04'
+    citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.1/version-1433495
+    extraction:
+      json_html_field: Tekst
+      json_html_as_single_block: true
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2013/12/13/2013036154/moniteur
+      consolidated_document_url: https://codex.vlaanderen.be/Zoeken/Document.aspx?DID=1023499&param=inhoud
+      source_authority: Vlaamse Codex / Codex Open Data API
+      source_family: real-property-tax
+      source_status: 2025_effective_consolidated_article_version_after_moniteur_eli
+  - source_id: be-vlg-vcf-article-21402-2025
+    jurisdiction: be-vlg
+    document_class: statute
+    title: Vlaamse Codex Fiscaliteit article 2.1.4.0.2 current immovable-withholding additional centimes authorization
+    source_url: https://codex.vlaanderen.be/Zoeken/Document.aspx?DID=1023499&param=inhoud&AID=1170949
+    download_url: 'https://codex.vlaanderen.be/DesktopModules/VlaamseCodex/Search/HighlightGetHandler.ashx?endpoint=https%3A%2F%2Fcodex.opendata.api.vlaanderen.be%2Fapi%2FWetgevingArtikelVersie%2F1302348&searchwords='
+    source_format: json
+    source_as_of: '2026-07-04'
+    citation_path: be-vlg/statute/vlaamse-codex-fiscaliteit/article-2.1.4.0.2/version-1302348
+    extraction:
+      json_html_field: Tekst
+      json_html_as_single_block: true
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2013/12/13/2013036154/moniteur
+      consolidated_document_url: https://codex.vlaanderen.be/Zoeken/Document.aspx?DID=1023499&param=inhoud
+      source_authority: Vlaamse Codex / Codex Open Data API
+      source_family: real-property-tax
+      source_status: current_consolidated_article_version_after_moniteur_eli
