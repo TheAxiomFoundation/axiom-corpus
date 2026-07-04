@@ -718,18 +718,22 @@ def _extract_pdf_blocks(
     if segmentation == "labeled_sections":
         return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
     blocks: list[_DocumentBlock] = []
+    page_citation_prefix = extraction_config.get("page_citation_prefix")
     with fitz.open(stream=content, filetype="pdf") as document:
         for index, page in enumerate(document, start=1):
             text = _normalize_text(_pdf_page_text(page, extraction=extraction_config))
             if not text:
                 continue
+            metadata: dict[str, Any] = {"page_number": index}
+            if page_citation_prefix:
+                metadata["citation_suffix"] = f"{safe_segment(str(page_citation_prefix))}-{index}"
             blocks.append(
                 _DocumentBlock(
                     kind="page",
                     ordinal=len(blocks) + 1,
                     heading=f"Page {index}",
                     body=text,
-                    metadata={"page_number": index},
+                    metadata=metadata,
                 )
             )
     return tuple(blocks)
@@ -1400,6 +1404,8 @@ def _filtered_pdf_lines(
 
 
 def _pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
+    if extraction.get("force_ocr"):
+        return _ocr_pdf_page_text(page, extraction=extraction)
     text = page.get_text("text")
     if _normalize_text(text) or not extraction.get("ocr"):
         return str(text)

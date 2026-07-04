@@ -554,6 +554,59 @@ documents:
     assert records[2].body == "More OCR body text."
 
 
+def test_extract_official_documents_can_force_ocr_when_pdf_has_page_number(
+    tmp_path: Path, monkeypatch
+) -> None:
+    pdf_path = tmp_path / "scanned-table.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "1")
+    document.save(pdf_path)
+    document.close()
+    ocr_calls = 0
+
+    def fake_ocr_page(page, *, extraction):
+        nonlocal ocr_calls
+        del page
+        ocr_calls += 1
+        assert extraction["ocr"] is True
+        assert extraction["force_ocr"] is True
+        return "Table amount € 180,19"
+
+    monkeypatch.setattr(documents_module, "_ocr_pdf_page_text", fake_ocr_page)
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: scanned-table
+    jurisdiction: us-test
+    document_class: guidance
+    title: Scanned Table
+    source_url: https://example.test/scanned-table.pdf
+    citation_path: us-test/guidance/scanned-table
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      ocr: true
+      force_ocr: true
+      page_citation_prefix: schedule
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-04-scanned-table",
+    )
+
+    assert ocr_calls == 1
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert records[1].citation_path == "us-test/guidance/scanned-table/schedule-1"
+    assert records[1].body == "Table amount € 180,19"
+
+
 def test_extract_labeled_pdf_sections_can_start_after_pattern(tmp_path: Path) -> None:
     pdf_path = tmp_path / "rules-with-toc.pdf"
     document = fitz.open()
