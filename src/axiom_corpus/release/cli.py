@@ -6,6 +6,13 @@ Commands
     Build (and, when a signing key is present, sign) a release manifest for the
     current corpus state and write it to ``--out``.
 
+``sign-release-manifest``
+    Attach (or replace) the HMAC signature on an *already emitted* manifest in
+    place, without rebuilding it. Only the ``signature`` block changes; every
+    hashed field (artifact hashes, row counts, ``created_at``, ``git``) is left
+    byte-identical, so an unsigned release committed before the key existed can
+    be signed later without redefining the release.
+
 ``verify-release-manifest``
     Recompute artifact hashes/row counts for ``--manifest`` against the tree at
     ``--repo-root`` and verify the HMAC signature.
@@ -29,8 +36,10 @@ from .manifest import (
     RELEASE_MANIFEST_SIGNING_KEY_ENV,
     ReleaseManifestError,
     build_release_manifest,
+    canonical_manifest_bytes,
     jsonl_row_count,
     manifest_signature_issue,
+    manifest_signature_value,
     serialize_manifest,
     sha256_file,
     sign_manifest,
@@ -80,9 +89,7 @@ def cmd_emit(args: argparse.Namespace) -> int:
         "signing_key_env": RELEASE_MANIFEST_SIGNING_KEY_ENV,
         "files": totals["files"],
         "bytes": totals["bytes"],
-        "provision_rows": manifest["summary"]
-        .get("provisions", {})
-        .get("rows", 0),
+        "provision_rows": manifest["summary"].get("provisions", {}).get("rows", 0),
         "created_at": manifest["created_at"],
         "git_commit": manifest.get("git", {}).get("commit"),
     }
@@ -93,6 +100,72 @@ def cmd_emit(args: argparse.Namespace) -> int:
             "manifest (hashes are still authoritative).",
             file=sys.stderr,
         )
+    return 0
+
+
+def cmd_sign(args: argparse.Namespace) -> int:
+    """Attach/replace the signature on an existing manifest in place.
+
+    This never rebuilds the manifest. The signature is computed over
+    :func:`canonical_manifest_bytes`, which excludes the ``signature`` field, so
+    signing an already-emitted manifest leaves every hashed field
+    (artifact hashes, row counts, ``created_at``, ``git``) untouched. Use this to
+    sign a release that was committed unsigned before the signing key existed,
+    rather than re-emitting (which would re-stamp ``created_at``/``git`` and
+    re-hash the current tree, redefining the release).
+    """
+    signing_key = _signing_key()
+    if not signing_key:
+        print(
+            f"error: {RELEASE_MANIFEST_SIGNING_KEY_ENV} is required to sign a "
+            "release manifest but is not set",
+            file=sys.stderr,
+        )
+        return 2
+
+    manifest_path = args.manifest.resolve()
+    try:
+        manifest = json.loads(manifest_path.read_text())
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"error: cannot read manifest {manifest_path}: {exc}", file=sys.stderr)
+        return 2
+    if not isinstance(manifest, dict):
+        print(
+            f"error: manifest {manifest_path} is not a JSON object",
+            file=sys.stderr,
+        )
+        return 2
+
+    # Canonical (signed content) bytes must be identical before and after: the
+    # only permitted change is the excluded signature block. This guards against
+    # ever silently redefining a release while "just signing" it.
+    canonical_before = canonical_manifest_bytes(manifest)
+    already_valid = manifest_signature_issue(manifest, signing_key) is None
+
+    signed = sign_manifest(manifest, signing_key)
+    if canonical_manifest_bytes(signed) != canonical_before:
+        print(
+            "error: signing would change the manifest's canonical content; "
+            "refusing to write (this should never happen)",
+            file=sys.stderr,
+        )
+        return 2
+
+    manifest_path.write_text(serialize_manifest(signed))
+
+    report = {
+        "manifest": str(manifest_path),
+        "release": signed.get("release"),
+        "signed": True,
+        "already_valid": already_valid,
+        "signing_key_env": RELEASE_MANIFEST_SIGNING_KEY_ENV,
+        "key_id": signed["signature"]["key_id"],
+        "algorithm": signed["signature"]["algorithm"],
+        "signature": manifest_signature_value(signed, signing_key),
+        "created_at": signed.get("created_at"),
+        "git_commit": signed.get("git", {}).get("commit"),
+    }
+    print(json.dumps(report, indent=2, sort_keys=True))
     return 0
 
 
@@ -115,22 +188,19 @@ def _rehash_issues(
         actual_sha = sha256_file(path)
         if actual_sha != entry.get("sha256"):
             issues.append(
-                f"sha256 mismatch: {rel} "
-                f"(manifest={entry.get('sha256')}, disk={actual_sha})"
+                f"sha256 mismatch: {rel} (manifest={entry.get('sha256')}, disk={actual_sha})"
             )
         expected_bytes = entry.get("bytes")
         actual_bytes = path.stat().st_size
         if expected_bytes is not None and actual_bytes != expected_bytes:
             issues.append(
-                f"byte-length mismatch: {rel} "
-                f"(manifest={expected_bytes}, disk={actual_bytes})"
+                f"byte-length mismatch: {rel} (manifest={expected_bytes}, disk={actual_bytes})"
             )
         if "rows" in entry:
             actual_rows = jsonl_row_count(path)
             if actual_rows != entry.get("rows"):
                 issues.append(
-                    f"row-count mismatch: {rel} "
-                    f"(manifest={entry.get('rows')}, disk={actual_rows})"
+                    f"row-count mismatch: {rel} (manifest={entry.get('rows')}, disk={actual_rows})"
                 )
 
     for entries in manifest.get("artifacts", {}).values():
@@ -163,8 +233,7 @@ def cmd_verify(args: argparse.Namespace) -> int:
             problems.append(f"signature {signature_issue}")
     elif args.require_signature:
         problems.append(
-            f"{RELEASE_MANIFEST_SIGNING_KEY_ENV} is required to verify the "
-            "signature but is not set"
+            f"{RELEASE_MANIFEST_SIGNING_KEY_ENV} is required to verify the signature but is not set"
         )
 
     if not args.signature_only:
@@ -225,6 +294,21 @@ def build_parser() -> argparse.ArgumentParser:
     )
     emit.set_defaults(func=cmd_emit)
 
+    sign = sub.add_parser(
+        "sign-release-manifest",
+        help=(
+            "Attach/replace the signature on an already-emitted manifest in "
+            "place, without rebuilding it (hashed content is unchanged)."
+        ),
+    )
+    sign.add_argument(
+        "--manifest",
+        type=Path,
+        default=Path("releases/r0/release_manifest.json"),
+        help="Manifest to sign in place (default: releases/r0/release_manifest.json).",
+    )
+    sign.set_defaults(func=cmd_sign)
+
     verify = sub.add_parser(
         "verify-release-manifest",
         help="Verify a release manifest against the tree and its signature.",
@@ -249,10 +333,7 @@ def build_parser() -> argparse.ArgumentParser:
     verify.add_argument(
         "--require-signature",
         action="store_true",
-        help=(
-            "Fail if the signing key is absent instead of skipping the "
-            "signature check."
-        ),
+        help=("Fail if the signing key is absent instead of skipping the signature check."),
     )
     verify.set_defaults(func=cmd_verify)
 

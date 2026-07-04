@@ -8089,6 +8089,11 @@
   },
   "release": "r0",
   "schema_version": "axiom-corpus/release-manifest/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-corpus-release-v1",
+    "value": "acb04291ff3e78695850e74f536531bc19746c96a6b31e52b652a5e052e154fb"
+  },
   "source_of_truth": "local-artifact-hashes",
   "summary": {
     "claims": {
