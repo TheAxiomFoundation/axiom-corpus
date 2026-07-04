@@ -1,10 +1,14 @@
 import base64
 import json
 import zipfile
+from datetime import date
 from pathlib import Path
 
 import fitz  # type: ignore[import-untyped]
+import pytest
 import requests
+import xlwt  # type: ignore[import-untyped]
+from bs4 import BeautifulSoup
 from openpyxl import Workbook  # type: ignore[import-untyped]
 
 from axiom_corpus.corpus import documents as documents_module
@@ -12,11 +16,36 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.documents import (
     OFFICIAL_DOCUMENT_BROWSER_USER_AGENT,
     OFFICIAL_DOCUMENT_USER_AGENT,
+    OfficialDocumentManifest,
     OfficialDocumentSource,
+    _date_text,
     _download_document,
+    _download_document_by_curl_ranges,
+    _download_document_by_ranges,
+    _DownloadedDocument,
+    _extract_anchor_range_html_blocks,
+    _extract_blocks,
+    _extract_doc_blocks,
+    _extract_json_html_blocks,
+    _extract_json_record_blocks,
+    _extract_labeled_html_section_blocks,
+    _get_with_retries,
+    _infer_source_format,
+    _legacy_word_document_text,
     _normalize_text,
+    _parse_content_range,
+    _parse_curl_header_dump,
+    _sanitize_official_document_content,
+    _single_scope,
+    _validate_citation_path,
+    _xlsx_cell_text,
+    _xlsx_configured_strings,
+    _xlsx_filters,
+    _xlsx_row_matches_filters,
+    _xlsx_sheet_names,
     extract_official_documents,
     google_drive_download_url,
+    official_documents_run_id,
 )
 from axiom_corpus.corpus.io import load_provisions
 
@@ -33,6 +62,512 @@ def test_normalize_text_removes_invisible_markers():
     assert _normalize_text("\ufeff\u200b Requirements\n\nA rule applies.") == (
         "Requirements\n\nA rule applies."
     )
+
+
+def test_official_document_manifest_validation_errors(tmp_path: Path) -> None:
+    scalar_manifest = tmp_path / "scalar.yaml"
+    scalar_manifest.write_text("[]")
+    with pytest.raises(ValueError, match="YAML mapping"):
+        OfficialDocumentManifest.load(scalar_manifest)
+
+    missing_documents = tmp_path / "missing.yaml"
+    missing_documents.write_text("documents: nope")
+    with pytest.raises(ValueError, match="documents list"):
+        OfficialDocumentManifest.load(missing_documents)
+
+    bad_request = {
+        "source_id": "bad",
+        "jurisdiction": "be",
+        "document_class": "guidance",
+        "title": "Bad",
+        "source_url": "https://example.test/bad",
+        "request": "not-a-mapping",
+    }
+    with pytest.raises(ValueError, match="request config"):
+        OfficialDocumentSource.from_mapping(bad_request)
+
+    bad_extraction = {**bad_request, "request": {}, "extraction": "not-a-mapping"}
+    with pytest.raises(ValueError, match="extraction config"):
+        OfficialDocumentSource.from_mapping(bad_extraction)
+
+    duplicate = OfficialDocumentManifest(
+        documents=(
+            OfficialDocumentSource.from_mapping({**bad_request, "request": {}}),
+            OfficialDocumentSource.from_mapping({**bad_request, "request": {}}),
+        )
+    )
+    with pytest.raises(ValueError, match="duplicate source_id"):
+        duplicate.require_unique_sources()
+
+
+def test_official_document_scope_requires_single_scope() -> None:
+    first = OfficialDocumentSource(
+        source_id="a",
+        jurisdiction="be",
+        document_class="guidance",
+        title="A",
+        source_url="https://example.test/a",
+    )
+    second = OfficialDocumentSource(
+        source_id="b",
+        jurisdiction="be-vlg",
+        document_class="guidance",
+        title="B",
+        source_url="https://example.test/b",
+    )
+
+    with pytest.raises(ValueError, match="one jurisdiction"):
+        _single_scope((first, second))
+
+
+def test_run_id_date_text_and_citation_path_helpers() -> None:
+    assert official_documents_run_id("2026-07-04", only_source_id="BE Source", limit=2) == (
+        "2026-07-04-BE Source-limit-2"
+    )
+    assert _date_text(None, "fallback") == "fallback"
+    assert _date_text(date(2026, 7, 4), "fallback") == "2026-07-04"
+    assert _date_text("2026-Q1", "fallback") == "2026-Q1"
+    assert (
+        _validate_citation_path(
+            "be/guidance/onss/dmfa",
+            jurisdiction="be",
+            document_class="guidance",
+        )
+        == "be/guidance/onss/dmfa"
+    )
+    with pytest.raises(ValueError, match="citation_path must start"):
+        _validate_citation_path(
+            "be/statute/onss",
+            jurisdiction="be",
+            document_class="guidance",
+        )
+
+
+def test_infer_source_format_handles_common_official_downloads(tmp_path: Path) -> None:
+    def source(source_url: str, *, source_format: str | None = None) -> OfficialDocumentSource:
+        return OfficialDocumentSource(
+            source_id="doc",
+            jurisdiction="be",
+            document_class="guidance",
+            title="Document",
+            source_url=source_url,
+            source_format=source_format,
+        )
+
+    def downloaded(
+        official_source: OfficialDocumentSource,
+        content: bytes,
+        content_type: str | None,
+    ) -> _DownloadedDocument:
+        return _DownloadedDocument(
+            source=official_source,
+            content=content,
+            content_type=content_type,
+            final_url=official_source.source_url,
+        )
+
+    explicit = source("https://example.test/file.bin", source_format="HTML")
+    assert _infer_source_format(explicit, downloaded(explicit, b"ignored", None)) == "html"
+
+    pdf = source("https://example.test/file")
+    assert _infer_source_format(pdf, downloaded(pdf, b"%PDF-1.7", None)) == "pdf"
+    html = source("https://example.test/file")
+    assert _infer_source_format(html, downloaded(html, b"<!doctype html>", None)) == "html"
+    xls = source("https://example.test/file.xls?download=1")
+    assert _infer_source_format(xls, downloaded(xls, b"legacy", None)) == "xls"
+    doc = source("https://example.test/file")
+    assert (
+        _infer_source_format(
+            doc,
+            downloaded(doc, b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1legacy", None),
+        )
+        == "doc"
+    )
+
+    docx_path = tmp_path / "word.zip"
+    with zipfile.ZipFile(docx_path, "w") as archive:
+        archive.writestr("word/document.xml", "<w:document/>")
+    docx = source("https://example.test/file")
+    assert _infer_source_format(docx, downloaded(docx, docx_path.read_bytes(), None)) == "docx"
+
+    xlsx_path = tmp_path / "sheet.zip"
+    with zipfile.ZipFile(xlsx_path, "w") as archive:
+        archive.writestr("xl/workbook.xml", "<workbook/>")
+    xlsx = source("https://example.test/file")
+    assert _infer_source_format(xlsx, downloaded(xlsx, xlsx_path.read_bytes(), None)) == "xlsx"
+
+    unknown = source("https://example.test/file")
+    with pytest.raises(ValueError, match="cannot infer"):
+        _infer_source_format(unknown, downloaded(unknown, b"plain text", "text/plain"))
+
+
+def test_sanitize_official_document_content_redacts_public_tokens() -> None:
+    token = b"pk.abc_123.DEF-456"
+
+    sanitized_html = _sanitize_official_document_content(b"<script>" + token + b"</script>", "html")
+    sanitized_json = _sanitize_official_document_content(b'{"token":"' + token + b'"}', "json")
+
+    assert token not in sanitized_html
+    assert b"[redacted-mapbox-public-token]" in sanitized_html
+    assert token not in sanitized_json
+    assert _sanitize_official_document_content(token, "pdf") == token
+
+
+def test_extract_blocks_rejects_unsupported_and_bad_json_config() -> None:
+    with pytest.raises(ValueError, match="unsupported official document source_format"):
+        _extract_blocks(
+            b"body",
+            "csv",
+            source_url="https://example.test/file.csv",
+            title="File",
+            extraction=None,
+        )
+
+    with pytest.raises(ValueError, match="requires json_html_field"):
+        _extract_blocks(
+            b'{"html": "<p>body</p>"}',
+            "json",
+            source_url="https://example.test/file.json",
+            title="File",
+            extraction={},
+        )
+
+
+def test_extract_doc_blocks_rejects_segmentation_and_empty_doc(monkeypatch) -> None:
+    with pytest.raises(ValueError, match="only supports single_block"):
+        _extract_doc_blocks(
+            b"content",
+            title="Legacy",
+            extraction={"segmentation": "labeled_sections"},
+        )
+
+    monkeypatch.setattr(documents_module, "_legacy_word_document_text", lambda content: "")
+    assert _extract_doc_blocks(b"content", title="Legacy", extraction=None) == ()
+
+
+def test_xlsx_helper_configuration_filters_and_cells() -> None:
+    assert _xlsx_sheet_names(["A", "B"], {}) == ("A", "B")
+    assert _xlsx_sheet_names(["A"], {"sheet": "A"}) == ("A",)
+    with pytest.raises(ValueError, match="sheet not found"):
+        _xlsx_sheet_names(["A"], {"sheets": ["B"]})
+
+    assert _xlsx_configured_strings(None) == ()
+    assert _xlsx_configured_strings("A") == ("A",)
+    assert _xlsx_configured_strings(["A", 2]) == ("A", "2")
+    with pytest.raises(ValueError, match="string or list"):
+        _xlsx_configured_strings({"bad": "value"})
+
+    assert _xlsx_filters({"Year": [2024, 2025], "Active": True}) == {
+        "Year": ("2024", "2025"),
+        "Active": ("TRUE",),
+    }
+    with pytest.raises(ValueError, match="filters must be a mapping"):
+        _xlsx_filters(["bad"])
+
+    index = {"Year": 0, "Amount": 1}
+    assert _xlsx_row_matches_filters(("2024", "10"), index=index, filters={"Year": ("2024",)})
+    assert not _xlsx_row_matches_filters(
+        ("2025", "10"),
+        index=index,
+        filters={"Year": ("2024",)},
+    )
+    assert not _xlsx_row_matches_filters(("2024",), index=index, filters={"Amount": ("10",)})
+    with pytest.raises(ValueError, match="filter column not found"):
+        _xlsx_row_matches_filters(("2024",), index=index, filters={"Missing": ("x",)})
+
+    assert _xlsx_cell_text(None) == ""
+    assert _xlsx_cell_text(True) == "TRUE"
+    assert _xlsx_cell_text(date(2026, 7, 4)) == "2026-07-04"
+    assert _xlsx_cell_text(4) == "4"
+    assert _xlsx_cell_text(4.0) == "4"
+    assert _xlsx_cell_text(4.25) == "4.25"
+    assert _xlsx_cell_text(" A\n\nB ") == "A\n\nB"
+
+
+def test_extract_json_record_blocks_handles_nested_fields_and_filters() -> None:
+    content = json.dumps(
+        {
+            "items": [
+                "not a record",
+                {
+                    "status": "draft",
+                    "text": {"body": "Draft text"},
+                    "label": "D",
+                },
+                {
+                    "id": 12,
+                    "status": "current",
+                    "text": {"body": "Line 1\n\nLine 2"},
+                    "label": "A:1",
+                    "heading": "",
+                    "kind": {"name": "Rule"},
+                },
+                {
+                    "id": 13,
+                    "status": "current",
+                    "text": {"body": "   "},
+                    "label": "A:2",
+                },
+            ]
+        }
+    ).encode("utf-8")
+
+    blocks = _extract_json_record_blocks(
+        content,
+        source_url="https://example.test/api",
+        fallback_title="Fallback Title",
+        extraction={
+            "json_records_path": "items",
+            "json_record_text_field": "text.body",
+            "json_record_text_is_html": False,
+            "json_record_label_field": "label",
+            "json_record_heading_field": "heading",
+            "json_record_kind_field": "kind.name",
+            "json_record_status_field": "status",
+            "json_record_include_statuses": "current",
+            "json_record_metadata_fields": "id",
+        },
+    )
+
+    assert len(blocks) == 1
+    block = blocks[0]
+    assert block.kind == "rule"
+    assert block.heading == "A:1 Fallback Title"
+    assert block.body == "Line 1\n\nLine 2"
+    assert block.metadata["id"] == 12
+    assert block.metadata["citation_suffix"] == "A:1"
+
+    with pytest.raises(ValueError, match="requires json_record_text_field"):
+        _extract_json_record_blocks(
+            b"[]",
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={},
+        )
+    with pytest.raises(ValueError, match="must resolve to a list"):
+        _extract_json_record_blocks(
+            b'{"items": {"not": "a-list"}}',
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_records_path": "items",
+                "json_record_text_field": "text",
+            },
+        )
+
+
+def test_extract_json_record_blocks_rejects_bad_field_configs() -> None:
+    content = b"[]"
+    for key in (
+        "json_record_label_field",
+        "json_record_heading_field",
+        "json_record_kind_field",
+        "json_record_status_field",
+    ):
+        with pytest.raises(ValueError, match="must be a string"):
+            _extract_json_record_blocks(
+                content,
+                source_url="https://example.test/api",
+                fallback_title=None,
+                extraction={
+                    "json_record_text_field": "text",
+                    key: 1,
+                },
+            )
+
+    blocks = _extract_json_record_blocks(
+        json.dumps(
+            [
+                {
+                    "status": "skip",
+                    "text": "<p>Skip</p>",
+                },
+                {
+                    "status": "keep",
+                    "text": "<script>ignored</script>",
+                },
+                {
+                    "status": "keep",
+                    "text": "<p>Body</p>",
+                },
+            ]
+        ).encode("utf-8"),
+        source_url="https://example.test/api",
+        fallback_title=None,
+        extraction={
+            "json_record_text_field": "text",
+            "json_record_status_field": "status",
+            "json_record_exclude_statuses": "skip",
+        },
+    )
+    assert len(blocks) == 1
+    assert blocks[0].heading == "Record"
+    assert blocks[0].body == "Body"
+
+
+def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
+    with pytest.raises(ValueError, match="did not resolve to HTML text"):
+        _extract_json_html_blocks(
+            b'{"html": "   "}',
+            source_url="https://example.test/api",
+            fallback_title="JSON",
+            extraction={"json_html_field": "html"},
+        )
+    with pytest.raises(ValueError, match="json path did not resolve"):
+        _extract_json_html_blocks(
+            b'{"output": {}}',
+            source_url="https://example.test/api",
+            fallback_title="JSON",
+            extraction={"json_html_field": "output.html"},
+        )
+    assert (
+        _extract_json_html_blocks(
+            b'{"html": "<script>ignored</script>"}',
+            source_url="https://example.test/api",
+            fallback_title="JSON",
+            extraction={"json_html_field": "html", "json_html_as_single_block": True},
+        )
+        == ()
+    )
+
+
+def test_extract_anchor_range_html_blocks_validates_config_and_extracts_ranges() -> None:
+    soup = BeautifulSoup(
+        """
+        <main>
+          <a id="a">Article A</a>
+          <p>First body.</p>
+          <!-- ignored -->
+          <a id="b">Article B</a>
+          <p>Second body.</p>
+          <a id="c">Article C</a>
+        </main>
+        """,
+        "html.parser",
+    )
+    root = soup.main
+    assert root is not None
+
+    blocks = _extract_anchor_range_html_blocks(
+        root,
+        title="Document",
+        source_url="https://example.test/html",
+        extraction={
+            "anchor_ranges": [
+                {
+                    "html_start_selector": "#a",
+                    "html_stop_selector": "#b",
+                    "section_label": "article-a",
+                },
+                {
+                    "html_start_selector": "#b",
+                    "html_stop_selector": "#c",
+                    "section_heading": "Article B",
+                },
+            ]
+        },
+    )
+
+    assert [block.ordinal for block in blocks] == [1, 2]
+    assert blocks[0].metadata["citation_suffix"] == "article-a"
+    assert "First body" in blocks[0].body
+    assert "Second body" not in blocks[0].body
+    assert blocks[1].heading == "Article B"
+    assert "Second body" in blocks[1].body
+
+    with pytest.raises(ValueError, match="anchor_ranges must be a list"):
+        _extract_anchor_range_html_blocks(
+            root,
+            title=None,
+            source_url="https://example.test/html",
+            extraction={"anchor_ranges": "bad"},
+        )
+    with pytest.raises(ValueError, match="entries must be mappings"):
+        _extract_anchor_range_html_blocks(
+            root,
+            title=None,
+            source_url="https://example.test/html",
+            extraction={"anchor_ranges": ["bad"]},
+        )
+    with pytest.raises(ValueError, match="requires html_start_selector"):
+        _extract_anchor_range_html_blocks(
+            root,
+            title=None,
+            source_url="https://example.test/html",
+            extraction={},
+        )
+    with pytest.raises(ValueError, match="start selector did not match"):
+        _extract_anchor_range_html_blocks(
+            root,
+            title=None,
+            source_url="https://example.test/html",
+            extraction={"html_start_selector": "#missing"},
+        )
+    with pytest.raises(ValueError, match="non-empty string"):
+        _extract_anchor_range_html_blocks(
+            root,
+            title=None,
+            source_url="https://example.test/html",
+            extraction={"html_start_selector": "#a", "html_stop_selector": 1},
+        )
+    with pytest.raises(ValueError, match="stop selector did not match"):
+        _extract_anchor_range_html_blocks(
+            root,
+            title=None,
+            source_url="https://example.test/html",
+            extraction={"html_start_selector": "#a", "html_stop_selector": "#missing"},
+        )
+
+
+def test_extract_labeled_html_sections_label_only_and_validation() -> None:
+    soup = BeautifulSoup(
+        """
+        <main>
+          <p> </p>
+          <p>1</p>
+          <p>Body text.</p>
+          <p>STOP</p>
+          <p>Ignored text.</p>
+        </main>
+        """,
+        "html.parser",
+    )
+    root = soup.main
+    assert root is not None
+
+    with pytest.raises(ValueError, match="requires section_heading_pattern"):
+        _extract_labeled_html_section_blocks(
+            root,
+            title="Document",
+            source_url="https://example.test/html",
+            extraction={},
+        )
+    with pytest.raises(ValueError, match="section_label_replacements must be a mapping"):
+        _extract_labeled_html_section_blocks(
+            root,
+            title="Document",
+            source_url="https://example.test/html",
+            extraction={
+                "section_label_pattern": r"^(?P<label>\d+)$",
+                "section_label_replacements": ["bad"],
+            },
+        )
+
+    blocks = _extract_labeled_html_section_blocks(
+        root,
+        title="Document",
+        source_url="https://example.test/html",
+        extraction={
+            "section_label_pattern": r"^(?P<label>\d+)$",
+            "section_label_replacements": {"1": "article-one"},
+            "stop_text_pattern": "^STOP$",
+        },
+    )
+
+    assert len(blocks) == 1
+    assert blocks[0].heading == "article-one"
+    assert blocks[0].body == "Body text."
+    assert blocks[0].metadata["citation_suffix"] == "article-one"
 
 
 def test_download_document_retries_browser_user_agent_on_forbidden():
@@ -349,6 +884,317 @@ def test_download_document_supports_curl_range_backend(monkeypatch):
     assert all("--insecure" in command for command in commands)
 
 
+class FakeRangeResponse:
+    def __init__(
+        self,
+        status_code: int,
+        content: bytes,
+        *,
+        content_range: str | None = None,
+    ) -> None:
+        self.status_code = status_code
+        self.content = content
+        self.url = "https://example.test/file"
+        self.headers = {"content-type": "application/octet-stream"}
+        if content_range is not None:
+            self.headers["content-range"] = content_range
+        self.closed = False
+
+    def raise_for_status(self):
+        return None
+
+    def iter_content(self, chunk_size: int):
+        del chunk_size
+        yield self.content
+
+    def close(self):
+        self.closed = True
+
+
+class FakeRangeSession:
+    def __init__(self, responses: list[FakeRangeResponse]) -> None:
+        self.responses = responses
+        self.requests: list[dict[str, str]] = []
+
+    def get(self, url, **kwargs):
+        del url
+        self.requests.append(dict(kwargs.get("headers") or {}))
+        return self.responses.pop(0)
+
+
+def test_get_with_retries_reraises_final_request_exception(monkeypatch) -> None:
+    class FailingSession:
+        def get(self, *args, **kwargs):
+            del args, kwargs
+            raise requests.RequestException("offline")
+
+    monkeypatch.setattr(documents_module.time, "sleep", lambda seconds: None)
+    with pytest.raises(requests.RequestException, match="offline"):
+        _get_with_retries(FailingSession(), "https://example.test/file")
+
+
+def test_download_document_by_ranges_handles_full_response() -> None:
+    source = OfficialDocumentSource(
+        source_id="range-full",
+        jurisdiction="be",
+        document_class="guidance",
+        title="Range",
+        source_url="https://example.test/file",
+    )
+    session = FakeRangeSession([FakeRangeResponse(200, b"complete")])
+
+    downloaded = _download_document_by_ranges(
+        source,
+        "https://example.test/file",
+        session=session,
+        headers={"Accept": "*/*"},
+        verify=True,
+        chunk_size=4,
+    )
+
+    assert downloaded.content == b"complete"
+    assert session.requests == [{"Accept": "*/*", "Range": "bytes=0-3"}]
+
+
+def test_download_document_by_ranges_rejects_bad_status_start_and_size() -> None:
+    source = OfficialDocumentSource(
+        source_id="range-error",
+        jurisdiction="be",
+        document_class="guidance",
+        title="Range",
+        source_url="https://example.test/file",
+    )
+
+    with pytest.raises(RuntimeError, match="HTTP 416"):
+        _download_document_by_ranges(
+            source,
+            "https://example.test/file",
+            session=FakeRangeSession([FakeRangeResponse(416, b"")]),
+            headers=None,
+            verify=True,
+            chunk_size=4,
+        )
+
+    with pytest.raises(RuntimeError, match="unexpected start 1"):
+        _download_document_by_ranges(
+            source,
+            "https://example.test/file",
+            session=FakeRangeSession(
+                [FakeRangeResponse(206, b"abc", content_range="bytes 1-3/10")]
+            ),
+            headers=None,
+            verify=True,
+            chunk_size=4,
+        )
+
+    with pytest.raises(ValueError, match="positive"):
+        _download_document_by_ranges(
+            source,
+            "https://example.test/file",
+            session=FakeRangeSession([]),
+            headers=None,
+            verify=True,
+            chunk_size=0,
+        )
+
+
+def test_parse_content_range_and_curl_headers_errors() -> None:
+    assert _parse_content_range("bytes 0-3/*") == (0, 3, None)
+    with pytest.raises(RuntimeError, match="invalid Content-Range"):
+        _parse_content_range("not-a-range")
+    with pytest.raises(RuntimeError, match="did not include"):
+        _parse_curl_header_dump("")
+    with pytest.raises(RuntimeError, match="invalid curl HTTP status"):
+        _parse_curl_header_dump("HTTP/1.1\ncontent-type: text/plain")
+
+
+def test_download_document_by_ranges_rejects_full_after_partial_and_empty_unknown_total() -> None:
+    source = OfficialDocumentSource(
+        source_id="range-partial",
+        jurisdiction="be",
+        document_class="guidance",
+        title="Range",
+        source_url="https://example.test/file",
+    )
+
+    with pytest.raises(RuntimeError, match="full response after partial chunks"):
+        _download_document_by_ranges(
+            source,
+            "https://example.test/file",
+            session=FakeRangeSession(
+                [
+                    FakeRangeResponse(206, b"ab", content_range="bytes 0-1/*"),
+                    FakeRangeResponse(200, b"complete"),
+                ]
+            ),
+            headers=None,
+            verify=True,
+            chunk_size=2,
+        )
+
+    downloaded = _download_document_by_ranges(
+        source,
+        "https://example.test/file",
+        session=FakeRangeSession([FakeRangeResponse(206, b"", content_range="bytes 0-0/*")]),
+        headers=None,
+        verify=True,
+        chunk_size=2,
+    )
+    assert downloaded.content == b""
+
+
+def test_get_with_retries_retries_retryable_status(monkeypatch) -> None:
+    class RetryableResponse:
+        def __init__(self, status_code: int) -> None:
+            self.status_code = status_code
+            self.closed = False
+
+        def close(self) -> None:
+            self.closed = True
+
+    class RetryableSession:
+        def __init__(self) -> None:
+            self.responses = [RetryableResponse(503), RetryableResponse(200)]
+            self.calls: list[dict[str, object]] = []
+
+        def get(self, url, **kwargs):
+            del url
+            self.calls.append(dict(kwargs))
+            return self.responses.pop(0)
+
+    monkeypatch.setattr(documents_module.time, "sleep", lambda seconds: None)
+    session = RetryableSession()
+
+    response = _get_with_retries(
+        session,
+        "https://example.test/file",
+        headers={"Accept": "text/plain"},
+        verify=False,
+        stream=True,
+    )
+
+    assert response.status_code == 200
+    assert session.calls[0]["stream"] is True
+    assert session.calls[0]["verify"] is False
+
+
+def test_download_document_by_curl_ranges_handles_error_edges(monkeypatch) -> None:
+    source = OfficialDocumentSource(
+        source_id="curl-range",
+        jurisdiction="be",
+        document_class="guidance",
+        title="Curl Range",
+        source_url="https://example.test/file",
+    )
+    responses: list[tuple[int, str | None, bytes]] = []
+    commands: list[list[str]] = []
+
+    def fake_run(command, check):
+        assert check is True
+        commands.append(list(command))
+        status, content_range, body = responses.pop(0)
+        header_path = Path(command[command.index("--dump-header") + 1])
+        body_path = Path(command[command.index("--output") + 1])
+        header_lines = [
+            f"HTTP/1.1 {status} Status",
+            "Content-Type: application/octet-stream",
+            "Header without colon",
+        ]
+        if content_range is not None:
+            header_lines.append(f"Content-Range: {content_range}")
+        header_path.write_text("\r\n".join([*header_lines, "", ""]))
+        body_path.write_bytes(body)
+
+    monkeypatch.setattr(documents_module.subprocess, "run", fake_run)
+
+    with pytest.raises(ValueError, match="positive"):
+        _download_document_by_curl_ranges(
+            source,
+            "https://example.test/file",
+            headers=None,
+            verify=True,
+            chunk_size=0,
+        )
+
+    responses[:] = [(500, None, b"error")]
+    with pytest.raises(RuntimeError, match="HTTP 500"):
+        _download_document_by_curl_ranges(
+            source,
+            "https://example.test/file",
+            headers={"User-Agent": "Custom UA", "Accept": "text/plain"},
+            verify=True,
+            chunk_size=2,
+        )
+    assert "Accept: text/plain" in commands[-1]
+
+    responses[:] = [(206, "bytes 1-2/4", b"bc")]
+    with pytest.raises(RuntimeError, match="unexpected start 1"):
+        _download_document_by_curl_ranges(
+            source,
+            "https://example.test/file",
+            headers=None,
+            verify=True,
+            chunk_size=2,
+        )
+
+    responses[:] = [
+        (206, "bytes 0-1/4", b"ab"),
+        (200, None, b"complete"),
+    ]
+    with pytest.raises(RuntimeError, match="full response after partial chunks"):
+        _download_document_by_curl_ranges(
+            source,
+            "https://example.test/file",
+            headers=None,
+            verify=True,
+            chunk_size=2,
+        )
+
+    responses[:] = [(206, "bytes 0-0/*", b"")]
+    downloaded = _download_document_by_curl_ranges(
+        source,
+        "https://example.test/file",
+        headers=None,
+        verify=True,
+        chunk_size=2,
+    )
+    assert downloaded.content == b""
+
+
+def test_legacy_word_document_text_uses_tool_and_reports_errors(monkeypatch) -> None:
+    with pytest.raises(RuntimeError, match="requires textutil"):
+        monkeypatch.setattr(documents_module.shutil, "which", lambda name: None)
+        _legacy_word_document_text(b"doc")
+
+    class Result:
+        def __init__(self, returncode: int, stdout: str, stderr: str = "") -> None:
+            self.returncode = returncode
+            self.stdout = stdout
+            self.stderr = stderr
+
+    monkeypatch.setattr(
+        documents_module.shutil,
+        "which",
+        lambda name: "/usr/bin/textutil" if name == "textutil" else None,
+    )
+    next_result = Result(1, "", "converter failed")
+
+    def fake_run(command, check, capture_output, encoding, errors):
+        assert command[0] == "textutil"
+        assert check is False
+        assert capture_output is True
+        assert encoding == "utf-8"
+        assert errors == "replace"
+        return next_result
+
+    monkeypatch.setattr(documents_module.subprocess, "run", fake_run)
+    with pytest.raises(RuntimeError, match="converter failed"):
+        _legacy_word_document_text(b"doc")
+
+    next_result = Result(0, " A\n\nB ")
+    assert _legacy_word_document_text(b"doc") == "A\n\nB"
+
+
 def test_extract_official_documents_from_local_html_and_pdf(tmp_path):
     html_path = tmp_path / "snap.html"
     long_html_text = "Long eligibility detail. " * 180
@@ -488,6 +1334,57 @@ documents:
     assert "2020 | 4 | 110.22 | 2013" in records[1].body
     assert "2024 | 4 | 130.85 | 2013" in records[1].body
     assert "131.12" not in records[1].body
+
+
+def test_extract_official_documents_from_legacy_xls_rows(tmp_path: Path) -> None:
+    workbook_path = tmp_path / "ffe.xls"
+    workbook = xlwt.Workbook()
+    sheet = workbook.add_sheet("FFE 2025")
+    for column, header in enumerate(["Category", "Employers", "Worker count", "Workers", "Rate"]):
+        sheet.write(0, column, header)
+    sheet.write(1, 0, "Cotisations de base FFE 2025")
+    sheet.write(1, 1, "Employeurs avec finalites industrielles ou commerciales")
+    sheet.write(1, 2, "a) en moyenne moins de 20 travailleurs")
+    sheet.write(1, 3, "tout le personnel")
+    sheet.write(1, 4, "0,17% (0,18%)")
+    workbook.save(str(workbook_path))
+
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: be-onss-ffe-rates
+    jurisdiction: be
+    document_class: guidance
+    title: ONSS FFE rates
+    source_url: https://www.socialsecurity.be/site_fr/Infos/instructs/documents/xls/FFE_2025.xls
+    citation_path: be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates
+    source_format: xls
+    local_path: {json.dumps(str(workbook_path))}
+    extraction:
+      xls_sheet: FFE 2025
+      xls_columns:
+        - Category
+        - Worker count
+        - Rate
+      citation_suffix: ffe-2025-rates
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-04-be-onss-ffe",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert records[1].citation_path == (
+        "be/guidance/onss/dmfa/2025-q1/company-closing-fund-rates/ffe-2025-rates"
+    )
+    assert records[1].body is not None
+    assert "a) en moyenne moins de 20 travailleurs | 0,17% (0,18%)" in records[1].body
 
 
 def test_extract_official_documents_can_ocr_scanned_pdf_sections(tmp_path, monkeypatch):

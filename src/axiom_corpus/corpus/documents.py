@@ -21,6 +21,7 @@ from xml.etree import ElementTree
 
 import fitz
 import requests
+import xlrd
 import yaml
 from bs4 import BeautifulSoup, FeatureNotFound
 from bs4.element import Comment, Tag
@@ -647,6 +648,8 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
         return "pdf"
     if "html" in content_type or downloaded.content.lstrip().startswith((b"<!doctype", b"<html")):
         return "html"
+    if "excel" in content_type or source.source_url.lower().split("?", 1)[0].endswith(".xls"):
+        return "xls"
     if "msword" in content_type or downloaded.content.startswith(_LEGACY_WORD_DOCUMENT_MAGIC):
         return "doc"
     if (
@@ -705,6 +708,8 @@ def _extract_blocks(
         return _extract_doc_blocks(content, title=title, extraction=extraction)
     if source_format == "xlsx":
         return _extract_xlsx_blocks(content, extraction=extraction)
+    if source_format == "xls":
+        return _extract_xls_blocks(content, extraction=extraction)
     raise ValueError(f"unsupported official document source_format: {source_format}")
 
 
@@ -1039,8 +1044,7 @@ def _extract_xlsx_blocks(
                 "Row | " + " | ".join(row_columns),
             ]
             body_lines.extend(
-                f"{row_number} | " + " | ".join(values)
-                for row_number, values in selected_rows
+                f"{row_number} | " + " | ".join(values) for row_number, values in selected_rows
             )
             blocks.append(
                 _DocumentBlock(
@@ -1048,15 +1052,100 @@ def _extract_xlsx_blocks(
                     ordinal=len(blocks) + 1,
                     heading=str(config.get("heading") or sheet_name),
                     body=_normalize_text("\n".join(body_lines)),
-                    metadata={
-                        "sheet_name": sheet_name,
-                        "row_count": len(selected_rows),
-                    },
+                    metadata=_spreadsheet_block_metadata(config, sheet_name, len(selected_rows)),
                 )
             )
         return tuple(blocks)
     finally:
         workbook.close()
+
+
+def _extract_xls_blocks(
+    content: bytes, *, extraction: dict[str, Any] | None
+) -> tuple[_DocumentBlock, ...]:
+    """Extract selected legacy Excel workbook rows into corpus text blocks."""
+    config = extraction or {}
+    workbook = xlrd.open_workbook(file_contents=content)
+    sheet_names = _xlsx_sheet_names(workbook.sheet_names(), config)
+    blocks: list[_DocumentBlock] = []
+    for sheet_name in sheet_names:
+        worksheet = workbook.sheet_by_name(sheet_name)
+        header_row_number = int(config.get("xls_header_row") or config.get("header_row") or 1)
+        start_row_number = int(
+            config.get("xls_start_row") or config.get("start_row") or header_row_number + 1
+        )
+        headers: tuple[str, ...] | None = None
+        output_columns = _xlsx_configured_strings(
+            config.get("xls_columns") or config.get("columns")
+        )
+        filters = _xlsx_filters(config.get("xls_filters") or config.get("filters"))
+        max_rows = config.get("xls_max_rows") or config.get("max_rows")
+        row_limit = int(max_rows) if max_rows is not None else None
+        selected_rows: list[tuple[int, tuple[str, ...]]] = []
+
+        for row_number in range(1, worksheet.nrows + 1):
+            row = tuple(
+                worksheet.cell_value(row_number - 1, column) for column in range(worksheet.ncols)
+            )
+            if row_number == header_row_number:
+                headers = _xlsx_headers(row)
+                continue
+            if row_number < start_row_number:
+                continue
+            if headers is None:
+                headers = _xlsx_default_headers(len(row))
+            index = _xlsx_header_index(headers)
+            if not _xlsx_row_matches_filters(row, index=index, filters=filters):
+                continue
+            row_columns = output_columns or headers
+            selected_rows.append(
+                (
+                    row_number,
+                    tuple(
+                        _xlsx_cell_text(row[index[column]])
+                        if column in index and index[column] < len(row)
+                        else ""
+                        for column in row_columns
+                    ),
+                )
+            )
+            if row_limit is not None and len(selected_rows) >= row_limit:
+                break
+
+        if not selected_rows:
+            continue
+        row_columns = output_columns or headers or ()
+        body_lines = [
+            f"Sheet: {sheet_name}",
+            "Row | " + " | ".join(row_columns),
+        ]
+        body_lines.extend(
+            f"{row_number} | " + " | ".join(values) for row_number, values in selected_rows
+        )
+        blocks.append(
+            _DocumentBlock(
+                kind="sheet",
+                ordinal=len(blocks) + 1,
+                heading=str(config.get("heading") or sheet_name),
+                body=_normalize_text("\n".join(body_lines)),
+                metadata=_spreadsheet_block_metadata(config, sheet_name, len(selected_rows)),
+            )
+        )
+    return tuple(blocks)
+
+
+def _spreadsheet_block_metadata(
+    config: dict[str, Any], sheet_name: str, row_count: int
+) -> dict[str, Any]:
+    metadata = {
+        "sheet_name": sheet_name,
+        "row_count": row_count,
+    }
+    citation_suffix = config.get("citation_suffix") or config.get("section_label")
+    if isinstance(citation_suffix, str) and citation_suffix:
+        metadata["citation_suffix"] = citation_suffix
+        metadata["section_label"] = citation_suffix
+    return metadata
 
 
 def _xlsx_sheet_names(available_sheet_names: list[str], config: dict[str, Any]) -> tuple[str, ...]:
@@ -1098,7 +1187,9 @@ def _xlsx_filters(raw_filters: Any) -> dict[str, tuple[str, ...]]:
 
 
 def _xlsx_headers(row: tuple[Any, ...]) -> tuple[str, ...]:
-    headers = tuple(_xlsx_cell_text(value) or f"column_{index}" for index, value in enumerate(row, start=1))
+    headers = tuple(
+        _xlsx_cell_text(value) or f"column_{index}" for index, value in enumerate(row, start=1)
+    )
     return _dedupe_xlsx_headers(headers)
 
 
