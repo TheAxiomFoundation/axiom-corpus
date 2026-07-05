@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/be-vlg/guidance/2026-07-04-be-vlg-family-benefit-amount-scale-2024-09.jsonl",
+      "sha256": "d01f291d4769daaa31b260272d93d9b1f7599007954fc14e07f1aa2a95fcd707"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a6d3b2cf45bbca0d73296f3a3a7cd3bbf4b304ef",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-be-vlg-family-benefit-amount-provisions"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Manual insertion of BE-VLG GPedia/FONS family-benefit amount-scale provision records for RuleSpec numeric grounding."
+  },
+  "coverage": null,
+  "document_class": "guidance",
+  "generated_at": "2026-07-05T00:33:34.993562+00:00",
+  "jurisdiction": "be-vlg",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "a8lw8vzwVhm3yAe5dZtFfIuDkBBish+Lg4Pp11RM7ivRTzImtWl8JWeWuz8y7w9eMNAaP7Fbsa6YAyFyQhZUAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-be-vlg-family-benefit-amount-scale-2024-09"
+}
