@@ -1,0 +1,36 @@
+documents:
+  - source_id: md-dhs-fia-im-26-13-2026-tca-tdap-benefit-increase
+    jurisdiction: us-md
+    document_class: guidance
+    title: Maryland DHS FIA Information Memo 26-13, 2026 TCA TDAP benefit increase
+    source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-13-IM-2026-TCA-TDAP-Benefit-Increase.pdf
+    download_url: https://www.dhr.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-13-IM-2026-TCA-TDAP-Benefit-Increase.pdf
+    source_format: pdf
+    source_as_of: '2026-07-05'
+    citation_path: us-md/guidance/dhs/fia/im-26-13/2026-tca-tdap-benefit-increase
+    request:
+      browser_user_agent: true
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 262144
+    extraction:
+      segmentation: labeled_sections
+      start_page: 2
+      section_heading_pattern: '^(?P<label>Summary)$'
+      section_label_pattern: '^(?P<label>FIP SCHEDULE|FIP SCHEDULE - R)$'
+      label_only_heading_pattern: '^Effective January 1, 2026$'
+      section_label_replacements:
+        Summary: summary
+        FIP SCHEDULE: fip-schedule-effective-2026-01-01
+        FIP SCHEDULE - R: fip-schedule-r-effective-2026-01-01
+      drop_line_patterns:
+        - '^Supersedes: IM 25-12.*$'
+        - '^Program \(TDAP\), and Refugee Cash Assistance \(RCA\) Benefit Increases(?:\s+\d+)?$'
+    metadata:
+      canonical_source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-13-IM-2026-TCA-TDAP-Benefit-Increase.pdf
+      legal_authority_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ghu&enactments=false&section=5-316
+      regulation_locator_url: https://regs.maryland.gov/us/md/exec/comar/07.03.03.17
+      source_authority: Maryland Department of Human Services, Family Investment Administration
+      source_family: temporary-cash-assistance
+      source_status: current_official_agency_guidance
+      source_note: Official DHS FIA memo setting the January 1, 2026 TCA and TDAP schedules used operationally under the statutory MLL funding rule and COMAR TCA benefit framework; supersedes DHS FIA IM 25-12.

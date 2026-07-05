@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-md/guidance/2026-07-05-md-tca-guidance.json",
-      "sha256": "b3b01e11f978f55e4446de8ac7016adf4950cc2a01a79bb803a1ea7cddb99c4c"
+      "sha256": "1090a10157b38107542ddbfbc212ed7f802f7f4e7b36f6057584628471b7488a"
     },
     {
       "path": "data/corpus/provisions/us-md/guidance/2026-07-05-md-tca-guidance.jsonl",
-      "sha256": "d9218631a982cb843899bded8d512bfb5cddb34d1452a3621cd4db2b962ed2bd"
+      "sha256": "68346f93defc7d0065944b8f91d0bd8e2e2a9fd14efe18ddc5ca9ce2c25214e2"
     },
     {
       "path": "data/corpus/sources/us-md/guidance/2026-07-05-md-tca-guidance/official-documents/md-dhs-fia-im-25-12-2025-tca-tdap-rca-benefit-increase.pdf",
@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "e7065dc8ea2ae53d42d5e8075113f50cf285d6b9",
+    "commit": "4bfccd0f28724b0885aca826046927f62236a0e5",
     "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-md-tca-guidance-20260705"
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-md-tca-2026-guidance-20260705"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,19 +35,19 @@
     "source_count": 4
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-05T03:22:24.091214+00:00",
+  "generated_at": "2026-07-05T03:40:06.550139+00:00",
   "jurisdiction": "us-md",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-03-md-tca-primary-sources.md",
-      "sha256": "deaee676194338b85b59cfad471afa25450a604f86b3fe59a2c1f1b7b024a7a6"
+      "sha256": "ff7105be3164167070736d0074e8d6dbe0e279f00bc42191589dff0cc8ca4b08"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "6ESd5UzC3ECHwMnmhZAxL8K3tRfzwCBkTg49b5gwOpKZHGGdRk+ERQgEvbBGBUzw6+ZkkT/yMbFDpcSq23AnDg=="
+    "value": "vbr92CwG9btIO7cpltukMzE9E85K4dW4YftHnCC4YFfEUlpRAQwR4jVukIJiP5O+leWEO4aBhpy36R2Tfl3WBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-md-tca-guidance"
