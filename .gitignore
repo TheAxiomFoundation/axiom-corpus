@@ -98,3 +98,12 @@ coverage.json
 # verbatim statutory text and are committed. See
 # docs/ingest-runs/2026-07-05-uk-scottish-income-tax.md.
 data/corpus/sources/uk/statute/2026-07-05-uk-scottish-income-tax/
+
+# legislation.gov.uk CLML source XML for the High Income Child Benefit Charge
+# (ITEPA 2003 ss.681B-681H) ingest is R2-backed provenance only, for the same
+# reason: it embeds upstream EffectId="key-..." commentary identifiers that
+# GitHub org push protection false-positives as Mailgun keys. The normalized
+# provisions carry the verbatim statutory text and are committed; the signed
+# ingest manifest records the source-XML sha256 hashes. See
+# docs/ingest-runs/2026-07-05-uk-hicbc-itepa.md.
+data/corpus/sources/uk/statute/2026-07-05-uk-hicbc-itepa/
