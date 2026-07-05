@@ -337,6 +337,8 @@ def test_download_document_supports_curl_range_backend(monkeypatch):
             "range_chunk_size": 5,
             "browser_user_agent": True,
             "verify_tls": False,
+            "connect_timeout": 30,
+            "max_time": 120,
         },
     )
 
@@ -346,6 +348,10 @@ def test_download_document_supports_curl_range_backend(monkeypatch):
     assert [command[command.index("-A") + 1] for command in commands] == [
         OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
     ] * 4
+    assert [command[command.index("--connect-timeout") + 1] for command in commands] == [
+        "30"
+    ] * 4
+    assert [command[command.index("--max-time") + 1] for command in commands] == ["120"] * 4
     assert all("--insecure" in command for command in commands)
 
 

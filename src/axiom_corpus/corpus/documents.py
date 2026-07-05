@@ -355,6 +355,8 @@ def _download_document(
                 chunk_size=int(
                     request_config.get("range_chunk_size", _RANGE_FETCH_CHUNK_SIZE_BYTES)
                 ),
+                connect_timeout=int(request_config.get("connect_timeout", 10)),
+                max_time=int(request_config.get("max_time", 60)),
             )
         return _download_document_by_ranges(
             source,
@@ -456,6 +458,8 @@ def _download_document_by_curl_ranges(
     headers: dict[str, str] | None,
     verify: bool,
     chunk_size: int,
+    connect_timeout: int,
+    max_time: int,
 ) -> _DownloadedDocument:
     """Fetch a document through curl Range requests for servers that stall urllib3."""
     if chunk_size <= 0:
@@ -479,9 +483,9 @@ def _download_document_by_curl_ranges(
                 "--silent",
                 "--show-error",
                 "--connect-timeout",
-                "10",
+                str(connect_timeout),
                 "--max-time",
-                "60",
+                str(max_time),
                 "-A",
                 user_agent,
             ]
