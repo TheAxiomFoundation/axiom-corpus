@@ -209,11 +209,17 @@ def test_sanitize_official_document_content_redacts_public_tokens() -> None:
     token = b"pk.abc_123.DEF-456"
 
     sanitized_html = _sanitize_official_document_content(b"<script>" + token + b"</script>", "html")
-    sanitized_json = _sanitize_official_document_content(b'{"token":"' + token + b'"}', "json")
+    sanitized_json = _sanitize_official_document_content(
+        b'{\r\n  "color": "99ccff ",\r\n  "token": "' + token + b'"\r\n}',
+        "json",
+    )
 
     assert token not in sanitized_html
     assert b"[redacted-mapbox-public-token]" in sanitized_html
     assert token not in sanitized_json
+    assert b"\r" not in sanitized_json
+    assert sanitized_json.endswith(b"\n")
+    assert b'"color": "99ccff "' in sanitized_json
     assert _sanitize_official_document_content(token, "pdf") == token
 
 
@@ -303,6 +309,7 @@ def test_extract_json_record_blocks_handles_nested_fields_and_filters() -> None:
                     "status": "current",
                     "text": {"body": "Line 1\n\nLine 2"},
                     "label": "A:1",
+                    "url": "#A1",
                     "heading": "",
                     "kind": {"name": "Rule"},
                 },
@@ -311,6 +318,14 @@ def test_extract_json_record_blocks_handles_nested_fields_and_filters() -> None:
                     "status": "current",
                     "text": {"body": "   "},
                     "label": "A:2",
+                },
+                {
+                    "id": 14,
+                    "status": "current",
+                    "text": {"body": ["List line 1", "List line 2"]},
+                    "label": "A:3",
+                    "url": "#A3",
+                    "heading": "List-backed text",
                 },
             ]
         }
@@ -325,6 +340,8 @@ def test_extract_json_record_blocks_handles_nested_fields_and_filters() -> None:
             "json_record_text_field": "text.body",
             "json_record_text_is_html": False,
             "json_record_label_field": "label",
+            "json_record_citation_suffix_field": "url",
+            "json_record_citation_suffix_slugify": True,
             "json_record_heading_field": "heading",
             "json_record_kind_field": "kind.name",
             "json_record_status_field": "status",
@@ -333,13 +350,17 @@ def test_extract_json_record_blocks_handles_nested_fields_and_filters() -> None:
         },
     )
 
-    assert len(blocks) == 1
+    assert len(blocks) == 2
     block = blocks[0]
     assert block.kind == "rule"
     assert block.heading == "A:1 Fallback Title"
     assert block.body == "Line 1\n\nLine 2"
     assert block.metadata["id"] == 12
-    assert block.metadata["citation_suffix"] == "A:1"
+    assert block.metadata["citation_suffix"] == "a1"
+    assert block.metadata["section_label"] == "A:1"
+    list_block = blocks[1]
+    assert list_block.heading == "A:3 List-backed text"
+    assert list_block.body == "List line 1\n\nList line 2"
 
     with pytest.raises(ValueError, match="requires json_record_text_field"):
         _extract_json_record_blocks(
@@ -364,6 +385,7 @@ def test_extract_json_record_blocks_rejects_bad_field_configs() -> None:
     content = b"[]"
     for key in (
         "json_record_label_field",
+        "json_record_citation_suffix_field",
         "json_record_heading_field",
         "json_record_kind_field",
         "json_record_status_field",
