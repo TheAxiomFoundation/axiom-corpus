@@ -819,7 +819,11 @@ class AnchorResolver:
             if path.startswith(prefix)
         ]
         if descendants:
-            # Must all live in the same parent provision to have a shared span.
+            # Descendants exist, so the query is an ancestor of drafted leaves —
+            # it is NOT a below-frontier drill, so the ancestor fallback does not
+            # apply (mirrors the SQL RPC's `NOT EXISTS (descendant)` guard). A
+            # shared span is only well defined when they all live in one parent
+            # provision; otherwise the query is ambiguous and resolves to nothing.
             provision_ids = {a.parent_provision_id for a in descendants}
             if len(provision_ids) == 1:
                 start = min(a.char_start for a in descendants)
@@ -833,8 +837,10 @@ class AnchorResolver:
                     match="descendant",
                     anchor=covering,
                 )
+            return None
 
         # Ancestor fallback: walk up the query path looking for a stored leaf.
+        # Only reached when the query has no descendants (a below-frontier drill).
         segments = citation_path.split("/")
         for cut in range(len(segments) - 1, 0, -1):
             candidate = "/".join(segments[:cut])

@@ -278,6 +278,34 @@ def test_resolver_unresolved_returns_none(
     assert resolver.resolve("us/regulation/99/999/9") is None
 
 
+def test_resolver_multi_parent_descendants_return_none() -> None:
+    # If a query is an ancestor of descendants that live in DIFFERENT parent
+    # provisions, no single span is well defined; the resolver returns None
+    # (and does not fall through to an ancestor). Mirrors the SQL RPC.
+    a = ProvisionAnchor(
+        citation_path="x/y/z/1",
+        parent_provision_id="00000000-0000-0000-0000-00000000000a",
+        parent_citation_path="x/y/p1",
+        char_start=0,
+        char_end=1,
+        text="(1)",
+        label="1",
+        depth=0,
+    )
+    b = ProvisionAnchor(
+        citation_path="x/y/z/2",
+        parent_provision_id="00000000-0000-0000-0000-00000000000b",
+        parent_citation_path="x/y/p2",
+        char_start=0,
+        char_end=1,
+        text="(2)",
+        label="2",
+        depth=0,
+    )
+    resolver = AnchorResolver([a, b])
+    assert resolver.resolve("x/y/z") is None
+
+
 def test_ma_leaf_resolves(ma_anchors: list[ProvisionAnchor]) -> None:
     resolver = AnchorResolver(ma_anchors)
     res = resolver.resolve(MA_LEAF)
