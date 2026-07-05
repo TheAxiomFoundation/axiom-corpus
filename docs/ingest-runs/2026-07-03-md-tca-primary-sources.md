@@ -60,7 +60,7 @@ uv run --project . axiom-corpus extract-official-documents \
     `us-md/regulation`, so the reviewed collection-root ratchet rises from 8
     to 9.
 
-## Blocked Guidance Source
+## Guidance Source
 
 The focused guidance manifest
 `manifests/us-md-tca-guidance-official-documents.yaml` records DHS FIA IM
@@ -73,14 +73,29 @@ The focused guidance manifest
 
 The official document is visible through public search indexing and the browser
 fetch path, and the indexed text confirms the January 1, 2025 benefit increase
-and the household-size-three increase from $727 to $753. However, unattended
-local HTTP clients timed out when connecting to both `dhs.maryland.gov` and
-`www.dhr.maryland.gov` over HTTP and HTTPS on July 3, 2026. No generated corpus
-rows were hand-written for this source.
+and the household-size-three increase from $727 to $753. The July 3 unattended
+local HTTP attempt timed out, so no generated corpus rows were hand-written at
+that time. A July 5 retry succeeded through the manifest-controlled range fetch.
 
-Maryland TCA RuleSpec encoding should wait for this DHS IM source snapshot, or
-for another official bulk/export path for the same memo, before asserting 2025
-PolicyEngine parity.
+```bash
+uv run --project . axiom-corpus extract-official-documents \
+  --base data/corpus \
+  --version 2026-07-05-md-tca-guidance \
+  --manifest manifests/us-md-tca-guidance-official-documents.yaml \
+  --source-as-of 2026-07-05 \
+  --expression-date 2026-07-05
+```
+
+Result:
+
+- Maryland DHS FIA Information Memo 25-12 (`us-md` / `guidance`)
+  - Version: `2026-07-05-md-tca-guidance`
+  - Source files: 1
+  - Provisions written: 7
+  - Coverage: complete
+
+Maryland TCA RuleSpec encoding can now use the statute, COMAR, and DHS IM 25-12
+source graph before asserting 2025 PolicyEngine parity.
 
 ## Validation
 
