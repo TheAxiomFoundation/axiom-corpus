@@ -1,5 +1,7 @@
 import base64
 import json
+import sys
+import types
 import zipfile
 from datetime import date
 from pathlib import Path
@@ -14,12 +16,14 @@ from openpyxl import Workbook  # type: ignore[import-untyped]
 from axiom_corpus.corpus import documents as documents_module
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.documents import (
+    OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION,
     OFFICIAL_DOCUMENT_BROWSER_USER_AGENT,
     OFFICIAL_DOCUMENT_USER_AGENT,
     OfficialDocumentManifest,
     OfficialDocumentSource,
     _date_text,
     _download_document,
+    _download_document_by_browser_impersonation,
     _download_document_by_curl_ranges,
     _download_document_by_ranges,
     _DownloadedDocument,
@@ -658,6 +662,135 @@ def test_download_document_retries_browser_user_agent_on_declared_pdf_html_chall
     assert downloaded.content == b"%PDF-1.7"
     assert session.calls[0]["User-Agent"] == OFFICIAL_DOCUMENT_USER_AGENT
     assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+
+
+def test_download_document_uses_browser_impersonation_after_browser_ua_fallback(monkeypatch):
+    class FakeResponse:
+        status_code = 403
+        content = b"<html><body>blocked</body></html>"
+        headers = {"content-type": "text/html"}
+        url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            raise AssertionError("impersonation should fetch the final response")
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+            self.calls: list[dict[str, str]] = []
+
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None, verify=None):
+            del url, timeout, allow_redirects, verify
+            self.calls.append(dict(headers or self.headers))
+            return FakeResponse()
+
+    impersonation_calls: list[dict[str, object]] = []
+
+    def fake_impersonation_download(source, download_url, *, headers, verify, impersonate):
+        impersonation_calls.append(
+            {
+                "source_id": source.source_id,
+                "download_url": download_url,
+                "headers": headers,
+                "verify": verify,
+                "impersonate": impersonate,
+            }
+        )
+        return _DownloadedDocument(
+            source=source,
+            content=b"%PDF-1.7",
+            content_type="application/pdf",
+            final_url=download_url,
+        )
+
+    monkeypatch.setattr(
+        documents_module,
+        "_download_document_by_browser_impersonation",
+        fake_impersonation_download,
+    )
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="form",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+        request={"browser_impersonation": True, "verify_tls": False},
+    )
+    session = FakeSession()
+
+    downloaded = _download_document(source, session=session)  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == b"%PDF-1.7"
+    assert session.calls[0]["User-Agent"] == OFFICIAL_DOCUMENT_USER_AGENT
+    assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+    assert impersonation_calls == [
+        {
+            "source_id": "doc",
+            "download_url": "https://example.test/doc.pdf",
+            "headers": {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT},
+            "verify": False,
+            "impersonate": OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION,
+        }
+    ]
+
+
+def test_download_document_by_browser_impersonation_uses_curl_cffi(monkeypatch):
+    class FakeResponse:
+        status_code = 200
+        content = b"%PDF-1.7"
+        headers = {"content-type": "application/pdf"}
+        url = "https://example.test/final.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    calls: list[dict[str, object]] = []
+
+    def fake_get(url, **kwargs):
+        calls.append({"url": url, **kwargs})
+        return FakeResponse()
+
+    fake_curl_cffi = types.SimpleNamespace(requests=types.SimpleNamespace(get=fake_get))
+    monkeypatch.setitem(sys.modules, "curl_cffi", fake_curl_cffi)
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="form",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+    )
+
+    downloaded = _download_document_by_browser_impersonation(
+        source,
+        "https://example.test/doc.pdf",
+        headers={"Accept": "application/pdf"},
+        verify=False,
+        impersonate="chrome120",
+    )
+
+    assert downloaded.content == b"%PDF-1.7"
+    assert downloaded.content_type == "application/pdf"
+    assert downloaded.final_url == "https://example.test/final.pdf"
+    assert calls == [
+        {
+            "url": "https://example.test/doc.pdf",
+            "headers": {
+                "User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT,
+                "Accept": "application/pdf",
+            },
+            "timeout": 90,
+            "allow_redirects": True,
+            "verify": False,
+            "impersonate": "chrome120",
+        }
+    ]
 
 
 def test_download_document_retries_transient_request_errors(monkeypatch):
