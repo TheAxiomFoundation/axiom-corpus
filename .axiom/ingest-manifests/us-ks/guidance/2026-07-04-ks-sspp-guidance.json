@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/guidance/2026-07-04-ks-sspp-guidance.json",
+      "sha256": "9dd5d0606583cb4706862167c898d208eb169a9971e109621fffd091f9eaf4b5"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/guidance/2026-07-04-ks-sspp-guidance.json",
+      "sha256": "22fe813cbf3eb19502f76f913592f37b3043e8d7acc5925c392a8abfda3f62ff"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/guidance/2026-07-04-ks-sspp-guidance.jsonl",
+      "sha256": "b43fa062c35f08f5b0f00ed171e1a4aa2a63cecc992772c03ed69ef82cf04a52"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/guidance/2026-07-04-ks-sspp-guidance/official-documents/ks-khpa-policy-memo-2007-05-01-sspp.pdf",
+      "sha256": "17c6495c77c2c496d398320d287575b57fea5b894095a10e9ac290209acaf231"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "fa30403a6f6b410a5ee726b769dee284b4024172",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ks-ssp-20260704"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-04-ks-sspp-guidance --manifest manifests/us-ks-sspp-guidance-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-05T00:13:24.815317+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5sNtt2S0JJs6e7nxcSexrn0tmGYpdc6c6amJ40SZ5H2gOE/qHktfI56EANLzMd3Nc5+3RBHb5G72faQII11HDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-ks-sspp-guidance"
+}

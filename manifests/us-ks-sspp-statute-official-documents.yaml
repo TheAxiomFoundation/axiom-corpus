@@ -1,0 +1,27 @@
+documents:
+  - source_id: ks-revisor-39-972-sspp
+    jurisdiction: us-ks
+    document_class: statute
+    citation_path: us-ks/statute/39/972/supplemental-income
+    title: "K.S.A. 39-972: Residents receiving long-term care in Medicaid approved institution; personal needs fund; supplemental income"
+    source_url: https://www.ksrevisor.org/statutes/chapters/ch39/039_009_0072.html
+    source_format: html
+    source_as_of: "2026-07-04"
+    expression_date: "2026-07-04"
+    extraction:
+      html_content_selector: "#print"
+      html_drop_selectors:
+        - script
+        - style
+    metadata:
+      primary_source: true
+      source_authority: Kansas Office of Revisor of Statutes
+      document_subtype: statute_section
+      program: ssi_state_supplement
+      federal_program: SSI
+      state: KS
+      statute_section: "39-972"
+      source_status: current_official_statute
+      source_discovery_group: us-ks/statute/sspp
+      discovered_via: active_policyengine_parity_review
+      source_note: Statutory authority for Kansas institutional SSI recipient supplemental income, including the minimum monthly supplement and delegation to state Medicaid agency rules and regulations.
