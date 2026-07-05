@@ -90,3 +90,11 @@ coverage.json
 # matches this nested dir too, so re-include it explicitly.
 !src/axiom_corpus/concepts/data/
 !src/axiom_corpus/concepts/data/**
+
+# legislation.gov.uk CLML source XML for the Scottish income tax ingest is
+# R2-backed provenance only (README: R2 holds raw XML). It embeds upstream
+# EffectId="key-..." commentary identifiers that GitHub org push protection
+# false-positives as Mailgun keys; the normalized provisions carry the
+# verbatim statutory text and are committed. See
+# docs/ingest-runs/2026-07-05-uk-scottish-income-tax.md.
+data/corpus/sources/uk/statute/2026-07-05-uk-scottish-income-tax/
