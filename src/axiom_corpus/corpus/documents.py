@@ -16,7 +16,7 @@ from datetime import date
 from io import BytesIO
 from json import loads as json_loads
 from pathlib import Path
-from typing import Any, Self, TextIO
+from typing import Any, Self, TextIO, cast
 from xml.etree import ElementTree
 
 import fitz
@@ -41,6 +41,7 @@ OFFICIAL_DOCUMENT_BROWSER_USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 )
+OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION = "chrome120"
 _BROWSER_FALLBACK_STATUSES = {403, 404, 406}
 _REQUEST_RETRY_STATUSES = {429, 500, 502, 503, 504}
 _REQUEST_RETRY_ATTEMPTS = 4
@@ -371,6 +372,21 @@ def _download_document(
         headers = {str(key): str(value) for key, value in session.headers.items()}
         headers["User-Agent"] = OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
         response = _get_with_retries(session, download_url, headers=headers, verify=verify)
+    if _needs_browser_fallback(source, response) and request_config.get("browser_impersonation"):
+        response.close()
+        impersonation_config = request_config.get("browser_impersonation")
+        impersonate = (
+            OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION
+            if impersonation_config is True
+            else str(impersonation_config)
+        )
+        return _download_document_by_browser_impersonation(
+            source,
+            download_url,
+            headers={**(request_headers or {}), "User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT},
+            verify=verify,
+            impersonate=impersonate,
+        )
     response.raise_for_status()
     return _DownloadedDocument(
         source=source,
@@ -378,6 +394,55 @@ def _download_document(
         content_type=response.headers.get("content-type"),
         final_url=response.url,
     )
+
+
+def _download_document_by_browser_impersonation(
+    source: OfficialDocumentSource,
+    download_url: str,
+    *,
+    headers: dict[str, str] | None,
+    verify: bool,
+    impersonate: str,
+) -> _DownloadedDocument:
+    """Fetch a document through curl_cffi for sources blocked by TLS fingerprinting."""
+    try:
+        from curl_cffi import requests as curl_requests
+    except ImportError as exc:  # pragma: no cover - exercised only in incomplete installs
+        raise RuntimeError("browser_impersonation official-document fetches require curl-cffi") from exc
+
+    request_headers = {
+        "User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT,
+        **(headers or {}),
+    }
+    for attempt in range(1, _REQUEST_RETRY_ATTEMPTS + 1):
+        try:
+            response = curl_requests.get(
+                download_url,
+                headers=request_headers,
+                timeout=90,
+                allow_redirects=True,
+                verify=verify,
+                impersonate=cast(Any, impersonate),
+            )
+            if (
+                response.status_code in _REQUEST_RETRY_STATUSES
+                and attempt < _REQUEST_RETRY_ATTEMPTS
+            ):
+                cast(Any, response).close()
+                _sleep_before_retry(attempt)
+                continue
+            cast(Any, response).raise_for_status()
+            return _DownloadedDocument(
+                source=source,
+                content=response.content,
+                content_type=response.headers.get("content-type"),
+                final_url=str(response.url),
+            )
+        except Exception:
+            if attempt >= _REQUEST_RETRY_ATTEMPTS:
+                raise
+            _sleep_before_retry(attempt)
+    raise RuntimeError(f"failed to fetch official document with browser impersonation: {download_url}")
 
 
 def _download_document_by_ranges(
