@@ -1,0 +1,24 @@
+version: "2026-07-05-be-parental-leave"
+sources:
+  - source_id: be-parental-leave-career-break-rd-1997
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1997/10/29/1997012760/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1997/10/29/1997012760/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: career-break/parental-leave
+      source_status: official_original_with_consolidated_locator
+      source_note: Royal Decree of 29 October 1997 introducing a right to parental leave within a career-break interruption. Sets the eligible-parent conditions, the child-age ceiling, and the leave-duration options (full-time, half-time, one-fifth), which route to the interruption-allowance amounts governed by the Royal Decree of 2 January 1991.
+  - source_id: be-career-break-interruption-allowances-rd-1991
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1991/01/02/1991013073/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1991/01/02/1991013073/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: career-break/interruption-allowances
+      source_status: official_original_with_consolidated_locator
+      source_note: Royal Decree of 2 January 1991 on the grant of interruption allowances (allocations d'interruption). Establishes the ONEM/RVA career-break allowance framework and monthly-amount interfaces that the parental-leave decree of 29 October 1997 relies on for full-time, half-time, and one-fifth interruption.
