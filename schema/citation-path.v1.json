@@ -192,11 +192,11 @@
   "known_irregulars_ratchet": {
     "description": "A ratcheted ceiling on irregular-family membership, checked by scripts/validate_citation_paths.py. The validator FAILS if a live count exceeds its baseline (a regression: someone introduced more irregular segments than existed at r0) unless the baseline is deliberately raised in this file. It does NOT fail if a count drops (irregulars being cleaned up). Baselines were measured against origin/main @ 9ee50de. Raising a baseline is a reviewed decision recorded in this file's git history.",
     "baselines": {
-      "block_n": 18471,
+      "block_n": 18473,
       "page_n": 19205,
       "space_segments": 196,
       "endash_segments": 21,
-      "uppercase_segments": 1331,
+      "uppercase_segments": 1333,
       "truncated_segments": 53,
       "collection_roots": 9
     }
