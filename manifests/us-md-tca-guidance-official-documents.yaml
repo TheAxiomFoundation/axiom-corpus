@@ -6,13 +6,25 @@ documents:
     source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2025/25-12%20IM%202025%20TCA%20TDAP%20RCA%20Benefit%20Increase.pdf
     download_url: https://www.dhr.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2025/25-12%20IM%202025%20TCA%20TDAP%20RCA%20Benefit%20Increase.pdf
     source_format: pdf
-    source_as_of: '2026-07-03'
+    source_as_of: '2026-07-05'
     citation_path: us-md/guidance/dhs/fia/im-25-12/2025-tca-tdap-rca-benefit-increase
     request:
       browser_user_agent: true
       range_fetch: true
       range_backend: curl
       range_chunk_size: 262144
+    extraction:
+      segmentation: labeled_sections
+      start_page: 2
+      section_heading_pattern: '^(?P<label>Summary)$'
+      section_label_pattern: '^(?P<label>FIP SCHEDULE|FIP SCHEDULE - R)$'
+      label_only_heading_pattern: '^Effective January 1, 2025$'
+      section_label_replacements:
+        Summary: summary
+        FIP SCHEDULE: fip-schedule-effective-2025-01-01
+        FIP SCHEDULE - R: fip-schedule-r-effective-2025-01-01
+      drop_line_patterns:
+        - '^Supersedes: AT#22-26, AT#22-27, and AT#22-31(?:\s+\d+)?$'
     metadata:
       canonical_source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2025/25-12%20IM%202025%20TCA%20TDAP%20RCA%20Benefit%20Increase.pdf
       legal_authority_url: https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ghu&enactments=false&section=5-316
