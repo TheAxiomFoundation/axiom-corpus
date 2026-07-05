@@ -17,9 +17,12 @@ COMAR payment table:
 - COMAR 07.03.03.17 is still the current regulation page, but its table states
   "Effective November 1, 2013" values. It should not be used alone for 2025
   PolicyEngine parity.
-- Maryland DHS FIA Information Memo 25-12 is the current official agency
-  guidance source for the January 1, 2025 TCA, TDAP, and RCA benefit increase
-  that PolicyEngine uses.
+- Maryland DHS FIA Information Memo 25-12 is the official agency guidance
+  source for the January 1, 2025 TCA, TDAP, and RCA benefit increase that
+  PolicyEngine uses historically.
+- Maryland DHS FIA Information Memo 26-13 is the current official agency
+  guidance source for the January 1, 2026 TCA and TDAP benefit increase and
+  supersedes IM 25-12.
 
 ## Commands
 
@@ -94,8 +97,41 @@ Result:
   - Provisions written: 7
   - Coverage: complete
 
-Maryland TCA RuleSpec encoding can now use the statute, COMAR, and DHS IM 25-12
-source graph before asserting 2025 PolicyEngine parity.
+Maryland TCA RuleSpec encoding for current law should use the statute, COMAR,
+and DHS IM 26-13 source graph before asserting current-law parity. The IM 25-12
+source graph remains available for 2025 historical PolicyEngine parity.
+
+## Current 2026 Guidance Source
+
+The focused guidance manifest
+`manifests/us-md-tca-2026-guidance-official-documents.yaml` records DHS FIA IM
+26-13:
+
+- Canonical DHS URL:
+  https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-13-IM-2026-TCA-TDAP-Benefit-Increase.pdf
+- Official DHR alias used as `download_url`:
+  https://www.dhr.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-13-IM-2026-TCA-TDAP-Benefit-Increase.pdf
+
+The DHS-hosted PDF was verified on July 5, 2026 as an official PDF with a
+March 4, 2026 release date and January 1, 2026 effective date. It states that
+it supersedes IM 25-12.
+
+```bash
+uv run --project . axiom-corpus extract-official-documents \
+  --base data/corpus \
+  --version 2026-07-05-md-tca-2026-guidance \
+  --manifest manifests/us-md-tca-2026-guidance-official-documents.yaml \
+  --source-as-of 2026-07-05 \
+  --expression-date 2026-07-05
+```
+
+Result:
+
+- Maryland DHS FIA Information Memo 26-13 (`us-md` / `guidance`)
+  - Version: `2026-07-05-md-tca-2026-guidance`
+  - Source files: 1
+  - Provisions written: 4
+  - Coverage: complete
 
 ## Validation
 
