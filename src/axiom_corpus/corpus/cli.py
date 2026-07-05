@@ -19,6 +19,15 @@ from axiom_corpus.corpus.analytics import (
     build_analytics_report,
     load_provision_count_snapshot,
 )
+from axiom_corpus.corpus.anchors import (
+    AnchorResolver,
+    generate_anchors_for_provision,
+    generate_stored_leaf_anchors,
+    load_anchors,
+    verify_anchors_against_provisions,
+    write_anchors_jsonl,
+)
+from axiom_corpus.corpus.anchors_supabase import load_anchors_to_supabase
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.belgium_eli import (
     BelgianELIExtractReport,
@@ -463,6 +472,132 @@ def _cmd_export_supabase(args: argparse.Namespace) -> int:
             sort_keys=True,
         )
     )
+    return 0
+
+
+def _cmd_generate_anchors(args: argparse.Namespace) -> int:
+    """Generate the derived provision_anchors JSONL from asserted provisions.
+
+    Rebuildable: reads provisions, parses the paragraph tree (or wraps stored
+    block leaves), verifies every anchor's mechanical gates, and writes JSONL
+    mirroring the provisions layout. Deterministic for a fixed input.
+    """
+    records = load_provisions(args.provisions)
+    by_path = {record.citation_path: record for record in records}
+    targets = list(args.target or [])
+    stored_leaves = list(args.stored_leaf or [])
+    if not targets and not stored_leaves:
+        # Default: parse every provision in the file that has a body.
+        targets = [r.citation_path for r in records if (r.body or "").strip()]
+
+    anchors = []
+    for citation_path in targets:
+        record = by_path.get(citation_path)
+        if record is None:
+            print(
+                f"error: target provision {citation_path!r} not found in "
+                f"{args.provisions}",
+                file=sys.stderr,
+            )
+            return 2
+        anchors.extend(generate_anchors_for_provision(record))
+    for citation_path in stored_leaves:
+        record = by_path.get(citation_path)
+        if record is None:
+            print(
+                f"error: stored-leaf provision {citation_path!r} not found in "
+                f"{args.provisions}",
+                file=sys.stderr,
+            )
+            return 2
+        anchors.extend(generate_stored_leaf_anchors(record))
+
+    # Re-verify the whole set against parent bodies before writing.
+    verify_anchors_against_provisions(anchors, records)
+
+    written = write_anchors_jsonl(args.output, anchors)
+    confidence_split: dict[str, int] = {}
+    for anchor in anchors:
+        confidence_split[anchor.confidence] = (
+            confidence_split.get(anchor.confidence, 0) + 1
+        )
+    print(
+        json.dumps(
+            {
+                "command": "generate-anchors",
+                "provisions": str(args.provisions),
+                "output": str(args.output),
+                "anchors_written": written,
+                "confidence_split": confidence_split,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0
+
+
+def _cmd_resolve_anchor(args: argparse.Namespace) -> int:
+    """Resolve a citation path to (provision_id, span) over an anchors artifact."""
+    anchors = load_anchors(args.anchors)
+    resolver = AnchorResolver(anchors)
+    resolution = resolver.resolve(args.citation_path)
+    if resolution is None:
+        print(
+            json.dumps(
+                {
+                    "citation_path": args.citation_path,
+                    "resolved": False,
+                },
+                indent=2,
+                sort_keys=True,
+            )
+        )
+        return 1
+    print(
+        json.dumps(
+            {
+                "citation_path": args.citation_path,
+                "resolved": True,
+                "match": resolution.match,
+                "provision_id": resolution.provision_id,
+                "parent_citation_path": resolution.parent_citation_path,
+                "span": list(resolution.span),
+                "text_head": resolution.text[:120],
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0
+
+
+def _cmd_load_anchors_supabase(args: argparse.Namespace) -> int:
+    """Upsert a provision_anchors JSONL artifact into Supabase (optional)."""
+    anchors = load_anchors(args.anchors)
+    if args.provisions:
+        # Re-verify against provided parent provisions before loading.
+        provisions = load_provisions(args.provisions)
+        verify_anchors_against_provisions(anchors, provisions)
+    service_key = ""
+    if not args.dry_run:
+        service_key = resolve_service_key(
+            args.supabase_url,
+            service_key_env=args.service_key_env,
+            access_token_env=args.access_token_env,
+        )
+    report = load_anchors_to_supabase(
+        anchors,
+        service_key=service_key,
+        supabase_url=args.supabase_url,
+        chunk_size=args.chunk_size,
+        dry_run=args.dry_run,
+        progress_stream=sys.stderr,
+    )
+    payload = report.to_mapping()
+    payload["anchors"] = str(args.anchors)
+    payload["supabase_url"] = args.supabase_url
+    print(json.dumps(payload, indent=2, sort_keys=True))
     return 0
 
 
@@ -5899,6 +6034,90 @@ def build_parser() -> argparse.ArgumentParser:
     )
     _add_rulespec_args(load_supabase)
     load_supabase.set_defaults(func=_cmd_load_supabase)
+
+    generate_anchors = sub.add_parser(
+        "generate-anchors",
+        help=(
+            "Generate the derived corpus.provision_anchors leaf layer from an "
+            "asserted provisions JSONL. Parses the printed paragraph tree "
+            "(--target) and/or wraps stored block leaves (--stored-leaf); every "
+            "anchor is verified byte-equal with its label at the span head."
+        ),
+    )
+    generate_anchors.add_argument(
+        "--provisions",
+        type=Path,
+        required=True,
+        help="Asserted provisions JSONL to derive anchors from.",
+    )
+    generate_anchors.add_argument(
+        "--output",
+        type=Path,
+        required=True,
+        help="Anchors JSONL to write (mirror the provisions layout under "
+        "data/corpus/anchors/).",
+    )
+    generate_anchors.add_argument(
+        "--target",
+        action="append",
+        default=[],
+        help=(
+            "Citation path of an asserted provision whose paragraph tree to "
+            "parse into inferred leaves (repeatable). Omit --target and "
+            "--stored-leaf to parse every provision in the file with a body."
+        ),
+    )
+    generate_anchors.add_argument(
+        "--stored-leaf",
+        action="append",
+        default=[],
+        help=(
+            "Citation path of a provision that is already a stored block leaf "
+            "(e.g. .../365/180/A); emit it machine_asserted plus any run-in "
+            "numbered children. Repeatable."
+        ),
+    )
+    generate_anchors.set_defaults(func=_cmd_generate_anchors)
+
+    resolve_anchor = sub.add_parser(
+        "resolve-anchor",
+        help=(
+            "Resolve a citation path to (provision_id, span) over an anchors "
+            "JSONL, with descendant/ancestor fallback."
+        ),
+    )
+    resolve_anchor.add_argument("--anchors", type=Path, required=True)
+    resolve_anchor.add_argument("citation_path")
+    resolve_anchor.set_defaults(func=_cmd_resolve_anchor)
+
+    load_anchors_supabase = sub.add_parser(
+        "load-anchors-supabase",
+        help=(
+            "Upsert a provision_anchors JSONL into corpus.provision_anchors "
+            "(optional; keyed on citation_path). Pass --provisions to re-verify "
+            "the mechanical gates before loading."
+        ),
+    )
+    load_anchors_supabase.add_argument("--anchors", type=Path, required=True)
+    load_anchors_supabase.add_argument(
+        "--provisions",
+        type=Path,
+        default=None,
+        help="Parent provisions JSONL; when given, re-verify anchors first.",
+    )
+    load_anchors_supabase.add_argument(
+        "--supabase-url",
+        default=os.environ.get("AXIOM_SUPABASE_URL", DEFAULT_AXIOM_SUPABASE_URL),
+    )
+    load_anchors_supabase.add_argument("--chunk-size", type=int, default=500)
+    load_anchors_supabase.add_argument("--dry-run", action="store_true")
+    load_anchors_supabase.add_argument(
+        "--service-key-env", default=DEFAULT_SERVICE_KEY_ENV
+    )
+    load_anchors_supabase.add_argument(
+        "--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV
+    )
+    load_anchors_supabase.set_defaults(func=_cmd_load_anchors_supabase)
 
     build_navigation = sub.add_parser(
         "build-navigation-index",
