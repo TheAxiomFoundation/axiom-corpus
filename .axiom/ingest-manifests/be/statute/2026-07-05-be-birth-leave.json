@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/statute/2026-07-05-be-birth-leave.json",
+      "sha256": "968832dbc1b386c3bc53a9ad868e9f8a692aa5aaa0a6502ed22067ee1cac71d6"
+    },
+    {
+      "path": "data/corpus/inventory/be/statute/2026-07-05-be-birth-leave.json",
+      "sha256": "7154890109b2598d328094b709616f531cdf1d7a84b2734ad712dd7ecd63480c"
+    },
+    {
+      "path": "data/corpus/provisions/be/statute/2026-07-05-be-birth-leave.jsonl",
+      "sha256": "0b6f2c70038cf6f2f967db61c382ab0ce2209554704c0bd642b49dc25a13b9e2"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-05-be-birth-leave/eli/loi/1978/07/03/1978070303/justel.html",
+      "sha256": "a7754dbbc15a99d018faa8e9f8ee843daf31c156698428b38c786566e7084586"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d1eebd4347b0935ade0f3b0c320c9baf246c5ed0",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus-be-birth-leave-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "/Users/maxghenis/.local/bin/uv run axiom-corpus-ingest extract-belgian-eli --base data/corpus --version 2026-07-05-be-birth-leave --manifest manifests/be-birth-leave-official-documents.yaml --source-as-of 2026-07-05 --expression-date 2025-01-01 --allow-incomplete"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 211,
+    "missing_count": 0,
+    "provision_count": 211,
+    "source_count": 211
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-05T02:26:42.777942+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gVoAk3qypbI2PyXM8O2wVpseo97WoRyoQ2tb6XDFLDCX8WS2lBLsylJyKtnq6SKKUV8cNlGLBBO0sEoG39RgDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-be-birth-leave"
+}

@@ -1,0 +1,13 @@
+version: "2026-07-05-be-birth-leave"
+sources:
+  - source_id: be-employment-contracts-law-1978
+    jurisdiction: be
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1978/07/03/1978070303/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1978/07/03/1978070303/moniteur
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: employment-contracts/birth-leave
+      source_status: official_original_with_consolidated_locator
+      source_note: Article 30 establishes birth leave, including the 20-day entitlement from 1 January 2023, first three employer-paid days, and subsequent health-insurance allowance days.
