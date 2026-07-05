@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/regulation/2026-07-05-be-parental-leave.json",
+      "sha256": "ec205353c81bf94ec80e2a88e7596234e43a96f07b514fabefef80eb2b9c7dff"
+    },
+    {
+      "path": "data/corpus/inventory/be/regulation/2026-07-05-be-parental-leave.json",
+      "sha256": "962d403829a13f47ecf1f260b00e47c8b125ec59a79035613cb9b29403785079"
+    },
+    {
+      "path": "data/corpus/provisions/be/regulation/2026-07-05-be-parental-leave.jsonl",
+      "sha256": "804f9106d936600a9fcbc6af051258cac892819c547d14133ea2a805460c3df9"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-05-be-parental-leave/eli/arrete/1991/01/02/1991013073/justel.html",
+      "sha256": "a8ffd797785c186fb76e59ba775a43bab2d2249aadb856e792d84da6a44985d6"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-05-be-parental-leave/eli/arrete/1997/10/29/1997012760/justel.html",
+      "sha256": "d2838a6873e5f93456697edf42712a5241a8eae3fa9f4e24acc80afdd9f18781"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "341ae9a62c04ea6cc6b1fe7fd9d4c15c679280d2",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/_axiom-worktrees/corpus-be-parental-leave"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-belgian-eli --base data/corpus --version 2026-07-05-be-parental-leave --manifest manifests/be-parental-leave-official-documents.yaml --source-as-of 2026-07-05 --expression-date 2025-01-01 --allow-incomplete"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 59,
+    "missing_count": 0,
+    "provision_count": 59,
+    "source_count": 59
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-05T22:30:42.721693+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qFWwPrJYFRFBqZE5cf0ndroWZgRWSA40QhcAQE/iXb3maqHgOCIDoewiEhE+GqfOWhLjGkvlaS/xw1l/AkcXCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-be-parental-leave"
+}
