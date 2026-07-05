@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-05-oasdi-title-ii-title-42.json",
+      "sha256": "3f091742b17030fb2247243110ac8fffefde56b4059f755900c25fe10f2c264d"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-05-oasdi-title-ii-title-42.json",
+      "sha256": "d5dd32c9082b8211dce35a35ba8d36274ff3a6d332fb8ecc269d519f3972a7f3"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-05-oasdi-title-ii-title-42.jsonl",
+      "sha256": "89d4b956bd08d49b7d4283ca4cb0605c456e4e1486cf65ad649d79d67308712d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-05-oasdi-title-ii-title-42/uslm/usc42.xml",
+      "sha256": "664adb351c7dd6a27844ad9db2491c406f8fc5351b260c627f485523c6a022aa"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ac370c279061f22ee91b2506673c3197958ff8ee",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/corpus-oasdi-20260705"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus-ingest extract-usc --base data/corpus --version 2026-07-05-oasdi-title-ii --source-xml ~/.axiom/uscode-119-100/usc42.xml --title 42 --section 402 --section 403 --section 413 --section 414 --section 415 --section 416 --include-title --source-as-of 2026-06-26 --expression-date 2026-06-26 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/100/xml_usc42@119-100.zip"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 277,
+    "missing_count": 0,
+    "provision_count": 277,
+    "source_count": 277
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-05T13:38:26.271235+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "X6edxemw/G4tzlCiUfyh4OUIqOM0HOE3WRWf/gPkj4xdkkYNCyRTdvbGbxsgsND5fWNSUijdoNJo1UTqpnMeDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-oasdi-title-ii-title-42"
+}
