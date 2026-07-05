@@ -109,12 +109,15 @@ def test_outputs_are_mostly_typed(registry: ConceptRegistry) -> None:
     assert len(typed) / len(outputs) > 0.9
 
 
-def test_pe_mappings_only_on_outputs_and_shaped(registry: ConceptRegistry) -> None:
-    mapped = registry.with_mapping("policyengine_us")
-    assert mapped, "expected some PolicyEngine-US edges"
+@pytest.mark.parametrize("engine", ["policyengine_us", "policyengine_uk"])
+def test_pe_mappings_only_on_outputs_and_shaped(
+    registry: ConceptRegistry, engine: str
+) -> None:
+    mapped = registry.with_mapping(engine)
+    assert mapped, f"expected some {engine} edges"
     for concept in mapped:
         assert concept.is_output, f"{concept.id}: PE edge on a non-output"
-        edge = concept.mapping_for("policyengine_us")
+        edge = concept.mapping_for(engine)
         assert edge is not None
         assert edge.mapping_type is not None
         # A direct_variable edge must name a variable; a parameter_value edge
@@ -125,6 +128,46 @@ def test_pe_mappings_only_on_outputs_and_shaped(registry: ConceptRegistry) -> No
             assert edge.parameter or edge.parameter_key, (
                 f"{concept.id}: parameter_value without parameter"
             )
+
+
+def test_uk_threshold_concepts_carry_policyengine_uk_parameter_edges(
+    registry: ConceptRegistry,
+) -> None:
+    # The UKMOD-parity boundary generator straddles UK statutory thresholds. It
+    # only picks up a concept that carries a PolicyEngine ``parameter_value``
+    # edge, so these income-tax band and NIC Class 1 threshold outputs must be
+    # mapped (rulespec-uk#69/#71; axiom-encode UK threshold mappings).
+    required = {
+        "uk:statutes/ukpga/2007/3/10#basic_rate_limit": (
+            "gov.hmrc.income_tax.rates.uk"
+        ),
+        "uk:statutes/ukpga/2007/3/10#higher_rate_limit": (
+            "gov.hmrc.income_tax.rates.uk"
+        ),
+        "uk:regulations/uksi/2001/1004/10#lower_earnings_limit": (
+            "gov.hmrc.national_insurance.class_1.thresholds.lower_earnings_limit"
+        ),
+        "uk:regulations/uksi/2001/1004/10#primary_threshold": (
+            "gov.hmrc.national_insurance.class_1.thresholds.primary_threshold"
+        ),
+        "uk:regulations/uksi/2001/1004/10#secondary_threshold": (
+            "gov.hmrc.national_insurance.class_1.thresholds.secondary_threshold"
+        ),
+        "uk:regulations/uksi/2001/1004/10#upper_earnings_limit": (
+            "gov.hmrc.national_insurance.class_1.thresholds.upper_earnings_limit"
+        ),
+    }
+    for concept_id, parameter in required.items():
+        concept = registry.get(concept_id)
+        assert concept is not None, f"missing UK threshold concept {concept_id}"
+        edge = concept.mapping_for("policyengine_uk")
+        assert edge is not None, f"{concept_id}: no policyengine_uk edge"
+        assert edge.mapping_type == "parameter_value", (
+            f"{concept_id}: expected parameter_value, got {edge.mapping_type}"
+        )
+        assert edge.parameter == parameter, (
+            f"{concept_id}: parameter {edge.parameter!r} != {parameter!r}"
+        )
 
 
 def test_no_duplicate_ids_across_files(registry: ConceptRegistry) -> None:
