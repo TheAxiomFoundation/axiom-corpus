@@ -1,0 +1,22 @@
+documents:
+  - source_id: cms-chip-children-coverage-map-20250416
+    jurisdiction: us
+    document_class: form
+    title: "CMS CHIP Program Coverage of Children by State Map"
+    source_url: https://www.medicaid.gov/media/file/chip-program-children-map-04162025.json
+    citation_path: us/form/cms/chip-children-coverage-map
+    source_format: json
+    source_as_of: "2025-04-16"
+    expression_date: "2025-04-16"
+    extraction:
+      segmentation: records
+      json_records_path: stateData
+      json_record_text_field: text
+      json_record_text_is_html: false
+      json_record_label_field: stateName
+      json_record_citation_suffix_field: stateName
+      json_record_citation_suffix_slugify: true
+      json_record_metadata_fields:
+        - stateName
+        - url
+        - stateMode

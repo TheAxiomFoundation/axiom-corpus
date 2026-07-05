@@ -14,6 +14,7 @@ import zipfile
 from dataclasses import dataclass
 from datetime import date
 from io import BytesIO
+from json import dumps as json_dumps
 from json import loads as json_loads
 from pathlib import Path
 from typing import Any, Self, TextIO, cast
@@ -733,9 +734,17 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
 
 
 def _sanitize_official_document_content(content: bytes, source_format: str) -> bytes:
-    if source_format.lower() not in {"html", "json"}:
+    normalized_format = source_format.lower()
+    if normalized_format not in {"html", "json"}:
         return content
-    return _MAPBOX_PUBLIC_TOKEN_RE.sub(_MAPBOX_PUBLIC_TOKEN_PLACEHOLDER, content)
+    sanitized = _MAPBOX_PUBLIC_TOKEN_RE.sub(_MAPBOX_PUBLIC_TOKEN_PLACEHOLDER, content)
+    if normalized_format != "json":
+        return sanitized
+    try:
+        data = json_loads(sanitized.decode("utf-8-sig"))
+    except (UnicodeDecodeError, ValueError):
+        return sanitized
+    return (json_dumps(data, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
 
 
 def _extension(source_format: str) -> str:
@@ -1811,6 +1820,7 @@ def _extract_json_record_blocks(
     records_path = extraction.get("json_records_path")
     text_field = extraction.get("json_record_text_field")
     label_field = extraction.get("json_record_label_field")
+    citation_suffix_field = extraction.get("json_record_citation_suffix_field")
     heading_field = extraction.get("json_record_heading_field")
     kind_field = extraction.get("json_record_kind_field")
     status_field = extraction.get("json_record_status_field")
@@ -1818,11 +1828,14 @@ def _extract_json_record_blocks(
     exclude_statuses = extraction.get("json_record_exclude_statuses", ())
     metadata_fields = extraction.get("json_record_metadata_fields", ())
     text_is_html = bool(extraction.get("json_record_text_is_html", True))
+    citation_suffix_slugify = bool(extraction.get("json_record_citation_suffix_slugify", False))
 
     if not isinstance(text_field, str) or not text_field:
         raise ValueError("records JSON extraction requires json_record_text_field")
     if label_field is not None and not isinstance(label_field, str):
         raise ValueError("json_record_label_field must be a string when configured")
+    if citation_suffix_field is not None and not isinstance(citation_suffix_field, str):
+        raise ValueError("json_record_citation_suffix_field must be a string when configured")
     if heading_field is not None and not isinstance(heading_field, str):
         raise ValueError("json_record_heading_field must be a string when configured")
     if kind_field is not None and not isinstance(kind_field, str):
@@ -1854,17 +1867,26 @@ def _extract_json_record_blocks(
         if exclude_status_set and str(status) in exclude_status_set:
             continue
 
-        raw_text = _json_record_value(row, text_field)
-        if not isinstance(raw_text, str) or not raw_text.strip():
+        raw_text_value = _json_record_value(row, text_field)
+        raw_text = _json_record_text(raw_text_value)
+        if not raw_text:
             continue
         body = _html_fragment_text(raw_text) if text_is_html else _normalize_text(raw_text)
         if not body:
             continue
 
         label_value = _json_record_value(row, label_field)
+        citation_suffix_value = _json_record_value(row, citation_suffix_field)
         heading_value = _json_record_value(row, heading_field)
         kind_value = _json_record_value(row, kind_field)
         label = str(label_value).strip() if label_value not in {None, ""} else ""
+        citation_suffix = (
+            str(citation_suffix_value).strip()
+            if citation_suffix_value not in {None, ""}
+            else label
+        )
+        if citation_suffix_slugify:
+            citation_suffix = _json_record_citation_suffix_slug(citation_suffix)
         heading_text = (
             str(heading_value).strip()
             if heading_value not in {None, ""}
@@ -1879,9 +1901,12 @@ def _extract_json_record_blocks(
                 if field in row and field != text_field
             },
         }
+        if citation_suffix:
+            metadata["citation_suffix"] = citation_suffix
         if label:
-            metadata["citation_suffix"] = label
             metadata["section_label"] = label
+        elif citation_suffix:
+            metadata["section_label"] = citation_suffix
         blocks.append(
             _DocumentBlock(
                 kind=str(kind_value or "record").strip().lower(),
@@ -1892,6 +1917,19 @@ def _extract_json_record_blocks(
             )
         )
     return tuple(blocks)
+
+
+def _json_record_text(value: Any) -> str:
+    if isinstance(value, str):
+        return value.strip()
+    if isinstance(value, list):
+        parts = [str(item).strip() for item in value if item is not None and str(item).strip()]
+        return "\n\n".join(parts)
+    return ""
+
+
+def _json_record_citation_suffix_slug(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
 def _html_soup(content: bytes) -> BeautifulSoup:
