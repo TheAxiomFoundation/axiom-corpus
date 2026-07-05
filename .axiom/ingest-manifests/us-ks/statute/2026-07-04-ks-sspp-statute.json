@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/statute/2026-07-04-ks-sspp-statute.json",
+      "sha256": "9749a6866e36cd969c8fe3bfb19fa8d386f3281ebff50ddfdee69cbc3314b25b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/statute/2026-07-04-ks-sspp-statute.json",
+      "sha256": "aa24806d4a476a54e3459e569ce83b6e27e820b581495d306e954360ccb2e03e"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/statute/2026-07-04-ks-sspp-statute.jsonl",
+      "sha256": "98069ffd573c19b44e3689732749965e084f1dc64a8ab367ee06ddb15bbaf15b"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/statute/2026-07-04-ks-sspp-statute/official-documents/ks-revisor-39-972-sspp.html",
+      "sha256": "e50f7aa092bf4f15ac8031fa6148d1933275889e05a1cc2c4320a021f2ceb03a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "fa30403a6f6b410a5ee726b769dee284b4024172",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ks-ssp-20260704"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-04-ks-sspp-statute --manifest manifests/us-ks-sspp-statute-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-05T00:13:24.166527+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VKjkdx9d4LxJAPA4MubUzNaKEOJArQyPe6DUsHcxxt5em1Q3QUiCs9VzXIvPQOu1jfE4OH2ZJHItQcpyalgMAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-ks-sspp-statute"
+}
