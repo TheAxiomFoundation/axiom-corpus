@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-wal/statute/2026-07-05-be-study-allowance.json",
+      "sha256": "b71d115db65d6e0cad6e514d95eb903c92dc9f45edaa998512bc085098ca4a2f"
+    },
+    {
+      "path": "data/corpus/inventory/be-wal/statute/2026-07-05-be-study-allowance.json",
+      "sha256": "d4ac0e627ceb798b9854b5cd0984cc274f5427fec929f184ff282c0567a0bef8"
+    },
+    {
+      "path": "data/corpus/provisions/be-wal/statute/2026-07-05-be-study-allowance.jsonl",
+      "sha256": "70989542a3dac125b640bf06fe4084090030f60805509baa553b6498572d3e56"
+    },
+    {
+      "path": "data/corpus/sources/be-wal/statute/2026-07-05-be-study-allowance/eli/decret/2021/11/18/2021022504/justel.html",
+      "sha256": "483478a0d1defeea138354556e969383dd95ad58d6e9409e926371cb445bf5f3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "341ae9a62c04ea6cc6b1fe7fd9d4c15c679280d2",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/_axiom-worktrees/bed-be-axiom-corpus-20260705-172806"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-belgian-eli --base data/corpus --version 2026-07-05-be-study-allowance --manifest manifests/be-study-allowance-eli.yaml --source-as-of 2026-07-05 --allow-incomplete"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 30,
+    "missing_count": 0,
+    "provision_count": 30,
+    "source_count": 30
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-05T22:17:43.545771+00:00",
+  "jurisdiction": "be-wal",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HGYiNaHqJBliN96LGTtEgKB8UNddrrMKvHEsVOTGJjKRNZYTaRm2JCS0o40ZBIBgx9xojbpUJXgUrGG9Bt6eAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-be-study-allowance"
+}

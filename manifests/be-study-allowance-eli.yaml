@@ -1,0 +1,66 @@
+version: "2026-07-05-be-study-allowance"
+sources:
+  - source_id: be-vlg-study-financing-decree-2007
+    jurisdiction: be-vlg
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/decreet/2007/06/08/2007036095/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decreet/2007/06/08/2007036095/moniteur
+      justel_url: https://www.ejustice.just.fgov.be/eli/decreet/2007/06/08/2007036095/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: education/flemish-study-grant
+      source_status: official_original_with_consolidated_locator
+      source_note: >-
+        Decree of 8 June 2007 on the study financing of the Flemish Community
+        (studiefinanciering). Governs the higher-education study grant
+        (studietoelage hoger onderwijs) that EUROMOD BE_2025 bed_be models on
+        the Flemish side: student categories (article 34), the family-composition
+        points system (articles 41-42), income thresholds by points (article 43),
+        and the allowance amounts and residential/non-residential distinction
+        (article 51). Groeipakket decree article 49 grants the student selective
+        participation supplement to holders of a grant under this 2007 decree.
+  - source_id: be-wal-study-allowance-decree-2021
+    jurisdiction: be-wal
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/decret/2021/11/18/2021022504/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2021/11/18/2021022504/moniteur
+      justel_url: https://www.ejustice.just.fgov.be/eli/decret/2021/11/18/2021022504/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: education/french-community-study-allowance
+      source_status: official_original_with_consolidated_locator
+      source_note: >-
+        Decree of 18 November 2021 regulating study allowances of the French
+        Community (Fédération Wallonie-Bruxelles) — allocations d'études. Covers
+        full-time secondary and higher education (article 1). Article 4
+        establishes the modest-means condition and delegates the determination
+        of allowance amounts and income ceilings to an order of the Government
+        (arrêté du Gouvernement). This is the governing statute EUROMOD BE_2025
+        bed_be models on the French-Community side; the delegated amounts and
+        income-ceiling schedules are the companion Government order captured
+        below.
+  - source_id: be-wal-study-allowance-amounts-order-2016
+    jurisdiction: be-wal
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/cgi/article_body.pl?language=fr&caller=summary&pub_date=2016-10-19&numac=2016029498
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/2016/09/21/2016029498/moniteur
+      justel_url: https://www.ejustice.just.fgov.be/eli/arrete/2016/09/21/2016029498/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: education/french-community-study-allowance
+      source_status: official_consolidated_full_text
+      source_note: >-
+        Order of the Government of the French Community of 21 September 2016
+        fixing the modest-means condition of study-allowance candidates and the
+        criteria for determining study-allowance amounts (consolidated through
+        the 23 March 2022 update). The Moniteur full-text (article_body.pl) view
+        splits into articles; the /eli/justel view returns a document-level
+        summary only. Article 2 sets the income ceilings by number of dependent
+        persons for secondary and higher education, article 3 sets the maximum
+        allowance amounts by education level and extern/intern status, and
+        article 4 sets the calculation formulas and special allowances. This is
+        the delegated amounts order implementing the French-Community study-
+        allowance décret that EUROMOD BE_2025 bed_be models.
