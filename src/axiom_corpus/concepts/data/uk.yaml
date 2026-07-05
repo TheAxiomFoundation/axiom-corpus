@@ -6,11 +6,14 @@ registry_version: 0.1.0
 jurisdiction: uk
 generated_from:
   rulespec_repo: rulespec-uk
-  rulespec_sha: e6e8523471709630ab9e13872d8aa41c18a6576e
-  module_count: 155
-concept_count: 1420
-input_count: 790
-output_count: 630
+  rulespec_sha: a93f8af3fd135a77631819bcf897db253b6224c4
+  module_count: 158
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/uk.yaml
+  policyengine_mappings_sha: 515ef63b6ad0b473692230fecb95c1853aa76a4a
+concept_count: 1460
+input_count: 801
+output_count: 659
 concepts:
 - id: uk:policies/govuk/carer-support-payment#input.cared_for_person_receives_qualifying_disability_benefit
   kind: input
@@ -3421,6 +3424,34 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/schedule/5/paragraph/8
   occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.ceil
+  kind: input
+  name: ceil
+  entity: Person
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.uk_pit_pilot_annual_employment_income
+  kind: input
+  name: uk_pit_pilot_annual_employment_income
+  entity: Person
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#input.uk_pit_pilot_supplied_section_24_reliefs
+  kind: input
+  name: uk_pit_pilot_supplied_section_24_reliefs
+  entity: Person
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline#input.uk_nic_pilot_annual_employment_income
+  kind: input
+  name: uk_nic_pilot_annual_employment_income
+  entity: Person
+  modules:
+  - uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline
+  occurrences: 1
 - id: uk:statutes/ukpga/1992/4/1#input.class_2_contribution_for_year
   kind: input
   name: class_2_contribution_for_year
@@ -3719,6 +3750,55 @@ concepts:
   entity: Person
   modules:
   - uk:statutes/ukpga/2002/16/3
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#input.company_average_number_of_employees
+  kind: input
+  name: company_average_number_of_employees
+  entity: Firm
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#input.company_balance_sheet_total
+  kind: input
+  name: company_balance_sheet_total
+  entity: Firm
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#input.company_is_in_first_financial_year
+  kind: input
+  name: company_is_in_first_financial_year
+  entity: Firm
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#input.company_qualified_as_small_in_previous_financial_year
+  kind: input
+  name: company_qualified_as_small_in_previous_financial_year
+  entity: Firm
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#input.company_turnover
+  kind: input
+  name: company_turnover
+  entity: Firm
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#input.financial_year_proportion_of_year
+  kind: input
+  name: financial_year_proportion_of_year
+  entity: Firm
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#input.small_company_qualifying_conditions_met_in_previous_financial_year
+  kind: input
+  name: small_company_qualifying_conditions_met_in_previous_financial_year
+  entity: Firm
+  modules:
+  - uk:statutes/ukpga/2006/46/382
   occurrences: 1
 - id: uk:statutes/ukpga/2007/3/10#input.additional_rate
   kind: input
@@ -5459,6 +5539,12 @@ concepts:
   modules:
   - uk:policies/govuk/carer-support-payment
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: carer_support_payment
+      comparison: money
+      program: carer_support_payment
 - id: uk:policies/govuk/carer-support-payment#carer_support_payment_weekly_amount
   kind: output
   name: carer_support_payment_weekly_amount
@@ -5484,6 +5570,10 @@ concepts:
   modules:
   - uk:policies/govuk/carer-support-payment
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: carer_support_payment
 - id: uk:policies/govuk/carer-support-payment#entitled_to_carer_support_payment
   kind: output
   name: entitled_to_carer_support_payment
@@ -5503,6 +5593,12 @@ concepts:
   modules:
   - uk:policies/govuk/carers-allowance
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: carers_allowance
+      comparison: money
+      program: carers_allowance
 - id: uk:policies/govuk/carers-allowance#carers_allowance_minimum_weekly_care_hours
   kind: output
   name: carers_allowance_minimum_weekly_care_hours
@@ -5510,6 +5606,12 @@ concepts:
   modules:
   - uk:policies/govuk/carers-allowance
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.carers_allowance.min_hours
+      comparison: count
+      program: carers_allowance
 - id: uk:policies/govuk/carers-allowance#carers_allowance_weekly_amount
   kind: output
   name: carers_allowance_weekly_amount
@@ -5535,6 +5637,10 @@ concepts:
   modules:
   - uk:policies/govuk/carers-allowance
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: carers_allowance
 - id: uk:policies/govuk/carers-allowance#entitled_to_carers_allowance
   kind: output
   name: entitled_to_carers_allowance
@@ -5554,6 +5660,12 @@ concepts:
   modules:
   - uk:policies/govuk/council-tax-reduction
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: council_tax_reduction
+      comparison: money
+      program: council_tax_reduction
 - id: uk:policies/govuk/council-tax-reduction#council_tax_reduction_capital_eligible
   kind: output
   name: council_tax_reduction_capital_eligible
@@ -5638,6 +5750,12 @@ concepts:
   modules:
   - uk:policies/govuk/disability-living-allowance
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: dla
+      comparison: money
+      program: dla
 - id: uk:policies/govuk/disability-living-allowance#disability_living_allowance_weekly_amount
   kind: output
   name: disability_living_allowance_weekly_amount
@@ -5655,6 +5773,10 @@ concepts:
   modules:
   - uk:policies/govuk/disability-living-allowance
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: dla
 - id: uk:policies/govuk/disability-living-allowance#dla_care_component_weekly_amount
   kind: output
   name: dla_care_component_weekly_amount
@@ -5721,6 +5843,12 @@ concepts:
   modules:
   - uk:policies/govuk/scottish-child-payment
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: scottish_child_payment
+      comparison: money
+      program: scottish_child_payment
 - id: uk:policies/govuk/scottish-child-payment#scottish_child_payment_weekly_amount_for_child
   kind: output
   name: scottish_child_payment_weekly_amount_for_child
@@ -5738,6 +5866,10 @@ concepts:
   modules:
   - uk:policies/govuk/scottish-child-payment
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: scottish_child_payment
 - id: uk:policies/govuk/state-pension#basic_state_pension_full_rate_qualifying_years
   kind: output
   name: basic_state_pension_full_rate_qualifying_years
@@ -5789,6 +5921,12 @@ concepts:
   modules:
   - uk:policies/govuk/state-pension
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: state_pension
+      comparison: money
+      program: state_pension
 - id: uk:policies/govuk/student-loan-repayments#listed_student_loan_plan_applies
   kind: output
   name: listed_student_loan_plan_applies
@@ -5798,6 +5936,10 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#plan_1_annual_income_threshold
   kind: output
   name: plan_1_annual_income_threshold
@@ -5807,6 +5949,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.student_loans.thresholds.plan_1
+      comparison: money
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#plan_2_annual_income_threshold
   kind: output
   name: plan_2_annual_income_threshold
@@ -5816,6 +5964,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.student_loans.thresholds.plan_2
+      comparison: money
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#plan_4_annual_income_threshold
   kind: output
   name: plan_4_annual_income_threshold
@@ -5825,6 +5979,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.student_loans.thresholds.plan_4
+      comparison: money
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#plan_5_annual_income_threshold
   kind: output
   name: plan_5_annual_income_threshold
@@ -5834,6 +5994,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.student_loans.thresholds.plan_5
+      comparison: money
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#postgraduate_loan_annual_income_threshold
   kind: output
   name: postgraduate_loan_annual_income_threshold
@@ -5843,6 +6009,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.student_loans.thresholds.postgraduate
+      comparison: money
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#postgraduate_loan_repayment_rate
   kind: output
   name: postgraduate_loan_repayment_rate
@@ -5850,6 +6022,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.student_loans.postgraduate_repayment_rate
+      comparison: rate
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#student_loan_annual_income_threshold
   kind: output
   name: student_loan_annual_income_threshold
@@ -5860,6 +6038,10 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#student_loan_repayment
   kind: output
   name: student_loan_repayment
@@ -5870,6 +6052,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: student_loan_repayment
+      comparison: money
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#student_loan_repayment_rate
   kind: output
   name: student_loan_repayment_rate
@@ -5879,6 +6067,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: student_loan_repayment_rate
+      comparison: rate
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#student_loan_repayments
   kind: output
   name: student_loan_repayments
@@ -5889,6 +6083,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: student_loan_repayments
+      comparison: money
+      program: tax
 - id: uk:policies/govuk/student-loan-repayments#undergraduate_plan_repayment_rate
   kind: output
   name: undergraduate_plan_repayment_rate
@@ -5896,6 +6096,12 @@ concepts:
   modules:
   - uk:policies/govuk/student-loan-repayments
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.student_loans.repayment_rate
+      comparison: rate
+      program: tax
 - id: uk:regulations/ssi/2020/351/18#scottish_child_payment_maximum_child_age
   kind: output
   name: scottish_child_payment_maximum_child_age
@@ -5905,6 +6111,12 @@ concepts:
   modules:
   - uk:regulations/ssi/2020/351/18
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.social_security_scotland.scottish_child_payment.max_age
+      comparison: number
+      program: scottish_child_payment
 - id: uk:regulations/ssi/2020/351/20#scottish_child_payment_weekly_amount
   kind: output
   name: scottish_child_payment_weekly_amount
@@ -5914,6 +6126,12 @@ concepts:
   modules:
   - uk:regulations/ssi/2020/351/20
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.social_security_scotland.scottish_child_payment.amount
+      comparison: money
+      program: scottish_child_payment
 - id: uk:regulations/ssi/2023/302/16#carer_support_payment_weekly_rate
   kind: output
   name: carer_support_payment_weekly_rate
@@ -5923,6 +6141,12 @@ concepts:
   modules:
   - uk:regulations/ssi/2023/302/16
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.social_security_scotland.carer_support_payment.rate
+      comparison: money
+      program: carer_support_payment
 - id: uk:regulations/ssi/2023/302/16#scottish_carer_supplement_weekly_rate
   kind: output
   name: scottish_carer_supplement_weekly_rate
@@ -5932,6 +6156,12 @@ concepts:
   modules:
   - uk:regulations/ssi/2023/302/16
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.social_security_scotland.carer_support_payment.supplement
+      comparison: money
+      program: carer_support_payment
 - id: uk:regulations/ssi/2023/302/5#carer_support_payment_minimum_weekly_care_hours
   kind: output
   name: carer_support_payment_minimum_weekly_care_hours
@@ -5941,6 +6171,12 @@ concepts:
   modules:
   - uk:regulations/ssi/2023/302/5
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.social_security_scotland.carer_support_payment.min_hours
+      comparison: number
+      program: carer_support_payment
 - id: uk:regulations/uksi/1987/1967/53#applicable_capital_tariff_income_lower_threshold
   kind: output
   name: applicable_capital_tariff_income_lower_threshold
@@ -5985,6 +6221,12 @@ concepts:
   modules:
   - uk:regulations/uksi/1987/1967/53
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: income_support_tariff_income
+      comparison: money
+      program: income_support
 - id: uk:regulations/uksi/1987/1967/53#capital_treated_as_yielding_weekly_income
   kind: output
   name: capital_treated_as_yielding_weekly_income
@@ -6054,6 +6296,12 @@ concepts:
   modules:
   - uk:regulations/uksi/1996/207/116
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: jsa_income_tariff_income
+      comparison: money
+      program: jobseekers_allowance
 - id: uk:regulations/uksi/1996/207/116#capital_treated_as_yielding_weekly_income
   kind: output
   name: capital_treated_as_yielding_weekly_income
@@ -6087,6 +6335,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_1.thresholds.lower_earnings_limit
+      comparison: money
+      program: tax
 - id: uk:regulations/uksi/2001/1004/10#primary_threshold
   kind: output
   name: primary_threshold
@@ -6095,6 +6349,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_1.thresholds.primary_threshold
+      comparison: money
+      program: tax
 - id: uk:regulations/uksi/2001/1004/10#secondary_threshold
   kind: output
   name: secondary_threshold
@@ -6103,6 +6363,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_1.thresholds.secondary_threshold
+      comparison: money
+      program: tax
 - id: uk:regulations/uksi/2001/1004/10#upper_earnings_limit
   kind: output
   name: upper_earnings_limit
@@ -6111,6 +6377,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_1.thresholds.upper_earnings_limit
+      comparison: money
+      program: tax
 - id: uk:regulations/uksi/2001/1004/10#upper_secondary_threshold_relevant_apprentices
   kind: output
   name: upper_secondary_threshold_relevant_apprentices
@@ -6137,6 +6409,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: ni_class_4_maximum
+      comparison: money
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_case_1_applies
   kind: output
   name: class_4_annual_maximum_case_1_applies
@@ -6146,6 +6424,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_case_2_applies
   kind: output
   name: class_4_annual_maximum_case_2_applies
@@ -6155,6 +6437,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_case_3_applies
   kind: output
   name: class_4_annual_maximum_case_3_applies
@@ -6164,6 +6450,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_step_eight
   kind: output
   name: class_4_annual_maximum_step_eight
@@ -6174,6 +6464,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_step_five
   kind: output
   name: class_4_annual_maximum_step_five
@@ -6184,6 +6478,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_step_four_amount
   kind: output
   name: class_4_annual_maximum_step_four_amount
@@ -6194,6 +6492,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_step_four_value
   kind: output
   name: class_4_annual_maximum_step_four_value
@@ -6204,6 +6506,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_step_nine
   kind: output
   name: class_4_annual_maximum_step_nine
@@ -6214,6 +6520,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_step_one
   kind: output
   name: class_4_annual_maximum_step_one
@@ -6224,6 +6534,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_step_seven
   kind: output
   name: class_4_annual_maximum_step_seven
@@ -6234,6 +6548,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_step_six
   kind: output
   name: class_4_annual_maximum_step_six
@@ -6244,6 +6562,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_annual_maximum_step_two
   kind: output
   name: class_4_annual_maximum_step_two
@@ -6254,6 +6576,10 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:regulations/uksi/2001/1004/100#class_4_contribution_after_annual_maximum
   kind: output
   name: class_4_contribution_after_annual_maximum
@@ -6264,6 +6590,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2001/1004/100
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: ni_class_4
+      comparison: money
+      program: tax
 - id: uk:regulations/uksi/2002/1792/15#capital_deemed_income_band_size
   kind: output
   name: capital_deemed_income_band_size
@@ -6299,6 +6631,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/15
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: pension_credit_deemed_income
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/15#capital_treated_as_yielding_weekly_income
   kind: output
   name: capital_treated_as_yielding_weekly_income
@@ -6318,6 +6656,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/6
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: carer_minimum_guarantee_addition
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/6#carer_additional_amount_per_partner
   kind: output
   name: carer_additional_amount_per_partner
@@ -6327,6 +6671,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/6
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pension_credit.guarantee_credit.carer.addition
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/6#custody_pending_trial_or_sentence_threshold_weeks
   kind: output
   name: custody_pending_trial_or_sentence_threshold_weeks
@@ -6398,6 +6748,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/6
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: severe_disability_minimum_guarantee_addition
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/6#severe_disability_additional_amount_couple
   kind: output
   name: severe_disability_additional_amount_couple
@@ -6416,6 +6772,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/6
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pension_credit.guarantee_credit.severe_disability.addition
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/6#standard_minimum_guarantee
   kind: output
   name: standard_minimum_guarantee
@@ -6426,6 +6788,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/6
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: standard_minimum_guarantee
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/6#standard_minimum_guarantee_no_partner
   kind: output
   name: standard_minimum_guarantee_no_partner
@@ -6435,6 +6803,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/6
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pension_credit.guarantee_credit.minimum_guarantee.SINGLE
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/6#standard_minimum_guarantee_with_partner
   kind: output
   name: standard_minimum_guarantee_with_partner
@@ -6444,6 +6818,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/6
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pension_credit.guarantee_credit.minimum_guarantee.COUPLE
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/schedule/IIA#additional_amount_applicable
   kind: output
   name: additional_amount_applicable
@@ -6454,6 +6834,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/schedule/IIA
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: child_minimum_guarantee_addition
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/schedule/IIA#child_or_qualifying_young_person_basic_additional_amount
   kind: output
   name: child_or_qualifying_young_person_basic_additional_amount
@@ -6473,6 +6859,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/schedule/IIA
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pension_credit.guarantee_credit.child.addition
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/schedule/IIA#disabled_child_or_qualifying_young_person_further_amount
   kind: output
   name: disabled_child_or_qualifying_young_person_further_amount
@@ -6492,6 +6884,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/schedule/IIA
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pension_credit.guarantee_credit.child.disability.addition
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/schedule/IIA#eldest_child_before_6_april_2017_increase_amount
   kind: output
   name: eldest_child_before_6_april_2017_increase_amount
@@ -6511,6 +6909,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/schedule/IIA
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pension_credit.guarantee_credit.child.first.addition
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/1792/schedule/IIA#schedule_applies_to_claimant
   kind: output
   name: schedule_applies_to_claimant
@@ -6539,6 +6943,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/1792/schedule/IIA
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pension_credit.guarantee_credit.child.disability.severe.addition
+      comparison: money
+      program: pension_credit
 - id: uk:regulations/uksi/2002/2005/schedule/2#schedule_2_row_3_maximum_annual_rate
   kind: output
   name: schedule_2_row_3_maximum_annual_rate
@@ -6548,6 +6958,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/2005/schedule/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.tax_credits.working_tax_credit.elements.worker
+      program: working_tax_credit
 - id: uk:regulations/uksi/2002/2005/schedule/2#wtc_basic_element_amount
   kind: output
   name: wtc_basic_element_amount
@@ -6557,6 +6972,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/2005/schedule/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.working_tax_credit.elements.basic
+      comparison: money
+      program: working_tax_credit
 - id: uk:regulations/uksi/2002/2005/schedule/2#wtc_disabled_element_amount
   kind: output
   name: wtc_disabled_element_amount
@@ -6566,6 +6987,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/2005/schedule/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.working_tax_credit.elements.disabled
+      comparison: money
+      program: working_tax_credit
 - id: uk:regulations/uksi/2002/2005/schedule/2#wtc_lone_parent_element_amount
   kind: output
   name: wtc_lone_parent_element_amount
@@ -6575,6 +7002,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/2005/schedule/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.working_tax_credit.elements.lone_parent
+      comparison: money
+      program: working_tax_credit
 - id: uk:regulations/uksi/2002/2005/schedule/2#wtc_second_adult_element_amount
   kind: output
   name: wtc_second_adult_element_amount
@@ -6584,6 +7017,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/2005/schedule/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.working_tax_credit.elements.couple
+      comparison: money
+      program: working_tax_credit
 - id: uk:regulations/uksi/2002/2005/schedule/2#wtc_severely_disabled_element_amount
   kind: output
   name: wtc_severely_disabled_element_amount
@@ -6593,6 +7032,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/2005/schedule/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.working_tax_credit.elements.severely_disabled
+      comparison: money
+      program: working_tax_credit
 - id: uk:regulations/uksi/2002/2007/7#ctc_family_element_amount
   kind: output
   name: ctc_family_element_amount
@@ -6602,6 +7047,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2002/2007/7
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.child_tax_credit.elements.family_element
+      comparison: money
+      program: child_tax_credit
 - id: uk:regulations/uksi/2004/692/schedule/1#colour_tv_licence_general_form_issue_fee
   kind: output
   name: colour_tv_licence_general_form_issue_fee
@@ -6611,6 +7062,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2004/692/schedule/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dcms.bbc.tv_licence.colour
+      comparison: money
+      program: tv_licence
 - id: uk:regulations/uksi/2005/3061/5#sure_start_maternity_grant_amount
   kind: output
   name: sure_start_maternity_grant_amount
@@ -6620,6 +7077,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2005/3061/5
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.ssmg.rate
+      comparison: money
+      program: ssmg
 - id: uk:regulations/uksi/2006/213/52#applicable_capital_tariff_income_lower_threshold
   kind: output
   name: applicable_capital_tariff_income_lower_threshold
@@ -6664,6 +7127,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2006/213/52
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: housing_benefit_tariff_income
+      comparison: money
+      program: housing_benefit
 - id: uk:regulations/uksi/2006/213/52#capital_treated_as_yielding_weekly_tariff_income
   kind: output
   name: capital_treated_as_yielding_weekly_tariff_income
@@ -6724,6 +7193,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2006/214/29
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: housing_benefit_tariff_income
+      comparison: money
+      program: housing_benefit
 - id: uk:regulations/uksi/2006/214/29#capital_treated_as_yielding_weekly_income
   kind: output
   name: capital_treated_as_yielding_weekly_income
@@ -6760,6 +7235,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2006/965/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.child_benefit.amount.eldest
+      comparison: money
+      program: child_benefit
 - id: uk:regulations/uksi/2006/965/2#child_benefit_other_weekly_rate
   kind: output
   name: child_benefit_other_weekly_rate
@@ -6769,6 +7250,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2006/965/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.child_benefit.amount.additional
+      comparison: money
+      program: child_benefit
 - id: uk:regulations/uksi/2006/965/2#child_benefit_weekly_rate
   kind: output
   name: child_benefit_weekly_rate
@@ -6779,6 +7266,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2006/965/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: child_benefit_respective_amount
+      comparison: money
+      program: child_benefit
 - id: uk:regulations/uksi/2006/965/2#member_of_polygamous_marriage
   kind: output
   name: member_of_polygamous_marriage
@@ -6832,6 +7325,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2008/794/118
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: esa_income_tariff_income
+      comparison: money
+      program: employment_and_support_allowance
 - id: uk:regulations/uksi/2008/794/118#capital_treated_as_yielding_weekly_income
   kind: output
   name: capital_treated_as_yielding_weekly_income
@@ -6874,6 +7373,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/18
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: uc_assessable_capital
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/18#other_member_of_couple_capital_included_for_single_claimant
   kind: output
   name: other_member_of_couple_capital_included_for_single_claimant
@@ -7178,6 +7683,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/32
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: uc_childcare_work_condition
+      comparison: bool
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/33#childcare_arrangements_work_purpose_requirement_met
   kind: output
   name: childcare_arrangements_work_purpose_requirement_met
@@ -7280,6 +7791,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.elements.carer.amount
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#child_element_amount
   kind: output
   name: child_element_amount
@@ -7309,6 +7826,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.elements.childcare.cap.1
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#childcare_costs_element_two_or_more_children_maximum_amount
   kind: output
   name: childcare_costs_element_two_or_more_children_maximum_amount
@@ -7318,6 +7841,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.elements.childcare.cap.2
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#disabled_child_additional_amount
   kind: output
   name: disabled_child_additional_amount
@@ -7337,6 +7866,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.elements.child.severely_disabled.amount
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#disabled_child_lower_rate_amount
   kind: output
   name: disabled_child_lower_rate_amount
@@ -7346,6 +7881,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.elements.child.disabled.amount
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#first_child_element_amount
   kind: output
   name: first_child_element_amount
@@ -7355,6 +7896,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.elements.child.first.higher_amount
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#lcwra_element_amount
   kind: output
   name: lcwra_element_amount
@@ -7374,6 +7921,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.elements.disabled.amount
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#lcwra_protected_claimant_amount
   kind: output
   name: lcwra_protected_claimant_amount
@@ -7392,6 +7945,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.elements.child.amount
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#standard_allowance_amount
   kind: output
   name: standard_allowance_amount
@@ -7411,6 +7970,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.standard_allowance.amount.COUPLE_YOUNG
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#standard_allowance_joint_either_25_or_over_amount
   kind: output
   name: standard_allowance_joint_either_25_or_over_amount
@@ -7420,6 +7985,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.standard_allowance.amount.COUPLE_OLD
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#standard_allowance_single_25_or_over_amount
   kind: output
   name: standard_allowance_single_25_or_over_amount
@@ -7429,6 +8000,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.standard_allowance.amount.SINGLE_OLD
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/36#standard_allowance_single_under_25_amount
   kind: output
   name: standard_allowance_single_under_25_amount
@@ -7438,6 +8015,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/36
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.universal_credit.standard_allowance.amount.SINGLE_YOUNG
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/4#child_or_qualifying_young_person_treated_not_responsibility_of_any_person
   kind: output
   name: child_or_qualifying_young_person_treated_not_responsibility_of_any_person
@@ -7814,6 +8397,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/376/72
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: uc_tariff_income
+      comparison: money
+      program: universal_credit
 - id: uk:regulations/uksi/2013/376/72#capital_treated_as_yielding_income
   kind: output
   name: capital_treated_as_yielding_income
@@ -8810,6 +9399,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/377/24
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pip.daily_living.enhanced
+      comparison: money
+      program: pip
 - id: uk:regulations/uksi/2013/377/24#pip_daily_living_standard_weekly_rate
   kind: output
   name: pip_daily_living_standard_weekly_rate
@@ -8819,6 +9414,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/377/24
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pip.daily_living.standard
+      comparison: money
+      program: pip
 - id: uk:regulations/uksi/2013/377/24#pip_mobility_enhanced_weekly_rate
   kind: output
   name: pip_mobility_enhanced_weekly_rate
@@ -8828,6 +9429,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/377/24
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pip.mobility.enhanced
+      comparison: money
+      program: pip
 - id: uk:regulations/uksi/2013/377/24#pip_mobility_standard_weekly_rate
   kind: output
   name: pip_mobility_standard_weekly_rate
@@ -8837,6 +9444,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2013/377/24
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.pip.mobility.standard
+      comparison: money
+      program: pip
 - id: uk:regulations/uksi/2015/448/15#tax_free_childcare_maximum_adjusted_net_income
   kind: output
   name: tax_free_childcare_maximum_adjusted_net_income
@@ -8846,6 +9459,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2015/448/15
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.tax_free_childcare.income.income_limit
+      comparison: money
+      program: tax_free_childcare
 - id: uk:regulations/uksi/2015/621/4#national_living_wage_hourly_rate
   kind: output
   name: national_living_wage_hourly_rate
@@ -8863,6 +9482,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2024/247/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.child_tax_credit.elements.dis_child_element
+      comparison: money
+      program: child_tax_credit
 - id: uk:regulations/uksi/2024/247/3#ctc_disabled_child_element_substituted_amount
   kind: output
   name: ctc_disabled_child_element_substituted_amount
@@ -8872,6 +9497,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2024/247/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.child_tax_credit.elements.dis_child_element
+      comparison: money
+      program: child_tax_credit
 - id: uk:regulations/uksi/2024/247/3#ctc_individual_element_amount
   kind: output
   name: ctc_individual_element_amount
@@ -8881,6 +9512,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2024/247/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.child_tax_credit.elements.child_element
+      comparison: money
+      program: child_tax_credit
 - id: uk:regulations/uksi/2024/247/3#ctc_individual_element_substituted_amount
   kind: output
   name: ctc_individual_element_substituted_amount
@@ -8890,6 +9527,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2024/247/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.child_tax_credit.elements.child_element
+      comparison: money
+      program: child_tax_credit
 - id: uk:regulations/uksi/2024/247/3#ctc_severely_disabled_child_additional_amount
   kind: output
   name: ctc_severely_disabled_child_additional_amount
@@ -8899,6 +9542,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2024/247/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.tax_credits.child_tax_credit.elements.severe_dis_child_element
+      comparison: money
+      program: child_tax_credit
 - id: uk:regulations/uksi/2024/247/3#ctc_severely_disabled_child_rate_amount
   kind: output
   name: ctc_severely_disabled_child_rate_amount
@@ -8908,6 +9557,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2024/247/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.tax_credits.child_tax_credit.elements.severe_dis_child_element
+      program: child_tax_credit
 - id: uk:regulations/uksi/2024/247/3#ctc_severely_disabled_child_rate_substituted_amount
   kind: output
   name: ctc_severely_disabled_child_rate_substituted_amount
@@ -8917,6 +9571,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2024/247/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.tax_credits.child_tax_credit.elements.severe_dis_child_element
+      program: child_tax_credit
 - id: uk:regulations/uksi/2025/969/3#winter_fuel_payment_age_80_shared_80_or_residential_care_amount
   kind: output
   name: winter_fuel_payment_age_80_shared_80_or_residential_care_amount
@@ -8926,6 +9585,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2025/969/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.winter_fuel_payment.amount.higher
+      program: winter_fuel_allowance
 - id: uk:regulations/uksi/2025/969/3#winter_fuel_payment_age_80_shared_under_80_amount
   kind: output
   name: winter_fuel_payment_age_80_shared_under_80_amount
@@ -8935,6 +9599,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2025/969/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.winter_fuel_payment.amount.lower
+      program: winter_fuel_allowance
 - id: uk:regulations/uksi/2025/969/3#winter_fuel_payment_age_80_standard_amount
   kind: output
   name: winter_fuel_payment_age_80_standard_amount
@@ -8944,6 +9613,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2025/969/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.winter_fuel_payment.amount.higher
+      comparison: money
+      program: winter_fuel_allowance
 - id: uk:regulations/uksi/2025/969/3#winter_fuel_payment_higher_age_requirement
   kind: output
   name: winter_fuel_payment_higher_age_requirement
@@ -8953,6 +9628,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2025/969/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.winter_fuel_payment.eligibility.higher_age_requirement
+      comparison: count
+      program: winter_fuel_allowance
 - id: uk:regulations/uksi/2025/969/3#winter_fuel_payment_higher_amount
   kind: output
   name: winter_fuel_payment_higher_amount
@@ -8962,6 +9643,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2025/969/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.winter_fuel_payment.amount.higher
+      comparison: money
+      program: winter_fuel_allowance
 - id: uk:regulations/uksi/2025/969/3#winter_fuel_payment_lower_amount
   kind: output
   name: winter_fuel_payment_lower_amount
@@ -8971,6 +9658,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2025/969/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.winter_fuel_payment.amount.lower
+      comparison: money
+      program: winter_fuel_allowance
 - id: uk:regulations/uksi/2025/969/3#winter_fuel_payment_under_80_partner_80_relevant_benefit_amount
   kind: output
   name: winter_fuel_payment_under_80_partner_80_relevant_benefit_amount
@@ -8980,6 +9673,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2025/969/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.winter_fuel_payment.amount.higher
+      program: winter_fuel_allowance
 - id: uk:regulations/uksi/2025/969/3#winter_fuel_payment_under_80_shared_or_residential_care_amount
   kind: output
   name: winter_fuel_payment_under_80_shared_or_residential_care_amount
@@ -8989,6 +9687,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2025/969/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.winter_fuel_payment.amount.lower
+      program: winter_fuel_allowance
 - id: uk:regulations/uksi/2025/969/3#winter_fuel_payment_under_80_standard_amount
   kind: output
   name: winter_fuel_payment_under_80_standard_amount
@@ -8998,6 +9701,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2025/969/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.winter_fuel_payment.amount.lower
+      comparison: money
+      program: winter_fuel_allowance
 - id: uk:regulations/uksi/2026/148/article/14#dla_mobility_higher_substituted_amount
   kind: output
   name: dla_mobility_higher_substituted_amount
@@ -9007,6 +9716,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.mobility.higher
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/14#dla_mobility_higher_weekly_rate
   kind: output
   name: dla_mobility_higher_weekly_rate
@@ -9016,6 +9731,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.mobility.higher
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/14#dla_mobility_lower_substituted_amount
   kind: output
   name: dla_mobility_lower_substituted_amount
@@ -9025,6 +9746,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.mobility.lower
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/14#dla_mobility_lower_weekly_rate
   kind: output
   name: dla_mobility_lower_weekly_rate
@@ -9034,6 +9761,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.mobility.lower
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/14#dla_self_care_higher_substituted_amount
   kind: output
   name: dla_self_care_higher_substituted_amount
@@ -9043,6 +9776,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.self_care.higher
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/14#dla_self_care_higher_weekly_rate
   kind: output
   name: dla_self_care_higher_weekly_rate
@@ -9052,6 +9791,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.self_care.higher
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/14#dla_self_care_lower_substituted_amount
   kind: output
   name: dla_self_care_lower_substituted_amount
@@ -9061,6 +9806,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.self_care.lower
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/14#dla_self_care_lower_weekly_rate
   kind: output
   name: dla_self_care_lower_weekly_rate
@@ -9070,6 +9821,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.self_care.lower
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/14#dla_self_care_middle_substituted_amount
   kind: output
   name: dla_self_care_middle_substituted_amount
@@ -9079,6 +9836,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.self_care.middle
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/14#dla_self_care_middle_weekly_rate
   kind: output
   name: dla_self_care_middle_weekly_rate
@@ -9088,6 +9851,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/14
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.dla.self_care.middle
+      comparison: money
+      program: dla
 - id: uk:regulations/uksi/2026/148/article/4#category_a_basic_retirement_pension_substituted_amount
   kind: output
   name: category_a_basic_retirement_pension_substituted_amount
@@ -9097,6 +9866,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/4
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.state_pension.basic_state_pension.amount
+      comparison: money
+      program: state_pension
 - id: uk:regulations/uksi/2026/148/article/4#category_a_basic_retirement_pension_weekly_rate
   kind: output
   name: category_a_basic_retirement_pension_weekly_rate
@@ -9106,6 +9881,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/4
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.state_pension.basic_state_pension.amount
+      comparison: money
+      program: state_pension
 - id: uk:regulations/uksi/2026/148/article/6#full_new_state_pension_substituted_amount
   kind: output
   name: full_new_state_pension_substituted_amount
@@ -9115,6 +9896,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/6
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.state_pension.new_state_pension.amount
+      comparison: money
+      program: state_pension
 - id: uk:regulations/uksi/2026/148/article/6#full_new_state_pension_weekly_rate
   kind: output
   name: full_new_state_pension_weekly_rate
@@ -9124,6 +9911,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/article/6
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.state_pension.new_state_pension.amount
+      comparison: money
+      program: state_pension
 - id: uk:regulations/uksi/2026/148/schedule/1#attendance_allowance_higher_weekly_rate
   kind: output
   name: attendance_allowance_higher_weekly_rate
@@ -9133,6 +9926,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/schedule/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.attendance_allowance.higher
+      comparison: money
+      program: attendance_allowance
 - id: uk:regulations/uksi/2026/148/schedule/1#attendance_allowance_lower_weekly_rate
   kind: output
   name: attendance_allowance_lower_weekly_rate
@@ -9142,6 +9941,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/schedule/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.attendance_allowance.lower
+      comparison: money
+      program: attendance_allowance
 - id: uk:regulations/uksi/2026/148/schedule/1#carers_allowance_weekly_rate
   kind: output
   name: carers_allowance_weekly_rate
@@ -9151,6 +9956,12 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/schedule/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.carers_allowance.rate
+      comparison: money
+      program: carers_allowance
 - id: uk:regulations/uksi/2026/148/schedule/1#sda_age_related_addition_higher_weekly_rate
   kind: output
   name: sda_age_related_addition_higher_weekly_rate
@@ -9160,6 +9971,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/schedule/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.sda.maximum
+      program: sda
 - id: uk:regulations/uksi/2026/148/schedule/1#sda_age_related_addition_lower_weekly_rate
   kind: output
   name: sda_age_related_addition_lower_weekly_rate
@@ -9169,6 +9985,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/schedule/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.sda.maximum
+      program: sda
 - id: uk:regulations/uksi/2026/148/schedule/1#sda_age_related_addition_middle_weekly_rate
   kind: output
   name: sda_age_related_addition_middle_weekly_rate
@@ -9178,6 +9999,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/schedule/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.sda.maximum
+      program: sda
 - id: uk:regulations/uksi/2026/148/schedule/1#severe_disablement_allowance_basic_weekly_rate
   kind: output
   name: severe_disablement_allowance_basic_weekly_rate
@@ -9187,6 +10013,11 @@ concepts:
   modules:
   - uk:regulations/uksi/2026/148/schedule/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.dwp.sda.maximum
+      program: sda
 - id: uk:regulations/uksi/2026/148/schedule/1#severe_disablement_allowance_maximum_weekly_rate
   kind: output
   name: severe_disablement_allowance_maximum_weekly_rate
@@ -9195,6 +10026,172 @@ concepts:
   period: Week
   modules:
   - uk:regulations/uksi/2026/148/schedule/1
+  occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.dwp.sda.maximum
+      comparison: money
+      program: sda
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_adjusted_net_income
+  kind: output
+  name: uk_pit_pilot_adjusted_net_income
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_income_charged_at_additional_rate
+  kind: output
+  name: uk_pit_pilot_income_charged_at_additional_rate
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_income_charged_at_basic_rate
+  kind: output
+  name: uk_pit_pilot_income_charged_at_basic_rate
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_income_charged_at_higher_rate
+  kind: output
+  name: uk_pit_pilot_income_charged_at_higher_rate
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_income_remaining_after_allowances
+  kind: output
+  name: uk_pit_pilot_income_remaining_after_allowances
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_income_tax_liability
+  kind: output
+  name: uk_pit_pilot_income_tax_liability
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_net_income
+  kind: output
+  name: uk_pit_pilot_net_income
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_personal_allowance
+  kind: output
+  name: uk_pit_pilot_personal_allowance
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_tax_calculated_at_applicable_rates
+  kind: output
+  name: uk_pit_pilot_tax_calculated_at_applicable_rates
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline#uk_pit_pilot_total_income
+  kind: output
+  name: uk_pit_pilot_total_income
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/income_tax/individual/pilot_worker_oracle_pipeline
+  occurrences: 1
+- id: uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline#uk_nic_pilot_additional_primary_contribution
+  kind: output
+  name: uk_nic_pilot_additional_primary_contribution
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline
+  occurrences: 1
+- id: uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline#uk_nic_pilot_annual_earnings
+  kind: output
+  name: uk_nic_pilot_annual_earnings
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline
+  occurrences: 1
+- id: uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline#uk_nic_pilot_main_primary_contribution
+  kind: output
+  name: uk_nic_pilot_main_primary_contribution
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline
+  occurrences: 1
+- id: uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline#uk_nic_pilot_primary_class_1_contribution
+  kind: output
+  name: uk_nic_pilot_primary_class_1_contribution
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline
+  occurrences: 1
+- id: uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline#uk_nic_pilot_primary_threshold_annual
+  kind: output
+  name: uk_nic_pilot_primary_threshold_annual
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline
+  occurrences: 1
+- id: uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline#uk_nic_pilot_upper_earnings_limit_annual
+  kind: output
+  name: uk_nic_pilot_upper_earnings_limit_annual
+  entity: Person
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/social_security/workers/pilot_worker_class_1_nic_pipeline
   occurrences: 1
 - id: uk:statutes/ukpga/1992/4/1#national_insurance_contribution
   kind: output
@@ -9206,6 +10203,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: national_insurance
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/1992/4/141#child_benefit_children_or_qualifying_young_persons_for_whom_person_responsible
   kind: output
   name: child_benefit_children_or_qualifying_young_persons_for_whom_person_responsible
@@ -9222,6 +10225,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/141
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: child_benefit_entitlement
+      comparison: money
+      program: child_benefit
 - id: uk:statutes/ukpga/1992/4/141#child_benefit_weekly_rate_for_responsible_child_or_qualifying_young_person
   kind: output
   name: child_benefit_weekly_rate_for_responsible_child_or_qualifying_young_person
@@ -9232,6 +10241,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/141
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: child_benefit_respective_amount
+      comparison: money
+      program: child_benefit
 - id: uk:statutes/ukpga/1992/4/141#child_or_qualifying_young_person_counts_for_child_benefit_weekly_entitlement
   kind: output
   name: child_or_qualifying_young_person_counts_for_child_benefit_weekly_entitlement
@@ -9260,6 +10275,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/15
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/1992/4/15#additional_class_4_percentage
   kind: output
   name: additional_class_4_percentage
@@ -9267,6 +10286,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/15
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_4.rates.additional
+      comparison: rate
+      program: tax
 - id: uk:statutes/ukpga/1992/4/15#class_4_contribution_before_annual_maximum
   kind: output
   name: class_4_contribution_before_annual_maximum
@@ -9277,6 +10302,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/15
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/1992/4/15#lower_profits_limit
   kind: output
   name: lower_profits_limit
@@ -9285,6 +10314,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/15
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_4.thresholds.lower_profits_limit
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/1992/4/15#main_class_4_contribution
   kind: output
   name: main_class_4_contribution
@@ -9295,6 +10330,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/15
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: ni_class_4_main
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/1992/4/15#main_class_4_percentage
   kind: output
   name: main_class_4_percentage
@@ -9302,6 +10343,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/15
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_4.rates.main
+      comparison: rate
+      program: tax
 - id: uk:statutes/ukpga/1992/4/15#upper_profits_limit
   kind: output
   name: upper_profits_limit
@@ -9310,6 +10357,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/15
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_4.thresholds.upper_profits_limit
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/1992/4/8#additional_primary_class_1_contribution
   kind: output
   name: additional_primary_class_1_contribution
@@ -9320,6 +10373,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/8
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: ni_class_1_employee_additional
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/1992/4/8#additional_primary_percentage
   kind: output
   name: additional_primary_percentage
@@ -9327,6 +10386,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/8
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_1.rates.employee.additional
+      comparison: rate
+      program: tax
 - id: uk:statutes/ukpga/1992/4/8#main_primary_class_1_contribution
   kind: output
   name: main_primary_class_1_contribution
@@ -9337,6 +10402,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/8
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: ni_class_1_employee_primary
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/1992/4/8#main_primary_percentage
   kind: output
   name: main_primary_percentage
@@ -9344,6 +10415,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/8
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.national_insurance.class_1.rates.employee.main
+      comparison: rate
+      program: tax
 - id: uk:statutes/ukpga/1992/4/8#primary_class_1_contribution
   kind: output
   name: primary_class_1_contribution
@@ -9354,6 +10431,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/1992/4/8
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: ni_class_1_employee
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/1994/23/2#standard_rate_of_vat
   kind: output
   name: standard_rate_of_vat
@@ -9361,6 +10444,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/1994/23/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: vat
 - id: uk:statutes/ukpga/1994/23/24#input_tax_on_standard_rated_business_purchases
   kind: output
   name: input_tax_on_standard_rated_business_purchases
@@ -9371,6 +10458,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/1994/23/24
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: vat
 - id: uk:statutes/ukpga/1994/23/24#output_tax_on_standard_rated_taxable_supplies
   kind: output
   name: output_tax_on_standard_rated_taxable_supplies
@@ -9381,6 +10472,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/1994/23/24
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: vat
 - id: uk:statutes/ukpga/1994/23/25#net_vat_liability_after_input_tax_credit
   kind: output
   name: net_vat_liability_after_input_tax_credit
@@ -9391,6 +10486,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/1994/23/25
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: vat
 - id: uk:statutes/ukpga/1994/23/26#allowable_input_tax_credit
   kind: output
   name: allowable_input_tax_credit
@@ -9401,6 +10500,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/1994/23/26
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: vat
 - id: uk:statutes/ukpga/2002/16/1#claimant_has_attained_qualifying_age
   kind: output
   name: claimant_has_attained_qualifying_age
@@ -9410,6 +10513,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: is_SP_age
+      comparison: boolean
+      program: pension_credit
 - id: uk:statutes/ukpga/2002/16/1#qualifying_age
   kind: output
   name: qualifying_age
@@ -9419,6 +10528,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: state_pension_age
+      comparison: count
+      program: pension_credit
 - id: uk:statutes/ukpga/2002/16/2#appropriate_minimum_guarantee
   kind: output
   name: appropriate_minimum_guarantee
@@ -9429,6 +10544,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: minimum_guarantee
+      comparison: money
+      program: pension_credit
 - id: uk:statutes/ukpga/2002/16/2#guarantee_credit
   kind: output
   name: guarantee_credit
@@ -9439,6 +10560,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: guarantee_credit
+      comparison: money
+      program: pension_credit
 - id: uk:statutes/ukpga/2002/16/2#guarantee_credit_condition_satisfied
   kind: output
   name: guarantee_credit_condition_satisfied
@@ -9448,6 +10575,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/2
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: pension_credit
 - id: uk:statutes/ukpga/2002/16/3#amount_a_for_savings_credit
   kind: output
   name: amount_a_for_savings_credit
@@ -9458,6 +10589,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: pension_credit
 - id: uk:statutes/ukpga/2002/16/3#amount_b_for_savings_credit
   kind: output
   name: amount_b_for_savings_credit
@@ -9468,6 +10603,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: pension_credit
 - id: uk:statutes/ukpga/2002/16/3#maximum_savings_credit
   kind: output
   name: maximum_savings_credit
@@ -9478,6 +10617,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: pension_credit
 - id: uk:statutes/ukpga/2002/16/3#savings_credit
   kind: output
   name: savings_credit
@@ -9488,6 +10631,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: savings_credit
+      comparison: money
+      program: pension_credit
 - id: uk:statutes/ukpga/2002/16/3#savings_credit_second_condition_satisfied
   kind: output
   name: savings_credit_second_condition_satisfied
@@ -9497,6 +10646,121 @@ concepts:
   modules:
   - uk:statutes/ukpga/2002/16/3
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: pension_credit
+- id: uk:statutes/ukpga/2006/46/382#company_qualifies_as_small
+  kind: output
+  name: company_qualifies_as_small
+  entity: Firm
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#company_qualifies_as_small_in_first_financial_year
+  kind: output
+  name: company_qualifies_as_small_in_first_financial_year
+  entity: Firm
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#company_qualifies_as_small_in_subsequent_financial_year
+  kind: output
+  name: company_qualifies_as_small_in_subsequent_financial_year
+  entity: Firm
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_annual_turnover_threshold
+  kind: output
+  name: small_company_annual_turnover_threshold
+  dtype: Decimal
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_balance_sheet_total_condition_met
+  kind: output
+  name: small_company_balance_sheet_total_condition_met
+  entity: Firm
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_balance_sheet_total_threshold
+  kind: output
+  name: small_company_balance_sheet_total_threshold
+  dtype: Decimal
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_balance_sheet_total_threshold_amount
+  kind: output
+  name: small_company_balance_sheet_total_threshold_amount
+  entity: Firm
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_monetary_million_multiplier
+  kind: output
+  name: small_company_monetary_million_multiplier
+  dtype: Decimal
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_number_of_employees_condition_met
+  kind: output
+  name: small_company_number_of_employees_condition_met
+  entity: Firm
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_number_of_employees_threshold
+  kind: output
+  name: small_company_number_of_employees_threshold
+  dtype: Count
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_qualifying_conditions_met
+  kind: output
+  name: small_company_qualifying_conditions_met
+  entity: Firm
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_turnover_condition_met
+  kind: output
+  name: small_company_turnover_condition_met
+  entity: Firm
+  dtype: Judgment
+  period: Year
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
+- id: uk:statutes/ukpga/2006/46/382#small_company_turnover_threshold_for_financial_year
+  kind: output
+  name: small_company_turnover_threshold_for_financial_year
+  entity: Firm
+  dtype: Money
+  unit: GBP
+  period: Year
+  modules:
+  - uk:statutes/ukpga/2006/46/382
+  occurrences: 1
 - id: uk:statutes/ukpga/2007/3/10#basic_rate_limit
   kind: output
   name: basic_rate_limit
@@ -9505,6 +10769,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.income_tax.rates.uk
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/10#higher_rate_limit
   kind: output
   name: higher_rate_limit
@@ -9515,6 +10785,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.income_tax.rates.uk
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/10#income_charged_at_additional_rate
   kind: output
   name: income_charged_at_additional_rate
@@ -9525,6 +10801,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: add_rate_earned_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/10#income_charged_at_basic_rate
   kind: output
   name: income_charged_at_basic_rate
@@ -9535,6 +10817,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: basic_rate_earned_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/10#income_charged_at_higher_rate
   kind: output
   name: income_charged_at_higher_rate
@@ -9545,6 +10833,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: higher_rate_earned_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/10#income_tax_on_section_10_income
   kind: output
   name: income_tax_on_section_10_income
@@ -9555,6 +10849,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: earned_income_tax
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/10#tax_on_income_charged_at_additional_rate
   kind: output
   name: tax_on_income_charged_at_additional_rate
@@ -9565,6 +10865,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: add_rate_earned_income_tax
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/10#tax_on_income_charged_at_basic_rate
   kind: output
   name: tax_on_income_charged_at_basic_rate
@@ -9575,6 +10881,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: basic_rate_earned_income_tax
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/10#tax_on_income_charged_at_higher_rate
   kind: output
   name: tax_on_income_charged_at_higher_rate
@@ -9585,6 +10897,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/10
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: higher_rate_earned_income_tax
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/11D#income_tax_on_section_11d_savings_income
   kind: output
   name: income_tax_on_section_11d_savings_income
@@ -9595,6 +10913,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/11D
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: savings_income_tax
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/11D#savings_income_charged_at_savings_additional_rate
   kind: output
   name: savings_income_charged_at_savings_additional_rate
@@ -9605,6 +10929,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/11D
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: add_rate_savings_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/11D#savings_income_charged_at_savings_basic_rate
   kind: output
   name: savings_income_charged_at_savings_basic_rate
@@ -9615,6 +10945,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/11D
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: basic_rate_savings_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/11D#savings_income_charged_at_savings_higher_rate
   kind: output
   name: savings_income_charged_at_savings_higher_rate
@@ -9625,6 +10961,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/11D
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: higher_rate_savings_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/11D#savings_income_charged_under_section_11d
   kind: output
   name: savings_income_charged_under_section_11d
@@ -9635,6 +10977,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/11D
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: taxed_savings_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/11D#tax_on_savings_income_charged_at_savings_additional_rate
   kind: output
   name: tax_on_savings_income_charged_at_savings_additional_rate
@@ -9645,6 +10993,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/11D
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/11D#tax_on_savings_income_charged_at_savings_basic_rate
   kind: output
   name: tax_on_savings_income_charged_at_savings_basic_rate
@@ -9655,6 +11007,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/11D
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/11D#tax_on_savings_income_charged_at_savings_higher_rate
   kind: output
   name: tax_on_savings_income_charged_at_savings_higher_rate
@@ -9665,6 +11021,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/11D
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/12#savings_income_charged_at_starting_rate_for_savings
   kind: output
   name: savings_income_charged_at_starting_rate_for_savings
@@ -9785,6 +11145,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/13
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/13#dividend_income_charged_at_dividend_ordinary_rate
   kind: output
   name: dividend_income_charged_at_dividend_ordinary_rate
@@ -9795,6 +11159,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/13
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/13#dividend_income_charged_at_dividend_upper_rate
   kind: output
   name: dividend_income_charged_at_dividend_upper_rate
@@ -9805,6 +11173,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/13
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/13#dividend_income_charged_under_section_13
   kind: output
   name: dividend_income_charged_under_section_13
@@ -9815,6 +11187,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/13
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: taxed_dividend_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/13#income_tax_on_section_13_dividend_income
   kind: output
   name: income_tax_on_section_13_dividend_income
@@ -9825,6 +11203,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/13
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: dividend_income_tax
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/13#tax_on_dividend_income_charged_at_dividend_additional_rate
   kind: output
   name: tax_on_dividend_income_charged_at_dividend_additional_rate
@@ -9835,6 +11219,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/13
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/13#tax_on_dividend_income_charged_at_dividend_ordinary_rate
   kind: output
   name: tax_on_dividend_income_charged_at_dividend_ordinary_rate
@@ -9845,6 +11233,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/13
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/13#tax_on_dividend_income_charged_at_dividend_upper_rate
   kind: output
   name: tax_on_dividend_income_charged_at_dividend_upper_rate
@@ -9855,6 +11247,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/13
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/13A#dividend_additional_rate_amount_charged_at_dividend_nil_rate
   kind: output
   name: dividend_additional_rate_amount_charged_at_dividend_nil_rate
@@ -9983,6 +11379,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/23
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/23#income_tax_liability
   kind: output
   name: income_tax_liability
@@ -9993,6 +11393,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/23
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: income_tax
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/23#net_income
   kind: output
   name: net_income
@@ -10003,6 +11409,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/23
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: adjusted_net_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/23#net_income_zero_amount
   kind: output
   name: net_income_zero_amount
@@ -10011,6 +11423,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/23
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/23#tax_left_after_reductions
   kind: output
   name: tax_left_after_reductions
@@ -10021,6 +11437,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/23
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: tax
 - id: uk:statutes/ukpga/2007/3/23#total_income
   kind: output
   name: total_income
@@ -10031,6 +11451,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/23
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: total_income
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/35#adjusted_net_income_reduction_threshold
   kind: output
   name: adjusted_net_income_reduction_threshold
@@ -10039,6 +11465,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/35
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.income_tax.allowances.personal_allowance.maximum_ANI
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/35#allowance_rounding_multiple
   kind: output
   name: allowance_rounding_multiple
@@ -10054,6 +11486,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/35
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.income_tax.allowances.personal_allowance.reduction_rate
+      comparison: rate
+      program: tax
 - id: uk:statutes/ukpga/2007/3/35#individual_entitled_to_personal_allowance
   kind: output
   name: individual_entitled_to_personal_allowance
@@ -10073,6 +11511,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/35
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: personal_allowance
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/35#personal_allowance_base_amount
   kind: output
   name: personal_allowance_base_amount
@@ -10081,6 +11525,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2007/3/35
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.income_tax.allowances.personal_allowance.amount
+      comparison: money
+      program: tax
 - id: uk:statutes/ukpga/2007/3/8#dividend_additional_rate
   kind: output
   name: dividend_additional_rate
@@ -10776,6 +12226,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2012/5/77
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: pip
+      comparison: money
+      program: pip
 - id: uk:statutes/ukpga/2012/5/78#pip_daily_living_component_weekly_amount
   kind: output
   name: pip_daily_living_component_weekly_amount
@@ -10786,6 +12242,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2012/5/78
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: pip_dl
+      comparison: money
+      program: pip
 - id: uk:statutes/ukpga/2012/5/78#pip_daily_living_enhanced_rate_entitlement
   kind: output
   name: pip_daily_living_enhanced_rate_entitlement
@@ -10795,6 +12257,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2012/5/78
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: receives_enhanced_pip_dl
+      comparison: boolean
+      program: pip
 - id: uk:statutes/ukpga/2012/5/78#pip_daily_living_standard_rate_entitlement
   kind: output
   name: pip_daily_living_standard_rate_entitlement
@@ -10804,6 +12272,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2012/5/78
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: pip
 - id: uk:statutes/ukpga/2012/5/79#pip_mobility_component_weekly_amount
   kind: output
   name: pip_mobility_component_weekly_amount
@@ -10814,6 +12286,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2012/5/79
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: direct_variable
+      variable: pip_m
+      comparison: money
+      program: pip
 - id: uk:statutes/ukpga/2012/5/79#pip_mobility_enhanced_rate_entitlement
   kind: output
   name: pip_mobility_enhanced_rate_entitlement
@@ -10823,6 +12301,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2012/5/79
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: pip
 - id: uk:statutes/ukpga/2012/5/79#pip_mobility_standard_rate_entitlement
   kind: output
   name: pip_mobility_standard_rate_entitlement
@@ -10832,6 +12314,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2012/5/79
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: pip
 - id: uk:statutes/ukpga/2012/5/8#universal_credit_amounts_to_be_deducted
   kind: output
   name: universal_credit_amounts_to_be_deducted
@@ -10852,6 +12338,11 @@ concepts:
   modules:
   - uk:statutes/ukpga/2012/5/8
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: derived_expression
+      comparison: money
+      program: universal_credit
 - id: uk:statutes/ukpga/2012/5/8#universal_credit_maximum_amount
   kind: output
   name: universal_credit_maximum_amount
@@ -10880,6 +12371,11 @@ concepts:
   modules:
   - uk:statutes/ukpga/2014/28/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      parameter: gov.hmrc.tax_free_childcare.contribution.rate
+      program: tax_free_childcare
 - id: uk:statutes/ukpga/2014/28/21#tax_free_childcare_top_up_element_rate
   kind: output
   name: tax_free_childcare_top_up_element_rate
@@ -10888,6 +12384,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2014/28/21
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.hmrc.tax_free_childcare.contribution.rate
+      comparison: rate
+      program: tax_free_childcare
 - id: uk:statutes/ukpga/2021/26/5#basic_rate_limit
   kind: output
   name: basic_rate_limit
@@ -10913,6 +12415,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2022/38/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: cost_of_living_support_payment
 - id: uk:statutes/ukpga/2022/38/1#means_tested_additional_payment_total
   kind: output
   name: means_tested_additional_payment_total
@@ -10922,6 +12428,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2022/38/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.treasury.cost_of_living_support.means_tested_households.amount
+      comparison: money
+      program: cost_of_living_support_payment
 - id: uk:statutes/ukpga/2022/38/1#second_means_tested_additional_payment_amount
   kind: output
   name: second_means_tested_additional_payment_amount
@@ -10931,6 +12443,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2022/38/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: cost_of_living_support_payment
 - id: uk:statutes/ukpga/2022/38/5#disability_additional_payment_amount
   kind: output
   name: disability_additional_payment_amount
@@ -10940,6 +12456,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2022/38/5
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.treasury.cost_of_living_support.disabled.amount
+      comparison: money
+      program: cost_of_living_support_payment
 - id: uk:statutes/ukpga/2023/1/5#basic_rate_limit
   kind: output
   name: basic_rate_limit
@@ -10974,6 +12496,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2023/7/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: cost_of_living_support_payment
 - id: uk:statutes/ukpga/2023/7/1#means_tested_additional_payment_total
   kind: output
   name: means_tested_additional_payment_total
@@ -10983,6 +12509,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2023/7/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.treasury.cost_of_living_support.means_tested_households.amount
+      comparison: money
+      program: cost_of_living_support_payment
 - id: uk:statutes/ukpga/2023/7/1#second_means_tested_additional_payment_amount
   kind: output
   name: second_means_tested_additional_payment_amount
@@ -10992,6 +12524,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2023/7/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: cost_of_living_support_payment
 - id: uk:statutes/ukpga/2023/7/1#third_means_tested_additional_payment_amount
   kind: output
   name: third_means_tested_additional_payment_amount
@@ -11001,6 +12537,10 @@ concepts:
   modules:
   - uk:statutes/ukpga/2023/7/1
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: not_comparable
+      program: cost_of_living_support_payment
 - id: uk:statutes/ukpga/2023/7/5#disability_additional_payment_amount
   kind: output
   name: disability_additional_payment_amount
@@ -11010,6 +12550,12 @@ concepts:
   modules:
   - uk:statutes/ukpga/2023/7/5
   occurrences: 1
+  mappings:
+    policyengine_uk:
+      mapping_type: parameter_value
+      parameter: gov.treasury.cost_of_living_support.disabled.amount
+      comparison: money
+      program: cost_of_living_support_payment
 - id: uk:statutes/ukpga/2026/11/1#income_tax_charged
   kind: output
   name: income_tax_charged

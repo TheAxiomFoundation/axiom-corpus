@@ -24,9 +24,11 @@ inside a ``rulespec-*`` repo:
   when every consuming rule in the same module agrees on one entity
   (unambiguous), else left unset.
 
-Cross-engine edges: PolicyEngine-US mappings (``axiom-encode``
-``oracles/policyengine/mappings/us.yaml``) are joined onto matching output
-concept ids as ``mappings.policyengine_us``.
+Cross-engine edges: PolicyEngine mappings (``axiom-encode``
+``oracles/policyengine/mappings/<country>.yaml``) are joined onto matching
+output concept ids, one file and engine key per country — US mappings as
+``mappings.policyengine_us`` and UK mappings as ``mappings.policyengine_uk``
+(see ``PE_MAPPING_SOURCES``).
 
 Usage::
 
@@ -67,6 +69,14 @@ EXCLUDED_SUFFIXES = (".test.yaml", ".meta.yaml")
 COUNTRY_REPOS: dict[str, str] = {
     "us": "rulespec-us",
     "uk": "rulespec-uk",
+}
+
+# PolicyEngine cross-engine mappings, one ``axiom-encode`` file per country,
+# joined onto matching output concept ids. ``engine`` is the mappings key the
+# edge is emitted under, matching the PolicyEngine package for that country.
+PE_MAPPING_SOURCES: dict[str, tuple[str, str]] = {
+    "us": ("src/axiom_encode/oracles/policyengine/mappings/us.yaml", "policyengine_us"),
+    "uk": ("src/axiom_encode/oracles/policyengine/mappings/uk.yaml", "policyengine_uk"),
 }
 
 
@@ -322,8 +332,16 @@ def _register_inputs(
 # ---------------------------------------------------------------------------
 
 
-def load_pe_us_mappings(mappings_path: Path) -> dict[str, dict[str, Any]]:
-    """Return ``{legal_id: mapping_edge}`` for exact-id PolicyEngine-US mappings."""
+def load_pe_mappings(mappings_path: Path) -> dict[str, dict[str, Any]]:
+    """Return ``{legal_id: mapping_edge}`` for exact-id PolicyEngine mappings.
+
+    Reads one ``axiom-encode`` PolicyEngine mappings file
+    (``oracles/policyengine/mappings/<country>.yaml``). Only exact ``legal_id``
+    entries produce edges; ``legal_id_prefix`` catch-alls are coverage-level
+    classifications, not concept edges, so they are ignored here — a fresh exact
+    ``parameter_value`` entry therefore joins onto its concept even when a
+    ``not_comparable`` prefix covers the same module.
+    """
     if not mappings_path.exists():
         return {}
     doc = _safe_load(mappings_path)
@@ -340,6 +358,10 @@ def load_pe_us_mappings(mappings_path: Path) -> dict[str, dict[str, Any]]:
         if edge:
             edges[str(legal_id)] = edge
     return edges
+
+
+# Back-compat alias: the loader was US-only before per-country mappings landed.
+load_pe_us_mappings = load_pe_mappings
 
 
 def _pe_edge_from_entry(entry: dict[str, Any]) -> dict[str, Any]:
@@ -373,7 +395,9 @@ def _resolve_field(values: set[str]) -> tuple[str | None, bool]:
 
 
 def concept_to_payload(
-    acc: ConceptAcc, pe_edges: dict[str, dict[str, Any]]
+    acc: ConceptAcc,
+    pe_edges: dict[str, dict[str, Any]],
+    engine: str = "policyengine_us",
 ) -> dict[str, Any]:
     entity, entity_amb = _resolve_field(acc.entities)
     dtype, dtype_amb = _resolve_field(acc.dtypes)
@@ -400,7 +424,7 @@ def concept_to_payload(
 
     edge = pe_edges.get(acc.id)
     if edge:
-        payload["mappings"] = {"policyengine_us": edge}
+        payload["mappings"] = {engine: edge}
     return payload
 
 
@@ -409,9 +433,10 @@ def build_jurisdiction_payload(
     concepts: dict[str, ConceptAcc],
     pe_edges: dict[str, dict[str, Any]],
     generated_from: dict[str, Any],
+    engine: str = "policyengine_us",
 ) -> dict[str, Any]:
     ordered = sorted(concepts.values(), key=lambda a: (a.kind, a.id))
-    concept_payloads = [concept_to_payload(a, pe_edges) for a in ordered]
+    concept_payloads = [concept_to_payload(a, pe_edges, engine) for a in ordered]
     n_inputs = sum(1 for a in ordered if a.kind == "input")
     n_outputs = sum(1 for a in ordered if a.kind == "output")
     return {
@@ -458,10 +483,18 @@ def build(
     encode_repo: Path,
     countries: Iterable[str],
 ) -> BuildResult:
-    pe_mappings_rel = "src/axiom_encode/oracles/policyengine/mappings/us.yaml"
-    pe_mappings_path = encode_repo / pe_mappings_rel
-    pe_edges = load_pe_us_mappings(pe_mappings_path)
-    pe_sha = git_file_sha(encode_repo, pe_mappings_rel) or git_head_sha(encode_repo)
+    # Load PolicyEngine mappings once per country from ``axiom-encode``. Each
+    # country has its own mappings file and its own engine key, so UK concepts
+    # gain ``policyengine_uk`` edges just as US concepts gain ``policyengine_us``.
+    pe_by_country: dict[str, dict[str, Any]] = {}
+    for country, (rel, engine) in PE_MAPPING_SOURCES.items():
+        path = encode_repo / rel
+        pe_by_country[country] = {
+            "edges": load_pe_mappings(path),
+            "engine": engine,
+            "path": rel,
+            "sha": git_file_sha(encode_repo, rel) or git_head_sha(encode_repo),
+        }
 
     files: dict[str, str] = {}
     per_jurisdiction: dict[str, dict[str, int]] = {}
@@ -476,25 +509,32 @@ def build(
         if not country_repo.is_dir():
             continue
         rulespec_sha = git_head_sha(country_repo)
+        pe = pe_by_country.get(country)
+        # Mappings are keyed on the country slug; a sub-jurisdiction (``us-nc``,
+        # ``uk-...``) shares its country's mapping file (edges join by exact id).
+        edges = pe["edges"] if pe else {}
+        engine = pe["engine"] if pe else "policyengine_us"
 
         for jur_dir in jurisdiction_dirs(country_repo, country):
             concepts, module_count = scan_jurisdiction(jur_dir)
             if not concepts:
                 continue
             jurisdiction = jur_dir.name
-            # Only PE-US edges apply to US jurisdictions.
-            edges = pe_edges if country == "us" else {}
             generated_from: dict[str, Any] = {
                 "rulespec_repo": repo_name,
                 "rulespec_sha": rulespec_sha,
                 "module_count": module_count,
             }
+            # Record the mappings provenance whenever a country-level mappings
+            # file contributed edges — matching the prior US behaviour (the
+            # block was attached to every US jurisdiction), now generalised so
+            # UK jurisdictions carry the same provenance.
             if edges:
                 generated_from["policyengine_mappings_repo"] = "axiom-encode"
-                generated_from["policyengine_mappings_path"] = pe_mappings_rel
-                generated_from["policyengine_mappings_sha"] = pe_sha
+                generated_from["policyengine_mappings_path"] = pe["path"]
+                generated_from["policyengine_mappings_sha"] = pe["sha"]
             payload = build_jurisdiction_payload(
-                jurisdiction, concepts, edges, generated_from
+                jurisdiction, concepts, edges, generated_from, engine
             )
             files[f"{jurisdiction}.yaml"] = dump_yaml(payload)
 

@@ -6,8 +6,11 @@ registry_version: 0.1.0
 jurisdiction: uk-kingston-upon-thames
 generated_from:
   rulespec_repo: rulespec-uk
-  rulespec_sha: e6e8523471709630ab9e13872d8aa41c18a6576e
+  rulespec_sha: a93f8af3fd135a77631819bcf897db253b6224c4
   module_count: 1
+  policyengine_mappings_repo: axiom-encode
+  policyengine_mappings_path: src/axiom_encode/oracles/policyengine/mappings/uk.yaml
+  policyengine_mappings_sha: 515ef63b6ad0b473692230fecb95c1853aa76a4a
 concept_count: 47
 input_count: 17
 output_count: 30
