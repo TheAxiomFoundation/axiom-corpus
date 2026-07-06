@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities.json",
-      "sha256": "7223d985c762edef4caf424d031bc1292756cb8164f1b4e7127a9587296a8ac9"
+      "sha256": "a5cb5aadf8c74c521ee76d5f525a78a9e4eb4065cd4f499072b009fa6e4ba37b"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities.json",
-      "sha256": "28d2e866fb8ac50a5df67164f70731e5a3171ab70de4c16ce5542e1074982701"
+      "sha256": "79f67c632142acf72b7c5db1bfb64554f538c81087b9954de52493616097591f"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities.jsonl",
-      "sha256": "d3b97e7aff3c0f35d290f673f0dfca762b3ad4866994dceaa85e7abe62ad4ab0"
+      "sha256": "5180a461a9e576294b59a2572ddf4b77c2cf679661a71b69e142599ce443474a"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities/official-documents/cra-2025-schedule-15-fhsa.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:19.726837+00:00",
+  "generated_at": "2026-07-06T16:54:06.566522+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "2/5Mql/MdKm/Rc+SGOlUhB3OrujcE+e+HLcmfj+qWW1uhP7Er68E5GufXS46sdD31tYA4zBDJO3vJCLQNBAcBw=="
+    "value": "EBPdfarKzndiwS0x2zPUrqMRiZHGibl834vVe5s2Duf/s25bNeuK57owh+2N2EnhUkEa996ENXtyiqnQ82MjBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities"

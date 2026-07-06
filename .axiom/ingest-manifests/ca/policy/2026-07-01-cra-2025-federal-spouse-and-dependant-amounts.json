@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts.json",
-      "sha256": "2169745d9058cb6797880f2bd20f4ff1701f56d4a47880bc15392195254c2604"
+      "sha256": "adb7a1387d7192c45d964ca79383259a806174797aefbadc0edda9a65e792813"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts.json",
-      "sha256": "570d858edf33d67c988ff043e7f777e898b9526364dc0321abc64e2e3923f08b"
+      "sha256": "159f640a22e09568fc772a2e776047ac99904c532df53acfb2462eb00a50a291"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts.jsonl",
-      "sha256": "ab78bbfceea90952bfe0013027a5bba009b25809f43102a0fcc798246b734acc"
+      "sha256": "95f5e001d04dffca296f32dbb00bdfac0fb3b27369fb9c4b6878d63d584a64e6"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts/official-documents/cra-2025-schedule-5-spouse-and-dependants.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:17.357279+00:00",
+  "generated_at": "2026-07-06T16:54:04.311231+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Eb8ouyxA1x8KvPOM2W4AcK8Qyne5I40anGgyv2sBtzWG3PB2QKY/waeH1s0D0+DcPZfpvVoJYbjfxxgQj0fkDQ=="
+    "value": "HH+Nu2UNm5JcvnfnFcdaw4s93RqjBjYg5CJheDby94QmSblIGZRoUSQoyzgwaky9GeC7OxWAAnZ3FHqrsAoLCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-spouse-and-dependant-amounts"

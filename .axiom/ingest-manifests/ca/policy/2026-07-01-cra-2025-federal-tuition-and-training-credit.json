@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit.json",
-      "sha256": "ff6fa8ff6ef8f6e1a7a6a31e4f9d80fcfa952ce357b60b74c9e4b494aad319a4"
+      "sha256": "b003722ace9ead3b452251383952ccec35fec398dce8dfee8cb57885599baac4"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit.json",
-      "sha256": "0d4cf9f8753820b1414fcd14aec594274fe9bd762e4eb3e4b3b588a305667e11"
+      "sha256": "4d7d2df8c90c02d6a29b156cc1e90f6eb6b32c71a8cfb2dcab0fb4e1a278c586"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit.jsonl",
-      "sha256": "878a3130703d8a93a8f9cb21ce7f7b8e8dcf5c0b01e407aba76119af71cfd9b7"
+      "sha256": "94251788aad1525dee9f48e25671008526bf1a0c69f083abe73ad39fdfb75192"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit/official-documents/cra-2025-schedule-11-tuition-training-credit.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:18.558449+00:00",
+  "generated_at": "2026-07-06T16:54:05.436763+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "45aINrb9OQCwD3Pr3qXuJuFqrlvXLmpD1bkNuKl3EyhZcHJM/+1QayCdG8ALjmMSN9XxobMtkc0x3KlRtAIdBg=="
+    "value": "Rf889GSCxU3eiaBwaPQ35VtP0xP6kvFCQLC2JsQ6LFKZYwgcNPVfK1cL4txd3pR9+zPZkOXeHIEohvGpAr4EBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-tuition-and-training-credit"

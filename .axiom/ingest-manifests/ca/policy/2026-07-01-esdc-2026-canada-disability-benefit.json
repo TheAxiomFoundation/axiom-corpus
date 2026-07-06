@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit.json",
-      "sha256": "d66736b0b378119dc3cf4649f25121ec05c6b99bb424695394565c6e2137ebdc"
+      "sha256": "adac186e085d8404448448f0154532ab2bf675b81bc7f5d791ce7dca611e4777"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit.json",
-      "sha256": "f67e1d2b2306edeb582c13ae13026acd1899342061d84dc622badfdf0ca5bf8d"
+      "sha256": "3c63f2c31c2c2d7b8ad4f2e656c6557ea75e6433aff12d9d39dd14192c8cf683"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit.jsonl",
-      "sha256": "d929c649b74e507328f9144cabd734eabfd760ed51508c1f4b75b041297d663f"
+      "sha256": "fdb4211db70995ebe66ef6d41d2cb5586f39f54988b4cf73651982aeb46838ec"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit/official-documents/esdc-canada-disability-benefit-amount.html",
@@ -26,13 +26,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -40,17 +40,17 @@
     "matched_count": null,
     "missing_count": 0,
     "provision_count": 1,
-    "source_count": 1
+    "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:36.531439+00:00",
+  "generated_at": "2026-07-06T16:54:12.271678+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "iQCTUaGVOpvRy3NfeaDvUJ/KmgyYr7zJ03/KDlgALOvrl3HpDuNi23rV/2ljVI//gvfnn2tathwsj6N2dJ9DDA=="
+    "value": "cMeAanPq+/0rhTJMMGusZlWNGVUAl2JFClambJvr29ZooblmS+WuerIpJd6cwpqpwSDVG5yecYtwh67Rp8zFCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-esdc-2026-canada-disability-benefit"

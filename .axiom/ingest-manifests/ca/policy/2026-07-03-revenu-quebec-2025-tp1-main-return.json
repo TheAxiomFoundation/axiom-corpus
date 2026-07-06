@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-03-revenu-quebec-2025-tp1-main-return.json",
-      "sha256": "e7572f4dbd6983bd09ecfc79809f94b5a61c9f09f3fec8821011627812ec7348"
+      "sha256": "b0ecb15814f26382947bd480d3b5f47c556fbbdc32bfa57e5b72cfbcae3e0e8e"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-tp1-main-return.json",
-      "sha256": "04800d4e6673b82f5ea268bf84771516a262fe181cf77923e7688ad6b21cb9b2"
+      "sha256": "93caf4850e35c07a5dd8458866e44e1db70b28cafe9f04573a0bc77da745c008"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-tp1-main-return.jsonl",
-      "sha256": "d0957a8e18b08ada803896ec918039978bbd6c4377cefd72c67f8b9c19cbee09"
+      "sha256": "479ba89b431ffe60b4ffe3784f005a2eefc81d99bdb8d1a509585c776bd359cf"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-tp1-main-return/official-documents/tp-1-v.html",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:58.517385+00:00",
+  "generated_at": "2026-07-06T16:54:14.543732+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "/C0uUZ82mrNvbkIdRAirsqNJZeOBEu6NuZLLEty64jZB814QV/HZV+rn0r4D/U42v5Id5X8gN5kx5C73OI7SDA=="
+    "value": "2Kan4WKJUghewkNoVqwLx12dlmhhqvkbWFnI3fweVhV5ee4ji2wLx+5ljg1bGLAJi45ihByB1aL9ZZEV6MGxCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-revenu-quebec-2025-tp1-main-return"

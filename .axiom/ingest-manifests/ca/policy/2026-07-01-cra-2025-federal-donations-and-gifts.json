@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-donations-and-gifts.json",
-      "sha256": "f92ef5ce746d71cb3c4e64ff7c5b4c2a7501569b7d8166001166d8dd2e251288"
+      "sha256": "67829851f70aa0a31543ac2326196737972803fd8612b828c22021b371ca62a5"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-donations-and-gifts.json",
-      "sha256": "e62f522f539cfb386b33539b578b53c203006104353eb4d591c9a36441d315fe"
+      "sha256": "9c785253c0eee408032ea042e0bc724e91e258cd765b516623dd849cdf0b32e0"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-donations-and-gifts.jsonl",
-      "sha256": "5f2ccc3dfd2caa469a6cd96e3cb24098bd5eb494e2ffa3b57fb565f75fd65d90"
+      "sha256": "961ed545e32a6c7213ca7c2a60a4266117be3604164acc0728c30bf094b0d741"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-donations-and-gifts/official-documents/cra-2025-schedule-9-donations-and-gifts.txt",
@@ -30,13 +30,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -47,14 +47,14 @@
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:16.143578+00:00",
+  "generated_at": "2026-07-06T16:54:03.740432+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Shn5ijcbNCrx8qeqLvhUNaL1NbePDnYLSIopG+A5IrvcM14D1QIyfU0a7Ki5YgK3fBfXF+EA8xZezUIBpOsJBQ=="
+    "value": "GAqmV9KGk78RVfUIoZt/eSq6ecHvfOLLe8Te68hafL0P09vl/5QSMDVxplBHiRGBc8TsWU8rkz+AupYxBVi/Bg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-donations-and-gifts"

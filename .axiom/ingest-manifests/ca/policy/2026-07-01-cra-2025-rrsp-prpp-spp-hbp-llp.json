@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
-      "sha256": "c6f336adabbab1c5ccf55914cb5d2f92fea7c7be0ef94c7ddc96fde88ae5a021"
+      "sha256": "2576ab134f0b80d26c77f7df5ea1540c80992a6eb7c94e5336befc3d9eeead71"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
-      "sha256": "6b1bd847e0fbac6ffb52029d1b8970dd512e8cb0f500f4046454f757d429374d"
+      "sha256": "1c8dfd98c0adbf5cece45d6d3e617d84593be4fbca517d45fb4031afdf110d8e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.jsonl",
-      "sha256": "e7ef358467f589981dae64054a3c5a848c5b9bb2ab32ee0713864729f6888465"
+      "sha256": "7fb4f135a9a65982a7b9ee693cebdfe903f3367fadc4ba0a8881c7de01191c18"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-2025-schedule-7-rrsp-prpp-spp.txt",
@@ -30,13 +30,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -47,14 +47,14 @@
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:25.150072+00:00",
+  "generated_at": "2026-07-06T16:54:07.696762+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "YPfaM83Gn9LhphnM9cstyIAUe6WFJF05IffAABQp3BmqhPkYqkXFvF2HyfSMmjdwKkiY7TQym3A8UaOc0vtOAw=="
+    "value": "LbgDZt5DtvL44DjB52b26vpiAz3V20q8TCa/rjeNBIOS05Iz+4KtEz54i+DT7LBhQQRXSiZV3C2GP1VyoDoFCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp"

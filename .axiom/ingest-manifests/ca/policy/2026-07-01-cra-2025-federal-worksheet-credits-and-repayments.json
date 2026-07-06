@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments.json",
-      "sha256": "2be6def16277c85f25d7fc0621e4cadd56033eac54442cad8bab37e2f6e24d09"
+      "sha256": "565438cd99842bc230462463d5b2ffedc6f927e1a479a9c7ce92006a25068093"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments.json",
-      "sha256": "3f241b1cf75e4ecf049e60ff57ca7c5e42e121e683a77d03e2a167cb93d93fc3"
+      "sha256": "0eaff88302223d2489ce08fbf6d5de16d4d97b7a1eb8b7b74608c05716972e8e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments.jsonl",
-      "sha256": "ecebf477ee330915cddda5d4e177449ea0509f53bf12a9f266142cb299efee5f"
+      "sha256": "d5fe61ded690f3be4bc480d89c99b7488cbf8615dee8efee869ca11379ac16dd"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments/official-documents/cra-2025-federal-worksheet.txt",
@@ -26,13 +26,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -43,14 +43,14 @@
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:19.143862+00:00",
+  "generated_at": "2026-07-06T16:54:06.000262+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "8jw+qKaY53mwg3KaA+yLoZoGB01tdVsbg0BNjiHM1tTkMENDe58lUvJ3n30Q1QHBI89ZfjEM6oE5LaBNQF48CA=="
+    "value": "o6koKacYKtxLAzDco3sj75E6T8fcNIXyiOTwlY5/SNX2lpjtGDfLQmZNdw+sMdpPJsSprryEnnD/rMMAen03Dw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-worksheet-credits-and-repayments"
