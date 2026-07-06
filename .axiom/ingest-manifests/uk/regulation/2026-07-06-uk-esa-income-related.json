@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-06-uk-esa-income-related.json",
+      "sha256": "0f54702c3528c86c1d467fc23a7370a51e0040ee5f5431f07ef2013970c09a5e"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-06-uk-esa-income-related.json",
+      "sha256": "acdbc888218033d04cdd4250a7ef0acb8f38eae69b230b3b8073254bbd41f929"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-06-uk-esa-income-related.jsonl",
+      "sha256": "8013016f00b2a6b6e4e947392d42bacd781098b3a3a6f4647a19cbf38f1cd738"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-esa-income-related/uksi/2008/794/regulation-67.xml",
+      "sha256": "8a40dba4872f2a1546d5b80c095ba580253cc0b6b6cddf67a583a9f58445ba67"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-esa-income-related/uksi/2008/794/regulation-68.xml",
+      "sha256": "23b22971eed349436d879d562757f344b5521d57310bc028a93a4f0acb5d92a8"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-esa-income-related/uksi/2008/794/schedule-4.xml",
+      "sha256": "0003897c676eb90e3226690c28e3dff58b7d7507289ae740eab37a22e1f53091"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "025f5d98e446cd4bf26961e0a3249b90238b736b",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/laneC-esa-tc/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-06-uk-esa-income-related --source clml --citation uksi/2008/794/regulation/67 --citation uksi/2008/794/schedule/4 --citation uksi/2008/794/regulation/68 --source-as-of 2026-07-06 --expression-date 2026-04-06 --allow-incomplete"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-06T22:47:19.527269+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KBrbXOMUzOUy9mrx5msCmCWdSU0yGqUNyFVhO5hD+dIv7dJEbC/T9CMbHz1oy9Z/kZaPUREGZzF6mMLwGExYBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-uk-esa-income-related"
+}
