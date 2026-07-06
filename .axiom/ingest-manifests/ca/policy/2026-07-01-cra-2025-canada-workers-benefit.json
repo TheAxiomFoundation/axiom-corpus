@@ -2,23 +2,19 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-canada-workers-benefit.json",
-      "sha256": "01863787d80a669febc7132e76f1d1fcbe07f4905a1d92e9f42efa216f677dea"
+      "sha256": "c4c4d22a2b56d7caeb3d2d314802ba46e1e923d8995cb2c2babcce4b535dba19"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-canada-workers-benefit.json",
-      "sha256": "388f6a4431a84474e729aebda45bd40ae127c214d0252904096b3626776c980a"
+      "sha256": "cc42d29d48996c7983737e8036016cd185e47be51c3683fb61fcc41f8a126893"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-canada-workers-benefit.jsonl",
-      "sha256": "eef7d6e6e555a951c44727a329d6d76aecec133032ffec044149d5fd68149a37"
+      "sha256": "38547ced92209553bdb23b35298d95238b27c5ae2e9d395dbaa6567f3ba6976c"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-alberta-canada-workers-benefit.txt",
       "sha256": "ef24f20b9d7999a250315b14cf05fdbc67f9c82213d07fb2a05e6c0d6a40ff4b"
-    },
-    {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-canada-workers-benefit.txt",
-      "sha256": "3a9dacdc65b8da9917c64704c6b35b7781884f62b25956c8e381e9c1a353a3c6"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-nunavut-canada-workers-benefit.txt",
@@ -27,16 +23,24 @@
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-quebec-canada-workers-benefit.txt",
       "sha256": "bf5f474f90be5cea78336f8e17dbe50237dec4977dfc9053c60ab173d9c9e4a9"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-schedule-6-canada-workers-benefit.txt",
+      "sha256": "7066738937fed9dbc7fc0f2597ac8557b9adde9a280222713da27dc4c9f2904a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-canada-workers-benefit/reasoning/cra-2025-canada-workers-benefit.txt",
+      "sha256": "3a9dacdc65b8da9917c64704c6b35b7781884f62b25956c8e381e9c1a353a3c6"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-canada-workers-benefit"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -47,14 +51,14 @@
     "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:07.664605+00:00",
+  "generated_at": "2026-07-06T16:54:02.606975+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JYc687TgU7L0xtPB9Juy3AvX71z5lM9K5LQ+DO89JnyEQbU1GUJ0DwrjZargizSIin1dghn6bX1JDWG0mi73Cw=="
+    "value": "C3qXZ0IRJTjFtLzos8CZw00hbrMeKIIDnLirTAglGZAR/1lPCqT3rm/fIscOhi5m6i9HPkES9/bEVDD1HULeDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-canada-workers-benefit"

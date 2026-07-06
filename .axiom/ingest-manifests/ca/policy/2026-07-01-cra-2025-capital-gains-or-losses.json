@@ -2,29 +2,33 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses.json",
-      "sha256": "ef58023a7b7e4faeec6dc81f4f52c655351a1381e43900a7bd678f2756b5ebf0"
+      "sha256": "ed4015e561c499c94ffa4c22db2e58f1dc68205aade078726922f6e29a5feda5"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses.json",
-      "sha256": "6180a3ce210cd7d8af0e9f2aea0fd79da520186d11caf2eb9f5addf8350d29d9"
+      "sha256": "1ae59dc03b1fdb2d8834c367cf6e4a5b6b010d1470fa2a51c757a9ea2ba31d71"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses.jsonl",
-      "sha256": "8d9c99d9b4519da3ce423643717fc7d4ac2b3fd48e454fe2f8dd3ed7ef3a980a"
+      "sha256": "44b113b4e44c534f228bcd55f256a5b092b75e79bd1bd6cdb68fcc73c9597b2f"
     },
     {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses/official-documents/cra-2025-capital-gains-or-losses.txt",
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses/official-documents/cra-2025-schedule-3-capital-gains-or-losses.txt",
+      "sha256": "52652ae11d25185f29626e5a7f59ee3e23c43d674523116999c23cc2e760729b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses/reasoning/cra-2025-capital-gains-or-losses.txt",
       "sha256": "173c810c158ce471a0595546d3751f12f081cfb816c9c9e7659fce34b81f017c"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-capital-gains-or-losses"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:09.381062+00:00",
+  "generated_at": "2026-07-06T16:54:03.169305+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "imdi4q24J9Ek4vnM1KH9x+WEhNRU5WnwvECkQaWS5vpEUZFIA1DPp0H1Zuxurf0NEiS5rZyLnOmv2B2trLsOBg=="
+    "value": "10cJfDHhZh5JIUdOjBFYOXIbFSoGtHJWhoEdFVWM8UkYZcrDxjHDWpN6ZicbkElNFfyBOtFbk/jyeOgVTJZ/Dg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-capital-gains-or-losses"

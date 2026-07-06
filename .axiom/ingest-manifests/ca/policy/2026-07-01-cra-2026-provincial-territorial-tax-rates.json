@@ -2,29 +2,41 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates.json",
-      "sha256": "514a81b31974177ff26fa9d239387041cdde64255c6b013d8caeb553c314583e"
+      "sha256": "2d10ab5787fe79277cea5b784d810ca195b4ce9e4fa2a40217b3bd9f75d18e1d"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates.json",
-      "sha256": "9ee2010f7d54e7e5b3eb99b6b7697b8877872368734b9ba35cadcf13c81fbaf5"
+      "sha256": "1748eb8cd5b8322672f125e3bd6ddc717f14f08c6341f387acf51031260d1f64"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates.jsonl",
-      "sha256": "635aa9775019e83751dce404d1d1f5055c9ea0d488bf48bf87aa3621e86449b8"
+      "sha256": "c30ce8329be80e9c25f2b8a2f8270485567f24da5054b5a1504d6a61b97334e6"
     },
     {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-provincial-territorial-income-tax.txt",
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "sha256": "05987c195301eef9b703cc2c29682db28d6102b6f45ac037fc9fddef39b79ae9"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-tax-rates-current-year.html",
+      "sha256": "5567a935f34560dea510546b0ebfc5304d4a95d04584c98a0f589346c4a9cd20"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/revenu-quebec-income-tax-rates.html",
+      "sha256": "64988659e7a5de477ed4c5a81ad8191b88a7d96d9fa40961455c838cb8a37db7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/reasoning/cra-2026-provincial-territorial-income-tax.txt",
       "sha256": "06c8e54c0cfdd7827fa228fd627ea76ed71eee852a0e62340613012f9e4b903c"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2026-provincial-territorial-tax-rates"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -32,17 +44,17 @@
     "matched_count": null,
     "missing_count": 0,
     "provision_count": 1,
-    "source_count": 1
+    "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:31.572484+00:00",
+  "generated_at": "2026-07-06T16:54:11.128653+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "mvyzEZJUQxqxrYNfpVa5MAC4aF+XGr3+BUgJQD2Rl8iN9hOxk2DPNRLQji1Z2CmqptkUgwDuI12ExrQcXLE4BQ=="
+    "value": "QtuNUgblUHiDDJWSMykP5VULvdL5CQv/FYZmnVCDm3xojS1qnV+AOyFjNojtfOzjK20y24Rtwa6H7PoD6FiUDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-provincial-territorial-tax-rates"

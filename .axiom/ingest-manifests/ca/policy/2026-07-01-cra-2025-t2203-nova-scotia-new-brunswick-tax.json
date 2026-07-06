@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.jsonl",
-      "sha256": "7fe130ada2c73fc94980afcc1eb6cae99ab8b0028043ed59336e887208dca1cd"
+      "sha256": "552828540d09f35fddb0d9c88b9ff129bc6e757774b7fdc55dab1a7e6cb623ba"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax/official-documents/cra-2025-t2203-nova-scotia-new-brunswick-tax.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:24.436577+00:00",
+  "generated_at": "2026-07-06T16:45:27.535753+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "wyAOl2TOnyMeg+SClJBgw02kAp8wXsGP7hEtr1yOuw/Di/auzcEd5r4DTcLAsEeQA8ki/t5zCxA1R6rzgh7MBg=="
+    "value": "V8OhKBvqj4YUI3FxiDHG4lxKh2aIMcx+F+eAksZWR6YG5qn2dhKNhjmI8xa6RMDcrpSkFzG7N000rFIAdH8IDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax"

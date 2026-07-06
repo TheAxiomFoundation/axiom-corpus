@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.jsonl",
-      "sha256": "0d2c2b8fb568f018a68d20b6a6d9e6b86691a3d00f0fd998b44408e9e134f4ff"
+      "sha256": "89a707c38ca46dbf58424e9def0bec48f09bf1e164715b3b613444c83ee79db0"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction/official-documents/cra-2025-tax-shelter-loss-or-deduction.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-tax-shelter-loss-or-deduction"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:28.264185+00:00",
+  "generated_at": "2026-07-06T16:45:31.679146+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "BTNBs3QxC+kKtXhOsi2No6sBcK8VJABgJ85AIzT+rCuG0XIZphzbZRPII2V9sMclPvSMIZopUdKaxUrrqcAOCg=="
+    "value": "vnXSk0ufiTBuODbAvYPOxfDd7jKWRyN9cKIOcTdpeU5FsuL5tQ4NWZQJXDE67u2Q3nET3rHsxcMq+eUDUsAZDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-tax-shelter-loss-or-deduction"

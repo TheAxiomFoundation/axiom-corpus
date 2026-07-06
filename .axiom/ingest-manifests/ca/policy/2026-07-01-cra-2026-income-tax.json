@@ -2,29 +2,37 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-income-tax.json",
-      "sha256": "77e67447aae05495c0b039cf8ada087146919e6f841d2a0d6a08335b18547ef4"
+      "sha256": "de59fd646a4f6227b0e758430c44b22c2a5bbf1c484e4c4d2d2649b76de6ad8b"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-income-tax.json",
-      "sha256": "b43d4651c961eb177f944c916f8d71827d986ef7681f6c0fa323ccd94592563d"
+      "sha256": "ed1765196df01b36337a807e64997f55201678f4d778f6dbb6f3c4cb66940b82"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-income-tax.jsonl",
-      "sha256": "6a245102c278446b2e2050c59c7f4cf9dd582400004717c9b891f0aaf0f09d18"
+      "sha256": "b31524506582e6c4866739df24c12719ae761c4d531da2dbb05e392d844c93b0"
     },
     {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-federal-income-tax.txt",
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-federal-tax-rates-current-year.html",
+      "sha256": "d0913edef2c9a14ba68b6a3ecb8615cc5e632a7d65c81f5f0c9b0ad1f23dab39"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "sha256": "a383303be8ecf3c055ec58cceb48fc0f61f552d4d14e3255b8c3758e3ca3b0de"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/reasoning/cra-2026-federal-income-tax.txt",
       "sha256": "65244fb6f1d9b0eed870dd9af526e70e4cf8d284742ae6c7ff93a132785f6ac5"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2026-income-tax"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -32,17 +40,17 @@
     "matched_count": null,
     "missing_count": 0,
     "provision_count": 1,
-    "source_count": 1
+    "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:30.488216+00:00",
+  "generated_at": "2026-07-06T16:54:09.986424+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "QcDJ2jRViH/ldAWizGOHwNqALWxkTICmNszYdJS8fGSkjBegr9mXx/PVT9qvPtsjgIpXuIPQ8fErWgo7KHUVBw=="
+    "value": "FiBzSgYHhK8m2mjVcmuavA+Oi4K/liwbsTHEXQG9q34gx0InLx69FpCbbMVqbgtMomfZvbFLi5gd3xsUOH6TBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-income-tax"

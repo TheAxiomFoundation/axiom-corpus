@@ -2,19 +2,19 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
-      "sha256": "c6f336adabbab1c5ccf55914cb5d2f92fea7c7be0ef94c7ddc96fde88ae5a021"
+      "sha256": "2576ab134f0b80d26c77f7df5ea1540c80992a6eb7c94e5336befc3d9eeead71"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
-      "sha256": "e4888470b2762e1797b1a6e372152ddb0378db881f62a6107c47aa5b872b2836"
+      "sha256": "1c8dfd98c0adbf5cece45d6d3e617d84593be4fbca517d45fb4031afdf110d8e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.jsonl",
-      "sha256": "b6e6ddb558938df9c190bf82cf4a3d3a457d2c21fe9b116d25496537e791e92f"
+      "sha256": "7fb4f135a9a65982a7b9ee693cebdfe903f3367fadc4ba0a8881c7de01191c18"
     },
     {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-2025-rrsp-prpp-spp-hbp-llp.txt",
-      "sha256": "d296dade45f52c7f41bc5f248c85b6df4f8e059b0658b4899b48b8c3640c1e40"
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-2025-schedule-7-rrsp-prpp-spp.txt",
+      "sha256": "da45626f1d955cead115f2f1bc3f9d991c5c501766f1ebd1a47a3e046ddd0a0b"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-hbp-repay-amounts-withdrawn.html",
@@ -23,16 +23,20 @@
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-llp-repayments.html",
       "sha256": "91869e4ee31e3a3e329b99652dd701d3550dde6e64e3674e662ea91618c7246d"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/reasoning/cra-2025-rrsp-prpp-spp-hbp-llp.txt",
+      "sha256": "d296dade45f52c7f41bc5f248c85b6df4f8e059b0658b4899b48b8c3640c1e40"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -43,14 +47,14 @@
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:22.203671+00:00",
+  "generated_at": "2026-07-06T16:54:07.696762+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "O+inunbETB0t0wZJ+MHamEuVISmCpi1y4WgT80idAGO7j2gTMqmjT4zriB5lfBK0/oeVUWCGNZ2ep9L2eEXgDA=="
+    "value": "LbgDZt5DtvL44DjB52b26vpiAz3V20q8TCa/rjeNBIOS05Iz+4KtEz54i+DT7LBhQQRXSiZV3C2GP1VyoDoFCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp"

@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit.jsonl",
-      "sha256": "61b690ac0c0b09730c635580567c906dd1e5bcdf3f12f9cb8fc079bb8c271bb8"
+      "sha256": "67f6ed006578163c50c93d18a3bbf4ee5db4cc9e64a8eb484bfd6ba18da59bfa"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit/official-documents/cra-2025-provincial-territorial-foreign-tax-credit.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:21.120964+00:00",
+  "generated_at": "2026-07-06T16:45:23.933099+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "dlzlDLoU64arigEeYuHtL0efjr10f1j1/7O9l79r6aQvo25yFXUuTwawAFtcI6r9iq8Ys6eiauoUxtXxaayiDg=="
+    "value": "0QkGOyHOzSywmCeNuy8S6fp5fb0fGPc80RhwUEWy5KWue+iWmXhmI9Pedb4Th1DfDlpb0EU/B2ZgOKaegFehDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit"

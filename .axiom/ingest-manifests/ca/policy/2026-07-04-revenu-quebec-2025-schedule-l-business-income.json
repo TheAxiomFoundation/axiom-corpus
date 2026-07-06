@@ -1,29 +1,52 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-l-business-income.json",
+      "sha256": "9812e9afb2fda0554685860dd94e56c05bfdf33fb74a247b2189a3dab7932c70"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-l-business-income.json",
+      "sha256": "119679a5bf7a034276317e73ff1a3cf582085ce6055ddac0de9bd26aa01aba96"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-l-business-income.jsonl",
-      "sha256": "23819d8aa8a97da795f7568bda3d739ca4382104df29e084c4a5c77a80aa22bf"
+      "sha256": "da110f8439a0d5cd2b5bb2934cb9f01af4b09e22500b8adddd93084da7cb238e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-l-business-income/official-documents/tp-1-d-l-v-2025.pdf",
+      "sha256": "48e71d4a197dbc6c9855b77fca09ff9605056d39f225289f9c92f1a4586866b1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-l-business-income/official-documents/tp-1-d-l-v-2025.txt",
+      "sha256": "57800e5f805324aa7ecc81ddf01cb0b2c36a768913c17f257cd868b22d010274"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-04-revenu-quebec-2025-schedule-l-business-income"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:55.707873+00:00",
+  "generated_at": "2026-07-06T16:46:01.391356+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "b9IPCTTZys046j7T7YwD86GQAGQ0ZYrzPI7Lhl94F27BDL+IHGCjU71aSEQ3EqqbzG921by8apPYVosvGG4qDQ=="
+    "value": "X/BDG/MtpnbYxWf4FIKiqa9sDGlf7w79FCeXvUtdarFfrcwrSqkFaTpa/mObnDcHvyFs4QsApNgJ8kJJ7WTRCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-l-business-income"

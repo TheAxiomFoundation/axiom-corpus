@@ -1,29 +1,52 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors.json",
+      "sha256": "11ab4a3014fb1c4da66f6b296880597f86dd4fe1305385d05a1ef8065d3f05fd"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors.json",
+      "sha256": "1794a64ef834649a142f647b52d8238866c66bb926f35836f99c9ea0b5e5dfc8"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors.jsonl",
-      "sha256": "0494dc0a618dc752adc5f4422ae6b91269374e4089ec9a7952156a4bc35e9dfd"
+      "sha256": "5141eaf3ad1e2260d8728c91f52947d4cbb024478ced978cbacdb84f419922f3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors/official-documents/tp-1-d-j-v-2025.pdf",
+      "sha256": "18314be8e71d5c20f256d650e8fe122340d742c6626ca6b40bf8b06fc4456f3a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors/official-documents/tp-1-d-j-v-2025.txt",
+      "sha256": "0e86d97c3b9917c1596f67b0af706bcb7d3722fc912fec0e0f4b280ba194ace4"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:54.645745+00:00",
+  "generated_at": "2026-07-06T16:46:00.220303+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "RcOQ1C+vxi5As5b4qNV34kaiAt0Sk0OlZS2ycJEkKt9e4/RhP7DAup4LTQLBzxiQHsrXFVfo8BBPN91dqOG0Dw=="
+    "value": "TheK6+GGfSiQrmsi3vbw62X0rGsy/cY5kqzgEGHIdqZPH5qSOVnpELQn3QX9WDRV/6Ur8xEy11Ng/w04wvwzBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors"

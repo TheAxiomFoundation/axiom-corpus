@@ -2,29 +2,37 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.json",
-      "sha256": "67e4f418164897c83ec852d77b1d8000cbfd169e671d0a8b1079945b901d7825"
+      "sha256": "9177c48bebb2e1ec16166a22039f5b4516b590e38a25c82f42b1c1cc787d428e"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.json",
-      "sha256": "7bc020159499288e2725d9445bc082e8250bce77a1b90f47bd6e3af6b43c4383"
+      "sha256": "c33daad0f88953f8d9fe86c2cd6b456aeccccb0c428bd63052e3ec69e6337f0c"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.jsonl",
-      "sha256": "0ceb649d7f355d12bbb0d12ff51a4eb19fae0195af7c6e6f4f80282f28942844"
+      "sha256": "199b24a8b31ea2182ca31e442790895a26619f057d18fcee263f94912605c8a6"
     },
     {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-federal-td1-personal-credits.txt",
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-td1-form.txt",
+      "sha256": "541a22a104a80fff7fec4dc28963445748ca519101b66777bc08a1a485357aeb"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-td1-ws-worksheet.txt",
+      "sha256": "aab582447adb44526c99ab4ab62d0122883e391c75e4a8c53850dbe40626a806"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/reasoning/cra-2026-federal-td1-personal-credits.txt",
       "sha256": "8bf1554959a907f264ec6a4f05f401d2f55baf18084ea033c2e3a1e57eae9f6d"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2026-federal-td1-personal-credits"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -32,17 +40,17 @@
     "matched_count": null,
     "missing_count": 0,
     "provision_count": 1,
-    "source_count": 1
+    "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:29.931360+00:00",
+  "generated_at": "2026-07-06T16:54:09.418178+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "FxmPVACarPnsiXKjByomdJa8B9twee5rUpDkeB+20ra7hGfllGqzlCE8CA/OghHpXSFM+uvGUY0EEodJH+x6Cw=="
+    "value": "7juMu1/wRBjpmqckl7QXrh0RPpPWo4YK8o7bDUn6Fgu2aegQFhCRDzIKl/nEIxU4PeUFEgqjJ/wn9wPLCWxuDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-federal-td1-personal-credits"

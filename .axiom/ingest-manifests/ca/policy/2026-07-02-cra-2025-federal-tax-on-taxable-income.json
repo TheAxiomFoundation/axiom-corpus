@@ -1,29 +1,48 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-federal-tax-on-taxable-income.json",
+      "sha256": "dab5145c84bec3e94220be634d4ce45d2f16a397f99e113c0ef17489b6f32b6c"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-federal-tax-on-taxable-income.json",
+      "sha256": "8e69288afbc93daa88fedd0fccd91f65e72f2c73c92330f36271af0bc404c2ed"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-tax-on-taxable-income.jsonl",
-      "sha256": "367903827fb21df681ca2f7805ceaa2459bbec38424020e7bd35b250f8f24b16"
+      "sha256": "d168ea7f28e9654fdac47d7507c2233b4ffd709899e8b35e61acddade6cb0ffe"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-federal-tax-on-taxable-income/official-documents/5000-r-25e.txt",
+      "sha256": "49abf16998ee1b2f4bc21375bdea96024628cbf43044d38e8aa50e33bde522ae"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-02-cra-2025-federal-tax-on-taxable-income"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:36.502950+00:00",
+  "generated_at": "2026-07-06T16:45:40.569993+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "QV/xJ5X6Tx5ISlhD+NtrV5p0HufR9xyPvhFpVKG3ILDXzyqqUcgr2P25aIlwAXocj/ElDihaDuGWkZOF6OauDQ=="
+    "value": "uCkSG8zaQIYSwPs9N1ak0ptKzA+62Yl6+NE/qoazPFjCGLJrGZLV+T1lVLPlr1mQAGnWnJsSfUIm1OZpuJpGBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-federal-tax-on-taxable-income"

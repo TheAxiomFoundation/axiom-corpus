@@ -1,29 +1,52 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer.json",
+      "sha256": "cc3971f2bc17128ede894710ad316ead162edd37d774097e662098863bde7f42"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer.json",
+      "sha256": "014896640ec0ead5f9fb015acfac92998d0ac2b9f6cee4738937cb4440024d4f"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer.jsonl",
-      "sha256": "d0f07544279e9e21b4a1b394ac8cd99c9527b14cef1195885f1d7cf671eb2f9f"
+      "sha256": "a2afbe0372bebae62a6830a83fa9a9779ebbac1f3c7e08b101d3520d0e0bfdd3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer/official-documents/tp-1-d-s-v-2025.pdf",
+      "sha256": "64ac2eb908192908f2da129795f9faa5cf209f2666e1cb50d41708ea6a38a6e1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer/official-documents/tp-1-d-s-v-2025.txt",
+      "sha256": "7ec5b765472186652fa24b02222177a1f704f519f8bec4d808f38323f808026c"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-04-revenu-quebec-2025-schedule-s-student-transfer"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:58.947695+00:00",
+  "generated_at": "2026-07-06T16:46:05.024545+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "g/8K0sPXZRVdTW8nz85LopWwd23MYw2Vvf+om1outWgXsAwtvqXD1Y0U4PNFD8vYolHu5heYrUGwGyBkno+uBA=="
+    "value": "YN3Y7021wLhCQ2RJtj+VfMHDnYO085cH060SMLljhZl4Q058eHUdL0Nlyve994qKiFAcg0lwoNp/rPTwO6NaBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-s-student-transfer"

@@ -2,29 +2,33 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-claim-codes.json",
-      "sha256": "36319e45813e404441562ec9fd1c7ab226f5af2f8810675f41980920866fdfa3"
+      "sha256": "949a9069ba9439406e741bc3fe64d4edf59026d31e4c49dc42226a52572d2fe5"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-claim-codes.json",
-      "sha256": "b0893a04e8f43aba719f8c1af72e8217a653da0d2c4e09811d0b4d5d67034084"
+      "sha256": "61f02113bc3b8d3f78456f1b66c2b68935fcd10457259aa025e124c91b1a7325"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-claim-codes.jsonl",
-      "sha256": "b63f20c6d1d790e3ad8b6b50c1e17bd164451ed8763cd0068fde7c3e3b918c8c"
+      "sha256": "3a1908a58624adbdf77f38de2f4707b647ab7818c4e6779c89c31da4133b6100"
     },
     {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-claim-codes/official-documents/cra-2026-claim-codes.txt",
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-claim-codes/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "sha256": "76ad2b661fee5d0a2aa0d6deefaf2137cb8f580b9725c8c885be3f2222d1856b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-claim-codes/reasoning/cra-2026-claim-codes.txt",
       "sha256": "2f912a8c46fcbe863927c21c97e532191bc4ae3fa2d8e85a96a671c9f9b43398"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2026-claim-codes"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:28.814044+00:00",
+  "generated_at": "2026-07-06T16:54:08.275527+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "tHKUCgIkXpuBRka4uq00C46pV6vWhf7dDvCZs0ZEkgkuNJPUOEBD4gckdd1pguPy0nUMkDDC3YUuVToTmVZgAw=="
+    "value": "JDnr+8ctVq1tleFEQt7/t6l6svluNqmjzM9n/PTtUCJN9sfrH9+rsxHcODMsQehSfdNIgM2CihBA2KZIuNoaAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-claim-codes"
