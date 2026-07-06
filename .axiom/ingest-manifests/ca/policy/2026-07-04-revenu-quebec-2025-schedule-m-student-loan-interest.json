@@ -1,29 +1,52 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest.json",
+      "sha256": "828621b4083fb6555acb548fba4174c85a312f64b2168a51727af7fa15c67954"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest.json",
+      "sha256": "1032c41932b59f702677c22fb1947c27911944090af7717b910d8d16cd27bb8f"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest.jsonl",
       "sha256": "5d9581e060bc4d057fb6a13b1d71fccc6c0710bb85339f7def74a865a3335124"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest/official-documents/tp-1-d-m-v-2025.pdf",
+      "sha256": "4bdea28861766b2fbf3600af27edfbd01edf4ecdcdcef05f3a208a7402fc3365"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest/official-documents/tp-1-d-m-v-2025.txt",
+      "sha256": "f4a6d03447d7e5f441e2d83385d1d424a6f0a2949b431514674e21e1aadf0abe"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:56.240902+00:00",
+  "generated_at": "2026-07-06T16:41:20.054158+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "54jZJ1yjrQcfhUNCEzIp8VOAve9cDkLpg786WP6SDLcpqgcRSbnePlZhDo9hP5QHWwk7DPsIG7FDhgqc+C4PDA=="
+    "value": "HjT9JwuDD3LRvlPbQyr2lrz14pncz2aa580iLiIasknRspAN3C1O61ieuCox2fQPjCGn4/GH5K68UyU9fu7WDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest"

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction.json",
+      "sha256": "a59665f21f41042e732e2bd103a2873dd5a3078e440c86e027fb045dae988e8e"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction.json",
+      "sha256": "0078fb816b76e05dd98a34ec62e0e989be65df2533863486a8472226e925e737"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction.jsonl",
+      "sha256": "7c227f2a1301ceaf910ea3c2dce597c0a29f270a921257233d1ad37d49a616bd"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction/official-documents/cra-2025-t778-child-care-expenses.txt",
+      "sha256": "3caec18864699de88724897e08d9a5d59608ab753a529d63b5d84c92f404dc49"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction/reasoning/cra-2025-child-care-expenses-deduction.txt",
+      "sha256": "1ee3d013fb78cb82fbc03c08a3bbb1c1d9119f831b219aa79ecad7ca10f998ba"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T16:41:24.346531+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/mrXR/t4mRvBXjoAcT4xqAXgsRXivDHhkR6ev2HJEM85bhKsuDP5oUSRqs/XuJj8g1PZmiCytESj3eE11cMXCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-cra-2025-child-care-expenses-deduction"
+}

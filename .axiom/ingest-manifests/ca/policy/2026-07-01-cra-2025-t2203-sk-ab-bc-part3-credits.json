@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-t2203-sk-ab-bc-part3-credits"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:26.069660+00:00",
+  "generated_at": "2026-07-06T16:40:45.536499+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "dSLMt24xT68qxWkBoJUh7voLSpbQiFFiUzBGve5PuI7rhEJm8RJN605+xvY8lWynr9f0LK4QJqhwHLiwD9hPBg=="
+    "value": "GGA+Uv+wRn75n2fn/bH6mfmgpqXhRftaKBm54LoW/hwQGzKzdtr4sfOn4g2LJVKCw0XHe88VWCKbTLHZmj87CQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-sk-ab-bc-part3-credits"

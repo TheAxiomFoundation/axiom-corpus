@@ -1,29 +1,52 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium.json",
+      "sha256": "e00bb1aba95440263a2560cbcc33da2f2ef068e3cfdd0935c8877b582b0c6ef4"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium.json",
+      "sha256": "094ad675f899535167f837dad4bfa5523a77f28007a6fab31036e7ea282a0596"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium.jsonl",
       "sha256": "8a41cfd7a8798589feb0fabe9fb08a35f8fce43cba53030ee3d38b8faa01cbd1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium/official-documents/tp-1-d-r-v-2025.pdf",
+      "sha256": "818a9fc06432ec8c9f0a63919414d67bd83087f10eafc5e20b8675fa0dc6acb0"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium/official-documents/tp-1-d-r-v-2025.txt",
+      "sha256": "b4f0d06a85da1e1fabe314a2ff55cc57b664bf869d800515fdb39c7e64e3fff4"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:58.406632+00:00",
+  "generated_at": "2026-07-06T16:41:22.491265+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "7UEDLywQbxJPGehHEx3oq5nawCjsDa+/jcXl9d0lf4TIeSBgrlXr6MQ5MIfeh2TqbYaHEdojPUpgBfhGfYvfDg=="
+    "value": "AVbmjAcTq9iBd75AjwjzL5spnBeY1ELRImpOFNVAAXvkeZFxZbZnbamcoGl762XMVhoHlAJ39oExljE/3GPpBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium"

@@ -31,20 +31,16 @@
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-canada-workers-benefit/reasoning/cra-2025-canada-workers-benefit.txt",
       "sha256": "3a9dacdc65b8da9917c64704c6b35b7781884f62b25956c8e381e9c1a353a3c6"
-    },
-    {
-      "deleted": true,
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-canada-workers-benefit.txt"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7dc0397808d2592547b66b1c7b8373fbf04965c0",
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: demote digest artifact from official-documents to reasoning and remove primary_source=true"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -55,14 +51,14 @@
     "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:26:40.846629+00:00",
+  "generated_at": "2026-07-06T16:40:25.654460+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "jmLSkR4iMQDbvkBy9fpKnT4hA2Y0veqd17Mj8/zFUcW31Jzz/mhl1As1IVI7IpgQfkPZOjMo7w96ZKCkiSIoDA=="
+    "value": "y5XvrO/zLL8kEAn7qLMK+OP9kBFuRCAn0jDaOyAkhbANYlOjSU/pnnJr+xEVwMnXXVWl6KYBB5EwmOlxEjghAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-canada-workers-benefit"

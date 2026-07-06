@@ -1,29 +1,52 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.json",
+      "sha256": "b0e64c3304b983ece1d571ff1fcfa5fdb42c3bc62abc6cd4c3de44aaad6c34d5"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.json",
+      "sha256": "f328d31a5720775ec627b55a981a25729aee39a5ccd9540a9a9b74670cc85445"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.jsonl",
       "sha256": "4ae01a3e909c3fa94aa1418c7693308dd942959488130847a41e567365baa10f"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers/official-documents/tp-1-d-h-v-2025.pdf",
+      "sha256": "9aba12e795b3b95b5c6a7e2235938bf367c088fe4e7f35f4342095e7abc7692b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers/official-documents/tp-1-d-h-v-2025.txt",
+      "sha256": "977b7e2ca819db5dbeda2ce55a372e9370e1222468606623750b123eb36b5bbd"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-04-revenu-quebec-2025-schedule-h-caregivers"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:54.119194+00:00",
+  "generated_at": "2026-07-06T16:41:17.590867+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "lum2OTFZlzRElDDZKxGUxV7gakQU+P2gErfdxmjZi7SkJLGwVF+3rX7XSJfyDlpYzFsV/ayaLekWGGsGNcZyDw=="
+    "value": "lw3sC7XGRzBDFhP06I7MBoQCd1xeNKUK8pEf2CwE4olxYDRWTZxuYL+6bwGY0Z16f8e+ZmvWJvYxJzQbR7pHBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-h-caregivers"

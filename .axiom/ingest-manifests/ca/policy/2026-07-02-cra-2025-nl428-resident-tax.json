@@ -1,29 +1,52 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-nl428-resident-tax.json",
+      "sha256": "b7e86ff46e202d649b2a4b9e02b81f3184d45b3a3b9024df4d0df8d936c56d8a"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-nl428-resident-tax.json",
+      "sha256": "399a32b7b310d2fae79d9c3542bfc1df11b63fdfeb3a11b81a283019806ee3ce"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-nl428-resident-tax.jsonl",
       "sha256": "a0241256ccd72161cea40a3705593acb22b2c2c3f2dba5fef9beb8decf27d6f0"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-nl428-resident-tax/official-documents/5001-c-25e.txt",
+      "sha256": "ba6cf4841248e4333b788bbdba88de801e7686ed523f2002597f730e6285fe02"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-nl428-resident-tax/official-documents/5001-d-25e.txt",
+      "sha256": "6f1f7f10c26e5a0f6dea160b0479aaacc8c716b62cb17a61196e846cb87a4be2"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-02-cra-2025-nl428-resident-tax"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:38.148451+00:00",
+  "generated_at": "2026-07-06T16:40:59.055657+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "0jLWnMAD7tL9VRuPoKpIhe6dXiFkI/n8/ALz/piAlPRivr5iQRj4YaowSesECTlMaLo9MUvT7IP/nkBOiAANDw=="
+    "value": "l5fPa6EL8yZ+O2roHNPEwDVsO+7/usipIOHcyZvvtuOlVGDYv6oOcvCn9YD0AKKph5pzwGL8RPt8NwmydzlFBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-nl428-resident-tax"

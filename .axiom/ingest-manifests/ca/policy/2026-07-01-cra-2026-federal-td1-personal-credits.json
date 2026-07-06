@@ -23,20 +23,16 @@
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/reasoning/cra-2026-federal-td1-personal-credits.txt",
       "sha256": "8bf1554959a907f264ec6a4f05f401d2f55baf18084ea033c2e3a1e57eae9f6d"
-    },
-    {
-      "deleted": true,
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-federal-td1-personal-credits.txt"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7dc0397808d2592547b66b1c7b8373fbf04965c0",
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: demote digest artifact from official-documents to reasoning and remove primary_source=true"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -47,14 +43,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:26:48.455356+00:00",
+  "generated_at": "2026-07-06T16:40:49.849991+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "RmD0MduObrFDc3ItKyFGmHaGBC2+6xgA/NnvQfHzMzhiRPS8mI4HkoF/pbVTnVU7pW9IeUGv5JRtDjlqulDNCQ=="
+    "value": "BTyMLe6RBanhAN9IXrU1ywuiU0TxIKYfoIPLqxPS24VE3t9PUTEPxJ+AXc8joIGTg6b/OfF+fX9JGzjChnunCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-federal-td1-personal-credits"

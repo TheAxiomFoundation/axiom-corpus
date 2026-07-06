@@ -19,20 +19,16 @@
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts/reasoning/cra-2025-federal-spouse-and-dependant-amounts.txt",
       "sha256": "017e418e66ddc92e8a658a0e70848cc0b55368a5d236461d980a43d471fb5367"
-    },
-    {
-      "deleted": true,
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts/official-documents/cra-2025-federal-spouse-and-dependant-amounts.txt"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7dc0397808d2592547b66b1c7b8373fbf04965c0",
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: demote digest artifact from official-documents to reasoning and remove primary_source=true"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -43,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:26:42.728797+00:00",
+  "generated_at": "2026-07-06T16:40:33.492683+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "lj9C0Xy1xpSBSXfrUwP+SEs2KBTDHz8UrQwRHWKD4lPRYQNKSCns/wvN8KC3Wf5Vm/q953VmZ1ixEgRBl8e+Dg=="
+    "value": "hoC4rB/LBvNdKqy/gnuMfx3WDH4FYRQ8D8mLPVqMU7cQ+eOFv14UUyFQ0/NwHXCIGgAX79RGHynSi9CyMqX2Dw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-spouse-and-dependant-amounts"

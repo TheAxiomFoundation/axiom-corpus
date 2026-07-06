@@ -1,29 +1,48 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-federal-net-tax-aggregation.json",
+      "sha256": "4b3a3fbd9a4e8bd6aa8a68cd230932c2a76f0f2472d7eae636968c38b3941c6e"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-federal-net-tax-aggregation.json",
+      "sha256": "636284848ec2094c0c8b999edefb2a770d348af3f6b7ecbface5f4d134986dbe"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-net-tax-aggregation.jsonl",
       "sha256": "8e78be98b6dc0ffc9dd204298ae42750ea6ff1ba730a4ff68f19a8265dea2d7a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-federal-net-tax-aggregation/official-documents/5000-r-25e.txt",
+      "sha256": "49abf16998ee1b2f4bc21375bdea96024628cbf43044d38e8aa50e33bde522ae"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-02-cra-2025-federal-net-tax-aggregation"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:34.844602+00:00",
+  "generated_at": "2026-07-06T16:40:55.320828+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "znjS7MtIRYi55fDwn7G0lGqec36ApiYnzqYeTCFQiVFL3k6ZtSMuMH4wr+bovLuTSl16z2uKdP5cKCFNSezkCQ=="
+    "value": "sxdfCaTuDoS4To3CKpT9di7CwAmJbkkV2cjrRaFoS6BWugEIYixwd2okQ0uPzN0hnHXlDNdxVdtaSwrk1xd9Dg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-federal-net-tax-aggregation"
