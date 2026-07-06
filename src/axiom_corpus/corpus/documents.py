@@ -796,6 +796,8 @@ def _extract_pdf_blocks(
         return _extract_numbered_pdf_section_blocks(content, extraction=extraction_config)
     if segmentation == "labeled_sections":
         return _extract_labeled_pdf_section_blocks(content, extraction=extraction_config)
+    if segmentation == "single_block":
+        return _extract_single_block_pdf(content, extraction=extraction_config)
     blocks: list[_DocumentBlock] = []
     page_citation_prefix = extraction_config.get("page_citation_prefix")
     with fitz.open(stream=content, filetype="pdf") as document:
@@ -816,6 +818,38 @@ def _extract_pdf_blocks(
                 )
             )
     return tuple(blocks)
+
+
+def _extract_single_block_pdf(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[_DocumentBlock, ...]:
+    """Extract a whole PDF as one root provision (no per-page fragments).
+
+    Use for short, logically indivisible documents (e.g. a single-schedule
+    amending Act) where a page-per-provision split would both scatter the
+    rule across fragments and grow the ``page-N`` citation-path ratchet. All
+    page texts are concatenated in order under the source's own
+    ``citation_path``; a blank-line separator preserves page boundaries for
+    readers without emitting page suffixes.
+    """
+    page_texts: list[str] = []
+    with fitz.open(stream=content, filetype="pdf") as document:
+        for page in document:
+            text = _normalize_text(_pdf_page_text(page, extraction=extraction))
+            if text:
+                page_texts.append(text)
+    body = "\n\n".join(page_texts)
+    if not body:
+        return ()
+    return (
+        _DocumentBlock(
+            kind="document",
+            ordinal=1,
+            heading=None,
+            body=body,
+            metadata={"page_count": len(page_texts)},
+        ),
+    )
 
 
 def _extract_numbered_pdf_section_blocks(
@@ -1587,11 +1621,15 @@ def _ocr_pdf_page_text(page: Any, *, extraction: dict[str, Any]) -> str:
     dpi = _positive_int(extraction.get("ocr_dpi"), default=200)
     language = str(extraction.get("ocr_language") or "eng")
     page_segmentation_mode = extraction.get("ocr_psm")
-    zoom = dpi / 72
 
     with tempfile.TemporaryDirectory(prefix="axiom-pdf-ocr-") as temp_dir:
         image_path = Path(temp_dir) / "page.png"
-        pixmap = page.get_pixmap(matrix=fitz.Matrix(zoom, zoom), alpha=False)
+        # Render with PyMuPDF's target-DPI rasterizer rather than an
+        # equivalent zoom matrix. On some scanned legal PDFs the matrix path
+        # anti-aliases faint interior table cells into illegibility (e.g. the
+        # Ghana Act 1111 rate table dropped its 10%/17.5% band cells), while
+        # the dpi= rasterizer preserves them, yielding faithful OCR.
+        pixmap = page.get_pixmap(dpi=dpi, alpha=False)
         pixmap.save(str(image_path))
 
         command = ["tesseract", str(image_path), "stdout", "-l", language]

@@ -1,0 +1,35 @@
+# Deferred base-act capture for Ghana Income Tax Act, 2015 (Act 896).
+#
+# Act 896 as hosted by GRA is a 182-page image-only PDF; a full OCR pass is
+# slow and is not required for the first encoding batch (the individual
+# rate schedule is fully sourced by the amending Act 1111 — see
+# gh-income-tax-rate-schedule-official-documents.yaml). Capture this base
+# act when encoding the reliefs framework (section 51 / Fifth Schedule) and
+# other base provisions, so their enabling text is grounded in corpus.
+documents:
+  - source_id: gh-act-896-income-tax-2015-base
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-896/income-tax-2015/base-act
+    title: Income Tax Act, 2015 (Act 896) — base Act as published
+    source_url: https://gra.gov.gh/wp-content/uploads/2020/09/INCOME-TAX-ACT-2015-ACT-896.pdf
+    source_format: pdf
+    source_as_of: '2026-07-06'
+    expression_date: '2016-01-01'
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 1048576
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 200
+      ocr_language: eng
+    metadata:
+      primary_source: true
+      source_authority: Ghana Revenue Authority (hosting the enacted Act)
+      original_publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      enacted: '2015'
+      base_act_note: Base Act 896 text hosted by GRA. Used for the enabling rate-schedule provision (First Schedule) and personal-reliefs provision (section 51 / Fifth Schedule) that Act 1111 and later amendments modify. Amounts amended by later Acts must be cited from those amending Acts, not this base text.
+      source_family: personal-income-tax/base-act
+      source_note: Enacted Income Tax Act 2015 (Act 896) PDF hosted by the Ghana Revenue Authority, downloaded 2026-07-06. 182-page image-only PDF; OCR required. Provides the enabling First Schedule and reliefs framework amended by Act 1111 (rates) and subsequent Amendment Acts.

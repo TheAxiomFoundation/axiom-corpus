@@ -1,0 +1,32 @@
+documents:
+  - source_id: gh-act-1111-income-tax-amendment-no2-2023-first-schedule
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1111/income-tax-amendment-no2-2023/first-schedule-rates-of-income-tax-for-individuals
+    title: Income Tax (Amendment) (No. 2) Act, 2023 (Act 1111) — First Schedule to Act 896 amended, rates of income tax for individuals
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/e056dac5-51ab-421c-a131-a546508f86a8/content
+    source_format: pdf
+    source_as_of: '2026-07-06'
+    expression_date: '2024-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      printed_reference: GPCL/A011/450/1/2024
+      date_of_assent: '2023-12-29'
+      gazette_notification_date: '2023-12-29'
+      effective_date: '2024-01-01'
+      amends: Income Tax Act, 2015 (Act 896), First Schedule paragraph 1(1)
+      still_in_force_for_year: 2026
+      not_superseded_note: The Income Tax (Amendment) Act, 2025 (Act 1129) did not modify the First Schedule individual rate bands; the Act 1111 rate schedule remains the current 2026 schedule.
+      repository_item_url: https://repository.parliament.gh/items/c3bdfd8e-0ad9-47c2-bdba-3aad949aca41
+      source_family: personal-income-tax/rate-schedule
+      source_note: Authentic Assembly Press printed Act 1111, downloaded from the Parliament of Ghana DSpace repository ORIGINAL bitstream on 2026-07-06. Image-only PDF; OCR applied. Page 3 carries the substituted First Schedule paragraph 1 rate table (First GH¢5,880 Nil; Next 1,320 5%; Next 1,560 10%; Next 38,000 17.5%; Next 192,000 25%; Next 366,240 30%; Exceeding 600,000 35%).
