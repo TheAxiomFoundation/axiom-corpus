@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-sk428-resident-tax.jsonl",
-      "sha256": "97d774b986d215e0d41eebd7b8a573f182f4f9296d585c6388578b00f0895205"
+      "sha256": "45bc38094ab05a31388b44fc86dfbfab9bfe2b63b31f8c8dfa2ac6304fab53db"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-sk428-resident-tax/official-documents/5008-c-25e.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "split multi-document scopes into child provisions; re-sign"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:43.486034+00:00",
+  "generated_at": "2026-07-06T19:25:24.261334+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "hQdbg5Triuvs/CWTC5fSZh4UmR/bENRU77O/GBCh2lrz8GKdaRPiF+lMD59l+A7J/Zv4QtRTnKifb7ku/nrWCw=="
+    "value": "1JHDN4z96tT8ROv+I3B/TXpkx814RG5rDaS2/eTazwRk2bJzGF4BxBgiYufeQcFeynZXZ/u3Xbp6yw7s+i1sAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-sk428-resident-tax"

@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.jsonl",
-      "sha256": "7fb4f135a9a65982a7b9ee693cebdfe903f3367fadc4ba0a8881c7de01191c18"
+      "sha256": "1cc96a37735651c0690c50934de96c7fc7d3f04a66a7698ea15847ad08975024"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-2025-schedule-7-rrsp-prpp-spp.txt",
@@ -30,13 +30,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "split multi-document scopes into child provisions; re-sign"
   },
   "coverage": {
     "complete": null,
@@ -47,14 +47,14 @@
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:07.696762+00:00",
+  "generated_at": "2026-07-06T19:25:08.271977+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "LbgDZt5DtvL44DjB52b26vpiAz3V20q8TCa/rjeNBIOS05Iz+4KtEz54i+DT7LBhQQRXSiZV3C2GP1VyoDoFCw=="
+    "value": "jhfbIX7KwnngW8+dc0P9G1lGWt6YiH7kS8w4m8y0oR9rpg8IPPPgSY3s/W2Z+ahRY98SdYthPOFyiaDpNfX7AQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp"
