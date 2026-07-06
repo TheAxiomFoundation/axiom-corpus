@@ -1,11 +1,16 @@
-# Deferred base-act capture for Ghana Income Tax Act, 2015 (Act 896).
+# Deferred FULL base-act capture for Ghana Income Tax Act, 2015 (Act 896).
 #
 # Act 896 as hosted by GRA is a 182-page image-only PDF; a full OCR pass is
-# slow and is not required for the first encoding batch (the individual
+# slow and is not required for the first encoding batches (the individual
 # rate schedule is fully sourced by the amending Act 1111 — see
-# gh-income-tax-rate-schedule-official-documents.yaml). Capture this base
-# act when encoding the reliefs framework (section 51 / Fifth Schedule) and
-# other base provisions, so their enabling text is grounded in corpus.
+# gh-income-tax-rate-schedule-official-documents.yaml). The reliefs-bearing
+# slices (section 51, section 133 including the currency-point definition,
+# and the Fifth Schedule) were captured on 2026-07-06 via discontiguous
+# page_windows — see gh-income-tax-personal-reliefs-official-documents.yaml
+# under citation root gh/statute/act-896/income-tax-2015. This manifest
+# remains for a future whole-act ingest at the reserved citation path
+# gh/statute/act-896/income-tax-2015/base-act if section-complete coverage
+# is ever needed.
 documents:
   - source_id: gh-act-896-income-tax-2015-base
     jurisdiction: gh

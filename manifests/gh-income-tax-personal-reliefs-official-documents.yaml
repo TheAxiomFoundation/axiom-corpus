@@ -1,0 +1,141 @@
+# Ghana personal-reliefs source capture (rulespec-gh second slice).
+#
+# Three documents ground the current (2026) Fifth Schedule personal reliefs:
+#
+# 1. Income Tax Act, 2015 (Act 896) base slices — section 51 (the enabling
+#    deduction rule for resident individuals), section 133 (the
+#    "currency point means one Cedi" definition the relief amounts are
+#    denominated in), and the Fifth Schedule (relief conditions and the
+#    original 2015 currency-point amounts later substituted by Act 1007).
+#    Captured from the GRA-hosted 182-page image-only print via discontiguous
+#    page_windows so one source snapshot serves all three slices.
+# 2. Income Tax (Amendment) Act, 2019 (Act 1007) — section 2 substitutes the
+#    Fifth Schedule paragraph 1 amounts and sets the amounts in force for
+#    2026: 1,200 / 1,500 / 600 / 1,000 / 2,000 currency points; the
+#    disability relief (25% of assessable income, paragraph 1(b)) is not
+#    amended. Assembly Press print scan; see the entry metadata for the
+#    hosting note (Parliament DSpace and GRA do not host Act 1007).
+# 3. Income Tax (Amendment) Act, 2025 (Act 1134) — the most recent amendment
+#    to Act 896 as of 2026-07-06. Amends sections 6, 85, 115, 119 and First
+#    Schedule paragraph 8 (withholding) only, so it documents that neither
+#    the Fifth Schedule reliefs nor the First Schedule paragraph 1(1) bands
+#    changed for 2026.
+#
+# Fifth Schedule supersession diligence (2015 -> 2026), checked against the
+# arrangement of sections or full text of every Income Tax (Amendment) Act
+# located on Parliament DSpace or GRA hosting on 2026-07-06:
+#   Act 1017 (2020): section 94 only. Act 1066 (2021): Sixth Schedule only.
+#   Act 1071 (No. 2, 2021): First/Second/Sixth Schedules. Act 1094 (2023):
+#   sections 2A-133 items plus First/Fourth Schedules. Act 1111 (No. 2,
+#   2023): First Schedule paragraph 1 substitution only (in corpus at
+#   gh/statute/act-1111/...). Act 1134 (2025): captured below. No 2022 or
+#   2024 Income Tax (Amendment) Act exists (the Dec-2021 acts 1071-1073
+#   carried the "2022 amendments"); no post-1134 amendment found as of
+#   2026-07-06. Act 1007's substitution targets quote the base 2015
+#   paragraph 1 amounts verbatim, which independently confirms paragraph 1
+#   was not restructured between 2015 and 2019.
+documents:
+  - source_id: gh-act-896-income-tax-2015-reliefs-slices
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-896/income-tax-2015
+    title: Income Tax Act, 2015 (Act 896) — section 51, section 133 and Fifth Schedule slices
+    source_url: https://gra.gov.gh/wp-content/uploads/2020/09/INCOME-TAX-ACT-2015-ACT-896.pdf
+    source_format: pdf
+    source_as_of: '2026-07-06'
+    expression_date: '2016-01-01'
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 1048576
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>51|133)\.(?:\s+(?P<heading>.+))?$'
+      section_label_pattern: '^(?P<label>FIFTH SCHEDULE)$'
+      section_label_replacements:
+        FIFTH SCHEDULE: fifth-schedule
+      page_windows:
+        - start_page: 41
+          end_page: 41
+          stop_at_pattern: '^Division .*Partnership'
+        - start_page: 103
+          end_page: 111
+          start_at_pattern: '^133\.'
+        - start_page: 133
+          end_page: 133
+    metadata:
+      primary_source: true
+      source_authority: Ghana Revenue Authority (hosting the enacted Act)
+      original_publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      enacted: '2015'
+      source_family: personal-income-tax/personal-reliefs
+      slice_note: Discontiguous page_windows capture from the 182-page image-only GRA print of Act 896 (OCR). Page 41 carries section 51 (personal reliefs enabling rule, window stops before Division II Partnerships); pages 103-111 carry section 133 (interpretation, including the currency point definition of one Cedi); page 133 carries the complete Fifth Schedule (personal reliefs, paragraphs 1-3, original 2015 currency-point amounts). Amounts in Fifth Schedule paragraph 1(a) and (c)-(f) were substituted by the Income Tax (Amendment) Act, 2019 (Act 1007) with effect for 2020 onward; cite those amounts from the Act 1007 provision, not this base text. Paragraph 1(b) disability relief (25 percent of assessable income from business or employment) is unamended base text.
+      source_note: Enacted Income Tax Act 2015 (Act 896) PDF hosted by the Ghana Revenue Authority, downloaded 2026-07-06. Image-only print; OCR at 300 dpi. Full-act capture (deferred manifest gh-income-tax-act-896-base-official-documents.yaml) remains available for later ingest; this entry promotes only the reliefs-bearing slices.
+  - source_id: gh-act-1007-income-tax-amendment-2019
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1007/income-tax-amendment-2019/fifth-schedule-personal-reliefs
+    title: Income Tax (Amendment) Act, 2019 (Act 1007) — Fifth Schedule personal-relief amounts substituted
+    source_url: https://customerzone.sagevip.co.za/doclib/Income%20Tax/Income_Tax%20_Amendment_Act%202019_-_Act_1007.pdf
+    source_format: pdf
+    source_as_of: '2026-07-06'
+    expression_date: '2020-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana (Assembly Press print; third-party hosted scan)
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2019-12-28'
+      gazette_notification_date: '2019-12-30'
+      effective_date: '2020-01-01'
+      amends: Income Tax Act, 2015 (Act 896), Fifth Schedule paragraph 1 (personal-relief amounts), First Schedule paragraph 1 rate table (superseded by Act 1071 and Act 1111), Sixth Schedule (automotive concession inserted)
+      still_in_force_for_year: 2026
+      not_superseded_note: No later Income Tax (Amendment) Act amends the Fifth Schedule. Checked on 2026-07-06 against Act 1017 (section 94 only), Act 1066 (Sixth Schedule), Act 1071 (First/Second/Sixth Schedules), Act 1094 (sections plus First/Fourth Schedules), Act 1111 (First Schedule paragraph 1) and Act 1134 (sections 6, 85, 115, 119 and First Schedule paragraph 8). The Act 1007 relief amounts are the amounts in force for the 2026 year of assessment.
+      hosting_note: Parliament of Ghana DSpace repository and GRA do not host Act 1007 (checked 2026-07-06); GhaLII hosts the same print at https://ghalii.org/akn/gh/act/2019/1007/eng@2019-12-30/source.pdf behind bot protection that blocks non-interactive capture. This capture uses a faithful scan of the Assembly Press print from the Sage HR Africa payroll-compliance document library. Authenticity features on the face of the print - the act-number recital (THE ONE THOUSAND AND SEVENTH ACT), date of assent 28 December 2019 and Gazette notification 30 December 2019 - match the GhaLII catalogue record and the judy.legal AKN record for Act 1007.
+      completeness_note: Two-page scan carrying the complete operative text (long title, sections 1-3, assent and gazette date lines). The arrangement-of-sections cover page of the print is not included in the scan.
+      source_family: personal-income-tax/personal-reliefs
+      source_note: 'Section 2 substitutes the Fifth Schedule paragraph 1 amounts: paragraph 1(a) marriage/responsibility relief two hundred to one thousand two hundred currency points; 1(c) old-age relief two hundred to one thousand five hundred currency points; 1(d) child-education relief two hundred to six hundred currency points per child or ward (maximum three unchanged); 1(e) aged-dependant-relative relief one hundred to one thousand currency points (maximum two dependants unchanged); 1(f) professional/technical/vocational training relief cap four hundred to two thousand currency points. Paragraph 1(b) disability relief (25 percent of assessable income) is not amended. Cross-checked against the GRA Personal Tax Relief surface (GH¢1,200 / GH¢1,500 / GH¢600 / GH¢1,000 / GH¢2,000 / 25 percent) on 2026-07-06.'
+  - source_id: gh-act-1134-income-tax-amendment-2025
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1134/income-tax-amendment-2025/withholding-and-first-schedule-paragraph-8
+    title: Income Tax (Amendment) Act, 2025 (Act 1134) — lottery and unprocessed-gold withholding removed
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/7065c150-6201-4d06-89ee-691c4018d066/content
+    source_format: pdf
+    source_as_of: '2026-07-06'
+    expression_date: '2025-04-02'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      printed_reference: GPCL/A221/450/04/2025
+      date_of_assent: '2025-04-02'
+      gazette_notification_date: '2025-04-02'
+      effective_date: '2025-04-02'
+      amends: Income Tax Act, 2015 (Act 896), sections 6, 85, 115, 119 and First Schedule paragraph 8 (withholding items)
+      still_in_force_for_year: 2026
+      act_number_note: The Assembly Press print reads Act 1134 (THE ONE THOUSAND ONE HUNDRED AND THIRTY-FOURTH ACT). Several published tax alerts (for example EY, March 2025) refer to the same amendment as Act 1129; the print's own act number is recorded here as authoritative. The corpus provision gh/statute/act-1111/... not_superseded_note and the rulespec-gh Act 1111 fixture comment cite the 2025 amendment as Act 1129 following those alerts.
+      scope_note: Removes withholding on lottery winnings and on purchases of unprocessed gold. The First Schedule change deletes paragraph 8 subparagraph 1(b)(x); the paragraph 1(1) individual rate bands (substituted by Act 1111) and the Fifth Schedule personal reliefs (amounts substituted by Act 1007) are untouched, so both remain in force for the 2026 year of assessment.
+      repository_item_url: https://repository.parliament.gh/items/a85bc168-932c-4943-8bc5-b15d720e9f01
+      source_family: personal-income-tax/personal-reliefs
+      source_note: Authentic Assembly Press printed Act 1134, downloaded from the Parliament of Ghana DSpace repository ORIGINAL bitstream on 2026-07-06. Text-embedded PDF.
