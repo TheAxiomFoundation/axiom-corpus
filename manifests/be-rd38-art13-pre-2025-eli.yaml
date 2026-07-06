@@ -1,0 +1,35 @@
+version: "2026-07-05-be-rd38-art13-pre-2025"
+sources:
+  - source_id: be-self-employed-social-status-royal-decree-38-1967-pre-2025-consolidation
+    jurisdiction: be
+    document_class: regulation
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/cgi_loi/article.pl?language=fr&arch=098&lg_txt=fr&type=&sort=&numac_search=1967072702&cn_search=1967072701&caller=eli&&view_numac=1967072702frx1967072701frx
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1967/07/27/1967072702/moniteur
+      justel_url: https://www.ejustice.just.fgov.be/eli/arrete/1967/07/27/1967072702/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: social-security/self-employed-social-status
+      source_status: official_archived_consolidation_pre_amendment
+      source_note: >-
+        Royal Decree no. 38 of 27 July 1967 organising the social status of the
+        self-employed (numac 1967072702), Justel archived consolidated version
+        n° 098 — the expression in force UNTIL 2025-10-01 (the version page is
+        marked "En vigueur jusqu'au 01-10-2025"). This is the pre-amendment
+        expression of Article 13 (self-employed post-pension contributions):
+        Article 13 §1 states the 811,20 EUR exemption threshold and the 14,70
+        p.c. post-pension-with-pension rate under the older §1/§2/§3 structure,
+        BEFORE the law of 18 July 2025 (L 2025-07-18/06, art. 235-240; En
+        vigueur 01-10-2025) restructured and renumbered the article. The current
+        (post-2025-10-01) consolidation is already in the corpus under the
+        2026-06-30-be-tax-benefit version, where those same 811,20 / 14,70
+        figures sit inside a [¹ ... ]¹ block governed by the En-vigueur
+        01-10-2025 amendment footnote. This archived version grounds the earlier
+        effective_from ('2018-04-01') that rulespec-be
+        be/regulations/social_security/self_employed/contributions.yaml carries
+        for the self-employed post-pension surface (rulespec-be#81), which
+        previously rested only on the external RSVZ/INASTI compilation PDF rather
+        than on a corpus provision. Archived versions are consultable from
+        03-04-1981 (Justel "Consultation des versions antérieures à partir du
+        03-04-1981"); version n° 098 is the last archived version before the
+        current n° 099.
