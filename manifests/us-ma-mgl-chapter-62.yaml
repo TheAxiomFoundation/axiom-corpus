@@ -1,0 +1,24 @@
+version: "2026-07-06"
+sources:
+  - source_id: us-ma-mgl-chapter-62
+    jurisdiction: us-ma
+    document_class: statute
+    adapter: massachusetts-general-laws
+    source_url: https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62
+    version: "2026-07-06-ma-mgl-chapter-62"
+    options:
+      source_as_of: "2026-07-06"
+      expression_date: "2026-07-06"
+      only_chapter: "62"
+      download_dir: ../data/corpus/downloads/us-ma-mgl/2026-07-06-chapter-62
+      base_url: https://malegislature.gov
+      request_delay_seconds: 0.02
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 4
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts General Court
+      source_scope_note: Current Massachusetts General Laws Part I, Title IX, Chapter 62 (taxation of incomes) from the official malegislature.gov mirror.
+      source_discovery_group: us-ma/statute/income-tax
+      discovered_via: axiom_state_income_tax_lane_c
