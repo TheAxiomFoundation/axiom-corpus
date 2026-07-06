@@ -1,0 +1,65 @@
+{
+  "success" : true,
+  "message" : "Law document for location 616 in TAX law.",
+  "responseType" : "law-doc-info-detail",
+  "result" : {
+    "lawId" : "TAX",
+    "lawName" : "Tax",
+    "locationId" : "616",
+    "title" : "New York exemptions of a resident individual",
+    "docType" : "SECTION",
+    "publishedDates" : [ "2014-09-22" ],
+    "docLevelId" : "616",
+    "activeDate" : "2014-09-22",
+    "text" : "  § 616. New York exemptions of a resident individual. (a) General. For\\ntaxable years beginning after nineteen hundred eighty-seven, a resident\\nindividual shall be allowed a New York exemption of one thousand dollars\\nfor each exemption for which he is entitled to a deduction for the\\ntaxable year under section one hundred fifty-one(c) of the Internal\\nRevenue Code; and for taxable years beginning in nineteen hundred\\neighty-seven, a resident individual other than a taxpayer whose federal\\nexemption amount is zero shall be allowed a New York exemption of nine\\nhundred dollars for each exemption for which he is entitled to a\\ndeduction for the taxable year for federal income tax purposes.\\n  (b) Husband and wife. If the New York income taxes of a husband and\\nwife are required to be separately determined but their federal income\\ntax is determined on a joint return, each of them shall be separately\\nentitled to the New York exemptions under subsection (a) of this section\\nto which each would be separately entitled for the taxable year if their\\nfederal income taxes had been determined on separate returns.\\n",
+    "parentLocationIds" : [ "-CH60", "A22", "A22P2" ],
+    "parents" : [ {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "-CH60",
+      "title" : "Tax",
+      "docType" : "CHAPTER",
+      "publishedDates" : [ "2014-09-22", "2014-09-26", "2015-01-09", "2016-04-22", "2017-04-14", "2017-04-21", "2018-04-27", "2019-04-19", "2021-04-23", "2021-12-31", "2022-03-11", "2022-04-22", "2022-04-29", "2022-07-29", "2022-09-02", "2023-05-12", "2023-10-27", "2024-05-03", "2024-12-27", "2025-10-24", "2025-11-28", "2026-01-30", "2026-06-05" ],
+      "docLevelId" : "60",
+      "activeDate" : "2026-06-05"
+    }, {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "A22",
+      "title" : "Personal Income Tax",
+      "docType" : "ARTICLE",
+      "publishedDates" : [ "2014-09-22", "2014-11-14", "2015-11-27", "2017-08-25", "2018-08-31", "2019-09-20", "2019-10-25", "2019-11-15", "2019-12-20", "2020-04-24", "2021-10-29", "2021-11-12", "2021-12-03", "2022-03-25", "2022-07-29", "2023-10-27", "2025-05-16" ],
+      "docLevelId" : "22",
+      "activeDate" : "2025-05-16"
+    }, {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "A22P2",
+      "title" : "Residents",
+      "docType" : "PART",
+      "publishedDates" : [ "2014-09-22", "2014-11-14", "2015-11-27", "2016-11-18", "2017-08-25", "2018-08-31", "2018-10-05", "2019-01-04", "2019-09-20", "2019-10-25", "2019-11-15", "2019-12-20", "2020-04-24", "2021-10-29", "2021-11-12", "2021-12-03", "2022-03-25", "2022-07-29", "2023-10-27" ],
+      "docLevelId" : "2",
+      "activeDate" : "2023-10-27"
+    } ],
+    "prevSibling" : {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "615",
+      "title" : "New York itemized deduction of a resident individual",
+      "docType" : "SECTION",
+      "publishedDates" : [ "2014-09-22", "2015-04-24", "2017-04-14", "2017-04-21", "2018-04-27", "2019-04-19", "2024-05-03", "2026-06-05" ],
+      "docLevelId" : "615",
+      "activeDate" : "2026-06-05"
+    },
+    "nextSibling" : {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "617",
+      "title" : "Resident partners and shareholders of S corporations",
+      "docType" : "SECTION",
+      "publishedDates" : [ "2014-09-22" ],
+      "docLevelId" : "617",
+      "activeDate" : "2014-09-22"
+    }
+  }
+}

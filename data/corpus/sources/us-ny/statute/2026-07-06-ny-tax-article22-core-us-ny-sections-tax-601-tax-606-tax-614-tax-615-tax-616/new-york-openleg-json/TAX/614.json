@@ -1,0 +1,65 @@
+{
+  "success" : true,
+  "message" : "Law document for location 614 in TAX law.",
+  "responseType" : "law-doc-info-detail",
+  "result" : {
+    "lawId" : "TAX",
+    "lawName" : "Tax",
+    "locationId" : "614",
+    "title" : "New York standard deduction of a resident individual",
+    "docType" : "SECTION",
+    "publishedDates" : [ "2014-09-22", "2018-04-27" ],
+    "docLevelId" : "614",
+    "activeDate" : "2018-04-27",
+    "text" : "  § 614. New York standard deduction of a resident individual.  (a)\\nUnmarried individual. For taxable years beginning after nineteen hundred\\nninety-six, the New York standard deduction of a resident individual who\\nis not married nor the head of a household nor a surviving spouse nor an\\nindividual who is claimed as a dependent by another New York state\\ntaxpayer shall be seven thousand five hundred dollars; for taxable years\\nbeginning in nineteen hundred ninety-six, such standard deduction shall\\nbe seven thousand four hundred dollars; for taxable years beginning in\\nnineteen hundred ninety-five, such standard deduction shall be six\\nthousand six hundred dollars; and for taxable years beginning after\\nnineteen hundred eighty-nine and before nineteen hundred ninety-five,\\nsuch standard deduction shall be six thousand dollars.\\n  (b) Husband and wife filing jointly and surviving spouse. For taxable\\nyears beginning after two thousand five, the New York standard deduction\\nof a husband and wife whose New York taxable income is determined\\njointly or a surviving spouse shall be fifteen thousand dollars; for\\ntaxable years beginning after two thousand two and before two thousand\\nsix, such standard deduction shall be fourteen thousand six hundred\\ndollars; for taxable years beginning in two thousand two, such standard\\ndeduction shall be fourteen thousand two hundred dollars; for taxable\\nyears beginning in two thousand one, such standard deduction shall be\\nthirteen thousand four hundred dollars; for taxable years beginning\\nafter nineteen hundred ninety-six and before two thousand one, such\\nstandard deduction shall be thirteen thousand dollars; for taxable years\\nbeginning in nineteen hundred ninety-six, such standard deduction shall\\nbe twelve thousand three hundred fifty dollars; for taxable years\\nbeginning in nineteen hundred ninety-five, such standard deduction shall\\nbe ten thousand eight hundred dollars; and for taxable years beginning\\nafter nineteen hundred eighty-nine and before nineteen hundred\\nninety-five, such standard deduction shall be nine thousand five hundred\\ndollars.\\n  (c) Head of household. For taxable years beginning after nineteen\\nhundred ninety-six, the New York standard deduction of an individual who\\nis a head of household shall be ten thousand five hundred dollars; for\\ntaxable years beginning in nineteen hundred ninety-six, such standard\\ndeduction shall be ten thousand dollars; for taxable years beginning in\\nnineteen hundred ninety-five, such standard deduction shall be eight\\nthousand one hundred fifty dollars; and for taxable years beginning\\nafter nineteen hundred eighty-nine and before nineteen hundred\\nninety-five, such standard deduction shall be seven thousand dollars.\\n  (d) Married individuals filing separately. For taxable years beginning\\nafter two thousand five, the New York standard deduction of a married\\nindividual filing a separate return shall be seven thousand five hundred\\ndollars; for taxable years beginning after nineteen hundred ninety-six\\nand before two thousand six, such standard deduction shall be six\\nthousand five hundred dollars; for taxable years beginning in nineteen\\nhundred ninety-six, such standard deduction shall be six thousand one\\nhundred seventy-five dollars; for taxable years beginning in nineteen\\nhundred ninety-five, such standard deduction shall be five thousand four\\nhundred dollars; and for taxable years beginning after nineteen hundred\\neighty-nine and before nineteen hundred ninety-five, such standard\\ndeduction shall be four thousand seven hundred fifty dollars.\\n  (e) Standard deduction of a dependent individual. For taxable years\\nbeginning after nineteen hundred ninety-six, the New York standard\\ndeduction of a resident individual whose federal exemption amount is\\nzero shall be three thousand dollars; for taxable years beginning in\\nnineteen hundred ninety-six, such standard deduction shall be two\\nthousand nine hundred dollars; and for taxable years beginning after\\nnineteen hundred eighty-nine and before nineteen hundred ninety-six,\\nsuch standard deduction shall be two thousand eight hundred dollars.\\n  (f) Adjusted standard deduction. For taxable years beginning after two\\nthousand seventeen, the standard deductions set forth in this section\\nshall be the amounts set forth in this section adjusted by the cost of\\nliving adjustment prescribed in section six hundred one-a of this part\\nfor tax years two thousand thirteen through two thousand seventeen.\\n",
+    "parentLocationIds" : [ "-CH60", "A22", "A22P2" ],
+    "parents" : [ {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "-CH60",
+      "title" : "Tax",
+      "docType" : "CHAPTER",
+      "publishedDates" : [ "2014-09-22", "2014-09-26", "2015-01-09", "2016-04-22", "2017-04-14", "2017-04-21", "2018-04-27", "2019-04-19", "2021-04-23", "2021-12-31", "2022-03-11", "2022-04-22", "2022-04-29", "2022-07-29", "2022-09-02", "2023-05-12", "2023-10-27", "2024-05-03", "2024-12-27", "2025-10-24", "2025-11-28", "2026-01-30", "2026-06-05" ],
+      "docLevelId" : "60",
+      "activeDate" : "2026-06-05"
+    }, {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "A22",
+      "title" : "Personal Income Tax",
+      "docType" : "ARTICLE",
+      "publishedDates" : [ "2014-09-22", "2014-11-14", "2015-11-27", "2017-08-25", "2018-08-31", "2019-09-20", "2019-10-25", "2019-11-15", "2019-12-20", "2020-04-24", "2021-10-29", "2021-11-12", "2021-12-03", "2022-03-25", "2022-07-29", "2023-10-27", "2025-05-16" ],
+      "docLevelId" : "22",
+      "activeDate" : "2025-05-16"
+    }, {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "A22P2",
+      "title" : "Residents",
+      "docType" : "PART",
+      "publishedDates" : [ "2014-09-22", "2014-11-14", "2015-11-27", "2016-11-18", "2017-08-25", "2018-08-31", "2018-10-05", "2019-01-04", "2019-09-20", "2019-10-25", "2019-11-15", "2019-12-20", "2020-04-24", "2021-10-29", "2021-11-12", "2021-12-03", "2022-03-25", "2022-07-29", "2023-10-27" ],
+      "docLevelId" : "2",
+      "activeDate" : "2023-10-27"
+    } ],
+    "prevSibling" : {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "613",
+      "title" : "New York deduction of a resident individual",
+      "docType" : "SECTION",
+      "publishedDates" : [ "2014-09-22", "2020-04-17" ],
+      "docLevelId" : "613",
+      "activeDate" : "2020-04-17"
+    },
+    "nextSibling" : {
+      "lawId" : "TAX",
+      "lawName" : "Tax",
+      "locationId" : "615",
+      "title" : "New York itemized deduction of a resident individual",
+      "docType" : "SECTION",
+      "publishedDates" : [ "2014-09-22", "2015-04-24", "2017-04-14", "2017-04-21", "2018-04-27", "2019-04-19", "2024-05-03", "2026-06-05" ],
+      "docLevelId" : "615",
+      "activeDate" : "2026-06-05"
+    }
+  }
+}
