@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-claim-codes.json",
-      "sha256": "36319e45813e404441562ec9fd1c7ab226f5af2f8810675f41980920866fdfa3"
+      "sha256": "949a9069ba9439406e741bc3fe64d4edf59026d31e4c49dc42226a52572d2fe5"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-claim-codes.json",
-      "sha256": "dbabcf92a6992d3d34d391ad5fa5ccfbaef7efeda48570166263c69557a0a51b"
+      "sha256": "61f02113bc3b8d3f78456f1b66c2b68935fcd10457259aa025e124c91b1a7325"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-claim-codes.jsonl",
-      "sha256": "47f774d16f0cc0cf6dae6b9d70c958e725b355daeadbb4c1fb386b730fe816e1"
+      "sha256": "3a1908a58624adbdf77f38de2f4707b647ab7818c4e6779c89c31da4133b6100"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-claim-codes/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:32.275272+00:00",
+  "generated_at": "2026-07-06T16:54:08.275527+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "vg+HVD8Vn5MbW8CrhVN5U4AK59q1mZAsxTV+Jr28JDZt/qayqLGh8T+Eq+AGvHQmzOdbDwSUlnCNJgQTtOfgBQ=="
+    "value": "JDnr+8ctVq1tleFEQt7/t6l6svluNqmjzM9n/PTtUCJN9sfrH9+rsxHcODMsQehSfdNIgM2CihBA2KZIuNoaAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-claim-codes"

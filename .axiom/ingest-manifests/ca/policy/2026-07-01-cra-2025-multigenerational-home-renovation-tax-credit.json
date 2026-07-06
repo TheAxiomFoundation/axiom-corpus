@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit.json",
-      "sha256": "cb3d7dc0d6209eb2280889b3c7314eeae708c2587e2ae656568943b1fa8d8acd"
+      "sha256": "fe2d0b6d19c775d20d7036d19629f248a3b7c198ec7f3d82b69bd87f7235cbd5"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit.json",
-      "sha256": "2cc6b16a0fd0823d274b9714e9f8a0e8c8de59924e38555d35144d9c0650a34c"
+      "sha256": "e5be7b8d8a1cf966a63ab16f660c457439a3d4c47e2ea384c0337d8d5d13336b"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit.jsonl",
-      "sha256": "d97484e007aec833666473b22c756d29d46de5fb6b2f4fb2ccc669070be6dd21"
+      "sha256": "8e131543704ad06f9179b5f3018161d797937e8847c84f38bf904b9d5ddb2973"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit/official-documents/cra-2025-schedule-12-mhrtc.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:21.527508+00:00",
+  "generated_at": "2026-07-06T16:54:07.127997+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "+S32EABTzRwF+h2ZNYcekvHmynOay+Zu5CbdOG+dsAg0fg7xeODOZaw+d5SOFEMlmLUbuw22QcLT90gXUozJAw=="
+    "value": "WNbt1cxJ7Z0sdA5kq7+ySjLUav5SV+88vi9505LOE1rs7TtLkWoZ6bmI6g9X0X9euIB2cBSC/Nw0m97ONPU5AQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit"

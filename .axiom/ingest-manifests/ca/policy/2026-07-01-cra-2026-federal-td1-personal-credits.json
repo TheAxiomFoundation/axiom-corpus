@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.json",
-      "sha256": "67e4f418164897c83ec852d77b1d8000cbfd169e671d0a8b1079945b901d7825"
+      "sha256": "9177c48bebb2e1ec16166a22039f5b4516b590e38a25c82f42b1c1cc787d428e"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.json",
-      "sha256": "f5145ffbc820d900043d38420fa0e76998b156334973ea0e0ccfbbb3e2f0887c"
+      "sha256": "c33daad0f88953f8d9fe86c2cd6b456aeccccb0c428bd63052e3ec69e6337f0c"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.jsonl",
-      "sha256": "9866f0cbb8bda5e9ca3d17d3732dce8b84c30d6062b7ef89198e713d3d73bd70"
+      "sha256": "199b24a8b31ea2182ca31e442790895a26619f057d18fcee263f94912605c8a6"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-td1-form.txt",
@@ -26,13 +26,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
   },
   "coverage": {
     "complete": null,
@@ -40,17 +40,17 @@
     "matched_count": null,
     "missing_count": 0,
     "provision_count": 1,
-    "source_count": 1
+    "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:33.473957+00:00",
+  "generated_at": "2026-07-06T16:54:09.418178+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "LcxYAoz4h3OPCBcKouvNzr0tic58yR7Y660OuQXwDxB+b/luufs228iKuJW80J+6YjzVaQ2vtT5jGC2u4QSCDw=="
+    "value": "7juMu1/wRBjpmqckl7QXrh0RPpPWo4YK8o7bDUn6Fgu2aegQFhCRDzIKl/nEIxU4PeUFEgqjJ/wn9wPLCWxuDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-federal-td1-personal-credits"
