@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/guidance/2026-07-05-uk-national-insurance-rates.json",
+      "sha256": "181c07418740477d48cdebb76a61cd367c4a0bafce6933d5132f4f3af9b2a251"
+    },
+    {
+      "path": "data/corpus/inventory/uk/guidance/2026-07-05-uk-national-insurance-rates.json",
+      "sha256": "ff111d15823e7c634ff0e4a303a765a8ce9afc0be737a1f597afba7018034d3f"
+    },
+    {
+      "path": "data/corpus/provisions/uk/guidance/2026-07-05-uk-national-insurance-rates.jsonl",
+      "sha256": "0ed05eff96e7dbb8deea4d12c3f4d0ed2041e62c726416a8e4fa4933c09f93ec"
+    },
+    {
+      "path": "data/corpus/sources/uk/guidance/2026-07-05-uk-national-insurance-rates/official-documents/uk-govuk-national-insurance-rates-and-allowances.html",
+      "sha256": "f7345f838eb427e9b67c675b4860363c2f1320cf7bb1c483e36a6ff41eb9e736"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6bc9344a621aac8217caa7d7837a3ec5feb6e431",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus/_worktrees/uk-ni-rates"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-05-uk-national-insurance-rates --expression-date 2026-04-06 --manifest manifests/uk-govuk-national-insurance-rates-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-06T01:24:55.945576+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-05-uk-national-insurance-rates.md",
+      "sha256": "84043f4223b69626bfead5743a643cd3023d7edd9ec9336b5f490a260afa6b32"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "eGiGO9mXsyeGUksd0RFf18DrUt6L6K6C9D8/dmRIj9E0DNRcLuHlPYbeM42mBH5oH9d+4+p7Wf3lndPyHr8/BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-uk-national-insurance-rates"
+}
