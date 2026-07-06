@@ -63,8 +63,14 @@ _ARTICLE_ANCHOR_RE = re.compile(
     re.IGNORECASE,
 )
 _MONITEUR_ARTICLE_HEADING_RE = re.compile(
-    r"(?im)(?:^|\n)(?P<heading>(?:Article|Art\.)\s+"
-    r"(?P<label>\d+(?:/\d+)?(?:er|bis|ter|quater|quinquies)?))\.",
+    r"(?im)(?:^|\n)(?P<heading>(?:Artikel|Article|Art\.)\s+"
+    r"(?P<label>\d+(?:/\d+)?(?:er|bis|ter|quater|quinquies)?))"
+    # French/Dutch consolidations terminate the heading with a period
+    # ("Art. 8."); German-language Moniteur publications of the German-
+    # speaking Community use a dash instead ("Art. 8 - Basiskindergeld",
+    # "Artikel 1 - ..."). Accept either so German DG statutes segment to
+    # the article level rather than collapsing into one document provision.
+    r"(?:\.|\s+-\s)",
 )
 _DATE_TITLE_RE = re.compile(r"^\d{1,2}\s+[A-ZÉÈA-Z]+(?:\s+\d{4})?\.?\s*[-.]?\s+.+")
 _WHITESPACE_RE = re.compile(r"[ \t\r\f\v]+")
