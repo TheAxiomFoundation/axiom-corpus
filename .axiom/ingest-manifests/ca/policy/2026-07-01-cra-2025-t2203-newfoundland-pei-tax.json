@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-newfoundland-pei-tax.json",
+      "sha256": "1cde6877a31601e5aff7f0976092c6d2da2e700f50a0d8213d88f64e8a307897"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-newfoundland-pei-tax.json",
+      "sha256": "b4322e9b3808d6afa001fae83fe7e1a5c3e59b5af842c9ded39a5c9c6ac3b850"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-newfoundland-pei-tax.jsonl",
+      "sha256": "8b716e95557dc27e75c5683b13fb555040abb2396df41eb6b42eb12aff8f6c13"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-newfoundland-pei-tax/official-documents/cra-2025-t2203-newfoundland-pei-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-t2203-newfoundland-pei-tax"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:23.321012+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZihEAEx/SfsqS2ws4mC08e8bQqwtmhNALpcIe4N1tDivfHP4rOeG4YwyMGJzfnFjoG1jOYsB8sXGTT8dEPn6Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-t2203-newfoundland-pei-tax"
+}

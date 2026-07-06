@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit.json",
+      "sha256": "d66736b0b378119dc3cf4649f25121ec05c6b99bb424695394565c6e2137ebdc"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit.json",
+      "sha256": "7209914d6f68f7aae69cfeaf88bc6c7a628a4ccd2c7d75318c6fb4d0a0434885"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit.jsonl",
+      "sha256": "5abb998940e34a7f7fca6a90ee286cd04749e0ff56d796ffa080eaaceeaeac67"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit/official-documents/esdc-2026-canada-disability-benefit.txt",
+      "sha256": "e1d8ccab651b81b6adf5fa80cbda348c5e3c5fe390df7baccac9fa979b913bdc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-esdc-2026-canada-disability-benefit"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:32.658093+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5JMWJc9eFuIugITrVnFN9yqBuTEPUMNT3ZwMhqs/MOnHUOQ1Q19F0y6I8fZMm2QVKslc7YyoM8C2UZ4JLdTsAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-esdc-2026-canada-disability-benefit"
+}

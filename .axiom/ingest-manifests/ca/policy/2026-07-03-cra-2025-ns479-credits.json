@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-ns479-credits.jsonl",
+      "sha256": "525099a4c381c6fb1d7de102bb5bcfa9543fe810249e99ba2641ab6a5556d36a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-03-cra-2025-ns479-credits"
+  },
+  "coverage": null,
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:43.963452+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/5GZ4AgzULQJjcRYg05V9pJvzPW0ojnLhYm3zT+W2fT45EFyN9RoXB1CdA+kNbRfh8H9dZ8Ik36c9sdkSnoVDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-cra-2025-ns479-credits"
+}

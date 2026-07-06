@@ -1,13 +1,22 @@
 """Adapter shape tests for the CDSS MPP CalFresh extractor."""
 
+import json
 import zipfile
+from datetime import date
 from io import BytesIO
 
 import pytest
 
-from axiom_corpus.corpus.california_mpp import _subsection_provision
+from axiom_corpus.corpus import california_mpp
+from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.california_mpp import (
+    MppDocxSource,
+    _subsection_provision,
+    extract_california_mpp_calfresh,
+)
 from axiom_corpus.parsers.us_ca.regulations import (
     MppParagraph,
+    MppSection,
     MppSubsection,
     extract_paragraphs,
     parse_mpp_sections,
@@ -158,3 +167,83 @@ def test_parse_mpp_sections_falls_back_to_first_paragraph_without_body_marker():
     assert len(sections) == 1
     assert sections[0].num == "63-300"
     assert sections[0].title == "Application Process"
+
+
+def test_extract_california_mpp_calfresh_writes_artifacts(monkeypatch, tmp_path):
+    class Response:
+        content = b"fake-docx"
+
+    class Session:
+        def get(self, url, *, timeout):
+            assert url == "https://example/fsman06.docx"
+            assert timeout == 12.0
+            return Response()
+
+    def fake_extract_paragraphs(docx_bytes):
+        assert docx_bytes == b"fake-docx"
+        return (MppParagraph("63-503 ALLOTMENT COMPUTATION", 1),)
+
+    def fake_parse_mpp_sections(paragraphs, *, source_file, expected_sections):
+        assert paragraphs == (MppParagraph("63-503 ALLOTMENT COMPUTATION", 1),)
+        assert source_file == "fsman06.docx"
+        assert expected_sections == ("63-503",)
+        return (
+            MppSection(
+                num="63-503",
+                title="ALLOTMENT COMPUTATION",
+                source_file="fsman06.docx",
+                subsections=(
+                    MppSubsection(
+                        num="131",
+                        title="The CWD shall prorate the household allotment.",
+                        body="Follow the reciprocal table.",
+                        parent_num="63-503",
+                    ),
+                ),
+            ),
+        )
+
+    monkeypatch.setattr(california_mpp, "extract_paragraphs", fake_extract_paragraphs)
+    monkeypatch.setattr(california_mpp, "parse_mpp_sections", fake_parse_mpp_sections)
+
+    store = CorpusArtifactStore(tmp_path)
+    report = extract_california_mpp_calfresh(
+        store,
+        version="2026-05-12-cdss-mpp-calfresh",
+        docx_sources=(
+            MppDocxSource(
+                file="fsman06.docx",
+                url="https://example/fsman06.docx",
+                chapter="63-503",
+                sections=("63-503",),
+                summary="Allotment computation",
+            ),
+        ),
+        expression_date=date(2026, 5, 12),
+        request_delay_seconds=0,
+        timeout_seconds=12.0,
+        session=Session(),
+    )
+
+    assert report.source_count == 1
+    assert report.container_count == 2
+    assert report.section_count == 1
+    assert report.subsection_count == 1
+    assert report.provisions_written == 4
+    assert report.coverage.complete
+    assert report.coverage.missing_from_provisions == ()
+    assert report.source_paths[0].read_bytes() == b"fake-docx"
+
+    inventory = json.loads(report.inventory_path.read_text())
+    assert [item["citation_path"] for item in inventory["items"]] == [
+        "us-ca/regulation/mpp",
+        "us-ca/regulation/mpp/63",
+        "us-ca/regulation/mpp/63-503",
+        "us-ca/regulation/mpp/63-503.131",
+    ]
+
+    provision_lines = report.provisions_path.read_text().splitlines()
+    assert len(provision_lines) == 4
+    subsection = json.loads(provision_lines[-1])
+    assert subsection["body"] == "Follow the reciprocal table."
+    assert subsection["legal_identifier"] == "CA MPP §63-503.131"

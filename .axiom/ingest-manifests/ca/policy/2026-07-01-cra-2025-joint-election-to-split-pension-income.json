@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-joint-election-to-split-pension-income.json",
+      "sha256": "0b9f27cb650464fb422c676a549fe7a5df1e1fa96535a04e25dead1efa61fe32"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-joint-election-to-split-pension-income.json",
+      "sha256": "0477c39d309519609afd9925b6c1b433122f26a0386c745abc6836b2ed433739"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-joint-election-to-split-pension-income.jsonl",
+      "sha256": "f5933152416da457652b4b52d1e98f0286a70825c1bb69a395b7534f1c007f5a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-joint-election-to-split-pension-income/official-documents/cra-2025-joint-election-to-split-pension-income.txt",
+      "sha256": "837751213ddb6f04620ac48efd9fe101564e2af3357a57ded6c4cf8adfb9df75"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-joint-election-to-split-pension-income"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:18.396089+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BG6Xa0B/d2qvOSqPj+OGlOkVlS/ONLMJSgxadM1F5KIjcEBRgJlmqtEw7PGmMkLgSBPDCo9ZX3o+qRY40mEtDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-joint-election-to-split-pension-income"
+}

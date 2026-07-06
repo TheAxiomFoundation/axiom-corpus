@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer.jsonl",
+      "sha256": "4d34ef351b905e0ab046b0d18ac856a5c8c765ff012e5230e4ae285a0ce2a164"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer"
+  },
+  "coverage": null,
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:57.862560+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KRA3Fd4whowJuiBR0jAMnyiRh2IJxUr9VFrjE/KtppZcE420mjCqxKkdg/nu7/zh3FDk79w7ay2MYs2K/fUiAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer"
+}

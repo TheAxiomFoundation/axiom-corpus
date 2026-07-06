@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates.json",
+      "sha256": "514a81b31974177ff26fa9d239387041cdde64255c6b013d8caeb553c314583e"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates.json",
+      "sha256": "9ee2010f7d54e7e5b3eb99b6b7697b8877872368734b9ba35cadcf13c81fbaf5"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates.jsonl",
+      "sha256": "635aa9775019e83751dce404d1d1f5055c9ea0d488bf48bf87aa3621e86449b8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-provincial-territorial-income-tax.txt",
+      "sha256": "06c8e54c0cfdd7827fa228fd627ea76ed71eee852a0e62340613012f9e4b903c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2026-provincial-territorial-tax-rates"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:31.572484+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mvyzEZJUQxqxrYNfpVa5MAC4aF+XGr3+BUgJQD2Rl8iN9hOxk2DPNRLQji1Z2CmqptkUgwDuI12ExrQcXLE4BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2026-provincial-territorial-tax-rates"
+}

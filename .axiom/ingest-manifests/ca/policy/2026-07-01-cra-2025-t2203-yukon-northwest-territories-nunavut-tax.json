@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax.json",
+      "sha256": "0ced8c3cc09b04087cc0709786d49b2745bda526ba8c6b47908ecd6deba82e5d"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax.json",
+      "sha256": "d2ad59903b93d464be882d1c3651e64711dec8d21e7027abce0588691c1b98bc"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax.jsonl",
+      "sha256": "68af38063857751e45579378d5097f4aee1bd923f39ea789255e29851b8c18cf"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax/official-documents/cra-2025-t2203-yukon-northwest-territories-nunavut-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:27.173877+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LJG7KtTMnOouYFBl2l3lkhSChI575k4V0MKJONA/q0+CwUbzeCwUUHP7gG0Ij6jv2rr0eQRHK8s8l+rCE9LECA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax"
+}

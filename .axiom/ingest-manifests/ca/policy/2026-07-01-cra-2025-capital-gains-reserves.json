@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-capital-gains-reserves.json",
+      "sha256": "80fa131a10f5d4e46c32fe6fbc4ac05f9a38063cfbf5996c02f48dce0ca35b10"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-capital-gains-reserves.json",
+      "sha256": "09d8f010ce8b98aa3d3c0c10a4f046fabfefdb175dc01ff501863287bb3edac2"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-reserves.jsonl",
+      "sha256": "3dbc3994179433a1eddde645be59d985c4ee8b2c19dbdc93a1dc8aee3f0af4ca"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-capital-gains-reserves/official-documents/cra-2025-capital-gains-reserves.txt",
+      "sha256": "83f87d85b8f7875bc39cfed1f8260543a736c35ce38010e6790c29506b18ae74"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-capital-gains-reserves"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:09.963020+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Nng13A9jc+aP2Q1O/GDcEpM1HQaljWrRH6F7wjJfxQnZlc2w1lWfpFjienC+I7AwykGSuMSfcZheIskooeQzCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-capital-gains-reserves"
+}

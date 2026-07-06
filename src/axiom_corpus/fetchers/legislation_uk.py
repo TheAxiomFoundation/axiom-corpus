@@ -102,7 +102,7 @@ class BulkDownloadProgress:
                 self.total_sections = data.get("total_sections", 0)
                 if data.get("started_at"):
                     self.started_at = datetime.fromisoformat(data["started_at"])
-            except json.JSONDecodeError, KeyError:
+            except (json.JSONDecodeError, KeyError):
                 pass
 
     def save(self) -> None:

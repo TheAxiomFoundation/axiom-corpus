@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit.json",
+      "sha256": "ff6fa8ff6ef8f6e1a7a6a31e4f9d80fcfa952ce357b60b74c9e4b494aad319a4"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit.json",
+      "sha256": "eb3cdc4f87511b12a7eb15ce247ba4171b81065804302ee023193137537d2b85"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit.jsonl",
+      "sha256": "1d57983d934e897aeec4fff1ed8bb80577153238ae34b5d57f2c17c5deba3d1f"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit/official-documents/cra-2025-federal-tuition-and-training-credit.txt",
+      "sha256": "d5d420bb561f659fc30114082670721200deebe249f72c4dbcdfd87d1df6910b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-federal-tuition-and-training-credit"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:16.156991+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jLuXQTM2JTHijCbj4O0gsaZWfteujss7cELHEQwotfC70PH4RXubZITaslvdh7gxtD86yYIDZs/SfZzYjODhBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-federal-tuition-and-training-credit"
+}

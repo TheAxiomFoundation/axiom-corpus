@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-investment-tax-credit-individuals.json",
+      "sha256": "29a19e8ea8164e68df2b981328fedeca1c69d88dc4deb162b0551396932dffb2"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-investment-tax-credit-individuals.json",
+      "sha256": "2824c5bb4a39a45b8db7f00cdf55efbfaeea076b2eae377492178ff1232ab8b0"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-investment-tax-credit-individuals.jsonl",
+      "sha256": "92c76cd9ec25bce2d42d5b795552d1915dda3ad006b55863832b403cabb7726b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-investment-tax-credit-individuals/official-documents/cra-2025-investment-tax-credit-individuals.txt",
+      "sha256": "08d2cd285d77a456acd5576232c32c24d9359dd5d63b939af0927061370b95de"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-investment-tax-credit-individuals"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:17.833610+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vruricxVExPm6jrSzAtmkPFn91TEyGoFTbe6EVM3L5cpC2fHbGgN0P1Lh54HCOfC+wHLldHmq/LtW/OpgRrjDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-investment-tax-credit-individuals"
+}

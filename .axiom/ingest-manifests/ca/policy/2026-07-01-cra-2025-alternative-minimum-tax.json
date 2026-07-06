@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-alternative-minimum-tax.json",
+      "sha256": "91306692c9306637ad8b931dd26d8a9684cb1a138598e2d5a593d97e1a9aa6f2"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-alternative-minimum-tax.json",
+      "sha256": "d7d074e2a4851a21a920ada4bcf56f8f0a80d8d6b23d00ed7892fd8a74bdbd39"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-alternative-minimum-tax.jsonl",
+      "sha256": "46096bd70d6920d6779e4056a80dd5c0f261f19550e97bbd3aab696495e2ae9f"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-alternative-minimum-tax/official-documents/cra-2025-alternative-minimum-tax.txt",
+      "sha256": "d11e16912de67e39633389614ffd04a0bc36baa43d03c81149d976c3c417492e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": false,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-alternative-minimum-tax"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:07.109271+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "veD0sYx9C1iAkUfMdTfVyOWBPD5RiLMvui0rIBTLf4aMJkzqp8Q40JCzTCD4PHyN7ixi5trUCXWPKHdbGV6wCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-alternative-minimum-tax"
+}

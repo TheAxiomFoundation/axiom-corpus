@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-sk428-resident-tax.jsonl",
+      "sha256": "ba5593fbe394425013eba46f91a835f2b4abff4a10c89a8b12bed611c0fcf858"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-02-cra-2025-sk428-resident-tax"
+  },
+  "coverage": null,
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:39.206718+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PXLuHupaHuV82bq+gbatdw5HgWlUASYMmRuAnyn57a3kZypInde56XmZ5O2uw5Wn1GdfmjOddKg6nCxiOiHgBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-cra-2025-sk428-resident-tax"
+}

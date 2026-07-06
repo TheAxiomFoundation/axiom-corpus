@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-capital-gains-deduction.json",
+      "sha256": "cfe463c7124581442f7efb3ee680c53c5ec0c1e1e99240da4c25265b519783b0"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-capital-gains-deduction.json",
+      "sha256": "bb74b3d301f7332509188a33525294928403915e422b295b850d017bfe98b410"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-deduction.jsonl",
+      "sha256": "e698baaa06c3a3a65ad0c0464c3fcdccef4626861d34535d5cc0845f3286ad55"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-capital-gains-deduction/official-documents/cra-2025-capital-gains-deduction.txt",
+      "sha256": "b30163029bf83825a084b78fd8d2a7f8184503fac05b5d843f7fc637922ac57c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-capital-gains-deduction"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:08.249160+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "u/lUxQ/M/rsmA7lyLLJ3tJnXf9SGi8A2f9nGP5jc6wDUZqRMqGKBwBiklWAm8UB4ojTPm4MNrV0Yc/EAVikwAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-capital-gains-deduction"
+}

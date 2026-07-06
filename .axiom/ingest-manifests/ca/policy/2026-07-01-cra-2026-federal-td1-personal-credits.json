@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.json",
+      "sha256": "67e4f418164897c83ec852d77b1d8000cbfd169e671d0a8b1079945b901d7825"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.json",
+      "sha256": "7bc020159499288e2725d9445bc082e8250bce77a1b90f47bd6e3af6b43c4383"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.jsonl",
+      "sha256": "0ceb649d7f355d12bbb0d12ff51a4eb19fae0195af7c6e6f4f80282f28942844"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-federal-td1-personal-credits.txt",
+      "sha256": "8bf1554959a907f264ec6a4f05f401d2f55baf18084ea033c2e3a1e57eae9f6d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2026-federal-td1-personal-credits"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:29.931360+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FxmPVACarPnsiXKjByomdJa8B9twee5rUpDkeB+20ra7hGfllGqzlCE8CA/OghHpXSFM+uvGUY0EEodJH+x6Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2026-federal-td1-personal-credits"
+}
