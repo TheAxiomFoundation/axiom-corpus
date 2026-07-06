@@ -1679,20 +1679,22 @@ def _windowed_pdf_lines(
         for page_index, page in enumerate(document, start=1):
             if page_index > last_page:
                 break
-            window = window_by_page.get(page_index)
-            if window is None or stopped[id(window)]:
+            page_window = window_by_page.get(page_index)
+            if page_window is None or stopped[id(page_window)]:
                 continue
             for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
                 line = _normalize_text(raw_line)
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
-                if not started[id(window)]:
-                    if window.start_at_re is not None and window.start_at_re.search(line):
-                        started[id(window)] = True
+                if not started[id(page_window)]:
+                    if page_window.start_at_re is not None and page_window.start_at_re.search(
+                        line
+                    ):
+                        started[id(page_window)] = True
                         lines.append((line, page_index))
                     continue
-                if window.stop_at_re is not None and window.stop_at_re.search(line):
-                    stopped[id(window)] = True
+                if page_window.stop_at_re is not None and page_window.stop_at_re.search(line):
+                    stopped[id(page_window)] = True
                     break
                 lines.append((line, page_index))
     return tuple(lines)
