@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616.json",
+      "sha256": "9ce2c6bb61e845deca35b015452fa7070e8320ad1e5d6b0c080706d673ecde15"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616.json",
+      "sha256": "c811eef251714b263edf6126fea839beb72fb4cc457bc1077a461864cdabb266"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616.jsonl",
+      "sha256": "46ff3763704eb83f5e19d1f8151a78c224a5d4e280da6b7b78fca267136b55de"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616/new-york-openleg-json/TAX/601.json",
+      "sha256": "bd90959d08e6a9f341357cc8b10c8b1398c2d0c54cd30ce292d0881f9af24f02"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616/new-york-openleg-json/TAX/606.json",
+      "sha256": "fda308972641a125f95dc0b233c2f79e1f26507b524bf23f7153dd060f5cfafd"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616/new-york-openleg-json/TAX/614.json",
+      "sha256": "21597aa8dee1aa395cc4b97dc4a6bb3b3bc67deb3d9d459095e3099e138c7da7"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616/new-york-openleg-json/TAX/615.json",
+      "sha256": "0b9e8b4d40ac5205b3dbf9e1bb05836cca2353b8e4a6a5a078dad0e32102b309"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616/new-york-openleg-json/TAX/616.json",
+      "sha256": "f4d2d3806ef02198a895704ad7b8dc7bff8b297ce18c4c47841c2b4378d34b63"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ced6e76fd171547ceb8134011befbdc9a7ce80ad",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/_axiom-worktrees/statetax-cany-20260706/ny/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-new-york-openleg-sections --base data/corpus --version 2026-07-06-ny-tax-article22-core --source-as-of 2026-07-06 --expression-date 2026-07-06 --download-dir output/downloads --section TAX:601 --section TAX:606 --section TAX:614 --section TAX:615 --section TAX:616"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-06T11:06:37.413315+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "r3dgx79ImNe5je01SZ0kz8FMRbX/Z2gAm/kcCLjhxHN+CK9gJ1vvvHw2ZNYAguWTsXYgxgJwPeqbNNgjux42Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616"
+}
