@@ -1,0 +1,68 @@
+# Nigeria individual income-tax core capture (rulespec-ng first slice).
+#
+# Source: the authentic Official Gazette print of the Nigeria Tax Act, 2025
+# (2025 No. 7; Federal Republic of Nigeria Official Gazette No. 117, Vol.
+# 112, Lagos, 26 June 2025, gazette pages A385-A597; printed by the Federal
+# Government Printer, Lagos, FGP 29/72025/500). Clerk authentication 11 June
+# 2025; presidential assent (Bola Ahmed Tinubu) 26 June 2025. The Act
+# consolidates Nigeria's tax statutes and repeals the Personal Income Tax
+# Act, Cap. P8 LFN 2004 "from the commencement of this Act" (section 196(g)).
+# The Act's own text contains no commencement date (section 203 is
+# citation-only); the announced nationwide implementation date for the 2025
+# tax reform acts is 1 January 2026, and the individual rate schedule
+# operates by calendar year of assessment, so the first year of assessment
+# under this Act is 2026.
+#
+# Three provisions are promoted from one snapshot via page_windows:
+#   - section 30 (chargeable income of individuals: total income less
+#     eligible deductions, including rent relief of 20% of annual rent paid
+#     capped at N500,000)
+#   - section 58 (charging rule: individual income tax per the Fourth
+#     Schedule, except an individual earning the Minimum Wage)
+#   - Fourth Schedule (individuals' income tax rates: first N800,000 at 0%;
+#     next N2,200,000 at 15%; next N9,000,000 at 18%; next N13,000,000 at
+#     21%; next N25,000,000 at 23%; above N50,000,000 at 25%)
+documents:
+  - source_id: ng-nigeria-tax-act-2025-individual-core
+    jurisdiction: ng
+    document_class: statute
+    citation_path: ng/statute/nigeria-tax-act-2025
+    title: Nigeria Tax Act, 2025 (2025 No. 7) — sections 30 and 58 and Fourth Schedule slices
+    source_url: https://irs.gm.gov.ng/docs/national/NIGERIA_TAX_ACT_2025.pdf
+    source_format: pdf
+    source_as_of: '2026-07-06'
+    expression_date: '2026-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>30|58)\.(?:\s+(?P<heading>.+))?$'
+      section_label_pattern: '^(?P<label>Fourth Schedule)$'
+      section_label_replacements:
+        Fourth Schedule: fourth-schedule
+      page_windows:
+        - start_page: 29
+          end_page: 29
+          start_at_pattern: '^30\.'
+          stop_at_pattern: '^31\.'
+        - start_page: 41
+          end_page: 41
+          start_at_pattern: '^58\.'
+          stop_at_pattern: 'PART X'
+        - start_page: 155
+          end_page: 155
+          start_at_pattern: '^Fourth Schedule$'
+    metadata:
+      primary_source: true
+      source_authority: Federal Republic of Nigeria Official Gazette (Federal Government Printer, Lagos); hosted by the Gombe State Internal Revenue Service
+      original_publisher: Federal Government Printer, Lagos
+      printed_reference: FGP 29/72025/500
+      gazette_reference: Official Gazette No. 117, Vol. 112, 26 June 2025, Government Notice No. 26, pages A385-A597
+      date_of_assent: '2025-06-26'
+      clerk_authentication_date: '2025-06-11'
+      effective_date: '2026-01-01'
+      commencement_note: The Act's own text has no commencement provision (section 203 is citation-only) and section 196 repeals the Personal Income Tax Act, Cap. P8 LFN 2004 "from the commencement of this Act". The announced nationwide implementation date for the 2025 tax reform acts is 1 January 2026, and individual income tax operates by calendar year of assessment (section 202), so 2026 is the first year of assessment under the Fourth Schedule rates.
+      hosting_note: Text-embedded PDF of the gazette print downloaded from the Gombe State Internal Revenue Service (irs.gm.gov.ng), a Nigerian state tax authority hosting the federal gazette act, on 2026-07-06. The same gazette print circulates from the Presidential Fiscal Policy and Tax Reforms Committee (fiscalreforms.ng) and the Chartered Institute of Taxation of Nigeria (portal.citn.org).
+      supersedes_note: Replaces the Personal Income Tax Act regime (graduated rates and consolidated relief allowance) previously modelled by PolicyEngine Nigeria; the consolidated relief allowance is abolished and rent relief (section 30(2)(a)(vi)) replaces it as the general relief for individuals.
+      source_family: personal-income-tax/individual-core
+      source_note: 'Slices promoted at section/schedule granularity via page_windows: section 30 (page 29 of the PDF, gazette A413), section 58 (page 41, gazette A425) and the Fourth Schedule (page 155, gazette A539). Rate table verbatim: First N800,000 at 0%; Next N2,200,000 at 15%; Next N9,000,000 at 18%; Next N13,000,000 at 21%; Next N25,000,000 at 23%; Above N50,000,000 at 25%. Band widths are internally consistent with the cumulative boundaries (800,000 / 3,000,000 / 12,000,000 / 25,000,000 / 50,000,000).'
