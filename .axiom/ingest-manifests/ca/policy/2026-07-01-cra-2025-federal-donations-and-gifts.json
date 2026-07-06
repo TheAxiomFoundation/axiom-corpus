@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-donations-and-gifts.jsonl",
-      "sha256": "961ed545e32a6c7213ca7c2a60a4266117be3604164acc0728c30bf094b0d741"
+      "sha256": "39c71af0aa538eaa9b2e01d61c531937f89e2fe9bbe632695dbb2793fac51ddb"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-donations-and-gifts/official-documents/cra-2025-schedule-9-donations-and-gifts.txt",
@@ -30,13 +30,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "split multi-document scopes into child provisions; re-sign"
   },
   "coverage": {
     "complete": null,
@@ -47,14 +47,14 @@
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:03.740432+00:00",
+  "generated_at": "2026-07-06T19:25:03.943886+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "GAqmV9KGk78RVfUIoZt/eSq6ecHvfOLLe8Te68hafL0P09vl/5QSMDVxplBHiRGBc8TsWU8rkz+AupYxBVi/Bg=="
+    "value": "UgaK3svU/W9Zx8pU0g0fJVB2lZ8WaXo7oMQaV2T2WPXNXGiePLPuG6GIghCR76Kd3YLTQhUjf8UHeyYjHx3mAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-donations-and-gifts"

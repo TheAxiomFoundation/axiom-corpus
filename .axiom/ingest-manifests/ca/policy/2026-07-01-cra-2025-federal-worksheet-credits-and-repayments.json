@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments.jsonl",
-      "sha256": "d5fe61ded690f3be4bc480d89c99b7488cbf8615dee8efee869ca11379ac16dd"
+      "sha256": "10fedf564a4c0d05435547a758cd133d370f2af6c0323a94e30d875eb6f92361"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments/official-documents/cra-2025-federal-worksheet.txt",
@@ -26,13 +26,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "split multi-document scopes into child provisions; re-sign"
   },
   "coverage": {
     "complete": null,
@@ -43,14 +43,14 @@
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:06.000262+00:00",
+  "generated_at": "2026-07-06T19:25:06.153632+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "o6koKacYKtxLAzDco3sj75E6T8fcNIXyiOTwlY5/SNX2lpjtGDfLQmZNdw+sMdpPJsSprryEnnD/rMMAen03Dw=="
+    "value": "WItFHGVXTTnKYba+dzd4Z3m0/RsyDLX/MXSwxcsG579T+R0FRkQmlsSGLyQIcUtMU7Z86dbIfz9RKXqIrU3BDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-worksheet-credits-and-repayments"
