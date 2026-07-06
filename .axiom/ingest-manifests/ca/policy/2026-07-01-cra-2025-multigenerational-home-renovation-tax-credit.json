@@ -6,25 +6,33 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit.json",
-      "sha256": "ee177d0772a013bb283af1c655edf22d6f2058e13f827501ee1e0010049fedb0"
+      "sha256": "2cc6b16a0fd0823d274b9714e9f8a0e8c8de59924e38555d35144d9c0650a34c"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit.jsonl",
-      "sha256": "95bfd7d383d2cd619189b077f90dfab3dcdab8a0d907cdf94cee3853885eeb54"
+      "sha256": "d97484e007aec833666473b22c756d29d46de5fb6b2f4fb2ccc669070be6dd21"
     },
     {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit/official-documents/cra-2025-multigenerational-home-renovation-tax-credit.txt",
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit/official-documents/cra-2025-schedule-12-mhrtc.txt",
+      "sha256": "91f65f9e6866ecd948febab697b8aa7441a9bdf92cd2e3120b0e45b56f3e7e30"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit/reasoning/cra-2025-multigenerational-home-renovation-tax-credit.txt",
       "sha256": "33e59e3bd4ef5d4037dcf615027dffe170d0fea66aac405040e977be7e4c5a77"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit/official-documents/cra-2025-multigenerational-home-renovation-tax-credit.txt"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "7dc0397808d2592547b66b1c7b8373fbf04965c0",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit"
+    "text": "manual provenance cleanup: demote digest artifact from official-documents to reasoning and remove primary_source=true"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +43,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:18.939682+00:00",
+  "generated_at": "2026-07-06T16:26:45.924383+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "zNVfUhZCu5h1uBq4Vw7OQWBxmZP16Lio12nwlGHL+ENvhuCJX0X1nwubfsehBpxfrw4SaqRINsZSrnSz7pjlCw=="
+    "value": "v9K11g2lGO/v+ERPRj2x1cmUbh/nxDsX3cddvqhXV0ZnuyvcBgkmbKtbPBmPQH4OC4VfJPVgrzvKHZ+2ZnK/AQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit"

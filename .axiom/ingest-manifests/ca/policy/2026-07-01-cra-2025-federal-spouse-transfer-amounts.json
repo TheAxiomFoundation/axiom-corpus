@@ -6,25 +6,33 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts.json",
-      "sha256": "a8e1edd18f40d6cd60a89451b42d38433c4a300f7138ecaad77ea50cb1c8f881"
+      "sha256": "f2b835a3b076e8ced0c94b0db0c5b5ebacf8c7b7a89fe51d2d27b29c6ef99fad"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts.jsonl",
-      "sha256": "46387074ff7c42fe26e9aaee68ec452af13ddc212ca35e58ea516661e85d3e75"
+      "sha256": "371dc03d0bc23d5234566d3105f824b5b684ac41bfa7d1159294255a5b5b5ea4"
     },
     {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts/official-documents/cra-2025-federal-spouse-transfer-amounts.txt",
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts/official-documents/cra-2025-schedule-2-spouse-transfer.txt",
+      "sha256": "4c4655503f31cf019fdd3a61b46dd2ca1a87ad2d75ea3988f53ddaa6e5194e80"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts/reasoning/cra-2025-federal-spouse-transfer-amounts.txt",
       "sha256": "af2fd67e871d304ce0dec63815b0dd214bcda265e6e3a4f6589acca62de15339"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts/official-documents/cra-2025-federal-spouse-transfer-amounts.txt"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "7dc0397808d2592547b66b1c7b8373fbf04965c0",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-federal-spouse-transfer-amounts"
+    "text": "manual provenance cleanup: demote digest artifact from official-documents to reasoning and remove primary_source=true"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +43,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:15.614284+00:00",
+  "generated_at": "2026-07-06T16:26:43.417291+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "pW83p//Tug6noFvtlxTbtfaWm7j5bt+1Zsv51cPCzn8q0UwMj68+0vyvEqLEePF4v48eFso5TavAIoNYU60wDA=="
+    "value": "JLPyoaqJ7kwFeZuQd/beOWBD0fM3605Z663vnjVjYfZqpoUo5d3ZPOFksIORjNQDBbfU3qvdDm81SggFlM6LAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-spouse-transfer-amounts"
