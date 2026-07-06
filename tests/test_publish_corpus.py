@@ -341,12 +341,20 @@ def test_refresh_reraises_non_gateway_http_error(monkeypatch):
 def test_is_transient_classification():
     assert publish._is_transient("HTTP Error 500: Internal Server Error")
     assert publish._is_transient("HTTP Error 502: Bad Gateway")
+    assert publish._is_transient("urllib.error.HTTPError: HTTP Error 504: Gateway Timeout")
     assert publish._is_transient("connection timed out")
     # Deterministic data errors are NOT transient.
     assert not publish._is_transient(
         'upsert failed 409: violates foreign key constraint "rules_parent_id_fkey"'
     )
     assert not publish._is_transient('upsert failed 400: time zone "x" not recognized')
+    # Regression: the chunk-size "500 rows" in load progress must not read as a
+    # transient HTTP 500.
+    assert not publish._is_transient(
+        "processed Supabase chunk 1 (500 rows)\n"
+        'RuntimeError: upsert failed 409: {"code":"23503",'
+        '"message":"violates foreign key constraint rules_parent_id_fkey"}'
+    )
 
 
 def _fake_proc(returncode: int, stderr: str = ""):

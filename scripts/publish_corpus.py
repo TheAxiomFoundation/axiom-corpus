@@ -270,7 +270,27 @@ def _sync_r2(scope: FileScope, credentials_file: Path | None, workers: int) -> s
 
 # Transient PostgREST/edge statuses worth retrying with backoff. Data errors
 # (400 bad value, 409 FK violation) are deterministic and never retried.
-_TRANSIENT_MARKERS = ("500", "502", "503", "504", "Internal Server Error", "Gateway", "timed out")
+#
+# Matched against HTTP-status-specific phrases, not bare numbers: the load
+# progress text contains the chunk size ("500 rows"), so a bare "500" substring
+# would falsely classify a deterministic 409 as transient.
+_TRANSIENT_MARKERS = (
+    "HTTP Error 500",
+    "HTTP Error 502",
+    "HTTP Error 503",
+    "HTTP Error 504",
+    "upsert failed 500",
+    "upsert failed 502",
+    "upsert failed 503",
+    "upsert failed 504",
+    "Internal Server Error",
+    "Bad Gateway",
+    "Service Unavailable",
+    "Gateway Timeout",
+    "timed out",
+    "Connection reset",
+    "Connection aborted",
+)
 
 
 def _is_transient(stderr: str) -> bool:
