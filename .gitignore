@@ -116,3 +116,15 @@ data/corpus/sources/uk/statute/2026-07-05-uk-hicbc-itepa/
 # are committed; the signed ingest manifest records the source-XML sha256 hashes.
 # See docs/ingest-runs/2026-07-05-uk-uc-minimum-income-floor.md.
 data/corpus/sources/uk/regulation/2026-07-05-uk-uc-minimum-income-floor/
+
+# legislation.gov.uk CLML source XML for the UK statutory-pay / maternity ingest
+# (SSCBA 1992 Part XII SMP, Part II s.35 Maternity Allowance, Part 12ZA SPP) is
+# R2-backed provenance only, for the same reason: it embeds upstream
+# EffectId="key-..." commentary identifiers that GitHub org push protection
+# false-positives as Mailgun keys. The normalized provisions carry the verbatim
+# statutory text and are committed; the signed ingest manifests record the
+# source-XML sha256 hashes. See
+# docs/ingest-runs/2026-07-06-uk-sscba-statutory-pay-maternity.md.
+data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/
+data/corpus/sources/uk/statute/2026-07-06-uk-sscba-maternity-allowance/
+data/corpus/sources/uk/statute/2026-07-06-uk-sscba-statutory-paternity-pay/
