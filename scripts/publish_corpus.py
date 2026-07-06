@@ -268,14 +268,38 @@ def _sync_r2(scope: FileScope, credentials_file: Path | None, workers: int) -> s
         return "?"
 
 
-def _load_supabase(scope: FileScope, chunk_size: int) -> None:
+# Transient PostgREST/edge statuses worth retrying with backoff. Data errors
+# (400 bad value, 409 FK violation) are deterministic and never retried.
+_TRANSIENT_MARKERS = ("500", "502", "503", "504", "Internal Server Error", "Gateway", "timed out")
+
+
+def _is_transient(stderr: str) -> bool:
+    return any(marker in stderr for marker in _TRANSIENT_MARKERS)
+
+
+def _load_supabase(
+    scope: FileScope,
+    chunk_size: int,
+    *,
+    build_navigation: bool = False,
+    retries: int = 2,
+    backoff_s: float = 10.0,
+) -> None:
     """Load one version's provisions and auto-register its active scope.
 
     ``--skip-refresh`` defers the (expensive) materialized-view refresh; the
     caller refreshes once after all versions load. ``--replace-scope`` clears
     prior rows for this jurisdiction/document_class version before upsert so a
-    re-cut of the same version is exact.
+    re-cut of the same version is exact. Navigation is deferred by default
+    (``--no-build-navigation``) and rebuilt once at the end; this halves the
+    per-scope work and removes the large-scope nav-rebuild timeout surface.
+
+    Transient 5xx/gateway failures are retried with backoff; deterministic data
+    errors (400/409) fail immediately so a defective file is reported, not
+    hammered.
     """
+    import time
+
     args = [
         "load-supabase",
         "--provisions",
@@ -285,11 +309,48 @@ def _load_supabase(scope: FileScope, chunk_size: int) -> None:
         "--chunk-size",
         str(chunk_size),
     ]
+    args.append("--build-navigation" if build_navigation else "--no-build-navigation")
+    last_err = ""
+    for attempt in range(retries + 1):
+        proc = _ingest(args)
+        if proc.returncode == 0:
+            return
+        last_err = proc.stderr.strip()[-800:]
+        if attempt < retries and _is_transient(last_err):
+            wait = backoff_s * (attempt + 1)
+            print(
+                f"  load-supabase transient error (attempt {attempt + 1}); "
+                f"retrying in {wait:.0f}s",
+                flush=True,
+            )
+            time.sleep(wait)
+            continue
+        break
+    raise RuntimeError(f"load-supabase failed: {last_err}")
+
+
+def build_navigation_once(paths: Sequence[Path]) -> None:
+    """Rebuild corpus.navigation_nodes for all published files in one pass.
+
+    Called after loads (which ran with ``--no-build-navigation``). Nav is a
+    separate tree used by the browser UI; ``current_provisions`` visibility for
+    bulk/cloud workers does not depend on it, so a nav failure here is a warning
+    rather than a per-scope publication failure.
+    """
+    if not paths:
+        return
+    args = ["build-navigation-index", "--replace-scope"]
+    for p in paths:
+        args += ["--provisions", str(p)]
     proc = _ingest(args)
     if proc.returncode != 0:
-        raise RuntimeError(
-            f"load-supabase failed (exit {proc.returncode}): {proc.stderr.strip()[-800:]}"
+        print(
+            f"::warning::navigation rebuild failed (provisions are still published): "
+            f"{proc.stderr.strip()[-400:]}",
+            flush=True,
         )
+    else:
+        print("Navigation rebuilt for published scopes.", flush=True)
 
 
 def refresh_analytics(
@@ -612,7 +673,12 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     loaded = [o for o in outcomes if o.ok]
 
-    # --- phase 2: one refresh, then per-version count verification ---
+    # --- phase 2: rebuild navigation once for every loaded file ---
+    if loaded:
+        print("\n=== Rebuilding navigation for published scopes (once) ===", flush=True)
+        build_navigation_once(sorted({Path(o.path) for o in loaded}))
+
+    # --- phase 3: one refresh, then per-version count verification ---
     if loaded:
         print("\n=== Refreshing corpus analytics (once) ===", flush=True)
         expected_pairs = {(o.scope[0], o.scope[1]) for o in loaded}

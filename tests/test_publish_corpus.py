@@ -338,6 +338,55 @@ def test_refresh_reraises_non_gateway_http_error(monkeypatch):
     assert "400" in str(excinfo.value)
 
 
+def test_is_transient_classification():
+    assert publish._is_transient("HTTP Error 500: Internal Server Error")
+    assert publish._is_transient("HTTP Error 502: Bad Gateway")
+    assert publish._is_transient("connection timed out")
+    # Deterministic data errors are NOT transient.
+    assert not publish._is_transient(
+        'upsert failed 409: violates foreign key constraint "rules_parent_id_fkey"'
+    )
+    assert not publish._is_transient('upsert failed 400: time zone "x" not recognized')
+
+
+def _fake_proc(returncode: int, stderr: str = ""):
+    import subprocess
+
+    return subprocess.CompletedProcess(args=[], returncode=returncode, stdout="", stderr=stderr)
+
+
+def test_load_retries_on_transient_then_succeeds(monkeypatch):
+    calls = {"n": 0}
+
+    def fake_ingest(cmd):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            return _fake_proc(1, "HTTP Error 503: Service Unavailable")
+        return _fake_proc(0)
+
+    monkeypatch.setattr(publish, "_ingest", fake_ingest)
+    import time as _t
+
+    monkeypatch.setattr(_t, "sleep", lambda s: None)
+    fs = _fs("ng", "statute", "v1", "ng/statute/v1.jsonl")
+    publish._load_supabase(fs, 500, retries=2, backoff_s=0)
+    assert calls["n"] == 2  # retried once, then succeeded
+
+
+def test_load_fails_fast_on_data_error(monkeypatch):
+    calls = {"n": 0}
+
+    def fake_ingest(cmd):
+        calls["n"] += 1
+        return _fake_proc(1, 'upsert failed 409: violates foreign key constraint')
+
+    monkeypatch.setattr(publish, "_ingest", fake_ingest)
+    fs = _fs("be", "regulation", "v1", "be/regulation/v1.jsonl")
+    with pytest.raises(RuntimeError):
+        publish._load_supabase(fs, 500, retries=3, backoff_s=0)
+    assert calls["n"] == 1  # no retries on a deterministic 409
+
+
 def test_refresh_success_no_poll(monkeypatch):
     import axiom_corpus.corpus.supabase as sb
 
