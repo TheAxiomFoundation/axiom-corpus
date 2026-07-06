@@ -8,6 +8,7 @@ from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters.new_york import (
     extract_new_york_consolidated_laws,
     extract_new_york_openleg_api,
+    extract_new_york_openleg_sections,
     parse_new_york_law_index,
     parse_new_york_law_page,
     parse_new_york_openleg_laws,
@@ -494,3 +495,134 @@ def test_extract_new_york_consolidated_laws_parallelizes_leaf_sections(tmp_path)
         "us-ny/statute/TAX/601",
         "us-ny/statute/TAX/602",
     ]
+
+
+def _openleg_section_node(location_id, doc_level_id, title, text, active_date):
+    return {
+        "success": True,
+        "result": {
+            "lawId": "TAX",
+            "lawName": "Tax",
+            "locationId": location_id,
+            "docLevelId": doc_level_id,
+            "docType": "SECTION",
+            "title": title,
+            "text": text,
+            "activeDate": active_date,
+        },
+    }
+
+
+def _write_new_york_openleg_section_fixture(base):
+    source_dir = base / "source"
+    section_dir = source_dir / "new-york-openleg-json" / "TAX"
+    section_dir.mkdir(parents=True)
+    (section_dir / "601.json").write_text(
+        json.dumps(
+            _openleg_section_node(
+                "601",
+                "601",
+                "Imposition of tax",
+                "§ 601. Imposition of tax. Resident tax text.",
+                "2025-07-11",
+            )
+        ),
+        encoding="utf-8",
+    )
+    (section_dir / "614.json").write_text(
+        json.dumps(
+            _openleg_section_node(
+                "614",
+                "614",
+                "New York standard deduction of a resident individual",
+                "§ 614. New York standard deduction. Standard deduction text.",
+                "2025-07-11",
+            )
+        ),
+        encoding="utf-8",
+    )
+    return source_dir
+
+
+def test_extract_new_york_openleg_sections_writes_targeted_provisions(tmp_path):
+    source_dir = _write_new_york_openleg_section_fixture(tmp_path)
+    store = CorpusArtifactStore(tmp_path / "artifacts")
+
+    report = extract_new_york_openleg_sections(
+        store,
+        version="2026-test",
+        sections=("TAX:601", "TAX:614"),
+        source_dir=source_dir,
+        source_as_of="2026-01-30",
+        expression_date="2026-01-30",
+    )
+
+    assert report.coverage.complete
+    assert report.title_count == 1
+    assert report.container_count == 0
+    assert report.section_count == 2
+    assert report.provisions_written == 2
+
+    inventory = load_source_inventory(report.inventory_path)
+    provisions = load_provisions(report.provisions_path)
+    assert [item.source_format for item in inventory] == [
+        "new-york-openleg-json",
+        "new-york-openleg-json",
+    ]
+    assert [provision.citation_path for provision in provisions] == [
+        "us-ny/statute/TAX/601",
+        "us-ny/statute/TAX/614",
+    ]
+    assert provisions[0].body == "§ 601. Imposition of tax. Resident tax text."
+    assert provisions[0].parent_citation_path == "us-ny/statute/TAX"
+    assert provisions[0].heading == "Imposition of tax"
+    assert provisions[0].legal_identifier == "N.Y. TAX Law § 601"
+
+
+def test_extract_new_york_openleg_sections_deduplicates_repeated_specs(tmp_path):
+    source_dir = _write_new_york_openleg_section_fixture(tmp_path)
+    store = CorpusArtifactStore(tmp_path / "artifacts")
+
+    report = extract_new_york_openleg_sections(
+        store,
+        version="2026-test",
+        sections=("TAX:601", "TAX 601"),
+        source_dir=source_dir,
+        source_as_of="2026-01-30",
+        expression_date="2026-01-30",
+    )
+
+    assert report.section_count == 1
+    provisions = load_provisions(report.provisions_path)
+    assert [p.citation_path for p in provisions] == ["us-ny/statute/TAX/601"]
+
+
+def test_extract_new_york_openleg_sections_rejects_non_section_node(tmp_path):
+    source_dir = tmp_path / "source"
+    section_dir = source_dir / "new-york-openleg-json" / "TAX"
+    section_dir.mkdir(parents=True)
+    (section_dir / "A22.json").write_text(
+        json.dumps(
+            {
+                "success": True,
+                "result": {
+                    "lawId": "TAX",
+                    "locationId": "A22",
+                    "docType": "ARTICLE",
+                    "title": "Personal Income Tax",
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    store = CorpusArtifactStore(tmp_path / "artifacts")
+
+    with pytest.raises(ValueError, match="expected a section"):
+        extract_new_york_openleg_sections(
+            store,
+            version="2026-test",
+            sections=("TAX:A22",),
+            source_dir=source_dir,
+            source_as_of="2026-01-30",
+            expression_date="2026-01-30",
+        )
