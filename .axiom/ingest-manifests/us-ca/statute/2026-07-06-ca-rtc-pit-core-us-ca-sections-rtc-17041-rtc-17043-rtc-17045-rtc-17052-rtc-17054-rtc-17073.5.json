@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5.json",
+      "sha256": "67b0f4710aea3dd6fdcd1a7da7f06f494b3ae76c524f01f6b3422b0d141cfa5e"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5.json",
+      "sha256": "2d47892743217aef3c03ae13ede0b9a5ea2a8084940550d64ba75ff21afdcb04"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5.jsonl",
+      "sha256": "da0347289d2562c4be9b5959140b80f3c0aae35c2ed2a49be34dabefc1b09e15"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5/california-leginfo-sections/RTC-17041.html",
+      "sha256": "acae761595076361ea23564890e4779dcdb55b0225ed89836570fd44b5c69433"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5/california-leginfo-sections/RTC-17043.html",
+      "sha256": "cc9bbc2d8c14f77dfac9eff27f3045be1d83151d2a2db217953bf15864f1f7d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5/california-leginfo-sections/RTC-17045.html",
+      "sha256": "df0defa98efc1a94e45338603897ae2327779e00d75b17414ca25bfedb0627e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5/california-leginfo-sections/RTC-17052.html",
+      "sha256": "b0109e3cbb14a528423c83e6a41ad5145e711f702baff33ae24c84204601427d"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5/california-leginfo-sections/RTC-17054.html",
+      "sha256": "4604b5e2994a4acdcb554abea7b3b4766b13a3e03fcb294bf33aa2ff6ebb1442"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/statute/2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5/california-leginfo-sections/RTC-17073.5.html",
+      "sha256": "745d5d53667027d377dbde7cd078eca4433f3fcb77a17e06ec6a61f494b5493a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8e48989c9e46faa6d85a9624b7a2ebda0880656d",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/_axiom-worktrees/statetax-cany-20260706/ca/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-california-code-sections --base data/corpus --version 2026-07-06-ca-rtc-pit-core --source-as-of 2026-07-06 --expression-date 2026-07-06 --download-dir output/downloads --section RTC:17041 --section RTC:17043 --section RTC:17045 --section RTC:17052 --section RTC:17054 --section RTC:17073.5"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-06T10:54:26.305375+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "niHEEGRUeNeIw57YHE/BguOFOFaXAXLyrx7VkIuiZNOtQfywB6ICvey+6Yno95UmCl/7SD0lr6o4B6Ctw2TaAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5"
+}
