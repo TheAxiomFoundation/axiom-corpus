@@ -1,29 +1,48 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-t1-return-aggregation.json",
+      "sha256": "60038d34b56549f787c765af37156f409a87366db9584cc8cc3011178bdeb5d8"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-t1-return-aggregation.json",
+      "sha256": "a4ce7bb2b281298e035085a0bceb4712c6a51772283e79973b57357c05254fc8"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-t1-return-aggregation.jsonl",
-      "sha256": "5c70bfc328f8cba0d5ac2fe485321c3024fad6f718f096bcdf1d11ac05f59560"
+      "sha256": "46169a514989a73b83436b1b5da2327a3f4e29487c116605193c465afc7c5049"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-t1-return-aggregation/official-documents/5000-r-25e.txt",
+      "sha256": "49abf16998ee1b2f4bc21375bdea96024628cbf43044d38e8aa50e33bde522ae"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-02-cra-2025-t1-return-aggregation"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:40.267577+00:00",
+  "generated_at": "2026-07-06T16:45:44.635586+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "RzWO8XN04+QShdNArU94aNk0g1klTPRithxz7nn/lF9VYSWoSldvckxtCq6b1689K8H40DCafCawrARwVzWlBA=="
+    "value": "NA0k8xKlxcpAyQiwi+6vO+sZrpOB1VnwBHsyCsg5wC5Mm8cLNWjssCy38sf2MVDHrbzDH99qK4+y4snfD1mVCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-t1-return-aggregation"

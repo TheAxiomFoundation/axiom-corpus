@@ -1,29 +1,48 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits.json",
+      "sha256": "0887bd00fb9ecdb428e5581cf4b28470d6d725f121c629ede0174a56e38eefd4"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits.json",
+      "sha256": "78e8467ca5571642d1f83bd3ae3bad5de8ddf29ffea5b308b0c5401ea23a80de"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits.jsonl",
-      "sha256": "f0592d29c2dca70ed2ecc58d96071fe37c93a5c5679f7ea71018f4fe6a57a783"
+      "sha256": "0dec786a2a4e4f8dc96f5e50c519f376349e49d3cc0d38c067492d1f001b0cdf"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits/official-documents/cra-2026-provincial-territorial-cgeb-linked-credits.html",
+      "sha256": "5b57b4839ad39b027838a7016e688958c694da67f35264692b307a75dd4bb787"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:40.788900+00:00",
+  "generated_at": "2026-07-06T16:45:45.228965+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "hOrmhx2mvm2kwRzqXiit5Q1IY32QuE0Ti2w9NhPPSyaE1O3zHPZakphO+aTtilWvhtUDdsueo/5IjlnxNiCEDw=="
+    "value": "Y/ws9QUlgPVucqixakyTFxh7DQUKx27l+qTiOju0m42FWh2XN2uWqxzMxAEHv61ZDPX5DYUr3dhmAXjs4NDWAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits"

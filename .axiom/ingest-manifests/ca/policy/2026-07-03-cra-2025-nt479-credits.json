@@ -1,29 +1,48 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-03-cra-2025-nt479-credits.json",
+      "sha256": "1f96bffb51730412c24fa45578095d1c30a9c375058247e273b0eae2c72246cf"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-nt479-credits.json",
+      "sha256": "39ea4f584d8beaa270ffccde3433b53cc54c482b1d80b423cc505b87427741e2"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-nt479-credits.jsonl",
-      "sha256": "bac15b1ae256720e77e5cf0dd27cce7340321a42f26ed1541788a56deeb97e4c"
+      "sha256": "0f607d4c053ad168abff41b2f8e8ac0428b071260449502833281cabc38f7c59"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-cra-2025-nt479-credits/official-documents/5012-tc-25e.txt",
+      "sha256": "54ef83ee5e86a8eb78e6a0b76377e7634df18788d9971a5e2324a9e0a61f0355"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-03-cra-2025-nt479-credits"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:45.013913+00:00",
+  "generated_at": "2026-07-06T16:45:49.879619+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "YGI5ugAYfB1de/y2ND1/El7uEk0+yPuHkufXUxlfxUtG+lisxilo5aJiyFDpt8pR0JNMBPW7rMWGt6qaoUgdDQ=="
+    "value": "3JffBdFB3fllDtK46b7ml1wxZ55qW8JZXQFtz/q9vxyZvQSflNGhfxLYHTtSi30LzB6xa86btgudd665iDnSAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-cra-2025-nt479-credits"

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction.json",
+      "sha256": "ff72f8d2e4256065f3138993bb17adc220d805f347b8bf9e6531a6f330d6ff02"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction.json",
+      "sha256": "362e55ea8dc7156bbe3dade5b9b68f6549c667cfe8be804950dc570b1c185789"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction.jsonl",
+      "sha256": "5723f142ac78e8a5588c1864d1c694c216369763a5c125cab1db51d76dad84ec"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction/official-documents/cra-2025-t1-m-moving-expenses.txt",
+      "sha256": "f4e00c3a6f9357670ab3913e757c07475e341b95765ea8fcf19eb77c2cc3a1f8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction/reasoning/cra-2025-moving-expenses-deduction.txt",
+      "sha256": "a6df11a93879785b1b60a25e92e75de11b4e6e35692dbde11a656f8e906844f2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T16:46:06.909025+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7kAHc8mpcqN97GpruGBMLTtDNK80iyA4nA2DivU7SXycq+loSsyIC/WVImc+Chz0S2msKeZ7mTozGTFetcTNBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-cra-2025-moving-expenses-deduction"
+}

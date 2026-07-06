@@ -19,20 +19,16 @@
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit/reasoning/cra-2025-federal-tuition-and-training-credit.txt",
       "sha256": "d5d420bb561f659fc30114082670721200deebe249f72c4dbcdfd87d1df6910b"
-    },
-    {
-      "deleted": true,
-      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit/official-documents/cra-2025-federal-tuition-and-training-credit.txt"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7dc0397808d2592547b66b1c7b8373fbf04965c0",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: demote digest artifact from official-documents to reasoning and remove primary_source=true"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -43,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:26:44.077677+00:00",
+  "generated_at": "2026-07-06T16:45:18.558449+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "5A1+gU/hY6j289j+8lz9o+k5o2pPW7tY8mk3oBOAvYy2WMQu3CqiTlAW1sRuKbZKr+PabekRLCc0Q1vUN+vZBg=="
+    "value": "45aINrb9OQCwD3Pr3qXuJuFqrlvXLmpD1bkNuKl3EyhZcHJM/+1QayCdG8ALjmMSN9XxobMtkc0x3KlRtAIdBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-tuition-and-training-credit"

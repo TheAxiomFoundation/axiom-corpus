@@ -1,29 +1,52 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses.json",
+      "sha256": "500f2e95249ec95edde6655f4c5c4f1142dfd46618c4d4a41dba8dadec981125"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses.json",
+      "sha256": "fce2319da9d1e649385ebb4bb344e32be0bc57e546e8d60156a33ec1fed3263a"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses.jsonl",
-      "sha256": "879089b6634cd9e7f38577f777a8235e6c18b7a24842944257924724a2598691"
+      "sha256": "0d12c94812e98980ab303076e539642dd355ed93ad4f86b5b2a2e24b5de4e224"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses/official-documents/tp-1-d-g-v-2025.pdf",
+      "sha256": "b6983e8d4b305cac8642a944f68d15c16348bd14876cee2d07962dbc70f424f6"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses/official-documents/tp-1-d-g-v-2025.txt",
+      "sha256": "d4ee813b9035ba8d4613c87c1e91cf8b5cd9360d72a8745e59b4fc093f0bea3b"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:53.593085+00:00",
+  "generated_at": "2026-07-06T16:45:59.084758+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "PN9mVBhVtm2b7kgWIJhpc543T+Q00ZvsSTFWmK/ckx49JOeRD/lig/BMk+ScNJ+ARWSHHUM9XUvnHczC/GdgCQ=="
+    "value": "wuItmy5s+Hl5/gIlTze4vqI+YgWi68nf+DcHz0iec3cENj+SGgUGHPt1teUssMnVqenLMjY43WlaJUM4EQPeDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses"

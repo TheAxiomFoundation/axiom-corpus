@@ -1,29 +1,52 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants.json",
+      "sha256": "c7845414f3e12500755609f3f77505e988cde12edb43b168f613f467901269e2"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants.json",
+      "sha256": "523947b6a54ee28592d459dd89aed0a0a27aa6599c418f6162a7e1554b3bed22"
+    },
+    {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants.jsonl",
-      "sha256": "20c20ef586933ee0a1ad39b6b2da5e8dfbd7197df3b2f10867a01c070fa0cb70"
+      "sha256": "76dde097d780092a32e4f533d31462e6e67b6ba38b91076c44c0f4cb98c0b1f0"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants/official-documents/tp-1-d-a-v-2025.pdf",
+      "sha256": "384d29871ff35b67494298a336765d9f21a444cd6d3e3ce016bcb272b23acc42"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants/official-documents/tp-1-d-a-v-2025.txt",
+      "sha256": "d6d3b9818f1185026a0ba736144fb933fd8380868f29bb5c9e538278122c94f7"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-03-revenu-quebec-2025-schedule-a-dependants"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:49.857141+00:00",
+  "generated_at": "2026-07-06T16:45:55.059496+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "6MslqpKdZ3wBQBISAAe2enAvYNVGCYeus6V5cd+JzsTmIXFdV3TrkmPK4NkCsa09YewY8rhWNl2uKWArflAUBA=="
+    "value": "9wjHVLEhtF39q+5/jhh9Dh7mhn2h0xG+jrcisorwpckMLFKzk6Hts8P1Pk9Vx3HIR93q2NPj87HgkOdENT2KCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-revenu-quebec-2025-schedule-a-dependants"

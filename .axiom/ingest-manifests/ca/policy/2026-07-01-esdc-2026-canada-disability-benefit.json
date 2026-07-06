@@ -23,20 +23,16 @@
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit/reasoning/esdc-2026-canada-disability-benefit.txt",
       "sha256": "e1d8ccab651b81b6adf5fa80cbda348c5e3c5fe390df7baccac9fa979b913bdc"
-    },
-    {
-      "deleted": true,
-      "path": "data/corpus/sources/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit/official-documents/esdc-2026-canada-disability-benefit.txt"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7dc0397808d2592547b66b1c7b8373fbf04965c0",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: demote digest artifact from official-documents to reasoning and remove primary_source=true"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -47,14 +43,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:26:51.607491+00:00",
+  "generated_at": "2026-07-06T16:45:36.531439+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "NrLnmA6ESp/ovDIhQLGTEpqvlFrMNjr1nUpoHaVsW7gX0OgqxC2PU02lBJJWA7gqoJqmpecLbAIESOEC69JgBQ=="
+    "value": "iQCTUaGVOpvRy3NfeaDvUJ/KmgyYr7zJ03/KDlgALOvrl3HpDuNi23rV/2ljVI//gvfnn2tathwsj6N2dJ9DDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-esdc-2026-canada-disability-benefit"

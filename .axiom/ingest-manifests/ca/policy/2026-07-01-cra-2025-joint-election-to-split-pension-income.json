@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-joint-election-to-split-pension-income.jsonl",
-      "sha256": "f5933152416da457652b4b52d1e98f0286a70825c1bb69a395b7534f1c007f5a"
+      "sha256": "6a745db235ec72b14974172d28dd00a7590a7cdde841e69ec67a09207e4d72a4"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-joint-election-to-split-pension-income/official-documents/cra-2025-joint-election-to-split-pension-income.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-joint-election-to-split-pension-income"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:18.396089+00:00",
+  "generated_at": "2026-07-06T16:45:20.935372+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "BG6Xa0B/d2qvOSqPj+OGlOkVlS/ONLMJSgxadM1F5KIjcEBRgJlmqtEw7PGmMkLgSBPDCo9ZX3o+qRY40mEtDQ=="
+    "value": "DDyxHFJcPeo7K8D0VxeCeT4wAVw6UGLtLqDRtMX5Jl+Ec7i/KmmGvzNZwBhP/Gf9u9ULFk4x732NJ8qQaA9+CQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-joint-election-to-split-pension-income"

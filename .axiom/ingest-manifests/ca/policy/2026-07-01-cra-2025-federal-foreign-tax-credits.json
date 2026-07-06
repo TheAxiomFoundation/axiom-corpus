@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-foreign-tax-credits.jsonl",
-      "sha256": "5725733d0fe65cfdecab8bb03a5ba9c8dfb0da71674cc0ab71a05f3739249a20"
+      "sha256": "9ef51736e19116925b2ac50a274a966512c5bf3cc7ab12b26ad8cdff67807b10"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-foreign-tax-credits/official-documents/cra-2025-federal-foreign-tax-credits.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-federal-foreign-tax-credits"
+    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:14.487014+00:00",
+  "generated_at": "2026-07-06T16:45:16.756941+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "9DKT8102DKa7eWeDxa5+L8y//vMYm9UPjcEIT5MFeinKz0rWLB8baDy27lAp7StsPr+X3yJEgVp8mrszh3JiDA=="
+    "value": "Ph3pNJIVqfhpPiHfQxvPLA35VUtJ7FPiYb/oNdIQez770EhySGuLPWEFgQL5gKSbKDSV4ZDQ5OK7ICXPUA7tBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-foreign-tax-credits"
