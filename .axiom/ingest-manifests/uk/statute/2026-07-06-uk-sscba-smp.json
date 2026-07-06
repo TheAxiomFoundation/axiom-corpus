@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/statute/2026-07-06-uk-sscba-smp.json",
+      "sha256": "3bff51591da9d0544a2771dddff22d84e0d5f3c10ef416c24b0afa401a0fbf94"
+    },
+    {
+      "path": "data/corpus/inventory/uk/statute/2026-07-06-uk-sscba-smp.json",
+      "sha256": "fe3e5331076aee938302888c82d3447cf7cafcf9e6c851056a5c7f23940c0795"
+    },
+    {
+      "path": "data/corpus/provisions/uk/statute/2026-07-06-uk-sscba-smp.jsonl",
+      "sha256": "013e4be5470a0a2b6d9e1fc6ccf844b86d99fb7f367d53b2dd965a9007f736bd"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/ukpga/1992/4/section-164.xml",
+      "sha256": "643a1db34b512aea1d4467cbe11374e39bdf8eb727ede64e629efa19952916ca"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/ukpga/1992/4/section-165.xml",
+      "sha256": "cd4700cc4593f1bc6edfd46cc764cf657c48649b9ca6cb79fe67fade4ac8f0d7"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/ukpga/1992/4/section-166.xml",
+      "sha256": "ddd519570b0f3296cd6f08ce7a04877314603127031ded54dea389d79d6a92a2"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/ukpga/1992/4/section-171.xml",
+      "sha256": "d81708d6951e415c33482c50ea93151f44d7dd59dcdf49247e2ea2c57bcc816c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5edfd598bc8ae0ac9c9030847da97dc477026f23",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/_axiom-worktrees/uk-statpay-wave-20260706/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-06-uk-sscba-smp --source clml --citation ukpga/1992/4/section/164 --citation ukpga/1992/4/section/165 --citation ukpga/1992/4/section/166 --citation ukpga/1992/4/section/171 --source-as-of 2026-07-06 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-06T18:50:33.651439+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-06-uk-sscba-statutory-pay-maternity.md",
+      "sha256": "5a4fb6a7e804f00a05f8f9a7c10032b9973a9945d8ffed257c40c8a3784c17c5"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kqAv3LXtTaamCSkUF9MwFzzI6/Q0AgQENOFC8ZbIi/u0z8Oy51gA6CyZpNKJfCNFdGPxoR42T2eegloSKRqrCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-uk-sscba-smp"
+}
