@@ -460,6 +460,143 @@ def test_guard_ingested_cli_accepts_signed_deleted_corpus_artifact(tmp_path, cap
     assert payload["issues"] == []
 
 
+def test_guard_ingested_cli_rejects_digest_in_official_documents(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    source = (
+        repo
+        / "data/corpus/sources/ca/policy/2026-07-01-example/official-documents"
+        / "example.txt"
+    )
+    source.parent.mkdir(parents=True)
+    source.write_text(
+        "Title: Example agency page\n"
+        "Sources:\n"
+        "- https://example.test/official\n\n"
+        "This is an agent-written summary, not captured official text.\n"
+    )
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "ca",
+                "--document-class",
+                "policy",
+                "--version",
+                "2026-07-01-example",
+                "--file",
+                "data/corpus/sources/ca/policy/2026-07-01-example/"
+                "official-documents/example.txt",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-07-01-example",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    _git(repo, "add", "data/corpus/sources/ca/policy/2026-07-01-example")
+    _git(repo, "add", ".axiom/ingest-manifests/ca/policy/2026-07-01-example.json")
+    _git(repo, "commit", "-m", "Add signed digest as official document")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "looks like an agent digest" in payload["issues"][0]
+    assert "Move it to reasoning/" in payload["issues"][0]
+
+
+def test_guard_ingested_cli_rejects_primary_source_reasoning_inventory(
+    tmp_path, capsys, monkeypatch
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    _git(repo, "checkout", "-b", "feature")
+    inventory = repo / "data/corpus/inventory/ca/policy/2026-07-01-example.json"
+    inventory.parent.mkdir(parents=True)
+    inventory.write_text(
+        json.dumps(
+            {
+                "items": [
+                    {
+                        "citation_path": "ca/policy/example",
+                        "source_path": (
+                            "sources/ca/policy/2026-07-01-example/"
+                            "reasoning/example.txt"
+                        ),
+                        "metadata": {"primary_source": True},
+                    }
+                ]
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+    _set_ingest_keys(monkeypatch)
+    assert (
+        main(
+            [
+                "sign-ingest-manifest",
+                "--repo",
+                str(repo),
+                "--jurisdiction",
+                "ca",
+                "--document-class",
+                "policy",
+                "--version",
+                "2026-07-01-example",
+                "--file",
+                "data/corpus/inventory/ca/policy/2026-07-01-example.json",
+                "--command",
+                "axiom-corpus-ingest extract-example --version 2026-07-01-example",
+            ]
+        )
+        == 0
+    )
+    capsys.readouterr()
+    _git(repo, "add", "data/corpus/inventory/ca/policy/2026-07-01-example.json")
+    _git(repo, "add", ".axiom/ingest-manifests/ca/policy/2026-07-01-example.json")
+    _git(repo, "commit", "-m", "Add signed primary reasoning inventory")
+
+    exit_code = main(
+        [
+            "guard-ingested",
+            "--repo",
+            str(repo),
+            "--base-ref",
+            "main",
+            "--head-ref",
+            "HEAD",
+            "--json",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    payload = json.loads(output)
+    assert payload["passed"] is False
+    assert "primary_source true" in payload["issues"][0]
+    assert "is under reasoning/" in payload["issues"][0]
+
+
 def test_inventory_ecfr_cli(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 

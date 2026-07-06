@@ -34,6 +34,18 @@ PROTECTED_CORPUS_PREFIXES = (
     "data/corpus/provisions/",
     "data/corpus/coverage/",
 )
+TEXT_OFFICIAL_DOCUMENT_SUFFIXES = {
+    ".csv",
+    ".html",
+    ".htm",
+    ".json",
+    ".jsonl",
+    ".md",
+    ".txt",
+    ".xml",
+    ".yaml",
+    ".yml",
+}
 
 
 @dataclass(frozen=True)
@@ -266,6 +278,8 @@ def guard_ingested_artifacts(
                 f"`{change.path}` sha256 does not match ingest manifest "
                 f"`{manifest_path.as_posix()}`."
             )
+            continue
+        issues.extend(_artifact_content_issues(repo, change.path, ref=read_ref))
 
     return IngestGuardResult(
         repo=repo,
@@ -456,15 +470,92 @@ def _load_ingest_manifests_from_ref(
 
 
 def _artifact_sha(repo: Path, path: str, *, ref: str | None) -> str | None:
+    payload = _artifact_bytes(repo, path, ref=ref)
+    if payload is None:
+        return None
+    return sha256_bytes(payload)
+
+
+def _artifact_bytes(repo: Path, path: str, *, ref: str | None) -> bytes | None:
     if ref:
-        blob = _git_blob(repo, ref=ref, path=path)
-        if blob is None:
-            return None
-        return sha256_bytes(blob)
+        return _git_blob(repo, ref=ref, path=path)
     artifact_path = repo / path
     if not artifact_path.exists():
         return None
-    return sha256_file(artifact_path)
+    return artifact_path.read_bytes()
+
+
+def _artifact_content_issues(repo: Path, path: str, *, ref: str | None) -> list[str]:
+    payload = _artifact_bytes(repo, path, ref=ref)
+    if payload is None:
+        return []
+    issues: list[str] = []
+    if _is_official_document_artifact(path) and _looks_like_agent_digest(path, payload):
+        issues.append(
+            f"`{path}` is under official-documents/ but looks like an agent digest "
+            "with Title:/Sources: headers. Move it to reasoning/ and keep "
+            "primary_source false, or replace it with captured official source text."
+        )
+    if _is_inventory_artifact(path):
+        issues.extend(_inventory_primary_source_issues(path, payload))
+    return issues
+
+
+def _is_official_document_artifact(path: str) -> bool:
+    return path.startswith("data/corpus/sources/") and "/official-documents/" in path
+
+
+def _is_inventory_artifact(path: str) -> bool:
+    return path.startswith("data/corpus/inventory/") and path.endswith(".json")
+
+
+def _looks_like_agent_digest(path: str, payload: bytes) -> bool:
+    if Path(path).suffix.lower() not in TEXT_OFFICIAL_DOCUMENT_SUFFIXES:
+        return False
+    text = _decode_text(payload)
+    if text is None:
+        return False
+    lines = [line.strip() for line in text.splitlines()[:20] if line.strip()]
+    has_title = any(line.startswith("Title:") for line in lines[:5])
+    has_sources = any(line.startswith("Sources:") for line in lines[:10])
+    return has_title and has_sources
+
+
+def _inventory_primary_source_issues(path: str, payload: bytes) -> list[str]:
+    text = _decode_text(payload)
+    if text is None:
+        return []
+    try:
+        parsed = json.loads(text)
+    except json.JSONDecodeError:
+        return []
+    if not isinstance(parsed, dict):
+        return []
+    issues: list[str] = []
+    for item in parsed.get("items") or []:
+        if not isinstance(item, dict):
+            continue
+        raw_metadata = item.get("metadata")
+        metadata = raw_metadata if isinstance(raw_metadata, dict) else {}
+        if metadata.get("primary_source") is not True:
+            continue
+        source_path = str(item.get("source_path") or "")
+        if "/reasoning/" not in source_path:
+            continue
+        citation = str(item.get("citation_path") or "<unknown citation>")
+        issues.append(
+            f"`{path}` marks `{citation}` primary_source true while source_path "
+            f"`{source_path}` is under reasoning/. Primary rows must point at "
+            "official-documents/ captures, not reasoning artifacts."
+        )
+    return issues
+
+
+def _decode_text(payload: bytes) -> str | None:
+    try:
+        return payload.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        return None
 
 
 def _git_paths_under(repo: Path, *, ref: str, path: str) -> tuple[str, ...]:
