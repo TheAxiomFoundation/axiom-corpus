@@ -171,6 +171,7 @@ from axiom_corpus.corpus.state_adapters.new_mexico import extract_new_mexico_sta
 from axiom_corpus.corpus.state_adapters.new_york import (
     extract_new_york_consolidated_laws,
     extract_new_york_openleg_api,
+    extract_new_york_openleg_sections,
 )
 from axiom_corpus.corpus.state_adapters.nyc_admin_code import extract_nyc_admin_code
 from axiom_corpus.corpus.state_adapters.oklahoma import extract_oklahoma_statutes
@@ -2186,6 +2187,36 @@ def _cmd_extract_new_york_openleg_api(args: argparse.Namespace) -> int:
                 report,
                 source_id="us-ny-openleg-api",
                 adapter="new-york-openleg-api",
+                version=args.version,
+            ),
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if _state_statute_report_success(report) or args.allow_incomplete else 2
+
+
+def _cmd_extract_new_york_openleg_sections(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    api_key = os.environ.get(args.api_key_env) if args.api_key_env else None
+    report = extract_new_york_openleg_sections(
+        store,
+        version=args.version,
+        sections=tuple(args.section),
+        api_key=api_key,
+        source_dir=args.source_dir,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        download_dir=args.download_dir,
+        api_base_url=args.api_base_url,
+    )
+    print(
+        json.dumps(
+            _state_statute_report_payload(
+                report,
+                source_id="us-ny-openleg-sections",
+                adapter="new-york-openleg-sections",
                 version=args.version,
             ),
             indent=2,
@@ -5463,6 +5494,43 @@ def build_parser() -> argparse.ArgumentParser:
     )
     extract_new_york_api_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_new_york_api_cmd.set_defaults(func=_cmd_extract_new_york_openleg_api)
+
+    extract_new_york_sections_cmd = sub.add_parser(
+        "extract-new-york-openleg-sections",
+        help=(
+            "Snapshot selected official New York OpenLegislation sections "
+            "(for example Tax Law Article 22 personal-income-tax sections) "
+            "without walking a whole law."
+        ),
+    )
+    extract_new_york_sections_cmd.add_argument("--base", type=Path, required=True)
+    extract_new_york_sections_cmd.add_argument("--version", required=True)
+    extract_new_york_sections_cmd.add_argument(
+        "--section",
+        action="append",
+        required=True,
+        help="New York section spec such as TAX:601 or an OpenLegislation URL.",
+    )
+    extract_new_york_sections_cmd.add_argument("--source-dir", type=Path)
+    extract_new_york_sections_cmd.add_argument("--download-dir", type=Path)
+    extract_new_york_sections_cmd.add_argument(
+        "--source-as-of", "--as-of", dest="source_as_of"
+    )
+    extract_new_york_sections_cmd.add_argument("--expression-date")
+    extract_new_york_sections_cmd.add_argument(
+        "--api-key-env",
+        default="NYSENATE_OPENLEG_API_KEY",
+    )
+    extract_new_york_sections_cmd.add_argument(
+        "--api-base-url",
+        default="https://legislation.nysenate.gov",
+    )
+    extract_new_york_sections_cmd.add_argument(
+        "--allow-incomplete", action="store_true"
+    )
+    extract_new_york_sections_cmd.set_defaults(
+        func=_cmd_extract_new_york_openleg_sections
+    )
 
     extract_nyc_admin_code_cmd = sub.add_parser(
         "extract-nyc-admin-code",

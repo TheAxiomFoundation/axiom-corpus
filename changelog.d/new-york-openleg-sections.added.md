@@ -1,0 +1,1 @@
+Add a scoped New York OpenLegislation section extractor (`extract-new-york-openleg-sections`) that snapshots specific official Senate law sections by `LAW:SECTION` spec (for example `TAX:601` for New York Tax Law Article 22 personal-income-tax sections). This targets core sections without walking a whole consolidated law, mirroring the California per-section extractor.

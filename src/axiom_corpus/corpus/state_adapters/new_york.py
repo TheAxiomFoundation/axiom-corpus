@@ -20,7 +20,7 @@ import requests
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 
-from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.states import StateStatuteExtractReport
@@ -222,6 +222,18 @@ class _NewYorkOpenLegFetcher:
         return self.fetch_json(
             relative_path=f"{NEW_YORK_OPENLEG_SOURCE_FORMAT}/{law_id}.json",
             api_path=f"api/3/laws/{law_id}",
+            params={"full": "true"},
+        )
+
+    def fetch_law_document(
+        self, law_id: str, location_id: str
+    ) -> _NewYorkOpenLegFetchResult:
+        location_token = _openleg_location_token(location_id)
+        return self.fetch_json(
+            relative_path=(
+                f"{NEW_YORK_OPENLEG_SOURCE_FORMAT}/{law_id}/{location_token}.json"
+            ),
+            api_path=f"api/3/laws/{law_id}/{location_id}",
             params={"full": "true"},
         )
 
@@ -786,6 +798,218 @@ def extract_new_york_openleg_api(
         skipped_source_count=skipped_source_count,
         errors=tuple(errors),
     )
+
+
+def extract_new_york_openleg_sections(
+    store: CorpusArtifactStore,
+    *,
+    version: str,
+    sections: tuple[str, ...],
+    api_key: str | None = None,
+    source_dir: str | Path | None = None,
+    source_as_of: str | None = None,
+    expression_date: date | str | None = None,
+    download_dir: str | Path | None = None,
+    api_base_url: str = NEW_YORK_OPENLEG_API_BASE_URL,
+) -> StateStatuteExtractReport:
+    """Snapshot selected official OpenLegislation sections and extract provisions.
+
+    Unlike :func:`extract_new_york_openleg_api`, which walks a whole law tree,
+    this targets specific section nodes (for example New York Tax Law Article 22
+    personal-income-tax sections) so a core-sections ingest does not pull the
+    entire consolidated law. Each section spec is ``LAW:SECTION`` such as
+    ``TAX:601`` or an OpenLegislation section URL.
+    """
+    jurisdiction = "us-ny"
+    selected = tuple(
+        dict.fromkeys(_new_york_section_spec(section) for section in sections)
+    )
+    if not selected:
+        raise ValueError("extract_new_york_openleg_sections: sections must be non-empty")
+    run_id = _new_york_sections_run_id(version, selected)
+    source_as_of_text = source_as_of or version
+    expression_date_text = _date_text(expression_date, source_as_of_text)
+    fetcher = _NewYorkOpenLegFetcher(
+        source_dir=Path(source_dir) if source_dir is not None else None,
+        download_dir=Path(download_dir) if download_dir is not None else None,
+        api_base_url=api_base_url,
+        api_key=api_key,
+    )
+
+    items: list[SourceInventoryItem] = []
+    records: list[ProvisionRecord] = []
+    source_paths: list[Path] = []
+    errors: list[str] = []
+    seen_citation_paths: set[str] = set()
+    section_count = 0
+
+    for ordinal, (law_id, location_id) in enumerate(selected):
+        try:
+            fetched = fetcher.fetch_law_document(law_id, location_id)
+        except (requests.RequestException, ValueError) as exc:
+            errors.append(f"{law_id} {location_id}: {exc}")
+            continue
+        doc = _openleg_document_result(fetched.data)
+        if doc is None:
+            errors.append(f"{law_id} {location_id}: no document result")
+            continue
+        doc_location = str(doc.get("locationId") or location_id).strip()
+        doc_type = str(doc.get("docType") or "section").strip().lower()
+        if doc_type != "section":
+            errors.append(
+                f"{law_id} {location_id}: expected a section, got {doc_type!r}"
+            )
+            continue
+        body = _api_document_text(doc)
+        if not body:
+            errors.append(f"{law_id} {location_id}: section has no text")
+            continue
+        citation_path = f"us-ny/statute/{law_id}/{doc_location}"
+        if citation_path in seen_citation_paths:
+            continue
+        seen_citation_paths.add(citation_path)
+        artifact_path = store.source_path(
+            jurisdiction,
+            DocumentClass.STATUTE,
+            run_id,
+            fetched.relative_path,
+        )
+        store.write_bytes(artifact_path, fetched.data)
+        source_paths.append(artifact_path)
+        display = str(doc.get("docLevelId") or doc_location).strip()
+        heading = _clean_text(str(doc.get("title") or "")) or None
+        sha256 = sha256_bytes(fetched.data)
+        _append_inventory_and_record(
+            items,
+            records,
+            citation_path=citation_path,
+            version=run_id,
+            source_url=fetched.source_url,
+            source_path=_state_source_key(jurisdiction, run_id, fetched.relative_path),
+            source_id=doc_location,
+            sha256=sha256,
+            source_as_of=source_as_of_text,
+            expression_date=expression_date_text,
+            kind="section",
+            heading=heading,
+            body=body,
+            legal_identifier=_api_legal_identifier(
+                law_id, kind="section", display_number=display
+            ),
+            parent_citation_path=f"us-ny/statute/{law_id}",
+            level=1,
+            ordinal=ordinal,
+            identifiers=_api_document_identifiers(
+                law_id,
+                location_id=doc_location,
+                display_number=display,
+                kind="section",
+            ),
+            metadata={
+                "law_id": law_id,
+                "location_id": doc_location,
+                "active_date": str(doc.get("activeDate") or "") or None,
+            },
+            source_format=NEW_YORK_OPENLEG_SOURCE_FORMAT,
+        )
+        section_count += 1
+
+    if not items:
+        if errors:
+            raise ValueError(
+                "no New York OpenLegislation sections extracted; "
+                + "; ".join(errors[:3])
+            )
+        raise ValueError("no New York OpenLegislation sections extracted")
+
+    inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
+    store.write_inventory(inventory_path, items)
+    provisions_path = store.provisions_path(jurisdiction, DocumentClass.STATUTE, run_id)
+    store.write_provisions(provisions_path, records)
+    coverage = compare_provision_coverage(
+        tuple(items),
+        tuple(records),
+        jurisdiction=jurisdiction,
+        document_class=DocumentClass.STATUTE.value,
+        version=run_id,
+    )
+    coverage_path = store.coverage_path(jurisdiction, DocumentClass.STATUTE, run_id)
+    store.write_json(coverage_path, coverage.to_mapping())
+    return StateStatuteExtractReport(
+        jurisdiction=jurisdiction,
+        title_count=len({law_id for law_id, _ in selected}),
+        container_count=0,
+        section_count=section_count,
+        provisions_written=len(records),
+        inventory_path=inventory_path,
+        provisions_path=provisions_path,
+        coverage_path=coverage_path,
+        coverage=coverage,
+        source_paths=tuple(dict.fromkeys(source_paths)),
+        errors=tuple(errors),
+    )
+
+
+def _new_york_section_spec(value: str) -> tuple[str, str]:
+    """Parse ``LAW:SECTION``, ``LAW SECTION``, or an OpenLegislation URL."""
+    text = value.strip()
+    if not text:
+        raise ValueError("New York section spec must not be empty")
+    parsed = urlparse(text)
+    if parsed.scheme and parsed.netloc:
+        law_id, location_id = _law_location_from_url(text)
+        if location_id:
+            return (law_id.upper(), location_id)
+        raise ValueError(
+            f"New York section URL must include a location id: {value!r}"
+        )
+    if ":" in text:
+        law_id, section = text.split(":", 1)
+    else:
+        parts = text.split(None, 1)
+        if len(parts) != 2:
+            raise ValueError(
+                "New York section specs must be LAW:SECTION, LAW SECTION, or an "
+                "OpenLegislation URL"
+            )
+        law_id, section = parts
+    law_id = law_id.strip().upper()
+    section = section.strip()
+    if not re.fullmatch(r"[A-Z0-9-]+", law_id) or not section:
+        raise ValueError(f"invalid New York section spec: {value!r}")
+    return (law_id, section)
+
+
+def _new_york_sections_run_id(
+    version: str, sections: tuple[tuple[str, str], ...]
+) -> str:
+    scope = "-".join(
+        f"{law_id.lower()}-{_openleg_location_token(section)}"
+        for law_id, section in sections
+    )
+    if len(scope) > 120:
+        scope = _hashlib_sha256(scope)[:16]
+    return f"{version}-us-ny-sections-{scope}"
+
+
+def _openleg_location_token(location_id: str) -> str:
+    return re.sub(r"[^A-Za-z0-9]+", "-", location_id.strip()).strip("-").upper()
+
+
+def _openleg_document_result(data: bytes) -> dict[str, Any] | None:
+    payload = json.loads(data.decode("utf-8"))
+    if not isinstance(payload, dict):
+        return None
+    result = payload.get("result")
+    if isinstance(result, dict):
+        return result
+    return None
+
+
+def _hashlib_sha256(text: str) -> str:
+    import hashlib
+
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 def parse_new_york_law_index(
