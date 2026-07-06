@@ -1,0 +1,1 @@
+Ingested the full 7 CFR part 273 (SNAP certification of eligible households) from eCFR as a part-scoped snapshot (39 provisions, as of 2026-07-01), adding sections missing from the 2026-05-10 ten-section extract — including § 273.11 (action on households with special circumstances) needed for the ineligible-member income proration encoding.
