@@ -1,0 +1,1 @@
+Ingest the GOV.UK "Rates and allowances: National Insurance contributions" guidance page (`uk/guidance/govuk/national-insurance-rates/rates-and-allowances`, version `2026-07-05-uk-national-insurance-rates`), carrying the Class 3 voluntary weekly rate table (2026 to 2027: £18.40; 2025 to 2026: £17.75) that the SSCBA 1992 s.13(1) base statute text does not yet consolidate.
