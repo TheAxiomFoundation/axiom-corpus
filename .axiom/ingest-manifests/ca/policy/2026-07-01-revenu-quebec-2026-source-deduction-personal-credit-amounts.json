@@ -6,25 +6,33 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts.json",
-      "sha256": "5feeac59b3ec9fd4e936541f6643a209710a2af1102761303148e93eeceab9e5"
+      "sha256": "380969379e8b3e58cda323185ee9f40a63c711ea871a526f7bced4d7e5fdc0e0"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts.jsonl",
-      "sha256": "953750ef1f130ddea529052c129ce052c099b7a1a0835c1b44b131f610e0eea4"
+      "sha256": "52b45aa350a7a5a0cbd5c5fedf8167c7a121e949bb2294ea0af362546dad8d59"
     },
     {
-      "path": "data/corpus/sources/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts/official-documents/revenu-quebec-2026-source-deduction-personal-credit-amounts.txt",
+      "path": "data/corpus/sources/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts/official-documents/revenu-quebec-tp-1015-3-source-deductions-return-2026.txt",
+      "sha256": "01e065826f9c097d3f2ee9542a1d51ef1c149ab5d17b6a841cb0f462619bd508"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts/reasoning/revenu-quebec-2026-source-deduction-personal-credit-amounts.txt",
       "sha256": "50e0410b0341b892fd3bcfd07ab7ad727be335e464b41fc2895bedff17ca9caa"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts/official-documents/revenu-quebec-2026-source-deduction-personal-credit-amounts.txt"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "commit": "7dc0397808d2592547b66b1c7b8373fbf04965c0",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts"
+    "text": "manual provenance cleanup: demote digest artifact from official-documents to reasoning and remove primary_source=true"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +43,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T14:18:33.206726+00:00",
+  "generated_at": "2026-07-06T16:26:52.215619+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "wmMK43jckifAO7JTEnSJCbkC4366wtPvtHjAbm7O9PACXpWzz1sihxfVAQzqvrq2J8MWFyNt08RtJSW6H3THBw=="
+    "value": "EwobtG1zrv9QHQZQcyQqaSgbiOyyiOZoI999NtBtDNUpNWS5x6Wky5jnBdXJ1UsbZy/AKEJ/0Ih9E9E6lOreCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts"
