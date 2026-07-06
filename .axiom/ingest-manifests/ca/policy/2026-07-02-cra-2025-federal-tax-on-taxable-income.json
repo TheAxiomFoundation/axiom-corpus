@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-tax-on-taxable-income.jsonl",
-      "sha256": "367903827fb21df681ca2f7805ceaa2459bbec38424020e7bd35b250f8f24b16"
+      "sha256": "d168ea7f28e9654fdac47d7507c2233b4ffd709899e8b35e61acddade6cb0ffe"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-federal-tax-on-taxable-income/official-documents/5000-r-25e.txt",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:40:57.169336+00:00",
+  "generated_at": "2026-07-06T16:45:40.569993+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "/TyY53jLezry/OQ48mbnK6xzjdjfewtiEeM7KOXlhsoU6sUIdV9KebcBOaHKsyKmCRxc7gbIGvH4LuAljsbNBw=="
+    "value": "uCkSG8zaQIYSwPs9N1ak0ptKzA+62Yl6+NE/qoazPFjCGLJrGZLV+T1lVLPlr1mQAGnWnJsSfUIm1OZpuJpGBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-federal-tax-on-taxable-income"

@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments.jsonl",
-      "sha256": "abeff8f3c24cb5f66768f0a3a9987e8604195dca7bc82f8df64948cc2cad87d2"
+      "sha256": "88e691222dceb8fab8d120c7df67297622ed52bd4f236fa7292fa48723803188"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments/official-documents/tp-1-d-e-v-2025.pdf",
@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:41:15.122792+00:00",
+  "generated_at": "2026-07-06T16:45:57.382490+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Ze76UE2gJsOYCsvKbrKg15WzFfCGW2cyEcGFcWO22my3IsOvhccEn4C+VqbVlUdxh93a/Gv0DHVgwKlZ+FlNDg=="
+    "value": "0BxIamumqgemkblDAUvHgqnHkavr0wSGluevhdEyT9++ffGZI/4fuziM58RdvvIVJrM9nFHpFnVGmnaMJwUmCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments"

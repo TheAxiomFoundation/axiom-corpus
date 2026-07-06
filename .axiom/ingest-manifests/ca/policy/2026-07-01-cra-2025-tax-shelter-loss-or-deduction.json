@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.jsonl",
-      "sha256": "0d2c2b8fb568f018a68d20b6a6d9e6b86691a3d00f0fd998b44408e9e134f4ff"
+      "sha256": "89a707c38ca46dbf58424e9def0bec48f09bf1e164715b3b613444c83ee79db0"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction/official-documents/cra-2025-tax-shelter-loss-or-deduction.txt",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:40:48.013837+00:00",
+  "generated_at": "2026-07-06T16:45:31.679146+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "YTGQqcNJQPx18lTgob4Q6RW2+YY3mr2BVv6u98bIWG7xz5j3Uz8H1XU3k+20plr9T9IziIl7E1a608MjrWn3Ag=="
+    "value": "vnXSk0ufiTBuODbAvYPOxfDd7jKWRyN9cKIOcTdpeU5FsuL5tQ4NWZQJXDE67u2Q3nET3rHsxcMq+eUDUsAZDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-tax-shelter-loss-or-deduction"

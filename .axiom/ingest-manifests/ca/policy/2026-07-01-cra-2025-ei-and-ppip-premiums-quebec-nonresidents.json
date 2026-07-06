@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-ei-and-ppip-premiums-quebec-nonresidents.jsonl",
-      "sha256": "e2d8051a820797c7d51ce673221359016219811ba80e088baebe5a2ae6c903eb"
+      "sha256": "47d9b47dc7599de5cecedf00cf5944fc6e543e2440f04d8e081e55abb85883c9"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-ei-and-ppip-premiums-quebec-nonresidents/official-documents/cra-2025-ei-and-ppip-premiums-quebec-nonresidents.txt",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "094cb4aa33b20784b5607ff267348bb313fb0773",
+    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:40:30.495137+00:00",
+  "generated_at": "2026-07-06T16:45:14.318988+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "LbaRIaQtIv0QqrLZhS/3zA2Fz/Qa9ZfudpbVrtnQL71zWxAkc6hghQijzsf9FOHmT/Gp1QrHHWv+MktOSBWIAA=="
+    "value": "tukPnRmoDq0jBO4tiE1m6qdArm7iOfWr0M/g97HaRTpJKau8n05C1LGCKWL/F26epjRhuYUbPcTArStEUh3XAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-ei-and-ppip-premiums-quebec-nonresidents"
