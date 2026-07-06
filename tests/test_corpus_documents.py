@@ -1714,6 +1714,116 @@ documents:
     assert records[1].body == "Body text."
 
 
+def test_extract_labeled_pdf_sections_from_discontiguous_page_windows(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "sliced-statute.pdf"
+    document = fitz.open()
+    first = document.new_page()
+    first.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "51. Personal reliefs section text.",
+                "Deduct the reliefs specified in the Fifth Schedule.",
+                "Division II: Partnerships",
+                "52. Partnership text that must not leak into section 51.",
+            ]
+        ),
+    )
+    middle = document.new_page()
+    middle.insert_text((72, 72), "99. Unrelated middle-page section outside every window.")
+    last = document.new_page()
+    last.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "Tail of section 132 that precedes the anchor.",
+                "133. Interpretation section text.",
+                "A currency point means one Cedi.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: sliced-statute
+    jurisdiction: us-test
+    document_class: statute
+    title: Sliced Statute
+    source_url: https://example.test/sliced-statute.pdf
+    citation_path: us-test/statute/sliced-statute
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>51|133)\\.\\s+(?P<heading>.+)$'
+      page_windows:
+        - start_page: 1
+          end_page: 1
+          stop_at_pattern: '^Division II'
+        - start_page: 3
+          end_page: 3
+          start_at_pattern: '^133\\.'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-06-sliced-statute",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-test/statute/sliced-statute",
+        "us-test/statute/sliced-statute/51",
+        "us-test/statute/sliced-statute/133",
+    ]
+    assert records[1].heading == "51 Personal reliefs section text."
+    assert records[1].body == "Deduct the reliefs specified in the Fifth Schedule."
+    assert "52." not in records[1].body
+    assert records[2].heading == "133 Interpretation section text."
+    assert records[2].body == "A currency point means one Cedi."
+    assert "132" not in records[2].body
+
+
+def test_pdf_page_windows_reject_invalid_configs(tmp_path: Path) -> None:
+    pdf_bytes_document = fitz.open()
+    pdf_bytes_document.new_page().insert_text((72, 72), "51. Text.")
+    pdf_content = pdf_bytes_document.tobytes()
+    pdf_bytes_document.close()
+
+    with pytest.raises(ValueError, match="cannot be combined with start_page"):
+        documents_module._filtered_pdf_lines(
+            pdf_content,
+            extraction={
+                "page_windows": [{"start_page": 1, "end_page": 1}],
+                "start_page": 1,
+            },
+        )
+    with pytest.raises(ValueError, match="ascending and non-overlapping"):
+        documents_module._filtered_pdf_lines(
+            pdf_content,
+            extraction={
+                "page_windows": [
+                    {"start_page": 2, "end_page": 3},
+                    {"start_page": 3, "end_page": 4},
+                ],
+            },
+        )
+    with pytest.raises(ValueError, match="requires start_page and end_page"):
+        documents_module._filtered_pdf_lines(
+            pdf_content,
+            extraction={"page_windows": [{"start_page": 2}]},
+        )
+    with pytest.raises(ValueError, match="non-empty list"):
+        documents_module._filtered_pdf_lines(pdf_content, extraction={"page_windows": []})
+
+
 def test_extract_official_documents_scrubs_public_mapbox_tokens(tmp_path: Path) -> None:
     html_path = tmp_path / "cms.html"
     public_token = "pk." + "abc_123" + "." + "DEF-456"

@@ -1571,6 +1571,8 @@ def _match_labeled_pdf_section(
 def _filtered_pdf_lines(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[tuple[str, int], ...]:
+    if extraction.get("page_windows") is not None:
+        return _windowed_pdf_lines(content, extraction=extraction)
     start_page = _positive_int(extraction.get("start_page"), default=1)
     end_page = extraction.get("end_page")
     parsed_end_page = _positive_int(end_page, default=0) if end_page is not None else None
@@ -1600,6 +1602,100 @@ def _filtered_pdf_lines(
                     if start_after_re is not None and start_after_re.search(line):
                         started = True
                     continue
+                lines.append((line, page_index))
+    return tuple(lines)
+
+
+@dataclass(frozen=True)
+class _PdfPageWindow:
+    start_page: int
+    end_page: int
+    start_at_re: re.Pattern[str] | None
+    stop_at_re: re.Pattern[str] | None
+
+
+def _parse_pdf_page_windows(extraction: dict[str, Any]) -> tuple[_PdfPageWindow, ...]:
+    for legacy_key in ("start_page", "end_page", "start_after_pattern"):
+        if extraction.get(legacy_key) is not None:
+            raise ValueError(f"page_windows cannot be combined with {legacy_key}")
+    raw_windows = extraction.get("page_windows")
+    if not isinstance(raw_windows, (list, tuple)) or not raw_windows:
+        raise ValueError("page_windows must be a non-empty list of window mappings")
+    windows: list[_PdfPageWindow] = []
+    previous_end = 0
+    for raw in raw_windows:
+        if not isinstance(raw, dict):
+            raise ValueError("each page window must be a mapping")
+        start_page = _positive_int(raw.get("start_page"), default=0)
+        end_page = _positive_int(raw.get("end_page"), default=0)
+        if not start_page or not end_page:
+            raise ValueError("each page window requires start_page and end_page")
+        if end_page < start_page:
+            raise ValueError("page window end_page must be >= start_page")
+        if start_page <= previous_end:
+            raise ValueError("page windows must be ascending and non-overlapping")
+        previous_end = end_page
+        start_at = raw.get("start_at_pattern")
+        stop_at = raw.get("stop_at_pattern")
+        windows.append(
+            _PdfPageWindow(
+                start_page=start_page,
+                end_page=end_page,
+                start_at_re=re.compile(str(start_at)) if start_at is not None else None,
+                stop_at_re=re.compile(str(stop_at)) if stop_at is not None else None,
+            )
+        )
+    return tuple(windows)
+
+
+def _windowed_pdf_lines(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[tuple[str, int], ...]:
+    """Collect PDF text lines from discontiguous page windows.
+
+    Each window is a mapping with ``start_page``/``end_page`` (1-based,
+    inclusive) plus optional line anchors: ``start_at_pattern`` drops lines
+    until the first matching line (the matching line is kept, so a section
+    label can anchor the window), and ``stop_at_pattern`` ends the window at
+    the first matching line (the matching line is dropped). Windows let one
+    manifest entry capture discontiguous sections of a large statute PDF —
+    one source snapshot instead of one per slice — while keeping stray
+    neighbour-section fragments out of the extracted bodies.
+    """
+    windows = _parse_pdf_page_windows(extraction)
+    drop_lines = {str(line).strip() for line in extraction.get("drop_lines", ())}
+    drop_line_patterns = tuple(
+        re.compile(str(pattern)) for pattern in extraction.get("drop_line_patterns", ())
+    )
+    window_by_page: dict[int, _PdfPageWindow] = {}
+    for window in windows:
+        for page_number in range(window.start_page, window.end_page + 1):
+            window_by_page[page_number] = window
+    last_page = max(window.end_page for window in windows)
+    started: dict[int, bool] = {id(window): window.start_at_re is None for window in windows}
+    stopped: dict[int, bool] = {id(window): False for window in windows}
+    lines: list[tuple[str, int]] = []
+    with fitz.open(stream=content, filetype="pdf") as document:
+        for page_index, page in enumerate(document, start=1):
+            if page_index > last_page:
+                break
+            page_window = window_by_page.get(page_index)
+            if page_window is None or stopped[id(page_window)]:
+                continue
+            for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
+                line = _normalize_text(raw_line)
+                if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
+                    continue
+                if not started[id(page_window)]:
+                    if page_window.start_at_re is not None and page_window.start_at_re.search(
+                        line
+                    ):
+                        started[id(page_window)] = True
+                        lines.append((line, page_index))
+                    continue
+                if page_window.stop_at_re is not None and page_window.stop_at_re.search(line):
+                    stopped[id(page_window)] = True
+                    break
                 lines.append((line, page_index))
     return tuple(lines)
 
