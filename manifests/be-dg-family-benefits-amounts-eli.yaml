@@ -1,0 +1,54 @@
+version: "2026-07-05-be-dg-family-benefits-amounts"
+sources:
+  - source_id: be-dg-family-benefits-decree-2018-04-23-moniteur-de-articles
+    jurisdiction: be-dg
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/cgi/article.pl?language=de&sum_date=2018-06-12&lg_txt=d&pd_search=2018-06-12&s_editie=1&numac_search=2018202523&caller=&2018202523=&view_numac=2018202523de
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/moniteur
+      justel_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits-german-speaking-community
+      source_status: official_original_publication_article_segmented
+      source_note: >-
+        German-speaking Community decree of 23 April 2018 on family benefits
+        (numac 2018202523), German-language original Moniteur publication of 12
+        June 2018, re-ingested at ARTICLE granularity so the amount-bearing
+        articles carry their euro values as resolved provision text
+        (axiom-corpus#205). The prior extract-official-documents ingest collapsed
+        the whole German text into one document-level block with the amounts
+        stripped; this re-ingest segments on the German "Art. N -"/"Artikel N -"
+        headings. Article 8 states the 157-Euro Basiskindergeld, article 15 the
+        52-Euro Jahreszuschlag, article 17 the 135-Euro large-family supplement,
+        article 19 the 75-Euro Sozialzuschlag, article 21 the seven disability-
+        category supplements (85/112/262/432/491/526/561 Euro), articles 23/25
+        the 239/120-Euro orphan supplements, and articles 30/34 the 1.144-Euro
+        birth/adoption premium — the base (2019) values rulespec-be
+        be-dg/statutes/family_benefits/amounts.yaml cites and quotes as German
+        spans. This is the German-language authentic expression for the German-
+        speaking Community.
+  - source_id: be-dg-family-benefits-decree-2018-04-23-justel-fr-articles
+    jurisdiction: be-dg
+    document_class: statute
+    adapter: belgian-eli
+    source_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/justel
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/moniteur
+      justel_url: https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits-german-speaking-community
+      source_status: official_consolidated_article_segmented
+      source_note: >-
+        German-speaking Community decree of 23 April 2018 on family benefits
+        (numac 2018202523), French-language consolidated Justel text, ingested at
+        ARTICLE granularity. Justel serves the consolidated (in-force, uprated)
+        expression: article 8 the 157-euro base allowance (unchanged), article 17
+        the 137,50-euro large-family supplement, article 19 the 77,50-euro social
+        supplement, article 21 the seven category supplements
+        (87,50/114,50/264,50/434,50/493,50/528,50/563,50 euros), articles 23/25
+        the 241,50/122,50-euro orphan supplements, and articles 30/34 the 1 144-
+        euro birth/adoption premium. This grounds the current consolidated
+        amounts alongside the German-language base (2019) values; the euro
+        figures are present as amounts per article rather than only as
+        cross-references.

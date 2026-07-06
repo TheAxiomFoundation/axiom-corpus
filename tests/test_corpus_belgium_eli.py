@@ -401,6 +401,56 @@ def test_extract_belgian_eli_moniteur_article_page_writes_article_records(tmp_pa
     assert records[0]["metadata"]["source_authority"] == ("official_original_publication")
 
 
+SAMPLE_MONITEUR_ARTICLE_GERMAN_HTML = """
+<html>
+  <body>
+    <span class="tag">2018202523</span>
+    <h1 class="page__title"><span>Ministerium der Deutschsprachigen Gemeinschaft</span></h1>
+    <p class="intro-text">
+      23. APRIL 2018 - Dekret &uuml;ber die Familienleistungen (1)
+    </p>
+    <main class="page__inner page__inner--content article-text" role="main">
+      <p>
+        Artikel 1 - Gegenstand<BR>
+        Vorliegendes Dekret regelt eine in Artikel 128 der Verfassung erw&auml;hnte Angelegenheit.<BR><BR>
+        Art. 8 - Basiskindergeld<BR>
+        Die Regierung gew&auml;hrt ein Basiskindergeld, das 157 Euro pro Monat betr&auml;gt.<BR><BR>
+        Art. 15 - Jahreszuschlag<BR>
+        Die Regierung gew&auml;hrt einen Jahreszuschlag, der 52 Euro pro Jahr betr&auml;gt.<BR><BR>
+      </p>
+    </main>
+    <a id="link-text" class="links-link" href="https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/moniteur">
+      https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/moniteur
+    </a>
+    <a class="links-link" href="https://www.ejustice.just.fgov.be/eli/decret/2018/04/23/2018202523/justel">
+      JUSTEL - Konsolidierte Gesetzgebung
+    </a>
+  </body>
+</html>
+"""
+
+
+def test_parse_belgian_eli_moniteur_german_article_headings_segment_with_amounts():
+    """German DG Moniteur publications use "Art. N -"/"Artikel N -" headings
+    (dash, not the French period). They must segment to the article level so
+    the euro amounts are text-verifiable per article, not collapsed into one
+    document provision (axiom-corpus#205)."""
+    records = parse_belgian_eli_source(
+        SAMPLE_MONITEUR_ARTICLE_GERMAN_HTML,
+        source_name=(
+            "https://www.ejustice.just.fgov.be/cgi/article.pl?"
+            "language=de&caller=summary&numac_search=2018202523"
+        ),
+    )
+
+    assert [record.label for record in records] == ["1", "8", "15"]
+    bodies = {record.label: record.body for record in records}
+    # The amount-bearing articles carry their euro values verbatim.
+    assert "157 Euro pro Monat" in bodies["8"]
+    assert "52 Euro pro Jahr" in bodies["15"]
+    assert records[0].document.document_type == "decret"
+
+
 def test_parse_belgian_eli_moniteur_article_body_url_writes_article_records():
     records = parse_belgian_eli_source(
         SAMPLE_MONITEUR_ARTICLE_BODY_HTML,
