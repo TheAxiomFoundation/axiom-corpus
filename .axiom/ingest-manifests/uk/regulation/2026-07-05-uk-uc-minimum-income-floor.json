@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-05-uk-uc-minimum-income-floor.json",
+      "sha256": "b8099880e9f826a0327bd2b8cc5f60b9095182ba50c35048327bba4caa6d69cb"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-05-uk-uc-minimum-income-floor.json",
+      "sha256": "9696e9f7956e38b918e1914f6451f9dbcd7ababa618baf30115ab201a5731163"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-05-uk-uc-minimum-income-floor.jsonl",
+      "sha256": "2b0ca1108d6ad713c65d52fbbbbd15cd9ff082000c04d669866bed2e82c21919"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-uc-minimum-income-floor/uksi/2013/376/regulation-90.xml",
+      "sha256": "3ddf823412d0cb80715fb4c6fe94f391a01ff6ef670444ea4a27c5cd2a3959ea"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-uc-minimum-income-floor/uksi/2015/621/regulation-4.xml",
+      "sha256": "f2c6654305169fa45e0da72170297d84d81cae526d820d0b82f6c73515ea9419"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-uc-minimum-income-floor/uksi/2015/621/regulation-4A.xml",
+      "sha256": "69ffc53c964fa2ad1752b8c0264863acf2fb9203af070dd686a34c8ac6300282"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6bc9344a621aac8217caa7d7837a3ec5feb6e431",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus/_worktrees/ingest-213-217-205"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-05-uk-uc-minimum-income-floor --source clml --citation uksi/2013/376/regulation/90 --citation uksi/2015/621/regulation/4 --citation uksi/2015/621/regulation/4A --source-as-of 2026-07-05 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-06T01:27:16.799279+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-05-uk-uc-minimum-income-floor.md",
+      "sha256": "3f82e73bfb8e4f1ed42cf3d314cf2456eca3be1de0b6de0107ca2e70777bc608"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wKc9DXqvSqnL7b9HS7VyXEkkQ9juFWgfSta+SuWDN2NwbxdZt/N3zjnnB29Z/+yJuTxFn7bYHvgxpOijwCWqDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-uk-uc-minimum-income-floor"
+}
