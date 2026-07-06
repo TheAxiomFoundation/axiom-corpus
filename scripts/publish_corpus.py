@@ -232,13 +232,35 @@ def fetch_all_scope_versions(
 # --------------------------------------------------------------------------- #
 # Publication
 # --------------------------------------------------------------------------- #
+# Per-command wall-clock ceiling. A hung load/sync (e.g. a server-side lock on
+# --replace-scope) must fail that scope and let the run continue, never stall
+# the whole workflow until the CI job timeout.
+INGEST_TIMEOUT_S = 600
+
+
 def _ingest(cmd: Sequence[str]) -> subprocess.CompletedProcess[str]:
-    """Invoke the corpus CLI in-process-equivalent via the console script."""
-    return subprocess.run(
-        ["axiom-corpus-ingest", *cmd],
-        capture_output=True,
-        text=True,
-    )
+    """Invoke the corpus CLI via the console script, bounded by a timeout.
+
+    A timeout is surfaced as a non-zero result whose stderr names it, so the
+    caller's transient-retry / fail-and-continue logic handles it uniformly.
+    """
+    try:
+        return subprocess.run(
+            ["axiom-corpus-ingest", *cmd],
+            capture_output=True,
+            text=True,
+            timeout=INGEST_TIMEOUT_S,
+        )
+    except subprocess.TimeoutExpired as exc:
+        stderr = (exc.stderr or b"" if isinstance(exc.stderr, bytes) else exc.stderr or "")
+        if isinstance(stderr, bytes):
+            stderr = stderr.decode("utf-8", "replace")
+        return subprocess.CompletedProcess(
+            args=list(cmd),
+            returncode=124,
+            stdout="",
+            stderr=f"{stderr}\ncommand timed out after {INGEST_TIMEOUT_S}s",
+        )
 
 
 def _sync_r2(scope: FileScope, credentials_file: Path | None, workers: int) -> str:
@@ -307,12 +329,20 @@ def _load_supabase(
 ) -> None:
     """Load one version's provisions and auto-register its active scope.
 
+    Crucially this does NOT pass ``--replace-scope``. That flag deletes *every*
+    row for the file's ``(jurisdiction, document_class)`` across all versions
+    (``fetch_provision_ids_for_scope`` filters by jurisdiction/doc_type only,
+    not version) before loading — which would destroy other versions that share
+    the pair, e.g. loading one small ``us-ca/statute`` version would wipe the
+    other ~91k ``us-ca/statute`` rows. The corpus keeps many versions per pair,
+    so publication must be additive. A plain load upserts this version's rows by
+    their deterministic ``(citation_path, version)`` IDs, updating only its own
+    rows and leaving every other version intact — idempotent per version and
+    safe on rerun.
+
     ``--skip-refresh`` defers the (expensive) materialized-view refresh; the
-    caller refreshes once after all versions load. ``--replace-scope`` clears
-    prior rows for this jurisdiction/document_class version before upsert so a
-    re-cut of the same version is exact. Navigation is deferred by default
-    (``--no-build-navigation``) and rebuilt once at the end; this halves the
-    per-scope work and removes the large-scope nav-rebuild timeout surface.
+    caller refreshes once after all versions load. Navigation is deferred by
+    default (``--no-build-navigation``) and rebuilt once at the end.
 
     Transient 5xx/gateway failures are retried with backoff; deterministic data
     errors (400/409) fail immediately so a defective file is reported, not
@@ -324,7 +354,6 @@ def _load_supabase(
         "load-supabase",
         "--provisions",
         str(scope.path),
-        "--replace-scope",
         "--skip-refresh",
         "--chunk-size",
         str(chunk_size),
