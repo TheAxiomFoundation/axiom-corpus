@@ -107,3 +107,12 @@ data/corpus/sources/uk/statute/2026-07-05-uk-scottish-income-tax/
 # ingest manifest records the source-XML sha256 hashes. See
 # docs/ingest-runs/2026-07-05-uk-hicbc-itepa.md.
 data/corpus/sources/uk/statute/2026-07-05-uk-hicbc-itepa/
+
+# legislation.gov.uk CLML source XML for the Universal Credit minimum-income-floor
+# threshold ingest (UC Regs 2013 reg 90; NMW Regs 2015 regs 4/4A) is R2-backed
+# provenance only, for the same reason: it embeds upstream EffectId="key-..."
+# commentary identifiers that GitHub org push protection false-positives as
+# Mailgun keys. The normalized provisions carry the verbatim statutory text and
+# are committed; the signed ingest manifest records the source-XML sha256 hashes.
+# See docs/ingest-runs/2026-07-05-uk-uc-minimum-income-floor.md.
+data/corpus/sources/uk/regulation/2026-07-05-uk-uc-minimum-income-floor/
