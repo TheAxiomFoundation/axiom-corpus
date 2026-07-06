@@ -134,3 +134,13 @@ data/corpus/sources/uk/statute/2026-07-06-uk-sscba-statutory-paternity-pay/
 data/corpus/sources/uk/regulation/2026-07-06-uk-tax-credits-rates/
 # ESA Regs 2008 income-related applicable-amount provisions: same handling.
 data/corpus/sources/uk/regulation/2026-07-06-uk-esa-income-related/
+
+# legislation.gov.uk CLML source XML for the passported maternity/food grants
+# ingest (Best Start Foods SSI 2019/193 reg. 13; Healthy Start SI 2005/3262
+# reg. 8) is R2-backed provenance only, for the same reason: both embed upstream
+# key-... commentary identifiers that GitHub org push protection false-positives
+# as Mailgun keys. The normalized provisions carry the verbatim statutory text
+# and are committed; the signed ingest manifests record the source-XML sha256
+# hashes. See docs/ingest-runs/2026-07-06-uk-passported-grants.md.
+data/corpus/sources/uk/regulation/2026-07-06-uk-best-start-foods-reg13/
+data/corpus/sources/uk/regulation/2026-07-06-uk-healthy-start-reg8/
