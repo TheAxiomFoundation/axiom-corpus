@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.json",
+      "sha256": "3add79124725ece97f50d6fc52211d00d69b138ef79f561dde5dcb4b0b3ec5e7"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.json",
+      "sha256": "51e43bf36e4cb371e5b688bed3eec892153d3132589709efa9ace5b089cf9b88"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.jsonl",
+      "sha256": "dab0cf499085e4c8ae791ba8e6f7526ef7c6c2d093b0ae0ee831e345567ec486"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax/official-documents/cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:25.535393+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "plzlq39xwbqHNBCIu3FG4w1shHOG8aSMmOdYRl0lWAQk5HLBeYn1vsRv0XIqPzheWrvtUYcr9rOQcyd6fBduBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax"
+}

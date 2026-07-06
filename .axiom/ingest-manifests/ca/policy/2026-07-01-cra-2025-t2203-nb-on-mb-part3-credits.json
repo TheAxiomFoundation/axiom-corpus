@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits.json",
+      "sha256": "5c75404d4749e55e535c9c95557bfe34e726fd6036cabbe64088c4f93c6ed8d7"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits.json",
+      "sha256": "485a65c7f25b54f0927d8cce0deadaaf3263bf800c40c55a46f53b2785d47920"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits.jsonl",
+      "sha256": "ede0cd90dd8b85fe5d4a92f2f845c6580121efd6e2989c538c6dc7b0cb0d9eef"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits/official-documents/cra-2025-t2203-nb-on-mb-part3-credits.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:22.762470+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "r/y77cZ3eSILfQmcR3FN1/Ah5zD9P/45eqQnZ7msW3VnsSu+9AdWPl6h4108qz8+5C5Qela1yBNJXUFSokLPAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits"
+}

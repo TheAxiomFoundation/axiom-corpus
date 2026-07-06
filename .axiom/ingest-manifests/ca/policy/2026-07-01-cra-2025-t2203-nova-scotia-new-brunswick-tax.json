@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.json",
+      "sha256": "91295bd2d6c7e83ca9a0c403e6f89d587dfd5e946f55b9b764d4ec86a33f47ed"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.json",
+      "sha256": "7dd83fa2eb77b4e780c37bab4f9b969526a78700d90b3b6f7f78f26f3855ec06"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.jsonl",
+      "sha256": "7fe130ada2c73fc94980afcc1eb6cae99ab8b0028043ed59336e887208dca1cd"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax/official-documents/cra-2025-t2203-nova-scotia-new-brunswick-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:24.436577+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wyAOl2TOnyMeg+SClJBgw02kAp8wXsGP7hEtr1yOuw/Di/auzcEd5r4DTcLAsEeQA8ki/t5zCxA1R6rzgh7MBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax"
+}

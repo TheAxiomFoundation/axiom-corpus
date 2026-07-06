@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
+      "sha256": "c6f336adabbab1c5ccf55914cb5d2f92fea7c7be0ef94c7ddc96fde88ae5a021"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
+      "sha256": "e4888470b2762e1797b1a6e372152ddb0378db881f62a6107c47aa5b872b2836"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.jsonl",
+      "sha256": "b6e6ddb558938df9c190bf82cf4a3d3a457d2c21fe9b116d25496537e791e92f"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-2025-rrsp-prpp-spp-hbp-llp.txt",
+      "sha256": "d296dade45f52c7f41bc5f248c85b6df4f8e059b0658b4899b48b8c3640c1e40"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-hbp-repay-amounts-withdrawn.html",
+      "sha256": "ca79c81f03f697928244feee07116eee760e6c5840820aa30e1b5765654119c3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-llp-repayments.html",
+      "sha256": "91869e4ee31e3a3e329b99652dd701d3550dde6e64e3674e662ea91618c7246d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 3
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:22.203671+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "O+inunbETB0t0wZJ+MHamEuVISmCpi1y4WgT80idAGO7j2gTMqmjT4zriB5lfBK0/oeVUWCGNZ2ep9L2eEXgDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp"
+}

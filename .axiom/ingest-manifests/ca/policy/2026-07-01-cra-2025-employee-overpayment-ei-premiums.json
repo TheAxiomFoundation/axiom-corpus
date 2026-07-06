@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-employee-overpayment-ei-premiums.json",
+      "sha256": "03195b2048131fbebeb52a372cdd27853f43931dbaaada4c7e8fa686a6870f3c"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-employee-overpayment-ei-premiums.json",
+      "sha256": "b7b81e8f46163cecf5d58f6ee9b97fa16e1c068a27ceb7cfcc292386817fcb3f"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-employee-overpayment-ei-premiums.jsonl",
+      "sha256": "3ef26e3e68d4a0e2e16a4457b9fd3aae2264ba39e8809b777ce8c0e2e7e7cb4e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-employee-overpayment-ei-premiums/official-documents/cra-2025-employee-overpayment-ei-premiums.txt",
+      "sha256": "df1398cac50c1660310ae60485292a8c6c4a05ed56a6aa946d4dcdf9c45d9b99"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-employee-overpayment-ei-premiums"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:12.827803+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1EdV1baJoNcbVv0NMJ/GhvUJRzb9yXJPSOF2O5Ew5NGjY0VBVqezqFpfjvliUYCRN6+B7X1/MRK7h2yGucFZDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-employee-overpayment-ei-premiums"
+}

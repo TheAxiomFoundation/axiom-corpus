@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-tax-on-split-income.json",
+      "sha256": "b309cfc6cd5be03804d07a445b12e28cab7386d124d97bbcb202432bb850fc72"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-tax-on-split-income.json",
+      "sha256": "837d96ff76ac76f93dae251883d35a5194dbcd1f43011bc953b82ae679b3c9a1"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-tax-on-split-income.jsonl",
+      "sha256": "62aca757d6f961e49b34b3ba8a70c8e87b5199b9c796eab7b65260cdc4b8711e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-tax-on-split-income/official-documents/cra-2025-tax-on-split-income.txt",
+      "sha256": "c707b60f2bc5cf9e9b6d86688ee7020d6cfc4e81e857408c68dff8bcadee086a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-tax-on-split-income"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:27.715355+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bEJh7fS9rmBsHe7AOHy3jTVI/7Px7c2fHHSvudGv4ngxQEyTiwEdg5QO1033hrTlrainGPSIbaHP6PS6F0X4Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-tax-on-split-income"
+}

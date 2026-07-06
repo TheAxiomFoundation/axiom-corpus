@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-income-tax.json",
+      "sha256": "77e67447aae05495c0b039cf8ada087146919e6f841d2a0d6a08335b18547ef4"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-income-tax.json",
+      "sha256": "b43d4651c961eb177f944c916f8d71827d986ef7681f6c0fa323ccd94592563d"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-income-tax.jsonl",
+      "sha256": "6a245102c278446b2e2050c59c7f4cf9dd582400004717c9b891f0aaf0f09d18"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-federal-income-tax.txt",
+      "sha256": "65244fb6f1d9b0eed870dd9af526e70e4cf8d284742ae6c7ff93a132785f6ac5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2026-income-tax"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:30.488216+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "QcDJ2jRViH/ldAWizGOHwNqALWxkTICmNszYdJS8fGSkjBegr9mXx/PVT9qvPtsjgIpXuIPQ8fErWgo7KHUVBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2026-income-tax"
+}

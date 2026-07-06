@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses.json",
+      "sha256": "ef58023a7b7e4faeec6dc81f4f52c655351a1381e43900a7bd678f2756b5ebf0"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses.json",
+      "sha256": "6180a3ce210cd7d8af0e9f2aea0fd79da520186d11caf2eb9f5addf8350d29d9"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses.jsonl",
+      "sha256": "8d9c99d9b4519da3ce423643717fc7d4ac2b3fd48e454fe2f8dd3ed7ef3a980a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses/official-documents/cra-2025-capital-gains-or-losses.txt",
+      "sha256": "173c810c158ce471a0595546d3751f12f081cfb816c9c9e7659fce34b81f017c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-capital-gains-or-losses"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:09.381062+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "imdi4q24J9Ek4vnM1KH9x+WEhNRU5WnwvECkQaWS5vpEUZFIA1DPp0H1Zuxurf0NEiS5rZyLnOmv2B2trLsOBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-capital-gains-or-losses"
+}

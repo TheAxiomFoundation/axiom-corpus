@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-deferred-security-options-benefits.json",
+      "sha256": "92a3293fd931f8888b4324648b58f5c1489a42744db0949f531ffac794810324"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-deferred-security-options-benefits.json",
+      "sha256": "259815df076e522528d458ca5ad34e1d1b925fb575dea1c796930763b2081fc2"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-deferred-security-options-benefits.jsonl",
+      "sha256": "78d85b20885b451df66868560eadf055222d62ac40638d2c3a71474643bf173f"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-deferred-security-options-benefits/official-documents/cra-2025-deferred-security-options-benefits.txt",
+      "sha256": "1c5aa26a047011616c1e4e7cf68cee4a4314e09497ced2feb951346b62d94368"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-deferred-security-options-benefits"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:11.664455+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZBKIfUzZdRMWBn+pnrhvETJ6+yEIeTt7Ry25HLa55HQF8Rrhl+qRI3xhdC2itotFpuCgO82Jd0RUYjE9ktbHCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-deferred-security-options-benefits"
+}

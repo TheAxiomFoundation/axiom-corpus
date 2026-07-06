@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.json",
+      "sha256": "eddaafa41bca4fb583c1ffbf3e6bab37450854fe9763abd94aa1b092315b271a"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.json",
+      "sha256": "5b027ae86dada7b7edb72944f5e92476d7e5cff9842093bb2a2c91d9cfb3090a"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.jsonl",
+      "sha256": "fd4074ed43e8576daf1b42a4d06dc3a7ddd5286404ea1f691eef5f60ee1408c6"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback/official-documents/cra-2025-request-for-loss-carryback.txt",
+      "sha256": "5cfa6017b9f8500c06aab5672a9b761da51be45c3d36d39c68569deabb58706b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-request-for-loss-carryback"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:21.663065+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "INPZgVtCwSXSRnv9WSD26IrzovY3Ru9x4F2zmGOBWtADaA6QhDWC33jKZSbpr9t9rjrtHuQ6GIdFblUfy2heAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-request-for-loss-carryback"
+}

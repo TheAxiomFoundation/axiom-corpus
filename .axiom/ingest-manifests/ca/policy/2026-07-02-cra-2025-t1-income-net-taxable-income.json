@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-t1-income-net-taxable-income.jsonl",
+      "sha256": "abb9636060c04e8e6b49177ab250b9e07bee9c0f255f0dc5df2694c2a3a14b91"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-02-cra-2025-t1-income-net-taxable-income"
+  },
+  "coverage": null,
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:39.732124+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FIPr6yfRUf/47xHD+hBK4kD/jpnLW6+DvhD9VIY9sf5xgQOC3wIRLTSgchDNQIF8E4EBCmhCa7qLc79YZ+qIBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-cra-2025-t1-income-net-taxable-income"
+}

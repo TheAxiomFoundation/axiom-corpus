@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-northern-residents-deductions.json",
+      "sha256": "761f81ddddb36dfc5881bc34d7da6c3dcec554b958485516f84a1b479d3b9f1d"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-northern-residents-deductions.json",
+      "sha256": "8302c24773b26d841bb608e24ec7fb0add3af882bb36933ba8836794473c61ba"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-northern-residents-deductions.jsonl",
+      "sha256": "81746f6e1b4e2f022ff572b630d801f1e7ee2dbe6792af6f376f34c2c9568b9e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-northern-residents-deductions/official-documents/cra-2025-northern-residents-deductions.txt",
+      "sha256": "aedc9f64a7f8857415c9a8d18a20e0dc860601a88510a4b9710158816245ff53"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-northern-residents-deductions"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:20.582726+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "h3TUrIpCxvTJ+XOzemmZsmXDp0TlL+QP+BsbJ81unW0TheUJBUWtRaNeac711EScTyE3AcFW15QIY3iCG1T7Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-northern-residents-deductions"
+}

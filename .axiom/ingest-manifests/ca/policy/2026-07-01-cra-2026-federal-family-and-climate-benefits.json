@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits.json",
+      "sha256": "f19b7c04b13dddebc853c45f7ff56c95e9edd9b0ee7c647a9d1e7529fd7f5824"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits.json",
+      "sha256": "4061e94f72504d299480420d58d281057096f9f75d80e7c5aa465ec3ab998200"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits.jsonl",
+      "sha256": "2c958f7727b26b87a77bbca979233230a60e0da3d0bbdee51c6c81b2ca386387"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-2026-federal-family-and-climate-benefits.txt",
+      "sha256": "7b259d498ea61b740729c6d3a12519a4ad95e6e69ae22c43171d4586c1389168"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2026-federal-family-and-climate-benefits"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:29.368644+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "k9pVdsBMlHkBi9FfLVtA15SDN8xeM2bd5Y9xhvKVp8OEq0YuO/qCcd1xZvFVnP6EVpQAKC0nUI4crA6Y8rU/Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2026-federal-family-and-climate-benefits"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-cpp-contributions-and-overpayment.json",
+      "sha256": "30811b6506ab70a81274eac009b77edf7f036cf252099ebc59baab91b1b5afce"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-cpp-contributions-and-overpayment.json",
+      "sha256": "b8fcdde5a94443cafa56e92335d18f8f83967a29f9c97feaded2f58cc57bbfc1"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-cpp-contributions-and-overpayment.jsonl",
+      "sha256": "961360c16a0384cb88b27b97fb319cf97cb53e9424e2e8f821f31bfc7ba42276"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-cpp-contributions-and-overpayment/official-documents/cra-2025-cpp-contributions-and-overpayment.txt",
+      "sha256": "ee68f57d5a513d97e2956a8d58f81439bb02b3a952cf44ebe26c360c24247922"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-cpp-contributions-and-overpayment"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:10.526610+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mrOWIad+Hh1a0x6HAJoupgvIe9hhAdBxkD7EBLydbTnMHIdicbZuikCOFEBr70uz8Zlc56txhEBP7Nxdo9UVDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-cpp-contributions-and-overpayment"
+}

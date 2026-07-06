@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.json",
+      "sha256": "8b6a6f1dc54f1b4c99ff6319c8d11ce664c16b688e3c63d8ca9b4c00af174577"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.json",
+      "sha256": "867c54795b4be72636f671cca7e116b6a4c64a378bb1b469077a711d3e4957fe"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.jsonl",
+      "sha256": "5d50fc4a26835ef520009a90b845a696dc7ea457780c2bd892dd83a4188ca680"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-provincial-territorial-td1-personal-credits.txt",
+      "sha256": "c6e7c4f9fd90e60f8857e3d0c3078b4a3009f17c35b8b088270a2d800af034b3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2026-provincial-territorial-td1-personal-credits"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:32.113654+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YukaehI6GRM/vAmBYKvA7PwZ9kMwRT0sK9ZOB5lhwgk+Vd1R+c8L0pMFBowpzUcA+ofn0zfGEtfcCSy5K8M+DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2026-provincial-territorial-td1-personal-credits"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax.json",
+      "sha256": "826fefc77a5ad72c10fe3729243666e4a9678cd0768c537b63795a8e58721f88"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax.json",
+      "sha256": "fc026df69d7becf0d807e761c906c807162799b5417f74854473bd28e25ebbff"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax.jsonl",
+      "sha256": "5f9eb9ab06e13fb785283bb6c39a9ee962fbc936474fbcbdb522f5744281a90c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax/official-documents/cra-2025-t2203-ontario-manitoba-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ad6e3c683862ddd8098bc6ad6f5ae6a0ff3aa415",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "manual-review:canada-2026-tax-corpus-sync 2026-07-01-cra-2025-t2203-ontario-manitoba-tax"
+  },
+  "coverage": {
+    "complete": null,
+    "extra_count": 0,
+    "matched_count": null,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-06T14:18:24.994584+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "inUqao+32t85jicynA9aFYbMyBrVPKxOCw1pFFXgFf73xQZigtkjuWEn/J/PUT3KaaO+c8mpc+mG4Cyqu92WBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-t2203-ontario-manitoba-tax"
+}
