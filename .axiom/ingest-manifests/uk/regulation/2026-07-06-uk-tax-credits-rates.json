@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-06-uk-tax-credits-rates.json",
+      "sha256": "fb8e8bb1d7135e1269ed271c247c84132dfc87a8a0e4a698812a8f9521583efb"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-06-uk-tax-credits-rates.json",
+      "sha256": "38929216377abcd4fda09d6fbd1964384b3a55e4ef8cf192e8ec1d8b118fc1ed"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-06-uk-tax-credits-rates.jsonl",
+      "sha256": "3fa74eefbd4324cca7f69e09f699c8c4dc3fc6d2ad73d4700d2553dc1009949c"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-tax-credits-rates/uksi/2002/2005/schedule-2.xml",
+      "sha256": "c66c6fb5a0909593589a9b7c2ef21b1debf462ca6917ecd1396e3afa679a4235"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-tax-credits-rates/uksi/2002/2007/regulation-7.xml",
+      "sha256": "67fb91e0eb6c3ed0beb0fee15eba3aa32a55fc7fb05b16becb5c4230507f50ec"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-tax-credits-rates/uksi/2002/2007/regulation-8.xml",
+      "sha256": "04749098a6b650f2c64164df77499a850967d6a7c1eaa62f9d065e657e447c8f"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-tax-credits-rates/uksi/2002/2008/regulation-7.xml",
+      "sha256": "78c3eb412bda14e6ad993a142a4d3e0ee25eeda90ca56f25d9ccd388413b8cc7"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-tax-credits-rates/uksi/2002/2008/regulation-8.xml",
+      "sha256": "3127a0aed060231e39da74f5d2be2de4fbf97712db7127709b99a1b08917e0e4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "025f5d98e446cd4bf26961e0a3249b90238b736b",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/laneC-esa-tc/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-06-uk-tax-credits-rates --source clml --citation uksi/2002/2005/schedule/2 --citation uksi/2002/2007/regulation/7 --citation uksi/2002/2007/regulation/8 --citation uksi/2002/2008/regulation/7 --citation uksi/2002/2008/regulation/8 --source-as-of 2026-07-06 --expression-date 2026-04-06 --allow-incomplete"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-06T22:47:19.047305+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9KV21raehNFU3nWO349oSr4RLn6PowU8JKvxJTT0CTTGjXLJXauELOMI+eIY64LYRq7sowEpW9sdtCnXpCCCBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-uk-tax-credits-rates"
+}

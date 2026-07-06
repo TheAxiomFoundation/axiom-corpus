@@ -128,3 +128,9 @@ data/corpus/sources/uk/regulation/2026-07-05-uk-uc-minimum-income-floor/
 data/corpus/sources/uk/statute/2026-07-06-uk-sscba-smp/
 data/corpus/sources/uk/statute/2026-07-06-uk-sscba-maternity-allowance/
 data/corpus/sources/uk/statute/2026-07-06-uk-sscba-statutory-paternity-pay/
+# Tax Credits Act 2002 SI rate/threshold provisions carry verbatim statutory text
+# committed as normalized provisions; the CLML source snapshots trip secret
+# scanners as false-positive keys, so exclude the raw sources (R2-backed).
+data/corpus/sources/uk/regulation/2026-07-06-uk-tax-credits-rates/
+# ESA Regs 2008 income-related applicable-amount provisions: same handling.
+data/corpus/sources/uk/regulation/2026-07-06-uk-esa-income-related/
