@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/gh/statute/2026-07-07-gh-appropriation-act-2025.json",
+      "sha256": "e7301349fd2c3b0f01284ee442c6d632db9c7abc83a35b98de37c02287502949"
+    },
+    {
+      "path": "data/corpus/inventory/gh/statute/2026-07-07-gh-appropriation-act-2025.json",
+      "sha256": "89d8a5f68763d19c35bb78d1f7c7928163f1c2f20309d3022ec92e9452e1a50a"
+    },
+    {
+      "path": "data/corpus/provisions/gh/statute/2026-07-07-gh-appropriation-act-2025.jsonl",
+      "sha256": "6f66e6b2940765ed24d551cfd3308dfb114919de3f77d3feaf917df478efb4fa"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-07-gh-appropriation-act-2025/official-documents/gh-act-1126-appropriation-2025.pdf",
+      "sha256": "7f741afe81c416af138d5b237d3896d7c286ac02289346680efff3d40cfcfe31"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c6598aa51034ace1ea3a301fce97bb183d44c495",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-07-gh-appropriation-act-2025 --manifest manifests/gh-appropriation-act-2025-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-07T19:03:53.636973+00:00",
+  "jurisdiction": "gh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kPBp224V2cf3kH3Py5vHmDerF34XL5CEfanYGTRoaFtwBKIQeMu2WoahMstbljMWL5eS/9EZAZEVKdeiI4mQDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-gh-appropriation-act-2025"
+}
