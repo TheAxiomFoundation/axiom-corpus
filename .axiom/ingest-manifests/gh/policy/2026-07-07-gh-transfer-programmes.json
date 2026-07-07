@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/gh/policy/2026-07-07-gh-transfer-programmes.json",
-      "sha256": "32c4e968c45d3956f626f17931842ef7e87fcb497dc16f3d318d710c8936700d"
+      "sha256": "23d147e753b8b2e516095efc16d23a5106f99dd58d3f3c8294b515d6a7be75bd"
     },
     {
       "path": "data/corpus/provisions/gh/policy/2026-07-07-gh-transfer-programmes.jsonl",
-      "sha256": "f444aa8e27358620739fb49f13052b0e4451643139a84962c3ac337349923087"
+      "sha256": "211028085b623411e54159fd3d3d94ed2dfc9045ad6d6e08634a75281ef05ab0"
     },
     {
       "path": "data/corpus/sources/gh/policy/2026-07-07-gh-transfer-programmes/official-documents/gh-mofep-2025-budget-social-protection.pdf",
@@ -22,9 +22,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "83ad788aa0eb2e101d696fc12b46295704f602c9",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+    "commit": "533dbd9c7761405ec33ca2e14f6715e9f0fd6493",
+    "dirty_tracked": false,
+    "root": "/private/tmp/axiom-corpus-pr268"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -39,14 +39,14 @@
     "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T18:58:29.343659+00:00",
+  "generated_at": "2026-07-07T20:06:47.736891+00:00",
   "jurisdiction": "gh",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "mXLylQbq06hG1VsfqYuRiwrY2aGHisZMCrHGXrHPwWc5J4BnHow1ksEGUDZt2/UyJvT/N/FbvknIIEMSFSU/Dg=="
+    "value": "V5qvb6nDh30B9OTIqiNu0PRWaygQ+kCwQAuFb0iL+yotbElqO/4zRjzsuyIW4F7vdb/BM50exBChb5hESiu8DA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-07-gh-transfer-programmes"
