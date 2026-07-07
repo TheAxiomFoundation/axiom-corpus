@@ -144,3 +144,16 @@ data/corpus/sources/uk/regulation/2026-07-06-uk-esa-income-related/
 # hashes. See docs/ingest-runs/2026-07-06-uk-passported-grants.md.
 data/corpus/sources/uk/regulation/2026-07-06-uk-best-start-foods-reg13/
 data/corpus/sources/uk/regulation/2026-07-06-uk-healthy-start-reg8/
+
+# legislation.gov.uk CLML source XML for the devolved/reserved benefits ingest
+# (Child Winter Heating Payment SSI 2020/352 regs. 4 and 10; Carer Support
+# Payment / Scottish Carer Supplement SSI 2023/302 reg. 16; contribution-based
+# JSA JSA Regs 1996 SI 1996/207 reg. 79 and Up-rating Order SI 2026/148 art. 25;
+# Social Security (Scotland) Act 2018 s.81; Jobseekers Act 1995 s.4) is R2-backed
+# provenance only: the CLML snapshots embed upstream key-... commentary
+# identifiers that GitHub org push protection false-positives as Mailgun keys.
+# The normalized provisions carry the verbatim statutory text and are committed;
+# the signed ingest manifests record the source-XML sha256 hashes.
+# See docs/ingest-runs/2026-07-07-uk-devolved-reserved-benefits.md.
+data/corpus/sources/uk/regulation/2026-07-07-uk-devolved-reserved-benefits/
+data/corpus/sources/uk/statute/2026-07-07-uk-devolved-reserved-benefits/
