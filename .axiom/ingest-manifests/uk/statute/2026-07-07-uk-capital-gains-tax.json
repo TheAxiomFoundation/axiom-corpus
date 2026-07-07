@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/statute/2026-07-07-uk-capital-gains-tax.json",
+      "sha256": "58e35fc3fb1428312da5789885b1c8a674737d3a5a7b965ff896ce7a59a99eff"
+    },
+    {
+      "path": "data/corpus/inventory/uk/statute/2026-07-07-uk-capital-gains-tax.json",
+      "sha256": "d2d216a38246d58d25892e739ed1582418c26a98b9f82b0af305d17e80f4dd3e"
+    },
+    {
+      "path": "data/corpus/provisions/uk/statute/2026-07-07-uk-capital-gains-tax.jsonl",
+      "sha256": "0725848122e02a93ccc766d45c72a1cc45b08733fbb9734b28e6d1331f15bd3d"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-capital-gains-tax/ukpga/1992/12/section-1H.xml",
+      "sha256": "ce07280010fcee010cd6a991cbb65bee56b0192cebf6ffbf88929e04dd0565ec"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-capital-gains-tax/ukpga/1992/12/section-1I.xml",
+      "sha256": "74463aab0eeca4cc1ed9367fecd89bd72fa207de94c239f9d44aa2d81d7823c6"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-capital-gains-tax/ukpga/1992/12/section-1K.xml",
+      "sha256": "1d1d4d51e41127c55eff8cc455ef98b60e3e30cd1d6207aace7706d3b97b279c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "37b925e3798932b393307e1b742a24490f80faf5",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_parity_workspaces/laneB/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-07-uk-capital-gains-tax --source clml --citation ukpga/1992/12/section/1H --citation ukpga/1992/12/section/1I --citation ukpga/1992/12/section/1K --as-of 2026-06-30 --expression-date 2026-06-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-07T16:34:01.686247+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oG96qUmiVv86XEtlzHSJ/dACOtoHnoGiUT3MjSjLY48kKq28siS6c57jxPIQ2VGl0Fm15MqbS26YX9qinaJ2DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-uk-capital-gains-tax"
+}

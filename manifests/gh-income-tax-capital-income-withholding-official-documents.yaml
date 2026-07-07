@@ -1,0 +1,149 @@
+# Ghana capital/investment-income withholding source capture (rulespec-gh
+# step 4, GHAMOD tinkt_gh parity: tiniy_s investment income, tinrt_s rent).
+#
+# The withholding surface for the 2026 year of assessment is set by:
+# 1. Income Tax Act, 2015 (Act 896) section 115 as SUBSTITUTED by the Income
+#    Tax (Amendment) Act, 2025 (Act 1134) section 3 — already in corpus at
+#    gh/statute/act-1134/income-tax-amendment-2025/
+#    withholding-and-first-schedule-paragraph-8. The base section 115 is
+#    captured here for the substitution chain record.
+# 2. Act 896 section 119 (final withholding payments): base text captured
+#    here; paragraph (f) was substituted by Act 1094 s.10 and DELETED by Act
+#    1134 s.4; paragraphs (a) (dividends) and (b) (rent paid to a resident
+#    individual) are unamended base text and make the dividend and
+#    resident-individual rent withholdings final.
+# 3. Act 896 First Schedule paragraph 8(1)(b) withholding rates, captured
+#    here from the base print. Supersession diligence 2015 -> 2026, checked
+#    against the full text of every Income Tax (Amendment) Act (eleven
+#    prints: Acts 902, 907, 941, 956, 973, 979, 1007, 1017, 1066, 1071,
+#    1094, 1111, 1134 — Parliament DSpace ORIGINAL bitstreams for the
+#    2015-2018 acts, GRA hosting for 2020+, Assembly Press scan for 1134):
+#    rows (i) dividends 8%, (ii) interest paid to individuals 1%, (iii)
+#    other interest 8%, (iv)-(vii) rent 8%/15% by payee and property type,
+#    and (ix) natural resource payments and royalties 15% were NEVER amended
+#    and are the rates in force for 2026. Row (viii) lottery churned
+#    (substituted by Act 907 s.2(a); DELETED by Act 956 s.3(c); a new row
+#    (x) at 10% added by Act 1094 s.13(e) was DELETED by Act 1134 s.5, which
+#    also removed winnings from section 115(1)) — no lottery withholding row
+#    is in force for 2026. Rows (xi)/(xii) (realisation consideration, 3%
+#    resident / 10% non-resident) were added by Act 1094 s.13(e) and remain
+#    in force; they are outside this slice's scope (GHAMOD does not model
+#    realisation withholding). Act 902 touched only paragraph 1 tables,
+#    paragraph 3(6), a paragraph 8(1)(c) service-fee insertion and the
+#    Second Schedule; Acts 941, 973, 979 touched paragraph 1 tables and a
+#    paragraph 8(1)(c) row; Act 1071 substituted paragraph 8(3) only
+#    ("one and a half per cent", small-scale-miner gold, later removed by
+#    Act 1134); Acts 1007, 1017, 1066, 1111 do not touch this surface.
+# 4. Income Tax (Amendment) Act, 2016 (Act 907) sections 1-2, captured here:
+#    section 1 inserts section 7(1)(p)/(q) of Act 896 — interest paid to an
+#    individual by a resident financial institution or on bonds issued by
+#    the Government of Ghana, and unit-trust/mutual-fund interest and
+#    dividends, are EXEMPT — which narrows the paragraph 8(1)(b)(ii)
+#    interest-to-individuals withholding to the residual interest categories.
+#
+# GHAMOD comparison note (recorded for the parity suite, never a source):
+# GH_2025 withholds a flat 15% on investment income (yiy) and 8% on rent
+# (ypr). The rent rate matches the residential-rent-to-individual row
+# exactly; no in-force paragraph 8(1)(b) rate supports 15% for dividends or
+# interest (axiom_oracles ghamod_issues candidate).
+documents:
+  - source_id: gh-act-896-income-tax-2015-capital-income-slices
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-896/income-tax-2015
+    title: Income Tax Act, 2015 (Act 896) — sections 115 and 119 and First Schedule paragraph 8 slices
+    source_url: https://gra.gov.gh/wp-content/uploads/2020/09/INCOME-TAX-ACT-2015-ACT-896.pdf
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2016-01-01'
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 1048576
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>115|119)\.(?:\s+(?P<heading>.+))?$'
+      section_label_pattern: '^(?P<label>Rates of withholding tax)$'
+      section_label_replacements:
+        Rates of withholding tax: first-schedule-8-rates-of-withholding-tax
+        '115': section-115-withholding-from-investment-returns
+        '119': section-119-final-withholding-payments
+      page_windows:
+        - start_page: 89
+          end_page: 89
+          stop_at_pattern: '^116[,.]'
+        - start_page: 93
+          end_page: 93
+          start_at_pattern: '^Final withholding payment'
+        - start_page: 118
+          end_page: 119
+          start_at_pattern: '^Rates of withholding tax'
+    metadata:
+      primary_source: true
+      source_authority: Ghana Revenue Authority (hosting the enacted Act)
+      original_publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      enacted: '2015'
+      source_family: personal-income-tax/withholding
+      slice_note: >-
+        Discontiguous page_windows capture from the 182-page image-only GRA
+        print of Act 896 (OCR). Page 89 carries section 115 (withholding from
+        investment returns; window stops before section 116). Page 93 carries
+        section 119 (final withholding payments; window starts at the "Final
+        withholding payment" heading). Pages 118-119 carry First Schedule
+        paragraph 8 (rates of withholding tax) from its heading through the
+        paragraph 8(3) rate. Base section 115(1) was substituted by Act 1094
+        section 8 and again by Act 1134 section 3 (the operative 2026 text,
+        in corpus under gh/statute/act-1134/...); cite the current charging
+        text from the Act 1134 provision and only the unamended rate rows
+        from this base paragraph 8 text.
+      source_note: >-
+        Enacted Income Tax Act 2015 (Act 896) PDF hosted by the Ghana Revenue
+        Authority (same print as the reliefs slices; downloaded 2026-07-07).
+        Image-only print; OCR at 300 dpi.
+  - source_id: gh-act-907-income-tax-amendment-2016-exempt-interest
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-907/income-tax-amendment-2016
+    title: Income Tax (Amendment) Act, 2016 (Act 907) — exempt interest and First Schedule substitutions
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/3b4d834d-5ac6-4e7d-be1d-a9599cd1e9b0/content
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2016-02-18'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Section (?P<label>[12])—(?P<heading>.+?)\s*$'
+      section_label_replacements:
+        '1': section-7-exempt-interest-inserted
+        '2': first-schedule-substitutions
+      page_windows:
+        - start_page: 2
+          end_page: 3
+          start_at_pattern: '^Section 1—'
+          stop_at_pattern: '^Section 3—'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2016-02-18'
+      gazette_notification_date: '2016-02-18'
+      source_family: personal-income-tax/withholding
+      repository_item_url: https://repository.parliament.gh/items/d24d8076-62c8-49b4-b377-5a040b527efb
+      source_note: >-
+        Income Tax (Amendment) Act, 2016 (Act 907) from the Parliament of
+        Ghana DSpace repository ORIGINAL bitstream, downloaded 2026-07-07.
+        Text-embedded PDF (no OCR). Section 1 inserts section 7(1)(p) and (q)
+        of Act 896 (interest paid to an individual by a resident financial
+        institution or on Government of Ghana bonds, and unit-trust/
+        mutual-fund interest and dividends, exempt). Section 2 substitutes
+        First Schedule paragraphs 8(1)(b)(viii) (lottery nil-band, later
+        deleted by Act 956), 8(1)(c)(vii) (7.5 percent service fees) and
+        8(3) (three percent, later substituted by Act 1071 and removed by
+        Act 1134). The window captures sections 1-2 and stops before
+        section 3 (Sixth Schedule).

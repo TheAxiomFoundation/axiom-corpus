@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/gh/statute/2026-07-07-gh-income-tax-capital-income-withholding.json",
+      "sha256": "5eaa3525f78e97f47f9855035d88dbed2f84de3a769c63a46c1cd5930229f769"
+    },
+    {
+      "path": "data/corpus/inventory/gh/statute/2026-07-07-gh-income-tax-capital-income-withholding.json",
+      "sha256": "c6ebd5f885b376f33ca8da2db6e3e98b93c9909e43a1bbc7022da2dbbe0dd122"
+    },
+    {
+      "path": "data/corpus/provisions/gh/statute/2026-07-07-gh-income-tax-capital-income-withholding.jsonl",
+      "sha256": "0ce0b4d73a7d8ad354384c95c2569ef654753ca8fd31dcbd80298d08568777df"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-07-gh-income-tax-capital-income-withholding/official-documents/gh-act-896-income-tax-2015-capital-income-slices.pdf",
+      "sha256": "9a3f9c91702e01eabd7e900d313baae38dad8f7b68dd034e1e8e5c29cea948b8"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-07-gh-income-tax-capital-income-withholding/official-documents/gh-act-907-income-tax-amendment-2016-exempt-interest.pdf",
+      "sha256": "f636e59bc8ddcbb95d9f68f9fdc2d006e36fdf99ce352a38ffd6c18b19a378cb"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7a5d639f36d5462527755a01055951c9a651fbe9",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-07-gh-income-tax-capital-income-withholding --manifest manifests/gh-income-tax-capital-income-withholding-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-07T16:52:17.334499+00:00",
+  "jurisdiction": "gh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "C0+ckl6cqUqFke8fEGeedEIt1+mQsqhsoK2y/Ybu7wDs7gEgZaM3MbKFD7LHcbzXwb8fGmI0i1W2YvjhN0kOBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-gh-income-tax-capital-income-withholding"
+}
