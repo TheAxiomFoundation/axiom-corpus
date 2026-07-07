@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-07-uk-devolved-reserved-benefits.json",
+      "sha256": "0d151f629cc31111b123ef98836f246532dd99f04d62e82b7e1b89eecc4a13fd"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-07-uk-devolved-reserved-benefits.json",
+      "sha256": "47a0a685c92c732075e85343b7f856cb904ce948cdc81cf63aeec56159f33afb"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-07-uk-devolved-reserved-benefits.jsonl",
+      "sha256": "4b2d9c6932c27466058d6216296b588c4d3b0bf46a66cf88c452841d99b2a6cb"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-07-uk-devolved-reserved-benefits/ssi/2020/352/regulation-10.xml",
+      "sha256": "971b7f8f03020117c815d98c15d1d8fa62dec816d3c9ddafef6be0f81e589c12"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-07-uk-devolved-reserved-benefits/ssi/2020/352/regulation-4.xml",
+      "sha256": "6889ab1a8b824b309629aba41ea1008f6b87af8c827f8c7e4ef0260d68c2e149"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-07-uk-devolved-reserved-benefits/ssi/2023/302/regulation-16.xml",
+      "sha256": "7c45107736210eeac07b35cdfb35ab19f579084eaf2221f4bddfefad3d88ee46"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-07-uk-devolved-reserved-benefits/uksi/1996/207/regulation-79.xml",
+      "sha256": "406c8e9c903cb17a5329d6c0ce6acdea8e9ad9f24f8051e0f0af5dba6bab41db"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-07-uk-devolved-reserved-benefits/uksi/2026/148/article-25.xml",
+      "sha256": "92d283528ed297f61b48a54a8ebb1ac24bd14209fd4805c4d913632ce5c33ac6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "83ad788aa0eb2e101d696fc12b46295704f602c9",
+    "dirty_tracked": true,
+    "root": "/private/tmp/claude-501/-Users-maxghenis/ca5f4ab7-d8a5-4e03-82eb-71e2a5166288/scratchpad/uk-corpus-wt"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-07-uk-devolved-reserved-benefits --source clml --citation ssi/2020/352/regulation/10 --citation ssi/2020/352/regulation/4 --citation uksi/1996/207/regulation/79 --citation uksi/2026/148/article/25 --citation ssi/2023/302/regulation/16 --citation asp/2018/9/section/81 --citation ukpga/1995/18/section/4 --as-of 2026-06-30 --expression-date 2026-06-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-07T18:54:27.469177+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yxWiU8M7UvhTS6ceyaFSTwt/ynwZVK0/mWJXvk0VH84lwcng0lBBHZUgbwPRePgXpc6pxCNW+1jDX4Os5k5zBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-uk-devolved-reserved-benefits"
+}
