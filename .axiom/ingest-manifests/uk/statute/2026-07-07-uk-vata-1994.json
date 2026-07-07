@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/statute/2026-07-07-uk-vata-1994.json",
+      "sha256": "6e83ec6e3827101f1ac39764b28a4ed7bd72fbcc8ea8f5b73e5f6c0b46a18872"
+    },
+    {
+      "path": "data/corpus/inventory/uk/statute/2026-07-07-uk-vata-1994.json",
+      "sha256": "f2d6cb3d5ac27d3f754cd2f19b043a209c51b104e976ab677e429dbc17b6b388"
+    },
+    {
+      "path": "data/corpus/provisions/uk/statute/2026-07-07-uk-vata-1994.jsonl",
+      "sha256": "ceb6ec1d627ea661f4203b4bab4bdae6b69019752cb20406a2f3b24d66ec26dd"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-vata-1994/ukpga/1994/23/section-2.xml",
+      "sha256": "db0d96d22f4437804adbcd4a1778f1d1dc6faaa9bbfae90239184ce66bf2f38d"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-vata-1994/ukpga/1994/23/section-29A.xml",
+      "sha256": "8f1c89dcbb50de944f05cb18e498fb91dc937b0ddcdcafb1ced1d8c119f92183"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "37b925e3798932b393307e1b742a24490f80faf5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_parity_workspaces/laneA/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-07-uk-vata-1994 --source clml --citation ukpga/1994/23/section/2 --citation ukpga/1994/23/section/29A --as-of 2026-06-30 --expression-date 2026-06-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-07T17:10:10.087685+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-07-uk-indirect-taxes.md",
+      "sha256": "9275a58fa146aa498bd422fed3af2f41911efc3b4b6aff82c3a63bda8ae102f6"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Fq4L5ihHWcyAP9cV3VI/58u95cBEp8OfD6dZ5VUfdLwCKz1gP9tbnxBCva+iMJcCYY+t06YRugeyW72KNzoEBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-uk-vata-1994"
+}

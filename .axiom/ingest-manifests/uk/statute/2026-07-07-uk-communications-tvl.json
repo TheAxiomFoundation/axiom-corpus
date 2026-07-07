@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/statute/2026-07-07-uk-communications-tvl.json",
+      "sha256": "0d9df0525f48908b2201f32376731b300bcdb63b2360ba37433fdd54b6c819f0"
+    },
+    {
+      "path": "data/corpus/inventory/uk/statute/2026-07-07-uk-communications-tvl.json",
+      "sha256": "3d557dcce3310f885b2f71319ad943e3cc095379043b256760a7829ee91692ea"
+    },
+    {
+      "path": "data/corpus/provisions/uk/statute/2026-07-07-uk-communications-tvl.jsonl",
+      "sha256": "e76cd22d5a1e01adf36a119b88326437091a2778287daaa2bd8db537f631047b"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-communications-tvl/ukpga/2003/21/section-363.xml",
+      "sha256": "ac454ba41968965a8d90210b1d6aa2b4b7a845f2d47a42519d333fe15d572381"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-communications-tvl/ukpga/2003/21/section-365.xml",
+      "sha256": "4beffadd9133f8b0c9cdb87106e22626cc449a70878e6cc07ef64304045fb121"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "37b925e3798932b393307e1b742a24490f80faf5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_parity_workspaces/laneA/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-07-uk-communications-tvl --source clml --citation ukpga/2003/21/section/363 --citation ukpga/2003/21/section/365 --as-of 2026-06-30 --expression-date 2026-06-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-07T17:10:11.138049+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-07-uk-indirect-taxes.md",
+      "sha256": "9275a58fa146aa498bd422fed3af2f41911efc3b4b6aff82c3a63bda8ae102f6"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mUV2dIxkG8EkogOoO7LlDKtQSshwxwhHVymSjVOYdMmY4xgQ7scNnYA1nHIRLUNux5fCLfKOT7/6Eo+d7Dk7CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-uk-communications-tvl"
+}
