@@ -150,7 +150,12 @@ def app_visibility(repo_root: str | Path) -> str:
     means "public", so established repos need no marker. The marker is
     parsed line-wise — keep it in the simple ``key = "value"`` form.
     """
-    marker = Path(repo_root) / ".axiom" / "registry.toml"
+    root = Path(repo_root)
+    marker = root / ".axiom" / "registry.toml"
+    if not marker.is_file() and root.parent.name.startswith("rulespec-"):
+        # ``repo_root`` may be a jurisdiction directory inside a country
+        # monorepo (rulespec-gh/gh); the marker lives at the repo root.
+        marker = root.parent / ".axiom" / "registry.toml"
     try:
         text = marker.read_text()
     except OSError:

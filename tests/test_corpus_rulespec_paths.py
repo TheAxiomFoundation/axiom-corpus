@@ -286,6 +286,13 @@ def test_experimental_visibility_marker_hides_encodings(tmp_path: Path) -> None:
     marker.write_text('[registry]\napp_visibility = "experimental"\n')
     assert discover_encoded_paths(repo, "ng") == set()
     assert app_visibility(repo) == "experimental"
+    # The builder resolves the jurisdiction directory inside the repo and
+    # walks from there; the repo-root marker must still gate that call.
+    assert app_visibility(repo / "ng") == "experimental"
+    assert discover_encoded_paths(repo / "ng", "ng") == set()
+    assert discover_encoded_paths_for_jurisdictions(tmp_path, ["ng"]) == {
+        "ng": set()
+    }
 
     marker.write_text('[registry]\napp_visibility = "public"\n')
     assert discover_encoded_paths(repo, "ng") == {
