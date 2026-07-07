@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-federal-non-refundable-credit-aggregation.json",
-      "sha256": "ad2a07d19a3464ec19e024dee5e3beea9f9134127aba982e84aaec40f6f5d758"
+      "sha256": "58df9e92b849f39ef09ff750be4aecad9c67331ffff2df301f494a944ce5db07"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-federal-non-refundable-credit-aggregation.json",
-      "sha256": "3045a16aa0682ed877335e852aa7ae737fe248b71b625ae586a7228eb808490a"
+      "sha256": "ee8638c3b9e5406c74aa6cab8a7609ef857778fb79a41c09d379549956cd31bd"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-non-refundable-credit-aggregation.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 7,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 7,
+    "source_count": 7
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:58:01.438411+00:00",
+  "generated_at": "2026-07-07T04:37:31.030892+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "u29MpcoD5FNsQ+QbQtgtPP764XdzO57NEdDn+8rh5Q6uHVJt1q9Reyfnd4OV8qsdOmStGj7nQ/nIprT6+6GcBQ=="
+    "value": "OXoeK77Q2wqKvYoa+xXsdd3XTMr71paJc9BhCk6/cHYLDVP7HXv2rnhslKRe/tm9IPI9bPaW4/haMVx4oh0fBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-federal-non-refundable-credit-aggregation"

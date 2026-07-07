@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-sk428-resident-tax.json",
-      "sha256": "766c09b668ba6ca587a562ca8a89d3930c5fc69a78c621e279a31b2632df6f77"
+      "sha256": "8c74bdacc14a0fce2a89fb86b88d4f2d583871d38b9a2c12b5d5935c12015099"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-sk428-resident-tax.json",
-      "sha256": "20f99d49a9a94aefcfb749dac35309aaa080ff56a28ee0eaa8b70353efb3775d"
+      "sha256": "4b41392e14e63554dacdd85453800d335cd3057f424aca8f606c899e44e8081a"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-sk428-resident-tax.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split multi-document scopes into child provisions; re-sign"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 2,
     "missing_count": 0,
     "provision_count": 2,
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T19:25:24.261334+00:00",
+  "generated_at": "2026-07-07T04:37:35.590925+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "1JHDN4z96tT8ROv+I3B/TXpkx814RG5rDaS2/eTazwRk2bJzGF4BxBgiYufeQcFeynZXZ/u3Xbp6yw7s+i1sAg=="
+    "value": "+EuuAzc+L7cjTKom4EaKpr1ALTJ1wTg4pf++twGuE6zSu2dY5rtgmZmC9D484BODOL6D8zG/QO//puEM0mIKDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-sk428-resident-tax"

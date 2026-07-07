@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.json",
-      "sha256": "91295bd2d6c7e83ca9a0c403e6f89d587dfd5e946f55b9b764d4ec86a33f47ed"
+      "sha256": "2944ef734f23a3f1177efeba494c1c0120b72daeb2d51b0c400c0e2766767953"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.json",
-      "sha256": "7dd83fa2eb77b4e780c37bab4f9b969526a78700d90b3b6f7f78f26f3855ec06"
+      "sha256": "cdf4813b415c1d5bf8713911c8ae409817da3bdf5bd82243e93c0fd318bfaa9a"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:27.535753+00:00",
+  "generated_at": "2026-07-07T04:37:17.299104+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "V8OhKBvqj4YUI3FxiDHG4lxKh2aIMcx+F+eAksZWR6YG5qn2dhKNhjmI8xa6RMDcrpSkFzG7N000rFIAdH8IDA=="
+    "value": "kpk2+RZh0P1WCIV9q17tEzkiFLEpa5FC9XjRZYH5QTSfv+sryk2hieF6xMynT65VQVqm8MCRMU/7TrDQ67/0Dg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax"

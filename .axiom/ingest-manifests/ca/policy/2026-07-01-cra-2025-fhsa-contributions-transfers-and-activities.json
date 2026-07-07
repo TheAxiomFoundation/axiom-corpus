@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities.json",
-      "sha256": "a5cb5aadf8c74c521ee76d5f525a78a9e4eb4065cd4f499072b009fa6e4ba37b"
+      "sha256": "8e558f0bf9aaee6b6ec705a1a9f722b01ee9f7d62becb309e1455e3e10f6c6b8"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities.json",
-      "sha256": "79f67c632142acf72b7c5db1bfb64554f538c81087b9954de52493616097591f"
+      "sha256": "fd4a490ee22033c5e033ed6764fdc9f32fcc459acdf9aa84b47821edf6e40271"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 5,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 5,
+    "source_count": 5
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:54.523647+00:00",
+  "generated_at": "2026-07-07T04:37:08.834227+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "5k7P1pfuIrxmtIo5WkUeaMLq83qz0CFwk51CoSxlxQAe2ux3sonKswGOcKfZ1QQHhAEmF61zQfghDfWdlhrRDA=="
+    "value": "uJKEqq3Cp7FC1iSS3b427paVRXzDLY1C78ESeGtSxSAOJl7LXXy2UWuqQIQux8WXGWnsKwv2Xyl9AvnG1pGOBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities"

@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-capital-gains-on-gifts.json",
-      "sha256": "a2646fb1c9dd99a1b3800054e4e411e78e21ca4da7dc00c142cb3e7976f43e35"
+      "sha256": "47c568537a9fd6dc8ead1a1b25c80a83e78aa7e624974565155e47d05bfe3328"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-capital-gains-on-gifts.json",
-      "sha256": "a970406ef91a4c91c205d9f17e81f784ce1c1887b33de24365650621e7308698"
+      "sha256": "16ab1d64a07099d78c57eb5c97c0a162319a64f0d4fbdebea2fd92d926b8c306"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-on-gifts.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:10.593186+00:00",
+  "generated_at": "2026-07-07T04:36:59.214082+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "r/gFtfO3cq1WIF1sPwpJZ4wGgFrRONWtL8/0Qiqfqq5cAX2C0saapJshRZj44edkgQvmjH8ehnT2/9OIHfVdAw=="
+    "value": "q3Iec648TCZ21g+vWk70IWCswNOqYwBlXPII7361iABF9xWO3Q+kQDw1Zv2kIFdGoZDfXOS+/0Vcz51sHOTcBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-capital-gains-on-gifts"

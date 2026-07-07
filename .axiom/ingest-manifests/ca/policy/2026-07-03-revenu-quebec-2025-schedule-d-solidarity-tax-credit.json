@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-03-revenu-quebec-2025-schedule-d-solidarity-tax-credit.json",
-      "sha256": "57b72284e361c64bfeae0ed9cf134564fbf985802acf8b6263f3fbd7040371ec"
+      "sha256": "650020febf3af1a56fe483f9707a70a44dda713291f38c536010684cc73c5ebd"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-schedule-d-solidarity-tax-credit.json",
-      "sha256": "73b5eef002d189a5b3bab10b168e1bf33c679f6bf5d6b5aca4c2bb0f7e3d065f"
+      "sha256": "f34ac54fa78df539889164dd24d428d6d275d09417ca3a3d37e981bf9ec01451"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-d-solidarity-tax-credit.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:56.812623+00:00",
+  "generated_at": "2026-07-07T04:37:50.624634+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "3xPn4sJkS3kyYLw8ZEg1SiwMyRPj42PWbRKEpFNq7ZTk2Fm6Cl0z+MsNX42E0hqWIBCVGy2wJ2kkpOzo1eEUBw=="
+    "value": "7jVagjDIKyioUY0lzbgKUTcw0hmDHPkFutPAcMKLwpfBm3MfSbSJNO0tDlCtPIzPuxCzQctIhHp0znX5KGN9Dg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-revenu-quebec-2025-schedule-d-solidarity-tax-credit"

@@ -1,16 +1,19 @@
 {
- "document_class": "policy",
- "jurisdiction": "ca",
- "source_count": 1,
- "sources": [
-  {
-   "primary_source": true,
-   "source_format": "pdf",
-   "source_id": "revenu-quebec-2025-schedule-q-retirement-income-transfer",
-   "source_path": "sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer/official-documents/tp-1-d-q-v-2025.txt",
-   "source_url": "https://www.revenuquebec.ca/documents/en/formulaires/tp/2025-12/TP-1.D.Q-V%282025-12%29.pdf",
-   "title": "Revenu Quebec Schedule Q 2025 - Retirement Income Transferred to Your Spouse"
-  }
- ],
- "version": "2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer"
+  "document_class": "policy",
+  "items": [
+    {
+      "citation_path": "ca/policy/revenu-quebec/tp1-2025/schedule-q-retirement-income-transfer",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "revenu-quebec-2025-schedule-q-retirement-income-transfer",
+        "title": "Revenu Quebec Schedule Q 2025 - Retirement Income Transferred to Your Spouse"
+      },
+      "source_format": "text",
+      "source_path": "sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer/official-documents/tp-1-d-q-v-2025.txt",
+      "source_url": "https://www.revenuquebec.ca/documents/en/formulaires/tp/2025-12/TP-1.D.Q-V%282025-12%29.pdf"
+    }
+  ],
+  "jurisdiction": "ca",
+  "source_count": 1,
+  "version": "2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer"
 }
