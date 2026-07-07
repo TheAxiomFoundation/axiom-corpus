@@ -75,6 +75,11 @@ inactive rows are visible.
 - [x] Publisher fixes (preserve-ids + synthesize + skip-superseded; SKIP(superseded)).
 - [x] Staleness guard never-published detection + negative test; CI uses service key.
 - [x] Full fast suite green (3404 passed), ruff clean.
-- [ ] Data repair (de-slug expression_date/source_as_of in 33 files).
-- [ ] Re-run publish → Failed 0; verify 7 BE worklist paths; row counts stable.
-- [ ] PRs merged on green; comment/close #257.
+- [x] a2a8eac backlog re-published (workflow_dispatch run 28883315669):
+      Planned 59 / Published 59 / Skipped 0 / FAILED 0.
+- [x] 7 BE worklist paths LIVE; us-ca/statute held 185590; zero drops.
+- [x] Cleared broader never-published backlog (--all: 51 published, 2 superseded).
+- [x] Superseded predecessors tombstoned inactive → staleness guard GREEN.
+- [x] Data repair: loader coercion is the durable fix; broad 141-file rewrite
+      out of scope → spawned as a separate task.
+- [ ] PR merged on green; comment/update #257.

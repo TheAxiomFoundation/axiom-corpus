@@ -245,6 +245,42 @@ def test_load_skips_records_superseded_by_a_newer_live_version(monkeypatch):
     )
 
 
+def test_load_tombstones_wholly_superseded_scope_as_inactive(monkeypatch):
+    """A version whose every row is superseded registers an INACTIVE release
+    scope so the staleness guard reads it as a graced predecessor rather than
+    never-published (otherwise the guard flags a version we correctly refuse to
+    downgrade, forever)."""
+    existing = {
+        "be/statute/loi/1978/07/03/1978070303/article/52": {
+            "id": "44444444-4444-5444-8444-444444444444",
+            "version": "2026-09-01-newer",
+        }
+    }
+    _capture_loader(monkeypatch, existing_rows=existing)
+    registered: list[tuple[set, object]] = []
+    monkeypatch.setattr(
+        supabase,
+        "ensure_release_scopes_for_loaded_data",
+        lambda keys, **kw: registered.append((set(keys), kw.get("active"))) or (),
+    )
+
+    report = load_provisions_to_supabase(
+        [_article("52")],
+        service_key="k",
+        refresh=False,
+        auto_register_scopes=True,
+        preserve_existing_ids=True,
+        skip_superseded=True,
+    )
+
+    assert report.superseded_skipped == 1
+    inactive = [keys for keys, active in registered if active is False]
+    assert inactive, "expected an inactive tombstone registration"
+    assert ("be", "statute", "2026-07-05-be-birth-leave") in set().union(*inactive)
+    # No wholly-superseded version is ever registered active.
+    assert all(active is not True for _, active in registered)
+
+
 def test_load_replaces_when_candidate_is_newer_than_live(monkeypatch):
     existing = {
         "be/statute/loi/1978/07/03/1978070303/article/52": {

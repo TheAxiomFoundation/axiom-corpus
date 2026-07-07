@@ -1040,6 +1040,7 @@ def load_provisions_to_supabase(
     existing_id_count = 0
     synthesized_parents = 0
     superseded_skipped = 0
+    superseded_scope_keys: set[tuple[str, str, str]] = set()
     records_iter: Iterable[ProvisionRecord] = records
     total_records: int | None = None
     # Any of these needs the current DB state (id + version) for the records'
@@ -1083,6 +1084,24 @@ def load_provisions_to_supabase(
                         superseded_skipped += 1
                         continue
             kept.append(record)
+
+        # A version whose every row is superseded loads nothing. Record it as an
+        # inactive release scope (a tombstone) so it reads as a deliberately
+        # not-active predecessor (drift) rather than never-published — otherwise
+        # the staleness guard would flag a version we are correctly refusing to
+        # downgrade, forever.
+        if skip_superseded and auto_register_scopes:
+            def _scope_key(rec: ProvisionRecord) -> tuple[str, str, str] | None:
+                v = _normalize_version(rec.version)
+                return (
+                    (rec.jurisdiction, _release_document_class(rec.document_class), v)
+                    if v is not None
+                    else None
+                )
+
+            all_scopes = {k for r in materialized_records if (k := _scope_key(r))}
+            kept_scopes = {k for r in kept if (k := _scope_key(r))}
+            superseded_scope_keys = all_scopes - kept_scopes
 
         prepared: list[ProvisionRecord] = []
         if synthesize_missing_parents:
@@ -1180,6 +1199,28 @@ def load_provisions_to_supabase(
                     file=progress_stream,
                     flush=True,
                 )
+
+    # Tombstone wholly-superseded versions as inactive scopes (never active, so
+    # never in current_provisions). Only versions with no active row of their
+    # own — a version can legitimately have both superseded and surviving rows.
+    if auto_register_scopes and not dry_run and superseded_scope_keys:
+        tombstone_keys = superseded_scope_keys - release_scope_keys
+        if tombstone_keys:
+            ensure_release_scopes_for_loaded_data(
+                tombstone_keys,
+                release_name=release_name,
+                active=False,
+                service_key=service_key,
+                rest_url=rest_url,
+            )
+            if progress_stream is not None:
+                for jur, dc, ver in sorted(tombstone_keys):
+                    print(
+                        f"release scope tombstoned (superseded, inactive): "
+                        f"{jur}/{dc} v{ver}",
+                        file=progress_stream,
+                        flush=True,
+                    )
 
     refreshed = False
     refresh_error = None
