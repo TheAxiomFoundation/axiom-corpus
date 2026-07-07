@@ -95,11 +95,10 @@ def test_bare_schedule_references_are_not_headings():
     # T1206 references "Schedule 2"/"Schedule 3" mid-prose at line
     # starts; without a dash-separated title they are not markers.
     filler = "z" * 400
-    body = f"Schedule 2 Schedule 11
-{filler}
-Schedule 3. In addition, multiply
-{filler}
-"
+    body = (
+        f"Schedule 2 Schedule 11\n{filler}\n"
+        f"Schedule 3. In addition, multiply\n{filler}\n"
+    )
     assert split_document_body(body) is None
 
 
