@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-07-uk-tvl-regs-2004.json",
+      "sha256": "031352e308794ab31c311214c0095efe274eefddd3ef7de21213de5f6ba96fb1"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-07-uk-tvl-regs-2004.json",
+      "sha256": "786ae053037e6642e308e994dac0cfbd7d928b97625be90977378d44be915d50"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-07-uk-tvl-regs-2004.jsonl",
+      "sha256": "3aca1fab912a0a12fc54f8c8f864a6f4cf77974629f4103722ea55e750a6826e"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-07-uk-tvl-regs-2004/uksi/2004/692/schedule-1.xml",
+      "sha256": "c71ed5f2cb7667aa82225ae42602728419e3f05135d45cc47941ce72848429b9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "37b925e3798932b393307e1b742a24490f80faf5",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_parity_workspaces/laneA/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-07-uk-tvl-regs-2004 --source clml --citation uksi/2004/692/schedule/1 --as-of 2026-06-30 --expression-date 2026-06-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-07T17:10:11.687846+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-07-uk-indirect-taxes.md",
+      "sha256": "9275a58fa146aa498bd422fed3af2f41911efc3b4b6aff82c3a63bda8ae102f6"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "k/SZIZmPnQI7sMUpNKUQPZtyqnFXEqHFvyI3/8yX5hx4jiOMKmXN3g43tstfpZ5UZ7sbfSl3I6//AclNvHeWAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-uk-tvl-regs-2004"
+}
