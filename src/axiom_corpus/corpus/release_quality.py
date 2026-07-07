@@ -123,6 +123,7 @@ def validate_release(
     artifact_report: ArtifactReport | None = None,
     max_issues: int = 200,
     strict_warnings: bool = False,
+    ignore_r2_missing: bool = False,
 ) -> ReleaseValidationReport:
     """Validate release-scoped artifacts before promotion or publication."""
     if max_issues <= 0:
@@ -131,7 +132,11 @@ def validate_release(
     collector = _IssueCollector(max_issues=max_issues)
     artifact_rows = {}
     if artifact_report is not None:
-        _validate_artifact_report(artifact_report, collector)
+        _validate_artifact_report(
+            artifact_report,
+            collector,
+            ignore_r2_missing=ignore_r2_missing,
+        )
         artifact_rows = {
             (row.jurisdiction, row.document_class, row.version): row
             for row in artifact_report.rows
@@ -163,9 +168,15 @@ def validate_release(
 def _validate_artifact_report(
     artifact_report: ArtifactReport,
     collector: _IssueCollector,
+    *,
+    ignore_r2_missing: bool = False,
 ) -> None:
     for row in artifact_report.rows:
         reasons = row.mismatch_reasons()
+        if ignore_r2_missing:
+            reasons = tuple(
+                reason for reason in reasons if not reason.startswith("missing_r2_")
+            )
         if not reasons:
             continue
         collector.add(

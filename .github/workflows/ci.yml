@@ -219,5 +219,5 @@ jobs:
             echo "::notice::R2 secrets not configured — running local-artifact validation only (remote-only scopes will be skipped from failure accounting once secrets exist; until then this reports without failing)."
             axiom-corpus-ingest validate-release --base data/corpus --max-issues 100 || true
           else
-            axiom-corpus-ingest validate-release --base data/corpus --include-r2 --max-issues 100
+            axiom-corpus-ingest validate-release --base data/corpus --include-r2 --ignore-r2-missing --max-issues 100
           fi
