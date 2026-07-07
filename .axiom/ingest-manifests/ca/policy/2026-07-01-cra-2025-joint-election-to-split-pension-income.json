@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-joint-election-to-split-pension-income.json",
-      "sha256": "0b9f27cb650464fb422c676a549fe7a5df1e1fa96535a04e25dead1efa61fe32"
+      "sha256": "028abf5afda08095f85cd4643f215b068a396a7a4a095c4d43b649e9bfe4723f"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-joint-election-to-split-pension-income.json",
-      "sha256": "0477c39d309519609afd9925b6c1b433122f26a0386c745abc6836b2ed433739"
+      "sha256": "fee59e369c301041b8de6361adcaa9764df926578b5a2e8b4267815e39e5cc86"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-joint-election-to-split-pension-income.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 4,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 4,
+    "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:55.466398+00:00",
+  "generated_at": "2026-07-07T04:37:10.230740+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "bieZCJO888pVJUvf1l5viqXk5rY4JJsaRw8MMxaPtx2765uif+V7+2A4tWjNBB6dvfwGunACE0DQcj8ZVGc9Aw=="
+    "value": "jS+IJkAJtj+gYM90No9bRQnJGQ7A9ghMgZ7r7Lv8I/j2U4fwaaXXZuhAu8ARclVMk9S3JFGWFg2z3jPk36NDCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-joint-election-to-split-pension-income"

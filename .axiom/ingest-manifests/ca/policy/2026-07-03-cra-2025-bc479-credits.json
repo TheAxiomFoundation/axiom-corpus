@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-03-cra-2025-bc479-credits.json",
-      "sha256": "d2a708a34547b4e4b547863db3f1301acbbae9dad5c23951cad470ea1492e6b0"
+      "sha256": "c577fc85ac905174bf591a68818f3542f5bfe6603f982f3bc3c1595b35d43b27"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-bc479-credits.json",
-      "sha256": "33589445608072be64386232e81471f08e91901acd46953948ed068d934fdb5a"
+      "sha256": "1bc7538ea5dfc9ffa4e17cef2ba64f431a5f973a5f77258b9ec2e273e7f58b8e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-bc479-credits.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:45.815799+00:00",
+  "generated_at": "2026-07-07T04:37:38.103326+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "pon4jril0ja5CD4zrwI+LcizIZ2Qv6nlV1iruH9lvXGd1AcZ/uyKAbWO94Mxy1kaAlNEC8IUh6cqKqfazrxjDg=="
+    "value": "4Yxo/xlDwnmR7RV/ZMGCzklLxDYmXLRAlGj312O6O2fFUy2fzsYQ6FqbxbXPCjqIvtygCfvSOJ401D495fkYDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-cra-2025-bc479-credits"

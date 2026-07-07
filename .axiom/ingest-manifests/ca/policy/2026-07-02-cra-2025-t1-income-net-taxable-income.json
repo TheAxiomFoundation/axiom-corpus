@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-t1-income-net-taxable-income.json",
-      "sha256": "85025c8504a1be4b9d2e7e894ee58e4c3e1328bb71c21b812ad78b4dad368434"
+      "sha256": "cc6656a54af0d3d6df5a4a9721669bd950b476214a1cc36cdc0ffa2507b2347d"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-t1-income-net-taxable-income.json",
-      "sha256": "cc3c2ef8117ccb8f257a2dd20ca9111ca2352320856d006b17942a8d8663689a"
+      "sha256": "6c21d6c485f78f5e408f11f50cc7f7b64b935dfde79460af905bdae8c08f56ae"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-t1-income-net-taxable-income.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 7,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 7,
+    "source_count": 7
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:58:02.903464+00:00",
+  "generated_at": "2026-07-07T04:37:36.212586+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "s1UlPZx+jnKa9Uq5QnGG1jDMjXHEnkDR0UKOaDcJzNXWk15NhZQMSjdq9EOmhKCMRCWEENvGfONUZGI1zKPmDw=="
+    "value": "8SX1KV9FZLSCmlnukq2kFqjnBFU4OXJLQMcsNeaag9GuWoZmr4QJXSQ+TiCiRDzPxGfM33GT//rW4DDoYg7iDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-t1-income-net-taxable-income"

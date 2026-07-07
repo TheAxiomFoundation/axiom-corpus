@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts.json",
-      "sha256": "a572fea731e90d01178567cb755fbbc4615355b2d403ebac1fd0609a3fff4485"
+      "sha256": "958ad81e530bc3e0e2b0b9f15ea590f130a8189a1a3f3c27203b3fd8dedd3672"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts.json",
-      "sha256": "8b67ee2a9f421a90c939c7c738e990afb6e3641174efe5e402a9b49706f5ee8e"
+      "sha256": "f8509b868ff898f9e25045e174237161313a1de028640d5a4ec188bebb89e982"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:12.832311+00:00",
+  "generated_at": "2026-07-07T04:37:27.970023+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "WSRwRlGcpocOddDDdtgLa0RvNpwqJq9Bgrg7xm++1cCUFZurBAfgECl0ISX1LqSpHsUMKtikd1QdoKbK2g4gAA=="
+    "value": "RgV3M/jT0+JOzKbZ2WfqtchMtx3p2QRLdw5hxk/oXDZhUZ+0A0nycxariYRjr54SU+r+4k2BScoo7tf64v/LAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts"

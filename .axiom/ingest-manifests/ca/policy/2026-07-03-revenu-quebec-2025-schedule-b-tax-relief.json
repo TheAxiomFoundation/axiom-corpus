@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief.json",
-      "sha256": "c0661a63549a275ea27980bdbe8583bf8780f3a9a412e24a185673b8421db977"
+      "sha256": "268081fcea873094bce9c40ffcffd8520ec259b53af558e3869653bab8ace140"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief.json",
-      "sha256": "b2dd84930c35d1f03502820b8129a831a1dc7467390c900cf0765c5d60d99d1f"
+      "sha256": "9041d8226040ff533aaaa81dd9ee3dc9ec46b7aa5c2c60d73ec851531f545dff"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:55.649374+00:00",
+  "generated_at": "2026-07-07T04:37:49.347864+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "4+5DAwoxko42ZreqvYlOoI7j+8r5QlT3nT9Pj93bZUeX7h8wQfkneGXe/YsPeO178+t2Y2AZXADPgfvfepQaAw=="
+    "value": "87pZN319L/zKckVfe5wgQjA7ehQLZNvCNJ/knasTEMzcrRbj/mXZC0m1u1MSA/SVcrzX+agBkFRv0Hzv/Mn7BA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-revenu-quebec-2025-schedule-b-tax-relief"

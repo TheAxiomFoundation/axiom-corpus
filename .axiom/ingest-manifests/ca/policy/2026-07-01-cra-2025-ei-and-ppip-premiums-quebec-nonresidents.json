@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-ei-and-ppip-premiums-quebec-nonresidents.json",
-      "sha256": "a2c72f128e75779926365d9c5d1cc2ccf5b9977db388bcc77bb60edbdaddbcb5"
+      "sha256": "a69184ab029c660fec1cb8e5547944c01d5b40068063ff222f597f2bb5443b5a"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-ei-and-ppip-premiums-quebec-nonresidents.json",
-      "sha256": "cbe71501781edf0f35fd199e75aa2e84f88aeff2ed619e6389319ba4a82f82b7"
+      "sha256": "168e0cf82207515614dd220fc2ccf1d00f975b986e793063fa1c9b2947c55079"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-ei-and-ppip-premiums-quebec-nonresidents.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:14.318988+00:00",
+  "generated_at": "2026-07-07T04:37:03.112451+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "tukPnRmoDq0jBO4tiE1m6qdArm7iOfWr0M/g97HaRTpJKau8n05C1LGCKWL/F26epjRhuYUbPcTArStEUh3XAg=="
+    "value": "gljGJD5/WFphiGFvoVrwSkefDoWmLX6JePuTS+oS2WJECX/mNkDvgfel3qLM7MvZPzr8upIaqp6dGMOtzquoBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-ei-and-ppip-premiums-quebec-nonresidents"

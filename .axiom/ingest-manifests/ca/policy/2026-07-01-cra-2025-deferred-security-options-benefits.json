@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-deferred-security-options-benefits.json",
-      "sha256": "92a3293fd931f8888b4324648b58f5c1489a42744db0949f531ffac794810324"
+      "sha256": "98b5c1c4ac8c9262bad759c066bc0e6543eab9d9545b7876e03f25c1b8ed5840"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-deferred-security-options-benefits.json",
-      "sha256": "259815df076e522528d458ca5ad34e1d1b925fb575dea1c796930763b2081fc2"
+      "sha256": "4e405f80dd50020b016c44e9b4089424017bf63d10ad45c9dc155c20f52ab89d"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-deferred-security-options-benefits.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:13.715472+00:00",
+  "generated_at": "2026-07-07T04:37:02.494535+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "50nEdefMV7vz68VkEUSTepBxnk4VEz4rTrhbmWiq03Z7EiSUpjOKeJ+T8WGb1Dwru+5ZrAzt2x2atf+NeKnYCg=="
+    "value": "Bu0/Gy3LFGD8wY3XQbnjsY/gm6zkaDMdb/vA8JD7H7NGaUXQGr7iN1fVLJGTa2osoNqeUquYtPpej8brlDdwCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-deferred-security-options-benefits"

@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants.json",
-      "sha256": "c7845414f3e12500755609f3f77505e988cde12edb43b168f613f467901269e2"
+      "sha256": "81b54525e0744f2d50156ba5cb0fd913145f1bbfe9dae81d22a8ba04c2e5077b"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants.json",
-      "sha256": "523947b6a54ee28592d459dd89aed0a0a27aa6599c418f6162a7e1554b3bed22"
+      "sha256": "82d6f8f4621545b98cbabc34d69050eb29e3802687ba17f0fcbb3429792edcc2"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:55.059496+00:00",
+  "generated_at": "2026-07-07T04:37:48.669852+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "9wjHVLEhtF39q+5/jhh9Dh7mhn2h0xG+jrcisorwpckMLFKzk6Hts8P1Pk9Vx3HIR93q2NPj87HgkOdENT2KCw=="
+    "value": "Hl1HCcdpFpXLE5U7EYd3g8Po/4MHYYiZPXWXmNe/0rO/TwADY/HH6GN0LNbdkRwQfCZ3M4m8chDTw21YIw8xDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-revenu-quebec-2025-schedule-a-dependants"
