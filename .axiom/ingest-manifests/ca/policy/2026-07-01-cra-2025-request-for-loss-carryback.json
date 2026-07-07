@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.jsonl",
-      "sha256": "53529f358851d04f428a44e276b1e3090626a0f2c3b1a0b659f39e4407fc970c"
+      "sha256": "1969ffa932768d092518221f23e0618d38d1cad4b5ad2522ae582fdbc989b143"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback/official-documents/cra-2025-request-for-loss-carryback.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:24.544663+00:00",
+  "generated_at": "2026-07-07T03:57:57.544434+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "BEKxlbMl77couB1s7SeTTv8VNrTRiQHG3x/GFcyDM9GJt1GKBqO1v4+KsEtA2GrVUqdUMsY/Vf11gcVnaVTYDQ=="
+    "value": "oKxmmyehlYQ/Fk57ET9AHo+mBdZ9DcDM+Xn0E7hV1EHf67HoDCT8PkT+HEjmWIqawqRcVowcyn+Cb2yhOG14BQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-request-for-loss-carryback"

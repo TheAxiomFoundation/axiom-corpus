@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-income-tax.jsonl",
-      "sha256": "b31524506582e6c4866739df24c12719ae761c4d531da2dbb05e392d844c93b0"
+      "sha256": "8f05ffc6e4551a382e6aee2a393df2c69811aaac2275718c03e4fb198046465f"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-federal-tax-rates-current-year.html",
@@ -26,13 +26,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -43,14 +43,14 @@
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:09.986424+00:00",
+  "generated_at": "2026-07-07T03:57:58.812725+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "FiBzSgYHhK8m2mjVcmuavA+Oi4K/liwbsTHEXQG9q34gx0InLx69FpCbbMVqbgtMomfZvbFLi5gd3xsUOH6TBA=="
+    "value": "+EjNTIHFR7ZtCvWZZ8Ixis30CPLUhxX4xAomXMpY7md7aDB5ve0DhN6jrqfNu0vgj9Z6SozLIdDy9mln2rOMBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-income-tax"

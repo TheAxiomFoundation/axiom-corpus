@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-cpp-contributions-and-overpayment.jsonl",
-      "sha256": "9fedebe53b053999657a81538e1bf942a825008c7cd520183231370aec888639"
+      "sha256": "e3e61cd126ab07af8f810e94288bc0c0e5d1ccaf44bb3881cdd8b4326e1d0efd"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-cpp-contributions-and-overpayment/official-documents/cra-2025-cpp-contributions-and-overpayment.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:12.478466+00:00",
+  "generated_at": "2026-07-07T03:57:53.111065+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "1Lc55DtZs6dhqMwtSzySnmkgEnRDwPNfUTmBj+RxLLZpxpZizc7lldyL1DwfSjGp6s389kPIybIwLFzOHr8ECA=="
+    "value": "Vrbp1+uOBCAvL58ElBSqpKmcBOktGjLqSMqdgwaNKNgOvOcVNBx07BrUi7MIVHdw/cwu3NK8HpnsfohBoQMhCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-cpp-contributions-and-overpayment"

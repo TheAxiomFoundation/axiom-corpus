@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-net-tax-aggregation.jsonl",
-      "sha256": "62a5b2900ced4e0aa4fd86448f1db0a299bd0d613822b7d77dc0dad853f436dc"
+      "sha256": "eb7920d1b4f10f345b761817e89fabe62d3beebb093bb9b9fae16e63e5d84b55"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-federal-net-tax-aggregation/official-documents/5000-r-25e.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:38.860439+00:00",
+  "generated_at": "2026-07-07T03:58:00.796849+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "uZx+GJAr4TeAINbJvMcmhwPssph3ZB6ETtts2dlpQR8dp+iK6r84FOM8llI2tXXiNCHeH9csAtDaMtNLyCSZDg=="
+    "value": "GFvFUFlDcXab5aB89wNMJeyaukAUVeyZpGuxQb2Ip3XssariHJ2E+ewlMux74y6Ih/pfCYQi8/LDhO+xM34PCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-federal-net-tax-aggregation"
