@@ -150,18 +150,22 @@ jobs:
 
   staleness-guard:
     name: Publication staleness guard
-    # Runs everywhere the read key is available. On push/cron this uses the
-    # anon key (RLS exposes active release_scopes) to flag versions unpublished
-    # >24h. On PRs (fork context) the secret may be absent — the guard then
-    # skips rather than failing spuriously, mirroring verify-release-coverage.
+    # Runs where publication secrets are available (push/cron, internal PRs). It
+    # flags any provisions version unpublished >24h, distinguishing
+    # never-published (no release_scopes row — always alarms) from staged/drift
+    # (inactive row — graced by --since / --respect-inactive). On fork PRs the
+    # secret is absent — the guard skips rather than failing spuriously.
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      # Reuse the read-only anon key already provisioned as an org secret.
-      SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-      # Activation cutoff: only versions merged at/after this commit can trip
-      # the guard, so pre-automation backlog does not turn the repo red.
-      # Set to the merge commit of this workflow once it lands on main.
+      # A management PAT resolves the service_role key at runtime, which can read
+      # inactive release_scopes — required to tell a never-published scope (no
+      # row at all → always alarms) from an intentionally-staged one (inactive
+      # row → graced). The anon key cannot see inactive rows.
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      # Drift activation cutoff: only *inactive/staged* versions merged at/after
+      # this commit can trip the guard. Never-published scopes ignore it by
+      # design (a committed-but-never-loaded scope is a gap whenever it merged).
       PUBLICATION_AUTOMATION_SINCE: "025f5d98"
     steps:
       - uses: actions/checkout@v6.0.2
@@ -179,14 +183,14 @@ jobs:
           pip install -e .
 
       - name: Check publication staleness
-        if: env.SUPABASE_ANON_KEY != ''
+        if: env.SUPABASE_ACCESS_TOKEN != ''
         run: |
           python scripts/check_publication_staleness.py \
-            --service-key-env SUPABASE_ANON_KEY \
             --max-lag-hours 24 \
-            --since "$PUBLICATION_AUTOMATION_SINCE"
+            --since "$PUBLICATION_AUTOMATION_SINCE" \
+            --respect-inactive
 
       - name: Skip staleness guard without Supabase secret
-        if: env.SUPABASE_ANON_KEY == ''
+        if: env.SUPABASE_ACCESS_TOKEN == ''
         run: |
-          echo "Skipping staleness guard: NEXT_PUBLIC_SUPABASE_ANON_KEY is not available in this context."
+          echo "Skipping staleness guard: SUPABASE_ACCESS_TOKEN is not available in this context."
