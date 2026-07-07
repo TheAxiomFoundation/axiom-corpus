@@ -1,0 +1,46 @@
+# Ghana SSNIT contribution tax relief (rulespec-gh composed-pipeline
+# capstone): National Pensions Act, 2008 (Act 766) section 112 — pension
+# contributions not exceeding sixteen and one half per centum of monthly
+# income are deductible income for the contributor's (and employer's)
+# income tax. Grounds the composed worker pipeline's chargeable-income
+# step (gross less the deductible employee SSNIT contribution). GHAMOD
+# GH_2025 taxes gross employment income (il_tintb3 = yem, probed) —
+# finding #13 in rulespec-gh#10.
+documents:
+  - source_id: gh-act-766-national-pensions-2008-tax-reliefs
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-766/national-pensions-2008
+    title: National Pensions Act, 2008 (Act 766) — section 112, tax reliefs
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/216d5fba-5a4c-4114-bd24-82bac2202d81/content
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2008-12-12'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Section (?P<label>112)—(?P<heading>.+?)\s*$'
+      section_label_replacements:
+        '112': section-112-tax-reliefs
+      page_windows:
+        - start_page: 42
+          end_page: 43
+          start_at_pattern: '^Section 112'
+          stop_at_pattern: '^Section 113'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2008-12-04'
+      gazette_notification_date: '2008-12-12'
+      source_family: social-security/pension-contributions
+      repository_item_url: https://repository.parliament.gh/items/f1b4dd99-6b7e-484c-b950-82a60129080c
+      source_note: >-
+        Section 112 (tax reliefs) of the same Assembly Press Act 766 print
+        already captured for section 3 (axiom-corpus#256): subsection (2)
+        treats contributions not exceeding sixteen and one half per centum
+        of a contributor's monthly income as deductible income for the
+        contributor's and the employer's income tax, to the extent of
+        their respective contributions. Amendment diligence as for the
+        section 3 slice: Act 883 (2014) does not alter section 112.
