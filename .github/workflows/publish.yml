@@ -118,7 +118,9 @@ jobs:
         run: |
           git config user.name "axiom-corpus-bot"
           git config user.email "noreply@anthropic.com"
-          git add data/corpus/snapshots/
+          # -f: data/ is gitignored (R2-backed corpus), so new snapshot files
+          # need a force-add, matching how every data/corpus artifact is tracked.
+          git add -f data/corpus/snapshots/
           if git diff --cached --quiet; then
             echo "No snapshot changes to commit."
             exit 0
