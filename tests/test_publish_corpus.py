@@ -381,6 +381,20 @@ def test_load_retries_on_transient_then_succeeds(monkeypatch):
     assert calls["n"] == 2  # retried once, then succeeded
 
 
+def test_ingest_timeout_becomes_transient_result(monkeypatch):
+    import subprocess
+
+    def fake_run(*args, **kwargs):
+        raise subprocess.TimeoutExpired(cmd=args[0], timeout=kwargs.get("timeout", 1))
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    proc = publish._ingest(["load-supabase", "--provisions", "x.jsonl"])
+    assert proc.returncode == 124
+    assert "timed out" in proc.stderr
+    # A timeout is transient, so the load retry loop will retry it.
+    assert publish._is_transient(proc.stderr)
+
+
 def test_load_fails_fast_on_data_error(monkeypatch):
     calls = {"n": 0}
 
