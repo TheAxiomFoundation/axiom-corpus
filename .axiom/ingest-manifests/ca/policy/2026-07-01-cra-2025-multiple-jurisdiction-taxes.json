@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-multiple-jurisdiction-taxes.json",
-      "sha256": "de284bbec95117762690a34dcb4c248c9ec2c73207fb9180a0d8e95554c2b987"
+      "sha256": "5c8ef4c469a2621c00ba28236cdd11960a3f07d493dbdb8801a34d3d83d4fe43"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-multiple-jurisdiction-taxes.json",
-      "sha256": "0603309f7d43421ae94b478e30876678df3e4eb000a4959d81212c42eae28247"
+      "sha256": "5ce98617101824ff0cabd13c2e40e19105528a6eea56a5773055bec6b5f71ecd"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-multiple-jurisdiction-taxes.jsonl",
-      "sha256": "ca38b5e81cb9af4fcd5177c14efd040d1cacce414d5234fc413e800d01c37a02"
+      "sha256": "65a606e2b954ff21062fb3c00e1dfd3b46537bb58b5473df6af2a0d9dfba2f0c"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-multiple-jurisdiction-taxes/official-documents/cra-2025-multiple-jurisdiction-taxes.txt",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
+    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 1,
+    "matched_count": 3,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 3,
+    "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:11.570685+00:00",
+  "generated_at": "2026-07-07T12:12:16.421405+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "PPk7a3wbkCguZH/a3JBKgqK+wS+cn92Rw3HPgvtbU2p4K6NiGBu4v6GT/LjGGwYpe7TpMnzACiHW0AHcp6D+DA=="
+    "value": "hJ4puwAKWsjGB++FOVvg7zFxlL7zw9h5uN0PqZBX3MEp1Y+WuDbyY0Nl54f9IQfO1pk9LSn5hPm+ePXZHFV6DQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-multiple-jurisdiction-taxes"

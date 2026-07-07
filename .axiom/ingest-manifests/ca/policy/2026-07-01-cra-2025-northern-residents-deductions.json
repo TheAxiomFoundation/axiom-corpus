@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-northern-residents-deductions.json",
-      "sha256": "73805df8a7136f39ce21f65db80b12bc2b1286bae709d53a234da1c611da7048"
+      "sha256": "130e2b26cfead13fa85e37240e9e78956b8ea9c5606c43820b525724bbbce985"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-northern-residents-deductions.json",
-      "sha256": "5f996298892cc3badd485a09e58c181e00109a88698e0d16bb5bbdfb03b6923a"
+      "sha256": "90b4e2bac58bfab730216f3f2c9cdf3616e3c3d7f00417a99b87100cf81242eb"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-northern-residents-deductions.jsonl",
-      "sha256": "4cb3dff55766036cede252a7bdd7019b919e92c60323f2784297f8884c542c22"
+      "sha256": "a658b6657004db1edc41ebdfa254d82f999765d0d3fd0cc53e038d81c2866e8f"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-northern-residents-deductions/official-documents/cra-2025-northern-residents-deductions.txt",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
+    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 1,
+    "matched_count": 5,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 5,
+    "source_count": 5
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:12.880946+00:00",
+  "generated_at": "2026-07-07T12:12:17.140540+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "uiaABrl7cswun3QHxeWufD68Awls367ObkKtbyQ0wawiK/zXhSctgWPZNl+GafAUih3DHXG8cqOTPFw2xJL9DQ=="
+    "value": "Dv1qnfdYp8gTe0VY5xIMdYQX0d4Y09en58svaAesdj20CSNvx5cBSQuUZT8jH8Sc/ymn+Er8+Xxqtz036vewAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-northern-residents-deductions"

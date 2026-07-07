@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.json",
-      "sha256": "4a3b770f595e420610ad5211f49ded76aeac1ded3f6223b96a839e038db57262"
+      "sha256": "204bd42f3eba250d3bb2fb501080790e61060550f7b5994aa94d16967ebff342"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.json",
-      "sha256": "c592ee727bf8ed9bd080bbbef004cb8734d5c0eb3fef4fe061c30d138e4ec502"
+      "sha256": "7def19354a7bcdc31c4865b36663f20ecc4ec0ba6c00329edd395bc1e39502e9"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.jsonl",
-      "sha256": "c7f472db84355c24e8ce59a179796c418f10bf1cb31130d8d50b9be35ce99eea"
+      "sha256": "66b9c0515fab41d1927f65a946ade4a2421b1db47293cf8c800ab212fe0ef055"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax/official-documents/cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.txt",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
+    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 1,
+    "matched_count": 5,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 5,
+    "source_count": 5
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:18.610524+00:00",
+  "generated_at": "2026-07-07T12:12:20.855707+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "0SQth274ptYe9FudedXz2cwpW0Wrcfa8bAxO1oRlArRAQSQ19FtrORdEEVyg/jekcq/7vb6u0IUMwVNzVIvNCg=="
+    "value": "N8ZzqNjJe8/OvD6RfHBV5GVHx+NGHWlxqAyA1MnyjOyw2A9qa4IGyvlLGevWx0z3M/mhJBjVVuQ06W+vEqDQCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax"

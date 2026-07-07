@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.json",
-      "sha256": "2944ef734f23a3f1177efeba494c1c0120b72daeb2d51b0c400c0e2766767953"
+      "sha256": "f9aee494fda7ba3dd5780bae3acbe538cce479229e732da845b025c3330586db"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.json",
-      "sha256": "cdf4813b415c1d5bf8713911c8ae409817da3bdf5bd82243e93c0fd318bfaa9a"
+      "sha256": "3fdab8a1b625a69a73fdac66394d3032051ea1b36f0c7a04ca946d5aae4ea1ba"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.jsonl",
-      "sha256": "552828540d09f35fddb0d9c88b9ff129bc6e757774b7fdc55dab1a7e6cb623ba"
+      "sha256": "ef5c69ff31bd699dc849f8a06b7a40fb58ba785a3801455c49c6f7bc98537fb8"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax/official-documents/cra-2025-t2203-nova-scotia-new-brunswick-tax.txt",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
+    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 1,
+    "matched_count": 4,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 4,
+    "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:17.299104+00:00",
+  "generated_at": "2026-07-07T12:12:19.611628+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "kpk2+RZh0P1WCIV9q17tEzkiFLEpa5FC9XjRZYH5QTSfv+sryk2hieF6xMynT65VQVqm8MCRMU/7TrDQ67/0Dg=="
+    "value": "biOJ0I1m7oLVRvT3M7ErqTn9iege0aOcanhqiN9p5KQs4ZXW/3BEEWVeWKUv/Mjzzs2WHhIY1BBNA6SeOxIwDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax"
