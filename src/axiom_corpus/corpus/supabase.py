@@ -4,13 +4,14 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from collections.abc import Iterable, Iterator, Mapping, Sequence
 from dataclasses import dataclass, replace
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import TextIO
 from uuid import NAMESPACE_URL, UUID, uuid5
@@ -59,6 +60,8 @@ class SupabaseLoadReport:
     refreshed: bool = False
     refresh_error: str | None = None
     auto_registered_scopes: tuple[dict[str, object], ...] = ()
+    synthesized_parents: int = 0
+    superseded_skipped: int = 0
 
     def to_mapping(self) -> dict[str, object]:
         return {
@@ -70,6 +73,8 @@ class SupabaseLoadReport:
             "refreshed": self.refreshed,
             "refresh_error": self.refresh_error,
             "auto_registered_scopes": [dict(s) for s in self.auto_registered_scopes],
+            "synthesized_parents": self.synthesized_parents,
+            "superseded_skipped": self.superseded_skipped,
         }
 
 
@@ -302,6 +307,74 @@ def _normalize_version(version: str | None) -> str | None:
     return normalized or None
 
 
+# `corpus.provisions` columns whose SQL type is `date`. A malformed value here
+# (e.g. an ingest that wrote the whole version slug `2026-07-01-be-...` instead
+# of a date) makes Postgres parse the trailing text as a time zone and reject
+# the entire upsert chunk with 22023 "time zone ... not recognized". Coerce
+# defensively so one bad metadata field can never fail a whole scope's publish.
+DATE_COLUMNS = ("expression_date", "source_as_of")
+
+_ISO_DATE_PREFIX_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
+
+
+def _coerce_date_column_value(value: object) -> tuple[object, str | None]:
+    """Return (postgres-safe date value, original-if-coerced).
+
+    Valid ISO dates/timestamps pass through unchanged. A value whose leading
+    ``YYYY-MM-DD`` is a real calendar date but which carries trailing non-date
+    text (the version-slug ingest bug) is truncated to that date prefix.
+    Anything else non-empty becomes ``None``. The second tuple element is the
+    original string when a coercion happened (for provenance), else ``None``.
+    """
+    if value is None or not isinstance(value, str):
+        return value, None
+    raw = value.strip()
+    if not raw:
+        return None, None
+    # Already a value Postgres accepts for a date column (bare date or a full
+    # ISO timestamp it will cast down to the date) — leave untouched.
+    try:
+        date.fromisoformat(raw)
+        return raw, None
+    except ValueError:
+        pass
+    try:
+        datetime.fromisoformat(raw)
+        return raw, None
+    except ValueError:
+        pass
+    match = _ISO_DATE_PREFIX_RE.match(raw)
+    if match:
+        prefix = match.group(1)
+        try:
+            date.fromisoformat(prefix)
+        except ValueError:
+            return None, raw
+        return prefix, raw
+    return None, raw
+
+
+def _version_date_prefix(version: str | None) -> str | None:
+    """The leading ``YYYY-MM-DD`` of a version string, if it is a real date.
+
+    Version strings are ``<iso-date>-<slug>`` (e.g. ``2026-07-06-ny-tax-...``);
+    the date prefix orders versions chronologically and sorts correctly as a
+    plain string. Returns ``None`` when there is no parseable date prefix, so
+    callers treat "cannot compare" as "not superseded" (never skip on doubt).
+    """
+    if not version:
+        return None
+    match = _ISO_DATE_PREFIX_RE.match(str(version).strip())
+    if not match:
+        return None
+    prefix = match.group(1)
+    try:
+        date.fromisoformat(prefix)
+    except ValueError:
+        return None
+    return prefix
+
+
 def _release_document_class(document_class: str | None) -> str:
     normalized = str(document_class or "").strip()
     return normalized or "unknown"
@@ -359,6 +432,16 @@ def provision_to_supabase_row(
     if record.source_document_id is not None and source_document_id is None:
         identifiers.setdefault("source:document_id", record.source_document_id)
 
+    # Coerce date columns so a malformed metadata value (the version-slug ingest
+    # bug) can never fail the upsert; keep the original in identifiers so the
+    # coercion is provenance-visible rather than silent.
+    source_as_of, raw_source_as_of = _coerce_date_column_value(record.source_as_of)
+    expression_date, raw_expression_date = _coerce_date_column_value(record.expression_date)
+    if raw_source_as_of is not None:
+        identifiers.setdefault("corpus:raw_source_as_of", raw_source_as_of)
+    if raw_expression_date is not None:
+        identifiers.setdefault("corpus:raw_expression_date", raw_expression_date)
+
     row: dict[str, object] = {
         "id": provision_id,
         "jurisdiction": record.jurisdiction,
@@ -375,8 +458,8 @@ def provision_to_supabase_row(
         "rulespec_path": record.rulespec_path,
         "has_rulespec": bool(record.has_rulespec) if record.has_rulespec is not None else False,
         "source_document_id": source_document_id,
-        "source_as_of": record.source_as_of,
-        "expression_date": record.expression_date,
+        "source_as_of": source_as_of,
+        "expression_date": expression_date,
         "language": record.language,
         "legal_identifier": record.legal_identifier,
         "identifiers": identifiers,
@@ -930,6 +1013,8 @@ def load_provisions_to_supabase(
     dry_run: bool = False,
     allow_refresh_failure: bool = False,
     preserve_existing_ids: bool = False,
+    synthesize_missing_parents: bool = False,
+    skip_superseded: bool = False,
     progress_stream: TextIO | None = None,
     auto_register_scopes: bool = True,
     auto_publish: bool = True,
@@ -953,28 +1038,105 @@ def load_provisions_to_supabase(
         raise ValueError("chunk_size must be positive")
 
     existing_id_count = 0
-    records_iter = records
+    synthesized_parents = 0
+    superseded_skipped = 0
+    superseded_scope_keys: set[tuple[str, str, str]] = set()
+    records_iter: Iterable[ProvisionRecord] = records
     total_records: int | None = None
-    if preserve_existing_ids and not dry_run:
+    # Any of these needs the current DB state (id + version) for the records'
+    # citation paths *and* the parents they reference, so the load can upsert in
+    # place (idempotent against UNIQUE(citation_path)), synthesize absent
+    # containers, and never downgrade an already-newer row.
+    heal = preserve_existing_ids or synthesize_missing_parents or skip_superseded
+    if heal and not dry_run:
         materialized_records = tuple(records)
         total_records = len(materialized_records)
-        existing_ids = fetch_existing_provision_ids(
-            (record.citation_path for record in materialized_records),
+        lookup_paths: set[str] = set()
+        for record in materialized_records:
+            lookup_paths.add(record.citation_path)
+            if record.parent_citation_path:
+                lookup_paths.add(record.parent_citation_path)
+        existing_rows = fetch_existing_provision_rows(
+            lookup_paths,
             service_key=service_key,
             rest_url=_rest_url(supabase_url),
             chunk_size=100,
         )
+        existing_ids = {
+            path: str(entry["id"])
+            for path, entry in existing_rows.items()
+            if entry.get("id")
+        }
         existing_id_count = len(existing_ids)
+
+        kept: list[ProvisionRecord] = []
+        for record in materialized_records:
+            if skip_superseded:
+                live = existing_rows.get(record.citation_path)
+                if live is not None:
+                    live_prefix = _version_date_prefix(live.get("version"))
+                    this_prefix = _version_date_prefix(record.version)
+                    if (
+                        live_prefix is not None
+                        and this_prefix is not None
+                        and live_prefix > this_prefix
+                    ):
+                        superseded_skipped += 1
+                        continue
+            kept.append(record)
+
+        # A version whose every row is superseded loads nothing. Record it as an
+        # inactive release scope (a tombstone) so it reads as a deliberately
+        # not-active predecessor (drift) rather than never-published — otherwise
+        # the staleness guard would flag a version we are correctly refusing to
+        # downgrade, forever.
+        if skip_superseded and auto_register_scopes:
+            def _scope_key(rec: ProvisionRecord) -> tuple[str, str, str] | None:
+                v = _normalize_version(rec.version)
+                return (
+                    (rec.jurisdiction, _release_document_class(rec.document_class), v)
+                    if v is not None
+                    else None
+                )
+
+            all_scopes = {k for r in materialized_records if (k := _scope_key(r))}
+            kept_scopes = {k for r in kept if (k := _scope_key(r))}
+            superseded_scope_keys = all_scopes - kept_scopes
+
+        prepared: list[ProvisionRecord] = []
+        if synthesize_missing_parents:
+            ancestors = synthesize_missing_ancestor_records(
+                kept, known_paths=set(existing_ids)
+            )
+            synthesized_parents = len(ancestors)
+            prepared.extend(ancestors)
+            if progress_stream is not None:
+                for anc in ancestors:
+                    print(
+                        f"synthesized missing container: {anc.citation_path}",
+                        file=progress_stream,
+                        flush=True,
+                    )
+        for record in kept:
+            prepared.append(
+                _record_with_existing_ids(record, existing_ids)
+                if preserve_existing_ids
+                else record
+            )
+
         if progress_stream is not None:
+            extra = ""
+            if synthesized_parents:
+                extra += f"; synthesized {synthesized_parents} missing container(s)"
+            if superseded_skipped:
+                extra += f"; skipped {superseded_skipped} superseded row(s)"
             print(
                 f"resolved {existing_id_count} existing Supabase IDs "
-                f"for {total_records} provisions",
+                f"for {total_records} provisions{extra}",
                 file=progress_stream,
                 flush=True,
             )
-        records_iter = (
-            _record_with_existing_ids(record, existing_ids) for record in materialized_records
-        )
+        records_iter = prepared
 
     release_scope_keys: set[tuple[str, str, str]] = set()
 
@@ -1038,6 +1200,28 @@ def load_provisions_to_supabase(
                     flush=True,
                 )
 
+    # Tombstone wholly-superseded versions as inactive scopes (never active, so
+    # never in current_provisions). Only versions with no active row of their
+    # own — a version can legitimately have both superseded and surviving rows.
+    if auto_register_scopes and not dry_run and superseded_scope_keys:
+        tombstone_keys = superseded_scope_keys - release_scope_keys
+        if tombstone_keys:
+            ensure_release_scopes_for_loaded_data(
+                tombstone_keys,
+                release_name=release_name,
+                active=False,
+                service_key=service_key,
+                rest_url=rest_url,
+            )
+            if progress_stream is not None:
+                for jur, dc, ver in sorted(tombstone_keys):
+                    print(
+                        f"release scope tombstoned (superseded, inactive): "
+                        f"{jur}/{dc} v{ver}",
+                        file=progress_stream,
+                        flush=True,
+                    )
+
     refreshed = False
     refresh_error = None
     if refresh and not dry_run:
@@ -1058,6 +1242,8 @@ def load_provisions_to_supabase(
         refreshed=refreshed,
         refresh_error=refresh_error,
         auto_registered_scopes=auto_registered,
+        synthesized_parents=synthesized_parents,
+        superseded_skipped=superseded_skipped,
     )
 
 
@@ -1122,17 +1308,23 @@ def delete_supabase_provisions_scope(
     )
 
 
-def fetch_existing_provision_ids(
+def fetch_existing_provision_rows(
     citation_paths: Iterable[str],
     *,
     service_key: str,
     rest_url: str,
     chunk_size: int = 100,
-) -> dict[str, str]:
-    """Fetch current provision IDs keyed by citation path for in-place migrations."""
+) -> dict[str, dict[str, str | None]]:
+    """Fetch current provision ``id`` and ``version`` keyed by citation path.
+
+    Used to keep loads idempotent against the ``UNIQUE(citation_path)`` table
+    constraint: a row's stable id lets a new release version upsert in place
+    (rather than insert a colliding row), and its live version lets the loader
+    skip a candidate that would downgrade an already-newer row.
+    """
     if chunk_size <= 0:
         raise ValueError("chunk_size must be positive")
-    existing: dict[str, str] = {}
+    existing: dict[str, dict[str, str | None]] = {}
     unique_paths = sorted(set(citation_paths))
     for chunk in _chunked_values(unique_paths, chunk_size):
         if not chunk:
@@ -1140,7 +1332,7 @@ def fetch_existing_provision_ids(
         filter_value = "in.(" + ",".join(_postgrest_in_value(value) for value in chunk) + ")"
         query = urllib.parse.urlencode(
             {
-                "select": "id,citation_path",
+                "select": "id,citation_path,version",
                 "citation_path": filter_value,
             }
         )
@@ -1164,8 +1356,29 @@ def fetch_existing_provision_ids(
             citation_path = row.get("citation_path")
             provision_id = row.get("id")
             if citation_path and provision_id:
-                existing[str(citation_path)] = str(provision_id)
+                version = row.get("version")
+                existing[str(citation_path)] = {
+                    "id": str(provision_id),
+                    "version": str(version) if version is not None else None,
+                }
     return existing
+
+
+def fetch_existing_provision_ids(
+    citation_paths: Iterable[str],
+    *,
+    service_key: str,
+    rest_url: str,
+    chunk_size: int = 100,
+) -> dict[str, str]:
+    """Fetch current provision IDs keyed by citation path for in-place migrations."""
+    rows = fetch_existing_provision_rows(
+        citation_paths,
+        service_key=service_key,
+        rest_url=rest_url,
+        chunk_size=chunk_size,
+    )
+    return {path: str(entry["id"]) for path, entry in rows.items() if entry.get("id")}
 
 
 def fetch_provision_ids_for_scope(
@@ -1262,6 +1475,54 @@ def _record_with_existing_ids(
     if provision_id == record.id and parent_id == record.parent_id:
         return record
     return replace(record, id=provision_id, parent_id=parent_id)
+
+
+def synthesize_missing_ancestor_records(
+    records: Sequence[ProvisionRecord],
+    *,
+    known_paths: set[str],
+) -> list[ProvisionRecord]:
+    """Synthesize container rows for parents referenced but defined nowhere.
+
+    Some ingests emit article-level (leaf) provisions without the instrument
+    container they hang off (e.g. every ``.../1978070303/article/N`` points at
+    ``be/statute/loi/1978/07/03/1978070303`` but no record defines it), so the
+    upsert fails the FK ``parent_id -> provisions(id)`` with 23503. For each
+    referenced ``parent_citation_path`` that is neither among ``records`` nor in
+    ``known_paths`` (already live in the DB), synthesize a minimal structural
+    container: the citation identity only, no captured text, wired so its id
+    equals the child's ``parent_id`` in both id modes (version-derived ids
+    recompute identically from the shared path+version; preserved ids reuse the
+    copied uuid). The container is a root — we only know the child's parent, not
+    the parent's own ancestor — which matches how self-contained scopes root
+    their top instrument node.
+    """
+    present = set(known_paths)
+    for record in records:
+        present.add(record.citation_path)
+    synthesized: dict[str, ProvisionRecord] = {}
+    for record in records:
+        parent_path = record.parent_citation_path
+        if not parent_path or parent_path in present or parent_path in synthesized:
+            continue
+        child_level = record.level
+        container_level = max(child_level - 1, 1) if isinstance(child_level, int) else None
+        synthesized[parent_path] = ProvisionRecord(
+            jurisdiction=record.jurisdiction,
+            document_class=record.document_class,
+            citation_path=parent_path,
+            id=record.parent_id,
+            version=record.version,
+            level=container_level,
+            ordinal=0,
+            parent_citation_path=None,
+            parent_id=None,
+            language=record.language,
+            identifiers={"corpus:synthesized_container": "missing-parent-backfill"},
+        )
+    # Deterministic order (parents before their own would-be children) keeps the
+    # prepended block stable and readable in progress output.
+    return [synthesized[path] for path in sorted(synthesized)]
 
 
 def upsert_supabase_rows(
