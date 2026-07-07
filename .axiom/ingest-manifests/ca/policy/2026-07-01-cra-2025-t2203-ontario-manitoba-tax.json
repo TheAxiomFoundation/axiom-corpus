@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax.json",
-      "sha256": "59345581d2b371021208e7b49ccd1cf18e43650b7b21d0eb649563a5f93cd08a"
+      "sha256": "20cb7b6142095355d09981ad86c4d310c51bb833192c161361f71afb948a6ac9"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax.json",
-      "sha256": "7c18e15862bb23c971b83497963d2df3fdf9f3b74ddb5cd74940244f13722501"
+      "sha256": "d2594723024e96b59889ed3b37cd27afae2455d19cd6f1430a7a5b99528d351e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax.jsonl",
-      "sha256": "94d233bc4e9e9da4d5f9958885fb473f19b841b0bc8c4cb3eae7cb714f27f45a"
+      "sha256": "51179182def092ddd30912e4f16838e42d16dc6c5bd6e8698af336089887c490"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax/official-documents/cra-2025-t2203-ontario-manitoba-tax.txt",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
+    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 1,
+    "matched_count": 4,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 4,
+    "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:17.918725+00:00",
+  "generated_at": "2026-07-07T12:12:20.236552+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "eKxFHFoyQVYKQDOwgoJ/Pl8d/0FAo6uzWY51oLc5b2NRGdYzGSoQW2B4pjegP0QbkkXPrQajBbSo7f/NBgK+Cg=="
+    "value": "dY426dFCuTZPyRAmURCa+XXxktrizAMVUgDtLCPqhxQ67Led6Pfr9bIrHGK9k8FuAXnAqAsXyGidQWNx5dVpAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-ontario-manitoba-tax"
