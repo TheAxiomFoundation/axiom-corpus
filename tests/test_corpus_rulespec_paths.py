@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from axiom_corpus.corpus.rulespec_paths import (
+    app_visibility,
     discover_encoded_paths,
     discover_encoded_paths_for_jurisdictions,
     monorepo_dir_name_for_jurisdiction,
@@ -271,6 +272,32 @@ def test_monorepo_programs_dir_is_not_an_encoding_bucket(tmp_path: Path) -> None
     encoded = discover_encoded_paths(repo, "us")
 
     assert not any(path.startswith("us/programs") for path in encoded)
+
+
+def test_experimental_visibility_marker_hides_encodings(tmp_path: Path) -> None:
+    # A repo marked app_visibility = "experimental" in .axiom/registry.toml
+    # contributes no encoded paths (mirrors the axiom-foundation.org app
+    # gate); absent files, absent keys, and unknown values stay public.
+    repo = tmp_path / "rulespec-ng"
+    _touch(repo / "ng" / "statutes" / "nigeria-tax-act-2025" / "30.yaml")
+    marker = repo / ".axiom" / "registry.toml"
+    marker.parent.mkdir(parents=True, exist_ok=True)
+
+    marker.write_text('[registry]\napp_visibility = "experimental"\n')
+    assert discover_encoded_paths(repo, "ng") == set()
+    assert app_visibility(repo) == "experimental"
+
+    marker.write_text('[registry]\napp_visibility = "public"\n')
+    assert discover_encoded_paths(repo, "ng") == {
+        "ng/statute/nigeria-tax-act-2025/30"
+    }
+
+    marker.write_text("[registry]\n")
+    assert app_visibility(repo) == "public"
+    marker.write_text('# app_visibility = "experimental"\n')
+    assert app_visibility(repo) == "public"
+    marker.unlink()
+    assert app_visibility(repo) == "public"
 
 
 def test_single_country_monorepo_layout_discovers_gh_and_ng(tmp_path: Path) -> None:

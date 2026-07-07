@@ -26,6 +26,7 @@ listings and the navigation index agree on which paths are "encoded".
 
 from __future__ import annotations
 
+import re
 from collections.abc import Iterable
 from pathlib import Path
 
@@ -139,6 +140,33 @@ def resolve_jurisdiction_dir(
     return None
 
 
+def app_visibility(repo_root: str | Path) -> str:
+    """Read a repo's app-surface visibility marker (``.axiom/registry.toml``).
+
+    A rulespec repo may declare ``app_visibility = "experimental"`` to keep
+    its encodings off public app surfaces while the lane matures (mirrors
+    the gate in axiom-foundation.org's encoded-search sync and runtime
+    search fallback). An absent file, absent key, or unrecognized value
+    means "public", so established repos need no marker. The marker is
+    parsed line-wise — keep it in the simple ``key = "value"`` form.
+    """
+    marker = Path(repo_root) / ".axiom" / "registry.toml"
+    try:
+        text = marker.read_text()
+    except OSError:
+        return "public"
+    for line in text.splitlines():
+        match = _APP_VISIBILITY_LINE_RE.match(line)
+        if match:
+            return "experimental" if match.group(1) == "experimental" else "public"
+    return "public"
+
+
+_APP_VISIBILITY_LINE_RE = re.compile(
+    r'^\s*app_visibility\s*=\s*"([a-z]+)"\s*(?:#.*)?$'
+)
+
+
 def discover_encoded_paths(
     repo_root: str | Path,
     jurisdiction: str,
@@ -162,6 +190,8 @@ def discover_encoded_paths(
     """
     root = Path(repo_root)
     if not root.is_dir():
+        return set()
+    if app_visibility(root) == "experimental":
         return set()
 
     prefix = repo_prefix_for_jurisdiction(jurisdiction) or jurisdiction
