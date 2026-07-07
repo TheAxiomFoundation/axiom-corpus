@@ -614,9 +614,17 @@ def _cmd_load_supabase(args: argparse.Namespace) -> int:
     replace_report = None
     if args.replace_scope:
         jurisdiction, document_class = _single_provision_scope(records)
+        versions = sorted({record.version for record in records if record.version})
+        if not versions or any(not record.version for record in records):
+            raise SystemExit(
+                "--replace-scope needs a version on every record so the delete "
+                "can be limited to the loaded scope; this file has version-less "
+                "records. Load without --replace-scope or backfill versions."
+            )
         replace_report = delete_supabase_provisions_scope(
             jurisdiction=jurisdiction,
             document_class=document_class,
+            versions=versions,
             service_key=service_key,
             supabase_url=args.supabase_url,
             dry_run=args.dry_run,

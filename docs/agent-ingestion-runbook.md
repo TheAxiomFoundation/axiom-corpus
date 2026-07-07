@@ -113,7 +113,9 @@ publication review.
 Every agent handoff should include the source URL, extraction command, counts,
 coverage summary, generated artifact paths, and test commands. The controller
 can then decide whether to add the state to `manifests/releases/current.json`,
-sync to R2, load Supabase with `--replace-scope`, and refresh analytics.
+sync to R2, load Supabase with `--replace-scope` (which prunes only rows
+matching the loaded file's versions — sibling scopes in the same
+jurisdiction/document class are untouched), and refresh analytics.
 
 ## Publication Gate
 
