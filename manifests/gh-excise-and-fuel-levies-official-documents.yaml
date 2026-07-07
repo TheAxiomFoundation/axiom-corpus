@@ -1,0 +1,198 @@
+# Ghana excise-duty and fuel-levy capture (rulespec-gh consumption tranche,
+# GHAMOD tex_gh parity: tvl01-07 ad-valorem + per-litre fuel rows).
+#
+# 1. Excise ad valorem: the Excise Duty (Amendment) (No. 2) Act, 2023
+#    (Act 1108, assent + gazette 29 Dec 2023) SUBSTITUTES the whole First
+#    Schedule of the Excise Duty Act, 2014 (Act 878) — the substituted
+#    table is therefore the complete in-force rate schedule for 2024-2026
+#    (no later excise Act exists: the March and December 2025 packages
+#    contain none; checked on Parliament DSpace 2026-07-07). Key rows:
+#    waters/juices 17.5-20%; malt 10-20% by local raw material; beer 47.5/
+#    32.5/10% by local raw material; wines 45%; spirits 50% (akpeteshie
+#    20%); cigarettes 50% + 28 pesewas per stick; e-cigarette liquids 50%
+#    + 50 pesewas/ml; plastics 5%. Earlier chain (Acts 903/941/1093 etc.)
+#    is superseded by the wholesale substitution and recorded as diligence
+#    only.
+# 2. Fuel levies: the Energy Sector Levies Act, 2025 (Act 1135, assent
+#    2 Apr 2025) repeals Act 899 and consolidates the levies; its Schedule
+#    is amended by Act 1141 (4 Jun 2025: Energy Sector Shortfall and Debt
+#    Repayment Levy to GHp 195 petrol / 193 diesel / 195 naphtha / 24 fuel
+#    oil / 23 marine) and Act 1145 (29 Jul 2025: marine restated, Road
+#    Fund GHp 48, Energy Fund GHp 1). The 2026 per-litre totals: petrol
+#    GHp 244, diesel GHp 242.
+#
+# GHAMOD comparison notes (targets, never sources): GH_2025 models petrol
+# 195 / diesel 193 total (its legacy 1.65+0.20+0.10 split) — the
+# consolidated shortfall levy only, omitting Road Fund and Energy Fund
+# (~GHp 49/l on road fuels); its kerosene -0.0271/l subsidy and LPG
+# 0.5608/l rows do not match the 1135 schedule (kerosene 1 GHp/kg Energy
+# Fund; LPG 73 GHp/kg shortfall). Findings recorded in rulespec-gh#10.
+documents:
+  - source_id: gh-act-1108-excise-first-schedule-2023
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1108/excise-duty-amendment-no2-2023
+    title: Excise Duty (Amendment) (No. 2) Act, 2023 (Act 1108) — First Schedule substituted
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/fb46ff1a-8fad-4311-837d-2d98cc9f42dc/content
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2023-12-29'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 6
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>“FIRST SCHEDULE|FIRST SCHEDULE)$'
+      section_label_replacements:
+        '“FIRST SCHEDULE': first-schedule-goods-liable-to-excise-duty
+        FIRST SCHEDULE: first-schedule-goods-liable-to-excise-duty
+      page_windows:
+        - start_page: 3
+          end_page: 5
+          stop_at_pattern: '^Date of Gazette'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2023-12-29'
+      gazette_notification_date: '2023-12-29'
+      source_family: consumption-taxes/excise-duty
+      repository_item_url: https://repository.parliament.gh/items/b2389e87-a28a-405f-a020-55602cccabf3
+      source_note: >-
+        Excise Duty (Amendment) (No. 2) Act, 2023 (Act 1108) from the
+        Parliament of Ghana DSpace ORIGINAL bitstream, downloaded
+        2026-07-07 (scanned print, OCR at 300 dpi). The single section
+        substitutes the whole First Schedule of the Excise Duty Act, 2014
+        (Act 878); the captured window carries the complete substituted
+        schedule (print pages 3-5). Being a wholesale substitution, this
+        text supersedes the earlier First Schedule chain (Acts 903, 941,
+        1093 and predecessors) and is the rate table in force for the
+        2024-2026 years: no later Excise Duty (Amendment) Act exists as of
+        2026-07-07 (the March and December 2025 tax packages contain
+        none).
+  - source_id: gh-act-1135-energy-sector-levies-2025-schedule
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1135/energy-sector-levies-2025
+    title: Energy Sector Levies Act, 2025 (Act 1135) — Schedule (types of levies)
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/1b45cd1c-bbab-46aa-bd0b-3d2493f85bb7/content
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2025-04-02'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 6
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>SCHEDULE)$'
+      section_label_replacements:
+        SCHEDULE: schedule-types-of-levies
+      page_windows:
+        - start_page: 5
+          end_page: 7
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2025-04-02'
+      source_family: consumption-levies/energy-sector-levies
+      repository_item_url: https://repository.parliament.gh/items/5824a39c-5f78-4bee-8285-9479ffd20f01
+      source_note: >-
+        Energy Sector Levies Act, 2025 (Act 1135) from the Parliament of
+        Ghana DSpace ORIGINAL bitstream, downloaded 2026-07-07. Repeals the
+        Energy Sector Levies Act, 2015 (Act 899). The Schedule (print pages
+        5-7) sets the Energy Sector Shortfall and Debt Repayment Levy
+        (petrol GHp 95/l, diesel 93, naphtha 95, fuel oil 4, marine gas oil
+        3, LPG 73 GHp/kg), the Road Fund Levy (GHp 48/l on petrol, diesel
+        and naphtha), the Energy Fund Levy (GHp 1/l + 1 GHp/kg kerosene)
+        and the Public Lighting Levy (three per cent per kWh). The second
+        row is substituted by Act 1141 and rows restated by Act 1145
+        (captured below); cite the current amounts from those provisions.
+  - source_id: gh-act-1141-esla-amendment-2025
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1141/energy-sector-levies-amendment-2025
+    title: Energy Sector Levies (Amendment) Act, 2025 (Act 1141) — shortfall levy row substituted
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/908d1dab-afa6-4843-9069-dc01fa35f80a/content
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2025-06-04'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 6
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>Schedule to Act 1135 amended)$'
+      section_label_replacements:
+        Schedule to Act 1135 amended: schedule-shortfall-row-substituted
+      page_windows:
+        - start_page: 1
+          end_page: 2
+          start_at_pattern: '^Schedule to Act 1135 amended'
+          stop_at_pattern: '^Date of Gazette'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2025-06-04'
+      gazette_notification_date: '2025-06-04'
+      source_family: consumption-levies/energy-sector-levies
+      repository_item_url: https://repository.parliament.gh/items/7e52ec22-a1ba-4450-a371-4c057f031b3e
+      source_note: >-
+        Energy Sector Levies (Amendment) Act, 2025 (Act 1141) from the
+        Parliament of Ghana DSpace ORIGINAL bitstream, downloaded
+        2026-07-07. Substitutes the second row of the Act 1135 Schedule:
+        Energy Sector Shortfall and Debt Repayment Levy at GHp 195 per
+        litre on petrol, GHp 193 per litre on diesel, GHp 195 per litre on
+        naphtha, GHp 24 per litre on fuel oil, GHp 23 per litre on marine
+        gas oil (and the LPG row as printed).
+  - source_id: gh-act-1145-esla-amendment-no2-2025
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1145/energy-sector-levies-amendment-no2-2025
+    title: Energy Sector Levies (Amendment) (No. 2) Act, 2025 (Act 1145) — marine, Road Fund and Energy Fund rows
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/9df105c2-aa29-48e1-a8a4-af3e4ecf9c2b/content
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2025-07-29'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 6
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>Schedule to Act 1135 amended)$'
+      section_label_replacements:
+        Schedule to Act 1135 amended: schedule-road-and-energy-fund-rows
+      page_windows:
+        - start_page: 1
+          end_page: 3
+          start_at_pattern: '^Schedule to Act 1135 amended'
+          stop_at_pattern: '^Date of Gazette'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2025-07-29'
+      gazette_notification_date: '2025-07-29'
+      source_family: consumption-levies/energy-sector-levies
+      repository_item_url: https://repository.parliament.gh/items/f42c3c35-9ca1-4cf0-8007-3c32a3a048f3
+      source_note: >-
+        Energy Sector Levies (Amendment) (No. 2) Act, 2025 (Act 1145) from
+        the Parliament of Ghana DSpace ORIGINAL bitstream, downloaded
+        2026-07-07. Amends the Act 1135 Schedule: paragraph (e) of the
+        second row (marine gas oil) substituted as printed; the third row
+        substituted (Road Fund Levy, GHp 48 per litre on petrol, diesel
+        and naphtha); the fourth row substituted (Energy Fund Levy, GHp 1
+        per litre).
