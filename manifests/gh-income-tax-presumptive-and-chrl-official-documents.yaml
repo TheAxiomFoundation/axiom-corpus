@@ -1,0 +1,193 @@
+# Ghana presumptive/turnover tax + COVID-19 Health Recovery Levy capture
+# (rulespec-gh step 5, GHAMOD ttn_gh parity: ttn01_s presumptive 3%,
+# ttn02_s CHRL 1%, summed into ttn_s).
+#
+# The presumptive turnover tax is Act 896 Second Schedule paragraph 5. Its
+# band moved twice; the RATE stayed three per cent throughout:
+#   base (2015): more than 20,000 - not exceeding 120,000 cedis
+#   Act 902 s.2(a) (assent + gazette 30 Dec 2015): 20,000 - 200,000
+#   Act 1071 s.2(b) (assent 30 Dec 2021) - IN FORCE for 2026: 20,000 -
+#   500,000 Ghana Cedis (paragraph 6(1)(b) modified-cash-basis cap moved
+#   120,000 -> 200,000 -> 500,000 in step; paragraph 2(1)(c)(i) 20,000
+#   qualifying limb re-set as an average of three consecutive years).
+# Supersession diligence: of the eleven Income Tax (Amendment) Acts
+# 2015-2025 (all read in full for the step-4 capture), only Acts 902 and
+# 1071 amend the Second Schedule; the Act 1071 text is the 2026 text.
+#
+# The 1% component GHAMOD adds for these payers is the COVID-19 Health
+# Recovery Levy (Act 1068, 2021): section 1(4) sets the rate at one per
+# cent on the value of the taxable supply; captured from the GRA-hosted
+# print as its own document (own Act, own citation family).
+#
+# GHAMOD comparison note (parity targets, never sources): GH_2025 applies
+# 3% + 1% on turnover with eligibility 10,000 <= ytn <= 120,000. The rates
+# match; the band matches no in-force text (ceiling = the original 2015
+# ceiling superseded within the same month by Act 902; floor 10,000 appears
+# in no print). Recorded as a WIDER finding candidate in rulespec-gh#10.
+documents:
+  - source_id: gh-act-896-income-tax-2015-second-schedule
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-896/income-tax-2015
+    title: Income Tax Act, 2015 (Act 896) — Second Schedule (modified taxation) slice
+    source_url: https://gra.gov.gh/wp-content/uploads/2020/09/INCOME-TAX-ACT-2015-ACT-896.pdf
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2016-01-01'
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 1048576
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>SECOND SCHEDULE)$'
+      section_label_replacements:
+        SECOND SCHEDULE: second-schedule
+      page_windows:
+        - start_page: 121
+          end_page: 122
+          start_at_pattern: '^SECOND SCHEDULE'
+    metadata:
+      primary_source: true
+      source_authority: Ghana Revenue Authority (hosting the enacted Act)
+      original_publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      enacted: '2015'
+      source_family: personal-income-tax/presumptive
+      slice_note: >-
+        Pages 121-122 of the image-only GRA print carry the complete Second
+        Schedule (modified taxation): paragraph 1 principles, paragraph 2
+        presumptive-taxation conditions, paragraph 3 exclusions, paragraph 4
+        instalment basis, paragraph 5 presumptive tax based on turnover
+        (three percent; original band 20,000-120,000 cedis) and paragraph 6
+        modified cash basis. Paragraphs 2(1)(c)(i), 5 and 6(1)(b) were
+        substituted by Act 902 and again by Act 1071; cite the current band
+        amounts from the Act 1071 provision, not this base text. The three
+        percent rate is common to every version.
+      source_note: >-
+        Enacted Income Tax Act 2015 (Act 896) PDF hosted by the Ghana
+        Revenue Authority (same print as the reliefs and withholding
+        slices; downloaded 2026-07-07). Image-only print; OCR at 300 dpi.
+  - source_id: gh-act-902-income-tax-amendment-2015-second-schedule
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-902/income-tax-amendment-2015
+    title: Income Tax (Amendment) Act, 2015 (Act 902) — Second Schedule substitutions
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/6360fba6-8228-4979-a4cd-a63daa72ece1/content
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2015-12-30'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Section (?P<label>2)—(?P<heading>.+?)\s*$'
+      section_label_replacements:
+        '2': second-schedule-substitutions
+      page_windows:
+        - start_page: 3
+          end_page: 3
+          start_at_pattern: '^Section 2—'
+          stop_at_pattern: '^Date of Gazette'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2015-12-30'
+      gazette_notification_date: '2015-12-30'
+      source_family: personal-income-tax/presumptive
+      repository_item_url: https://repository.parliament.gh/items/ab7a2cf9-749c-4797-a195-957eebbeac06
+      source_note: >-
+        Income Tax (Amendment) Act, 2015 (Act 902) from the Parliament of
+        Ghana DSpace repository ORIGINAL bitstream, downloaded 2026-07-07.
+        Text-embedded PDF (no OCR). Section 2 substitutes Second Schedule
+        paragraph 5 (presumptive tax based on turnover: three percent,
+        band 20,000-200,000 cedis) and paragraph 6(1)(b) (modified cash
+        basis cap 200,000). Superseded by Act 1071 for 2022 onward;
+        captured for the substitution chain record.
+  - source_id: gh-act-1071-income-tax-amendment-no2-2021-second-schedule
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1071/income-tax-amendment-no2-2021
+    title: Income Tax (Amendment) (No. 2) Act, 2021 (Act 1071) — Second Schedule substitutions (presumptive band in force)
+    source_url: https://gra.gov.gh/wp-content/uploads/2022/01/Income-Tax-amendment-No-2-Act-2021-Act-1071.pdf
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2021-12-30'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>2)\.\s+(?P<heading>The principal enactment is amended in the Second Schedule.*)$'
+      section_label_replacements:
+        '2': second-schedule-substitutions
+      page_windows:
+        - start_page: 3
+          end_page: 4
+          start_at_pattern: '^Second Schedule to Act 896 amended'
+          stop_at_pattern: '^Sixth Schedule to Act 896 amended'
+    metadata:
+      primary_source: true
+      source_authority: Ghana Revenue Authority (hosting the enacted Act)
+      original_publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2021-12-30'
+      source_family: personal-income-tax/presumptive
+      source_note: >-
+        Income Tax (Amendment) (No. 2) Act, 2021 (Act 1071) PDF hosted by
+        the Ghana Revenue Authority, downloaded 2026-07-07 (scanned print;
+        OCR at 300 dpi). Section 2 substitutes Second Schedule paragraphs
+        2(1)(c)(i) (twenty thousand Ghana Cedis qualifying limb, average of
+        three consecutive years), 5 (presumptive tax based on turnover:
+        three per cent, band more than twenty thousand and not exceeding
+        five hundred thousand Ghana Cedis) and 6(1)(b) (modified cash basis
+        cap five hundred thousand). These are the amounts in force for the
+        2026 year of assessment: no later Income Tax (Amendment) Act
+        touches the Second Schedule (checked against all eleven amendment
+        acts 2015-2025 on 2026-07-07).
+  - source_id: gh-act-1068-covid-19-health-recovery-levy-2021
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1068/covid-19-health-recovery-levy-2021
+    title: COVID-19 Health Recovery Levy Act, 2021 (Act 1068) — imposition and one per cent rate
+    source_url: https://gra.gov.gh/wp-content/uploads/2021/05/Covid-19-Health-Recovery-Levy-Act.pdf
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2021-05-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>Imposition of Levy)$'
+      section_label_replacements:
+        Imposition of Levy: section-1-imposition-of-levy
+      page_windows:
+        - start_page: 2
+          end_page: 3
+          start_at_pattern: '^Imposition of Levy'
+          stop_at_pattern: '^Exempt supply'
+    metadata:
+      primary_source: true
+      source_authority: Ghana Revenue Authority (hosting the enacted Act)
+      original_publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2021-03-31'
+      source_family: consumption-levies/covid-19-health-recovery-levy
+      source_note: >-
+        COVID-19 Health Recovery Levy Act, 2021 (Act 1068) PDF hosted by
+        the Ghana Revenue Authority, downloaded 2026-07-07. Section 1
+        imposes the Levy on the supply of goods and services and on
+        imports; section 1(4) sets the rate at one per cent of the value of
+        the taxable supply. GHAMOD applies this one per cent on the
+        turnover of presumptive-tax payers (ttn02_s); the statutory base is
+        the taxable supply, recorded for the parity suite's scope note.
