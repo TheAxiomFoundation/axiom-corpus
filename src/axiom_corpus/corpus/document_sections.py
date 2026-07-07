@@ -33,7 +33,10 @@ from dataclasses import dataclass
 _MARKER_FAMILIES: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("part", re.compile(r"(?m)^(Part (\d+)[^\n]*)$")),
     ("step", re.compile(r"(?m)^(Step (\d+)[^\n]*)$")),
-    ("schedule", re.compile(r"(?m)^(Schedule (\d+)[^\n]*)$")),
+    # Schedules must carry a dash-separated title: bare "Schedule N …"
+    # at line start is usually a cross-reference in prose (T1206's
+    # "Schedule 3. In addition, …"), not a section heading.
+    ("schedule", re.compile(r"(?m)^(Schedule (\d+)\s*[–—-][^\n]*)$")),
 )
 
 _CONTINUED_SUFFIX = re.compile(r"\s*\(continued\)\s*$")

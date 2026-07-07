@@ -56,7 +56,7 @@ def test_step_and_schedule_families_split():
     body = f"intro\nStep 1 - Income\n{FILLER}\nStep 2 - Tax\n{FILLER}\n"
     split = split_document_body(body)
     assert [s.slug for s in split.sections] == ["step-1", "step-2"]
-    body = f"intro\nSchedule 1 Federal\n{FILLER}\nSchedule 2 Provincial\n{FILLER}\n"
+    body = f"intro\nSchedule 1 – Federal\n{FILLER}\nSchedule 2 – Provincial\n{FILLER}\n"
     split = split_document_body(body)
     assert [s.slug for s in split.sections] == ["schedule-1", "schedule-2"]
 
@@ -89,6 +89,18 @@ def test_collision_in_one_family_falls_through_to_the_next():
     split = split_document_body(body)
     assert split is not None
     assert [s.slug for s in split.sections] == ["step-1", "step-2"]
+
+
+def test_bare_schedule_references_are_not_headings():
+    # T1206 references "Schedule 2"/"Schedule 3" mid-prose at line
+    # starts; without a dash-separated title they are not markers.
+    filler = "z" * 400
+    body = f"Schedule 2 Schedule 11
+{filler}
+Schedule 3. In addition, multiply
+{filler}
+"
+    assert split_document_body(body) is None
 
 
 def test_unstructured_bodies_are_left_alone():
