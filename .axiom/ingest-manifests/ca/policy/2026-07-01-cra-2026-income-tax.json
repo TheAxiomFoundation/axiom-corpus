@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-income-tax.json",
-      "sha256": "91c673ddfaaec73245b07d01b2dd180bc8dda395cbe71c05aa42ea6bf889a75c"
+      "sha256": "0bd0cc93041ba4ce47c85bd173a94804ae1b2ec569f066ba0c28d3c34aed8358"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-income-tax.json",
-      "sha256": "bd0fa8d190c653ace1128aa5bdab43a9d72cbe95263c21a9669acb310f0b3374"
+      "sha256": "5de24a87a376c09706f1117f2ed4a9aa28cde824e22f5793dd961d6415535258"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-income-tax.jsonl",
-      "sha256": "8f05ffc6e4551a382e6aee2a393df2c69811aaac2275718c03e4fb198046465f"
+      "sha256": "e11dad21be4953bf212ef16ef73b0c6f44a8d11824b7ae29bfed28bb2be6c7e7"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-federal-tax-rates-current-year.html",
@@ -26,31 +26,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
+    "commit": "b1e629503f758ff947cbf86a996ddc87b1c8cd72",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "restructure concatenated multi-capture scopes into per-capture children; revert TOC-artifact step splits on shared t4127 scopes"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 7,
+    "matched_count": 2,
     "missing_count": 0,
-    "provision_count": 7,
-    "source_count": 7
+    "provision_count": 2,
+    "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:24.751028+00:00",
+  "generated_at": "2026-07-07T04:52:00.078885+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JDWpQuAZvRu2kY3nCi5veJZnHdzDKrAieyUhyeKf6CjBCFBmn4Io0Qwh9OTaJiAGC/OSl8qTiyuLwJKFfF7rCA=="
+    "value": "nvr03i1xKrVNv4AJp7bZ7FpqgU/S2ScQQcMy2LIT3/X6OUT9PlXbWzIaPd+V0zRzOO+TiK/nAsbYnPP+G/T4Aw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-income-tax"
