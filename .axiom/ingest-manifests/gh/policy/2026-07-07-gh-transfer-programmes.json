@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/gh/policy/2026-07-07-gh-transfer-programmes.json",
+      "sha256": "6b674e439485d76e0e724fa84d7bfc800ed1a9e595503a7c26fa3a8a57484306"
+    },
+    {
+      "path": "data/corpus/inventory/gh/policy/2026-07-07-gh-transfer-programmes.json",
+      "sha256": "23d147e753b8b2e516095efc16d23a5106f99dd58d3f3c8294b515d6a7be75bd"
+    },
+    {
+      "path": "data/corpus/provisions/gh/policy/2026-07-07-gh-transfer-programmes.jsonl",
+      "sha256": "211028085b623411e54159fd3d3d94ed2dfc9045ad6d6e08634a75281ef05ab0"
+    },
+    {
+      "path": "data/corpus/sources/gh/policy/2026-07-07-gh-transfer-programmes/official-documents/gh-mofep-2025-budget-social-protection.pdf",
+      "sha256": "88cc20a50af9e8d2790e2ba0b5d909802da3bd00661c604faaec04874d3b1fc4"
+    },
+    {
+      "path": "data/corpus/sources/gh/policy/2026-07-07-gh-transfer-programmes/official-documents/gh-mogcsp-leap-97th-cycle-2025.html",
+      "sha256": "27b9050cd40c6bd035dbd331343275e4c87c46a90b6fb444061430764214ca77"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "533dbd9c7761405ec33ca2e14f6715e9f0fd6493",
+    "dirty_tracked": false,
+    "root": "/private/tmp/axiom-corpus-pr268"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-07-gh-transfer-programmes --manifest manifests/gh-transfer-programmes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-07T20:06:47.736891+00:00",
+  "jurisdiction": "gh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "V5qvb6nDh30B9OTIqiNu0PRWaygQ+kCwQAuFb0iL+yotbElqO/4zRjzsuyIW4F7vdb/BM50exBChb5hESiu8DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-gh-transfer-programmes"
+}

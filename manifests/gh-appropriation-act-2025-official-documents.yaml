@@ -1,0 +1,48 @@
+# Ghana Appropriation Act, 2025 (Act 1126) — the statutory higher
+# authority for the administratively-parameterised transfer programmes
+# (rulespec-gh gh/policies upstream-source-check anchor: Parliament
+# appropriates the LEAP / school feeding / Free SHS allocations; the
+# per-household and per-day amounts are set administratively and
+# published by the responsible ministries).
+documents:
+  - source_id: gh-act-1126-appropriation-2025
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-1126/appropriation-2025
+    title: Appropriation Act, 2025 (Act 1126) — authorising provisions
+    source_url: https://mofep.gov.gh/sites/default/files/budget-statements/Appropriation%20Act%2C%202025%20%28Act%201126%29%20%2B%20Hyperion.pdf
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2025-01-01'
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 1048576
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 6
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>1)\.(?:\s+(?P<heading>.+))?$'
+      section_label_replacements:
+        '1': section-1-authorisation-of-expenditure
+      page_windows:
+        - start_page: 1
+          end_page: 4
+          start_at_pattern: '^1\.'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      source_family: social-protection/appropriation
+      source_note: >-
+        Appropriation Act, 2025 (Act 1126), hosted by the Ministry of
+        Finance. The authorising provision (section 1) is the statutory
+        higher authority for the administratively-parameterised transfer
+        programmes (LEAP grants, school feeding, Free SHS): Parliament
+        appropriates the programme allocations; the per-household and
+        per-day amounts are set administratively and published by the
+        responsible ministries (the upstream-source-check anchor for the
+        rulespec-gh gh/policies modules).
