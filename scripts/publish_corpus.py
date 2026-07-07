@@ -326,7 +326,7 @@ def _load_supabase(
     build_navigation: bool = False,
     retries: int = 2,
     backoff_s: float = 10.0,
-) -> dict[str, object]:
+) -> None:
     """Load one version's provisions and auto-register its active scope.
 
     Crucially this does NOT pass ``--replace-scope``. That flag deletes *every*
@@ -334,20 +334,11 @@ def _load_supabase(
     (``fetch_provision_ids_for_scope`` filters by jurisdiction/doc_type only,
     not version) before loading — which would destroy other versions that share
     the pair, e.g. loading one small ``us-ca/statute`` version would wipe the
-    other ~185k ``us-ca/statute`` rows. Publication must be additive.
-
-    Idempotency + backlog-safety flags (the live table enforces
-    ``UNIQUE(citation_path)``):
-
-    * ``--preserve-existing-ids`` reuses the existing row id for a citation path
-      so a newer release version upserts it in place rather than inserting a
-      colliding row (the 23505 backlog failure). Rows are updated, never deleted.
-    * ``--synthesize-missing-parents`` backfills a minimal container row for any
-      referenced ``parent_citation_path`` that was never ingested, so leaf
-      provisions stop failing the parent_id foreign key (23503).
-    * ``--skip-superseded`` leaves a citation path untouched when the DB already
-      holds a strictly-newer version of it, so a backlog run never downgrades a
-      published row. A wholly-superseded version reports SKIP(superseded).
+    other ~91k ``us-ca/statute`` rows. The corpus keeps many versions per pair,
+    so publication must be additive. A plain load upserts this version's rows by
+    their deterministic ``(citation_path, version)`` IDs, updating only its own
+    rows and leaving every other version intact — idempotent per version and
+    safe on rerun.
 
     ``--skip-refresh`` defers the (expensive) materialized-view refresh; the
     caller refreshes once after all versions load. Navigation is deferred by
@@ -355,7 +346,7 @@ def _load_supabase(
 
     Transient 5xx/gateway failures are retried with backoff; deterministic data
     errors (400/409) fail immediately so a defective file is reported, not
-    hammered. Returns the parsed load report on success.
+    hammered.
     """
     import time
 
@@ -366,20 +357,13 @@ def _load_supabase(
         "--skip-refresh",
         "--chunk-size",
         str(chunk_size),
-        "--preserve-existing-ids",
-        "--synthesize-missing-parents",
-        "--skip-superseded",
     ]
     args.append("--build-navigation" if build_navigation else "--no-build-navigation")
     last_err = ""
     for attempt in range(retries + 1):
         proc = _ingest(args)
         if proc.returncode == 0:
-            try:
-                report = json.loads(proc.stdout)
-            except json.JSONDecodeError:
-                return {}
-            return report if isinstance(report, dict) else {}
+            return
         last_err = proc.stderr.strip()[-800:]
         if attempt < retries and _is_transient(last_err):
             wait = backoff_s * (attempt + 1)
@@ -519,22 +503,11 @@ def sync_and_load_scope(
         outcome.reason = str(exc)
         return outcome
     try:
-        report = _load_supabase(scope, chunk_size)
+        _load_supabase(scope, chunk_size)
         outcome.steps["load-supabase"] = "ok (refresh deferred)"
     except RuntimeError as exc:
         outcome.steps["load-supabase"] = f"FAILED: {exc}"
         outcome.reason = str(exc)
-        return outcome
-    # A version whose every row is already held by a strictly-newer published
-    # version loads nothing and registers no scope — it is superseded, not
-    # published and not failed. Report it explicitly so the run stays green.
-    superseded = int(report.get("superseded_skipped", 0) or 0)
-    if superseded > 0 and int(report.get("rows_loaded", 0) or 0) == 0:
-        outcome.skipped = True
-        outcome.reason = "superseded"
-        outcome.steps["load-supabase"] = (
-            f"SKIP(superseded): {superseded} row(s) already held by a newer version"
-        )
         return outcome
     # Loaded successfully; verification happens after the shared refresh.
     outcome.ok = True
@@ -798,8 +771,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     o.steps["verify"] = f"{count} provisions visible ({pair[0]}/{pair[1]})"
 
     published = [o for o in outcomes if o.ok]
-    superseded = [o for o in outcomes if o.skipped]
-    failed = [o for o in outcomes if not o.ok and not o.skipped]
+    failed = [o for o in outcomes if not o.ok]
 
     # --- snapshot (reflects everything that landed) ---
     snapshot_path: Path | None = None
@@ -814,14 +786,9 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     # --- summary ---
     print("\n" + "=" * 60)
-    print(
-        f"PUBLISHED: {len(published)}   SKIPPED(superseded): {len(superseded)}   "
-        f"FAILED: {len(failed)}"
-    )
+    print(f"PUBLISHED: {len(published)}   FAILED: {len(failed)}")
     for o in published:
         print(f"  OK   {o.scope[0]}/{o.scope[1]} v{o.scope[2]}  ({o.provision_count} provisions)")
-    for o in superseded:
-        print(f"  SKIP(superseded) {o.scope[0]}/{o.scope[1]} v{o.scope[2]}")
     for o in failed:
         print(f"  FAIL {o.scope[0]}/{o.scope[1]} v{o.scope[2]}  — {o.reason}")
 
@@ -829,7 +796,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         args.github_output,
         published=len(published),
         failed=len(failed),
-        skipped=len(already_active) + len(held) + len(superseded),
+        skipped=len(already_active) + len(held),
         planned=len(to_publish),
         snapshot=str(snapshot_path) if snapshot_path else "",
     )

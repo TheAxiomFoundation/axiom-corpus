@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nv/manual/2026-05-27-nv-eligibility-payments-manual.json",
+      "sha256": "c45e48c093a5d193d299043821f09ed910931f0fd8f074af35efefd270108ac4"
+    },
+    {
+      "path": "data/corpus/inventory/us-nv/manual/2026-05-27-nv-eligibility-payments-manual.json",
+      "sha256": "ef5206b3f0da145e5b4a986db1f4c62d44310cf018983729d1143b53b05901ed"
+    },
+    {
+      "path": "data/corpus/provisions/us-nv/manual/2026-05-27-nv-eligibility-payments-manual.jsonl",
+      "sha256": "670703267ddb66667ac7fe884b67dcfca25abac8c86f219488dde43e461d450e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 821,
+    "missing_count": 0,
+    "provision_count": 821,
+    "source_count": 821
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-07T19:50:38.768838+00:00",
+  "jurisdiction": "us-nv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9X9rLwTC+XzZjFnPwgzZWIg2905RFTqQVqM0pe/BNJ57sW7VMA3JtFoT+1SXOoAWD0iunho3FnFK3RfYu3yDDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-nv-eligibility-payments-manual"
+}

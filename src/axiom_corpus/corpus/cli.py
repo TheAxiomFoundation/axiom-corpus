@@ -649,8 +649,6 @@ def _cmd_load_supabase(args: argparse.Namespace) -> int:
         dry_run=args.dry_run,
         allow_refresh_failure=args.allow_refresh_failure,
         preserve_existing_ids=args.preserve_existing_ids and not args.replace_scope,
-        synthesize_missing_parents=args.synthesize_missing_parents and not args.replace_scope,
-        skip_superseded=args.skip_superseded and not args.replace_scope,
         progress_stream=sys.stderr,
         auto_register_scopes=not args.no_auto_register,
         auto_publish=not args.stage,
@@ -6154,32 +6152,9 @@ def build_parser() -> argparse.ArgumentParser:
         action=argparse.BooleanOptionalAction,
         default=False,
         help=(
-            "Reuse existing corpus.provisions IDs for matching citation paths "
-            "before upsert, so a new release version updates the row in place "
-            "rather than inserting a colliding row (UNIQUE(citation_path)). "
-            "Default is false so new release versions get distinct provision IDs."
-        ),
-    )
-    load_supabase.add_argument(
-        "--synthesize-missing-parents",
-        action=argparse.BooleanOptionalAction,
-        default=False,
-        help=(
-            "Synthesize a minimal structural container row for any "
-            "parent_citation_path referenced by the records but defined neither "
-            "in the file nor already in the DB, so leaf provisions whose "
-            "instrument container was never ingested still satisfy the parent_id "
-            "foreign key instead of failing the whole scope with 23503."
-        ),
-    )
-    load_supabase.add_argument(
-        "--skip-superseded",
-        action=argparse.BooleanOptionalAction,
-        default=False,
-        help=(
-            "Skip records whose citation_path is already held by a strictly "
-            "newer version (by ISO date prefix) so a backlog load never "
-            "downgrades an already-newer published row."
+            "Legacy migration aid: reuse existing corpus.provisions IDs for "
+            "matching citation paths before upsert. Default is false so "
+            "new release versions get distinct provision IDs."
         ),
     )
     load_supabase.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)

@@ -66,13 +66,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "55d8aad76f7663d7a69dd751e3f5d033f042a2c3",
+    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "include container parent in inventory so coverage validates complete"
+    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
   },
   "coverage": {
     "complete": true,
@@ -83,14 +83,14 @@
     "source_count": 13
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T19:45:49.598155+00:00",
+  "generated_at": "2026-07-07T19:50:15.885484+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "rUOlyFf8CVLBMN3FBvRbk19xrH36vCm9PTuOMrq/ti9UH6sd+nPfkJL6lVNzZUDaHDtt/X8Yr7fk3T98KrhEAw=="
+    "value": "0vHyaVrln12++GEWd7RHY5CGS1n9kKNtoXZ01vm+uSKixN7wBitnu6ApM8jc9kkWvJ0/pbGSWX1EgZseRDeXBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-provincial-territorial-td1-personal-credits"
