@@ -41,6 +41,7 @@ from axiom_corpus.corpus.california_mpp import (
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
 from axiom_corpus.corpus.coverage import compare_provision_coverage
+from axiom_corpus.corpus.document_sections import split_document_body
 from axiom_corpus.corpus.documents import extract_official_documents
 from axiom_corpus.corpus.ecfr import build_ecfr_inventory, ecfr_run_id, extract_ecfr
 from axiom_corpus.corpus.federal_register import (
@@ -222,6 +223,7 @@ from axiom_corpus.corpus.supabase import (
     DEFAULT_SERVICE_KEY_ENV,
     backfill_version_chunk,
     delete_supabase_provisions_scope,
+    deterministic_provision_id,
     fetch_provision_counts,
     fetch_release_provision_counts,
     list_release_scopes,
@@ -4578,6 +4580,90 @@ def _cmd_release_artifact_manifest(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_section_provisions(args: argparse.Namespace) -> int:
+    """Split a scope's monolithic document bodies into section children."""
+    store = CorpusArtifactStore(args.base)
+    path = store.provisions_path(args.jurisdiction, args.document_class, args.version)
+    lines = [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
+    section_slug = re.compile(r"/(?:part|step|schedule)-\d+$")
+    existing_paths = {record["citation_path"] for record in lines}
+    documents = [
+        record
+        for record in lines
+        if record.get("level", 1) == 1 and record.get("kind") == "document"
+    ]
+    split_docs = []
+    new_records: list[tuple[dict[str, Any], str, list[dict[str, Any]]]] = []
+    for parent in documents:
+        if any(
+            other.startswith(parent["citation_path"] + "/") and section_slug.search(other)
+            for other in existing_paths
+        ):
+            continue
+        split = split_document_body(parent.get("body") or "")
+        if split is None:
+            continue
+        children = []
+        for i, section in enumerate(split.sections):
+            child = dict(parent)
+            citation_path = f"{parent['citation_path']}/{section.slug}"
+            child.update(
+                citation_path=citation_path,
+                citation_label=f"{parent.get('citation_label') or parent.get('heading')} — {section.heading}",
+                heading=section.heading,
+                id=deterministic_provision_id(citation_path, parent.get("version")),
+                kind="section",
+                level=2,
+                ordinal=2 + i,
+                body=section.body,
+            )
+            metadata = dict(parent.get("metadata") or {})
+            if metadata.get("title"):
+                metadata["title"] = f"{metadata['title']} — {section.heading}"
+            if metadata.get("document_subtype"):
+                # Same convention as the "_values" supplementary children.
+                metadata["document_subtype"] = f"{metadata['document_subtype']}_section"
+            child["metadata"] = metadata
+            children.append(child)
+        split_docs.append(
+            {
+                "citation_path": parent["citation_path"],
+                "sections": [child["citation_path"] for child in children],
+                "intro_chars": len(split.intro),
+            }
+        )
+        new_records.append((parent, split.intro, children))
+    payload: dict[str, Any] = {
+        "provisions": str(path),
+        "documents": len(documents),
+        "split": split_docs,
+        "applied": bool(args.apply and split_docs),
+    }
+    if args.apply and new_records:
+        out: list[dict[str, Any]] = []
+        replaced: dict[int, tuple[str, list[dict[str, Any]]]] = {
+            id(parent): (intro, children) for parent, intro, children in new_records
+        }
+        trailing: list[dict[str, Any]] = []
+        for record in lines:
+            if id(record) in replaced:
+                intro, children = replaced[id(record)]
+                out.append(dict(record, body=intro, ordinal=1))
+                out.extend(children)
+            elif record.get("level", 1) == 1:
+                out.append(record)
+            else:
+                trailing.append(record)
+        for offset, record in enumerate(trailing):
+            record = dict(record, ordinal=len(out) + 1 + offset)
+            out.append(record)
+        with path.open("w") as handle:
+            for record in out:
+                handle.write(json.dumps(record, ensure_ascii=False) + "\n")
+    print(json.dumps(payload, indent=2, sort_keys=True))
+    return 0
+
+
 def _cmd_validate_release(args: argparse.Namespace) -> int:
     release_path = resolve_release_manifest_path(args.base, args.release)
     release = ReleaseManifest.load(release_path)
@@ -6583,6 +6669,24 @@ def build_parser() -> argparse.ArgumentParser:
     )
     release_artifact_manifest.add_argument("--output", type=Path)
     release_artifact_manifest.set_defaults(func=_cmd_release_artifact_manifest)
+
+    section_provisions_cmd = sub.add_parser(
+        "section-provisions",
+        help=(
+            "Split a scope's monolithic document-level provisions into "
+            "per-section child provisions (Part/Step/Schedule markers)."
+        ),
+    )
+    section_provisions_cmd.add_argument("--base", type=Path, required=True)
+    section_provisions_cmd.add_argument("--jurisdiction", required=True)
+    section_provisions_cmd.add_argument("--document-class", required=True)
+    section_provisions_cmd.add_argument("--version", required=True)
+    section_provisions_cmd.add_argument(
+        "--apply",
+        action="store_true",
+        help="Rewrite the provisions file (default: dry-run report).",
+    )
+    section_provisions_cmd.set_defaults(func=_cmd_section_provisions)
 
     validate_release_cmd = sub.add_parser(
         "validate-release",
