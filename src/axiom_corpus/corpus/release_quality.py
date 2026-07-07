@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import re
 from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import date
@@ -411,9 +410,6 @@ def _validate_provisions(
 
 
 
-_SECTION_CHILD_SLUG = re.compile(r"/(?:part|step|schedule)-\d+$")
-
-
 def _warn_unsectioned_document(
     record: ProvisionRecord,
     by_path: dict[str, ProvisionRecord],
@@ -421,16 +417,16 @@ def _warn_unsectioned_document(
     collector: _IssueCollector,
 ) -> None:
     """Warn when a document-level body carries printed section markers
-    (Part/Step/Schedule) but no section children exist — the app then has
-    no child nodes to navigate into. Fix with ``section-provisions``.
+    (Part/Step/Schedule) but the document has no child provisions at
+    all — the app then has no child nodes to navigate into. Fix with
+    ``section-provisions``. Any existing children (marker sections,
+    per-capture form variants, /values supplements) already make the
+    document navigable, so they silence the warning.
     """
     if record.kind != "document" or not record.body:
         return
     prefix = record.citation_path + "/"
-    if any(
-        path.startswith(prefix) and _SECTION_CHILD_SLUG.search(path)
-        for path in by_path
-    ):
+    if any(path.startswith(prefix) for path in by_path):
         return
     if split_document_body(record.body) is None:
         return

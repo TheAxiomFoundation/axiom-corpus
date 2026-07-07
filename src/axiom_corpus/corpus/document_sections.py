@@ -38,6 +38,13 @@ _MARKER_FAMILIES: tuple[tuple[str, re.Pattern[str]], ...] = (
 
 _CONTINUED_SUFFIX = re.compile(r"\s*\(continued\)\s*$")
 
+# A section this small is almost certainly a table-of-contents line,
+# not a section: the t4127 payroll guide lists "Step 1 … Step 6" up
+# front, and splitting on those produced five sub-200-char stubs and
+# one 170k-char catch-all. When most sections are stubs, the markers
+# are an index of the document, not its outline.
+_STUB_SECTION_CHARS = 300
+
 
 @dataclass(frozen=True)
 class DocumentSection:
@@ -55,16 +62,21 @@ class DocumentSplit:
 def split_document_body(body: str) -> DocumentSplit | None:
     """Split ``body`` on its own top-level section markers.
 
-    Returns ``None`` when the body has no usable structure: fewer than
-    two distinct markers in every family, or a marker family whose
-    numbers repeat non-consecutively (concatenated sibling forms).
+    Returns ``None`` when the body has no usable structure. A family
+    whose numbers repeat non-consecutively (concatenated sibling
+    forms) or whose sections are mostly stubs (markers that are a
+    table of contents, not an outline) is rejected, and the NEXT
+    family is tried — e.g. the T657 capital-gains form repeats Part
+    numbers inside its per-year charts but has clean top-level Steps.
     """
     for family, pattern in _MARKER_FAMILIES:
         matches = list(pattern.finditer(body))
         distinct = {f"{family}-{m.group(2)}" for m in matches}
         if len(distinct) < 2:
             continue
-        return _split_on_markers(body, family, matches)
+        split = _split_on_markers(body, family, matches)
+        if split is not None:
+            return split
     return None
 
 
@@ -93,4 +105,7 @@ def _split_on_markers(
     reassembled = intro + "".join(section.body for section in sections)
     if reassembled != body:
         raise AssertionError("document split lost text — slices must reassemble the body")
+    stubs = sum(1 for section in sections if len(section.body) < _STUB_SECTION_CHARS)
+    if stubs * 2 > len(sections):
+        return None
     return DocumentSplit(intro=intro, sections=tuple(sections))

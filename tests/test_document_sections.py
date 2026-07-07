@@ -8,14 +8,16 @@ from axiom_corpus.corpus.release_quality import (
 )
 from axiom_corpus.corpus.releases import ReleaseScope
 
+FILLER = "Taxable income from line 26000 of your return. " * 10
+
 FORM = (
     "Intro text before any section.\n"
     "Part 1 – Adjusted taxable income\n"
-    "line one\n"
+    f"line one\n{FILLER}\n"
     "Part 1 – Adjusted taxable income (continued)\n"
-    "line two\n"
+    f"line two\n{FILLER}\n"
     "Part 2 – Basic federal tax\n"
-    "line three\n"
+    f"line three\n{FILLER}\n"
 )
 
 
@@ -51,10 +53,10 @@ def test_split_reassembles_the_original_body_exactly():
 
 
 def test_step_and_schedule_families_split():
-    body = "intro\nStep 1 - Income\naaa\nStep 2 - Tax\nbbb\n"
+    body = f"intro\nStep 1 - Income\n{FILLER}\nStep 2 - Tax\n{FILLER}\n"
     split = split_document_body(body)
     assert [s.slug for s in split.sections] == ["step-1", "step-2"]
-    body = "intro\nSchedule 1 Federal\naaa\nSchedule 2 Provincial\nbbb\n"
+    body = f"intro\nSchedule 1 Federal\n{FILLER}\nSchedule 2 Provincial\n{FILLER}\n"
     split = split_document_body(body)
     assert [s.slug for s in split.sections] == ["schedule-1", "schedule-2"]
 
@@ -64,6 +66,29 @@ def test_non_consecutive_marker_repeat_disqualifies_the_body():
     # repeats Step 1..N once per form; splitting would interleave them.
     body = "Step 1 - A\nx\nStep 2 - B\ny\nStep 1 - A\nz\nStep 2 - B\nw\n"
     assert split_document_body(body) is None
+
+
+def test_mostly_stub_sections_are_rejected_as_a_table_of_contents():
+    # The t4127 guide lists "Step 1 … Step 6" up front; splitting on
+    # those produced five tiny stubs and one 170k catch-all.
+    body = (
+        "Step 1 - Overview\nStep 2 - Rates\nStep 3 - Formulas\n"
+        + "Step 4 - The actual content\n" + ("x" * 5000)
+    )
+    assert split_document_body(body) is None
+
+
+def test_collision_in_one_family_falls_through_to_the_next():
+    # T657 repeats Part numbers inside its per-year charts but has
+    # clean top-level Steps.
+    filler = "y" * 400
+    body = (
+        f"intro\nStep 1 - Calc\nPart 1\n{filler}\nPart 2\n{filler}\n"
+        f"Step 2 - More\nPart 1\n{filler}\nPart 2\n{filler}\n"
+    )
+    split = split_document_body(body)
+    assert split is not None
+    assert [s.slug for s in split.sections] == ["step-1", "step-2"]
 
 
 def test_unstructured_bodies_are_left_alone():
@@ -81,18 +106,19 @@ def test_validator_warns_on_unsectioned_document():
     assert collector.issues[0].code == "unsectioned_document_body"
 
 
-def test_validator_is_silent_once_section_children_exist():
+def test_validator_is_silent_once_any_children_exist():
     record = _record(FORM)
-    child = _record(
-        "Part 1 – Adjusted taxable income\nline one\n",
-        citation_path=f"{record.citation_path}/part-1",
-        kind="section",
-        level=2,
-    )
-    by_path = {record.citation_path: record, child.citation_path: child}
-    collector = _IssueCollector(max_issues=10)
-    _warn_unsectioned_document(record, by_path, _scope(), collector)
-    assert collector.warning_count == 0
+    for child_segment in ("part-1", "alberta", "values"):
+        child = _record(
+            "Part 1 – Adjusted taxable income\nline one\n",
+            citation_path=f"{record.citation_path}/{child_segment}",
+            kind="section",
+            level=2,
+        )
+        by_path = {record.citation_path: record, child.citation_path: child}
+        collector = _IssueCollector(max_issues=10)
+        _warn_unsectioned_document(record, by_path, _scope(), collector)
+        assert collector.warning_count == 0, child_segment
 
 
 def test_validator_ignores_unsplittable_and_non_document_records():
