@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits.json",
-      "sha256": "f3c362f1a803bb32f21a1908f8a3865e299fd182dd0f3c52b52bb3c0b23feb31"
+      "sha256": "a3a4b91220bcb1089f92bb07b07167e5cee2dbc2e07f93664cf5472182e3e64c"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits.json",
-      "sha256": "70a856007ea229ed7c4b108cbb86de6d75b3f1342f53755fcac6a126c6ecf7c2"
+      "sha256": "309364a30b3dcfe27cc276b789531a704c5386f74309fca3eb9d5e23bcab02f8"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits.jsonl",
-      "sha256": "a73ff10fa6c4db06f8847f5232ab3f1de06fb6d59fda4471d238a0f051cb4dca"
+      "sha256": "eb3610a665be66e66da17de8ab81875c80ce5dde04f5c3a684fcf8def39bdad6"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits/official-documents/cra-2025-t2203-yt-nt-nu-part3-credits.txt",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
+    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 1,
+    "matched_count": 2,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 2,
+    "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:20.099165+00:00",
+  "generated_at": "2026-07-07T12:12:22.075957+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Bv8YrFo++gzrrffpe/4EyQOw0JRD1gmKDQD4S7SqZLByF9VZKcKumiOxoa0RfDeW3OzwQleFZIg//ZecgvkSAw=="
+    "value": "HdGmy60aVpye7FeNNB42yQfBu2XxpdQiV/wHioz/by6NwwHC2XFiJg/L3Y86n0IAYIoCgQvt1ds1MxS9f1Y3CA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits"
