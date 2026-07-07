@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/statute/2026-06-05-nyc-admin-code.json",
+      "sha256": "e3235d38fb3a1de0074e21a8de092f147b04e631e3e5b0a1c00bc2738025ad38"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/statute/2026-06-05-nyc-admin-code.json",
+      "sha256": "4d7cd002881e3c283128d1253c2ffd611b4f83eb41555dce36d858a03a05a1a3"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/statute/2026-06-05-nyc-admin-code.jsonl",
+      "sha256": "bb0c9f599429a8b8a5de3476a3b690624a80705f9caad94a4d664e9576ec7565"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-06-05-nyc-admin-code/nyc-admin-code-amlegal-html/11-1701/0-0-0-13463.html",
+      "sha256": "fa4142c4f54986917352612f2faf90ccc32af6c702e84ab8218573afc635b66b"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-06-05-nyc-admin-code/nyc-admin-code-amlegal-html/11-1704.1/0-0-0-13565.html",
+      "sha256": "2b965d445bd4fc060d7c88c76153c2f905cb86bf470fd0f03686c0d52d526529"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/statute/2026-06-05-nyc-admin-code/nyc-admin-code-amlegal-html/11-1706/0-0-0-13608.html",
+      "sha256": "29c4d0b618aeb0e33ba233f75d21f54529fde03a444e3b03469bda8aa4ce3fa9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-07T19:50:39.955720+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "60UcGF8gplmquFhwsTUMa/zX9IozrHEQxHea0LIyNchYZxZ4mwEogZw8gBT2VCKfH6VXyyGlpGAQMOvMyfTlCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-05-nyc-admin-code"
+}
