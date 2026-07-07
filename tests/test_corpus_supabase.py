@@ -1308,3 +1308,36 @@ def test_load_provisions_auto_register_uses_ignore_duplicates(monkeypatch):
     assert "resolution=ignore-duplicates" in prefer
     assert "resolution=merge-duplicates" not in prefer
     assert report.auto_registered_scopes[0]["active"] is False
+
+
+def test_delete_supabase_provisions_scope_limits_deletes_to_versions(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    calls = []
+
+    class FakeResponse:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+        def read(self):
+            return b"[]"
+
+    def fake_urlopen(req, timeout):
+        calls.append(req.full_url)
+        return FakeResponse()
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+
+    delete_supabase_provisions_scope(
+        jurisdiction="ca",
+        document_class="policy",
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+        versions=["2026-07-01-cra-2025-alternative-minimum-tax"],
+    )
+
+    assert "version=in." in calls[0]
+    assert "2026-07-01-cra-2025-alternative-minimum-tax" in calls[0]

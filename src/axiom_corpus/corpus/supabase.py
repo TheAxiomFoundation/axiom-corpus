@@ -8,7 +8,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from collections.abc import Iterable, Iterator, Mapping
+from collections.abc import Iterable, Iterator, Mapping, Sequence
 from dataclasses import dataclass, replace
 from datetime import UTC, datetime
 from pathlib import Path
@@ -1071,8 +1071,16 @@ def delete_supabase_provisions_scope(
     fetch_page_size: int = 1_000,
     dry_run: bool = False,
     progress_stream: TextIO | None = None,
+    versions: Sequence[str] | None = None,
 ) -> SupabaseDeleteReport:
-    """Delete all `corpus.provisions` rows for one jurisdiction/document class."""
+    """Delete `corpus.provisions` rows for one jurisdiction/document class.
+
+    When ``versions`` is given, deletion is limited to rows carrying one
+    of those versions — the release-scope sense of "scope". Without it
+    every row in the jurisdiction/document class goes, which once wiped
+    20 sibling scopes when a per-scope reload loop passed
+    ``--replace-scope``.
+    """
     if delete_chunk_size <= 0:
         raise ValueError("delete_chunk_size must be positive")
     if fetch_page_size <= 0:
@@ -1087,6 +1095,7 @@ def delete_supabase_provisions_scope(
     rest_url = _rest_url(supabase_url)
     provision_ids = fetch_provision_ids_for_scope(
         jurisdiction=jurisdiction,
+        versions=versions,
         document_class=document_class,
         service_key=service_key,
         rest_url=rest_url,
@@ -1166,6 +1175,7 @@ def fetch_provision_ids_for_scope(
     service_key: str,
     rest_url: str,
     page_size: int = 1_000,
+    versions: Sequence[str] | None = None,
 ) -> tuple[str, ...]:
     scoped_rows: list[tuple[str, int]] = []
     last_id: str | None = None
@@ -1177,6 +1187,10 @@ def fetch_provision_ids_for_scope(
             "order": "id.asc",
             "limit": str(page_size),
         }
+        if versions:
+            query_params["version"] = (
+                "in.(" + ",".join(_postgrest_in_value(value) for value in versions) + ")"
+            )
         if last_id is not None:
             query_params["id"] = f"gt.{last_id}"
         query = urllib.parse.urlencode(query_params)
