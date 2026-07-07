@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/manual/2026-05-27-wi-foodshare-manual.json",
+      "sha256": "f0c511ab801edd5e81f71cafc859a0a663d1efe0f1a85bdf3baf9151de37ace4"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/manual/2026-05-27-wi-foodshare-manual.json",
+      "sha256": "ac95754d5c2df13d9b675b99c2713c0f62c489c5bae922c9b70358300b741ad9"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/manual/2026-05-27-wi-foodshare-manual.jsonl",
+      "sha256": "2afb6e711ca9b918324b646e14a61f9a865556193fb2547379fdd93c18a5c4da"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
+    "dirty_tracked": true,
+    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 373,
+    "missing_count": 0,
+    "provision_count": 373,
+    "source_count": 373
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-07T19:50:47.716047+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tSEhf7Ewh4kVxOw9VPFnGGqDujbG7lYA2ZobMZy7l4UFBojh68XjuZfsG4y4FKcrx3oLSAaofy2rpdZWT18vBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-wi-foodshare-manual"
+}

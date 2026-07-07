@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.json",
-      "sha256": "78348187daebc93007110b69a4f239831fbe2ac92ad7e3e18c099c6d95991b73"
+      "sha256": "de923e46c1d1fbcffda32d6fbb08213eaffb1b1af74f5323d6c7bc86770e8539"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.json",
-      "sha256": "9414e5ee53f86d1a6d0922aaa7618546d2044ecd9801ecfcdfa275f5fc1728d3"
+      "sha256": "3a28e81ae67aceaf15b9c79d8ef7c0b12f8760c505217ec984debb50b1c525b4"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.jsonl",
@@ -66,31 +66,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b1e629503f758ff947cbf86a996ddc87b1c8cd72",
+    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "restructure concatenated multi-capture scopes into per-capture children; revert TOC-artifact step splits on shared t4127 scopes"
+    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
   },
   "coverage": {
-    "complete": false,
-    "extra_count": 1,
-    "matched_count": 12,
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
     "missing_count": 0,
     "provision_count": 13,
-    "source_count": 12
+    "source_count": 13
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:52:01.304780+00:00",
+  "generated_at": "2026-07-07T19:50:15.885484+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "AL8dGsgGXdFnrukKLlVsOh+c1Y0SyrqXi0aQrdk7LlSzhNF29akajOE97FtltrxrpLhCg1wtwIXob2F8mk3LCg=="
+    "value": "0vHyaVrln12++GEWd7RHY5CGS1n9kKNtoXZ01vm+uSKixN7wBitnu6ApM8jc9kkWvJ0/pbGSWX1EgZseRDeXBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-provincial-territorial-td1-personal-credits"
