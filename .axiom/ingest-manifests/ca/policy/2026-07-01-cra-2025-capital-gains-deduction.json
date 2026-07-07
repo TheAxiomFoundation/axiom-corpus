@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-capital-gains-deduction.json",
-      "sha256": "cfe463c7124581442f7efb3ee680c53c5ec0c1e1e99240da4c25265b519783b0"
+      "sha256": "b1d140bbe2925f55438aa6ac3ae0791314d57c319ed573f84360352508b2f2ab"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-capital-gains-deduction.json",
-      "sha256": "bb74b3d301f7332509188a33525294928403915e422b295b850d017bfe98b410"
+      "sha256": "4f4b245f32b920f7df13aaddc0dff8ff036a86a5d1330d28b4bc386f4e3501b0"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-deduction.jsonl",
-      "sha256": "ed50f721431881e709d8289df83c061acc4381c76e7b2db5f745d5bd1d75583f"
+      "sha256": "7dcddf184817bd1312debc83f9e03b4612bbbc27c76ddcf8853c8e868ccc80e9"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-capital-gains-deduction/official-documents/cra-2025-capital-gains-deduction.txt",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "5006100bb3d00116b27ccb1ea6bd187c43547960",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "section T657 into its three Steps (Part markers repeat inside per-year charts; family fall-through)"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 4,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 4,
+    "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:09.944638+00:00",
+  "generated_at": "2026-07-07T04:57:37.119881+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "BAbxcRqQuxiVA5F8KRDAHTzZpyaFO1F+CR7H9xk1EBkVR3snQm1MiHj9aS8sr+SNn97LjWcp9Er4eio5AKx1BQ=="
+    "value": "INnDrXPQKZsmcXHDGl6YotAgVQp9qa+PvThBqptxBf+w6/i+hEr+v3icwNfbxuAVmleCT+XiHOvUyNsyNtnHAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-capital-gains-deduction"

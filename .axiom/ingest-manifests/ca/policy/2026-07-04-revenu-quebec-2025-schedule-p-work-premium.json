@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-p-work-premium.json",
-      "sha256": "81cabac05baf5564bd99bfc49e08719ccc833611ec8bcb2c491baf11f254c8ba"
+      "sha256": "207eb3f6569c259e31b915a31d8c50260864d0890db18d5715a1ec537e91ce13"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-p-work-premium.json",
-      "sha256": "9aa3d246c3c6130e80e182daff793c2d48e34fed7f6820f42613679902464c11"
+      "sha256": "8bf38b995a2c83d40c71925a6aa9faf6566537068e52f6514e54ce7f97d48ac4"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-p-work-premium.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:46:03.202894+00:00",
+  "generated_at": "2026-07-07T04:37:57.793239+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ug7wHY02uFbe1ARhqVwnMSJpGoyRFntYhKnqENQ8R3aqmz1kuDP+u8WDW6D2hwaHeVD3u6DdFs8pKP77WuVyBA=="
+    "value": "21vtlrNBTt9W7Gbo8nuJw9pEvE7956pp2W3OnHmsw5srPefXqmeZ3XcUfOCPsjJqG+0DLRIXuW24GgIhid3gCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-p-work-premium"

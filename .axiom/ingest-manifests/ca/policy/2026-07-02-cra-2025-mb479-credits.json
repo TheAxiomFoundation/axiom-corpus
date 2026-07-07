@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-mb479-credits.json",
-      "sha256": "6389c9a23fc37f582a3d7d97bbff3aa591070da38faec078cb548db6240b72b6"
+      "sha256": "335454b7e739b8e2a318061718c4655968160379473a0f84fd14375d7473a3f7"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-mb479-credits.json",
-      "sha256": "aea95e06101bbdfb2e6dfb2a797250afae369e17254e42ea4ffb987844b44fca"
+      "sha256": "8dab3c5d04ea9708ba04945e8620e75ee8df0ff715504bc32c48ff65666b04bf"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-mb479-credits.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split multi-document scopes into child provisions; re-sign"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 2,
     "missing_count": 0,
     "provision_count": 2,
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T19:25:19.654658+00:00",
+  "generated_at": "2026-07-07T04:37:33.683202+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ZQuU9hWdCKT87SyBIk4HWGhNb0p2qWZtGNaofvZdz1iWCc+yEyIzDFbtgsfU1NaU23Zt7WiIJjza0V1brXdKCA=="
+    "value": "SBMHsUWMTySBk0l+B8HaDWXVSrJYKIvLHFbJWfNt9nx6aHexGSTmZsTs+L17BDQAD6c5CHxHkdP0l76awsZ+Bg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-mb479-credits"

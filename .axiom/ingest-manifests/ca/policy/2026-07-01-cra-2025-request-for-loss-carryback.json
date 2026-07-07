@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.json",
-      "sha256": "eddaafa41bca4fb583c1ffbf3e6bab37450854fe9763abd94aa1b092315b271a"
+      "sha256": "1f856b547f0e84fac6ad4b2b28a84e614bdc7ab3dd8e3fc8028bbe1b43ca7843"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.json",
-      "sha256": "5b027ae86dada7b7edb72944f5e92476d7e5cff9842093bb2a2c91d9cfb3090a"
+      "sha256": "fd7d83f6405d19be8ae7fa644189ca730ec13edb398f3a0ac5bf1c88d0202c62"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 8,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 8,
+    "source_count": 8
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:57.544434+00:00",
+  "generated_at": "2026-07-07T04:37:14.161971+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "oKxmmyehlYQ/Fk57ET9AHo+mBdZ9DcDM+Xn0E7hV1EHf67HoDCT8PkT+HEjmWIqawqRcVowcyn+Cb2yhOG14BQ=="
+    "value": "HzlJcd4xOUEZav+PWXNBwmgIxcY6lTAS3fKoz0NnxfdCazijxs4QZwx/tk7NoWf+KW84v5mlRj7UPdBy2nhzBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-request-for-loss-carryback"

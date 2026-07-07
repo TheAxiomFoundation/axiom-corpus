@@ -1,24 +1,30 @@
 {
- "document_class": "policy",
- "jurisdiction": "ca",
- "source_count": 2,
- "sources": [
-  {
-   "primary_source": true,
-   "source_format": "pdf",
-   "source_id": "cra-2026-td1-form",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-td1-form.txt",
-   "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/td1/td1-26e.pdf",
-   "title": "CRA 2026 federal TD1 personal tax credits"
-  },
-  {
-   "primary_source": true,
-   "source_format": "pdf",
-   "source_id": "cra-2026-td1-ws-worksheet",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-td1-ws-worksheet.txt",
-   "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/td1-ws/td1-ws-26e.pdf",
-   "title": "CRA 2026 federal TD1 personal tax credits"
-  }
- ],
- "version": "2026-07-01-cra-2026-federal-td1-personal-credits"
+  "document_class": "policy",
+  "items": [
+    {
+      "citation_path": "ca/policy/cra/t4127-2026/federal-td1-personal-credits",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "cra-2026-td1-form",
+        "title": "CRA 2026 federal TD1 personal tax credits"
+      },
+      "source_format": "text",
+      "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-td1-form.txt",
+      "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/td1/td1-26e.pdf"
+    },
+    {
+      "citation_path": "ca/policy/cra/t4127-2026/federal-td1-personal-credits/worksheet",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "cra-2026-td1-ws-worksheet",
+        "title": "CRA 2026 federal TD1 personal tax credits"
+      },
+      "source_format": "text",
+      "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-td1-ws-worksheet.txt",
+      "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/td1-ws/td1-ws-26e.pdf"
+    }
+  ],
+  "jurisdiction": "ca",
+  "source_count": 2,
+  "version": "2026-07-01-cra-2026-federal-td1-personal-credits"
 }

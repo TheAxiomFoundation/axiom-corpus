@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-alternative-minimum-tax.json",
-      "sha256": "91306692c9306637ad8b931dd26d8a9684cb1a138598e2d5a593d97e1a9aa6f2"
+      "sha256": "ddb64ca3567763bc19fa354095db7410cbc2a76d75dc751fddbdcc5cd292933f"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-alternative-minimum-tax.json",
-      "sha256": "d7d074e2a4851a21a920ada4bcf56f8f0a80d8d6b23d00ed7892fd8a74bdbd39"
+      "sha256": "ce9e8b8ff23bcd0e6360f1f68563dfbf0c818914d92cebb4ea9ca73a342475bc"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-alternative-minimum-tax.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 10,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 10,
+    "source_count": 10
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:41.143523+00:00",
+  "generated_at": "2026-07-07T04:36:57.223455+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "CS+KctkP/MgMLx8Abs8lTizDcLfPVGSAJXF7LlZzD3tWXvNM8WI2Y8iygIlJOkYIrSHIZD3EhZq9fkarUUpyCA=="
+    "value": "QAPWHLFTdYZ1MKrXmprtVahZPYWsncPsvjXSXlSfoqT2SycfiW1e25fA49VJGXIyrIJ3oi+wwQDMltAZ1DQkBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-alternative-minimum-tax"

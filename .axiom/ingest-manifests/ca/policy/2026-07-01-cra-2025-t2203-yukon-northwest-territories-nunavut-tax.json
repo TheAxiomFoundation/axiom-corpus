@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax.json",
-      "sha256": "0ced8c3cc09b04087cc0709786d49b2745bda526ba8c6b47908ecd6deba82e5d"
+      "sha256": "b470fa58ca1eeed92fe990a46fab3dbd544fc6246ec82b07d16f4ac9333c8343"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax.json",
-      "sha256": "d2ad59903b93d464be882d1c3651e64711dec8d21e7027abce0588691c1b98bc"
+      "sha256": "01fb9944f5b6ea9c658b331f3d6286f5fd958593151f07b9c35e94ca2a131e95"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:30.506508+00:00",
+  "generated_at": "2026-07-07T04:37:20.827294+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "IRLGOIiScqBZx23bdJ6j6AwzSRdO0OBq3FLVL96jminy3ZxP2z6OiDEiFJBVlEeRngTREVP/3wtkqAws7eRDBw=="
+    "value": "6oLyw/Aw0sgaDRGT9rqH0Wof8KCAPyyXpf5QgkP4OvJhMqw97vqLxNiX2EPWuev01ECTc0LBe1meh92gfZ31Dg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax"

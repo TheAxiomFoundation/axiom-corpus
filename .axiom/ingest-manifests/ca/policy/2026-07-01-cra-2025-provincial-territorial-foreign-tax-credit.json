@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit.json",
-      "sha256": "31e7ae4abba2918f24a6891d63f26a86ace1a0ae98394c3d5b506d9c5c6ddaf4"
+      "sha256": "038a8425cbaaba68a426e65b1b9191b84351f22493fff9e0050953cb9bdb6a3b"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit.json",
-      "sha256": "e9e0ee3b7e674f133281c6f5b777893be0ca3d1067d8078ee265592af1bcf900"
+      "sha256": "670b8c846d455c44c69f7c169ba9a95e1f1dea45a36cb321662310b79384c501"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:23.933099+00:00",
+  "generated_at": "2026-07-07T04:37:13.529873+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "0QkGOyHOzSywmCeNuy8S6fp5fb0fGPc80RhwUEWy5KWue+iWmXhmI9Pedb4Th1DfDlpb0EU/B2ZgOKaegFehDQ=="
+    "value": "kD89gKnOSRQ1Ke7zHexu1ILxvS2RBaFGNvT+LfRyt9d7IIoIb/JkSIVHYl4hBiFL4x7RW7vr11jWwYesWKiVDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit"

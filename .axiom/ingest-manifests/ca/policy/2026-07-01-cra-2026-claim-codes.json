@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-claim-codes.json",
-      "sha256": "949a9069ba9439406e741bc3fe64d4edf59026d31e4c49dc42226a52572d2fe5"
+      "sha256": "59e757f7aa62ac9fc230ad95c67310ede07b7d7e5f83ea9acfb31b3e25ab716c"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-claim-codes.json",
-      "sha256": "61f02113bc3b8d3f78456f1b66c2b68935fcd10457259aa025e124c91b1a7325"
+      "sha256": "4d4151d500a1e49e9e93daa4f8b205ae1ca620b6c38f1ff3c6697d78c64dd4eb"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-claim-codes.jsonl",
-      "sha256": "3cd72a1a4678500b0ed2c56c51805a900c7dbe6bb432aaa7875bb87a7ebe5eb3"
+      "sha256": "3a1908a58624adbdf77f38de2f4707b647ab7818c4e6779c89c31da4133b6100"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-claim-codes/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "b1e629503f758ff947cbf86a996ddc87b1c8cd72",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "restructure concatenated multi-capture scopes into per-capture children; revert TOC-artifact step splits on shared t4127 scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:58.180421+00:00",
+  "generated_at": "2026-07-07T04:52:02.572885+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "7PmFqoDfYQMq285VF+2ziT1WR+aY0i6Mw91hyuWpBi5tti9b1z3xeBq3bgjTVYrFlO2EviRLysG2eM1AMuwaAw=="
+    "value": "UM/4p9P4IK3asJVbM5DO4QqgKO/UE2iniWeQ6Jrm+dxSuna8LEamMV1he03PXbYLmUpxgcTZ5tvq/vn7LSBVBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-claim-codes"

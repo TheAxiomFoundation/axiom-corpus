@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts.json",
-      "sha256": "32453e60db71fa55daed66451f962856ee0f5e70970a4e6e2a4b7e8de2cd99a4"
+      "sha256": "f1f9c57e6e759c09f0d464437c7b4ca33045048900969751c9d6890bf05e5f49"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts.json",
-      "sha256": "fcba0ba0d3a11ea1f7d8e0fda339058f9f765f4c92a7a00ac79393cdc071e2ce"
+      "sha256": "acf402d1a91f4edc7155cc1718b1c12ecc68396406d5cd6102e5ee6884547739"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:04.872667+00:00",
+  "generated_at": "2026-07-07T04:37:06.876940+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "qvvb5GPVtGpMY0JoVvT2J1hjmIMaCaXITn6MPf3o8komUF7tSO1I91LXj0ViLiQVJBvaJA/puCtXfCR/7JqDCA=="
+    "value": "DyztGgB8EtnajuUg3kJ1xuRBGKKKsA97bqPHVL5+QPAbg/RfdhYrQneT81qFRYK21zgWGt29kjqO2fayyilHCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-spouse-transfer-amounts"

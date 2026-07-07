@@ -1,32 +1,41 @@
 {
- "document_class": "policy",
- "jurisdiction": "ca",
- "source_count": 3,
- "sources": [
-  {
-   "primary_source": true,
-   "source_format": "html",
-   "source_id": "cra-2026-t4127-payroll-deductions-formulas",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
-   "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html",
-   "title": "CRA 2026 provincial and territorial income tax rates"
-  },
-  {
-   "primary_source": true,
-   "source_format": "html",
-   "source_id": "cra-2026-tax-rates-current-year",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-tax-rates-current-year.html",
-   "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html",
-   "title": "CRA 2026 provincial and territorial income tax rates"
-  },
-  {
-   "primary_source": true,
-   "source_format": "html",
-   "source_id": "revenu-quebec-income-tax-rates",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/revenu-quebec-income-tax-rates.html",
-   "source_url": "https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/income-tax-rates/",
-   "title": "CRA 2026 provincial and territorial income tax rates"
-  }
- ],
- "version": "2026-07-01-cra-2026-provincial-territorial-tax-rates"
+  "document_class": "policy",
+  "items": [
+    {
+      "citation_path": "ca/policy/cra/tax-rates-2026/provincial-territorial-income-tax",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "cra-2026-t4127-payroll-deductions-formulas",
+        "title": "CRA 2026 provincial and territorial income tax rates"
+      },
+      "source_format": "text",
+      "source_path": "sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "source_url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html"
+    },
+    {
+      "citation_path": "ca/policy/cra/tax-rates-2026/provincial-territorial-income-tax/rates",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "cra-2026-tax-rates-current-year",
+        "title": "CRA 2026 provincial and territorial income tax rates"
+      },
+      "source_format": "text",
+      "source_path": "sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-tax-rates-current-year.html",
+      "source_url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html"
+    },
+    {
+      "citation_path": "ca/policy/cra/tax-rates-2026/provincial-territorial-income-tax/revenu-quebec",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "revenu-quebec-income-tax-rates",
+        "title": "CRA 2026 provincial and territorial income tax rates"
+      },
+      "source_format": "text",
+      "source_path": "sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/revenu-quebec-income-tax-rates.html",
+      "source_url": "https://www.revenuquebec.ca/en/citizens/income-tax-return/completing-your-income-tax-return/income-tax-rates/"
+    }
+  ],
+  "jurisdiction": "ca",
+  "source_count": 3,
+  "version": "2026-07-01-cra-2026-provincial-territorial-tax-rates"
 }

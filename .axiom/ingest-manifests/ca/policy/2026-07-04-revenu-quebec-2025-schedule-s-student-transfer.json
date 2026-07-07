@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer.json",
-      "sha256": "cc3971f2bc17128ede894710ad316ead162edd37d774097e662098863bde7f42"
+      "sha256": "5b94ec8fdb1248e702f17d365beef506cef38a987fc775e2b8c20d61fc4da6a2"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer.json",
-      "sha256": "014896640ec0ead5f9fb015acfac92998d0ac2b9f6cee4738937cb4440024d4f"
+      "sha256": "29683f0c476cd677cf5d78a9be900f83782bba6f14fd88881cb3756dd44edeca"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:46:05.024545+00:00",
+  "generated_at": "2026-07-07T04:37:59.638130+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "YN3Y7021wLhCQ2RJtj+VfMHDnYO085cH060SMLljhZl4Q058eHUdL0Nlyve994qKiFAcg0lwoNp/rPTwO6NaBg=="
+    "value": "q4RXHwTwdMCayVEb9s2/Es0rgKYWrC7mF5j3XXmt9quDa2Zr0Pfr8VnM/bonMVSi9ThCx178D+o5Z9bg64KWCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-s-student-transfer"

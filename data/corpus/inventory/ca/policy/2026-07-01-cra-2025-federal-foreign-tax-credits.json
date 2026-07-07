@@ -1,16 +1,19 @@
 {
   "document_class": "policy",
-  "jurisdiction": "ca",
-  "source_count": 1,
-  "sources": [
+  "items": [
     {
-      "primary_source": true,
-      "source_format": "pdf",
-      "source_id": "cra-2025-federal-foreign-tax-credits",
+      "citation_path": "ca/policy/cra/t1-2025/federal-foreign-tax-credits",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "cra-2025-federal-foreign-tax-credits",
+        "title": "CRA Form T2209 2025 Federal Foreign Tax Credits"
+      },
+      "source_format": "text",
       "source_path": "sources/ca/policy/2026-07-01-cra-2025-federal-foreign-tax-credits/official-documents/cra-2025-federal-foreign-tax-credits.txt",
-      "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/t2209/t2209-25e.pdf",
-      "title": "CRA Form T2209 2025 Federal Foreign Tax Credits"
+      "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/t2209/t2209-25e.pdf"
     }
   ],
+  "jurisdiction": "ca",
+  "source_count": 1,
   "version": "2026-07-01-cra-2025-federal-foreign-tax-credits"
 }

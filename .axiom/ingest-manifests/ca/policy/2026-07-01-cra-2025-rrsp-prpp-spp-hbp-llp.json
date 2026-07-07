@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
-      "sha256": "2576ab134f0b80d26c77f7df5ea1540c80992a6eb7c94e5336befc3d9eeead71"
+      "sha256": "d587a60c18cc12c55b80cb27ffbfed76361c9ee34b48d136980d99438a61cf7a"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
-      "sha256": "1c8dfd98c0adbf5cece45d6d3e617d84593be4fbca517d45fb4031afdf110d8e"
+      "sha256": "452bb02cf9cb88cb1a2b2e06da2ff4b0b6478056ee52df046df274aaf836d205"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.jsonl",
-      "sha256": "1cc96a37735651c0690c50934de96c7fc7d3f04a66a7698ea15847ad08975024"
+      "sha256": "1e9db81342539aa40ec9c4bb188121d38cb89552fa79ac67db2001499d569b90"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-2025-schedule-7-rrsp-prpp-spp.txt",
@@ -30,31 +30,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
+    "commit": "b1e629503f758ff947cbf86a996ddc87b1c8cd72",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split multi-document scopes into child provisions; re-sign"
+    "text": "restructure concatenated multi-capture scopes into per-capture children; revert TOC-artifact step splits on shared t4127 scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 3,
     "missing_count": 0,
-    "provision_count": 2,
+    "provision_count": 3,
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T19:25:08.271977+00:00",
+  "generated_at": "2026-07-07T04:51:58.774185+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "jhfbIX7KwnngW8+dc0P9G1lGWt6YiH7kS8w4m8y0oR9rpg8IPPPgSY3s/W2Z+ahRY98SdYthPOFyiaDpNfX7AQ=="
+    "value": "QIK1McG9dfH1ZqavMgOpXkuRmBooh68L6783GzjQbaB0RAK6ZclURC00geoyLyeMXJK5Xa6jCrcylxTtG/hVBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp"

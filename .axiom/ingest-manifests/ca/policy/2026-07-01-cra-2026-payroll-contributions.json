@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-payroll-contributions.json",
-      "sha256": "52440051e6800ee16e0a79e1ceedb02ccbeb79a4c1ada74063e8fe08afe3671e"
+      "sha256": "cee7de098e9bde1571e6580827ac04cfc59468de902cb59d4c47e17086bb5976"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-payroll-contributions.json",
-      "sha256": "18f9d450adf99ad5b683f94daff3c83c8639aa37fc279104d2d55dacd10f596a"
+      "sha256": "5d0e88403b735640849a4ad582eff5904a98f015677eae752790b7902e43a1a9"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-payroll-contributions.jsonl",
-      "sha256": "08cbb3fcbc7889f1a4ab334bd8e8387a6fd1b436951bc38ccfd6bfe95b568ee1"
+      "sha256": "7bbec41fbeb32a397ceed430de784df0d12744dcbb5fb600becd4affbbc1b870"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-payroll-contributions/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "b1e629503f758ff947cbf86a996ddc87b1c8cd72",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "restructure concatenated multi-capture scopes into per-capture children; revert TOC-artifact step splits on shared t4127 scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:59.440346+00:00",
+  "generated_at": "2026-07-07T04:52:03.218192+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "DLr1e8t4kPLbWM+Y3qlqvr6YBCmuYrelFLUJs1CrLc1me72ljxFlOwiXLt27YQEFZtTb50l5iAMTLsXzm2mFAQ=="
+    "value": "Dv5O6GuE0YnB3AC8xcyKiKtuSr+GuZZIyaZVmnPeOwMuuLqlnnv1wBXvHG0JeUH7A/wboMoulPwWCDLTnjmXBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-payroll-contributions"

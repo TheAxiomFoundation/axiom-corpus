@@ -1,16 +1,19 @@
 {
   "document_class": "policy",
-  "jurisdiction": "ca",
-  "source_count": 1,
-  "sources": [
+  "items": [
     {
-      "primary_source": true,
-      "source_format": "txt",
-      "source_id": "cra-2025-on428-resident-tax",
+      "citation_path": "ca/policy/cra/t1-2025/on428-resident-tax",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "cra-2025-on428-resident-tax",
+        "title": "CRA Form ON428 2025 Ontario Resident Tax"
+      },
+      "source_format": "text",
       "source_path": "sources/ca/policy/2026-07-02-cra-2025-on428-resident-tax/official-documents/5006-c-25e.txt",
-      "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5006-c/5006-c-25e.txt",
-      "title": "CRA Form ON428 2025 Ontario Resident Tax"
+      "source_url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5006-c/5006-c-25e.txt"
     }
   ],
+  "jurisdiction": "ca",
+  "source_count": 1,
   "version": "2026-07-02-cra-2025-on428-resident-tax"
 }
