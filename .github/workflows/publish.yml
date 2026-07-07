@@ -113,13 +113,35 @@ jobs:
           python scripts/publish_corpus.py "${MODE[@]}" \
             --github-output "$GITHUB_OUTPUT"
 
-      - name: Commit provision-counts snapshot
+      - name: Publish provision-counts snapshot to corpus-snapshots branch
         if: steps.publish.outputs.snapshot != ''
+        # Best-effort telemetry: never let the counts snapshot red a successful
+        # publish. The publish step above already fails the run on any bad
+        # PUBLISHED/FAILED numbers, so isolating the snapshot push here keeps a
+        # real publish failure loud while a snapshot-push hiccup stays soft.
+        continue-on-error: true
         run: |
           git config user.name "axiom-corpus-bot"
           git config user.email "noreply@anthropic.com"
-          # -f: data/ is gitignored (R2-backed corpus), so new snapshot files
-          # need a force-add, matching how every data/corpus artifact is tracked.
+          # The counts snapshot cannot land on the default branch: `main` is
+          # protected, so a GITHUB_TOKEN push is GH006-rejected, and with no PAT
+          # a bot PR cannot trigger the required status checks needed to
+          # auto-merge (GITHUB_TOKEN events do not start workflow runs). So the
+          # snapshot lives on the dedicated, unprotected `corpus-snapshots`
+          # branch. Nothing reads snapshots from main automatically — the
+          # completion tools only load a counts file from an explicit
+          # --supabase-counts path — so relocating them is safe.
+          SNAP_BRANCH=corpus-snapshots
+          # -f: data/ is gitignored (R2-backed corpus), so snapshot files need a
+          # force-add, matching how every data/corpus artifact is tracked.
+          git fetch origin "$SNAP_BRANCH" 2>/dev/null || true
+          if git rev-parse --verify "origin/$SNAP_BRANCH" >/dev/null 2>&1; then
+            # Carry prior snapshots forward WITHOUT clobbering this run's fresh
+            # file (filenames are date-stamped and space-free).
+            for f in $(git ls-tree -r --name-only "origin/$SNAP_BRANCH" -- data/corpus/snapshots/); do
+              [ -e "$f" ] || git checkout "origin/$SNAP_BRANCH" -- "$f"
+            done
+          fi
           git add -f data/corpus/snapshots/
           if git diff --cached --quiet; then
             echo "No snapshot changes to commit."
@@ -132,7 +154,9 @@ jobs:
           ${{ steps.publish.outputs.failed }} failed.
 
           Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
-          git push origin HEAD:${{ github.ref_name }}
+          # Force: the commit is the current default-branch HEAD plus the full
+          # accumulated snapshot set — a clean replacement for the branch tip.
+          git push --force origin "HEAD:$SNAP_BRANCH"
 
       - name: Publication summary
         if: always()
@@ -150,18 +174,22 @@ jobs:
 
   staleness-guard:
     name: Publication staleness guard
-    # Runs everywhere the read key is available. On push/cron this uses the
-    # anon key (RLS exposes active release_scopes) to flag versions unpublished
-    # >24h. On PRs (fork context) the secret may be absent — the guard then
-    # skips rather than failing spuriously, mirroring verify-release-coverage.
+    # Runs where publication secrets are available (push/cron, internal PRs). It
+    # flags any provisions version unpublished >24h, distinguishing
+    # never-published (no release_scopes row — always alarms) from staged/drift
+    # (inactive row — graced by --since / --respect-inactive). On fork PRs the
+    # secret is absent — the guard skips rather than failing spuriously.
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      # Reuse the read-only anon key already provisioned as an org secret.
-      SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-      # Activation cutoff: only versions merged at/after this commit can trip
-      # the guard, so pre-automation backlog does not turn the repo red.
-      # Set to the merge commit of this workflow once it lands on main.
+      # A management PAT resolves the service_role key at runtime, which can read
+      # inactive release_scopes — required to tell a never-published scope (no
+      # row at all → always alarms) from an intentionally-staged one (inactive
+      # row → graced). The anon key cannot see inactive rows.
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      # Drift activation cutoff: only *inactive/staged* versions merged at/after
+      # this commit can trip the guard. Never-published scopes ignore it by
+      # design (a committed-but-never-loaded scope is a gap whenever it merged).
       PUBLICATION_AUTOMATION_SINCE: "025f5d98"
     steps:
       - uses: actions/checkout@v6.0.2
@@ -179,14 +207,14 @@ jobs:
           pip install -e .
 
       - name: Check publication staleness
-        if: env.SUPABASE_ANON_KEY != ''
+        if: env.SUPABASE_ACCESS_TOKEN != ''
         run: |
           python scripts/check_publication_staleness.py \
-            --service-key-env SUPABASE_ANON_KEY \
             --max-lag-hours 24 \
-            --since "$PUBLICATION_AUTOMATION_SINCE"
+            --since "$PUBLICATION_AUTOMATION_SINCE" \
+            --respect-inactive
 
       - name: Skip staleness guard without Supabase secret
-        if: env.SUPABASE_ANON_KEY == ''
+        if: env.SUPABASE_ACCESS_TOKEN == ''
         run: |
-          echo "Skipping staleness guard: NEXT_PUBLIC_SUPABASE_ANON_KEY is not available in this context."
+          echo "Skipping staleness guard: SUPABASE_ACCESS_TOKEN is not available in this context."

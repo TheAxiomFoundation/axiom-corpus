@@ -20,18 +20,23 @@ A scope is *lagging* when it is not active in the DB and its file was committed
 more than ``--max-lag-hours`` ago. Freshly merged versions inside the grace
 window are ignored (the publisher is allowed time to run).
 
-Why a grace window and an activation cutoff
--------------------------------------------
-Two classes of unpublished-forever scope must not make this guard cry wolf:
+Two lagging categories
+----------------------
+* **never-published** — the scope has *no* ``release_scopes`` row at all (active
+  or inactive): the publisher never loaded it. This is the silent-failure the
+  guard exists to catch, so it alarms past the grace window **regardless of the
+  ``--since`` cutoff** — a committed-but-never-loaded scope is a real gap no
+  matter when it merged. (A 2026-07 backlog once sat unpublished behind a
+  ``--since`` cutoff set to a *newer* commit; that hole is now closed.)
+* **drift** — the scope *has* a ``release_scopes`` row but it is inactive
+  (intentionally staged or a superseded predecessor). These respect
+  ``--respect-inactive`` and the ``--since`` activation cutoff so pre-automation
+  backlog and deliberate staging do not cry wolf.
 
-1. Versions merged *before* this automation existed. Those are pre-existing
-   backlog, not a pipeline failure. ``--since`` (an activation cutoff commit or
-   ISO date) excludes any scope whose file has no commit at or after that point.
-2. Intentionally-staged or superseded predecessor versions. With the service
-   key these appear as inactive ``release_scopes`` rows and are excluded via
-   ``--respect-inactive``. Under the anon key those rows are invisible; combine
-   ``--since`` with the grace window so only *newly merged* versions can trip
-   the guard.
+Distinguishing the two needs to *see* inactive rows, so run with a key that can
+read them (a service key, resolved from ``SUPABASE_ACCESS_TOKEN``). Under an
+anon key inactive rows are invisible and every not-active scope looks
+never-published; ``--never-published-since`` can floor that case.
 
 Read-only. Never writes to the DB or to ``data/corpus``.
 """
@@ -107,7 +112,13 @@ def _parse_cutoff(since: str | None) -> datetime | None:
         ) from exc
 
 
-def collect_git_scopes(cutoff: datetime | None) -> list[GitScope]:
+def collect_git_scopes(cutoff: datetime | None = None) -> list[GitScope]:
+    """Every provisions scope in the checkout, tagged with its newest commit.
+
+    ``cutoff`` (when given) drops scopes committed before it — used only for the
+    drift category. The never-published check calls this with no cutoff so a
+    committed-but-never-loaded scope can never be excluded from consideration.
+    """
     scopes: dict[Scope, GitScope] = {}
     for path in sorted(PROVISIONS_ROOT.rglob("*.jsonl")):
         if not path.is_file():
@@ -173,16 +184,27 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--respect-inactive",
         action="store_true",
-        help="Also exclude versions that have an inactive release_scopes row "
+        help="Exclude *drift* versions that have an inactive release_scopes row "
         "(explicitly staged/superseded). Requires a service key that can read "
-        "inactive rows; harmless but a no-op under the anon key.",
+        "inactive rows. Never-published scopes (no row at all) still alarm.",
+    )
+    parser.add_argument(
+        "--never-published-since",
+        default=None,
+        help="Optional commit/ISO floor for the never-published alarm. Unlike "
+        "--since (which only graces drift), never-published scopes alarm "
+        "regardless of --since; set this only to suppress a known "
+        "pre-automation never-loaded backlog.",
     )
     args = parser.parse_args(argv)
 
-    cutoff = _parse_cutoff(args.since)
-    git_scopes = collect_git_scopes(cutoff)
+    drift_cutoff = _parse_cutoff(args.since)
+    never_cutoff = _parse_cutoff(args.never_published_since)
+    # Collect every scope with no cutoff so a committed-but-never-loaded scope is
+    # always in view; the cutoffs are applied per category below.
+    git_scopes = collect_git_scopes()
     if not git_scopes:
-        print("No git provisions scopes in the considered window; nothing to check.")
+        print("No git provisions scopes found; nothing to check.")
         return 0
 
     service_key = resolve_service_key(
@@ -193,44 +215,67 @@ def main(argv: Sequence[str] | None = None) -> int:
     active = fetch_scopes(
         supabase_url=args.supabase_url, service_key=service_key, active=True
     )
-    excluded_inactive: set[Scope] = set()
-    if args.respect_inactive:
-        all_rows = fetch_scopes(
-            supabase_url=args.supabase_url, service_key=service_key, active=None
-        )
-        excluded_inactive = all_rows - active
+    # active ∪ inactive — everything that has *ever* been published. A scope
+    # absent here was never loaded (never-published); one present-but-not-active
+    # is inactive drift. Under an anon key this equals ``active`` (inactive rows
+    # are invisible), so run under a service key for exact classification.
+    ever_published = fetch_scopes(
+        supabase_url=args.supabase_url, service_key=service_key, active=None
+    )
 
     now = datetime.now(UTC)
-    lagging: list[tuple[GitScope, float]] = []
+    lagging_never: list[tuple[GitScope, float]] = []
+    lagging_drift: list[tuple[GitScope, float]] = []
     within_grace = 0
+    excluded_backlog = 0
     for gs in git_scopes:
-        if gs.scope in active or gs.scope in excluded_inactive:
+        if gs.scope in active:
             continue
         lag_hours = (now - gs.committed_at).total_seconds() / 3600.0
-        if lag_hours > args.max_lag_hours:
-            lagging.append((gs, lag_hours))
+        if gs.scope not in ever_published:
+            # Never loaded: a broken/silent publisher. --since does NOT grace it.
+            if never_cutoff is not None and gs.committed_at < never_cutoff:
+                excluded_backlog += 1
+            elif lag_hours > args.max_lag_hours:
+                lagging_never.append((gs, lag_hours))
+            else:
+                within_grace += 1
         else:
-            within_grace += 1
+            # Has an inactive release_scopes row: staged/superseded predecessor.
+            # Graced by --respect-inactive or the pre-automation drift cutoff.
+            if args.respect_inactive or (
+                drift_cutoff is not None and gs.committed_at < drift_cutoff
+            ):
+                excluded_backlog += 1
+            elif lag_hours > args.max_lag_hours:
+                lagging_drift.append((gs, lag_hours))
+            else:
+                within_grace += 1
 
-    considered = len(git_scopes)
-    print(f"Considered git scopes (cutoff={args.since or 'none'}): {considered}")
-    print(f"Active in DB: {len(active)}")
-    if args.respect_inactive:
-        print(f"Excluded (inactive/staged): {len(excluded_inactive)}")
+    lagging = lagging_never + lagging_drift
+    print(f"Considered git scopes: {len(git_scopes)}")
+    print(f"Active in DB: {len(active)}  (ever published: {len(ever_published)})")
+    print(f"Excluded (pre-automation / staged): {excluded_backlog}")
     print(f"Unpublished but within {args.max_lag_hours}h grace: {within_grace}")
-    print(f"Lagging beyond {args.max_lag_hours}h: {len(lagging)}")
+    print(
+        f"Lagging beyond {args.max_lag_hours}h: {len(lagging)} "
+        f"(never-published: {len(lagging_never)}, drift: {len(lagging_drift)})"
+    )
 
     if not lagging:
         print("\nPublication is current. OK.")
         return 0
 
-    print("\n::error::Corpus publication is lagging. These versions have been on "
-          f"main unpublished for more than {args.max_lag_hours}h:")
-    for gs, lag in sorted(lagging, key=lambda t: -t[1]):
-        print(
-            f"  {gs.scope[0]}/{gs.scope[1]} v{gs.scope[2]}  "
-            f"lag={lag:.1f}h  file={gs.path}"
-        )
+    print(
+        "\n::error::Corpus publication is lagging. These versions have been on "
+        f"main unpublished for more than {args.max_lag_hours}h:"
+    )
+    for label, group in (("never-published", lagging_never), ("drift", lagging_drift)):
+        for gs, lag in sorted(group, key=lambda t: -t[1]):
+            print(
+                f"  [{label}] {gs.scope[0]}/{gs.scope[1]} v{gs.scope[2]}  "
+                f"lag={lag:.1f}h  file={gs.path}"
+            )
     print(
         "\nRun the publish workflow (or `python scripts/publish_corpus.py "
         "--since <ref>`) to clear the backlog."
