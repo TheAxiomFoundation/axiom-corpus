@@ -1,0 +1,57 @@
+# Ghana social-security contribution source capture (rulespec-gh SSNIT slice).
+#
+# National Pensions Act, 2008 (Act 766) section 3 (Contributions to the Scheme)
+# sets the mandatory three-tier contribution rates that GHAMOD's tscee_gh
+# (tscee_s) and tscer_gh (tscer_s) model: a worker's (employee) contribution of
+# five and half per centum and an employer's contribution of thirteen per centum
+# of the worker's salary (total eighteen and a half per centum), of which
+# thirteen and half per centum is remitted to the first-tier basic national
+# social security scheme (SSNIT) and five per centum to the second-tier
+# mandatory occupational pension scheme; the minimum contribution is 18.5% of
+# the approved monthly equivalent of the national daily minimum wage.
+#
+# Captured from the Assembly Press printed Act 766 on the Parliament of Ghana
+# DSpace repository ORIGINAL bitstream. The print is text-embedded (no OCR).
+documents:
+  - source_id: gh-act-766-national-pensions-2008-contributions
+    jurisdiction: gh
+    document_class: statute
+    citation_path: gh/statute/act-766/national-pensions-2008
+    title: National Pensions Act, 2008 (Act 766) — section 3, contributions to the scheme
+    source_url: https://repository.parliament.gh/server/api/core/bitstreams/216d5fba-5a4c-4114-bd24-82bac2202d81/content
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2008-12-12'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Section (?P<label>3)—(?P<heading>.+?)\s*$'
+      section_label_replacements:
+        '3': section-3-contributions-to-the-scheme
+      page_windows:
+        - start_page: 11
+          end_page: 12
+          start_at_pattern: '^Section 3'
+          stop_at_pattern: '^Section 4'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Ghana
+      publisher: Ghana Publishing Company Limited (Assembly Press), Accra
+      date_of_assent: '2008-12-04'
+      gazette_notification_date: '2008-12-12'
+      commencement_date: '2008-12-12'
+      source_family: social-security/pension-contributions
+      repository_item_url: https://repository.parliament.gh/items/f1b4dd99-6b7e-484c-b950-82a60129080c
+      source_note: >-
+        Authentic Assembly Press printed National Pensions Act, 2008 (Act 766),
+        downloaded from the Parliament of Ghana DSpace repository ORIGINAL
+        bitstream on 2026-07-07. Text-embedded PDF. Section 3 (Contributions to
+        the Scheme) is on print page 11 and continues to the start of Section 4
+        on page 12; subsection (1) sets the 5.5% worker contribution, (2) the
+        13% employer contribution, (3) the 13.5% first-tier / 5% second-tier
+        remittance split of the total 18.5%, and (4) the 18.5%-of-minimum-wage
+        floor. Amendment diligence to record at encode time: the National
+        Pensions (Amendment) Act, 2014 (Act 883) amended Act 766 but did not
+        change the section 3 contribution rates (5.5% / 13% / 18.5% remain the
+        current 2026 rates, matching GHAMOD tscee_s and tscer_s).

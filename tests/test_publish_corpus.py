@@ -250,7 +250,7 @@ def test_staleness_lag_math(tmp_path, monkeypatch):
         committed_at=now - timedelta(hours=48),
     )
     monkeypatch.setattr(
-        staleness, "collect_git_scopes", lambda cutoff: [stale_gs, fresh_gs, active_gs]
+        staleness, "collect_git_scopes", lambda cutoff=None: [stale_gs, fresh_gs, active_gs]
     )
     monkeypatch.setattr(
         staleness,
@@ -269,12 +269,70 @@ def test_staleness_all_published_is_green(tmp_path, monkeypatch):
         path="us/statute/live.jsonl",
         committed_at=now - timedelta(hours=48),
     )
-    monkeypatch.setattr(staleness, "collect_git_scopes", lambda cutoff: [gs])
+    monkeypatch.setattr(staleness, "collect_git_scopes", lambda cutoff=None: [gs])
     monkeypatch.setattr(
         staleness, "fetch_scopes", lambda **kw: {("us", "statute", "live")}
     )
     monkeypatch.setattr(staleness, "resolve_service_key", lambda *a, **k: "key")
     assert staleness.main(["--max-lag-hours", "24"]) == 0
+
+
+def test_staleness_never_published_alarms_regardless_of_since(monkeypatch):
+    """Regression for axiom-corpus#257: a committed-but-never-loaded scope must
+    alarm even when it was committed *before* the --since cutoff. Previously
+    ``--since`` (set to a newer commit) hid the entire backlog and the guard
+    went green while ~50 BE scopes sat unpublished."""
+    now = datetime.now(UTC)
+    never = staleness.GitScope(
+        scope=("be", "statute", "2026-06-30-be-tax-benefit"),
+        path="be/statute/2026-06-30-be-tax-benefit.jsonl",
+        committed_at=now - timedelta(hours=72),  # well past grace
+    )
+    monkeypatch.setattr(staleness, "collect_git_scopes", lambda cutoff=None: [never])
+    # No active rows and none ever published -> the scope was never loaded.
+    monkeypatch.setattr(staleness, "fetch_scopes", lambda **kw: set())
+    monkeypatch.setattr(staleness, "resolve_service_key", lambda *a, **k: "key")
+    # Cutoff set AFTER the scope's commit: the old code excluded it and went
+    # green; the fix ignores --since for never-published scopes.
+    future_cutoff = (now + timedelta(days=1)).date().isoformat()
+    rc = staleness.main(["--max-lag-hours", "24", "--since", future_cutoff])
+    assert rc == 1
+
+
+def test_staleness_never_published_since_floor_suppresses_known_legacy(monkeypatch):
+    """An explicit --never-published-since floor can still silence a genuinely
+    pre-automation never-loaded backlog without publishing it."""
+    now = datetime.now(UTC)
+    legacy = staleness.GitScope(
+        scope=("xx", "statute", "ancient"),
+        path="xx/statute/ancient.jsonl",
+        committed_at=now - timedelta(days=400),
+    )
+    monkeypatch.setattr(staleness, "collect_git_scopes", lambda cutoff=None: [legacy])
+    monkeypatch.setattr(staleness, "fetch_scopes", lambda **kw: set())
+    monkeypatch.setattr(staleness, "resolve_service_key", lambda *a, **k: "key")
+    floor = (now - timedelta(days=30)).date().isoformat()
+    assert staleness.main(["--max-lag-hours", "24", "--never-published-since", floor]) == 0
+
+
+def test_staleness_drift_graced_by_respect_inactive(monkeypatch):
+    """A scope that HAS an inactive release_scopes row (staged/superseded) is
+    drift, not never-published, and is graced by --respect-inactive."""
+    now = datetime.now(UTC)
+    staged = staleness.GitScope(
+        scope=("us", "statute", "staged"),
+        path="us/statute/staged.jsonl",
+        committed_at=now - timedelta(hours=72),
+    )
+    monkeypatch.setattr(staleness, "collect_git_scopes", lambda cutoff=None: [staged])
+    # Not active, but present in ever_published (active=None) -> inactive/staged.
+    monkeypatch.setattr(
+        staleness,
+        "fetch_scopes",
+        lambda **kw: set() if kw["active"] else {("us", "statute", "staged")},
+    )
+    monkeypatch.setattr(staleness, "resolve_service_key", lambda *a, **k: "key")
+    assert staleness.main(["--max-lag-hours", "24", "--respect-inactive"]) == 0
 
 
 # --------------------------------------------------------------------------- #
