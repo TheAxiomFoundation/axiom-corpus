@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import date
@@ -11,6 +12,7 @@ from typing import Any
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
+from axiom_corpus.corpus.document_sections import split_document_body
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
@@ -408,6 +410,40 @@ def _validate_provisions(
         _validate_provision_record(record, by_path, scope, collector)
 
 
+
+_SECTION_CHILD_SLUG = re.compile(r"/(?:part|step|schedule)-\d+$")
+
+
+def _warn_unsectioned_document(
+    record: ProvisionRecord,
+    by_path: dict[str, ProvisionRecord],
+    scope: ReleaseScope,
+    collector: _IssueCollector,
+) -> None:
+    """Warn when a document-level body carries printed section markers
+    (Part/Step/Schedule) but no section children exist — the app then has
+    no child nodes to navigate into. Fix with ``section-provisions``.
+    """
+    if record.kind != "document" or not record.body:
+        return
+    prefix = record.citation_path + "/"
+    if any(
+        path.startswith(prefix) and _SECTION_CHILD_SLUG.search(path)
+        for path in by_path
+    ):
+        return
+    if split_document_body(record.body) is None:
+        return
+    collector.add(
+        "warning",
+        "unsectioned_document_body",
+        (
+            f"{record.citation_path} has top-level section markers but no "
+            "section children; run axiom-corpus-ingest section-provisions"
+        ),
+        scope=scope,
+    )
+
 def _validate_provision_record(
     record: ProvisionRecord,
     by_path: dict[str, ProvisionRecord],
@@ -442,6 +478,7 @@ def _validate_provision_record(
             f"{record.citation_path} has neither body nor heading",
             scope=scope,
         )
+    _warn_unsectioned_document(record, by_path, scope, collector)
     if record.parent_citation_path:
         parent = by_path.get(record.parent_citation_path)
         if parent is None:
