@@ -213,7 +213,9 @@ def test_guard_ingested_cli_accepts_signed_corpus_artifact_change(tmp_path, caps
     assert payload["protected_changes"] == ["data/corpus/provisions/us/statute/2026-06-06.jsonl"]
 
 
-def test_guard_ingested_cli_rejects_signed_change_without_public_key(tmp_path, capsys, monkeypatch):
+def test_guard_ingested_cli_rejects_signed_change_with_mismatched_default_key(
+    tmp_path, capsys, monkeypatch
+):
     repo = _init_git_repo(tmp_path / "repo")
     _git(repo, "checkout", "-b", "feature")
     provision = repo / "data/corpus/provisions/us/statute/2026-06-06.jsonl"
@@ -261,7 +263,7 @@ def test_guard_ingested_cli_rejects_signed_change_without_public_key(tmp_path, c
     assert exit_code == 1
     payload = json.loads(output)
     assert payload["passed"] is False
-    assert "AXIOM_CORPUS_INGEST_PUBLIC_KEY is required" in payload["issues"][0]
+    assert "Invalid ingest manifest signature" in payload["issues"][0]
 
 
 def test_guard_ingested_cli_rejects_tampered_ingest_manifest(tmp_path, capsys, monkeypatch):

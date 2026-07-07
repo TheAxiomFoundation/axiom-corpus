@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-07-06-title-7-part-273.json",
+      "sha256": "7e0dcba981f5e9e8c2cff83861dee8362eaa054460195b052040ce0c04352203"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-07-06-title-7-part-273.json",
+      "sha256": "c5e25aa8036ae0ff1d5e399378707fef62e28ca8a4b3a28a077f6bc37e00bd5b"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-07-06-title-7-part-273.jsonl",
+      "sha256": "3e64be2d394d1eca7fe90d7f1ae6954eeca79250d65b60e851f33a20815737b8"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-06-title-7-part-273/ecfr/title-7-part-273.xml",
+      "sha256": "92d5f3baba66e0f7f8ba2a2887a2a664166fcc0deb275b1b143a7ca23a4114a6"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-06-title-7-part-273/ecfr/title-7.structure.json",
+      "sha256": "d25298e0895823ef8af06b8993cea865341bf7bf0be48441f55de06232a7b572"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2748f60f32f6bbd9715ac38ae5cc9c5d8ece371d",
+    "dirty_tracked": true,
+    "root": "/private/tmp/axiom-corpus-pr-fixes"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Normalize 7 CFR part 273 eCFR subpart citation paths and artifact hashes"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 39,
+    "missing_count": 0,
+    "provision_count": 39,
+    "source_count": 39
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-07T03:58:28.316679+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qQUXLjQ96j45b9nTZEMDFQWesypwaGJunwXKN/vsGAThxCWWy6GSrNrJM6XmW0hQc56E4hQmPjy6eXgeU11OAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-title-7-part-273"
+}

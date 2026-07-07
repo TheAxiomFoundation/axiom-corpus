@@ -27,6 +27,7 @@ INGEST_MANIFEST_SIGNATURE_ALGORITHM = "ed25519"
 INGEST_MANIFEST_KEY_ID = "axiom-corpus-ingest-v1"
 INGEST_MANIFEST_PRIVATE_KEY_ENV = "AXIOM_CORPUS_INGEST_PRIVATE_KEY"
 INGEST_MANIFEST_PUBLIC_KEY_ENV = "AXIOM_CORPUS_INGEST_PUBLIC_KEY"
+INGEST_MANIFEST_PUBLIC_KEY_DEFAULT = "KwIYEbbs/905yxn/9Yi6jYTF8oyZcq1FlxiG4e0y0tg="
 INGEST_MANIFEST_ROOT = Path(".axiom") / "ingest-manifests"
 PROTECTED_CORPUS_PREFIXES = (
     "data/corpus/sources/",
@@ -217,7 +218,11 @@ def guard_ingested_artifacts(
 ) -> IngestGuardResult:
     """Check changed generated corpus artifacts against signed manifests."""
     repo = repo.resolve()
-    public_key = public_key or os.environ.get(INGEST_MANIFEST_PUBLIC_KEY_ENV)
+    public_key = (
+        public_key
+        or os.environ.get(INGEST_MANIFEST_PUBLIC_KEY_ENV)
+        or INGEST_MANIFEST_PUBLIC_KEY_DEFAULT
+    )
     changes = _changed_paths(repo=repo, base_ref=base_ref, head_ref=head_ref)
     protected = tuple(
         path for path in changes if _is_protected_corpus_artifact(path.path)
