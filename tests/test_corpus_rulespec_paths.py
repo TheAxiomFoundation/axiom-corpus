@@ -273,6 +273,40 @@ def test_monorepo_programs_dir_is_not_an_encoding_bucket(tmp_path: Path) -> None
     assert not any(path.startswith("us/programs") for path in encoded)
 
 
+def test_single_country_monorepo_layout_discovers_gh_and_ng(tmp_path: Path) -> None:
+    # Ghana and Nigeria use the country-monorepo layout with one national
+    # jurisdiction directory (rulespec-gh/gh/, rulespec-ng/ng/). These were
+    # missing from JURISDICTION_REPO_MAP, so navigation nodes never linked
+    # their encodings (has_rulespec stayed false).
+    gh_repo = tmp_path / "rulespec-gh"
+    _touch(gh_repo / "gh" / "statutes" / "act-896" / "income-tax-2015" / "fifth-schedule.yaml")
+    _touch(
+        gh_repo
+        / "gh"
+        / "statutes"
+        / "act-896"
+        / "income-tax-2015"
+        / "fifth-schedule.test.yaml"
+    )
+    ng_repo = tmp_path / "rulespec-ng"
+    _touch(ng_repo / "ng" / "statutes" / "nigeria-tax-act-2025" / "30.yaml")
+    _touch(ng_repo / "ng" / "statutes" / "nigeria-tax-act-2025" / "fourth-schedule.yaml")
+
+    assert discover_encoded_paths(gh_repo, "gh") == {
+        "gh/statute/act-896/income-tax-2015/fifth-schedule"
+    }
+    assert discover_encoded_paths(ng_repo, "ng") == {
+        "ng/statute/nigeria-tax-act-2025/30",
+        "ng/statute/nigeria-tax-act-2025/fourth-schedule",
+    }
+    by_jurisdiction = discover_encoded_paths_for_jurisdictions(tmp_path, ["gh", "ng"])
+    assert by_jurisdiction["gh"] == {"gh/statute/act-896/income-tax-2015/fifth-schedule"}
+    assert by_jurisdiction["ng"] == {
+        "ng/statute/nigeria-tax-act-2025/30",
+        "ng/statute/nigeria-tax-act-2025/fourth-schedule",
+    }
+
+
 def test_uk_monorepo_local_authority_jurisdiction_dirs_do_not_leak(
     tmp_path: Path,
 ) -> None:
