@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-non-refundable-credit-aggregation.jsonl",
-      "sha256": "39c9e6e41161d63a8bb3bc1874dd7fc56e9cde5c79acdd319f6ea5591a8fb081"
+      "sha256": "c5405ee8751db45e0f5cf48bbf3277661c2af8e39f6c2decf6424df6c008dcbc"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-federal-non-refundable-credit-aggregation/official-documents/5000-r-25e.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:39.430784+00:00",
+  "generated_at": "2026-07-07T03:58:01.438411+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Vna4CcFM0IjokFabl6mafYpaenrPC0CJNqStndkfCl+5eCc15Iyd3WKUwFivnY08b8CFnKpc1v/F0aKc2rVQDQ=="
+    "value": "u29MpcoD5FNsQ+QbQtgtPP764XdzO57NEdDn+8rh5Q6uHVJt1q9Reyfnd4OV8qsdOmStGj7nQ/nIprT6+6GcBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-federal-non-refundable-credit-aggregation"

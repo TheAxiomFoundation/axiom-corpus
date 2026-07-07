@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit.jsonl",
-      "sha256": "8e131543704ad06f9179b5f3018161d797937e8847c84f38bf904b9d5ddb2973"
+      "sha256": "af6d3ba847b4556ea7fba7a8ae9387ee584bd923aa28b97faa7b23cade37f26d"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit/official-documents/cra-2025-schedule-12-mhrtc.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:07.127997+00:00",
+  "generated_at": "2026-07-07T03:57:56.192411+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "WNbt1cxJ7Z0sdA5kq7+ySjLUav5SV+88vi9505LOE1rs7TtLkWoZ6bmI6g9X0X9euIB2cBSC/Nw0m97ONPU5AQ=="
+    "value": "TSWoOSuyiDOMJIs+DknIhL0TcA0G5+Zcl5z9ZoqXAluQtgrYkOaxXaKn3hdQMhumwpLh+p3ExiRWvcnSHSO5Dw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit"

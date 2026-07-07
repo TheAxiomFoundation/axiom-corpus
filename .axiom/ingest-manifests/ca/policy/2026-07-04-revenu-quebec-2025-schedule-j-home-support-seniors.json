@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors.jsonl",
-      "sha256": "5141eaf3ad1e2260d8728c91f52947d4cbb024478ced978cbacdb84f419922f3"
+      "sha256": "b2784a84f9b87b58231f3bb2b3fe15d0c38d7ec04859bac4550d2b60b1278120"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors/official-documents/tp-1-d-j-v-2025.pdf",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:46:00.220303+00:00",
+  "generated_at": "2026-07-07T03:58:04.180812+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "TheK6+GGfSiQrmsi3vbw62X0rGsy/cY5kqzgEGHIdqZPH5qSOVnpELQn3QX9WDRV/6Ur8xEy11Ng/w04wvwzBw=="
+    "value": "MhByXqqM0T1FaoQds1hKzzuhQs0C+QPEqex/KbtfuP0vSSNL7h2UIRgg0bqhiZ/91njMQcx6QdxFCh5h9uTGBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors"
