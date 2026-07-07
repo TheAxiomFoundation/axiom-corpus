@@ -1,16 +1,19 @@
 {
- "document_class": "policy",
- "jurisdiction": "ca",
- "source_count": 1,
- "sources": [
-  {
-   "primary_source": true,
-   "source_format": "html",
-   "source_id": "revenu-quebec-tp-1015-3-source-deductions-return-2026",
-   "source_path": "sources/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts/official-documents/revenu-quebec-tp-1015-3-source-deductions-return-2026.txt",
-   "source_url": "https://www.revenuquebec.ca/en/businesses/source-deductions-and-employer-contributions/employers-principal-changes-for-2026/",
-   "title": "Revenu Québec 2026 source deduction personal credit amounts"
-  }
- ],
- "version": "2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts"
+  "document_class": "policy",
+  "items": [
+    {
+      "citation_path": "ca/policy/revenu-quebec/source-deductions-2026/personal-credit-amounts",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "revenu-quebec-tp-1015-3-source-deductions-return-2026",
+        "title": "Revenu Québec 2026 source deduction personal credit amounts"
+      },
+      "source_format": "text",
+      "source_path": "sources/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts/official-documents/revenu-quebec-tp-1015-3-source-deductions-return-2026.txt",
+      "source_url": "https://www.revenuquebec.ca/en/businesses/source-deductions-and-employer-contributions/employers-principal-changes-for-2026/"
+    }
+  ],
+  "jurisdiction": "ca",
+  "source_count": 1,
+  "version": "2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts"
 }

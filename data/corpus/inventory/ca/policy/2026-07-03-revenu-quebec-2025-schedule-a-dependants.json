@@ -1,16 +1,19 @@
 {
- "document_class": "policy",
- "jurisdiction": "ca",
- "source_count": 1,
- "sources": [
-  {
-   "primary_source": true,
-   "source_format": "pdf",
-   "source_id": "revenu-quebec-2025-schedule-a-dependants",
-   "source_path": "sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants/official-documents/tp-1-d-a-v-2025.txt",
-   "source_url": "https://www.revenuquebec.ca/documents/en/formulaires/tp/2025-12/TP-1.D.A-V%282025-12%29.pdf",
-   "title": "Revenu Quebec Schedule A 2025 - Amount for Dependants and Amount Transferred by a Child"
-  }
- ],
- "version": "2026-07-03-revenu-quebec-2025-schedule-a-dependants"
+  "document_class": "policy",
+  "items": [
+    {
+      "citation_path": "ca/policy/revenu-quebec/tp1-2025/schedule-a-dependants",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "revenu-quebec-2025-schedule-a-dependants",
+        "title": "Revenu Quebec Schedule A 2025 - Amount for Dependants and Amount Transferred by a Child"
+      },
+      "source_format": "text",
+      "source_path": "sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants/official-documents/tp-1-d-a-v-2025.txt",
+      "source_url": "https://www.revenuquebec.ca/documents/en/formulaires/tp/2025-12/TP-1.D.A-V%282025-12%29.pdf"
+    }
+  ],
+  "jurisdiction": "ca",
+  "source_count": 1,
+  "version": "2026-07-03-revenu-quebec-2025-schedule-a-dependants"
 }

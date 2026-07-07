@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments.json",
-      "sha256": "565438cd99842bc230462463d5b2ffedc6f927e1a479a9c7ce92006a25068093"
+      "sha256": "a2454c46b6fbd00c4885736c13d3c405228a1f6100bb747e519e9726308fc399"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments.json",
-      "sha256": "0eaff88302223d2489ce08fbf6d5de16d4d97b7a1eb8b7b74608c05716972e8e"
+      "sha256": "c5878b851f7a369807230d163b77fbee04a28cb198a14a3ce820187c5df9366e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments.jsonl",
@@ -26,31 +26,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split multi-document scopes into child provisions; re-sign"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 3,
     "missing_count": 0,
     "provision_count": 3,
-    "source_count": 2
+    "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T19:25:06.153632+00:00",
+  "generated_at": "2026-07-07T04:37:08.138322+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "WItFHGVXTTnKYba+dzd4Z3m0/RsyDLX/MXSwxcsG579T+R0FRkQmlsSGLyQIcUtMU7Z86dbIfz9RKXqIrU3BDw=="
+    "value": "m3+91buTBQRWjmJZXtpvMpN+fE1vntqfiyx7KhJH8fVFEPpc8zc0cDPNislOtFy2h1wSrhmPm278C8QVraUtCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-worksheet-credits-and-repayments"

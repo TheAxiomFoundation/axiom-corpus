@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium.json",
-      "sha256": "6450edc8bd0310d3502d6645597c5c3e87c6f47c2f372631623b5e7f21f07619"
+      "sha256": "1d7d13423f744beacd2b1fee721af5c1420a1efa1a9de07806a49d03f6607b46"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium.json",
-      "sha256": "ec9312c6de86a7adc848103cf79ca08cb0c8ae66a6ab5cd29784e3e3fdc7dfea"
+      "sha256": "2e2d1abf7085918934dfa1d6e3b7474ec24df828c6470f141ea35ceb0c083af4"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:46:00.800254+00:00",
+  "generated_at": "2026-07-07T04:37:55.314752+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "hHxYjfE+hTmU4melW7xi+3EPowg4WiJHHNkScl44+iZ9tseYNoYm1HRLDBO03kv+BkPyC7rTS3PuTS4W/NzOBw=="
+    "value": "P3rPo55Yec56Qqhy0rR8DwY87k3hem06LLVU1ympiyLoOa8N5ANbtPSE5bQbzHLRzeGB5/lwdsuvvSHqdNfRCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium"

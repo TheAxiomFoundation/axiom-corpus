@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-03-cra-2025-yt428-resident-tax.json",
-      "sha256": "2858ebe369b4c7b7f1db60cd8de304ff045d60ae120819b53ee138fc378f3152"
+      "sha256": "3839c41f1855ba0d4c90ce8b5e0e1876b6426208fc60f9277ed0b75423b72ae0"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-yt428-resident-tax.json",
-      "sha256": "3d5d5d40ba6b5fffa43db42a4217520cc7ca9a70c0e3d3cfc99d10f8441c31b1"
+      "sha256": "774758642b2b112fd7b02cf5e682d49543190b9b3dcd9e3166d230b34a5704cd"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-yt428-resident-tax.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:53.924221+00:00",
+  "generated_at": "2026-07-07T04:37:47.392049+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Pc1EHUHB+v8f8MibZLNZav5LoC7+sa8ow9aKmOoVRuoVJ+rqk7a9p/+YZmOamBjTnqokntZGU/53J+U3WT4KBg=="
+    "value": "GXg55tBfA4N0UaGn73JnK4oMDc8DTsz0Bf5hG8aGK9nf934Fl+obOaUb/y505MHLD+D3AKZj82JqykVLuFuQBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-cra-2025-yt428-resident-tax"

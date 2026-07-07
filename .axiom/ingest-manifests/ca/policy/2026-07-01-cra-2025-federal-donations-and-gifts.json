@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-donations-and-gifts.json",
-      "sha256": "67829851f70aa0a31543ac2326196737972803fd8612b828c22021b371ca62a5"
+      "sha256": "e7728fc87fb7e37f114a37764dfe08564e63cf1d0099f94162a492fb72bb08ea"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-donations-and-gifts.json",
-      "sha256": "9c785253c0eee408032ea042e0bc724e91e258cd765b516623dd849cdf0b32e0"
+      "sha256": "98944c3f11358987897e05925318b3459b42540eb9d179730621ef16917c963e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-donations-and-gifts.jsonl",
@@ -30,31 +30,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split multi-document scopes into child provisions; re-sign"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 2,
     "missing_count": 0,
     "provision_count": 2,
-    "source_count": 3
+    "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T19:25:03.943886+00:00",
+  "generated_at": "2026-07-07T04:37:04.983348+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "UgaK3svU/W9Zx8pU0g0fJVB2lZ8WaXo7oMQaV2T2WPXNXGiePLPuG6GIghCR76Kd3YLTQhUjf8UHeyYjHx3mAQ=="
+    "value": "ou5o9NCWx5C/IBeRHnDDAine27/ypIb+/yWgZS8liSfk+nE6axgrXhuGiaLPnHzl3BE9z/QquLsN7mGg8XBGDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-donations-and-gifts"

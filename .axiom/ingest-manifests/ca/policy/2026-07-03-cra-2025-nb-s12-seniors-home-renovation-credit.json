@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit.json",
-      "sha256": "5079e0bc725e86a3bd0212435667fc481d59ec880d4437ddf51063be61ad1040"
+      "sha256": "dc8d18988fda2502f4f2a547dd4d0fc12b370e7b3b17ae20c0edc00efdbf447b"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit.json",
-      "sha256": "c71b51bee2e153e8a832ec9e36030577bf105ef80d4ee43f0f18a08799eda607"
+      "sha256": "da93a14dd81e74fc240a5eafc6e89d2ce0ab363680eae3073831c7be731d7d22"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:46.397637+00:00",
+  "generated_at": "2026-07-07T04:37:38.796890+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "3+ApIDOLCl04QbsSqpVQuv5VmwmaEiuCv2Ho1HkHdjoEKsSt7IHMIpoUK3SrApkVnDzQZ/IdvjxjVYKG+JsJDw=="
+    "value": "rvfs/fJWRXspP78IDqr4cl7SY07zsJUKAOO8FK2pDvEBWfwqlmDefn4DajZahRAgtfr1fEGphnekhtOOmc3hDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit"

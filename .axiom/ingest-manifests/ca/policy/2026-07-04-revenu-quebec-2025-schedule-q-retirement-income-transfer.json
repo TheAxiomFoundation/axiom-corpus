@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer.json",
-      "sha256": "8fef72cd5e299285b5390593424a1911b7cecb59f864c794db00182f8c444889"
+      "sha256": "590f9843df5635c630a14020ca71787ab625d7e65bbdda301af75bed7b5ec05c"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer.json",
-      "sha256": "20a788da9c0dac7ce4d4b48a818f186987903cf27eba80fcaa463ff754338458"
+      "sha256": "118429b6578cf14f15ad7753a5e193eb28e880d653cb7e13b692ab26bd3a992e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:46:03.820443+00:00",
+  "generated_at": "2026-07-07T04:37:58.409988+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "8lI7bxiGA3ElTwYNovTN5Xgs14TIJ9cAgaI/c17HoZ16IdoiiqZnlQWJzB9kROWUephSAmCVX40buBaPvMB6Aw=="
+    "value": "A0NLV81Wcbmj3wcctilo3BTlOqyHT44slvkLun2WVIKdQYMcVOPT3ilHKc9kWVjOeIMrYXxGiYVxIhnb5z2aAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer"

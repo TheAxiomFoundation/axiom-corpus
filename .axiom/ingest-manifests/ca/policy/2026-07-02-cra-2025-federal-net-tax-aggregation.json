@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-federal-net-tax-aggregation.json",
-      "sha256": "4b3a3fbd9a4e8bd6aa8a68cd230932c2a76f0f2472d7eae636968c38b3941c6e"
+      "sha256": "b24f674251d65847ab7f37d763750e06dcc446608b6ce3a5e02d4b0e96762482"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-federal-net-tax-aggregation.json",
-      "sha256": "636284848ec2094c0c8b999edefb2a770d348af3f6b7ecbface5f4d134986dbe"
+      "sha256": "651ef1c2e07217be425b6ec9677e9e2a1c57a8b0e9f7124c8b4ff445c12ebb94"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-net-tax-aggregation.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 7,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 7,
+    "source_count": 7
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:58:00.796849+00:00",
+  "generated_at": "2026-07-07T04:37:30.163000+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "GFvFUFlDcXab5aB89wNMJeyaukAUVeyZpGuxQb2Ip3XssariHJ2E+ewlMux74y6Ih/pfCYQi8/LDhO+xM34PCw=="
+    "value": "jkuLsIVd43gg9nWoCwkt+VFTJW7K6Vnc2r92jHRG/7y5mygcF3tEhRgODt0crq5wiCkGBQsGUMVf51A4K9YCDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-federal-net-tax-aggregation"
