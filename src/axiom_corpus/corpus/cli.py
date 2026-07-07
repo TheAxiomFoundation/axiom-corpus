@@ -4714,6 +4714,7 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
         artifact_report=artifact_report,
         max_issues=args.max_issues,
         strict_warnings=args.strict_warnings,
+        ignore_r2_missing=args.ignore_r2_missing,
     )
     payload = report.to_mapping()
     payload["release_path"] = str(release_path)
@@ -6744,6 +6745,14 @@ def build_parser() -> argparse.ArgumentParser:
         help="Top-level artifact prefix to include in the artifact report.",
     )
     validate_release_cmd.add_argument("--include-r2", action="store_true")
+    validate_release_cmd.add_argument(
+        "--ignore-r2-missing",
+        action="store_true",
+        help=(
+            "Do not fail release validation only because local artifacts have "
+            "not yet been mirrored to R2. Other artifact mismatches still fail."
+        ),
+    )
     validate_release_cmd.add_argument("--bucket")
     validate_release_cmd.add_argument("--endpoint-url")
     validate_release_cmd.add_argument("--credentials-file", type=Path)

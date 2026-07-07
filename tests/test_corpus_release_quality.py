@@ -88,6 +88,52 @@ def test_validate_release_accepts_r2_complete_remote_only_scope(tmp_path):
     assert report.issues[0].code == "remote_only_scope_not_deep_validated"
 
 
+def test_validate_release_can_ignore_r2_only_mirror_gaps(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    artifact_report = ArtifactReport(
+        local_root=store.root,
+        prefixes=(),
+        local_count=0,
+        local_bytes=0,
+        local_by_prefix={},
+        remote_count=0,
+        remote_bytes=0,
+        remote_by_prefix=None,
+        rows=(
+            ArtifactScopeRow(
+                jurisdiction="ca",
+                document_class="policy",
+                version="v1",
+                local_inventory=True,
+                local_provisions=True,
+                local_coverage=True,
+                local_source_files=1,
+                remote_inventory=False,
+                remote_provisions=False,
+                remote_coverage=False,
+                remote_source_files=0,
+                coverage_complete=True,
+                provision_count=10,
+                supabase_count=9,
+            ),
+        ),
+    )
+
+    report = validate_release(
+        store.root,
+        ReleaseManifest(name="current", scopes=()),
+        artifact_report=artifact_report,
+        ignore_r2_missing=True,
+    )
+
+    assert report.ok is False
+    assert report.error_count == 1
+    assert report.issues[0].code == "artifact_report_mismatch"
+    assert report.issues[0].message == (
+        "artifact report has mismatch reasons: supabase_count_mismatch"
+    )
+
+
 def test_validate_release_reports_scope_invariant_errors(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     version = "2026-04-29"
