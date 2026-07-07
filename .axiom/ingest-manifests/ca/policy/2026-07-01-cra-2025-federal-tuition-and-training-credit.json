@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit.json",
-      "sha256": "b003722ace9ead3b452251383952ccec35fec398dce8dfee8cb57885599baac4"
+      "sha256": "fee159e057453b62cdd1ad13be9acb4dbaf1bda00e51ca364cd1da0d3e8fa969"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit.json",
-      "sha256": "4d7d2df8c90c02d6a29b156cc1e90f6eb6b32c71a8cfb2dcab0fb4e1a278c586"
+      "sha256": "55fca7094380da4d8e0cdf8f6d7b536cb5d0c2da5d2b4e3913d4c3de4f2e0e62"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-tuition-and-training-credit.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:05.436763+00:00",
+  "generated_at": "2026-07-07T04:37:07.516802+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Rf889GSCxU3eiaBwaPQ35VtP0xP6kvFCQLC2JsQ6LFKZYwgcNPVfK1cL4txd3pR9+zPZkOXeHIEohvGpAr4EBQ=="
+    "value": "fuOYFijmO2bjz8yqfjzL1ooYHGOjYWxEejEOgP6nrl3s6KtPAznKhAYTVZJ48ad/0JOhN37vp918Mf1c1gPtCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-federal-tuition-and-training-credit"

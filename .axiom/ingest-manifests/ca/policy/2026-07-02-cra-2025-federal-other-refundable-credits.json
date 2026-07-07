@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-federal-other-refundable-credits.json",
-      "sha256": "c8022f90cbb0d795b5ea9a653d9e62a55ef55d4278f83dfe3b45df7a1e29ed3e"
+      "sha256": "910a3b49f01867afeb2543828c538f7a4e5b0d2a091a574646a078c4151aced7"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-federal-other-refundable-credits.json",
-      "sha256": "fc8d6918f5825ab587c6fed4f6f8068fd117f5b4af631442c8f65f5524e0027a"
+      "sha256": "aa225ce71a94e468cc184804705636ab932275d8cd0c75139b7cb7f0494bcc9d"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-other-refundable-credits.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:13.403534+00:00",
+  "generated_at": "2026-07-07T04:37:31.702707+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JiYYhdBHxHp74owVR92ONYrhE9zfjq6z7eVKaVEC6me2n1qIRQJtsqtAQOy7TVO7JE7J6gOWmdJv0Sk5aMj7CA=="
+    "value": "E3ZWAF/FDN73qkGfkwIJdmg05q3Zs2ffmR8QBx1fnjQJ5YcUcJ0ApnvNipUPanPaf6e04laEP5mMvs/h66ztDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-federal-other-refundable-credits"

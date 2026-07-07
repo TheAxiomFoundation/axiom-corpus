@@ -1,48 +1,19 @@
 {
- "document_class": "policy",
- "jurisdiction": "ca",
- "source_count": 5,
- "sources": [
-  {
-   "primary_source": true,
-   "source_format": "html",
-   "source_id": "cra-canada-carbon-rebate",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-canada-carbon-rebate.html",
-   "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate.html",
-   "title": "CRA 2026 federal family, grocery, and carbon benefit parameters"
-  },
-  {
-   "primary_source": true,
-   "source_format": "html",
-   "source_id": "cra-canada-child-benefit-how-much",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-canada-child-benefit-how-much.html",
-   "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/how-much.html",
-   "title": "CRA 2026 federal family, grocery, and carbon benefit parameters"
-  },
-  {
-   "primary_source": true,
-   "source_format": "html",
-   "source_id": "cra-cgeb-payments-chart",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-cgeb-payments-chart.html",
-   "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-groceries-essentials-benefit/how-much/payments-chart.html",
-   "title": "CRA 2026 federal family, grocery, and carbon benefit parameters"
-  },
-  {
-   "primary_source": true,
-   "source_format": "html",
-   "source_id": "cra-child-disability-benefit",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-child-disability-benefit.html",
-   "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-disability-benefit.html",
-   "title": "CRA 2026 federal family, grocery, and carbon benefit parameters"
-  },
-  {
-   "primary_source": true,
-   "source_format": "html",
-   "source_id": "cra-gst-hst-credit-one-time-top-up",
-   "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-gst-hst-credit-one-time-top-up.html",
-   "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/gst-hst-credit/how-much/one-time-top-up.html",
-   "title": "CRA 2026 federal family, grocery, and carbon benefit parameters"
-  }
- ],
- "version": "2026-07-01-cra-2026-federal-family-and-climate-benefits"
+  "document_class": "policy",
+  "items": [
+    {
+      "citation_path": "ca/policy/cra/benefits-2026/federal-family-and-climate-benefits",
+      "metadata": {
+        "primary_source": true,
+        "source_id": "cra-canada-carbon-rebate",
+        "title": "CRA 2026 federal family, grocery, and carbon benefit parameters"
+      },
+      "source_format": "text",
+      "source_path": "sources/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-canada-carbon-rebate.html",
+      "source_url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-carbon-rebate.html"
+    }
+  ],
+  "jurisdiction": "ca",
+  "source_count": 1,
+  "version": "2026-07-01-cra-2026-federal-family-and-climate-benefits"
 }

@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-tax-on-split-income.json",
-      "sha256": "b309cfc6cd5be03804d07a445b12e28cab7386d124d97bbcb202432bb850fc72"
+      "sha256": "08b035e1c8dec542fe1f92aa0a5eac63cc6315629dcc930abcbe8760147c6952"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-tax-on-split-income.json",
-      "sha256": "837d96ff76ac76f93dae251883d35a5194dbcd1f43011bc953b82ae679b3c9a1"
+      "sha256": "e070241efced3fdf0b17abe3313bb3257d35750abb03cecfc2894bff5761bfb6"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-tax-on-split-income.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "drop redundant duplicate records; re-sign"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
-    "provision_count": 3,
+    "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T19:26:16.539401+00:00",
+  "generated_at": "2026-07-07T04:37:21.543634+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "bu+mnt1lUT8N87DQNQmMMc8cYCTeJ1eW3DD1hyRTNXOUut3TMHGyLSGX/a0vA2pHI8LlPV2krs/jIg9eiS9mBg=="
+    "value": "RfeyLCZra6RSi60vMjIckfqemcWVqjLBJNLu/j2lTMMSxfcfaD8ypjMRZHf7rl6NAtf4WCoLZt0zJ9zTlH7YDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-tax-on-split-income"

@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-employment-insurance-premiums-self-employment.json",
-      "sha256": "0727d4bd662c4f64e7631c457930c3b3cc39671b99a18a0102c787c516aeee4a"
+      "sha256": "b719e5ee34d83fbff0868f2885ff78f72b74c2163941d804c82f3b8f30bcbd6c"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-employment-insurance-premiums-self-employment.json",
-      "sha256": "0ad40ea7dc5d05638c6fc91c9c9bfe999f1caace268c5e5ac65c737c3dd4f382"
+      "sha256": "48cb481df58e7deaef740ac1149488203f4f243767d05b178ab52b173d59b5aa"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-employment-insurance-premiums-self-employment.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:15.541182+00:00",
+  "generated_at": "2026-07-07T04:37:04.351316+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "TEHYOOaJR8VFL6JOpuNS51rLeeAUgN6vj5Q6LYTNxtwjKN+uxbTv6H1YcAN3IcsXJ4acaeJG6Bg0XWFrtIg+Aw=="
+    "value": "MqSCXQkKicNb5LY0MMivMfR+IJxgEN9SO5oCIxASz8rgolciqgDOS5UqcdirhNeM5dDnFfZiR8xMXIUqzLsdBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-employment-insurance-premiums-self-employment"

@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-nonresident-world-income-credits-section-217.json",
-      "sha256": "ed6ed6e19d563d5344fdcf70112f9f26a6f1a2b19309e50b4216782869cb71c7"
+      "sha256": "b80c40999faf2ee022a44bf7ae4e8f37184669314ca12f3ac210835124201edd"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-nonresident-world-income-credits-section-217.json",
-      "sha256": "f6983e51fe23cccb4500a320876f30170e95dda6a98899262ed12b6aafce6a06"
+      "sha256": "6a581ff759d69c508dc5f91ed3d9ef8c42a338efd23cfbe31c3647423cedb4f1"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-nonresident-world-income-credits-section-217.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 3,
     "missing_count": 0,
-    "provision_count": 1,
+    "provision_count": 3,
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:56.918905+00:00",
+  "generated_at": "2026-07-07T04:37:12.202522+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "os5sN6c2rz0w0rIbcwgZqBkz2wJxmtxeCRokmRP7j8Hi00LAbsv4BL0nOcgj0/vaDUnwMoZcZNLrHOZFIxv6DQ=="
+    "value": "UReYcgcSeSjnoXJUKrWQsrkuJkDYYlUNLceeLTniZ1pX2R0PGhAPWuKh4ZDZJ83uOrQPIg0cTwRbgBkZQXwICg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-nonresident-world-income-credits-section-217"

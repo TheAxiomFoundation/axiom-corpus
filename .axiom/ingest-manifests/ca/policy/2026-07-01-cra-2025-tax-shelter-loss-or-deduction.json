@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.json",
-      "sha256": "3f5bfd5d8f6f7cfe33ba3b74a7db067674668eda78a825b3d3d05cb7a8718830"
+      "sha256": "2e3417945a8b7045eabc4e81a96895a3cfe3482ff66d0a42c8e2f9782ef66e55"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.json",
-      "sha256": "ded4a2c086e5499523ccfc38c130932671a6c15d74f325eac6f12a8cd50eaa13"
+      "sha256": "e2465bab4faccb5d03efa4d97d3b2f7b4662a98603ac41118ad45e2b152d4635"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:31.679146+00:00",
+  "generated_at": "2026-07-07T04:37:22.191662+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "vnXSk0ufiTBuODbAvYPOxfDd7jKWRyN9cKIOcTdpeU5FsuL5tQ4NWZQJXDE67u2Q3nET3rHsxcMq+eUDUsAZDw=="
+    "value": "ZJUSRicWmT50x81r/B8GjhCB8bZ3Fquh6Ike34ocT6Uf7hUeEzmmS3fumMeq2JtHv/3FN8FlxJH+OnzP8XCjDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-tax-shelter-loss-or-deduction"

@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-claim-codes.json",
-      "sha256": "949a9069ba9439406e741bc3fe64d4edf59026d31e4c49dc42226a52572d2fe5"
+      "sha256": "fa3a6788d1d85325d608d243c4d917328ab455a9375a2ea64971e5cea04c33c9"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-claim-codes.json",
-      "sha256": "61f02113bc3b8d3f78456f1b66c2b68935fcd10457259aa025e124c91b1a7325"
+      "sha256": "eb1fa42a93d5115af3967e917c28ad7aec25a0ecf46a09f5391154501214ce19"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-claim-codes.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 7,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 7,
+    "source_count": 7
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:58.180421+00:00",
+  "generated_at": "2026-07-07T04:37:22.852724+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "7PmFqoDfYQMq285VF+2ziT1WR+aY0i6Mw91hyuWpBi5tti9b1z3xeBq3bgjTVYrFlO2EviRLysG2eM1AMuwaAw=="
+    "value": "fNQVo5QqQ9inaUf3+MDnJtKoInXRqvbPCO5Ugg4GqhwqJl2OuSHade+keRuul3br1YOnO+nl05WiDJskcdFkCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-claim-codes"

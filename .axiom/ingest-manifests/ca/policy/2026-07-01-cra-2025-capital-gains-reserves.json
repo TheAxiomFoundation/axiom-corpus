@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-capital-gains-reserves.json",
-      "sha256": "80fa131a10f5d4e46c32fe6fbc4ac05f9a38063cfbf5996c02f48dce0ca35b10"
+      "sha256": "0a378377a2ad353312590826f3ba8327373ddbfdd64b5fc6544ef4519cb406af"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-capital-gains-reserves.json",
-      "sha256": "09d8f010ce8b98aa3d3c0c10a4f046fabfefdb175dc01ff501863287bb3edac2"
+      "sha256": "437ce8f24bfabed66e33910dfa8e2d48468ab4b91550aa461612d9df3837633c"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-reserves.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 3,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 3,
+    "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:52.494189+00:00",
+  "generated_at": "2026-07-07T04:37:00.613244+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "X3xAzIZZhjqBFOAE2iEip6ETWf8SAskOYKItRNUbyTjZhNpRWc4Vqm2dTTBeDR8u8nqptv36p6Ob2UM+Po3gDw=="
+    "value": "TpvDQqORz8DIEO1jM0JpALHIQns1/DNjTOAuAA4kD/Qtzkm8DnDhVoxUV8TQUOqQL2jpufKCzMcJPzWrwXXVBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-capital-gains-reserves"

@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
-      "sha256": "2576ab134f0b80d26c77f7df5ea1540c80992a6eb7c94e5336befc3d9eeead71"
+      "sha256": "d87c39294a7af164f92a5db78c532a89033875ec42ee1c53ebaed5a4f07f6ddb"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.json",
-      "sha256": "1c8dfd98c0adbf5cece45d6d3e617d84593be4fbca517d45fb4031afdf110d8e"
+      "sha256": "f43f04720d38a1a7ed9b62a18fcb93776e43b9ede9aac4f6c94d7eed89151f97"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp.jsonl",
@@ -30,31 +30,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "15f28eafb2a7bd9b3828d904b1c1564988ff58e9",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split multi-document scopes into child provisions; re-sign"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 2,
     "missing_count": 0,
     "provision_count": 2,
-    "source_count": 3
+    "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T19:25:08.271977+00:00",
+  "generated_at": "2026-07-07T04:37:14.786286+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "jhfbIX7KwnngW8+dc0P9G1lGWt6YiH7kS8w4m8y0oR9rpg8IPPPgSY3s/W2Z+ahRY98SdYthPOFyiaDpNfX7AQ=="
+    "value": "GXXCScA65948F/63TkqRl38RopZpZ47ThFXhCDcNcg/1x/we+7RD1yQ4puiguwTa6QUlQcqhg3km0vYfhjjcBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp"

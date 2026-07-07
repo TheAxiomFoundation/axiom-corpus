@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-cumulative-net-investment-loss.json",
-      "sha256": "59bb334de23d5eb1e4f61b803fb722d3f5120d2177923f37f1cae122d471c313"
+      "sha256": "c1f78a300f464c882a4f1bc593b989d50d821b7ef676bac2ccf1b09dcfc9178c"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-cumulative-net-investment-loss.json",
-      "sha256": "8a2fffa30128878e33a60f1ba8da43793c270f16ab768bba0e9b53b379269e51"
+      "sha256": "ab66ea8ecd383a3cbb74a450874bf1f28607e02ef6393d48a0fab2e7292f935e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-cumulative-net-investment-loss.jsonl",
@@ -18,31 +18,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 4,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 4,
+    "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T03:57:53.844038+00:00",
+  "generated_at": "2026-07-07T04:37:01.887597+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "cknDDCrx6iAxRO+okdqympxmYspnRrrBMmzTVv+tTo2i5NVh8EKLvv7tNh+ouYmtapDiEXioLFVV6T2T8VJuDQ=="
+    "value": "vHQZW7UmcxQfVI40cvkbnic0jhB2h7nQSSH52Xaf7bwCzWeDkRrPW5tpxwt5Ldyw6AS7xk7ZUgxUwK4V7V/ECA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-cumulative-net-investment-loss"

@@ -2,11 +2,11 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.json",
-      "sha256": "b0e64c3304b983ece1d571ff1fcfa5fdb42c3bc62abc6cd4c3de44aaad6c34d5"
+      "sha256": "821ae32d1432835db3eb612b30a67a66197746392ffe9a2a36631605ef1e1f80"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.json",
-      "sha256": "f328d31a5720775ec627b55a981a25729aee39a5ccd9540a9a9b74670cc85445"
+      "sha256": "502975cbbc738287adcefd3090654d1f2c36247e7461afc7f20617247ca4fcba"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.jsonl",
@@ -22,31 +22,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
   },
   "coverage": {
-    "complete": null,
+    "complete": true,
     "extra_count": 0,
-    "matched_count": null,
+    "matched_count": 1,
     "missing_count": 0,
     "provision_count": 1,
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:59.648470+00:00",
+  "generated_at": "2026-07-07T04:37:54.054317+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ZaVuhUkTZv0RPrscBoPaLEQpZRiDUQgD+dtR/lUTtvy9FjI7a23JBPP6keAw1EIjbykLg6Nrxq33HYUuwXOjAQ=="
+    "value": "fTAzJQI2fbaJzJnKvUj7v2jMwNX1ovhT9qUAnwXRgSqjTMZZhhSkE4/8Damjzjw4jp8kUsuGpEkOpnq4rPuiBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-h-caregivers"
