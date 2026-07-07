@@ -1,0 +1,1 @@
+Limited `load-supabase --replace-scope` deletion to rows matching the loaded file's versions. Previously it wiped the entire jurisdiction/document class, so a per-scope reload loop silently deleted every sibling scope; version-less files are now rejected with an actionable error instead of triggering a class-wide wipe.
