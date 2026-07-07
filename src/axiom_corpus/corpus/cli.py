@@ -605,7 +605,15 @@ def _cmd_load_anchors_supabase(args: argparse.Namespace) -> int:
 
 
 def _cmd_load_supabase(args: argparse.Namespace) -> int:
+    # load_provisions returns () for a missing path; a load that
+    # "succeeds" with zero rows because of a typoed path masks real
+    # failures (a broken reload loop once reported 11 scopes OK while
+    # loading nothing), so refuse explicitly.
+    if not Path(args.provisions).exists():
+        raise SystemExit(f"provisions file not found: {args.provisions}")
     records = load_provisions(args.provisions)
+    if not records:
+        raise SystemExit(f"provisions file has no records: {args.provisions}")
     service_key = ""
     if not args.dry_run:
         service_key = resolve_service_key(
