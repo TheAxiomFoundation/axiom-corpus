@@ -1,0 +1,85 @@
+# Ghana transfer-programme capture (rulespec-gh transfers tranche, GHAMOD
+# bsa_gh / bed_gh / bedes_gh parity).
+#
+# These are administratively-set programmes (gh/policies in the rules
+# repo); the promoted sources are official Government of Ghana documents:
+# 1. LEAP grant amounts: the Ministry of Gender, Children and Social
+#    Protection's 97th-payment-cycle announcement states the bi-monthly
+#    cash grants in force from the June 2025 indexation — GH¢320 (one
+#    eligible member), GH¢380 (two), GH¢440 (three), GH¢530 (four or
+#    more) per two-month cycle. GHAMOD GH_2025 codes the same numbers as
+#    MONTHLY amounts — a 2x divergence candidate recorded in
+#    rulespec-gh#10.
+# 2. School feeding: the 2025 Budget Statement and Economic Policy
+#    (paragraph 381) states the feeding cost "per meal per child per day
+#    from GH¢1.50 to GH¢2.00" — the GH¢2.00/day in force from 2025,
+#    matching GHAMOD's constant exactly. Paragraph 386 carries the LEAP
+#    indexation and allocation corroboration.
+# 3. Free SHS: paragraphs 376-379 of the same 2025 Budget Statement pages
+#    carry the Free SHS funding structure (GETFund uncapping for full
+#    funding of fee-free public SHS). No official public per-student
+#    subsidy schedule exists; GHAMOD's per-year amounts (1,002.47
+#    residential / 648.47 day) have no located official basis (searched
+#    MoE, Free SHS Secretariat, budget statements 2026-07-07; moe.gov.gh
+#    serves a self-signed certificate) — recorded as a finding candidate;
+#    the rules module encodes the fee-free structure and defers amounts.
+documents:
+  - source_id: gh-mogcsp-leap-97th-cycle-2025
+    jurisdiction: gh
+    document_class: policy
+    citation_path: gh/policy/mogcsp-leap/payment-cycle-97-2025
+    title: MoGCSP — 97th LEAP payment cycle announcement (bi-monthly grant amounts, June 2025 indexation)
+    source_url: https://www.mogcsp.gov.gh/mogcsp-commences-disbursement-of-97th-leap-payment-cycle/
+    source_format: html
+    source_as_of: '2026-07-07'
+    expression_date: '2025-08-04'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_document
+    metadata:
+      primary_source: true
+      source_authority: Ministry of Gender, Children and Social Protection
+      source_family: social-protection/leap
+      source_note: >-
+        Official MoGCSP announcement of the 97th LEAP payment cycle
+        (published 4 August 2025, covering the May-June 2025 bi-monthly
+        grants plus arrears of the 25% June-2025 indexation). States the
+        per-cycle grant amounts by number of eligible household members:
+        GH¢320 / GH¢380 / GH¢440 / GH¢530 for one / two / three / four or
+        more members, paid bi-monthly.
+  - source_id: gh-mofep-2025-budget-social-protection
+    jurisdiction: gh
+    document_class: policy
+    citation_path: gh/policy/mofep-budget-2025/social-protection-paragraphs
+    title: 2025 Budget Statement and Economic Policy — school feeding and LEAP paragraphs (pp. 83-84)
+    source_url: https://mofep.gov.gh/sites/default/files/budget-statements/2025-Budget-Statement-and-Economic-Policy_v5.pdf
+    source_format: pdf
+    source_as_of: '2026-07-07'
+    expression_date: '2025-03-11'
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 1048576
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>376)\.(?:\s+(?P<heading>.+))?$'
+      section_label_replacements:
+        '376': social-protection-paragraphs-376-386
+      page_windows:
+        - start_page: 83
+          end_page: 84
+          start_at_pattern: '^376\.'
+    metadata:
+      primary_source: true
+      source_authority: Ministry of Finance (Budget Statement presented to Parliament)
+      source_family: social-protection/budget-statement
+      source_note: >-
+        Pages 83-84 of the 2025 Budget Statement and Economic Policy
+        (text-embedded PDF on the Ministry of Finance site). Paragraph 381
+        states the School Feeding Programme "feeding cost per meal per
+        child per day from GH¢1.50 to GH¢2.00"; paragraph 386 states the
+        LEAP inflation indexation, the 350,000 to 400,000 household
+        expansion from July 2025 and the GH¢728.8m to GH¢953.5m allocation
+        increase.
