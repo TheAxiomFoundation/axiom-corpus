@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.json",
-      "sha256": "7fa9150d59d9855a8faca9f39d7555e6119865efcd2c3d84a91c16abf0933949"
+      "sha256": "78348187daebc93007110b69a4f239831fbe2ac92ad7e3e18c099c6d95991b73"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.json",
-      "sha256": "849e3633e1fade56df6051afab5ef69b2df2319bde3b94099107497e8c1fa746"
+      "sha256": "9414e5ee53f86d1a6d0922aaa7618546d2044ecd9801ecfcdfa275f5fc1728d3"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.jsonl",
-      "sha256": "b6fa53183df97395eac25d26a69bbe9fc162c0beefe8fca4e545bdea3d0c4c85"
+      "sha256": "5c8ab6444ff13477495e54f011ca25c916fdca7b4c9f6c0b4416ccd0784c5784"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1ab.txt",
@@ -66,31 +66,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
+    "commit": "b1e629503f758ff947cbf86a996ddc87b1c8cd72",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "restructure concatenated multi-capture scopes into per-capture children; revert TOC-artifact step splits on shared t4127 scopes"
   },
   "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 1,
+    "complete": false,
+    "extra_count": 1,
+    "matched_count": 12,
     "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
+    "provision_count": 13,
+    "source_count": 12
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:26.682814+00:00",
+  "generated_at": "2026-07-07T04:52:01.304780+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "WH2DJ2gHrSnznbwhw7fWLI8UOMDJbJYxIQgX+dzdqWD+8+33LXlQYlfBktLvriheChm6t6bUoH+xDGFGkk1hAQ=="
+    "value": "AL8dGsgGXdFnrukKLlVsOh+c1Y0SyrqXi0aQrdk7LlSzhNF29akajOE97FtltrxrpLhCg1wtwIXob2F8mk3LCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-provincial-territorial-td1-personal-credits"
