@@ -55,6 +55,7 @@ jobs:
         env:
           AXIOM_CORPUS_INGEST_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_INGEST_PUBLIC_KEY }}
         run: |
+          export AXIOM_CORPUS_INGEST_PUBLIC_KEY="${AXIOM_CORPUS_INGEST_PUBLIC_KEY:-KwIYEbbs/905yxn/9Yi6jYTF8oyZcq1FlxiG4e0y0tg=}"
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             BASE_REF="${{ github.event.pull_request.base.sha }}"
           else
