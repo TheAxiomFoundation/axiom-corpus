@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-claim-codes.jsonl",
-      "sha256": "3a1908a58624adbdf77f38de2f4707b647ab7818c4e6779c89c31da4133b6100"
+      "sha256": "3cd72a1a4678500b0ed2c56c51805a900c7dbe6bb432aaa7875bb87a7ebe5eb3"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-claim-codes/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:08.275527+00:00",
+  "generated_at": "2026-07-07T03:57:58.180421+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JDnr+8ctVq1tleFEQt7/t6l6svluNqmjzM9n/PTtUCJN9sfrH9+rsxHcODMsQehSfdNIgM2CihBA2KZIuNoaAA=="
+    "value": "7PmFqoDfYQMq285VF+2ziT1WR+aY0i6Mw91hyuWpBi5tti9b1z3xeBq3bgjTVYrFlO2EviRLysG2eM1AMuwaAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-claim-codes"

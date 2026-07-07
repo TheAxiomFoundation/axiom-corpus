@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-alternative-minimum-tax.jsonl",
-      "sha256": "483242b6b3547493894ae79b9418a30e0db946fb4401c1a5ec5a0fd8487b68b5"
+      "sha256": "8991d040cfb5c756406650a54ff26b32d76c7a33c38967f3b87d7b34d9bced48"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-alternative-minimum-tax/official-documents/cra-2025-alternative-minimum-tax.txt",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f8403cb1c227db0cc24aa1857e8ff765bfe532c",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "manual provenance cleanup: complete Canada source captures and sign full scope artifact set"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:45:08.635462+00:00",
+  "generated_at": "2026-07-07T03:57:41.143523+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "eglq9nXwW8RTnQp/FJcRRvk2YCOklzbllLHZrT7wy/ANPRVYlb4lNoV+LOPW7EwFCZ/EYblRwN2/vrUeACVZBA=="
+    "value": "CS+KctkP/MgMLx8Abs8lTizDcLfPVGSAJXF7LlZzD3tWXvNM8WI2Y8iygIlJOkYIrSHIZD3EhZq9fkarUUpyCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-alternative-minimum-tax"

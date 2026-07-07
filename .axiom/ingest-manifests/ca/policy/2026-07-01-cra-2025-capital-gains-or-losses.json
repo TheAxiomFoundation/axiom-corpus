@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses.jsonl",
-      "sha256": "44b113b4e44c534f228bcd55f256a5b092b75e79bd1bd6cdb68fcc73c9597b2f"
+      "sha256": "29fd92e68aa980c8841bd91c7c84b5e81527254889eda91e10d39b1f813d94d5"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-capital-gains-or-losses/official-documents/cra-2025-schedule-3-capital-gains-or-losses.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:03.169305+00:00",
+  "generated_at": "2026-07-07T03:57:51.846402+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "10cJfDHhZh5JIUdOjBFYOXIbFSoGtHJWhoEdFVWM8UkYZcrDxjHDWpN6ZicbkElNFfyBOtFbk/jyeOgVTJZ/Dg=="
+    "value": "Z030CoydTuCbJAMTRin8XNyO9bVkPgjATEfpkKbr4asf9QDk0f89htU8U2iBJDkhZ8SW1VtukOTBKe8NkC9zCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-capital-gains-or-losses"

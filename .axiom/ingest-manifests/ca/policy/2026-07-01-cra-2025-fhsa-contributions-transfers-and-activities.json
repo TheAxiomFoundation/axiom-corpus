@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities.jsonl",
-      "sha256": "5180a461a9e576294b59a2572ddf4b77c2cf679661a71b69e142599ce443474a"
+      "sha256": "ac7b24fda7da01599df9885a4f8299e25e1bd8cb55b4646f713f0a412795e7f4"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities/official-documents/cra-2025-schedule-15-fhsa.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9da972a5912f9af1c5485e6ee914a97f8a7e5d5b",
+    "commit": "f62ddfd6884eb5c8a4e1c1d6a735bdef50222991",
     "dirty_tracked": true,
     "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "provenance remediation: real official-source captures replacing agent digests; bodies re-derived from captures"
+    "text": "split monolithic document bodies into per-Part/Step section child provisions (verbatim slices, audit clean)"
   },
   "coverage": {
     "complete": null,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-06T16:54:06.566522+00:00",
+  "generated_at": "2026-07-07T03:57:54.523647+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "EBPdfarKzndiwS0x2zPUrqMRiZHGibl834vVe5s2Duf/s25bNeuK57owh+2N2EnhUkEa996ENXtyiqnQ82MjBA=="
+    "value": "5k7P1pfuIrxmtIo5WkUeaMLq83qz0CFwk51CoSxlxQAe2ux3sonKswGOcKfZ1QQHhAEmF61zQfghDfWdlhrRDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities"
