@@ -4593,7 +4593,7 @@ def _cmd_section_provisions(args: argparse.Namespace) -> int:
         if record.get("level", 1) == 1 and record.get("kind") == "document"
     ]
     split_docs = []
-    new_records: list[dict] = []
+    new_records: list[tuple[dict[str, Any], str, list[dict[str, Any]]]] = []
     for parent in documents:
         if any(
             other.startswith(parent["citation_path"] + "/") and section_slug.search(other)
@@ -4640,11 +4640,11 @@ def _cmd_section_provisions(args: argparse.Namespace) -> int:
         "applied": bool(args.apply and split_docs),
     }
     if args.apply and new_records:
-        out: list[dict] = []
-        replaced: dict[int, tuple[str, list[dict]]] = {
+        out: list[dict[str, Any]] = []
+        replaced: dict[int, tuple[str, list[dict[str, Any]]]] = {
             id(parent): (intro, children) for parent, intro, children in new_records
         }
-        trailing: list[dict] = []
+        trailing: list[dict[str, Any]] = []
         for record in lines:
             if id(record) in replaced:
                 intro, children = replaced[id(record)]
