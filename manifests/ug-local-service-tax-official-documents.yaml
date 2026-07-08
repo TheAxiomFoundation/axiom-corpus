@@ -1,0 +1,52 @@
+# Uganda Local Service Tax capture (rulespec-ug instrument 7, UGAMOD
+# tgv_ug parity; tracking rulespec-ug#1).
+#
+# The Local Governments (Amendment) (No. 2) Act, 2008 (Act 8 of 2008 on
+# the print's running heads) inserts the local service tax and local
+# government hotel tax into the Local Governments Act: section 2 amends
+# the Fifth Schedule, inserting the LST regulations with the graduated
+# rate tables — salaried employees by monthly take-home income
+# (>100,000-200,000: 5,000/yr through >1,000,000: 100,000/yr), and the
+# self-employed classes (professionals, businessmen, artisans, commercial
+# farmers) with their own banded amounts. UGAMOD's tgv_ug implements
+# the employee table (loc01=1) and two self-employed classes exactly.
+#
+# Captured single-block from the parliament CMIS print (scan, fresh OCR
+# at 300 dpi; the rate tables render row-contiguous at psm 3).
+documents:
+  - source_id: ug-act-2008-8-local-governments-amendment-no2
+    jurisdiction: ug
+    document_class: statute
+    citation_path: ug/statute/act-2008-8/local-governments-amendment-no2-2008
+    title: Local Governments (Amendment) (No. 2) Act, 2008 (Act 8 of 2008) — local service tax inserted (Fifth Schedule)
+    source_url: https://cmis.parliament.go.ug/cmis/views/61b88936-73ce-4bb5-b889-3673cedbb5ca%253B1.0
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2008-07-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: single_block
+      page_windows:
+        - start_page: 2
+          end_page: 12
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Uganda
+      publisher: Uganda Printing and Publishing Corporation (UPPC), Entebbe
+      source_family: local-government/local-service-tax
+      source_note: >-
+        Local Governments (Amendment) (No. 2) Act, 2008 (Act 8 of 2008 on
+        the running heads) from the Parliament of Uganda CMIS repository
+        (scanned print; fresh OCR at 300 dpi, single-block capture of the
+        operative pages). Inserts the local service tax: the Fifth
+        Schedule regulations with the salaried-employee graduated table
+        (ten bands by monthly income, 5,000 to 100,000 shillings per
+        year) and the self-employed class tables. In force from FY2008/09
+        and unchanged through FY2025/26 for the employee bands UGAMOD
+        implements.
