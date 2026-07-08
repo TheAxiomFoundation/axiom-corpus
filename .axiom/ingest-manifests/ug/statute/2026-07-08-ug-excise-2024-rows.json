@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ug/statute/2026-07-08-ug-excise-2024-rows.json",
+      "sha256": "6943c346d9462419323cdfda074f2faf92bb0f240372115be86c42de8104151b"
+    },
+    {
+      "path": "data/corpus/inventory/ug/statute/2026-07-08-ug-excise-2024-rows.json",
+      "sha256": "cfb4d29098a8be7cc0ae2903e3694e3b1f66b601627a536a05c4b6e7fca95bad"
+    },
+    {
+      "path": "data/corpus/provisions/ug/statute/2026-07-08-ug-excise-2024-rows.jsonl",
+      "sha256": "e02c6ffc1a58799c4ecc25cac278cb14e8f8f942fdc2d8d30c62b378b7240359"
+    },
+    {
+      "path": "data/corpus/sources/ug/statute/2026-07-08-ug-excise-2024-rows/official-documents/ug-act-2024-excise-duty-amendment.pdf",
+      "sha256": "7ceaee43d7495286d0b16b2c9c4a41fa3795736d8f1f6aec8aef63008beadbac"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "cb98a4cab1bff0f2df02243fecac7e478228fed4",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-08-ug-excise-2024-rows --manifest manifests/ug-excise-2024-rows-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-08T10:31:04.609439+00:00",
+  "jurisdiction": "ug",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "b1hCp0YVmTXZnChPYffabLkv3PWtFz4HAChxcSlQx8+UP0f16GWPz+kSd5tlLp42l7dIEAhxiPogpgBUbz1NAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08-ug-excise-2024-rows"
+}
