@@ -1,0 +1,123 @@
+# Uganda rental-tax and presumptive-tax capture (rulespec-ug instruments
+# 3-4, UGAMOD tpr_ug / ttn_ug parity; tracking rulespec-ug#1).
+#
+# 1. Rental: the Income Tax (Amendment) Act, 2022 (assent 2 June 2022,
+#    in force 1 July 2022 = FY2022/23) substitutes Third Schedule
+#    Part VI — "Rate of Rental Tax applicable to an individual": nil to
+#    Ushs 2,820,000 per annum (235,000 per month); 12% above — and
+#    amends s.22(1)(c) so rental expenses are deductible only by
+#    persons OTHER than individuals or partnerships (individuals are
+#    taxed on gross rental income above the threshold). The later chain
+#    (2023, 2023 No.2, 2024 prints held locally) does not touch the
+#    rental provisions; the 2023 Revised Edition renumbers the part as
+#    Third Schedule Part II.
+# 2. Presumptive: the Income Tax (Amendment) Act, 2020 (Act 20 of 2020
+#    on the gazette face, Acts Supplement No. 12, 27 November 2020)
+#    substitutes the Second Schedule small-business taxpayers rates:
+#    four turnover bands from 10,000,000 to 150,000,000 shillings with
+#    fixed amounts for taxpayers without records (80,000 / 200,000 /
+#    400,000 / 900,000) and cumulative-component rates for taxpayers
+#    with records (0.4% over 10m; 80,000 + 0.5% over 30m; 180,000 +
+#    0.6% over 50m; 360,000 + 0.7% over 80m). Unchanged by the
+#    2021-2024 chain.
+#
+# UGAMOD comparison notes (targets, never sources): tpr_s probed exact
+# (12% x (gross - 2,820,000): 5m -> 261,600; 10m -> 861,600); ttn_ug
+# implements both regimes on the ytn turnover variable with marginal
+# bands equal to the statutory cumulative components.
+#
+# Act-number note: the 2022 print is the Clerk-authenticated impression
+# (no act number on its face; the President's assent page is bound in);
+# "Act 11 of 2022" is corroborated by contemporaneous professional
+# summaries and the 2022 gazette numbering sequence (Act 3 Succession
+# 31 May, Act 9 Landlord & Tenant 17 Jun, Act 15 Appropriation 22 Jun)
+# and is recorded here as metadata, with the citation path carrying it
+# for consistency with the act-number path convention.
+documents:
+  - source_id: ug-act-2022-11-income-tax-amendment
+    jurisdiction: ug
+    document_class: statute
+    citation_path: ug/statute/act-2022-11/income-tax-amendment-2022
+    title: Income Tax (Amendment) Act, 2022 — rental Part VI substituted; s.22 rental deductions
+    source_url: https://cmis.parliament.go.ug/cmis/views/a89fd0b8-7309-42ab-9fd0-b87309a2ab6f%253B1.0
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2022-07-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: labeled_sections
+      section_label_pattern: '^(?:[0-9a-zA-Z]{1,2}[.,]\s*)?(?P<label>Amendment of section\s?22 of principal\s?Act|Amendment of Third Schedule to principal\s?Act)\.?\s*$'
+      page_windows:
+        - start_page: 6
+          end_page: 9
+      section_label_replacements:
+        'Amendment of section 22 of principal Act': section-22-rental-deductions-amended
+        'Amendment of section22 of principalAct': section-22-rental-deductions-amended
+        'Amendment of section 22 of principalAct': section-22-rental-deductions-amended
+        'Amendment of Third Schedule to principal Act': third-schedule-rental-rate-part-substituted
+        'Amendment of Third Schedule to principalAct': third-schedule-rental-rate-part-substituted
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Uganda
+      publisher: Uganda Printing and Publishing Corporation (UPPC), Entebbe
+      date_of_assent: '2022-06-02'
+      commencement_date: '2022-07-01'
+      act_number_note: Act 11 of 2022 (corroborated; not printed on the authenticated impression's face)
+      source_family: income-tax/rental
+      source_note: >-
+        Income Tax (Amendment) Act, 2022 from the Parliament of Uganda
+        CMIS repository (Clerk-authenticated printed impression with the
+        President's signed assent page; OCR at 300 dpi). Section 5
+        (arrangement item; operative section numbered 5 in the body)
+        amends s.22(1) so rental expenditure deductions apply only to
+        persons other than individuals or partnerships, and the final
+        section substitutes Third Schedule Part VI - the individual
+        rental rate rows (nil to 2,820,000 per annum; 12% above) in
+        force from 1 July 2022 through FY2025/26. The 2023 Revised
+        Edition renumbers the part as Part II with identical rows
+        (point-in-time consolidations at 2023-12-31 and 2024-12-23
+        held for diligence).
+  - source_id: ug-act-2020-20-income-tax-amendment
+    jurisdiction: ug
+    document_class: statute
+    citation_path: ug/statute/act-2020-20/income-tax-amendment-2020
+    title: Income Tax (Amendment) Act, 2020 (Act 20 of 2020) — Second Schedule presumptive rates substituted
+    source_url: https://archive.gazettes.africa/archive/ug/2020/ug-government-gazette-acts-supplement-dated-2020-11-27-no-12.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2020-07-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      segmentation: single_block
+      page_windows:
+        - start_page: 7
+          end_page: 8
+          stop_at_pattern: '^Cross References'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Uganda
+      publisher: Uganda Printing and Publishing Corporation (UPPC), Entebbe
+      date_of_assent: '2020-11-11'
+      commencement_date: '2020-07-01'
+      gazette_notification: Acts Supplement No. 12 to the Uganda Gazette, 27 November 2020
+      source_family: income-tax/presumptive
+      source_note: >-
+        Income Tax (Amendment) Act, 2020 (Act 20 of 2020) from the
+        Uganda Gazette Acts Supplement No. 12 of 27 November 2020
+        (archive.gazettes.africa scan of the gazette print; OCR at
+        300 dpi). Substitutes the Second Schedule small-business
+        taxpayers tax rates: turnover bands 10m-30m / 30m-50m /
+        50m-80m / 80m-150m shillings with fixed amounts for taxpayers
+        not keeping records and cumulative-component rates for
+        taxpayers with records. In force for years of income from
+        1 July 2020 (URA operationalised the new rates a year late in
+        its e-tax system, a compliance note only); unchanged through
+        FY2025/26 (2021-2024 prints held for diligence).
