@@ -1,0 +1,55 @@
+# Uganda Appropriation Act capture (statutory expenditure authorisation
+# anchor for the rulespec-ug policy-class modules, mirroring the Ghana
+# Act 1126 pattern; tracking rulespec-ug#1).
+#
+# The Appropriation Act, 2022 (Act 15 of 2022; assent 2 June 2022, in
+# force 1 July 2022) authorises issue and appropriation of public money
+# for FY2022/23 - the statutory footing under which appropriated
+# programmes such as the Senior Citizens Grant are funded. The
+# FY2025/26 Appropriation Act, 2025 (passed by Parliament 15 May 2025
+# per the parliamentary record) is the current-year authorisation; its
+# assented print is not yet located (the parliament acts-2025 page
+# misrenders and the 2025 gazette year is absent from the archive) -
+# an open capture item. This exemplar-year capture provides the
+# higher-authority path the upstream-source gate requires, with the
+# vintage caveat recorded here and in the citing module.
+documents:
+  - source_id: ug-act-2022-15-appropriation
+    jurisdiction: ug
+    document_class: statute
+    citation_path: ug/statute/act-2022-15/appropriation-2022
+    title: Appropriation Act, 2022 (Act 15 of 2022) — issue and appropriation of public money for FY2022/23
+    source_url: https://archive.gazettes.africa/archive/ug/2022/ug-government-gazette-acts-supplement-dated-2022-06-22-no-35.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2022-07-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      segmentation: labeled_sections
+      section_label_pattern: '^(?:[0-9Z]{1,2}[.,]?\s*)?(?P<label>Issue of money out of Consolidated Fund|Appropriation)\s*$'
+      section_label_replacements:
+        'Issue of money out of Consolidated Fund': section-2-issue-of-money-out-of-consolidated-fund
+        'Appropriation': section-3-appropriation
+      page_windows:
+        - start_page: 2
+          end_page: 3
+          stop_at_pattern: '^4\.'
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Uganda
+      publisher: Uganda Printing and Publishing Corporation (UPPC), Entebbe
+      date_of_assent: '2022-06-02'
+      commencement_date: '2022-07-01'
+      gazette_notification: Acts Supplement No. 7 to the Uganda Gazette No. 35 Volume CXV, 22 June 2022
+      source_family: public-finance/appropriation
+      source_note: >-
+        Appropriation Act, 2022 (Act 15 of 2022) from the Uganda Gazette
+        Acts Supplement No. 7 of 22 June 2022 (archive.gazettes.africa
+        scan of the gazette print). Sections 2-3: the Treasury may issue
+        out of the Consolidated Fund and apply the appropriated sums for
+        the services and purposes in the Schedule. Captured as the
+        statutory expenditure-authorisation anchor for policy-class
+        programme modules (Senior Citizens Grant); the FY2025/26
+        Appropriation Act, 2025 print is an open capture item.
