@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/zm/regulation/2026-07-08-zm-napsa-nhima-regulations.json",
+      "sha256": "ae6150de17a3881f6da04129ee35800d86e66d2e91cd584f84f615966d26f6eb"
+    },
+    {
+      "path": "data/corpus/inventory/zm/regulation/2026-07-08-zm-napsa-nhima-regulations.json",
+      "sha256": "139d080c9f52dd06cffaa806ca64509b1ac200169abfdb058ff56aa1f1d4137b"
+    },
+    {
+      "path": "data/corpus/provisions/zm/regulation/2026-07-08-zm-napsa-nhima-regulations.jsonl",
+      "sha256": "95eea285eaef785bacc1ba6f9ff5f4c75c5dc691914530b8eb7056155996da24"
+    },
+    {
+      "path": "data/corpus/sources/zm/regulation/2026-07-08-zm-napsa-nhima-regulations/official-documents/zm-si-2019-63-national-health-insurance-general-regulations.pdf",
+      "sha256": "552fe81a23677379ea58258df40773c42b53c4df5d4c3be93120a3d51cea8940"
+    },
+    {
+      "path": "data/corpus/sources/zm/regulation/2026-07-08-zm-napsa-nhima-regulations/official-documents/zm-si-2024-9-pensionable-earnings-amendment.pdf",
+      "sha256": "98f7316980391255d05c7a22e16417741988ac323c5a7907d5872d101d1d5c1c"
+    },
+    {
+      "path": "data/corpus/sources/zm/regulation/2026-07-08-zm-napsa-nhima-regulations/official-documents/zm-si-2025-103-pensionable-earnings-amendment.pdf",
+      "sha256": "bf56fe7b15158a0f0bcca44cbd8358afe55c992b585a900e536e8fd21a53ff63"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "da36a1276af388c21696a73603ec737abef963c1",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-08-zm-napsa-nhima-regulations --manifest manifests/zm-napsa-nhima-regulations-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-08T15:17:07.729414+00:00",
+  "jurisdiction": "zm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IATKmKCVbsvhWWgLMn8USitoQJtcFl/u7udVYIraRJ/yxfOw1zpaTOPjQcF7DnXkxP87xQ/LVA9ldaqMHNOMBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08-zm-napsa-nhima-regulations"
+}

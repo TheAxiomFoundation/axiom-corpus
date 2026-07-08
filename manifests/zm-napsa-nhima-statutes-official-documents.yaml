@@ -1,0 +1,121 @@
+# Zambia social-insurance contribution captures - STATUTES (rulespec-zm
+# instruments 3-6, MicroZAMOD tsceepi/tscerpi/tsceehl/tscerhl parity;
+# tracking rulespec-zm#1).
+#
+# NAPSA: the National Pension Scheme Act, 1996 (Cap. 256) s.14 requires
+# the employer to pay "the employer's contribution and the employee's
+# contribution at the prescribed percentage" (delegated; s.14(4)
+# actuarial determination), and s.19(3) provides that pensionable
+# earnings "shall be adjusted annually by an index based on the
+# national average earnings" by statutory instrument. The prescribed
+# 5% employee + 5% employer shares are stated in the Fifth Schedule
+# note of the National Pension Scheme (Pensionable Earnings)
+# (Amendment) Regulations (base regs S.I. No. 22 of 2000, not publicly
+# digitized): "The amounts of the employee's and employee's share
+# shall be calculated respectively as five percent of the employee's
+# total pensionable earnings." S.I. No. 9 of 2024 sets the CY2024
+# schedules (NAE 7,454; social security ceiling 29,816 = 4x NAE);
+# S.I. No. 103 of 2025 sets CY2026 (NAE 9,309; ceiling 37,236 = 4x).
+# Every published year satisfies ceiling = 4 x NAE exactly; the CY2025
+# ceiling (34,164 = 4 x 8,541) has no dedicated SI - it operates
+# through the formula applied to the Zambia Statistics Agency NAE
+# determination, announced administratively by NAPSA (policy-class
+# capture to follow with the NAPSA slice). Act No. 1 of 2023 amends
+# s.19(5) so the Authority determines NAE annually "by applying
+# statistics and data compiled by the Zambia Statistics Agency".
+#
+# NHIMA: the National Health Insurance Act, 2018 (Act No. 2 of 2018)
+# s.15 requires contributions "at a prescribed percentage" (s.15(5)
+# ministerial prescription); the National Health Insurance (General)
+# Regulations, 2019 (S.I. No. 63 of 2019) reg 9 + Third Schedule
+# prescribe: employee 1% of basic salary, employer 1% of basic salary,
+# self-employed 1% of declared income, monthly. Neither NHI instrument
+# contains an income-tax-deductibility provision.
+#
+# MicroZAMOD comparison notes (targets, never sources): tsceepi/tscerpi
+# = 5% of yem each with contribution cap 1,708.20/month (2025);
+# tsceehl/tscerhl = 1% of yem uncapped - and ZM_2025 deducts both
+# employee shares from the PAYE base (candidate finding 1; no
+# statutory deduction found).
+documents:
+  - source_id: zm-cap-256-national-pension-scheme-act
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/cap-256/national-pension-scheme-act
+    title: National Pension Scheme Act, 1996 (Cap. 256) — contributions (s.14) and pensionable-earnings indexing (s.19)
+    source_url: https://www.parliament.gov.zm/sites/default/files/documents/acts/National%20Pension%20Scheme%20Act.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '1996-12-31'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Ministry of Legal Affairs, Government of the Republic of Zambia
+      publisher: Government Printer, Lusaka
+      source_family: social-security/napsa
+      source_note: >-
+        Laws of Zambia chapter edition of the National Pension Scheme
+        Act, 1996 (Act No. 40 of 1996, Cap. 256) from the National
+        Assembly repository (text-embedded). Section 14: contributions
+        at the prescribed percentage (employer + employee shares;
+        s.14(4) actuarial determination). Section 19: annual adjustment
+        of pensionable earnings by an index based on national average
+        earnings, by statutory instrument. The prescribed 5%/5% shares
+        live in the Pensionable Earnings Regulations chain (S.I. 22 of
+        2000 as amended; the amendment SIs are captured alongside).
+  - source_id: zm-act-2023-1-national-pension-scheme-amendment
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+    title: National Pension Scheme (Amendment) Act, 2023 (Act No. 1 of 2023) — s.19(5) ZamStats NAE determination; s.21A pre-retirement lump sum
+    source_url: https://zambialii.org/akn/zm/act/2023/1/eng@2023-04-18/source.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2023-04-18'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Parliament of Zambia (National Assembly)
+      publisher: Government Printer, Lusaka
+      date_of_assent: '2023-04-18'
+      source_family: social-security/napsa
+      source_note: >-
+        Assented print (text-embedded; ZambiaLII-hosted copy of the
+        Government Printer print). Amends s.19(5) so the Authority
+        determines national average earnings annually by applying
+        Zambia Statistics Agency data; inserts s.19A (80% minimum
+        pension floor) and s.21A (pre-retirement lump sum of 20% of
+        indexed contributions). Does not touch the s.14 contribution
+        provisions.
+  - source_id: zm-act-2018-2-national-health-insurance-act
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/act-2018-2/national-health-insurance-act-2018
+    title: National Health Insurance Act, 2018 (Act No. 2 of 2018) — s.15 contributions at a prescribed percentage; s.16 exemptions
+    source_url: https://zambialii.org/akn/zm/act/2018/2/eng@2018-04-11/source.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2018-04-09'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Parliament of Zambia (National Assembly)
+      publisher: Government Printer, Lusaka
+      date_of_assent: '2018-04-09'
+      source_family: social-security/nhima
+      source_note: >-
+        Assented print (text-embedded; ZambiaLII-hosted copy of the
+        Government Printer print). Section 15: the employer pays the
+        employer's and employee's contributions at a prescribed
+        percentage; s.15(5) the Minister prescribes rates. Section 16
+        exemptions (severe disability, age 65+, the poor and
+        vulnerable). Contains no income-tax-deductibility provision.

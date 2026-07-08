@@ -1,0 +1,120 @@
+# Zambia social-insurance contribution captures - REGULATIONS (rulespec-zm
+# instruments 3-6, MicroZAMOD tsceepi/tscerpi/tsceehl/tscerhl parity;
+# tracking rulespec-zm#1).
+#
+# NAPSA: the National Pension Scheme Act, 1996 (Cap. 256) s.14 requires
+# the employer to pay "the employer's contribution and the employee's
+# contribution at the prescribed percentage" (delegated; s.14(4)
+# actuarial determination), and s.19(3) provides that pensionable
+# earnings "shall be adjusted annually by an index based on the
+# national average earnings" by statutory instrument. The prescribed
+# 5% employee + 5% employer shares are stated in the Fifth Schedule
+# note of the National Pension Scheme (Pensionable Earnings)
+# (Amendment) Regulations (base regs S.I. No. 22 of 2000, not publicly
+# digitized): "The amounts of the employee's and employee's share
+# shall be calculated respectively as five percent of the employee's
+# total pensionable earnings." S.I. No. 9 of 2024 sets the CY2024
+# schedules (NAE 7,454; social security ceiling 29,816 = 4x NAE);
+# S.I. No. 103 of 2025 sets CY2026 (NAE 9,309; ceiling 37,236 = 4x).
+# Every published year satisfies ceiling = 4 x NAE exactly; the CY2025
+# ceiling (34,164 = 4 x 8,541) has no dedicated SI - it operates
+# through the formula applied to the Zambia Statistics Agency NAE
+# determination, announced administratively by NAPSA (policy-class
+# capture to follow with the NAPSA slice). Act No. 1 of 2023 amends
+# s.19(5) so the Authority determines NAE annually "by applying
+# statistics and data compiled by the Zambia Statistics Agency".
+#
+# NHIMA: the National Health Insurance Act, 2018 (Act No. 2 of 2018)
+# s.15 requires contributions "at a prescribed percentage" (s.15(5)
+# ministerial prescription); the National Health Insurance (General)
+# Regulations, 2019 (S.I. No. 63 of 2019) reg 9 + Third Schedule
+# prescribe: employee 1% of basic salary, employer 1% of basic salary,
+# self-employed 1% of declared income, monthly. Neither NHI instrument
+# contains an income-tax-deductibility provision.
+#
+# MicroZAMOD comparison notes (targets, never sources): tsceepi/tscerpi
+# = 5% of yem each with contribution cap 1,708.20/month (2025);
+# tsceehl/tscerhl = 1% of yem uncapped - and ZM_2025 deducts both
+# employee shares from the PAYE base (candidate finding 1; no
+# statutory deduction found).
+documents:
+  - source_id: zm-si-2024-9-pensionable-earnings-amendment
+    jurisdiction: zm
+    document_class: regulation
+    citation_path: zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+    title: National Pension Scheme (Pensionable Earnings) (Amendment) Regulations, 2024 (S.I. No. 9 of 2024) — CY2024 NAE 7,454 and ceiling 29,816; 5% shares note
+    source_url: https://zambialii.org/akn/zm/act/si/2024/9/eng@2024-01-24/source.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2024-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Minister of Labour and Social Security, Government of the Republic of Zambia
+      publisher: Government Printer, Lusaka
+      source_family: social-security/napsa
+      source_note: >-
+        Gazette statutory-instrument print (text-embedded), made under
+        sections 14 and 19 of the Act, read as one with the National
+        Pension Scheme (Pensionable Earnings) Regulations, 2000 (S.I.
+        No. 22 of 2000). First Schedule: national average earnings
+        K7,454.00 for 1 January-31 December 2024; Second Schedule:
+        social security ceiling K29,816.00 (= 4 x NAE); Fifth Schedule
+        note: the employee's and employer's shares are each five
+        percent of total pensionable earnings.
+  - source_id: zm-si-2025-103-pensionable-earnings-amendment
+    jurisdiction: zm
+    document_class: regulation
+    citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+    title: National Pension Scheme (Pensionable Earnings) (Amendment) Regulations, 2025 (S.I. No. 103 of 2025) — CY2026 NAE 9,309 and ceiling 37,236; 5% shares note
+    source_url: https://zambialii.org/akn/zm/act/si/2025/103/eng@2025-12-31/source.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2026-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Minister of Labour and Social Security, Government of the Republic of Zambia
+      publisher: Government Printer, Lusaka
+      source_family: social-security/napsa
+      source_note: >-
+        Gazette statutory-instrument print (text-embedded). First
+        Schedule: national average earnings K9,309.00 for 1 January-31
+        December 2026; Second Schedule: social security ceiling
+        K37,236.00 (= 4 x NAE); Fifth Schedule 5% shares note. Captured
+        to bracket the ceiling formula around the CY2025 validation
+        year (whose K34,164 = 4 x 8,541 determination has no dedicated
+        SI - administrative NAPSA announcement under the s.19
+        formula).
+  - source_id: zm-si-2019-63-national-health-insurance-general-regulations
+    jurisdiction: zm
+    document_class: regulation
+    citation_path: zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
+    title: National Health Insurance (General) Regulations, 2019 (S.I. No. 63 of 2019) — reg 9 + Third Schedule contribution rates (1% employee, 1% employer)
+    source_url: https://zambialii.org/akn/zm/act/si/2019/63/eng@2019-09-20/source.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2019-09-20'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Minister of Health, Government of the Republic of Zambia
+      publisher: Government Printer, Lusaka
+      source_family: social-security/nhima
+      source_note: >-
+        Gazette statutory-instrument print (text-embedded). Regulation
+        9: contributions at the rates set out in the Third Schedule.
+        Third Schedule (Regulations 9 and 10(2)) CONTRIBUTION RATES:
+        employee, payroll based, 1% of basic salary, monthly; employer,
+        payroll based, 1% of basic salary, monthly; self-employed, 1%
+        of declared income, monthly. No contribution ceiling appears;
+        no income-tax-deductibility provision.
