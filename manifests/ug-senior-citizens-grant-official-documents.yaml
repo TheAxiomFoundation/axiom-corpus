@@ -1,0 +1,50 @@
+# Uganda Senior Citizens Grant capture (rulespec-ug instrument 8, UGAMOD
+# boa_ug parity; tracking rulespec-ug#1).
+#
+# The SCG is administratively set (no per-beneficiary statute): the
+# Ministry of Gender, Labour and Social Development's Expanding Social
+# Protection programme pays Shs. 25,000 per month to older persons -
+# nationally to everyone aged 80+ (NIRA-verified), with the original
+# rollout districts keeping their earlier eligibility (the oldest-100
+# per subcounty selection in FY2016/17 rollout districts; earlier pilot
+# districts at lower ages). UGAMOD's boa_ug implements the 25,000/month
+# with dag>=60 / dag>=65 district lists plus the national dag>=80 rule.
+#
+# Source: the programme's own SAGE Handbook (socialprotection.go.ug,
+# MGLSD/ESP) - the official programme documentation, policy-class like
+# the Ghana LEAP capture. Captured single-block from the identification,
+# rollout and amount chapters (digital text layer).
+documents:
+  - source_id: ug-mglsd-sage-handbook-scg
+    jurisdiction: ug
+    document_class: policy
+    citation_path: ug/policy/mglsd-scg/sage-handbook
+    title: MGLSD Expanding Social Protection — SAGE Handbook (Senior Citizens Grant eligibility and amount)
+    source_url: https://socialprotection.go.ug/wp-content/uploads/mdocs/SAGE%20Handbook%20Finalr.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2026-07-08'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 16
+          end_page: 18
+        - start_page: 29
+          end_page: 31
+        - start_page: 34
+          end_page: 35
+    metadata:
+      primary_source: true
+      source_authority: Ministry of Gender, Labour and Social Development (Expanding Social Protection programme)
+      source_family: social-protection/senior-citizens-grant
+      source_note: >-
+        The SAGE Handbook from the Expanding Social Protection
+        programme's own site (socialprotection.go.ug): chapter 3
+        (identification and selection - the NIRA-derived 80-years-and-
+        above national rule and the FY2016/17 rollout districts'
+        oldest-100-per-subcounty selection), the rollout-history pages,
+        and chapter 8 (the Shs. 25,000 monthly amount and its basis).
+        Administrative programme documentation - the Ghana LEAP
+        precedent for policy-class captures.
