@@ -1,0 +1,137 @@
+# Zambia consumption-tax and social-protection capture - POLICY class
+# (rulespec-zm instruments 7-8 and the Social Cash Transfer values;
+# tracking rulespec-zm#1).
+#
+# Three agency/administrative documents that ground values whose primary
+# Government Printer prints are not publicly digitized, captured here as
+# verified reproductions:
+#
+# 1. ZRA Practice Note No. 1/2008 - reproduces the operative effect of
+#    the Value Added Tax (Rate of Tax) Order, S.I. No. 14 of 2008: the
+#    standard VAT rate drops from seventeen and a half per centum to
+#    sixteen per centum, with the Order commencing 1 April 2008. This is
+#    the enabling "lower rate" set under VAT Act s.9(3) (captured as a
+#    statute in the companion manifest). The 16% standard rate is the
+#    value MicroZAMOD applies for VAT.
+# 2. ZRA Practice Note No. 1/2024 - reproduces the Customs and Excise
+#    (Suspension) (Clear Beer) Regulations, S.I. No. 66 of 2023 and S.I.
+#    No. 71 of 2023: excise duty on clear beer made from malt falls to
+#    20% from 40% and clear beer made from cassava to 5% from 10%, in
+#    force 1 January 2024 and self-revoking 31 December 2026, excluding
+#    clear beer made from sorghum by a small and medium enterprise or
+#    brewed in excess quantities.
+# 3. MCDSS Ministerial Statement (Hon. Mwamba) - states the standing
+#    Social Cash Transfer transfer values: K200 per month per household
+#    (paid two-monthly at K400) for households without a member with a
+#    disability, and K400 per month per household (paid two-monthly at
+#    K800) where a member has a severe disability. These are the SCT
+#    values MicroZAMOD reproduces.
+#
+# MicroZAMOD comparison notes (targets, never sources): the 16% VAT rate,
+# the reduced clear-beer excise, and the SCT transfer amounts above are
+# read into the indirect-tax and benefit modules; these captures are the
+# grounded reproductions those targets are checked against.
+documents:
+  - source_id: zm-zra-pn-2008-1-vat-rate-order
+    jurisdiction: zm
+    document_class: policy
+    citation_path: zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
+    title: ZRA Practice Note No. 1/2008 - reproduction of the VAT (Rate of Tax) Order, S.I. No. 14 of 2008 (16% standard rate from 1 April 2008)
+    source_url: 'https://www.zra.org.zm/wp-content/uploads/2020/01/practicenotes2008.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2008-04-01'
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 1048576
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: false
+      source_authority: Zambia Revenue Authority (Domestic Taxes Division)
+      publisher: Zambia Revenue Authority
+      source_family: consumption-tax/vat
+      source_note: >-
+        Verified agency reproduction, not a primary print. The Value Added
+        Tax (Rate of Tax) Order, S.I. No. 14 of 2008, is the instrument that
+        sets the operative VAT standard rate under VAT Act s.9(3), but its
+        primary Government Printer print is not publicly digitized; this ZRA
+        Practice Note is the verified reproduction. Page 40, paragraph 5.6,
+        under the heading "STATUTORY INSTRUMENT NUMBER 14 OF 2008", states:
+        "This amendment reduces the tax rate from seventeen and half per
+        centum to sixteen per centum." Page 38, paragraph 5.1 (Title and
+        commencement), states that the VAT amendments come into effect on
+        26 January 2008 "with the exception of Statutory Instrument Number
+        14 of 2008, which comes into effect on 1st April 2008." Flag: this
+        record grounds the 16% rate by reproduction; cite S.I. No. 14 of
+        2008 as the primary instrument.
+  - source_id: zm-zra-pn-2024-1-clear-beer-suspension
+    jurisdiction: zm
+    document_class: policy
+    citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+    title: ZRA Practice Note No. 1/2024 - reproduction of the Customs and Excise (Suspension) (Clear Beer) Regulations, S.I. No. 66 and No. 71 of 2023
+    source_url: 'https://www.zra.org.zm/wp-content/uploads/2024/02/2024-Practice-Note.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2024-01-01'
+    request:
+      range_fetch: true
+      range_backend: curl
+      range_chunk_size: 1048576
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: false
+      source_authority: Zambia Revenue Authority
+      publisher: Zambia Revenue Authority
+      source_family: consumption-tax/customs-excise
+      source_note: >-
+        Verified agency reproduction, not a primary print. The Customs and
+        Excise (Suspension) (Clear Beer) Regulations, S.I. No. 66 of 2023
+        and S.I. No. 71 of 2023, are the instruments suspending clear-beer
+        excise; their primary Government Printer prints are not publicly
+        digitized, so this ZRA Practice Note is the verified reproduction.
+        It states the Regulations "reduce the excise duty on clear beer made
+        from malt to 20% from 40% and clear beer made from cassava to 5%
+        from 10%", that they "come into operation on 1st January 2024 and
+        shall stand revoked on 31st December 2026", and that they exclude
+        clear beer made from sorghum manufactured by a small and medium
+        enterprise or brewed in excess quantities. Flag: this record grounds
+        the suspended clear-beer excise rates by reproduction; cite S.I.
+        No. 66 and No. 71 of 2023 as the primary instruments.
+  - source_id: zm-mcdss-sct-ministerial-statement
+    jurisdiction: zm
+    document_class: policy
+    citation_path: zm/policy/mcdss-sct/ministerial-statement-transfer-values
+    title: MCDSS Ministerial Statement on the Social Cash Transfer (Hon. Mwamba) - standing transfer values K200/K400 per month per household
+    source_url: 'https://www.parliament.gov.zm/sites/default/files/images/publication_docs/SOCIAL%20CASH%20TRANSFER%20SCHEME-Ms%20Mwamba.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2021-12-31'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Ministry of Community Development and Social Services (Hon. Mwamba)
+      publisher: National Assembly of Zambia
+      source_family: social-protection/social-cash-transfer
+      source_note: >-
+        Ministerial Statement on the Social Cash Transfer (SCT) delivered to
+        the National Assembly by the Minister of Community Development and
+        Social Services (Hon. Mwamba), hosted in the Assembly publication
+        repository (text-embedded). Internal dating places it in the 2021
+        sitting: it reports the 2021 caseload of 973,323 beneficiary
+        households as current, targets 1.1 million "by the end of 2022", and
+        describes the ZISPIS pilot as "earmarked for January/February, 2022";
+        the expression_date reflects that CY2021 program year. On transfer
+        values it states verbatim: "households without members with
+        disabilities receive K200 per month per household paid every two
+        months at K400 while households with a member with severe disability
+        receive k400 per month per household paid every two months a t K800."
+        These are the standing SCT transfer values used as the MicroZAMOD SCT
+        target.

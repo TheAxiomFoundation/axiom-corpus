@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes.json",
+      "sha256": "53a14ef86ce441b8921fe80ad44238497764d73270abc988dcbab46c8090af1e"
+    },
+    {
+      "path": "data/corpus/inventory/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes.json",
+      "sha256": "2d0af1ca2f8655e83967fe0c96c7e682326f112844c0e6dd46075d8f2001b2fe"
+    },
+    {
+      "path": "data/corpus/provisions/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes.jsonl",
+      "sha256": "b41a67b4107d03368967419a0021ded5d8e7b61a6f712a29f435abaecd8d1b7a"
+    },
+    {
+      "path": "data/corpus/sources/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes/official-documents/zm-act-2018-19-customs-and-excise-amendment.pdf",
+      "sha256": "9cc6df7d0b45f839afae586b419905dbc07f829459d6339964a8e341a6d3210a"
+    },
+    {
+      "path": "data/corpus/sources/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes/official-documents/zm-act-2021-45-customs-and-excise-amendment.pdf",
+      "sha256": "d0e43d105785c2e913fa5f7ab611b0118898d73428e7f95682d238a5d1414be5"
+    },
+    {
+      "path": "data/corpus/sources/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes/official-documents/zm-act-2022-25-customs-and-excise-amendment.pdf",
+      "sha256": "d42f439fee742e85caebc98d4937559da6e01adb35e138ad0fa53060fb5d0b64"
+    },
+    {
+      "path": "data/corpus/sources/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes/official-documents/zm-act-2023-25-customs-and-excise-amendment.pdf",
+      "sha256": "4984b6f3adcb93dedc7ef88655f1f9af140bbf14ea8fd7f13ef60c26f55d0900"
+    },
+    {
+      "path": "data/corpus/sources/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes/official-documents/zm-act-2024-24-customs-and-excise-amendment.pdf",
+      "sha256": "e39fc099930f6ba758714d02b3c35a076e3ab09053af95ef2e7786127566299d"
+    },
+    {
+      "path": "data/corpus/sources/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes/official-documents/zm-cap-331-value-added-tax-act.pdf",
+      "sha256": "8aaf753253284f999147aa6346206dc46cb8094b7473e3d23ee3c774ca715b18"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "614a186e1a0fda179f7ba4ef00bcd550015321ec",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-zm-customs-excise-and-vat-statutes --manifest manifests/zm-customs-excise-and-vat-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-08T18:42:47.735810+00:00",
+  "jurisdiction": "zm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qbjWY5aN0cwXZFsH9HLRrvM6P2A4Oqpye0NpmbQ96Brqm1wdQW4dNEz8NVZSw/1raAO+N9Ng2uC1jsrg2Ve1Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-zm-customs-excise-and-vat-statutes"
+}
