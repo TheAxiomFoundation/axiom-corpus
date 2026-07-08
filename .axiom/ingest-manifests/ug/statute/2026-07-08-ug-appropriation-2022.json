@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ug/statute/2026-07-08-ug-appropriation-2022.json",
+      "sha256": "215fb434ecb7c96c9592672ee431f71e4a760945b049f0f17943b890d77aad10"
+    },
+    {
+      "path": "data/corpus/inventory/ug/statute/2026-07-08-ug-appropriation-2022.json",
+      "sha256": "4bc6ad4f5e906fc9c9e1576206d965a90ac1abc85425f5d7b85714c067d77a57"
+    },
+    {
+      "path": "data/corpus/provisions/ug/statute/2026-07-08-ug-appropriation-2022.jsonl",
+      "sha256": "f319d400a37ccce901652474658561b43fdb70c2b3e9a873637c1b412f38168a"
+    },
+    {
+      "path": "data/corpus/sources/ug/statute/2026-07-08-ug-appropriation-2022/official-documents/ug-act-2022-15-appropriation.pdf",
+      "sha256": "e7a9a801d5f911437d8c4a138ecb527f1114c635774e1056bc4976a415b1899a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "862880d94a117857b6e82e5f1eb70be19df463d9",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-08-ug-appropriation-2022 --manifest manifests/ug-appropriation-2022-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-08T12:03:08.159080+00:00",
+  "jurisdiction": "ug",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2ikSCyVs9yU+VcQn0ZUQMRuDv/iL6RjfOKRkdkGWg3u34uGRI0Do+iAxsF7AyNxbBo/Bz6hXTXTQonDntKDOCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08-ug-appropriation-2022"
+}
