@@ -1,0 +1,44 @@
+# Uganda excise-duty rate capture (rulespec-ug instrument 9b, UGAMOD
+# tex_ug parity; tracking rulespec-ug#1).
+#
+# The Excise Duty (Amendment) Act, 2024 (parliament CMIS print)
+# substitutes Schedule 2 rows in force for FY2024/25 onward, including
+# the fuel rows UGAMOD UG_2025 models exactly: "Motor spirit (gasoline)
+# Shs 1550 per litre" and "Gas oil ... Shs 1230 per litre". Captured
+# single-block from the print's embedded text layer (the amounts render
+# contiguously). Whether the FY2025/26 amendment act (2025 print not
+# yet located; the parliament acts-2025 page misrenders) changed these
+# rows is an OPEN vintage question tracked in rulespec-ug#1 - UGAMOD's
+# UG_2025 constants match THESE 2024 rows.
+documents:
+  - source_id: ug-act-2024-excise-duty-amendment
+    jurisdiction: ug
+    document_class: statute
+    citation_path: ug/statute/act-2024-excise/excise-duty-amendment-2024
+    title: Excise Duty (Amendment) Act, 2024 — Schedule 2 rows substituted (fuel and others)
+    source_url: https://cmis.parliament.go.ug/cmis/views/1e3bda71-4c5b-4d10-bbda-714c5b0d1027%253B1.0
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2024-07-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      segmentation: single_block
+      page_windows:
+        - start_page: 2
+          end_page: 9
+    metadata:
+      primary_source: true
+      source_authority: Parliament of the Republic of Uganda
+      publisher: Uganda Printing and Publishing Corporation (UPPC), Entebbe
+      commencement_date: '2024-07-01'
+      source_family: excise/schedule-2
+      source_note: >-
+        Excise Duty (Amendment) Act, 2024 from the Parliament of Uganda
+        CMIS repository (embedded text layer; single-block capture of
+        the operative pages). Substitutes Schedule 2 rows including
+        item 8: motor spirit (gasoline) Shs 1550 per litre and gas oil
+        Shs 1230 per litre - the rates UGAMOD UG_2025 applies. In force
+        1 July 2024 (FY2024/25); the FY2025/26 amendment print is not
+        yet located (open vintage question, rulespec-ug#1).

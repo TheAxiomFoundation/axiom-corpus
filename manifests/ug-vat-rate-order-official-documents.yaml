@@ -1,0 +1,47 @@
+# Uganda VAT standard-rate capture (rulespec-ug instrument 9a, UGAMOD
+# tva_ug parity; tracking rulespec-ug#1).
+#
+# The Value Added Tax (Rate of Tax) Order, 2006 (made under s.78 of the
+# VAT Act; in force 1 July 2005) sets the standard rate: "The rate of
+# tax for (a) every taxable supply made in Uganda by a taxable person;
+# (b) every import of goods other than an exempt import; and (c) the
+# supply of any imported services by any person, is 18% of the taxable
+# value". Unchanged through FY2025/26 (UGAMOD's $vat_rate = 0.18; the
+# point-in-time VAT Act consolidations at 2023/2024 carry the same
+# rate). Captured from the Parliament of Uganda's hosted Reproduction
+# of the Income Tax Act Cap 340 and Value Added Tax Cap 349 (parliament
+# CMIS; an official parliament-hosted reproduction, the Ghana
+# Sage-precedent class).
+documents:
+  - source_id: ug-vat-rate-of-tax-order-2006
+    jurisdiction: ug
+    document_class: regulation
+    citation_path: ug/regulation/vat-rate-of-tax-order-2006
+    title: Value Added Tax (Rate of Tax) Order, 2006 — 18% standard rate
+    source_url: https://cmis.parliament.go.ug/cmis/views/aa7808ba-a2f5-459e-b808-baa2f5c59ec9%253B1.0
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '2005-07-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>The Value Added Tax \(Rate of Tax\) Order 2006)\s*$'
+      section_label_replacements:
+        'The Value Added Tax (Rate of Tax) Order 2006': rate-of-tax-order-2006
+      page_windows:
+        - start_page: 256
+          end_page: 256
+    metadata:
+      primary_source: true
+      source_authority: Republic of Uganda (statutory instrument under s.78 of the VAT Act), reproduced by the Parliament of Uganda
+      source_family: vat/standard-rate
+      source_note: >-
+        The Value Added Tax (Rate of Tax) Order, 2006 as carried in the
+        Parliament of Uganda's hosted Reproduction of the Income Tax Act
+        Cap. 340 and Value Added Tax Cap. 349 (2014 compilation, page
+        256; digital text layer). Made under section 78 of the VAT Act;
+        commenced 1 July 2005; sets the 18% standard rate on taxable
+        supplies, non-exempt imports and imported services. The rate is
+        unchanged through FY2025/26.
