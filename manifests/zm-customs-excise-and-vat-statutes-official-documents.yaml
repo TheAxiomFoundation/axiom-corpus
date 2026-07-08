@@ -1,0 +1,221 @@
+# Zambia consumption-tax capture - CUSTOMS & EXCISE chain and the VAT
+# Act charging provision (rulespec-zm instruments 7-8; MicroZAMOD
+# indirect-tax parity for excise duties and VAT; tracking rulespec-zm#1).
+#
+# The Customs and Excise Act (Cap. 322) Second Schedule sets the specific
+# and ad valorem excise duties. This scope captures the Government Printer
+# assented prints of the five amendment Acts that move the excise rows the
+# encoding depends on - each read as one with the principal Act and each
+# commencing on 1 January of the following year (section 1(2) of each Act) -
+# plus the Value Added Tax Act charging section:
+#
+# 1. Act No. 19 of 2018 (comm. 1 Jan 2019) - Second Schedule heading 4
+#    "Beer made from malt": (1) Opaque beer 2203.00.10 at K0.15/ltr; (2)
+#    Other, including ale, lager and stout 2203.00.90 at 60%; heading 5
+#    wine of fresh grapes rows at 60%. The baseline opaque-beer rate.
+# 2. Act No. 45 of 2021 (comm. 1 Jan 2022) - raises opaque beer from
+#    K0.15 to K0.25/ltr; substitutes heading 9 fuel rows, petrol
+#    2710.12.10 at K2.07/ltr (the combined excise-plus-fuel-levy motor-
+#    spirit row) and gas-oils/diesel 2710.19.10 at K0.66/ltr; cuts spirits
+#    2207.10.00 from 125% to 60%.
+# 3. Act No. 25 of 2022 (comm. 1 Jan 2023) - spirits 2207.20.10 from 125%
+#    to 60%; cigarettes (heading 24.01) from K355 to K361 per mille.
+# 4. Act No. 25 of 2023 (comm. 1 Jan 2024) - spirits 2207.20.90 from 125%
+#    to 60%; cigarettes from K361 to K400.
+# 5. Act No. 24 of 2024 (comm. 1 Jan 2025) - cigarettes from K400 to K452
+#    across headings 24.01/24.02 and subheadings 2403.x; substitutes
+#    heading 9(3): petrol 2710.12.10 K2.34/ltr, gas-oils/diesel 2710.19.10
+#    K0.75, kerosene-type 2710.12.51 K0.54, other fuel oils 2710.19.20
+#    K1.05.
+# 6. Value Added Tax Act (Cap. 331, Act No. 4 of 1995) - the Laws of
+#    Zambia revised chapter edition (Copyright Ministry of Legal Affairs),
+#    whose amendment history lists statutory instruments through S.I.
+#    No. 16 of 1997. Section 9(1) charges tax on a taxable supply "at the
+#    prescribed rate of tax"; section 9(3): "The prescribed rate of tax
+#    shall be seventeen and a half per centum, unless the Minister, by
+#    statutory order, determines a lower rate" - the enabling provision
+#    under which the operative 16% rate is set by S.I. No. 14 of 2008.
+#    Section 9 is unchanged through CY2025; the 16% order is captured
+#    separately as a ZRA agency reproduction in the policy manifest.
+#
+# MicroZAMOD comparison notes (targets, never sources): the indirect-tax
+# module applies these excise rows and the 16% VAT standard rate; the
+# fuel-levy component rides in the same heading-9 excise row captured here.
+documents:
+  - source_id: zm-act-2018-19-customs-and-excise-amendment
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+    title: Customs and Excise (Amendment) Act, 2018 (Act No. 19 of 2018) - Second Schedule heading 4 opaque beer and malt-beer excise; heading 5 wine
+    source_url: 'https://www.parliament.gov.zm/sites/default/files/documents/acts/Act%20%20-%20The%20Customs%20and%20Excise%20%28amendment%29%20%20Act%20No.%2019%20of%202018.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2019-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Parliament of Zambia (National Assembly)
+      publisher: Government Printer, Lusaka
+      commencement_date: '2019-01-01'
+      source_family: consumption-tax/customs-excise
+      source_note: >-
+        Assented Government Printer print from the National Assembly of
+        Zambia document repository (text-embedded). The print carries the
+        bracketed date [26th December, 2018] between the long title and the
+        enacting formula, and section 1(2) fixes commencement at 1 January
+        2019. Amends the Customs and Excise Act (Cap. 322) Second Schedule:
+        heading 4 "Beer made from malt" (1) Opaque beer 2203.00.10 at
+        K0.15/ltr and (2) Other, including ale, lager and stout 2203.00.90
+        at 60%; heading 5 wine of fresh grapes rows at 60%. Establishes the
+        opaque-beer specific rate that Act No. 45 of 2021 later raises.
+  - source_id: zm-act-2021-45-customs-and-excise-amendment
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+    title: Customs and Excise (Amendment) Act, 2021 (Act No. 45 of 2021) - opaque beer K0.25/ltr; heading 9 petrol/diesel excise; spirits 2207.10.00 to 60%
+    source_url: 'https://www.parliament.gov.zm/sites/default/files/documents/acts/The%20Custom%20and%20Excise%20Act%20No.%2045.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2022-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Parliament of Zambia (National Assembly)
+      publisher: Government Printer, Lusaka
+      commencement_date: '2022-01-01'
+      source_family: consumption-tax/customs-excise
+      source_note: >-
+        Assented Government Printer print (text-embedded; the same repository
+        copy carries an image-scan cover sheet, hence the larger byte size).
+        The print carries the bracketed date [30th December, 2021] and
+        section 1(2) fixes commencement at 1 January 2022. Amends the Second
+        Schedule to substitute the opaque-beer figure "K0.15/ltr" with
+        "K0.25/ltr"; substitutes the heading 9 mineral-fuel rows, including
+        petrol 2710.12.10 at K2.07/ltr (the combined excise-plus-fuel-levy
+        motor-spirit row) and automotive gas-oils/diesel 2710.19.10 at
+        K0.66/ltr; and deletes the spirits figure "125%" opposite subheading
+        2207.10.00, substituting 60%.
+  - source_id: zm-act-2022-25-customs-and-excise-amendment
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/act-2022-25/customs-and-excise-amendment-2022
+    title: Customs and Excise (Amendment) Act, 2022 (Act No. 25 of 2022) - spirits 2207.20.10 to 60%; cigarettes K355 to K361
+    source_url: 'https://www.parliament.gov.zm/sites/default/files/documents/acts/Act%20No.%2025%20The%20Customs%20and%20Excise%20Act,%20(Amendment)%202022.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2023-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Parliament of Zambia (National Assembly)
+      publisher: Government Printer, Lusaka
+      commencement_date: '2023-01-01'
+      source_family: consumption-tax/customs-excise
+      source_note: >-
+        Assented Government Printer print (text-embedded). The print carries
+        the bracketed date [27th December, 2022] and section 1(2) fixes
+        commencement at 1 January 2023 (with section 188A on a date the
+        Minister appoints). Amends the Second Schedule to delete the spirits
+        figure "125%" opposite subheading 2207.20.10 and substitute 60%, and
+        to raise cigarettes (heading 24.01) from K355 to K361 per mille.
+  - source_id: zm-act-2023-25-customs-and-excise-amendment
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+    title: Customs and Excise (Amendment) Act, 2023 (Act No. 25 of 2023) - spirits 2207.20.90 to 60%; cigarettes K361 to K400
+    source_url: 'https://www.parliament.gov.zm/sites/default/files/documents/acts/Act%20No.%2025%20of%202023,%20The%20Customs%20and%20Excise%20(Amendment).pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2024-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Parliament of Zambia (National Assembly)
+      publisher: Government Printer, Lusaka
+      commencement_date: '2024-01-01'
+      source_family: consumption-tax/customs-excise
+      source_note: >-
+        Assented Government Printer print (text-embedded). The print carries
+        the bracketed date [26th December, 2023] and section 1(2) fixes
+        commencement at 1 January 2024. Amends the Second Schedule to delete
+        the spirits figure "125%" opposite subheading 2207.20.90 and
+        substitute 60%, and to raise cigarettes (heading 24.01) from K361 to
+        K400 per mille. Continues the spirits ad valorem step-down and the
+        cigarette specific-rate escalation.
+  - source_id: zm-act-2024-24-customs-and-excise-amendment
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/act-2024-24/customs-and-excise-amendment-2024
+    title: Customs and Excise (Amendment) Act, 2024 (Act No. 24 of 2024) - cigarettes K400 to K452; heading 9(3) petrol/diesel/kerosene/fuel-oil excise
+    source_url: 'https://www.parliament.gov.zm/sites/default/files/documents/acts/The%20Customs%20and%20Excise%20(Amendment)%20Act%20No.%2024%20of%202024.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2025-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Parliament of Zambia (National Assembly)
+      publisher: Government Printer, Lusaka
+      commencement_date: '2025-01-01'
+      source_family: consumption-tax/customs-excise
+      source_note: >-
+        Assented Government Printer print (text-embedded). The print carries
+        the bracketed date [26th December, 2024] and section 1(2) fixes
+        commencement at 1 January 2025. Amends the Second Schedule to raise
+        cigarettes from K400 to K452 across headings 24.01 and 24.02 and
+        subheadings 2403.11.00/2403.19.10/2403.19.90/2403.91.00 (etc.), and
+        substitutes heading 9(3) mineral-fuel rows: petrol 2710.12.10 at
+        K2.34/ltr, kerosene-type 2710.12.51 at K0.54, other light oils
+        2710.12.90 at 15%, automotive gas-oils/diesel 2710.19.10 at K0.75,
+        and other fuel oils 2710.19.20 at K1.05.
+  - source_id: zm-cap-331-value-added-tax-act
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/cap-331/value-added-tax-act
+    title: Value Added Tax Act (Cap. 331, Act No. 4 of 1995) - s.9 charge at the prescribed rate; s.9(3) 17.5% unless the Minister sets a lower rate by statutory order
+    source_url: 'https://www.parliament.gov.zm/sites/default/files/documents/acts/Value%20Added%20Tax%20Act.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '1995-07-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Ministry of Legal Affairs, Government of the Republic of Zambia
+      publisher: Government Printer, Lusaka
+      source_family: consumption-tax/vat
+      source_note: >-
+        Laws of Zambia revised chapter edition of the Value Added Tax Act
+        (Cap. 331; principal Act No. 4 of 1995) from the National Assembly
+        repository (text-embedded; "Copyright Ministry of Legal Affairs,
+        Government of the Republic of Zambia"). Edition vintage: the
+        amendment history at the front runs from Act No. 4 of 1995 through
+        statutory instruments ending at S.I. No. 16 of 1997, so the chapter
+        text is consolidated as at 1997; the Act came into operation on
+        1 May 1995 with 1 July 1995 appointed as the tax commencement day
+        (S.I. No. 58 of 1995), which is the expression_date used here.
+        Section 9(1): "Tax on a taxable supply of goods or services shall be
+        charged on their taxable value, at the prescribed rate of tax."
+        Section 9(3): "The prescribed rate of tax shall be seventeen and a
+        half per centum, unless the Minister, by statutory order, determines
+        a lower rate." Section 9 is unchanged through CY2025; the operative
+        16% standard rate is set by S.I. No. 14 of 2008, captured separately
+        as a ZRA agency reproduction (the SI's primary print is not publicly
+        digitized) in the policy manifest.

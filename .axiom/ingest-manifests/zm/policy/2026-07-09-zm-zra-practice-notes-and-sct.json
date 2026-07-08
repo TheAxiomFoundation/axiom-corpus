@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct.json",
+      "sha256": "892b4bf1f3e130b561e82ad4750439c42b66ee3c1e299c6f19d1c6033bc76dbe"
+    },
+    {
+      "path": "data/corpus/inventory/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct.json",
+      "sha256": "21551b21f4fd46de9e68f3e5aacef285f8e4cdd3077e2325a2ebfbc6aa2081aa"
+    },
+    {
+      "path": "data/corpus/provisions/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct.jsonl",
+      "sha256": "e449e0189fc0833a58f76100eb94aac8dedc765a3ac9f3d7d41a865d8dd64892"
+    },
+    {
+      "path": "data/corpus/sources/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct/official-documents/zm-mcdss-sct-ministerial-statement.pdf",
+      "sha256": "2e05b6340db0fab1659d48d62e646d9d90a6784978e77319120c6f052b91fce8"
+    },
+    {
+      "path": "data/corpus/sources/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct/official-documents/zm-zra-pn-2008-1-vat-rate-order.pdf",
+      "sha256": "90fb14fe8a3bb9de3a4bed0b905ac02e5ae9a4e50fb59e7aec8908f9bef20579"
+    },
+    {
+      "path": "data/corpus/sources/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct/official-documents/zm-zra-pn-2024-1-clear-beer-suspension.pdf",
+      "sha256": "e3a46d057a74abf9e5b29e74ad71464b8c4c8c6654b0ebf18b1d4fdb749d4f93"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "614a186e1a0fda179f7ba4ef00bcd550015321ec",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-zm-zra-practice-notes-and-sct --manifest manifests/zm-zra-practice-notes-and-sct-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-08T18:42:53.964191+00:00",
+  "jurisdiction": "zm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TNz0vk20cRIR18bq2yWEHeP43kwzMNXaajaehiorWUmHJYVCS5j9aconf7J5+eKYvUnLX6jMsRabSKqfr1w9Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-zm-zra-practice-notes-and-sct"
+}
