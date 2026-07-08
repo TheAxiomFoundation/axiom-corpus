@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-07-08-snap-fy2024-cola.json",
+      "sha256": "065a9791781a7dabe60ae013aa6fb6bda16319173f1091fe0b1a3e85e7a787f0"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-07-08-snap-fy2024-cola.json",
+      "sha256": "96d6837075eb316d0fc4c56dfc1210592b6aab7ce8a349eff64a71d474739c13"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-07-08-snap-fy2024-cola.jsonl",
+      "sha256": "f7e83e5e340f93bedf54d58ea606ee6c39f7cd4fa79d1160f075befaf992ffff"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "614a186e1a0fda179f7ba4ef00bcd550015321ec",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-snap-fy2024"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --base data/corpus --version 2026-07-08-snap-fy2024-cola --manifest manifests/us-snap-guidance.yaml --only-source-id snap-fy2024-cola"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-08T16:23:29.643806+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DFe01Ey4jJjMg8oU4joxZYIbYz8S47llwTyksb0xdz1tRPlqGRi9pN/yvzKDqLJH2WNvw3Z2Joob6ufl3qUBCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08-snap-fy2024-cola"
+}

@@ -1,4 +1,43 @@
 documents:
+  - source_id: snap-qc-fy2024-technical-documentation
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/usda/fns/snap-qc-fy2024-technical-documentation
+    title: Technical Documentation for the Fiscal Year 2024 SNAP Quality Control Database and the QC Minimodel
+    source_url: https://snapqcdata.net/datafiles
+    download_url: https://snapqcdata.net/sites/default/files/2026-05/FY-2024-Tech-Doc.pdf
+    source_format: pdf
+    source_as_of: "2026-05-20"
+    expression_date: "2023-10-01"
+    request:
+      headers:
+        Referer: https://snapqcdata.net/datafiles
+    metadata:
+      primary_source: true
+      source_authority: USDA Food and Nutrition Service
+      document_subtype: qc_technical_documentation
+      program: SNAP
+      fiscal_year: "2024"
+      effective_start: "2023-10-01"
+      effective_end: "2024-09-30"
+  - source_id: snap-fy2024-cola
+    jurisdiction: us
+    document_class: guidance
+    citation_path: us/guidance/usda/fns/snap-fy2024-cola
+    title: SNAP FY 2024 Cost-of-Living Adjustments
+    source_url: https://www.fns.usda.gov/snap/fy-2024-cola
+    download_url: https://web.archive.org/web/20231016124729if_/https://fns-prod.azureedge.us/sites/default/files/resource-files/FY24-SNAP-COLA-Memo.pdf
+    source_format: pdf
+    source_as_of: "2023-10-16"
+    expression_date: "2023-10-01"
+    metadata:
+      primary_source: true
+      source_authority: USDA Food and Nutrition Service
+      document_subtype: cola_guidance
+      program: SNAP
+      fiscal_year: "2024"
+      effective_start: "2023-10-01"
+      effective_end: "2024-09-30"
   - source_id: snap-fy2026-cola
     jurisdiction: us
     document_class: guidance
