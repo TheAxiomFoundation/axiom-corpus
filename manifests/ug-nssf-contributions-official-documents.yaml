@@ -1,0 +1,68 @@
+# Uganda NSSF contribution capture (rulespec-ug instrument 5-6, UGAMOD
+# tscee_ug/tscer_ug parity; tracking rulespec-ug#1).
+#
+# The National Social Security Fund Act (Chapter 230 on the face of the
+# revised-edition volume print; Act 8 of 1985, commencement 1 December
+# 1985): section 10 requires a contributing employer to pay a STANDARD
+# CONTRIBUTION of fifteen percent of the monthly total wages of each
+# eligible employee; section 11 lets the employer deduct the EMPLOYEE'S
+# SHARE of five percent from the employee's wages (the employer bears
+# the remaining ten percent economically - UGAMOD's tscee_s 5% /
+# tscer_s 10% split, probed exact); section 12 sets the special
+# contribution (ten percent) for employees excepted from the standard
+# scheme. The NSSF (Amendment) Act 2021 (print held locally) modernises
+# definitions, membership and voluntary provisions and does NOT restate
+# the section 10-12 rates.
+#
+# Source: the Fund's own hosted scan of the revised-edition volume pages
+# (running heads "[Cap. 230" with Laws-of-Uganda volume pagination
+# 8208-); faithful reproduction of the official revised-edition print,
+# accepted per the Ghana Sage-hosted Assembly Press precedent with the
+# authenticity features on the face cross-checked (chapter number,
+# commencement, volume page numbers).
+documents:
+  - source_id: ug-cap-230-nssf-act-contributions
+    jurisdiction: ug
+    document_class: statute
+    citation_path: ug/statute/cap-230/national-social-security-fund-act
+    title: National Social Security Fund Act (Cap. 230) — standard, employee-share and special contributions (ss. 10-12)
+    source_url: https://www.nssfug.org/site/assets/files/1501/nssf_act_cap_230.pdf
+    source_format: pdf
+    source_as_of: '2026-07-08'
+    expression_date: '1985-12-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: labeled_sections
+      section_label_pattern: '^\s*1[012]\.\s+(?P<label>Payment of standard contribution by employers|Employee.s share of standard contribution|Special contribution by contributing employers)\s*$'
+      page_windows:
+        - start_page: 7
+          end_page: 11
+      section_label_replacements:
+        'Payment of standard contribution by employers': section-10-payment-of-standard-contribution-by-employers
+        "Employee’s share of standard contribution": section-11-employees-share-of-standard-contribution
+        "Employee's share of standard contribution": section-11-employees-share-of-standard-contribution
+        'Special contribution by contributing employers': section-12-special-contribution
+    metadata:
+      primary_source: true
+      source_authority: Republic of Uganda (Laws of Uganda revised-edition volume)
+      publisher: Uganda Printing and Publishing Corporation (UPPC), Entebbe
+      commencement_date: '1985-12-01'
+      source_family: social-security/nssf-contributions
+      source_note: >-
+        National Social Security Fund Act (Chapter 230) sections 10-12
+        from the Fund's hosted scan of the Laws of Uganda revised-edition
+        volume pages (running heads "[Cap. 230", volume pagination 8208
+        onward; OCR at 300 dpi). Section 10: standard contribution of
+        fifteen percent of monthly total wages paid by the contributing
+        employer; section 11: the employer may deduct the employee's
+        share of five percent; section 12: special contribution of ten
+        percent for excepted employees. The rates are original Act 8 of
+        1985 text, unchanged by the NSSF (Amendment) Act 2021 (print
+        held for diligence; it modernises definitions, membership and
+        voluntary contributions only).
