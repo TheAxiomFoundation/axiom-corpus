@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ug/statute/2026-07-08-ug-rental-and-presumptive.json",
+      "sha256": "c387ef314a77e673fa3e1b28a9595c02e3794d5b7cb0e526eed9ec25fdd03bc6"
+    },
+    {
+      "path": "data/corpus/inventory/ug/statute/2026-07-08-ug-rental-and-presumptive.json",
+      "sha256": "fc8f22c46e764654b97cd02bf731fd65021f386997c444039a52ad16b2ffe645"
+    },
+    {
+      "path": "data/corpus/provisions/ug/statute/2026-07-08-ug-rental-and-presumptive.jsonl",
+      "sha256": "9e061ec1b367892658a7e234e65a3bed0042c912e14ed0f45b89cab91ecc7d1a"
+    },
+    {
+      "path": "data/corpus/sources/ug/statute/2026-07-08-ug-rental-and-presumptive/official-documents/ug-act-2020-20-income-tax-amendment.pdf",
+      "sha256": "82858b0147bf1ba0a43dbd5db6445ad9db80e37e9d8a630a2d25750cfd661a84"
+    },
+    {
+      "path": "data/corpus/sources/ug/statute/2026-07-08-ug-rental-and-presumptive/official-documents/ug-act-2022-11-income-tax-amendment.pdf",
+      "sha256": "2de1f3ca8e6e24a64be2b973d2b54bafa700643d7c281b76dc5c8b7b5b2d846d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d8fee082a4f566acc70d4ce9c8a2eff1ebac2101",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-08-ug-rental-and-presumptive --manifest manifests/ug-rental-and-presumptive-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-08T09:49:24.162215+00:00",
+  "jurisdiction": "ug",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rNer15m79ip/wB5B8QxppZvMQCfvIebXFPOvt9cSWE6QmaXAQ4W6HsszASDXro2SOS5HpL6ibTNnHFfOfFp0BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08-ug-rental-and-presumptive"
+}
