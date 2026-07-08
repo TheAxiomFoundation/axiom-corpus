@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/zm/statute/2026-07-08-zm-income-tax-paye-and-turnover.json",
+      "sha256": "90585f205fbd47ec3149813a2e2c6a9539a29c8707f26394ab325822f9eea495"
+    },
+    {
+      "path": "data/corpus/inventory/zm/statute/2026-07-08-zm-income-tax-paye-and-turnover.json",
+      "sha256": "b802f2d6e53e601ac3e084caf558fc74848383759c4500f019fc24fbb6f3462c"
+    },
+    {
+      "path": "data/corpus/provisions/zm/statute/2026-07-08-zm-income-tax-paye-and-turnover.jsonl",
+      "sha256": "ca35335823953710e389fcb03797dbcdd2372064e2f59020b9f214ffb24add4f"
+    },
+    {
+      "path": "data/corpus/sources/zm/statute/2026-07-08-zm-income-tax-paye-and-turnover/official-documents/zm-act-2023-22-income-tax-amendment.pdf",
+      "sha256": "d56e7afe1374549d16d57c5f578a247a5d76b28381dde085caf470924e0a2a79"
+    },
+    {
+      "path": "data/corpus/sources/zm/statute/2026-07-08-zm-income-tax-paye-and-turnover/official-documents/zm-act-2024-22-income-tax-amendment.pdf",
+      "sha256": "9f0b2709b915ee4883871c1d63ded9208fc0ca81cef12910d8835065650126a2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0d849df550421ba1fd1153f4c705890efc12ebef",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-08-zm-income-tax-paye-and-turnover --manifest manifests/zm-income-tax-paye-and-turnover-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-08T13:59:56.809067+00:00",
+  "jurisdiction": "zm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Wpvq+1Kej5DQlBBV8Ut2eNPCC0L0hoVafFTH8OgzhnxOK+dBeoj3JBZKILfx4A2VprhnbHPlML0us0BQ2PqaDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08-zm-income-tax-paye-and-turnover"
+}
