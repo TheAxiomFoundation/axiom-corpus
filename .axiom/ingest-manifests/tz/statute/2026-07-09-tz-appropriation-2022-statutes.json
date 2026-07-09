@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/tz/statute/2026-07-09-tz-appropriation-2022-statutes.json",
+      "sha256": "f5d2f53f68efb57a625a0244bac6bdb3433b811991a4ed9c9cb23ada465d03a7"
+    },
+    {
+      "path": "data/corpus/inventory/tz/statute/2026-07-09-tz-appropriation-2022-statutes.json",
+      "sha256": "acb29f43e94f4dd0154d3402fe0da4ede42ead8ebdd44be30357c37c29f79873"
+    },
+    {
+      "path": "data/corpus/provisions/tz/statute/2026-07-09-tz-appropriation-2022-statutes.jsonl",
+      "sha256": "65f737f10d313eaeb322291c789dcbd150f82cf572dd1995778750f9cb1c27da"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-appropriation-2022-statutes/official-documents/tz-act-2022-4-appropriation.pdf",
+      "sha256": "2ee8502761c1758b3c75cf1a94b13fbec31d38c252f5ed5c03801460c0cff94d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2c64b1b6f9fc6d77e0c16291c350803b4ba252db",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-tz-appropriation-2022-statutes --manifest manifests/tz-appropriation-2022-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-09T18:18:31.054884+00:00",
+  "jurisdiction": "tz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gdeS3tKzOm2akG9JE21O3/g+qOkhgnRJxVZmgQR+wYvTgT2qYJK4daDaJO0XJmRmKMn5vyr+VZPoon+Rm/+mDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-tz-appropriation-2022-statutes"
+}
