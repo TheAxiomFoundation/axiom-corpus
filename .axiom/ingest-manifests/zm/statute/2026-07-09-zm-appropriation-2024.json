@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/zm/statute/2026-07-09-zm-appropriation-2024.json",
+      "sha256": "9f3ca4c3de8884a757a695e700247d157bef2e6aef570c2367f7f10f5e7570dd"
+    },
+    {
+      "path": "data/corpus/inventory/zm/statute/2026-07-09-zm-appropriation-2024.json",
+      "sha256": "f780e3f36dc8355b9899b1af7ccd1bdcef33b475acb1c85e663bd9fcb3f1879c"
+    },
+    {
+      "path": "data/corpus/provisions/zm/statute/2026-07-09-zm-appropriation-2024.jsonl",
+      "sha256": "31edf3158a2c46993f9f39014209e9cbd5e6a2d9c13556305df462edacd612df"
+    },
+    {
+      "path": "data/corpus/sources/zm/statute/2026-07-09-zm-appropriation-2024/official-documents/zm-act-2024-29-appropriation.pdf",
+      "sha256": "c9f52f7aa7645eac197edda06d976506008bc793ba007519d3a986a74ac82da6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7d18a1102a7e24d27513a5a675aff5968bb4468e",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-zm-appropriation-2024 --manifest manifests/zm-appropriation-2024-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-09T00:28:09.685824+00:00",
+  "jurisdiction": "zm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iWYNgL61lm5Wo20X0GzGRPLpvaA9DwsOnpoXpA+Xat8WmhjbvttY92YxjSgF59elf4FUF+MBn/KxLM/LvW1pCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-zm-appropriation-2024"
+}

@@ -1,0 +1,36 @@
+# Zambia Appropriation Act, 2024 capture (rulespec-zm instrument 9
+# authority anchor; tracking rulespec-zm#1). The Social Cash Transfer
+# is administratively set by MCDSS; the Appropriation Act, 2024 (Act
+# No. 29 of 2024, gazette date 26 December 2024) authorizes the FY2025
+# expenditure from the Consolidated Fund under which the programme is
+# funded - the statutory higher-authority anchor for the policy-class
+# SCT capture, mirroring the Uganda Appropriation Act 2022 precedent.
+documents:
+  - source_id: zm-act-2024-29-appropriation
+    jurisdiction: zm
+    document_class: statute
+    citation_path: zm/statute/act-2024-29/appropriation-2024
+    title: Appropriation Act, 2024 (Act No. 29 of 2024) — FY2025 expenditure authority
+    source_url: https://www.parliament.gov.zm/sites/default/files/documents/acts/Act%20No.%2029%20of%202024%20The%20Appropriation%20Act.pdf
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2025-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Parliament of Zambia (National Assembly)
+      publisher: Government Printer, Lusaka
+      gazette_notification: '26 December 2024'
+      source_family: appropriation
+      source_note: >-
+        Appropriation Act, 2024 (Act No. 29 of 2024) assented print
+        from the National Assembly repository (text-embedded).
+        Authorizes expenditure from the Consolidated Fund for the
+        financial year ending 31 December 2025 (aggregate
+        K217,105,378,661), including the head under which the Ministry
+        of Community Development and Social Services funds the Social
+        Cash Transfer - the statutory authority anchor for the
+        policy-class SCT transfer-values capture.
