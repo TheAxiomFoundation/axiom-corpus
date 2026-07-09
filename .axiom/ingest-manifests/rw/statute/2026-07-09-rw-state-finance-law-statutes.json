@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/rw/statute/2026-07-09-rw-state-finance-law-statutes.json",
+      "sha256": "7c57486cb630619d6b69cbaafc04c741edc81c440017eed829f4fe24fb9a01c9"
+    },
+    {
+      "path": "data/corpus/inventory/rw/statute/2026-07-09-rw-state-finance-law-statutes.json",
+      "sha256": "5eb3e3465a7f1e6e3e574a26ea43a1de809944f163cdf929cda4b14b87ae320b"
+    },
+    {
+      "path": "data/corpus/provisions/rw/statute/2026-07-09-rw-state-finance-law-statutes.jsonl",
+      "sha256": "3aead47b781951b791e00e9982e3c97458cfa4f83af50b6bcabe4e1ef8ed8980"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-state-finance-law-statutes/official-documents/rw-law-2024-066-state-finances-fy2024-25.pdf",
+      "sha256": "7689c732423e96a3e1dd4242f2a7e6ae0ac692482ee6e575b2d2ba0d3d81fdce"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "92517685ff32e55eaffd76ddaf589aaadab7add1",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-rw-state-finance-law-statutes --manifest manifests/rw-state-finance-law-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-09T15:03:34.667023+00:00",
+  "jurisdiction": "rw",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "v+RQ3AHPQ+6E7Dkf6qCMu7FYh7Y2uR5YZBguci59AyWgpj7bVBTMDnwP9g/SMhHdTdLWyMQHP54TK9mHCl8pDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-rw-state-finance-law-statutes"
+}
