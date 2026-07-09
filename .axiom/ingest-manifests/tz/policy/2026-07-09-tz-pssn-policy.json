@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/tz/policy/2026-07-09-tz-pssn-policy.json",
+      "sha256": "a3e82158bccdb08004cad24850eba1d59a36e6cb87e0c013756c3145f5f0173f"
+    },
+    {
+      "path": "data/corpus/inventory/tz/policy/2026-07-09-tz-pssn-policy.json",
+      "sha256": "95156e98636ecbf5bcf15bebfaf057aa70cad63ed0a42aa0d79c2686428b9668"
+    },
+    {
+      "path": "data/corpus/provisions/tz/policy/2026-07-09-tz-pssn-policy.jsonl",
+      "sha256": "34f8b50d480558d2784038c58855de8dac69b5cf6757e235b6f59c9f43000200"
+    },
+    {
+      "path": "data/corpus/sources/tz/policy/2026-07-09-tz-pssn-policy/official-documents/tz-wb-pad3139-pssn-ii-benefit-structure.pdf",
+      "sha256": "243d6d0d1410f0daffc769918b52e0b92e865ec9ebf0defea98925d7d217cfec"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "57679443d07ac9027022f6280e1652590c369d0d",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-tz-pssn-policy --manifest manifests/tz-pssn-policy-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-09T18:08:50.950562+00:00",
+  "jurisdiction": "tz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BU4X94BPTmvGgnXJ0Pk/nIIlAb/YFbgaX2t7mw0ETClyeXjjzIADBL9c0dC9/RGAK/tRyeen8IGesPeJXOHzCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-tz-pssn-policy"
+}
