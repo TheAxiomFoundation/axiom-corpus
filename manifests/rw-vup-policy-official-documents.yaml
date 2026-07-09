@@ -1,0 +1,59 @@
+# Rwanda social-protection programme rules - POLICY class (rulespec-rw
+# transfer instruments; RWAMOD VUP Direct Support parity; tracking
+# rulespec-rw#1).
+#
+# One official programme document:
+#
+# 1. VUP Operational Manual - Safety Net Components (LODA, FY2024/25) -
+#    the Direct Support household-entitlement schedule (monthly, by
+#    household size: 1 member FRW 7,500; 2 members 12,000; 3 members
+#    15,000; 4 members 18,000; 5 or more 21,000), unchanged as of July
+#    2025 per the RWAMOD v2.0 country report. VUP Direct Support is set
+#    administratively by LODA/MINALOC rather than by law or order, so
+#    the operational manual is the governing programme instrument (the
+#    same pattern as the Zambia MCDSS Social Cash Transfer capture).
+#    The print is a scanned image PDF, so extraction runs a fresh OCR.
+#
+# RWAMOD comparison notes (targets, never sources): RWAMOD RW_2025
+# simulates VUP Direct Support with exactly this household-size
+# schedule, gated on reported receipt, consumption poverty and
+# labour-constraint tests; the capture grounds the amounts.
+documents:
+  - source_id: rw-loda-vup-operational-manual-fy2024-25
+    jurisdiction: rw
+    document_class: policy
+    citation_path: rw/policy/loda-vup/operational-manual-safety-net-fy2024-25
+    title: VUP Operational Manual - Safety Net Components (LODA, FY2024/25) - Direct Support household entitlement schedule (FRW 7,500/12,000/15,000/18,000/21,000 per month by household size)
+    source_url: 'https://www.loda.gov.rw/fileadmin/user_upload/LODA/Publications/Guidelines/VUP/FY_2024-2025/VUP_OPERATIONAL_MANUAL-SAFETY_NET_COMPONENTS.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2024-07-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      force_ocr: true
+      ocr_dpi: 350
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Local Administrative Entities Development Agency (LODA) / Ministry of Local Government
+      publisher: LODA publications library (Guidelines / VUP, FY2024/25 folder)
+      source_family: social-protection/vup-direct-support
+      source_note: >-
+        LODA publications library print of the VUP Operational Manual -
+        Safety Net Components for FY2024/25 (56-page scanned image PDF
+        with no embedded text layer, so extraction runs a fresh OCR at
+        350 dpi, eng, psm 3, over the whole file as a single block; the
+        byte-identical file is also published in the FY2023/24 folder).
+        Grounds the Direct Support household entitlement table: number
+        of household members 1 pays FRW 7,500; 2 pays 12,000; 3 pays
+        15,000; 4 pays 18,000; 5 or more pays 21,000 - monthly
+        transfers, framed by the manual's own text on monthly payment
+        access. The RWAMOD v2.0 country report (May 2026) states this
+        schedule is unchanged as of July 2025, so it stands for the
+        CY2025 validation year. VUP Direct Support is administrative
+        (LODA/MINALOC); no gazetted instrument fixes the schedule.
+        Flag: scanned print, fresh 350 dpi OCR.

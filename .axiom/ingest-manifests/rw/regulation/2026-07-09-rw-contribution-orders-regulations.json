@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/rw/regulation/2026-07-09-rw-contribution-orders-regulations.json",
+      "sha256": "be257813b3e9b46ae82a413fa8dc633e7f6cd63ee408011e6dec7d9ec97c01cb"
+    },
+    {
+      "path": "data/corpus/inventory/rw/regulation/2026-07-09-rw-contribution-orders-regulations.json",
+      "sha256": "79de6c31cea91b78c58d0825b7d665257ea63809bcc37d5c2631539f2ddc9619"
+    },
+    {
+      "path": "data/corpus/provisions/rw/regulation/2026-07-09-rw-contribution-orders-regulations.jsonl",
+      "sha256": "b9a8a2de54c9081d48c92c7d1a9c117ed15e046c7aa0dd06a38d059326f01a02"
+    },
+    {
+      "path": "data/corpus/sources/rw/regulation/2026-07-09-rw-contribution-orders-regulations/official-documents/rw-mo-2016-007-16-10-tc-maternity-base.pdf",
+      "sha256": "2accf25420ebfe0d5603d6d9cb991fb4020144d8e0784aa2fb749b78d1d32b90"
+    },
+    {
+      "path": "data/corpus/sources/rw/regulation/2026-07-09-rw-contribution-orders-regulations/official-documents/rw-og-2026-02-23-cbhi-orders.pdf",
+      "sha256": "4f15749df3f7c52d8dce10bbe0235f421d12f9646101ea01e03e1e1f9524d571"
+    },
+    {
+      "path": "data/corpus/sources/rw/regulation/2026-07-09-rw-contribution-orders-regulations/official-documents/rw-pmo-2020-105-03-cbhi-contributions.pdf",
+      "sha256": "fa27cf267680ec3c67bcb782c2a5b6da926bf6a2d0477654892c2bb40cc88647"
+    },
+    {
+      "path": "data/corpus/sources/rw/regulation/2026-07-09-rw-contribution-orders-regulations/official-documents/rw-po-2024-086-01-pension-contribution-rate.pdf",
+      "sha256": "bc010c1bd2ebce650dff8a19e6adf8f995cb3b6ad3d2f0f1a52f9b9fd29e8d39"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0a3fbb7f63eac5674b3ddf8c30e9e4bdd2674c9a",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-rw-contribution-orders-regulations --manifest manifests/rw-contribution-orders-regulations-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-09T12:35:30.266035+00:00",
+  "jurisdiction": "rw",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "X5LPa46p9nLZGv+7wtYbF0/CiKZEelEt9Pj0eAL0ddl45sNh2NNFQlgxS7FRXEekl0w2gUaq1hyaVpCllNpWAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-rw-contribution-orders-regulations"
+}
