@@ -1,0 +1,89 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/rw/statute/2026-07-09-rw-tax-and-social-security-statutes.json",
+      "sha256": "6e00a54592a58d7c03973b31c85de25e84199f90efd2b8980c80e297a25a0b7e"
+    },
+    {
+      "path": "data/corpus/inventory/rw/statute/2026-07-09-rw-tax-and-social-security-statutes.json",
+      "sha256": "92d9a92874695e3ea48df9acb5e9de84ca7b0988392ed1536b559a2e6d3056a3"
+    },
+    {
+      "path": "data/corpus/provisions/rw/statute/2026-07-09-rw-tax-and-social-security-statutes.jsonl",
+      "sha256": "a10cd72fcf976aa1d5ba143525bef39bb6500df393124e26689aedc61faa8664"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2001-24-rama-medical-insurance.pdf",
+      "sha256": "cb827ffcdf22cedf05918af57f1d079f3f22876d7fc44ca5a063b43855d054f9"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2003-06-social-security-organisation.pdf",
+      "sha256": "b1659fc3cb9a882b712fc787065b8ad53ea9f3e32944c316c8cea71e52081ca9"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2005-23-military-medical-insurance.pdf",
+      "sha256": "0737284d51ff97cba10f5246d3fd562f17c0f4bee878b689fb99a8a82133a2ee"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2015-03-community-based-health-insurance.pdf",
+      "sha256": "a33a48038184f9e4f81780826692a6fa28a9953980d4a56e90e0a828fe31f637"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2015-05-pension-schemes.pdf",
+      "sha256": "aab6884c3f576ee35f652799cfc8f2ba24df450c4df8c911694a73ca3db70010"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2016-003-maternity-leave-benefits.pdf",
+      "sha256": "3f98c5894602864360531aba8b2c2719ac3f00e521446aa7478390644b24f57e"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2022-027-taxes-on-income.pdf",
+      "sha256": "41d4351ea189cea2571e7f4dbae20f7cab3c0148b4193d75ce954e1e4518dd02"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2022-036-military-medical-insurance.pdf",
+      "sha256": "a0c161df1055aa80dd5b0c9c97b14473fb3142553c62840d4c58dd4c3432530f"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2023-048-decentralised-entities-revenue.pdf",
+      "sha256": "ee363385ee01b98e58520bdf6cb1a48d5db79b5759cdf9cbd04215a086126787"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2023-049-value-added-tax.pdf",
+      "sha256": "b33e9a7575a6af69b0fdcaff3928c17d8b75d17d528c1979aebb209e99d5ab01"
+    },
+    {
+      "path": "data/corpus/sources/rw/statute/2026-07-09-rw-tax-and-social-security-statutes/official-documents/rw-law-2025-011-excise-duty.pdf",
+      "sha256": "32e34ac1be0a8c3806f24e398b4adc9ff2fb1e9256f5c290ceb05549cefd163a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0a3fbb7f63eac5674b3ddf8c30e9e4bdd2674c9a",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-rw-tax-and-social-security-statutes --manifest manifests/rw-tax-and-social-security-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-09T12:35:29.766338+00:00",
+  "jurisdiction": "rw",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LeiXYf4RPszK1oZsNzk+PFaY94Tctx33guLqplCG59kxJGbEnJLjrOdecKQBdk7y7CVNidVNa5V4mfKMNqIBAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-rw-tax-and-social-security-statutes"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/rw/policy/2026-07-09-rw-vup-policy.json",
+      "sha256": "4aff811d8046b49b296c5f5f070099fb24ab977507a2190468837865a68835d7"
+    },
+    {
+      "path": "data/corpus/inventory/rw/policy/2026-07-09-rw-vup-policy.json",
+      "sha256": "d717f0a0ea5fdfcdf734cb4b41b20c423f1d22f6dbb6fdd6e7332daa7dadd594"
+    },
+    {
+      "path": "data/corpus/provisions/rw/policy/2026-07-09-rw-vup-policy.jsonl",
+      "sha256": "2bbd1d2fec7e3386c6898d0a7502af85a452ef4519bd2a7e07ae68a3a3b19f64"
+    },
+    {
+      "path": "data/corpus/sources/rw/policy/2026-07-09-rw-vup-policy/official-documents/rw-loda-vup-operational-manual-fy2024-25.pdf",
+      "sha256": "a2a702894db1443b31d9d4cac691d5a34c40105e61ae12795f8b5fd8ae9a3278"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0a3fbb7f63eac5674b3ddf8c30e9e4bdd2674c9a",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-rw-vup-policy --manifest manifests/rw-vup-policy-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-09T12:36:34.689877+00:00",
+  "jurisdiction": "rw",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qAJPu/As0ugQrF2bMlcJZY3KLndnFfEufwrj7iThSUSzqjfXa55l5v7Q3ytGI6y/WuicneNSp2S5jZyn0NHtAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-rw-vup-policy"
+}
