@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/tz/statute/2026-07-09-tz-tax-and-social-security-statutes.json",
+      "sha256": "486db94f1f64f93b768ed536f466886a7d8676ed25db0b54f7aa204643aadb86"
+    },
+    {
+      "path": "data/corpus/inventory/tz/statute/2026-07-09-tz-tax-and-social-security-statutes.json",
+      "sha256": "0904115dfa40858f42bd851df4014b7c79100e0c89e7bc0f3e301c4a4af31dc5"
+    },
+    {
+      "path": "data/corpus/provisions/tz/statute/2026-07-09-tz-tax-and-social-security-statutes.jsonl",
+      "sha256": "ccc6ebf2cad957421c67657a7089e539ed80061193b95f7c8e89cef45f0e51ef"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-act-2018-2-psssf-act.pdf",
+      "sha256": "cb7b966a5b9ce88e165521924468ad9b443a907a55ed3273257e8b7d2d01470f"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-cap-147-excise-act-re2019.pdf",
+      "sha256": "045baad38a9e506a49733d41c92553e983b204dcf1ba88c09260545bdc09f9c0"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-cap-148-vat-act-re2023.pdf",
+      "sha256": "f23548971722ae028c7015087ad5066e08f3bb83e75744ec35b76ef3e7dd9e49"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-cap-332-income-tax-act-re2019.pdf",
+      "sha256": "7bb9e60d29dbf589b4e7bf95bd7ec326c5ff8bcdc482f275c4763a6275f05e90"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-cap-332-income-tax-act-re2023.pdf",
+      "sha256": "a128d3293c3d9c5c019a36d1b3a0d2d1c30d4c79b524eeee6818af5ee3560516"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-cap-395-nhif-act-re2023.pdf",
+      "sha256": "59836822c622de62ffc565416bcc875c3177147819cf5008ea440720bc65c848"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-cap-50-nssf-act-re2023.pdf",
+      "sha256": "2a820e67ed109cd360595ab9c732b7006e94027e16e5a0d4b751ff5e197bec98"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-finance-act-2021.pdf",
+      "sha256": "8619f742ce38acaf05d64c9b491854aa4ace4e23d06e68112a68add168d128e1"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-finance-act-2022.pdf",
+      "sha256": "dce41e84c9a7e07743f805a7b873ffed4ad6e10f38a5d8d34a324dcfc60aa945"
+    },
+    {
+      "path": "data/corpus/sources/tz/statute/2026-07-09-tz-tax-and-social-security-statutes/official-documents/tz-finance-act-2023.pdf",
+      "sha256": "6daa15ebe5aa8003dc904194d4ad72f9e01198f30bab46cac7e51a53d622d240"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "777851c23ee1643a385f54d38d7d63855f2d6e8d",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-tz-tax-and-social-security-statutes --manifest manifests/tz-tax-and-social-security-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 20,
+    "missing_count": 0,
+    "provision_count": 20,
+    "source_count": 20
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-09T17:54:18.382107+00:00",
+  "jurisdiction": "tz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "RglbWjcfXHxTdVU9x9FnTSU/1+qvzA+PDgqct0dRMgvVI00mueV3sEoE6bxk1Jrxz69JXE2/otXjiDxMGLNKCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-tz-tax-and-social-security-statutes"
+}
