@@ -1,0 +1,71 @@
+# Tanzania social-protection programme rules - POLICY class (rulespec-tz
+# PSSN transfer instruments; TAZMOD TZ_2023 parity; tracking
+# rulespec-tz#1).
+#
+# One official programme document:
+#
+# 1. World Bank Project Appraisal Document PAD3139 (August 2019) for
+#    the Second Productive Social Safety Net Project (P169165) - the
+#    publicly disclosed appraisal of the Government of Tanzania /
+#    TASAF PSSN II program, carrying the approved Phase-2 benefit
+#    structure verbatim (Table 2 and Annex Table 2.2): fixed direct
+#    support/productive transfer TZS 12,000 per month; child grant
+#    5,000 (household with a child under 18); disability grant 5,000;
+#    infant human-capital transfer 5,000 (0-5 years health); variable
+#    conditional transfers lower primary 2,000 and upper primary 4,000
+#    (combined cap 12,000), lower secondary 6,000 and upper secondary
+#    8,000 (cap 16,000); household minimum 12,000 and maximum 55,000
+#    per month. TASAF's own PSSN II operational manual is not publicly
+#    digitized (the retired document archive 404s and the current
+#    TASAF site carries only the PSSN III handbooks with a different
+#    schedule); the SOUTHMOD country report sources the same schedule
+#    to an internal TASAF (2021) mission paper. The PAD is the public
+#    official carrier of the amounts.
+#
+# TAZMOD comparison notes (targets, never sources): TZ_2023 pays the
+# fixed 12,000 adult + 5,000 child amounts (bsa) and the conditional
+# infant/primary/secondary/disability amounts with the 12,000/16,000
+# caps (bsa01), gated on the programme-registration flag; probed
+# 17,000 + 17,000 on an adult-plus-three-children household.
+documents:
+  - source_id: tz-wb-pad3139-pssn-ii-benefit-structure
+    jurisdiction: tz
+    document_class: policy
+    citation_path: tz/policy/tasaf-pssn/pssn-ii-benefit-structure
+    title: World Bank PAD3139 (P169165, August 2019) - PSSN II proposed benefit structure (Table 2/Annex 2.2; fixed 12,000 + 5,000 child + 5,000 disability + 5,000 infant; variable 2,000/4,000 primary cap 12,000 and 6,000/8,000 secondary cap 16,000; household maximum 55,000)
+    source_url: 'https://documents1.worldbank.org/curated/en/798681568599240846/pdf/Tanzania-Second-Productive-Social-Safety-Net-Project.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2019-08-16'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: World Bank (Project Appraisal Document for the Government of the United Republic of Tanzania / TASAF PSSN II program)
+      publisher: World Bank documents repository (Public Disclosure Authorized)
+      source_family: social-protection/pssn-transfers
+      source_note: >-
+        World Bank Project Appraisal Document PAD3139 of 16 August 2019
+        for the Second Productive Social Safety Net Project (P169165;
+        99-page text-embedded print, Public Disclosure Authorized).
+        Grounds the PSSN II benefit structure the TASAF-run programme
+        applies from 2021 (Table 2, and identically Annex Table 2.2):
+        fixed direct support/productive transfer TZS 12,000 per month;
+        child grant TZS 5,000 (at least one child under 18); disability
+        grant TZS 5,000; infant human-capital transfer TZS 5,000 (0-5
+        years, health conditionality); variable conditional transfers
+        of TZS 2,000 per lower-primary and TZS 4,000 per upper-primary
+        child (combined primary cap TZS 12,000) and TZS 6,000 per
+        lower-secondary and TZS 8,000 per upper-secondary child (cap
+        TZS 16,000); household minimum TZS 12,000 and maximum TZS
+        55,000 per month; public-works wage 3,000 per day. TASAF's own
+        PSSN II operational manual is not publicly digitized (the
+        TASAF document archive is retired and the current site carries
+        only PSSN III handbooks with a different schedule), and the
+        SOUTHMOD country report cites an internal TASAF (2021) mission
+        paper for the same amounts - this PAD is the public official
+        carrier. PSSN transfers are set administratively by TASAF
+        under government expenditure authority; no Act fixes the
+        amounts.
