@@ -1,0 +1,53 @@
+# Ethiopia social-protection capture - POLICY class (rulespec-et core
+# instrument; ETMOD Productive Safety Net Programme parity; tracking
+# rulespec-et#1).
+#
+# The Productive Safety Net Programme (PSNP) is the Government of Ethiopia's
+# rural social-protection programme; its transfer values are set by the
+# Ministry of Agriculture Programme Implementation Manual rather than by
+# gazette. This scope captures the Phase IV Programme Implementation Manual:
+#
+# 1. PSNP IV Programme Implementation Manual (2014, final of 14 December
+#    2014) - sets the transfer benchmark at the equivalent of 3kg of cereal
+#    and 0.8 kg of pulses per person per day (15kg of cereal and 4kg of
+#    pulses per person per month), the basis for both the cash wage rate and
+#    the monthly food transfer.
+#
+# ETMOD comparison notes (targets, never sources): ETMOD applies the PSNP
+# transfer benchmark above (3kg cereal + 0.8kg pulses per person per day /
+# 15kg cereal + 4kg pulses per person per month) when valuing the safety-net
+# transfer; this capture is the grounded programme document that target is
+# checked against.
+documents:
+  - source_id: et-moa-psnp-iv-pim-2014
+    jurisdiction: et
+    document_class: policy
+    citation_path: et/policy/moa-psnp/psnp-iv-programme-implementation-manual-2014
+    title: Productive Safety Net Programme Phase IV Programme Implementation Manual (Ministry of Agriculture, 2014) - transfer benchmark 3kg cereal + 0.8kg pulses/day (15kg cereal + 4kg pulses/person/month)
+    source_url: 'https://srbofed.gov.et/wp-content/uploads/2019/09/PSNP-IV-Programme-Implementation-Manual-Final-14-Dec-14-1.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2014-12-14'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Ministry of Agriculture, Federal Democratic Republic of Ethiopia
+      publisher: Government of the Federal Democratic Republic of Ethiopia (Ministry of Agriculture)
+      source_family: social-protection/psnp
+      source_note: >-
+        Productive Safety Net Programme Phase IV Programme Implementation
+        Manual (PIM), the final version of 14 December 2014 issued by the
+        Ministry of Agriculture. The programme's original USAID-hosted copy is
+        dead; this capture is the Government-of-Ethiopia mirror served from
+        srbofed.gov.et (the Southern Region Bureau of Finance and Economic
+        Development), byte-verified against the SOUTHMOD/ETMOD harness copy. A
+        344-page text-embedded PDF, extracted as a single block with no OCR.
+        Grounds the transfer benchmark, verbatim: the daily cash wage rate is
+        "calculated on the basis of the cost of buying 3kg of cereal and 0.8 kg
+        of pulses per day (15kg of cereal and 4kg of pulses per person per
+        month)", and "The monthly food transfer is 15kg of cereal and 4kg of
+        pulses." Flag: captured from the GoE srbofed.gov.et mirror because the
+        original USAID-hosted copy is no longer available.

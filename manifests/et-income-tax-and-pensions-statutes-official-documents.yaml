@@ -1,0 +1,197 @@
+# Ethiopia direct-tax, social-insurance and VAT capture - STATUTE class
+# (rulespec-et core instruments; ETMOD income-tax, pension-contribution and
+# VAT parity; tracking rulespec-et#1).
+#
+# Five federal primary instruments that ground the operative rate schedules
+# and charging provisions the Ethiopia encoding depends on:
+#
+# 1. Income Tax (Amendment) Proclamation No. 1395/2025 - restructures the
+#    Schedule B/C rate tables and taxpayer categories effective 8 July 2025.
+#    Employment (Schedule A) monthly bands 2,000 / 4,000 / 7,000 / 10,000 /
+#    14,000 Birr at 15/20/25/30/35 percent (0-2,000 exempt); business
+#    (Schedule C) annual bands 24,000 / 48,000 / 84,000 / 120,000 / 168,000;
+#    the presumptive/turnover schedule 100,000 / 500,000 / 1,000,000 /
+#    1,500,000 / 2,000,000 at 2/3/5/7/9 percent; Article 23 Minimum
+#    Alternative Tax; and the Category A/B split at Birr 2,000,000 turnover.
+# 2. Federal Income Tax Proclamation No. 979/2016 - the base Schedule A/B/C
+#    proclamation the 2025 amendment operates on; grounds the employment
+#    deduction bar (Art 10(3)) and the two 15%-of-monthly-employment-income
+#    limits (Arts 27(1)(c) and 65(1)(c)).
+# 3. Private Organization Employees' Pension Proclamation No. 715/2011 -
+#    Article 10 contribution split: employer 11%, employee 7%.
+# 4. Public Servants' Pension Proclamation No. 714/2011 - Article 10 split
+#    (public office 11%, public servant 7%) and Article 11 military & police
+#    split (public office 25%, public servant 7%).
+# 5. Value Added Tax Proclamation No. 1341/2024 - Article 8 imposition, the
+#    standard rate "in any other case 15 percent"; repeals VAT Proc 285/2002.
+#
+# ETMOD comparison notes (targets, never sources): ETMOD applies the
+# Schedule A employment PIT bands and rates above, the 7%/11% employee and
+# employer pension contribution split (25% employer share for military and
+# police), and the 15% standard VAT rate; these captures are the grounded
+# primary instruments those targets are checked against.
+documents:
+  - source_id: et-proc-1395-2025-income-tax-amendment
+    jurisdiction: et
+    document_class: statute
+    citation_path: et/statute/proc-1395-2025/income-tax-amendment-2025
+    title: Income Tax (Amendment) Proclamation No. 1395/2025 - Schedule A/B/C and presumptive rate tables; Article 23 Minimum Alternative Tax; Category A/B threshold Birr 2,000,000; effective 8 July 2025
+    source_url: 'https://www.metaappz.com/pdf/ethiopian_laws/federal/2025/pr_1395_2025.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2025-07-08'
+    request:
+      browser_user_agent: true
+    extraction:
+      ocr: true
+      force_ocr: true
+      ocr_dpi: 350
+      ocr_language: eng
+      ocr_psm: 3
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Federal Democratic Republic of Ethiopia (House of Peoples' Representatives)
+      publisher: Federal Negarit Gazette (Ministry of Finance archive signed copy)
+      commencement_date: '2025-07-08'
+      source_family: income-tax/schedules-and-rates
+      source_note: >-
+        Ministry of Finance archive signed copy of the Income Tax (Amendment)
+        Proclamation No. 1395/2025 - an advance print carrying the signature
+        block but a blank gazette number on the title (the gazette-numbered
+        Federal Negarit Gazette print is not publicly digitized), obtained via
+        the metaappz Ethiopian-laws reference collection and byte-verified
+        against the SOUTHMOD/ETMOD harness copy. The document is a 51-page
+        bilingual (Amharic/English) scan whose embedded text layer is garbled,
+        so extraction runs a fresh OCR at 350 dpi (eng, psm 3, force_ocr) over
+        the whole file as a single block; the Amharic pages OCR to noise
+        (harmless) while the English pages carry the operative text. Grounds:
+        the Schedule A employment monthly bands 2,000 / 4,000 / 7,000 /
+        10,000 / 14,000 Birr at 15/20/25/30/35 percent (first 2,000 exempt);
+        the Schedule C business annual bands 24,000 / 48,000 / 84,000 /
+        120,000 / 168,000; the presumptive/turnover schedule 100,000 /
+        500,000 / 1,000,000 / 1,500,000 / 2,000,000 at 2/3/5/7/9 percent;
+        Article 23 Minimum Alternative Tax (tax below 2.5% of turnover, reduced
+        by business income tax, not applying to a taxpayer under the total
+        gross revenue tax regime in Article 49); the Category A / Category B
+        split at Birr 2,000,000 gross revenue; and the effective date of
+        8 July 2025. Flag: MoF-archive signed advance copy, gazette-numbered
+        print not publicly digitized, fresh 350 dpi OCR over a bilingual scan.
+  - source_id: et-proc-979-2016-federal-income-tax
+    jurisdiction: et
+    document_class: statute
+    citation_path: et/statute/proc-979-2016/federal-income-tax-proclamation
+    title: Federal Income Tax Proclamation No. 979/2016 - Article 10(3) employment deduction bar; Articles 27(1)(c) and 65(1)(c) 15%-of-monthly-employment-income limits
+    source_url: 'https://www.metaappz.com/pdf/ethiopian_laws/federal/2016/pr_979_2016.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2016-08-18'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Federal Democratic Republic of Ethiopia (House of Peoples' Representatives)
+      publisher: Federal Negarit Gazette (Berhanena Selam Printing Enterprise)
+      source_family: income-tax/base-proclamation
+      source_note: >-
+        Genuine Federal Negarit Gazette Extraordinary Issue, 22nd Year No. 104,
+        Addis Ababa 18 August 2016 (title-page issue line and date verified on
+        the face), a faithful reproduction hosted in the metaappz Ethiopian-
+        laws reference collection and byte-verified against the SOUTHMOD/ETMOD
+        harness copy. Text-embedded and clean, extracted as a single block with
+        no OCR. This is the base Schedule A/B/C proclamation the 2025 amendment
+        operates on. Grounds: Article 10(3) "An employee shall not be allowed a
+        deduction"; Article 27(1)(c) employer pension/provident contribution
+        deductible only up to the part not "in excess of 15%" of monthly
+        employment income; Article 65(1)(c) the same 15%-of-monthly-employment-
+        income ceiling ("does not exceed 15% of the monthly employment
+        income").
+  - source_id: et-proc-715-2011-private-organization-employees-pension
+    jurisdiction: et
+    document_class: statute
+    citation_path: et/statute/proc-715-2011/private-organization-employees-pension
+    title: Private Organization Employees' Pension Proclamation No. 715/2011 - Article 10 contribution split (employer 11%, employee 7%)
+    source_url: 'https://www.metaappz.com/pdf/ethiopian_laws/federal/2011/pr_715_2011.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2011-06-24'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Federal Democratic Republic of Ethiopia (House of Peoples' Representatives)
+      publisher: Federal Negarit Gazeta
+      source_family: social-security/private-pension
+      source_note: >-
+        Genuine Federal Negarit Gazeta, 17th Year No. 79, Addis Ababa 24 June
+        2011 (issue line and running head verified on the face), a faithful
+        reproduction hosted in the metaappz Ethiopian-laws reference collection
+        and byte-verified against the SOUTHMOD/ETMOD harness copy. Text-
+        embedded, extracted as a single block with no OCR. Grounds Article 10
+        of the contribution split, verbatim "1/ by the employer, 11%;" and
+        "2/ by the employee, 7%." (This 2011 proclamation was later repealed by
+        Proclamation No. 1268/2022; captured here for the CY-range the ETMOD
+        pension parity validates.)
+  - source_id: et-proc-714-2011-public-servants-pension
+    jurisdiction: et
+    document_class: statute
+    citation_path: et/statute/proc-714-2011/public-servants-pension
+    title: Public Servants' Pension Proclamation No. 714/2011 - Article 10 split (11%/7%) and Article 11 military & police split (public office 25%)
+    source_url: 'https://www.metaappz.com/pdf/ethiopian_laws/federal/2011/pr_714_2011.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2011-06-24'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Federal Democratic Republic of Ethiopia (House of Peoples' Representatives)
+      publisher: Federal Negarit Gazeta
+      source_family: social-security/public-pension
+      source_note: >-
+        Genuine Federal Negarit Gazeta, 17th Year No. 78, Addis Ababa 24 June
+        2011 (issue line and running head verified on the face), a faithful
+        reproduction hosted in the metaappz Ethiopian-laws reference collection
+        and byte-verified against the SOUTHMOD/ETMOD harness copy. Text-
+        embedded, extracted as a single block with no OCR. Grounds Article 10
+        of the contribution split for public servants, verbatim "by the public
+        office, 11%;" and "by the public servant, 7%."; and Article 11 for
+        members of the defence force and the police, verbatim "1/ by the public
+        office, 25%;" and "2/ by the public servant, 7%." (This 2011
+        proclamation was later repealed by Proclamation No. 1267/2022;
+        captured here for the CY-range the ETMOD pension parity validates.)
+  - source_id: et-proc-1341-2024-value-added-tax
+    jurisdiction: et
+    document_class: statute
+    citation_path: et/statute/proc-1341-2024/value-added-tax-proclamation
+    title: Value Added Tax Proclamation No. 1341/2024 - Article 8 imposition; standard rate "in any other case 15 percent"; repeals VAT Proc 285/2002
+    source_url: 'https://www.mofed.gov.et/media/filer_public/af/45/af45af2f-7959-4e8b-b736-9494dda9f017/vat_proclamation_no_1341-2016_with_annex.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-09'
+    expression_date: '2024-08-21'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Federal Democratic Republic of Ethiopia (House of Peoples' Representatives)
+      publisher: Federal Negarit Gazette (Ministry of Finance)
+      source_family: consumption-tax/vat
+      source_note: >-
+        Official Ministry of Finance copy of the Value Added Tax Proclamation
+        No. 1341/2024, the Federal Negarit Gazette No. 61, Addis Ababa
+        21 August 2024 facsimile with annex, served from mofed.gov.et and
+        byte-verified against the SOUTHMOD/ETMOD harness copy (this official
+        MoF copy is preferred over the metaappz reproduction). Text-embedded,
+        extracted as a single block with no OCR. Grounds Article 8 (Imposition
+        of Value Added Tax), sub-article 2, the standard rate, verbatim "b) in
+        any other case 15 percent." (zero percent applying to the enumerated
+        exports/supplies). Repeals the Value Added Tax Proclamation No.
+        285/2002.
