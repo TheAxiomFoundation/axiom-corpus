@@ -10,6 +10,7 @@ def test_migration_installs_immutable_release_object_and_single_pointer() -> Non
     assert "content_sha256 text NOT NULL UNIQUE" in sql
     assert "CREATE TABLE IF NOT EXISTS corpus.active_release_pointer" in sql
     assert "pointer_name text PRIMARY KEY CHECK (pointer_name = 'production')" in sql
+    assert sql.count("release_name <> 'current'") >= 2
     assert "release_name ~ '^[a-z0-9]+(-[a-z0-9]+)*$'" in sql
     assert "CREATE POLICY release_objects_public_read" in sql
     assert "FOR SELECT TO anon, authenticated\n  USING (true)" in sql
@@ -61,6 +62,14 @@ def test_activation_freezes_staged_rows_until_signed_membership_is_visible() -> 
     assert function.index("LOCK TABLE corpus.provisions IN SHARE MODE") < function.index(
         "INSERT INTO corpus.release_scopes"
     )
+
+
+def test_activation_rejects_the_mutable_current_name_at_every_sql_boundary() -> None:
+    sql = MIGRATION.read_text()
+    function = sql[sql.index("CREATE OR REPLACE FUNCTION corpus.activate_corpus_release") :]
+
+    assert sql.count("release_name <> 'current'") >= 2
+    assert "OR v_release_name = 'current'" in function
 
 
 def test_versioned_citations_can_coexist_for_named_releases() -> None:

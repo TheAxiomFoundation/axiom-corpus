@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS corpus.release_objects (
   release_object jsonb NOT NULL,
   created_at timestamptz NOT NULL DEFAULT now(),
   CHECK (
-    char_length(release_name) <= 128
+    release_name <> 'current'
+    AND char_length(release_name) <= 128
     AND release_name ~ '^[a-z0-9]+(-[a-z0-9]+)*$'
   ),
   UNIQUE (release_name, content_sha256)
@@ -101,7 +102,8 @@ ALTER TABLE corpus.release_scopes
   DROP CONSTRAINT IF EXISTS release_scopes_named_release_only;
 ALTER TABLE corpus.release_scopes
   ADD CONSTRAINT release_scopes_named_release_only CHECK (
-    char_length(release_name) <= 128
+    release_name <> 'current'
+    AND char_length(release_name) <= 128
     AND release_name ~ '^[a-z0-9]+(-[a-z0-9]+)*$'
   );
 
@@ -278,6 +280,7 @@ BEGIN
   v_release_name := p_release_object ->> 'release';
   v_content_sha := p_release_object ->> 'content_sha256';
   IF v_release_name IS NULL
+     OR v_release_name = 'current'
      OR char_length(v_release_name) > 128
      OR v_release_name !~ '^[a-z0-9]+(-[a-z0-9]+)*$' THEN
     RAISE EXCEPTION 'invalid immutable corpus release name: %', v_release_name;
