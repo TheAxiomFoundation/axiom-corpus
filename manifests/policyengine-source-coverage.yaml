@@ -23,7 +23,7 @@ upstream_reference_inventories:
 source_discovery_report:
   generated_path: data/corpus/analytics/source-discovery-policyengine-current.json
   tracked_in_git: false
-  command: uv run --extra dev axiom-corpus-ingest source-discovery --base data/corpus --input sources/policyengine-us/all_url_references.txt --input sources/policyengine-uk/all_url_references.txt --source-name policyengine --release current --output data/corpus/analytics/source-discovery-policyengine-current.json
+  command_template: uv run --extra dev axiom-corpus-ingest source-discovery --base data/corpus --input sources/policyengine-us/all_url_references.txt --input sources/policyengine-uk/all_url_references.txt --source-name policyengine --release manifests/releases/immutable-release-name.json --output data/corpus/analytics/source-discovery-policyengine-current.json
 source_discovery_summary:
   raw_url_count: 9830
   invalid_url_count: 0

@@ -12,7 +12,6 @@ from collections.abc import Iterable, Mapping
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from contextlib import closing
 from dataclasses import dataclass
-from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, TextIO
 
@@ -266,56 +265,6 @@ class ArtifactReport:
             payload["release"] = self.release_name
             payload["release_scope_count"] = self.release_scope_count
         return payload
-
-
-@dataclass(frozen=True)
-class ReleaseArtifactEntry:
-    key: str
-    prefix: str
-    size: int
-    sha256: str
-    jurisdiction: str | None = None
-    document_class: str | None = None
-    version: str | None = None
-
-    def to_mapping(self) -> dict[str, Any]:
-        payload: dict[str, Any] = {
-            "key": self.key,
-            "prefix": self.prefix,
-            "size": self.size,
-            "sha256": self.sha256,
-        }
-        if self.jurisdiction is not None:
-            payload["jurisdiction"] = self.jurisdiction
-        if self.document_class is not None:
-            payload["document_class"] = self.document_class
-        if self.version is not None:
-            payload["version"] = self.version
-        return payload
-
-
-@dataclass(frozen=True)
-class ReleaseArtifactManifest:
-    release_name: str
-    local_root: Path
-    prefixes: tuple[str, ...]
-    created_at: str
-    release_scope_count: int
-    entries: tuple[ReleaseArtifactEntry, ...]
-
-    def to_mapping(self) -> dict[str, Any]:
-        return {
-            "release": self.release_name,
-            "created_at": self.created_at,
-            "local_root": str(self.local_root),
-            "prefixes": list(self.prefixes),
-            "release_scope_count": self.release_scope_count,
-            "artifact_count": len(self.entries),
-            "artifact_bytes": sum(entry.size for entry in self.entries),
-            "by_prefix": _summarize_release_entries_by_prefix(self.entries),
-            "by_scope": _summarize_release_entries_by_scope(self.entries),
-            "artifacts": [entry.to_mapping() for entry in self.entries],
-        }
 
 
 def load_r2_config(
@@ -736,51 +685,6 @@ def build_artifact_report_with_r2(
     )
 
 
-def build_release_artifact_manifest(
-    root: str | Path,
-    *,
-    release_name: str,
-    release_scopes: Iterable[ScopeKey],
-    prefixes: Iterable[str] = DEFAULT_RELEASE_ARTIFACT_PREFIXES,
-    created_at: str | None = None,
-) -> ReleaseArtifactManifest:
-    """Build a digest manifest for the concrete artifacts in a release."""
-    prefix_tuple = _normalize_prefixes(prefixes)
-    root_path = Path(root)
-    release_scope_keys = _normalize_release_scopes(release_scopes) or frozenset()
-    entries: list[ReleaseArtifactEntry] = []
-    for artifact in iter_local_artifacts(root_path, prefixes=prefix_tuple):
-        if not _artifact_matches_scope(
-            artifact.key,
-            jurisdiction=None,
-            document_class=None,
-            version=None,
-            release_scopes=release_scope_keys,
-        ):
-            continue
-        parsed = _parse_scope(artifact.key.split("/"))
-        _, jurisdiction, document_class, version = parsed if parsed else (None, None, None, None)
-        entries.append(
-            ReleaseArtifactEntry(
-                key=artifact.key,
-                prefix=artifact.key.split("/", 1)[0],
-                size=artifact.size,
-                sha256=_sha256_file(artifact.path),
-                jurisdiction=jurisdiction,
-                document_class=document_class,
-                version=version,
-            )
-        )
-    return ReleaseArtifactManifest(
-        release_name=release_name,
-        local_root=root_path,
-        prefixes=prefix_tuple,
-        created_at=created_at or datetime.now(UTC).isoformat(),
-        release_scope_count=len(release_scope_keys),
-        entries=tuple(sorted(entries, key=lambda entry: entry.key)),
-    )
-
-
 def _build_scope_rows(
     root: Path,
     local: tuple[LocalArtifact, ...],
@@ -939,11 +843,7 @@ def _merge_remote_scope(
 
 
 def _parse_scope(parts: list[str]) -> tuple[str, str, str, str] | None:
-    if (
-        len(parts) >= 6
-        and parts[0] == "exports"
-        and parts[1] == "supabase"
-    ):
+    if len(parts) >= 6 and parts[0] == "exports" and parts[1] == "supabase":
         return parts[0], parts[2], parts[3], parts[4]
     if len(parts) < 4 or parts[0] not in SCOPE_ARTIFACT_PREFIXES:
         return None
@@ -1075,31 +975,6 @@ def _summarize_remote_by_prefix(
         bucket = buckets.setdefault(prefix, {"count": 0, "bytes": 0})
         bucket["count"] += 1
         bucket["bytes"] += artifact.size
-    return dict(sorted(buckets.items()))
-
-
-def _summarize_release_entries_by_prefix(
-    entries: Iterable[ReleaseArtifactEntry],
-) -> dict[str, dict[str, int]]:
-    buckets: dict[str, dict[str, int]] = {}
-    for entry in entries:
-        bucket = buckets.setdefault(entry.prefix, {"count": 0, "bytes": 0})
-        bucket["count"] += 1
-        bucket["bytes"] += entry.size
-    return dict(sorted(buckets.items()))
-
-
-def _summarize_release_entries_by_scope(
-    entries: Iterable[ReleaseArtifactEntry],
-) -> dict[str, dict[str, int]]:
-    buckets: dict[str, dict[str, int]] = {}
-    for entry in entries:
-        if entry.jurisdiction is None or entry.document_class is None or entry.version is None:
-            continue
-        key = f"{entry.jurisdiction}/{entry.document_class}/{entry.version}"
-        bucket = buckets.setdefault(key, {"count": 0, "bytes": 0})
-        bucket["count"] += 1
-        bucket["bytes"] += entry.size
     return dict(sorted(buckets.items()))
 
 

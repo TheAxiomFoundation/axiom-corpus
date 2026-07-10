@@ -33,7 +33,7 @@ def test_validate_release_reports_artifact_report_mismatches(tmp_path):
 
     report = validate_release(
         store.root,
-        ReleaseManifest(name="current", scopes=()),
+        ReleaseManifest(name="test-release", scopes=()),
         artifact_report=artifact_report,
         max_issues=1,
     )
@@ -44,7 +44,7 @@ def test_validate_release_reports_artifact_report_mismatches(tmp_path):
     assert payload["issues_truncated"] is True
     assert payload["issues"][0]["code"] == "artifact_report_mismatch"
     with pytest.raises(ValueError, match="max_issues"):
-        validate_release(store.root, ReleaseManifest(name="current", scopes=()), max_issues=0)
+        validate_release(store.root, ReleaseManifest(name="test-release", scopes=()), max_issues=0)
 
 
 def test_validate_release_accepts_r2_complete_remote_only_scope(tmp_path):
@@ -76,7 +76,7 @@ def test_validate_release_accepts_r2_complete_remote_only_scope(tmp_path):
     report = validate_release(
         store.root,
         ReleaseManifest(
-            name="current",
+            name="test-release",
             scopes=(ReleaseScope("us-co", "statute", "v1"),),
         ),
         artifact_report=artifact_report,
@@ -121,7 +121,7 @@ def test_validate_release_can_ignore_r2_only_mirror_gaps(tmp_path):
 
     report = validate_release(
         store.root,
-        ReleaseManifest(name="current", scopes=()),
+        ReleaseManifest(name="test-release", scopes=()),
         artifact_report=artifact_report,
         ignore_r2_missing=True,
     )
@@ -188,7 +188,7 @@ def test_validate_release_reports_scope_invariant_errors(tmp_path):
         },
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(ReleaseScope("us-co", "statute", version),),
     )
 
@@ -301,15 +301,23 @@ def test_validate_release_reports_missing_and_invalid_artifacts(tmp_path):
         },
     )
 
+    # Bypass the constructor only to exercise validate_release's defensive
+    # handling of an object supplied by an untyped caller. Normal construction
+    # rejects this class before any artifact reads.
+    invalid_scope = object.__new__(ReleaseScope)
+    object.__setattr__(invalid_scope, "jurisdiction", "us-bogus-class")
+    object.__setattr__(invalid_scope, "document_class", "bogus")
+    object.__setattr__(invalid_scope, "version", version)
+
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(
             ReleaseScope("us-missing", "statute", version),
             ReleaseScope("us-bad-inventory", "statute", version),
             ReleaseScope("us-bad-provisions", "statute", version),
             ReleaseScope("us-bad-coverage", "statute", version),
             ReleaseScope("us-json-coverage", "statute", version),
-            ReleaseScope("us-bogus-class", "bogus", version),
+            invalid_scope,
         ),
     )
 

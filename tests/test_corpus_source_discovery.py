@@ -34,7 +34,7 @@ def test_source_discovery_classifies_static_external_urls(tmp_path):
         )
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(ReleaseScope("us-ca", "form", "2026-05-11"),),
     )
 
@@ -74,9 +74,7 @@ def test_source_discovery_classifies_static_external_urls(tmp_path):
         "us/form/individual_income_tax_forms",
         "us/guidance/poverty_guidelines",
     ]
-    assert payload["group_rows"][0]["suggested_manifest_stem"] == (
-        "us-individual-income-tax-forms"
-    )
+    assert payload["group_rows"][0]["suggested_manifest_stem"] == ("us-individual-income-tax-forms")
 
 
 def test_source_discovery_classifies_uk_official_policy_sources(tmp_path):
@@ -95,7 +93,7 @@ def test_source_discovery_classifies_uk_official_policy_sources(tmp_path):
 
     report = build_source_discovery_report(
         (urls,),
-        release=ReleaseManifest(name="current", scopes=()),
+        release=ReleaseManifest(name="test-release", scopes=()),
         generated_at="2026-05-23T12:00:00+00:00",
         source_name="policyengine",
     )
@@ -103,12 +101,8 @@ def test_source_discovery_classifies_uk_official_policy_sources(tmp_path):
 
     act = rows["https://legislation.gov.uk/ukpga/2003/1/section/1"]
     instrument = rows["https://legislation.gov.uk/uksi/2013/376/regulation/36"]
-    govuk = rows[
-        "https://gov.uk/government/publications/benefit-and-pension-rates-2024-to-2025"
-    ]
-    obr = rows[
-        "https://obr.uk/docs/dlm_uploads/NICS-Cut-Impact-on-Labour-Supply-Note.pdf"
-    ]
+    govuk = rows["https://gov.uk/government/publications/benefit-and-pension-rates-2024-to-2025"]
+    obr = rows["https://obr.uk/docs/dlm_uploads/NICS-Cut-Impact-on-Labour-Supply-Note.pdf"]
     vendor = rows["https://lexisnexis.co.uk/example"]
 
     assert act.source_status is SourceStatus.PRIMARY_OFFICIAL
@@ -136,7 +130,7 @@ def test_source_discovery_classifies_state_manual_and_handbook_sources(tmp_path)
 
     report = build_source_discovery_report(
         (urls,),
-        release=ReleaseManifest(name="current", scopes=()),
+        release=ReleaseManifest(name="test-release", scopes=()),
         generated_at="2026-05-27T12:00:00+00:00",
         source_name="policyengine",
     )
@@ -199,12 +193,12 @@ def test_source_discovery_cli_uses_inventory_urls_for_release_coverage(tmp_path,
             ]
         )
     )
-    release_path = tmp_path / "releases" / "current.json"
+    release_path = tmp_path / "releases" / "test-release-v1.json"
     release_path.parent.mkdir(parents=True)
     release_path.write_text(
         json.dumps(
             {
-                "name": "current",
+                "name": "test-release-v1",
                 "scopes": [
                     {
                         "jurisdiction": "us",
@@ -238,6 +232,8 @@ def test_source_discovery_cli_uses_inventory_urls_for_release_coverage(tmp_path,
             str(tmp_path),
             "--input",
             str(source),
+            "--release",
+            str(release_path),
             "--output",
             str(output),
         ]
@@ -347,8 +343,7 @@ def test_promote_source_discovery_group_cli_writes_official_document_manifest(
         "policyengine-us#policyengine_us/parameters/snap.yaml:5#snap"
     ]
     assert (
-        manifest["documents"][1]["source_url"]
-        == "https://fns.usda.gov/snap/html-guidance-current"
+        manifest["documents"][1]["source_url"] == "https://fns.usda.gov/snap/html-guidance-current"
     )
     assert (
         manifest["documents"][1]["metadata"]["source_discovery_canonical_url"]
@@ -448,22 +443,8 @@ def test_promote_source_discovery_group_disambiguates_duplicate_citation_paths(
 
 def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):
     repo = tmp_path / "policyengine-us"
-    parameter = (
-        repo
-        / "policyengine_us"
-        / "parameters"
-        / "gov"
-        / "irs"
-        / "standard_deduction.yaml"
-    )
-    variable = (
-        repo
-        / "policyengine_us"
-        / "variables"
-        / "gov"
-        / "irs"
-        / "income_tax.py"
-    )
+    parameter = repo / "policyengine_us" / "parameters" / "gov" / "irs" / "standard_deduction.yaml"
+    variable = repo / "policyengine_us" / "variables" / "gov" / "irs" / "income_tax.py"
     on_demand_parameter = (
         repo
         / "policyengine_us"
@@ -557,10 +538,7 @@ def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):
 
     assert "https://policyengine.org/us" not in urls
     assert "https://www.law.cornell.edu/uscode/text/26/1" in urls
-    assert (
-        "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title26-section63"
-        in urls
-    )
+    assert "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title26-section63" in urls
     assert "https://www.sos.state.co.us/CCR/GenerateRulePdf.do?ruleVersionId=10492" in urls
     assert "https://www.legislation.gov.uk/ukpga/2007/3/section/23" in urls
     assert (
@@ -572,17 +550,11 @@ def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):
     assert "https://slash-first.example/" in urls
     assert "https://slash-second.example/" in urls
     assert "https://prefix.example/" in urls
-    assert (
-        "https://web.archive.org/web/20250324135334/https://example.gov/source"
-        in urls
-    )
+    assert "https://web.archive.org/web/20250324135334/https://example.gov/source" in urls
     assert "https://www.azleg.gov/viewdocument/?docName=https://example.gov/source" in urls
     assert "https://web.archive.org/web/20250324135334/" not in urls
     assert "https://www.azleg.gov/viewdocument/?docName=" not in urls
-    assert (
-        "https://first.example/statutehttps://second.example/regulation"
-        not in urls
-    )
+    assert "https://first.example/statutehttps://second.example/regulation" not in urls
     assert "https://slash-first.example/https://slash-second.example/" not in urls
     assert "https://prefix.example/source" not in urls
     assert "26 U.S.C. § 63(c)" in citations
@@ -633,14 +605,7 @@ def test_policyengine_reference_scanner_preserves_policy_provenance(tmp_path):
 
 def test_policyengine_references_cli_writes_jsonl_and_url_inventory(tmp_path, capsys):
     repo = tmp_path / "policyengine-uk"
-    parameter = (
-        repo
-        / "policyengine_uk"
-        / "parameters"
-        / "gov"
-        / "hmrc"
-        / "personal_allowance.yaml"
-    )
+    parameter = repo / "policyengine_uk" / "parameters" / "gov" / "hmrc" / "personal_allowance.yaml"
     readme = repo / "docs" / "notes.md"
     parameter.parent.mkdir(parents=True)
     readme.parent.mkdir(parents=True)
@@ -681,9 +646,7 @@ def test_policyengine_references_cli_writes_jsonl_and_url_inventory(tmp_path, ca
     assert printed["citation_reference_count"] == 1
     assert printed["project_counts"] == {"policyengine-uk": 2}
     assert urls == ["https://www.legislation.gov.uk/ukpga/2007/3/section/35"]
-    assert rows[0]["file_path"] == (
-        "policyengine_uk/parameters/gov/hmrc/personal_allowance.yaml"
-    )
+    assert rows[0]["file_path"] == ("policyengine_uk/parameters/gov/hmrc/personal_allowance.yaml")
     assert rows[0]["symbol_path"] == "gov.hmrc.personal_allowance"
 
     discovery_output = tmp_path / "source-discovery.json"

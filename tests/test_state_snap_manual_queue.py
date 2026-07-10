@@ -1,4 +1,3 @@
-import json
 from pathlib import Path
 
 import yaml
@@ -10,19 +9,13 @@ EXPECTED_TARGET_MANIFEST_PATHS = {
 }
 
 
-def test_published_state_snap_queue_entries_are_release_backed():
+def test_reviewed_state_snap_queue_entries_have_source_manifests():
     queue_path = REPO_ROOT / "manifests" / "state-snap-manual-agent-queue.yaml"
-    release_path = REPO_ROOT / "manifests" / "releases" / "current.json"
 
     queue = yaml.safe_load(queue_path.read_text())["states"]
-    release_scopes = json.loads(release_path.read_text())["scopes"]
-    release_keys = {
-        (scope["jurisdiction"], scope["document_class"], str(scope["version"]))
-        for scope in release_scopes
-    }
 
     missing_manifests = []
-    missing_release_scopes = []
+    missing_target_scopes = []
     missing_manifest_paths = []
     for state in queue:
         if state.get("queue_status") != "published_current":
@@ -34,15 +27,10 @@ def test_published_state_snap_queue_entries_are_release_backed():
 
         target_scope = state.get("target_scope")
         if not target_scope:
-            missing_release_scopes.append((state["jurisdiction"], "missing target_scope"))
+            missing_target_scopes.append((state["jurisdiction"], "missing target_scope"))
             continue
-        key = (
-            target_scope["jurisdiction"],
-            target_scope["document_class"],
-            str(target_scope["version"]),
-        )
-        if key not in release_keys:
-            missing_release_scopes.append(key)
+        if not all(target_scope.get(key) for key in ("jurisdiction", "document_class", "version")):
+            missing_target_scopes.append(state["jurisdiction"])
 
         expected_path = EXPECTED_TARGET_MANIFEST_PATHS.get(state["jurisdiction"])
         if manifest and expected_path:
@@ -53,5 +41,5 @@ def test_published_state_snap_queue_entries_are_release_backed():
                 missing_manifest_paths.append((state["jurisdiction"], expected_path))
 
     assert missing_manifests == []
-    assert missing_release_scopes == []
+    assert missing_target_scopes == []
     assert missing_manifest_paths == []

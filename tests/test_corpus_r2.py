@@ -9,7 +9,6 @@ from axiom_corpus.corpus.r2 import (
     RemoteArtifact,
     build_artifact_report,
     build_artifact_report_with_r2,
-    build_release_artifact_manifest,
     load_r2_config,
     make_r2_client,
     sync_artifacts_to_r2,
@@ -233,10 +232,14 @@ def test_sync_artifacts_to_r2_filters_scope(tmp_path):
 
 def test_sync_artifacts_to_r2_filters_supabase_exports_by_scope(tmp_path):
     root = tmp_path / "corpus"
-    export = root / "exports" / "supabase" / "us-il" / "regulation" / "2026-05-18" / "provisions.jsonl"
+    export = (
+        root / "exports" / "supabase" / "us-il" / "regulation" / "2026-05-18" / "provisions.jsonl"
+    )
     export.parent.mkdir(parents=True, exist_ok=True)
     export.write_text('{"id":"il"}\n', encoding="utf-8")
-    other = root / "exports" / "supabase" / "us-md" / "regulation" / "2026-05-18" / "provisions.jsonl"
+    other = (
+        root / "exports" / "supabase" / "us-md" / "regulation" / "2026-05-18" / "provisions.jsonl"
+    )
     other.parent.mkdir(parents=True, exist_ok=True)
     other.write_text('{"id":"md"}\n', encoding="utf-8")
     client = FakeR2Client()
@@ -261,14 +264,14 @@ def test_sync_artifacts_to_r2_filters_supabase_exports_by_scope(tmp_path):
     assert report.local_count == 1
     assert report.planned_upload_count == 1
     assert report.bytes_planned == export.stat().st_size
-    assert client.list_prefixes == [
-        "exports/supabase/us-il/regulation/2026-05-18/"
-    ]
+    assert client.list_prefixes == ["exports/supabase/us-il/regulation/2026-05-18/"]
 
 
 def test_artifact_report_does_not_treat_exports_as_release_completeness(tmp_path):
     root = tmp_path / "corpus"
-    export = root / "exports" / "supabase" / "us-il" / "regulation" / "2026-05-18" / "provisions.jsonl"
+    export = (
+        root / "exports" / "supabase" / "us-il" / "regulation" / "2026-05-18" / "provisions.jsonl"
+    )
     export.parent.mkdir(parents=True, exist_ok=True)
     export.write_text('{"id":"il"}\n', encoding="utf-8")
 
@@ -587,14 +590,14 @@ def test_artifact_report_release_filters_and_seeds_missing_scopes(tmp_path):
     report = build_artifact_report(
         store.root,
         prefixes=("inventory",),
-        release_name="current",
+        release_name="nz-rulespec-v1",
         release_scopes=(
             ("us-co", "policy", "2026-04-30"),
             ("us-tx", "policy", "2026-04-30"),
         ),
     )
 
-    assert report.release_name == "current"
+    assert report.release_name == "nz-rulespec-v1"
     assert report.release_scope_count == 2
     assert report.local_count == 1
     assert [(row.jurisdiction, row.document_class, row.version) for row in report.rows] == [
@@ -603,76 +606,3 @@ def test_artifact_report_release_filters_and_seeds_missing_scopes(tmp_path):
     ]
     assert report.rows[0].local_inventory is True
     assert report.rows[1].local_inventory is False
-
-
-def test_release_artifact_manifest_hashes_release_scoped_artifacts(tmp_path):
-    store = CorpusArtifactStore(tmp_path / "corpus")
-    source = store.source_path("us-co", "policy", "2026-04-30", "source.html")
-    source_sha = store.write_text(source, "<p>Text.</p>")
-    store.write_inventory(
-        store.inventory_path("us-co", "policy", "2026-04-30"),
-        [
-            SourceInventoryItem(
-                citation_path="us-co/policy/doc",
-                source_path=source.relative_to(store.root).as_posix(),
-                sha256=source_sha,
-            )
-        ],
-    )
-    store.write_provisions(
-        store.provisions_path("us-co", "policy", "2026-04-30"),
-        [
-            ProvisionRecord(
-                jurisdiction="us-co",
-                document_class="policy",
-                citation_path="us-co/policy/doc",
-                version="2026-04-30",
-                body="Text.",
-            )
-        ],
-    )
-    store.write_json(
-        store.coverage_path("us-co", "policy", "2026-04-30"),
-        {
-            "complete": True,
-            "source_count": 1,
-            "provision_count": 1,
-            "matched_count": 1,
-            "missing_from_provisions": [],
-            "extra_provisions": [],
-        },
-    )
-
-    manifest = build_release_artifact_manifest(
-        store.root,
-        release_name="current",
-        release_scopes=(("us-co", "policy", "2026-04-30"),),
-        created_at="2026-05-02T00:00:00+00:00",
-    )
-    payload = manifest.to_mapping()
-
-    assert payload["release"] == "current"
-    assert payload["artifact_count"] == 4
-    assert payload["release_scope_count"] == 1
-    assert payload["by_prefix"] == {
-        "coverage": {
-            "bytes": store.coverage_path("us-co", "policy", "2026-04-30").stat().st_size,
-            "count": 1,
-        },
-        "inventory": {
-            "bytes": store.inventory_path("us-co", "policy", "2026-04-30").stat().st_size,
-            "count": 1,
-        },
-        "provisions": {
-            "bytes": store.provisions_path("us-co", "policy", "2026-04-30").stat().st_size,
-            "count": 1,
-        },
-        "sources": {"bytes": source.stat().st_size, "count": 1},
-    }
-    assert {entry["key"] for entry in payload["artifacts"]} == {
-        "coverage/us-co/policy/2026-04-30.json",
-        "inventory/us-co/policy/2026-04-30.json",
-        "provisions/us-co/policy/2026-04-30.jsonl",
-        "sources/us-co/policy/2026-04-30/source.html",
-    }
-    assert all(entry["sha256"] for entry in payload["artifacts"])

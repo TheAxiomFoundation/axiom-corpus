@@ -6,7 +6,6 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parents[1]
 QUEUE_PATH = REPO_ROOT / "manifests" / "uk-legislation-gov-current-pilot.yaml"
 PILOT_RELEASE_PATH = REPO_ROOT / "manifests" / "releases" / "uk-legislation-pilot.json"
-CURRENT_RELEASE_PATH = REPO_ROOT / "manifests" / "releases" / "current.json"
 
 
 def _release_keys(path: Path) -> set[tuple[str, str, str]]:
@@ -20,23 +19,18 @@ def _release_keys(path: Path) -> set[tuple[str, str, str]]:
 def test_uk_legislation_pilot_scopes_are_release_backed_and_signed():
     queue = yaml.safe_load(QUEUE_PATH.read_text())
     pilot_keys = _release_keys(PILOT_RELEASE_PATH)
-    current_keys = _release_keys(CURRENT_RELEASE_PATH)
 
     missing_pilot_release = []
-    missing_current_release = []
     missing_signed_manifest = []
     for scope in queue["pilot_scopes"]:
         key = (scope["jurisdiction"], scope["document_class"], str(scope["version"]))
         if key not in pilot_keys:
             missing_pilot_release.append(key)
-        if scope["queue_status"] == "published_current" and key not in current_keys:
-            missing_current_release.append(key)
         signed_manifest = REPO_ROOT / scope["signed_manifest"]
         if not signed_manifest.exists():
             missing_signed_manifest.append(scope["signed_manifest"])
 
     assert missing_pilot_release == []
-    assert missing_current_release == []
     assert missing_signed_manifest == []
 
 

@@ -449,9 +449,7 @@ def _next_action(status: StateStatuteCompletionStatus) -> str:
     if status is StateStatuteCompletionStatus.PRODUCTION_BLOCKED_OR_INCOMPLETE:
         return "repair release artifacts, R2 sync, Supabase counts, or validation errors"
     if status is StateStatuteCompletionStatus.LOCAL_ARTIFACTS_PRESENT_NOT_PROMOTED:
-        return (
-            "review artifacts, add scope to current release, sync R2, load Supabase, and validate"
-        )
+        return "review artifacts and include the scope in a new immutable named release cut"
     if status is StateStatuteCompletionStatus.LOCAL_ARTIFACTS_INCOMPLETE:
         return "rerun or repair source-first extraction until inventory, provisions, and coverage are complete"
     if status is StateStatuteCompletionStatus.SUPABASE_ONLY_LEGACY:
@@ -485,7 +483,11 @@ def load_source_access_statuses(path: str | Path | None) -> dict[str, SourceAcce
             continue
         queue_status = str(item.get("queue_status") or "")
         production_status = str(item.get("production_status") or "")
-        status = production_status if status_is_source_access_blocked(production_status) else queue_status
+        status = (
+            production_status
+            if status_is_source_access_blocked(production_status)
+            else queue_status
+        )
         if not status_is_source_access_blocked(status):
             continue
         notes = item.get("notes")

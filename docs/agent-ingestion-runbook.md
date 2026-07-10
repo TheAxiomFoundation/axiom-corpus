@@ -112,36 +112,21 @@ publication review.
 
 Every agent handoff should include the source URL, extraction command, counts,
 coverage summary, generated artifact paths, and test commands. The controller
-can then decide whether to add the state to `manifests/releases/current.json`,
-sync to R2, load Supabase with `--replace-scope` (which prunes only rows
-matching the loaded file's versions — sibling scopes in the same
-jurisdiction/document class are untouched), and refresh analytics.
+can then include the scope in a new immutable named selector. Merging data does
+not publish it, and an existing release name is never edited or reused.
 
 ## Publication Gate
 
-Only publish after code review and green CI. The controller publication sequence
-is:
+Only publish after code review and green CI. Preflight the exact selector:
 
 ```bash
-uv run --extra dev axiom-corpus-ingest sync-r2 \
-  --base data/corpus \
-  --credentials-file ~/.config/axiom-foundation/r2-credentials.json \
-  --jurisdiction <jurisdiction> \
-  --document-class statute \
-  --version <yyyy-mm-dd> \
-  --workers 4 \
-  --apply
-
-SUPABASE_ACCESS_TOKEN="$(agent-secret get SUPABASE_ACCESS_TOKEN maxghenis)" \
-uv run --extra dev axiom-corpus-ingest load-supabase \
-  --provisions data/corpus/provisions/<jurisdiction>/statute/<yyyy-mm-dd>.jsonl \
-  --replace-scope
-
-SUPABASE_ACCESS_TOKEN="$(agent-secret get SUPABASE_ACCESS_TOKEN maxghenis)" \
-uv run --extra dev axiom-corpus-ingest snapshot-provision-counts \
-  --output data/corpus/snapshots/provision-counts-<yyyy-mm-dd>.json
+uv run --extra dev python scripts/publish_corpus.py \
+  --release manifests/releases/<immutable-name>.json \
+  --dry-run
 ```
 
-After publication, refresh `artifact-report`, `analytics`,
-`state-statute-completion`, and `regulation-completion`, then sync those
-analytics artifacts to R2.
+The protected publication workflow then executes the only write path: SHA-256
+R2 staging and readback, invisible versioned database staging, exact counts,
+post-readback deep validation, Ed25519 signing, signed-object readback, and one
+transactional pointer activation. It does not synthesize missing parents or
+suppress count/refresh errors. See `docs/named-release-publication.md`.

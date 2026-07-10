@@ -184,7 +184,7 @@ def test_write_navigation_nodes_can_replace_explicit_empty_scope(monkeypatch):
     assert report.scopes_replaced == (("us-co", "statute", "2026-05-13"),)
 
 
-def test_write_navigation_nodes_deletes_same_path_rows_from_old_versions(monkeypatch):
+def test_write_navigation_nodes_preserves_same_paths_from_old_versions(monkeypatch):
     import axiom_corpus.corpus.navigation_supabase as module
 
     nodes = build_navigation_nodes(
@@ -199,25 +199,12 @@ def test_write_navigation_nodes_deletes_same_path_rows_from_old_versions(monkeyp
     )
 
     calls: list[tuple[str, str]] = []
-    fetch_responses = iter(
-        [
-            b"[]",
-            json.dumps(
-                [
-                    {
-                        "path": "us/rulemaking/federal-register",
-                        "version": "2026-05-15",
-                    }
-                ]
-            ).encode(),
-        ]
-    )
 
     def fake_urlopen(req, timeout):  # noqa: ARG001
         method = getattr(req, "method", None) or "GET"
         calls.append((req.full_url, method))
         if "/navigation_nodes?" in req.full_url and method == "GET":
-            return _FakeResponse(next(fetch_responses))
+            return _FakeResponse(b"[]")
         return _FakeResponse()
 
     monkeypatch.setattr(module.urllib.request, "urlopen", fake_urlopen)
@@ -228,11 +215,12 @@ def test_write_navigation_nodes_deletes_same_path_rows_from_old_versions(monkeyp
         supabase_url="https://example.supabase.co",
     )
 
-    delete_urls = [url for url, method in calls if method == "DELETE"]
-    assert len(delete_urls) == 1
-    assert "version=eq.2026-05-15" in delete_urls[0]
-    assert report.rows_deleted == 1
-    assert report.delete_chunk_count == 1
+    assert not [url for url, method in calls if method == "DELETE"]
+    fetch_urls = [url for url, method in calls if method == "GET"]
+    assert len(fetch_urls) == 1
+    assert "version=eq.2026-05-17" in fetch_urls[0]
+    assert report.rows_deleted == 0
+    assert report.delete_chunk_count == 0
 
 
 def test_fetch_provisions_for_navigation_resolves_parent_paths(monkeypatch):

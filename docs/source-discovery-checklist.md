@@ -107,14 +107,18 @@ the existing static URL inventories:
 or directly from the provenance JSONL:
 
 ```bash
+export RELEASE_SELECTOR=manifests/releases/immutable-release-name.json
 uv run --extra dev axiom-corpus-ingest source-discovery \
   --base data/corpus \
   --reference-input data/corpus/analytics/policyengine-us-policy-references-current.jsonl \
   --reference-input data/corpus/analytics/policyengine-uk-policy-references-current.jsonl \
   --source-name policyengine \
-  --release current \
+  --release "$RELEASE_SELECTOR" \
   --output data/corpus/analytics/source-discovery-policyengine-current.json
 ```
+
+Replace `immutable-release-name` with the exact named selector being measured.
+The mutable `current` selector no longer exists.
 
 Rows generated from JSONL include `reference_count` and
 `sample_reference_paths`, which should be used for discovery provenance when a

@@ -1,306 +1,788 @@
-"""Tests for corpus release-manifest build, determinism, and signing."""
+"""Tests for immutable Ed25519 corpus release objects."""
 
 from __future__ import annotations
 
+import copy
 import json
 import subprocess
+from base64 import b64encode
 from pathlib import Path
 
 import pytest
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+from cryptography.hazmat.primitives.asymmetric.rsa import generate_private_key
 
+from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.release.manifest import (
-    RELEASE_MANIFEST_SCHEMA_VERSION,
-    RELEASE_MANIFEST_SIGNATURE_ALGORITHM,
-    RELEASE_MANIFEST_SIGNATURE_KEY_ID,
+    RELEASE_OBJECT_SCHEMA_VERSION,
     ReleaseManifestError,
-    build_release_manifest,
-    canonical_manifest_bytes,
-    declared_r2_key,
-    jsonl_row_count,
-    manifest_signature_issue,
-    serialize_manifest,
-    sha256_file,
-    sign_manifest,
-    verify_manifest,
+    _git_provenance,
+    _validate_scope_artifact_membership,
+    _validate_validation_attestation,
+    build_release_content,
+    build_unsigned_release_object,
+    content_addressed_r2_key,
+    load_release_object,
+    release_object_r2_key,
+    serialize_release_object,
+    sign_release_object,
+    verify_release_object,
 )
 
-SIGNING_KEY = "test-release-signing-key-0123456789"
+
+def _keys() -> tuple[str, str]:
+    private = Ed25519PrivateKey.generate()
+    private_text = b64encode(
+        private.private_bytes(
+            serialization.Encoding.Raw,
+            serialization.PrivateFormat.Raw,
+            serialization.NoEncryption(),
+        )
+    ).decode()
+    public_text = b64encode(
+        private.public_key().public_bytes(
+            serialization.Encoding.Raw,
+            serialization.PublicFormat.Raw,
+        )
+    ).decode()
+    return private_text, public_text
 
 
-def _git(repo: Path, *args: str) -> None:
-    subprocess.run(["git", "-C", str(repo), *args], check=True, capture_output=True)
-
-
-def _make_corpus_repo(root: Path) -> Path:
-    """Create a tiny, git-committed corpus tree for deterministic tests."""
-    base = root / "data" / "corpus"
-    (base / "provisions" / "us" / "statute").mkdir(parents=True)
-    (base / "inventory" / "us" / "statute").mkdir(parents=True)
-    (base / "coverage" / "us" / "statute").mkdir(parents=True)
-    (base / "sources" / "us" / "statute").mkdir(parents=True)
-    (base / "manifests" / "us").mkdir(parents=True)
-    (root / "claims" / "us" / "guidance").mkdir(parents=True)
-
-    # Two provision rows + a blank trailing line (must not count as a row).
-    (base / "provisions" / "us" / "statute" / "a.jsonl").write_text(
-        '{"id": "1", "body": "x"}\n{"id": "2", "body": "y"}\n'
+def _release_tree(
+    tmp_path: Path, *, name: str = "nz-rulespec-2026-07-10"
+) -> tuple[Path, ReleaseManifest]:
+    root = tmp_path / "repo"
+    store = CorpusArtifactStore(root / "data" / "corpus")
+    version = "2026-07-10-nz-rulespec"
+    source = store.source_path("nz", "statute", version, "act.html")
+    source_sha = store.write_text(source, "<p>Official text.</p>")
+    source_rel = source.relative_to(store.root).as_posix()
+    store.write_inventory(
+        store.inventory_path("nz", "statute", version),
+        [
+            SourceInventoryItem(
+                citation_path="nz/statute/act/1",
+                source_path=source_rel,
+                sha256=source_sha,
+            )
+        ],
     )
-    (base / "provisions" / "us" / "statute" / "b.jsonl").write_text(
-        '{"id": "3"}\n\n'
+    store.write_provisions(
+        store.provisions_path("nz", "statute", version),
+        [
+            ProvisionRecord(
+                jurisdiction="nz",
+                document_class="statute",
+                citation_path="nz/statute/act/1",
+                version=version,
+                body="Official text.",
+                source_path=source_rel,
+            )
+        ],
     )
-    (base / "inventory" / "us" / "statute" / "a.json").write_text(
-        '{"items": [1, 2]}\n'
+    store.write_json(
+        store.coverage_path("nz", "statute", version),
+        {
+            "complete": True,
+            "source_count": 1,
+            "provision_count": 1,
+            "matched_count": 1,
+            "missing_from_provisions": [],
+            "extra_provisions": [],
+        },
     )
-    (base / "coverage" / "us" / "statute" / "a.json").write_text(
-        '{"complete": true}\n'
+    release = ReleaseManifest(
+        name=name,
+        scopes=(ReleaseScope("nz", "statute", version),),
     )
-    (base / "sources" / "us" / "statute" / "a.xml").write_text("<root/>\n")
-    (base / "manifests" / "us" / "m.yaml").write_text("version: 1\n")
-    (root / "claims" / "us" / "guidance" / "c.jsonl").write_text(
-        '{"subject": {"id": "x"}}\n'
+    return root, release
+
+
+def _signed(tmp_path: Path) -> tuple[dict, str]:
+    content = _valid_content(tmp_path)
+    private, public = _keys()
+    return sign_release_object(build_unsigned_release_object(content), private_key=private), public
+
+
+def _valid_content(tmp_path: Path) -> dict:
+    root, release = _release_tree(tmp_path)
+    content = build_release_content(
+        root,
+        release=release,
+        validation={"passed": True},
+        created_at="2026-07-10T00:00:00Z",
     )
-    (root / "DATA_INVENTORY.md").write_text("# Inventory\n")
-
-    _git(root, "init", "-q")
-    _git(root, "config", "user.email", "test@example.com")
-    _git(root, "config", "user.name", "Test")
-    _git(root, "add", "-A", "-f")
-    _git(root, "-c", "commit.gpgsign=false", "commit", "-q", "-m", "seed")
-    return root
+    content["validation"] = _validation_for(content)
+    return content
 
 
-@pytest.fixture()
-def corpus_repo(tmp_path: Path) -> Path:
-    return _make_corpus_repo(tmp_path / "repo")
+def _validation_for(content: dict) -> dict:
+    return {
+        "passed": True,
+        "deep_validation": {
+            "error_count": 0,
+            "warning_count": 0,
+            "scope_count": len(content["scopes"]),
+        },
+        "r2_readback": {
+            "bucket": "axiom-corpus",
+            "artifact_count": len(content["artifacts"]),
+            "artifact_bytes": sum(entry["bytes"] for entry in content["artifacts"]),
+            "verified_keys": [entry["r2_key"] for entry in content["artifacts"]],
+        },
+        "supabase_counts": [
+            {
+                "jurisdiction": scope["jurisdiction"],
+                "document_class": scope["document_class"],
+                "version": scope["version"],
+                "expected": scope["provision_rows"],
+                "actual": scope["provision_rows"],
+                "expected_navigation": scope["navigation_rows"],
+                "actual_navigation": scope["navigation_rows"],
+            }
+            for scope in content["scopes"]
+        ],
+    }
 
 
-# ---------------------------------------------------------------------------
-# Hash / row-count primitives
-# ---------------------------------------------------------------------------
-
-
-def test_jsonl_row_count_ignores_blank_lines(tmp_path: Path) -> None:
-    path = tmp_path / "x.jsonl"
-    path.write_text('{"a": 1}\n\n{"b": 2}\n')
-    assert jsonl_row_count(path) == 2
-
-
-def test_sha256_file_matches_hashlib(tmp_path: Path) -> None:
-    import hashlib
-
-    path = tmp_path / "x.bin"
-    path.write_bytes(b"hello world")
-    assert sha256_file(path) == hashlib.sha256(b"hello world").hexdigest()
-
-
-def test_declared_r2_key_strips_base_prefix() -> None:
-    key = declared_r2_key(
-        "data/corpus/provisions/us/statute/a.jsonl",
-        base="data/corpus",
-        bucket="axiom-corpus",
-    )
-    assert key == "r2://axiom-corpus/provisions/us/statute/a.jsonl"
-
-
-# ---------------------------------------------------------------------------
-# Manifest build
-# ---------------------------------------------------------------------------
-
-
-def test_build_manifest_records_all_classes_and_counts(corpus_repo: Path) -> None:
-    manifest = build_release_manifest(corpus_repo, release="r0")
-
-    assert manifest["schema_version"] == RELEASE_MANIFEST_SCHEMA_VERSION
-    assert manifest["release"] == "r0"
-    assert manifest["source_of_truth"] == "local-artifact-hashes"
-
-    summary = manifest["summary"]
-    # 2 provision files, 3 rows total (2 + 1; blank line excluded).
-    assert summary["provisions"]["files"] == 2
-    assert summary["provisions"]["rows"] == 3
-    assert summary["inventory"]["files"] == 1
-    assert summary["coverage"]["files"] == 1
-    assert summary["sources"]["files"] == 1
-    assert summary["manifests"]["files"] == 1
-    assert summary["claims"]["files"] == 1
-    assert summary["claims"]["rows"] == 1
-
-    # totals aggregate every class.
-    assert summary["totals"]["files"] == 2 + 1 + 1 + 1 + 1 + 1
-
-    # DATA_INVENTORY.md lands in documents with a real hash.
-    assert "DATA_INVENTORY.md" in manifest["documents"]
-    inv = manifest["documents"]["DATA_INVENTORY.md"]
-    assert inv["sha256"] == sha256_file(corpus_repo / "DATA_INVENTORY.md")
-
-    # Provision entries carry declared R2 keys and rows.
-    prov = manifest["artifacts"]["provisions"]
-    a_entry = next(e for e in prov if e["path"].endswith("a.jsonl"))
-    assert a_entry["rows"] == 2
-    assert a_entry["r2_key"] == (
-        "r2://axiom-corpus/provisions/us/statute/a.jsonl"
+def test_release_object_is_scope_specific_and_content_addressed(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    content = build_release_content(
+        root,
+        release=release,
+        validation={"passed": True},
+        created_at="2026-07-10T00:00:00Z",
     )
 
+    assert content["release"] == release.name
+    assert content["scopes"] == [
+        {
+            "jurisdiction": "nz",
+            "document_class": "statute",
+            "version": "2026-07-10-nz-rulespec",
+            "provision_rows": 1,
+            "navigation_rows": 1,
+        }
+    ]
+    assert {entry["artifact_class"] for entry in content["artifacts"]} == {
+        "inventory",
+        "provisions",
+        "coverage",
+        "sources",
+    }
+    for entry in content["artifacts"]:
+        assert entry["r2_key"] == content_addressed_r2_key(entry["sha256"])
 
-def test_created_at_uses_git_commit_time(corpus_repo: Path) -> None:
-    epoch = subprocess.run(
-        ["git", "-C", str(corpus_repo), "show", "-s", "--format=%ct", "HEAD"],
+
+def test_release_object_verifies_with_public_key(tmp_path: Path) -> None:
+    signed, public = _signed(tmp_path)
+
+    verify_release_object(signed, public_key=public)
+    assert signed["schema_version"] == RELEASE_OBJECT_SCHEMA_VERSION
+    assert signed["signature"]["algorithm"] == "ed25519"
+    assert release_object_r2_key(signed["release"], signed["content_sha256"]).endswith(
+        f"/{signed['content_sha256']}.json"
+    )
+    assert serialize_release_object(signed).endswith(b"\n")
+
+
+def test_release_object_rejects_content_tamper(tmp_path: Path) -> None:
+    signed, public = _signed(tmp_path)
+    tampered = copy.deepcopy(signed)
+    tampered["content"]["scopes"][0]["provision_rows"] = 2
+
+    with pytest.raises(ReleaseManifestError, match="content sha256"):
+        verify_release_object(tampered, public_key=public)
+
+
+def test_release_object_rejects_signature_tamper(tmp_path: Path) -> None:
+    signed, public = _signed(tmp_path)
+    tampered = copy.deepcopy(signed)
+    tampered["signature"]["value"] = b64encode(b"x" * 64).decode()
+
+    with pytest.raises(ReleaseManifestError, match="signature is invalid"):
+        verify_release_object(tampered, public_key=public)
+
+
+def test_release_object_rejects_signature_schema_extensions(tmp_path: Path) -> None:
+    signed, public = _signed(tmp_path)
+    signed["signature"]["legacy_digest"] = "not-part-of-v2"
+
+    with pytest.raises(ReleaseManifestError, match="signature does not match the v2 schema"):
+        verify_release_object(signed, public_key=public)
+
+
+def test_release_object_rejects_wrong_public_key(tmp_path: Path) -> None:
+    signed, _ = _signed(tmp_path)
+    _, wrong_public = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="signature is invalid"):
+        verify_release_object(signed, public_key=wrong_public)
+
+
+@pytest.mark.parametrize(
+    ("case", "message"),
+    [
+        ("missing", "missing its signature"),
+        ("algorithm", "unsupported signature algorithm"),
+        ("key_id", "unknown signing key"),
+        ("value_type", "signature value is missing"),
+        ("encoding", "signature encoding is invalid"),
+    ],
+)
+def test_release_object_rejects_invalid_signature_fields(
+    tmp_path: Path,
+    case: str,
+    message: str,
+) -> None:
+    signed, public = _signed(tmp_path)
+    if case == "missing":
+        signed.pop("signature")
+    elif case == "algorithm":
+        signed["signature"]["algorithm"] = "hmac-sha256"
+    elif case == "key_id":
+        signed["signature"]["key_id"] = "unknown"
+    elif case == "value_type":
+        signed["signature"]["value"] = None
+    else:
+        signed["signature"]["value"] = "not base64!"
+
+    with pytest.raises(ReleaseManifestError, match=message):
+        verify_release_object(signed, public_key=public)
+
+
+@pytest.mark.parametrize(
+    ("case", "message"),
+    [
+        ("top_extra", "unsupported top-level fields"),
+        ("schema", "unsupported schema version"),
+        ("release_type", "missing its release name"),
+        ("content_type", "content must be a JSON object"),
+        ("content_fields", "content does not match the v2 schema"),
+        ("release_mismatch", "name does not match its content"),
+        ("created_at", "invalid creation time"),
+        ("git", "invalid git provenance"),
+        ("digest", "content sha256 does not match"),
+        ("validation", "does not attest passed validation"),
+        ("scopes_empty", "at least one scope"),
+        ("artifacts_empty", "artifact entries"),
+        ("selector_type", "invalid selector sha256"),
+        ("corpus_base", "non-canonical corpus base"),
+        ("r2", "invalid R2 content boundary"),
+        ("scope_object", "non-object scope"),
+        ("scope_fields", "scope does not match the v2 schema"),
+        ("scope_doc_class", "invalid document class"),
+        ("scope_duplicate", "duplicate scope"),
+        ("scope_rows", "invalid provision_rows"),
+        ("scope_navigation", "inconsistent navigation_rows"),
+        ("artifact_object", "non-object artifact"),
+        ("artifact_class", "unsupported class"),
+        ("artifact_path", "path is not canonical"),
+        ("artifact_class_path", "class does not match its path"),
+        ("artifact_duplicate", "duplicate artifact"),
+        ("artifact_sha", "invalid sha256"),
+        ("artifact_key", "non-content-addressed R2 key"),
+        ("artifact_bytes", "invalid byte count"),
+        ("artifact_bucket", "wrong R2 bucket"),
+        ("artifact_rows", "invalid row count"),
+        ("artifact_order", "not in canonical path order"),
+        ("scope_row_mismatch", "row count does not match"),
+        ("artifact_extra", "outside its declared scopes"),
+        ("validation_schema", "validation does not match the v2 schema"),
+        ("deep_type", "lacks deep-validation evidence"),
+        ("deep_mismatch", "deep-validation evidence is inconsistent"),
+        ("readback_type", "lacks R2 readback evidence"),
+        ("readback_schema", "R2 readback does not match the v2 schema"),
+        ("readback_mismatch", "R2 readback evidence is inconsistent"),
+        ("counts_incomplete", "staged-count evidence is incomplete"),
+        ("count_object", "invalid staged-count evidence"),
+        ("count_schema", "staged-count evidence does not match the v2 schema"),
+        ("count_type", "non-integer staged-count evidence"),
+        ("count_identity", "invalid staged-count identity"),
+        ("count_mismatch", "staged-count evidence does not match scope"),
+    ],
+)
+def test_release_object_rejects_malformed_v2_variants(
+    tmp_path: Path,
+    case: str,
+    message: str,
+) -> None:
+    content = _valid_content(tmp_path)
+    payload = build_unsigned_release_object(content)
+
+    if case == "top_extra":
+        payload["legacy"] = {}
+    elif case == "schema":
+        payload["schema_version"] = "axiom-corpus/release-object/v1"
+    elif case == "release_type":
+        payload["release"] = None
+    elif case == "content_type":
+        payload["content"] = []
+    elif case == "content_fields":
+        payload["content"].pop("git")
+    elif case == "release_mismatch":
+        payload["content"]["release"] = "other-release"
+    elif case == "created_at":
+        payload["content"]["created_at"] = ""
+    elif case == "git":
+        payload["content"]["git"] = {"commit": "a" * 40}
+    elif case == "digest":
+        payload["content_sha256"] = "0" * 64
+    elif case == "validation":
+        payload["content"]["validation"]["passed"] = False
+    elif case == "scopes_empty":
+        payload["content"]["scopes"] = []
+    elif case == "artifacts_empty":
+        payload["content"]["artifacts"] = []
+    elif case == "selector_type":
+        payload["content"]["selector_sha256"] = None
+    elif case == "corpus_base":
+        payload["content"]["corpus_base"] = "corpus"
+    elif case == "r2":
+        payload["content"]["r2"] = {"bucket": "axiom-corpus", "addressing": "mutable"}
+    elif case == "scope_object":
+        payload["content"]["scopes"] = [None]
+    elif case == "scope_fields":
+        payload["content"]["scopes"][0].pop("navigation_rows")
+    elif case == "scope_doc_class":
+        payload["content"]["scopes"][0]["document_class"] = "unknown-class"
+    elif case == "scope_duplicate":
+        payload["content"]["scopes"].append(copy.deepcopy(payload["content"]["scopes"][0]))
+    elif case == "scope_rows":
+        payload["content"]["scopes"][0]["provision_rows"] = True
+    elif case == "scope_navigation":
+        payload["content"]["scopes"][0]["navigation_rows"] = 2
+    elif case == "artifact_object":
+        payload["content"]["artifacts"][0] = None
+    elif case == "artifact_class":
+        payload["content"]["artifacts"][0]["artifact_class"] = "legacy"
+    elif case == "artifact_path":
+        payload["content"]["artifacts"][0]["path"] = "/tmp/artifact"
+    elif case == "artifact_class_path":
+        payload["content"]["artifacts"][0]["artifact_class"] = "inventory"
+    elif case == "artifact_duplicate":
+        payload["content"]["artifacts"].append(
+            copy.deepcopy(payload["content"]["artifacts"][0])
+        )
+    elif case == "artifact_sha":
+        payload["content"]["artifacts"][0]["sha256"] = "bad"
+    elif case == "artifact_key":
+        payload["content"]["artifacts"][0]["r2_key"] = "mutable/latest"
+    elif case == "artifact_bytes":
+        payload["content"]["artifacts"][0]["bytes"] = True
+    elif case == "artifact_bucket":
+        payload["content"]["artifacts"][0]["r2_bucket"] = "other"
+    elif case == "artifact_rows":
+        provision = next(
+            entry
+            for entry in payload["content"]["artifacts"]
+            if entry["artifact_class"] == "provisions"
+        )
+        provision["rows"] = 0
+    elif case == "artifact_order":
+        payload["content"]["artifacts"].reverse()
+    elif case == "scope_row_mismatch":
+        payload["content"]["scopes"][0]["provision_rows"] = 2
+        payload["content"]["scopes"][0]["navigation_rows"] = 2
+    elif case == "artifact_extra":
+        extra = copy.deepcopy(
+            next(
+                entry
+                for entry in payload["content"]["artifacts"]
+                if entry["artifact_class"] == "sources"
+            )
+        )
+        extra["path"] = "data/corpus/sources/nz/statute/unselected/extra.html"
+        payload["content"]["artifacts"].append(extra)
+        payload["content"]["artifacts"].sort(key=lambda entry: entry["path"])
+    elif case == "validation_schema":
+        payload["content"]["validation"]["legacy"] = True
+    elif case == "deep_type":
+        payload["content"]["validation"]["deep_validation"] = None
+    elif case == "deep_mismatch":
+        payload["content"]["validation"]["deep_validation"]["error_count"] = 1
+    elif case == "readback_type":
+        payload["content"]["validation"]["r2_readback"] = None
+    elif case == "readback_schema":
+        payload["content"]["validation"]["r2_readback"].pop("artifact_bytes")
+    elif case == "readback_mismatch":
+        payload["content"]["validation"]["r2_readback"]["artifact_count"] = 0
+    elif case == "counts_incomplete":
+        payload["content"]["validation"]["supabase_counts"] = []
+    elif case == "count_object":
+        payload["content"]["validation"]["supabase_counts"] = [None]
+    elif case == "count_schema":
+        payload["content"]["validation"]["supabase_counts"][0].pop("actual")
+    elif case == "count_type":
+        payload["content"]["validation"]["supabase_counts"][0]["actual"] = True
+    elif case == "count_identity":
+        payload["content"]["validation"]["supabase_counts"][0]["jurisdiction"] = ""
+    else:
+        payload["content"]["validation"]["supabase_counts"][0]["actual"] = 2
+
+    # Every case intentionally changes content after the original unsigned
+    # object was built. Re-address it so the test reaches the targeted schema
+    # invariant instead of stopping at the outer digest check.
+    if case not in {"top_extra", "schema", "release_type", "content_type", "digest"}:
+        payload["content_sha256"] = build_unsigned_release_object(payload["content"])[
+            "content_sha256"
+        ]
+    private, _ = _keys()
+    with pytest.raises(ReleaseManifestError, match=message):
+        sign_release_object(payload, private_key=private)
+
+
+def test_release_object_loader_rejects_unreadable_and_non_object_json(tmp_path: Path) -> None:
+    _, public = _keys()
+    with pytest.raises(ReleaseManifestError, match="cannot read release object"):
+        load_release_object(tmp_path / "missing.json", public_key=public)
+
+    path = tmp_path / "release.json"
+    path.write_text("[]")
+    with pytest.raises(ReleaseManifestError, match="must be a JSON object"):
+        load_release_object(path, public_key=public)
+
+
+def test_release_object_rejects_invalid_key_encodings(tmp_path: Path) -> None:
+    content = _valid_content(tmp_path)
+    payload = build_unsigned_release_object(content)
+    with pytest.raises(ReleaseManifestError, match="private key must be raw base64 or PEM"):
+        sign_release_object(payload, private_key="not base64!")
+
+    signed, _ = _signed(tmp_path / "second")
+    with pytest.raises(ReleaseManifestError, match="public key must decode to 32 bytes"):
+        verify_release_object(signed, public_key=b64encode(b"short").decode())
+
+
+def test_release_object_supports_ed25519_pem_and_rejects_other_pem_keys(tmp_path: Path) -> None:
+    content = _valid_content(tmp_path)
+    payload = build_unsigned_release_object(content)
+    private = Ed25519PrivateKey.generate()
+    private_pem = private.private_bytes(
+        serialization.Encoding.PEM,
+        serialization.PrivateFormat.PKCS8,
+        serialization.NoEncryption(),
+    ).decode()
+    public_pem = private.public_key().public_bytes(
+        serialization.Encoding.PEM,
+        serialization.PublicFormat.SubjectPublicKeyInfo,
+    ).decode()
+
+    signed = sign_release_object(payload, private_key=private_pem)
+    verify_release_object(signed, public_key=public_pem)
+
+    with pytest.raises(ReleaseManifestError, match="private key PEM is invalid"):
+        sign_release_object(payload, private_key="-----BEGIN PRIVATE KEY-----\ninvalid")
+    with pytest.raises(ReleaseManifestError, match="public key PEM is invalid"):
+        verify_release_object(signed, public_key="-----BEGIN PUBLIC KEY-----\ninvalid")
+
+    rsa_private = generate_private_key(public_exponent=65537, key_size=2048)
+    rsa_private_pem = rsa_private.private_bytes(
+        serialization.Encoding.PEM,
+        serialization.PrivateFormat.PKCS8,
+        serialization.NoEncryption(),
+    ).decode()
+    rsa_public_pem = rsa_private.public_key().public_bytes(
+        serialization.Encoding.PEM,
+        serialization.PublicFormat.SubjectPublicKeyInfo,
+    ).decode()
+    with pytest.raises(ReleaseManifestError, match="private key must be Ed25519"):
+        sign_release_object(payload, private_key=rsa_private_pem)
+    with pytest.raises(ReleaseManifestError, match="public key must be Ed25519"):
+        verify_release_object(signed, public_key=rsa_public_pem)
+
+
+def test_git_provenance_uses_head_commit_time(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    subprocess.run(["git", "init", "-q", str(repo)], check=True)
+    subprocess.run(["git", "-C", str(repo), "config", "user.name", "Test"], check=True)
+    subprocess.run(
+        ["git", "-C", str(repo), "config", "user.email", "test@example.com"],
         check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
-    manifest = build_release_manifest(corpus_repo, release="r0")
-    # created_at is derived from the commit epoch, not the wall clock.
-    from datetime import UTC, datetime
-
-    expected = (
-        datetime.fromtimestamp(int(epoch), tz=UTC).isoformat().replace("+00:00", "Z")
     )
-    assert manifest["created_at"] == expected
-    assert manifest["git"]["committed_at"] == expected
-    assert manifest["git"]["commit"]
+    marker = repo / "marker"
+    marker.write_text("tracked")
+    subprocess.run(["git", "-C", str(repo), "add", "marker"], check=True)
+    subprocess.run(
+        ["git", "-C", str(repo), "-c", "commit.gpgsign=false", "commit", "-qm", "seed"],
+        check=True,
+    )
+
+    provenance = _git_provenance(repo)
+    assert provenance is not None
+    assert len(provenance["commit"]) == 40
+    assert provenance["committed_at"].endswith("Z")
 
 
-def test_created_at_required_without_git(tmp_path: Path) -> None:
-    base = tmp_path / "data" / "corpus" / "provisions"
-    base.mkdir(parents=True)
-    (base / "x.jsonl").write_text('{"id": 1}\n')
+def test_git_provenance_rejects_empty_git_output(tmp_path: Path, monkeypatch) -> None:
+    import axiom_corpus.release.manifest as manifest
+
+    class EmptyResult:
+        stdout = ""
+
+    monkeypatch.setattr(manifest.subprocess, "run", lambda *args, **kwargs: EmptyResult())
+    assert _git_provenance(tmp_path) is None
+
+
+def test_defensive_nested_validators_reject_non_object_scope() -> None:
+    with pytest.raises(ReleaseManifestError, match="non-object scope"):
+        _validate_scope_artifact_membership([None], [])
+
+    validation = {
+        "passed": True,
+        "deep_validation": {"error_count": 0, "warning_count": 0, "scope_count": 1},
+        "r2_readback": {
+            "bucket": "axiom-corpus",
+            "artifact_count": 0,
+            "artifact_bytes": 0,
+            "verified_keys": [],
+        },
+        "supabase_counts": [
+            {
+                "jurisdiction": "nz",
+                "document_class": "statute",
+                "version": "v1",
+                "expected": 1,
+                "actual": 1,
+                "expected_navigation": 1,
+                "actual_navigation": 1,
+            }
+        ],
+    }
+    with pytest.raises(ReleaseManifestError, match="non-object scope"):
+        _validate_validation_attestation(
+            validation,
+            scopes=[None],
+            artifacts=[],
+            bucket="axiom-corpus",
+        )
+
+
+def test_release_content_cannot_be_signed_before_validation(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    with pytest.raises(ReleaseManifestError, match="validation must have passed"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": False},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+
+def test_release_content_rejects_invalid_build_boundaries(tmp_path: Path, monkeypatch) -> None:
+    root, release = _release_tree(tmp_path)
+
+    with pytest.raises(ReleaseManifestError, match="at least one scope"):
+        build_release_content(
+            root,
+            release=ReleaseManifest(name="empty-release", scopes=()),
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+    with pytest.raises(ReleaseManifestError, match="corpus_base data/corpus"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            base="corpus",
+            created_at="2026-07-10T00:00:00Z",
+        )
+    with pytest.raises(ReleaseManifestError, match="base directory not found"):
+        build_release_content(
+            tmp_path / "missing-repo",
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+    provisions = root / "data/corpus/provisions/nz/statute/2026-07-10-nz-rulespec.jsonl"
+    provisions.write_text("")
+    with pytest.raises(ReleaseManifestError, match="must contain at least one row"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+    # A production build without an explicit timestamp requires real git
+    # provenance; a detached temporary artifact tree cannot invent it.
+    provisions.write_text('{"body":"restored"}\n')
+    monkeypatch.setattr("axiom_corpus.release.manifest._git_provenance", lambda path: None)
     with pytest.raises(ReleaseManifestError, match="created_at is required"):
-        build_release_manifest(tmp_path, release="r0")
-
-
-def test_created_at_override_accepted_without_git(tmp_path: Path) -> None:
-    base = tmp_path / "data" / "corpus" / "provisions"
-    base.mkdir(parents=True)
-    (base / "x.jsonl").write_text('{"id": 1}\n')
-    manifest = build_release_manifest(
-        tmp_path, release="r0", created_at="2026-07-03T00:00:00Z"
+        build_release_content(root, release=release, validation={"passed": True})
+    monkeypatch.setattr(
+        "axiom_corpus.release.manifest._git_provenance",
+        lambda path: {"commit": "a" * 40, "committed_at": "2026-07-10T00:00:00Z"},
     )
-    assert manifest["created_at"] == "2026-07-03T00:00:00Z"
-    assert manifest["git"] == {}
+    assert build_release_content(root, release=release, validation={"passed": True})[
+        "created_at"
+    ] == "2026-07-10T00:00:00Z"
 
 
-def test_missing_corpus_base_raises(tmp_path: Path) -> None:
-    with pytest.raises(ReleaseManifestError, match="corpus base directory not found"):
-        build_release_manifest(tmp_path, release="r0")
-
-
-# ---------------------------------------------------------------------------
-# Determinism: same tree -> byte-identical canonical bytes
-# ---------------------------------------------------------------------------
-
-
-def test_manifest_emission_is_deterministic(corpus_repo: Path) -> None:
-    first = build_release_manifest(corpus_repo, release="r0")
-    second = build_release_manifest(corpus_repo, release="r0")
-    assert canonical_manifest_bytes(first) == canonical_manifest_bytes(second)
-    assert serialize_manifest(first) == serialize_manifest(second)
-
-
-def test_signed_manifest_is_deterministic(corpus_repo: Path) -> None:
-    first = sign_manifest(
-        build_release_manifest(corpus_repo, release="r0"), SIGNING_KEY
-    )
-    second = sign_manifest(
-        build_release_manifest(corpus_repo, release="r0"), SIGNING_KEY
-    )
-    assert serialize_manifest(first) == serialize_manifest(second)
-    assert first["signature"]["value"] == second["signature"]["value"]
-
-
-def test_content_change_changes_manifest(corpus_repo: Path) -> None:
-    before = canonical_manifest_bytes(
-        build_release_manifest(corpus_repo, release="r0")
-    )
-    # Append a provision row.
-    prov = corpus_repo / "data" / "corpus" / "provisions" / "us" / "statute" / "a.jsonl"
-    prov.write_text(prov.read_text() + '{"id": "99"}\n')
-    after = canonical_manifest_bytes(
-        build_release_manifest(corpus_repo, release="r0")
-    )
-    assert before != after
-
-
-# ---------------------------------------------------------------------------
-# Signing + verification (mirrors axiom-encode apply manifests)
-# ---------------------------------------------------------------------------
-
-
-def test_sign_and_verify_roundtrip(corpus_repo: Path) -> None:
-    manifest = sign_manifest(
-        build_release_manifest(corpus_repo, release="r0"), SIGNING_KEY
-    )
-    assert manifest["signature"]["algorithm"] == RELEASE_MANIFEST_SIGNATURE_ALGORITHM
-    assert manifest["signature"]["key_id"] == RELEASE_MANIFEST_SIGNATURE_KEY_ID
-    # Should not raise.
-    verify_manifest(manifest, SIGNING_KEY)
-    assert manifest_signature_issue(manifest, SIGNING_KEY) is None
-
-
-def test_signature_excludes_signature_field(corpus_repo: Path) -> None:
-    manifest = build_release_manifest(corpus_repo, release="r0")
-    unsigned_bytes = canonical_manifest_bytes(manifest)
-    signed = sign_manifest(manifest, SIGNING_KEY)
-    # Canonical bytes are identical before and after signing (signature dropped).
-    assert canonical_manifest_bytes(signed) == unsigned_bytes
-
-
-def test_tampered_payload_fails_verification(corpus_repo: Path) -> None:
-    manifest = sign_manifest(
-        build_release_manifest(corpus_repo, release="r0"), SIGNING_KEY
-    )
-    # Tamper with a recorded hash after signing.
-    manifest["artifacts"]["provisions"][0]["sha256"] = "0" * 64
-    assert manifest_signature_issue(manifest, SIGNING_KEY) == (
-        "has an invalid release manifest signature"
-    )
-    with pytest.raises(ReleaseManifestError, match="invalid release manifest signature"):
-        verify_manifest(manifest, SIGNING_KEY)
-
-
-def test_wrong_key_fails_verification(corpus_repo: Path) -> None:
-    manifest = sign_manifest(
-        build_release_manifest(corpus_repo, release="r0"), SIGNING_KEY
-    )
-    assert manifest_signature_issue(manifest, "a-different-key") == (
-        "has an invalid release manifest signature"
+def test_release_content_rejects_escaping_corpus_symlink(tmp_path: Path) -> None:
+    root = tmp_path / "repo"
+    (root / "data").mkdir(parents=True)
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    (root / "data" / "corpus").symlink_to(outside, target_is_directory=True)
+    release = ReleaseManifest(
+        name="nz-v1",
+        scopes=(ReleaseScope("nz", "statute", "v1"),),
     )
 
+    with pytest.raises(ReleaseManifestError, match="corpus base escapes repository"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
 
-def test_missing_signature_reported(corpus_repo: Path) -> None:
-    manifest = build_release_manifest(corpus_repo, release="r0")
-    assert manifest_signature_issue(manifest, SIGNING_KEY) == (
-        "is missing a release manifest signature"
+
+def test_release_content_rejects_missing_scope_artifact(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    source = root / "data/corpus/sources/nz/statute/2026-07-10-nz-rulespec/act.html"
+    source.unlink()
+
+    with pytest.raises(ReleaseManifestError, match="missing sources artifact"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+
+def test_release_content_requires_exactly_one_provisions_entry(tmp_path: Path, monkeypatch) -> None:
+    root, release = _release_tree(tmp_path)
+    import axiom_corpus.release.manifest as manifest
+
+    monkeypatch.setattr(manifest, "_scope_artifact_entries", lambda *args, **kwargs: [])
+    with pytest.raises(ReleaseManifestError, match="exactly one provisions artifact"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+
+def test_release_key_helpers_and_unsigned_builder_reject_missing_identity() -> None:
+    with pytest.raises(ReleaseManifestError, match="invalid artifact sha256"):
+        content_addressed_r2_key("bad")
+    with pytest.raises(ReleaseManifestError, match="invalid release content sha256"):
+        release_object_r2_key("nz-v1", "bad")
+    with pytest.raises(ReleaseManifestError, match="reserved"):
+        release_object_r2_key("current", "a" * 64)
+    with pytest.raises(ReleaseManifestError, match="missing its release name"):
+        build_unsigned_release_object({})
+
+
+def test_signature_requires_complete_validation_evidence(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    content = build_release_content(
+        root,
+        release=release,
+        validation={"passed": True},
+        created_at="2026-07-10T00:00:00Z",
     )
+    private, _ = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="validation does not match the v2 schema"):
+        sign_release_object(build_unsigned_release_object(content), private_key=private)
 
 
-def test_unknown_algorithm_reported(corpus_repo: Path) -> None:
-    manifest = sign_manifest(
-        build_release_manifest(corpus_repo, release="r0"), SIGNING_KEY
+def test_signature_rejects_artifacts_outside_complete_declared_scope(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    content = build_release_content(
+        root,
+        release=release,
+        validation={"passed": True},
+        created_at="2026-07-10T00:00:00Z",
     )
-    manifest["signature"]["algorithm"] = "rot13"
-    assert manifest_signature_issue(manifest, SIGNING_KEY) == (
-        "uses an unsupported release manifest signature algorithm"
-    )
+    content["artifacts"] = [
+        entry for entry in content["artifacts"] if entry["artifact_class"] != "sources"
+    ]
+    content["validation"] = _validation_for(content)
+    private, _ = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="lacks source artifacts"):
+        sign_release_object(build_unsigned_release_object(content), private_key=private)
 
 
-def test_unknown_key_id_reported(corpus_repo: Path) -> None:
-    manifest = sign_manifest(
-        build_release_manifest(corpus_repo, release="r0"), SIGNING_KEY
-    )
-    manifest["signature"]["key_id"] = "someone-elses-key"
-    assert manifest_signature_issue(manifest, SIGNING_KEY) == (
-        "uses an unknown release manifest signing key"
-    )
+def test_signature_rejects_missing_required_inventory_artifact(tmp_path: Path) -> None:
+    content = _valid_content(tmp_path)
+    content["artifacts"] = [
+        entry for entry in content["artifacts"] if entry["artifact_class"] != "inventory"
+    ]
+    content["validation"] = _validation_for(content)
+    private, _ = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="lacks its inventory artifact"):
+        sign_release_object(build_unsigned_release_object(content), private_key=private)
 
 
-def test_canonical_bytes_match_axiom_encode_convention(corpus_repo: Path) -> None:
-    """Canonical form is sorted-keys, tight separators, ascii, signature-free."""
-    manifest = sign_manifest(
-        build_release_manifest(corpus_repo, release="r0"), SIGNING_KEY
+def test_signature_rejects_rows_on_non_provision_artifacts(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    content = build_release_content(
+        root,
+        release=release,
+        validation={"passed": True},
+        created_at="2026-07-10T00:00:00Z",
     )
-    unsigned = {k: v for k, v in manifest.items() if k != "signature"}
-    expected = json.dumps(
-        unsigned, sort_keys=True, separators=(",", ":"), ensure_ascii=True
-    ).encode()
-    assert canonical_manifest_bytes(manifest) == expected
+    non_provision = next(
+        entry for entry in content["artifacts"] if entry["artifact_class"] != "provisions"
+    )
+    non_provision["rows"] = 1
+    content["validation"] = _validation_for(content)
+    private, _ = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="artifact does not match the v2 schema"):
+        sign_release_object(build_unsigned_release_object(content), private_key=private)
+
+
+def test_signature_rejects_selector_digest_unlinked_from_scopes(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    content = build_release_content(
+        root,
+        release=release,
+        validation={"passed": True},
+        created_at="2026-07-10T00:00:00Z",
+    )
+    content["selector_sha256"] = "a" * 64
+    content["validation"] = _validation_for(content)
+    private, _ = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="selector sha256"):
+        sign_release_object(build_unsigned_release_object(content), private_key=private)
+
+
+def test_signature_rejects_noncanonical_scope_identity(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    content = build_release_content(
+        root,
+        release=release,
+        validation={"passed": True},
+        created_at="2026-07-10T00:00:00Z",
+    )
+    content["scopes"][0]["jurisdiction"] = "../nz"
+    content["validation"] = _validation_for(content)
+    private, _ = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="invalid identity field"):
+        sign_release_object(build_unsigned_release_object(content), private_key=private)
+
+
+def test_mutable_current_release_name_is_rejected(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="reserved"):
+        _release_tree(tmp_path, name="current")
+
+
+def test_release_serialization_is_valid_json(tmp_path: Path) -> None:
+    signed, _ = _signed(tmp_path)
+    assert json.loads(serialize_release_object(signed)) == signed

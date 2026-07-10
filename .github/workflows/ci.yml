@@ -7,8 +7,7 @@ on:
     branches: [main, master]
   schedule:
     # Daily 12:00 UTC — catches release-coverage drift if a new
-    # jurisdiction lands in corpus.provisions / navigation_nodes
-    # without a matching active row in corpus.release_scopes.
+    # active named release points at navigation/provision scopes that diverge.
     - cron: "0 12 * * *"
 
 jobs:
@@ -71,7 +70,7 @@ jobs:
         run: |
           cd "$RUNNER_TEMP"
           python -I -m pip install --upgrade pip
-          python -I -m pip install -e "$GITHUB_WORKSPACE[dev]"
+          python -I -m pip install -e "${GITHUB_WORKSPACE}[dev]"
 
       - name: Check changelog fragments
         run: python -m towncrier build --draft --version 0.0.0
@@ -193,31 +192,28 @@ jobs:
           echo "Skipping release coverage: NEXT_PUBLIC_SUPABASE_ANON_KEY is not available in this GitHub Actions context."
 
   validate-release:
-    name: Validate release artifacts
-    # Deep validation of every release scope: artifact presence,
-    # canonical inventory shape, coverage completeness, provision
-    # invariants, unsectioned-document warnings. Scopes whose
-    # artifacts live only in R2 need R2 credentials to validate;
-    # without the secrets this job reports and exits neutrally so it
-    # arms itself the moment the secrets are added.
-    if: github.event_name == 'push' || github.event_name == 'schedule'
+    name: Validate named release selectors
+    # Local deep validation is mandatory for every tracked immutable selector.
+    # The production publisher independently repeats it after exact R2 readback
+    # and staged database counts, immediately before signing.
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
-    env:
-      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6.0.2
+      - uses: actions/setup-python@v6.2.0
         with:
           python-version: "3.14"
       - name: Install package
         run: python -I -m pip install -e .
-      - name: Validate release
+      - name: Deep-validate every named release selector
         run: |
-          if [ -z "$R2_ACCESS_KEY_ID" ]; then
-            echo "::notice::R2 secrets not configured — running local-artifact validation only (remote-only scopes will be skipped from failure accounting once secrets exist; until then this reports without failing)."
-            axiom-corpus-ingest validate-release --base data/corpus --max-issues 100 || true
-          else
-            axiom-corpus-ingest validate-release --base data/corpus --include-r2 --ignore-r2-missing --max-issues 100
-          fi
+          found=0
+          for selector in manifests/releases/*.json; do
+            [ -f "$selector" ] || continue
+            found=1
+            axiom-corpus-ingest validate-release \
+              --base data/corpus \
+              --release "$selector" \
+              --max-issues 100
+          done
+          [ "$found" = "1" ]

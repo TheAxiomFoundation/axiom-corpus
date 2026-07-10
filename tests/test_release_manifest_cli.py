@@ -1,282 +1,201 @@
-"""End-to-end tests for the ``axiom-corpus-release`` CLI."""
-
 from __future__ import annotations
 
+import hashlib
 import json
-import subprocess
+from base64 import b64encode
 from pathlib import Path
 
 import pytest
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
+from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.release import cli
-from axiom_corpus.release.manifest import RELEASE_MANIFEST_SIGNING_KEY_ENV
-
-SIGNING_KEY = "test-release-signing-key-0123456789"
-
-
-def _git(repo: Path, *args: str) -> None:
-    subprocess.run(["git", "-C", str(repo), *args], check=True, capture_output=True)
-
-
-@pytest.fixture()
-def corpus_repo(tmp_path: Path) -> Path:
-    root = tmp_path / "repo"
-    base = root / "data" / "corpus"
-    (base / "provisions" / "us" / "statute").mkdir(parents=True)
-    (base / "coverage" / "us" / "statute").mkdir(parents=True)
-    (root / "claims" / "us").mkdir(parents=True)
-    (base / "provisions" / "us" / "statute" / "a.jsonl").write_text('{"id": "1"}\n{"id": "2"}\n')
-    (base / "coverage" / "us" / "statute" / "a.json").write_text('{"complete": true}\n')
-    (root / "claims" / "us" / "c.jsonl").write_text('{"subject": {"id": "x"}}\n')
-    (root / "DATA_INVENTORY.md").write_text("# Inventory\n")
-    _git(root, "init", "-q")
-    _git(root, "config", "user.email", "test@example.com")
-    _git(root, "config", "user.name", "Test")
-    _git(root, "add", "-A", "-f")
-    _git(root, "-c", "commit.gpgsign=false", "commit", "-q", "-m", "seed")
-    return root
+from axiom_corpus.release.cli import _verify_local_artifacts
+from axiom_corpus.release.manifest import (
+    RELEASE_OBJECT_PUBLIC_KEY_ENV,
+    build_unsigned_release_object,
+    content_addressed_r2_key,
+    selector_sha256,
+    serialize_release_object,
+    sign_release_object,
+)
 
 
-def _emit(repo: Path, out: Path) -> int:
-    return cli.main(
-        [
-            "emit-release-manifest",
-            "--release",
-            "r0",
-            "--repo-root",
-            str(repo),
-            "--out",
-            str(out),
-        ]
+def _write_object(tmp_path: Path) -> tuple[Path, str, Path]:
+    artifact = tmp_path / "data" / "corpus" / "provisions" / "nz" / "statute" / "v1.jsonl"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text('{"body":"text"}\n')
+    inventory = tmp_path / "data" / "corpus" / "inventory" / "nz" / "statute" / "v1.json"
+    coverage = tmp_path / "data" / "corpus" / "coverage" / "nz" / "statute" / "v1.json"
+    source = tmp_path / "data" / "corpus" / "sources" / "nz" / "statute" / "v1" / "act.html"
+    for path, body in ((inventory, "{}\n"), (coverage, "{}\n"), (source, "official")):
+        path.parent.mkdir(parents=True)
+        path.write_text(body)
+    release = ReleaseManifest(
+        name="nz-rulespec-v1",
+        scopes=(ReleaseScope("nz", "statute", "v1"),),
     )
+    artifact_paths = {
+        "inventory": inventory,
+        "provisions": artifact,
+        "coverage": coverage,
+        "sources": source,
+    }
+    entries = []
+    for artifact_class, local_path in artifact_paths.items():
+        digest = hashlib.sha256(local_path.read_bytes()).hexdigest()
+        entry = {
+            "artifact_class": artifact_class,
+            "path": local_path.relative_to(tmp_path).as_posix(),
+            "sha256": digest,
+            "bytes": local_path.stat().st_size,
+            "r2_bucket": "axiom-corpus",
+            "r2_key": content_addressed_r2_key(digest),
+        }
+        if artifact_class == "provisions":
+            entry["rows"] = 1
+        entries.append(entry)
+    entries.sort(key=lambda entry: entry["path"])
+    content = {
+        "release": "nz-rulespec-v1",
+        "created_at": "2026-07-10T00:00:00Z",
+        "selector_sha256": selector_sha256(release),
+        "corpus_base": "data/corpus",
+        "git": {},
+        "r2": {"bucket": "axiom-corpus", "addressing": "sha256"},
+        "scopes": [
+            {
+                "jurisdiction": "nz",
+                "document_class": "statute",
+                "version": "v1",
+                "provision_rows": 1,
+                "navigation_rows": 1,
+            }
+        ],
+        "artifacts": entries,
+        "validation": {},
+    }
+    content["validation"] = {
+        "passed": True,
+        "deep_validation": {"error_count": 0, "warning_count": 0, "scope_count": 1},
+        "r2_readback": {
+            "bucket": "axiom-corpus",
+            "artifact_count": len(entries),
+            "artifact_bytes": sum(entry["bytes"] for entry in entries),
+            "verified_keys": [entry["r2_key"] for entry in entries],
+        },
+        "supabase_counts": [
+            {
+                "jurisdiction": "nz",
+                "document_class": "statute",
+                "version": "v1",
+                "expected": 1,
+                "actual": 1,
+                "expected_navigation": 1,
+                "actual_navigation": 1,
+            }
+        ],
+    }
+    private = Ed25519PrivateKey.generate()
+    private_text = b64encode(
+        private.private_bytes(
+            serialization.Encoding.Raw,
+            serialization.PrivateFormat.Raw,
+            serialization.NoEncryption(),
+        )
+    ).decode()
+    public_text = b64encode(
+        private.public_key().public_bytes(
+            serialization.Encoding.Raw,
+            serialization.PublicFormat.Raw,
+        )
+    ).decode()
+    signed = sign_release_object(build_unsigned_release_object(content), private_key=private_text)
+    path = tmp_path / "release.json"
+    path.write_bytes(serialize_release_object(signed))
+    return path, public_text, artifact
 
 
-def test_emit_writes_signed_manifest(
-    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
-) -> None:
-    monkeypatch.setenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, SIGNING_KEY)
-    out = tmp_path / "out" / "release_manifest.json"
-    assert _emit(corpus_repo, out) == 0
-    assert out.is_file()
+def test_cli_requires_public_key(tmp_path: Path, monkeypatch, capsys) -> None:
+    path, _, _ = _write_object(tmp_path)
+    monkeypatch.delenv(RELEASE_OBJECT_PUBLIC_KEY_ENV, raising=False)
+    assert cli.main([str(path)]) == 2
+    assert RELEASE_OBJECT_PUBLIC_KEY_ENV in capsys.readouterr().err
 
-    manifest = json.loads(out.read_text())
-    assert manifest["release"] == "r0"
-    assert manifest["signature"]["algorithm"] == "hmac-sha256"
-    assert manifest["summary"]["provisions"]["rows"] == 2
 
+def test_cli_verifies_signature(tmp_path: Path, monkeypatch, capsys) -> None:
+    path, public_key, _ = _write_object(tmp_path)
+    monkeypatch.setenv(RELEASE_OBJECT_PUBLIC_KEY_ENV, public_key)
+
+    assert cli.main([str(path)]) == 0
     report = json.loads(capsys.readouterr().out)
-    assert report["signed"] is True
-    assert report["provision_rows"] == 2
-    assert report["files"] >= 3
+    assert report["signature_verified"] is True
+    assert report["release"] == "nz-rulespec-v1"
 
 
-def test_emit_unsigned_without_key(
-    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
-) -> None:
-    monkeypatch.delenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, raising=False)
-    out = tmp_path / "release_manifest.json"
-    assert _emit(corpus_repo, out) == 0
-    manifest = json.loads(out.read_text())
-    assert "signature" not in manifest
-    captured = capsys.readouterr()
-    report = json.loads(captured.out)
-    assert report["signed"] is False
-    assert "not set" in captured.err
+def test_cli_can_rehash_local_artifacts(tmp_path: Path, monkeypatch, capsys) -> None:
+    path, public_key, artifact = _write_object(tmp_path)
+    monkeypatch.setenv(RELEASE_OBJECT_PUBLIC_KEY_ENV, public_key)
+    artifact.write_text("tampered")
 
-
-def test_sign_in_place_signs_unsigned_manifest_without_touching_content(
-    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
-) -> None:
-    # Emit unsigned (no key), then sign the committed-unsigned manifest in place.
-    monkeypatch.delenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, raising=False)
-    out = tmp_path / "release_manifest.json"
-    _emit(corpus_repo, out)
-    capsys.readouterr()
-    unsigned = json.loads(out.read_text())
-    assert "signature" not in unsigned
-
-    monkeypatch.setenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, SIGNING_KEY)
-    rc = cli.main(["sign-release-manifest", "--manifest", str(out)])
+    assert cli.main([str(path), "--repo-root", str(tmp_path)]) == 1
     report = json.loads(capsys.readouterr().out)
-    assert rc == 0
-    assert report["signed"] is True
-    assert report["already_valid"] is False
-
-    signed = json.loads(out.read_text())
-    assert signed["signature"]["algorithm"] == "hmac-sha256"
-    # Every field except the added signature is byte-identical.
-    signed_without_sig = {k: v for k, v in signed.items() if k != "signature"}
-    assert signed_without_sig == unsigned
-
-    # The signature verifies.
-    rc = cli.main(
-        [
-            "verify-release-manifest",
-            "--manifest",
-            str(out),
-            "--repo-root",
-            str(corpus_repo),
-            "--require-signature",
-        ]
-    )
-    report = json.loads(capsys.readouterr().out)
-    assert rc == 0
-    assert report["ok"] is True
-    assert report["signature_checked"] is True
-
-
-def test_sign_in_place_is_idempotent(
-    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
-) -> None:
-    monkeypatch.delenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, raising=False)
-    out = tmp_path / "release_manifest.json"
-    _emit(corpus_repo, out)
-    capsys.readouterr()
-
-    monkeypatch.setenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, SIGNING_KEY)
-    assert cli.main(["sign-release-manifest", "--manifest", str(out)]) == 0
-    capsys.readouterr()
-    first = out.read_text()
-
-    # Signing again with the same key reports already_valid and is a no-op.
-    assert cli.main(["sign-release-manifest", "--manifest", str(out)]) == 0
-    report = json.loads(capsys.readouterr().out)
-    assert report["already_valid"] is True
-    assert out.read_text() == first
-
-
-def test_sign_in_place_requires_key(
-    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
-) -> None:
-    monkeypatch.delenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, raising=False)
-    out = tmp_path / "release_manifest.json"
-    _emit(corpus_repo, out)
-    capsys.readouterr()
-
-    rc = cli.main(["sign-release-manifest", "--manifest", str(out)])
-    captured = capsys.readouterr()
-    assert rc == 2
-    assert "required to sign" in captured.err
-    # Manifest is left unsigned.
-    assert "signature" not in json.loads(out.read_text())
-
-
-def test_verify_passes_on_clean_tree(
-    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
-) -> None:
-    monkeypatch.setenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, SIGNING_KEY)
-    out = tmp_path / "release_manifest.json"
-    _emit(corpus_repo, out)
-    capsys.readouterr()
-
-    rc = cli.main(
-        [
-            "verify-release-manifest",
-            "--manifest",
-            str(out),
-            "--repo-root",
-            str(corpus_repo),
-        ]
-    )
-    report = json.loads(capsys.readouterr().out)
-    assert rc == 0
-    assert report["ok"] is True
-    assert report["signature_checked"] is True
-    assert report["content_checked"] is True
-    assert report["problems"] == []
-
-
-def test_verify_detects_content_tamper(
-    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
-) -> None:
-    monkeypatch.setenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, SIGNING_KEY)
-    out = tmp_path / "release_manifest.json"
-    _emit(corpus_repo, out)
-    capsys.readouterr()
-
-    # Mutate a hashed artifact on disk after the manifest was written.
-    prov = corpus_repo / "data" / "corpus" / "provisions" / "us" / "statute" / "a.jsonl"
-    prov.write_text('{"id": "1"}\n{"id": "2"}\n{"id": "3"}\n')
-
-    rc = cli.main(
-        [
-            "verify-release-manifest",
-            "--manifest",
-            str(out),
-            "--repo-root",
-            str(corpus_repo),
-        ]
-    )
-    report = json.loads(capsys.readouterr().out)
-    assert rc == 1
     assert report["ok"] is False
-    joined = " ".join(report["problems"])
-    assert "sha256 mismatch" in joined
-    assert "row-count mismatch" in joined
+    assert any("sha256 mismatch" in issue for issue in report["issues"])
 
 
-def test_verify_detects_signature_tamper(
-    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
+def test_cli_rejects_invalid_release_object(tmp_path: Path, monkeypatch, capsys) -> None:
+    _, public_key, _ = _write_object(tmp_path)
+    invalid = tmp_path / "invalid.json"
+    invalid.write_text("{}")
+    monkeypatch.setenv(RELEASE_OBJECT_PUBLIC_KEY_ENV, public_key)
+
+    assert cli.main([str(invalid)]) == 1
+    assert "unsupported schema version" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize(
+    ("payload", "expected"),
+    [
+        ({}, "content is missing"),
+        ({"content": {}}, "artifacts are missing"),
+        ({"content": {"artifacts": [None]}}, "non-object artifact"),
+        ({"content": {"artifacts": [{}]}}, "missing its path"),
+        (
+            {"content": {"artifacts": [{"path": "data/corpus/../../../outside"}]}},
+            "escapes repository",
+        ),
+        (
+            {"content": {"artifacts": [{"path": "data/corpus/missing.json"}]}},
+            "artifact is missing",
+        ),
+    ],
+)
+def test_local_artifact_verifier_rejects_invalid_inventory(
+    tmp_path: Path,
+    payload: dict,
+    expected: str,
 ) -> None:
-    monkeypatch.setenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, SIGNING_KEY)
-    out = tmp_path / "release_manifest.json"
-    _emit(corpus_repo, out)
-    capsys.readouterr()
-
-    manifest = json.loads(out.read_text())
-    manifest["signature"]["value"] = "0" * 64
-    out.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
-
-    rc = cli.main(
-        [
-            "verify-release-manifest",
-            "--manifest",
-            str(out),
-            "--repo-root",
-            str(corpus_repo),
-            "--signature-only",
-        ]
-    )
-    report = json.loads(capsys.readouterr().out)
-    assert rc == 1
-    assert any("signature" in problem for problem in report["problems"])
-    assert report["content_checked"] is False
+    assert any(expected in issue for issue in _verify_local_artifacts(payload, tmp_path))
 
 
-def test_verify_missing_key_can_require_signature(
-    corpus_repo: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
-) -> None:
-    monkeypatch.setenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, SIGNING_KEY)
-    out = tmp_path / "release_manifest.json"
-    _emit(corpus_repo, out)
-    capsys.readouterr()
+def test_local_artifact_verifier_reports_hash_and_size_mismatch(tmp_path: Path) -> None:
+    artifact = tmp_path / "data" / "corpus" / "file.txt"
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("actual")
+    payload = {
+        "content": {
+            "artifacts": [
+                {
+                    "path": "data/corpus/file.txt",
+                    "sha256": "0" * 64,
+                    "bytes": 999,
+                }
+            ]
+        }
+    }
 
-    monkeypatch.delenv(RELEASE_MANIFEST_SIGNING_KEY_ENV, raising=False)
-    # Without the key, signature check is skipped and content still verifies.
-    rc = cli.main(
-        [
-            "verify-release-manifest",
-            "--manifest",
-            str(out),
-            "--repo-root",
-            str(corpus_repo),
-        ]
-    )
-    report = json.loads(capsys.readouterr().out)
-    assert rc == 0
-    assert report["signature_checked"] is False
-
-    # With --require-signature and no key, it fails.
-    rc = cli.main(
-        [
-            "verify-release-manifest",
-            "--manifest",
-            str(out),
-            "--repo-root",
-            str(corpus_repo),
-            "--require-signature",
-        ]
-    )
-    report = json.loads(capsys.readouterr().out)
-    assert rc == 1
-    assert any("required" in problem for problem in report["problems"])
+    issues = _verify_local_artifacts(payload, tmp_path)
+    assert any("sha256 mismatch" in issue for issue in issues)
+    assert any("byte-count mismatch" in issue for issue in issues)

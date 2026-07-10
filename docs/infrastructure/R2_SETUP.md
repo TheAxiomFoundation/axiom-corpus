@@ -24,7 +24,8 @@ axiom-corpus (R2 bucket)/
 ├── exports/{format}/{jurisdiction}/{document_class}/{version}/...
 ├── analytics/{version}.json
 ├── snapshots/...
-└── releases/{release}.artifacts.json
+├── objects/sha256/{prefix}/{artifact_sha256}
+└── releases/{release}/{release_content_sha256}.json
 ```
 
 ## Status
@@ -133,23 +134,15 @@ axiom-corpus-ingest artifact-report \
   --supabase-counts data/corpus/snapshots/provision-counts-2026-04-30.json \
   --include-r2
 
-# Write an immutable digest manifest for release artifacts
-axiom-corpus-ingest release-artifact-manifest \
-  --base data/corpus \
-  --release current \
-  --output data/corpus/releases/current.artifacts.json
-
-# Validate a release before promotion/publication
-axiom-corpus-ingest validate-release \
-  --base data/corpus \
-  --release current \
-  --supabase-counts data/corpus/snapshots/provision-counts-2026-05-02.json \
-  --include-r2
+# Validate a named release plan without external writes
+python scripts/publish_corpus.py \
+  --release manifests/releases/nz-rulespec-2026-07-10.json \
+  --dry-run
 ```
 
-Unscoped artifact reports auto-use `manifests/releases/current.json` when it
-exists. Add `--all-scopes` when you need an exhaustive diagnostic report that
-includes old probes and superseded snapshots.
+Production publication uses content-addressed R2 keys and hashes every object
+after downloading it. The signed named release object is uploaded and verified
+before the database pointer can move. See `docs/named-release-publication.md`.
 
 ## Related Documentation
 

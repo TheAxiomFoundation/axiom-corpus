@@ -98,7 +98,6 @@ from axiom_corpus.corpus.r2 import (
     DEFAULT_RELEASE_ARTIFACT_PREFIXES,
     build_artifact_report,
     build_artifact_report_with_r2,
-    build_release_artifact_manifest,
     load_r2_config,
     sync_artifacts_to_r2,
 )
@@ -226,12 +225,9 @@ from axiom_corpus.corpus.supabase import (
     deterministic_provision_id,
     fetch_provision_counts,
     fetch_release_provision_counts,
-    list_release_scopes,
     list_single_active_release_scopes,
     load_provisions_to_supabase,
     resolve_service_key,
-    set_release_scope_active,
-    sync_release_scopes_to_supabase,
     verify_release_coverage,
     write_supabase_rows_jsonl,
 )
@@ -645,15 +641,8 @@ def _cmd_load_supabase(args: argparse.Namespace) -> int:
         service_key=service_key,
         supabase_url=args.supabase_url,
         chunk_size=args.chunk_size,
-        refresh=not args.skip_refresh,
         dry_run=args.dry_run,
-        allow_refresh_failure=args.allow_refresh_failure,
-        preserve_existing_ids=args.preserve_existing_ids and not args.replace_scope,
-        synthesize_missing_parents=args.synthesize_missing_parents and not args.replace_scope,
-        skip_superseded=args.skip_superseded and not args.replace_scope,
         progress_stream=sys.stderr,
-        auto_register_scopes=not args.no_auto_register,
-        auto_publish=not args.stage,
     )
     payload: dict[str, Any] = report.to_mapping()
     if replace_report is not None:
@@ -729,7 +718,7 @@ def _cmd_snapshot_provision_counts(args: argparse.Namespace) -> int:
     if args.release:
         if args.base is None:
             raise ValueError("--base is required with --release")
-        release_path = resolve_release_manifest_path(args.base, args.release)
+        release_path = resolve_release_manifest_path(args.release)
         rows = fetch_release_provision_counts(
             ReleaseManifest.load(release_path),
             service_key=service_key,
@@ -750,91 +739,6 @@ def _cmd_snapshot_provision_counts(args: argparse.Namespace) -> int:
         payload["written_to"] = str(args.output)
     print(json.dumps(payload, indent=2, sort_keys=True))
     return 0
-
-
-def _cmd_sync_release_scopes(args: argparse.Namespace) -> int:
-    release_path = resolve_release_manifest_path(args.base, args.release)
-    release = ReleaseManifest.load(release_path)
-    service_key = resolve_service_key(
-        args.supabase_url,
-        service_key_env=args.service_key_env,
-        access_token_env=args.access_token_env,
-    )
-    report = sync_release_scopes_to_supabase(
-        release,
-        service_key=service_key,
-        supabase_url=args.supabase_url,
-        chunk_size=args.chunk_size,
-        refresh=not args.skip_refresh,
-        dry_run=args.dry_run,
-        allow_refresh_failure=args.allow_refresh_failure,
-        exclusive=args.exclusive,
-    )
-    payload = report.to_mapping()
-    payload["release_path"] = str(release_path)
-    print(json.dumps(payload, indent=2, sort_keys=True))
-    return 0
-
-
-def _cmd_publish_scope(args: argparse.Namespace) -> int:
-    service_key = resolve_service_key(
-        args.supabase_url,
-        service_key_env=args.service_key_env,
-        access_token_env=args.access_token_env,
-    )
-    result = set_release_scope_active(
-        jurisdiction=args.jurisdiction,
-        document_class=args.doc_type,
-        active=True,
-        release_name=args.release,
-        version=args.version,
-        service_key=service_key,
-        supabase_url=args.supabase_url,
-        refresh=not args.skip_refresh,
-    )
-    print(json.dumps(result, indent=2, sort_keys=True))
-    return 0
-
-
-def _cmd_unpublish_scope(args: argparse.Namespace) -> int:
-    service_key = resolve_service_key(
-        args.supabase_url,
-        service_key_env=args.service_key_env,
-        access_token_env=args.access_token_env,
-    )
-    result = set_release_scope_active(
-        jurisdiction=args.jurisdiction,
-        document_class=args.doc_type,
-        active=False,
-        release_name=args.release,
-        version=args.version,
-        service_key=service_key,
-        supabase_url=args.supabase_url,
-        refresh=not args.skip_refresh,
-    )
-    print(json.dumps(result, indent=2, sort_keys=True))
-    return 0
-
-
-def _cmd_list_unpublished(args: argparse.Namespace) -> int:
-    service_key = resolve_service_key(
-        args.supabase_url,
-        service_key_env=args.service_key_env,
-        access_token_env=args.access_token_env,
-    )
-    rows = list_release_scopes(
-        release_name=args.release,
-        active=False,
-        service_key=service_key,
-        supabase_url=args.supabase_url,
-    )
-    payload = {
-        "release_name": args.release,
-        "unpublished_count": len(rows),
-        "scopes": list(rows),
-    }
-    print(json.dumps(payload, indent=2, sort_keys=True))
-    return 0 if rows else 0  # Listing is informational; never fails
 
 
 def _cmd_backfill_versions(args: argparse.Namespace) -> int:
@@ -4533,12 +4437,8 @@ def _cmd_artifact_report(args: argparse.Namespace) -> int:
     release = None
     release_path = None
     release_name = args.release
-    if release_name is None and not args.all_scopes and not _artifact_scope_filter_supplied(args):
-        current_release = resolve_release_manifest_path(args.base, "current")
-        if current_release.exists():
-            release_name = "current"
     if release_name:
-        release_path = resolve_release_manifest_path(args.base, release_name)
+        release_path = resolve_release_manifest_path(release_name)
         release = ReleaseManifest.load(release_path)
     if args.include_r2:
         config = load_r2_config(
@@ -4571,25 +4471,6 @@ def _cmd_artifact_report(args: argparse.Namespace) -> int:
     payload = report.to_mapping()
     if release_path:
         payload["release_path"] = str(release_path)
-    if args.output:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
-        payload["written_to"] = str(args.output)
-    print(json.dumps(payload, indent=2, sort_keys=True))
-    return 0
-
-
-def _cmd_release_artifact_manifest(args: argparse.Namespace) -> int:
-    release_path = resolve_release_manifest_path(args.base, args.release)
-    release = ReleaseManifest.load(release_path)
-    manifest = build_release_artifact_manifest(
-        args.base,
-        release_name=release.name,
-        release_scopes=release.scope_keys,
-        prefixes=tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES),
-    )
-    payload = manifest.to_mapping()
-    payload["release_path"] = str(release_path)
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
@@ -4683,7 +4564,7 @@ def _cmd_section_provisions(args: argparse.Namespace) -> int:
 
 
 def _cmd_validate_release(args: argparse.Namespace) -> int:
-    release_path = resolve_release_manifest_path(args.base, args.release)
+    release_path = resolve_release_manifest_path(args.release)
     release = ReleaseManifest.load(release_path)
     prefixes = tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES)
     if args.include_r2:
@@ -4727,7 +4608,7 @@ def _cmd_validate_release(args: argparse.Namespace) -> int:
 
 
 def _cmd_state_statute_completion(args: argparse.Namespace) -> int:
-    release_path = resolve_release_manifest_path(args.base, args.release)
+    release_path = resolve_release_manifest_path(args.release)
     release = ReleaseManifest.load(release_path)
     prefixes = tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES)
     source_access_queue = _resolve_state_source_access_queue(args.base, args.source_access_queue)
@@ -4783,7 +4664,7 @@ def _cmd_state_statute_completion(args: argparse.Namespace) -> int:
 
 
 def _cmd_regulation_completion(args: argparse.Namespace) -> int:
-    release_path = resolve_release_manifest_path(args.base, args.release)
+    release_path = resolve_release_manifest_path(args.release)
     release = ReleaseManifest.load(release_path)
     prefixes = tuple(args.prefix or DEFAULT_RELEASE_ARTIFACT_PREFIXES)
     validation_report_path = args.validation_report
@@ -4848,7 +4729,7 @@ def _cmd_source_discovery(args: argparse.Namespace) -> int:
     release_path = None
     covered_source_urls = None
     if args.release:
-        release_path = resolve_release_manifest_path(args.base, args.release)
+        release_path = resolve_release_manifest_path(args.release)
         release = ReleaseManifest.load(release_path)
         covered_source_urls = _release_inventory_source_urls(
             CorpusArtifactStore(args.base),
@@ -6131,7 +6012,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     load_supabase = sub.add_parser(
         "load-supabase",
-        help="Upsert normalized provision JSONL into corpus.provisions.",
+        help=(
+            "Stage versioned provision JSONL in corpus.provisions without "
+            "changing the active named release."
+        ),
     )
     load_supabase.add_argument("--provisions", type=Path, required=True)
     load_supabase.add_argument(
@@ -6140,47 +6024,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     load_supabase.add_argument("--chunk-size", type=int, default=500)
     load_supabase.add_argument("--dry-run", action="store_true")
-    load_supabase.add_argument("--skip-refresh", action="store_true")
-    load_supabase.add_argument("--allow-refresh-failure", action="store_true")
     load_supabase.add_argument(
         "--replace-scope",
         action="store_true",
         help=(
-            "Delete existing rows for the JSONL's single jurisdiction/document class "
-            "before loading."
-        ),
-    )
-    load_supabase.add_argument(
-        "--preserve-existing-ids",
-        action=argparse.BooleanOptionalAction,
-        default=False,
-        help=(
-            "Reuse existing corpus.provisions IDs for matching citation paths "
-            "before upsert, so a new release version updates the row in place "
-            "rather than inserting a colliding row (UNIQUE(citation_path)). "
-            "Default is false so new release versions get distinct provision IDs."
-        ),
-    )
-    load_supabase.add_argument(
-        "--synthesize-missing-parents",
-        action=argparse.BooleanOptionalAction,
-        default=False,
-        help=(
-            "Synthesize a minimal structural container row for any "
-            "parent_citation_path referenced by the records but defined neither "
-            "in the file nor already in the DB, so leaf provisions whose "
-            "instrument container was never ingested still satisfy the parent_id "
-            "foreign key instead of failing the whole scope with 23503."
-        ),
-    )
-    load_supabase.add_argument(
-        "--skip-superseded",
-        action=argparse.BooleanOptionalAction,
-        default=False,
-        help=(
-            "Skip records whose citation_path is already held by a strictly "
-            "newer version (by ISO date prefix) so a backlog load never "
-            "downgrades an already-newer published row."
+            "Delete the JSONL's exact unreleased version scope before staging. "
+            "Database immutability guards reject this for released scopes."
         ),
     )
     load_supabase.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)
@@ -6212,25 +6061,6 @@ def build_parser() -> argparse.ArgumentParser:
             "from the provisions JSONL just loaded, avoiding a large readback "
             "from Supabase. Use supabase for legacy migration loads that need "
             "database-assigned provision IDs."
-        ),
-    )
-    load_supabase.add_argument(
-        "--stage",
-        action="store_true",
-        help=(
-            "Stage the load: auto-register exact release_scopes version rows "
-            "with active=false so the loaded provisions stay outside "
-            "current_provisions until promoted. Default is auto-publish "
-            "(active=true). Flip later with `axiom-corpus-ingest publish`."
-        ),
-    )
-    load_supabase.add_argument(
-        "--no-auto-register",
-        action="store_true",
-        help=(
-            "Skip release_scopes registration entirely. Legacy behavior; "
-            "the data will not appear in current_provisions until a "
-            "release_scopes row is added by some other means."
         ),
     )
     _add_rulespec_args(load_supabase)
@@ -6437,103 +6267,6 @@ def build_parser() -> argparse.ArgumentParser:
     snapshot_counts.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
     snapshot_counts.set_defaults(func=_cmd_snapshot_provision_counts)
 
-    sync_release_scopes = sub.add_parser(
-        "sync-release-scopes",
-        help="Sync a release manifest's active scopes into Supabase.",
-    )
-    sync_release_scopes.add_argument("--base", type=Path, required=True)
-    sync_release_scopes.add_argument("--release", default="current")
-    sync_release_scopes.add_argument(
-        "--supabase-url",
-        default=os.environ.get("AXIOM_SUPABASE_URL", DEFAULT_AXIOM_SUPABASE_URL),
-    )
-    sync_release_scopes.add_argument("--chunk-size", type=int, default=500)
-    sync_release_scopes.add_argument("--dry-run", action="store_true")
-    sync_release_scopes.add_argument(
-        "--skip-refresh",
-        action="store_true",
-        help="Skip refreshing corpus analytics after syncing release scopes.",
-    )
-    sync_release_scopes.add_argument(
-        "--allow-refresh-failure",
-        action="store_true",
-        help="Return a report even if the post-sync analytics refresh fails.",
-    )
-    sync_release_scopes.add_argument(
-        "--exclusive",
-        action="store_true",
-        help=(
-            "Deactivate all current scopes before re-inserting from the "
-            "manifest (the old default). Default is upsert-incremental: "
-            "only scopes in the manifest are touched. Use --exclusive "
-            "ONLY when the manifest is the complete intended set of "
-            "active scopes — otherwise this can silently unpromote work "
-            "added from other branches."
-        ),
-    )
-    sync_release_scopes.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)
-    sync_release_scopes.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
-    sync_release_scopes.set_defaults(func=_cmd_sync_release_scopes)
-
-    publish_cmd = sub.add_parser(
-        "publish",
-        help=(
-            "Mark one corpus scope version as visible in the Axiom app. Flips "
-            "corpus.release_scopes.active = true for "
-            "(release, jurisdiction, document_class, version) and "
-            "refreshes the materialized count view."
-        ),
-    )
-    publish_cmd.add_argument("--jurisdiction", required=True)
-    publish_cmd.add_argument("--doc-type", required=True, dest="doc_type")
-    publish_cmd.add_argument(
-        "--version",
-        help="Pin to a specific version. If omitted, picks the most recent row.",
-    )
-    publish_cmd.add_argument("--release", default="current")
-    publish_cmd.add_argument(
-        "--supabase-url",
-        default=os.environ.get("AXIOM_SUPABASE_URL", DEFAULT_AXIOM_SUPABASE_URL),
-    )
-    publish_cmd.add_argument("--skip-refresh", action="store_true")
-    publish_cmd.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)
-    publish_cmd.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
-    publish_cmd.set_defaults(func=_cmd_publish_scope)
-
-    unpublish_cmd = sub.add_parser(
-        "unpublish",
-        help=("Mark one corpus scope version as hidden (active=false). Inverse of `publish`."),
-    )
-    unpublish_cmd.add_argument("--jurisdiction", required=True)
-    unpublish_cmd.add_argument("--doc-type", required=True, dest="doc_type")
-    unpublish_cmd.add_argument("--version")
-    unpublish_cmd.add_argument("--release", default="current")
-    unpublish_cmd.add_argument(
-        "--supabase-url",
-        default=os.environ.get("AXIOM_SUPABASE_URL", DEFAULT_AXIOM_SUPABASE_URL),
-    )
-    unpublish_cmd.add_argument("--skip-refresh", action="store_true")
-    unpublish_cmd.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)
-    unpublish_cmd.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
-    unpublish_cmd.set_defaults(func=_cmd_unpublish_scope)
-
-    list_unpublished_cmd = sub.add_parser(
-        "list-unpublished",
-        help=(
-            "List release_scopes version rows with active=false. These are "
-            "staged or explicitly unpublished release rows, not a full "
-            "visibility audit of every provision row."
-        ),
-    )
-    list_unpublished_cmd.add_argument("--release", default="current")
-    list_unpublished_cmd.add_argument(
-        "--supabase-url",
-        default=os.environ.get("AXIOM_SUPABASE_URL", DEFAULT_AXIOM_SUPABASE_URL),
-    )
-    list_unpublished_cmd.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)
-    list_unpublished_cmd.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
-    list_unpublished_cmd.set_defaults(func=_cmd_list_unpublished)
-
     backfill_versions_cmd = sub.add_parser(
         "backfill-versions",
         help=(
@@ -6675,7 +6408,7 @@ def build_parser() -> argparse.ArgumentParser:
     release_group.add_argument(
         "--all-scopes",
         action="store_true",
-        help="Report every discovered scope instead of auto-using the current release.",
+        help="Report every discovered scope (the default when no named release is supplied).",
     )
     artifact_report.add_argument(
         "--document-class",
@@ -6695,22 +6428,6 @@ def build_parser() -> argparse.ArgumentParser:
     artifact_report.add_argument("--credentials-file", type=Path)
     artifact_report.add_argument("--output", type=Path)
     artifact_report.set_defaults(func=_cmd_artifact_report)
-
-    release_artifact_manifest = sub.add_parser(
-        "release-artifact-manifest",
-        help="Write a digest manifest for the concrete artifacts in a named release.",
-    )
-    release_artifact_manifest.add_argument("--base", type=Path, required=True)
-    release_artifact_manifest.add_argument("--release", default="current")
-    release_artifact_manifest.add_argument(
-        "--prefix",
-        action="append",
-        choices=list(DEFAULT_RELEASE_ARTIFACT_PREFIXES),
-        default=[],
-        help="Top-level artifact prefix to include. Defaults to release content prefixes.",
-    )
-    release_artifact_manifest.add_argument("--output", type=Path)
-    release_artifact_manifest.set_defaults(func=_cmd_release_artifact_manifest)
 
     section_provisions_cmd = sub.add_parser(
         "section-provisions",
@@ -6735,7 +6452,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="Validate release artifacts, coverage, provision invariants, and optional R2/Supabase state.",
     )
     validate_release_cmd.add_argument("--base", type=Path, required=True)
-    validate_release_cmd.add_argument("--release", default="current")
+    validate_release_cmd.add_argument("--release", required=True)
     validate_release_cmd.add_argument("--supabase-counts", type=Path)
     validate_release_cmd.add_argument(
         "--prefix",
@@ -6763,10 +6480,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     state_statute_completion = sub.add_parser(
         "state-statute-completion",
-        help="Classify 50-state plus DC statute ingestion against the current release.",
+        help="Classify 50-state plus DC statute ingestion against a named release.",
     )
     state_statute_completion.add_argument("--base", type=Path, required=True)
-    state_statute_completion.add_argument("--release", default="current")
+    state_statute_completion.add_argument("--release", required=True)
     state_statute_completion.add_argument("--supabase-counts", type=Path)
     state_statute_completion.add_argument(
         "--validation-report",
@@ -6805,10 +6522,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     regulation_completion = sub.add_parser(
         "regulation-completion",
-        help="Classify federal plus state regulation ingestion against the current release.",
+        help="Classify federal plus state regulation ingestion against a named release.",
     )
     regulation_completion.add_argument("--base", type=Path, required=True)
-    regulation_completion.add_argument("--release", default="current")
+    regulation_completion.add_argument("--release", required=True)
     regulation_completion.add_argument("--supabase-counts", type=Path)
     regulation_completion.add_argument(
         "--validation-report",
@@ -6867,7 +6584,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     source_discovery.add_argument(
         "--release",
-        default="current",
+        default="",
         help="Release manifest to compare for matching jurisdiction/class scopes. Use empty string to skip.",
     )
     source_discovery.add_argument("--output", type=Path)

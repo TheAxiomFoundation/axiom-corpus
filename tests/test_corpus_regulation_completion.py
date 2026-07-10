@@ -77,7 +77,7 @@ def test_regulation_completion_classifies_federal_state_legacy_and_missing(tmp_p
         )
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(
             ReleaseScope("us", "regulation", "2026-05-01"),
             ReleaseScope("us-co", "regulation", "2026-04-29"),
@@ -136,10 +136,11 @@ def test_regulation_completion_cli_writes_report(tmp_path, capsys):
     store = CorpusArtifactStore(tmp_path / "corpus")
     _write_complete_regulation_scope(store, "us", "2026-05-01", count=2)
     (store.root / "releases").mkdir(parents=True)
-    (store.root / "releases" / "current.json").write_text(
+    release_path = store.root / "releases" / "test-release-v1.json"
+    release_path.write_text(
         json.dumps(
             {
-                "name": "current",
+                "name": "test-release-v1",
                 "scopes": [
                     {
                         "jurisdiction": "us",
@@ -151,7 +152,7 @@ def test_regulation_completion_cli_writes_report(tmp_path, capsys):
         )
     )
     (store.root / "analytics").mkdir(parents=True)
-    (store.root / "analytics" / "validate-release-current.json").write_text(
+    (store.root / "analytics" / "validate-release-test-release-v1.json").write_text(
         json.dumps(
             {
                 "ok": True,
@@ -184,6 +185,8 @@ def test_regulation_completion_cli_writes_report(tmp_path, capsys):
             "regulation-completion",
             "--base",
             str(store.root),
+            "--release",
+            str(release_path),
             "--supabase-counts",
             str(counts_path),
             "--output",
@@ -196,7 +199,7 @@ def test_regulation_completion_cli_writes_report(tmp_path, capsys):
 
     assert exit_code == 0
     assert payload["written_to"] == str(output)
-    assert written["release"] == "current"
+    assert written["release"] == "test-release-v1"
     assert written["release_regulation_scope_count"] == 1
     assert federal["status"] == "productionized_and_validated"
 
@@ -224,7 +227,7 @@ def test_regulation_completion_accepts_r2_only_release_artifacts(tmp_path):
         )
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(ReleaseScope("us", "regulation", "2026-05-01"),),
     )
     artifact_report = ArtifactReport(

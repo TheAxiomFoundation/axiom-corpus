@@ -40,7 +40,8 @@ provisions/{jurisdiction}/{document_class}/{version}.jsonl
 coverage/{jurisdiction}/{document_class}/{version}.json
 exports/{format}/{jurisdiction}/{document_class}/{version}/...
 analytics/{version}.json
-releases/{release}.artifacts.json
+objects/sha256/{prefix}/{artifact_sha256}
+releases/{release}/{release_content_sha256}.json
 ```
 
 R2 should hold official source snapshots, source inventories, normalized
@@ -80,20 +81,20 @@ axiom-corpus-ingest artifact-report \
   --output data/corpus/analytics/artifact-report-2026-04-30.json
 ```
 
-Named releases resolve to `data/corpus/releases/<name>.json` first, then the
-tracked `manifests/releases/<name>.json`. Unscoped reports auto-use the
-`current` release when it exists, so production dashboards exclude old probes
-and superseded source snapshots by default. Use `--release <name>` for a
-specific release, or `--all-scopes` for an exhaustive diagnostic report.
+Bare named selector plans resolve only to the tracked
+`manifests/releases/<name>.json`; callers may instead pass that explicit path.
+Selectors must use an immutable name and `current` is reserved. Use
+`--release <name>` for a selected diagnostic report or `--all-scopes` for an
+exhaustive report. Production selection comes only from the signed database
+pointer.
 
-Release publication should also write an immutable artifact manifest with exact
-keys, sizes, and SHA-256 digests:
+The publication controller creates the only authoritative release object after
+R2 readback, exact database counts, and deep validation:
 
 ```bash
-axiom-corpus-ingest release-artifact-manifest \
-  --base data/corpus \
-  --release current \
-  --output data/corpus/releases/current.artifacts.json
+python scripts/publish_corpus.py \
+  --release manifests/releases/nz-rulespec-2026-07-10.json \
+  --dry-run
 ```
 
 Before promoting or publishing a release, validate the release against local
@@ -103,10 +104,13 @@ and basic provision invariants:
 ```bash
 axiom-corpus-ingest validate-release \
   --base data/corpus \
-  --release current \
+  --release nz-rulespec-2026-07-10 \
   --supabase-counts data/corpus/snapshots/provision-counts-2026-05-02.json \
   --include-r2
 ```
+
+See `docs/named-release-publication.md` for the signing and transactional
+activation contract.
 
 ## Federal eCFR
 
@@ -290,20 +294,24 @@ The queue separates validated states, release-repair states, and states that
 are ready for one-agent-per-jurisdiction source-first adapter work.
 
 ```bash
+export RELEASE_SELECTOR=manifests/releases/immutable-release-name.json
 axiom-corpus-ingest state-statute-completion \
   --base data/corpus \
-  --release current \
+  --release "$RELEASE_SELECTOR" \
   --supabase-counts data/corpus/snapshots/provision-counts-2026-05-10.json \
   --include-r2 \
   --output data/corpus/analytics/state-statute-completion-current.json
 
 axiom-corpus-ingest regulation-completion \
   --base data/corpus \
-  --release current \
+  --release "$RELEASE_SELECTOR" \
   --supabase-counts data/corpus/snapshots/provision-counts-2026-05-10.json \
   --include-r2 \
   --output data/corpus/analytics/regulation-completion-current.json
 ```
+
+Replace `immutable-release-name` with the exact named selector being audited;
+completion reports never resolve a mutable release alias.
 
 Primary SNAP policy documents that are not codified in CCR can be ingested from
 an explicit official-document manifest. This is for primary sources such as
