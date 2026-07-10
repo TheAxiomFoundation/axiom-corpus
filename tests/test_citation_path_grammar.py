@@ -180,3 +180,15 @@ def test_positive_versioned_identity_is_accepted(tmp_path, schema):
     res = validate_mod.validate(prov, schema)
     assert res["identity_drift_new"] == []
     assert res["ok"] is True
+
+
+def test_positive_multitoken_local_authority_jurisdiction_is_accepted(tmp_path, schema):
+    path = "uk-kingston-upon-thames/manual/council-tax-reduction-scheme/page-42"
+    rec = _good_record(path=path)
+    prov = _write_jsonl(tmp_path, [rec])
+
+    res = validate_mod.validate(prov, schema)
+
+    assert res["pattern_failures"] == []
+    assert res["jurisdiction_mismatches"] == []
+    assert res["ok"] is True

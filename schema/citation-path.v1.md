@@ -12,8 +12,9 @@ any re-extraction ever being diffable; provision IDs are uuid5(citation_path),
 so path identity IS identity."*
 
 This grammar was **derived empirically** from every record in
-`data/corpus/provisions/**/*.jsonl` at `origin/main @ 9ee50de` (49,180 records,
-48,775 unique paths). The JSON file's regexes are normative; this document
+`data/corpus/provisions/**/*.jsonl` in the RuleSpec UK promotion tree based on
+`origin/main @ 06f4d429fd5d3bbc1426217c4b9396abbcccfed3` (64,457 records,
+63,860 unique paths). The JSON file's regexes are normative; this document
 explains them and specifies the identity contract and the path-mapping event
 vocabulary that future release diffs must emit.
 
@@ -46,25 +47,26 @@ Rules that hold for every path:
 Normative pattern (see JSON `$defs.citation_path.pattern`):
 
 ```
-^[a-z]{2,3}(-[a-z]{2,4})?/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\-–]*)*$
+^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\-–]*)*$
 ```
 
 ## 2. Segment 0 — jurisdiction
 
-Pattern: `^[a-z]{2,3}(-[a-z]{2,4})?$`.
+Pattern: `^[a-z]{2,3}(?:-[a-z]{2,32})*$`.
 
 - **National**: a bare code — `us`, `uk`, `be`. Federal / national source text
   lives here (Title 26 IRC under `us`, UK primary legislation under `uk`,
   Belgian federal `loi` under `be`).
-- **Subnational**: `national-region`. US states use postal codes (`us-ca`,
-  `us-ny`, …). Belgian regions use `be-vlg` (Flanders), `be-wal` (Wallonia),
-  `be-bru` (Brussels), `be-dg` (German-speaking Community).
+- **Subnational or local authority**: a national root followed by one or more
+  lowercase tokens. US states use postal codes (`us-ca`, `us-ny`, …). Belgian
+  regions use `be-vlg` (Flanders), `be-wal` (Wallonia), `be-bru` (Brussels),
+  `be-dg` (German-speaking Community). UK local schemes use the issuing
+  authority, for example `uk-kingston-upon-thames`.
 
-The 57 slugs currently in the corpus are enumerated in the JSON `observed`
-list. The pattern is intentionally a touch broader than that closed set so a
-new state or region validates without a schema bump; new slugs **should** still
-be appended to `observed` in a follow-up PR so the enumeration stays a faithful
-inventory.
+Observed slugs are enumerated in the JSON `observed` list. The pattern is
+intentionally broader than that set so a new state, region, or local authority
+validates without a schema bump; new slugs **should** still be appended to
+`observed` so the enumeration stays a faithful inventory.
 
 ## 3. Segment 1 — document_class
 
@@ -101,6 +103,7 @@ grows.
 | UK regulation | `uk/regulation/uksi/<year>/<number>/<article>` | `uk/regulation/uksi/2013/376/24A` |
 | Belgium statute | `be[-region]/statute/<instrument>/<yyyy>/<mm>/<dd>/<eli-id>/article/<n>` | `be/statute/loi/1989/01/16/1989021010/article/N` |
 | US state manual (paginated) | `us-XX/manual/<agency>/…/page-<n>` | `us-or/manual/odhs/…/page-42` |
+| UK local-authority manual (paginated) | `uk-<local-authority>/manual/<document>/page-<n>` | `uk-kingston-upon-thames/manual/council-tax-reduction-scheme-2026-2027/page-42` |
 | US state regulation | `us-XX/regulation/<code>/<part>/<section>[/<sub>\|/block-<n>]` | `us-ma/regulation/106-cmr/365/180/block-1` |
 
 ### 4.1 Corpus namespace vs rulespec module namespace (do not confuse)
@@ -123,13 +126,13 @@ expected**. Each has a live count and a ratcheted ceiling in the JSON
 
 | family | fragment | why it exists | r0 count |
 |---|---|---|---|
-| `block-N` | `/block-<n>` | synthetic leaf for an un-subdivided chunk (whole section, table, paragraph run) the extractor could not sub-identify | 17,878 |
-| `page-N` | `/page-<n>` | ordinal page of a paginated source (PDF/long HTML); structural, not legal | 16,111 |
-| uppercase | — | US subsection letters (`subpart-A`), UK suffixes (`228ZA`), Belgian `N` annexes, verbatim state labels (`He-W 766.01`) | 531 |
-| spaces | — | verbatim published labels; AK (`7 AAC 45.010`) and NH (`He-W 766.01`) | 179 |
+| `block-N` | `/block-<n>` | synthetic leaf for an un-subdivided chunk (whole section, table, paragraph run) the extractor could not sub-identify | 18,509 |
+| `page-N` | `/page-<n>` | ordinal page of a paginated source (PDF/long HTML); structural, not legal | 19,571 |
+| uppercase | — | US subsection letters (`subpart-A`), UK suffixes (`228ZA`), Belgian `N` annexes, verbatim state labels (`He-W 766.01`) | 5,205 |
+| spaces | — | verbatim published labels; AK (`7 AAC 45.010`) and NH (`He-W 766.01`) | 196 |
 | en-dash | `–` | ranged labels from source text | 21 |
 | truncated | trailing `-`/space | **data smell**: heading truncated when the slug was built; all in `us-ut/manual/dws/eligibility-manual`. The trailing punctuation is meaningless; the durable fix is upstream slug generation | 53 |
-| collection roots | `<jur>/<class>` | container records (`kind: collection`), not leaf provisions; no parent, not groundable | 8 |
+| collection roots | `<jur>/<class>` | container records (`kind: collection`), not leaf provisions; no parent, not groundable | 9 |
 
 ## 5. Identity: the path IS the provision
 

@@ -2,13 +2,13 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/TheAxiomFoundation/axiom-corpus/schema/citation-path.v1.json",
   "title": "Axiom corpus citation-path grammar",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Versioned, machine-readable grammar for the `citation_path` field of every record in data/corpus/provisions/**/*.jsonl. A citation_path is the stable public identity of a corpus provision: the provision UUID is uuid5(NAMESPACE_URL, 'axiom:' + citation_path) (see schema/citation-path.v1.md and src/axiom_corpus/ingest/supabase.py). Any change to a path changes the provision's identity. This document is derived empirically from the committed corpus (see the `derivation` block) and is enforced by scripts/validate_citation_paths.py. It is additive and descriptive: it does not rename any existing path. The regexes here are the normative check; the prose companion (citation-path.v1.md) is explanatory.",
   "derivation": {
     "source": "data/corpus/provisions/**/*.jsonl",
-    "generated_against_git_ref": "origin/main @ 9ee50de",
-    "record_count": 49180,
-    "unique_path_count": 48775,
+    "generated_against_git_ref": "origin/main @ 06f4d429fd5d3bbc1426217c4b9396abbcccfed3 plus the RuleSpec UK source promotion in this change",
+    "record_count": 64457,
+    "unique_path_count": 63860,
     "note": "Counts are a point-in-time snapshot used to document coverage. They are not asserted by the validator except through the ratcheted known-irregulars totals below; the validator recomputes live counts on each run."
   },
   "type": "object",
@@ -22,12 +22,12 @@
       "type": "string",
       "description": "Slash-delimited hierarchical identifier. Segment 0 is the jurisdiction; segment 1 is the document_class; segments 2+ are the source-specific hierarchy down to a leaf provision. No leading slash, no trailing slash, no empty segments. A bare '<jurisdiction>/<document_class>' path (no hierarchy segment) is valid only for collection-root records (kind='collection', level=0).",
       "minLength": 3,
-      "pattern": "^[a-z]{2,3}(-[a-z]{2,4})?/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\\-–]*)*$",
-      "$comment": "The pattern encodes: <jurisdiction>/<document_class>(/<segment>)*. Each hierarchy segment starts with an alphanumeric and may contain letters, digits, spaces, dots, hyphens, and en-dashes (U+2013). The zero-hierarchy case matches collection roots. Segments that END in a hyphen/space (truncated source-heading slugs) match the pattern but are tracked and capped via known_irregulars_ratchet.truncated_segments so they cannot proliferate. See per-part definitions below for semantics."
+      "pattern": "^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\\-–]*)*$",
+      "$comment": "The pattern encodes: <jurisdiction>/<document_class>(/<segment>)*. A jurisdiction is a national root followed by zero or more lowercase subdivision or authority tokens, so both us-ca and uk-kingston-upon-thames are first-class. Each hierarchy segment starts with an alphanumeric and may contain letters, digits, spaces, dots, hyphens, and en-dashes (U+2013). The zero-hierarchy case matches collection roots. Segments that END in a hyphen/space (truncated source-heading slugs) match the pattern but are tracked and capped via known_irregulars_ratchet.truncated_segments so they cannot proliferate. See per-part definitions below for semantics."
     },
     "jurisdiction": {
-      "description": "Segment 0. A national jurisdiction slug ('us','uk','be') or a national slug with a subnational suffix ('us-ca','be-vlg'). Must equal the record's `jurisdiction` field. The observed universe below is the closed set of slugs currently in the corpus; the pattern is intentionally slightly broader so new states/regions validate without a schema bump, but new slugs SHOULD be added to `observed` in a follow-up.",
-      "pattern": "^[a-z]{2,3}(-[a-z]{2,4})?$",
+      "description": "Segment 0. A national jurisdiction slug ('us','uk','be') followed by zero or more subnational or local-authority tokens ('us-ca','be-vlg','uk-kingston-upon-thames'). Must equal the record's `jurisdiction` field. The observed universe below is the closed set of slugs currently in the corpus; the pattern is intentionally slightly broader so new states, regions, or local authorities validate without a schema bump, but new slugs SHOULD be added to `observed` in a follow-up.",
+      "pattern": "^[a-z]{2,3}(?:-[a-z]{2,32})*$",
       "observed": [
         "be",
         "be-bru",
@@ -35,6 +35,7 @@
         "be-vlg",
         "be-wal",
         "uk",
+        "uk-kingston-upon-thames",
         "us",
         "us-ak",
         "us-al",
@@ -89,7 +90,7 @@
       ],
       "conventions": {
         "national": "Bare two/three-letter ISO-ish code: 'us', 'uk', 'be'. Federal / national-level source text lives here (e.g. Title 26 IRC under 'us', UK primary legislation under 'uk', Belgian federal 'loi' under 'be').",
-        "subnational": "national '-' region: US states 'us-XX' (postal, lowercase); Belgian regions 'be-vlg' (Flanders), 'be-wal' (Wallonia), 'be-bru' (Brussels), 'be-dg' (German-speaking Community)."
+        "subnational": "national followed by one or more lowercase subdivision or authority tokens: US states 'us-XX' (postal, lowercase); Belgian regions 'be-vlg' (Flanders), 'be-wal' (Wallonia), 'be-bru' (Brussels), 'be-dg' (German-speaking Community); UK local authorities such as 'uk-kingston-upon-thames'."
       }
     },
     "document_class": {
@@ -150,6 +151,11 @@
       "example": "us-or/manual/odhs/.../page-42",
       "notes": "PDF/HTML manuals split into ordinal pages. See irregular_families.page_n."
     },
+    "uk_local_authority_manual_paginated": {
+      "shape": "uk-<local-authority>/manual/<document>/page-<n>",
+      "example": "uk-kingston-upon-thames/manual/council-tax-reduction-scheme-2026-2027/page-42",
+      "notes": "An authority-owned scheme document split into ordinal pages. The multi-token jurisdiction is the issuing authority, not a compatibility alias."
+    },
     "us_state_regulation": {
       "shape": "us-XX/regulation/<code-slug>/<part>/<section>[/<subsection>|/block-<n>]",
       "example": "us-ma/regulation/106-cmr/365/180/block-1",
@@ -190,13 +196,13 @@
     }
   },
   "known_irregulars_ratchet": {
-    "description": "A ratcheted ceiling on irregular-family membership, checked by scripts/validate_citation_paths.py. The validator FAILS if a live count exceeds its baseline (a regression: someone introduced more irregular segments than existed at r0) unless the baseline is deliberately raised in this file. It does NOT fail if a count drops (irregulars being cleaned up). Baselines were measured against origin/main @ 9ee50de. Raising a baseline is a reviewed decision recorded in this file's git history.",
+    "description": "A ratcheted ceiling on irregular-family membership, checked by scripts/validate_citation_paths.py. The validator FAILS if a live count exceeds its baseline (a regression: someone introduced more irregular segments than existed in the recorded corpus snapshot) unless the baseline is deliberately raised in this file. It does NOT fail if a count drops (irregulars being cleaned up). Baselines were measured across 64,457 records in the RuleSpec UK promotion tree based on origin/main @ 06f4d429fd5d3bbc1426217c4b9396abbcccfed3. Raising a baseline is a reviewed decision recorded in this file's git history.",
     "baselines": {
-      "block_n": 18505,
-      "page_n": 19410,
+      "block_n": 18509,
+      "page_n": 19571,
       "space_segments": 196,
       "endash_segments": 21,
-      "uppercase_segments": 5175,
+      "uppercase_segments": 5205,
       "truncated_segments": 53,
       "collection_roots": 9
     }

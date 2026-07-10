@@ -134,6 +134,51 @@ def test_validate_release_can_ignore_r2_only_mirror_gaps(tmp_path):
     )
 
 
+def test_validate_release_rejects_citation_shared_between_active_scopes(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    citation_path = "uk/regulation/uksi/2026/148/article/14"
+    scopes = (
+        ReleaseScope("uk", "regulation", "snapshot-a"),
+        ReleaseScope("uk", "regulation", "snapshot-b"),
+    )
+    for scope in scopes:
+        store.write_inventory(
+            store.inventory_path(*scope.key),
+            [SourceInventoryItem(citation_path=citation_path)],
+        )
+        store.write_provisions(
+            store.provisions_path(*scope.key),
+            [
+                ProvisionRecord(
+                    jurisdiction=scope.jurisdiction,
+                    document_class=scope.document_class,
+                    citation_path=citation_path,
+                    body="Canonical text.",
+                    version=scope.version,
+                    source_as_of="2026-07-10",
+                    expression_date="2026-07-10",
+                )
+            ],
+        )
+        store.write_json(
+            store.coverage_path(*scope.key),
+            {
+                "complete": True,
+                "source_count": 1,
+                "provision_count": 1,
+                "matched_count": 1,
+            },
+        )
+
+    report = validate_release(
+        store.root,
+        ReleaseManifest(name="ambiguous", scopes=scopes),
+    )
+
+    assert report.ok is False
+    assert [issue.code for issue in report.issues].count("duplicate_release_citation") == 1
+
+
 def test_validate_release_reports_scope_invariant_errors(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     version = "2026-04-29"

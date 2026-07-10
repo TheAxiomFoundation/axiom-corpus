@@ -141,6 +141,7 @@ def validate_release(
             (row.jurisdiction, row.document_class, row.version): row
             for row in artifact_report.rows
         }
+    release_citations: dict[str, ReleaseScope] = {}
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             collector.add(
@@ -153,7 +154,7 @@ def validate_release(
                 scope=scope,
             )
             continue
-        _validate_scope(store, scope, collector)
+        _validate_scope(store, scope, collector, release_citations=release_citations)
     return ReleaseValidationReport(
         release_name=release.name,
         scope_count=len(release.scopes),
@@ -231,6 +232,8 @@ def _validate_scope(
     store: CorpusArtifactStore,
     scope: ReleaseScope,
     collector: _IssueCollector,
+    *,
+    release_citations: dict[str, ReleaseScope],
 ) -> None:
     inventory_path = store.inventory_path(scope.jurisdiction, scope.document_class, scope.version)
     provisions_path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
@@ -242,6 +245,7 @@ def _validate_scope(
         return
     _validate_inventory(store.root, inventory, scope, collector)
     _validate_provisions(provisions, scope, collector)
+    _validate_release_citations(provisions, scope, collector, release_citations)
     recomputed = compare_provision_coverage(
         inventory,
         provisions,
@@ -280,6 +284,28 @@ def _validate_scope(
                     scope=scope,
                     path=coverage_path,
                 )
+
+
+def _validate_release_citations(
+    provisions: tuple[ProvisionRecord, ...],
+    scope: ReleaseScope,
+    collector: _IssueCollector,
+    release_citations: dict[str, ReleaseScope],
+) -> None:
+    """Reject citation ambiguity across every locally validated release scope."""
+    for record in provisions:
+        prior_scope = release_citations.setdefault(record.citation_path, scope)
+        if prior_scope.key == scope.key:
+            continue
+        collector.add(
+            "error",
+            "duplicate_release_citation",
+            (
+                f"citation_path {record.citation_path} is also active in "
+                f"{prior_scope.jurisdiction}/{prior_scope.document_class}/{prior_scope.version}"
+            ),
+            scope=scope,
+        )
 
 
 def _load_inventory_for_validation(

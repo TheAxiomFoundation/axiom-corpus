@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/uk/regulation/2026-06-06-uk-uksi-2026-148-article14.json",
-      "sha256": "a5dcd99f0e2aed92fcc9a1691cc65a69657be315ff0e9f5d2c38a35950422504"
+      "sha256": "660c3634bcbc276153c829621b1357853191c517db7d1ff9484b77156ea6cae4"
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-06-06-uk-uksi-2026-148-article14.jsonl",
-      "sha256": "f689810bc6512650e685587ef775715f133d2957dfb6655d2f4007303d171c15"
+      "sha256": "29d8104be7127505b8fd49388f35de06bfa62b37bca0f5777cf2ae707fc54514"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-06-06-uk-uksi-2026-148-article14/uksi/2026/148/article-14.xml",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "de9b2eb9bcd03356cc8d5855216f2c83e7a085ab",
+    "commit": "06f4d429fd5d3bbc1426217c4b9396abbcccfed3",
     "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-issue-95-uk-legislation"
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-782-uk-promotion"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-06-06-uk-uksi-2026-148-article14 --source clml --citation uksi/2026/148/article/14 --source-as-of 2026-06-06 --expression-date 2026-04-06"
+    "text": "Preserve rulespec-uk body and URL variant provenance from rulespec-uk@64c6a9199239e1f364fb108534171372f87f6a2b without changing canonical text."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-07T15:11:58.645523+00:00",
+  "generated_at": "2026-07-10T12:47:40.413230+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "UUEs0dN26yItNM/ksFYqwKMp88U+zeAxd8KMD2+8Wd9ogWzyWooXAZpk8hKeJaeQocNnkyxRmlFxgxSBn1/lCg=="
+    "value": "jyOtrf9XCvAVcJTIvJv6WYF5voNtzeRo4rQZQ7hA4yUadEFmsXAQ6y6bc/ulUAMSwrNJ4z9QeOdc6PhURjRFBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-06-uk-uksi-2026-148-article14"
