@@ -1,861 +1,597 @@
 #!/usr/bin/env python
-"""Publish corpus provision versions that are not yet live in Supabase.
+"""Publish one explicit immutable named corpus release.
 
-This is the controller-side publication runbook
-(docs/agent-ingestion-runbook.md), automated for CI. It:
+The only production publication sequence is:
 
-1. Determines which corpus provision versions are *unpublished* — present in
-   the git checkout but not yet an active row in ``corpus.release_scopes``.
-   The candidate set comes either from a git diff (the push that triggered the
-   workflow) or, for the backlog first run, from an explicit ``--since`` range
-   or ``--all`` scan. The published set is read live from the database. This is
-   the "git vs live DB" listing mechanism.
-2. Publishes each unpublished version in a stable order, one at a time:
-   ``sync-r2`` (upload the version's artifacts) then ``load-supabase
-   --replace-scope`` (upsert provisions and auto-register an active
-   ``release_scopes`` row). ``load-supabase`` refreshes the materialized count
-   views as its final step, so ``current_provisions`` catches up per version.
-3. Verifies the version landed by reading its ``current_provision_counts`` row
-   back from the database.
-4. Writes a provision-counts snapshot to ``data/corpus/snapshots/`` per the
-   runbook convention. The caller (the workflow) commits it with ``[skip ci]``.
+1. Deep-validate the local named selector as a preflight.
+2. Upload each artifact to its SHA-256 R2 key and hash the downloaded bytes.
+3. Stage versioned Supabase provision and navigation rows without visibility.
+4. Read exact per-scope database counts and rerun deep validation.
+5. Build, Ed25519-sign, upload, read back, and public-key-verify the release object.
+6. Invoke one database RPC that rechecks counts, moves the production pointer,
+   and refreshes derived current counts in a single transaction.
 
-Design guarantees:
-
-* **Publication only.** This script never writes to ``data/corpus`` except the
-  snapshot under ``data/corpus/snapshots/`` (which is outside the ingest guard's
-  protected prefixes). It never edits provision, source, inventory, or coverage
-  artifacts.
-* **Idempotent / safe on rerun.** A version already active in the DB is skipped.
-  Re-loading a version whose ``release_scopes`` row already exists is a no-op at
-  the release-scope layer (``ensure_release_scopes_for_loaded_data`` uses
-  ignore-duplicates), so a rerun never resurrects an intentionally-staged or
-  intentionally-superseded predecessor version.
-* **One failure does not block the rest.** Each version publishes in its own
-  try/except; failures are collected and reported, and the process exits
-  non-zero at the end so CI turns red, but every independent version still gets
-  its chance.
-
-Scope determination detail: the *database* scope of a provisions file is the
-distinct ``(jurisdiction, document_class, version)`` triple(s) carried by its
-records — exactly what ``load-supabase`` registers. The *R2 artifact* scope is
-the file's on-disk ``(jurisdiction, document_class, <path-stem>)``. These
-usually coincide but can differ (a file's record ``version`` may not equal its
-filename stem); the two publish steps are driven independently so each targets
-the correct keyspace.
+There is no mutable ``current`` selector, git-diff auto-publication, per-scope
+activation, missing-parent synthesis, best-effort count check, or refresh
+failure suppression.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import subprocess
+import os
 import sys
-from collections.abc import Iterable, Sequence
-from dataclasses import dataclass, field
-from datetime import date
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
-# Imported lazily-friendly: these are cheap, pure-Python corpus helpers.
 from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.navigation import build_navigation_nodes
+from axiom_corpus.corpus.navigation_supabase import write_navigation_nodes_to_supabase
+from axiom_corpus.corpus.r2 import DEFAULT_R2_BUCKET, R2Config, load_r2_config
+from axiom_corpus.corpus.release_quality import ReleaseValidationReport, validate_release
+from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
 from axiom_corpus.corpus.supabase import (
     DEFAULT_ACCESS_TOKEN_ENV,
     DEFAULT_AXIOM_SUPABASE_URL,
     DEFAULT_SERVICE_KEY_ENV,
-    fetch_provision_counts,
-    list_release_scopes,
+    ReleasedScopeObject,
+    StagedScopeEvidence,
+    activate_corpus_release,
+    fetch_released_scope_objects,
+    fetch_staged_release_scope_evidence,
+    load_provisions_to_supabase,
     resolve_service_key,
 )
-
-PROVISIONS_ROOT = Path("data/corpus/provisions")
-SNAPSHOTS_DIR = Path("data/corpus/snapshots")
-
-# A DB scope triple: (jurisdiction, document_class, version).
-Scope = tuple[str, str, str]
+from axiom_corpus.release.manifest import (
+    RELEASE_OBJECT_PRIVATE_KEY_ENV,
+    RELEASE_OBJECT_PUBLIC_KEY_ENV,
+    ReleaseManifestError,
+    build_release_content,
+    build_unsigned_release_object,
+    canonical_json_bytes,
+    serialize_release_object,
+    sign_release_object,
+    verify_release_object,
+)
+from axiom_corpus.release.publication import (
+    R2ReadbackReport,
+    stage_release_artifacts,
+    stage_signed_release_object,
+)
 
 
 @dataclass(frozen=True)
-class FileScope:
-    """A provisions file mapped to its DB scope and its R2 artifact stem."""
+class PublicationReport:
+    release: str
+    content_sha256: str
+    scope_count: int
+    provision_rows: int
+    r2_release_object_key: str
+    activation: Mapping[str, object]
+    release_object: Mapping[str, Any]
 
-    path: Path  # repo-relative path to the .jsonl
-    jurisdiction: str
-    document_class: str
-    version: str  # record ``version`` — the DB release-scope version
-    artifact_stem: str  # filename stem — the R2 ``--version`` filter value
-
-    @property
-    def db_scope(self) -> Scope:
-        return (self.jurisdiction, self.document_class, self.version)
-
-
-@dataclass
-class PublishOutcome:
-    scope: Scope
-    path: str
-    ok: bool
-    skipped: bool = False
-    reason: str = ""
-    r2_uploaded: int | None = None
-    provision_count: int | None = None
-    steps: dict[str, str] = field(default_factory=dict)
+    def to_mapping(self) -> dict[str, Any]:
+        return {
+            "release": self.release,
+            "content_sha256": self.content_sha256,
+            "scope_count": self.scope_count,
+            "provision_rows": self.provision_rows,
+            "r2_release_object_key": self.r2_release_object_key,
+            "activation": dict(self.activation),
+            "release_object": dict(self.release_object),
+        }
 
 
-# --------------------------------------------------------------------------- #
-# Candidate discovery
-# --------------------------------------------------------------------------- #
-def _run_git(args: Sequence[str]) -> str:
-    result = subprocess.run(
-        ["git", *args],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    return result.stdout
-
-
-def _is_provisions_jsonl(rel: str) -> bool:
-    p = Path(rel)
-    return (
-        rel.startswith("data/corpus/provisions/")
-        and p.suffix == ".jsonl"
-        and len(p.relative_to(PROVISIONS_ROOT).parts) == 3
-    )
-
-
-def discover_changed_files(base_ref: str, head_ref: str) -> list[Path]:
-    """Provisions .jsonl files added/modified between two git refs.
-
-    Uses name-status and keeps Added/Modified/Renamed/Copied (drops Deleted:
-    a deletion is never something to publish). Returns repo-relative paths that
-    still exist in the working tree.
-    """
-    out = _run_git(
-        ["diff", "--name-status", "--diff-filter=ACMR", f"{base_ref}", f"{head_ref}"]
-    )
-    files: list[Path] = []
-    for line in out.splitlines():
-        if not line.strip():
-            continue
-        parts = line.split("\t")
-        # For ACMR, the destination path is the last field (handles renames).
-        rel = parts[-1]
-        if _is_provisions_jsonl(rel) and Path(rel).exists():
-            files.append(Path(rel))
-    return files
-
-
-def discover_all_files() -> list[Path]:
-    """Every provisions .jsonl currently in the checkout."""
-    return sorted(p for p in PROVISIONS_ROOT.rglob("*.jsonl") if p.is_file())
-
-
-def file_scopes(paths: Iterable[Path]) -> tuple[list[FileScope], list[tuple[str, str]]]:
-    """Map provisions files to their DB scope(s).
-
-    A single file can, in principle, carry more than one
-    ``(jurisdiction, document_class, version)`` triple; each becomes its own
-    FileScope sharing the file path and artifact stem. Files that cannot be
-    parsed as provision records (legacy shapes without jurisdiction/version)
-    are returned as skips — they are not loadable by ``load-supabase`` either,
-    so they can never be part of the publishable set.
-    """
-    scopes: list[FileScope] = []
-    skipped: list[tuple[str, str]] = []
-    for path in paths:
-        stem = path.name[: -len(".jsonl")] if path.name.endswith(".jsonl") else path.stem
-        try:
-            records = load_provisions(path)
-        except Exception as exc:  # noqa: BLE001 - report and skip, never crash
-            skipped.append((str(path), f"unparseable: {type(exc).__name__}: {exc}"))
-            continue
-        if not records:
-            skipped.append((str(path), "empty"))
-            continue
-        triples = sorted(
-            {
-                (r.jurisdiction, r.document_class, r.version)
-                for r in records
-                if r.version is not None
-            }
-        )
-        if not triples:
-            skipped.append((str(path), "no versioned records"))
-            continue
-        for jurisdiction, document_class, version in triples:
-            scopes.append(
-                FileScope(
-                    path=path,
-                    jurisdiction=jurisdiction,
-                    document_class=document_class,
-                    version=version,
-                    artifact_stem=stem,
-                )
-            )
-    return scopes, skipped
-
-
-def fetch_active_scopes(
-    *, supabase_url: str, service_key: str, release_name: str = "current"
-) -> set[Scope]:
-    """The set of version scopes currently active (published) in the DB."""
-    rows = list_release_scopes(
-        release_name=release_name,
-        active=True,
-        service_key=service_key,
-        supabase_url=supabase_url,
-    )
-    return {
-        (str(r["jurisdiction"]), str(r["document_class"]), str(r["version"]))
-        for r in rows
-        if r.get("version") is not None
-    }
-
-
-def fetch_all_scope_versions(
-    *, supabase_url: str, service_key: str, release_name: str = "current"
-) -> set[Scope]:
-    """Every version scope with a release_scopes row (active or inactive)."""
-    rows = list_release_scopes(
-        release_name=release_name,
-        active=None,
-        service_key=service_key,
-        supabase_url=supabase_url,
-    )
-    return {
-        (str(r["jurisdiction"]), str(r["document_class"]), str(r["version"]))
-        for r in rows
-        if r.get("version") is not None
-    }
-
-
-# --------------------------------------------------------------------------- #
-# Publication
-# --------------------------------------------------------------------------- #
-# Per-command wall-clock ceiling. A hung load/sync (e.g. a server-side lock on
-# --replace-scope) must fail that scope and let the run continue, never stall
-# the whole workflow until the CI job timeout.
-INGEST_TIMEOUT_S = 600
-
-
-def _ingest(cmd: Sequence[str]) -> subprocess.CompletedProcess[str]:
-    """Invoke the corpus CLI via the console script, bounded by a timeout.
-
-    A timeout is surfaced as a non-zero result whose stderr names it, so the
-    caller's transient-retry / fail-and-continue logic handles it uniformly.
-    """
-    try:
-        return subprocess.run(
-            ["axiom-corpus-ingest", *cmd],
-            capture_output=True,
-            text=True,
-            timeout=INGEST_TIMEOUT_S,
-        )
-    except subprocess.TimeoutExpired as exc:
-        stderr = (exc.stderr or b"" if isinstance(exc.stderr, bytes) else exc.stderr or "")
-        if isinstance(stderr, bytes):
-            stderr = stderr.decode("utf-8", "replace")
-        return subprocess.CompletedProcess(
-            args=list(cmd),
-            returncode=124,
-            stdout="",
-            stderr=f"{stderr}\ncommand timed out after {INGEST_TIMEOUT_S}s",
-        )
-
-
-def _sync_r2(scope: FileScope, credentials_file: Path | None, workers: int) -> str:
-    args = [
-        "sync-r2",
-        "--base",
-        "data/corpus",
-        "--jurisdiction",
-        scope.jurisdiction,
-        "--document-class",
-        scope.document_class,
-        "--version",
-        scope.artifact_stem,
-        "--workers",
-        str(workers),
-        "--apply",
-    ]
-    if credentials_file is not None:
-        args += ["--credentials-file", str(credentials_file)]
-    proc = _ingest(args)
-    if proc.returncode != 0:
-        raise RuntimeError(f"sync-r2 failed (exit {proc.returncode}): {proc.stderr.strip()}")
-    try:
-        report = json.loads(proc.stdout)
-        return str(report.get("uploaded_count", "?"))
-    except json.JSONDecodeError:
-        return "?"
-
-
-# Transient PostgREST/edge statuses worth retrying with backoff. Data errors
-# (400 bad value, 409 FK violation) are deterministic and never retried.
-#
-# Matched against HTTP-status-specific phrases, not bare numbers: the load
-# progress text contains the chunk size ("500 rows"), so a bare "500" substring
-# would falsely classify a deterministic 409 as transient.
-_TRANSIENT_MARKERS = (
-    "HTTP Error 500",
-    "HTTP Error 502",
-    "HTTP Error 503",
-    "HTTP Error 504",
-    "upsert failed 500",
-    "upsert failed 502",
-    "upsert failed 503",
-    "upsert failed 504",
-    "Internal Server Error",
-    "Bad Gateway",
-    "Service Unavailable",
-    "Gateway Timeout",
-    "timed out",
-    "Connection reset",
-    "Connection aborted",
-)
-
-
-def _is_transient(stderr: str) -> bool:
-    return any(marker in stderr for marker in _TRANSIENT_MARKERS)
-
-
-def _load_supabase(
-    scope: FileScope,
-    chunk_size: int,
+def publish_named_release(
     *,
-    build_navigation: bool = False,
-    retries: int = 2,
-    backoff_s: float = 10.0,
-) -> dict[str, object]:
-    """Load one version's provisions and auto-register its active scope.
-
-    Crucially this does NOT pass ``--replace-scope``. That flag deletes *every*
-    row for the file's ``(jurisdiction, document_class)`` across all versions
-    (``fetch_provision_ids_for_scope`` filters by jurisdiction/doc_type only,
-    not version) before loading — which would destroy other versions that share
-    the pair, e.g. loading one small ``us-ca/statute`` version would wipe the
-    other ~185k ``us-ca/statute`` rows. Publication must be additive.
-
-    Idempotency + backlog-safety flags (the live table enforces
-    ``UNIQUE(citation_path)``):
-
-    * ``--preserve-existing-ids`` reuses the existing row id for a citation path
-      so a newer release version upserts it in place rather than inserting a
-      colliding row (the 23505 backlog failure). Rows are updated, never deleted.
-    * ``--synthesize-missing-parents`` backfills a minimal container row for any
-      referenced ``parent_citation_path`` that was never ingested, so leaf
-      provisions stop failing the parent_id foreign key (23503).
-    * ``--skip-superseded`` leaves a citation path untouched when the DB already
-      holds a strictly-newer version of it, so a backlog run never downgrades a
-      published row. A wholly-superseded version reports SKIP(superseded).
-
-    ``--skip-refresh`` defers the (expensive) materialized-view refresh; the
-    caller refreshes once after all versions load. Navigation is deferred by
-    default (``--no-build-navigation``) and rebuilt once at the end.
-
-    Transient 5xx/gateway failures are retried with backoff; deterministic data
-    errors (400/409) fail immediately so a defective file is reported, not
-    hammered. Returns the parsed load report on success.
-    """
-    import time
-
-    args = [
-        "load-supabase",
-        "--provisions",
-        str(scope.path),
-        "--skip-refresh",
-        "--chunk-size",
-        str(chunk_size),
-        "--preserve-existing-ids",
-        "--synthesize-missing-parents",
-        "--skip-superseded",
-    ]
-    args.append("--build-navigation" if build_navigation else "--no-build-navigation")
-    last_err = ""
-    for attempt in range(retries + 1):
-        proc = _ingest(args)
-        if proc.returncode == 0:
-            try:
-                report = json.loads(proc.stdout)
-            except json.JSONDecodeError:
-                return {}
-            return report if isinstance(report, dict) else {}
-        last_err = proc.stderr.strip()[-800:]
-        if attempt < retries and _is_transient(last_err):
-            wait = backoff_s * (attempt + 1)
-            print(
-                f"  load-supabase transient error (attempt {attempt + 1}); "
-                f"retrying in {wait:.0f}s",
-                flush=True,
-            )
-            time.sleep(wait)
-            continue
-        break
-    raise RuntimeError(f"load-supabase failed: {last_err}")
-
-
-def build_navigation_once(paths: Sequence[Path]) -> None:
-    """Rebuild corpus.navigation_nodes for all published files in one pass.
-
-    Called after loads (which ran with ``--no-build-navigation``). Nav is a
-    separate tree used by the browser UI; ``current_provisions`` visibility for
-    bulk/cloud workers does not depend on it, so a nav failure here is a warning
-    rather than a per-scope publication failure.
-    """
-    if not paths:
-        return
-    args = ["build-navigation-index", "--replace-scope"]
-    for p in paths:
-        args += ["--provisions", str(p)]
-    proc = _ingest(args)
-    if proc.returncode != 0:
-        print(
-            f"::warning::navigation rebuild failed (provisions are still published): "
-            f"{proc.stderr.strip()[-400:]}",
-            flush=True,
-        )
-    else:
-        print("Navigation rebuilt for published scopes.", flush=True)
-
-
-def refresh_analytics(
-    *,
+    repo_root: Path,
+    base: Path,
+    selector_path: Path,
     supabase_url: str,
     service_key: str,
-    expected_pairs: set[tuple[str, str]] | None = None,
-    poll_deadline_s: float = 600.0,
-    poll_interval_s: float = 15.0,
+    access_token: str,
+    r2_config: R2Config,
+    private_key: str,
+    public_key: str,
+    chunk_size: int = 500,
+    r2_client: Any | None = None,
+) -> PublicationReport:
+    """Execute the sole production publication boundary for one release."""
+    root = repo_root.resolve()
+    corpus_root = base.resolve()
+    try:
+        base_rel = corpus_root.relative_to(root).as_posix()
+    except ValueError as exc:
+        raise ReleaseManifestError("corpus base must be inside the repository") from exc
+    release = ReleaseManifest.load(selector_path)
+    _require_canonical_selector(root, selector_path, release)
+
+    # A cheap local gate runs before any external writes. The authoritative
+    # validation attestation is generated again after remote readback/counting.
+    preflight = validate_release(corpus_root, release, max_issues=200)
+    _require_deep_validation(preflight, phase="preflight")
+
+    provisional_content = build_release_content(
+        root,
+        release=release,
+        validation={"passed": True, "phase": "preflight"},
+        base=base_rel,
+        bucket=r2_config.bucket,
+    )
+    expected_evidence = _expected_scope_evidence(provisional_content)
+
+    r2_report = stage_release_artifacts(
+        root,
+        release_content=provisional_content,
+        config=r2_config,
+        client=r2_client,
+    )
+
+    released_scopes = fetch_released_scope_objects(
+        release,
+        service_key=service_key,
+        supabase_url=supabase_url,
+    )
+    _require_safe_released_scope_reuse(
+        provisional_content,
+        released_scopes,
+        public_key=public_key,
+    )
+
+    staged_rows = 0
+    for scope in release.scopes:
+        expected = expected_evidence[scope.key]
+        if released_scopes[scope.key]:
+            staged_rows += expected.provision_rows
+            continue
+        provisions_path = (
+            corpus_root
+            / "provisions"
+            / scope.jurisdiction
+            / scope.document_class
+            / f"{scope.version}.jsonl"
+        )
+        records = load_provisions(provisions_path)
+        if len(records) != expected.provision_rows:
+            raise ReleaseManifestError(
+                f"local row count changed after hashing for {'/'.join(scope.key)}: "
+                f"expected {expected.provision_rows}, got {len(records)}"
+            )
+        load_report = load_provisions_to_supabase(
+            records,
+            service_key=service_key,
+            supabase_url=supabase_url,
+            chunk_size=chunk_size,
+            progress_stream=sys.stderr,
+        )
+        if load_report.rows_loaded != expected.provision_rows:
+            raise ReleaseManifestError(
+                f"Supabase staging wrote {load_report.rows_loaded} rows for "
+                f"{'/'.join(scope.key)}; expected {expected.provision_rows}"
+            )
+        staged_rows += load_report.rows_loaded
+
+        navigation = build_navigation_nodes(records)
+        if len(navigation) != expected.navigation_rows:
+            raise ReleaseManifestError(
+                f"local navigation projection has {len(navigation)} rows for "
+                f"{'/'.join(scope.key)}; expected {expected.navigation_rows}"
+            )
+        navigation_report = write_navigation_nodes_to_supabase(
+            navigation,
+            service_key=service_key,
+            supabase_url=supabase_url,
+            chunk_size=chunk_size,
+            replace_scope=True,
+            replace_scopes=(scope.key,),
+            progress_stream=sys.stderr,
+        )
+        if navigation_report.rows_loaded != len(navigation):
+            raise ReleaseManifestError(
+                f"navigation staging was incomplete for {'/'.join(scope.key)}"
+            )
+
+    actual_evidence = fetch_staged_release_scope_evidence(
+        release,
+        service_key=service_key,
+        supabase_url=supabase_url,
+    )
+    _require_exact_evidence(expected_evidence, actual_evidence)
+
+    deep_report = validate_release(corpus_root, release, max_issues=200)
+    _require_deep_validation(deep_report, phase="post-readback")
+    validation = _validation_attestation(
+        deep_report,
+        r2_report=r2_report,
+        expected_evidence=expected_evidence,
+        actual_evidence=actual_evidence,
+    )
+    content = build_release_content(
+        root,
+        release=release,
+        validation=validation,
+        base=base_rel,
+        bucket=r2_config.bucket,
+    )
+    if _publication_identity(content) != _publication_identity(provisional_content):
+        raise ReleaseManifestError("release artifacts changed between readback and signing")
+
+    unsigned = build_unsigned_release_object(content)
+    signed = sign_release_object(unsigned, private_key=private_key)
+    # Requiring the independently configured public key catches a wrong or
+    # rotated private key before the object is uploaded or the pointer moves.
+    verify_release_object(signed, public_key=public_key)
+    release_key = stage_signed_release_object(
+        signed,
+        public_key=public_key,
+        config=r2_config,
+        client=r2_client,
+    )
+
+    activation = activate_corpus_release(
+        signed,
+        access_token=access_token,
+        public_key=public_key,
+        supabase_url=supabase_url,
+    )
+    return PublicationReport(
+        release=release.name,
+        content_sha256=str(signed["content_sha256"]),
+        scope_count=len(release.scopes),
+        provision_rows=staged_rows,
+        r2_release_object_key=release_key,
+        activation=activation,
+        release_object=signed,
+    )
+
+
+def plan_named_release(
+    *,
+    repo_root: Path,
+    base: Path,
+    selector_path: Path,
+    r2_bucket: str,
+) -> dict[str, Any]:
+    """Validate and print a no-write publication plan."""
+    release = ReleaseManifest.load(selector_path)
+    _require_canonical_selector(repo_root.resolve(), selector_path, release)
+    report = validate_release(base, release, max_issues=200)
+    _require_deep_validation(report, phase="dry-run")
+    base_rel = base.resolve().relative_to(repo_root.resolve()).as_posix()
+    content = build_release_content(
+        repo_root,
+        release=release,
+        validation={"passed": True, "phase": "dry-run"},
+        base=base_rel,
+        bucket=r2_bucket,
+    )
+    return {
+        "dry_run": True,
+        "release": release.name,
+        "selector": str(selector_path),
+        "scope_count": len(release.scopes),
+        "artifact_count": len(content["artifacts"]),
+        "provision_rows": sum(
+            evidence.provision_rows for evidence in _expected_scope_evidence(content).values()
+        ),
+    }
+
+
+def _expected_scope_evidence(
+    content: Mapping[str, Any],
+) -> dict[tuple[str, str, str], StagedScopeEvidence]:
+    raw_scopes = content.get("scopes")
+    if not isinstance(raw_scopes, list):
+        raise ReleaseManifestError("release content is missing scopes")
+    evidence: dict[tuple[str, str, str], StagedScopeEvidence] = {}
+    for raw in raw_scopes:
+        if not isinstance(raw, dict):
+            raise ReleaseManifestError("release content contains a non-object scope")
+        key = (
+            str(raw.get("jurisdiction") or ""),
+            str(raw.get("document_class") or ""),
+            str(raw.get("version") or ""),
+        )
+        rows = raw.get("provision_rows")
+        navigation_rows = raw.get("navigation_rows")
+        provision_digest = raw.get("provision_projection_sha256")
+        navigation_digest = raw.get("navigation_projection_sha256")
+        if (
+            not all(key)
+            or key in evidence
+            or not isinstance(rows, int)
+            or isinstance(rows, bool)
+            or not isinstance(navigation_rows, int)
+            or isinstance(navigation_rows, bool)
+            or not isinstance(provision_digest, str)
+            or not isinstance(navigation_digest, str)
+        ):
+            raise ReleaseManifestError(f"invalid release scope evidence entry: {raw!r}")
+        evidence[key] = StagedScopeEvidence(
+            provision_rows=rows,
+            navigation_rows=navigation_rows,
+            provision_projection_sha256=provision_digest,
+            navigation_projection_sha256=navigation_digest,
+        )
+    return evidence
+
+
+def _require_exact_evidence(
+    expected: Mapping[tuple[str, str, str], StagedScopeEvidence],
+    actual: Mapping[tuple[str, str, str], StagedScopeEvidence],
 ) -> None:
-    """Refresh corpus materialized views once, after loads.
-
-    ``current_provision_counts`` (a materialized view) only reflects freshly
-    loaded rows after this call, so per-version verification must run after it.
-
-    On this production database the refresh (a ``REFRESH MATERIALIZED VIEW``
-    with ``statement_timeout = 0``) routinely outlasts the PostgREST edge
-    gateway timeout and returns HTTP 504/502/503, even though Postgres keeps
-    running it to completion. So a client-side timeout — ``TimeoutError``,
-    ``URLError``, or an HTTP gateway error — is not treated as failure: the
-    count view is polled until every ``expected_pairs`` scope shows a positive
-    count (the refresh landed) or ``poll_deadline_s`` elapses (a real failure).
-    With no ``expected_pairs`` the timeout is swallowed and the subsequent
-    verify step is the source of truth.
-    """
-    import time
-    import urllib.error
-
-    from axiom_corpus.corpus.supabase import _rest_url, refresh_corpus_analytics
-
-    # Gateway/timeout statuses returned when the refresh outlives the edge
-    # proxy but the DB is still working: proxy timeouts and unavailability.
-    gateway_timeout_statuses = {408, 429, 502, 503, 504}
-    try:
-        refresh_corpus_analytics(service_key=service_key, rest_url=_rest_url(supabase_url))
-        return
-    except urllib.error.HTTPError as exc:
-        if exc.code not in gateway_timeout_statuses:
-            raise
-        print(
-            f"::warning::analytics refresh returned HTTP {exc.code} "
-            "(edge timeout; DB still refreshing); polling count view for completion",
-            flush=True,
-        )
-    except (TimeoutError, urllib.error.URLError) as exc:
-        print(
-            f"::warning::analytics refresh client timeout ({exc}); "
-            "polling count view for completion",
-            flush=True,
-        )
-
-    if not expected_pairs:
-        return
-    deadline = time.monotonic() + poll_deadline_s
-    while time.monotonic() < deadline:
-        counts = verify_scope_counts(supabase_url=supabase_url, service_key=service_key)
-        if all(counts.get(pair, 0) > 0 for pair in expected_pairs):
-            print("Refresh confirmed via count-view poll.", flush=True)
-            return
-        time.sleep(poll_interval_s)
-    raise TimeoutError(
-        "analytics refresh did not surface expected scopes within "
-        f"{poll_deadline_s:.0f}s of polling"
-    )
-
-
-def verify_scope_counts(
-    *, supabase_url: str, service_key: str
-) -> dict[tuple[str, str], int]:
-    """Snapshot per-(jurisdiction, document_class) provision counts once.
-
-    ``current_provision_counts`` aggregates by (jurisdiction, document_class),
-    not version; a positive count for a scope's pair confirms the version is
-    visible in ``current_provisions`` — the runbook's per-version check.
-    Fetched once and shared across all verifications to avoid N round trips.
-    """
-    rows = fetch_provision_counts(service_key=service_key, supabase_url=supabase_url)
-    counts: dict[tuple[str, str], int] = {}
-    for row in rows:
-        j = str(row.get("jurisdiction"))
-        dc = str(row.get("document_class"))
-        raw = row.get("provision_count")
-        counts[(j, dc)] = int(raw) if isinstance(raw, int | str) else 0
-    return counts
-
-
-def sync_and_load_scope(
-    scope: FileScope,
-    *,
-    credentials_file: Path | None,
-    r2_workers: int,
-    chunk_size: int,
-) -> PublishOutcome:
-    """Upload artifacts and load provisions for one version (no verify yet)."""
-    outcome = PublishOutcome(scope=scope.db_scope, path=str(scope.path), ok=False)
-    try:
-        outcome.r2_uploaded = int(_sync_r2(scope, credentials_file, r2_workers) or 0)
-        outcome.steps["sync-r2"] = f"uploaded {outcome.r2_uploaded}"
-    except (RuntimeError, ValueError) as exc:
-        outcome.steps["sync-r2"] = f"FAILED: {exc}"
-        outcome.reason = str(exc)
-        return outcome
-    try:
-        report = _load_supabase(scope, chunk_size)
-        outcome.steps["load-supabase"] = "ok (refresh deferred)"
-    except RuntimeError as exc:
-        outcome.steps["load-supabase"] = f"FAILED: {exc}"
-        outcome.reason = str(exc)
-        return outcome
-    # A version whose every row is already held by a strictly-newer published
-    # version loads nothing and registers no scope — it is superseded, not
-    # published and not failed. Report it explicitly so the run stays green.
-    superseded = int(report.get("superseded_skipped", 0) or 0)
-    if superseded > 0 and int(report.get("rows_loaded", 0) or 0) == 0:
-        outcome.skipped = True
-        outcome.reason = "superseded"
-        outcome.steps["load-supabase"] = (
-            f"SKIP(superseded): {superseded} row(s) already held by a newer version"
-        )
-        return outcome
-    # Loaded successfully; verification happens after the shared refresh.
-    outcome.ok = True
-    return outcome
-
-
-def snapshot_counts(
-    *, supabase_url: str, service_key: str, snapshot_date: str
-) -> Path | None:
-    out_path = SNAPSHOTS_DIR / f"provision-counts-{snapshot_date}.json"
-    args = [
-        "snapshot-provision-counts",
-        "--output",
-        str(out_path),
-    ]
-    proc = _ingest(args)
-    if proc.returncode != 0:
-        print(
-            f"::warning::snapshot-provision-counts failed (exit {proc.returncode}): "
-            f"{proc.stderr.strip()[-400:]}",
-            file=sys.stderr,
-        )
-        return None
-    return out_path if out_path.exists() else None
-
-
-# --------------------------------------------------------------------------- #
-# Orchestration
-# --------------------------------------------------------------------------- #
-def build_publish_plan(
-    candidate_scopes: list[FileScope],
-    *,
-    active_scopes: set[Scope],
-    all_scope_versions: set[Scope],
-) -> tuple[list[FileScope], list[FileScope], list[FileScope]]:
-    """Split candidates into (to_publish, already_active, staged/held).
-
-    * already_active — DB already has this version active: skip (idempotent).
-    * staged/held — a release_scopes row exists but is inactive: this version
-      was explicitly staged or superseded; publishing is a deliberate act, not
-      something the automation should do implicitly, so skip.
-    * to_publish — no release_scopes row at all: a genuinely new, unpublished
-      version. Publish it. Deduplicated by db_scope, keeping stable order.
-    """
-    to_publish: list[FileScope] = []
-    already_active: list[FileScope] = []
-    held: list[FileScope] = []
-    seen: set[Scope] = set()
-    for fs in sorted(
-        candidate_scopes, key=lambda s: (s.jurisdiction, s.document_class, s.version, str(s.path))
+    if set(expected) == set(actual) and all(
+        actual[key] == value for key, value in expected.items()
     ):
-        if fs.db_scope in active_scopes:
-            already_active.append(fs)
-            continue
-        if fs.db_scope in all_scope_versions:
-            held.append(fs)
-            continue
-        if fs.db_scope in seen:
-            continue
-        seen.add(fs.db_scope)
-        to_publish.append(fs)
-    return to_publish, already_active, held
+        return
+    differences = {
+        "/".join(key): {
+            "expected": (expected[key].__dict__ if key in expected else None),
+            "actual_provisions": (actual[key].provision_rows if key in actual else None),
+            "actual_navigation": (actual[key].navigation_rows if key in actual else None),
+            "actual_provision_projection_sha256": (
+                actual[key].provision_projection_sha256 if key in actual else None
+            ),
+            "actual_navigation_projection_sha256": (
+                actual[key].navigation_projection_sha256 if key in actual else None
+            ),
+        }
+        for key in sorted(set(expected) | set(actual))
+        if key not in expected or key not in actual or actual[key] != expected[key]
+    }
+    raise ReleaseManifestError(
+        "exact staged provision/navigation projection evidence does not match: "
+        + json.dumps(differences, sort_keys=True)
+    )
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+def _require_deep_validation(report: ReleaseValidationReport, *, phase: str) -> None:
+    if report.ok:
+        return
+    raise ReleaseManifestError(
+        f"deep release validation failed during {phase}: "
+        + json.dumps(report.to_mapping(), sort_keys=True)
+    )
+
+
+def _validation_attestation(
+    report: ReleaseValidationReport,
+    *,
+    r2_report: R2ReadbackReport,
+    expected_evidence: Mapping[tuple[str, str, str], StagedScopeEvidence],
+    actual_evidence: Mapping[tuple[str, str, str], StagedScopeEvidence],
+) -> dict[str, Any]:
+    return {
+        "passed": True,
+        "deep_validation": {
+            "error_count": report.error_count,
+            "warning_count": report.warning_count,
+            "scope_count": report.scope_count,
+        },
+        # Upload-vs-reuse is an operational detail that changes on a retry.
+        # Only the deterministic readback evidence belongs in signed content.
+        "r2_readback": {
+            "bucket": r2_report.bucket,
+            "artifact_count": r2_report.artifact_count,
+            "artifact_bytes": r2_report.artifact_bytes,
+            "verified_keys": list(r2_report.verified_keys),
+        },
+        "supabase_projection_evidence": [
+            {
+                "jurisdiction": key[0],
+                "document_class": key[1],
+                "version": key[2],
+                "expected": expected_evidence[key].provision_rows,
+                "actual": actual_evidence[key].provision_rows,
+                "expected_navigation": expected_evidence[key].navigation_rows,
+                "actual_navigation": actual_evidence[key].navigation_rows,
+                "expected_provision_projection_sha256": (
+                    expected_evidence[key].provision_projection_sha256
+                ),
+                "actual_provision_projection_sha256": (
+                    actual_evidence[key].provision_projection_sha256
+                ),
+                "expected_navigation_projection_sha256": (
+                    expected_evidence[key].navigation_projection_sha256
+                ),
+                "actual_navigation_projection_sha256": (
+                    actual_evidence[key].navigation_projection_sha256
+                ),
+            }
+            for key in sorted(expected_evidence)
+        ],
+    }
+
+
+def _publication_identity(content: Mapping[str, Any]) -> bytes:
+    artifacts = content.get("artifacts")
+    if not isinstance(artifacts, list):
+        raise ReleaseManifestError("release content has no artifact list")
+    scopes = content.get("scopes")
+    if not isinstance(scopes, list):
+        raise ReleaseManifestError("release content has no scope evidence")
+    identity: list[dict[str, object]] = []
+    for raw in artifacts:
+        if not isinstance(raw, dict):
+            raise ReleaseManifestError("release content contains a non-object artifact")
+        identity.append(dict(raw))
+    return canonical_json_bytes({"scopes": scopes, "artifacts": identity})
+
+
+def _require_safe_released_scope_reuse(
+    content: Mapping[str, Any],
+    released: Mapping[tuple[str, str, str], tuple[ReleasedScopeObject, ...]],
+    *,
+    public_key: str,
+) -> None:
+    expected_keys = set(_expected_scope_evidence(content))
+    if set(released) != expected_keys:
+        raise ReleaseManifestError("released-scope lookup did not cover the requested scopes")
+    for key, objects in released.items():
+        expected_identity = _scope_publication_identity(content, key)
+        for released_object in objects:
+            try:
+                verify_release_object(released_object.release_object, public_key=public_key)
+            except ReleaseManifestError as exc:
+                raise ReleaseManifestError(
+                    "database returned an untrusted prior release object for "
+                    f"{'/'.join(key)}: {released_object.release_name}"
+                ) from exc
+            prior_content = released_object.release_object.get("content")
+            if not isinstance(prior_content, dict):
+                raise ReleaseManifestError("verified prior release object lacks content")
+            if _scope_publication_identity(prior_content, key) != expected_identity:
+                raise ReleaseManifestError(
+                    "immutable released scope differs from the requested artifacts or "
+                    f"database projection: {'/'.join(key)} "
+                    f"({released_object.release_name})"
+                )
+
+
+def _scope_publication_identity(
+    content: Mapping[str, Any],
+    key: tuple[str, str, str],
+) -> bytes:
+    raw_scopes = content.get("scopes")
+    raw_artifacts = content.get("artifacts")
+    if not isinstance(raw_scopes, list) or not isinstance(raw_artifacts, list):
+        raise ReleaseManifestError("release content lacks scope or artifact inventory")
+    matches = [
+        raw
+        for raw in raw_scopes
+        if isinstance(raw, dict)
+        and tuple(
+            str(raw.get(field) or "") for field in ("jurisdiction", "document_class", "version")
+        )
+        == key
+    ]
+    if len(matches) != 1:
+        raise ReleaseManifestError(f"release content does not contain scope {'/'.join(key)}")
+    jurisdiction, document_class, version = key
+    exact_paths = {
+        f"data/corpus/inventory/{jurisdiction}/{document_class}/{version}.json",
+        f"data/corpus/provisions/{jurisdiction}/{document_class}/{version}.jsonl",
+        f"data/corpus/coverage/{jurisdiction}/{document_class}/{version}.json",
+    }
+    source_prefix = f"data/corpus/sources/{jurisdiction}/{document_class}/{version}/"
+    artifacts = [
+        dict(raw)
+        for raw in raw_artifacts
+        if isinstance(raw, dict)
+        and (
+            str(raw.get("path") or "") in exact_paths
+            or str(raw.get("path") or "").startswith(source_prefix)
+        )
+    ]
+    if len(artifacts) < 4 or exact_paths - {str(raw.get("path")) for raw in artifacts}:
+        raise ReleaseManifestError(f"release content lacks artifacts for scope {'/'.join(key)}")
+    return canonical_json_bytes(
+        {
+            "scope": matches[0],
+            "artifacts": sorted(artifacts, key=lambda raw: str(raw["path"])),
+        }
+    )
+
+
+def _require_canonical_selector(
+    repo_root: Path,
+    selector_path: Path,
+    release: ReleaseManifest,
+) -> None:
+    expected = repo_root / "manifests" / "releases" / f"{release.name}.json"
+    try:
+        supplied = selector_path.resolve(strict=True)
+        canonical = expected.resolve(strict=True)
+    except OSError as exc:
+        raise ReleaseManifestError("release selector must be a tracked canonical file") from exc
+    if supplied != canonical or canonical != expected:
+        raise ReleaseManifestError(
+            "release selector must be the exact non-symlink path "
+            f"manifests/releases/{release.name}.json"
+        )
+
+
+def _required_env(name: str) -> str:
+    value = os.environ.get(name, "")
+    if not value:
+        raise ReleaseManifestError(f"required environment variable is not set: {name}")
+    return value
+
+
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    source = parser.add_mutually_exclusive_group(required=True)
-    source.add_argument(
-        "--range",
-        nargs=2,
-        metavar=("BASE", "HEAD"),
-        help="Publish provisions files changed between two git refs (a push).",
+    parser.add_argument(
+        "--release",
+        required=True,
+        help="Immutable named release selector name or explicit JSON path.",
     )
-    source.add_argument(
-        "--since",
-        metavar="REF",
-        help="Publish provisions files changed since REF (REF..HEAD). Use for "
-        "the backlog first run over the weekend merge range.",
-    )
-    source.add_argument(
-        "--all",
-        action="store_true",
-        help="Consider every provisions file in the checkout (full backlog scan).",
-    )
-    parser.add_argument("--head", default="HEAD", help="Head ref for --since (default HEAD).")
+    parser.add_argument("--repo-root", type=Path, default=Path("."))
+    parser.add_argument("--base", type=Path, default=Path("data/corpus"))
     parser.add_argument("--supabase-url", default=DEFAULT_AXIOM_SUPABASE_URL)
     parser.add_argument("--service-key-env", default=DEFAULT_SERVICE_KEY_ENV)
     parser.add_argument("--access-token-env", default=DEFAULT_ACCESS_TOKEN_ENV)
-    parser.add_argument("--credentials-file", type=Path, default=None)
-    parser.add_argument("--r2-workers", type=int, default=4)
+    parser.add_argument("--credentials-file", type=Path)
+    parser.add_argument("--r2-bucket")
+    parser.add_argument("--r2-endpoint")
     parser.add_argument("--chunk-size", type=int, default=500)
-    parser.add_argument(
-        "--snapshot-date",
-        default=date.today().isoformat(),
-        help="Date stamp for the counts snapshot filename (default today, UTC-agnostic).",
-    )
-    parser.add_argument(
-        "--no-snapshot",
-        action="store_true",
-        help="Skip writing the provision-counts snapshot (e.g. dry inspection).",
-    )
-    parser.add_argument(
-        "--dry-run",
-        action="store_true",
-        help="List the publish plan and exit without publishing or snapshotting.",
-    )
-    parser.add_argument(
-        "--github-output",
-        type=Path,
-        default=None,
-        help="Append key=value results here for the workflow (GITHUB_OUTPUT).",
-    )
-    args = parser.parse_args(argv)
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--output", type=Path)
+    return parser
 
-    # --- discover candidates ---
-    if args.range:
-        candidate_files = discover_changed_files(args.range[0], args.range[1])
-        source_desc = f"range {args.range[0]}..{args.range[1]}"
-    elif args.since:
-        candidate_files = discover_changed_files(args.since, args.head)
-        source_desc = f"since {args.since}..{args.head}"
-    else:
-        candidate_files = discover_all_files()
-        source_desc = "all provisions files"
 
-    scopes, unparseable = file_scopes(candidate_files)
-    print(f"Candidate source: {source_desc}")
-    print(f"Candidate provisions files: {len(candidate_files)}")
-    print(f"Candidate versioned scopes: {len(scopes)}")
-    if unparseable:
-        print(f"Skipped (non-loadable) files: {len(unparseable)}")
-        for path, why in unparseable:
-            print(f"  - {path}: {why}")
-
-    if not scopes:
-        print("No candidate scopes; nothing to publish.")
-        _write_github_output(args.github_output, published=0, failed=0, skipped=0, planned=0)
-        return 0
-
-    # --- read live DB state ---
-    service_key = resolve_service_key(
-        args.supabase_url,
-        service_key_env=args.service_key_env,
-        access_token_env=args.access_token_env,
-    )
-    active_scopes = fetch_active_scopes(
-        supabase_url=args.supabase_url, service_key=service_key
-    )
-    all_scope_versions = fetch_all_scope_versions(
-        supabase_url=args.supabase_url, service_key=service_key
-    )
-
-    to_publish, already_active, held = build_publish_plan(
-        scopes, active_scopes=active_scopes, all_scope_versions=all_scope_versions
-    )
-
-    print(f"\nAlready active (skip): {len(already_active)}")
-    print(f"Staged/held inactive (skip, respected): {len(held)}")
-    for fs in held:
-        print(f"  HELD {fs.jurisdiction}/{fs.document_class} v{fs.version}")
-    print(f"To publish: {len(to_publish)}")
-    for fs in to_publish:
-        print(f"  PUBLISH {fs.jurisdiction}/{fs.document_class} v{fs.version}  ({fs.path})")
-
+def main(argv: Sequence[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    repo_root = args.repo_root.resolve()
+    base = (repo_root / args.base).resolve() if not args.base.is_absolute() else args.base.resolve()
+    selector = resolve_release_manifest_path(args.release)
+    if not selector.is_absolute():
+        selector = repo_root / selector
     if args.dry_run:
-        print("\n--dry-run: not publishing.")
-        _write_github_output(
-            args.github_output,
-            published=0,
-            failed=0,
-            skipped=len(already_active) + len(held),
-            planned=len(to_publish),
+        payload = plan_named_release(
+            repo_root=repo_root,
+            base=base,
+            selector_path=selector,
+            r2_bucket=args.r2_bucket or os.environ.get("R2_BUCKET") or DEFAULT_R2_BUCKET,
         )
-        return 0
-
-    if not to_publish:
-        print("\nEverything is already published. Nothing to do.")
-        if not args.no_snapshot:
-            snap = snapshot_counts(
-                supabase_url=args.supabase_url,
-                service_key=service_key,
-                snapshot_date=args.snapshot_date,
-            )
-            if snap:
-                print(f"Snapshot written: {snap}")
-        _write_github_output(
-            args.github_output,
-            published=0,
-            failed=0,
-            skipped=len(already_active) + len(held),
-            planned=0,
+    else:
+        r2_config = load_r2_config(
+            credential_path=args.credentials_file,
+            bucket=args.r2_bucket,
+            endpoint_url=args.r2_endpoint,
         )
-        return 0
-
-    # --- phase 1: sync + load each version, resilient (refresh deferred) ---
-    outcomes: list[PublishOutcome] = []
-    for i, fs in enumerate(to_publish, 1):
-        print(
-            f"\n=== [{i}/{len(to_publish)}] Publishing "
-            f"{fs.jurisdiction}/{fs.document_class} v{fs.version} ===",
-            flush=True,
+        service_key = resolve_service_key(
+            args.supabase_url,
+            service_key_env=args.service_key_env,
+            access_token_env=args.access_token_env,
         )
-        outcome = sync_and_load_scope(
-            fs,
-            credentials_file=args.credentials_file,
-            r2_workers=args.r2_workers,
-            chunk_size=args.chunk_size,
-        )
-        for step, detail in outcome.steps.items():
-            print(f"  {step}: {detail}", flush=True)
-        outcomes.append(outcome)
-
-    loaded = [o for o in outcomes if o.ok]
-
-    # --- phase 2: rebuild navigation once for every loaded file ---
-    if loaded:
-        print("\n=== Rebuilding navigation for published scopes (once) ===", flush=True)
-        build_navigation_once(sorted({Path(o.path) for o in loaded}))
-
-    # --- phase 3: one refresh, then per-version count verification ---
-    #
-    # A loaded scope is ALREADY published at this point: load-supabase
-    # auto-registered its release_scopes row with active=true, so it is visible
-    # in current_provisions the moment the count view refreshes. The refresh +
-    # count read here is a best-effort *confirmation*, not the publication step.
-    # So a refresh/verify failure (e.g. the materialized-view refresh outlasting
-    # the poll window under heavy concurrent load) is a warning that leaves the
-    # scope published-but-unverified — it does not un-publish it or fail the run.
-    if loaded:
-        print("\n=== Refreshing corpus analytics (once) ===", flush=True)
-        expected_pairs = {(o.scope[0], o.scope[1]) for o in loaded}
-        try:
-            refresh_analytics(
-                supabase_url=args.supabase_url,
-                service_key=service_key,
-                expected_pairs=expected_pairs,
-            )
-            counts = verify_scope_counts(
-                supabase_url=args.supabase_url, service_key=service_key
-            )
-        except Exception as exc:  # noqa: BLE001 - non-fatal: scopes are already active
-            print(
-                f"::warning::analytics refresh/verify did not complete ({exc}); "
-                "loaded scopes are published (active) but their counts were not "
-                "confirmed this run — the next run or cron will reconcile",
-                flush=True,
-            )
-            for o in loaded:
-                o.steps["verify"] = "unconfirmed (refresh slow); scope is active"
-            counts = {}
-        else:
-            for o in loaded:
-                pair = (o.scope[0], o.scope[1])
-                count = counts.get(pair, 0)
-                o.provision_count = count
-                if count <= 0:
-                    # Registered active but no rows visible: could be a slow
-                    # refresh for this pair. Keep it published; warn, don't fail.
-                    o.steps["verify"] = "unconfirmed (0 visible yet); scope is active"
-                else:
-                    o.steps["verify"] = f"{count} provisions visible ({pair[0]}/{pair[1]})"
-
-    published = [o for o in outcomes if o.ok]
-    superseded = [o for o in outcomes if o.skipped]
-    failed = [o for o in outcomes if not o.ok and not o.skipped]
-
-    # --- snapshot (reflects everything that landed) ---
-    snapshot_path: Path | None = None
-    if not args.no_snapshot and published:
-        snapshot_path = snapshot_counts(
+        access_token = _required_env(args.access_token_env)
+        report = publish_named_release(
+            repo_root=repo_root,
+            base=base,
+            selector_path=selector,
             supabase_url=args.supabase_url,
             service_key=service_key,
-            snapshot_date=args.snapshot_date,
+            access_token=access_token,
+            r2_config=r2_config,
+            private_key=_required_env(RELEASE_OBJECT_PRIVATE_KEY_ENV),
+            public_key=_required_env(RELEASE_OBJECT_PUBLIC_KEY_ENV),
+            chunk_size=args.chunk_size,
         )
-        if snapshot_path:
-            print(f"\nSnapshot written: {snapshot_path}")
+        payload = report.to_mapping()
 
-    # --- summary ---
-    print("\n" + "=" * 60)
-    print(
-        f"PUBLISHED: {len(published)}   SKIPPED(superseded): {len(superseded)}   "
-        f"FAILED: {len(failed)}"
-    )
-    for o in published:
-        print(f"  OK   {o.scope[0]}/{o.scope[1]} v{o.scope[2]}  ({o.provision_count} provisions)")
-    for o in superseded:
-        print(f"  SKIP(superseded) {o.scope[0]}/{o.scope[1]} v{o.scope[2]}")
-    for o in failed:
-        print(f"  FAIL {o.scope[0]}/{o.scope[1]} v{o.scope[2]}  — {o.reason}")
-
-    _write_github_output(
-        args.github_output,
-        published=len(published),
-        failed=len(failed),
-        skipped=len(already_active) + len(held) + len(superseded),
-        planned=len(to_publish),
-        snapshot=str(snapshot_path) if snapshot_path else "",
-    )
-
-    # Non-zero exit if any version failed, so CI turns red — but only after
-    # every independent version had its turn.
-    return 1 if failed else 0
-
-
-def _write_github_output(
-    path: Path | None,
-    *,
-    published: int,
-    failed: int,
-    skipped: int,
-    planned: int,
-    snapshot: str = "",
-) -> None:
-    if path is None:
-        return
-    with path.open("a", encoding="utf-8") as fh:
-        fh.write(f"published={published}\n")
-        fh.write(f"failed={failed}\n")
-        fh.write(f"skipped={skipped}\n")
-        fh.write(f"planned={planned}\n")
-        fh.write(f"snapshot={snapshot}\n")
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_bytes(
+            serialize_release_object(payload["release_object"])
+            if "release_object" in payload
+            else (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode("utf-8")
+        )
+        payload["written_to"] = str(args.output)
+    print(json.dumps(payload, indent=2, sort_keys=True))
+    return 0
 
 
 if __name__ == "__main__":

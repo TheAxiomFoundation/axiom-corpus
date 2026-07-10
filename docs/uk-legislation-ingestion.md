@@ -14,9 +14,10 @@ The durable corpus artifacts for this track are:
 - `data/corpus/coverage/uk/{statute,regulation}/...`
 - signed `.axiom/ingest-manifests/uk/{statute,regulation}/...`
 
-The current pilot release is `manifests/releases/uk-legislation-pilot.json`,
-with queue metadata in `manifests/uk-legislation-gov-current-pilot.yaml`. Its
-published scopes are also in `manifests/releases/current.json`.
+The immutable pilot selector is
+`manifests/releases/uk-legislation-pilot.json`, with queue metadata in
+`manifests/uk-legislation-gov-current-pilot.yaml`. Publication produces a
+signed content-addressed object; it is not copied into a mutable aggregate.
 
 ## Pilot
 
@@ -47,7 +48,7 @@ The pilot excludes:
    inputs, and local Council Tax Reduction schemes on separate document-family
    tracks.
 5. For each successful batch, write source, inventory, provisions, coverage,
-   and a signed ingest manifest before adding the scope to `current`.
+   and a signed ingest manifest before cutting a new immutable named release.
 
 This lets the UK corpus grow from PE-discovered legislation toward a broader
 current revised legislation.gov.uk corpus without treating PE values as source

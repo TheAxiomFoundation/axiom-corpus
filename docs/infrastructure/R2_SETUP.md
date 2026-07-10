@@ -24,7 +24,8 @@ axiom-corpus (R2 bucket)/
 ├── exports/{format}/{jurisdiction}/{document_class}/{version}/...
 ├── analytics/{version}.json
 ├── snapshots/...
-└── releases/{release}.artifacts.json
+├── objects/sha256/{prefix}/{artifact_sha256}
+└── releases/{release}/{release_content_sha256}.json
 ```
 
 ## Status
@@ -62,7 +63,8 @@ wrangler r2 bucket list
 
 ## Python Client
 
-Use `boto3` with S3-compatible endpoint:
+Use `boto3` with the S3-compatible endpoint for generic ingestion and
+inspection operations:
 
 ```python
 import boto3
@@ -97,6 +99,11 @@ response = s3.list_objects_v2(
 for obj in response.get('Contents', []):
     print(obj['Key'])
 ```
+
+The generic `upload_file` example is not the named-release publication path.
+The release publisher derives each key from the payload SHA-256, snapshots the
+local file once, and sends that same hashed snapshot with
+`put_object(IfNoneMatch="*")`. It never overwrites a content-addressed key.
 
 ## Integration with Axiom Corpus
 
@@ -133,23 +140,20 @@ axiom-corpus-ingest artifact-report \
   --supabase-counts data/corpus/snapshots/provision-counts-2026-04-30.json \
   --include-r2
 
-# Write an immutable digest manifest for release artifacts
-axiom-corpus-ingest release-artifact-manifest \
-  --base data/corpus \
-  --release current \
-  --output data/corpus/releases/current.artifacts.json
-
-# Validate a release before promotion/publication
-axiom-corpus-ingest validate-release \
-  --base data/corpus \
-  --release current \
-  --supabase-counts data/corpus/snapshots/provision-counts-2026-05-02.json \
-  --include-r2
+# Validate a named release plan without external writes
+python scripts/publish_corpus.py \
+  --release manifests/releases/nz-rulespec-2026-07-10.json \
+  --dry-run
 ```
 
-Unscoped artifact reports auto-use `manifests/releases/current.json` when it
-exists. Add `--all-scopes` when you need an exhaustive diagnostic report that
-includes old probes and superseded snapshots.
+Production publication conditionally writes both artifacts and the signed
+release object with `If-None-Match: *`. A concurrent `409`/`412` is accepted
+only after readback proves that the existing immutable bytes match. Every
+artifact is then downloaded and checked for its exact byte count and SHA-256;
+the signed object is downloaded and revalidated for schema, content address,
+evidence, and Ed25519 signature before the Management API may move the database
+pointer. R2 object presence or metadata alone is never publication evidence.
+See `docs/named-release-publication.md`.
 
 ## Related Documentation
 

@@ -127,8 +127,10 @@ rather than to a fragile substring search at encode time. `text_contains`
 }
 ```
 
-- `release` names the corpus release the offsets are valid against
-  (`r0`; see `releases/r0/release_manifest.json`, PR #170).
+- `release` is the historical claim-anchor label for the corpus text against
+  which the offsets were calculated. It is not an immutable v2 corpus release
+  identity. Existing `r0` spans must migrate to their own release-scoped,
+  signed claims contract before production use.
 - `char_start`/`char_end` index into the provision `body` for
   `provision_citation_path`; the slice must equal the selector text.
 - `sha256_of_provision_text` is the SHA-256 of the *entire* provision body, so
@@ -138,6 +140,10 @@ rather than to a fragile substring search at encode time. `text_contains`
   re-reads the provision JSONL, re-slices each span, and asserts it equals the
   selector text and that the body hash matches. This is the guarantee that a
   rule rename can never silently orphan a claim's evidence.
+
+Claims are not part of an immutable corpus release object. Corpus release
+objects contain only selected source-first artifacts and their validation
+attestations; claims and downstream waivers require their own signed boundary.
 
 ## The future flip (explicitly deferred, coordinated change)
 

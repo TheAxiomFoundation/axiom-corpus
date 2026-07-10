@@ -7,6 +7,40 @@ from axiom_corpus.corpus.release_quality import validate_release
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 
 
+def _write_source_scope(
+    store: CorpusArtifactStore,
+    *,
+    jurisdiction: str = "us-co",
+    document_class: str = "statute",
+    version: str = "2026-04-29",
+    inventory: list[SourceInventoryItem],
+    provisions: list[ProvisionRecord],
+) -> ReleaseManifest:
+    store.write_inventory(
+        store.inventory_path(jurisdiction, document_class, version),
+        inventory,
+    )
+    store.write_provisions(
+        store.provisions_path(jurisdiction, document_class, version),
+        provisions,
+    )
+    store.write_json(
+        store.coverage_path(jurisdiction, document_class, version),
+        {
+            "complete": True,
+            "source_count": len(inventory),
+            "provision_count": len(provisions),
+            "matched_count": len(provisions),
+            "missing_from_provisions": [],
+            "extra_provisions": [],
+        },
+    )
+    return ReleaseManifest(
+        name="test-release",
+        scopes=(ReleaseScope(jurisdiction, document_class, version),),
+    )
+
+
 def test_validate_release_reports_artifact_report_mismatches(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     artifact_report = ArtifactReport(
@@ -33,7 +67,7 @@ def test_validate_release_reports_artifact_report_mismatches(tmp_path):
 
     report = validate_release(
         store.root,
-        ReleaseManifest(name="current", scopes=()),
+        ReleaseManifest(name="test-release", scopes=()),
         artifact_report=artifact_report,
         max_issues=1,
     )
@@ -44,7 +78,7 @@ def test_validate_release_reports_artifact_report_mismatches(tmp_path):
     assert payload["issues_truncated"] is True
     assert payload["issues"][0]["code"] == "artifact_report_mismatch"
     with pytest.raises(ValueError, match="max_issues"):
-        validate_release(store.root, ReleaseManifest(name="current", scopes=()), max_issues=0)
+        validate_release(store.root, ReleaseManifest(name="test-release", scopes=()), max_issues=0)
 
 
 def test_validate_release_accepts_r2_complete_remote_only_scope(tmp_path):
@@ -76,7 +110,7 @@ def test_validate_release_accepts_r2_complete_remote_only_scope(tmp_path):
     report = validate_release(
         store.root,
         ReleaseManifest(
-            name="current",
+            name="test-release",
             scopes=(ReleaseScope("us-co", "statute", "v1"),),
         ),
         artifact_report=artifact_report,
@@ -121,7 +155,7 @@ def test_validate_release_can_ignore_r2_only_mirror_gaps(tmp_path):
 
     report = validate_release(
         store.root,
-        ReleaseManifest(name="current", scopes=()),
+        ReleaseManifest(name="test-release", scopes=()),
         artifact_report=artifact_report,
         ignore_r2_missing=True,
     )
@@ -132,6 +166,180 @@ def test_validate_release_can_ignore_r2_only_mirror_gaps(tmp_path):
     assert report.issues[0].message == (
         "artifact report has mismatch reasons: supabase_count_mismatch"
     )
+
+
+def test_validate_release_requires_complete_source_references(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    version = "2026-04-29"
+    source = store.source_path("us-co", "statute", version, "source.html")
+    store.write_text(source, "Official source")
+    release = _write_source_scope(
+        store,
+        version=version,
+        inventory=[SourceInventoryItem(citation_path="us-co/statute/1")],
+        provisions=[
+            ProvisionRecord(
+                jurisdiction="us-co",
+                document_class="statute",
+                citation_path="us-co/statute/1",
+                body="Text.",
+                version=version,
+            )
+        ],
+    )
+
+    report = validate_release(store.root, release)
+    codes = {issue.code for issue in report.issues}
+
+    assert report.ok is False
+    assert {
+        "missing_inventory_source_path",
+        "missing_inventory_source_sha256",
+        "missing_provision_source_path",
+    }.issubset(codes)
+
+
+def test_validate_release_rejects_missing_source_files(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    version = "2026-04-29"
+    missing_path = f"sources/us-co/statute/{version}/missing.html"
+    release = _write_source_scope(
+        store,
+        version=version,
+        inventory=[
+            SourceInventoryItem(
+                citation_path="us-co/statute/1",
+                source_path=missing_path,
+                sha256="a" * 64,
+            )
+        ],
+        provisions=[
+            ProvisionRecord(
+                jurisdiction="us-co",
+                document_class="statute",
+                citation_path="us-co/statute/1",
+                body="Text.",
+                version=version,
+                source_path=missing_path,
+            )
+        ],
+    )
+
+    report = validate_release(store.root, release)
+    codes = {issue.code for issue in report.issues}
+
+    assert report.ok is False
+    assert "missing_inventory_source_file" in codes
+    assert "missing_provision_source_file" in codes
+
+
+def test_validate_release_rejects_cross_scope_source_paths(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    version = "2026-04-29"
+    source = store.source_path("us-ny", "statute", version, "source.html")
+    digest = store.write_text(source, "Official source")
+    cross_scope_path = source.relative_to(store.root).as_posix()
+    release = _write_source_scope(
+        store,
+        version=version,
+        inventory=[
+            SourceInventoryItem(
+                citation_path="us-co/statute/1",
+                source_path=cross_scope_path,
+                sha256=digest,
+            )
+        ],
+        provisions=[
+            ProvisionRecord(
+                jurisdiction="us-co",
+                document_class="statute",
+                citation_path="us-co/statute/1",
+                body="Text.",
+                version=version,
+                source_path=cross_scope_path,
+            )
+        ],
+    )
+
+    report = validate_release(store.root, release)
+    codes = {issue.code for issue in report.issues}
+
+    assert report.ok is False
+    assert "noncanonical_inventory_source_path" in codes
+    assert "noncanonical_provision_source_path" in codes
+
+
+def test_validate_release_rejects_symlinked_source_files(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    version = "2026-04-29"
+    target = store.source_path("us-co", "statute", version, "target.html")
+    digest = store.write_text(target, "Official source")
+    source = store.source_path("us-co", "statute", version, "source.html")
+    source.symlink_to(target)
+    source_path = source.relative_to(store.root).as_posix()
+    release = _write_source_scope(
+        store,
+        version=version,
+        inventory=[
+            SourceInventoryItem(
+                citation_path="us-co/statute/1",
+                source_path=source_path,
+                sha256=digest,
+            )
+        ],
+        provisions=[
+            ProvisionRecord(
+                jurisdiction="us-co",
+                document_class="statute",
+                citation_path="us-co/statute/1",
+                body="Text.",
+                version=version,
+                source_path=source_path,
+            )
+        ],
+    )
+
+    report = validate_release(store.root, release)
+    codes = {issue.code for issue in report.issues}
+
+    assert report.ok is False
+    assert "symlinked_inventory_source_path" in codes
+    assert "symlinked_provision_source_path" in codes
+
+
+def test_validate_release_rejects_uninventoried_provision_source(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    version = "2026-04-29"
+    inventory_source = store.source_path("us-co", "statute", version, "inventory.html")
+    inventory_digest = store.write_text(inventory_source, "Inventory source")
+    provision_source = store.source_path("us-co", "statute", version, "provision.html")
+    store.write_text(provision_source, "Provision source")
+    release = _write_source_scope(
+        store,
+        version=version,
+        inventory=[
+            SourceInventoryItem(
+                citation_path="us-co/statute/1",
+                source_path=inventory_source.relative_to(store.root).as_posix(),
+                sha256=inventory_digest,
+            )
+        ],
+        provisions=[
+            ProvisionRecord(
+                jurisdiction="us-co",
+                document_class="statute",
+                citation_path="us-co/statute/1",
+                body="Text.",
+                version=version,
+                source_path=provision_source.relative_to(store.root).as_posix(),
+            )
+        ],
+    )
+
+    report = validate_release(store.root, release)
+
+    assert report.ok is False
+    assert "provision_source_not_in_inventory" in {issue.code for issue in report.issues}
 
 
 def test_validate_release_reports_scope_invariant_errors(tmp_path):
@@ -188,7 +396,7 @@ def test_validate_release_reports_scope_invariant_errors(tmp_path):
         },
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(ReleaseScope("us-co", "statute", version),),
     )
 
@@ -301,15 +509,23 @@ def test_validate_release_reports_missing_and_invalid_artifacts(tmp_path):
         },
     )
 
+    # Bypass the constructor only to exercise validate_release's defensive
+    # handling of an object supplied by an untyped caller. Normal construction
+    # rejects this class before any artifact reads.
+    invalid_scope = object.__new__(ReleaseScope)
+    object.__setattr__(invalid_scope, "jurisdiction", "us-bogus-class")
+    object.__setattr__(invalid_scope, "document_class", "bogus")
+    object.__setattr__(invalid_scope, "version", version)
+
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(
             ReleaseScope("us-missing", "statute", version),
             ReleaseScope("us-bad-inventory", "statute", version),
             ReleaseScope("us-bad-provisions", "statute", version),
             ReleaseScope("us-bad-coverage", "statute", version),
             ReleaseScope("us-json-coverage", "statute", version),
-            ReleaseScope("us-bogus-class", "bogus", version),
+            invalid_scope,
         ),
     )
 

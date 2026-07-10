@@ -63,7 +63,7 @@ def test_state_statute_completion_classifies_release_local_legacy_and_missing(tm
         )
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(ReleaseScope("us-co", "statute", "2026-04-29"),),
     )
     artifact_report = build_artifact_report(
@@ -94,10 +94,11 @@ def test_state_statute_completion_cli_writes_report(tmp_path, capsys):
     store = CorpusArtifactStore(tmp_path / "corpus")
     _write_complete_statute_scope(store, "us-co", "2026-04-29", count=1)
     (store.root / "releases").mkdir(parents=True)
-    (store.root / "releases" / "current.json").write_text(
+    release_path = store.root / "releases" / "test-release-v1.json"
+    release_path.write_text(
         json.dumps(
             {
-                "name": "current",
+                "name": "test-release-v1",
                 "scopes": [
                     {
                         "jurisdiction": "us-co",
@@ -109,7 +110,7 @@ def test_state_statute_completion_cli_writes_report(tmp_path, capsys):
         )
     )
     (store.root / "analytics").mkdir(parents=True)
-    (store.root / "analytics" / "validate-release-current.json").write_text(
+    (store.root / "analytics" / "validate-release-test-release-v1.json").write_text(
         json.dumps(
             {
                 "ok": True,
@@ -142,6 +143,8 @@ def test_state_statute_completion_cli_writes_report(tmp_path, capsys):
             "state-statute-completion",
             "--base",
             str(store.root),
+            "--release",
+            str(release_path),
             "--supabase-counts",
             str(counts_path),
             "--output",
@@ -153,7 +156,7 @@ def test_state_statute_completion_cli_writes_report(tmp_path, capsys):
 
     assert exit_code == 0
     assert payload["written_to"] == str(output)
-    assert written["release"] == "current"
+    assert written["release"] == "test-release-v1"
     assert written["rows"][5]["jurisdiction"] == "us-co"
     assert written["rows"][5]["status"] == "productionized_and_validated"
 
@@ -177,7 +180,7 @@ def test_state_statute_completion_marks_source_access_blockers(tmp_path):
             ),
         ),
     )
-    release = ReleaseManifest(name="current", scopes=())
+    release = ReleaseManifest(name="test-release", scopes=())
 
     report = build_state_statute_completion_report(
         tmp_path,
@@ -261,7 +264,7 @@ def test_state_statute_completion_blocks_release_on_mismatches(tmp_path):
         )
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(ReleaseScope("us-co", "statute", "2026-04-29"),),
     )
     artifact_report = build_artifact_report(
@@ -319,7 +322,7 @@ def test_state_statute_completion_accepts_r2_only_release_artifacts(tmp_path):
         )
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(ReleaseScope("us-co", "statute", "v1"),),
     )
     artifact_report = ArtifactReport(
@@ -369,7 +372,7 @@ def test_state_statute_completion_reports_incomplete_and_unvalidated_scopes(tmp_
         [SourceInventoryItem(citation_path="us-az/statute/1")],
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(ReleaseScope("us-co", "statute", "2026-04-29"),),
     )
     artifact_report = build_artifact_report(
@@ -426,7 +429,7 @@ def test_state_statute_completion_handles_defensive_branches(tmp_path):
         )
     )
     release = ReleaseManifest(
-        name="current",
+        name="test-release",
         scopes=(
             ReleaseScope("us-co", "statute", "v1"),
             ReleaseScope("us-ny", "statute", "v1"),
@@ -495,7 +498,7 @@ def test_state_statute_completion_rejects_invalid_validation_report(tmp_path):
     with pytest.raises(ValueError, match="validation report"):
         build_state_statute_completion_report(
             tmp_path,
-            release=ReleaseManifest(name="current", scopes=()),
+            release=ReleaseManifest(name="test-release", scopes=()),
             artifact_report=ArtifactReport(
                 local_root=tmp_path,
                 prefixes=(),

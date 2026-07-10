@@ -1,220 +1,114 @@
-name: Publish corpus
+name: Publish named corpus release
 
-# Keeps Supabase (corpus.provisions / corpus.release_scopes) and R2 in step with
-# provisions merged to main, so cloud/bulk workers reading Supabase never see a
-# stale corpus. See docs/agent-ingestion-runbook.md for the manual sequence this
-# automates.
-#
-# Two independent jobs:
-#   * publish         — on every push to main that touches corpus data, publish
-#                       the provision versions that are not yet live. Also
-#                       runnable on demand (workflow_dispatch) to clear a
-#                       backlog over an arbitrary git range.
-#   * staleness-guard — on push, PR, and a daily cron, fail red if a provisions
-#                       version has sat on main unpublished for >24h, so a
-#                       broken publisher can never fail silently.
-
+# Corpus data merges are inert. Production changes only from a clean committed
+# checkout when an explicit immutable selector cuts a source-complete,
+# content-addressed, projection-bound, Ed25519-signed release object and the
+# management plane activates it.
 on:
   push:
     branches: [main, master]
     paths:
-      - "data/corpus/**"
-  pull_request:
-    branches: [main, master]
-  schedule:
-    # Daily 12:20 UTC — offset from ci.yml's 12:00 release-coverage cron.
-    - cron: "20 12 * * *"
+      - "manifests/releases/*.json"
   workflow_dispatch:
     inputs:
-      since:
-        description: "Backlog range: publish provisions changed since this git ref (REF..HEAD). Leave blank to publish only the triggering push."
-        required: false
-        default: ""
-      all:
-        description: "Publish every unpublished provisions version in the checkout (full backlog scan). Overrides 'since'."
-        type: boolean
-        required: false
-        default: false
+      release:
+        description: "Immutable release selector name or manifests/releases/*.json path"
+        required: true
+        type: string
 
 concurrency:
-  # Serialize publication: never let two runs write release_scopes / R2 at once.
-  group: publish-corpus-${{ github.ref }}
+  group: publish-corpus-production
   cancel-in-progress: false
 
 permissions:
-  contents: write  # the publish job commits the counts snapshot back to main
+  contents: read
 
 jobs:
   publish:
-    # Publication writes production Supabase + R2, so it only runs where repo
-    # secrets are available: push-to-main and manual dispatch. Never on PRs
-    # (fork PRs cannot read secrets, and pre-merge is the wrong time to publish).
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     env:
-      # R2 (Cloudflare) — the corpus artifact store. The CLI reads these env
-      # vars directly, so no credentials file is needed on the runner.
       R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
       R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
       R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
       R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
       R2_BUCKET: ${{ secrets.R2_BUCKET }}
-      # Supabase — SUPABASE_ACCESS_TOKEN is a management PAT that the CLI
-      # exchanges for the service_role key at runtime (resolve_service_key).
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-    steps:
-      - uses: actions/checkout@v6.0.2
-        with:
-          fetch-depth: 0  # need history for the push range / --since diff
-
-      - name: Set up Python 3.14
-        uses: actions/setup-python@v6.2.0
-        with:
-          python-version: "3.14"
-
-      - name: Install package
-        run: |
-          python -m pip install --upgrade pip
-          pip install -e .
-
-      - name: Fail early if publication secrets are missing
-        run: |
-          missing=0
-          for var in SUPABASE_ACCESS_TOKEN R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY; do
-            if [ -z "${!var}" ]; then
-              echo "::error::Required secret $var is not set."
-              missing=1
-            fi
-          done
-          [ "$missing" = "0" ]
-
-      - name: Publish unpublished provision versions
-        id: publish
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            if [ "${{ github.event.inputs.all }}" = "true" ]; then
-              MODE=(--all)
-            elif [ -n "${{ github.event.inputs.since }}" ]; then
-              MODE=(--since "${{ github.event.inputs.since }}")
-            else
-              MODE=(--range "${{ github.event.before }}" "${{ github.sha }}")
-            fi
-          else
-            BEFORE="${{ github.event.before }}"
-            # First push to a fresh branch, or a force-push landing, can leave
-            # `before` as the zero SHA — fall back to the previous commit.
-            if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
-              BEFORE="${{ github.sha }}^"
-            fi
-            MODE=(--range "$BEFORE" "${{ github.sha }}")
-          fi
-          echo "Publish mode: ${MODE[*]}"
-          python scripts/publish_corpus.py "${MODE[@]}" \
-            --github-output "$GITHUB_OUTPUT"
-
-      - name: Publish provision-counts snapshot to corpus-snapshots branch
-        if: steps.publish.outputs.snapshot != ''
-        # Best-effort telemetry: never let the counts snapshot red a successful
-        # publish. The publish step above already fails the run on any bad
-        # PUBLISHED/FAILED numbers, so isolating the snapshot push here keeps a
-        # real publish failure loud while a snapshot-push hiccup stays soft.
-        continue-on-error: true
-        run: |
-          git config user.name "axiom-corpus-bot"
-          git config user.email "noreply@anthropic.com"
-          # The counts snapshot cannot land on the default branch: `main` is
-          # protected, so a GITHUB_TOKEN push is GH006-rejected, and with no PAT
-          # a bot PR cannot trigger the required status checks needed to
-          # auto-merge (GITHUB_TOKEN events do not start workflow runs). So the
-          # snapshot lives on the dedicated, unprotected `corpus-snapshots`
-          # branch. Nothing reads snapshots from main automatically — the
-          # completion tools only load a counts file from an explicit
-          # --supabase-counts path — so relocating them is safe.
-          SNAP_BRANCH=corpus-snapshots
-          # -f: data/ is gitignored (R2-backed corpus), so snapshot files need a
-          # force-add, matching how every data/corpus artifact is tracked.
-          git fetch origin "$SNAP_BRANCH" 2>/dev/null || true
-          if git rev-parse --verify "origin/$SNAP_BRANCH" >/dev/null 2>&1; then
-            # Carry prior snapshots forward WITHOUT clobbering this run's fresh
-            # file (filenames are date-stamped and space-free).
-            for f in $(git ls-tree -r --name-only "origin/$SNAP_BRANCH" -- data/corpus/snapshots/); do
-              [ -e "$f" ] || git checkout "origin/$SNAP_BRANCH" -- "$f"
-            done
-          fi
-          git add -f data/corpus/snapshots/
-          if git diff --cached --quiet; then
-            echo "No snapshot changes to commit."
-            exit 0
-          fi
-          # [skip ci] keeps this bot commit from re-triggering the workflow.
-          git commit -m "Snapshot corpus provision counts after publication [skip ci]
-
-          Published ${{ steps.publish.outputs.published }} version(s);
-          ${{ steps.publish.outputs.failed }} failed.
-
-          Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>"
-          # Force: the commit is the current default-branch HEAD plus the full
-          # accumulated snapshot set — a clean replacement for the branch tip.
-          git push --force origin "HEAD:$SNAP_BRANCH"
-
-      - name: Publication summary
-        if: always()
-        run: |
-          {
-            echo "### Corpus publication"
-            echo ""
-            echo "| Metric | Count |"
-            echo "| --- | --- |"
-            echo "| Planned | ${{ steps.publish.outputs.planned }} |"
-            echo "| Published | ${{ steps.publish.outputs.published }} |"
-            echo "| Failed | ${{ steps.publish.outputs.failed }} |"
-            echo "| Skipped (already live / held) | ${{ steps.publish.outputs.skipped }} |"
-          } >> "$GITHUB_STEP_SUMMARY"
-
-  staleness-guard:
-    name: Publication staleness guard
-    # Runs where publication secrets are available (push/cron, internal PRs). It
-    # flags any provisions version unpublished >24h, distinguishing
-    # never-published (no release_scopes row — always alarms) from staged/drift
-    # (inactive row — graced by --since / --respect-inactive). On fork PRs the
-    # secret is absent — the guard skips rather than failing spuriously.
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    env:
-      # A management PAT resolves the service_role key at runtime, which can read
-      # inactive release_scopes — required to tell a never-published scope (no
-      # row at all → always alarms) from an intentionally-staged one (inactive
-      # row → graced). The anon key cannot see inactive rows.
-      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-      # Drift activation cutoff: only *inactive/staged* versions merged at/after
-      # this commit can trip the guard. Never-published scopes ignore it by
-      # design (a committed-but-never-loaded scope is a gap whenever it merged).
-      PUBLICATION_AUTOMATION_SINCE: "025f5d98"
+      AXIOM_CORPUS_RELEASE_PRIVATE_KEY: ${{ secrets.AXIOM_CORPUS_RELEASE_PRIVATE_KEY }}
+      AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
     steps:
       - uses: actions/checkout@v6.0.2
         with:
           fetch-depth: 0
 
-      - name: Set up Python 3.14
-        uses: actions/setup-python@v6.2.0
+      - uses: actions/setup-python@v6.2.0
         with:
           python-version: "3.14"
 
       - name: Install package
-        run: |
-          python -m pip install --upgrade pip
-          pip install -e .
+        run: python -I -m pip install -e .
 
-      - name: Check publication staleness
-        if: env.SUPABASE_ACCESS_TOKEN != ''
+      - name: Require the complete publication trust boundary
         run: |
-          python scripts/check_publication_staleness.py \
-            --max-lag-hours 24 \
-            --since "$PUBLICATION_AUTOMATION_SINCE" \
-            --respect-inactive
+          missing=0
+          for var in \
+            SUPABASE_ACCESS_TOKEN \
+            R2_ACCESS_KEY_ID \
+            R2_SECRET_ACCESS_KEY \
+            AXIOM_CORPUS_RELEASE_PRIVATE_KEY \
+            AXIOM_CORPUS_RELEASE_PUBLIC_KEY; do
+            if [ -z "${!var}" ]; then
+              echo "::error::Required publication value $var is not set."
+              missing=1
+            fi
+          done
+          [ "$missing" = "0" ]
 
-      - name: Skip staleness guard without Supabase secret
-        if: env.SUPABASE_ACCESS_TOKEN == ''
+      - name: Select immutable release cuts
+        id: selectors
+        env:
+          DISPATCH_RELEASE: ${{ github.event.inputs.release }}
+          BEFORE: ${{ github.event.before }}
+          HEAD: ${{ github.sha }}
         run: |
-          echo "Skipping staleness guard: SUPABASE_ACCESS_TOKEN is not available in this context."
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            printf '%s\n' "$DISPATCH_RELEASE" > "$RUNNER_TEMP/release-selectors.txt"
+          else
+            if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+              BEFORE="$HEAD^"
+            fi
+            git diff --name-only --diff-filter=AM "$BEFORE" "$HEAD" -- \
+              'manifests/releases/*.json' > "$RUNNER_TEMP/release-selectors.txt"
+          fi
+          if [ ! -s "$RUNNER_TEMP/release-selectors.txt" ]; then
+            echo "No added or modified immutable release selector; no publication cut."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$(grep -cve '^$' "$RUNNER_TEMP/release-selectors.txt")" -ne 1 ]; then
+            echo "::error::One publication run must activate exactly one named release."
+            exit 1
+          fi
+          echo "publish=true" >> "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/release-selectors.txt"
+
+      - name: Validate, sign, and activate the named release through the management plane
+        if: steps.selectors.outputs.publish == 'true'
+        run: |
+          while IFS= read -r selector; do
+            [ -n "$selector" ] || continue
+            python scripts/publish_corpus.py \
+              --release "$selector" \
+              --output "$RUNNER_TEMP/$(basename "$selector" .json)-release-object.json"
+          done < "$RUNNER_TEMP/release-selectors.txt"
+
+      - name: Publication summary
+        if: always()
+        run: |
+          {
+            echo "### Named corpus release publication"
+            echo ""
+            echo "The release must bind the exact artifact/source inventory and canonical provision/navigation projection digests."
+            echo "Conditional R2 writes, exact readback, pre-sign database evidence, local Ed25519 verification, and management-plane transactional activation must all pass."
+            echo "The staging service role cannot activate a release; exact retries only verify and reuse immutable state."
+          } >> "$GITHUB_STEP_SUMMARY"

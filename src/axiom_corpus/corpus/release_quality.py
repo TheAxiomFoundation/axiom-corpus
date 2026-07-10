@@ -138,8 +138,7 @@ def validate_release(
             ignore_r2_missing=ignore_r2_missing,
         )
         artifact_rows = {
-            (row.jurisdiction, row.document_class, row.version): row
-            for row in artifact_report.rows
+            (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
         }
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
@@ -174,9 +173,7 @@ def _validate_artifact_report(
     for row in artifact_report.rows:
         reasons = row.mismatch_reasons()
         if ignore_r2_missing:
-            reasons = tuple(
-                reason for reason in reasons if not reason.startswith("missing_r2_")
-            )
+            reasons = tuple(reason for reason in reasons if not reason.startswith("missing_r2_"))
         if not reasons:
             continue
         collector.add(
@@ -240,8 +237,14 @@ def _validate_scope(
     coverage = _load_coverage_for_validation(coverage_path, scope, collector)
     if inventory is None or provisions is None:
         return
-    _validate_inventory(store.root, inventory, scope, collector)
-    _validate_provisions(provisions, scope, collector)
+    inventory_source_paths = _validate_inventory(store.root, inventory, scope, collector)
+    _validate_provisions(
+        store.root,
+        provisions,
+        inventory_source_paths,
+        scope,
+        collector,
+    )
     recomputed = compare_provision_coverage(
         inventory,
         provisions,
@@ -348,8 +351,9 @@ def _validate_inventory(
     inventory: tuple[SourceInventoryItem, ...],
     scope: ReleaseScope,
     collector: _IssueCollector,
-) -> None:
+) -> set[str]:
     source_hashes: dict[str, str] = {}
+    inventory_source_paths: set[str] = set()
     for item in inventory:
         if not item.citation_path:
             collector.add(
@@ -358,32 +362,171 @@ def _validate_inventory(
                 "inventory item has no citation_path",
                 scope=scope,
             )
-        if item.source_path:
-            source_path = root / item.source_path
-            if source_path.exists() and item.sha256:
-                digest = source_hashes.get(item.source_path)
-                if digest is None:
+        validated = _validate_source_file(
+            root,
+            item.source_path,
+            scope,
+            collector,
+            reference_kind="inventory",
+            citation_path=item.citation_path,
+        )
+        if validated is not None:
+            source_identity, source_path = validated
+            inventory_source_paths.add(source_identity)
+        else:
+            source_identity = None
+            source_path = None
+
+        if not isinstance(item.sha256, str) or not item.sha256:
+            collector.add(
+                "error",
+                "missing_inventory_source_sha256",
+                f"inventory item {item.citation_path} has no source sha256",
+                scope=scope,
+            )
+        elif source_identity is not None and source_path is not None:
+            digest = source_hashes.get(source_identity)
+            if digest is None:
+                try:
                     digest = _sha256_file(source_path)
-                    source_hashes[item.source_path] = digest
-                if digest != item.sha256:
+                except OSError as exc:
                     collector.add(
                         "error",
-                        "source_sha256_mismatch",
-                        f"source sha256 mismatch for {item.source_path}",
+                        "unreadable_inventory_source_file",
+                        f"cannot read source file {source_identity}: {exc}",
                         scope=scope,
                         path=source_path,
                     )
-        else:
+                    continue
+                source_hashes[source_identity] = digest
+            if digest != item.sha256:
+                collector.add(
+                    "error",
+                    "source_sha256_mismatch",
+                    f"source sha256 mismatch for {source_identity}",
+                    scope=scope,
+                    path=source_path,
+                )
+    return inventory_source_paths
+
+
+def _validate_source_file(
+    root: Path,
+    source_path: object,
+    scope: ReleaseScope,
+    collector: _IssueCollector,
+    *,
+    reference_kind: str,
+    citation_path: str,
+) -> tuple[str, Path | None] | None:
+    if not isinstance(source_path, str) or not source_path:
+        collector.add(
+            "error",
+            f"missing_{reference_kind}_source_path",
+            f"{reference_kind} item {citation_path} has no source_path",
+            scope=scope,
+        )
+        return None
+
+    parts = source_path.split("/")
+    expected_prefix = [
+        "sources",
+        scope.jurisdiction,
+        scope.document_class,
+        scope.version,
+    ]
+    if (
+        source_path.startswith("/")
+        or "\\" in source_path
+        or len(parts) <= len(expected_prefix)
+        or parts[: len(expected_prefix)] != expected_prefix
+        or any(part in {"", ".", ".."} for part in parts)
+    ):
+        collector.add(
+            "error",
+            f"noncanonical_{reference_kind}_source_path",
+            (
+                f"{reference_kind} item {citation_path} source_path must be under "
+                f"{'/'.join(expected_prefix)}/: {source_path}"
+            ),
+            scope=scope,
+            path=source_path,
+        )
+        return None
+
+    try:
+        corpus_root = root.resolve(strict=True)
+    except OSError as exc:
+        collector.add(
+            "error",
+            f"missing_{reference_kind}_source_file",
+            f"corpus root is unavailable while validating {source_path}: {exc}",
+            scope=scope,
+            path=source_path,
+        )
+        return source_path, None
+
+    lexical = corpus_root
+    for part in parts:
+        lexical = lexical / part
+        if lexical.is_symlink():
             collector.add(
-                "warning",
-                "missing_inventory_source_path",
-                f"inventory item {item.citation_path} has no source_path",
+                "error",
+                f"symlinked_{reference_kind}_source_path",
+                f"{reference_kind} source_path contains a symlink: {source_path}",
                 scope=scope,
+                path=lexical,
             )
+            return source_path, None
+
+    try:
+        resolved = lexical.resolve(strict=True)
+    except (OSError, RuntimeError):
+        collector.add(
+            "error",
+            f"missing_{reference_kind}_source_file",
+            f"{reference_kind} source file is missing: {source_path}",
+            scope=scope,
+            path=lexical,
+        )
+        return source_path, None
+
+    try:
+        resolved.relative_to(corpus_root)
+    except ValueError:
+        collector.add(
+            "error",
+            f"noncanonical_{reference_kind}_source_path",
+            f"{reference_kind} source file escapes the corpus root: {source_path}",
+            scope=scope,
+            path=resolved,
+        )
+        return source_path, None
+    if resolved != lexical:
+        collector.add(
+            "error",
+            f"noncanonical_{reference_kind}_source_path",
+            f"{reference_kind} source_path is not canonical: {source_path}",
+            scope=scope,
+            path=resolved,
+        )
+        return source_path, None
+    if not resolved.is_file():
+        collector.add(
+            "error",
+            f"nonregular_{reference_kind}_source_file",
+            f"{reference_kind} source_path is not a regular file: {source_path}",
+            scope=scope,
+            path=resolved,
+        )
+        return source_path, None
+    return source_path, resolved
 
 
 def _validate_provisions(
+    root: Path,
     provisions: tuple[ProvisionRecord, ...],
+    inventory_source_paths: set[str],
     scope: ReleaseScope,
     collector: _IssueCollector,
 ) -> None:
@@ -398,6 +541,7 @@ def _validate_provisions(
         )
     by_path: dict[str, ProvisionRecord] = {}
     by_id: dict[str, ProvisionRecord] = {}
+    checked_source_paths: set[str] = set()
     for record in provisions:
         if record.citation_path in by_path:
             collector.add(
@@ -416,9 +560,38 @@ def _validate_provisions(
                 scope=scope,
             )
         by_id[record_id] = record
+        if not isinstance(record.source_path, str) or not record.source_path:
+            _validate_source_file(
+                root,
+                record.source_path,
+                scope,
+                collector,
+                reference_kind="provision",
+                citation_path=record.citation_path,
+            )
+        elif record.source_path not in checked_source_paths:
+            checked_source_paths.add(record.source_path)
+            validated = _validate_source_file(
+                root,
+                record.source_path,
+                scope,
+                collector,
+                reference_kind="provision",
+                citation_path=record.citation_path,
+            )
+            if validated is not None and validated[0] not in inventory_source_paths:
+                collector.add(
+                    "error",
+                    "provision_source_not_in_inventory",
+                    (
+                        f"provision {record.citation_path} source_path is not present "
+                        f"in the scope inventory: {record.source_path}"
+                    ),
+                    scope=scope,
+                    path=record.source_path,
+                )
     for record in provisions:
         _validate_provision_record(record, by_path, scope, collector)
-
 
 
 def _warn_unsectioned_document(
@@ -450,6 +623,7 @@ def _warn_unsectioned_document(
         ),
         scope=scope,
     )
+
 
 def _validate_provision_record(
     record: ProvisionRecord,

@@ -1,484 +1,602 @@
-"""Hermetic unit tests for the corpus publication driver and staleness guard.
-
-These cover the pure decision logic — scope derivation from provisions files,
-the git-vs-DB publish plan split, and the staleness classification — using tiny
-fixture JSONL trees in ``tmp_path``. Network-touching steps (sync-r2,
-load-supabase, Supabase reads) are not exercised here; they are thin wrappers
-over already-tested corpus CLI commands.
-"""
+"""Hermetic tests for the named-release publication controller."""
 
 from __future__ import annotations
 
 import importlib.util
 import json
 import sys
-from datetime import UTC, datetime, timedelta
+from base64 import b64encode
 from pathlib import Path
 
 import pytest
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+
+from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.navigation import build_navigation_nodes
+from axiom_corpus.corpus.navigation_supabase import NavigationSupabaseWriteReport
+from axiom_corpus.corpus.projection_digest import (
+    navigation_projection_sha256,
+    provision_projection_sha256,
+)
+from axiom_corpus.corpus.r2 import R2Config
+from axiom_corpus.corpus.supabase import (
+    ReleasedScopeObject,
+    StagedScopeEvidence,
+    SupabaseLoadReport,
+    iter_supabase_rows,
+)
+from axiom_corpus.release.manifest import ReleaseManifestError
+from axiom_corpus.release.publication import R2ReadbackReport
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
-def _load_script(name: str):
-    path = REPO_ROOT / "scripts" / f"{name}.py"
-    spec = importlib.util.spec_from_file_location(name, path)
+def _load_publish_script():
+    path = REPO_ROOT / "scripts" / "publish_corpus.py"
+    spec = importlib.util.spec_from_file_location("publish_corpus", path)
     assert spec and spec.loader
-    mod = importlib.util.module_from_spec(spec)
-    sys.modules[name] = mod
-    spec.loader.exec_module(mod)
-    return mod
+    module = importlib.util.module_from_spec(spec)
+    sys.modules["publish_corpus"] = module
+    spec.loader.exec_module(module)
+    return module
 
 
-publish = _load_script("publish_corpus")
-staleness = _load_script("check_publication_staleness")
+publish = _load_publish_script()
 
 
-def _write_provisions(root: Path, rel: str, records: list[dict]) -> Path:
-    path = root / rel
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("\n".join(json.dumps(r) for r in records) + "\n")
-    return path
-
-
-def _rec(jurisdiction: str, document_class: str, version: str, cite: str) -> dict:
-    return {
-        "jurisdiction": jurisdiction,
-        "document_class": document_class,
-        "version": version,
-        "citation_path": cite,
-        "body": "text",
-    }
-
-
-# --------------------------------------------------------------------------- #
-# file_scopes
-# --------------------------------------------------------------------------- #
-def test_file_scopes_derives_scope_from_records(tmp_path, monkeypatch):
-    root = tmp_path / "provisions"
-    monkeypatch.setattr(publish, "PROVISIONS_ROOT", root)
-    p = _write_provisions(
-        root,
-        "us-al/statute/2026-07-02-us-al-title-38.jsonl",
-        [_rec("us-al", "statute", "2026-07-02-us-al-title-38", "us-al/statute/title-38")],
-    )
-    scopes, skipped = publish.file_scopes([p])
-    assert skipped == []
-    assert len(scopes) == 1
-    fs = scopes[0]
-    assert fs.db_scope == ("us-al", "statute", "2026-07-02-us-al-title-38")
-    # Artifact stem is the filename stem, used for the R2 --version filter.
-    assert fs.artifact_stem == "2026-07-02-us-al-title-38"
-
-
-def test_file_scopes_uses_record_version_not_path_stem(tmp_path, monkeypatch):
-    """When a file's record version differs from its filename stem, the DB
-    scope must follow the record version while the R2 stem follows the path."""
-    root = tmp_path / "provisions"
-    monkeypatch.setattr(publish, "PROVISIONS_ROOT", root)
-    p = _write_provisions(
-        root,
-        "us/statute/2026-05-10-snap-sections.jsonl",
-        [_rec("us", "statute", "2026-04-29", "us/statute/snap/1")],
-    )
-    scopes, skipped = publish.file_scopes([p])
-    assert skipped == []
-    assert scopes[0].db_scope == ("us", "statute", "2026-04-29")
-    assert scopes[0].artifact_stem == "2026-05-10-snap-sections"
-
-
-def test_file_scopes_skips_unparseable_and_empty(tmp_path, monkeypatch):
-    root = tmp_path / "provisions"
-    monkeypatch.setattr(publish, "PROVISIONS_ROOT", root)
-    # Legacy shape without jurisdiction/document_class — cannot be loaded.
-    legacy = root / "us/guidance/2026-05-17-ssa.jsonl"
-    legacy.parent.mkdir(parents=True, exist_ok=True)
-    legacy.write_text(json.dumps({"body": "x", "citation_path": "us/guidance/ssa/1"}) + "\n")
-    empty = root / "us/guidance/empty.jsonl"
-    empty.write_text("\n")
-    scopes, skipped = publish.file_scopes([legacy, empty])
-    assert scopes == []
-    assert len(skipped) == 2
-    reasons = {r for _, r in skipped}
-    assert any("unparseable" in r for r in reasons)
-    assert "empty" in reasons
-
-
-def test_file_scopes_multiple_versions_in_one_file(tmp_path, monkeypatch):
-    root = tmp_path / "provisions"
-    monkeypatch.setattr(publish, "PROVISIONS_ROOT", root)
-    p = _write_provisions(
-        root,
-        "be/statute/2026-06-30-be-tax-benefit.jsonl",
-        [
-            _rec("be", "statute", "2026-06-30-be-tax-benefit", "be/statute/a"),
-            _rec("be-vlg", "statute", "2026-06-30-be-tax-benefit", "be-vlg/statute/a"),
-        ],
-    )
-    scopes, _ = publish.file_scopes([p])
-    got = {s.db_scope for s in scopes}
-    assert got == {
-        ("be", "statute", "2026-06-30-be-tax-benefit"),
-        ("be-vlg", "statute", "2026-06-30-be-tax-benefit"),
-    }
-
-
-# --------------------------------------------------------------------------- #
-# build_publish_plan
-# --------------------------------------------------------------------------- #
-def _fs(j: str, dc: str, v: str, path: str = "x.jsonl") -> publish.FileScope:
-    return publish.FileScope(
-        path=Path(path), jurisdiction=j, document_class=dc, version=v, artifact_stem=v
-    )
-
-
-def test_plan_publishes_only_absent_scopes():
-    new = _fs("ng", "statute", "2026-07-06-ng-core")
-    active = _fs("us", "statute", "2026-04-29")
-    staged = _fs("us-ny", "regulation", "2026-05-09")
-    to_pub, already, held = publish.build_publish_plan(
-        [new, active, staged],
-        active_scopes={("us", "statute", "2026-04-29")},
-        all_scope_versions={
-            ("us", "statute", "2026-04-29"),
-            ("us-ny", "regulation", "2026-05-09"),  # inactive row present
-        },
-    )
-    assert [s.db_scope for s in to_pub] == [("ng", "statute", "2026-07-06-ng-core")]
-    assert [s.db_scope for s in already] == [("us", "statute", "2026-04-29")]
-    # An inactive release_scopes row means "deliberately staged/superseded":
-    # the automation must not implicitly publish it.
-    assert [s.db_scope for s in held] == [("us-ny", "regulation", "2026-05-09")]
-
-
-def test_plan_dedupes_same_scope_across_files():
-    a = _fs("be", "statute", "2026-06-30-be-tax-benefit", "file-a.jsonl")
-    b = _fs("be", "statute", "2026-06-30-be-tax-benefit", "file-b.jsonl")
-    to_pub, _, _ = publish.build_publish_plan(
-        [a, b], active_scopes=set(), all_scope_versions=set()
-    )
-    assert len(to_pub) == 1
-
-
-def test_plan_is_order_stable():
-    scopes = [
-        _fs("us", "statute", "v2"),
-        _fs("be", "statute", "v1"),
-        _fs("us", "guidance", "v1"),
-    ]
-    to_pub, _, _ = publish.build_publish_plan(
-        scopes, active_scopes=set(), all_scope_versions=set()
-    )
-    assert [s.db_scope for s in to_pub] == [
-        ("be", "statute", "v1"),
-        ("us", "guidance", "v1"),
-        ("us", "statute", "v2"),
-    ]
-
-
-# --------------------------------------------------------------------------- #
-# _is_provisions_jsonl
-# --------------------------------------------------------------------------- #
-@pytest.mark.parametrize(
-    "rel,expected",
-    [
-        ("data/corpus/provisions/us-al/statute/2026-07-02-x.jsonl", True),
-        ("data/corpus/provisions/us-al/statute/x.json", False),  # not jsonl
-        ("data/corpus/snapshots/provision-counts-2026-07-06.json", False),
-        ("data/corpus/provisions/us-al/2026-07-02.jsonl", False),  # wrong depth
-        ("data/corpus/sources/us-al/statute/2026/raw.jsonl", False),  # not provisions
-    ],
-)
-def test_is_provisions_jsonl(rel, expected):
-    assert publish._is_provisions_jsonl(rel) is expected
-
-
-# --------------------------------------------------------------------------- #
-# staleness guard classification
-# --------------------------------------------------------------------------- #
-def test_staleness_collects_scopes_with_commit_time(tmp_path, monkeypatch):
-    root = tmp_path / "provisions"
-    monkeypatch.setattr(staleness, "PROVISIONS_ROOT", root)
-    _write_provisions(
-        root,
-        "ng/statute/2026-07-06-ng-core.jsonl",
-        [_rec("ng", "statute", "2026-07-06-ng-core", "ng/statute/a")],
-    )
-    old = datetime(2026, 7, 6, tzinfo=UTC)
-    monkeypatch.setattr(
-        staleness, "_git_commit_epoch", lambda path: int(old.timestamp())
-    )
-    got = staleness.collect_git_scopes(cutoff=None)
-    assert len(got) == 1
-    assert got[0].scope == ("ng", "statute", "2026-07-06-ng-core")
-    assert got[0].committed_at == old
-
-
-def test_staleness_cutoff_excludes_pre_automation_files(tmp_path, monkeypatch):
-    root = tmp_path / "provisions"
-    monkeypatch.setattr(staleness, "PROVISIONS_ROOT", root)
-    _write_provisions(
-        root, "old/statute/v.jsonl", [_rec("old", "statute", "v", "old/statute/a")]
-    )
-    # File committed well before the cutoff.
-    monkeypatch.setattr(
-        staleness,
-        "_git_commit_epoch",
-        lambda path: int(datetime(2026, 1, 1, tzinfo=UTC).timestamp()),
-    )
-    cutoff = datetime(2026, 7, 4, tzinfo=UTC)
-    assert staleness.collect_git_scopes(cutoff=cutoff) == []
-
-
-def test_staleness_lag_math(tmp_path, monkeypatch):
-    """A scope committed >max_lag ago and not active is lagging; a fresh one
-    inside the grace window is not."""
-    now = datetime.now(UTC)
-    stale_gs = staleness.GitScope(
-        scope=("us", "statute", "stale"),
-        path="us/statute/stale.jsonl",
-        committed_at=now - timedelta(hours=48),
-    )
-    fresh_gs = staleness.GitScope(
-        scope=("us", "statute", "fresh"),
-        path="us/statute/fresh.jsonl",
-        committed_at=now - timedelta(hours=2),
-    )
-    active_gs = staleness.GitScope(
-        scope=("us", "statute", "live"),
-        path="us/statute/live.jsonl",
-        committed_at=now - timedelta(hours=48),
-    )
-    monkeypatch.setattr(
-        staleness, "collect_git_scopes", lambda cutoff=None: [stale_gs, fresh_gs, active_gs]
-    )
-    monkeypatch.setattr(
-        staleness,
-        "fetch_scopes",
-        lambda **kw: {("us", "statute", "live")} if kw["active"] else set(),
-    )
-    monkeypatch.setattr(staleness, "resolve_service_key", lambda *a, **k: "key")
-    rc = staleness.main(["--max-lag-hours", "24"])
-    assert rc == 1  # the 48h-old unpublished scope trips the guard
-
-
-def test_staleness_all_published_is_green(tmp_path, monkeypatch):
-    now = datetime.now(UTC)
-    gs = staleness.GitScope(
-        scope=("us", "statute", "live"),
-        path="us/statute/live.jsonl",
-        committed_at=now - timedelta(hours=48),
-    )
-    monkeypatch.setattr(staleness, "collect_git_scopes", lambda cutoff=None: [gs])
-    monkeypatch.setattr(
-        staleness, "fetch_scopes", lambda **kw: {("us", "statute", "live")}
-    )
-    monkeypatch.setattr(staleness, "resolve_service_key", lambda *a, **k: "key")
-    assert staleness.main(["--max-lag-hours", "24"]) == 0
-
-
-def test_staleness_never_published_alarms_regardless_of_since(monkeypatch):
-    """Regression for axiom-corpus#257: a committed-but-never-loaded scope must
-    alarm even when it was committed *before* the --since cutoff. Previously
-    ``--since`` (set to a newer commit) hid the entire backlog and the guard
-    went green while ~50 BE scopes sat unpublished."""
-    now = datetime.now(UTC)
-    never = staleness.GitScope(
-        scope=("be", "statute", "2026-06-30-be-tax-benefit"),
-        path="be/statute/2026-06-30-be-tax-benefit.jsonl",
-        committed_at=now - timedelta(hours=72),  # well past grace
-    )
-    monkeypatch.setattr(staleness, "collect_git_scopes", lambda cutoff=None: [never])
-    # No active rows and none ever published -> the scope was never loaded.
-    monkeypatch.setattr(staleness, "fetch_scopes", lambda **kw: set())
-    monkeypatch.setattr(staleness, "resolve_service_key", lambda *a, **k: "key")
-    # Cutoff set AFTER the scope's commit: the old code excluded it and went
-    # green; the fix ignores --since for never-published scopes.
-    future_cutoff = (now + timedelta(days=1)).date().isoformat()
-    rc = staleness.main(["--max-lag-hours", "24", "--since", future_cutoff])
-    assert rc == 1
-
-
-def test_staleness_never_published_since_floor_suppresses_known_legacy(monkeypatch):
-    """An explicit --never-published-since floor can still silence a genuinely
-    pre-automation never-loaded backlog without publishing it."""
-    now = datetime.now(UTC)
-    legacy = staleness.GitScope(
-        scope=("xx", "statute", "ancient"),
-        path="xx/statute/ancient.jsonl",
-        committed_at=now - timedelta(days=400),
-    )
-    monkeypatch.setattr(staleness, "collect_git_scopes", lambda cutoff=None: [legacy])
-    monkeypatch.setattr(staleness, "fetch_scopes", lambda **kw: set())
-    monkeypatch.setattr(staleness, "resolve_service_key", lambda *a, **k: "key")
-    floor = (now - timedelta(days=30)).date().isoformat()
-    assert staleness.main(["--max-lag-hours", "24", "--never-published-since", floor]) == 0
-
-
-def test_staleness_drift_graced_by_respect_inactive(monkeypatch):
-    """A scope that HAS an inactive release_scopes row (staged/superseded) is
-    drift, not never-published, and is graced by --respect-inactive."""
-    now = datetime.now(UTC)
-    staged = staleness.GitScope(
-        scope=("us", "statute", "staged"),
-        path="us/statute/staged.jsonl",
-        committed_at=now - timedelta(hours=72),
-    )
-    monkeypatch.setattr(staleness, "collect_git_scopes", lambda cutoff=None: [staged])
-    # Not active, but present in ever_published (active=None) -> inactive/staged.
-    monkeypatch.setattr(
-        staleness,
-        "fetch_scopes",
-        lambda **kw: set() if kw["active"] else {("us", "statute", "staged")},
-    )
-    monkeypatch.setattr(staleness, "resolve_service_key", lambda *a, **k: "key")
-    assert staleness.main(["--max-lag-hours", "24", "--respect-inactive"]) == 0
-
-
-# --------------------------------------------------------------------------- #
-# refresh_analytics resilience (gateway timeout is normal on this DB)
-# --------------------------------------------------------------------------- #
-def _http_error(code: int):
-    import urllib.error
-
-    return urllib.error.HTTPError(
-        url="http://x", code=code, msg="timeout", hdrs=None, fp=None
-    )
-
-
-def test_refresh_swallows_gateway_504_then_polls_to_success(monkeypatch):
-    """A 504 from the refresh RPC means the DB is still working; the driver
-    polls the count view until the expected scope appears."""
-    calls = {"refresh": 0, "verify": 0}
-
-    def fake_refresh(**kwargs):
-        calls["refresh"] += 1
-        raise _http_error(504)
-
-    poll_results = [
-        {},  # first poll: not yet visible
-        {("ng", "statute"): 4},  # second poll: landed
-    ]
-
-    def fake_verify(**kwargs):
-        calls["verify"] += 1
-        return poll_results.pop(0) if poll_results else {("ng", "statute"): 4}
-
-    # refresh_analytics imports refresh_corpus_analytics locally from the
-    # source module, so patch it there.
-    import axiom_corpus.corpus.supabase as sb
-
-    monkeypatch.setattr(sb, "refresh_corpus_analytics", fake_refresh)
-    monkeypatch.setattr(publish, "verify_scope_counts", fake_verify)
-
-    publish.refresh_analytics(
-        supabase_url="http://x",
-        service_key="k",
-        expected_pairs={("ng", "statute")},
-        poll_deadline_s=10,
-        poll_interval_s=0,
-    )
-    assert calls["refresh"] == 1
-    assert calls["verify"] >= 2  # polled until visible
-
-
-def test_refresh_reraises_non_gateway_http_error(monkeypatch):
-    import axiom_corpus.corpus.supabase as sb
-
-    def fake_refresh(**kwargs):
-        raise _http_error(400)
-
-    monkeypatch.setattr(sb, "refresh_corpus_analytics", fake_refresh)
-    with pytest.raises(Exception) as excinfo:
-        publish.refresh_analytics(
-            supabase_url="http://x", service_key="k", expected_pairs={("ng", "statute")}
-        )
-    assert "400" in str(excinfo.value)
-
-
-def test_is_transient_classification():
-    assert publish._is_transient("HTTP Error 500: Internal Server Error")
-    assert publish._is_transient("HTTP Error 502: Bad Gateway")
-    assert publish._is_transient("urllib.error.HTTPError: HTTP Error 504: Gateway Timeout")
-    assert publish._is_transient("connection timed out")
-    # Deterministic data errors are NOT transient.
-    assert not publish._is_transient(
-        'upsert failed 409: violates foreign key constraint "rules_parent_id_fkey"'
-    )
-    assert not publish._is_transient('upsert failed 400: time zone "x" not recognized')
-    # Regression: the chunk-size "500 rows" in load progress must not read as a
-    # transient HTTP 500.
-    assert not publish._is_transient(
-        "processed Supabase chunk 1 (500 rows)\n"
-        'RuntimeError: upsert failed 409: {"code":"23503",'
-        '"message":"violates foreign key constraint rules_parent_id_fkey"}'
-    )
-
-
-def _fake_proc(returncode: int, stderr: str = ""):
-    import subprocess
-
-    return subprocess.CompletedProcess(args=[], returncode=returncode, stdout="", stderr=stderr)
-
-
-def test_load_retries_on_transient_then_succeeds(monkeypatch):
-    calls = {"n": 0}
-
-    def fake_ingest(cmd):
-        calls["n"] += 1
-        if calls["n"] == 1:
-            return _fake_proc(1, "HTTP Error 503: Service Unavailable")
-        return _fake_proc(0)
-
-    monkeypatch.setattr(publish, "_ingest", fake_ingest)
-    import time as _t
-
-    monkeypatch.setattr(_t, "sleep", lambda s: None)
-    fs = _fs("ng", "statute", "v1", "ng/statute/v1.jsonl")
-    publish._load_supabase(fs, 500, retries=2, backoff_s=0)
-    assert calls["n"] == 2  # retried once, then succeeded
-
-
-def test_ingest_timeout_becomes_transient_result(monkeypatch):
-    import subprocess
-
-    def fake_run(*args, **kwargs):
-        raise subprocess.TimeoutExpired(cmd=args[0], timeout=kwargs.get("timeout", 1))
-
-    monkeypatch.setattr(subprocess, "run", fake_run)
-    proc = publish._ingest(["load-supabase", "--provisions", "x.jsonl"])
-    assert proc.returncode == 124
-    assert "timed out" in proc.stderr
-    # A timeout is transient, so the load retry loop will retry it.
-    assert publish._is_transient(proc.stderr)
-
-
-def test_load_fails_fast_on_data_error(monkeypatch):
-    calls = {"n": 0}
-
-    def fake_ingest(cmd):
-        calls["n"] += 1
-        return _fake_proc(1, 'upsert failed 409: violates foreign key constraint')
-
-    monkeypatch.setattr(publish, "_ingest", fake_ingest)
-    fs = _fs("be", "regulation", "v1", "be/regulation/v1.jsonl")
-    with pytest.raises(RuntimeError):
-        publish._load_supabase(fs, 500, retries=3, backoff_s=0)
-    assert calls["n"] == 1  # no retries on a deterministic 409
-
-
-def test_refresh_success_no_poll(monkeypatch):
-    import axiom_corpus.corpus.supabase as sb
-
-    monkeypatch.setattr(sb, "refresh_corpus_analytics", lambda **kw: None)
-    called = {"verify": 0}
+@pytest.fixture(autouse=True)
+def _no_prior_released_scopes(monkeypatch):
     monkeypatch.setattr(
         publish,
-        "verify_scope_counts",
-        lambda **kw: called.__setitem__("verify", called["verify"] + 1) or {},
+        "fetch_released_scope_objects",
+        lambda release, **kwargs: dict.fromkeys(release.scope_keys, ()),
     )
-    publish.refresh_analytics(
-        supabase_url="http://x", service_key="k", expected_pairs={("ng", "statute")}
+
+
+def _keys() -> tuple[str, str]:
+    private = Ed25519PrivateKey.generate()
+    return (
+        b64encode(
+            private.private_bytes(
+                serialization.Encoding.Raw,
+                serialization.PrivateFormat.Raw,
+                serialization.NoEncryption(),
+            )
+        ).decode(),
+        b64encode(
+            private.public_key().public_bytes(
+                serialization.Encoding.Raw,
+                serialization.PublicFormat.Raw,
+            )
+        ).decode(),
     )
-    # Clean refresh returns immediately; no polling needed.
-    assert called["verify"] == 0
+
+
+def _tree(tmp_path: Path) -> tuple[Path, Path, Path, tuple[str, str, str]]:
+    root = tmp_path / "repo"
+    base = root / "data" / "corpus"
+    store = CorpusArtifactStore(base)
+    scope = ("nz", "statute", "2026-07-10-nz-rulespec")
+    source = store.source_path(*scope, "act.html")
+    source_sha = store.write_text(source, "<p>Official text.</p>")
+    source_rel = source.relative_to(base).as_posix()
+    store.write_inventory(
+        store.inventory_path(*scope),
+        [
+            SourceInventoryItem(
+                citation_path="nz/statute/act/1",
+                source_path=source_rel,
+                sha256=source_sha,
+            )
+        ],
+    )
+    store.write_provisions(
+        store.provisions_path(*scope),
+        [
+            ProvisionRecord(
+                jurisdiction=scope[0],
+                document_class=scope[1],
+                version=scope[2],
+                citation_path="nz/statute/act/1",
+                body="Official text.",
+                source_path=source_rel,
+                source_as_of="2026-07-10",
+                expression_date="2026-07-10",
+            )
+        ],
+    )
+    store.write_json(
+        store.coverage_path(*scope),
+        {
+            "complete": True,
+            "source_count": 1,
+            "provision_count": 1,
+            "matched_count": 1,
+            "missing_from_provisions": [],
+            "extra_provisions": [],
+        },
+    )
+    selector = root / "manifests" / "releases" / "nz-rulespec-2026-07-10.json"
+    selector.parent.mkdir(parents=True)
+    selector.write_text(
+        json.dumps(
+            {
+                "name": "nz-rulespec-2026-07-10",
+                "scopes": [
+                    {
+                        "jurisdiction": scope[0],
+                        "document_class": scope[1],
+                        "version": scope[2],
+                    }
+                ],
+            }
+        )
+    )
+    return root, base, selector, scope
+
+
+def _config() -> R2Config:
+    return R2Config(
+        bucket="axiom-corpus",
+        endpoint_url="https://example.r2.cloudflarestorage.com",
+        access_key_id="key",
+        secret_access_key="secret",
+    )
+
+
+def _fixed_git(monkeypatch) -> None:
+    import axiom_corpus.release.manifest as manifest
+
+    monkeypatch.setattr(
+        manifest,
+        "_git_provenance",
+        lambda root: {"commit": "a" * 40, "committed_at": "2026-07-10T00:00:00Z"},
+    )
+    monkeypatch.setattr(manifest, "_require_tracked_release_inputs", lambda *args, **kwargs: None)
+
+
+def _readback_for(content: dict, *, uploaded: int | None = None) -> R2ReadbackReport:
+    artifacts = content["artifacts"]
+    uploaded_count = len(artifacts) if uploaded is None else uploaded
+    return R2ReadbackReport(
+        "axiom-corpus",
+        len(artifacts),
+        sum(entry["bytes"] for entry in artifacts),
+        uploaded_count,
+        len(artifacts) - uploaded_count,
+        tuple(entry["r2_key"] for entry in artifacts),
+    )
+
+
+def _scope_evidence(base: Path, scope: tuple[str, str, str]) -> StagedScopeEvidence:
+    records = tuple(
+        ProvisionRecord.from_mapping(json.loads(line))
+        for line in (base / "provisions" / scope[0] / scope[1] / f"{scope[2]}.jsonl")
+        .read_text()
+        .splitlines()
+        if line.strip()
+    )
+    navigation = build_navigation_nodes(records)
+    return StagedScopeEvidence(
+        provision_rows=len(records),
+        navigation_rows=len(navigation),
+        provision_projection_sha256=provision_projection_sha256(iter_supabase_rows(records)),
+        navigation_projection_sha256=navigation_projection_sha256(
+            node.to_supabase_row() for node in navigation
+        ),
+    )
+
+
+def _signed_prior_object(
+    root: Path,
+    base: Path,
+    selector: Path,
+    scope: tuple[str, str, str],
+    private_key: str,
+) -> dict:
+    release = publish.ReleaseManifest.load(selector)
+    provisional = publish.build_release_content(
+        root,
+        release=release,
+        validation={"passed": True, "phase": "preflight"},
+    )
+    evidence = {scope: _scope_evidence(base, scope)}
+    validation = publish._validation_attestation(
+        publish.validate_release(base, release),
+        r2_report=_readback_for(provisional),
+        expected_evidence=evidence,
+        actual_evidence=evidence,
+    )
+    content = publish.build_release_content(root, release=release, validation=validation)
+    return publish.sign_release_object(
+        publish.build_unsigned_release_object(content),
+        private_key=private_key,
+    )
+
+
+def test_dry_run_is_local_and_explicit(tmp_path: Path, monkeypatch) -> None:
+    root, base, selector, _ = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+
+    plan = publish.plan_named_release(
+        repo_root=root,
+        base=base,
+        selector_path=selector,
+        r2_bucket="axiom-corpus",
+    )
+
+    assert plan == {
+        "dry_run": True,
+        "release": "nz-rulespec-2026-07-10",
+        "selector": str(selector),
+        "scope_count": 1,
+        "artifact_count": 4,
+        "provision_rows": 1,
+    }
+
+
+def test_publication_orders_all_validation_before_activation(tmp_path: Path, monkeypatch) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    calls: list[str] = []
+    real_validate = publish.validate_release
+
+    def validated(*args, **kwargs):
+        calls.append("deep-validate")
+        return real_validate(*args, **kwargs)
+
+    monkeypatch.setattr(publish, "validate_release", validated)
+
+    def stage_artifacts(*args, **kwargs):
+        calls.append("r2-readback")
+        return _readback_for(kwargs["release_content"])
+
+    monkeypatch.setattr(publish, "stage_release_artifacts", stage_artifacts)
+    monkeypatch.setattr(
+        publish,
+        "load_provisions_to_supabase",
+        lambda *args, **kwargs: calls.append("stage-provisions")
+        or SupabaseLoadReport(rows_total=1, rows_loaded=1, chunk_count=1),
+    )
+    monkeypatch.setattr(
+        publish,
+        "write_navigation_nodes_to_supabase",
+        lambda *args, **kwargs: calls.append("stage-navigation")
+        or NavigationSupabaseWriteReport(1, 1, 1, (scope,), 0, 0),
+    )
+    monkeypatch.setattr(
+        publish,
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: calls.append("exact-evidence")
+        or {scope: _scope_evidence(base, scope)},
+    )
+
+    def stage_object(release_object, **kwargs):
+        calls.append("signed-object-readback")
+        assert release_object["signature"]["algorithm"] == "ed25519"
+        return f"releases/{release_object['release']}/{release_object['content_sha256']}.json"
+
+    monkeypatch.setattr(publish, "stage_signed_release_object", stage_object)
+    monkeypatch.setattr(
+        publish,
+        "activate_corpus_release",
+        lambda release_object, **kwargs: calls.append("atomic-activate")
+        or {
+            "active": True,
+            "release": release_object["release"],
+            "content_sha256": release_object["content_sha256"],
+        },
+    )
+
+    report = publish.publish_named_release(
+        repo_root=root,
+        base=base,
+        selector_path=selector,
+        supabase_url="https://example.supabase.co",
+        service_key="service",
+        access_token="management",
+        r2_config=_config(),
+        private_key=private,
+        public_key=public,
+    )
+
+    assert calls == [
+        "deep-validate",
+        "r2-readback",
+        "stage-provisions",
+        "stage-navigation",
+        "exact-evidence",
+        "deep-validate",
+        "signed-object-readback",
+        "atomic-activate",
+    ]
+    assert report.activation["active"] is True
+    assert report.release_object["content"]["validation"]["passed"] is True
+
+
+def test_count_mismatch_never_signs_or_activates(tmp_path: Path, monkeypatch) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    activated = False
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: _readback_for(kwargs["release_content"]),
+    )
+    monkeypatch.setattr(
+        publish,
+        "load_provisions_to_supabase",
+        lambda *args, **kwargs: SupabaseLoadReport(1, 1, 1),
+    )
+    monkeypatch.setattr(
+        publish,
+        "write_navigation_nodes_to_supabase",
+        lambda *args, **kwargs: NavigationSupabaseWriteReport(1, 1, 1, (scope,), 0, 0),
+    )
+    monkeypatch.setattr(
+        publish,
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {
+            scope: StagedScopeEvidence(
+                0,
+                0,
+                _scope_evidence(base, scope).provision_projection_sha256,
+                _scope_evidence(base, scope).navigation_projection_sha256,
+            )
+        },
+    )
+
+    def activate(*args, **kwargs):
+        nonlocal activated
+        activated = True
+        return {}
+
+    monkeypatch.setattr(publish, "activate_corpus_release", activate)
+    with pytest.raises(ReleaseManifestError, match="exact staged provision/navigation projection"):
+        publish.publish_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            supabase_url="https://example.supabase.co",
+            service_key="service",
+            access_token="management",
+            r2_config=_config(),
+            private_key=private,
+            public_key=public,
+        )
+    assert activated is False
+
+
+def test_private_public_key_mismatch_never_activates(tmp_path: Path, monkeypatch) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, _ = _keys()
+    _, wrong_public = _keys()
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: _readback_for(kwargs["release_content"]),
+    )
+    monkeypatch.setattr(
+        publish,
+        "load_provisions_to_supabase",
+        lambda *args, **kwargs: SupabaseLoadReport(1, 1, 1),
+    )
+    monkeypatch.setattr(
+        publish,
+        "write_navigation_nodes_to_supabase",
+        lambda *args, **kwargs: NavigationSupabaseWriteReport(1, 1, 1, (scope,), 0, 0),
+    )
+    monkeypatch.setattr(
+        publish,
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {scope: _scope_evidence(base, scope)},
+    )
+    monkeypatch.setattr(
+        publish,
+        "activate_corpus_release",
+        lambda *args, **kwargs: pytest.fail("activation must not run"),
+    )
+
+    with pytest.raises(ReleaseManifestError, match="signature is invalid"):
+        publish.publish_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            supabase_url="https://example.supabase.co",
+            service_key="service",
+            access_token="management",
+            r2_config=_config(),
+            private_key=private,
+            public_key=wrong_public,
+        )
+
+
+@pytest.mark.parametrize("successor", [False, True])
+def test_released_scope_retry_or_successor_reuses_exact_immutable_rows(
+    tmp_path: Path,
+    monkeypatch,
+    successor: bool,
+) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    prior_object = _signed_prior_object(root, base, selector, scope, private)
+    target_selector = selector
+    if successor:
+        target_selector = selector.with_name("nz-rulespec-2026-07-11.json")
+        target_selector.write_text(
+            json.dumps(
+                {
+                    "name": "nz-rulespec-2026-07-11",
+                    "scopes": [
+                        {
+                            "jurisdiction": scope[0],
+                            "document_class": scope[1],
+                            "version": scope[2],
+                        }
+                    ],
+                }
+            )
+        )
+    monkeypatch.setattr(
+        publish,
+        "fetch_released_scope_objects",
+        lambda *args, **kwargs: {
+            scope: (
+                ReleasedScopeObject(
+                    scope_key=scope,
+                    release_name=str(prior_object["release"]),
+                    content_sha256=str(prior_object["content_sha256"]),
+                    release_object=prior_object,
+                ),
+            )
+        },
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: _readback_for(kwargs["release_content"], uploaded=0),
+    )
+    monkeypatch.setattr(
+        publish,
+        "load_provisions_to_supabase",
+        lambda *args, **kwargs: pytest.fail("released provision rows must not be rewritten"),
+    )
+    monkeypatch.setattr(
+        publish,
+        "write_navigation_nodes_to_supabase",
+        lambda *args, **kwargs: pytest.fail("released navigation rows must not be rewritten"),
+    )
+    monkeypatch.setattr(
+        publish,
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {scope: _scope_evidence(base, scope)},
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_signed_release_object",
+        lambda release_object, **kwargs: (
+            f"releases/{release_object['release']}/{release_object['content_sha256']}.json"
+        ),
+    )
+    monkeypatch.setattr(
+        publish,
+        "activate_corpus_release",
+        lambda release_object, **kwargs: {
+            "active": True,
+            "release": release_object["release"],
+            "content_sha256": release_object["content_sha256"],
+        },
+    )
+
+    report = publish.publish_named_release(
+        repo_root=root,
+        base=base,
+        selector_path=target_selector,
+        supabase_url="https://example.supabase.co",
+        service_key="service",
+        access_token="management",
+        r2_config=_config(),
+        private_key=private,
+        public_key=public,
+    )
+
+    assert report.provision_rows == 1
+    assert report.activation["active"] is True
+
+
+def test_released_scope_with_different_signed_projection_aborts_before_dml(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    prior_object = _signed_prior_object(root, base, selector, scope, private)
+    prior_object["content"]["scopes"][0]["provision_projection_sha256"] = "f" * 64
+    prior_evidence = prior_object["content"]["validation"]["supabase_projection_evidence"][0]
+    prior_evidence["expected_provision_projection_sha256"] = "f" * 64
+    prior_evidence["actual_provision_projection_sha256"] = "f" * 64
+    prior_content = prior_object["content"]
+    prior_object = publish.sign_release_object(
+        publish.build_unsigned_release_object(prior_content),
+        private_key=private,
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: _readback_for(kwargs["release_content"]),
+    )
+    monkeypatch.setattr(
+        publish,
+        "fetch_released_scope_objects",
+        lambda *args, **kwargs: {
+            scope: (
+                ReleasedScopeObject(
+                    scope,
+                    str(prior_object["release"]),
+                    str(prior_object["content_sha256"]),
+                    prior_object,
+                ),
+            )
+        },
+    )
+    monkeypatch.setattr(
+        publish,
+        "load_provisions_to_supabase",
+        lambda *args, **kwargs: pytest.fail("mismatch must abort before DML"),
+    )
+
+    with pytest.raises(ReleaseManifestError, match="immutable released scope differs"):
+        publish.publish_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            supabase_url="https://example.supabase.co",
+            service_key="service",
+            access_token="management",
+            r2_config=_config(),
+            private_key=private,
+            public_key=public,
+        )
+
+
+def test_publisher_contains_no_legacy_escape_hatches() -> None:
+    source = (REPO_ROOT / "scripts" / "publish_corpus.py").read_text()
+    for forbidden in (
+        "--synthesize-missing-parents",
+        "--no-auto-register",
+        "--stage",
+        "allow_refresh_failure=True",
+        'release_name="current"',
+        "--all",
+        "--range",
+        "--since",
+    ):
+        assert forbidden not in source
+
+
+def test_signed_validation_evidence_is_retry_stable(tmp_path: Path) -> None:
+    _root, base, selector, scope = _tree(tmp_path)
+    release = publish.ReleaseManifest.load(selector)
+    report = publish.validate_release(base, release)
+    actual_evidence = {scope: _scope_evidence(base, scope)}
+    first = publish._validation_attestation(
+        report,
+        r2_report=R2ReadbackReport("axiom-corpus", 4, 100, 4, 0, ("a", "b")),
+        expected_evidence=actual_evidence,
+        actual_evidence=actual_evidence,
+    )
+    retry = publish._validation_attestation(
+        report,
+        r2_report=R2ReadbackReport("axiom-corpus", 4, 100, 0, 4, ("a", "b")),
+        expected_evidence=actual_evidence,
+        actual_evidence=actual_evidence,
+    )
+
+    assert first == retry

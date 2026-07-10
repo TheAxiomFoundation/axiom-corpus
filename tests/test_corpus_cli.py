@@ -460,15 +460,11 @@ def test_guard_ingested_cli_accepts_signed_deleted_corpus_artifact(tmp_path, cap
     assert payload["issues"] == []
 
 
-def test_guard_ingested_cli_rejects_digest_in_official_documents(
-    tmp_path, capsys, monkeypatch
-):
+def test_guard_ingested_cli_rejects_digest_in_official_documents(tmp_path, capsys, monkeypatch):
     repo = _init_git_repo(tmp_path / "repo")
     _git(repo, "checkout", "-b", "feature")
     source = (
-        repo
-        / "data/corpus/sources/ca/policy/2026-07-01-example/official-documents"
-        / "example.txt"
+        repo / "data/corpus/sources/ca/policy/2026-07-01-example/official-documents" / "example.txt"
     )
     source.parent.mkdir(parents=True)
     source.write_text(
@@ -491,8 +487,7 @@ def test_guard_ingested_cli_rejects_digest_in_official_documents(
                 "--version",
                 "2026-07-01-example",
                 "--file",
-                "data/corpus/sources/ca/policy/2026-07-01-example/"
-                "official-documents/example.txt",
+                "data/corpus/sources/ca/policy/2026-07-01-example/official-documents/example.txt",
                 "--command",
                 "axiom-corpus-ingest extract-example --version 2026-07-01-example",
             ]
@@ -539,8 +534,7 @@ def test_guard_ingested_cli_rejects_primary_source_reasoning_inventory(
                     {
                         "citation_path": "ca/policy/example",
                         "source_path": (
-                            "sources/ca/policy/2026-07-01-example/"
-                            "reasoning/example.txt"
+                            "sources/ca/policy/2026-07-01-example/reasoning/example.txt"
                         ),
                         "metadata": {"primary_source": True},
                     }
@@ -1504,9 +1498,7 @@ def test_load_supabase_cli_rebuilds_navigation_after_provisions_load(tmp_path, c
     monkeypatch.setattr(
         cli,
         "load_provisions_to_supabase",
-        lambda *a, **kw: SupabaseLoadReport(
-            rows_total=1, rows_loaded=1, chunk_count=1, refreshed=True
-        ),
+        lambda *a, **kw: SupabaseLoadReport(rows_total=1, rows_loaded=1, chunk_count=1),
     )
     captured: dict[str, object] = {}
 
@@ -1580,9 +1572,7 @@ def test_load_supabase_cli_can_rebuild_navigation_from_supabase(tmp_path, capsys
     monkeypatch.setattr(
         cli,
         "load_provisions_to_supabase",
-        lambda *a, **kw: SupabaseLoadReport(
-            rows_total=1, rows_loaded=1, chunk_count=1, refreshed=True
-        ),
+        lambda *a, **kw: SupabaseLoadReport(rows_total=1, rows_loaded=1, chunk_count=1),
     )
     captured: dict[str, object] = {}
 
@@ -1927,9 +1917,7 @@ def test_load_supabase_no_preserve_navigation_statuses_skips_status_fetch(
     monkeypatch.setattr(
         cli,
         "load_provisions_to_supabase",
-        lambda *a, **kw: SupabaseLoadReport(
-            rows_total=1, rows_loaded=1, chunk_count=1, refreshed=True
-        ),
+        lambda *a, **kw: SupabaseLoadReport(rows_total=1, rows_loaded=1, chunk_count=1),
     )
     monkeypatch.setattr(
         cli,
@@ -2048,10 +2036,11 @@ def test_snapshot_provision_counts_cli_can_count_release_manifest(tmp_path, caps
     base = tmp_path / "corpus"
     release_dir = base / "releases"
     release_dir.mkdir(parents=True)
-    (release_dir / "current.json").write_text(
+    release_path = release_dir / "test-release-v1.json"
+    release_path.write_text(
         json.dumps(
             {
-                "name": "current",
+                "name": "test-release-v1",
                 "scopes": [
                     {
                         "jurisdiction": "us",
@@ -2066,7 +2055,7 @@ def test_snapshot_provision_counts_cli_can_count_release_manifest(tmp_path, caps
     monkeypatch.setattr(cli, "resolve_service_key", lambda *args, **kwargs: "service")
 
     def fake_fetch(release, **kwargs):
-        assert release.name == "current"
+        assert release.name == "test-release-v1"
         assert release.scopes[0].jurisdiction == "us"
         assert kwargs["service_key"] == "service"
         return (
@@ -2085,7 +2074,7 @@ def test_snapshot_provision_counts_cli_can_count_release_manifest(tmp_path, caps
             "--base",
             str(base),
             "--release",
-            "current",
+            str(release_path),
             "--output",
             str(out),
         ]
@@ -2093,9 +2082,9 @@ def test_snapshot_provision_counts_cli_can_count_release_manifest(tmp_path, caps
     payload = json.loads(capsys.readouterr().out)
 
     assert exit_code == 0
-    assert payload["release_path"] == str(release_dir / "current.json")
+    assert payload["release_path"] == str(release_dir / "test-release-v1.json")
     assert json.loads(out.read_text()) == {
-        "release_path": str(release_dir / "current.json"),
+        "release_path": str(release_dir / "test-release-v1.json"),
         "rows": [
             {
                 "document_class": "guidance",
@@ -2104,68 +2093,6 @@ def test_snapshot_provision_counts_cli_can_count_release_manifest(tmp_path, caps
             }
         ],
     }
-
-
-def test_sync_release_scopes_cli_uses_manifest(tmp_path, capsys, monkeypatch):
-    import axiom_corpus.corpus.cli as cli
-
-    base = tmp_path / "corpus"
-    release_dir = base / "releases"
-    release_dir.mkdir(parents=True)
-    release_path = release_dir / "current.json"
-    release_path.write_text(
-        json.dumps(
-            {
-                "name": "current",
-                "scopes": [
-                    {
-                        "jurisdiction": "us-co",
-                        "document_class": "statute",
-                        "version": "2026-04-30",
-                    }
-                ],
-            }
-        )
-    )
-
-    monkeypatch.setattr(cli, "resolve_service_key", lambda *args, **kwargs: "service")
-
-    def fake_sync(release, **kwargs):
-        assert release.name == "current"
-        assert release.scopes[0].jurisdiction == "us-co"
-        assert kwargs["service_key"] == "service"
-        assert kwargs["dry_run"] is True
-
-        class Report:
-            def to_mapping(self):
-                return {
-                    "release_name": release.name,
-                    "rows_total": len(release.scopes),
-                    "rows_loaded": 0,
-                    "chunk_count": 1,
-                    "dry_run": True,
-                }
-
-        return Report()
-
-    monkeypatch.setattr(cli, "sync_release_scopes_to_supabase", fake_sync)
-
-    exit_code = main(
-        [
-            "sync-release-scopes",
-            "--base",
-            str(base),
-            "--release",
-            "current",
-            "--dry-run",
-        ]
-    )
-    payload = json.loads(capsys.readouterr().out)
-
-    assert exit_code == 0
-    assert payload["release_name"] == "current"
-    assert payload["rows_total"] == 1
-    assert payload["release_path"] == str(release_path)
 
 
 def test_extract_state_statutes_batch_cli(tmp_path, capsys, monkeypatch):
@@ -2802,10 +2729,11 @@ def test_artifact_report_cli_accepts_release_name(tmp_path, capsys):
     )
     release_dir = store.root / "releases"
     release_dir.mkdir(parents=True)
-    (release_dir / "current.json").write_text(
+    release_path = release_dir / "test-release-v1.json"
+    release_path.write_text(
         json.dumps(
             {
-                "name": "current",
+                "name": "test-release-v1",
                 "scopes": [
                     {
                         "jurisdiction": "us-co",
@@ -2825,20 +2753,20 @@ def test_artifact_report_cli_accepts_release_name(tmp_path, capsys):
             "--prefix",
             "inventory",
             "--release",
-            "current",
+            str(release_path),
         ]
     )
     payload = json.loads(capsys.readouterr().out)
 
     assert exit_code == 0
-    assert payload["release"] == "current"
+    assert payload["release"] == "test-release-v1"
     assert payload["release_scope_count"] == 1
     assert payload["scope_count"] == 1
     assert payload["local_count"] == 1
     assert payload["rows"][0]["jurisdiction"] == "us-co"
 
 
-def test_artifact_report_cli_defaults_to_current_release(tmp_path, capsys):
+def test_artifact_report_cli_without_release_reports_all_scopes(tmp_path, capsys):
     from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 
     store = CorpusArtifactStore(tmp_path / "corpus")
@@ -2850,23 +2778,6 @@ def test_artifact_report_cli_defaults_to_current_release(tmp_path, capsys):
         store.inventory_path("us-ny", "policy", "2026-04-30"),
         [SourceInventoryItem(citation_path="us-ny/policy/doc")],
     )
-    release_dir = store.root / "releases"
-    release_dir.mkdir(parents=True)
-    (release_dir / "current.json").write_text(
-        json.dumps(
-            {
-                "name": "current",
-                "scopes": [
-                    {
-                        "jurisdiction": "us-co",
-                        "document_class": "policy",
-                        "version": "2026-04-30",
-                    }
-                ],
-            }
-        )
-    )
-
     exit_code = main(
         [
             "artifact-report",
@@ -2879,9 +2790,8 @@ def test_artifact_report_cli_defaults_to_current_release(tmp_path, capsys):
     payload = json.loads(capsys.readouterr().out)
 
     assert exit_code == 0
-    assert payload["release"] == "current"
-    assert payload["scope_count"] == 1
-    assert payload["rows"][0]["jurisdiction"] == "us-co"
+    assert "release" not in payload
+    assert payload["scope_count"] == 2
 
     exit_code = main(
         [
@@ -2898,85 +2808,6 @@ def test_artifact_report_cli_defaults_to_current_release(tmp_path, capsys):
     assert exit_code == 0
     assert "release" not in payload
     assert payload["scope_count"] == 2
-
-
-def test_release_artifact_manifest_cli_writes_digest_manifest(tmp_path, capsys):
-    from axiom_corpus.corpus.artifacts import CorpusArtifactStore
-
-    store = CorpusArtifactStore(tmp_path / "corpus")
-    source = store.source_path("us-co", "policy", "2026-04-30", "source.html")
-    source_sha = store.write_text(source, "<p>Text.</p>")
-    store.write_inventory(
-        store.inventory_path("us-co", "policy", "2026-04-30"),
-        [
-            SourceInventoryItem(
-                citation_path="us-co/policy/doc",
-                source_path=source.relative_to(store.root).as_posix(),
-                sha256=source_sha,
-            )
-        ],
-    )
-    store.write_provisions(
-        store.provisions_path("us-co", "policy", "2026-04-30"),
-        [
-            ProvisionRecord(
-                jurisdiction="us-co",
-                document_class="policy",
-                citation_path="us-co/policy/doc",
-                version="2026-04-30",
-                body="Text.",
-                source_as_of="2026-04-30",
-                expression_date="2026-04-30",
-            )
-        ],
-    )
-    store.write_json(
-        store.coverage_path("us-co", "policy", "2026-04-30"),
-        {
-            "complete": True,
-            "source_count": 1,
-            "provision_count": 1,
-            "matched_count": 1,
-            "missing_from_provisions": [],
-            "extra_provisions": [],
-        },
-    )
-    release_dir = store.root / "releases"
-    release_dir.mkdir(parents=True)
-    (release_dir / "current.json").write_text(
-        json.dumps(
-            {
-                "name": "current",
-                "scopes": [
-                    {
-                        "jurisdiction": "us-co",
-                        "document_class": "policy",
-                        "version": "2026-04-30",
-                    }
-                ],
-            }
-        )
-    )
-    output = store.root / "releases" / "current-artifacts.json"
-
-    exit_code = main(
-        [
-            "release-artifact-manifest",
-            "--base",
-            str(store.root),
-            "--release",
-            "current",
-            "--output",
-            str(output),
-        ]
-    )
-    payload = json.loads(capsys.readouterr().out)
-    written = json.loads(output.read_text())
-
-    assert exit_code == 0
-    assert payload["artifact_count"] == 4
-    assert payload["written_to"] == str(output)
-    assert written["artifacts"][0]["sha256"]
 
 
 def test_validate_release_cli_gates_release(tmp_path, capsys):
@@ -3004,6 +2835,7 @@ def test_validate_release_cli_gates_release(tmp_path, capsys):
                 citation_path="us-co/policy/doc",
                 version="2026-04-30",
                 body="Text.",
+                source_path=source.relative_to(store.root).as_posix(),
                 source_as_of="2026-04-30",
                 expression_date="2026-04-30",
             )
@@ -3022,10 +2854,11 @@ def test_validate_release_cli_gates_release(tmp_path, capsys):
     )
     release_dir = store.root / "releases"
     release_dir.mkdir(parents=True)
-    (release_dir / "current.json").write_text(
+    release_path = release_dir / "test-release-v1.json"
+    release_path.write_text(
         json.dumps(
             {
-                "name": "current",
+                "name": "test-release-v1",
                 "scopes": [
                     {
                         "jurisdiction": "us-co",
@@ -3037,7 +2870,9 @@ def test_validate_release_cli_gates_release(tmp_path, capsys):
         )
     )
 
-    exit_code = main(["validate-release", "--base", str(store.root), "--release", "current"])
+    exit_code = main(
+        ["validate-release", "--base", str(store.root), "--release", str(release_path)]
+    )
     payload = json.loads(capsys.readouterr().out)
 
     assert exit_code == 0

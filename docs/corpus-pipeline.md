@@ -40,7 +40,8 @@ provisions/{jurisdiction}/{document_class}/{version}.jsonl
 coverage/{jurisdiction}/{document_class}/{version}.json
 exports/{format}/{jurisdiction}/{document_class}/{version}/...
 analytics/{version}.json
-releases/{release}.artifacts.json
+objects/sha256/{prefix}/{artifact_sha256}
+releases/{release}/{release_content_sha256}.json
 ```
 
 R2 should hold official source snapshots, source inventories, normalized
@@ -80,20 +81,23 @@ axiom-corpus-ingest artifact-report \
   --output data/corpus/analytics/artifact-report-2026-04-30.json
 ```
 
-Named releases resolve to `data/corpus/releases/<name>.json` first, then the
-tracked `manifests/releases/<name>.json`. Unscoped reports auto-use the
-`current` release when it exists, so production dashboards exclude old probes
-and superseded source snapshots by default. Use `--release <name>` for a
-specific release, or `--all-scopes` for an exhaustive diagnostic report.
+Bare named selector plans resolve only to the tracked
+`manifests/releases/<name>.json`; callers may instead pass that explicit path.
+Selectors must use an immutable name and `current` is reserved. Use
+`--release <name>` for a selected diagnostic report or `--all-scopes` for an
+exhaustive report. Production selection comes only from the signed database
+pointer.
 
-Release publication should also write an immutable artifact manifest with exact
-keys, sizes, and SHA-256 digests:
+The publication controller accepts only the canonical selector in a clean,
+fully committed checkout. It creates the only authoritative release object
+after exact source-reference validation, conditional content-addressed R2
+writes and readback, and comparison of canonical provision/navigation
+projection digests against direct database evidence:
 
 ```bash
-axiom-corpus-ingest release-artifact-manifest \
-  --base data/corpus \
-  --release current \
-  --output data/corpus/releases/current.artifacts.json
+python scripts/publish_corpus.py \
+  --release manifests/releases/nz-rulespec-2026-07-10.json \
+  --dry-run
 ```
 
 Before promoting or publishing a release, validate the release against local
@@ -103,10 +107,18 @@ and basic provision invariants:
 ```bash
 axiom-corpus-ingest validate-release \
   --base data/corpus \
-  --release current \
+  --release nz-rulespec-2026-07-10 \
   --supabase-counts data/corpus/snapshots/provision-counts-2026-05-02.json \
   --include-r2
 ```
+
+That command is a diagnostic preflight. Optional count snapshots do not
+authorize publication. The protected publisher signs the complete artifact
+inventory, including every referenced source file, and requires live exact
+row counts and projection digests before signing and again during activation.
+
+See `docs/named-release-publication.md` for the signing and transactional
+activation contract.
 
 ## Federal eCFR
 
@@ -260,16 +272,17 @@ smoke runs or targeted rebuilds. Supported state statute adapters are
 The `nebraska-revised-statutes` adapter snapshots the official Nebraska
 Legislature statute index, chapter TOCs, and per-section HTML pages. Its
 manifest entry can fetch live official sources or rebuild from a saved
-`source_dir`; do not add the Nebraska release scope to `current` until a full
-run has completed, coverage validates, and the artifacts are published.
+`source_dir`; do not add the Nebraska scope to an immutable named selector
+until a full run has completed, coverage validates, and its source references
+and artifacts are ready for publication.
 
 `local-state-html` snapshots cached official HTML files and converts them into
 the same source-first inventory, provision JSONL, and coverage artifacts as the
 other adapters. Treat the checked-in
 `manifests/state-statutes.local-html-smoke.yaml` manifest as a migration smoke
 path only: its cached directories are not presumed to be complete official
-state-code releases, so they should not be added to `current` until source
-completeness has been separately established.
+state-code releases, so they should not be added to an immutable named selector
+until source completeness has been separately established.
 
 Use `state-statute-completion` for the production completion view across all
 50 states plus DC. The report compares expected jurisdictions against the
@@ -290,20 +303,24 @@ The queue separates validated states, release-repair states, and states that
 are ready for one-agent-per-jurisdiction source-first adapter work.
 
 ```bash
+export RELEASE_SELECTOR=manifests/releases/immutable-release-name.json
 axiom-corpus-ingest state-statute-completion \
   --base data/corpus \
-  --release current \
+  --release "$RELEASE_SELECTOR" \
   --supabase-counts data/corpus/snapshots/provision-counts-2026-05-10.json \
   --include-r2 \
   --output data/corpus/analytics/state-statute-completion-current.json
 
 axiom-corpus-ingest regulation-completion \
   --base data/corpus \
-  --release current \
+  --release "$RELEASE_SELECTOR" \
   --supabase-counts data/corpus/snapshots/provision-counts-2026-05-10.json \
   --include-r2 \
   --output data/corpus/analytics/regulation-completion-current.json
 ```
+
+Replace `immutable-release-name` with the exact named selector being audited;
+completion reports never resolve a mutable release alias.
 
 Primary SNAP policy documents that are not codified in CCR can be ingested from
 an explicit official-document manifest. This is for primary sources such as
@@ -335,14 +352,16 @@ axiom-corpus-ingest coverage \
 
 ## Supabase
 
-Supabase is current derived/indexed state, not the durable historical corpus.
-R2 artifacts and release artifact manifests are the source of truth for
-historical versions. Supabase rows are keyed for the current searchable corpus,
-so loading a newer provision with the same citation path updates that current
-index rather than preserving side-by-side historical versions.
+Supabase stores versioned provision and navigation projections for immutable
+named releases. R2 artifacts and signed release objects remain the durable
+content boundary; the singleton production pointer selects which exact signed
+scope memberships the public current views expose. Historical release objects
+remain readable after the pointer moves, and rows belonging to any signed scope
+cannot be inserted, updated, or deleted.
 
 The ingestion importer maps normalized provision JSONL into
-`corpus.provisions`, then refreshes `corpus.provision_counts`.
+`corpus.provisions`. Direct loading is staging only: it does not publish a scope
+or move the production pointer.
 
 The exact row projection is generated with:
 
@@ -369,6 +388,9 @@ SUPABASE_SERVICE_ROLE_KEY=... axiom-corpus-ingest load-supabase \
 If `SUPABASE_SERVICE_ROLE_KEY` is not set, the loader can retrieve it through
 the Supabase Management API using `SUPABASE_ACCESS_TOKEN`. Use `--dry-run` to
 validate row counts and projection without credentials or network writes.
+The service role can stage rows and read pre-sign evidence, but it cannot call
+`corpus.activate_corpus_release`; activation requires the separate Management
+API query path after local Ed25519 verification.
 
 Production count analytics are document-class aware:
 
