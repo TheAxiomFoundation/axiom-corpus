@@ -159,9 +159,9 @@ def build_release_content(
         artifacts.extend(scope_entries)
 
     git = _git_provenance(root)
+    if git is None:
+        raise ReleaseManifestError("release publication requires an exact git checkout identity")
     if created_at is None:
-        if git is None:
-            raise ReleaseManifestError("created_at is required when git commit time is unavailable")
         created_at = git["committed_at"]
 
     return {
@@ -169,7 +169,7 @@ def build_release_content(
         "created_at": created_at,
         "selector_sha256": selector_sha256(release),
         "corpus_base": base,
-        "git": git or {},
+        "git": git,
         "r2": {"bucket": bucket, "addressing": "sha256"},
         "scopes": scopes,
         "artifacts": sorted(artifacts, key=lambda entry: str(entry["path"])),
@@ -292,7 +292,14 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
     if not isinstance(content.get("created_at"), str) or not content["created_at"]:
         raise ReleaseManifestError("release object has an invalid creation time")
     git = content.get("git")
-    if not isinstance(git, dict) or set(git) not in (set(), {"commit", "committed_at"}):
+    if not isinstance(git, dict) or set(git) != {"commit", "committed_at"}:
+        raise ReleaseManifestError("release object has invalid git provenance")
+    if (
+        not isinstance(git.get("commit"), str)
+        or re.fullmatch(r"[0-9a-f]{40}", git["commit"]) is None
+        or not isinstance(git.get("committed_at"), str)
+        or not git["committed_at"]
+    ):
         raise ReleaseManifestError("release object has invalid git provenance")
     expected_digest = release_content_sha256(content)
     if payload.get("content_sha256") != expected_digest:
@@ -410,7 +417,12 @@ def _validate_artifact_entries(artifacts: Sequence[Any], *, bucket: str) -> None
         expected_fields = required_fields | ({"rows"} if artifact_class == "provisions" else set())
         if set(raw) != expected_fields:
             raise ReleaseManifestError("release artifact does not match the v2 schema")
-        if not isinstance(path, str) or not path.startswith("data/corpus/"):
+        if (
+            not isinstance(path, str)
+            or not path.startswith("data/corpus/")
+            or "\\" in path
+            or any(part in {"", ".", ".."} for part in path.split("/"))
+        ):
             raise ReleaseManifestError("release artifact path is not canonical")
         expected_prefix = f"data/corpus/{artifact_class}/"
         if not path.startswith(expected_prefix):

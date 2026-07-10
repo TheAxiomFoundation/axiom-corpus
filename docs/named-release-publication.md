@@ -8,7 +8,8 @@ changes only through one immutable named-release publication boundary.
 A tracked file under `manifests/releases/<name>.json` is a cut plan, not a
 published release. It must have an explicit immutable name and exact
 `jurisdiction × document_class × version` scopes. The name `current` is
-reserved and rejected.
+reserved and rejected. Names are at most 128 characters and contain only
+lowercase alphanumeric segments separated by single hyphens.
 
 The publication controller derives a release object containing:
 
@@ -18,6 +19,10 @@ The publication controller derives a release object containing:
 - exact provision and derived navigation rows for every scope;
 - local deep-validation, R2 readback, and Supabase count attestations; and
 - an Ed25519 signature verifiable with `AXIOM_CORPUS_RELEASE_PUBLIC_KEY`.
+
+Publication requires an exact Git checkout identity even when the caller
+supplies an explicit creation timestamp; a timestamp never substitutes for
+source provenance.
 
 The release object's `content_sha256` addresses its signed content. R2 stores
 it at `releases/<name>/<content_sha256>.json`. Reusing a name for different

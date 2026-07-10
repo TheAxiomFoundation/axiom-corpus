@@ -90,7 +90,10 @@ def _content(tmp_path: Path) -> dict:
         "created_at": "2026-07-10T00:00:00Z",
         "selector_sha256": selector_sha256(release),
         "corpus_base": "data/corpus",
-        "git": {},
+        "git": {
+            "commit": "a" * 40,
+            "committed_at": "2026-07-10T00:00:00Z",
+        },
         "r2": {"bucket": "axiom-corpus", "addressing": "sha256"},
         "scopes": [
             {

@@ -130,6 +130,12 @@ def test_release_selector_rejects_invalid_top_level_and_name(tmp_path):
 
     with pytest.raises(ValueError, match="Release names must"):
         ReleaseManifest(name="NZ V1", scopes=())
+    with pytest.raises(ValueError, match="Release names must"):
+        ReleaseManifest(name="nz.rulespec", scopes=())
+    with pytest.raises(ValueError, match="Release names must"):
+        ReleaseManifest(name="nz_rulespec", scopes=())
+    with pytest.raises(ValueError, match="Release names must"):
+        ReleaseManifest(name="nz--rulespec", scopes=())
 
 
 def test_release_selector_loader_rejects_missing_non_object_and_bad_scopes(tmp_path):
@@ -151,9 +157,7 @@ def test_release_selector_loader_rejects_missing_non_object_and_bad_scopes(tmp_p
         json.dumps(
             {
                 "name": "nz-v1",
-                "scopes": [
-                    {"jurisdiction": "nz", "document_class": "bogus", "version": "v1"}
-                ],
+                "scopes": [{"jurisdiction": "nz", "document_class": "bogus", "version": "v1"}],
             }
         )
     )
@@ -165,9 +169,7 @@ def test_release_selector_loader_rejects_missing_non_object_and_bad_scopes(tmp_p
         json.dumps(
             {
                 "name": "nz-v1",
-                "scopes": [
-                    {"jurisdiction": "nz", "document_class": "statute", "version": ""}
-                ],
+                "scopes": [{"jurisdiction": "nz", "document_class": "statute", "version": ""}],
             }
         )
     )

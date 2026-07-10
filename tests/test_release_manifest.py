@@ -98,6 +98,26 @@ def _release_tree(
         name=name,
         scopes=(ReleaseScope("nz", "statute", version),),
     )
+    subprocess.run(["git", "init", "-q", str(root)], check=True)
+    subprocess.run(["git", "-C", str(root), "config", "user.name", "Test"], check=True)
+    subprocess.run(
+        ["git", "-C", str(root), "config", "user.email", "test@example.com"],
+        check=True,
+    )
+    subprocess.run(["git", "-C", str(root), "add", "."], check=True)
+    subprocess.run(
+        [
+            "git",
+            "-C",
+            str(root),
+            "-c",
+            "commit.gpgsign=false",
+            "commit",
+            "-qm",
+            "fixture",
+        ],
+        check=True,
+    )
     return root, release
 
 
@@ -364,9 +384,7 @@ def test_release_object_rejects_malformed_v2_variants(
     elif case == "artifact_class_path":
         payload["content"]["artifacts"][0]["artifact_class"] = "inventory"
     elif case == "artifact_duplicate":
-        payload["content"]["artifacts"].append(
-            copy.deepcopy(payload["content"]["artifacts"][0])
-        )
+        payload["content"]["artifacts"].append(copy.deepcopy(payload["content"]["artifacts"][0]))
     elif case == "artifact_sha":
         payload["content"]["artifacts"][0]["sha256"] = "bad"
     elif case == "artifact_key":
@@ -466,10 +484,14 @@ def test_release_object_supports_ed25519_pem_and_rejects_other_pem_keys(tmp_path
         serialization.PrivateFormat.PKCS8,
         serialization.NoEncryption(),
     ).decode()
-    public_pem = private.public_key().public_bytes(
-        serialization.Encoding.PEM,
-        serialization.PublicFormat.SubjectPublicKeyInfo,
-    ).decode()
+    public_pem = (
+        private.public_key()
+        .public_bytes(
+            serialization.Encoding.PEM,
+            serialization.PublicFormat.SubjectPublicKeyInfo,
+        )
+        .decode()
+    )
 
     signed = sign_release_object(payload, private_key=private_pem)
     verify_release_object(signed, public_key=public_pem)
@@ -485,10 +507,14 @@ def test_release_object_supports_ed25519_pem_and_rejects_other_pem_keys(tmp_path
         serialization.PrivateFormat.PKCS8,
         serialization.NoEncryption(),
     ).decode()
-    rsa_public_pem = rsa_private.public_key().public_bytes(
-        serialization.Encoding.PEM,
-        serialization.PublicFormat.SubjectPublicKeyInfo,
-    ).decode()
+    rsa_public_pem = (
+        rsa_private.public_key()
+        .public_bytes(
+            serialization.Encoding.PEM,
+            serialization.PublicFormat.SubjectPublicKeyInfo,
+        )
+        .decode()
+    )
     with pytest.raises(ReleaseManifestError, match="private key must be Ed25519"):
         sign_release_object(payload, private_key=rsa_private_pem)
     with pytest.raises(ReleaseManifestError, match="public key must be Ed25519"):
@@ -609,19 +635,27 @@ def test_release_content_rejects_invalid_build_boundaries(tmp_path: Path, monkey
             created_at="2026-07-10T00:00:00Z",
         )
 
-    # A production build without an explicit timestamp requires real git
-    # provenance; a detached temporary artifact tree cannot invent it.
+    # Every production build requires real git provenance; an explicit
+    # timestamp cannot substitute for checkout identity.
     provisions.write_text('{"body":"restored"}\n')
     monkeypatch.setattr("axiom_corpus.release.manifest._git_provenance", lambda path: None)
-    with pytest.raises(ReleaseManifestError, match="created_at is required"):
+    with pytest.raises(ReleaseManifestError, match="git checkout identity"):
         build_release_content(root, release=release, validation={"passed": True})
+    with pytest.raises(ReleaseManifestError, match="git checkout identity"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
     monkeypatch.setattr(
         "axiom_corpus.release.manifest._git_provenance",
         lambda path: {"commit": "a" * 40, "committed_at": "2026-07-10T00:00:00Z"},
     )
-    assert build_release_content(root, release=release, validation={"passed": True})[
-        "created_at"
-    ] == "2026-07-10T00:00:00Z"
+    assert (
+        build_release_content(root, release=release, validation={"passed": True})["created_at"]
+        == "2026-07-10T00:00:00Z"
+    )
 
 
 def test_release_content_rejects_escaping_corpus_symlink(tmp_path: Path) -> None:
@@ -775,6 +809,25 @@ def test_signature_rejects_noncanonical_scope_identity(tmp_path: Path) -> None:
     private, _ = _keys()
 
     with pytest.raises(ReleaseManifestError, match="invalid identity field"):
+        sign_release_object(build_unsigned_release_object(content), private_key=private)
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "data/corpus/sources/nz/statute/v1/../escape.html",
+        "data/corpus/sources/nz/statute/v1\\escape.html",
+        "data/corpus/sources/nz//statute/v1/escape.html",
+    ],
+)
+def test_signature_rejects_noncanonical_artifact_paths(tmp_path: Path, path: str) -> None:
+    content = _valid_content(tmp_path)
+    content["artifacts"][-1]["path"] = path
+    content["artifacts"].sort(key=lambda entry: entry["path"])
+    content["validation"] = _validation_for(content)
+    private, _ = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="path is not canonical"):
         sign_release_object(build_unsigned_release_object(content), private_key=private)
 
 

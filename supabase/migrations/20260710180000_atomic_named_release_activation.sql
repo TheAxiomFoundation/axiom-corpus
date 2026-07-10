@@ -38,7 +38,10 @@ CREATE TABLE IF NOT EXISTS corpus.release_objects (
     CHECK (content_sha256 ~ '^[0-9a-f]{64}$'),
   release_object jsonb NOT NULL,
   created_at timestamptz NOT NULL DEFAULT now(),
-  CHECK (release_name <> 'current'),
+  CHECK (
+    char_length(release_name) <= 128
+    AND release_name ~ '^[a-z0-9]+(-[a-z0-9]+)*$'
+  ),
   UNIQUE (release_name, content_sha256)
 );
 
@@ -97,7 +100,10 @@ ALTER TABLE corpus.release_scopes DROP COLUMN IF EXISTS active;
 ALTER TABLE corpus.release_scopes
   DROP CONSTRAINT IF EXISTS release_scopes_named_release_only;
 ALTER TABLE corpus.release_scopes
-  ADD CONSTRAINT release_scopes_named_release_only CHECK (release_name <> 'current');
+  ADD CONSTRAINT release_scopes_named_release_only CHECK (
+    char_length(release_name) <= 128
+    AND release_name ~ '^[a-z0-9]+(-[a-z0-9]+)*$'
+  );
 
 CREATE POLICY release_scopes_anon_read
   ON corpus.release_scopes
@@ -272,8 +278,8 @@ BEGIN
   v_release_name := p_release_object ->> 'release';
   v_content_sha := p_release_object ->> 'content_sha256';
   IF v_release_name IS NULL
-     OR v_release_name = 'current'
-     OR v_release_name !~ '^[a-z0-9][a-z0-9.-]{0,127}$' THEN
+     OR char_length(v_release_name) > 128
+     OR v_release_name !~ '^[a-z0-9]+(-[a-z0-9]+)*$' THEN
     RAISE EXCEPTION 'invalid immutable corpus release name: %', v_release_name;
   END IF;
   IF v_content_sha IS NULL OR v_content_sha !~ '^[0-9a-f]{64}$' THEN
@@ -313,6 +319,14 @@ BEGIN
   ) <> v_scope_count THEN
     RAISE EXCEPTION 'corpus release contains duplicate scopes';
   END IF;
+
+  -- Freeze the staged base tables from the first exact count through release
+  -- membership insertion and pointer movement. Concurrent writers wait; once
+  -- this transaction commits, the immutable-scope triggers reject their rows.
+  -- Without these locks, a writer could commit after the counts but before it
+  -- could observe the new signed membership.
+  LOCK TABLE corpus.provisions IN SHARE MODE;
+  LOCK TABLE corpus.navigation_nodes IN SHARE MODE;
 
   -- Recheck exact staged counts inside the activation transaction. A mismatch
   -- prevents both release-object insertion and pointer movement.

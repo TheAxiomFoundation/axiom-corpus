@@ -10,7 +10,7 @@ def test_migration_installs_immutable_release_object_and_single_pointer() -> Non
     assert "content_sha256 text NOT NULL UNIQUE" in sql
     assert "CREATE TABLE IF NOT EXISTS corpus.active_release_pointer" in sql
     assert "pointer_name text PRIMARY KEY CHECK (pointer_name = 'production')" in sql
-    assert "CHECK (release_name <> 'current')" in sql
+    assert "release_name ~ '^[a-z0-9]+(-[a-z0-9]+)*$'" in sql
     assert "CREATE POLICY release_objects_public_read" in sql
     assert "FOR SELECT TO anon, authenticated\n  USING (true)" in sql
 
@@ -28,6 +28,8 @@ def test_activation_rechecks_counts_before_pointer_and_refreshes_transactionally
     sql = MIGRATION.read_text()
 
     function = sql[sql.index("CREATE OR REPLACE FUNCTION corpus.activate_corpus_release") :]
+    provision_lock_index = function.index("LOCK TABLE corpus.provisions IN SHARE MODE")
+    navigation_lock_index = function.index("LOCK TABLE corpus.navigation_nodes IN SHARE MODE")
     count_index = function.index("SELECT COUNT(*)::bigint INTO actual_rows")
     navigation_count_index = function.index("SELECT COUNT(*)::bigint INTO actual_navigation_rows")
     object_index = function.index("INSERT INTO corpus.release_objects")
@@ -36,7 +38,9 @@ def test_activation_rechecks_counts_before_pointer_and_refreshes_transactionally
     return_index = function.index("RETURN jsonb_build_object")
 
     assert (
-        count_index
+        provision_lock_index
+        < navigation_lock_index
+        < count_index
         < navigation_count_index
         < object_index
         < pointer_index
@@ -46,6 +50,17 @@ def test_activation_rechecks_counts_before_pointer_and_refreshes_transactionally
     assert "actual_rows <> expected_rows" in function
     assert "actual_navigation_rows <> expected_navigation_rows" in function
     assert "RAISE EXCEPTION" in function
+
+
+def test_activation_freezes_staged_rows_until_signed_membership_is_visible() -> None:
+    sql = MIGRATION.read_text()
+    function = sql[sql.index("CREATE OR REPLACE FUNCTION corpus.activate_corpus_release") :]
+
+    assert "LOCK TABLE corpus.provisions IN SHARE MODE" in function
+    assert "LOCK TABLE corpus.navigation_nodes IN SHARE MODE" in function
+    assert function.index("LOCK TABLE corpus.provisions IN SHARE MODE") < function.index(
+        "INSERT INTO corpus.release_scopes"
+    )
 
 
 def test_versioned_citations_can_coexist_for_named_releases() -> None:

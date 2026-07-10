@@ -12,7 +12,7 @@ from typing import Any
 from axiom_corpus.corpus.models import DocumentClass
 
 ScopeKey = tuple[str, str, str]
-_RELEASE_NAME_RE = re.compile(r"^[a-z0-9][a-z0-9.-]{0,127}$")
+_RELEASE_NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 _SCOPE_COMPONENT_RE = re.compile(r"^[a-z0-9][a-z0-9._-]{0,255}$")
 _RESERVED_RELEASE_NAMES = {"current"}
 
@@ -67,7 +67,9 @@ class ReleaseManifest:
         description = str(description_value) if description_value is not None else None
         raw_scopes = data.get("scopes")
         if not isinstance(raw_scopes, list) or not raw_scopes:
-            raise ValueError(f"Release manifest {manifest_path} must contain a non-empty scopes list")
+            raise ValueError(
+                f"Release manifest {manifest_path} must contain a non-empty scopes list"
+            )
         scopes = tuple(_parse_scope(scope, manifest_path=manifest_path) for scope in raw_scopes)
         _require_unique_scopes(scopes, manifest_path=manifest_path)
         return cls(name=name, description=description, scopes=scopes)
@@ -95,10 +97,10 @@ def validate_release_name(name: str) -> str:
     """Validate one immutable release name and reject mutable aliases."""
     if name in _RESERVED_RELEASE_NAMES:
         raise ValueError(f"Release name {name!r} is reserved; use a new immutable named release")
-    if not _RELEASE_NAME_RE.fullmatch(name):
+    if len(name) > 128 or not _RELEASE_NAME_RE.fullmatch(name):
         raise ValueError(
-            "Release names must start with a lowercase letter or digit and contain "
-            "only lowercase letters, digits, dots, or hyphens"
+            "Release names must be at most 128 characters and contain lowercase "
+            "alphanumeric segments separated by single hyphens"
         )
     return name
 
