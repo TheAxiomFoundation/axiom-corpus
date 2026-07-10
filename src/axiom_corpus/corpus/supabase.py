@@ -17,7 +17,8 @@ from typing import TextIO
 from uuid import NAMESPACE_URL, UUID, uuid5
 
 from axiom_corpus.corpus.models import ProvisionRecord
-from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
+from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope, validate_release_name
+from axiom_corpus.release.manifest import verify_release_object
 
 DEFAULT_AXIOM_SUPABASE_URL = "https://swocpijqqahhuwtuahwc.supabase.co"
 DEFAULT_SERVICE_KEY_ENV = "SUPABASE_SERVICE_ROLE_KEY"
@@ -25,6 +26,7 @@ DEFAULT_ACCESS_TOKEN_ENV = "SUPABASE_ACCESS_TOKEN"
 USER_AGENT = "axiom-corpus/0.1"
 POSTGRES_INT32_MIN = -(2**31)
 POSTGRES_INT32_MAX = 2**31 - 1
+_SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 SUPABASE_PROVISIONS_COLUMNS = (
     "id",
@@ -67,9 +69,19 @@ class SupabaseLoadReport:
 
 
 @dataclass(frozen=True)
-class StagedScopeCounts:
+class StagedScopeEvidence:
     provision_rows: int
     navigation_rows: int
+    provision_projection_sha256: str
+    navigation_projection_sha256: str
+
+
+@dataclass(frozen=True)
+class ReleasedScopeObject:
+    scope_key: tuple[str, str, str]
+    release_name: str
+    content_sha256: str
+    release_object: Mapping[str, object]
 
 
 @dataclass(frozen=True)
@@ -291,11 +303,13 @@ _ISO_DATE_PREFIX_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
 def _coerce_date_column_value(value: object) -> tuple[object, str | None]:
     """Return (postgres-safe date value, original-if-coerced).
 
-    Valid ISO dates/timestamps pass through unchanged. A value whose leading
-    ``YYYY-MM-DD`` is a real calendar date but which carries trailing non-date
-    text (the version-slug ingest bug) is truncated to that date prefix.
-    Anything else non-empty becomes ``None``. The second tuple element is the
-    original string when a coercion happened (for provenance), else ``None``.
+    Bare ISO dates are already canonical. Valid ISO timestamps and values whose
+    leading ``YYYY-MM-DD`` is a real calendar date are reduced to that exact
+    date before the REST upsert. This makes the signed Python projection match
+    the stored PostgreSQL DATE text instead of relying on an implicit server
+    cast. Anything else non-empty becomes ``None``. The second tuple element is
+    the original string when a coercion happened (for provenance), else
+    ``None``.
     """
     if value is None or not isinstance(value, str):
         return value, None
@@ -305,13 +319,13 @@ def _coerce_date_column_value(value: object) -> tuple[object, str | None]:
     # Already a value Postgres accepts for a date column (bare date or a full
     # ISO timestamp it will cast down to the date) — leave untouched.
     try:
-        date.fromisoformat(raw)
-        return raw, None
+        canonical_date = date.fromisoformat(raw).isoformat()
+        return canonical_date, None
     except ValueError:
         pass
     try:
-        datetime.fromisoformat(raw)
-        return raw, None
+        canonical_date = datetime.fromisoformat(raw).date().isoformat()
+        return canonical_date, raw
     except ValueError:
         pass
     match = _ISO_DATE_PREFIX_RE.match(raw)
@@ -339,6 +353,13 @@ def _uuid_or_none(value: str | None) -> str | None:
         return None
 
 
+def _required_uuid(value: object, *, field: str) -> str:
+    try:
+        return str(UUID(str(value)))
+    except (AttributeError, TypeError, ValueError) as exc:
+        raise ValueError(f"provision {field} must be a UUID: {value!r}") from exc
+
+
 def _sanitize_supabase_value(value: object) -> object:
     """Remove characters Postgres cannot store from text/jsonb values."""
     if isinstance(value, str):
@@ -361,15 +382,20 @@ def provision_to_supabase_row(
     """Project a normalized provision record into the `corpus.provisions` shape."""
     version = _normalize_version(record.version)
     legacy_provision_id = deterministic_provision_id(record.citation_path)
+    explicit_provision_id = _required_uuid(record.id, field="id") if record.id is not None else None
     if (
         versioned_ids
         and version is not None
-        and (record.id is None or record.id == legacy_provision_id)
+        and (explicit_provision_id is None or explicit_provision_id == legacy_provision_id)
     ):
         provision_id = deterministic_provision_id(record.citation_path, version)
     else:
-        provision_id = record.id or legacy_provision_id
-    parent_id = record.parent_id
+        provision_id = explicit_provision_id or legacy_provision_id
+    parent_id = (
+        _required_uuid(record.parent_id, field="parent_id")
+        if record.parent_id is not None
+        else None
+    )
     if parent_id is None and record.parent_citation_path:
         parent_id = deterministic_provision_id(
             record.parent_citation_path,
@@ -529,17 +555,17 @@ def fetch_release_provision_counts(
     )
 
 
-def fetch_staged_release_scope_counts(
+def fetch_staged_release_scope_evidence(
     release: ReleaseManifest,
     *,
     service_key: str,
     supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
-) -> dict[tuple[str, str, str], StagedScopeCounts]:
-    """Fetch direct, exact counts for every staged immutable release scope.
+) -> dict[tuple[str, str, str], StagedScopeEvidence]:
+    """Fetch exact counts and projection digests for every staged scope.
 
     There is intentionally no materialized-view or paged-client fallback. The
-    publication boundary requires the dedicated direct-count RPC; absence or
-    failure is fatal before the release object can be signed.
+    publication boundary requires the dedicated evidence RPC; absence or
+    failure is fatal before signing.
     """
     payload = {
         "p_scopes": [
@@ -552,7 +578,7 @@ def fetch_staged_release_scope_counts(
         ]
     }
     req = urllib.request.Request(
-        f"{_rest_url(supabase_url)}/rpc/get_staged_release_scope_counts",
+        f"{_rest_url(supabase_url)}/rpc/get_staged_release_scope_evidence",
         data=json.dumps(payload).encode("utf-8"),
         headers={
             "apikey": service_key,
@@ -568,18 +594,27 @@ def fetch_staged_release_scope_counts(
     with urllib.request.urlopen(req, timeout=600) as resp:
         rows = json.loads(resp.read())
     if not isinstance(rows, list):
-        raise RuntimeError("unexpected staged release-count response")
-    counts: dict[tuple[str, str, str], StagedScopeCounts] = {}
+        raise RuntimeError("unexpected staged release-evidence response")
+    evidence: dict[tuple[str, str, str], StagedScopeEvidence] = {}
+    expected_fields = {
+        "jurisdiction",
+        "document_class",
+        "version",
+        "provision_count",
+        "navigation_count",
+        "provision_projection_sha256",
+        "navigation_projection_sha256",
+    }
     for row in rows:
-        if not isinstance(row, dict):
-            raise RuntimeError("staged release-count response contains a non-object row")
+        if not isinstance(row, dict) or set(row) != expected_fields:
+            raise RuntimeError("staged release-evidence response contains a malformed row")
         key = (
             str(row.get("jurisdiction") or ""),
             str(row.get("document_class") or ""),
             str(row.get("version") or ""),
         )
-        if not all(key) or key in counts:
-            raise RuntimeError(f"invalid staged release-count identity: {key!r}")
+        if not all(key) or key in evidence:
+            raise RuntimeError(f"invalid staged release-evidence identity: {key!r}")
         raw_provision_count = row.get("provision_count")
         raw_navigation_count = row.get("navigation_count")
         if (
@@ -588,35 +623,53 @@ def fetch_staged_release_scope_counts(
             or not isinstance(raw_provision_count, int | str)
             or not isinstance(raw_navigation_count, int | str)
         ):
-            raise RuntimeError(f"invalid staged release count for {key!r}")
-        counts[key] = StagedScopeCounts(
+            raise RuntimeError(f"invalid staged release row count for {key!r}")
+        provision_digest = row.get("provision_projection_sha256")
+        navigation_digest = row.get("navigation_projection_sha256")
+        if (
+            not isinstance(provision_digest, str)
+            or _SHA256_RE.fullmatch(provision_digest) is None
+            or not isinstance(navigation_digest, str)
+            or _SHA256_RE.fullmatch(navigation_digest) is None
+        ):
+            raise RuntimeError(f"invalid staged release projection digest for {key!r}")
+        evidence[key] = StagedScopeEvidence(
             provision_rows=int(raw_provision_count),
             navigation_rows=int(raw_navigation_count),
+            provision_projection_sha256=provision_digest,
+            navigation_projection_sha256=navigation_digest,
         )
     expected_keys = set(release.scope_keys)
-    if set(counts) != expected_keys:
-        missing = sorted(expected_keys - set(counts))
-        extra = sorted(set(counts) - expected_keys)
+    if set(evidence) != expected_keys:
+        missing = sorted(expected_keys - set(evidence))
+        extra = sorted(set(evidence) - expected_keys)
         raise RuntimeError(
-            f"staged release-count scope mismatch; missing={missing!r}, extra={extra!r}"
+            f"staged release-evidence scope mismatch; missing={missing!r}, extra={extra!r}"
         )
-    return counts
+    return evidence
 
 
-def activate_corpus_release(
-    release_object: Mapping[str, object],
+def fetch_released_scope_objects(
+    release: ReleaseManifest,
     *,
     service_key: str,
     supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
-) -> dict[str, object]:
-    """Atomically install and activate one already-verified release object.
+) -> dict[tuple[str, str, str], tuple[ReleasedScopeObject, ...]]:
+    """Return prior signed objects that make requested scopes immutable."""
 
-    The database RPC repeats exact counts and refreshes current counts inside
-    the pointer transaction. Any HTTP/database/refresh failure propagates.
-    """
+    payload = {
+        "p_scopes": [
+            {
+                "jurisdiction": scope.jurisdiction,
+                "document_class": scope.document_class,
+                "version": scope.version,
+            }
+            for scope in release.scopes
+        ]
+    }
     req = urllib.request.Request(
-        f"{_rest_url(supabase_url)}/rpc/activate_corpus_release",
-        data=json.dumps({"p_release_object": release_object}).encode("utf-8"),
+        f"{_rest_url(supabase_url)}/rpc/get_released_scope_objects",
+        data=json.dumps(payload).encode("utf-8"),
         headers={
             "apikey": service_key,
             "Authorization": f"Bearer {service_key}",
@@ -629,7 +682,111 @@ def activate_corpus_release(
         method="POST",
     )
     with urllib.request.urlopen(req, timeout=600) as resp:
-        result = json.loads(resp.read())
+        rows = json.loads(resp.read())
+    if not isinstance(rows, list):
+        raise RuntimeError("unexpected released-scope response")
+
+    expected_keys = set(release.scope_keys)
+    grouped: dict[tuple[str, str, str], list[ReleasedScopeObject]] = {
+        key: [] for key in release.scope_keys
+    }
+    seen: set[tuple[tuple[str, str, str], str]] = set()
+    expected_fields = {
+        "jurisdiction",
+        "document_class",
+        "version",
+        "release_name",
+        "content_sha256",
+        "release_object",
+    }
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != expected_fields:
+            raise RuntimeError("released-scope response contains a malformed row")
+        key = (
+            str(row.get("jurisdiction") or ""),
+            str(row.get("document_class") or ""),
+            str(row.get("version") or ""),
+        )
+        if key not in expected_keys:
+            raise RuntimeError(f"released-scope response contains an unknown scope: {key!r}")
+        raw_name = row.get("release_name")
+        try:
+            release_name = validate_release_name(raw_name) if isinstance(raw_name, str) else ""
+        except ValueError as exc:
+            raise RuntimeError("released-scope response has an invalid release name") from exc
+        if not release_name:
+            raise RuntimeError("released-scope response has an invalid release name")
+        content_sha256 = row.get("content_sha256")
+        release_object = row.get("release_object")
+        if (
+            not isinstance(content_sha256, str)
+            or _SHA256_RE.fullmatch(content_sha256) is None
+            or not isinstance(release_object, dict)
+            or release_object.get("release") != release_name
+            or release_object.get("content_sha256") != content_sha256
+        ):
+            raise RuntimeError("released-scope response has inconsistent object identity")
+        identity = (key, release_name)
+        if identity in seen:
+            raise RuntimeError(f"released-scope response contains a duplicate: {identity!r}")
+        seen.add(identity)
+        grouped[key].append(
+            ReleasedScopeObject(
+                scope_key=key,
+                release_name=release_name,
+                content_sha256=content_sha256,
+                release_object=release_object,
+            )
+        )
+    return {
+        key: tuple(sorted(objects, key=lambda item: item.release_name))
+        for key, objects in grouped.items()
+    }
+
+
+def activate_corpus_release(
+    release_object: Mapping[str, object],
+    *,
+    access_token: str,
+    public_key: str,
+    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+) -> dict[str, object]:
+    """Verify, install, and activate through the trusted management plane.
+
+    The staging service role is deliberately unable to invoke the activation
+    RPC. This wrapper verifies Ed25519 before using a separate Supabase
+    Management API credential to execute the count-and-pointer transaction.
+    """
+    verify_release_object(release_object, public_key=public_key)
+    project_ref = _project_ref_from_url(supabase_url)
+    query = "SELECT corpus.activate_corpus_release($1::jsonb) AS result"
+    req = urllib.request.Request(
+        f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
+        data=json.dumps(
+            {
+                "query": query,
+                "parameters": [json.dumps(release_object, sort_keys=True)],
+                "read_only": False,
+            }
+        ).encode("utf-8"),
+        headers={
+            "Authorization": f"Bearer {access_token}",
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "User-Agent": USER_AGENT,
+        },
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=600) as resp:
+        rows = json.loads(resp.read())
+    if (
+        not isinstance(rows, list)
+        or len(rows) != 1
+        or not isinstance(rows[0], dict)
+        or set(rows[0]) != {"result"}
+    ):
+        raise RuntimeError(f"unexpected corpus activation query response: {rows!r}")
+    result = rows[0]["result"]
     if not isinstance(result, dict) or result.get("active") is not True:
         raise RuntimeError(f"unexpected corpus activation response: {result!r}")
     if result.get("release") != release_object.get("release"):

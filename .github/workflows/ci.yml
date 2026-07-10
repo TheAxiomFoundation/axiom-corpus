@@ -151,6 +151,12 @@ jobs:
           print('Stats:', storage.get_stats())
           "
 
+      - name: Test atomic named-release migration in PostgreSQL
+        env:
+          DATABASE_URL: postgresql://test:test@localhost:5432/axiom_corpus_test
+        run: |
+          pytest -v tests/test_atomic_release_postgres.py
+
   verify-release-coverage:
     name: Verify release coverage
     # Skip on PRs:

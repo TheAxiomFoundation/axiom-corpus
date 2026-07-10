@@ -5,10 +5,11 @@ from __future__ import annotations
 import hashlib
 import json
 import mimetypes
-from collections.abc import Mapping
-from contextlib import closing
+from collections.abc import Iterator, Mapping
+from contextlib import closing, contextmanager
 from dataclasses import dataclass
 from pathlib import Path
+from tempfile import SpooledTemporaryFile
 from typing import Any
 
 from botocore.exceptions import ClientError
@@ -16,12 +17,20 @@ from botocore.exceptions import ClientError
 from axiom_corpus.corpus.r2 import R2Config, make_r2_client
 from axiom_corpus.release.manifest import (
     ReleaseManifestError,
+    canonical_corpus_artifact_file,
     content_addressed_r2_key,
     release_object_r2_key,
     serialize_release_object,
-    sha256_file,
     verify_release_object,
 )
+
+_CONDITIONAL_WRITE_CONFLICT_CODES = {
+    "409",
+    "412",
+    "ConditionalRequestConflict",
+    "PreconditionFailed",
+}
+_MAX_CONDITIONAL_WRITE_ATTEMPTS = 3
 
 
 @dataclass(frozen=True)
@@ -95,39 +104,40 @@ def stage_release_artifacts(
             )
         if raw_entry.get("r2_bucket") != config.bucket:
             raise ReleaseManifestError(f"release artifact uses the wrong R2 bucket: {path_value}")
-        path = (root / path_value).resolve()
-        try:
-            path.relative_to(root)
-        except ValueError as exc:
-            raise ReleaseManifestError(
-                f"release artifact escapes repository: {path_value}"
-            ) from exc
-        if not path.is_file():
-            raise ReleaseManifestError(f"release artifact is missing locally: {path_value}")
-        # Never upload bytes under a digest they do not actually have. Readback
-        # remains mandatory after upload, but this preflight prevents a bad
-        # local declaration from contaminating an otherwise immutable object
-        # key before the mismatch is noticed.
-        actual_bytes = path.stat().st_size
-        if actual_bytes != expected_bytes:
-            raise ReleaseManifestError(
-                f"local artifact byte count mismatch for {path_value}: "
-                f"expected {expected_bytes}, got {actual_bytes}"
-            )
-        actual_digest = sha256_file(path)
-        if actual_digest != digest:
-            raise ReleaseManifestError(
-                f"local artifact sha256 mismatch for {path_value}: "
-                f"expected {digest}, got {actual_digest}"
-            )
+        path = canonical_corpus_artifact_file(root, path_value)
+        with _snapshot_file(path) as (snapshot, actual_digest, actual_bytes):
+            # Hash, size, and upload all refer to this one immutable snapshot.
+            # In particular, the repository path is never reopened after the
+            # digest has been computed.
+            if actual_bytes != expected_bytes:
+                raise ReleaseManifestError(
+                    f"local artifact byte count mismatch for {path_value}: "
+                    f"expected {expected_bytes}, got {actual_bytes}"
+                )
+            if actual_digest != digest:
+                raise ReleaseManifestError(
+                    f"local artifact sha256 mismatch for {path_value}: "
+                    f"expected {digest}, got {actual_digest}"
+                )
 
-        remote = _read_object_or_none(r2, bucket=config.bucket, key=key)
-        if remote is None:
-            _upload_file(r2, bucket=config.bucket, key=key, path=path, sha256=digest)
-            uploaded += 1
-        else:
-            _verify_bytes(remote, sha256=digest, size=expected_bytes, label=key)
-            reused += 1
+            remote = _read_object_or_none(r2, bucket=config.bucket, key=key)
+            if remote is None:
+                was_uploaded = _put_snapshot_if_absent(
+                    r2,
+                    bucket=config.bucket,
+                    key=key,
+                    snapshot=snapshot,
+                    filename=path.name,
+                    sha256=digest,
+                    size=expected_bytes,
+                )
+                if was_uploaded:
+                    uploaded += 1
+                else:
+                    reused += 1
+            else:
+                _verify_bytes(remote, sha256=digest, size=expected_bytes, label=key)
+                reused += 1
 
         # Always read after the upload decision. Metadata, ETags, and upload
         # return values are not evidence that R2 persisted the expected bytes.
@@ -165,12 +175,12 @@ def stage_signed_release_object(
 
     existing = _read_object_or_none(r2, bucket=config.bucket, key=key)
     if existing is None:
-        r2.put_object(
-            Bucket=config.bucket,
-            Key=key,
-            Body=payload,
-            ContentType="application/json",
-            Metadata={"content-sha256": content_sha256},
+        _put_release_object_if_absent(
+            r2,
+            bucket=config.bucket,
+            key=key,
+            payload=payload,
+            content_sha256=content_sha256,
         )
     elif existing != payload:
         raise ReleaseManifestError(
@@ -192,12 +202,105 @@ def stage_signed_release_object(
     return key
 
 
-def _upload_file(client: Any, *, bucket: str, key: str, path: Path, sha256: str) -> None:
-    extra: dict[str, Any] = {"Metadata": {"sha256": sha256}}
-    content_type = mimetypes.guess_type(path.name)[0]
+@contextmanager
+def _snapshot_file(path: Path) -> Iterator[tuple[SpooledTemporaryFile[bytes], str, int]]:
+    with SpooledTemporaryFile(max_size=8 * 1024 * 1024, mode="w+b") as snapshot:
+        digest = hashlib.sha256()
+        size = 0
+        with path.open("rb") as source:
+            for chunk in iter(lambda: source.read(1024 * 1024), b""):
+                snapshot.write(chunk)
+                digest.update(chunk)
+                size += len(chunk)
+        snapshot.seek(0)
+        yield snapshot, digest.hexdigest(), size
+
+
+def _put_snapshot_if_absent(
+    client: Any,
+    *,
+    bucket: str,
+    key: str,
+    snapshot: SpooledTemporaryFile[bytes],
+    filename: str,
+    sha256: str,
+    size: int,
+) -> bool:
+    request: dict[str, Any] = {
+        "Bucket": bucket,
+        "Key": key,
+        "Body": snapshot,
+        "ContentLength": size,
+        "IfNoneMatch": "*",
+        "Metadata": {"sha256": sha256},
+    }
+    content_type = mimetypes.guess_type(filename)[0]
     if content_type:
-        extra["ContentType"] = content_type
-    client.upload_file(str(path), bucket, key, ExtraArgs=extra)
+        request["ContentType"] = content_type
+
+    for attempt in range(_MAX_CONDITIONAL_WRITE_ATTEMPTS):
+        snapshot.seek(0)
+        try:
+            client.put_object(**request)
+        except ClientError as exc:
+            if not _is_conditional_write_conflict(exc):
+                raise
+            remote = _read_object_or_none(client, bucket=bucket, key=key)
+            if remote is not None:
+                _verify_bytes(remote, sha256=sha256, size=size, label=key)
+                return False
+            if attempt + 1 == _MAX_CONDITIONAL_WRITE_ATTEMPTS:
+                raise ReleaseManifestError(
+                    f"R2 conditional write conflict did not converge: {key}"
+                ) from exc
+            continue
+        return True
+    raise AssertionError("conditional write loop must return or raise")
+
+
+def _put_release_object_if_absent(
+    client: Any,
+    *,
+    bucket: str,
+    key: str,
+    payload: bytes,
+    content_sha256: str,
+) -> None:
+    for attempt in range(_MAX_CONDITIONAL_WRITE_ATTEMPTS):
+        try:
+            client.put_object(
+                Bucket=bucket,
+                Key=key,
+                Body=payload,
+                ContentType="application/json",
+                ContentLength=len(payload),
+                IfNoneMatch="*",
+                Metadata={"content-sha256": content_sha256},
+            )
+        except ClientError as exc:
+            if not _is_conditional_write_conflict(exc):
+                raise
+            remote = _read_object_or_none(client, bucket=bucket, key=key)
+            if remote is not None:
+                if remote != payload:
+                    raise ReleaseManifestError(
+                        f"immutable release object already exists with different bytes: {key}"
+                    ) from exc
+                return
+            if attempt + 1 == _MAX_CONDITIONAL_WRITE_ATTEMPTS:
+                raise ReleaseManifestError(
+                    f"R2 conditional release-object write did not converge: {key}"
+                ) from exc
+            continue
+        return
+    raise AssertionError("conditional write loop must return or raise")
+
+
+def _is_conditional_write_conflict(exc: ClientError) -> bool:
+    error = exc.response.get("Error", {})
+    code = str(error.get("Code", ""))
+    status = exc.response.get("ResponseMetadata", {}).get("HTTPStatusCode")
+    return code in _CONDITIONAL_WRITE_CONFLICT_CODES or status in {409, 412}
 
 
 def _read_object_or_none(client: Any, *, bucket: str, key: str) -> bytes | None:

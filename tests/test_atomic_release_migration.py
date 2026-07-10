@@ -22,7 +22,7 @@ def test_current_views_follow_named_pointer_not_mutable_active_flags() -> None:
     assert "JOIN corpus.active_release_pointer pointer" in sql
     assert "pointer.release_name = scopes.release_name" in sql
     assert "ALTER TABLE corpus.release_scopes DROP COLUMN IF EXISTS active" in sql
-    assert "DELETE FROM corpus.release_scopes WHERE release_name = 'current'" in sql
+    assert "DELETE FROM corpus.release_scopes;" in sql
 
 
 def test_activation_rechecks_counts_before_pointer_and_refreshes_transactionally() -> None:
@@ -36,7 +36,7 @@ def test_activation_rechecks_counts_before_pointer_and_refreshes_transactionally
     object_index = function.index("INSERT INTO corpus.release_objects")
     pointer_index = function.index("INSERT INTO corpus.active_release_pointer")
     refresh_index = function.index("REFRESH MATERIALIZED VIEW corpus.current_provision_counts")
-    return_index = function.index("RETURN jsonb_build_object")
+    return_index = function.rindex("RETURN jsonb_build_object")
 
     assert (
         provision_lock_index
@@ -50,6 +50,8 @@ def test_activation_rechecks_counts_before_pointer_and_refreshes_transactionally
     )
     assert "actual_rows <> expected_rows" in function
     assert "actual_navigation_rows <> expected_navigation_rows" in function
+    assert "actual_provision_projection_sha256" in function
+    assert "actual_navigation_projection_sha256" in function
     assert "RAISE EXCEPTION" in function
 
 
@@ -84,13 +86,47 @@ def test_versioned_citations_can_coexist_for_named_releases() -> None:
     assert "ON corpus.navigation_nodes (path, version)" in sql
 
 
-def test_service_role_can_only_activate_through_rpc() -> None:
+def test_service_role_cannot_activate_without_trusted_management_plane() -> None:
     sql = MIGRATION.read_text()
 
     assert "REVOKE INSERT, UPDATE, DELETE ON corpus.release_objects FROM service_role" in sql
     assert "REVOKE INSERT, UPDATE, DELETE ON corpus.active_release_pointer FROM service_role" in sql
-    assert "REVOKE INSERT, UPDATE, DELETE ON corpus.release_scopes FROM service_role" in sql
-    assert "GRANT EXECUTE ON FUNCTION corpus.activate_corpus_release(jsonb)" in sql
+    assert "REVOKE ALL ON corpus.release_scopes FROM service_role" in sql
+    assert "REVOKE ALL ON corpus.provisions, corpus.navigation_nodes FROM service_role" in sql
+    assert (
+        "GRANT SELECT, INSERT, UPDATE, DELETE\n"
+        "  ON corpus.provisions, corpus.navigation_nodes TO service_role"
+    ) in sql
+    assert "GRANT EXECUTE ON FUNCTION corpus.activate_corpus_release(jsonb)\n  TO postgres" in sql
+    assert "FROM anon, authenticated, service_role, PUBLIC" in sql
+
+
+def test_signed_projection_digests_bind_every_staged_database_row() -> None:
+    sql = MIGRATION.read_text()
+
+    assert "FUNCTION corpus.canonical_projection_field(p_value text)" in sql
+    assert "FUNCTION corpus.provision_projection_sha256(" in sql
+    assert "FUNCTION corpus.navigation_projection_sha256(" in sql
+    assert "FUNCTION corpus.get_staged_release_scope_evidence(p_scopes jsonb)" in sql
+    assert "expected_provision_projection_sha256" in sql
+    assert "staged provision projection digest mismatch" in sql
+    assert "staged navigation projection digest mismatch" in sql
+    assert "REVOKE ALL ON FUNCTION corpus.provision_projection_sha256" in sql
+
+
+def test_released_scope_membership_is_signed_and_queryable_for_safe_reuse() -> None:
+    sql = MIGRATION.read_text()
+
+    assert "release_scopes_release_object_fkey" in sql
+    assert "FOREIGN KEY (release_name) REFERENCES corpus.release_objects(release_name)" in sql
+    assert "FUNCTION corpus.get_released_scope_objects(p_scopes jsonb)" in sql
+    assert "objects.content_sha256" in sql
+    assert "objects.release_object" in sql
+    assert "GRANT EXECUTE ON FUNCTION corpus.get_released_scope_objects(jsonb)" in sql
+    assert (
+        "REVOKE EXECUTE ON FUNCTION corpus.get_released_scope_objects(jsonb)\n"
+        "  FROM anon, authenticated, PUBLIC"
+    ) in sql
 
 
 def test_rows_bound_to_any_signed_release_are_immutable() -> None:

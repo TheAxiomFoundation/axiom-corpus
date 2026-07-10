@@ -77,9 +77,10 @@ GRANT SELECT ON corpus.release_objects, corpus.active_release_pointer TO service
 REVOKE INSERT, UPDATE, DELETE ON corpus.release_objects FROM service_role;
 REVOKE INSERT, UPDATE, DELETE ON corpus.active_release_pointer FROM service_role;
 
--- Remove the mutable alias and its flag. Named memberships are immutable after
--- insertion; only active_release_pointer determines public visibility.
-DELETE FROM corpus.release_scopes WHERE release_name = 'current';
+-- This is an approved pre-launch hard cut. No legacy scope membership is a
+-- signed v2 release, so retaining any of it would either violate the new
+-- release-object foreign key or falsely make mutable rows look immutable.
+DELETE FROM corpus.release_scopes;
 DROP INDEX IF EXISTS corpus.idx_release_scopes_current_active;
 
 DROP POLICY IF EXISTS release_scopes_anon_read ON corpus.release_scopes;
@@ -106,6 +107,11 @@ ALTER TABLE corpus.release_scopes
     AND char_length(release_name) <= 128
     AND release_name ~ '^[a-z0-9]+(-[a-z0-9]+)*$'
   );
+ALTER TABLE corpus.release_scopes
+  DROP CONSTRAINT IF EXISTS release_scopes_release_object_fkey;
+ALTER TABLE corpus.release_scopes
+  ADD CONSTRAINT release_scopes_release_object_fkey
+  FOREIGN KEY (release_name) REFERENCES corpus.release_objects(release_name);
 
 CREATE POLICY release_scopes_anon_read
   ON corpus.release_scopes
@@ -131,7 +137,8 @@ CREATE POLICY release_scopes_authenticated_read
     )
   );
 
-REVOKE INSERT, UPDATE, DELETE ON corpus.release_scopes FROM service_role;
+REVOKE ALL ON corpus.release_scopes FROM service_role;
+GRANT SELECT ON corpus.release_scopes TO service_role;
 
 -- Once a scope belongs to a signed release object, its database projection is
 -- immutable even while another release is active. A later activation can
@@ -201,15 +208,205 @@ CREATE TRIGGER guard_released_navigation_immutable
 BEFORE INSERT OR UPDATE OR DELETE ON corpus.navigation_nodes
 FOR EACH ROW EXECUTE FUNCTION corpus.guard_released_scope_row_immutable();
 
--- Direct, exact counts over staged base rows. This deliberately does not read a
--- materialized view: the pre-sign count attestation must never be stale.
-CREATE OR REPLACE FUNCTION corpus.get_staged_release_scope_counts(p_scopes jsonb)
+-- Historical migrations granted ALL to service_role. TRUNCATE bypasses row
+-- triggers entirely, so narrow the staging role to the exact row operations it
+-- needs. Released-scope triggers still reject those operations after signing.
+REVOKE ALL ON corpus.provisions, corpus.navigation_nodes FROM service_role;
+GRANT SELECT, INSERT, UPDATE, DELETE
+  ON corpus.provisions, corpus.navigation_nodes TO service_role;
+
+-- Cross-language canonical serialization for signed database projections.
+-- Python uses the same N / V<byte-count>:<utf8-value> field encoding. Each row
+-- is SHA-256 hashed independently, then the ordered ASCII row digests are
+-- hashed into one scope digest. This avoids JSON formatting and delimiter
+-- ambiguity while binding every publisher-controlled serving column.
+CREATE OR REPLACE FUNCTION corpus.canonical_projection_field(p_value text)
+RETURNS text
+LANGUAGE sql
+IMMUTABLE
+AS $$
+  SELECT CASE
+    WHEN p_value IS NULL THEN 'N'
+    ELSE 'V' || octet_length(convert_to(p_value, 'UTF8'))::text || ':' || p_value
+  END
+$$;
+
+CREATE OR REPLACE FUNCTION corpus.canonical_projection_identifiers(p_value jsonb)
+RETURNS text
+LANGUAGE sql
+IMMUTABLE
+AS $$
+  SELECT CASE
+    WHEN p_value IS NULL THEN 'N'
+    ELSE corpus.canonical_projection_field(
+      COALESCE(
+        (
+          SELECT string_agg(
+            corpus.canonical_projection_field(entry.key)
+              || corpus.canonical_projection_field(entry.value),
+            '' ORDER BY entry.key COLLATE "C"
+          )
+          FROM jsonb_each_text(p_value) AS entry(key, value)
+        ),
+        ''
+      )
+    )
+  END
+$$;
+
+CREATE OR REPLACE FUNCTION corpus.provision_projection_sha256(
+  p_jurisdiction text,
+  p_document_class text,
+  p_version text
+)
+RETURNS text
+LANGUAGE sql
+STABLE
+SET search_path = corpus, public
+AS $$
+  WITH projected AS (
+    SELECT
+      provisions.citation_path,
+      provisions.id::text AS row_id,
+      encode(
+        sha256(
+          convert_to(
+            concat(
+              corpus.canonical_projection_field(provisions.id::text),
+              corpus.canonical_projection_field(provisions.jurisdiction),
+              corpus.canonical_projection_field(provisions.doc_type),
+              corpus.canonical_projection_field(provisions.parent_id::text),
+              corpus.canonical_projection_field(provisions.level::text),
+              corpus.canonical_projection_field(provisions.ordinal::text),
+              corpus.canonical_projection_field(provisions.heading),
+              corpus.canonical_projection_field(provisions.body),
+              corpus.canonical_projection_field(provisions.source_url),
+              corpus.canonical_projection_field(provisions.source_path),
+              corpus.canonical_projection_field(provisions.citation_path),
+              corpus.canonical_projection_field(provisions.version),
+              corpus.canonical_projection_field(provisions.rulespec_path),
+              corpus.canonical_projection_field(provisions.has_rulespec::text),
+              corpus.canonical_projection_field(provisions.source_document_id::text),
+              corpus.canonical_projection_field(provisions.source_as_of::text),
+              corpus.canonical_projection_field(provisions.expression_date::text),
+              corpus.canonical_projection_field(provisions.language),
+              corpus.canonical_projection_field(provisions.legal_identifier),
+              corpus.canonical_projection_identifiers(provisions.identifiers)
+            ),
+            'UTF8'
+          )
+        ),
+        'hex'
+      ) AS row_sha256
+    FROM corpus.provisions provisions
+    WHERE provisions.jurisdiction = p_jurisdiction
+      AND COALESCE(NULLIF(provisions.doc_type, ''), 'unknown') = p_document_class
+      AND provisions.version = p_version
+  )
+  SELECT encode(
+    sha256(
+      convert_to(
+        COALESCE(
+          string_agg(
+            row_sha256,
+            '' ORDER BY citation_path COLLATE "C", row_id COLLATE "C"
+          ),
+          ''
+        ),
+        'UTF8'
+      )
+    ),
+    'hex'
+  )
+  FROM projected
+$$;
+
+CREATE OR REPLACE FUNCTION corpus.navigation_projection_sha256(
+  p_jurisdiction text,
+  p_document_class text,
+  p_version text
+)
+RETURNS text
+LANGUAGE sql
+STABLE
+SET search_path = corpus, public
+AS $$
+  WITH projected AS (
+    SELECT
+      navigation.path,
+      navigation.id::text AS row_id,
+      encode(
+        sha256(
+          convert_to(
+            concat(
+              corpus.canonical_projection_field(navigation.id::text),
+              corpus.canonical_projection_field(navigation.jurisdiction),
+              corpus.canonical_projection_field(navigation.doc_type),
+              corpus.canonical_projection_field(navigation.path),
+              corpus.canonical_projection_field(navigation.parent_path),
+              corpus.canonical_projection_field(navigation.segment),
+              corpus.canonical_projection_field(navigation.label),
+              corpus.canonical_projection_field(navigation.sort_key),
+              corpus.canonical_projection_field(navigation.depth::text),
+              corpus.canonical_projection_field(navigation.provision_id::text),
+              corpus.canonical_projection_field(navigation.citation_path),
+              corpus.canonical_projection_field(navigation.version),
+              corpus.canonical_projection_field(navigation.has_children::text),
+              corpus.canonical_projection_field(navigation.child_count::text),
+              corpus.canonical_projection_field(navigation.has_rulespec::text),
+              corpus.canonical_projection_field(
+                navigation.encoded_descendant_count::text
+              ),
+              corpus.canonical_projection_field(navigation.status)
+            ),
+            'UTF8'
+          )
+        ),
+        'hex'
+      ) AS row_sha256
+    FROM corpus.navigation_nodes navigation
+    WHERE navigation.jurisdiction = p_jurisdiction
+      AND COALESCE(NULLIF(navigation.doc_type, ''), 'unknown') = p_document_class
+      AND navigation.version = p_version
+  )
+  SELECT encode(
+    sha256(
+      convert_to(
+        COALESCE(
+          string_agg(
+            row_sha256,
+            '' ORDER BY path COLLATE "C", row_id COLLATE "C"
+          ),
+          ''
+        ),
+        'UTF8'
+      )
+    ),
+    'hex'
+  )
+  FROM projected
+$$;
+
+REVOKE ALL ON FUNCTION corpus.canonical_projection_field(text)
+  FROM PUBLIC, anon, authenticated, service_role;
+REVOKE ALL ON FUNCTION corpus.canonical_projection_identifiers(jsonb)
+  FROM PUBLIC, anon, authenticated, service_role;
+REVOKE ALL ON FUNCTION corpus.provision_projection_sha256(text, text, text)
+  FROM PUBLIC, anon, authenticated, service_role;
+REVOKE ALL ON FUNCTION corpus.navigation_projection_sha256(text, text, text)
+  FROM PUBLIC, anon, authenticated, service_role;
+
+-- Direct, exact evidence over staged base rows. This deliberately does not
+-- read a materialized view: the pre-sign attestation must never be stale.
+CREATE OR REPLACE FUNCTION corpus.get_staged_release_scope_evidence(p_scopes jsonb)
 RETURNS TABLE (
   jurisdiction text,
   document_class text,
   version text,
   provision_count bigint,
-  navigation_count bigint
+  navigation_count bigint,
+  provision_projection_sha256 text,
+  navigation_projection_sha256 text
 )
 LANGUAGE sql
 STABLE
@@ -243,14 +440,75 @@ AS $$
         AND COALESCE(NULLIF(navigation.doc_type, ''), 'unknown')
             = requested.document_class
         AND navigation.version = requested.version
-    ) AS navigation_count
+    ) AS navigation_count,
+    corpus.provision_projection_sha256(
+      requested.jurisdiction,
+      requested.document_class,
+      requested.version
+    ),
+    corpus.navigation_projection_sha256(
+      requested.jurisdiction,
+      requested.document_class,
+      requested.version
+    )
   FROM requested
   ORDER BY requested.jurisdiction, requested.document_class, requested.version
 $$;
 
-GRANT EXECUTE ON FUNCTION corpus.get_staged_release_scope_counts(jsonb)
+GRANT EXECUTE ON FUNCTION corpus.get_staged_release_scope_evidence(jsonb)
   TO postgres, service_role;
-REVOKE EXECUTE ON FUNCTION corpus.get_staged_release_scope_counts(jsonb)
+REVOKE EXECUTE ON FUNCTION corpus.get_staged_release_scope_evidence(jsonb)
+  FROM anon, authenticated, PUBLIC;
+
+-- Return every prior signed object that makes a requested scope immutable.
+-- The publisher verifies each object with the configured Ed25519 public key
+-- and compares its signed artifact inventory before deciding to skip DML.
+CREATE OR REPLACE FUNCTION corpus.get_released_scope_objects(p_scopes jsonb)
+RETURNS TABLE (
+  jurisdiction text,
+  document_class text,
+  version text,
+  release_name text,
+  content_sha256 text,
+  release_object jsonb
+)
+LANGUAGE sql
+STABLE
+SECURITY DEFINER
+SET search_path = corpus, public
+SET statement_timeout = 0
+AS $$
+  WITH requested AS (
+    SELECT DISTINCT
+      scope.value ->> 'jurisdiction' AS jurisdiction,
+      scope.value ->> 'document_class' AS document_class,
+      scope.value ->> 'version' AS version
+    FROM jsonb_array_elements(COALESCE(p_scopes, '[]'::jsonb)) scope(value)
+  )
+  SELECT
+    scopes.jurisdiction,
+    scopes.document_class,
+    scopes.version,
+    objects.release_name,
+    objects.content_sha256,
+    objects.release_object
+  FROM requested
+  JOIN corpus.release_scopes scopes
+    ON scopes.jurisdiction = requested.jurisdiction
+   AND scopes.document_class = requested.document_class
+   AND scopes.version = requested.version
+  JOIN corpus.release_objects objects
+    ON objects.release_name = scopes.release_name
+  ORDER BY
+    scopes.jurisdiction,
+    scopes.document_class,
+    scopes.version,
+    objects.release_name
+$$;
+
+GRANT EXECUTE ON FUNCTION corpus.get_released_scope_objects(jsonb)
+  TO postgres, service_role;
+REVOKE EXECUTE ON FUNCTION corpus.get_released_scope_objects(jsonb)
   FROM anon, authenticated, PUBLIC;
 
 CREATE OR REPLACE FUNCTION corpus.activate_corpus_release(p_release_object jsonb)
@@ -269,8 +527,14 @@ DECLARE
   actual_rows bigint;
   expected_navigation_rows bigint;
   actual_navigation_rows bigint;
+  expected_provision_projection_sha256 text;
+  actual_provision_projection_sha256 text;
+  expected_navigation_projection_sha256 text;
+  actual_navigation_projection_sha256 text;
   existing_sha text;
   existing_object jsonb;
+  active_release_name text;
+  active_content_sha256 text;
   v_scope_count integer;
 BEGIN
   IF p_release_object ->> 'schema_version'
@@ -338,8 +602,16 @@ BEGIN
   LOOP
     expected_rows := (scope ->> 'provision_rows')::bigint;
     expected_navigation_rows := (scope ->> 'navigation_rows')::bigint;
+    expected_provision_projection_sha256 := scope ->> 'provision_projection_sha256';
+    expected_navigation_projection_sha256 := scope ->> 'navigation_projection_sha256';
     IF expected_rows <= 0 OR expected_navigation_rows IS DISTINCT FROM expected_rows THEN
       RAISE EXCEPTION 'invalid expected row count for scope %', scope;
+    END IF;
+    IF expected_provision_projection_sha256 IS NULL
+       OR expected_provision_projection_sha256 !~ '^[0-9a-f]{64}$'
+       OR expected_navigation_projection_sha256 IS NULL
+       OR expected_navigation_projection_sha256 !~ '^[0-9a-f]{64}$' THEN
+      RAISE EXCEPTION 'invalid signed projection digest for scope %', scope;
     END IF;
     SELECT COUNT(*)::bigint INTO actual_rows
     FROM corpus.provisions provisions
@@ -370,6 +642,32 @@ BEGIN
         scope ->> 'version',
         expected_navigation_rows,
         actual_navigation_rows;
+    END IF;
+    actual_provision_projection_sha256 := corpus.provision_projection_sha256(
+      scope ->> 'jurisdiction',
+      scope ->> 'document_class',
+      scope ->> 'version'
+    );
+    IF actual_provision_projection_sha256
+       IS DISTINCT FROM expected_provision_projection_sha256 THEN
+      RAISE EXCEPTION
+        'staged provision projection digest mismatch for %/%/%',
+        scope ->> 'jurisdiction',
+        scope ->> 'document_class',
+        scope ->> 'version';
+    END IF;
+    actual_navigation_projection_sha256 := corpus.navigation_projection_sha256(
+      scope ->> 'jurisdiction',
+      scope ->> 'document_class',
+      scope ->> 'version'
+    );
+    IF actual_navigation_projection_sha256
+       IS DISTINCT FROM expected_navigation_projection_sha256 THEN
+      RAISE EXCEPTION
+        'staged navigation projection digest mismatch for %/%/%',
+        scope ->> 'jurisdiction',
+        scope ->> 'document_class',
+        scope ->> 'version';
     END IF;
   END LOOP;
 
@@ -404,12 +702,52 @@ BEGIN
   FROM jsonb_array_elements(p_release_object #> '{content,scopes}')
   ON CONFLICT (release_name, jurisdiction, document_class, version) DO NOTHING;
 
-  IF (
-    SELECT COUNT(*)
-    FROM corpus.release_scopes scopes
-    WHERE scopes.release_name = v_release_name
-  ) <> v_scope_count THEN
+  IF EXISTS (
+    (
+      SELECT
+        scopes.jurisdiction,
+        scopes.document_class,
+        scopes.version
+      FROM corpus.release_scopes scopes
+      WHERE scopes.release_name = v_release_name
+      EXCEPT
+      SELECT
+        value ->> 'jurisdiction',
+        value ->> 'document_class',
+        value ->> 'version'
+      FROM jsonb_array_elements(p_release_object #> '{content,scopes}')
+    )
+    UNION ALL
+    (
+      SELECT
+        value ->> 'jurisdiction',
+        value ->> 'document_class',
+        value ->> 'version'
+      FROM jsonb_array_elements(p_release_object #> '{content,scopes}')
+      EXCEPT
+      SELECT
+        scopes.jurisdiction,
+        scopes.document_class,
+        scopes.version
+      FROM corpus.release_scopes scopes
+      WHERE scopes.release_name = v_release_name
+    )
+  ) THEN
     RAISE EXCEPTION 'stored named-release membership differs from signed scopes';
+  END IF;
+
+  SELECT pointer.release_name, pointer.content_sha256
+  INTO active_release_name, active_content_sha256
+  FROM corpus.active_release_pointer pointer
+  WHERE pointer.pointer_name = 'production';
+  IF active_release_name IS NOT DISTINCT FROM v_release_name
+     AND active_content_sha256 IS NOT DISTINCT FROM v_content_sha THEN
+    RETURN jsonb_build_object(
+      'release', v_release_name,
+      'content_sha256', v_content_sha,
+      'scope_count', v_scope_count,
+      'active', true
+    );
   END IF;
 
   INSERT INTO corpus.active_release_pointer (
@@ -421,7 +759,9 @@ BEGIN
   ON CONFLICT (pointer_name) DO UPDATE SET
     release_name = EXCLUDED.release_name,
     content_sha256 = EXCLUDED.content_sha256,
-    activated_at = EXCLUDED.activated_at;
+    activated_at = EXCLUDED.activated_at
+  WHERE active_release_pointer.release_name IS DISTINCT FROM EXCLUDED.release_name
+     OR active_release_pointer.content_sha256 IS DISTINCT FROM EXCLUDED.content_sha256;
 
   -- Non-concurrent refresh is intentional: it runs in this same transaction,
   -- so a count-refresh failure rolls the active pointer back.
@@ -437,8 +777,8 @@ END;
 $$;
 
 GRANT EXECUTE ON FUNCTION corpus.activate_corpus_release(jsonb)
-  TO postgres, service_role;
+  TO postgres;
 REVOKE EXECUTE ON FUNCTION corpus.activate_corpus_release(jsonb)
-  FROM anon, authenticated, PUBLIC;
+  FROM anon, authenticated, service_role, PUBLIC;
 
 NOTIFY pgrst, 'reload schema';

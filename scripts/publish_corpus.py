@@ -37,9 +37,11 @@ from axiom_corpus.corpus.supabase import (
     DEFAULT_ACCESS_TOKEN_ENV,
     DEFAULT_AXIOM_SUPABASE_URL,
     DEFAULT_SERVICE_KEY_ENV,
-    StagedScopeCounts,
+    ReleasedScopeObject,
+    StagedScopeEvidence,
     activate_corpus_release,
-    fetch_staged_release_scope_counts,
+    fetch_released_scope_objects,
+    fetch_staged_release_scope_evidence,
     load_provisions_to_supabase,
     resolve_service_key,
 )
@@ -49,6 +51,7 @@ from axiom_corpus.release.manifest import (
     ReleaseManifestError,
     build_release_content,
     build_unsigned_release_object,
+    canonical_json_bytes,
     serialize_release_object,
     sign_release_object,
     verify_release_object,
@@ -89,6 +92,7 @@ def publish_named_release(
     selector_path: Path,
     supabase_url: str,
     service_key: str,
+    access_token: str,
     r2_config: R2Config,
     private_key: str,
     public_key: str,
@@ -103,6 +107,7 @@ def publish_named_release(
     except ValueError as exc:
         raise ReleaseManifestError("corpus base must be inside the repository") from exc
     release = ReleaseManifest.load(selector_path)
+    _require_canonical_selector(root, selector_path, release)
 
     # A cheap local gate runs before any external writes. The authoritative
     # validation attestation is generated again after remote readback/counting.
@@ -116,7 +121,7 @@ def publish_named_release(
         base=base_rel,
         bucket=r2_config.bucket,
     )
-    expected_counts = _expected_scope_counts(provisional_content)
+    expected_evidence = _expected_scope_evidence(provisional_content)
 
     r2_report = stage_release_artifacts(
         root,
@@ -125,8 +130,23 @@ def publish_named_release(
         client=r2_client,
     )
 
+    released_scopes = fetch_released_scope_objects(
+        release,
+        service_key=service_key,
+        supabase_url=supabase_url,
+    )
+    _require_safe_released_scope_reuse(
+        provisional_content,
+        released_scopes,
+        public_key=public_key,
+    )
+
     staged_rows = 0
     for scope in release.scopes:
+        expected = expected_evidence[scope.key]
+        if released_scopes[scope.key]:
+            staged_rows += expected.provision_rows
+            continue
         provisions_path = (
             corpus_root
             / "provisions"
@@ -135,11 +155,10 @@ def publish_named_release(
             / f"{scope.version}.jsonl"
         )
         records = load_provisions(provisions_path)
-        expected = expected_counts[scope.key]
-        if len(records) != expected:
+        if len(records) != expected.provision_rows:
             raise ReleaseManifestError(
                 f"local row count changed after hashing for {'/'.join(scope.key)}: "
-                f"expected {expected}, got {len(records)}"
+                f"expected {expected.provision_rows}, got {len(records)}"
             )
         load_report = load_provisions_to_supabase(
             records,
@@ -148,18 +167,18 @@ def publish_named_release(
             chunk_size=chunk_size,
             progress_stream=sys.stderr,
         )
-        if load_report.rows_loaded != expected:
+        if load_report.rows_loaded != expected.provision_rows:
             raise ReleaseManifestError(
                 f"Supabase staging wrote {load_report.rows_loaded} rows for "
-                f"{'/'.join(scope.key)}; expected {expected}"
+                f"{'/'.join(scope.key)}; expected {expected.provision_rows}"
             )
         staged_rows += load_report.rows_loaded
 
         navigation = build_navigation_nodes(records)
-        if len(navigation) != expected:
+        if len(navigation) != expected.navigation_rows:
             raise ReleaseManifestError(
                 f"local navigation projection has {len(navigation)} rows for "
-                f"{'/'.join(scope.key)}; expected one per provision ({expected})"
+                f"{'/'.join(scope.key)}; expected {expected.navigation_rows}"
             )
         navigation_report = write_navigation_nodes_to_supabase(
             navigation,
@@ -175,20 +194,20 @@ def publish_named_release(
                 f"navigation staging was incomplete for {'/'.join(scope.key)}"
             )
 
-    actual_counts = fetch_staged_release_scope_counts(
+    actual_evidence = fetch_staged_release_scope_evidence(
         release,
         service_key=service_key,
         supabase_url=supabase_url,
     )
-    _require_exact_counts(expected_counts, actual_counts)
+    _require_exact_evidence(expected_evidence, actual_evidence)
 
     deep_report = validate_release(corpus_root, release, max_issues=200)
     _require_deep_validation(deep_report, phase="post-readback")
     validation = _validation_attestation(
         deep_report,
         r2_report=r2_report,
-        expected_counts=expected_counts,
-        actual_counts=actual_counts,
+        expected_evidence=expected_evidence,
+        actual_evidence=actual_evidence,
     )
     content = build_release_content(
         root,
@@ -197,7 +216,7 @@ def publish_named_release(
         base=base_rel,
         bucket=r2_config.bucket,
     )
-    if _artifact_identity(content) != _artifact_identity(provisional_content):
+    if _publication_identity(content) != _publication_identity(provisional_content):
         raise ReleaseManifestError("release artifacts changed between readback and signing")
 
     unsigned = build_unsigned_release_object(content)
@@ -214,7 +233,8 @@ def publish_named_release(
 
     activation = activate_corpus_release(
         signed,
-        service_key=service_key,
+        access_token=access_token,
+        public_key=public_key,
         supabase_url=supabase_url,
     )
     return PublicationReport(
@@ -237,6 +257,7 @@ def plan_named_release(
 ) -> dict[str, Any]:
     """Validate and print a no-write publication plan."""
     release = ReleaseManifest.load(selector_path)
+    _require_canonical_selector(repo_root.resolve(), selector_path, release)
     report = validate_release(base, release, max_issues=200)
     _require_deep_validation(report, phase="dry-run")
     base_rel = base.resolve().relative_to(repo_root.resolve()).as_posix()
@@ -253,15 +274,19 @@ def plan_named_release(
         "selector": str(selector_path),
         "scope_count": len(release.scopes),
         "artifact_count": len(content["artifacts"]),
-        "provision_rows": sum(_expected_scope_counts(content).values()),
+        "provision_rows": sum(
+            evidence.provision_rows for evidence in _expected_scope_evidence(content).values()
+        ),
     }
 
 
-def _expected_scope_counts(content: Mapping[str, Any]) -> dict[tuple[str, str, str], int]:
+def _expected_scope_evidence(
+    content: Mapping[str, Any],
+) -> dict[tuple[str, str, str], StagedScopeEvidence]:
     raw_scopes = content.get("scopes")
     if not isinstance(raw_scopes, list):
         raise ReleaseManifestError("release content is missing scopes")
-    counts: dict[tuple[str, str, str], int] = {}
+    evidence: dict[tuple[str, str, str], StagedScopeEvidence] = {}
     for raw in raw_scopes:
         if not isinstance(raw, dict):
             raise ReleaseManifestError("release content contains a non-object scope")
@@ -271,36 +296,54 @@ def _expected_scope_counts(content: Mapping[str, Any]) -> dict[tuple[str, str, s
             str(raw.get("version") or ""),
         )
         rows = raw.get("provision_rows")
-        if not all(key) or not isinstance(rows, int):
-            raise ReleaseManifestError(f"invalid release scope count entry: {raw!r}")
-        counts[key] = rows
-    return counts
+        navigation_rows = raw.get("navigation_rows")
+        provision_digest = raw.get("provision_projection_sha256")
+        navigation_digest = raw.get("navigation_projection_sha256")
+        if (
+            not all(key)
+            or key in evidence
+            or not isinstance(rows, int)
+            or isinstance(rows, bool)
+            or not isinstance(navigation_rows, int)
+            or isinstance(navigation_rows, bool)
+            or not isinstance(provision_digest, str)
+            or not isinstance(navigation_digest, str)
+        ):
+            raise ReleaseManifestError(f"invalid release scope evidence entry: {raw!r}")
+        evidence[key] = StagedScopeEvidence(
+            provision_rows=rows,
+            navigation_rows=navigation_rows,
+            provision_projection_sha256=provision_digest,
+            navigation_projection_sha256=navigation_digest,
+        )
+    return evidence
 
 
-def _require_exact_counts(
-    expected: Mapping[tuple[str, str, str], int],
-    actual: Mapping[tuple[str, str, str], StagedScopeCounts],
+def _require_exact_evidence(
+    expected: Mapping[tuple[str, str, str], StagedScopeEvidence],
+    actual: Mapping[tuple[str, str, str], StagedScopeEvidence],
 ) -> None:
     if set(expected) == set(actual) and all(
-        actual[key].provision_rows == rows and actual[key].navigation_rows == rows
-        for key, rows in expected.items()
+        actual[key] == value for key, value in expected.items()
     ):
         return
     differences = {
         "/".join(key): {
-            "expected_provisions": expected.get(key),
+            "expected": (expected[key].__dict__ if key in expected else None),
             "actual_provisions": (actual[key].provision_rows if key in actual else None),
-            "expected_navigation": expected.get(key),
             "actual_navigation": (actual[key].navigation_rows if key in actual else None),
+            "actual_provision_projection_sha256": (
+                actual[key].provision_projection_sha256 if key in actual else None
+            ),
+            "actual_navigation_projection_sha256": (
+                actual[key].navigation_projection_sha256 if key in actual else None
+            ),
         }
         for key in sorted(set(expected) | set(actual))
-        if key not in expected
-        or key not in actual
-        or actual[key].provision_rows != expected[key]
-        or actual[key].navigation_rows != expected[key]
+        if key not in expected or key not in actual or actual[key] != expected[key]
     }
     raise ReleaseManifestError(
-        "exact staged provision/navigation counts do not match: "
+        "exact staged provision/navigation projection evidence does not match: "
         + json.dumps(differences, sort_keys=True)
     )
 
@@ -318,8 +361,8 @@ def _validation_attestation(
     report: ReleaseValidationReport,
     *,
     r2_report: R2ReadbackReport,
-    expected_counts: Mapping[tuple[str, str, str], int],
-    actual_counts: Mapping[tuple[str, str, str], StagedScopeCounts],
+    expected_evidence: Mapping[tuple[str, str, str], StagedScopeEvidence],
+    actual_evidence: Mapping[tuple[str, str, str], StagedScopeEvidence],
 ) -> dict[str, Any]:
     return {
         "passed": True,
@@ -336,31 +379,139 @@ def _validation_attestation(
             "artifact_bytes": r2_report.artifact_bytes,
             "verified_keys": list(r2_report.verified_keys),
         },
-        "supabase_counts": [
+        "supabase_projection_evidence": [
             {
                 "jurisdiction": key[0],
                 "document_class": key[1],
                 "version": key[2],
-                "expected": expected_counts[key],
-                "actual": actual_counts[key].provision_rows,
-                "expected_navigation": expected_counts[key],
-                "actual_navigation": actual_counts[key].navigation_rows,
+                "expected": expected_evidence[key].provision_rows,
+                "actual": actual_evidence[key].provision_rows,
+                "expected_navigation": expected_evidence[key].navigation_rows,
+                "actual_navigation": actual_evidence[key].navigation_rows,
+                "expected_provision_projection_sha256": (
+                    expected_evidence[key].provision_projection_sha256
+                ),
+                "actual_provision_projection_sha256": (
+                    actual_evidence[key].provision_projection_sha256
+                ),
+                "expected_navigation_projection_sha256": (
+                    expected_evidence[key].navigation_projection_sha256
+                ),
+                "actual_navigation_projection_sha256": (
+                    actual_evidence[key].navigation_projection_sha256
+                ),
             }
-            for key in sorted(expected_counts)
+            for key in sorted(expected_evidence)
         ],
     }
 
 
-def _artifact_identity(content: Mapping[str, Any]) -> tuple[tuple[str, str, int], ...]:
+def _publication_identity(content: Mapping[str, Any]) -> bytes:
     artifacts = content.get("artifacts")
     if not isinstance(artifacts, list):
         raise ReleaseManifestError("release content has no artifact list")
-    identity: list[tuple[str, str, int]] = []
+    scopes = content.get("scopes")
+    if not isinstance(scopes, list):
+        raise ReleaseManifestError("release content has no scope evidence")
+    identity: list[dict[str, object]] = []
     for raw in artifacts:
         if not isinstance(raw, dict):
             raise ReleaseManifestError("release content contains a non-object artifact")
-        identity.append((str(raw["path"]), str(raw["sha256"]), int(raw["bytes"])))
-    return tuple(identity)
+        identity.append(dict(raw))
+    return canonical_json_bytes({"scopes": scopes, "artifacts": identity})
+
+
+def _require_safe_released_scope_reuse(
+    content: Mapping[str, Any],
+    released: Mapping[tuple[str, str, str], tuple[ReleasedScopeObject, ...]],
+    *,
+    public_key: str,
+) -> None:
+    expected_keys = set(_expected_scope_evidence(content))
+    if set(released) != expected_keys:
+        raise ReleaseManifestError("released-scope lookup did not cover the requested scopes")
+    for key, objects in released.items():
+        expected_identity = _scope_publication_identity(content, key)
+        for released_object in objects:
+            try:
+                verify_release_object(released_object.release_object, public_key=public_key)
+            except ReleaseManifestError as exc:
+                raise ReleaseManifestError(
+                    "database returned an untrusted prior release object for "
+                    f"{'/'.join(key)}: {released_object.release_name}"
+                ) from exc
+            prior_content = released_object.release_object.get("content")
+            if not isinstance(prior_content, dict):
+                raise ReleaseManifestError("verified prior release object lacks content")
+            if _scope_publication_identity(prior_content, key) != expected_identity:
+                raise ReleaseManifestError(
+                    "immutable released scope differs from the requested artifacts or "
+                    f"database projection: {'/'.join(key)} "
+                    f"({released_object.release_name})"
+                )
+
+
+def _scope_publication_identity(
+    content: Mapping[str, Any],
+    key: tuple[str, str, str],
+) -> bytes:
+    raw_scopes = content.get("scopes")
+    raw_artifacts = content.get("artifacts")
+    if not isinstance(raw_scopes, list) or not isinstance(raw_artifacts, list):
+        raise ReleaseManifestError("release content lacks scope or artifact inventory")
+    matches = [
+        raw
+        for raw in raw_scopes
+        if isinstance(raw, dict)
+        and tuple(
+            str(raw.get(field) or "") for field in ("jurisdiction", "document_class", "version")
+        )
+        == key
+    ]
+    if len(matches) != 1:
+        raise ReleaseManifestError(f"release content does not contain scope {'/'.join(key)}")
+    jurisdiction, document_class, version = key
+    exact_paths = {
+        f"data/corpus/inventory/{jurisdiction}/{document_class}/{version}.json",
+        f"data/corpus/provisions/{jurisdiction}/{document_class}/{version}.jsonl",
+        f"data/corpus/coverage/{jurisdiction}/{document_class}/{version}.json",
+    }
+    source_prefix = f"data/corpus/sources/{jurisdiction}/{document_class}/{version}/"
+    artifacts = [
+        dict(raw)
+        for raw in raw_artifacts
+        if isinstance(raw, dict)
+        and (
+            str(raw.get("path") or "") in exact_paths
+            or str(raw.get("path") or "").startswith(source_prefix)
+        )
+    ]
+    if len(artifacts) < 4 or exact_paths - {str(raw.get("path")) for raw in artifacts}:
+        raise ReleaseManifestError(f"release content lacks artifacts for scope {'/'.join(key)}")
+    return canonical_json_bytes(
+        {
+            "scope": matches[0],
+            "artifacts": sorted(artifacts, key=lambda raw: str(raw["path"])),
+        }
+    )
+
+
+def _require_canonical_selector(
+    repo_root: Path,
+    selector_path: Path,
+    release: ReleaseManifest,
+) -> None:
+    expected = repo_root / "manifests" / "releases" / f"{release.name}.json"
+    try:
+        supplied = selector_path.resolve(strict=True)
+        canonical = expected.resolve(strict=True)
+    except OSError as exc:
+        raise ReleaseManifestError("release selector must be a tracked canonical file") from exc
+    if supplied != canonical or canonical != expected:
+        raise ReleaseManifestError(
+            "release selector must be the exact non-symlink path "
+            f"manifests/releases/{release.name}.json"
+        )
 
 
 def _required_env(name: str) -> str:
@@ -396,6 +547,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     repo_root = args.repo_root.resolve()
     base = (repo_root / args.base).resolve() if not args.base.is_absolute() else args.base.resolve()
     selector = resolve_release_manifest_path(args.release)
+    if not selector.is_absolute():
+        selector = repo_root / selector
     if args.dry_run:
         payload = plan_named_release(
             repo_root=repo_root,
@@ -414,12 +567,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             service_key_env=args.service_key_env,
             access_token_env=args.access_token_env,
         )
+        access_token = _required_env(args.access_token_env)
         report = publish_named_release(
             repo_root=repo_root,
             base=base,
             selector_path=selector,
             supabase_url=args.supabase_url,
             service_key=service_key,
+            access_token=access_token,
             r2_config=r2_config,
             private_key=_required_env(RELEASE_OBJECT_PRIVATE_KEY_ENV),
             public_key=_required_env(RELEASE_OBJECT_PUBLIC_KEY_ENV),

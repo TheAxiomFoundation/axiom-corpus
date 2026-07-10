@@ -2835,6 +2835,7 @@ def test_validate_release_cli_gates_release(tmp_path, capsys):
                 citation_path="us-co/policy/doc",
                 version="2026-04-30",
                 body="Text.",
+                source_path=source.relative_to(store.root).as_posix(),
                 source_as_of="2026-04-30",
                 expression_date="2026-04-30",
             )

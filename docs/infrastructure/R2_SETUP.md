@@ -63,7 +63,8 @@ wrangler r2 bucket list
 
 ## Python Client
 
-Use `boto3` with S3-compatible endpoint:
+Use `boto3` with the S3-compatible endpoint for generic ingestion and
+inspection operations:
 
 ```python
 import boto3
@@ -98,6 +99,11 @@ response = s3.list_objects_v2(
 for obj in response.get('Contents', []):
     print(obj['Key'])
 ```
+
+The generic `upload_file` example is not the named-release publication path.
+The release publisher derives each key from the payload SHA-256, snapshots the
+local file once, and sends that same hashed snapshot with
+`put_object(IfNoneMatch="*")`. It never overwrites a content-addressed key.
 
 ## Integration with Axiom Corpus
 
@@ -140,9 +146,14 @@ python scripts/publish_corpus.py \
   --dry-run
 ```
 
-Production publication uses content-addressed R2 keys and hashes every object
-after downloading it. The signed named release object is uploaded and verified
-before the database pointer can move. See `docs/named-release-publication.md`.
+Production publication conditionally writes both artifacts and the signed
+release object with `If-None-Match: *`. A concurrent `409`/`412` is accepted
+only after readback proves that the existing immutable bytes match. Every
+artifact is then downloaded and checked for its exact byte count and SHA-256;
+the signed object is downloaded and revalidated for schema, content address,
+evidence, and Ed25519 signature before the Management API may move the database
+pointer. R2 object presence or metadata alone is never publication evidence.
+See `docs/named-release-publication.md`.
 
 ## Related Documentation
 

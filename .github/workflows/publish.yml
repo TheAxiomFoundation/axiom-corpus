@@ -1,8 +1,9 @@
 name: Publish named corpus release
 
-# Corpus data merges are inert. Production changes only when an explicit,
-# immutable named selector is added and this workflow successfully cuts its
-# validated, content-addressed, Ed25519-signed release object.
+# Corpus data merges are inert. Production changes only from a clean committed
+# checkout when an explicit immutable selector cuts a source-complete,
+# content-addressed, projection-bound, Ed25519-signed release object and the
+# management plane activates it.
 on:
   push:
     branches: [main, master]
@@ -91,7 +92,7 @@ jobs:
           echo "publish=true" >> "$GITHUB_OUTPUT"
           cat "$RUNNER_TEMP/release-selectors.txt"
 
-      - name: Validate, sign, and atomically activate each named release
+      - name: Validate, sign, and activate the named release through the management plane
         if: steps.selectors.outputs.publish == 'true'
         run: |
           while IFS= read -r selector; do
@@ -107,5 +108,7 @@ jobs:
           {
             echo "### Named corpus release publication"
             echo ""
-            echo "Every selected release must pass content-addressed R2 readback, exact staged counts, deep validation, Ed25519 verification, and transactional activation."
+            echo "The release must bind the exact artifact/source inventory and canonical provision/navigation projection digests."
+            echo "Conditional R2 writes, exact readback, pre-sign database evidence, local Ed25519 verification, and management-plane transactional activation must all pass."
+            echo "The staging service role cannot activate a release; exact retries only verify and reuse immutable state."
           } >> "$GITHUB_STEP_SUMMARY"

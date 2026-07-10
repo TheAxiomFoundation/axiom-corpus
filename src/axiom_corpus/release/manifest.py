@@ -28,7 +28,8 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
     Ed25519PublicKey,
 )
 
-from axiom_corpus.corpus.models import DocumentClass
+from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
 from axiom_corpus.corpus.releases import ReleaseManifest, validate_release_name
 
 RELEASE_OBJECT_SCHEMA_VERSION = "axiom-corpus/release-object/v2"
@@ -58,6 +59,80 @@ def sha256_file(path: Path) -> str:
 def jsonl_row_count(path: Path) -> int:
     with path.open("rb") as handle:
         return sum(1 for line in handle if line.strip())
+
+
+def canonical_corpus_artifact_file(repo_root: Path, relative_path: str) -> Path:
+    """Resolve one lexical corpus artifact without following symlinks.
+
+    Signed artifact paths are repository-relative identities, not arbitrary
+    filesystem locators.  Every component must therefore be the literal path
+    named below ``data/corpus``.  A symlink is rejected even when it resolves
+    to another file inside the repository or corpus tree.
+    """
+    return _canonical_corpus_path(
+        repo_root,
+        relative_path,
+        require_directory=False,
+    )
+
+
+def _canonical_corpus_directory(repo_root: Path, relative_path: str) -> Path:
+    return _canonical_corpus_path(
+        repo_root,
+        relative_path,
+        require_directory=True,
+    )
+
+
+def _canonical_corpus_path(
+    repo_root: Path,
+    relative_path: str,
+    *,
+    require_directory: bool,
+) -> Path:
+    parts = relative_path.split("/")
+    if (
+        len(parts) < 2
+        or parts[:2] != ["data", "corpus"]
+        or relative_path.startswith("/")
+        or "\\" in relative_path
+        or any(part in {"", ".", ".."} for part in parts)
+    ):
+        raise ReleaseManifestError(
+            f"release artifact escapes exact data/corpus boundary: {relative_path}"
+        )
+
+    try:
+        root = repo_root.resolve(strict=True)
+    except OSError as exc:
+        raise ReleaseManifestError(f"repository root is missing: {repo_root}") from exc
+
+    lexical = root
+    for part in parts:
+        lexical = lexical / part
+        if lexical.is_symlink():
+            raise ReleaseManifestError(f"release artifact path contains a symlink: {relative_path}")
+
+    try:
+        resolved = lexical.resolve(strict=True)
+        corpus_root = (root / "data" / "corpus").resolve(strict=True)
+    except OSError as exc:
+        raise ReleaseManifestError(f"release artifact is missing locally: {relative_path}") from exc
+
+    if resolved != lexical or corpus_root != root / "data" / "corpus":
+        raise ReleaseManifestError(f"release artifact path is not canonical: {relative_path}")
+    try:
+        resolved.relative_to(corpus_root)
+    except ValueError as exc:
+        raise ReleaseManifestError(
+            f"release artifact escapes exact data/corpus boundary: {relative_path}"
+        ) from exc
+
+    expected_kind = resolved.is_dir() if require_directory else resolved.is_file()
+    if not expected_kind:
+        kind = "directory" if require_directory else "file"
+        raise ReleaseManifestError(f"release artifact is not a regular {kind}: {relative_path}")
+    return resolved
 
 
 def canonical_json_bytes(value: Mapping[str, Any]) -> bytes:
@@ -147,6 +222,35 @@ def build_release_content(
                 "release scope provisions must contain at least one row: "
                 f"{scope.jurisdiction}/{scope.document_class}/{scope.version}"
             )
+        provision_path = canonical_corpus_artifact_file(
+            root,
+            str(provision_entries[0]["path"]),
+        )
+        records = _load_provision_snapshot(
+            provision_path,
+            expected_sha256=str(provision_entries[0]["sha256"]),
+            expected_bytes=int(provision_entries[0]["bytes"]),
+            expected_rows=provision_rows,
+        )
+        # Local imports avoid a module cycle: navigation's stable provision IDs
+        # live in the Supabase projection module, which also exposes release RPCs.
+        from axiom_corpus.corpus.navigation import build_navigation_nodes
+        from axiom_corpus.corpus.projection_digest import (
+            navigation_projection_sha256,
+            provision_projection_sha256,
+        )
+        from axiom_corpus.corpus.supabase import iter_supabase_rows
+
+        provision_projection = provision_projection_sha256(iter_supabase_rows(records))
+        navigation = build_navigation_nodes(records)
+        if len(navigation) != provision_rows:
+            raise ReleaseManifestError(
+                "release navigation projection must contain one row per provision: "
+                f"{scope.jurisdiction}/{scope.document_class}/{scope.version}"
+            )
+        navigation_projection = navigation_projection_sha256(
+            node.to_supabase_row() for node in navigation
+        )
         scopes.append(
             {
                 "jurisdiction": scope.jurisdiction,
@@ -154,10 +258,13 @@ def build_release_content(
                 "version": scope.version,
                 "provision_rows": provision_rows,
                 "navigation_rows": provision_rows,
+                "provision_projection_sha256": provision_projection,
+                "navigation_projection_sha256": navigation_projection,
             }
         )
         artifacts.extend(scope_entries)
 
+    _require_tracked_release_inputs(root, release=release, artifacts=artifacts)
     git = _git_provenance(root)
     if git is None:
         raise ReleaseManifestError("release publication requires an exact git checkout identity")
@@ -360,6 +467,8 @@ def _validate_scope_entries(scopes: Sequence[Any]) -> None:
             "version",
             "provision_rows",
             "navigation_rows",
+            "provision_projection_sha256",
+            "navigation_projection_sha256",
         }:
             raise ReleaseManifestError("release object scope does not match the v2 schema")
         key = tuple(
@@ -391,6 +500,15 @@ def _validate_scope_entries(scopes: Sequence[Any]) -> None:
             raise ReleaseManifestError(
                 f"release object scope has inconsistent navigation_rows: {'/'.join(key)}"
             )
+        for digest_field in (
+            "provision_projection_sha256",
+            "navigation_projection_sha256",
+        ):
+            digest = raw.get(digest_field)
+            if not isinstance(digest, str) or _SHA256_RE.fullmatch(digest) is None:
+                raise ReleaseManifestError(
+                    f"release object scope has invalid {digest_field}: {'/'.join(key)}"
+                )
 
 
 def _validate_artifact_entries(artifacts: Sequence[Any], *, bucket: str) -> None:
@@ -507,7 +625,7 @@ def _validate_validation_attestation(
         "passed",
         "deep_validation",
         "r2_readback",
-        "supabase_counts",
+        "supabase_projection_evidence",
     }:
         raise ReleaseManifestError("release validation does not match the v2 schema")
     deep = validation.get("deep_validation")
@@ -548,10 +666,10 @@ def _validate_validation_attestation(
     ):
         raise ReleaseManifestError("release object R2 readback evidence is inconsistent")
 
-    raw_counts = validation.get("supabase_counts")
+    raw_counts = validation.get("supabase_projection_evidence")
     if not isinstance(raw_counts, list) or len(raw_counts) != len(scopes):
         raise ReleaseManifestError("release object staged-count evidence is incomplete")
-    counts: dict[tuple[str, str, str], tuple[object, object, object, object]] = {}
+    counts: dict[tuple[str, str, str], tuple[object, ...]] = {}
     for raw in raw_counts:
         if not isinstance(raw, dict):
             raise ReleaseManifestError("release object has invalid staged-count evidence")
@@ -563,6 +681,10 @@ def _validate_validation_attestation(
             "actual",
             "expected_navigation",
             "actual_navigation",
+            "expected_provision_projection_sha256",
+            "actual_provision_projection_sha256",
+            "expected_navigation_projection_sha256",
+            "actual_navigation_projection_sha256",
         }:
             raise ReleaseManifestError("release staged-count evidence does not match the v2 schema")
         if any(
@@ -576,11 +698,23 @@ def _validate_validation_attestation(
         typed_key = (key[0], key[1], key[2])
         if not all(typed_key) or typed_key in counts:
             raise ReleaseManifestError("release object has invalid staged-count identity")
+        digest_fields = (
+            "expected_provision_projection_sha256",
+            "actual_provision_projection_sha256",
+            "expected_navigation_projection_sha256",
+            "actual_navigation_projection_sha256",
+        )
+        if any(
+            not isinstance(raw.get(field), str) or _SHA256_RE.fullmatch(str(raw.get(field))) is None
+            for field in digest_fields
+        ):
+            raise ReleaseManifestError("release object has invalid staged projection evidence")
         counts[typed_key] = (
             raw.get("expected"),
             raw.get("actual"),
             raw.get("expected_navigation"),
             raw.get("actual_navigation"),
+            *(raw.get(field) for field in digest_fields),
         )
     for raw_scope in scopes:
         if not isinstance(raw_scope, dict):
@@ -597,10 +731,45 @@ def _validate_validation_attestation(
             expected_rows,
             expected_navigation,
             expected_navigation,
+            raw_scope["provision_projection_sha256"],
+            raw_scope["provision_projection_sha256"],
+            raw_scope["navigation_projection_sha256"],
+            raw_scope["navigation_projection_sha256"],
         ):
             raise ReleaseManifestError(
                 f"release object staged-count evidence does not match scope: {'/'.join(key)}"
             )
+
+
+def _load_provision_snapshot(
+    path: Path,
+    *,
+    expected_sha256: str,
+    expected_bytes: int,
+    expected_rows: int,
+) -> tuple[ProvisionRecord, ...]:
+    """Parse the exact provision bytes already named by the artifact entry."""
+    raw = path.read_bytes()
+    if len(raw) != expected_bytes or hashlib.sha256(raw).hexdigest() != expected_sha256:
+        raise ReleaseManifestError(
+            f"provisions artifact changed while building release content: {path}"
+        )
+    records: list[ProvisionRecord] = []
+    try:
+        for line in raw.decode("utf-8").splitlines():
+            if not line.strip():
+                continue
+            value = json.loads(line)
+            if not isinstance(value, dict):
+                raise ReleaseManifestError(f"provisions artifact contains a non-object row: {path}")
+            records.append(ProvisionRecord.from_mapping(value))
+    except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        raise ReleaseManifestError(f"cannot parse provisions artifact {path}: {exc}") from exc
+    if len(records) != expected_rows:
+        raise ReleaseManifestError(
+            f"provisions artifact row count changed while building release content: {path}"
+        )
+    return tuple(records)
 
 
 def _scope_artifact_entries(
@@ -611,30 +780,36 @@ def _scope_artifact_entries(
     scope_key: tuple[str, str, str],
 ) -> list[dict[str, Any]]:
     jurisdiction, document_class, version = scope_key
-    relative_files: dict[str, list[Path]] = {
-        "inventory": [base_path / "inventory" / jurisdiction / document_class / f"{version}.json"],
-        "provisions": [
-            base_path / "provisions" / jurisdiction / document_class / f"{version}.jsonl"
-        ],
-        "coverage": [base_path / "coverage" / jurisdiction / document_class / f"{version}.json"],
+    relative_files: dict[str, list[str]] = {
+        "inventory": [f"{base}/inventory/{jurisdiction}/{document_class}/{version}.json"],
+        "provisions": [f"{base}/provisions/{jurisdiction}/{document_class}/{version}.jsonl"],
+        "coverage": [f"{base}/coverage/{jurisdiction}/{document_class}/{version}.json"],
     }
-    source_root = base_path / "sources" / jurisdiction / document_class / version
-    relative_files["sources"] = (
-        sorted(path for path in source_root.rglob("*") if path.is_file())
-        if source_root.is_dir()
-        else []
-    )
+    source_relative = f"{base}/sources/{jurisdiction}/{document_class}/{version}"
+    source_root_lexical = base_path / "sources" / jurisdiction / document_class / version
+    source_paths: list[str] = []
+    if source_root_lexical.is_dir():
+        source_root = _canonical_corpus_directory(repo_root, source_relative)
+        for path in sorted(source_root.rglob("*")):
+            relative = path.relative_to(repo_root).as_posix()
+            if path.is_symlink():
+                raise ReleaseManifestError(f"release artifact path contains a symlink: {relative}")
+            if path.is_dir():
+                continue
+            canonical_corpus_artifact_file(repo_root, relative)
+            source_paths.append(relative)
+    relative_files["sources"] = source_paths
 
     entries: list[dict[str, Any]] = []
     for artifact_class in _ARTIFACT_CLASSES:
-        paths = relative_files[artifact_class]
-        if not paths or any(not path.is_file() for path in paths):
+        relative_paths = relative_files[artifact_class]
+        if not relative_paths:
             raise ReleaseManifestError(
                 f"missing {artifact_class} artifact for {jurisdiction}/{document_class}/{version}"
             )
-        for path in paths:
+        for relative in relative_paths:
+            path = canonical_corpus_artifact_file(repo_root, relative)
             digest = sha256_file(path)
-            relative = path.relative_to(repo_root).as_posix()
             entry: dict[str, Any] = {
                 "artifact_class": artifact_class,
                 "path": relative,
@@ -646,7 +821,194 @@ def _scope_artifact_entries(
             if path.suffix == ".jsonl":
                 entry["rows"] = jsonl_row_count(path)
             entries.append(entry)
+    _validate_signed_source_references(
+        repo_root,
+        base=base,
+        scope_key=scope_key,
+        entries=entries,
+    )
     return entries
+
+
+def _validate_signed_source_references(
+    repo_root: Path,
+    *,
+    base: str,
+    scope_key: tuple[str, str, str],
+    entries: Sequence[Mapping[str, Any]],
+) -> None:
+    """Require every record source to be an exact signed scope artifact."""
+    jurisdiction, document_class, version = scope_key
+    by_class: dict[str, list[Mapping[str, Any]]] = {
+        artifact_class: [
+            entry for entry in entries if entry.get("artifact_class") == artifact_class
+        ]
+        for artifact_class in _ARTIFACT_CLASSES
+    }
+    if len(by_class["inventory"]) != 1 or len(by_class["provisions"]) != 1:
+        raise ReleaseManifestError(
+            "release scope source-reference validation requires exact inventory and "
+            f"provisions artifacts: {jurisdiction}/{document_class}/{version}"
+        )
+
+    inventory_path = canonical_corpus_artifact_file(
+        repo_root,
+        str(by_class["inventory"][0]["path"]),
+    )
+    provisions_path = canonical_corpus_artifact_file(
+        repo_root,
+        str(by_class["provisions"][0]["path"]),
+    )
+    try:
+        inventory = load_source_inventory(inventory_path)
+        provisions = load_provisions(provisions_path)
+    except (
+        AttributeError,
+        json.JSONDecodeError,
+        KeyError,
+        OSError,
+        TypeError,
+        ValueError,
+    ) as exc:
+        raise ReleaseManifestError(
+            "cannot parse scope source references for "
+            f"{jurisdiction}/{document_class}/{version}: {exc}"
+        ) from exc
+
+    source_entries = {
+        str(entry["path"]): entry
+        for entry in by_class["sources"]
+        if isinstance(entry.get("path"), str)
+    }
+    inventory_source_paths: set[str] = set()
+    for item in inventory:
+        relative = _canonical_signed_source_reference(
+            repo_root,
+            base=base,
+            scope_key=scope_key,
+            source_path=item.source_path,
+            owner=f"inventory item {item.citation_path}",
+        )
+        signed_entry = source_entries.get(relative)
+        if signed_entry is None:
+            raise ReleaseManifestError(
+                f"inventory source reference is absent from signed artifacts: {relative}"
+            )
+        if not isinstance(item.sha256, str) or item.sha256 != signed_entry.get("sha256"):
+            raise ReleaseManifestError(
+                f"inventory source sha256 does not match signed artifact: {relative}"
+            )
+        inventory_source_paths.add(relative)
+
+    for record in provisions:
+        relative = _canonical_signed_source_reference(
+            repo_root,
+            base=base,
+            scope_key=scope_key,
+            source_path=record.source_path,
+            owner=f"provision {record.citation_path}",
+        )
+        if relative not in source_entries:
+            raise ReleaseManifestError(
+                f"provision source reference is absent from signed artifacts: {relative}"
+            )
+        if relative not in inventory_source_paths:
+            raise ReleaseManifestError(
+                f"provision source reference is absent from scope inventory: {relative}"
+            )
+
+
+def _canonical_signed_source_reference(
+    repo_root: Path,
+    *,
+    base: str,
+    scope_key: tuple[str, str, str],
+    source_path: object,
+    owner: str,
+) -> str:
+    jurisdiction, document_class, version = scope_key
+    expected_prefix = ["sources", jurisdiction, document_class, version]
+    if not isinstance(source_path, str) or not source_path:
+        raise ReleaseManifestError(f"{owner} must have a non-empty source_path")
+    parts = source_path.split("/")
+    if (
+        source_path.startswith("/")
+        or "\\" in source_path
+        or len(parts) <= len(expected_prefix)
+        or parts[: len(expected_prefix)] != expected_prefix
+        or any(part in {"", ".", ".."} for part in parts)
+    ):
+        raise ReleaseManifestError(
+            f"{owner} source_path must be under {'/'.join(expected_prefix)}/: {source_path}"
+        )
+    relative = f"{base}/{source_path}"
+    canonical_corpus_artifact_file(repo_root, relative)
+    return relative
+
+
+def _require_tracked_release_inputs(
+    repo_root: Path,
+    *,
+    release: ReleaseManifest,
+    artifacts: Sequence[Mapping[str, Any]],
+) -> None:
+    """Require the canonical selector and every signed artifact in Git's index."""
+    selector_relative = f"manifests/releases/{release.name}.json"
+    selector = repo_root / selector_relative
+    lexical = repo_root
+    for part in selector_relative.split("/"):
+        lexical = lexical / part
+        if lexical.is_symlink():
+            raise ReleaseManifestError(
+                f"release selector path contains a symlink: {selector_relative}"
+            )
+    try:
+        resolved_selector = selector.resolve(strict=True)
+    except OSError as exc:
+        raise ReleaseManifestError(
+            f"canonical release selector is missing: {selector_relative}"
+        ) from exc
+    if resolved_selector != selector:
+        raise ReleaseManifestError(f"release selector path is not canonical: {selector_relative}")
+    try:
+        canonical_release = ReleaseManifest.load(selector)
+    except (OSError, ValueError) as exc:
+        raise ReleaseManifestError(
+            f"cannot load canonical release selector {selector_relative}: {exc}"
+        ) from exc
+    if canonical_release != release:
+        raise ReleaseManifestError(
+            "loaded release does not exactly match its canonical tracked selector: "
+            f"{selector_relative}"
+        )
+
+    required = {selector_relative}
+    for entry in artifacts:
+        path = entry.get("path")
+        if not isinstance(path, str):
+            raise ReleaseManifestError("release artifact is missing its tracked path")
+        required.add(path)
+    try:
+        result = subprocess.run(
+            [
+                "git",
+                "-C",
+                str(repo_root),
+                "ls-files",
+                "-z",
+                "--cached",
+                "--",
+                *sorted(required),
+            ],
+            check=True,
+            capture_output=True,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError) as exc:
+        raise ReleaseManifestError("cannot verify tracked release inputs") from exc
+    tracked = {item.decode("utf-8") for item in result.stdout.split(b"\0") if item}
+    missing = sorted(required - tracked)
+    if missing:
+        raise ReleaseManifestError("release inputs must be tracked in Git: " + ", ".join(missing))
 
 
 def _git_provenance(repo_root: Path) -> dict[str, str] | None:
@@ -663,8 +1025,26 @@ def _git_provenance(repo_root: Path) -> dict[str, str] | None:
             capture_output=True,
             text=True,
         ).stdout.strip()
+        status = subprocess.run(
+            [
+                "git",
+                "-C",
+                str(repo_root),
+                "status",
+                "--porcelain=v1",
+                "--untracked-files=all",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout
     except (FileNotFoundError, subprocess.CalledProcessError):
         return None
+    if status.strip():
+        raise ReleaseManifestError(
+            "release publication requires a clean git checkout with every selector "
+            "and artifact committed"
+        )
     if not commit or not epoch:
         return None
     committed_at = datetime.fromtimestamp(int(epoch), tz=UTC).isoformat().replace("+00:00", "Z")

@@ -74,6 +74,8 @@ def _write_object(tmp_path: Path) -> tuple[Path, str, Path]:
                 "version": "v1",
                 "provision_rows": 1,
                 "navigation_rows": 1,
+                "provision_projection_sha256": "a" * 64,
+                "navigation_projection_sha256": "b" * 64,
             }
         ],
         "artifacts": entries,
@@ -88,7 +90,7 @@ def _write_object(tmp_path: Path) -> tuple[Path, str, Path]:
             "artifact_bytes": sum(entry["bytes"] for entry in entries),
             "verified_keys": [entry["r2_key"] for entry in entries],
         },
-        "supabase_counts": [
+        "supabase_projection_evidence": [
             {
                 "jurisdiction": "nz",
                 "document_class": "statute",
@@ -97,6 +99,10 @@ def _write_object(tmp_path: Path) -> tuple[Path, str, Path]:
                 "actual": 1,
                 "expected_navigation": 1,
                 "actual_navigation": 1,
+                "expected_provision_projection_sha256": "a" * 64,
+                "actual_provision_projection_sha256": "a" * 64,
+                "expected_navigation_projection_sha256": "b" * 64,
+                "actual_navigation_projection_sha256": "b" * 64,
             }
         ],
     }
@@ -167,11 +173,11 @@ def test_cli_rejects_invalid_release_object(tmp_path: Path, monkeypatch, capsys)
         ({"content": {"artifacts": [{}]}}, "missing its path"),
         (
             {"content": {"artifacts": [{"path": "data/corpus/../../../outside"}]}},
-            "escapes repository",
+            "escapes exact data/corpus boundary",
         ),
         (
             {"content": {"artifacts": [{"path": "data/corpus/missing.json"}]}},
-            "artifact is missing",
+            "artifact is missing locally",
         ),
     ],
 )
@@ -202,3 +208,16 @@ def test_local_artifact_verifier_reports_hash_and_size_mismatch(tmp_path: Path) 
     issues = _verify_local_artifacts(payload, tmp_path)
     assert any("sha256 mismatch" in issue for issue in issues)
     assert any("byte-count mismatch" in issue for issue in issues)
+
+
+def test_local_artifact_verifier_rejects_symlink(tmp_path: Path) -> None:
+    release_path, _, artifact = _write_object(tmp_path)
+    payload = json.loads(release_path.read_text())
+    target = tmp_path / "inside-repository.txt"
+    target.write_bytes(artifact.read_bytes())
+    artifact.unlink()
+    artifact.symlink_to(target)
+
+    issues = _verify_local_artifacts(payload, tmp_path)
+
+    assert any("path contains a symlink" in issue for issue in issues)

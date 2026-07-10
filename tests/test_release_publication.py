@@ -36,14 +36,21 @@ class FakeR2:
         assert kwargs["Bucket"] == "axiom-corpus"
         return {"Body": BytesIO(self.objects[kwargs["Key"]])}
 
-    def upload_file(self, filename, bucket, key, **kwargs):
-        assert bucket == "axiom-corpus"
-        self.objects[key] = Path(filename).read_bytes()
-        self.uploads.append(key)
-
     def put_object(self, **kwargs):
         assert kwargs["Bucket"] == "axiom-corpus"
-        self.objects[kwargs["Key"]] = bytes(kwargs["Body"])
+        assert kwargs["IfNoneMatch"] == "*"
+        key = kwargs["Key"]
+        if key in self.objects:
+            raise ClientError(
+                {
+                    "Error": {"Code": "PreconditionFailed"},
+                    "ResponseMetadata": {"HTTPStatusCode": 412},
+                },
+                "PutObject",
+            )
+        body = kwargs["Body"]
+        self.objects[key] = body.read() if hasattr(body, "read") else bytes(body)
+        self.uploads.append(key)
 
 
 def _config() -> R2Config:
@@ -102,6 +109,8 @@ def _content(tmp_path: Path) -> dict:
                 "version": "v1",
                 "provision_rows": 1,
                 "navigation_rows": 1,
+                "provision_projection_sha256": "a" * 64,
+                "navigation_projection_sha256": "b" * 64,
             }
         ],
         "artifacts": entries,
@@ -116,7 +125,7 @@ def _content(tmp_path: Path) -> dict:
             "artifact_bytes": sum(entry["bytes"] for entry in entries),
             "verified_keys": [entry["r2_key"] for entry in entries],
         },
-        "supabase_counts": [
+        "supabase_projection_evidence": [
             {
                 "jurisdiction": "nz",
                 "document_class": "statute",
@@ -125,6 +134,10 @@ def _content(tmp_path: Path) -> dict:
                 "actual": 1,
                 "expected_navigation": 1,
                 "actual_navigation": 1,
+                "expected_provision_projection_sha256": "a" * 64,
+                "actual_provision_projection_sha256": "a" * 64,
+                "expected_navigation_projection_sha256": "b" * 64,
+                "actual_navigation_projection_sha256": "b" * 64,
             }
         ],
     }
@@ -231,7 +244,7 @@ def test_stage_artifacts_rejects_non_content_addressed_key(tmp_path: Path) -> No
         ("path", "missing path or R2 key"),
         ("metadata", "metadata is invalid"),
         ("bucket", "wrong R2 bucket"),
-        ("escape", "escapes repository"),
+        ("escape", "escapes exact data/corpus boundary"),
         ("missing", "missing locally"),
     ],
 )
@@ -283,12 +296,120 @@ def test_stage_artifacts_rejects_same_size_local_hash_tamper(tmp_path: Path) -> 
         )
 
 
+def test_stage_artifacts_rejects_symlinked_artifact(tmp_path: Path) -> None:
+    content = _content(tmp_path)
+    relative = content["artifacts"][0]["path"]
+    artifact = tmp_path / relative
+    target = tmp_path / "inside-repository.txt"
+    target.write_bytes(artifact.read_bytes())
+    artifact.unlink()
+    artifact.symlink_to(target)
+
+    with pytest.raises(ReleaseManifestError, match="path contains a symlink"):
+        stage_release_artifacts(
+            tmp_path,
+            release_content=content,
+            config=_config(),
+            client=FakeR2(),
+        )
+
+
+def test_stage_artifacts_rejects_symlinked_parent_directory(tmp_path: Path) -> None:
+    content = _content(tmp_path)
+    relative = content["artifacts"][0]["path"]
+    artifact = tmp_path / relative
+    original_parent = artifact.parent
+    relocated_parent = tmp_path / "relocated-artifacts"
+    original_parent.rename(relocated_parent)
+    original_parent.symlink_to(relocated_parent, target_is_directory=True)
+
+    with pytest.raises(ReleaseManifestError, match="path contains a symlink"):
+        stage_release_artifacts(
+            tmp_path,
+            release_content=content,
+            config=_config(),
+            client=FakeR2(),
+        )
+
+
+def test_stage_artifacts_uploads_one_immutable_snapshot(tmp_path: Path) -> None:
+    content = _content(tmp_path)
+    entry = content["artifacts"][0]
+    artifact = tmp_path / entry["path"]
+    original = artifact.read_bytes()
+
+    class MutatingR2(FakeR2):
+        mutated = False
+
+        def put_object(self, **kwargs):
+            if kwargs["Key"] == entry["r2_key"] and not self.mutated:
+                self.mutated = True
+                artifact.write_bytes(b"changed after hashing")
+            return super().put_object(**kwargs)
+
+    client = MutatingR2()
+    stage_release_artifacts(
+        tmp_path,
+        release_content=content,
+        config=_config(),
+        client=client,
+    )
+
+    assert artifact.read_bytes() != original
+    assert client.objects[entry["r2_key"]] == original
+
+
+@pytest.mark.parametrize(
+    ("code", "status"),
+    [("ConditionalRequestConflict", 409), ("PreconditionFailed", 412)],
+)
+def test_stage_artifacts_handles_conditional_write_race(
+    tmp_path: Path,
+    code: str,
+    status: int,
+) -> None:
+    content = _content(tmp_path)
+    entry = content["artifacts"][0]
+    expected = (tmp_path / entry["path"]).read_bytes()
+
+    class RacingR2(FakeR2):
+        raced = False
+
+        def put_object(self, **kwargs):
+            if kwargs["Key"] == entry["r2_key"] and not self.raced:
+                self.raced = True
+                if status == 412:
+                    self.objects[kwargs["Key"]] = expected
+                raise ClientError(
+                    {
+                        "Error": {"Code": code},
+                        "ResponseMetadata": {"HTTPStatusCode": status},
+                    },
+                    "PutObject",
+                )
+            return super().put_object(**kwargs)
+
+    client = RacingR2()
+    report = stage_release_artifacts(
+        tmp_path,
+        release_content=content,
+        config=_config(),
+        client=client,
+    )
+
+    assert client.objects[entry["r2_key"]] == expected
+    if status == 412:
+        assert report.reused_count >= 1
+    else:
+        assert entry["r2_key"] in client.uploads
+
+
 def test_stage_artifacts_requires_post_upload_readback(tmp_path: Path) -> None:
     content = _content(tmp_path)
 
     class DiscardingR2(FakeR2):
-        def upload_file(self, filename, bucket, key, **kwargs):
-            self.uploads.append(key)
+        def put_object(self, **kwargs):
+            self.uploads.append(kwargs["Key"])
 
     with pytest.raises(ReleaseManifestError, match="readback is missing after staging"):
         stage_release_artifacts(
@@ -313,6 +434,46 @@ def test_signed_release_object_is_read_back_and_publicly_verified(tmp_path: Path
     )
 
     assert key in client.objects
+    assert key.startswith("releases/nz-rulespec-v1/")
+
+
+@pytest.mark.parametrize(
+    ("code", "status"),
+    [("ConditionalRequestConflict", 409), ("PreconditionFailed", 412)],
+)
+def test_signed_release_object_handles_conditional_write_race(
+    tmp_path: Path,
+    code: str,
+    status: int,
+) -> None:
+    content = _content(tmp_path)
+    private, public = _keys()
+    signed = sign_release_object(build_unsigned_release_object(content), private_key=private)
+
+    class RacingR2(FakeR2):
+        raced = False
+
+        def put_object(self, **kwargs):
+            if not self.raced:
+                self.raced = True
+                if status == 412:
+                    self.objects[kwargs["Key"]] = bytes(kwargs["Body"])
+                raise ClientError(
+                    {
+                        "Error": {"Code": code},
+                        "ResponseMetadata": {"HTTPStatusCode": status},
+                    },
+                    "PutObject",
+                )
+            return super().put_object(**kwargs)
+
+    key = stage_signed_release_object(
+        signed,
+        public_key=public,
+        config=_config(),
+        client=RacingR2(),
+    )
+
     assert key.startswith("releases/nz-rulespec-v1/")
 
 

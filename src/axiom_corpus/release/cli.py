@@ -11,6 +11,7 @@ from pathlib import Path
 from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_PUBLIC_KEY_ENV,
     ReleaseManifestError,
+    canonical_corpus_artifact_file,
     load_release_object,
     sha256_file,
 )
@@ -33,14 +34,10 @@ def _verify_local_artifacts(payload: dict[str, object], repo_root: Path) -> list
         if not isinstance(relative, str):
             issues.append("release artifact is missing its path")
             continue
-        path = (root / relative).resolve()
         try:
-            path.relative_to(root)
-        except ValueError:
-            issues.append(f"artifact escapes repository: {relative}")
-            continue
-        if not path.is_file():
-            issues.append(f"artifact is missing: {relative}")
+            path = canonical_corpus_artifact_file(root, relative)
+        except ReleaseManifestError as exc:
+            issues.append(str(exc))
             continue
         actual = sha256_file(path)
         if actual != raw.get("sha256"):

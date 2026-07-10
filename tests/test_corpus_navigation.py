@@ -21,6 +21,7 @@ def _record(
     jurisdiction: str = "us-co",
     document_class: str = "statute",
     version: str | None = None,
+    provision_id: str | None = None,
     metadata: dict | None = None,
 ) -> ProvisionRecord:
     return ProvisionRecord(
@@ -32,6 +33,7 @@ def _record(
         ordinal=ordinal,
         has_rulespec=has_rulespec,
         version=version,
+        id=provision_id,
         metadata=metadata,
     )
 
@@ -66,14 +68,34 @@ def test_parent_child_navigation_uses_explicit_parent_citation_path():
 
 
 def test_navigation_uses_versioned_provision_id_for_local_jsonl():
-    nodes = build_navigation_nodes([
-        _record("us-co/statute/title-39", version="2026-05-13"),
-    ])
+    citation = "us-co/statute/title-39"
+    nodes = build_navigation_nodes(
+        [
+            _record(
+                citation,
+                version="2026-05-13",
+                provision_id=deterministic_provision_id(citation).upper(),
+            ),
+        ]
+    )
 
     assert nodes[0].provision_id == deterministic_provision_id(
-        "us-co/statute/title-39",
+        citation,
         "2026-05-13",
     )
+
+
+def test_navigation_canonicalizes_explicit_uuid_provision_id():
+    nodes = build_navigation_nodes(
+        [
+            _record(
+                "us-co/statute/title-39",
+                provision_id="AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA",
+            )
+        ]
+    )
+
+    assert nodes[0].provision_id == "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
 
 
 def test_citation_path_hierarchy_links_to_nearest_existing_ancestor():

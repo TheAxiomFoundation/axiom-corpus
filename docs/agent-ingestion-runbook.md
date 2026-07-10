@@ -57,6 +57,12 @@ section-level text the official source exposes. `citation_path` values should be
 stable, lowercase jurisdiction-prefixed paths such as
 `us-wa/statute/42/56/010`.
 
+Every inventory item must name a non-symlink regular source file under the
+exact `sources/<jurisdiction>/<document_class>/<version>/...` boundary and
+record that file's matching SHA-256. Every provision must cite a source path
+from that same inventory. Missing, cross-scope, absolute, or symlinked source
+references fail the publication gate.
+
 Do not persist AKN XML. Do not add a second schema for one state. If a source
 requires a parser helper, keep it local and covered by tests.
 
@@ -111,13 +117,16 @@ publication review.
 ## Review Package
 
 Every agent handoff should include the source URL, extraction command, counts,
-coverage summary, generated artifact paths, and test commands. The controller
-can then include the scope in a new immutable named selector. Merging data does
-not publish it, and an existing release name is never edited or reused.
+coverage summary, generated artifact paths, source-reference/hash validation,
+and test commands. The controller can then include the scope in a new immutable
+named selector. Merging data does not publish it, and an existing release name
+is never edited or reused.
 
 ## Publication Gate
 
-Only publish after code review and green CI. Preflight the exact selector:
+Only publish after code review and green CI. Commit the exact canonical
+selector and every selected artifact, leave the checkout clean, then preflight
+the selector:
 
 ```bash
 uv run --extra dev python scripts/publish_corpus.py \
@@ -125,8 +134,13 @@ uv run --extra dev python scripts/publish_corpus.py \
   --dry-run
 ```
 
-The protected publication workflow then executes the only write path: SHA-256
-R2 staging and readback, invisible versioned database staging, exact counts,
-post-readback deep validation, Ed25519 signing, signed-object readback, and one
-transactional pointer activation. It does not synthesize missing parents or
-suppress count/refresh errors. See `docs/named-release-publication.md`.
+The protected publication workflow then executes the only write path:
+conditional SHA-256 R2 writes and exact readback, safe reuse checks against
+prior signed scope objects, invisible versioned database staging, direct
+pre-sign counts and canonical provision/navigation projection digests,
+post-readback deep validation, Ed25519 signing, and signed-object readback. It
+locally verifies the signature before a separate Supabase Management API
+credential invokes transactional activation; the staging service role cannot
+activate. An exact retry reuses identical bytes and immutable scopes without
+rewriting them. The workflow does not synthesize missing parents or suppress
+projection/refresh errors. See `docs/named-release-publication.md`.

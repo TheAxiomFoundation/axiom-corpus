@@ -98,6 +98,22 @@ def _release_tree(
         name=name,
         scopes=(ReleaseScope("nz", "statute", version),),
     )
+    selector = root / "manifests" / "releases" / f"{name}.json"
+    selector.parent.mkdir(parents=True)
+    selector.write_text(
+        json.dumps(
+            {
+                "name": name,
+                "scopes": [
+                    {
+                        "jurisdiction": "nz",
+                        "document_class": "statute",
+                        "version": version,
+                    }
+                ],
+            }
+        )
+    )
     subprocess.run(["git", "init", "-q", str(root)], check=True)
     subprocess.run(["git", "-C", str(root), "config", "user.name", "Test"], check=True)
     subprocess.run(
@@ -153,7 +169,7 @@ def _validation_for(content: dict) -> dict:
             "artifact_bytes": sum(entry["bytes"] for entry in content["artifacts"]),
             "verified_keys": [entry["r2_key"] for entry in content["artifacts"]],
         },
-        "supabase_counts": [
+        "supabase_projection_evidence": [
             {
                 "jurisdiction": scope["jurisdiction"],
                 "document_class": scope["document_class"],
@@ -162,6 +178,10 @@ def _validation_for(content: dict) -> dict:
                 "actual": scope["provision_rows"],
                 "expected_navigation": scope["navigation_rows"],
                 "actual_navigation": scope["navigation_rows"],
+                "expected_provision_projection_sha256": scope["provision_projection_sha256"],
+                "actual_provision_projection_sha256": scope["provision_projection_sha256"],
+                "expected_navigation_projection_sha256": scope["navigation_projection_sha256"],
+                "actual_navigation_projection_sha256": scope["navigation_projection_sha256"],
             }
             for scope in content["scopes"]
         ],
@@ -185,6 +205,8 @@ def test_release_object_is_scope_specific_and_content_addressed(tmp_path: Path) 
             "version": "2026-07-10-nz-rulespec",
             "provision_rows": 1,
             "navigation_rows": 1,
+            "provision_projection_sha256": content["scopes"][0]["provision_projection_sha256"],
+            "navigation_projection_sha256": content["scopes"][0]["navigation_projection_sha256"],
         }
     ]
     assert {entry["artifact_class"] for entry in content["artifacts"]} == {
@@ -429,17 +451,17 @@ def test_release_object_rejects_malformed_v2_variants(
     elif case == "readback_mismatch":
         payload["content"]["validation"]["r2_readback"]["artifact_count"] = 0
     elif case == "counts_incomplete":
-        payload["content"]["validation"]["supabase_counts"] = []
+        payload["content"]["validation"]["supabase_projection_evidence"] = []
     elif case == "count_object":
-        payload["content"]["validation"]["supabase_counts"] = [None]
+        payload["content"]["validation"]["supabase_projection_evidence"] = [None]
     elif case == "count_schema":
-        payload["content"]["validation"]["supabase_counts"][0].pop("actual")
+        payload["content"]["validation"]["supabase_projection_evidence"][0].pop("actual")
     elif case == "count_type":
-        payload["content"]["validation"]["supabase_counts"][0]["actual"] = True
+        payload["content"]["validation"]["supabase_projection_evidence"][0]["actual"] = True
     elif case == "count_identity":
-        payload["content"]["validation"]["supabase_counts"][0]["jurisdiction"] = ""
+        payload["content"]["validation"]["supabase_projection_evidence"][0]["jurisdiction"] = ""
     else:
-        payload["content"]["validation"]["supabase_counts"][0]["actual"] = 2
+        payload["content"]["validation"]["supabase_projection_evidence"][0]["actual"] = 2
 
     # Every case intentionally changes content after the original unsigned
     # object was built. Re-address it so the test reaches the targeted schema
@@ -544,6 +566,28 @@ def test_git_provenance_uses_head_commit_time(tmp_path: Path) -> None:
     assert provenance["committed_at"].endswith("Z")
 
 
+def test_git_provenance_rejects_dirty_checkout(tmp_path: Path) -> None:
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    subprocess.run(["git", "init", "-q", str(repo)], check=True)
+    subprocess.run(["git", "-C", str(repo), "config", "user.name", "Test"], check=True)
+    subprocess.run(
+        ["git", "-C", str(repo), "config", "user.email", "test@example.com"],
+        check=True,
+    )
+    marker = repo / "marker"
+    marker.write_text("tracked")
+    subprocess.run(["git", "-C", str(repo), "add", "marker"], check=True)
+    subprocess.run(
+        ["git", "-C", str(repo), "-c", "commit.gpgsign=false", "commit", "-qm", "seed"],
+        check=True,
+    )
+    marker.write_text("dirty")
+
+    with pytest.raises(ReleaseManifestError, match="clean git checkout"):
+        _git_provenance(repo)
+
+
 def test_git_provenance_rejects_empty_git_output(tmp_path: Path, monkeypatch) -> None:
     import axiom_corpus.release.manifest as manifest
 
@@ -567,7 +611,7 @@ def test_defensive_nested_validators_reject_non_object_scope() -> None:
             "artifact_bytes": 0,
             "verified_keys": [],
         },
-        "supabase_counts": [
+        "supabase_projection_evidence": [
             {
                 "jurisdiction": "nz",
                 "document_class": "statute",
@@ -576,6 +620,10 @@ def test_defensive_nested_validators_reject_non_object_scope() -> None:
                 "actual": 1,
                 "expected_navigation": 1,
                 "actual_navigation": 1,
+                "expected_provision_projection_sha256": "a" * 64,
+                "actual_provision_projection_sha256": "a" * 64,
+                "expected_navigation_projection_sha256": "b" * 64,
+                "actual_navigation_projection_sha256": "b" * 64,
             }
         ],
     }
@@ -626,6 +674,7 @@ def test_release_content_rejects_invalid_build_boundaries(tmp_path: Path, monkey
         )
 
     provisions = root / "data/corpus/provisions/nz/statute/2026-07-10-nz-rulespec.jsonl"
+    original_provisions = provisions.read_text()
     provisions.write_text("")
     with pytest.raises(ReleaseManifestError, match="must contain at least one row"):
         build_release_content(
@@ -637,7 +686,7 @@ def test_release_content_rejects_invalid_build_boundaries(tmp_path: Path, monkey
 
     # Every production build requires real git provenance; an explicit
     # timestamp cannot substitute for checkout identity.
-    provisions.write_text('{"body":"restored"}\n')
+    provisions.write_text(original_provisions)
     monkeypatch.setattr("axiom_corpus.release.manifest._git_provenance", lambda path: None)
     with pytest.raises(ReleaseManifestError, match="git checkout identity"):
         build_release_content(root, release=release, validation={"passed": True})
@@ -678,12 +727,127 @@ def test_release_content_rejects_escaping_corpus_symlink(tmp_path: Path) -> None
         )
 
 
+def test_release_content_rejects_in_repository_corpus_symlink(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    corpus = root / "data" / "corpus"
+    relocated = root / "relocated-corpus"
+    corpus.rename(relocated)
+    corpus.symlink_to(relocated, target_is_directory=True)
+
+    with pytest.raises(ReleaseManifestError, match="path contains a symlink"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+
+def test_release_content_rejects_symlinked_source_file(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    source = root / "data/corpus/sources/nz/statute/2026-07-10-nz-rulespec/act.html"
+    source.unlink()
+    source.symlink_to(root / ".git" / "config")
+
+    with pytest.raises(ReleaseManifestError, match="path contains a symlink"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+
+def test_release_content_requires_complete_canonical_source_references(
+    tmp_path: Path,
+) -> None:
+    root, release = _release_tree(tmp_path)
+    provisions = root / "data/corpus/provisions/nz/statute/2026-07-10-nz-rulespec.jsonl"
+    record = json.loads(provisions.read_text())
+    record.pop("source_path")
+    provisions.write_text(json.dumps(record) + "\n")
+
+    with pytest.raises(ReleaseManifestError, match="must have a non-empty source_path"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+
+def test_release_content_rejects_uninventoried_provision_source(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    store = CorpusArtifactStore(root / "data" / "corpus")
+    version = "2026-07-10-nz-rulespec"
+    unlisted = store.source_path("nz", "statute", version, "unlisted.html")
+    store.write_text(unlisted, "<p>Uninventoried source.</p>")
+    provisions = store.provisions_path("nz", "statute", version)
+    record = json.loads(provisions.read_text())
+    record["source_path"] = unlisted.relative_to(store.root).as_posix()
+    provisions.write_text(json.dumps(record) + "\n")
+
+    with pytest.raises(ReleaseManifestError, match="absent from scope inventory"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+
+def test_release_content_rejects_inventory_source_digest_mismatch(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    inventory = root / "data/corpus/inventory/nz/statute/2026-07-10-nz-rulespec.json"
+    payload = json.loads(inventory.read_text())
+    payload["items"][0]["sha256"] = "a" * 64
+    inventory.write_text(json.dumps(payload))
+
+    with pytest.raises(ReleaseManifestError, match="does not match signed artifact"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+
 def test_release_content_rejects_missing_scope_artifact(tmp_path: Path) -> None:
     root, release = _release_tree(tmp_path)
     source = root / "data/corpus/sources/nz/statute/2026-07-10-nz-rulespec/act.html"
     source.unlink()
 
     with pytest.raises(ReleaseManifestError, match="missing sources artifact"):
+        build_release_content(
+            root,
+            release=release,
+            validation={"passed": True},
+            created_at="2026-07-10T00:00:00Z",
+        )
+
+
+def test_release_content_rejects_ignored_untracked_source_artifact(tmp_path: Path) -> None:
+    root, release = _release_tree(tmp_path)
+    source = root / "data/corpus/sources/nz/statute/2026-07-10-nz-rulespec/act.html"
+    relative = source.relative_to(root).as_posix()
+    subprocess.run(["git", "-C", str(root), "rm", "--cached", relative], check=True)
+    (root / ".gitignore").write_text(f"/{relative}\n")
+    subprocess.run(["git", "-C", str(root), "add", ".gitignore"], check=True)
+    subprocess.run(
+        [
+            "git",
+            "-C",
+            str(root),
+            "-c",
+            "commit.gpgsign=false",
+            "commit",
+            "-qm",
+            "ignore source",
+        ],
+        check=True,
+    )
+
+    with pytest.raises(ReleaseManifestError, match="inputs must be tracked"):
         build_release_content(
             root,
             release=release,

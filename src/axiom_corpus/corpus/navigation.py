@@ -32,7 +32,7 @@ from collections import defaultdict
 from collections.abc import Iterable
 from dataclasses import dataclass, replace
 from typing import Any
-from uuid import NAMESPACE_URL, uuid5
+from uuid import NAMESPACE_URL, UUID, uuid5
 
 from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.supabase import deterministic_provision_id
@@ -216,9 +216,13 @@ def build_navigation_nodes(
 
 def _provision_id_for_navigation(record: ProvisionRecord) -> str:
     legacy_id = deterministic_provision_id(record.citation_path)
-    if record.version and (record.id is None or record.id == legacy_id):
+    try:
+        explicit_id = str(UUID(record.id)) if record.id is not None else None
+    except ValueError as exc:
+        raise ValueError(f"provision id must be a UUID: {record.id!r}") from exc
+    if record.version and (explicit_id is None or explicit_id == legacy_id):
         return deterministic_provision_id(record.citation_path, record.version)
-    return record.id or legacy_id
+    return explicit_id or legacy_id
 
 
 def group_nodes_by_scope(

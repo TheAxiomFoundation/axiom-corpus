@@ -11,18 +11,30 @@ published release. It must have an explicit immutable name and exact
 reserved and rejected. Names are at most 128 characters and contain only
 lowercase alphanumeric segments separated by single hyphens.
 
+Publication accepts only the canonical, non-symlink selector path
+`manifests/releases/<name>.json` from a clean Git checkout. The selector and
+every selected artifact must already be tracked and committed. The commit and
+its commit timestamp become signed provenance; an operator-supplied timestamp
+cannot replace that checkout identity.
+
 The publication controller derives a release object containing:
 
 - the selector digest and source git commit;
-- every selected artifact's canonical local path, bytes, and SHA-256;
+- every selected inventory, provision, coverage, and source artifact's
+  canonical local path, bytes, and SHA-256;
 - content-addressed R2 keys under `objects/sha256/`;
-- exact provision and derived navigation rows for every scope;
-- local deep-validation, R2 readback, and Supabase count attestations; and
+- exact provision and derived navigation row counts plus canonical projection
+  digests for every scope;
+- local deep-validation, R2 readback, and pre-sign Supabase projection
+  evidence; and
 - an Ed25519 signature verifiable with `AXIOM_CORPUS_RELEASE_PUBLIC_KEY`.
 
-Publication requires an exact Git checkout identity even when the caller
-supplies an explicit creation timestamp; a timestamp never substitutes for
-source provenance.
+Deep validation requires each inventory source reference to use the exact
+`sources/<jurisdiction>/<document_class>/<version>/...` boundary, name a
+non-symlink regular file, and include its matching SHA-256. Every provision
+source reference must use that same boundary and occur in the inventory. The
+signed artifact list is the complete allowed inventory for the declared
+scopes; a consumer must not discover additional files by scanning a directory.
 
 The release object's `content_sha256` addresses its signed content. R2 stores
 it at `releases/<name>/<content_sha256>.json`. Reusing a name for different
@@ -34,23 +46,42 @@ content is an error.
 at the first failure:
 
 1. Deep-validate all local artifacts as a no-write preflight.
-2. Upload missing artifacts to their SHA-256 R2 keys.
+2. Snapshot each artifact once, hash that snapshot, and conditionally write it
+   to its SHA-256 R2 key with `If-None-Match: *`. A concurrent `409` or `412`
+   converges only when readback proves the existing bytes are identical.
 3. Download every selected R2 object and verify its exact bytes and hash.
-4. Stage versioned provision and navigation rows. Loading never changes public
-   visibility and never synthesizes missing parents.
-5. Query direct, exact per-version provision and navigation row counts and
-   compare both with the hashed JSONL row count.
-6. Rerun deep validation, then build and Ed25519-sign the attested release
-   object. The configured public key must verify it.
-7. Upload, download, and verify the signed release object.
-8. Call `corpus.activate_corpus_release` once. The RPC repeats exact counts,
-   installs immutable membership, moves the singleton production pointer, and
-   refreshes `current_provision_counts` in one transaction. A count or refresh
-   error rolls the pointer change back.
+4. Query prior signed objects for the selected scopes. The controller verifies
+   each object with the trusted Ed25519 public key. An already released scope
+   is reused only when its signed artifacts, row counts, and projection digests
+   exactly match; otherwise publication stops.
+5. Stage versioned provision and navigation rows for unreleased scopes. Loading
+   never changes public visibility and never synthesizes missing parents.
+6. Query direct base-table evidence before signing. Exact provision/navigation
+   counts and canonical digests of every publisher-controlled projection field
+   must match the locally derived evidence.
+7. Rerun deep validation, prove the artifact and scope identity did not change,
+   then build and Ed25519-sign the attested release object. The independently
+   configured public key must verify it locally.
+8. Conditionally write the signed object to
+   `releases/<name>/<content_sha256>.json`, read it back, and verify its bytes,
+   content address, schema, evidence, and signature.
+9. After another local signature verification, use the Supabase Management API
+   to call `corpus.activate_corpus_release`. The staging `service_role` is
+   explicitly forbidden from executing this RPC. The transaction locks the
+   projection tables, repeats exact counts and digests, installs immutable
+   scope membership, moves the singleton production pointer, and refreshes
+   `current_provision_counts`. Any error rolls the transaction back.
 
 Partial staging is inert and safe to inspect or retry. There is no per-scope
 `publish`, mutable `current.json`, publish-on-load, best-effort refresh, or
 ambient release selection.
+
+An exact retry is a no-op at every immutable boundary: existing R2 bytes are
+verified and reused, already released scopes skip database writes, the same
+release object is accepted, and an already matching production pointer is not
+rewritten. A release name with different content, or a successor release that
+tries to change a previously released scope, is rejected. A successor may
+reuse a scope only when the prior signed scope identity is byte-for-byte equal.
 
 ## Downstream resolution
 
@@ -78,9 +109,11 @@ uv run --extra dev python scripts/publish_corpus.py \
   --dry-run
 ```
 
-Production publication requires R2 credentials, a Supabase service credential,
-and the release private/public key pair. CI supplies those values; operators
-should not print or persist them.
+Production publication requires R2 credentials, a Supabase staging credential,
+a distinct Supabase Management API access token, and the release
+private/public key pair. The staging credential can load rows and read evidence
+but cannot activate a release. CI supplies these values; operators should not
+print or persist them.
 
 Verify a downloaded release object using only the public key:
 

@@ -1,19 +1,24 @@
+import hashlib
 import io
 import json
 import urllib.error
+from base64 import b64encode
 
 import pytest
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 from axiom_corpus.corpus.models import ProvisionRecord
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.supabase import (
-    StagedScopeCounts,
+    StagedScopeEvidence,
     activate_corpus_release,
     delete_supabase_provisions_scope,
     deterministic_provision_id,
     fetch_provision_counts,
     fetch_release_provision_counts,
-    fetch_staged_release_scope_counts,
+    fetch_released_scope_objects,
+    fetch_staged_release_scope_evidence,
     iter_supabase_rows,
     load_provisions_to_supabase,
     provision_to_supabase_row,
@@ -22,6 +27,106 @@ from axiom_corpus.corpus.supabase import (
     verify_release_coverage,
     write_supabase_rows_jsonl,
 )
+from axiom_corpus.release.manifest import (
+    ReleaseManifestError,
+    build_unsigned_release_object,
+    content_addressed_r2_key,
+    sign_release_object,
+)
+
+
+def _signed_release_object() -> tuple[dict, str]:
+    private = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
+    private_text = b64encode(
+        private.private_bytes(
+            serialization.Encoding.Raw,
+            serialization.PrivateFormat.Raw,
+            serialization.NoEncryption(),
+        )
+    ).decode()
+    public_text = b64encode(
+        private.public_key().public_bytes(
+            serialization.Encoding.Raw,
+            serialization.PublicFormat.Raw,
+        )
+    ).decode()
+    provision_digest = "c" * 64
+    navigation_digest = "d" * 64
+    scope = {
+        "jurisdiction": "nz",
+        "document_class": "statute",
+        "version": "v1",
+        "provision_rows": 1,
+        "navigation_rows": 1,
+        "provision_projection_sha256": provision_digest,
+        "navigation_projection_sha256": navigation_digest,
+    }
+    artifacts = []
+    for artifact_class, path, rows in (
+        ("coverage", "data/corpus/coverage/nz/statute/v1.json", None),
+        ("inventory", "data/corpus/inventory/nz/statute/v1.json", None),
+        ("provisions", "data/corpus/provisions/nz/statute/v1.jsonl", 1),
+        ("sources", "data/corpus/sources/nz/statute/v1/source.txt", None),
+    ):
+        digest = hashlib.sha256(path.encode()).hexdigest()
+        artifact = {
+            "artifact_class": artifact_class,
+            "path": path,
+            "sha256": digest,
+            "bytes": len(path.encode()),
+            "r2_bucket": "axiom-corpus",
+            "r2_key": content_addressed_r2_key(digest),
+        }
+        if rows is not None:
+            artifact["rows"] = rows
+        artifacts.append(artifact)
+    artifacts.sort(key=lambda artifact: artifact["path"])
+    selector = {
+        "name": "nz-rulespec-v1",
+        "scopes": [{key: scope[key] for key in ("jurisdiction", "document_class", "version")}],
+    }
+    selector_digest = hashlib.sha256(
+        json.dumps(selector, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+    content = {
+        "release": "nz-rulespec-v1",
+        "created_at": "2026-07-10T00:00:00Z",
+        "selector_sha256": selector_digest,
+        "corpus_base": "data/corpus",
+        "git": {"commit": "a" * 40, "committed_at": "2026-07-10T00:00:00Z"},
+        "r2": {"bucket": "axiom-corpus", "addressing": "sha256"},
+        "scopes": [scope],
+        "artifacts": artifacts,
+        "validation": {
+            "passed": True,
+            "deep_validation": {"error_count": 0, "warning_count": 0, "scope_count": 1},
+            "r2_readback": {
+                "bucket": "axiom-corpus",
+                "artifact_count": 4,
+                "artifact_bytes": sum(artifact["bytes"] for artifact in artifacts),
+                "verified_keys": [artifact["r2_key"] for artifact in artifacts],
+            },
+            "supabase_projection_evidence": [
+                {
+                    "jurisdiction": "nz",
+                    "document_class": "statute",
+                    "version": "v1",
+                    "expected": 1,
+                    "actual": 1,
+                    "expected_navigation": 1,
+                    "actual_navigation": 1,
+                    "expected_provision_projection_sha256": provision_digest,
+                    "actual_provision_projection_sha256": provision_digest,
+                    "expected_navigation_projection_sha256": navigation_digest,
+                    "actual_navigation_projection_sha256": navigation_digest,
+                }
+            ],
+        },
+    }
+    return (
+        sign_release_object(build_unsigned_release_object(content), private_key=private_text),
+        public_text,
+    )
 
 
 def test_supabase_projection_derives_stable_ids_and_parent_ids():
@@ -50,8 +155,8 @@ def test_supabase_projection_uses_versioned_ids_for_release_rows():
         document_class="regulation",
         citation_path="us/regulation/7/273/1",
         parent_citation_path="us/regulation/7/273",
-        id=deterministic_provision_id("us/regulation/7/273/1"),
-        parent_id=deterministic_provision_id("us/regulation/7/273"),
+        id=deterministic_provision_id("us/regulation/7/273/1").upper(),
+        parent_id=deterministic_provision_id("us/regulation/7/273").upper(),
         version="2026-05-13",
     )
 
@@ -66,6 +171,33 @@ def test_supabase_projection_uses_versioned_ids_for_release_rows():
         "2026-05-13",
     )
     assert row["version"] == "2026-05-13"
+
+
+def test_supabase_projection_canonicalizes_explicit_uuid_ids():
+    record = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/7/273/1",
+        id="AAAAAAAA-AAAA-4AAA-8AAA-AAAAAAAAAAAA",
+        parent_id="BBBBBBBB-BBBB-4BBB-8BBB-BBBBBBBBBBBB",
+    )
+
+    row = provision_to_supabase_row(record)
+
+    assert row["id"] == "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+    assert row["parent_id"] == "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+
+
+def test_supabase_projection_rejects_non_uuid_database_ids():
+    record = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/7/273/1",
+        id="not-a-uuid",
+    )
+
+    with pytest.raises(ValueError, match="id must be a UUID"):
+        provision_to_supabase_row(record)
 
 
 def test_supabase_projection_preserves_non_uuid_source_document_id_as_identifier():
@@ -587,7 +719,7 @@ def test_load_provisions_to_supabase_requires_version_for_staging(monkeypatch):
         )
 
 
-def test_fetch_staged_release_scope_counts_requires_exact_rpc_surface(monkeypatch):
+def test_fetch_staged_release_scope_evidence_requires_exact_rpc_surface(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
     captured = {}
@@ -608,6 +740,8 @@ def test_fetch_staged_release_scope_counts_requires_exact_rpc_surface(monkeypatc
                         "version": "v1",
                         "provision_count": 11198,
                         "navigation_count": 11198,
+                        "provision_projection_sha256": "a" * 64,
+                        "navigation_projection_sha256": "b" * 64,
                     }
                 ]
             ).encode()
@@ -624,23 +758,27 @@ def test_fetch_staged_release_scope_counts_requires_exact_rpc_surface(monkeypatc
         scopes=(ReleaseScope("nz", "statute", "v1"),),
     )
 
-    assert fetch_staged_release_scope_counts(
+    assert fetch_staged_release_scope_evidence(
         release,
         service_key="service",
         supabase_url="https://example.supabase.co",
-    ) == {("nz", "statute", "v1"): StagedScopeCounts(11198, 11198)}
-    assert captured["url"].endswith("/rpc/get_staged_release_scope_counts")
+    ) == {
+        ("nz", "statute", "v1"): StagedScopeEvidence(
+            11198,
+            11198,
+            "a" * 64,
+            "b" * 64,
+        )
+    }
+    assert captured["url"].endswith("/rpc/get_staged_release_scope_evidence")
     assert captured["payload"]["p_scopes"][0]["version"] == "v1"
     assert captured["timeout"] == 600
 
 
-def test_activate_corpus_release_uses_single_fatal_rpc(monkeypatch):
+def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
-    release_object = {
-        "release": "nz-rulespec-v1",
-        "content_sha256": "a" * 64,
-    }
+    release_object, public_key = _signed_release_object()
     captured = {}
 
     class FakeResponse:
@@ -652,11 +790,15 @@ def test_activate_corpus_release_uses_single_fatal_rpc(monkeypatch):
 
         def read(self):
             return json.dumps(
-                {
-                    "active": True,
-                    "release": "nz-rulespec-v1",
-                    "content_sha256": "a" * 64,
-                }
+                [
+                    {
+                        "result": {
+                            "active": True,
+                            "release": "nz-rulespec-v1",
+                            "content_sha256": release_object["content_sha256"],
+                        }
+                    }
+                ]
             ).encode()
 
     def fake_urlopen(req, timeout):
@@ -670,22 +812,90 @@ def test_activate_corpus_release_uses_single_fatal_rpc(monkeypatch):
 
     result = activate_corpus_release(
         release_object,
-        service_key="service",
+        access_token="management",
+        public_key=public_key,
         supabase_url="https://example.supabase.co",
     )
 
     assert result["active"] is True
     assert captured["method"] == "POST"
-    assert captured["url"].endswith("/rpc/activate_corpus_release")
-    assert captured["payload"] == {"p_release_object": release_object}
+    assert captured["url"] == "https://api.supabase.com/v1/projects/example/database/query"
+    assert captured["payload"] == {
+        "query": "SELECT corpus.activate_corpus_release($1::jsonb) AS result",
+        "parameters": [json.dumps(release_object, sort_keys=True)],
+        "read_only": False,
+    }
     assert captured["timeout"] == 600
+
+
+def test_fetch_released_scope_objects_returns_exact_signed_rows(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, _public_key = _signed_release_object()
+
+    class FakeResponse:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+        def read(self):
+            return json.dumps(
+                [
+                    {
+                        "jurisdiction": "nz",
+                        "document_class": "statute",
+                        "version": "v1",
+                        "release_name": "nz-rulespec-v1",
+                        "content_sha256": release_object["content_sha256"],
+                        "release_object": release_object,
+                    }
+                ]
+            ).encode()
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", lambda *args, **kwargs: FakeResponse())
+    release = ReleaseManifest(
+        name="nz-rulespec-v2",
+        scopes=(ReleaseScope("nz", "statute", "v1"),),
+    )
+
+    rows = fetch_released_scope_objects(
+        release,
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    prior = rows[("nz", "statute", "v1")][0]
+    assert prior.release_name == "nz-rulespec-v1"
+    assert prior.release_object == release_object
+
+
+def test_activate_rejects_invalid_signature_before_network(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    release_object["signature"]["value"] = b64encode(b"invalid").decode()
+    monkeypatch.setattr(
+        supabase.urllib.request,
+        "urlopen",
+        lambda *args, **kwargs: pytest.fail("invalid object must not reach the network"),
+    )
+
+    with pytest.raises(ReleaseManifestError, match="signature is invalid"):
+        activate_corpus_release(
+            release_object,
+            access_token="management",
+            public_key=public_key,
+            supabase_url="https://example.supabase.co",
+        )
 
 
 @pytest.mark.parametrize(
     ("response", "message"),
     [
-        ({}, "unexpected staged release-count response"),
-        ([None], "non-object row"),
+        ({}, "unexpected staged release-evidence response"),
+        ([None], "malformed row"),
         (
             [
                 {
@@ -694,9 +904,11 @@ def test_activate_corpus_release_uses_single_fatal_rpc(monkeypatch):
                     "version": "v1",
                     "provision_count": 1,
                     "navigation_count": 1,
+                    "provision_projection_sha256": "a" * 64,
+                    "navigation_projection_sha256": "b" * 64,
                 }
             ],
-            "invalid staged release-count identity",
+            "invalid staged release-evidence identity",
         ),
         (
             [
@@ -706,14 +918,30 @@ def test_activate_corpus_release_uses_single_fatal_rpc(monkeypatch):
                     "version": "v1",
                     "provision_count": True,
                     "navigation_count": 1,
+                    "provision_projection_sha256": "a" * 64,
+                    "navigation_projection_sha256": "b" * 64,
                 }
             ],
-            "invalid staged release count",
+            "invalid staged release row count",
         ),
-        ([], "staged release-count scope mismatch"),
+        (
+            [
+                {
+                    "jurisdiction": "nz",
+                    "document_class": "statute",
+                    "version": "v1",
+                    "provision_count": 1,
+                    "navigation_count": 1,
+                    "provision_projection_sha256": "invalid",
+                    "navigation_projection_sha256": "b" * 64,
+                }
+            ],
+            "invalid staged release projection digest",
+        ),
+        ([], "staged release-evidence scope mismatch"),
     ],
 )
-def test_fetch_staged_release_scope_counts_rejects_malformed_rpc_rows(
+def test_fetch_staged_release_scope_evidence_rejects_malformed_rpc_rows(
     monkeypatch,
     response,
     message,
@@ -737,7 +965,7 @@ def test_fetch_staged_release_scope_counts_rejects_malformed_rpc_rows(
     )
 
     with pytest.raises(RuntimeError, match=message):
-        fetch_staged_release_scope_counts(
+        fetch_staged_release_scope_evidence(
             release,
             service_key="service",
             supabase_url="https://example.supabase.co",
@@ -747,18 +975,31 @@ def test_fetch_staged_release_scope_counts_rejects_malformed_rpc_rows(
 @pytest.mark.parametrize(
     ("response", "message"),
     [
-        ([], "unexpected corpus activation response"),
-        ({"active": False}, "unexpected corpus activation response"),
+        ([], "unexpected corpus activation query response"),
+        ([{"result": []}], "unexpected corpus activation response"),
+        ([{"result": {"active": False}}], "unexpected corpus activation response"),
         (
-            {"active": True, "release": "other", "content_sha256": "a" * 64},
+            [
+                {
+                    "result": {
+                        "active": True,
+                        "release": "other",
+                        "content_sha256": "a" * 64,
+                    }
+                }
+            ],
             "release name does not match",
         ),
         (
-            {
-                "active": True,
-                "release": "nz-rulespec-v1",
-                "content_sha256": "b" * 64,
-            },
+            [
+                {
+                    "result": {
+                        "active": True,
+                        "release": "nz-rulespec-v1",
+                        "content_sha256": "b" * 64,
+                    }
+                }
+            ],
             "release digest does not match",
         ),
     ],
@@ -781,12 +1022,13 @@ def test_activate_corpus_release_rejects_malformed_rpc_response(
             return json.dumps(response).encode()
 
     monkeypatch.setattr(supabase.urllib.request, "urlopen", lambda *args, **kwargs: FakeResponse())
-    release_object = {"release": "nz-rulespec-v1", "content_sha256": "a" * 64}
+    release_object, public_key = _signed_release_object()
 
     with pytest.raises(RuntimeError, match=message):
         activate_corpus_release(
             release_object,
-            service_key="service",
+            access_token="management",
+            public_key=public_key,
             supabase_url="https://example.supabase.co",
         )
 

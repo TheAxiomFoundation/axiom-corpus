@@ -14,9 +14,19 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
+from axiom_corpus.corpus.navigation import build_navigation_nodes
 from axiom_corpus.corpus.navigation_supabase import NavigationSupabaseWriteReport
+from axiom_corpus.corpus.projection_digest import (
+    navigation_projection_sha256,
+    provision_projection_sha256,
+)
 from axiom_corpus.corpus.r2 import R2Config
-from axiom_corpus.corpus.supabase import StagedScopeCounts, SupabaseLoadReport
+from axiom_corpus.corpus.supabase import (
+    ReleasedScopeObject,
+    StagedScopeEvidence,
+    SupabaseLoadReport,
+    iter_supabase_rows,
+)
 from axiom_corpus.release.manifest import ReleaseManifestError
 from axiom_corpus.release.publication import R2ReadbackReport
 
@@ -34,6 +44,15 @@ def _load_publish_script():
 
 
 publish = _load_publish_script()
+
+
+@pytest.fixture(autouse=True)
+def _no_prior_released_scopes(monkeypatch):
+    monkeypatch.setattr(
+        publish,
+        "fetch_released_scope_objects",
+        lambda release, **kwargs: dict.fromkeys(release.scope_keys, ()),
+    )
 
 
 def _keys() -> tuple[str, str]:
@@ -135,6 +154,7 @@ def _fixed_git(monkeypatch) -> None:
         "_git_provenance",
         lambda root: {"commit": "a" * 40, "committed_at": "2026-07-10T00:00:00Z"},
     )
+    monkeypatch.setattr(manifest, "_require_tracked_release_inputs", lambda *args, **kwargs: None)
 
 
 def _readback_for(content: dict, *, uploaded: int | None = None) -> R2ReadbackReport:
@@ -147,6 +167,52 @@ def _readback_for(content: dict, *, uploaded: int | None = None) -> R2ReadbackRe
         uploaded_count,
         len(artifacts) - uploaded_count,
         tuple(entry["r2_key"] for entry in artifacts),
+    )
+
+
+def _scope_evidence(base: Path, scope: tuple[str, str, str]) -> StagedScopeEvidence:
+    records = tuple(
+        ProvisionRecord.from_mapping(json.loads(line))
+        for line in (base / "provisions" / scope[0] / scope[1] / f"{scope[2]}.jsonl")
+        .read_text()
+        .splitlines()
+        if line.strip()
+    )
+    navigation = build_navigation_nodes(records)
+    return StagedScopeEvidence(
+        provision_rows=len(records),
+        navigation_rows=len(navigation),
+        provision_projection_sha256=provision_projection_sha256(iter_supabase_rows(records)),
+        navigation_projection_sha256=navigation_projection_sha256(
+            node.to_supabase_row() for node in navigation
+        ),
+    )
+
+
+def _signed_prior_object(
+    root: Path,
+    base: Path,
+    selector: Path,
+    scope: tuple[str, str, str],
+    private_key: str,
+) -> dict:
+    release = publish.ReleaseManifest.load(selector)
+    provisional = publish.build_release_content(
+        root,
+        release=release,
+        validation={"passed": True, "phase": "preflight"},
+    )
+    evidence = {scope: _scope_evidence(base, scope)}
+    validation = publish._validation_attestation(
+        publish.validate_release(base, release),
+        r2_report=_readback_for(provisional),
+        expected_evidence=evidence,
+        actual_evidence=evidence,
+    )
+    content = publish.build_release_content(root, release=release, validation=validation)
+    return publish.sign_release_object(
+        publish.build_unsigned_release_object(content),
+        private_key=private_key,
     )
 
 
@@ -203,8 +269,9 @@ def test_publication_orders_all_validation_before_activation(tmp_path: Path, mon
     )
     monkeypatch.setattr(
         publish,
-        "fetch_staged_release_scope_counts",
-        lambda *args, **kwargs: calls.append("exact-counts") or {scope: StagedScopeCounts(1, 1)},
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: calls.append("exact-evidence")
+        or {scope: _scope_evidence(base, scope)},
     )
 
     def stage_object(release_object, **kwargs):
@@ -230,6 +297,7 @@ def test_publication_orders_all_validation_before_activation(tmp_path: Path, mon
         selector_path=selector,
         supabase_url="https://example.supabase.co",
         service_key="service",
+        access_token="management",
         r2_config=_config(),
         private_key=private,
         public_key=public,
@@ -240,7 +308,7 @@ def test_publication_orders_all_validation_before_activation(tmp_path: Path, mon
         "r2-readback",
         "stage-provisions",
         "stage-navigation",
-        "exact-counts",
+        "exact-evidence",
         "deep-validate",
         "signed-object-readback",
         "atomic-activate",
@@ -271,8 +339,15 @@ def test_count_mismatch_never_signs_or_activates(tmp_path: Path, monkeypatch) ->
     )
     monkeypatch.setattr(
         publish,
-        "fetch_staged_release_scope_counts",
-        lambda *args, **kwargs: {scope: StagedScopeCounts(0, 0)},
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {
+            scope: StagedScopeEvidence(
+                0,
+                0,
+                _scope_evidence(base, scope).provision_projection_sha256,
+                _scope_evidence(base, scope).navigation_projection_sha256,
+            )
+        },
     )
 
     def activate(*args, **kwargs):
@@ -281,13 +356,14 @@ def test_count_mismatch_never_signs_or_activates(tmp_path: Path, monkeypatch) ->
         return {}
 
     monkeypatch.setattr(publish, "activate_corpus_release", activate)
-    with pytest.raises(ReleaseManifestError, match="exact staged provision/navigation counts"):
+    with pytest.raises(ReleaseManifestError, match="exact staged provision/navigation projection"):
         publish.publish_named_release(
             repo_root=root,
             base=base,
             selector_path=selector,
             supabase_url="https://example.supabase.co",
             service_key="service",
+            access_token="management",
             r2_config=_config(),
             private_key=private,
             public_key=public,
@@ -317,8 +393,8 @@ def test_private_public_key_mismatch_never_activates(tmp_path: Path, monkeypatch
     )
     monkeypatch.setattr(
         publish,
-        "fetch_staged_release_scope_counts",
-        lambda *args, **kwargs: {scope: StagedScopeCounts(1, 1)},
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {scope: _scope_evidence(base, scope)},
     )
     monkeypatch.setattr(
         publish,
@@ -333,9 +409,160 @@ def test_private_public_key_mismatch_never_activates(tmp_path: Path, monkeypatch
             selector_path=selector,
             supabase_url="https://example.supabase.co",
             service_key="service",
+            access_token="management",
             r2_config=_config(),
             private_key=private,
             public_key=wrong_public,
+        )
+
+
+@pytest.mark.parametrize("successor", [False, True])
+def test_released_scope_retry_or_successor_reuses_exact_immutable_rows(
+    tmp_path: Path,
+    monkeypatch,
+    successor: bool,
+) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    prior_object = _signed_prior_object(root, base, selector, scope, private)
+    target_selector = selector
+    if successor:
+        target_selector = selector.with_name("nz-rulespec-2026-07-11.json")
+        target_selector.write_text(
+            json.dumps(
+                {
+                    "name": "nz-rulespec-2026-07-11",
+                    "scopes": [
+                        {
+                            "jurisdiction": scope[0],
+                            "document_class": scope[1],
+                            "version": scope[2],
+                        }
+                    ],
+                }
+            )
+        )
+    monkeypatch.setattr(
+        publish,
+        "fetch_released_scope_objects",
+        lambda *args, **kwargs: {
+            scope: (
+                ReleasedScopeObject(
+                    scope_key=scope,
+                    release_name=str(prior_object["release"]),
+                    content_sha256=str(prior_object["content_sha256"]),
+                    release_object=prior_object,
+                ),
+            )
+        },
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: _readback_for(kwargs["release_content"], uploaded=0),
+    )
+    monkeypatch.setattr(
+        publish,
+        "load_provisions_to_supabase",
+        lambda *args, **kwargs: pytest.fail("released provision rows must not be rewritten"),
+    )
+    monkeypatch.setattr(
+        publish,
+        "write_navigation_nodes_to_supabase",
+        lambda *args, **kwargs: pytest.fail("released navigation rows must not be rewritten"),
+    )
+    monkeypatch.setattr(
+        publish,
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {scope: _scope_evidence(base, scope)},
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_signed_release_object",
+        lambda release_object, **kwargs: (
+            f"releases/{release_object['release']}/{release_object['content_sha256']}.json"
+        ),
+    )
+    monkeypatch.setattr(
+        publish,
+        "activate_corpus_release",
+        lambda release_object, **kwargs: {
+            "active": True,
+            "release": release_object["release"],
+            "content_sha256": release_object["content_sha256"],
+        },
+    )
+
+    report = publish.publish_named_release(
+        repo_root=root,
+        base=base,
+        selector_path=target_selector,
+        supabase_url="https://example.supabase.co",
+        service_key="service",
+        access_token="management",
+        r2_config=_config(),
+        private_key=private,
+        public_key=public,
+    )
+
+    assert report.provision_rows == 1
+    assert report.activation["active"] is True
+
+
+def test_released_scope_with_different_signed_projection_aborts_before_dml(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    prior_object = _signed_prior_object(root, base, selector, scope, private)
+    prior_object["content"]["scopes"][0]["provision_projection_sha256"] = "f" * 64
+    prior_evidence = prior_object["content"]["validation"]["supabase_projection_evidence"][0]
+    prior_evidence["expected_provision_projection_sha256"] = "f" * 64
+    prior_evidence["actual_provision_projection_sha256"] = "f" * 64
+    prior_content = prior_object["content"]
+    prior_object = publish.sign_release_object(
+        publish.build_unsigned_release_object(prior_content),
+        private_key=private,
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: _readback_for(kwargs["release_content"]),
+    )
+    monkeypatch.setattr(
+        publish,
+        "fetch_released_scope_objects",
+        lambda *args, **kwargs: {
+            scope: (
+                ReleasedScopeObject(
+                    scope,
+                    str(prior_object["release"]),
+                    str(prior_object["content_sha256"]),
+                    prior_object,
+                ),
+            )
+        },
+    )
+    monkeypatch.setattr(
+        publish,
+        "load_provisions_to_supabase",
+        lambda *args, **kwargs: pytest.fail("mismatch must abort before DML"),
+    )
+
+    with pytest.raises(ReleaseManifestError, match="immutable released scope differs"):
+        publish.publish_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            supabase_url="https://example.supabase.co",
+            service_key="service",
+            access_token="management",
+            r2_config=_config(),
+            private_key=private,
+            public_key=public,
         )
 
 
@@ -358,19 +585,18 @@ def test_signed_validation_evidence_is_retry_stable(tmp_path: Path) -> None:
     _root, base, selector, scope = _tree(tmp_path)
     release = publish.ReleaseManifest.load(selector)
     report = publish.validate_release(base, release)
-    counts = {scope: 1}
-    actual_counts = {scope: StagedScopeCounts(1, 1)}
+    actual_evidence = {scope: _scope_evidence(base, scope)}
     first = publish._validation_attestation(
         report,
         r2_report=R2ReadbackReport("axiom-corpus", 4, 100, 4, 0, ("a", "b")),
-        expected_counts=counts,
-        actual_counts=actual_counts,
+        expected_evidence=actual_evidence,
+        actual_evidence=actual_evidence,
     )
     retry = publish._validation_attestation(
         report,
         r2_report=R2ReadbackReport("axiom-corpus", 4, 100, 0, 4, ("a", "b")),
-        expected_counts=counts,
-        actual_counts=actual_counts,
+        expected_evidence=actual_evidence,
+        actual_evidence=actual_evidence,
     )
 
     assert first == retry

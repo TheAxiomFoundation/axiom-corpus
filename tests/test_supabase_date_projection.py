@@ -13,11 +13,15 @@ def test_coerce_date_truncates_version_slug_to_iso_prefix() -> None:
     assert original == "2026-07-01-be-company-car-tax-benefit-guidance"
 
 
-def test_coerce_date_passes_valid_dates_untouched() -> None:
+def test_coerce_date_canonicalizes_valid_dates_and_timestamps() -> None:
     assert _coerce_date_column_value("2026-07-03") == ("2026-07-03", None)
     assert _coerce_date_column_value("2026-07-01T12:00:00") == (
+        "2026-07-01",
         "2026-07-01T12:00:00",
-        None,
+    )
+    assert _coerce_date_column_value("2026-07-10T23:00:00Z") == (
+        "2026-07-10",
+        "2026-07-10T23:00:00Z",
     )
     assert _coerce_date_column_value(None) == (None, None)
 
