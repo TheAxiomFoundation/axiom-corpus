@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-wal/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "e1284e13c60bc248c9ed4c9729e54be870b0612b92bbe2ff5cafe5c9211124fd"
+    },
+    {
+      "path": "data/corpus/inventory/be-wal/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "f7d20fcf8021daef9e4f8c11da0d7271522cc6130e3739c14fe01a169e19d84e"
+    },
+    {
+      "path": "data/corpus/provisions/be-wal/statute/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "5227e8ca2295c677f44ddcad89da0d27b5d34bc9a89c48275f04c4eb88bab025"
+    },
+    {
+      "path": "data/corpus/sources/be-wal/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-2477ff76ffc0-2026-06-30-be-tax-benefit.selected.jsonl",
+      "sha256": "f2766ff2a8e76d51b064bfb1ed22e23fc02b9db8690c25522fbcaa2b921ba522"
+    },
+    {
+      "path": "data/corpus/sources/be-wal/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-6bd12931998e-2026-07-01-be-wal-vehicle-tax.selected.jsonl",
+      "sha256": "6bd12931998e5458c4acae88c6e778a7ccccf4d966bc8ebbab6253fc813b9432"
+    },
+    {
+      "path": "data/corpus/sources/be-wal/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-70989542a3da-2026-07-05-be-study-allowance.selected.jsonl",
+      "sha256": "536adbbe344eba49a29f0c72fffc3e3de2b8b1c8e819a0b7b38775470b71e62f"
+    },
+    {
+      "path": "data/corpus/sources/be-wal/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-b8e2ff87abe5-2026-07-01-be-wal-transfer-tax.selected.jsonl",
+      "sha256": "b8e2ff87abe5b78ff89426b2e540f7dae71877ab8da481eb29e59169f229089c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "06f4d429fd5d3bbc1426217c4b9396abbcccfed3",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-782-be-release"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 39,
+    "missing_count": 0,
+    "provision_count": 39,
+    "source_count": 39
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-10T12:40:43.249463+00:00",
+  "jurisdiction": "be-wal",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fWZUp62jWLTyEnc+NjL4KyuCCdBd87c8csoOHKbz0SiSdD+bE83jGMO50UHrvXi2Ax8W7FSDTwPj/4j9J0SzAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion"
+}

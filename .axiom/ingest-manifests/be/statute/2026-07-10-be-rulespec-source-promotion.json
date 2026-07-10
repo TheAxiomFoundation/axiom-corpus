@@ -1,0 +1,89 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "5639a686fe70a9edab7284f4e2525d7e7a518db89a676988032060ccf677f90a"
+    },
+    {
+      "path": "data/corpus/inventory/be/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "cd88e2b3859cf1b0223573a6e3d5bdf7322e8b3de135c3e84b0ff93609a350de"
+    },
+    {
+      "path": "data/corpus/provisions/be/statute/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "57cccd66758744e8474fd3a9cdd6e1561a9e7a42ae2999bf690a7125982fbf6f"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-00647608649b-2026-07-02-be-pit-autonomy-factor.selected.jsonl",
+      "sha256": "67ef4eab27a4229a159837a2377214efe339cd530bd9e454b437a3a7cf41f7d8"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-0b6f2c70038c-2026-07-05-be-birth-leave.selected.jsonl",
+      "sha256": "47811d89109f588056bdf02260fb6e81f0b38b455d249b6029503508501197c9"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-2caedcb95d8a-2026-06-30-be-vat-code-consolidated.selected.jsonl",
+      "sha256": "c9a7a99350defd86550f911c08a1f205915f56f0f8a4436f92002f5fd19726c5"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-623eb8db6c40-2026-06-30-be-tax-benefit.selected.jsonl",
+      "sha256": "8656346b3f8507d05e6de5ddaf2dabd94e02165ade96a84246b1dacf5bbf7865"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-7d31e21ab42b-belgian-civil-code.jsonl",
+      "sha256": "7d31e21ab42be612ab667d57e23eac2031929e01581353c696f37eb04bd5dd06"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-9be12db7c693-2026-06-30-be-income-tax-consolidated.selected.jsonl",
+      "sha256": "3722f7121e68426ac30bfa458f9cf2c65de54f66482501f0e68053caa3bde4c5"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-c0b7694412bc-2026-06-30-be-excise-consolidated.selected.jsonl",
+      "sha256": "c0b7694412bc58d8ef6110a779f35620af8816021c2f3429a5fa2f71f9171593"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-ee98cd01e41c-2026-06-30-be-vehicle-tax-code.selected.jsonl",
+      "sha256": "ee98cd01e41c2996f90927b1607e74b7fce838647b76eb1397a567bef687c437"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-fa290572add5-2026-07-03-be-lgaf-bru-social-housing.selected.jsonl",
+      "sha256": "9492375e0a9cdefbc81629ea3e6cedb204aa216df07f223f648ead20ff532518"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-a4e0bbe5dd93-2026-06-30-be-social-security-pilot-slice.jsonl",
+      "sha256": "a4e0bbe5dd93b3e856c984e895a5e37d130ae3bc5c499ec0cb035c7d6cb26cc1"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-ec76758f431a-2026-07-02-be-worker-work-bonus.jsonl",
+      "sha256": "ec76758f431ae8524c72b1b1fb7cfffd3fea8c1c036c062502709cff027ff6cf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "06f4d429fd5d3bbc1426217c4b9396abbcccfed3",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-782-be-release"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 169,
+    "missing_count": 0,
+    "provision_count": 169,
+    "source_count": 169
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-10T12:40:34.387860+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZdnA3/Svlzn+47kPqwLbl2rWuwTSttNFQc8WhE6c1xHMqyEfJ7ERJNsA4OMi7rdX5tmXUHC6DHaFkxPSXZ+nBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion"
+}

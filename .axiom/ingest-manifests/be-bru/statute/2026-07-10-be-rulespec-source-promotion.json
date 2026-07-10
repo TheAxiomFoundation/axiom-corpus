@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-bru/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "b4c81e146395c65a16246c6a4cbe8fd84a4804eb60ee0f2f4454e76f6b01cdc1"
+    },
+    {
+      "path": "data/corpus/inventory/be-bru/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "136de53f600a44097280b3f1e913dc33c06b643220b7bec06cfd834a32d126d9"
+    },
+    {
+      "path": "data/corpus/provisions/be-bru/statute/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "7ad9216872ca8f0f8f0061be8a47384b334e2824262c4f82aa59f04e9f12ba81"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-06cfed05a77b-2026-07-03-be-guaranteed-family-bru-support.selected.jsonl",
+      "sha256": "30e4b06218591f214b39ef44240e7f47c82dcc530b01bd8149228d312369f7c4"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-261242c523fe-2026-06-30-be-tax-benefit.selected.jsonl",
+      "sha256": "157f6dc1a1e91817cf9b74e4eb74d85e4501d4383506c4ce6eb1e0a08b42501d"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-68e4619a4136-2026-07-01-be-bru-transfer-tax.selected.jsonl",
+      "sha256": "68e4619a413634a6c9f44fc4958045dba7e5129721352c72f66a4d3c43cc20d4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "06f4d429fd5d3bbc1426217c4b9396abbcccfed3",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-782-be-release"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 41,
+    "missing_count": 0,
+    "provision_count": 41,
+    "source_count": 41
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-10T12:40:37.313995+00:00",
+  "jurisdiction": "be-bru",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5ARRvaPy7zY9GRCuAx9OXtXVqkZBalVjtlYNUY7eaLshjaVefMx3LYi34PYBlY42QhCzP4Le6BV/KdgvQYsYAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion"
+}
