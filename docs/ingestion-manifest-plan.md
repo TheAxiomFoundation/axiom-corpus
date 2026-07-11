@@ -10,6 +10,8 @@ Every reviewed corpus ingestion scope should have a signed ingest manifest that
 records:
 
 - the `axiom-corpus` package version and git commit,
+- the repository-relative root `.`, a full commit hash, and
+  `dirty_tracked: false` for the generator state,
 - the command or run description that produced the artifacts,
 - the jurisdiction, document class, and version,
 - coverage summary fields when a coverage artifact exists,
@@ -55,7 +57,16 @@ protected corpus path are checked as protected deletions. Pull-request CI uses
 only the public key, and after this guard lands it installs the verifier from
 the base commit before checking the pull-request workspace. When `--base-ref`
 is supplied, the guard reads signed manifests and protected artifact bytes from
-the committed `--head-ref` tree, not from mutable files in the checkout.
+the committed `--head-ref` tree, not from mutable files in the checkout. The
+manifest's attested generator commit must be an ancestor of that guarded head.
+
+Build and sign only from a checkout with no staged or unstaged tracked changes;
+untracked generated outputs are allowed. Only a newly generated manifest with
+this clean, repository-relative provenance can authorize a protected change.
+Legacy manifests with absolute checkout roots, dirty generator state, or
+abbreviated commits remain historical files but are rejected if a changed
+artifact tries to rely on them. Do not edit their provenance fields or re-sign
+them as if they had been clean; rerun the generator from a clean commit instead.
 
 ## Migration Steps
 

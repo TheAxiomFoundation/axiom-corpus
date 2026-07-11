@@ -123,6 +123,57 @@ SAMPLE_NESTED_PROVISIONS_XML = """\
 </act>
 """
 
+SAMPLE_OPERATIVE_REGIONS_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<act id="REGIONS1" year="2026" act.no="7" act.type="public">
+  <cover><title>Operative Regions Act 2026</title></cover>
+  <body>
+    <prov id="MAIN1">
+      <label>1</label>
+      <heading>Main provision</heading>
+    </prov>
+    <part>
+      <prov id="MAIN7A"><label>7</label><heading>First live collision</heading></prov>
+      <prov id="MAIN7B"><label>7</label><heading>Second live collision</heading></prov>
+    </part>
+    <skeleton.act.body>
+      <prov id="BODY_TEMPLATE"><label>1</label><heading>Body template</heading></prov>
+    </skeleton.act.body>
+  </body>
+  <schedule.group>
+    <schedule id="SCHEDULE1">
+      <label>1</label>
+      <prov id="SCHEDULE1_CLAUSE1"><label>1</label><heading>Schedule clause</heading></prov>
+      <part id="SCHEDULE1_PART1">
+        <label>Part 1</label>
+        <prov id="SCHEDULE1_PART_CLAUSE2A"><label>2</label><heading>First part collision</heading></prov>
+        <prov id="SCHEDULE1_PART_CLAUSE2B"><label>2</label><heading>Second part collision</heading></prov>
+      </part>
+    </schedule>
+    <schedule id="SCHEDULE2">
+      <label>2</label>
+      <prov id="SCHEDULE2_CLAUSE1"><label>1</label><heading>Other schedule clause</heading></prov>
+    </schedule>
+  </schedule.group>
+  <end>
+    <prov id="END_TEMPLATE"><label>1</label><heading>End template</heading></prov>
+    <skeletons>
+      <prov id="SKELETONS_TEMPLATE"><label>1</label><heading>Skeleton list template</heading></prov>
+      <skeleton.act>
+        <skeleton.act.body>
+          <prov id="ACT_TEMPLATE"><label>1</label><heading>Act template</heading></prov>
+        </skeleton.act.body>
+      </skeleton.act>
+      <skeleton.reg>
+        <skeleton.reg.body>
+          <prov id="REG_TEMPLATE"><label>1</label><heading>Regulation template</heading></prov>
+        </skeleton.reg.body>
+      </skeleton.reg>
+    </skeletons>
+  </end>
+</act>
+"""
+
 SAMPLE_TABLE_PROVISION_XML = """\
 <?xml version="1.0" encoding="UTF-8"?>
 <act id="DLM900100" year="2026" act.no="2" act.type="public">
@@ -162,6 +213,58 @@ SAMPLE_TABLE_PROVISION_XML = """\
             </legtable>
           </para>
         </subprov>
+      </prov.body>
+    </prov>
+  </body>
+</act>
+"""
+
+SAMPLE_RECURSIVE_BODY_XML = """\
+<?xml version="1.0" encoding="UTF-8"?>
+<act id="RENDER1" year="2026" act.no="5" act.type="public">
+  <cover><title>Recursive Renderer Act 2026</title></cover>
+  <body>
+    <prov id="RENDERPROV1">
+      <label>1</label>
+      <heading>Complete source-order rendering</heading>
+      <prov.body>
+        <para>
+          <text>opening sentinel and <def-term>defined sentinel</def-term>.</text>
+          <label-para>
+            <label>(a)</label>
+            <para>
+              <text>outer paragraph sentinel before nested paragraph.</text>
+              <label-para>
+                <label>(i)</label>
+                <para><text>nested paragraph sentinel.</text></para>
+              </label-para>
+              <text>outer paragraph later sibling sentinel.</text>
+            </para>
+          </label-para>
+          <text>direct later text sentinel.</text>
+        </para>
+        <proviso><text>proviso sentinel.</text></proviso>
+        <eqn><eqn-line>equation sentinel = A + B.</eqn-line></eqn>
+        <example>
+          <heading>example heading sentinel</heading>
+          <para><text>example body sentinel.</text></para>
+        </example>
+        <amend>
+          <prov id="EMBEDDED1">
+            <label>99</label>
+            <heading>embedded amendment heading sentinel</heading>
+            <prov.body><para><text>embedded amendment body sentinel.</text></para></prov.body>
+          </prov>
+        </amend>
+        <para>
+          <legtable>
+            <summary>accessibility summary must not duplicate the table</summary>
+            <table><tgroup cols="2"><tbody>
+              <row><entry>table cell alpha sentinel</entry><entry>$101</entry></row>
+              <row><entry>table cell beta sentinel</entry><entry>$202</entry></row>
+            </tbody></tgroup></table>
+          </legtable>
+        </para>
       </prov.body>
     </prov>
   </body>
@@ -225,24 +328,36 @@ def converter():
 class TestNZLegislationModel:
     def test_citation(self):
         leg = NZLegislation(
-            id="DLM1", legislation_type="act", subtype="public",
-            year=2007, number=97, title="Income Tax Act 2007",
+            id="DLM1",
+            legislation_type="act",
+            subtype="public",
+            year=2007,
+            number=97,
+            title="Income Tax Act 2007",
         )
         assert "Income Tax Act 2007" in leg.citation
         assert "2007" in leg.citation
 
     def test_citation_sop(self):
         leg = NZLegislation(
-            id="DLM1", legislation_type="sop", subtype="government",
-            year=2024, number=42, title="SOP Title",
+            id="DLM1",
+            legislation_type="sop",
+            subtype="government",
+            year=2024,
+            number=42,
+            title="SOP Title",
         )
         # SOP should use "Supplementary Order Paper" but citation includes title
         assert "SOP Title" in leg.citation
 
     def test_url(self):
         leg = NZLegislation(
-            id="DLM1", legislation_type="act", subtype="public",
-            year=2007, number=97, title="Income Tax Act 2007",
+            id="DLM1",
+            legislation_type="act",
+            subtype="public",
+            year=2007,
+            number=97,
+            title="Income Tax Act 2007",
         )
         assert "legislation.govt.nz" in leg.url
         assert "2007" in leg.url
@@ -300,10 +415,50 @@ class TestParseXml:
             "SCHED1CLAUSE1",
         ]
         assert [provision.path_token for provision in result.provisions] == [
-            "1-BODY1",
+            "1",
             "3",
-            "1-SCHED1CLAUSE1",
+            "1",
         ]
+
+    def test_parse_routes_only_operative_regions_before_assigning_path_tokens(self, converter):
+        from axiom_corpus.corpus.nz_legislation import (
+            _assign_schedule_provision_paths,
+            nz_citation_path,
+        )
+
+        result = converter.parse_xml(SAMPLE_OPERATIVE_REGIONS_XML)
+        by_id = {provision.id: provision for provision in result.provisions}
+
+        assert set(by_id) == {
+            "MAIN1",
+            "MAIN7A",
+            "MAIN7B",
+            "SCHEDULE1_CLAUSE1",
+            "SCHEDULE1_PART_CLAUSE2A",
+            "SCHEDULE1_PART_CLAUSE2B",
+            "SCHEDULE2_CLAUSE1",
+        }
+        assert by_id["MAIN1"].path_token == "1"
+        assert by_id["SCHEDULE1_CLAUSE1"].path_token == "1"
+        assert by_id["SCHEDULE2_CLAUSE1"].path_token == "1"
+        assert by_id["MAIN7A"].path_token == "7-MAIN7A"
+        assert by_id["MAIN7B"].path_token == "7-MAIN7B"
+        assert by_id["SCHEDULE1_PART_CLAUSE2A"].path_token == ("2-SCHEDULE1-PART-CLAUSE2A")
+        assert by_id["SCHEDULE1_PART_CLAUSE2B"].path_token == ("2-SCHEDULE1-PART-CLAUSE2B")
+
+        assert nz_citation_path(result, by_id["MAIN1"]) == (
+            "nz/statute/act/public/2026/0007/section/1"
+        )
+        _assign_schedule_provision_paths(result, SAMPLE_OPERATIVE_REGIONS_XML.encode())
+        assert nz_citation_path(result, by_id["MAIN1"]) == (
+            "nz/statute/act/public/2026/0007/section/1"
+        )
+        assert nz_citation_path(result, by_id["SCHEDULE1_CLAUSE1"]) == (
+            "nz/statute/act/public/2026/0007/schedule/1/clause/1"
+        )
+        assert nz_citation_path(result, by_id["SCHEDULE2_CLAUSE1"]) == (
+            "nz/statute/act/public/2026/0007/schedule/2/clause/1"
+        )
 
     def test_parse_table_text_in_subprovisions(self, converter):
         result = converter.parse_xml(SAMPLE_TABLE_PROVISION_XML)
@@ -312,6 +467,47 @@ class TestParseXml:
         assert "Row | Range | Tax rate" in subprovision.text
         assert "1 | $0 to $15,600 | 0.105" in subprovision.text
         assert "2 | $15,601 to $53,500 | 0.175" in subprovision.text
+
+    def test_recursive_body_renderer_captures_each_semantic_node_once(self, converter):
+        result = converter.parse_xml(SAMPLE_RECURSIVE_BODY_XML)
+
+        assert [provision.id for provision in result.provisions] == ["RENDERPROV1"]
+        body = result.provisions[0].text
+        sentinels = (
+            "opening sentinel",
+            "defined sentinel",
+            "outer paragraph sentinel",
+            "nested paragraph sentinel",
+            "outer paragraph later sibling sentinel",
+            "direct later text sentinel",
+            "proviso sentinel",
+            "equation sentinel",
+            "example heading sentinel",
+            "example body sentinel",
+            "embedded amendment heading sentinel",
+            "embedded amendment body sentinel",
+            "table cell alpha sentinel",
+            "table cell beta sentinel",
+            "$101",
+            "$202",
+        )
+        assert all(body.count(sentinel) == 1 for sentinel in sentinels)
+        assert "table cell alpha sentinel | $101" in body
+        assert "table cell beta sentinel | $202" in body
+        assert "accessibility summary" not in body
+
+    def test_nested_label_paragraph_metadata_has_only_immediate_children(self, converter):
+        result = converter.parse_xml(SAMPLE_RECURSIVE_BODY_XML)
+        outer = result.provisions[0].paragraphs[0]
+
+        assert outer.label == "(a)"
+        assert outer.text == (
+            "outer paragraph sentinel before nested paragraph. "
+            "outer paragraph later sibling sentinel."
+        )
+        assert [child.label for child in outer.children] == ["(i)"]
+        assert outer.children[0].text == "nested paragraph sentinel."
+        assert not outer.children[0].children
 
     def test_parse_secondary_legislation_sr_number(self, converter):
         result = converter.parse_xml(SAMPLE_SECONDARY_LEGISLATION_XML)
@@ -374,11 +570,13 @@ class TestParseDate:
 class TestExtractTextRecursive:
     def test_plain_text(self, converter):
         from xml.etree import ElementTree as ET
+
         elem = ET.fromstring("<text>Hello world</text>")
         assert converter._extract_text_recursive(elem) == "Hello world"
 
     def test_nested_elements(self, converter):
         from xml.etree import ElementTree as ET
+
         elem = ET.fromstring("<text>Hello <b>world</b> text</text>")
         result = converter._extract_text_recursive(elem)
         assert "Hello" in result
@@ -386,6 +584,7 @@ class TestExtractTextRecursive:
 
     def test_citation_element(self, converter):
         from xml.etree import ElementTree as ET
+
         xml = '<text>See <citation><atidlm:linkcontent xmlns:atidlm="http://www.arbortext.com/namespace/atidlm">section 32</atidlm:linkcontent></citation>.</text>'
         elem = ET.fromstring(xml)
         result = converter._extract_text_recursive(elem)
@@ -413,7 +612,9 @@ class TestParseRss:
 
 class TestContextManager:
     def test_context_manager(self):
-        with patch.object(NZPCOConverter, "client", new_callable=lambda: property(lambda self: MagicMock())):
+        with patch.object(
+            NZPCOConverter, "client", new_callable=lambda: property(lambda self: MagicMock())
+        ):
             with NZPCOConverter() as converter:
                 assert converter is not None
 
