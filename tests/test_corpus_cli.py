@@ -127,6 +127,7 @@ def test_sign_ingest_manifest_cli_writes_signed_scope_manifest(tmp_path, capsys,
     assert manifest["applied_files"][0]["path"] == (
         "data/corpus/provisions/us/statute/2026-06-06.jsonl"
     )
+    assert manifest["axiom_corpus_git"]["root"] == "."
     assert manifest["signature"]["algorithm"] == "ed25519"
 
 
@@ -415,6 +416,8 @@ def test_guard_ingested_cli_accepts_signed_deleted_corpus_artifact(tmp_path, cap
     _git(repo, "commit", "-m", "Add corpus row")
     _git(repo, "checkout", "-b", "feature")
     provision.unlink()
+    _git(repo, "add", "-A")
+    _git(repo, "commit", "-m", "Remove corpus row")
     _set_ingest_keys(monkeypatch)
     assert (
         main(
@@ -437,8 +440,8 @@ def test_guard_ingested_cli_accepts_signed_deleted_corpus_artifact(tmp_path, cap
         == 0
     )
     capsys.readouterr()
-    _git(repo, "add", "-A")
-    _git(repo, "commit", "-m", "Remove manifested corpus row")
+    _git(repo, "add", ".axiom/ingest-manifests/us/statute/2026-06-06.json")
+    _git(repo, "commit", "-m", "Sign corpus row removal")
 
     exit_code = main(
         [

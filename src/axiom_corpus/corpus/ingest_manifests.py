@@ -7,13 +7,14 @@ import hashlib
 import importlib.metadata
 import json
 import os
+import re
 import subprocess
 from base64 import b64decode, b64encode
 from binascii import Error as BinasciiError
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, TypeGuard
 
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives import serialization
@@ -46,6 +47,7 @@ TEXT_OFFICIAL_DOCUMENT_SUFFIXES = {
     ".yaml",
     ".yml",
 }
+FULL_GIT_COMMIT_PATTERN = re.compile(r"[0-9a-f]{40}")
 
 
 @dataclass(frozen=True)
@@ -84,6 +86,13 @@ def build_ingest_manifest(
     """Build an unsigned ingest manifest for one corpus scope."""
     repo = repo.resolve()
     base = _resolve_under_repo(repo, base)
+    git_metadata = _git_metadata(repo)
+    provenance_issues = _git_provenance_issues(git_metadata)
+    if provenance_issues:
+        raise ValueError(
+            "Cannot build an ingest manifest from non-canonical generator state: "
+            + " ".join(provenance_issues)
+        )
     deleted_files = deleted_files or []
     files = applied_files
     if files is None and not deleted_files:
@@ -97,8 +106,7 @@ def build_ingest_manifest(
         files = []
     if not files and not deleted_files:
         raise FileNotFoundError(
-            "No corpus artifacts found for "
-            f"{jurisdiction}/{document_class}/{version} under {base}."
+            f"No corpus artifacts found for {jurisdiction}/{document_class}/{version} under {base}."
         )
     coverage = _load_scope_coverage(
         base=base,
@@ -110,7 +118,7 @@ def build_ingest_manifest(
         "schema_version": INGEST_MANIFEST_SCHEMA_VERSION,
         "tool": "axiom-corpus-ingest signed ingest manifest",
         "axiom_corpus_version": _package_version(),
-        "axiom_corpus_git": _git_metadata(repo),
+        "axiom_corpus_git": git_metadata,
         "generated_at": datetime.now(UTC).isoformat(),
         "jurisdiction": jurisdiction,
         "document_class": document_class,
@@ -122,8 +130,7 @@ def build_ingest_manifest(
             for path in sorted(reasoning_logs or [])
         ],
         "applied_files": [
-            _manifest_file_entry(repo, _resolve_under_repo(repo, path))
-            for path in sorted(files)
+            _manifest_file_entry(repo, _resolve_under_repo(repo, path)) for path in sorted(files)
         ]
         + [
             _manifest_deleted_file_entry(repo, _resolve_under_repo(repo, path))
@@ -142,6 +149,12 @@ def sign_ingest_manifest(
     """Return a copy of an ingest manifest with an Ed25519 signature."""
     signed = copy.deepcopy(payload)
     signed.pop("signature", None)
+    provenance_issues = _manifest_git_provenance_issues(signed)
+    if provenance_issues:
+        raise ValueError(
+            "Cannot sign an ingest manifest with non-canonical generator state: "
+            + " ".join(provenance_issues)
+        )
     signed["signature"] = {
         "algorithm": INGEST_MANIFEST_SIGNATURE_ALGORITHM,
         "key_id": key_id,
@@ -150,9 +163,26 @@ def sign_ingest_manifest(
     return signed
 
 
-def verify_ingest_manifest(payload: dict[str, Any], *, public_key: str) -> list[str]:
+def verify_ingest_manifest(
+    payload: dict[str, Any],
+    *,
+    public_key: str,
+    repo: Path,
+    head_ref: str,
+) -> list[str]:
     """Return verification issues for a signed ingest manifest."""
-    issues: list[str] = []
+    repo = repo.resolve()
+    issues = _manifest_git_provenance_issues(payload)
+    git_metadata = payload.get("axiom_corpus_git")
+    commit = git_metadata.get("commit") if isinstance(git_metadata, dict) else None
+    if _is_full_git_commit(commit) and not _git_commit_is_ancestor(
+        repo,
+        commit=commit,
+        head_ref=head_ref,
+    ):
+        issues.append(
+            f"`axiom_corpus_git.commit` `{commit}` is not an ancestor of guarded head `{head_ref}`."
+        )
     if payload.get("schema_version") != INGEST_MANIFEST_SCHEMA_VERSION:
         issues.append("Unsupported ingest manifest schema version.")
     signature = payload.get("signature")
@@ -219,9 +249,7 @@ def guard_ingested_artifacts(
     repo = repo.resolve()
     public_key = public_key or os.environ.get(INGEST_MANIFEST_PUBLIC_KEY_ENV)
     changes = _changed_paths(repo=repo, base_ref=base_ref, head_ref=head_ref)
-    protected = tuple(
-        path for path in changes if _is_protected_corpus_artifact(path.path)
-    )
+    protected = tuple(path for path in changes if _is_protected_corpus_artifact(path.path))
     if not protected:
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
     if not public_key:
@@ -239,7 +267,10 @@ def guard_ingested_artifacts(
     manifest_issues: dict[Path, list[str]] = {}
     for manifest_path, payload in manifests.items():
         manifest_issues[manifest_path] = verify_ingest_manifest(
-            payload, public_key=public_key
+            payload,
+            public_key=public_key,
+            repo=repo,
+            head_ref=head_ref or "HEAD",
         )
         for entry in payload.get("applied_files", []):
             if not isinstance(entry, dict):
@@ -358,9 +389,7 @@ def _load_raw_key_bytes(text: str, *, expected_length: int, kind: str) -> bytes:
     except (BinasciiError, UnicodeEncodeError) as exc:
         raise ValueError(f"Ingest manifest {kind} key must be raw base64 or PEM.") from exc
     if len(raw) != expected_length:
-        raise ValueError(
-            f"Ingest manifest {kind} key must decode to {expected_length} bytes."
-        )
+        raise ValueError(f"Ingest manifest {kind} key must decode to {expected_length} bytes.")
     return raw
 
 
@@ -400,8 +429,7 @@ def _infer_scope_artifacts(
             files.append(path)
     if not files:
         raise FileNotFoundError(
-            "No corpus artifacts found for "
-            f"{jurisdiction}/{document_class}/{version} under {base}."
+            f"No corpus artifacts found for {jurisdiction}/{document_class}/{version} under {base}."
         )
     return sorted(files)
 
@@ -450,9 +478,7 @@ def _load_ingest_manifests(repo: Path, *, ref: str | None = None) -> dict[Path, 
     return manifests
 
 
-def _load_ingest_manifests_from_ref(
-    repo: Path, *, ref: str
-) -> dict[Path, dict[str, Any]]:
+def _load_ingest_manifests_from_ref(repo: Path, *, ref: str) -> dict[Path, dict[str, Any]]:
     manifests: dict[Path, dict[str, Any]] = {}
     for path in _git_paths_under(repo, ref=ref, path=INGEST_MANIFEST_ROOT.as_posix()):
         blob = _git_blob(repo, ref=ref, path=path)
@@ -627,12 +653,47 @@ def _git_metadata(repo: Path) -> dict[str, Any]:
             return None
         return result.stdout.strip()
 
-    status = git("status", "--porcelain")
+    status = git("status", "--porcelain", "--untracked-files=no")
     return {
-        "root": str(repo),
+        # The manifest is repository-relative; an absolute checkout path is
+        # neither reproducible nor useful provenance.
+        "root": ".",
         "commit": git("rev-parse", "HEAD"),
-        "dirty_tracked": bool(status),
+        "dirty_tracked": None if status is None else bool(status),
     }
+
+
+def _manifest_git_provenance_issues(payload: dict[str, Any]) -> list[str]:
+    metadata = payload.get("axiom_corpus_git")
+    if not isinstance(metadata, dict):
+        return ["`axiom_corpus_git` must be an object."]
+    return _git_provenance_issues(metadata)
+
+
+def _git_provenance_issues(metadata: dict[str, Any]) -> list[str]:
+    issues: list[str] = []
+    if metadata.get("root") != ".":
+        issues.append("`axiom_corpus_git.root` must be `.`.")
+    if metadata.get("dirty_tracked") is not False:
+        issues.append("`axiom_corpus_git.dirty_tracked` must be false.")
+    if not _is_full_git_commit(metadata.get("commit")):
+        issues.append("`axiom_corpus_git.commit` must be a full 40-character lowercase Git commit.")
+    return issues
+
+
+def _is_full_git_commit(value: object) -> TypeGuard[str]:
+    return isinstance(value, str) and FULL_GIT_COMMIT_PATTERN.fullmatch(value) is not None
+
+
+def _git_commit_is_ancestor(repo: Path, *, commit: str, head_ref: str) -> bool:
+    result = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", commit, head_ref],
+        cwd=repo,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    return result.returncode == 0
 
 
 def _package_version() -> str:

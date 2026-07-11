@@ -1,0 +1,1 @@
+Ingest manifests now authorize changed corpus artifacts only when they attest a clean repository-relative generator state with a full commit that is an ancestor of the guarded head; legacy or dirty provenance must be regenerated rather than preserved for compatibility.

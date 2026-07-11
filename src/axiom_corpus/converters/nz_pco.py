@@ -76,6 +76,104 @@ def _provision_path_component(value: str) -> str:
     return token or "unnumbered"
 
 
+def render_nz_pco_legal_text(
+    element: ET.Element,
+    *,
+    excluded: set[ET.Element] | None = None,
+) -> str:
+    """Render substantive PCO text once in document order.
+
+    Labels, definitions, provisos, equations, examples, amendment text, and
+    later text/tail siblings are retained. Tables use stable row/cell
+    formatting. Editorial, accessibility, and amendment-history metadata are
+    excluded from every caller, including schedule hierarchy bodies.
+    """
+    excluded_elements = excluded or set()
+    skipped_tags = {
+        "amends-note",
+        "editorial-note",
+        "history",
+        "history-note",
+        "ird.aids",
+        "notes",
+        "struckoutwords",
+        "summary",
+    }
+    block_tags = {
+        "amend",
+        "def-para",
+        "eqn",
+        "eqn-line",
+        "example",
+        "heading",
+        "item",
+        "label-para",
+        "label-para.crosshead",
+        "legtable",
+        "list",
+        "para",
+        "proviso",
+        "quote",
+        "row",
+        "subheading",
+        "subprov",
+        "subprov.crosshead",
+        "table",
+        "tbody",
+        "tgroup",
+        "thead",
+        "variable-def",
+    }
+
+    def clean(value: str | None) -> str:
+        return " ".join((value or "").split())
+
+    def join(parts: list[tuple[str, bool]]) -> str:
+        output = ""
+        prior_block = False
+        for value, is_block in parts:
+            value = value.strip()
+            if not value:
+                continue
+            if output:
+                separator = "\n" if prior_block or is_block else " "
+                if output.rsplit("\n", 1)[-1].strip().startswith("(") and is_block:
+                    separator = " "
+                output += separator
+            output += value
+            prior_block = is_block
+        return "\n".join(
+            line for line in (" ".join(line.split()) for line in output.splitlines()) if line
+        )
+
+    def render(node: ET.Element) -> str:
+        if node in excluded_elements or node.tag in skipped_tags:
+            return ""
+        if node.tag == "brk":
+            return "\n"
+        if node.tag == "row":
+            cells = [child for child in node if child.tag == "entry"] or list(node)
+            rendered_cells: list[str] = []
+            for cell in cells:
+                rendered_cell = " ".join(render(cell).split())
+                if rendered_cell:
+                    rendered_cells.append(rendered_cell)
+            return " | ".join(rendered_cells)
+
+        parts: list[tuple[str, bool]] = []
+        if value := clean(node.text):
+            parts.append((value, False))
+        for child in node:
+            child_text = render(child)
+            if child_text.strip():
+                parts.append((child_text, child.tag in block_tags))
+            if tail := clean(child.tail):
+                parts.append((tail, False))
+        return join(parts)
+
+    return render(element).strip()
+
+
 @dataclass
 class NZProvision:
     """A provision (section) in NZ legislation."""
@@ -87,6 +185,10 @@ class NZProvision:
     subprovisions: list[NZProvision] = field(default_factory=list)
     paragraphs: list[NZLabeledParagraph] = field(default_factory=list)
     path_token: str | None = None  # Collision-safe token for corpus citation paths
+    citation_path_suffix: str | None = None
+    parent_citation_path_suffix: str | None = None
+    corpus_level: int = 2
+    corpus_kind: str | None = None
 
 
 @dataclass
@@ -165,6 +267,7 @@ class NZPCOConverter:
 
     RSS_URL = "http://www.legislation.govt.nz/subscribe/nzpco-rss.xml"
     BASE_URL = "https://www.legislation.govt.nz"
+    _SCHEDULE_HIERARCHY_TAGS = frozenset({"head1", "head2", "part", "subpart"})
 
     def __init__(self, timeout: int = 30):
         """Initialize the converter.
@@ -254,9 +357,7 @@ class NZPCOConverter:
         )
         number = _number_value(number_text)
         split_letter = root.get("split.letter")
-        document_number_token = (
-            f"{number_text}-{split_letter}" if split_letter else None
-        )
+        document_number_token = f"{number_text}-{split_letter}" if split_letter else None
         subtype_raw = root.get(
             "act.type",
             root.get(
@@ -297,20 +398,46 @@ class NZPCOConverter:
         if long_title_elem is not None:
             long_title = self._extract_text_recursive(long_title_elem)
 
-        # Parse provisions. PCO documents nest most substantive provisions in
-        # parts, subparts, and schedules rather than as direct body children.
-        provisions = []
+        # Route provisions before assigning path tokens. Only the enacted body
+        # and schedules are legal regions; ``end`` contains amendment skeletons
+        # whose labels deliberately mirror live provisions but are not law.
+        routed_provisions: list[tuple[NZProvision, ET.Element]] = []
         seen_provision_ids: set[str] = set()
-        for prov in root.findall(".//prov"):
-            prov_id = prov.get("id", "")
-            if prov_id and prov_id in seen_provision_ids:
-                continue
-            parsed = self._parse_provision(prov)
-            if parsed:
-                provisions.append(parsed)
-            if prov_id:
-                seen_provision_ids.add(prov_id)
-        self._assign_path_tokens(provisions)
+        parent_map = {child: parent for parent in root.iter() for child in parent}
+        legal_regions: list[tuple[ET.Element, Literal["body", "schedule"]]] = []
+        body = root.find("./body")
+        if body is not None:
+            legal_regions.append((body, "body"))
+        legal_regions.extend(
+            (schedule, "schedule") for schedule in root.findall("./schedule.group/schedule")
+        )
+        for region, region_kind in legal_regions:
+            for prov in region.iter("prov"):
+                if self._is_nonoperative_or_nested_provision(
+                    prov,
+                    region=region,
+                    parent_map=parent_map,
+                ):
+                    continue
+                prov_id = prov.get("id", "")
+                if prov_id and prov_id in seen_provision_ids:
+                    continue
+                parsed = self._parse_provision(prov)
+                if parsed:
+                    namespace = (
+                        region
+                        if region_kind == "body"
+                        else self._schedule_provision_namespace(
+                            prov,
+                            schedule=region,
+                            parent_map=parent_map,
+                        )
+                    )
+                    routed_provisions.append((parsed, namespace))
+                if prov_id:
+                    seen_provision_ids.add(prov_id)
+        self._assign_path_tokens(routed_provisions)
+        provisions = [provision for provision, _ in routed_provisions]
 
         return NZLegislation(
             id=leg_id,
@@ -344,32 +471,33 @@ class NZPCOConverter:
         if heading_elem is not None:
             heading = self._extract_text_recursive(heading_elem)
 
-        # Parse provision body
+        # Render the complete body once, in source order. The structured
+        # subprovision and paragraph models below are metadata views only; the
+        # corpus body is never rebuilt from them.
         text = ""
         subprovisions = []
         paragraphs = []
 
         prov_body = elem.find("prov.body")
         if prov_body is not None:
-            # Parse subprovisions
-            for subprov in prov_body.findall("subprov"):
+            text = self._render_legal_text(prov_body)
+
+            for subprov in self._immediate_structural_descendants(
+                prov_body,
+                "subprov",
+            ):
                 sub = self._parse_subprovision(subprov)
                 if sub:
                     subprovisions.append(sub)
 
-            # Parse direct paragraphs
-            for para in prov_body.findall("para"):
-                text_elem = para.find("text")
-                if text_elem is not None:
-                    text += self._extract_text_recursive(text_elem) + " "
-                for table_text in self._extract_table_texts(para):
-                    text += table_text + " "
-
-                # Parse label-paras within para
-                for lp in para.findall("label-para"):
-                    parsed = self._parse_label_para(lp)
-                    if parsed:
-                        paragraphs.append(parsed)
+            for lp in self._immediate_structural_descendants(
+                prov_body,
+                "label-para",
+                boundaries={"subprov"},
+            ):
+                parsed = self._parse_label_para(lp)
+                if parsed:
+                    paragraphs.append(parsed)
 
         if not label and not heading and not text.strip() and not subprovisions:
             return None  # pragma: no cover
@@ -383,15 +511,84 @@ class NZPCOConverter:
             paragraphs=paragraphs,
         )
 
-    def _assign_path_tokens(self, provisions: list[NZProvision]) -> None:
-        tokens = [_provision_path_component(provision.label) for provision in provisions]
-        token_counts = Counter(tokens)
-        for provision, token in zip(provisions, tokens, strict=True):
-            if token_counts[token] == 1:
-                provision.path_token = token
-                continue
-            id_token = _provision_path_component(provision.id)
-            provision.path_token = f"{token}-{id_token}" if id_token else token
+    def _is_nonoperative_or_nested_provision(
+        self,
+        provision: ET.Element,
+        *,
+        region: ET.Element,
+        parent_map: dict[ET.Element, ET.Element],
+    ) -> bool:
+        """Reject amendment templates and provisions embedded in provisions."""
+        ancestor = parent_map.get(provision)
+        while ancestor is not None and ancestor is not region:
+            if (
+                ancestor.tag == "prov"
+                or ancestor.tag == "end"
+                or ancestor.tag == "skeletons"
+                or ancestor.tag.startswith("skeleton.")
+            ):
+                return True
+            ancestor = parent_map.get(ancestor)
+        return ancestor is not region
+
+    def _schedule_provision_namespace(
+        self,
+        provision: ET.Element,
+        *,
+        schedule: ET.Element,
+        parent_map: dict[ET.Element, ET.Element],
+    ) -> ET.Element:
+        """Return the final schedule parent used as the token namespace."""
+        ancestor = parent_map.get(provision)
+        while ancestor is not None and ancestor is not schedule:
+            if ancestor.tag in self._SCHEDULE_HIERARCHY_TAGS:
+                label = ancestor.find("label")
+                if (
+                    (ancestor.get("id") or "").strip()
+                    and label is not None
+                    and any((text or "").strip() for text in label.itertext())
+                ):
+                    return ancestor
+                # The corpus router sends children of an incomplete hierarchy
+                # node to the schedule rather than inventing a container path.
+                return schedule
+            ancestor = parent_map.get(ancestor)
+        return schedule
+
+    def _assign_path_tokens(
+        self,
+        routed_provisions: list[tuple[NZProvision, ET.Element]],
+    ) -> None:
+        """Assign unique tokens within each final citation-path namespace."""
+        routed_tokens = [
+            (provision, namespace, _provision_path_component(provision.label))
+            for provision, namespace in routed_provisions
+        ]
+        token_counts = Counter((namespace, token.lower()) for _, namespace, token in routed_tokens)
+        candidates: list[tuple[NZProvision, ET.Element, str]] = []
+        for provision, namespace, token in routed_tokens:
+            candidate = token
+            if token_counts[(namespace, token.lower())] > 1:
+                candidate = f"{token}-{_provision_path_component(provision.id)}"
+            candidates.append((provision, namespace, candidate))
+
+        reserved = {(namespace, candidate.lower()) for _, namespace, candidate in candidates}
+        assigned: set[tuple[ET.Element, str]] = set()
+        candidate_occurrences: Counter[tuple[ET.Element, str]] = Counter()
+        for provision, namespace, candidate in candidates:
+            candidate_key = (namespace, candidate.lower())
+            candidate_occurrences[candidate_key] += 1
+            path_token = candidate
+            if candidate_key in assigned:
+                occurrence = candidate_occurrences[candidate_key]
+                while (
+                    namespace,
+                    f"{candidate}-{occurrence}".lower(),
+                ) in assigned | reserved:
+                    occurrence += 1
+                path_token = f"{candidate}-{occurrence}"
+            provision.path_token = path_token
+            assigned.add((namespace, path_token.lower()))
 
     def _parse_subprovision(self, elem: ET.Element) -> NZProvision | None:
         """Parse a <subprov> element."""
@@ -401,22 +598,14 @@ class NZPCOConverter:
         if label_elem is not None and label_elem.text:
             label = label_elem.text.strip()
 
-        # Extract text from para/text elements
-        text = ""
+        label_elements = {child for child in elem if child.tag == "label"}
+        text = self._render_legal_text(elem, excluded=label_elements)
         paragraphs = []
 
-        for para in elem.findall("para"):
-            text_elem = para.find("text")
-            if text_elem is not None:
-                text += self._extract_text_recursive(text_elem) + " "
-            for table_text in self._extract_table_texts(para):
-                text += table_text + " "
-
-            # Parse nested label-paras
-            for lp in para.findall("label-para"):
-                parsed = self._parse_label_para(lp)  # pragma: no cover
-                if parsed:  # pragma: no cover
-                    paragraphs.append(parsed)  # pragma: no cover
+        for lp in self._immediate_structural_descendants(elem, "label-para"):
+            parsed = self._parse_label_para(lp)
+            if parsed:
+                paragraphs.append(parsed)
 
         if not label and not text.strip() and not paragraphs:
             return None  # pragma: no cover
@@ -438,36 +627,16 @@ class NZPCOConverter:
         if label_elem is not None and label_elem.text:
             label = label_elem.text.strip()
 
-        # Extract text
-        text = ""
-        for para in elem.findall("para"):
-            text_elem = para.find("text")  # pragma: no cover
-            if text_elem is not None:  # pragma: no cover
-                text += self._extract_text_recursive(text_elem) + " "  # pragma: no cover
+        child_elements = self._immediate_structural_descendants(elem, "label-para")
+        excluded = set(child_elements)
+        excluded.update(child for child in elem if child.tag == "label")
+        text = self._render_legal_text(elem, excluded=excluded)
 
-            # Also check direct text elements
-            for txt in para.findall("text"):  # pragma: no cover
-                text += self._extract_text_recursive(txt) + " "  # pragma: no cover
-
-        # Check for direct text elements in label-para
-        for txt in elem.findall("text"):
-            text += self._extract_text_recursive(txt) + " "
-
-        # Parse children recursively
         children = []
-        for child_lp in elem.findall(".//label-para"):
-            # Skip if this is the same element (avoid infinite recursion)
-            if child_lp == elem:  # pragma: no cover
-                continue  # pragma: no cover
-            # Only parse direct children, not descendants
-            parent: ET.Element | None = child_lp  # pragma: no cover
-            while parent is not None:  # pragma: no cover
-                parent = self._find_parent(elem, parent)  # pragma: no cover
-                if parent == elem:  # pragma: no cover
-                    parsed = self._parse_label_para(child_lp)  # pragma: no cover
-                    if parsed:  # pragma: no cover
-                        children.append(parsed)  # pragma: no cover
-                    break  # pragma: no cover
+        for child_lp in child_elements:
+            parsed = self._parse_label_para(child_lp)
+            if parsed:
+                children.append(parsed)
 
         if not label and not text.strip():
             return None  # pragma: no cover
@@ -478,47 +647,40 @@ class NZPCOConverter:
             children=children,
         )
 
-    def _find_parent(self, root: ET.Element, target: ET.Element) -> ET.Element | None:
-        """Find the parent of target within root's subtree."""
-        for child in root:  # pragma: no cover
-            if child == target:  # pragma: no cover
-                return root  # pragma: no cover
-            result = self._find_parent(child, target)  # pragma: no cover
-            if result is not None:  # pragma: no cover
-                return result  # pragma: no cover
-        return None  # pragma: no cover
+    def _immediate_structural_descendants(
+        self,
+        root: ET.Element,
+        tag: str,
+        *,
+        boundaries: set[str] | None = None,
+    ) -> list[ET.Element]:
+        """Return nearest structural descendants without promoting grandchildren."""
+        found: list[ET.Element] = []
+        boundary_tags = boundaries or set()
+
+        def visit(node: ET.Element) -> None:
+            for child in node:
+                if child.tag == tag:
+                    found.append(child)
+                    continue
+                if child.tag in boundary_tags:
+                    continue
+                visit(child)
+
+        visit(root)
+        return found
+
+    def _render_legal_text(
+        self,
+        elem: ET.Element,
+        *,
+        excluded: set[ET.Element] | None = None,
+    ) -> str:
+        return render_nz_pco_legal_text(elem, excluded=excluded)
 
     def _extract_text_recursive(self, elem: ET.Element) -> str:
         """Extract all text content from an element, including nested elements."""
-        parts = []
-
-        # Add element's direct text
-        if elem.text:
-            parts.append(elem.text.strip())
-
-        # Process children
-        for child in elem:
-            # Skip certain elements
-            if child.tag in ("atidlm:resourcepair", "atidlm:metadata"):
-                continue  # pragma: no cover
-
-            # For citation elements, just get the link content
-            if child.tag == "citation":
-                link_content = child.find(
-                    ".//{http://www.arbortext.com/namespace/atidlm}linkcontent"
-                )
-                if link_content is not None and link_content.text:
-                    parts.append(link_content.text.strip())
-                else:
-                    parts.append(self._extract_text_recursive(child))  # pragma: no cover
-            else:
-                parts.append(self._extract_text_recursive(child))
-
-            # Add tail text
-            if child.tail:
-                parts.append(child.tail.strip())
-
-        return " ".join(filter(None, parts))
+        return " ".join(self._render_legal_text(elem).split())
 
     def _extract_table_texts(self, elem: ET.Element) -> list[str]:
         """Extract table rows from a subtree as compact source text."""
