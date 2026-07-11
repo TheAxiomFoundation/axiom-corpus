@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/nz/regulation/2026-06-16-rulespec-nz-pco.json",
+      "sha256": "62b72ecce347848ce76d76c68c7c9e4a781bcbfd060c1e48d85a42f38623b719"
+    },
+    {
+      "path": "data/corpus/inventory/nz/regulation/2026-06-16-rulespec-nz-pco.json",
+      "sha256": "b05f260fb042754a6fa03c113ce1d74c6eae0d5fb5749884d6d7a372ef4b0097"
+    },
+    {
+      "path": "data/corpus/provisions/nz/regulation/2026-06-16-rulespec-nz-pco.jsonl",
+      "sha256": "a9b0427491069803dce9800a0d86e4afa3dd40a8e5d4e5357d99bed135dfcb0d"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-06-16-rulespec-nz-pco/regulation/public/1993/0169/wholeof.xml",
+      "sha256": "f604a1209a6e7b550238e9d6cccbdcb81bc5b2145298c8343c62421a6217850a"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-06-16-rulespec-nz-pco/regulation/public/1998/0277/wholeof.xml",
+      "sha256": "275674997ab2c9d7009af05f90b6398ab2184719d94a5fbf913f5a6035690152"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-06-16-rulespec-nz-pco/regulation/public/2018/0202/wholeof.xml",
+      "sha256": "5f1250b903ce1b618eebd6370d6db8c51cb377b9fdb5cf4d171e259cd0e85d8f"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-06-16-rulespec-nz-pco/regulation/public/2023/0295/wholeof.xml",
+      "sha256": "6fd726c910232a221d3c5e4b2135ae01af167bef20e29b820f9ff3fc74b3daad"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-06-16-rulespec-nz-pco/regulation/public/2024/0043/wholeof.xml",
+      "sha256": "52f11de637ecc7206a02ed1bb67403f834f6d6618bb15234b77f6a7702054823"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-06-16-rulespec-nz-pco/regulation/public/2025/0018/wholeof.xml",
+      "sha256": "f675c8ac89dab2ed08c6e228b93c90c65f0d9aa29425a783790f08599ef0f574"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-06-16-rulespec-nz-pco/regulation/public/2025/0063/wholeof.xml",
+      "sha256": "73858889c92031c2afea6ed6f73c88378f017050ff515ab3487f4b9548670d92"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-06-16-rulespec-nz-pco/regulation/public/2026/0036/wholeof.xml",
+      "sha256": "84534e9785e7345c1a29e7cf4a0f517422e725db5997a0aec275371fcff23cec"
+    },
+    {
+      "path": "data/corpus/sources/nz/regulation/2026-06-16-rulespec-nz-pco/regulation/public/2026/0084/wholeof.xml",
+      "sha256": "aeef17429e0072d40f7d7be2a5665920799c23c87d9f252b4bb10eec63b181a8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1173c61370db60f444860087eedb2cc38b2f248e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-nz-legislation --source-as-of 2026-06-16 --expression-date 2026-06-16 using 9 pinned official PCO XML snapshots; current-law extraction emits only operative body and schedule provisions, assigns collision tokens after namespace routing, and preserves schedule bodies plus heading-only hierarchy through the canonical legal-text renderer"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 652,
+    "missing_count": 0,
+    "provision_count": 652,
+    "source_count": 652
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-11T01:14:52.036988+00:00",
+  "jurisdiction": "nz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ftiBtjq/+2QpzyNe3qUuhmJwM8zTOy5L4yEEJCnMjFKejmd9Ng0/lAJe6L/nsmDuNt9P5i5QrfhNqXVrlWbVAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-16-rulespec-nz-pco"
+}
