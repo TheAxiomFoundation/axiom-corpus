@@ -46,12 +46,12 @@ Rules that hold for every path:
 Normative pattern (see JSON `$defs.citation_path.pattern`):
 
 ```
-^[a-z]{2,3}(-[a-z]{2,4})?/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\-–]*)*$
+^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\-–]*)*$
 ```
 
 ## 2. Segment 0 — jurisdiction
 
-Pattern: `^[a-z]{2,3}(-[a-z]{2,4})?$`.
+Pattern: `^[a-z]{2,3}(?:-[a-z]{2,32})*$`.
 
 - **National**: a bare code — `us`, `uk`, `be`. Federal / national source text
   lives here (Title 26 IRC under `us`, UK primary legislation under `uk`,

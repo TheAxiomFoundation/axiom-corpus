@@ -1,0 +1,1 @@
+Promote every RuleSpec UK citation and the Kingston council-tax-reduction manual into one exact, fail-closed UK corpus release while retaining every divergent body, source URL, and raw-source digest as provenance.
