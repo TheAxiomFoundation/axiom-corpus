@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-co/statute/2026-07-12-crs-2025-title-39-article-22.json",
-      "sha256": "694ff6fa456af1ca8040aa946ff26ef28b9f2dcdd3feca98c3dd999d4bd3eda4"
+      "sha256": "94e7eab7e6b152ce3467dd67a0ccbf8dbbb97a730f3dedadf10c8050318f4aeb"
     },
     {
       "path": "data/corpus/provisions/us-co/statute/2026-07-12-crs-2025-title-39-article-22.jsonl",
-      "sha256": "75e694c3c4881f27648577af17d15fa5eaa293a36124b09dae5f23b395502594"
+      "sha256": "410abaad7182ad31f9183b6363d127d2d849531d46c5ab9073f9df94d283ed3c"
     },
     {
       "path": "data/corpus/sources/us-co/statute/2026-07-12-crs-2025-title-39-article-22/crs2025-title-39.htm",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "db2a30cc79a2a50634233391ff2917fe0d5a182b",
+    "commit": "70adf0afaa0f23c6a39277290a0bd8ec8e12750a",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,14 +35,14 @@
     "source_count": 338
   },
   "document_class": "statute",
-  "generated_at": "2026-07-12T19:47:12.298112+00:00",
+  "generated_at": "2026-07-12T20:01:02.999199+00:00",
   "jurisdiction": "us-co",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "HJB8woWxLbLmLFvldDdiiPY9V7Z7k3vprDce2GG6TEKGkDBz4gNidKOdHz5Hvh1V7+rsib3O8RGXiCyHL66oBg=="
+    "value": "sk227D1SdxdgIKgienBfE95ulHNG4iCBUKIP0ZuMS/2B2fdim2J1tSpcJZ6pwQvrGxf0Lfpo7qUwTJmjw9/IDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-12-crs-2025-title-39-article-22"
