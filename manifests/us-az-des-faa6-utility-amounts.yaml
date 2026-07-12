@@ -1,0 +1,20 @@
+documents:
+  - source_id: az-des-faa6-utility-allowance-current-amount
+    jurisdiction: us-az
+    document_class: manual
+    citation_path: us-az/manual/des/faa6/utility-allowance-current-amount
+    title: DES FAA6.J Standards, Fees, and Amounts — 09 Utility Allowance Current Amount (effective 10/01/2025)
+    source_url: https://dbmefaapolicy.azdes.gov/FAA6/Utility_Allowance_Current_Amount.html
+    download_url: https://web.archive.org/web/20251030220635id_/https://dbmefaapolicy.azdes.gov/FAA6/Utility_Allowance_Current_Amount.html
+    source_format: html
+    source_as_of: "2025-10-30"
+    expression_date: "2025-10-01"
+    metadata:
+      primary_source: true
+      source_authority: Arizona Department of Economic Security
+      document_subtype: policy_manual_section
+      document_number: FAA6.J.09
+      program: SNAP
+      topic: fy2026_standard_utility_allowance_amounts
+      discovered_via: snap_qc_oracle_state_expansion
+      archive_note: live manual is bot-challenged; Wayback capture of the official URL, same convention as the 2025-10-30 FAA5 manual ingest; corroborated by the live DES NA FAQ page (des.az.gov) showing identical amounts
