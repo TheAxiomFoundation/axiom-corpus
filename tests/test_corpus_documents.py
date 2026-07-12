@@ -1499,6 +1499,24 @@ documents:
     assert default_records and all(record.language == "en" for record in default_records)
 
 
+def test_official_document_language_rejects_unquoted_yaml_boolean() -> None:
+    base = {
+        "source_id": "no-act",
+        "jurisdiction": "no",
+        "document_class": "statute",
+        "title": "Norwegian Act",
+        "source_url": "https://lovdata.no/act",
+    }
+    # Unquoted `language: no` reaches from_mapping as YAML 1.1 boolean False;
+    # it must fail loudly instead of stringifying to "False".
+    with pytest.raises(ValueError, match="quote"):
+        OfficialDocumentSource.from_mapping({**base, "language": False})
+    with pytest.raises(ValueError, match="quote"):
+        OfficialDocumentSource.from_mapping({**base, "language": True})
+    quoted = OfficialDocumentSource.from_mapping({**base, "language": "no"})
+    assert quoted.language == "no"
+
+
 def test_extract_official_documents_from_filtered_xlsx_rows(tmp_path: Path) -> None:
     workbook_path = tmp_path / "index.xlsx"
     workbook = Workbook()

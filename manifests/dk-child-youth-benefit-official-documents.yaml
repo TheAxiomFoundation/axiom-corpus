@@ -16,7 +16,10 @@ documents:
     metadata:
       primary_source: true
       source_authority: Civilstyrelsen (Retsinformation)
-      responsible_ministry: Skatte- og Vækstministeriet
+      responsible_ministry: >-
+        Skatteministeriet (per the LBK colophon; the retsinformation ELI
+        metadata graph currently records Skatte- og Vækstministeriet as
+        responsibility_of, reflecting the later ministry renaming)
       eli_uri: https://www.retsinformation.dk/eli/lta/2025/603
       eli_legal_value: definitive (PDF manifestation per ELI format metadata)
       id_local: A20250060329
@@ -35,18 +38,19 @@ documents:
         (per the consolidation preamble).
       amended_after_consolidation_note: >-
         Two later amendment acts exist (per the retsinformation ELI
-        changed_by graph, checked 2026-07-12). (1) LOV nr 1642 af 16/12/2025
-        (ingested alongside this document, source_id
+        changed_by graph, checked 2026-07-12); both are ingested alongside
+        this document so the claims below are verifiable against committed
+        text. (1) LOV nr 1642 af 16/12/2025 (source_id
         dk-lov-1642-2025-aendringslov): its § 1, nr. 1 changes § 1, stk. 3,
         7. pkt. rounding divisor »12« to »24«; nr. 2-11 change § 2, stk. 1,
         nr. 10, § 4 (payout rules) and § 11, stk. 2. It does NOT change the
         § 1, stk. 1-2 base amounts or the § 1 a income taper. (2) LOV nr 303
-        af 24/02/2026 changes § 4 e, stk. 1 and 4 (»3 år« to »5 år«) and
-        inserts new sections after § 4 e in kapitel 3; it does not touch
-        § 1 or § 1 a. Encodings of § 1, stk. 1-2 and § 1 a from this
-        consolidation therefore remain current statutory text as of
-        2026-07-12; encodings of the § 1, stk. 3 rounding step must apply
-        the LOV nr 1642 amendment.
+        af 24/02/2026 (source_id dk-lov-303-2026-aendringslov) changes
+        § 4 e, stk. 1 and 4 (»3 år« to »5 år«) and inserts new sections
+        after § 4 e in kapitel 3; it does not touch § 1 or § 1 a. Encodings
+        of § 1, stk. 1-2 and § 1 a from this consolidation therefore remain
+        current statutory text as of 2026-07-12; encodings of the § 1,
+        stk. 3 rounding step must apply the LOV nr 1642 amendment.
       source_family: child-benefit
       source_note: >-
         Official retsinformation.dk PDF manifestation (ELI legal value:
@@ -101,6 +105,47 @@ documents:
         definitive), downloaded 2026-07-12 from the stable ELI format URL.
         Captured for amendment diligence on the børne- og ungeydelse
         encodings: § 1, nr. 1 changes the § 1, stk. 3, 7. pkt. rounding
-        divisor from 12 to 24 (payout-cadence change); § 1, nr. 2-11 amend
-        § 2, stk. 1, nr. 10, § 4 and § 11, stk. 2 of the same act. The § 1,
-        stk. 1-2 base amounts and the § 1 a income taper are not amended.
+        divisor from 12 to 24; § 1, nr. 2-11 amend § 2, stk. 1, nr. 10,
+        § 4 and § 11, stk. 2 of the same act. The § 1, stk. 1-2 base
+        amounts and the § 1 a income taper are not amended. Commencement:
+        § 10, stk. 1 (1. januar 2026).
+  - source_id: dk-lov-303-2026-aendringslov
+    jurisdiction: dk
+    document_class: statute
+    citation_path: dk/statute/lov-303-2026/aendring-af-social-pension-mv
+    title: Lov om ændring af lov om social pension, lov om højeste, mellemste, forhøjet almindelig og almindelig førtidspension m.v. og forskellige andre love (LOV nr 303 af 24/02/2026)
+    source_url: https://www.retsinformation.dk/eli/lta/2026/303/dan/pdf
+    source_format: pdf
+    source_as_of: '2026-07-12'
+    expression_date: '2026-02-24'
+    language: da
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Civilstyrelsen (Retsinformation)
+      eli_uri: https://www.retsinformation.dk/eli/lta/2026/303
+      eli_legal_value: definitive (PDF manifestation per ELI format metadata)
+      title_short: LOV nr 303 af 24/02/2026
+      title_alternative: >-
+        Frakendelse af førtidspension på baggrund af alvorlig kriminalitet,
+        skærpelse af karantæneordninger i ydelsessystemet m.v.
+      document_type: ændringslov (amendment act)
+      date_document: '2026-02-24'
+      amends: >-
+        Lov om social pension, lov om højeste, mellemste, forhøjet
+        almindelig og almindelig førtidspension m.v., and various other
+        acts including lov om en børne- og ungeydelse (its § 4 e).
+      source_family: child-benefit
+      source_note: >-
+        Official retsinformation.dk PDF manifestation (ELI legal value:
+        definitive), downloaded 2026-07-12 from the stable ELI format URL.
+        Captured for amendment diligence on the børne- og ungeydelse
+        encodings: within the børne- og ungeydelsesloven amendment block it
+        changes § 4 e, stk. 1, 1. pkt. and stk. 4, 2. pkt. (»3 år« to
+        »5 år«) and inserts new sections after § 4 e in kapitel 3. It does
+        not touch § 1 or § 1 a. Commencement: § 11, stk. 1 (1. marts 2026),
+        with the § 11, stk. 2 non-retroactivity carve-outs for conduct
+        before commencement.

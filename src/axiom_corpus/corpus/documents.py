@@ -92,6 +92,12 @@ class OfficialDocumentSource:
         extraction = data.get("extraction")
         if extraction is not None and not isinstance(extraction, dict):
             raise ValueError("official document extraction config must be a mapping")
+        language = data.get("language")
+        if isinstance(language, bool):
+            raise ValueError(
+                "official document language must be a string; YAML 1.1 parses "
+                'unquoted codes like `language: no` as booleans - quote it ("no")'
+            )
         return cls(
             source_id=str(data["source_id"]),
             jurisdiction=str(data["jurisdiction"]),
@@ -103,7 +109,7 @@ class OfficialDocumentSource:
             source_format=data.get("source_format"),
             source_as_of=data.get("source_as_of"),
             expression_date=data.get("expression_date"),
-            language=str(data["language"]) if data.get("language") is not None else None,
+            language=str(language) if language is not None else None,
             local_path=data.get("local_path"),
             request=request,
             extraction=extraction,
