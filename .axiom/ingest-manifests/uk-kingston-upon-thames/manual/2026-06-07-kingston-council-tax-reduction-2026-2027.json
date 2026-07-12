@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-kingston-upon-thames/manual/2026-06-07-kingston-council-tax-reduction-2026-2027.json",
+      "sha256": "5109823816be112a10606f7eb69c4231a3a638f39e2363893142fbb578ced0e1"
+    },
+    {
+      "path": "data/corpus/inventory/uk-kingston-upon-thames/manual/2026-06-07-kingston-council-tax-reduction-2026-2027.json",
+      "sha256": "d22b2afc6ec329558e800c0384925e05319cf1f4b3081c90e1b7055566ddce72"
+    },
+    {
+      "path": "data/corpus/provisions/uk-kingston-upon-thames/manual/2026-06-07-kingston-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "58a0a016539a0b3bcdda27b84f325c1d98b009db7a02ad6598eaebb6dfecbc83"
+    },
+    {
+      "path": "data/corpus/sources/uk-kingston-upon-thames/manual/2026-06-07-kingston-council-tax-reduction-2026-2027/official-documents/kingston-upon-thames-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "010fcd0814b8ee544bae56307783a4f0e9533823e316b585f442dfdb63948db3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "56f84eee092bff490509b2e88b7aa6488f9d5eb8",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Port RuleSpec UK source promotion as immutable uk-rulespec-2026-07-12 cut plan"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 162,
+    "missing_count": 0,
+    "provision_count": 162,
+    "source_count": 162
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-12T15:46:09.955626+00:00",
+  "jurisdiction": "uk-kingston-upon-thames",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dbK00+eTUNhI8l92Rn5NLn0GDCMJxa3MPEAYKFZfC5Wseibg6WIx3QrzyX69zLVvA65eYw/z/bMfdj7T6NFQDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-07-kingston-council-tax-reduction-2026-2027"
+}
