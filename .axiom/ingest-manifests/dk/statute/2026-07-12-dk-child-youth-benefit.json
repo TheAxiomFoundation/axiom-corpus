@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/dk/statute/2026-07-12-dk-child-youth-benefit.json",
+      "sha256": "8ec042b2b109c82a43894a043b10ac8eb4b55c22a1464e5225fea9c8382a9f16"
+    },
+    {
+      "path": "data/corpus/inventory/dk/statute/2026-07-12-dk-child-youth-benefit.json",
+      "sha256": "cbb1fddc1ee7535002ac4c8f688384e9eba7e3cd0e13de4de0b2a954e6e93e0e"
+    },
+    {
+      "path": "data/corpus/provisions/dk/statute/2026-07-12-dk-child-youth-benefit.jsonl",
+      "sha256": "8b6c5cabe15a8a24a14f250ffb4297af8c3c3146bb8411be84a07833d5301ad8"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-07-12-dk-child-youth-benefit/official-documents/dk-lbk-603-2025-boerne-og-ungeydelsesloven.pdf",
+      "sha256": "705b167e4a6f8d8069686ca129377734fde1ae07f5410166375bdf7c514a137a"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-07-12-dk-child-youth-benefit/official-documents/dk-lov-1642-2025-aendringslov.pdf",
+      "sha256": "8e3c5c3ef8663b78af378ceb6439ee67db2b2c4e478329daf56ad0b337f35bc0"
+    },
+    {
+      "path": "data/corpus/sources/dk/statute/2026-07-12-dk-child-youth-benefit/official-documents/dk-lov-303-2026-aendringslov.pdf",
+      "sha256": "27df7cbba6b578e239d041a7755e58de8563ca29173622e71552fb9cb8b23cac"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8e9eb98cbac34f143395458b83f4321c21d76ffc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-12-dk-child-youth-benefit --manifest manifests/dk-child-youth-benefit-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-12T14:58:47.286021+00:00",
+  "jurisdiction": "dk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-12-dk-child-youth-benefit",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qx8PP35fnM6C8TS3x5TZymBkY0whl+9WpiWJWPQ5eWoXNwmTexI2KAHcI0igPextuQZ+CmHCK/oT/xP7c7THCQ=="
+  }
+}

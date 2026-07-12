@@ -17,6 +17,10 @@ from typing import TextIO
 from uuid import NAMESPACE_URL, UUID, uuid5
 
 from axiom_corpus.corpus.models import ProvisionRecord
+from axiom_corpus.corpus.projection_digest import (
+    ProjectionDigestError,
+    encode_identifiers_projection,
+)
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope, validate_release_name
 from axiom_corpus.release.manifest import verify_release_object
 
@@ -52,12 +56,53 @@ SUPABASE_PROVISIONS_COLUMNS = (
 )
 
 
+# Staged provision identity is derived state: both ids are deterministic
+# functions of (citation_path, version) unless an ingest carried explicit ids.
+# Every other projected column is release content. The split decides what an
+# idempotent reload may converge (identity) versus what it must never touch
+# silently (content).
+PROVISION_IDENTITY_COLUMNS = ("id", "parent_id")
+PROVISION_CONTENT_COLUMNS = tuple(
+    column for column in SUPABASE_PROVISIONS_COLUMNS if column not in PROVISION_IDENTITY_COLUMNS
+)
+
+_STAGING_CONFLICT_PREVIEW_LIMIT = 20
+
+
+class ProvisionStagingConflictError(RuntimeError):
+    """Staged `corpus.provisions` state conflicts with the rows being loaded.
+
+    Raised before any write. A conflict means the database already holds
+    different content under an immutable ``(citation_path, version)`` key,
+    holds staged rows the incoming load does not describe, or holds rows whose
+    replacement would cascade-delete state outside the loaded rows. None of
+    these may be resolved implicitly: overwriting could launder drifted source
+    text into a later signed release, and skipping could sign content that is
+    not what the local artifacts say. Inspect ``conflicts``, then either fix
+    the corpus artifacts or explicitly clear the stale staged scope
+    (``axiom-corpus-ingest load-supabase --replace-scope``).
+    """
+
+    def __init__(self, conflicts: Sequence[Mapping[str, object]]) -> None:
+        self.conflicts = tuple(dict(conflict) for conflict in conflicts)
+        preview = json.dumps(list(self.conflicts[:_STAGING_CONFLICT_PREVIEW_LIMIT]), sort_keys=True)
+        overflow = len(self.conflicts) - _STAGING_CONFLICT_PREVIEW_LIMIT
+        suffix = f" (+{overflow} more)" if overflow > 0 else ""
+        super().__init__(
+            f"{len(self.conflicts)} provision staging conflict(s); "
+            f"no rows were written: {preview}{suffix}"
+        )
+
+
 @dataclass(frozen=True)
 class SupabaseLoadReport:
     rows_total: int
     rows_loaded: int
     chunk_count: int
     dry_run: bool = False
+    rows_inserted: int = 0
+    rows_replaced: int = 0
+    rows_already_staged: int = 0
 
     def to_mapping(self) -> dict[str, object]:
         return {
@@ -65,6 +110,9 @@ class SupabaseLoadReport:
             "rows_loaded": self.rows_loaded,
             "chunk_count": self.chunk_count,
             "dry_run": self.dry_run,
+            "rows_inserted": self.rows_inserted,
+            "rows_replaced": self.rows_replaced,
+            "rows_already_staged": self.rows_already_staged,
         }
 
 
@@ -450,8 +498,19 @@ def iter_supabase_rows(
     *,
     versioned_ids: bool = True,
 ) -> Iterator[dict[str, object]]:
-    for index, record in enumerate(records):
+    # The int4 ordinal shim indexes within each release scope, not across the
+    # whole iterable, so a multi-scope load projects the exact same rows as
+    # the per-scope signed evidence digests in release content.
+    scope_positions: dict[tuple[str, str, str], int] = {}
+    for record in records:
         row = provision_to_supabase_row(record, versioned_ids=versioned_ids)
+        scope_key = (
+            str(row.get("jurisdiction") or ""),
+            str(row.get("doc_type") or ""),
+            str(row.get("version") or ""),
+        )
+        index = scope_positions.get(scope_key, 0)
+        scope_positions[scope_key] = index + 1
         ordinal = row.get("ordinal")
         if (
             isinstance(ordinal, int)
@@ -1141,11 +1200,38 @@ def load_provisions_to_supabase(
     signed named-release activation RPC can move the production pointer.
     Missing parents remain hard foreign-key/data defects; publication never
     manufactures legal-corpus rows to make an invalid scope loadable.
+
+    Staging is idempotent against verified pre-staged state. Every loaded
+    scope's existing rows are fetched and compared before any write:
+
+    - a row that is byte-identical across every projected column is left
+      untouched;
+    - a row whose release content matches but whose derived identity
+      (``id``/``parent_id``) reflects a superseded id scheme is converged to
+      the canonical identity, in place when the id survives, otherwise by
+      replacing the stale row;
+    - a row whose content differs under the same immutable
+      ``(citation_path, version)`` key, or a staged row the load does not
+      describe, raises :class:`ProvisionStagingConflictError` before anything
+      is written — silent overwrites and silent skips are both integrity
+      defects at this boundary.
+
+    Replacements are planned against the ``parent_id`` ON DELETE CASCADE
+    closure, so converging a stale identity can never silently delete a row
+    that survives the load; any dependent row outside the loaded rows is
+    reported as a conflict instead, and the dependent set is re-checked
+    immediately before the deletes execute.
+
+    Verification and writes are separate REST requests, not one transaction:
+    the contract assumes one staging writer at a time. The residual races are
+    narrowed (conditional single-column parent updates, the pre-delete
+    dependent re-check, plain inserts that surface any constraint violation)
+    and the publisher's evidence gate re-derives every in-release scope
+    server-side after staging; a truly transactional staging boundary needs a
+    server-side RPC.
     """
     if chunk_size <= 0:
         raise ValueError("chunk_size must be positive")
-
-    records_iter: Iterable[ProvisionRecord] = records
 
     def _require_release_versions(
         source: Iterable[ProvisionRecord],
@@ -1158,16 +1244,90 @@ def load_provisions_to_supabase(
                 )
             yield record
 
-    records_iter = _require_release_versions(records_iter)
+    rows = list(iter_supabase_rows(_require_release_versions(records), versioned_ids=True))
 
-    rows_loaded = 0
-    chunk_count = 0
+    rows_by_key: dict[tuple[str, str], dict[str, object]] = {}
+    for row in rows:
+        key = (str(row["citation_path"]), str(row["version"]))
+        if key in rows_by_key:
+            raise ValueError(
+                f"load payload repeats an immutable provision key: {key[0]} @ {key[1]}"
+            )
+        rows_by_key[key] = row
+
+    if dry_run:
+        return SupabaseLoadReport(
+            rows_total=len(rows),
+            rows_loaded=0,
+            chunk_count=sum(1 for _ in _chunked(iter(rows), chunk_size)),
+            dry_run=True,
+        )
+
     rest_url = _rest_url(supabase_url)
-    row_iter = iter_supabase_rows(records_iter, versioned_ids=True)
-    for chunk in _chunked(row_iter, chunk_size):
+    plan = _plan_provision_staging(
+        rows,
+        rows_by_key=rows_by_key,
+        service_key=service_key,
+        rest_url=rest_url,
+    )
+    if plan.conflicts:
+        raise ProvisionStagingConflictError(plan.conflicts)
+
+    if progress_stream is not None and (
+        plan.rows_already_staged or plan.replaced_ids or plan.in_place_updates
+    ):
+        print(
+            f"verified staged state: {plan.rows_already_staged} rows identical, "
+            f"{len(plan.replaced_ids)} stale identities replaced, "
+            f"{len(plan.in_place_updates)} converged in place, "
+            f"{len(plan.pending_inserts)} to insert",
+            file=progress_stream,
+            flush=True,
+        )
+
+    # Planning read the database without a transaction. Re-fetch the cascade
+    # dependents of every id scheduled for deletion immediately before the
+    # deletes: a dependent staged by a concurrent writer after planning would
+    # otherwise be cascade-deleted without a trace. This narrows the race
+    # window to the write phase itself; the staging boundary assumes a single
+    # staging writer at a time, and the publish evidence gate re-derives
+    # every in-release scope server-side after staging.
+    if plan.replaced_ids:
+        replaced_id_set = {row_id for row_id, _ in plan.replaced_ids}
+        late_dependents = [
+            dependent
+            for dependent in fetch_provision_rows_with_parents(
+                sorted(replaced_id_set), service_key=service_key, rest_url=rest_url
+            )
+            if str(dependent.get("id")) not in replaced_id_set
+        ]
+        if late_dependents:
+            raise ProvisionStagingConflictError(
+                [
+                    {
+                        "kind": "cascade-outside-load",
+                        "citation_path": str(dependent.get("citation_path")),
+                        "version": str(dependent.get("version")),
+                        "staged_id": str(dependent.get("id")),
+                        "staged_parent_id": str(dependent.get("parent_id")),
+                    }
+                    for dependent in late_dependents
+                ]
+            )
+
+    # Deletes run deepest-first so an in-set parent is never removed while an
+    # in-set child still exists; the closure guarantees no out-of-set child.
+    for delete_chunk in _chunked_values(
+        [row_id for row_id, _ in sorted(plan.replaced_ids, key=lambda item: (-item[1], item[0]))],
+        100,
+    ):
+        delete_supabase_provision_ids(delete_chunk, service_key=service_key, rest_url=rest_url)
+
+    rows_loaded = plan.rows_already_staged
+    chunk_count = 0
+    for chunk in _chunked(iter(plan.pending_inserts), chunk_size):
         chunk_count += 1
-        if not dry_run:
-            upsert_supabase_rows(chunk, service_key=service_key, rest_url=rest_url)
+        insert_supabase_rows(chunk, service_key=service_key, rest_url=rest_url)
         rows_loaded += len(chunk)
         if progress_stream is not None and (chunk_count == 1 or chunk_count % 10 == 0):
             print(
@@ -1176,11 +1336,26 @@ def load_provisions_to_supabase(
                 flush=True,
             )
 
+    # In-place converges run after inserts so a canonical parent row already
+    # exists when a surviving child re-points at it.
+    for row, verified_parent_id in plan.in_place_updates:
+        update_supabase_provision_parent(
+            row_id=str(row["id"]),
+            new_parent_id=row.get("parent_id"),
+            verified_parent_id=verified_parent_id,
+            service_key=service_key,
+            rest_url=rest_url,
+        )
+        rows_loaded += 1
+
     return SupabaseLoadReport(
-        rows_total=rows_loaded,
-        rows_loaded=0 if dry_run else rows_loaded,
+        rows_total=len(rows),
+        rows_loaded=rows_loaded,
         chunk_count=chunk_count,
-        dry_run=dry_run,
+        dry_run=False,
+        rows_inserted=len(plan.pending_inserts) - len(plan.replaced_ids),
+        rows_replaced=len(plan.replaced_ids) + len(plan.in_place_updates),
+        rows_already_staged=plan.rows_already_staged,
     )
 
 
@@ -1328,22 +1503,382 @@ def delete_supabase_provision_ids(
         resp.read()
 
 
-def upsert_supabase_rows(
+@dataclass(frozen=True)
+class _ProvisionStagingPlan:
+    pending_inserts: tuple[dict[str, object], ...]
+    # (incoming row, parent_id the plan verified on the staged row)
+    in_place_updates: tuple[tuple[dict[str, object], object], ...]
+    replaced_ids: tuple[tuple[str, int], ...]
+    rows_already_staged: int
+    conflicts: tuple[dict[str, object], ...]
+
+
+def _row_level(row: Mapping[str, object]) -> int:
+    level = row.get("level")
+    if isinstance(level, int) and not isinstance(level, bool):
+        return level
+    return 0
+
+
+def _provision_column_equal(column: str, mine: object, theirs: object) -> bool:
+    """Column-faithful equality between a projected value and PostgREST JSON.
+
+    ``identifiers`` compares by the signed projection-digest encoding, so
+    classification agrees exactly with what release evidence will hash: bool
+    and int stay distinct (Python's ``True == 1`` cannot mask a value-type
+    change) and text is exact. Values outside the digest contract (floats,
+    nested structures — which publication rejects at digest time regardless)
+    fall back to canonical JSON, keeping any ambiguity in the loud-conflict
+    direction. Every other projected column is a scalar SQL type where plain
+    equality over the JSON decoding is faithful.
+    """
+    if column == "identifiers":
+        try:
+            return encode_identifiers_projection(mine) == encode_identifiers_projection(theirs)
+        except ProjectionDigestError:
+            return json.dumps(mine, sort_keys=True) == json.dumps(theirs, sort_keys=True)
+    return mine == theirs
+
+
+def _dependency_ordered_inserts(
+    pending_inserts: Sequence[dict[str, object]],
+    conflicts: list[dict[str, object]],
+) -> list[dict[str, object]]:
+    """Order pending inserts so every in-load parent precedes its children.
+
+    A topological sort over the actual parent links is a guarantee the
+    foreign key can hold across chunk boundaries; sorting by ``level`` would
+    only restate an unchecked corpus invariant. Rows that share an id or form
+    a parent cycle cannot be inserted coherently at all, so they become
+    conflicts instead of runtime constraint errors.
+    """
+    pending_by_id: dict[str, dict[str, object]] = {}
+    for row in pending_inserts:
+        row_id = str(row.get("id"))
+        if row_id in pending_by_id:
+            conflicts.append(
+                {
+                    "kind": "duplicate-pending-id",
+                    "citation_path": str(row.get("citation_path")),
+                    "version": str(row.get("version")),
+                    "staged_id": row_id,
+                }
+            )
+            continue
+        pending_by_id[row_id] = row
+    children_by_parent: dict[str, list[str]] = {}
+    in_degree: dict[str, int] = dict.fromkeys(pending_by_id, 0)
+    for row_id, row in pending_by_id.items():
+        parent = row.get("parent_id")
+        parent_key = str(parent) if parent is not None else None
+        if parent_key is not None and parent_key != row_id and parent_key in pending_by_id:
+            children_by_parent.setdefault(parent_key, []).append(row_id)
+            in_degree[row_id] += 1
+    ordered_ids = [row_id for row_id, degree in in_degree.items() if degree == 0]
+    cursor = 0
+    while cursor < len(ordered_ids):
+        for child in children_by_parent.get(ordered_ids[cursor], ()):
+            in_degree[child] -= 1
+            if in_degree[child] == 0:
+                ordered_ids.append(child)
+        cursor += 1
+    if len(ordered_ids) != len(pending_by_id):
+        for row_id, degree in in_degree.items():
+            if degree > 0:
+                row = pending_by_id[row_id]
+                conflicts.append(
+                    {
+                        "kind": "cyclic-parent-linkage",
+                        "citation_path": str(row.get("citation_path")),
+                        "version": str(row.get("version")),
+                        "staged_id": row_id,
+                    }
+                )
+        return list(pending_inserts)
+    return [pending_by_id[row_id] for row_id in ordered_ids]
+
+
+def _plan_provision_staging(
+    rows: Sequence[dict[str, object]],
+    *,
+    rows_by_key: Mapping[tuple[str, str], dict[str, object]],
+    service_key: str,
+    rest_url: str,
+) -> _ProvisionStagingPlan:
+    """Classify a load against verified staged state before any write.
+
+    Each incoming row lands in exactly one bucket: already staged
+    byte-identically, insert (no staged row), in-place converge (content and
+    id match, derived ``parent_id`` is stale), or replace (content matches, id
+    is stale). Anything else — divergent content under an immutable key,
+    staged rows the load does not describe, or a replacement whose ON DELETE
+    CASCADE would reach a row that survives the load — is a conflict, and the
+    caller writes nothing.
+    """
+    scope_keys: dict[tuple[str, str, str], None] = {}
+    for row in rows:
+        scope_keys.setdefault(
+            (str(row["jurisdiction"]), str(row["doc_type"]), str(row["version"])), None
+        )
+
+    existing_by_key: dict[tuple[str, str], dict[str, object]] = {}
+    for jurisdiction, doc_type, version in scope_keys:
+        for existing in fetch_staged_scope_rows(
+            jurisdiction=jurisdiction,
+            doc_type=doc_type,
+            version=version,
+            service_key=service_key,
+            rest_url=rest_url,
+        ):
+            existing_by_key[(str(existing["citation_path"]), str(existing["version"]))] = existing
+
+    conflicts: list[dict[str, object]] = []
+    pending_inserts: list[dict[str, object]] = []
+    in_place: dict[tuple[str, str], tuple[dict[str, object], object]] = {}
+    replaced: dict[str, int] = {}
+    matched_existing: dict[tuple[str, str], dict[str, object]] = {}
+    rows_already_staged = 0
+
+    leftover = dict(existing_by_key)
+    for key, row in rows_by_key.items():
+        staged = leftover.get(key)
+        if staged is None:
+            pending_inserts.append(row)
+            continue
+        del leftover[key]
+        matched_existing[key] = staged
+        divergent_content = sorted(
+            column
+            for column in PROVISION_CONTENT_COLUMNS
+            if not _provision_column_equal(column, row.get(column), staged.get(column))
+        )
+        if divergent_content:
+            conflicts.append(
+                {
+                    "kind": "content-mismatch",
+                    "citation_path": key[0],
+                    "version": key[1],
+                    "fields": divergent_content,
+                    "staged_id": str(staged.get("id")),
+                }
+            )
+            continue
+        if row.get("id") == staged.get("id"):
+            if row.get("parent_id") == staged.get("parent_id"):
+                rows_already_staged += 1
+            else:
+                in_place[key] = (row, staged.get("parent_id"))
+            continue
+        replaced[str(staged["id"])] = _row_level(staged)
+        pending_inserts.append(row)
+
+    for key, staged_leftover in leftover.items():
+        conflicts.append(
+            {
+                "kind": "unexpected-staged-row",
+                "citation_path": key[0],
+                "version": key[1],
+                "staged_id": str(staged_leftover.get("id")),
+            }
+        )
+
+    # Replacing a stale id fires ``parent_id`` ON DELETE CASCADE. Chase the
+    # closure: a dependent the load re-creates is escalated to a replacement
+    # of its own (its cascade deletion is compensated by a canonical
+    # re-insert); a dependent outside the load is a conflict — converging one
+    # scope must never silently delete another scope's rows.
+    frontier = set(replaced)
+    while frontier:
+        next_frontier: set[str] = set()
+        for dependent in fetch_provision_rows_with_parents(
+            sorted(frontier), service_key=service_key, rest_url=rest_url
+        ):
+            dependent_id = str(dependent.get("id"))
+            if dependent_id in replaced:
+                continue
+            dependent_key = (
+                str(dependent.get("citation_path")),
+                str(dependent.get("version")),
+            )
+            incoming = rows_by_key.get(dependent_key)
+            if incoming is None or matched_existing.get(dependent_key) is None:
+                conflicts.append(
+                    {
+                        "kind": "cascade-outside-load",
+                        "citation_path": dependent_key[0],
+                        "version": dependent_key[1],
+                        "staged_id": dependent_id,
+                        "staged_parent_id": str(dependent.get("parent_id")),
+                    }
+                )
+                continue
+            if dependent_key in in_place:
+                del in_place[dependent_key]
+            elif str(incoming.get("id")) == dependent_id and incoming.get(
+                "parent_id"
+            ) == dependent.get("parent_id"):
+                # Previously counted as already staged; the cascade will
+                # delete it, so it must be re-created canonically instead.
+                rows_already_staged -= 1
+            else:
+                continue
+            replaced[dependent_id] = _row_level(dependent)
+            pending_inserts.append(incoming)
+            next_frontier.add(dependent_id)
+        frontier = next_frontier
+
+    # A load whose own projection references an id scheduled for deletion is
+    # internally inconsistent: the insert phase would either FK-fail or, worse,
+    # silently attach rows to a resurrected id with cascade-deleted children.
+    for key, row in rows_by_key.items():
+        parent_id = row.get("parent_id")
+        if parent_id is not None and str(parent_id) in replaced:
+            if str(row.get("id")) in replaced or any(
+                str(pending.get("id")) == str(parent_id) for pending in pending_inserts
+            ):
+                continue
+            conflicts.append(
+                {
+                    "kind": "replaced-id-still-referenced",
+                    "citation_path": key[0],
+                    "version": key[1],
+                    "parent_id": str(parent_id),
+                }
+            )
+
+    ordered_inserts = _dependency_ordered_inserts(pending_inserts, conflicts)
+    conflicts.sort(key=lambda item: (str(item["kind"]), str(item["citation_path"])))
+    return _ProvisionStagingPlan(
+        pending_inserts=tuple(ordered_inserts),
+        in_place_updates=tuple(in_place.values()),
+        replaced_ids=tuple(replaced.items()),
+        rows_already_staged=rows_already_staged,
+        conflicts=tuple(conflicts),
+    )
+
+
+def fetch_staged_scope_rows(
+    *,
+    jurisdiction: str,
+    doc_type: str,
+    version: str,
+    service_key: str,
+    rest_url: str,
+    page_size: int = 1_000,
+) -> tuple[dict[str, object], ...]:
+    """Fetch every staged projection row for one exact provision scope."""
+    if page_size <= 0:
+        raise ValueError("page_size must be positive")
+    fetched: list[dict[str, object]] = []
+    last_id: str | None = None
+    while True:
+        query_params = {
+            "select": ",".join(SUPABASE_PROVISIONS_COLUMNS),
+            "jurisdiction": f"eq.{jurisdiction}",
+            "doc_type": f"eq.{doc_type}",
+            "version": f"eq.{version}",
+            "order": "id.asc",
+            "limit": str(page_size),
+        }
+        if last_id is not None:
+            query_params["id"] = f"gt.{last_id}"
+        query = urllib.parse.urlencode(query_params)
+        req = urllib.request.Request(
+            f"{rest_url}/provisions?{query}",
+            headers={
+                "apikey": service_key,
+                "Authorization": f"Bearer {service_key}",
+                "Accept": "application/json",
+                "Accept-Profile": "corpus",
+                "User-Agent": USER_AGENT,
+            },
+        )
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            page = json.loads(resp.read())
+        if not isinstance(page, list):
+            raise RuntimeError("unexpected Supabase staged-scope response")
+        page_rows = [row for row in page if isinstance(row, dict) and row.get("id") is not None]
+        fetched.extend(page_rows)
+        if len(page_rows) < page_size:
+            break
+        last_id = str(page_rows[-1]["id"])
+    return tuple(fetched)
+
+
+def fetch_provision_rows_with_parents(
+    parent_ids: Sequence[str],
+    *,
+    service_key: str,
+    rest_url: str,
+    page_size: int = 1_000,
+) -> tuple[dict[str, object], ...]:
+    """Fetch the direct ON DELETE CASCADE set of ``parent_ids``.
+
+    Returns the identity columns of every provision row whose ``parent_id``
+    is one of the given ids, across all scopes, so replacement planning can
+    prove a delete never reaches a row that should survive.
+    """
+    if page_size <= 0:
+        raise ValueError("page_size must be positive")
+    dependents: list[dict[str, object]] = []
+    for chunk in _chunked_values(list(parent_ids), 100):
+        parent_filter = "in.(" + ",".join(_postgrest_in_value(value) for value in chunk) + ")"
+        last_id: str | None = None
+        while True:
+            query_params = {
+                "select": "id,citation_path,version,parent_id,level",
+                "parent_id": parent_filter,
+                "order": "id.asc",
+                "limit": str(page_size),
+            }
+            if last_id is not None:
+                query_params["id"] = f"gt.{last_id}"
+            query = urllib.parse.urlencode(query_params)
+            req = urllib.request.Request(
+                f"{rest_url}/provisions?{query}",
+                headers={
+                    "apikey": service_key,
+                    "Authorization": f"Bearer {service_key}",
+                    "Accept": "application/json",
+                    "Accept-Profile": "corpus",
+                    "User-Agent": USER_AGENT,
+                },
+            )
+            with urllib.request.urlopen(req, timeout=180) as resp:
+                page = json.loads(resp.read())
+            if not isinstance(page, list):
+                raise RuntimeError("unexpected Supabase cascade-dependent response")
+            page_rows = [row for row in page if isinstance(row, dict) and row.get("id") is not None]
+            dependents.extend(page_rows)
+            if len(page_rows) < page_size:
+                break
+            last_id = str(page_rows[-1]["id"])
+    return tuple(dependents)
+
+
+def insert_supabase_rows(
     rows: list[dict[str, object]],
     *,
     service_key: str,
     rest_url: str,
 ) -> None:
+    """Insert staged provision rows; any constraint violation is a loud error.
+
+    Staging deliberately sends a plain insert with no PostgREST conflict
+    resolution: the caller has already verified the staged state, so a
+    conflict here means a concurrent writer or a verification gap, and both
+    must fail instead of silently merging or skipping.
+    """
     if not rows:
         return
     req = urllib.request.Request(
-        f"{rest_url}/provisions?on_conflict=id",
+        f"{rest_url}/provisions",
         data=json.dumps(rows).encode("utf-8"),
         headers={
             "apikey": service_key,
             "Authorization": f"Bearer {service_key}",
             "Content-Type": "application/json",
-            "Prefer": "resolution=merge-duplicates,return=minimal",
+            "Prefer": "return=minimal",
             "Content-Profile": "corpus",
             "User-Agent": USER_AGENT,
         },
@@ -1354,7 +1889,62 @@ def upsert_supabase_rows(
             resp.read()
     except urllib.error.HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")[:500]
-        raise RuntimeError(f"upsert failed {exc.code}: {body}") from exc
+        raise RuntimeError(f"insert failed {exc.code}: {body}") from exc
+
+
+def update_supabase_provision_parent(
+    *,
+    row_id: str,
+    new_parent_id: object,
+    verified_parent_id: object,
+    service_key: str,
+    rest_url: str,
+) -> None:
+    """Re-point one verified staged row at its canonical parent.
+
+    An in-place converge only ever changes ``parent_id`` — every other column
+    was verified byte-identical during planning — so the update writes that
+    single column and is conditioned on both the id and the parent value the
+    plan verified. A row that vanished or changed between verification and
+    write matches zero rows and fails loudly instead of being silently
+    overwritten.
+    """
+    if not row_id:
+        raise ValueError("provision parent update requires an id")
+    params = {"id": f"eq.{row_id}"}
+    if verified_parent_id is None:
+        params["parent_id"] = "is.null"
+    else:
+        params["parent_id"] = f"eq.{verified_parent_id}"
+    query = urllib.parse.urlencode(params)
+    req = urllib.request.Request(
+        f"{rest_url}/provisions?{query}",
+        data=json.dumps({"parent_id": new_parent_id}).encode("utf-8"),
+        headers={
+            "apikey": service_key,
+            "Authorization": f"Bearer {service_key}",
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Prefer": "return=representation",
+            "Accept-Profile": "corpus",
+            "Content-Profile": "corpus",
+            "User-Agent": USER_AGENT,
+        },
+        method="PATCH",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=180) as resp:
+            payload = json.loads(resp.read())
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode("utf-8", errors="replace")[:500]
+        raise RuntimeError(f"in-place converge failed {exc.code}: {body}") from exc
+    affected = len(payload) if isinstance(payload, list) else None
+    if affected != 1:
+        raise RuntimeError(
+            f"in-place converge for provision {row_id} affected "
+            f"{affected if affected is not None else 'an unknown number of'} rows; "
+            "expected exactly 1 (the row changed or vanished after verification)"
+        )
 
 
 def list_single_active_release_scopes(

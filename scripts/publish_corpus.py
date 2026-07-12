@@ -6,6 +6,9 @@ The only production publication sequence is:
 1. Deep-validate the local named selector as a preflight.
 2. Upload each artifact to its SHA-256 R2 key and hash the downloaded bytes.
 3. Stage versioned Supabase provision and navigation rows without visibility.
+   Staging verifies any pre-staged rows first: byte-identical rows are
+   no-ops, stale derived identities converge to the canonical projection,
+   and divergent content under an immutable key aborts before any write.
 4. Read exact per-scope database counts and rerun deep validation.
 5. Build, Ed25519-sign, upload, read back, and public-key-verify the release object.
 6. Invoke one database RPC that rechecks counts, moves the production pointer,
@@ -142,6 +145,8 @@ def publish_named_release(
     )
 
     staged_rows = 0
+    scopes_to_stage: list[tuple[Any, list[Any]]] = []
+    release_records: list[Any] = []
     for scope in release.scopes:
         expected = expected_evidence[scope.key]
         if released_scopes[scope.key]:
@@ -160,20 +165,32 @@ def publish_named_release(
                 f"local row count changed after hashing for {'/'.join(scope.key)}: "
                 f"expected {expected.provision_rows}, got {len(records)}"
             )
+        scopes_to_stage.append((scope, records))
+        release_records.extend(records)
+
+    # One staging call covers every unreleased scope, so pre-staged rows whose
+    # stale parent links cross scope boundaries within this release converge
+    # together instead of tripping the cascade guard scope by scope.
+    if scopes_to_stage:
+        expected_release_rows = sum(
+            expected_evidence[scope.key].provision_rows for scope, _ in scopes_to_stage
+        )
         load_report = load_provisions_to_supabase(
-            records,
+            release_records,
             service_key=service_key,
             supabase_url=supabase_url,
             chunk_size=chunk_size,
             progress_stream=sys.stderr,
         )
-        if load_report.rows_loaded != expected.provision_rows:
+        if load_report.rows_loaded != expected_release_rows:
             raise ReleaseManifestError(
                 f"Supabase staging wrote {load_report.rows_loaded} rows for "
-                f"{'/'.join(scope.key)}; expected {expected.provision_rows}"
+                f"{release.name}; expected {expected_release_rows}"
             )
         staged_rows += load_report.rows_loaded
 
+    for scope, records in scopes_to_stage:
+        expected = expected_evidence[scope.key]
         navigation = build_navigation_nodes(records)
         if len(navigation) != expected.navigation_rows:
             raise ReleaseManifestError(
