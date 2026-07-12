@@ -11,6 +11,14 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 CORPUS_ROOT = REPO_ROOT / "data" / "corpus"
 UK_RELEASE_PATH = REPO_ROOT / "manifests" / "releases" / "uk-rulespec-2026-07-12.json"
 MIGRATION_PATH = REPO_ROOT / "manifests" / "migrations" / "rulespec-uk-source-promotion.json"
+# Scope versions signed into uk-legislation-pilot before the promotion:
+# their artifacts are immutable, so the port must not enrich their records.
+FROZEN_RELEASED_SCOPE_VERSIONS = frozenset(
+    {
+        "2026-06-05-uk-pension-credit-reg6",
+        "2026-06-06-uk-uksi-2026-148-article14",
+    }
+)
 PROMOTION_VERSION = "2026-07-10-uk-rulespec-source-promotion"
 RULESPEC_SOURCE_COMMIT = "64c6a9199239e1f364fb108534171372f87f6a2b"
 
@@ -142,6 +150,14 @@ def test_rulespec_uk_migration_preserves_every_body_url_and_source_snapshot():
 
         active_row = _active_row(entry)
         assert _sha256(active_row["body"].encode()) == entry["canonical_body_sha256"]
+        if entry["canonical_component"]["artifact_path"].split("/")[-1].removesuffix(
+            ".jsonl"
+        ) in FROZEN_RELEASED_SCOPE_VERSIONS:
+            # Scopes already inside the signed uk-legislation-pilot release are
+            # byte-frozen; their rows carry no embedded migration provenance —
+            # the migration manifest alone records it for these entries.
+            assert "migration_provenance" not in active_row["metadata"]
+            continue
         assert active_row["metadata"]["source_urls"] == component_urls
         embedded_provenance = active_row["metadata"]["migration_provenance"]
         assert embedded_provenance["canonical_component"] == entry["canonical_component"]

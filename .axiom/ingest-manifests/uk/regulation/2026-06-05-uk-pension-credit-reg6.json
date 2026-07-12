@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/uk/regulation/2026-06-05-uk-pension-credit-reg6.json",
-      "sha256": "00255c47a8c37302fe450eb06d4b22a3598d0975600bf61f2875eebe811fbc91"
+      "sha256": "3f836389f8ddfe67e2d6dcf9b3ca936dc9840b2e3951e7aab6198c83c0652c16"
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-06-05-uk-pension-credit-reg6.jsonl",
-      "sha256": "4446bf7f7ec37472b27dd864318c3fbf577e2b99e202eaafc2d67c9b1f1cc140"
+      "sha256": "902bb248ed693104a39fb7389d766fab07e7f54b1fe54fdcb6808f1b1483679f"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-06-05-uk-pension-credit-reg6/uksi/2002/1792/regulation-6.xml",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "56f84eee092bff490509b2e88b7aa6488f9d5eb8",
+    "commit": "6001c96524d53e5b98acb92724b9f2ab17756289",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,15 +35,15 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-12T15:46:10.854358+00:00",
+  "generated_at": "2026-07-12T18:07:07.440627+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-05-uk-pension-credit-reg6",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "/M1okbQZDa2Aqp55FKFMU7tAhuLqy369xE3w43FLNwBZCS0ywQCy7ajPw7aa13x8q6S7oDs2vEffo6kfsOwvCA=="
-  },
-  "tool": "axiom-corpus-ingest signed ingest manifest",
-  "version": "2026-06-05-uk-pension-credit-reg6"
+    "value": "O1o9n4TZOiJENN3zBqBT3Vemn0+j54aH4cRduwuiVCdEU598OhL7DtaOLVHXseaaYj8eETTImnpUk57bGIXMCA=="
+  }
 }
