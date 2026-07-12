@@ -22,12 +22,12 @@
       "type": "string",
       "description": "Slash-delimited hierarchical identifier. Segment 0 is the jurisdiction; segment 1 is the document_class; segments 2+ are the source-specific hierarchy down to a leaf provision. No leading slash, no trailing slash, no empty segments. A bare '<jurisdiction>/<document_class>' path (no hierarchy segment) is valid only for collection-root records (kind='collection', level=0).",
       "minLength": 3,
-      "pattern": "^[a-z]{2,3}(-[a-z]{2,4})?/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\\-–]*)*$",
-      "$comment": "The pattern encodes: <jurisdiction>/<document_class>(/<segment>)*. Each hierarchy segment starts with an alphanumeric and may contain letters, digits, spaces, dots, hyphens, and en-dashes (U+2013). The zero-hierarchy case matches collection roots. Segments that END in a hyphen/space (truncated source-heading slugs) match the pattern but are tracked and capped via known_irregulars_ratchet.truncated_segments so they cannot proliferate. See per-part definitions below for semantics."
+      "pattern": "^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\\-–]*)*$",
+      "$comment": "The pattern encodes: <jurisdiction>/<document_class>(/<segment>)*. A jurisdiction is a national root followed by zero or more lowercase subdivision or authority tokens, so both us-ca and uk-kingston-upon-thames are first-class. Each hierarchy segment starts with an alphanumeric and may contain letters, digits, spaces, dots, hyphens, and en-dashes (U+2013). The zero-hierarchy case matches collection roots. Segments that END in a hyphen/space (truncated source-heading slugs) match the pattern but are tracked and capped via known_irregulars_ratchet.truncated_segments so they cannot proliferate. See per-part definitions below for semantics."
     },
     "jurisdiction": {
       "description": "Segment 0. A national jurisdiction slug ('us','uk','be') or a national slug with a subnational suffix ('us-ca','be-vlg'). Must equal the record's `jurisdiction` field. The observed universe below is the closed set of slugs currently in the corpus; the pattern is intentionally slightly broader so new states/regions validate without a schema bump, but new slugs SHOULD be added to `observed` in a follow-up.",
-      "pattern": "^[a-z]{2,3}(-[a-z]{2,4})?$",
+      "pattern": "^[a-z]{2,3}(?:-[a-z]{2,32})*$",
       "observed": [
         "be",
         "be-bru",
@@ -35,6 +35,7 @@
         "be-vlg",
         "be-wal",
         "uk",
+        "uk-kingston-upon-thames",
         "us",
         "us-ak",
         "us-al",
@@ -192,11 +193,11 @@
   "known_irregulars_ratchet": {
     "description": "A ratcheted ceiling on irregular-family membership, checked by scripts/validate_citation_paths.py. The validator FAILS if a live count exceeds its baseline (a regression: someone introduced more irregular segments than existed at r0) unless the baseline is deliberately raised in this file. It does NOT fail if a count drops (irregulars being cleaned up). Baselines were measured against origin/main @ 9ee50de. Raising a baseline is a reviewed decision recorded in this file's git history.",
     "baselines": {
-      "block_n": 18599,
-      "page_n": 19504,
+      "block_n": 18603,
+      "page_n": 19665,
       "space_segments": 209,
       "endash_segments": 21,
-      "uppercase_segments": 5194,
+      "uppercase_segments": 5224,
       "truncated_segments": 53,
       "collection_roots": 9
     }
