@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/uk/regulation/2026-06-06-uk-uksi-2026-148-article14.json",
-      "sha256": "660c3634bcbc276153c829621b1357853191c517db7d1ff9484b77156ea6cae4"
+      "sha256": "a5dcd99f0e2aed92fcc9a1691cc65a69657be315ff0e9f5d2c38a35950422504"
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-06-06-uk-uksi-2026-148-article14.jsonl",
-      "sha256": "29d8104be7127505b8fd49388f35de06bfa62b37bca0f5777cf2ae707fc54514"
+      "sha256": "f689810bc6512650e685587ef775715f133d2957dfb6655d2f4007303d171c15"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-06-06-uk-uksi-2026-148-article14/uksi/2026/148/article-14.xml",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "fff5eff129bfcf7d5457bfb5d070578001588d12",
-    "dirty_tracked": false,
-    "root": "."
+    "commit": "de9b2eb9bcd03356cc8d5855216f2c83e7a085ab",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-issue-95-uk-legislation"
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "Attach RuleSpec UK migration provenance for immutable uk-rulespec-2026-07-12 cut plan"
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-06-06-uk-uksi-2026-148-article14 --source clml --citation uksi/2026/148/article/14 --source-as-of 2026-06-06 --expression-date 2026-04-06"
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-12T15:46:27.154530+00:00",
+  "generated_at": "2026-06-07T15:11:58.645523+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Xd7dId9I7kgvtcUW9KVs/PTHYB4/7kVy5Ull+y7OuT6UODRJ2l3H63I0JtbGeNRGn9O1K5yHO5tAfaWwnXZNBA=="
+    "value": "UUEs0dN26yItNM/ksFYqwKMp88U+zeAxd8KMD2+8Wd9ogWzyWooXAZpk8hKeJaeQocNnkyxRmlFxgxSBn1/lCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-06-uk-uksi-2026-148-article14"
