@@ -1,0 +1,405 @@
+[
+  {
+    "@id": "https://retsinformation.dk/eli/lta/2025/603",
+    "http://data.europa.eu/eli/ontology#is_realized_by": [
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2025/603/dan",
+        "@type": "http://data.europa.eu/eli/ontology#is_realized_by"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#date_document": [
+      {
+        "@value": "12-05-2025 00:00:00",
+        "@type": "http://data.europa.eu/eli/ontology#date_document"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#date_publication": [
+      {
+        "@value": "03-06-2025 00:00:00",
+        "@type": "http://data.europa.eu/eli/ontology#date_publication"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#number": [
+      {
+        "@value": "603",
+        "@type": "http://data.europa.eu/eli/ontology#number"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#type_document": [
+      {
+        "@id": "http://www.retsinformation.dk/eli/resource/authority/type_document#LBKH"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#passed_by": [
+      {
+        "@id": "http://www.retsinformation.dk/eli/resource/authority/passed_by#REG"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#relevant_for": [
+      {
+        "@id": "http://www.retsinformation.dk/eli/resource/authority/relevant_for#INDOC"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#responsibility_of": [
+      {
+        "@value": "Skatte- og Vækstministeriet",
+        "@type": "http://data.europa.eu/eli/ontology#responsibility_of"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#in_force": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#InForce-inForce"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#id_local": [
+      {
+        "@value": "A20250060329",
+        "@type": "http://data.europa.eu/eli/ontology#id_local"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#changed_by": [
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2025/1642",
+        "@type": "http://data.europa.eu/eli/ontology#changed_by"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2026/303",
+        "@type": "http://data.europa.eu/eli/ontology#changed_by"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#consolidates": [
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2022/724",
+        "@type": "http://data.europa.eu/eli/ontology#consolidates"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2022/1389",
+        "@type": "http://data.europa.eu/eli/ontology#consolidates"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2023/753",
+        "@type": "http://data.europa.eu/eli/ontology#consolidates"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2024/174",
+        "@type": "http://data.europa.eu/eli/ontology#consolidates"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2024/482",
+        "@type": "http://data.europa.eu/eli/ontology#consolidates"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2024/632",
+        "@type": "http://data.europa.eu/eli/ontology#consolidates"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2024/665",
+        "@type": "http://data.europa.eu/eli/ontology#consolidates"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#basis_for": [
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2013/1563",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2003/9806",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/mt/1986/148",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2008/9364",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2008/9385",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2009/9362",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2009/10086",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2010/9734",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2012/9366",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2012/9616",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2012/9718",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2013/9724",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2014/9267",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2014/9268",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2014/9269",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2008/11060",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2017/9164",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2017/9585",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2017/9784",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2018/9383",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2021/9113",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2023/9456",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2024/9493",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2025/9372",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      },
+      {
+        "@value": "https://retsinformation.dk/eli/retsinfo/2026/9287",
+        "@type": "http://data.europa.eu/eli/ontology#basis_for"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#countersigned_by": [
+      {
+        "@value": "Rikke Kure Wendel",
+        "@type": "http://data.europa.eu/eli/ontology#countersigned_by"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/eli/ontology#LegalResource"
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://retsinformation.dk/eli/lta/2025/603/dan",
+    "http://data.europa.eu/eli/ontology#title": [
+      {
+        "@value": "Bekendtgørelse af lov om en børne- og ungeydelse",
+        "@type": "http://data.europa.eu/eli/ontology#title"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#title_alternative": [
+      {
+        "@value": "Børne- og ungeydelsesloven",
+        "@type": "http://data.europa.eu/eli/ontology#title_alternative"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#title_short": [
+      {
+        "@value": "LBK nr 603 af 12/05/2025",
+        "@type": "http://data.europa.eu/eli/ontology#title_short"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#is_embodied_by": [
+      {
+        "@id": "https://retsinformation.dk/eli/lta/2025/603/dan/xml"
+      },
+      {
+        "@id": "https://retsinformation.dk/eli/lta/2025/603/dan/html"
+      },
+      {
+        "@id": "https://retsinformation.dk/eli/lta/2025/603/dan/pdf"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#language": [
+      {
+        "@id": "http://publications.europa.eu/resource/authority/language/dan"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#realizes": [
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2025/603",
+        "@type": "http://data.europa.eu/eli/ontology#realizes"
+      }
+    ],
+    "@type": [
+      "http://data.europa.eu/eli/ontology#LegalExpression"
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}/{language}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://retsinformation.dk/eli/lta/2025/603/dan/xml",
+    "@type": [
+      "http://data.europa.eu/eli/ontology#Format"
+    ],
+    "http://data.europa.eu/eli/ontology#media_type": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/application/xml"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#format": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/application/xml"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#published_in": [
+      {
+        "@value": "Retsinformation",
+        "@type": "http://data.europa.eu/eli/ontology#published_in"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#publisher": [
+      {
+        "@value": "Civilstyrelsen",
+        "@type": "http://data.europa.eu/eli/ontology#publisher"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#embodies": [
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2025/603/dan",
+        "@type": "http://data.europa.eu/eli/ontology#embodies"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#legal_value": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#LegalValue-official"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}/{language}/{format}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://retsinformation.dk/eli/lta/2025/603/dan/html",
+    "@type": [
+      "http://data.europa.eu/eli/ontology#Format"
+    ],
+    "http://data.europa.eu/eli/ontology#media_type": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/text/html"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#format": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/text/html"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#published_in": [
+      {
+        "@value": "Retsinformation",
+        "@type": "http://data.europa.eu/eli/ontology#published_in"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#publisher": [
+      {
+        "@value": "Civilstyrelsen",
+        "@type": "http://data.europa.eu/eli/ontology#publisher"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#embodies": [
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2025/603/dan",
+        "@type": "http://data.europa.eu/eli/ontology#embodies"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#legal_value": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#LegalValue-official"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}/{language}/{format}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  },
+  {
+    "@id": "https://retsinformation.dk/eli/lta/2025/603/dan/pdf",
+    "@type": [
+      "http://data.europa.eu/eli/ontology#Format"
+    ],
+    "http://data.europa.eu/eli/ontology#media_type": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/application/pdf"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#format": [
+      {
+        "@id": "http://www.iana.org/assignments/media-types/application/pdf;type=signed"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#published_in": [
+      {
+        "@value": "Retsinformation",
+        "@type": "http://data.europa.eu/eli/ontology#published_in"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#publisher": [
+      {
+        "@value": "Civilstyrelsen",
+        "@type": "http://data.europa.eu/eli/ontology#publisher"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#embodies": [
+      {
+        "@value": "https://retsinformation.dk/eli/lta/2025/603/dan",
+        "@type": "http://data.europa.eu/eli/ontology#embodies"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#legal_value": [
+      {
+        "@id": "http://data.europa.eu/eli/ontology#LegalValue-definitive"
+      }
+    ],
+    "http://data.europa.eu/eli/ontology#uri_schema": [
+      {
+        "@value": "https://retsinformation.dk/{pubMedia}/{year}/{number}/{language}/{format}",
+        "@type": "http://data.europa.eu/eli/ontology#uri_schema"
+      }
+    ]
+  }
+]
