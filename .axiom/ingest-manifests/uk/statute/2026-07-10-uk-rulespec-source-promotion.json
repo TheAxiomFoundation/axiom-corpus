@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/statute/2026-07-10-uk-rulespec-source-promotion.jsonl",
-      "sha256": "7ac406d037b3b6c8be960d22bdf09104af03386d4c8075dfae9ed5245aeb7020"
+      "sha256": "5a934f75e4a4ac04e36779744ffa4ddb4d37bbc71c6aa29f34096077db3a772c"
     },
     {
       "path": "data/corpus/sources/uk/statute/2026-07-10-uk-rulespec-source-promotion/axiom-corpus/provision-records/01848832995d.jsonl",
@@ -290,13 +290,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "fff5eff129bfcf7d5457bfb5d070578001588d12",
+    "commit": "08cea786533a3dd38992a9b07163a6335fe979d3",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "Port RuleSpec UK source promotion as immutable uk-rulespec-2026-07-12 cut plan"
+    "text": "Port RuleSpec UK source promotion as immutable uk-rulespec-2026-07-12 cut plan; reconcile official CLML source paths"
   },
   "coverage": {
     "complete": true,
@@ -307,14 +307,14 @@
     "source_count": 89
   },
   "document_class": "statute",
-  "generated_at": "2026-07-12T15:46:26.697118+00:00",
+  "generated_at": "2026-07-12T15:47:39.748172+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "QtoxGHD0Snsxp2Prr/RIDzlxl0UqHeg+WuCT1/oiHL51RN45Lr+MHIp++2SJ6RLxPSkJW5QX5KbPyl7IIdoOCw=="
+    "value": "gWUVX9O1zhk4pEpqV/DrO24BaHVFcv662bstINw2a3Fz+dDvhnM1wjQnAAwbkMtm39aulRBd2AsPhuEii0J4DQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-10-uk-rulespec-source-promotion"
