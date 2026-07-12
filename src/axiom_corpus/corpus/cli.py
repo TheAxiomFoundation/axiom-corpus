@@ -45,6 +45,7 @@ from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.document_sections import split_document_body
 from axiom_corpus.corpus.documents import extract_official_documents
 from axiom_corpus.corpus.ecfr import build_ecfr_inventory, ecfr_run_id, extract_ecfr
+from axiom_corpus.corpus.eli import extract_eli_documents
 from axiom_corpus.corpus.federal_register import (
     DEFAULT_DOCUMENT_TYPES,
     FederalRegisterCfrSectionRef,
@@ -4375,6 +4376,43 @@ def _cmd_extract_official_documents(args: argparse.Namespace) -> int:
     return 0 if report.coverage.complete or args.allow_incomplete else 2
 
 
+def _cmd_extract_eli_documents(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_eli_documents(
+        store,
+        manifest_path=args.manifest,
+        version=args.version,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        only_source_id=args.only_source_id,
+        limit=args.limit,
+        allow_superseded=args.allow_superseded,
+        progress_stream=sys.stderr,
+    )
+    print(
+        json.dumps(
+            {
+                "adapter": "eli",
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": args.version,
+                "document_count": report.document_count,
+                "section_count": report.block_count,
+                "source_file_count": len(report.source_paths),
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
 def _cmd_reconstruct_new_jersey_snap_rules(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     report = reconstruct_new_jersey_snap_rules(
@@ -6022,6 +6060,21 @@ def build_parser() -> argparse.ArgumentParser:
     extract_documents_cmd.add_argument("--limit", type=int)
     extract_documents_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_documents_cmd.set_defaults(func=_cmd_extract_official_documents)
+
+    extract_eli_cmd = sub.add_parser(
+        "extract-eli-documents",
+        help="Snapshot ELI metadata graphs and extract section-level LexDania XML.",
+    )
+    extract_eli_cmd.add_argument("--base", type=Path, required=True)
+    extract_eli_cmd.add_argument("--version", required=True)
+    extract_eli_cmd.add_argument("--manifest", type=Path, required=True)
+    extract_eli_cmd.add_argument("--only-source-id")
+    extract_eli_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_eli_cmd.add_argument("--expression-date")
+    extract_eli_cmd.add_argument("--limit", type=int)
+    extract_eli_cmd.add_argument("--allow-superseded", action="store_true")
+    extract_eli_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_eli_cmd.set_defaults(func=_cmd_extract_eli_documents)
 
     reconstruct_nj_snap_cmd = sub.add_parser(
         "reconstruct-new-jersey-snap-rules",
