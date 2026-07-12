@@ -1,0 +1,85 @@
+documents:
+  - source_id: be-lgaf-1939-12-19-moniteur-fr
+    jurisdiction: be
+    document_class: statute
+    title: Loi generale relative aux allocations familiales (LGAF) original publication
+    source_url: https://www.ejustice.just.fgov.be/mopdf/1939/12/22_1.pdf
+    source_format: pdf
+    source_as_of: '2026-07-01'
+    citation_path: be/statute/moniteur/1939-12-22/mopdf/page-6/1939121901/lgaf
+    request:
+      browser_user_agent: true
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/moniteur
+      official_publication_landing_url: 'https://www.ejustice.just.fgov.be/cgi/article.pl?language=fr&sum_date=1939-12-22&lg_txt=f&pd_search=1939-12-22&s_editie=&numac_search=1939121901&caller=&1939121901=&view_numac=1939121901fr'
+      official_publication_image_url: https://www.ejustice.just.fgov.be/mopdf/1939/12/22_1.pdf#page=6
+      official_publication_page: 8702
+      official_publication_pdf_page: 6
+      justel_url: https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: family-benefits-lgaf
+      source_status: primary_statute_original_publication_image_pdf
+      source_note: French-language primary publication image identified through ELI NUMAC 1939121901; published in the Moniteur belge / Belgisch Staatsblad on 22 December 1939 at page 8702. The scanned PDF has no extractable OCR text in this corpus run, so the Justel record is retained as the machine-readable consolidated locator.
+  - source_id: be-lgaf-1939-12-19-justel-current-amount-articles
+    jurisdiction: be
+    document_class: statute
+    title: Loi generale relative aux allocations familiales (LGAF) current consolidated amount articles
+    source_url: https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/justel
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be/statute/justel/loi-1939-12-19/1939121901/lgaf-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: '#list-title-3'
+      html_drop_selectors:
+        - .links
+      segmentation: anchor_range
+      anchor_ranges:
+        - html_start_selector: 'a[name="Art.40"]'
+          html_stop_selector: 'a[name="Art.41"]'
+          section_label: Article 40
+          section_heading: Article 40 - monthly family allowance base amounts by rank
+        - html_start_selector: 'a[name="Art.41"]'
+          html_stop_selector: 'a[name="Art.42"]'
+          section_label: Article 41
+          section_heading: Article 41 - single-parent supplement
+        - html_start_selector: 'a[name="Art.42"]'
+          html_stop_selector: 'a[name="Art.42_REGION_DE_BRUXELLES-CAPITALE"]'
+          section_label: Article 42
+          section_heading: Article 42 - child rank determination
+        - html_start_selector: 'a[name="Art.42bis"]'
+          html_stop_selector: 'a[name="Art.43"]'
+          section_label: Article 42bis
+          section_heading: Article 42bis - pensioner and unemployment social supplement
+        - html_start_selector: 'a[name="Art.44"]'
+          html_stop_selector: 'a[name="Art.44bis"]'
+          section_label: Article 44
+          section_heading: Article 44 - monthly age supplements
+        - html_start_selector: 'a[name="Art.44ter"]'
+          html_stop_selector: 'a[name="Art.45"]'
+          section_label: Article 44ter
+          section_heading: Article 44ter - annual July age supplement
+        - html_start_selector: 'a[name="Art.50bis"]'
+          html_stop_selector: 'a[name="Art.50ter"]'
+          section_label: Article 50bis
+          section_heading: Article 50bis - orphan monthly allowance
+        - html_start_selector: 'a[name="Art.73bis"]'
+          html_stop_selector: 'a[name="Art.73ter"]'
+          section_label: Article 73bis
+          section_heading: Article 73bis - birth allowance
+        - html_start_selector: 'a[name="Art.73quater"]'
+          html_stop_selector: 'a[name="Art.73quinquies"]'
+          section_label: Article 73quater
+          section_heading: Article 73quater - adoption premium
+        - html_start_selector: 'a[name="Art.76bis"]'
+          html_stop_selector: 'a[name="Art.77"]'
+          section_label: Article 76bis
+          section_heading: Article 76bis - indexation of family-benefit amounts
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/loi/1939/12/19/1939121901/moniteur
+      official_publication_image_url: https://www.ejustice.just.fgov.be/mopdf/1939/12/22_1.pdf#page=6
+      source_authority: Justel
+      source_family: family-benefits-lgaf
+      source_status: non_authentic_current_consolidated_locator_after_moniteur
+      source_note: Justel current consolidated text observed 2026-07-01 after primary Moniteur identification; use as a current locator for article text, not as the authentic publication.
