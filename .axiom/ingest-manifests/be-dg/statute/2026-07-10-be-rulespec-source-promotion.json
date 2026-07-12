@@ -22,9 +22,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "06f4d429fd5d3bbc1426217c4b9396abbcccfed3",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-782-be-release"
+    "commit": "b5955d1c23c95b609510054168c1148ad64f4b2b",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -39,15 +39,15 @@
     "source_count": 6
   },
   "document_class": "statute",
-  "generated_at": "2026-07-10T12:40:38.309758+00:00",
+  "generated_at": "2026-07-12T14:51:09.813963+00:00",
   "jurisdiction": "be-dg",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "bd1vyJhwyAKNm3hUW3jN3GrgCUQnq1UjJ2ILEVb/oNeYfLySmlfOYI5+Yf/6KNU6YGl+sC/pWSHVU1WMtUfVDQ=="
-  },
-  "tool": "axiom-corpus-ingest signed ingest manifest",
-  "version": "2026-07-10-be-rulespec-source-promotion"
+    "value": "cVAYrzp+5Cvux2AXewVOUkzHKc1nvlMlEPto+CzT7bMWk0MhN9o5lY1gjmP4/Y1ZHk2awxvt5+VywTSZ6fzWCg=="
+  }
 }
