@@ -1003,3 +1003,43 @@ def test_mutable_current_release_name_is_rejected(tmp_path: Path) -> None:
 def test_release_serialization_is_valid_json(tmp_path: Path) -> None:
     signed, _ = _signed(tmp_path)
     assert json.loads(serialize_release_object(signed)) == signed
+
+
+def test_jsonl_source_artifacts_sign_without_rows(tmp_path: Path) -> None:
+    """Sources may be .jsonl (promotion input slices); rows stays provisions-only."""
+    root, release = _release_tree(tmp_path)
+    inputs_dir = (
+        root
+        / "data"
+        / "corpus"
+        / "sources"
+        / "nz"
+        / "statute"
+        / "2026-07-10-nz-rulespec"
+        / "inputs"
+    )
+    inputs_dir.mkdir(parents=True)
+    (inputs_dir / "slice.selected.jsonl").write_text('{"body": "Official text."}\n')
+    subprocess.run(["git", "-C", str(root), "add", "."], check=True)
+    subprocess.run(
+        ["git", "-C", str(root), "-c", "commit.gpgsign=false", "commit", "-qm", "jsonl source"],
+        check=True,
+    )
+    content = build_release_content(
+        root,
+        release=release,
+        validation={"passed": True},
+        created_at="2026-07-10T00:00:00Z",
+    )
+    content["validation"] = _validation_for(content)
+    private, _public = _keys()
+    signed = sign_release_object(build_unsigned_release_object(content), private_key=private)
+    by_class: dict[str, list[dict]] = {}
+    for entry in signed["content"]["artifacts"]:
+        by_class.setdefault(entry["artifact_class"], []).append(entry)
+    jsonl_sources = [
+        entry for entry in by_class["sources"] if entry["path"].endswith(".jsonl")
+    ]
+    assert jsonl_sources, "fixture must include a .jsonl source artifact"
+    assert all("rows" not in entry for entry in jsonl_sources)
+    assert all("rows" in entry for entry in by_class["provisions"])
