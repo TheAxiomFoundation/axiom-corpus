@@ -1151,6 +1151,24 @@ def test_load_provisions_to_supabase_flags_jsonb_value_type_drift(monkeypatch):
     assert fake.write_calls() == []
 
 
+def test_provision_column_equal_matches_projection_digest_semantics():
+    from axiom_corpus.corpus.supabase import _provision_column_equal
+
+    # Digest-contract values: bool and int stay distinct, exact values equal.
+    assert _provision_column_equal("identifiers", {"k": 1}, {"k": 1})
+    assert not _provision_column_equal("identifiers", {"k": True}, {"k": 1})
+    # The signed digest contract renders int 1 and str "1" identically (both
+    # hash as text "1", matching SQL jsonb_each_text), so staging must treat
+    # them as interchangeable or it would conflict on states the release
+    # evidence gate accepts.
+    assert _provision_column_equal("identifiers", {"k": "1"}, {"k": 1})
+    # Out-of-contract values (floats) fall back to canonical JSON, so
+    # numerically-equal-but-differently-spelled values stay a loud conflict —
+    # publication rejects floats at digest time regardless.
+    assert _provision_column_equal("identifiers", {"k": 1.5}, {"k": 1.5})
+    assert not _provision_column_equal("identifiers", {"k": 1}, {"k": 1.0})
+
+
 def test_load_provisions_to_supabase_orders_inserts_by_dependency_not_input(monkeypatch):
     """A child listed before its parent, with equal levels and chunk_size=1,
     must still insert parent-first: order comes from the actual parent links,

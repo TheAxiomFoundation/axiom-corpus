@@ -17,6 +17,10 @@ from typing import TextIO
 from uuid import NAMESPACE_URL, UUID, uuid5
 
 from axiom_corpus.corpus.models import ProvisionRecord
+from axiom_corpus.corpus.projection_digest import (
+    ProjectionDigestError,
+    encode_identifiers_projection,
+)
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope, validate_release_name
 from axiom_corpus.release.manifest import verify_release_object
 
@@ -1519,13 +1523,20 @@ def _row_level(row: Mapping[str, object]) -> int:
 def _provision_column_equal(column: str, mine: object, theirs: object) -> bool:
     """Column-faithful equality between a projected value and PostgREST JSON.
 
-    ``identifiers`` is jsonb, where Python's ``True == 1`` / ``False == 0``
-    would mask a real value-type change, so it compares by canonical JSON
-    serialization. Every other projected column is a scalar SQL type where
-    plain equality over the JSON decoding is faithful.
+    ``identifiers`` compares by the signed projection-digest encoding, so
+    classification agrees exactly with what release evidence will hash: bool
+    and int stay distinct (Python's ``True == 1`` cannot mask a value-type
+    change) and text is exact. Values outside the digest contract (floats,
+    nested structures — which publication rejects at digest time regardless)
+    fall back to canonical JSON, keeping any ambiguity in the loud-conflict
+    direction. Every other projected column is a scalar SQL type where plain
+    equality over the JSON decoding is faithful.
     """
     if column == "identifiers":
-        return json.dumps(mine, sort_keys=True) == json.dumps(theirs, sort_keys=True)
+        try:
+            return encode_identifiers_projection(mine) == encode_identifiers_projection(theirs)
+        except ProjectionDigestError:
+            return json.dumps(mine, sort_keys=True) == json.dumps(theirs, sort_keys=True)
     return mine == theirs
 
 
