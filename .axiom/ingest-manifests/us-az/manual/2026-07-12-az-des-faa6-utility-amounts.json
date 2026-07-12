@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/manual/2026-07-12-az-des-faa6-utility-amounts.json",
+      "sha256": "93f3866ccf22c4511c8f131c806166689d5fe3556c45aedcfbd03789ade6006f"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/manual/2026-07-12-az-des-faa6-utility-amounts.json",
+      "sha256": "83ea7b00c716441eb9f1cd977380a67e5ad2bd61877850f8dce7d28df4d01e4f"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/manual/2026-07-12-az-des-faa6-utility-amounts.jsonl",
+      "sha256": "858d2cdcbe913367bc28b5a1812509610bd6ebb18cde5f9360dc2245ed997167"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2026-07-12-az-des-faa6-utility-amounts/official-documents/az-des-faa6-utility-allowance-current-amount.html",
+      "sha256": "beb4ee57af0eaa5748c920337999503b1ec4975b788ca755648124ef776b7349"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "52752d685c61b6636176eda885efdb05bdec93e3",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-12-az-des-faa6-utility-amounts --manifest manifests/us-az-des-faa6-utility-amounts.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-12T17:34:16.323340+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-az-manual-2026-07-12-az-des-faa6-utility-amounts.md",
+      "sha256": "178f6a17098296e72f7661cd955b88ff040587bcf266343ffe604451450448d1"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/fVXlVwwzNtn0zVoGfD1b4fFKIFg6THxuV3I3+KxX/6yTg08zADMFT0CU4fOsSczfF3R3SECteqXpZ4e54DDAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-12-az-des-faa6-utility-amounts"
+}
