@@ -122,6 +122,9 @@ from axiom_corpus.corpus.state_adapters.alaska import (
     extract_alaska_statutes,
 )
 from axiom_corpus.corpus.state_adapters.arizona import extract_arizona_revised_statutes
+from axiom_corpus.corpus.state_adapters.colorado_crs import (
+    extract_colorado_revised_statutes,
+)
 from axiom_corpus.corpus.state_adapters.connecticut import extract_connecticut_statutes
 from axiom_corpus.corpus.state_adapters.delaware import extract_delaware_code
 from axiom_corpus.corpus.state_adapters.florida import (
@@ -2496,6 +2499,22 @@ def _extract_state_statute_source(
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
             workers=_optional_int(options.get("workers")) or 8,
         )
+    if adapter == "colorado-revised-statutes":
+        return extract_colorado_revised_statutes(
+            store,
+            version=version,
+            title=_optional_text(options.get("title")) or "39",
+            edition=_optional_text(options.get("edition")) or "2025",
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            only_article=_optional_text(options.get("only_article")),
+            limit=limit,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            base_url=_optional_text(options.get("base_url")) or "https://olls.info/crs/",
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 120.0,
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 1.0,
+        )
     if adapter == "connecticut-statutes":
         return extract_connecticut_statutes(
             store,
@@ -3395,6 +3414,10 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "nyc-admin-code": "nyc-admin-code",
         "new-york-city-admin-code": "nyc-admin-code",
         "new-york-city-administrative-code": "nyc-admin-code",
+        "co-crs": "colorado-revised-statutes",
+        "colorado-crs": "colorado-revised-statutes",
+        "colorado-revised-statutes": "colorado-revised-statutes",
+        "crs": "colorado-revised-statutes",
         "de": "delaware-code",
         "delaware": "delaware-code",
         "delaware-code": "delaware-code",
