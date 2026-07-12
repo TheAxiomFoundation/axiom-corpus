@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/regulation/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "472e5860282558a0daa7bd293cc34a01b4428d562c9d85c126d55d714c9aeaf5"
+    },
+    {
+      "path": "data/corpus/inventory/be/regulation/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "93c3bb38c06647aa401f0c0a5cdf804bce79de718c21d0a5a487e49778f44740"
+    },
+    {
+      "path": "data/corpus/provisions/be/regulation/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "c7c62e89e111c15dcc02c6210628503730472271e36cfdf791b3620d3ee142ab"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-0b732dab26cf-2026-07-05-be-rd38-art13-pre-2025.selected.jsonl",
+      "sha256": "48040360afc1e9a588e624adc4b707638b4cae464e88e5a8104dc4a53900782c"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-3fbaa7dd52e9-2026-06-30-be-tax-benefit.selected.jsonl",
+      "sha256": "9a1aa87c63570c50a654366596578640696c21d0933909d36a5931618854f0fd"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-804f9106d936-2026-07-05-be-parental-leave.selected.jsonl",
+      "sha256": "e3540a50ddfcfd09fa8aa2b61fffc063d8811396ba86e771d76bd68b4978616e"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-819010ad050a-2026-06-30-be-vat-consolidated.selected.jsonl",
+      "sha256": "77a34df30f379b836d4699d43bb99595cda9b4378ba38c3fbce43037b7de8d9c"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-95d6d7fa1fe3-2026-07-01-be-company-car-tax-benefit-regulation.selected.jsonl",
+      "sha256": "95d6d7fa1fe3521238e9c5f36f5c9b7718589a4d891c9664f81cfe2df98e841a"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-d001f6c2ade4-2026-07-03-be-guaranteed-family-bru-support.selected.jsonl",
+      "sha256": "39f1230ab97c3808fbe13e30f1d626fe4f6ae03dbbb0306d718b02d0b7ffb53c"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-f3403d746ddf-2026-07-02-be-pit-autonomy-factor.selected.jsonl",
+      "sha256": "7c1d9134699eaefeee7a9cdc0a25e9c45cf2390953a0c6b6e1fe2ba7f5c87b93"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-1f6024244253-2026-06-30-be-social-security-pilot-slice.jsonl",
+      "sha256": "1f6024244253474d9bf12e03f56ff73c99378b6658efcfd5f543d34bf588b0c6"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-795ab46c6b13-2026-07-02-be-worker-work-bonus.jsonl",
+      "sha256": "795ab46c6b13788cc88e2a5ad8de2d8eed11f16fbeff1dcc3304e6d39500518f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b5955d1c23c95b609510054168c1148ad64f4b2b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 98,
+    "missing_count": 0,
+    "provision_count": 98,
+    "source_count": 98
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-12T14:51:09.902604+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Zl1DcPebL0CG45pr8BXeBU/EThzqthrfCcI4QBTCHXsqaH81Tdk5eFDRSiM0QEEn/tg7c4gXg17o76Yb2H/3Cg=="
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-wal/regulation/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "186d760439830b0841f448776978944cff03ef8bd7650040a0ebf88dab5afa60"
+    },
+    {
+      "path": "data/corpus/inventory/be-wal/regulation/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "90dec24f3a502a85248f91ca3a00ee0d84237efca187e2d28fece98ed7c2a1ed"
+    },
+    {
+      "path": "data/corpus/provisions/be-wal/regulation/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "afecc3981f7259e4338b29c645c4560290ea1298ab18b1bc2934f5a7cff73df4"
+    },
+    {
+      "path": "data/corpus/sources/be-wal/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-431b04d9ff65-2026-07-05-be-study-allowance.selected.jsonl",
+      "sha256": "c2a9994506ce52782d4a169df23ab304092df85ca8eaa4089a6ed0f3c7dc7c15"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b5955d1c23c95b609510054168c1148ad64f4b2b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-12T14:51:09.870838+00:00",
+  "jurisdiction": "be-wal",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "e9S3NOXmm7w3BwF+8fe5DazGVyDm6Vh2b9ubywgPfgP6Hy8xQJGDz8QaG7c97VbFYPJCNj4lUvsTk2SsXcP3DQ=="
+  }
+}

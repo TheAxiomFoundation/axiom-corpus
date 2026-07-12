@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-bru/regulation/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "ff3cf19da78bd766ea50a33b45be254e2f02c89369c2ea6a71d662a8212cfbf7"
+    },
+    {
+      "path": "data/corpus/inventory/be-bru/regulation/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "e2c194d5ade5175feecfe1fe45d5e3fed4c3377a3ba24e46c38c8eed7f8f46db"
+    },
+    {
+      "path": "data/corpus/provisions/be-bru/regulation/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "022a65622a0da90a2b2a5aebdc1137bd2a4edce47047885b42d3659505bc8fab"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-3ec2c8f72783-2026-07-03-be-guaranteed-family-bru-support.selected.jsonl",
+      "sha256": "6e190521b6edf78e61ad67cba4cc09614ba6ccb257535012c4ca2534749b4c69"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/regulation/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-e0d54a6b7e9b-2026-07-03-be-lgaf-bru-social-housing.selected.jsonl",
+      "sha256": "58d0360e254001ac488a172890bda58612de8450049265f07b6ba666fdafd88b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b5955d1c23c95b609510054168c1148ad64f4b2b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 78,
+    "missing_count": 0,
+    "provision_count": 78,
+    "source_count": 78
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-12T14:51:09.792042+00:00",
+  "jurisdiction": "be-bru",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "YbLU+w4Aez1Pox3Eb8AYYl1ba+5Y6EWPze8yTdP2lHevtqyEPD+iKcm36Lhg+fASTJEDdw6BBVRbDa/Py15EDA=="
+  }
+}

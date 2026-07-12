@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/guidance/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "face773c169fa45d51ca5413502194bc3c3b7cd792b6860c974e37ec44a725b3"
+    },
+    {
+      "path": "data/corpus/inventory/be/guidance/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "253ccc2dbe8970cf876860f946a66b19f609e190e18145cd2833b6d7001c4f2a"
+    },
+    {
+      "path": "data/corpus/provisions/be/guidance/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "5117db6b5112c691174a73868150346169e9066dee257db9553ba72fac7d25b7"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-527e463743cb-2026-07-04-be-onss-employer-ssc-2025.selected.jsonl",
+      "sha256": "bbd50bee5bcce78237bae30e82bb0a11340083a9f2d627cfce91d63b32d8ca94"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-79cd8d34e9f6-2026-07-03-be-statbel-health-index.selected.jsonl",
+      "sha256": "79cd8d34e9f67942f61547769a555a20a2f3d48611950e5a4d4bfdba54a5f0d6"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-89c44e5e026d-2026-07-01-be-company-car-tax-benefit-guidance.selected.jsonl",
+      "sha256": "cf7a08bc847c84eba840e90e526558e2448a90076fa084c272efb9190d465204"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-a44c61e725df-2026-07-03-be-cadastral-income-indexation.selected.jsonl",
+      "sha256": "4a3fa2d5ef3920ab34e7063634ac2f081a45812095745f5269b56e2f5fccfc7a"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-ce0fb3c12c69-2026-07-05-be-pension-withholding-2025.selected.jsonl",
+      "sha256": "392f19ae18cc4cc783127d17928e4cf58f866bbc02f43cfb1795f8ef08269d08"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-19db17d54a09-2026-07-02-be-onss-work-bonus.jsonl",
+      "sha256": "19db17d54a0933ebfba69fec144412a7e919a4df56a35e7e2b5ad914d1f3ae9f"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-f3d3fc2b7ef7-2026-07-02-be-cnt-minimum-wage.jsonl",
+      "sha256": "f3d3fc2b7ef7f7c51b99751ae05a44f0fc13dc99a1e2a0cd70fad161fee54071"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b5955d1c23c95b609510054168c1148ad64f4b2b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 50,
+    "missing_count": 0,
+    "provision_count": 50,
+    "source_count": 50
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-12T14:51:09.891613+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TBRJO1Ie+5ShU51P1FYUExaYzMpid6l5glMkiza9A5GBGLUHwYCY+eBeEWul6tcgnGykEb++K6lXcSNpxDPxAA=="
+  }
+}
