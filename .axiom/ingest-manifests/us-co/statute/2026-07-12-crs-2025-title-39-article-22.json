@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/statute/2026-07-12-crs-2025-title-39-article-22.json",
+      "sha256": "bc063a4a7b2c4032c27adb7b1c2ad9d1203a1a55dd9e6a710cd483f6a2a56b06"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/statute/2026-07-12-crs-2025-title-39-article-22.json",
+      "sha256": "94e7eab7e6b152ce3467dd67a0ccbf8dbbb97a730f3dedadf10c8050318f4aeb"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/statute/2026-07-12-crs-2025-title-39-article-22.jsonl",
+      "sha256": "410abaad7182ad31f9183b6363d127d2d849531d46c5ab9073f9df94d283ed3c"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-12-crs-2025-title-39-article-22/crs2025-title-39.htm",
+      "sha256": "5dab1d1ab7f4e79a222fdbd32d860ef36148bc9b1d417b66472f8da49074427d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e1d01c94b2bef542a1bc038d3e220e0bc1de2691",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-state-statutes --base data/corpus --manifest manifests/us-co-crs-title-39-income-tax.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 338,
+    "missing_count": 0,
+    "provision_count": 338,
+    "source_count": 338
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-12T21:03:56.943193+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gt0tYkAuUH1Ee/13SMV7APKuGGSILONWGWt5MzgTfblgDP31KwzOjakDz25fEVAHpJmFNvfbeJe/KVUebzTnCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-12-crs-2025-title-39-article-22"
+}

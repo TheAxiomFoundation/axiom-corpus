@@ -1,0 +1,29 @@
+version: "2026-07-12"
+sources:
+  - source_id: us-co-crs-title-39-article-22
+    jurisdiction: us-co
+    document_class: statute
+    adapter: colorado-revised-statutes
+    source_url: https://olls.info/crs/crs2025-title-39.htm
+    version: "2026-07-12-crs-2025-title-39-article-22"
+    options:
+      title: "39"
+      edition: "2025"
+      only_article: "22"
+      source_as_of: "2026-07-12"
+      expression_date: "2025-08-31"
+      download_dir: ../data/corpus/downloads/us-co-crs/2025-title-39
+      timeout_seconds: 120
+      request_attempts: 3
+    metadata:
+      primary_source: true
+      source_authority: Colorado Office of Legislative Legal Services
+      source_scope_note: >-
+        C.R.S. 2025 Title 39 (Taxation), Article 22 (Income Tax), from the
+        official OLLS uncertified-printout title download (olls.info), current
+        through the First Extraordinary Session of the 75th General Assembly
+        (August 2025). Sections publish under us-co/statute/39/<section> to
+        match the citation paths the existing us-co statute encodings ground
+        against.
+      source_discovery_group: us-co/statute/income-tax
+      discovered_via: co_income_tax_ingest_lane_20260712

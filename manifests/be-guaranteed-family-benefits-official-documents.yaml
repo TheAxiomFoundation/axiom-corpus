@@ -1,0 +1,42 @@
+documents:
+  - source_id: be-guaranteed-family-benefits-royal-decree-1971-10-25-moniteur-fr
+    jurisdiction: be
+    document_class: regulation
+    title: Royal decree of 25 October 1971 implementing the guaranteed family benefits law
+    source_url: https://www.ejustice.just.fgov.be/mopdf/1971/11/05_1.pdf
+    source_format: pdf
+    source_as_of: '2026-07-01'
+    citation_path: be/regulation/moniteur/1971-11-05/mopdf/page-59/1971102528/guaranteed-family-benefits
+    request:
+      browser_user_agent: true
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/moniteur
+      official_publication_landing_url: 'https://www.ejustice.just.fgov.be/cgi/article.pl?language=fr&sum_date=1971-11-05&lg_txt=f&pd_search=1971-11-05&s_editie=&numac_search=1971102528&caller=&1971102528=&view_numac=1971102528fr'
+      official_publication_image_url: https://www.ejustice.just.fgov.be/mopdf/1971/11/05_1.pdf#page=59
+      official_publication_page: 59
+      justel_url: https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/justel
+      source_authority: Moniteur belge / Belgisch Staatsblad
+      source_family: guaranteed-family-benefits
+      source_status: primary_regulation_original_publication_image_pdf
+      source_note: French-language primary publication image identified through ELI NUMAC 1971102528; published in the Moniteur belge / Belgisch Staatsblad on 5 November 1971. The scanned PDF has no extractable OCR text in this corpus run, so the Justel record is retained as the machine-readable consolidated locator.
+  - source_id: be-guaranteed-family-benefits-royal-decree-1971-10-25-justel-current
+    jurisdiction: be
+    document_class: regulation
+    title: Royal decree of 25 October 1971 implementing the guaranteed family benefits law current consolidated text
+    source_url: https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/justel
+    source_format: html
+    source_as_of: '2026-07-01'
+    citation_path: be/regulation/justel/arrete-1971-10-25/1971102528/guaranteed-family-benefits-current
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: '#list-title-3'
+      html_drop_selectors:
+        - .links
+    metadata:
+      legal_authority_url: https://www.ejustice.just.fgov.be/eli/arrete/1971/10/25/1971102528/moniteur
+      official_publication_image_url: https://www.ejustice.just.fgov.be/mopdf/1971/11/05_1.pdf#page=59
+      source_authority: Justel
+      source_family: guaranteed-family-benefits
+      source_status: non_authentic_current_consolidated_locator_after_moniteur
+      source_note: Justel current consolidated text observed 2026-07-01 after primary Moniteur identification; use as a current locator, not as the authentic publication.
