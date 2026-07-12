@@ -26,7 +26,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "d404cae36f6a593528ba4511c364e116ab31e22a",
+    "commit": "8e9eb98cbac34f143395458b83f4321c21d76ffc",
     "dirty_tracked": false,
     "root": "."
   },
@@ -43,15 +43,15 @@
     "source_count": 6
   },
   "document_class": "statute",
-  "generated_at": "2026-07-12T14:33:50.382056+00:00",
+  "generated_at": "2026-07-12T14:58:47.286021+00:00",
   "jurisdiction": "dk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-12-dk-child-youth-benefit",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "IJ/7+Ws4lJYwLHw2tHCxvvpGfe/HbtqK1i51GQUpaXFwGVGolykPFWTv+U+m2LtYDGRNJ6rQ1FdzkTQyBrzRAw=="
-  },
-  "tool": "axiom-corpus-ingest signed ingest manifest",
-  "version": "2026-07-12-dk-child-youth-benefit"
+    "value": "qx8PP35fnM6C8TS3x5TZymBkY0whl+9WpiWJWPQ5eWoXNwmTexI2KAHcI0igPextuQZ+CmHCK/oT/xP7c7THCQ=="
+  }
 }
