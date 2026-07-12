@@ -154,3 +154,15 @@ def _encode_identifiers(value: object) -> str:
         parts.append(_encode_scalar(key))
         parts.append(_encode_scalar(item))
     return _encode_scalar("".join(parts))
+
+
+def encode_identifiers_projection(value: object) -> str:
+    """Public canonical encoding of one ``identifiers`` mapping.
+
+    This is the exact serialization the signed provision projection digest
+    binds (and the SQL migration mirrors), so two identifier values encode
+    equal here if and only if they hash equal in release evidence. Raises
+    :class:`ProjectionDigestError` for values outside the projection contract
+    (non-string keys, nested structures, floats).
+    """
+    return _encode_identifiers(value)

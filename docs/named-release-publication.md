@@ -76,6 +76,29 @@ Partial staging is inert and safe to inspect or retry. There is no per-scope
 `publish`, mutable `current.json`, publish-on-load, best-effort refresh, or
 ambient release selection.
 
+Provision staging is idempotent against verified pre-staged state. Before any
+write, every loaded scope's existing rows are fetched and compared: rows that
+are byte-identical across every projected column are left untouched, rows
+whose release content matches but whose derived `id`/`parent_id` reflect a
+superseded id scheme are converged to the canonical projection, and any
+divergent content under the same immutable `(citation_path, version)` key —
+or staged rows the load does not describe — aborts the load before anything
+is written. An earlier ingest of the same artifacts therefore never blocks a
+publish, and drifted or unexplained staged state fails the load instead of
+being overwritten or skipped.
+
+Staging verification and its writes are separate REST requests, not one
+transaction; the operating assumption is a single staging writer at a time.
+Concurrent-writer races are narrowed rather than eliminated: replacements
+re-check the ON DELETE CASCADE dependent set immediately before deleting,
+in-place converges write only `parent_id` conditioned on the verified prior
+value, and inserts carry no conflict resolution so any surviving collision is
+a database error. Rows already inside a signed release are protected
+server-side by the released-scope trigger regardless of client behavior, and
+publication's evidence gate re-derives every in-release scope's counts and
+projection digests after staging. The signed activation RPC remains the only
+transactional boundary.
+
 An exact retry is a no-op at every immutable boundary: existing R2 bytes are
 verified and reused, already released scopes skip database writes, the same
 release object is accepted, and an already matching production pointer is not

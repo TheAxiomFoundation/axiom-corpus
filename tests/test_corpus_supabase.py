@@ -2,6 +2,7 @@ import hashlib
 import io
 import json
 import urllib.error
+import urllib.parse
 from base64 import b64encode
 
 import pytest
@@ -610,44 +611,186 @@ def test_fetch_release_provision_counts_falls_back_when_exact_count_times_out(
     assert "order=id.asc" in calls[2][0]
 
 
-def test_load_provisions_to_supabase_only_stages_versioned_chunks(monkeypatch):
+class FakeSupabaseProvisions:
+    """Stateful PostgREST double for ``corpus.provisions`` staging.
+
+    Simulates the constraints the live table enforces — the ``rules_pkey``
+    primary key, the ``idx_provisions_citation_path_version`` unique index,
+    the ``parent_id`` foreign key, and its ON DELETE CASCADE — so staging
+    tests observe realistic failure modes instead of a permissive stub.
+    """
+
+    def __init__(self, rows=()):
+        self.rows: dict[str, dict] = {}
+        for row in rows:
+            self.rows[str(row["id"])] = dict(row)
+        self.calls: list[tuple[str, str]] = []
+
+    def seed_record(self, record, *, row_id=None, parent_id=None):
+        row = provision_to_supabase_row(record, versioned_ids=True)
+        if row_id is not None:
+            row["id"] = row_id
+        if parent_id is not None:
+            row["parent_id"] = parent_id
+        self.rows[str(row["id"])] = row
+        return row
+
+    def urlopen(self, req, timeout):  # noqa: ARG002 - signature matches urllib
+        method = req.get_method()
+        parsed = urllib.parse.urlparse(req.full_url)
+        params = dict(urllib.parse.parse_qsl(parsed.query))
+        self.calls.append((method, req.full_url))
+        if method == "GET":
+            return self._get(params)
+        if method == "POST":
+            return self._insert(json.loads(req.data))
+        if method == "DELETE":
+            return self._delete(params)
+        if method == "PATCH":
+            return self._update(params, json.loads(req.data))
+        raise AssertionError(f"unexpected method {method}")
+
+    @staticmethod
+    def _response(payload=b""):
+        class _Resp:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *args):
+                return None
+
+            def read(self):
+                return payload
+
+        return _Resp()
+
+    @staticmethod
+    def _conflict(code, message):
+        body = json.dumps({"code": code, "message": message}).encode()
+        return urllib.error.HTTPError("url", 409, "Conflict", {}, io.BytesIO(body))
+
+    @staticmethod
+    def _parse_in(value):
+        inner = value.removeprefix("in.(").removesuffix(")")
+        return [item.strip().strip('"') for item in inner.split(",") if item.strip()]
+
+    def _get(self, params):
+        matches = list(self.rows.values())
+        for column in ("jurisdiction", "doc_type", "version"):
+            if column in params:
+                expected = params[column].removeprefix("eq.")
+                matches = [row for row in matches if str(row.get(column) or "") == expected]
+        if "parent_id" in params:
+            wanted = set(self._parse_in(params["parent_id"]))
+            matches = [row for row in matches if str(row.get("parent_id")) in wanted]
+        matches.sort(key=lambda row: str(row["id"]))
+        if "id" in params and params["id"].startswith("gt."):
+            cursor = params["id"].removeprefix("gt.")
+            matches = [row for row in matches if str(row["id"]) > cursor]
+        if "limit" in params:
+            matches = matches[: int(params["limit"])]
+        return self._response(json.dumps(matches).encode())
+
+    def _insert(self, payload):
+        # One POST is one atomic statement: validate every row against the
+        # current state and the rest of the payload before mutating anything.
+        staged_keys = {
+            (row["citation_path"], row["version"]): row_id for row_id, row in self.rows.items()
+        }
+        visible_ids = set(self.rows)
+        for row in payload:
+            if str(row["id"]) in visible_ids:
+                raise self._conflict("23505", "duplicate key value violates rules_pkey")
+            if (row["citation_path"], row["version"]) in staged_keys:
+                raise self._conflict(
+                    "23505",
+                    "duplicate key value violates unique constraint "
+                    '"idx_provisions_citation_path_version"',
+                )
+            visible_ids.add(str(row["id"]))
+            staged_keys[(row["citation_path"], row["version"])] = str(row["id"])
+        for row in payload:
+            parent_id = row.get("parent_id")
+            if parent_id is not None and str(parent_id) not in visible_ids:
+                raise self._conflict("23503", f"parent_id {parent_id} is not present")
+        for row in payload:
+            self.rows[str(row["id"])] = dict(row)
+        return self._response()
+
+    def _delete(self, params):
+        # parent_id is ON DELETE CASCADE on the live table: deletion reaches
+        # exactly the descendants of the deleted ids, nothing else.
+        doomed = set(self._parse_in(params["id"])) & set(self.rows)
+        frontier = set(doomed)
+        while frontier:
+            frontier = {
+                row_id
+                for row_id, row in self.rows.items()
+                if row_id not in doomed
+                and row.get("parent_id") is not None
+                and str(row["parent_id"]) in frontier
+            }
+            doomed |= frontier
+        for row_id in doomed:
+            self.rows.pop(row_id, None)
+        return self._response()
+
+    def _update(self, params, payload):
+        row_id = params["id"].removeprefix("eq.")
+        row = self.rows.get(row_id)
+        if row is None:
+            return self._response(b"[]")
+        if "parent_id" in params:
+            condition = params["parent_id"]
+            if condition == "is.null":
+                if row.get("parent_id") is not None:
+                    return self._response(b"[]")
+            elif str(row.get("parent_id")) != condition.removeprefix("eq."):
+                return self._response(b"[]")
+        updated = {**row, **payload}
+        new_parent = updated.get("parent_id")
+        if new_parent is not None and str(new_parent) not in self.rows:
+            raise self._conflict("23503", f"parent_id {new_parent} is not present")
+        for other_id, other in self.rows.items():
+            if other_id != row_id and (other["citation_path"], other["version"]) == (
+                updated["citation_path"],
+                updated["version"],
+            ):
+                raise self._conflict(
+                    "23505",
+                    "duplicate key value violates unique constraint "
+                    '"idx_provisions_citation_path_version"',
+                )
+        self.rows[row_id] = updated
+        return self._response(json.dumps([updated]).encode())
+
+    def write_calls(self):
+        return [call for call in self.calls if call[0] != "GET"]
+
+
+def _record(citation_path, *, version="2026-05-13", parent=None, body=None, level=0, ordinal=0):
+    return ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path=citation_path,
+        version=version,
+        parent_citation_path=parent,
+        body=body,
+        level=level,
+        ordinal=ordinal,
+    )
+
+
+def test_load_provisions_to_supabase_stages_fresh_scope_with_plain_inserts(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
-    calls = []
-
-    class FakeResponse:
-        def __init__(self, body=b""):
-            self.body = body
-
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            return self.body
-
-    def fake_urlopen(req, timeout):
-        calls.append((req.full_url, req.data, timeout))
-        return FakeResponse()
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    fake = FakeSupabaseProvisions()
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
 
     report = load_provisions_to_supabase(
         [
-            ProvisionRecord(
-                jurisdiction="us",
-                document_class="regulation",
-                citation_path="us/regulation/7/273",
-                version="2026-05-13",
-            ),
-            ProvisionRecord(
-                jurisdiction="us",
-                document_class="regulation",
-                citation_path="us/regulation/7/273/1",
-                version="2026-05-13",
-            ),
+            _record("us/regulation/7/273"),
+            _record("us/regulation/7/273/1", parent="us/regulation/7/273", level=1),
         ],
         service_key="service",
         supabase_url="https://example.supabase.co",
@@ -657,18 +800,560 @@ def test_load_provisions_to_supabase_only_stages_versioned_chunks(monkeypatch):
     assert report.rows_total == 2
     assert report.rows_loaded == 2
     assert report.chunk_count == 2
-    # Staging never refreshes or changes the active release boundary.
-    assert [call[0] for call in calls] == [
-        "https://example.supabase.co/rest/v1/provisions?on_conflict=id",
-        "https://example.supabase.co/rest/v1/provisions?on_conflict=id",
+    assert report.rows_inserted == 2
+    assert report.rows_replaced == 0
+    assert report.rows_already_staged == 0
+    inserts = [call for call in fake.calls if call[0] == "POST"]
+    # Plain inserts: verified staging never asks PostgREST to resolve
+    # conflicts, so the URL carries no on_conflict clause.
+    assert [url for _, url in inserts] == [
+        "https://example.supabase.co/rest/v1/provisions",
+        "https://example.supabase.co/rest/v1/provisions",
     ]
-    first_payload = json.loads(calls[0][1])
-    assert first_payload[0]["citation_path"] == "us/regulation/7/273"
-    assert first_payload[0]["version"] == "2026-05-13"
-    assert first_payload[0]["id"] == deterministic_provision_id(
-        "us/regulation/7/273",
-        "2026-05-13",
+    root_id = deterministic_provision_id("us/regulation/7/273", "2026-05-13")
+    assert fake.rows[root_id]["citation_path"] == "us/regulation/7/273"
+    child_id = deterministic_provision_id("us/regulation/7/273/1", "2026-05-13")
+    assert fake.rows[child_id]["parent_id"] == root_id
+
+
+def test_load_provisions_to_supabase_is_noop_for_identically_staged_rows(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    records = [
+        _record("us/regulation/7/273"),
+        _record("us/regulation/7/273/1", parent="us/regulation/7/273", level=1),
+    ]
+    fake = FakeSupabaseProvisions()
+    for record in records:
+        fake.seed_record(record)
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+    before = {row_id: dict(row) for row_id, row in fake.rows.items()}
+
+    report = load_provisions_to_supabase(
+        records,
+        service_key="service",
+        supabase_url="https://example.supabase.co",
     )
+
+    assert report.rows_total == 2
+    assert report.rows_loaded == 2
+    assert report.rows_already_staged == 2
+    assert report.rows_inserted == 0
+    assert report.rows_replaced == 0
+    assert fake.write_calls() == []
+    assert fake.rows == before
+
+
+def test_load_provisions_to_supabase_converges_superseded_id_scheme(monkeypatch):
+    """The SOUTHMOD publish regression: an earlier ingest staged identical
+    content under unversioned legacy ids, which made the historical
+    ``on_conflict=id`` upsert die on the (citation_path, version) unique
+    index. The load must converge identity without touching content."""
+    import axiom_corpus.corpus.supabase as supabase
+
+    records = [
+        _record("us/regulation/7/273", body="root text"),
+        _record("us/regulation/7/273/1", parent="us/regulation/7/273", body="child", level=1),
+    ]
+    fake = FakeSupabaseProvisions()
+    legacy_root = deterministic_provision_id("us/regulation/7/273")
+    fake.seed_record(records[0], row_id=legacy_root)
+    fake.seed_record(
+        records[1],
+        row_id=deterministic_provision_id("us/regulation/7/273/1"),
+        parent_id=legacy_root,
+    )
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    report = load_provisions_to_supabase(
+        records,
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    assert report.rows_loaded == 2
+    assert report.rows_replaced == 2
+    assert report.rows_inserted == 0
+    root_id = deterministic_provision_id("us/regulation/7/273", "2026-05-13")
+    child_id = deterministic_provision_id("us/regulation/7/273/1", "2026-05-13")
+    assert set(fake.rows) == {root_id, child_id}
+    assert fake.rows[root_id]["body"] == "root text"
+    assert fake.rows[child_id]["parent_id"] == root_id
+
+    # A second identical load reaches the fixpoint: nothing is written.
+    fake.calls.clear()
+    rerun = load_provisions_to_supabase(
+        records,
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+    assert rerun.rows_already_staged == 2
+    assert fake.write_calls() == []
+
+
+def test_load_provisions_to_supabase_fails_loud_on_content_mismatch(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+    from axiom_corpus.corpus.supabase import ProvisionStagingConflictError
+
+    fake = FakeSupabaseProvisions()
+    fake.seed_record(_record("us/regulation/7/273", body="staged text"))
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+    before = {row_id: dict(row) for row_id, row in fake.rows.items()}
+
+    with pytest.raises(ProvisionStagingConflictError) as excinfo:
+        load_provisions_to_supabase(
+            [_record("us/regulation/7/273", body="different text")],
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+    assert excinfo.value.conflicts == (
+        {
+            "kind": "content-mismatch",
+            "citation_path": "us/regulation/7/273",
+            "version": "2026-05-13",
+            "fields": ["body"],
+            "staged_id": deterministic_provision_id("us/regulation/7/273", "2026-05-13"),
+        },
+    )
+    assert fake.write_calls() == []
+    assert fake.rows == before
+
+
+def test_load_provisions_to_supabase_fails_loud_on_unexpected_staged_rows(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+    from axiom_corpus.corpus.supabase import ProvisionStagingConflictError
+
+    fake = FakeSupabaseProvisions()
+    fake.seed_record(_record("us/regulation/7/273"))
+    fake.seed_record(_record("us/regulation/7/999"))
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    with pytest.raises(ProvisionStagingConflictError) as excinfo:
+        load_provisions_to_supabase(
+            [_record("us/regulation/7/273")],
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+    kinds = {conflict["kind"] for conflict in excinfo.value.conflicts}
+    assert kinds == {"unexpected-staged-row"}
+    assert excinfo.value.conflicts[0]["citation_path"] == "us/regulation/7/999"
+    assert fake.write_calls() == []
+
+
+def test_load_provisions_to_supabase_refuses_cascade_outside_load(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+    from axiom_corpus.corpus.supabase import ProvisionStagingConflictError
+
+    fake = FakeSupabaseProvisions()
+    legacy_root = deterministic_provision_id("us/regulation/7/273")
+    fake.seed_record(_record("us/regulation/7/273"), row_id=legacy_root)
+    # A different, unloaded scope staged a child under the legacy root id;
+    # deleting the root would cascade into that scope.
+    fake.seed_record(
+        _record("us/regulation/7/273/1", version="2026-04-01", level=1),
+        parent_id=legacy_root,
+    )
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+    before = {row_id: dict(row) for row_id, row in fake.rows.items()}
+
+    with pytest.raises(ProvisionStagingConflictError) as excinfo:
+        load_provisions_to_supabase(
+            [_record("us/regulation/7/273")],
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+    assert {conflict["kind"] for conflict in excinfo.value.conflicts} == {"cascade-outside-load"}
+    assert excinfo.value.conflicts[0]["version"] == "2026-04-01"
+    assert fake.write_calls() == []
+    assert fake.rows == before
+
+
+def test_load_provisions_to_supabase_converges_stale_parent_pointer_in_place(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    records = [
+        _record("us/regulation/7/273", body="root"),
+        _record("us/regulation/7/274", body="other root", ordinal=1),
+        _record("us/regulation/7/273/1", parent="us/regulation/7/273", body="child", level=1),
+    ]
+    fake = FakeSupabaseProvisions()
+    fake.seed_record(records[0])
+    other_root = fake.seed_record(records[1])
+    # The child was staged with the canonical id but attached to the wrong,
+    # still-surviving parent row.
+    fake.seed_record(records[2], parent_id=other_root["id"])
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    report = load_provisions_to_supabase(
+        records,
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    assert report.rows_replaced == 1
+    assert report.rows_already_staged == 2
+    patches = [call for call in fake.calls if call[0] == "PATCH"]
+    assert len(patches) == 1
+    child_id = deterministic_provision_id("us/regulation/7/273/1", "2026-05-13")
+    assert fake.rows[child_id]["parent_id"] == deterministic_provision_id(
+        "us/regulation/7/273", "2026-05-13"
+    )
+
+
+def test_load_provisions_to_supabase_converges_cross_scope_stale_parent_edges(monkeypatch):
+    """The Ghana ingest staged one statute tree across several scope
+    versions, with children in one version pointing at a stale parent id
+    staged under another version. Loading every scope in one call must
+    converge the whole edge set; the cascade guard only fires when the
+    dependent scope is left out of the load (covered separately)."""
+    import axiom_corpus.corpus.supabase as supabase
+
+    parent_a = _record("us/statute/act-896", version="2026-05-13", body="act")
+    child_b = _record(
+        "us/statute/act-896/second-schedule",
+        version="2026-06-01",
+        parent="us/statute/act-896",
+        body="schedule",
+        level=1,
+    )
+    parent_b = _record("us/statute/act-896", version="2026-06-01", body="act")
+
+    fake = FakeSupabaseProvisions()
+    # Scope A's parent was staged under a superseded id scheme...
+    stale_parent = fake.seed_record(parent_a, row_id="99999999-9999-5999-8999-999999999999")
+    # ...and scope B's child hangs off that stale id; B's own parent row was
+    # never staged at all.
+    fake.seed_record(
+        child_b,
+        row_id=deterministic_provision_id("us/statute/act-896/second-schedule"),
+        parent_id=stale_parent["id"],
+    )
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    report = load_provisions_to_supabase(
+        [parent_a, parent_b, child_b],
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    assert report.rows_loaded == 3
+    assert report.rows_replaced == 2
+    assert report.rows_inserted == 1
+    parent_a_id = deterministic_provision_id("us/statute/act-896", "2026-05-13")
+    parent_b_id = deterministic_provision_id("us/statute/act-896", "2026-06-01")
+    child_b_id = deterministic_provision_id("us/statute/act-896/second-schedule", "2026-06-01")
+    assert set(fake.rows) == {parent_a_id, parent_b_id, child_b_id}
+    assert fake.rows[child_b_id]["parent_id"] == parent_b_id
+
+
+def test_load_provisions_to_supabase_escalates_cascade_closure_through_kept_rows(monkeypatch):
+    """A replaced ancestor cascade-deletes staged descendants even when their
+    own rows are already canonical. The closure must escalate those
+    descendants to replacements (and un-count them as already staged) so the
+    load re-creates everything the delete takes down."""
+    import axiom_corpus.corpus.supabase as supabase
+
+    grandparent = _record("us/regulation/7", body="g")
+    parent = _record("us/regulation/7/273", parent="us/regulation/7", body="p", level=1)
+    child = _record("us/regulation/7/273/1", parent="us/regulation/7/273", body="c", level=2)
+
+    fake = FakeSupabaseProvisions()
+    legacy_grandparent = deterministic_provision_id("us/regulation/7")
+    fake.seed_record(grandparent, row_id=legacy_grandparent)
+    # The parent already carries its canonical id but still points at the
+    # legacy grandparent; the child is fully canonical.
+    fake.seed_record(parent, parent_id=legacy_grandparent)
+    fake.seed_record(child)
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    report = load_provisions_to_supabase(
+        [grandparent, parent, child],
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    assert report.rows_loaded == 3
+    assert report.rows_replaced == 3
+    assert report.rows_already_staged == 0
+    grandparent_id = deterministic_provision_id("us/regulation/7", "2026-05-13")
+    parent_id = deterministic_provision_id("us/regulation/7/273", "2026-05-13")
+    child_id = deterministic_provision_id("us/regulation/7/273/1", "2026-05-13")
+    assert set(fake.rows) == {grandparent_id, parent_id, child_id}
+    assert fake.rows[parent_id]["parent_id"] == grandparent_id
+    assert fake.rows[child_id]["parent_id"] == parent_id
+
+
+def test_load_provisions_to_supabase_rejects_duplicate_incoming_keys(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    def fail_urlopen(*args, **kwargs):
+        raise AssertionError("duplicate keys must fail before network")
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fail_urlopen)
+
+    with pytest.raises(ValueError, match="repeats an immutable provision key"):
+        load_provisions_to_supabase(
+            [
+                _record("us/regulation/7/273"),
+                _record("us/regulation/7/273"),
+            ],
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+
+def test_update_supabase_provision_parent_requires_exactly_one_affected_row(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    fake = FakeSupabaseProvisions()
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    with pytest.raises(RuntimeError, match="expected exactly 1"):
+        supabase.update_supabase_provision_parent(
+            row_id="00000000-0000-0000-0000-000000000000",
+            new_parent_id=None,
+            verified_parent_id=None,
+            service_key="service",
+            rest_url="https://example.supabase.co/rest/v1",
+        )
+
+
+def test_load_provisions_to_supabase_flags_jsonb_value_type_drift(monkeypatch):
+    """Python's ``True == 1`` must not mask a jsonb value-type change in
+    ``identifiers``: boolean true and numeric 1 are distinct stored values."""
+    import axiom_corpus.corpus.supabase as supabase
+    from axiom_corpus.corpus.supabase import ProvisionStagingConflictError
+
+    record = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/7/273",
+        version="2026-05-13",
+        identifiers={"source:flag": True},
+    )
+    fake = FakeSupabaseProvisions()
+    staged = fake.seed_record(record)
+    staged["identifiers"] = {"source:flag": 1}
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    with pytest.raises(ProvisionStagingConflictError) as excinfo:
+        load_provisions_to_supabase(
+            [record],
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+    assert excinfo.value.conflicts[0]["kind"] == "content-mismatch"
+    assert excinfo.value.conflicts[0]["fields"] == ["identifiers"]
+    assert fake.write_calls() == []
+
+
+def test_provision_column_equal_matches_projection_digest_semantics():
+    from axiom_corpus.corpus.supabase import _provision_column_equal
+
+    # Digest-contract values: bool and int stay distinct, exact values equal.
+    assert _provision_column_equal("identifiers", {"k": 1}, {"k": 1})
+    assert not _provision_column_equal("identifiers", {"k": True}, {"k": 1})
+    # The signed digest contract renders int 1 and str "1" identically (both
+    # hash as text "1", matching SQL jsonb_each_text), so staging must treat
+    # them as interchangeable or it would conflict on states the release
+    # evidence gate accepts.
+    assert _provision_column_equal("identifiers", {"k": "1"}, {"k": 1})
+    # Out-of-contract values (floats) fall back to canonical JSON, so
+    # numerically-equal-but-differently-spelled values stay a loud conflict —
+    # publication rejects floats at digest time regardless.
+    assert _provision_column_equal("identifiers", {"k": 1.5}, {"k": 1.5})
+    assert not _provision_column_equal("identifiers", {"k": 1}, {"k": 1.0})
+
+
+def test_load_provisions_to_supabase_orders_inserts_by_dependency_not_input(monkeypatch):
+    """A child listed before its parent, with equal levels and chunk_size=1,
+    must still insert parent-first: order comes from the actual parent links,
+    not from input order or an assumed level invariant."""
+    import axiom_corpus.corpus.supabase as supabase
+
+    child = _record("us/regulation/7/273/1", parent="us/regulation/7/273", level=0)
+    parent = _record("us/regulation/7/273", level=0)
+    fake = FakeSupabaseProvisions()
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    report = load_provisions_to_supabase(
+        [child, parent],
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+        chunk_size=1,
+    )
+
+    assert report.rows_inserted == 2
+    child_id = deterministic_provision_id("us/regulation/7/273/1", "2026-05-13")
+    parent_id = deterministic_provision_id("us/regulation/7/273", "2026-05-13")
+    assert fake.rows[child_id]["parent_id"] == parent_id
+
+
+def test_load_provisions_to_supabase_rejects_cyclic_parent_linkage(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+    from axiom_corpus.corpus.supabase import ProvisionStagingConflictError
+
+    first = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/7/a",
+        version="2026-05-13",
+        id=deterministic_provision_id("us/regulation/7/a", "2026-05-13"),
+        parent_id=deterministic_provision_id("us/regulation/7/b", "2026-05-13"),
+    )
+    second = ProvisionRecord(
+        jurisdiction="us",
+        document_class="regulation",
+        citation_path="us/regulation/7/b",
+        version="2026-05-13",
+        id=deterministic_provision_id("us/regulation/7/b", "2026-05-13"),
+        parent_id=deterministic_provision_id("us/regulation/7/a", "2026-05-13"),
+    )
+    fake = FakeSupabaseProvisions()
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    with pytest.raises(ProvisionStagingConflictError) as excinfo:
+        load_provisions_to_supabase(
+            [first, second],
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+    assert {conflict["kind"] for conflict in excinfo.value.conflicts} == {"cyclic-parent-linkage"}
+    assert fake.write_calls() == []
+
+
+def test_load_provisions_to_supabase_recheck_catches_concurrent_dependent(monkeypatch):
+    """A child staged by a concurrent writer between planning and deletion
+    must abort the load before any delete, not be cascade-deleted."""
+    import axiom_corpus.corpus.supabase as supabase
+    from axiom_corpus.corpus.supabase import ProvisionStagingConflictError
+
+    record = _record("us/regulation/7/273", body="root")
+    fake = FakeSupabaseProvisions()
+    legacy_root = deterministic_provision_id("us/regulation/7/273")
+    fake.seed_record(record, row_id=legacy_root)
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    real_plan = supabase._plan_provision_staging
+
+    def plan_then_race(*args, **kwargs):
+        plan = real_plan(*args, **kwargs)
+        fake.seed_record(
+            _record(
+                "us/regulation/7/273/raced",
+                version="2026-06-01",
+                body="late child",
+                level=1,
+            ),
+            parent_id=legacy_root,
+        )
+        return plan
+
+    monkeypatch.setattr(supabase, "_plan_provision_staging", plan_then_race)
+
+    with pytest.raises(ProvisionStagingConflictError) as excinfo:
+        load_provisions_to_supabase(
+            [record],
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+    assert excinfo.value.conflicts[0]["kind"] == "cascade-outside-load"
+    assert excinfo.value.conflicts[0]["citation_path"] == "us/regulation/7/273/raced"
+    # Nothing was deleted: both the stale root and the raced child survive.
+    assert legacy_root in fake.rows
+    assert not [call for call in fake.calls if call[0] == "DELETE"]
+
+
+def test_load_provisions_to_supabase_conditional_patch_fails_on_concurrent_repoint(monkeypatch):
+    """An in-place converge whose row was re-pointed by a concurrent writer
+    after planning must fail loudly, not overwrite the newer state."""
+    import axiom_corpus.corpus.supabase as supabase
+
+    records = [
+        _record("us/regulation/7/273", body="root"),
+        _record("us/regulation/7/274", body="other root", ordinal=1),
+        _record("us/regulation/7/273/1", parent="us/regulation/7/273", body="child", level=1),
+    ]
+    fake = FakeSupabaseProvisions()
+    fake.seed_record(records[0])
+    other_root = fake.seed_record(records[1])
+    child_staged = fake.seed_record(records[2], parent_id=other_root["id"])
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    real_plan = supabase._plan_provision_staging
+
+    def plan_then_race(*args, **kwargs):
+        plan = real_plan(*args, **kwargs)
+        fake.rows[str(child_staged["id"])]["parent_id"] = deterministic_provision_id(
+            "us/regulation/7/273", "2026-05-13"
+        )
+        return plan
+
+    monkeypatch.setattr(supabase, "_plan_provision_staging", plan_then_race)
+
+    with pytest.raises(RuntimeError, match="changed or vanished after verification"):
+        load_provisions_to_supabase(
+            records,
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+
+def test_iter_supabase_rows_ordinal_shim_indexes_within_each_scope():
+    """A multi-scope iterable (the release-level publish load) must shim
+    out-of-range ordinals to the row's position within its own scope, exactly
+    matching the per-scope signed evidence digests."""
+    records = [
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path="us/statute/20/1",
+            version="2026-05-13",
+            ordinal=10701001001,
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path="us/statute/21/1",
+            version="2026-06-01",
+            ordinal=10701001002,
+        ),
+        ProvisionRecord(
+            jurisdiction="us",
+            document_class="statute",
+            citation_path="us/statute/21/2",
+            version="2026-06-01",
+            ordinal=10701001003,
+        ),
+    ]
+
+    combined = list(iter_supabase_rows(records))
+    per_scope = list(iter_supabase_rows(records[:1])) + list(iter_supabase_rows(records[1:]))
+
+    assert [row["ordinal"] for row in combined] == [0, 0, 1]
+    assert [row["ordinal"] for row in combined] == [row["ordinal"] for row in per_scope]
+
+
+def test_insert_supabase_rows_surfaces_constraint_violations(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    record = _record("us/regulation/7/273")
+    fake = FakeSupabaseProvisions()
+    staged = fake.seed_record(record)
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+
+    with pytest.raises(RuntimeError, match="insert failed 409"):
+        supabase.insert_supabase_rows(
+            [dict(staged, id="11111111-1111-5111-8111-111111111111")],
+            service_key="service",
+            rest_url="https://example.supabase.co/rest/v1",
+        )
 
 
 def test_load_provisions_to_supabase_dry_run_does_not_call_network(monkeypatch):
