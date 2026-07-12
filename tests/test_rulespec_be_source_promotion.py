@@ -12,8 +12,7 @@ from axiom_corpus.corpus.releases import ReleaseManifest
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / "data/corpus"
 MIGRATION_PATH = ROOT / "manifests/migrations/rulespec-be-source-promotion.json"
-NAMED_RELEASE_PATH = ROOT / "manifests/releases/be-rulespec-current.json"
-CURRENT_RELEASE_PATH = ROOT / "manifests/releases/current.json"
+NAMED_RELEASE_PATH = ROOT / "manifests/releases/be-rulespec-2026-07-10.json"
 VERSION = "2026-07-10-be-rulespec-source-promotion"
 REQUIRED_ROW_FIELDS = {
     "id",
@@ -93,17 +92,18 @@ def _release_rows(
     return rows, by_citation
 
 
-def test_rulespec_be_named_release_is_exact_current_subset() -> None:
+def test_rulespec_be_named_release_is_immutable_exact_scope() -> None:
     named = ReleaseManifest.load(NAMED_RELEASE_PATH)
-    current = ReleaseManifest.load(CURRENT_RELEASE_PATH)
 
-    assert named.name == "be-rulespec-current"
+    assert named.name == "be-rulespec-2026-07-10"
     assert len(named.scopes) == 13
     assert {scope.version for scope in named.scopes} == {VERSION}
-    assert set(named.scope_keys) == {
-        scope.key
-        for scope in current.scopes
-        if scope.jurisdiction == "be" or scope.jurisdiction.startswith("be-")
+    assert {scope.jurisdiction for scope in named.scopes} == {
+        "be",
+        "be-bru",
+        "be-dg",
+        "be-vlg",
+        "be-wal",
     }
 
 
