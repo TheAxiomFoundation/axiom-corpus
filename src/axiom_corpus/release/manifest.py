@@ -818,7 +818,10 @@ def _scope_artifact_entries(
                 "r2_bucket": bucket,
                 "r2_key": content_addressed_r2_key(digest),
             }
-            if path.suffix == ".jsonl":
+            # The v2 artifact schema carries `rows` on provisions entries
+            # only; sources may also be .jsonl (promotion input slices), and
+            # attaching rows there fails exact-field validation at signing.
+            if artifact_class == "provisions":
                 entry["rows"] = jsonl_row_count(path)
             entries.append(entry)
     _validate_signed_source_references(
