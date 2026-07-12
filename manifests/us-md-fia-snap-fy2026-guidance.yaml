@@ -1,0 +1,52 @@
+documents:
+  - source_id: md-fia-at-26-05
+    jurisdiction: us-md
+    document_class: guidance
+    citation_path: us-md/guidance/dhs/fia/at-26-05
+    title: FIA Action Transmittal 26-05 — SNAP Mass Changes for October 2025
+    source_url: https://dhs.maryland.gov/documents/FIA/Action%20Transmittals-AT%20-%20Information%20Memo-IM/AT-IM2026/26-05%20AT%20SNAP%20Mass%20Changes%20for%20October%202025.pdf
+    source_format: pdf
+    source_as_of: "2025-10-03"
+    expression_date: "2025-10-01"
+    metadata:
+      primary_source: true
+      source_authority: Maryland Department of Human Services, Family Investment Administration
+      document_subtype: action_transmittal
+      document_number: AT 26-05
+      program: SNAP
+      topic: fy2026_mass_changes_cola_and_utility_allowances
+      discovered_via: snap_qc_oracle_state_expansion
+  - source_id: md-fia-snap-manual-214
+    jurisdiction: us-md
+    document_class: guidance
+    citation_path: us-md/guidance/dhs/fia/snap-manual-214
+    title: Maryland SNAP Manual Section 214 — Utility Allowances (revised September 2025)
+    source_url: https://dhs.maryland.gov/documents/FIA/Manuals/Supplemental%20Nutrition%20Assistance%20Program%20(SNAP)/214%20Utility%20Allowances/214-Utility-Allowances-SEPT-2025.pdf
+    source_format: pdf
+    source_as_of: "2025-09-30"
+    expression_date: "2025-09-30"
+    metadata:
+      primary_source: true
+      source_authority: Maryland Department of Human Services, Family Investment Administration
+      document_subtype: program_manual_section
+      document_number: SNAP Manual 214
+      program: SNAP
+      topic: utility_allowance_eligibility
+      discovered_via: snap_qc_oracle_state_expansion
+  - source_id: md-fia-snap-manual-600
+    jurisdiction: us-md
+    document_class: guidance
+    citation_path: us-md/guidance/dhs/fia/snap-manual-600
+    title: Maryland SNAP Manual Section 600 — Standards for Income and Deductions (revised August 2025)
+    source_url: https://dhs.maryland.gov/documents/FIA/Manuals/Supplemental%20Nutrition%20Assistance%20Program%20(SNAP)/600%20Standards/600-Standards-for-Income-and-Deductions-SEPT-2025.docx.pdf
+    source_format: pdf
+    source_as_of: "2025-09-30"
+    expression_date: "2025-10-01"
+    metadata:
+      primary_source: true
+      source_authority: Maryland Department of Human Services, Family Investment Administration
+      document_subtype: program_manual_section
+      document_number: SNAP Manual 600
+      program: SNAP
+      topic: income_and_deduction_standards
+      discovered_via: snap_qc_oracle_state_expansion

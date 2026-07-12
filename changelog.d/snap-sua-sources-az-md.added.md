@@ -1,0 +1,1 @@
+Arizona DES FAA6.J.09 utility allowance amounts (effective 10/01/2025) and Maryland FIA FY2026 SNAP guidance (AT 26-05 mass changes; SNAP Manual 214 and 600) for the SNAP QC oracle state expansion; Georgia's FY2026 amounts were already covered by the 2026-05-27 SNAP manual ingest (section 3617).

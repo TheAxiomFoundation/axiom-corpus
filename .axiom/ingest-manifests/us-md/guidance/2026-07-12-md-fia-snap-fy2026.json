@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-md/guidance/2026-07-12-md-fia-snap-fy2026.json",
+      "sha256": "86b5a91a4e8311458789a67297fa861303f5c54dd4ded9a6036dd7da092d970b"
+    },
+    {
+      "path": "data/corpus/inventory/us-md/guidance/2026-07-12-md-fia-snap-fy2026.json",
+      "sha256": "c3324ecf260abbfa21a8b04f6cb77eaeb7292b298f078ed1eb0010ea0660be37"
+    },
+    {
+      "path": "data/corpus/provisions/us-md/guidance/2026-07-12-md-fia-snap-fy2026.jsonl",
+      "sha256": "a3b9d1e6d9f562c03fd4a9fda3d48d91bb286d9c1239673a1fa7c387492ceaf2"
+    },
+    {
+      "path": "data/corpus/sources/us-md/guidance/2026-07-12-md-fia-snap-fy2026/official-documents/md-fia-at-26-05.pdf",
+      "sha256": "ce7ac2760c3b42a5f1417a3789d475f27dffc50b27a7dd4da177a8ca06c35c9a"
+    },
+    {
+      "path": "data/corpus/sources/us-md/guidance/2026-07-12-md-fia-snap-fy2026/official-documents/md-fia-snap-manual-214.pdf",
+      "sha256": "06492ea043a8641425b79eb5a65e65b024caf1cafa6b4427864d071637c7f1d6"
+    },
+    {
+      "path": "data/corpus/sources/us-md/guidance/2026-07-12-md-fia-snap-fy2026/official-documents/md-fia-snap-manual-600.pdf",
+      "sha256": "ace4efaad5a7e46015b333506a23152047ac3e9c6ed85539cbf892fe79faa9dd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "52752d685c61b6636176eda885efdb05bdec93e3",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-12-md-fia-snap-fy2026 --manifest manifests/us-md-fia-snap-fy2026-guidance.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 18,
+    "missing_count": 0,
+    "provision_count": 18,
+    "source_count": 18
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-12T17:34:15.845598+00:00",
+  "jurisdiction": "us-md",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-md-guidance-2026-07-12-md-fia-snap-fy2026.md",
+      "sha256": "c0a37d0223ad5d209c1dd42d20508294fa90ed6e7d8221a33037c859af57c86b"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "hRH5VV1gsYACsrIIY8Gv6OxoZXzm/11c1QMS9mzfcYW2+A/lL9arC9y5yP91RGM0hzDcKYCvpI45UM4xASVvCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-12-md-fia-snap-fy2026"
+}
