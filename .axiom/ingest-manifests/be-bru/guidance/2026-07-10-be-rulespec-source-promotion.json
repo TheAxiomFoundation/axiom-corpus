@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-bru/guidance/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "e08200150f6b41b6d99187b9bfdc5ffac6f6a7d39da852f1c954b3c0720a10b1"
+    },
+    {
+      "path": "data/corpus/inventory/be-bru/guidance/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "09aa7987fa575a62cd06bba0bcffba6631b15ef9b53c58f7c0782865bbac5356"
+    },
+    {
+      "path": "data/corpus/provisions/be-bru/guidance/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "6111cca327c927caff385fdd90bae3fc5b7582cbce3cde017d67ae0ec0d1eb01"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/guidance/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-39b1e9099902-2026-06-30-be-bru-vehicle-tax-guidance.selected.jsonl",
+      "sha256": "e34d474ac1bbd5eb81a3fd5110fe535bbbccc1f7a0f047dca20aa62a47fdc758"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/guidance/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-ad8cd83f3a78-2026-07-01-be-bru-mytax-road-tax-current.selected.jsonl",
+      "sha256": "65c03489abea717c47bec1b7a0b89940ad1edc704a71bcdd4c48de80c2afec7f"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/guidance/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-74bb731f55b2-2026-07-04-be-family-benefit-2025-amounts-be-bru-iriscare-family-benefit-scale-2025-02.jsonl",
+      "sha256": "74bb731f55b2d30bd7aaf8cf5a8b40a030e092d0226c05748612a0921bbd40d5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "06f4d429fd5d3bbc1426217c4b9396abbcccfed3",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-782-be-release"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 37,
+    "missing_count": 0,
+    "provision_count": 37,
+    "source_count": 37
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-10T12:40:35.314054+00:00",
+  "jurisdiction": "be-bru",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "v5de41LlhlVHpW13hcrTP5KdL7dSUMG7em3gxt3evnfMmAYRJE0rjT4Kyn8tSCvJAYbAIo4q7AJQAn7hJJhrBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion"
+}

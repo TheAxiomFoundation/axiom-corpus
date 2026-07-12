@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-dg/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "9a060d4a3013c12058e22646f516de557ce5afcc5ab5b628d4f849a9ce70bf8c"
+    },
+    {
+      "path": "data/corpus/inventory/be-dg/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "f45cc39ae90d898cf6e46a377c68934f0a8dfac0c50d9b09f751cc2a53745a92"
+    },
+    {
+      "path": "data/corpus/provisions/be-dg/statute/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "72cc5c431337c33bc644b5d3c6a82679b5d1245f02ef46ffc64ac7b5a219650c"
+    },
+    {
+      "path": "data/corpus/sources/be-dg/statute/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-63e25bf05fcd-2026-07-01-be-dg-family-benefits.jsonl",
+      "sha256": "63e25bf05fcd081149d00cec59782dd99515962e0a2e85d4aa2a9370a71447d4"
+    },
+    {
+      "path": "data/corpus/sources/be-dg/statute/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-81810b2739cc-2026-07-01-be-dg-family-benefits-2025-amendments.jsonl",
+      "sha256": "81810b2739cc69a14de7b235014075292ce5271ba6de484dbe60af30ef270522"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "06f4d429fd5d3bbc1426217c4b9396abbcccfed3",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-782-be-release"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-10T12:40:38.309758+00:00",
+  "jurisdiction": "be-dg",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bd1vyJhwyAKNm3hUW3jN3GrgCUQnq1UjJ2ILEVb/oNeYfLySmlfOYI5+Yf/6KNU6YGl+sC/pWSHVU1WMtUfVDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion"
+}

@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-vlg/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "e3ffa2420264fc97d54be64736d763fa5c5435b7f814399fd0e904477488119b"
+    },
+    {
+      "path": "data/corpus/inventory/be-vlg/statute/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "dec9b45080273263cfd20816de56454acda10d4ef90c62b0d7deea5cec7b1676"
+    },
+    {
+      "path": "data/corpus/provisions/be-vlg/statute/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "b2d84a7b046210d0ff67afd65d2f75421f0f61d9b027c1b892407a8bb1fefd74"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-0a1949fa8110-2026-07-05-be-study-allowance.selected.jsonl",
+      "sha256": "0bc832052f8fc35315b03397075ce5b409e29a31bb7fe44e8d6eaf8bfa88cf03"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-17db8f86d110-2026-07-01-be-vlg-fiscal-code.selected.jsonl",
+      "sha256": "17db8f86d1102163155f2c93a5a75e645671ea9cb9f172b637909eddc3f310df"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-1969a23a4784-2026-07-04-be-vlg-property-tax-2025.selected.jsonl",
+      "sha256": "1969a23a47843b27d22fea1f71ba6ea11cff2593e30e633a0ffaa5b78a1c09f6"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-7654f3d53cb2-2026-07-04-be-vlg-jobbonus-decree.selected.jsonl",
+      "sha256": "c1c1515dd348217710dd14f77d620ae466b623f1a1850cb162b359da6181925d"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-c1ad57f6e827-2026-07-01-be-vlg-social-protection-decree.selected.jsonl",
+      "sha256": "c6b66c7f94d670be4a90088039c92c443dd08a68fec7ee6c4c6c28d7236b293d"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-10-be-rulespec-source-promotion/inputs/axiom-corpus-d32de07cd3ce-2026-06-30-be-tax-benefit.selected.jsonl",
+      "sha256": "7666ece6bfcd0040f003e7a1a8fe0f15dcd295d917738aa75b7566f2d90ca750"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "06f4d429fd5d3bbc1426217c4b9396abbcccfed3",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-782-be-release"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 58,
+    "missing_count": 0,
+    "provision_count": 58,
+    "source_count": 58
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-10T12:40:40.982195+00:00",
+  "jurisdiction": "be-vlg",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZZ3Z55FS0ucTUrS40GkG6pPn3NmAO8Z8Q+DMY6qB7z/TbRz0vT/sYremfMj7oDjHuLztXHsWKZfA4RDraLSbBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion"
+}

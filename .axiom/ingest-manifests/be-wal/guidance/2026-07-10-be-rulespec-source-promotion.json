@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-wal/guidance/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "1e775f23d2b83e546db5c7f1ebaadf377e87144e01b8a6bb3e3c2cd275b799ec"
+    },
+    {
+      "path": "data/corpus/inventory/be-wal/guidance/2026-07-10-be-rulespec-source-promotion.json",
+      "sha256": "709a47050062b75f4ad7837fed8ba84fd9c8f2ce26c51f6494bf614bd5888b8d"
+    },
+    {
+      "path": "data/corpus/provisions/be-wal/guidance/2026-07-10-be-rulespec-source-promotion.jsonl",
+      "sha256": "16202914747ede5ee09071e3bec8ab12f14b08eb827820ae6bf9c77709158364"
+    },
+    {
+      "path": "data/corpus/sources/be-wal/guidance/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-16b134f6732f-2026-07-04-be-wallonia-family-benefit-amount-scale-2025.jsonl",
+      "sha256": "16b134f6732f9aae7225b8f58885e6346a5d95e059fea090134b3b8b5446479d"
+    },
+    {
+      "path": "data/corpus/sources/be-wal/guidance/2026-07-10-be-rulespec-source-promotion/inputs/rulespec-be-b61095f3524a-2026-07-04-be-family-benefit-2025-amounts-be-wal-aviq-family-benefit-scale-2025-02.jsonl",
+      "sha256": "b61095f3524af8d25b971ab267273644cd4a1cacceb92675ae588fa7c528f60f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "06f4d429fd5d3bbc1426217c4b9396abbcccfed3",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-782-be-release"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Build exact self-contained RuleSpec-BE release from TheAxiomFoundation/rulespec-be@87154df73fe11aabb4ab9c6c605272d73b391a39 and axiom-corpus@06f4d429fd5d3bbc1426217c4b9396abbcccfed3; see manifests/migrations/rulespec-be-source-promotion.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-10T12:51:13.818745+00:00",
+  "jurisdiction": "be-wal",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rvqaq1cJ0AaMuhVjeu8K+NtDquWuv6ZC4qfP+/5xt9+fJD4XRmqTHYeKpI0SeZxwKS/8mJUs90GhXPVybW0lCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-10-be-rulespec-source-promotion"
+}
