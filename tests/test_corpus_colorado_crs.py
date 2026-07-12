@@ -34,7 +34,11 @@ _FIXTURE_HTML = """<HTML>
 <P><SPAN STYLE="font-family: Public Sans">\t<STRONG>39-22-104.  Income tax imposed on individuals. </STRONG>(1) A tax is imposed per section 63 of the internal revenue code.</SPAN></P>
 <P><SPAN STYLE="font-family: Public Sans">\t(2)  The rate is set under subsection (1) of this section.</SPAN></P>
 <P><SPAN STYLE="font-family: Public Sans">\t<STRONG>Source:</STRONG> <STRONG>L. 87:</STRONG> Entire part R&amp;RE, p. 1427, \xa7 2, effective June 22.</SPAN></P>
-<P><SPAN STYLE="font-family: Public Sans">\t<STRONG>Editor's note:</STRONG> This section is similar to former \xa7 39-22-104.</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">\t<STRONG>Editor's note:</STRONG> (1) This section is similar to former \xa7 39-22-104.</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">\t(2) Subsection (2) provisions apply per session law.</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">\t<STRONG>Cross references:</STRONG> (1) For the legislative declaration, see section 1 of chapter 42.</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">\t(2) For the short title, see section 39-22-101.</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">\t(3) For federal conformity, see 26 U.S.C. sec. 63.</SPAN></P>
 <P><SPAN STYLE="font-family: Public Sans"><STRONG>ANNOTATION</STRONG></SPAN></P>
 <P><SPAN STYLE="font-family: Public Sans">Law reviews. For article, see 15 Colo. Law. 1.</SPAN></P>
 <P><SPAN STYLE="font-family: Public Sans">Annotator's case summary that must not enter the body.</SPAN></P>
@@ -74,6 +78,15 @@ def test_parse_colorado_crs_title_sections_and_scoping() -> None:
     assert "Annotator's case summary" not in imposed.body
     assert imposed.annotation_paragraphs >= 1
     assert any("similar to former" in note for note in imposed.source_notes)
+    # Multi-paragraph annex blocks: unlabeled continuations of an editor's
+    # note or cross-references block must land in metadata, never the body.
+    assert imposed.body.rstrip().endswith("subsection (1) of this section.")
+    assert "legislative declaration" not in imposed.body
+    assert "For the short title" not in imposed.body
+    assert "session law" not in imposed.body
+    assert any("For the short title" in note for note in imposed.source_notes)
+    assert any("federal conformity" in note for note in imposed.source_notes)
+    assert any("session law" in note for note in imposed.source_notes)
 
 
 def test_parse_colorado_crs_title_unscoped_includes_other_articles() -> None:

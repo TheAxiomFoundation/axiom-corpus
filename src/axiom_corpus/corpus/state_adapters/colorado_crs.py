@@ -147,6 +147,12 @@ def parse_colorado_crs_title(
     current_part_heading: str | None = None
     pending_part_number: str | None = None
     in_annotation = False
+    # Once a section's post-statute annex starts (Source:, Editor's note:,
+    # Cross references:, Law reviews:), statutory text never resumes before
+    # the next section/article/part boundary in the OLLS layout. Unlabeled
+    # continuation paragraphs belong to the active annex bucket, NOT the body
+    # (multi-paragraph editor's-note and cross-reference blocks are common).
+    annex_bucket: str | None = None
     ordinal = 0
 
     for paragraph in soup.find_all("p"):
@@ -159,6 +165,7 @@ def parse_colorado_crs_title(
             current_part_heading = None
             pending_part_number = None
             in_annotation = False
+            annex_bucket = None
             current = None
             continue
 
@@ -167,6 +174,7 @@ def parse_colorado_crs_title(
             pending_part_number = part_match.group("part")
             current_part_heading = f"PART {pending_part_number}"
             in_annotation = False
+            annex_bucket = None
             current = None
             continue
 
@@ -178,6 +186,7 @@ def parse_colorado_crs_title(
 
         if _ANNOTATION_HEADING_RE.match(text):
             in_annotation = True
+            annex_bucket = None
             if current is not None:
                 current.annotation_paragraphs += 1
             continue
@@ -192,6 +201,7 @@ def parse_colorado_crs_title(
                 # Cross-title stray (should not happen inside one title file).
                 continue
             in_annotation = False
+            annex_bucket = None
             ordinal += 1
             heading_and_body = section_match.group("heading")
             heading_text = strong_text[len(section_number) :].lstrip(". ").strip()
@@ -218,12 +228,21 @@ def parse_colorado_crs_title(
             history = source_match.group("history").strip()
             if history:
                 current.source_history.append(history)
+            annex_bucket = "history"
             continue
 
         note_match = _NOTE_PARAGRAPH_RE.match(text)
         if note_match is not None:
             note = f"{note_match.group('label')}: {note_match.group('note').strip()}"
             current.source_notes.append(note.strip().rstrip(":"))
+            annex_bucket = "notes"
+            continue
+
+        if annex_bucket == "history":
+            current.source_history.append(_paragraph_body_text(paragraph))
+            continue
+        if annex_bucket == "notes":
+            current.source_notes.append(_paragraph_body_text(paragraph))
             continue
 
         current.body_paragraphs.append(_paragraph_body_text(paragraph))
