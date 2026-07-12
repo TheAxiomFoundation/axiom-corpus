@@ -1,10 +1,10 @@
 {
-  "description": "Immutable official Denmark statute scope used by RuleSpec-DK (child and youth benefit pilot).",
   "name": "dk-rulespec-2026-07-12",
+  "description": "Immutable Denmark RuleSpec corpus release: the b\u00f8rne- og ungeydelsesloven ingest (LBK nr 603 af 12/05/2025) backing the rulespec-dk pilot encodings; canonical-provenance migration wagon.",
   "scopes": [
     {
-      "document_class": "statute",
       "jurisdiction": "dk",
+      "document_class": "statute",
       "version": "2026-07-12-dk-child-youth-benefit"
     }
   ]
