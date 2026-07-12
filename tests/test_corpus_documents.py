@@ -1436,6 +1436,87 @@ documents:
     assert page_record.metadata["document_subtype"] == "waiver_approval"
 
 
+def test_extract_official_documents_carries_source_language(tmp_path):
+    pdf_path = tmp_path / "lbk.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "Bekendtgørelse af lov om en børne- og ungeydelse\n"
+        "§ 1. For børn under 15 år udbetales en skattefri børneydelse.",
+    )
+    document.save(pdf_path)
+    document.close()
+    english_pdf_path = tmp_path / "act.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "An Act about benefit amounts.")
+    document.save(english_pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: dk-child-benefit-act
+    jurisdiction: dk
+    document_class: statute
+    title: Bekendtgørelse af lov om en børne- og ungeydelse
+    source_url: https://www.retsinformation.dk/eli/lta/2025/603
+    citation_path: dk/statute/lbk-603-2025/boerne-og-ungeydelsesloven
+    source_format: pdf
+    language: da
+    local_path: {json.dumps(str(pdf_path))}
+  - source_id: default-language-act
+    jurisdiction: dk
+    document_class: statute
+    title: Default Language Act
+    source_url: https://example.dk/act.pdf
+    source_format: pdf
+    local_path: {json.dumps(str(english_pdf_path))}
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-12",
+        source_as_of="2026-07-12",
+    )
+
+    assert report.document_count == 2
+    records = load_provisions(report.provisions_path)
+    danish_records = [
+        record for record in records if record.source_id == "dk-child-benefit-act"
+    ]
+    assert danish_records and all(record.language == "da" for record in danish_records)
+    danish_page = next(record for record in danish_records if record.kind == "page")
+    assert danish_page.body is not None
+    assert "børne- og ungeydelse" in danish_page.body
+    default_records = [
+        record for record in records if record.source_id == "default-language-act"
+    ]
+    assert default_records and all(record.language == "en" for record in default_records)
+
+
+def test_official_document_language_rejects_unquoted_yaml_boolean() -> None:
+    base = {
+        "source_id": "no-act",
+        "jurisdiction": "no",
+        "document_class": "statute",
+        "title": "Norwegian Act",
+        "source_url": "https://lovdata.no/act",
+    }
+    # Unquoted `language: no` reaches from_mapping as YAML 1.1 boolean False;
+    # it must fail loudly instead of stringifying to "False".
+    with pytest.raises(ValueError, match="quote"):
+        OfficialDocumentSource.from_mapping({**base, "language": False})
+    with pytest.raises(ValueError, match="quote"):
+        OfficialDocumentSource.from_mapping({**base, "language": True})
+    quoted = OfficialDocumentSource.from_mapping({**base, "language": "no"})
+    assert quoted.language == "no"
+
+
 def test_extract_official_documents_from_filtered_xlsx_rows(tmp_path: Path) -> None:
     workbook_path = tmp_path / "index.xlsx"
     workbook = Workbook()
