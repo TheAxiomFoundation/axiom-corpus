@@ -594,6 +594,291 @@ def test_guard_ingested_cli_rejects_primary_source_reasoning_inventory(
     assert "is under reasoning/" in payload["issues"][0]
 
 
+def _write_scope_inventory(repo, source_path):
+    inventory = repo / "data/corpus/inventory/dk/statute/2026-07-12-example.json"
+    inventory.parent.mkdir(parents=True, exist_ok=True)
+    inventory.write_text(
+        json.dumps(
+            {
+                "items": [
+                    {
+                        "citation_path": "dk/statute/example/1",
+                        "source_path": source_path,
+                    }
+                ]
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+    return inventory
+
+
+def test_verify_scope_tracked_cli_accepts_clean_tracked_scope(tmp_path, capsys):
+    repo = _init_git_repo(tmp_path / "repo")
+    source_path = "sources/dk/statute/2026-07-12-example/official-documents/example.pdf"
+    source = repo / "data/corpus" / source_path
+    source.parent.mkdir(parents=True)
+    source.write_bytes(b"official source")
+    inventory = _write_scope_inventory(repo, source_path)
+    manifest = repo / ".axiom/ingest-manifests/dk/statute/2026-07-12-example.json"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(
+        json.dumps(
+            {
+                "applied_files": [{"path": inventory.relative_to(repo).as_posix()}],
+                "signature": {"algorithm": "ed25519", "value": "test"},
+            }
+        )
+        + "\n"
+    )
+    _git(repo, "add", "-f", source.relative_to(repo), inventory.relative_to(repo))
+    _git(repo, "add", manifest.relative_to(repo))
+    _git(repo, "commit", "-m", "Add tracked corpus scope")
+
+    exit_code = main(["verify-scope-tracked", "--repo", str(repo)])
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert "1 inventory scopes" in output
+    assert "2 referenced files" in output
+
+
+def test_verify_scope_tracked_cli_rejects_untracked_inventory_source(tmp_path, capsys):
+    repo = _init_git_repo(tmp_path / "repo")
+    source_path = "sources/dk/statute/2026-07-12-example/official-documents/new source.pdf"
+    inventory = _write_scope_inventory(repo, source_path)
+    _git(repo, "add", "-f", inventory.relative_to(repo))
+    _git(repo, "commit", "-m", "Add corpus inventory")
+    source = repo / "data/corpus" / source_path
+    source.parent.mkdir(parents=True)
+    source.write_bytes(b"untracked official source")
+
+    exit_code = main(["verify-scope-tracked", "--repo", str(repo)])
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    assert "data/corpus/sources/dk/statute/2026-07-12-example/official-documents/new source.pdf" in output
+    assert "git add -f" in output
+
+
+def test_verify_scope_tracked_cli_accepts_staged_uncommitted_source(tmp_path, capsys):
+    repo = _init_git_repo(tmp_path / "repo")
+    source_path = "sources/dk/statute/2026-07-12-example/official-documents/example.pdf"
+    inventory = _write_scope_inventory(repo, source_path)
+    _git(repo, "add", "-f", inventory.relative_to(repo))
+    _git(repo, "commit", "-m", "Add corpus inventory")
+    source = repo / "data/corpus" / source_path
+    source.parent.mkdir(parents=True)
+    source.write_bytes(b"staged official source")
+    _git(repo, "add", "-f", source.relative_to(repo))
+
+    exit_code = main(["verify-scope-tracked", "--repo", str(repo)])
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert "Verified 1 referenced files across 1 inventory scopes." in output
+
+
+def test_verify_scope_tracked_cli_uses_staged_inventory_when_worktree_is_clean(
+    tmp_path, capsys
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    clean_path = "sources/dk/statute/v1/official-documents/tracked.pdf"
+    missing_path = "sources/dk/statute/v1/official-documents/missing.pdf"
+    source = repo / "data/corpus" / clean_path
+    source.parent.mkdir(parents=True)
+    source.write_bytes(b"tracked")
+    inventory = _write_scope_inventory(repo, clean_path)
+    _git(repo, "add", "-f", source.relative_to(repo), inventory.relative_to(repo))
+    _git(repo, "commit", "-m", "Add clean scope")
+
+    _write_scope_inventory(repo, missing_path)
+    _git(repo, "add", "-f", inventory.relative_to(repo))
+    _write_scope_inventory(repo, clean_path)
+
+    exit_code = main(["verify-scope-tracked", "--repo", str(repo)])
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    assert f"data/corpus/{missing_path}" in output
+
+
+def test_verify_scope_tracked_cli_ignores_unstaged_inventory_when_index_is_clean(
+    tmp_path, capsys
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    clean_path = "sources/dk/statute/v1/official-documents/tracked.pdf"
+    missing_path = "sources/dk/statute/v1/official-documents/missing.pdf"
+    source = repo / "data/corpus" / clean_path
+    source.parent.mkdir(parents=True)
+    source.write_bytes(b"tracked")
+    inventory = _write_scope_inventory(repo, clean_path)
+    _git(repo, "add", "-f", source.relative_to(repo), inventory.relative_to(repo))
+    _git(repo, "commit", "-m", "Add clean scope")
+
+    _write_scope_inventory(repo, missing_path)
+
+    exit_code = main(["verify-scope-tracked", "--repo", str(repo)])
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert "Verified 1 referenced files across 1 inventory scopes." in output
+
+
+def test_verify_scope_tracked_cli_rejects_untracked_signed_manifest_file(
+    tmp_path, capsys
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    missing = "data/corpus/provisions/dk/statute/v1.jsonl"
+    manifest = repo / ".axiom/ingest-manifests/dk/statute/v1.json"
+    manifest.parent.mkdir(parents=True)
+    manifest.write_text(
+        json.dumps(
+            {
+                "applied_files": [{"path": missing}],
+                "signature": {"algorithm": "ed25519", "value": "test"},
+            }
+        )
+        + "\n"
+    )
+    _git(repo, "add", manifest.relative_to(repo))
+    _git(repo, "commit", "-m", "Add signed manifest")
+
+    exit_code = main(["verify-scope-tracked", "--repo", str(repo)])
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    assert missing in output
+
+
+def _write_scope_manifest(repo, applied_files):
+    manifest = repo / ".axiom/ingest-manifests/dk/statute/v1.json"
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    manifest.write_text(
+        json.dumps(
+            {
+                "applied_files": applied_files,
+                "signature": {"algorithm": "ed25519", "value": "test"},
+            }
+        )
+        + "\n"
+    )
+    return manifest
+
+
+def test_verify_scope_tracked_cli_uses_staged_manifest_when_worktree_is_clean(
+    tmp_path, capsys
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    tracked = "data/corpus/provisions/dk/statute/tracked.jsonl"
+    missing = "data/corpus/provisions/dk/statute/missing.jsonl"
+    artifact = repo / tracked
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}\n")
+    manifest = _write_scope_manifest(repo, [{"path": tracked}])
+    _git(repo, "add", "-f", artifact.relative_to(repo), manifest.relative_to(repo))
+    _git(repo, "commit", "-m", "Add clean manifest scope")
+
+    _write_scope_manifest(repo, [{"path": missing}])
+    _git(repo, "add", manifest.relative_to(repo))
+    _write_scope_manifest(repo, [{"path": tracked}])
+
+    exit_code = main(["verify-scope-tracked", "--repo", str(repo)])
+    output = capsys.readouterr().out
+
+    assert exit_code == 1
+    assert missing in output
+
+
+def test_verify_scope_tracked_cli_ignores_unstaged_manifest_when_index_is_clean(
+    tmp_path, capsys
+):
+    repo = _init_git_repo(tmp_path / "repo")
+    tracked = "data/corpus/provisions/dk/statute/tracked.jsonl"
+    missing = "data/corpus/provisions/dk/statute/missing.jsonl"
+    artifact = repo / tracked
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}\n")
+    manifest = _write_scope_manifest(repo, [{"path": tracked}])
+    _git(repo, "add", "-f", artifact.relative_to(repo), manifest.relative_to(repo))
+    _git(repo, "commit", "-m", "Add clean manifest scope")
+
+    _write_scope_manifest(repo, [{"path": missing}])
+
+    exit_code = main(["verify-scope-tracked", "--repo", str(repo)])
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert "Verified 1 referenced files across 0 inventory scopes." in output
+
+
+def test_verify_scope_tracked_cli_ignores_deleted_manifest_entries(tmp_path, capsys):
+    repo = _init_git_repo(tmp_path / "repo")
+    live = "data/corpus/provisions/dk/statute/live.jsonl"
+    deleted = "data/corpus/provisions/dk/statute/deleted.jsonl"
+    artifact = repo / live
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text("{}\n")
+    manifest = _write_scope_manifest(
+        repo, [{"path": live}, {"path": deleted, "deleted": True}]
+    )
+    _git(repo, "add", "-f", artifact.relative_to(repo), manifest.relative_to(repo))
+
+    assert main(["verify-scope-tracked", "--repo", str(repo)]) == 0
+    capsys.readouterr()
+
+    _git(repo, "rm", "--cached", live)
+    assert main(["verify-scope-tracked", "--repo", str(repo)]) == 1
+    output = capsys.readouterr().out
+    assert live in output
+    assert deleted not in output
+
+
+def _add_filter_scope(repo, jurisdiction, document_class, version, *, tracked):
+    source_path = (
+        f"sources/{jurisdiction}/{document_class}/{version}/official-documents/source.pdf"
+    )
+    inventory = repo / (
+        f"data/corpus/inventory/{jurisdiction}/{document_class}/{version}.json"
+    )
+    inventory.parent.mkdir(parents=True, exist_ok=True)
+    inventory.write_text(
+        json.dumps({"items": [{"source_path": source_path}]}) + "\n"
+    )
+    _git(repo, "add", "-f", inventory.relative_to(repo))
+    if tracked:
+        source = repo / "data/corpus" / source_path
+        source.parent.mkdir(parents=True)
+        source.write_bytes(b"tracked")
+        _git(repo, "add", "-f", source.relative_to(repo))
+
+
+def test_verify_scope_tracked_cli_filters_each_dimension_and_composes(tmp_path, capsys):
+    repo = _init_git_repo(tmp_path / "repo")
+    _add_filter_scope(repo, "dk", "statute", "v1", tracked=True)
+    _add_filter_scope(repo, "us", "regulation", "v2", tracked=False)
+    _git(repo, "commit", "-m", "Add distinct scopes")
+
+    cases = [
+        (["--jurisdiction", "dk"], 0),
+        (["--document-class", "statute"], 0),
+        (["--version", "v1"], 0),
+        (
+            ["--jurisdiction", "us", "--document-class", "regulation", "--version", "v2"],
+            1,
+        ),
+    ]
+    for filters, expected_exit_code in cases:
+        exit_code = main(["verify-scope-tracked", "--repo", str(repo), *filters])
+        output = capsys.readouterr().out
+        assert exit_code == expected_exit_code
+        if expected_exit_code == 0:
+            assert "across 1 inventory scopes" in output
+        else:
+            assert "data/corpus/sources/us/regulation/v2/" in output
+
+
 def test_inventory_ecfr_cli(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 

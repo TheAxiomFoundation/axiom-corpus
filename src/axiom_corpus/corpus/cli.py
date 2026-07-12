@@ -6,6 +6,7 @@ import argparse
 import json
 import os
 import re
+import shlex
 import sys
 from collections.abc import Iterable
 from dataclasses import replace
@@ -114,6 +115,7 @@ from axiom_corpus.corpus.rulespec_paths import (
     repo_prefix_for_jurisdiction,
     resolve_jurisdiction_dir,
 )
+from axiom_corpus.corpus.scope_tracking import verify_scope_tracked
 from axiom_corpus.corpus.source_discovery import build_source_discovery_report
 from axiom_corpus.corpus.source_promotion import promote_source_discovery_group
 from axiom_corpus.corpus.state_adapters.alabama import extract_alabama_code
@@ -333,6 +335,25 @@ def _cmd_guard_ingested(args: argparse.Namespace) -> int:
         for issue in result.issues:
             print(issue)
     return 0 if result.passed else 1
+
+
+def _cmd_verify_scope_tracked(args: argparse.Namespace) -> int:
+    result = verify_scope_tracked(
+        repo=args.repo,
+        jurisdiction=args.jurisdiction,
+        document_class=args.document_class,
+        version=args.version,
+    )
+    if result.passed:
+        print(
+            f"Verified {result.files_verified} referenced files across "
+            f"{result.scopes_checked} inventory scopes."
+        )
+        return 0
+    for path in result.missing_paths:
+        print(path)
+    print(shlex.join(["git", "add", "-f", *result.missing_paths]))
+    return 1
 
 
 def _cmd_inventory_ecfr(args: argparse.Namespace) -> int:
@@ -4975,6 +4996,16 @@ def build_parser() -> argparse.ArgumentParser:
     guard_ingested.add_argument("--head-ref", default="HEAD")
     guard_ingested.add_argument("--json", action="store_true")
     guard_ingested.set_defaults(func=_cmd_guard_ingested)
+
+    verify_tracked = sub.add_parser(
+        "verify-scope-tracked",
+        help="Reject inventory or signed-manifest references to untracked files.",
+    )
+    verify_tracked.add_argument("--repo", type=Path, default=Path("."))
+    verify_tracked.add_argument("--jurisdiction")
+    verify_tracked.add_argument("--document-class")
+    verify_tracked.add_argument("--version")
+    verify_tracked.set_defaults(func=_cmd_verify_scope_tracked)
 
     inventory_ecfr = sub.add_parser(
         "inventory-ecfr",
