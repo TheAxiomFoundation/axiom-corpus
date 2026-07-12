@@ -494,8 +494,19 @@ def iter_supabase_rows(
     *,
     versioned_ids: bool = True,
 ) -> Iterator[dict[str, object]]:
-    for index, record in enumerate(records):
+    # The int4 ordinal shim indexes within each release scope, not across the
+    # whole iterable, so a multi-scope load projects the exact same rows as
+    # the per-scope signed evidence digests in release content.
+    scope_positions: dict[tuple[str, str, str], int] = {}
+    for record in records:
         row = provision_to_supabase_row(record, versioned_ids=versioned_ids)
+        scope_key = (
+            str(row.get("jurisdiction") or ""),
+            str(row.get("doc_type") or ""),
+            str(row.get("version") or ""),
+        )
+        index = scope_positions.get(scope_key, 0)
+        scope_positions[scope_key] = index + 1
         ordinal = row.get("ordinal")
         if (
             isinstance(ordinal, int)
@@ -1204,7 +1215,16 @@ def load_provisions_to_supabase(
     Replacements are planned against the ``parent_id`` ON DELETE CASCADE
     closure, so converging a stale identity can never silently delete a row
     that survives the load; any dependent row outside the loaded rows is
-    reported as a conflict instead.
+    reported as a conflict instead, and the dependent set is re-checked
+    immediately before the deletes execute.
+
+    Verification and writes are separate REST requests, not one transaction:
+    the contract assumes one staging writer at a time. The residual races are
+    narrowed (conditional single-column parent updates, the pre-delete
+    dependent re-check, plain inserts that surface any constraint violation)
+    and the publisher's evidence gate re-derives every in-release scope
+    server-side after staging; a truly transactional staging boundary needs a
+    server-side RPC.
     """
     if chunk_size <= 0:
         raise ValueError("chunk_size must be positive")
@@ -1261,6 +1281,36 @@ def load_provisions_to_supabase(
             flush=True,
         )
 
+    # Planning read the database without a transaction. Re-fetch the cascade
+    # dependents of every id scheduled for deletion immediately before the
+    # deletes: a dependent staged by a concurrent writer after planning would
+    # otherwise be cascade-deleted without a trace. This narrows the race
+    # window to the write phase itself; the staging boundary assumes a single
+    # staging writer at a time, and the publish evidence gate re-derives
+    # every in-release scope server-side after staging.
+    if plan.replaced_ids:
+        replaced_id_set = {row_id for row_id, _ in plan.replaced_ids}
+        late_dependents = [
+            dependent
+            for dependent in fetch_provision_rows_with_parents(
+                sorted(replaced_id_set), service_key=service_key, rest_url=rest_url
+            )
+            if str(dependent.get("id")) not in replaced_id_set
+        ]
+        if late_dependents:
+            raise ProvisionStagingConflictError(
+                [
+                    {
+                        "kind": "cascade-outside-load",
+                        "citation_path": str(dependent.get("citation_path")),
+                        "version": str(dependent.get("version")),
+                        "staged_id": str(dependent.get("id")),
+                        "staged_parent_id": str(dependent.get("parent_id")),
+                    }
+                    for dependent in late_dependents
+                ]
+            )
+
     # Deletes run deepest-first so an in-set parent is never removed while an
     # in-set child still exists; the closure guarantees no out-of-set child.
     for delete_chunk in _chunked_values(
@@ -1284,8 +1334,14 @@ def load_provisions_to_supabase(
 
     # In-place converges run after inserts so a canonical parent row already
     # exists when a surviving child re-points at it.
-    for row in plan.in_place_updates:
-        update_supabase_provision_row(row, service_key=service_key, rest_url=rest_url)
+    for row, verified_parent_id in plan.in_place_updates:
+        update_supabase_provision_parent(
+            row_id=str(row["id"]),
+            new_parent_id=row.get("parent_id"),
+            verified_parent_id=verified_parent_id,
+            service_key=service_key,
+            rest_url=rest_url,
+        )
         rows_loaded += 1
 
     return SupabaseLoadReport(
@@ -1446,7 +1502,8 @@ def delete_supabase_provision_ids(
 @dataclass(frozen=True)
 class _ProvisionStagingPlan:
     pending_inserts: tuple[dict[str, object], ...]
-    in_place_updates: tuple[dict[str, object], ...]
+    # (incoming row, parent_id the plan verified on the staged row)
+    in_place_updates: tuple[tuple[dict[str, object], object], ...]
     replaced_ids: tuple[tuple[str, int], ...]
     rows_already_staged: int
     conflicts: tuple[dict[str, object], ...]
@@ -1457,6 +1514,77 @@ def _row_level(row: Mapping[str, object]) -> int:
     if isinstance(level, int) and not isinstance(level, bool):
         return level
     return 0
+
+
+def _provision_column_equal(column: str, mine: object, theirs: object) -> bool:
+    """Column-faithful equality between a projected value and PostgREST JSON.
+
+    ``identifiers`` is jsonb, where Python's ``True == 1`` / ``False == 0``
+    would mask a real value-type change, so it compares by canonical JSON
+    serialization. Every other projected column is a scalar SQL type where
+    plain equality over the JSON decoding is faithful.
+    """
+    if column == "identifiers":
+        return json.dumps(mine, sort_keys=True) == json.dumps(theirs, sort_keys=True)
+    return mine == theirs
+
+
+def _dependency_ordered_inserts(
+    pending_inserts: Sequence[dict[str, object]],
+    conflicts: list[dict[str, object]],
+) -> list[dict[str, object]]:
+    """Order pending inserts so every in-load parent precedes its children.
+
+    A topological sort over the actual parent links is a guarantee the
+    foreign key can hold across chunk boundaries; sorting by ``level`` would
+    only restate an unchecked corpus invariant. Rows that share an id or form
+    a parent cycle cannot be inserted coherently at all, so they become
+    conflicts instead of runtime constraint errors.
+    """
+    pending_by_id: dict[str, dict[str, object]] = {}
+    for row in pending_inserts:
+        row_id = str(row.get("id"))
+        if row_id in pending_by_id:
+            conflicts.append(
+                {
+                    "kind": "duplicate-pending-id",
+                    "citation_path": str(row.get("citation_path")),
+                    "version": str(row.get("version")),
+                    "staged_id": row_id,
+                }
+            )
+            continue
+        pending_by_id[row_id] = row
+    children_by_parent: dict[str, list[str]] = {}
+    in_degree: dict[str, int] = dict.fromkeys(pending_by_id, 0)
+    for row_id, row in pending_by_id.items():
+        parent = row.get("parent_id")
+        parent_key = str(parent) if parent is not None else None
+        if parent_key is not None and parent_key != row_id and parent_key in pending_by_id:
+            children_by_parent.setdefault(parent_key, []).append(row_id)
+            in_degree[row_id] += 1
+    ordered_ids = [row_id for row_id, degree in in_degree.items() if degree == 0]
+    cursor = 0
+    while cursor < len(ordered_ids):
+        for child in children_by_parent.get(ordered_ids[cursor], ()):
+            in_degree[child] -= 1
+            if in_degree[child] == 0:
+                ordered_ids.append(child)
+        cursor += 1
+    if len(ordered_ids) != len(pending_by_id):
+        for row_id, degree in in_degree.items():
+            if degree > 0:
+                row = pending_by_id[row_id]
+                conflicts.append(
+                    {
+                        "kind": "cyclic-parent-linkage",
+                        "citation_path": str(row.get("citation_path")),
+                        "version": str(row.get("version")),
+                        "staged_id": row_id,
+                    }
+                )
+        return list(pending_inserts)
+    return [pending_by_id[row_id] for row_id in ordered_ids]
 
 
 def _plan_provision_staging(
@@ -1495,7 +1623,7 @@ def _plan_provision_staging(
 
     conflicts: list[dict[str, object]] = []
     pending_inserts: list[dict[str, object]] = []
-    in_place: dict[tuple[str, str], dict[str, object]] = {}
+    in_place: dict[tuple[str, str], tuple[dict[str, object], object]] = {}
     replaced: dict[str, int] = {}
     matched_existing: dict[tuple[str, str], dict[str, object]] = {}
     rows_already_staged = 0
@@ -1509,7 +1637,9 @@ def _plan_provision_staging(
         del leftover[key]
         matched_existing[key] = staged
         divergent_content = sorted(
-            column for column in PROVISION_CONTENT_COLUMNS if row.get(column) != staged.get(column)
+            column
+            for column in PROVISION_CONTENT_COLUMNS
+            if not _provision_column_equal(column, row.get(column), staged.get(column))
         )
         if divergent_content:
             conflicts.append(
@@ -1526,7 +1656,7 @@ def _plan_provision_staging(
             if row.get("parent_id") == staged.get("parent_id"):
                 rows_already_staged += 1
             else:
-                in_place[key] = row
+                in_place[key] = (row, staged.get("parent_id"))
             continue
         replaced[str(staged["id"])] = _row_level(staged)
         pending_inserts.append(row)
@@ -1605,13 +1735,10 @@ def _plan_provision_staging(
                 }
             )
 
-    # Parents always precede children level-wise, so a stable level sort keeps
-    # every chunked insert FK-consistent even after closure escalations
-    # appended parents behind children.
-    pending_inserts.sort(key=_row_level)
+    ordered_inserts = _dependency_ordered_inserts(pending_inserts, conflicts)
     conflicts.sort(key=lambda item: (str(item["kind"]), str(item["citation_path"])))
     return _ProvisionStagingPlan(
-        pending_inserts=tuple(pending_inserts),
+        pending_inserts=tuple(ordered_inserts),
         in_place_updates=tuple(in_place.values()),
         replaced_ids=tuple(replaced.items()),
         rows_already_staged=rows_already_staged,
@@ -1754,25 +1881,34 @@ def insert_supabase_rows(
         raise RuntimeError(f"insert failed {exc.code}: {body}") from exc
 
 
-def update_supabase_provision_row(
-    row: Mapping[str, object],
+def update_supabase_provision_parent(
     *,
+    row_id: str,
+    new_parent_id: object,
+    verified_parent_id: object,
     service_key: str,
     rest_url: str,
 ) -> None:
-    """Converge one verified staged row in place by id.
+    """Re-point one verified staged row at its canonical parent.
 
-    Requires the representation back and asserts exactly one row changed, so
-    a row that vanished between verification and write is a loud failure
-    rather than a silent no-op.
+    An in-place converge only ever changes ``parent_id`` — every other column
+    was verified byte-identical during planning — so the update writes that
+    single column and is conditioned on both the id and the parent value the
+    plan verified. A row that vanished or changed between verification and
+    write matches zero rows and fails loudly instead of being silently
+    overwritten.
     """
-    row_id = str(row.get("id") or "")
     if not row_id:
-        raise ValueError("provision row update requires an id")
-    query = urllib.parse.urlencode({"id": f"eq.{row_id}"})
+        raise ValueError("provision parent update requires an id")
+    params = {"id": f"eq.{row_id}"}
+    if verified_parent_id is None:
+        params["parent_id"] = "is.null"
+    else:
+        params["parent_id"] = f"eq.{verified_parent_id}"
+    query = urllib.parse.urlencode(params)
     req = urllib.request.Request(
         f"{rest_url}/provisions?{query}",
-        data=json.dumps(dict(row)).encode("utf-8"),
+        data=json.dumps({"parent_id": new_parent_id}).encode("utf-8"),
         headers={
             "apikey": service_key,
             "Authorization": f"Bearer {service_key}",
@@ -1796,7 +1932,7 @@ def update_supabase_provision_row(
         raise RuntimeError(
             f"in-place converge for provision {row_id} affected "
             f"{affected if affected is not None else 'an unknown number of'} rows; "
-            "expected exactly 1"
+            "expected exactly 1 (the row changed or vanished after verification)"
         )
 
 
