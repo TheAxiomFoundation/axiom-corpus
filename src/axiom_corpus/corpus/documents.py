@@ -78,6 +78,7 @@ class OfficialDocumentSource:
     source_format: str | None = None
     source_as_of: str | None = None
     expression_date: str | None = None
+    language: str | None = None
     local_path: str | None = None
     request: dict[str, Any] | None = None
     extraction: dict[str, Any] | None = None
@@ -102,6 +103,7 @@ class OfficialDocumentSource:
             source_format=data.get("source_format"),
             source_as_of=data.get("source_as_of"),
             expression_date=data.get("expression_date"),
+            language=str(data["language"]) if data.get("language") is not None else None,
             local_path=data.get("local_path"),
             request=request,
             extraction=extraction,
@@ -2558,6 +2560,7 @@ def _provision_records(
             source_format=source_format,
             source_as_of=source_as_of,
             expression_date=expression_date,
+            language=source.language or "en",
             level=1,
             ordinal=1,
             kind="document",
@@ -2582,6 +2585,7 @@ def _provision_records(
                 source_format=source_format,
                 source_as_of=source_as_of,
                 expression_date=expression_date,
+                language=source.language or "en",
                 parent_citation_path=root_path,
                 parent_id=root_id,
                 level=2,
