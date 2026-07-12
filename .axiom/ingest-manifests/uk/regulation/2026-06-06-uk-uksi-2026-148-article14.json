@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "de9b2eb9bcd03356cc8d5855216f2c83e7a085ab",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-issue-95-uk-legislation"
+    "commit": "6001c96524d53e5b98acb92724b9f2ab17756289",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-06-06-uk-uksi-2026-148-article14 --source clml --citation uksi/2026/148/article/14 --source-as-of 2026-06-06 --expression-date 2026-04-06"
+    "text": "Attach RuleSpec UK migration provenance for immutable uk-rulespec-2026-07-12 cut plan"
   },
   "coverage": {
     "complete": true,
@@ -35,15 +35,15 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-07T15:11:58.645523+00:00",
+  "generated_at": "2026-07-12T18:07:07.459849+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-06-uk-uksi-2026-148-article14",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "UUEs0dN26yItNM/ksFYqwKMp88U+zeAxd8KMD2+8Wd9ogWzyWooXAZpk8hKeJaeQocNnkyxRmlFxgxSBn1/lCg=="
-  },
-  "tool": "axiom-corpus-ingest signed ingest manifest",
-  "version": "2026-06-06-uk-uksi-2026-148-article14"
+    "value": "ZaquCzPp8Pbds3jTcbYNTND4npLGnnEsL6SNrrvzETfpgVr4Suel5enn8dVOV4GaR5mS8rOlULplgOXCAqW5Bg=="
+  }
 }

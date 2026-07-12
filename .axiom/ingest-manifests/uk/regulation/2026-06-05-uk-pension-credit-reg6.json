@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "de9b2eb9bcd03356cc8d5855216f2c83e7a085ab",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-issue-95-uk-legislation"
+    "commit": "6001c96524d53e5b98acb92724b9f2ab17756289",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-06-05-uk-pension-credit-reg6 --source clml --citation uksi/2002/1792/regulation/6 --source-as-of 2026-06-05 --expression-date 2026-04-06"
+    "text": "Attach RuleSpec UK migration provenance for immutable uk-rulespec-2026-07-12 cut plan"
   },
   "coverage": {
     "complete": true,
@@ -35,15 +35,15 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-07T15:11:55.704487+00:00",
+  "generated_at": "2026-07-12T18:07:07.440627+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-05-uk-pension-credit-reg6",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "u/G3SH6SeixgjROniyRXav3gQlh5x+RapR7/OIwX3oGCnbgpUeiSGsPe1MRVBUwpwa0r8XeDZLr4J8Q4pGZsAg=="
-  },
-  "tool": "axiom-corpus-ingest signed ingest manifest",
-  "version": "2026-06-05-uk-pension-credit-reg6"
+    "value": "O1o9n4TZOiJENN3zBqBT3Vemn0+j54aH4cRduwuiVCdEU598OhL7DtaOLVHXseaaYj8eETTImnpUk57bGIXMCA=="
+  }
 }
