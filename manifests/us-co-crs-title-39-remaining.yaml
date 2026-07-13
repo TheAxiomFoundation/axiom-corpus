@@ -1,0 +1,36 @@
+version: "2026-07-13"
+sources:
+  - source_id: us-co-crs-title-39-remaining-articles
+    jurisdiction: us-co
+    document_class: statute
+    adapter: colorado-revised-statutes
+    source_url: https://olls.info/crs/crs2025-title-39.htm
+    version: "2026-07-13-crs-2025-title-39-remaining"
+    options:
+      title: "39"
+      edition: "2025"
+      only_article: "1,1.5,2,3,3.5,3.7,3.9,4,4.1,5,6,7,8,9,10,11,11.5,12,13,14,20,21,23,23.5,24,25,26,26.1,27,28,28.5,28.6,28.7,28.8,29,30,30.5,31,32,33,34,35,36,37"
+      source_as_of: "2026-07-13"
+      expression_date: "2025-08-31"
+      download_dir: ../data/corpus/downloads/us-co-crs/2025-title-39
+      timeout_seconds: 120
+      request_attempts: 3
+    metadata:
+      primary_source: true
+      source_authority: Colorado Office of Legislative Legal Services
+      source_scope_note: >-
+        C.R.S. 2025 Title 39 (Taxation), all articles other than Article 22
+        (already published as 2026-07-12-crs-2025-title-39-article-22), from
+        the official OLLS uncertified-printout title download (olls.info),
+        current through the First Extraordinary Session of the 75th General
+        Assembly (August 2025). Completes full-title coverage: property tax
+        (arts. 1-14), procedure (21), estate (23.5), sales and use (26), fuel
+        (27), cigarette/tobacco/marijuana/nicotine (28-28.8), severance (29),
+        enterprise zones (30), PTC rebate (31), and remaining credit articles.
+        Fully repealed articles (3.9, 4.1, 23, 25, 26.1, 28.7, 34, 35) appear
+        in the source only as ranged headings ("39-25-101 to 39-25-120.
+        (Repealed)") and are carried as single empty repealed records under
+        the range-start section number. Sections publish under
+        us-co/statute/39/<section>.
+      source_discovery_group: us-co/statute/title-39
+      discovered_via: co_title39_full_ingest_lane_20260713

@@ -46,6 +46,10 @@ _SECTION_HEADING_RE = re.compile(
     re.S,
 )
 _ARTICLE_HEADING_RE = re.compile(r"^ARTICLE\s+(?P<article>\d+(?:\.\d+)?)$")
+_REPEALED_RANGE_HEADING_RE = re.compile(
+    r"^(?P<start>\d+(?:\.\d+)?-\d+(?:\.\d+)?-\d+(?:\.\d+)?)\s+to\s+"
+    r"(?P<end>\d+(?:\.\d+)?-\d+(?:\.\d+)?-\d+(?:\.\d+)?)\.\s*\(\s*Repealed\s*\)\s*$"
+)
 _PART_HEADING_RE = re.compile(r"^PART\s+(?P<part>\d+)$")
 _REPEALED_HEADING_RE = re.compile(r"\(\s*Repealed\s*\)", re.I)
 _SOURCE_PARAGRAPH_RE = re.compile(r"^Source:\s*(?P<history>.*)$", re.S)
@@ -77,6 +81,7 @@ class _ColoradoSection:
     source_notes: list[str] = field(default_factory=list)
     annotation_paragraphs: int = 0
     ordinal: int = 0
+    is_repealed_range: bool = False
 
     @property
     def repealed(self) -> bool:
@@ -154,8 +159,22 @@ def parse_colorado_crs_title(
     # (multi-paragraph editor's-note and cross-reference blocks are common).
     annex_bucket: str | None = None
     ordinal = 0
+    # Annex paragraphs printed after an article/part boundary but before a
+    # ranged repealed heading belong to that upcoming ranged record.
+    pending_prefix_history: list[str] = []
+    pending_prefix_notes: list[str] = []
+    pending_prefix_bucket: str | None = None
 
-    for paragraph in soup.find_all("p"):
+    paragraphs = soup.find_all("p")
+
+    def _next_nonempty_text(start_index: int) -> str:
+        for later in paragraphs[start_index + 1 :]:
+            later_text = _paragraph_text(later)
+            if later_text:
+                return later_text
+        return ""
+
+    for index, paragraph in enumerate(paragraphs):
         text = _paragraph_text(paragraph)
         if not text:
             continue
@@ -167,6 +186,9 @@ def parse_colorado_crs_title(
             in_annotation = False
             annex_bucket = None
             current = None
+            pending_prefix_history = []
+            pending_prefix_notes = []
+            pending_prefix_bucket = None
             continue
 
         part_match = _PART_HEADING_RE.match(text)
@@ -191,6 +213,33 @@ def parse_colorado_crs_title(
                 current.annotation_paragraphs += 1
             continue
 
+        range_match = _REPEALED_RANGE_HEADING_RE.match(text)
+        if range_match is not None:
+            # Fully repealed articles appear only as a ranged pseudo-section
+            # ("39-25-101 to 39-25-120. (Repealed)"). Record one empty repealed
+            # section under the range start so the article is represented and
+            # the following Source:/Editor's note annex has an owner.
+            range_start = range_match.group("start")
+            if range_start.split("-", 1)[0] == title:
+                in_annotation = False
+                annex_bucket = None
+                ordinal += 1
+                current = _ColoradoSection(
+                    section=range_start,
+                    heading=f"{range_start} to {range_match.group('end')}. (Repealed)",
+                    article=range_start.split("-")[1],
+                    part_heading=current_part_heading,
+                    ordinal=ordinal,
+                    is_repealed_range=True,
+                )
+                current.source_history.extend(pending_prefix_history)
+                current.source_notes.extend(pending_prefix_notes)
+                pending_prefix_history = []
+                pending_prefix_notes = []
+                pending_prefix_bucket = None
+                sections.append(current)
+                continue
+
         section_match = _SECTION_HEADING_RE.match(text)
         strong = paragraph.find("strong")
         strong_text = _paragraph_text(strong) if strong is not None else ""
@@ -206,6 +255,9 @@ def parse_colorado_crs_title(
             heading_and_body = section_match.group("heading")
             heading_text = strong_text[len(section_number) :].lstrip(". ").strip()
             body_remainder = heading_and_body[len(heading_text) :].strip()
+            pending_prefix_history = []
+            pending_prefix_notes = []
+            pending_prefix_bucket = None
             current = _ColoradoSection(
                 section=section_number,
                 heading=heading_text.rstrip("."),
@@ -221,6 +273,24 @@ def parse_colorado_crs_title(
         if current is None or in_annotation:
             if current is not None and in_annotation:
                 current.annotation_paragraphs += 1
+            elif current is None and not in_annotation:
+                # Source:/Editor's-note material after a boundary and before a
+                # ranged repealed heading — buffer it for that ranged record.
+                prefix_source = _SOURCE_PARAGRAPH_RE.match(text)
+                prefix_note = _NOTE_PARAGRAPH_RE.match(text)
+                if prefix_source is not None:
+                    history = prefix_source.group("history").strip()
+                    if history:
+                        pending_prefix_history.append(history)
+                    pending_prefix_bucket = "history"
+                elif prefix_note is not None:
+                    note = f"{prefix_note.group('label')}: {prefix_note.group('note').strip()}"
+                    pending_prefix_notes.append(note.strip().rstrip(":"))
+                    pending_prefix_bucket = "notes"
+                elif pending_prefix_bucket == "history":
+                    pending_prefix_history.append(_paragraph_body_text(paragraph))
+                elif pending_prefix_bucket == "notes":
+                    pending_prefix_notes.append(_paragraph_body_text(paragraph))
             continue
 
         source_match = _SOURCE_PARAGRAPH_RE.match(text)
@@ -238,6 +308,14 @@ def parse_colorado_crs_title(
             annex_bucket = "notes"
             continue
 
+        if annex_bucket in ("history", "notes") and _ARTICLE_HEADING_RE.match(
+            _next_nonempty_text(index)
+        ):
+            # TOC-style topical caption printed immediately before the next
+            # ARTICLE heading (e.g. "Gift Tax" above "ARTICLE 25") — it belongs
+            # to the upcoming article, not to the active section's annex.
+            continue
+
         if annex_bucket == "history":
             current.source_history.append(_paragraph_body_text(paragraph))
             continue
@@ -245,13 +323,21 @@ def parse_colorado_crs_title(
             current.source_notes.append(_paragraph_body_text(paragraph))
             continue
 
+        if current.is_repealed_range:
+            # Ranged repealed records carry no statutory text; stray captions
+            # or TOC lines before the next heading are not their body.
+            continue
+
         current.body_paragraphs.append(_paragraph_body_text(paragraph))
 
-    selected = tuple(
-        section
-        for section in sections
-        if only_article is None or section.article == str(only_article)
-    )
+    if only_article is None:
+        selected = tuple(sections)
+    else:
+        # Accept a single article ("22") or a comma-separated list
+        # ("1,1.5,26") so one manifest source can scope one bundle to many
+        # articles without one-bundle-per-article collection-root growth.
+        allowed = {part.strip() for part in str(only_article).split(",") if part.strip()}
+        selected = tuple(section for section in sections if section.article in allowed)
     return selected, document_heading
 
 
