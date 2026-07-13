@@ -35,6 +35,27 @@ _LEX_DEFAULT_LIMIT = 2000
 
 _PROVISION_URI_RE = re.compile(r"/(section|regulation|schedule)/([0-9A-Za-z]+)")
 
+# legislation.gov.uk CLML embeds editorial-annotation identifiers of the form
+# ``key-<32 hex>`` (an MD5-shaped digest), optionally suffixed with a volatile
+# ``-<epoch-ms>`` timestamp. They occur only inside XML tags -- as attribute
+# values such as ``ChangeId``, ``CommentaryRef``/``Ref``, ``EffectId`` and
+# Commentary ``id``, and as the final path segment of effect ``URI`` values in
+# ``ukm:UnappliedEffects`` blocks -- never in element text. Archiving them
+# verbatim is doubly harmful: the 32-hex shape is a false positive for GitHub's
+# Mailgun API-key push-protection detector (which blocks every commit that adds
+# such a file), and the epoch-ms suffix is regenerated on every fetch, so
+# byte-identical legislation re-fetched later produces a spuriously different
+# source capture.
+#
+# Sanitization is scoped to tag content (``_CLML_TAG_RE``) so that a matching
+# literal in legislative text, a title, or other substantive content is never
+# rewritten -- that would desync the archived capture from the provisions, which
+# derive from the pre-sanitization bytes. The ``{32,}`` quantifier (rather than
+# exactly ``{32}``) guarantees no ``key-<32 hex>`` substring can survive even for
+# a longer future digest.
+_CLML_TAG_RE = re.compile(r"<[^>]*>")
+_CLML_EDITORIAL_ANCHOR_RE = re.compile(r"key-([0-9a-f]{32,})(?:-[0-9]+)?")
+
 
 @dataclass(frozen=True)
 class _PreparedSource:
@@ -283,10 +304,14 @@ def _section_record(
 
 def _prepare_clml_source(source_name: str, source_bytes: bytes) -> _PreparedSource:
     normalized_source_bytes = _normalize_clml_source_bytes(source_bytes)
+    # Provisions, coverage and inventory citations are derived from the
+    # pre-sanitization bytes, so editorial-anchor sanitization cannot affect
+    # them; only the archived source capture (``raw_bytes``) is sanitized.
     section = parse_section(normalized_source_bytes.decode("utf-8"))
+    sanitized_source_bytes = _sanitize_clml_editorial_anchors(normalized_source_bytes)
     return _PreparedSource(
         section=section,
-        raw_bytes=normalized_source_bytes,
+        raw_bytes=sanitized_source_bytes,
         source_format=UK_SOURCE_FORMAT,
         relative_name=_source_relative_name(section),
         source_name=source_name,
@@ -300,6 +325,52 @@ def _normalize_clml_source_bytes(source_bytes: bytes) -> bytes:
     if text.endswith(("\n", "\r")):
         normalized_text += "\n"
     return normalized_text.encode("utf-8")
+
+
+def _sanitize_clml_editorial_anchors(source_bytes: bytes) -> bytes:
+    """Rewrite volatile CLML editorial-annotation anchors to deterministic,
+    document-local placeholders for the archived source capture.
+
+    Each distinct ``key-<hex>`` anchor found **inside a tag** is replaced with
+    ``key-a<N>``, where ``N`` counts distinct anchors in first-occurrence order
+    (the first distinct anchor becomes ``key-a1``, the second ``key-a2`` ...),
+    and the volatile ``-<epoch-ms>`` timestamp suffix is dropped. The mapping is
+    keyed on the hex digest, so identical source anchors always map to the same
+    placeholder and intra-document referential pairing is preserved: a
+    ``CommentaryRef``/``Ref`` and the ``Commentary`` ``id`` it targets stay
+    matched, an ``EffectId`` and its effect ``URI`` stay matched, and two
+    ``Substitution`` elements that share one commentary but carry different
+    ``ChangeId`` timestamps collapse onto the same placeholder.
+
+    Replacement is scoped to tag content, so an identical literal appearing in
+    element text (a body, a title) is left untouched -- the archived capture must
+    not diverge from the substantive text that provisions are derived from.
+
+    The transform is deterministic for a fixed input and idempotent: a
+    placeholder ``key-a<N>`` is far shorter than the 32-hex-minimum input
+    pattern, so a second pass matches nothing and returns the input unchanged.
+
+    Only the archived source capture is sanitized. Provision, coverage and
+    inventory-citation derivations are parsed from the pre-sanitization bytes in
+    :func:`_prepare_clml_source`, so they are unaffected; the accompanying tests
+    additionally prove provision bodies are byte-identical whether parsed from
+    sanitized or unsanitized XML, because bodies strip editorial markup.
+    """
+    placeholders: dict[str, str] = {}
+
+    def _placeholder(match: re.Match[str]) -> str:
+        digest = match.group(1)
+        placeholder = placeholders.get(digest)
+        if placeholder is None:
+            placeholder = f"key-a{len(placeholders) + 1}"
+            placeholders[digest] = placeholder
+        return placeholder
+
+    def _sanitize_tag(tag_match: re.Match[str]) -> str:
+        return _CLML_EDITORIAL_ANCHOR_RE.sub(_placeholder, tag_match.group(0))
+
+    text = source_bytes.decode("utf-8")
+    return _CLML_TAG_RE.sub(_sanitize_tag, text).encode("utf-8")
 
 
 def _fetch_lex_sources(
