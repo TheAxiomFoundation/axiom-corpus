@@ -1,0 +1,46 @@
+documents:
+  - source_id: us-co-hb24-1134-signed-act-2024
+    jurisdiction: us-co
+    document_class: statute
+    title: "HB 24-1134 (2024): Adjustments to Tax Expenditures to Reduce Burden — signed act"
+    source_url: https://leg.colorado.gov/sites/default/files/2024a_1134_signed.pdf
+    source_format: pdf
+    source_as_of: '2024-05-14'
+    citation_path: us-co/statute/session-laws/2024/hb24-1134
+    extraction:
+      segmentation: single_block
+    metadata:
+      source_authority: Colorado General Assembly, Second Regular Session, Seventy-fourth General Assembly
+      legal_authority_url: https://leg.colorado.gov/bills/hb24-1134
+      source_family: income-tax
+      source_note: >-
+        Companion source for C.R.S. 39-22-123.5(3.5)(a)(V) and 39-22-130(2)(b)(I):
+        the official CRS title 39 HTM export replaces the estimated-adjustment-factor
+        (CAGR) formula with a literal '[Insert 39-22-123.5(3.5)(a)(V) and
+        39-22-130(2)(b)(I).pdf here]' placeholder; the signed act carries the
+        enacted formula text. Known extraction limitation: the PDF renders the
+        CAGR equation as a typeset fraction with exponent; linear text
+        extraction flattens it. The surrounding definitions (BV, EV, n, CAGR as
+        estimated compound annual growth rate) are extracted faithfully and
+        determine the formula.
+  - source_id: us-co-hb24-1311-signed-act-2024
+    jurisdiction: us-co
+    document_class: statute
+    title: "HB 24-1311 (2024): Family Affordability Tax Credit — signed act"
+    source_url: https://leg.colorado.gov/sites/default/files/2024a_1311_signed.pdf
+    source_format: pdf
+    source_as_of: '2024-05-31'
+    citation_path: us-co/statute/session-laws/2024/hb24-1311
+    extraction:
+      segmentation: single_block
+    metadata:
+      source_authority: Colorado General Assembly, Second Regular Session, Seventy-fourth General Assembly
+      legal_authority_url: https://leg.colorado.gov/bills/hb24-1311
+      source_family: income-tax
+      source_note: >-
+        Creates C.R.S. 39-22-130 (family affordability tax credit) including the
+        39-22-130(2)(b)(I) estimated-adjustment-factor formula that the CRS HTM
+        export replaces with an insert placeholder. Same equation-layout
+        extraction limitation as HB 24-1134: the typeset CAGR fraction/exponent
+        flattens in linear text; the surrounding variable definitions extract
+        faithfully and determine the formula.
