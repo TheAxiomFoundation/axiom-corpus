@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/manual/2026-07-13-tx-twh-c120.json",
+      "sha256": "88f6ab4944413c96e3b5806cdd7314d16f21683ccd71160d21e4b3bca62e7b36"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/manual/2026-07-13-tx-twh-c120.json",
+      "sha256": "a8be8973b1d3589aa57c02af0f8e05652eaa8feb7d60225377d94f7a412c1301"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/manual/2026-07-13-tx-twh-c120.jsonl",
+      "sha256": "8ff9d0373da4d71fe1302b3658c5c72b44c5ca90448c5aa34c631db31d7c5d52"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-tx-twh-c120/official-documents/tx-twh-c-120-snap-deduction-amounts.html",
+      "sha256": "0d0fe81296cf7dc8a0d21e41f993ea9f6739aacde91da1ce39e2be80607b34d7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "55eeaddcf3b6988b46a786c267a6c7a252bfe8fa",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-13-tx-twh-c120 --manifest manifests/us-tx-twh-c120-snap-deduction-amounts.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-13T22:36:48.160755+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rO75e17R1aBF82EvZ81RMjuKv8BaI8QMKHdg79+z/xo4gECJs/pniN8TIhIwkvbV4s1qsHntOnHKQcISeYLYDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-tx-twh-c120"
+}
