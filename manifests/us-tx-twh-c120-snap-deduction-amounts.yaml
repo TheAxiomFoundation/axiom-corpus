@@ -1,0 +1,20 @@
+documents:
+  - source_id: tx-twh-c-120-snap-deduction-amounts
+    jurisdiction: us-tx
+    document_class: manual
+    citation_path: us-tx/manual/hhs/texas-works-handbook/c-120-supplemental-nutrition-assistance-program
+    title: Texas Works Handbook C-120 Supplemental Nutrition Assistance Program — C-121.1 Deduction Amounts (Revision 25-4, effective 10/01/2025)
+    source_url: https://www.hhs.texas.gov/handbooks/texas-works-handbook/c-120-supplemental-nutrition-assistance-program
+    download_url: https://web.archive.org/web/20251031191702id_/https://www.hhs.texas.gov/handbooks/texas-works-handbook/c-120-supplemental-nutrition-assistance-program
+    source_format: html
+    source_as_of: "2025-10-31"
+    expression_date: "2025-10-01"
+    metadata:
+      primary_source: true
+      source_authority: Texas Health and Human Services Commission
+      document_subtype: policy_manual_section
+      document_number: C-121.1
+      program: SNAP
+      topic: fy2026_standard_utility_allowance_amounts
+      discovered_via: snap_qc_oracle_state_expansion
+      archive_note: live handbook page returns 403 to browser user agents (WAF); Wayback capture of the official URL, first snapshot after the 10/01/2025 effective date, same convention as the us-az FAA6 ingest; companion policy sections A-1429.3.1/.3.2/.4 (already ingested 2026-05-27) point to C-121.1 for the amounts
