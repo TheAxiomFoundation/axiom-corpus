@@ -199,36 +199,37 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
         return None
 
     # Schedule-like provisions (numbered/unnumbered schedules, appendices,
-    # part-qualified or flat paragraphs, paragraph-less parts), e.g.
+    # part-qualified or flat paragraphs, paragraph-less parts, or the bare
+    # container) parsed as ONE coherent instrument+provision URI, e.g.
     #   .../uksi/2012/2885/schedule/2/part/1/paragraph/1
+    #   .../uksi/2012/2885/schedule/2/part/4       (paragraph-less part)
     #   .../uksi/2012/2886/schedule/paragraph/16   (unnumbered outer schedule)
     #   .../uksi/2012/2886/appendix/3/paragraph/1  (internal schedule as appendix)
-    instrument = re.search(r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)", uri)
-    schedule_like = _SCHEDULE_LIKE_URI_RE.search(uri)
-    if instrument is not None and schedule_like is not None and (
-        schedule_like.group(2)
-        or schedule_like.group(3)
-        or schedule_like.group(4)
-        or schedule_like.group(1) == "appendix"
-    ):
+    # A bare ``/schedule`` or ``/appendix`` (no number/part/paragraph) is accepted
+    # symmetrically as the whole container.
+    schedule_like = re.search(
+        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)/(schedule|appendix)"
+        r"(?:/(\d+[A-Za-z]*))?(?:/part/(\d+[A-Za-z]*))?(?:/paragraph/(\d+[A-Za-z]*))?",
+        uri,
+    )
+    if schedule_like is not None:
         return UKCitation(
-            type=instrument.group(1),
-            year=int(instrument.group(2)),
-            number=int(instrument.group(3)),
-            provision_kind=schedule_like.group(1),
-            section=schedule_like.group(2),
-            part=schedule_like.group(3),
-            paragraph=schedule_like.group(4),
+            type=schedule_like.group(1),
+            year=int(schedule_like.group(2)),
+            number=int(schedule_like.group(3)),
+            provision_kind=schedule_like.group(4),
+            section=schedule_like.group(5),
+            part=schedule_like.group(6),
+            paragraph=schedule_like.group(7),
             subsection=None,
         )
 
-    # Extract type/year/number/provision from URI
+    # Extract type/year/number/provision from URI for non-schedule provisions
     # e.g., http://www.legislation.gov.uk/ukpga/2003/1/section/62
     #       http://www.legislation.gov.uk/uksi/2013/376/regulation/36
     #       http://www.legislation.gov.uk/uksi/2026/148/article/14
-    #       http://www.legislation.gov.uk/uksi/2002/2005/schedule/2
     match = re.search(
-        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)(?:/(section|regulation|article|schedule)/(\d+[A-Za-z]*))?",
+        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)(?:/(section|regulation|article)/(\d+[A-Za-z]*))?",
         uri,
     )
     if match:
@@ -249,9 +250,14 @@ def _find_provision_root(root: ET.Element, ns: dict) -> ET.Element | None:
     """Find the provision element for section/regulation/article/schedule snippets."""
     target = _document_target_provision(root, ns)
     if target is not None:
-        for p1 in root.findall(".//leg:P1", ns):
-            if _element_matches_provision(p1, target):
-                return p1
+        # A paragraph target resolves to its <P1>; a paragraph-less part target
+        # resolves to its <Part> so the body is scoped to that part, not the whole
+        # schedule (matters when a source document carries multiple parts).
+        _kind, _number, part, paragraph = target
+        search_tag = "leg:P1" if paragraph is not None else "leg:Part"
+        for element in root.findall(f".//{search_tag}", ns):
+            if _element_matches_provision(element, target):
+                return element
 
     container = _find_schedule_like_container(root, ns)
     if container is not None and _document_targets_schedule_like(root, ns):
@@ -274,24 +280,27 @@ def _document_uri_candidates(root: ET.Element, ns: dict) -> list[str]:
 def _document_target_provision(
     root: ET.Element,
     ns: dict,
-) -> tuple[str, str | None, str | None, str] | None:
-    """Return ``(kind, number, part, paragraph)`` for a schedule-like paragraph the
-    document targets, covering numbered/unnumbered schedules, appendices, and
-    part-qualified paragraphs. ``number`` and ``part`` may be ``None``."""
+) -> tuple[str, str | None, str | None, str | None] | None:
+    """Return ``(kind, number, part, paragraph)`` for the schedule-like leaf the
+    document targets, covering numbered/unnumbered schedules, appendices,
+    part-qualified paragraphs, and paragraph-less parts. Only returned when a
+    ``part`` or ``paragraph`` is present (a bare container has no sub-element to
+    locate); ``number`` and ``part`` (and, for a paragraph-less part, ``paragraph``)
+    may be ``None``."""
     for value in _document_uri_candidates(root, ns):
         match = re.search(
             r"/(schedule|appendix)(?:/(\d+[A-Za-z]*))?(?:/part/(\d+[A-Za-z]*))?"
-            r"/paragraph/(\d+[A-Za-z]*)",
+            r"(?:/paragraph/(\d+[A-Za-z]*))?",
             value,
         )
-        if match:
+        if match and (match.group(3) or match.group(4)):
             return match.group(1), match.group(2), match.group(3), match.group(4)
     return None
 
 
 def _element_matches_provision(
     elem: ET.Element,
-    target: tuple[str, str | None, str | None, str],
+    target: tuple[str, str | None, str | None, str | None],
 ) -> bool:
     kind, number, part, paragraph = target
     pattern = f"/{kind}"
@@ -299,7 +308,9 @@ def _element_matches_provision(
         pattern += rf"/{re.escape(number)}"
     if part:
         pattern += rf"/part/{re.escape(part)}"
-    pattern += rf"/paragraph/{re.escape(paragraph)}(?:/|$)"
+    if paragraph:
+        pattern += rf"/paragraph/{re.escape(paragraph)}"
+    pattern += r"(?:/|$)"
     candidates = [elem.get("DocumentURI", ""), elem.get("IdURI", "")]
     return any(re.search(pattern, candidate) for candidate in candidates)
 
@@ -335,7 +346,11 @@ def _most_specific_provision_uri(root: ET.Element, ns: dict) -> str | None:
         match = _SCHEDULE_LIKE_URI_RE.search(value)
         if match is None:
             continue
-        score = 1 + sum(1 for group in match.groups()[1:] if group)
+        _kind, number, part, paragraph = match.groups()
+        # Rank by terminal depth so the exact leaf always wins a tie: a paragraph
+        # outranks a part, which outranks a bare container number. (A bare
+        # ``.../schedule/N`` and a ``.../schedule/paragraph/N`` must not tie.)
+        score = 1 + (2 if number else 0) + (4 if part else 0) + (8 if paragraph else 0)
         if score > best_score:
             best_score = score
             best = value
