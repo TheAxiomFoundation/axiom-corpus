@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-14-uk-ctr-end-sch3.json",
+      "sha256": "003692eaf3b1e52c40c4859cb820fa50d03e3f1fefc1903fa4f195c0ef0d77da"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-14-uk-ctr-end-sch3.json",
+      "sha256": "2b15aa75922762ea786e8f78a8a5b9a8d38f8dd9d540a357e8fd055f019fe8d7"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-end-sch3.jsonl",
+      "sha256": "576680cfc010d5f612a00183caf1c62ab503f4ded33ab01959fcf2bbce204756"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch3/uksi/2012/2886/appendix-3-paragraph-1.xml",
+      "sha256": "fcb66c3b3b72f7e92fcd8db31f8748e3824f26c5b6c535310a907251575c9bdd"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch3/uksi/2012/2886/appendix-3-paragraph-17.xml",
+      "sha256": "f8bdc946db96d82a4de66af3de2af5413e8a9a5a1d7aa0d78fe962015759f37c"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch3/uksi/2012/2886/appendix-3-paragraph-23.xml",
+      "sha256": "18dc53a84687d004d47c32231fad691bf547367fafbaa81ca0eca51b8c747067"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch3/uksi/2012/2886/appendix-3-paragraph-24.xml",
+      "sha256": "dc953b5a3814b02b5b1726e747198414a68d7a6a2a6b44446b3509da5258f300"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch3/uksi/2012/2886/appendix-3-paragraph-3.xml",
+      "sha256": "a1515cc6aed8d90d8eb8c9c38b446af4ac52c239bfa09ba36e8bd3fef07992f0"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch3/uksi/2012/2886/appendix-3-paragraph-4.xml",
+      "sha256": "c40b7fa9609d8309859df3c664eb384cc44af1dbc7a6a5e10b0296bfa1608470"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5e98c135cb3c5f5fd1dfcbf3e59cb6a4834cd505",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-14-uk-ctr-end-sch3 --citation uksi/2012/2886/appendix/3/paragraph/1 --citation uksi/2012/2886/appendix/3/paragraph/3 --citation uksi/2012/2886/appendix/3/paragraph/4 --citation uksi/2012/2886/appendix/3/paragraph/17 --citation uksi/2012/2886/appendix/3/paragraph/23 --citation uksi/2012/2886/appendix/3/paragraph/24"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T08:56:13.998284+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "MwayP1NLSalWy57h2aJwtw9fXur1p2G26nAJKehcBZYyBnLOuxKqkiD8kJLch7N6oVDIAD6rDM/Ugc7mj++1DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-14-uk-ctr-end-sch3"
+}
