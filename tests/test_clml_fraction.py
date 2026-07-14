@@ -82,6 +82,16 @@ def test_mixed_number_without_literal_slash():
     assert _rendered(inner) == "rate of 3 4/5 times"
 
 
+def test_fraction_with_nested_markup_in_numerator_and_denominator():
+    """Markup nested inside the numerator/denominator (e.g. an <Emphasis> wrapper)
+    must not be dropped -- the fraction still renders its digits."""
+    inner = (
+        "is 2<Superior><Emphasis>6</Emphasis></Superior>/"
+        "<Inferior><Emphasis>7</Emphasis></Inferior> per cent"
+    )
+    assert _rendered(inner) == "is 2 6/7 per cent"
+
+
 def test_fraction_slash_character_between_elements():
     """A U+2044 FRACTION SLASH between the elements is treated as a separator."""
     inner = "is 2<Superior>6</Superior>⁄<Inferior>7</Inferior> per cent"

@@ -46,16 +46,19 @@ NAMESPACES = {
 #   * <Superior> alone marks exponents (``m<Superior>2</Superior>`` for m^2) and
 #     footnote / reference markers. Those MUST NOT gain a separating space, or
 #     "m2" would become "m 2".
-#   * A vulgar fraction is the ONLY construct that pairs <Superior> with an
-#     immediately following <Inferior>.
+#   * legislation.gov.uk encodes a vulgar fraction as <Superior> (numerator)
+#     immediately followed by <Inferior> (denominator) -- the adjacency, not the
+#     tag in isolation, is the fraction signal.
 # So the fraction rendering fires only for a <Superior> whose next sibling is an
-# <Inferior> (an intervening bare solidus or U+2044 fraction slash is tolerated).
-# A lone <Superior> is emitted exactly as ``itertext`` would, leaving exponents
-# and footnote markers untouched. When the pair does fire, a single separating
-# space is inserted only when the numerator directly follows an alphanumeric (the
-# integer part of a mixed number), and the numerator and denominator are always
-# joined by one "/". For any element whose subtree contains no such pair, the
-# output is byte-identical to ``"".join(elem.itertext())``.
+# <Inferior> AND whose intervening tail is nothing but a bare solidus or U+2044
+# fraction slash; any other intervening text (a footnote <Superior> followed later
+# by an unrelated <Inferior>) is left alone. A lone <Superior> is emitted exactly
+# as ``itertext`` would, leaving exponents and footnote markers untouched. When
+# the pair does fire, a single separating space is inserted only when the numerator
+# directly follows an alphanumeric (the integer part of a mixed number), and the
+# numerator and denominator are always joined by one "/". For any element whose
+# subtree contains no such pair, the output is byte-identical to
+# ``"".join(elem.itertext())``.
 _SUPERIOR_TAG = f"{{{NAMESPACES['leg']}}}Superior"
 _INFERIOR_TAG = f"{{{NAMESPACES['leg']}}}Inferior"
 # Literal text tolerated between the <Superior> and <Inferior> of one fraction:
@@ -181,10 +184,15 @@ def _append_fraction(
     numerator: ET.Element, denominator: ET.Element, parts: list[str]
 ) -> None:
     """Render one Superior/Inferior pair as ``a/b``, space-separated from any
-    preceding integer so a mixed number keeps its value (``2 6/7``, not ``26/7``)."""
+    preceding integer so a mixed number keeps its value (``2 6/7``, not ``26/7``).
+
+    The numerator and denominator are read with the full text walker rather than
+    ``.text`` so nested markup inside them (e.g. an ``<Emphasis>`` wrapper) is not
+    silently dropped.
+    """
     if _last_emitted_char(parts).isalnum():
         parts.append(" ")
-    parts.append(f"{(numerator.text or '').strip()}/{(denominator.text or '').strip()}")
+    parts.append(f"{_get_text_content(numerator).strip()}/{_get_text_content(denominator).strip()}")
 
 
 def _last_emitted_char(parts: list[str]) -> str:
