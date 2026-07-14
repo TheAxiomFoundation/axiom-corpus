@@ -17,7 +17,7 @@ from xml.etree import ElementTree as ET
 
 import httpx
 
-from axiom_corpus.models_uk import UKAct, UKCitation, UKSection
+from axiom_corpus.models_uk import UK_SCHEDULE_LIKE_KINDS, UKAct, UKCitation, UKSection
 from axiom_corpus.parsers.clml import parse_act_metadata, parse_section
 
 logger = logging.getLogger(__name__)
@@ -71,6 +71,7 @@ class UKActReference:
             number=self.number,
             section=None,
             provision_kind=None,
+            part=None,
             paragraph=None,
             subsection=None,
         )
@@ -186,7 +187,15 @@ class UKLegislationFetcher:
             URL to fetch XML data
         """
         url = f"{self.base_url}/{citation.type}/{citation.year}/{citation.number}"
-        if citation.section:
+        if citation.provision_kind in UK_SCHEDULE_LIKE_KINDS:
+            # Emit the container segment even when unnumbered, then any part; the
+            # paragraph is appended below.
+            url += f"/{citation.provision_kind}"
+            if citation.section:
+                url += f"/{citation.section}"
+            if citation.part:
+                url += f"/part/{citation.part}"
+        elif citation.section:
             url += f"/{citation.provision_segment}/{citation.section}"
         if citation.paragraph:
             url += f"/paragraph/{citation.paragraph}"
@@ -356,6 +365,7 @@ class UKLegislationFetcher:
                     number=citation.number,
                     section=str(i),
                     provision_kind=citation.provision_kind,
+                    part=None,
                     paragraph=None,
                     subsection=None,
                 )

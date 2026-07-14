@@ -44,6 +44,14 @@ UK_REGULATION_TYPES = {
     "uksro",
 }
 
+# Provision kinds that hang paragraphs off an (optionally numbered) container and
+# may carry an intervening ``part`` segment. ``schedule`` is legislation.gov.uk's
+# usual container; some instruments (e.g. the England default council-tax-reduction
+# scheme, SI 2012/2886) publish their internal schedules as ``appendix`` instead.
+# Both address paragraphs as ``.../<kind>[/<number>][/part/<part>]/paragraph/<p>``,
+# and the outer container may be unnumbered (``.../schedule/paragraph/<p>``).
+UK_SCHEDULE_LIKE_KINDS = frozenset({"schedule", "appendix"})
+
 # Common short titles mapped to citations
 UK_ACT_SHORT_TITLES = {
     "ITEPA": ("ukpga", 2003, 1),  # Income Tax (Earnings and Pensions) Act
@@ -68,12 +76,14 @@ UK_CITATION_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-UK_SCHEDULE_PARAGRAPH_PATTERN = re.compile(
+UK_SCHEDULE_LIKE_PATTERN = re.compile(
     r"^([a-z]{2,5})"  # Type (uksi, ssi, etc.)
     r"/(\d{4})"  # Year
     r"/(\d+)"  # Number
-    r"/schedule/(\d+[A-Za-z]*)"  # Schedule number
-    r"/paragraph/(\d+[A-Za-z]*)"  # Paragraph number
+    r"/(schedule|appendix)"  # Schedule-like container kind
+    r"(?:/(\d+[A-Za-z]*))?"  # Optional container number (absent for an unnumbered schedule)
+    r"(?:/part/(\d+[A-Za-z]*))?"  # Optional part
+    r"(?:/paragraph/(\d+[A-Za-z]*))?"  # Optional paragraph
     r"(?:/([0-9A-Za-z]+(?:/[0-9A-Za-z]+)*))?$",  # Optional sub-paragraph path
     re.IGNORECASE,
 )
@@ -96,18 +106,30 @@ class UKCitation(BaseModel):
         - ukpga/2003/1/section/62 (Section 62 of ITEPA)
         - uksi/2024/832 (Statutory Instrument)
         - uksi/2013/376/schedule/4/paragraph/7
+        - uksi/2012/2885/schedule/2/part/1/paragraph/1 (part-qualified schedule paragraph)
+        - uksi/2012/2886/schedule/paragraph/16 (unnumbered outer schedule)
+        - uksi/2012/2886/appendix/3/paragraph/1 (internal schedule served as an appendix)
         - asp/2020/13 (Scottish Act)
     """
 
     type: str = Field(..., description="Legislation type (ukpga, uksi, asp, etc.)")
     year: int = Field(..., description="Year of enactment")
     number: int = Field(..., description="Act/SI number within the year")
-    section: str | None = Field(None, description="Section number")
+    section: str | None = Field(
+        None,
+        description=(
+            "Provision number: the section/regulation/article number, or the "
+            "schedule/appendix number. None for an unnumbered outer schedule."
+        ),
+    )
     provision_kind: str | None = Field(
         None,
         description="Legislation URL provision segment, such as section, regulation, or schedule",
     )
-    paragraph: str | None = Field(None, description="Schedule paragraph number")
+    part: str | None = Field(
+        None, description="Part number within a schedule or appendix (e.g., '1')"
+    )
+    paragraph: str | None = Field(None, description="Schedule/appendix paragraph number")
     subsection: str | None = Field(None, description="Subsection path (e.g., '1/a')")
 
     model_config = {"extra": "forbid"}
@@ -127,16 +149,17 @@ class UKCitation(BaseModel):
         """
         citation_str = citation_str.strip()
 
-        schedule_paragraph_match = UK_SCHEDULE_PARAGRAPH_PATTERN.match(citation_str)
-        if schedule_paragraph_match:
+        schedule_like_match = UK_SCHEDULE_LIKE_PATTERN.match(citation_str)
+        if schedule_like_match:
             return cls(
-                type=schedule_paragraph_match.group(1).lower(),
-                year=int(schedule_paragraph_match.group(2)),
-                number=int(schedule_paragraph_match.group(3)),
-                section=schedule_paragraph_match.group(4),
-                provision_kind="schedule",
-                paragraph=schedule_paragraph_match.group(5),
-                subsection=schedule_paragraph_match.group(6),
+                type=schedule_like_match.group(1).lower(),
+                year=int(schedule_like_match.group(2)),
+                number=int(schedule_like_match.group(3)),
+                provision_kind=schedule_like_match.group(4).lower(),
+                section=schedule_like_match.group(5),
+                part=schedule_like_match.group(6),
+                paragraph=schedule_like_match.group(7),
+                subsection=schedule_like_match.group(8),
             )
 
         # Try standard format first
@@ -202,7 +225,16 @@ class UKCitation(BaseModel):
             URL like "https://www.legislation.gov.uk/ukpga/2003/1/section/62"
         """
         url = f"https://www.legislation.gov.uk/{self.type}/{self.year}/{self.number}"
-        if self.section:
+        if self.provision_kind in UK_SCHEDULE_LIKE_KINDS:
+            # Always emit the container segment, even when the schedule is
+            # unnumbered (``.../schedule/paragraph/16``); the number, part, and
+            # paragraph segments are each optional.
+            url += f"/{self.provision_kind}"
+            if self.section:
+                url += f"/{self.section}"
+            if self.part:
+                url += f"/part/{self.part}"
+        elif self.section:
             url += f"/{self.provision_segment}/{self.section}"
         if self.paragraph:
             url += f"/paragraph/{self.paragraph}"
@@ -230,11 +262,16 @@ class UKCitation(BaseModel):
         else:
             cite = f"{self.type.upper()} {self.year}/{self.number}"  # pragma: no cover
 
-        if self.section:
+        if self.provision_kind in UK_SCHEDULE_LIKE_KINDS:
+            cite += " App." if self.provision_kind == "appendix" else " Sch."
+            if self.section:
+                cite += f" {self.section}"
+            if self.part:
+                cite += f" Pt. {self.part}"
+        elif self.section:
             marker = {
                 "article": "art.",
                 "regulation": "reg.",
-                "schedule": "Sch.",
             }.get(self.provision_segment, "s.")
             cite += f" {marker} {self.section}"
         if self.paragraph:
@@ -256,12 +293,16 @@ class UKCitation(BaseModel):
             Path like "uk/ukpga/2003/1/62/1/a"
         """
         parts = ["uk", self.type, str(self.year), str(self.number)]
-        if self.section:
-            if self.provision_segment == "schedule":
-                parts.extend(["schedule", self.section])
-                if self.paragraph:
-                    parts.extend(["paragraph", self.paragraph])
-            elif self.provision_segment == "article":
+        if self.provision_kind in UK_SCHEDULE_LIKE_KINDS:
+            parts.append(self.provision_kind)
+            if self.section:
+                parts.append(self.section)
+            if self.part:
+                parts.extend(["part", self.part])
+            if self.paragraph:
+                parts.extend(["paragraph", self.paragraph])
+        elif self.section:
+            if self.provision_segment == "article":
                 parts.extend([self.provision_segment, self.section])
             else:
                 parts.append(self.section)
