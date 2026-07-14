@@ -153,7 +153,7 @@ def _append_text_content(elem: ET.Element, parts: list[str]) -> None:
     while index < len(children):
         child = children[index]
         following = children[index + 1] if index + 1 < len(children) else None
-        if _is_fraction_pair(child, following):
+        if following is not None and _is_fraction_pair(child, following):
             _append_fraction(child, following, parts)
             if following.tail:
                 parts.append(following.tail)
@@ -165,16 +165,16 @@ def _append_text_content(elem: ET.Element, parts: list[str]) -> None:
         index += 1
 
 
-def _is_fraction_pair(numerator: ET.Element, denominator: ET.Element | None) -> bool:
+def _is_fraction_pair(numerator: ET.Element, denominator: ET.Element) -> bool:
     """True when the two elements are an adjacent Superior/Inferior fraction pair.
 
     Only a bare solidus or fraction slash may sit between them; any other tail
     (e.g. a footnote <Superior> followed later by an unrelated <Inferior>) is
-    rejected so the two are not joined into a spurious fraction.
+    rejected so the two are not joined into a spurious fraction. The caller has
+    already established ``denominator`` is present.
     """
     return (
-        denominator is not None
-        and numerator.tag == _SUPERIOR_TAG
+        numerator.tag == _SUPERIOR_TAG
         and denominator.tag == _INFERIOR_TAG
         and (numerator.tail is None or numerator.tail.strip() in _FRACTION_SEPARATORS)
     )
