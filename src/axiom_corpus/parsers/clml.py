@@ -45,6 +45,39 @@ NAMESPACES = {
     "xhtml": "http://www.w3.org/1999/xhtml",
 }
 
+# CLML writes a vulgar fraction as a <Superior> (numerator) element followed by
+# an <Inferior> (denominator) element, e.g. the mixed number "2 6/7 per cent" is
+# ``2<Superior>6</Superior>/<Inferior>7</Inferior> per cent``. Flattening that
+# subtree with ``ElementTree.itertext`` concatenates the integer part directly
+# onto the numerator ("2" + "6" + "/" + "7" -> "26/7"), silently turning the
+# mixed number 2 6/7 (2.857...) into the improper fraction 26/7 (3.714...). The
+# encoder grounds numeric literals against the provision body, so that corruption
+# can pass grounding as a wrong value -- a silent-wrong-value failure (issue #321).
+#
+# Audit of the other CLML uses of these tags dictates a deliberately narrow rule:
+#   * <Superior> alone marks exponents (``m<Superior>2</Superior>`` for m^2) and
+#     footnote / reference markers. Those MUST NOT gain a separating space, or
+#     "m2" would become "m 2".
+#   * legislation.gov.uk encodes a vulgar fraction as <Superior> (numerator)
+#     immediately followed by <Inferior> (denominator) -- the adjacency, not the
+#     tag in isolation, is the fraction signal.
+# So the fraction rendering fires only for a <Superior> whose next sibling is an
+# <Inferior> AND whose intervening tail is nothing but a bare solidus or U+2044
+# fraction slash; any other intervening text (a footnote <Superior> followed later
+# by an unrelated <Inferior>) is left alone. A lone <Superior> is emitted exactly
+# as ``itertext`` would, leaving exponents and footnote markers untouched. When
+# the pair does fire, a single separating space is inserted only when the numerator
+# directly follows an alphanumeric (the integer part of a mixed number), and the
+# numerator and denominator are always joined by one "/". For any element whose
+# subtree contains no such pair, the output is byte-identical to
+# ``"".join(elem.itertext())``.
+_SUPERIOR_TAG = f"{{{NAMESPACES['leg']}}}Superior"
+_INFERIOR_TAG = f"{{{NAMESPACES['leg']}}}Inferior"
+# Literal text tolerated between the <Superior> and <Inferior> of one fraction:
+# nothing, an ASCII solidus, or U+2044 FRACTION SLASH. Any other tail means the
+# two elements are unrelated (e.g. a footnote <Superior> and a later <Inferior>).
+_FRACTION_SEPARATORS = frozenset({"", "/", "⁄"})
+
 
 def extract_text(xml_str: str) -> str:
     """Extract plain text from XML string, removing tags.
@@ -104,8 +137,82 @@ def extract_citations(xml_str: str) -> list[str]:
 
 
 def _get_text_content(elem: ET.Element) -> str:
-    """Get all text content from an element, including nested elements."""
-    return "".join(elem.itertext())
+    """Get all text content from an element, including nested elements.
+
+    Equivalent to ``"".join(elem.itertext())`` except that a CLML
+    <Superior>/<Inferior> vulgar-fraction pair is rendered as a spaced mixed
+    number (``2 6/7``) instead of being flattened into an improper fraction
+    (``26/7``). See the module-level note and issue #321. Elements whose subtree
+    holds no such pair render byte-identically to ``itertext``.
+    """
+    parts: list[str] = []
+    _append_text_content(elem, parts)
+    return "".join(parts)
+
+
+def _append_text_content(elem: ET.Element, parts: list[str]) -> None:
+    """Depth-first ``itertext`` walk that renders Superior/Inferior fractions.
+
+    Mirrors ``ElementTree.itertext``: emit ``elem.text``, then for each child
+    emit its rendered text followed by the child's ``tail``. (``parse_section``
+    always builds the tree with ``ET.fromstring``, which discards comment and
+    processing-instruction nodes, so only string-tagged elements are reached.)
+    """
+    if elem.text:
+        parts.append(elem.text)
+    children = list(elem)
+    index = 0
+    while index < len(children):
+        child = children[index]
+        following = children[index + 1] if index + 1 < len(children) else None
+        if following is not None and _is_fraction_pair(child, following):
+            _append_fraction(child, following, parts)
+            if following.tail:
+                parts.append(following.tail)
+            index += 2
+            continue
+        _append_text_content(child, parts)
+        if child.tail:
+            parts.append(child.tail)
+        index += 1
+
+
+def _is_fraction_pair(numerator: ET.Element, denominator: ET.Element) -> bool:
+    """True when the two elements are an adjacent Superior/Inferior fraction pair.
+
+    Only a bare solidus or fraction slash may sit between them; any other tail
+    (e.g. a footnote <Superior> followed later by an unrelated <Inferior>) is
+    rejected so the two are not joined into a spurious fraction. The caller has
+    already established ``denominator`` is present.
+    """
+    return (
+        numerator.tag == _SUPERIOR_TAG
+        and denominator.tag == _INFERIOR_TAG
+        and (numerator.tail is None or numerator.tail.strip() in _FRACTION_SEPARATORS)
+    )
+
+
+def _append_fraction(
+    numerator: ET.Element, denominator: ET.Element, parts: list[str]
+) -> None:
+    """Render one Superior/Inferior pair as ``a/b``, space-separated from any
+    preceding integer so a mixed number keeps its value (``2 6/7``, not ``26/7``).
+
+    The numerator and denominator are read with the full text walker rather than
+    ``.text`` so nested markup inside them (e.g. an ``<Emphasis>`` wrapper) is not
+    silently dropped.
+    """
+    if _last_emitted_char(parts).isalnum():
+        parts.append(" ")
+    parts.append(f"{_get_text_content(numerator).strip()}/{_get_text_content(denominator).strip()}")
+
+
+def _last_emitted_char(parts: list[str]) -> str:
+    """Return the last non-empty character emitted so far, or ``""``."""
+    for chunk in reversed(parts):
+        if chunk:
+            return chunk[-1]
+    return ""
 
 
 def _clean_text(text: str) -> str:
