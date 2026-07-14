@@ -42,6 +42,17 @@ _FIXTURE_HTML = """<HTML>
 <P><SPAN STYLE="font-family: Public Sans"><STRONG>ANNOTATION</STRONG></SPAN></P>
 <P><SPAN STYLE="font-family: Public Sans">Law reviews. For article, see 15 Colo. Law. 1.</SPAN></P>
 <P><SPAN STYLE="font-family: Public Sans">Annotator's case summary that must not enter the body.</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">Gift Tax</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans"><STRONG>ARTICLE 25</STRONG></SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">Gift Tax</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">Editor's note: This article was approved by voters.</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">The vote count was 100 FOR and 50 AGAINST.</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">39-25-101 to 39-25-120. (Repealed)</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">Source: L. 2003: Entire article repealed, p. 2003, \u00a7 69, effective May 22.</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">CHIPS Zone Act</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans"><STRONG>ARTICLE 36</STRONG></SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">CHIPS Zone Act</SPAN></P>
+<P><SPAN STYLE="font-family: Public Sans">\t<STRONG>39-36-101.  Definitions. </STRONG>As used in this article 36, "zone" means a designated area.</SPAN></P>
 </BODY>
 </HTML>
 """
@@ -87,6 +98,52 @@ def test_parse_colorado_crs_title_sections_and_scoping() -> None:
     assert any("For the short title" in note for note in imposed.source_notes)
     assert any("federal conformity" in note for note in imposed.source_notes)
     assert any("session law" in note for note in imposed.source_notes)
+
+
+def test_parse_colorado_crs_title_captures_repealed_range_articles() -> None:
+    sections, _ = parse_colorado_crs_title(_fixture_bytes(), title="39", only_article="25")
+    assert len(sections) == 1
+    record = sections[0]
+    assert record.section == "39-25-101"
+    assert record.heading == "39-25-101 to 39-25-120. (Repealed)"
+    assert record.article == "25"
+    assert record.body_paragraphs == []
+    assert record.is_repealed_range
+    assert any("Entire article repealed" in h for h in record.source_history)
+    # Pre-range editor's note (printed before the ranged heading) belongs to
+    # the ranged record, including its unlabeled continuation paragraph.
+    assert any("approved by voters" in n for n in record.source_notes)
+    assert any("100 FOR and 50 AGAINST" in n for n in record.source_notes)
+    # The next article's caption never becomes the ranged record's body.
+    assert not any("CHIPS" in b for b in record.body_paragraphs)
+
+
+def test_parse_colorado_crs_title_section_after_repealed_range_article() -> None:
+    sections, _ = parse_colorado_crs_title(_fixture_bytes(), title="39", only_article="36")
+    assert [s.section for s in sections] == ["39-36-101"]
+    assert sections[0].body.startswith('As used in this article 36')
+
+
+def test_parse_colorado_crs_title_keeps_pre_article_caption_out_of_annex() -> None:
+    sections, _ = parse_colorado_crs_title(_fixture_bytes(), title="39")
+    by_number = {section.section: section for section in sections}
+    last_before_caption = by_number[max(
+        s for s in by_number if not s.startswith("39-25")
+    )]
+    assert not any("Gift Tax" in h for h in last_before_caption.source_history)
+    assert not any("Gift Tax" in n for n in last_before_caption.source_notes)
+
+
+def test_parse_colorado_crs_title_scopes_to_comma_separated_articles() -> None:
+    single, _ = parse_colorado_crs_title(_fixture_bytes(), title="39", only_article="21")
+    assert {section.article for section in single} == {"21"}
+
+    combined, _ = parse_colorado_crs_title(
+        _fixture_bytes(), title="39", only_article=" 21, ,22,, "
+    )
+    articles = {section.article for section in combined}
+    assert articles == {"21", "22"}
+    assert len(combined) > len(single)
 
 
 def test_parse_colorado_crs_title_unscoped_includes_other_articles() -> None:
