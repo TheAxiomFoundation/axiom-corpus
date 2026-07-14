@@ -207,6 +207,13 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
     #   .../uksi/2012/2886/appendix/3/paragraph/1  (internal schedule as appendix)
     # A bare ``/schedule`` or ``/appendix`` (no number/part/paragraph) is accepted
     # symmetrically as the whole container.
+    #
+    # The match is intentionally a prefix, not anchored to end-of-string: legislation.gov.uk
+    # appends point-in-time / version segments to provision URIs (e.g.
+    # ``.../schedule/2/part/4/2026-04-06``), and those trailing segments identify a
+    # version, not a deeper provision, so they are ignored for citation identity.
+    # Anchoring the pattern would drop every version-dated capture. This mirrors the
+    # non-schedule branch below and the long-standing behaviour of this parser.
     schedule_like = re.search(
         r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)/(schedule|appendix)"
         r"(?:/(\d+[A-Za-z]*))?(?:/part/(\d+[A-Za-z]*))?(?:/paragraph/(\d+[A-Za-z]*))?",

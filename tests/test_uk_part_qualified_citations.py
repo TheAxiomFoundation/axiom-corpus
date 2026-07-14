@@ -501,6 +501,37 @@ class TestScopingAndParsingRobustness:
         assert UKCitation.from_string(stripped) == first
 
     @pytest.mark.parametrize(
+        "uri,expected",
+        [
+            (
+                "http://www.legislation.gov.uk/uksi/2012/2885/schedule/2/part/1/paragraph/1/2026-04-06",
+                ("schedule", "2", "1", "1"),
+            ),
+            (
+                "http://www.legislation.gov.uk/uksi/2012/2885/schedule/2/part/4/2026-04-06",
+                ("schedule", "2", "4", None),
+            ),
+            (
+                "http://www.legislation.gov.uk/uksi/2012/2886/schedule/paragraph/16/2026-04-06",
+                ("schedule", None, None, "16"),
+            ),
+            (
+                "http://www.legislation.gov.uk/uksi/2012/2886/appendix/3/paragraph/1/2026-04-06",
+                ("appendix", "3", None, "1"),
+            ),
+        ],
+    )
+    def test_point_in_time_version_suffix_is_tolerated(self, uri, expected):
+        """A trailing legislation.gov.uk version-date segment identifies a version,
+        not a deeper provision, and must be ignored -- prefix matching is required
+        (anchoring the pattern would drop every point-in-time capture)."""
+        from axiom_corpus.parsers.clml import _parse_citation_from_uri
+
+        c = _parse_citation_from_uri(uri)
+        assert c is not None
+        assert (c.provision_kind, c.section, c.part, c.paragraph) == expected
+
+    @pytest.mark.parametrize(
         "raw,kind",
         [
             ("uksi/2006/965/regulation/2", "regulation"),
