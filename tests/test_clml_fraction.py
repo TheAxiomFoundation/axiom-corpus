@@ -127,16 +127,20 @@ def test_matches_itertext_when_no_fraction_present():
         assert _rendered(inner) == _itertext(inner), inner
 
 
-def test_comment_node_parity_with_itertext():
-    """``parse_section`` builds trees with ``ET.fromstring``, which discards
-    comments, so this node type never reaches production; the walker nonetheless
-    stays byte-for-byte identical to ``itertext`` for it."""
-    element = ET.Element(f"{{{_LEG}}}Text")
-    element.text = "before"
-    comment = ET.Comment("editorial note")
-    comment.tail = "after"
-    element.append(comment)
-    assert _get_text_content(element) == "".join(element.itertext())
+def test_comment_in_source_is_stripped_not_leaked_into_body():
+    """Comment nodes never reach ``_get_text_content`` in production: ``parse_section``
+    builds the tree with ``ET.fromstring``, which discards comments, so an editorial
+    comment in the source cannot leak into a body, and a fraction spanning the
+    comment still renders correctly. (``itertext``'s handling of manually built
+    comment nodes is implementation-specific, so this exercises the real parse path
+    instead of asserting parity with it.)"""
+    element = _text_element(
+        "2<Superior>6</Superior>/<Inferior>7</Inferior><!--editorial note--> per cent"
+    )
+    assert all(isinstance(node.tag, str) for node in element.iter())  # comment dropped
+    rendered = _get_text_content(element)
+    assert "editorial note" not in rendered
+    assert rendered == "2 6/7 per cent"
 
 
 def test_rendering_is_idempotent():
