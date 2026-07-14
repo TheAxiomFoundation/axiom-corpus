@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-enp-sch6-capital.json",
+      "sha256": "81e7335081033dcee9c3b7e94cf87d4f5084570f42381bad1269daf329b54967"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-enp-sch6-capital.json",
+      "sha256": "60fee0840c2e097d27367bd1557c77990f0a34e212cebc2a397a050fdcf7139d"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-enp-sch6-capital.jsonl",
+      "sha256": "24c4b200cbfe8f229c568b3f9552bbb3b4fd6ab170271b94f7fca1c682f360af"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch6-capital/uksi/2012/2885/schedule-6-paragraph-1.xml",
+      "sha256": "a6c89310e057cf2b873725e0a1e0f8948ac10e242bb0b20b55a2ce9da2303e96"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch6-capital/uksi/2012/2885/schedule-6-paragraph-11.xml",
+      "sha256": "fa32772710ae1e7c9a9048ce82c0f07226df224f47d69228e084a2abd8f05c75"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch6-capital/uksi/2012/2885/schedule-6-paragraph-26.xml",
+      "sha256": "b99be3ee5efd8b19ab06c96190beaa8843ebcabffded254de59d7c62f59b810d"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch6-capital/uksi/2012/2885/schedule-6-paragraph-8.xml",
+      "sha256": "0caf1b708a035ef7a44b8d67faaf7607369fd78e418d36839565706e6998af9c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-enp-sch6-capital --citation uksi/2012/2885/schedule/6/paragraph/1 --citation uksi/2012/2885/schedule/6/paragraph/8 --citation uksi/2012/2885/schedule/6/paragraph/11 --citation uksi/2012/2885/schedule/6/paragraph/26"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T01:38:47.559735+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n7Z/bJE7MR8PGWN8tpSKNdIHkhqjOk2c1lUAZ6VtmfToXmf7F9SlksG8JfDVgCo7/rTdaEMMGoNTI3Gw9K2kCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-enp-sch6-capital"
+}
