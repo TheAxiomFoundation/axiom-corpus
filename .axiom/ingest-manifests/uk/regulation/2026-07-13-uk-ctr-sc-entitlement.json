@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-sc-entitlement.json",
+      "sha256": "f9b317bb74ad81f6689e5d19128b2b7e465bb66333f41cfae21fef7aa21d5f64"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-sc-entitlement.json",
+      "sha256": "9c2cc3b44ef460e72a9d24ba180797f944f95e1539e853a2be2653cd6a48e752"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-sc-entitlement.jsonl",
+      "sha256": "a09723e8ab01b1121828b200c6b92a7c9ce9deb8530a2edcf591469063946889"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-entitlement/ssi/2021/249/regulation-13.xml",
+      "sha256": "58ec5296b065bc99bade58ffa83d3b638af1e70651596c023a9f9967ba61fec1"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-entitlement/ssi/2021/249/regulation-14.xml",
+      "sha256": "cd52c36c3cbf7cef5a768ff584ca495bf0649fc0407260a1370fd6c37a8b244b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-sc-entitlement --citation ssi/2021/249/regulation/13 --citation ssi/2021/249/regulation/14"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T01:38:48.531240+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lb3/0ermgvG9IiQMsXkz//M0IOsTjtr53lvhjbWgTa+Q7iL6bU14xhNSjbklj3UMoXpYTqNWGHvs/5vJUaRyCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-sc-entitlement"
+}
