@@ -1,5 +1,5 @@
 {
-  "plan_revision": 2,
+  "plan_revision": 3,
   "documents": [
     {
       "confidence": "high",
@@ -160,18 +160,18 @@
       "covers_citation_paths": [],
       "document_class": "manual",
       "document_id": "release-scope-us-az-manual-2025-10-30-az-des-faa5-manual",
-      "fetch_method": "manual-recovery",
+      "fetch_method": "http-get",
       "jurisdiction": "us-az",
-      "notes": "The root index is blocked. Recover the enumerated official child pages from manifests/us-az-des-faa5-manual.yaml; historical download_url values are evidence only and are not canonical official URLs.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces manual-recovery.",
       "official_url": "https://dbmefaapolicy.azdes.gov/FAA5/Work_Registration_(WORW).html",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
       "fetch_hints": {
         "method": "GET",
-        "accept": "text/html",
+        "accept": "text/html,application/xhtml+xml",
         "headers": {
-          "Referer": "https://dbmefaapolicy.azdes.gov/FAA5.html",
-          "User-Agent": "Mozilla/5.0"
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://dbmefaapolicy.azdes.gov/FAA5/Work_Registration_(WORW).html"
         }
       }
     },
@@ -228,9 +228,9 @@
       "covers_citation_paths": [],
       "document_class": "form",
       "document_id": "release-scope-us-form-2026-05-12-cms-medicaid-chip-bhp-eligibility-levels",
-      "fetch_method": "manual-recovery",
+      "fetch_method": "http-get",
       "jurisdiction": "us",
-      "notes": "Repository evidence identifies an HTML eligibility table, not a PDF. Preserve the rendered table or locate its official medicaid.gov media attachment/API response; reject the generic 200 shell.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces manual-recovery.",
       "official_url": "https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels",
       "parser": "documents:html",
       "proposed_version": "2026-07-13-recovery",
@@ -238,7 +238,8 @@
         "method": "GET",
         "accept": "text/html,application/xhtml+xml",
         "headers": {
-          "User-Agent": "Mozilla/5.0"
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.medicaid.gov/medicaid/national-medicaid-chip-program-information/medicaid-childrens-health-insurance-program-basic-health-program-eligibility-levels"
         }
       }
     },
@@ -259,17 +260,18 @@
       "covers_citation_paths": [],
       "document_class": "guidance",
       "document_id": "release-scope-us-guidance-2026-05-01-snap-fy2026-cola",
-      "fetch_method": "manual-recovery",
+      "fetch_method": "http-get",
       "jurisdiction": "us",
-      "notes": "Official route is corroborated by manifests/us-snap-guidance.yaml, but direct transport returned 000. Recover the official linked PDF/media asset through a browser-capable fetch.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces manual-recovery.",
       "official_url": "https://www.fns.usda.gov/snap/allotment/cola/fy26",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
       "fetch_hints": {
         "method": "GET",
-        "accept": "text/html,application/pdf",
+        "accept": "text/html,application/xhtml+xml",
         "headers": {
-          "User-Agent": "Mozilla/5.0"
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.fns.usda.gov/snap/allotment/cola/fy26"
         }
       }
     },
@@ -290,17 +292,18 @@
       "covers_citation_paths": [],
       "document_class": "guidance",
       "document_id": "release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards",
-      "fetch_method": "manual-recovery",
+      "fetch_method": "http-get",
       "jurisdiction": "us",
-      "notes": "Same official FY26 COLA package; recover the linked eligibility-standards artifact through a browser-capable fetch.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces manual-recovery.",
       "official_url": "https://www.fns.usda.gov/snap/allotment/cola/fy26",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
       "fetch_hints": {
         "method": "GET",
-        "accept": "text/html,application/pdf",
+        "accept": "text/html,application/xhtml+xml",
         "headers": {
-          "User-Agent": "Mozilla/5.0"
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.fns.usda.gov/snap/allotment/cola/fy26"
         }
       }
     },
@@ -309,18 +312,18 @@
       "covers_citation_paths": [],
       "document_class": "guidance",
       "document_id": "release-scope-us-guidance-2026-05-17-ssa-automatic-determinations-2026",
-      "fetch_method": "manual-recovery",
+      "fetch_method": "http-get",
       "jurisdiction": "us",
-      "notes": "Official SSA page is corroborated by source metadata but blocks automated transport; browser/manual capture required.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces manual-recovery.",
       "official_url": "https://www.ssa.gov/oact/cola/autoAdj.html",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
       "fetch_hints": {
         "method": "GET",
-        "accept": "text/html",
+        "accept": "text/html,application/xhtml+xml",
         "headers": {
           "User-Agent": "Mozilla/5.0",
-          "Referer": "https://www.ssa.gov/oact/cola/"
+          "Referer": "https://www.ssa.gov/oact/cola/autoAdj.html"
         }
       }
     },
@@ -329,18 +332,18 @@
       "covers_citation_paths": [],
       "document_class": "guidance",
       "document_id": "release-scope-us-guidance-2026-05-26-ssa-contribution-and-benefit-base-2024",
-      "fetch_method": "manual-recovery",
+      "fetch_method": "http-get",
       "jurisdiction": "us",
-      "notes": "Official SSA historical table blocks automated transport; browser/manual capture required.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces manual-recovery.",
       "official_url": "https://www.ssa.gov/oact/cola/cbb.html",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
       "fetch_hints": {
         "method": "GET",
-        "accept": "text/html",
+        "accept": "text/html,application/xhtml+xml",
         "headers": {
           "User-Agent": "Mozilla/5.0",
-          "Referer": "https://www.ssa.gov/oact/cola/"
+          "Referer": "https://www.ssa.gov/oact/cola/cbb.html"
         }
       }
     },
@@ -349,17 +352,18 @@
       "covers_citation_paths": [],
       "document_class": "guidance",
       "document_id": "release-scope-us-guidance-2026-07-08-snap-fy2024-cola",
-      "fetch_method": "manual-recovery",
+      "fetch_method": "http-get",
       "jurisdiction": "us",
-      "notes": "Official route is corroborated by manifests/us-snap-guidance.yaml; transport failure requires browser/manual recovery of its linked official artifact.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces manual-recovery.",
       "official_url": "https://www.fns.usda.gov/snap/fy-2024-cola",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
       "fetch_hints": {
         "method": "GET",
-        "accept": "text/html,application/pdf",
+        "accept": "text/html,application/xhtml+xml",
         "headers": {
-          "User-Agent": "Mozilla/5.0"
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.fns.usda.gov/snap/fy-2024-cola"
         }
       }
     },
@@ -430,7 +434,7 @@
       "document_id": "release-scope-us-ma-regulation-2026-05-28",
       "fetch_method": "manual-recovery",
       "jurisdiction": "us-ma",
-      "notes": "Use the official DTA regulation list retained in the state queue and manually resolve the relevant 106 CMR direct PDFs; the prior umbrella page returned 403.",
+      "notes": "Use the official DTA regulation list retained in the state queue and manually resolve the relevant 106 CMR direct PDFs; the prior umbrella page returned 403. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://www.mass.gov/lists/department-of-transitional-assistance-regulations",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
@@ -485,7 +489,7 @@
       "document_id": "release-scope-us-nc-regulation-2026-05-29",
       "fetch_method": "manual-recovery",
       "jurisdiction": "us-nc",
-      "notes": "NC OAH is a form-driven code service. Submit its chapter-selection form and retain the returned official chapter document; no static direct URL is evidenced in-repo.",
+      "notes": "NC OAH is a form-driven code service. Submit its chapter-selection form and retain the returned official chapter document; no static direct URL is evidenced in-repo. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://reports.oah.state.nc.us/ncac.asp",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
@@ -540,9 +544,9 @@
       "covers_citation_paths": [],
       "document_class": "policy",
       "document_id": "release-scope-us-ny-policy-2026-06-05-ny-tanf",
-      "fetch_method": "manual-recovery",
+      "fetch_method": "pdf",
       "jurisdiction": "us-ny",
-      "notes": "Exact official PDF is corroborated by manifests/us-ny-tanf-state-plan.yaml; transport 000 requires browser/manual recovery.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces manual-recovery.",
       "official_url": "https://otda.ny.gov/policy/tanf/TANF-State-Plan-2024-2026.pdf",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
@@ -550,7 +554,8 @@
         "method": "GET",
         "accept": "application/pdf",
         "headers": {
-          "User-Agent": "Mozilla/5.0"
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://otda.ny.gov/policy/tanf/TANF-State-Plan-2024-2026.pdf"
         }
       }
     },
@@ -561,7 +566,7 @@
       "document_id": "release-scope-us-ny-regulation-2025-10-01-otda-snap-sua",
       "fetch_method": "manual-recovery",
       "jurisdiction": "us-ny",
-      "notes": "The URL returns an unrelated State Register issue for this scope. Manually recover the specific OTDA SNAP SUA rule notice from the official DOS issue/index and verify title before acceptance.",
+      "notes": "The URL returns an unrelated State Register issue for this scope. Manually recover the specific OTDA SNAP SUA rule notice from the official DOS issue/index and verify title before acceptance. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://dos.ny.gov/system/files/documents/2026/01/011426.pdf",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
@@ -580,7 +585,7 @@
       "document_id": "release-scope-us-ny-regulation-2026-05-09-ny-snap-eligibility",
       "fetch_method": "manual-recovery",
       "jurisdiction": "us-ny",
-      "notes": "The truncated/obsolete route returned 404. Official compilation access is interactive; manually resolve the applicable OTDA title/part and capture the official text.",
+      "notes": "The truncated/obsolete route returned 404. Official compilation access is interactive; manually resolve the applicable OTDA title/part and capture the official text. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://dos.ny.gov/official-compilation-codes-rules-and-regulations-state-new-york",
       "parser": "documents:auto",
       "proposed_version": "2026-07-13-recovery",
@@ -743,12 +748,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-al-code-40-18-15",
-      "fetch_method": "scraper:alabama-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-al",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://alison.legislature.state.al.us/code-of-alabama",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:alabama-statutes.",
+      "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=40-18-15",
       "parser": "state-statutes:alabama",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://alison.legislature.state.al.us/code-of-alabama"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -757,12 +770,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-al-code-40-18-19",
-      "fetch_method": "scraper:alabama-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-al",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://alison.legislature.state.al.us/code-of-alabama",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:alabama-statutes.",
+      "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=40-18-19",
       "parser": "state-statutes:alabama",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://alison.legislature.state.al.us/code-of-alabama"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -771,12 +792,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-al-code-40-18-5",
-      "fetch_method": "scraper:alabama-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-al",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://alison.legislature.state.al.us/code-of-alabama",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:alabama-statutes.",
+      "official_url": "https://alison.legislature.state.al.us/code-of-alabama?section=40-18-5",
       "parser": "state-statutes:alabama",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://alison.legislature.state.al.us/code-of-alabama"
+        }
+      }
     },
     {
       "confidence": "low",
@@ -806,12 +835,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-az-code-43-1011",
-      "fetch_method": "scraper:arizona-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-az",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.azleg.gov/arstitle/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:arizona-statutes.",
+      "official_url": "https://www.azleg.gov/ars/43/01011.htm",
       "parser": "state-statutes:arizona",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.azleg.gov/arstitle/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -820,12 +857,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-az-code-43-1023",
-      "fetch_method": "scraper:arizona-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-az",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.azleg.gov/arstitle/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:arizona-statutes.",
+      "official_url": "https://www.azleg.gov/ars/43/01023.htm",
       "parser": "state-statutes:arizona",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.azleg.gov/arstitle/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -834,12 +879,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-az-code-43-1041",
-      "fetch_method": "scraper:arizona-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-az",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.azleg.gov/arstitle/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:arizona-statutes.",
+      "official_url": "https://www.azleg.gov/ars/43/01041.htm",
       "parser": "state-statutes:arizona",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.azleg.gov/arstitle/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -848,12 +901,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-az-code-43-1072",
-      "fetch_method": "scraper:arizona-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-az",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.azleg.gov/arstitle/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:arizona-statutes.",
+      "official_url": "https://www.azleg.gov/ars/43/01072.htm",
       "parser": "state-statutes:arizona",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.azleg.gov/arstitle/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -862,12 +923,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-az-code-43-1072.01",
-      "fetch_method": "scraper:arizona-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-az",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.azleg.gov/arstitle/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:arizona-statutes.",
+      "official_url": "https://www.azleg.gov/ars/43/01072-01.htm",
       "parser": "state-statutes:arizona",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.azleg.gov/arstitle/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -876,12 +945,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-az-code-43-1073",
-      "fetch_method": "scraper:arizona-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-az",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.azleg.gov/arstitle/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:arizona-statutes.",
+      "official_url": "https://www.azleg.gov/ars/43/01073.htm",
       "parser": "state-statutes:arizona",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.azleg.gov/arstitle/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -890,12 +967,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-az-code-43-1073.01",
-      "fetch_method": "scraper:arizona-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-az",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.azleg.gov/arstitle/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:arizona-statutes.",
+      "official_url": "https://www.azleg.gov/ars/43/01073-01.htm",
       "parser": "state-statutes:arizona",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.azleg.gov/arstitle/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -908,35 +993,240 @@
       ],
       "document_class": "manual",
       "document_id": "us-az-des-faa5",
-      "fetch_method": "scraper:az-des-faa5",
+      "fetch_method": "http-get",
       "jurisdiction": "us-az",
-      "notes": "Best available official-government target from repository metadata and adapter conventions; low confidence means the executor must resolve the exact document link.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:az-des-faa5.",
       "official_url": "https://dbmefaapolicy.azdes.gov/FAA5.html",
       "parser": "new:az-des-faa5-html",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://dbmefaapolicy.azdes.gov/FAA5.html"
+        }
+      }
     },
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-ca/statute/rtc/17014",
-        "us-ca/statute/rtc/17016",
-        "us-ca/statute/rtc/17017",
-        "us-ca/statute/rtc/17029",
-        "us-ca/statute/rtc/17034",
-        "us-ca/statute/rtc/17038",
-        "us-ca/statute/rtc/17053.6",
-        "us-ca/statute/rtc/17054.7",
-        "us-ca/statute/rtc/17061",
-        "us-ca/statute/rtc/17062.1"
+        "us-ca/statute/rtc/17014"
       ],
       "document_class": "statute",
       "document_id": "us-ca-code-rtc",
-      "fetch_method": "scraper:california-leginfo",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ca",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://leginfo.legislature.ca.gov/faces/codes.xhtml",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17014.",
       "parser": "state-statutes:california",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ca/statute/rtc/17016"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ca-code-rtc-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ca",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17016.",
+      "parser": "state-statutes:california",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ca/statute/rtc/17017"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ca-code-rtc-p3",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ca",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17017.",
+      "parser": "state-statutes:california",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ca/statute/rtc/17029"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ca-code-rtc-p4",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ca",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17029.",
+      "parser": "state-statutes:california",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ca/statute/rtc/17034"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ca-code-rtc-p5",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ca",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17034.",
+      "parser": "state-statutes:california",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ca/statute/rtc/17038"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ca-code-rtc-p6",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ca",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17038.",
+      "parser": "state-statutes:california",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ca/statute/rtc/17053.6"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ca-code-rtc-p7",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ca",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17053.6.",
+      "parser": "state-statutes:california",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ca/statute/rtc/17054.7"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ca-code-rtc-p8",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ca",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17054.7.",
+      "parser": "state-statutes:california",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ca/statute/rtc/17061"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ca-code-rtc-p9",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ca",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17061.",
+      "parser": "state-statutes:california",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ca/statute/rtc/17062.1"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ca-code-rtc-p10",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ca",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=RTC&sectionNum=17062.1.",
+      "parser": "state-statutes:california",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -945,12 +1235,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ca-code-wic",
-      "fetch_method": "scraper:california-leginfo",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ca",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://leginfo.legislature.ca.gov/faces/codes.xhtml",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:california-leginfo.",
+      "official_url": "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=WIC&sectionNum=11450.",
       "parser": "state-statutes:california",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://leginfo.legislature.ca.gov/faces/codes.xhtml"
+        }
+      }
     },
     {
       "confidence": "low",
@@ -1697,12 +1995,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ct-code-12-700",
-      "fetch_method": "scraper:connecticut-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ct",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.cga.ct.gov/current/pub/titles.htm",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:connecticut-statutes.",
+      "official_url": "https://www.cga.ct.gov/current/pub/chap_229.htm#sec_12-700",
       "parser": "state-statutes:connecticut",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.cga.ct.gov/current/pub/titles.htm"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1711,12 +2017,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ct-code-12-704e",
-      "fetch_method": "scraper:connecticut-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ct",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.cga.ct.gov/current/pub/titles.htm",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:connecticut-statutes.",
+      "official_url": "https://www.cga.ct.gov/current/pub/chap_229.htm#sec_12-704e",
       "parser": "state-statutes:connecticut",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.cga.ct.gov/current/pub/titles.htm"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1725,12 +2039,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ct-code-12-704i",
-      "fetch_method": "scraper:connecticut-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ct",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.cga.ct.gov/current/pub/titles.htm",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:connecticut-statutes.",
+      "official_url": "https://www.cga.ct.gov/current/pub/chap_229.htm#sec_12-704i",
       "parser": "state-statutes:connecticut",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.cga.ct.gov/current/pub/titles.htm"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1739,12 +2061,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ct-code-17b-104",
-      "fetch_method": "scraper:connecticut-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ct",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.cga.ct.gov/current/pub/titles.htm",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:connecticut-statutes.",
+      "official_url": "https://www.cga.ct.gov/current/pub/chap_319oo.htm#sec_17b-104",
       "parser": "state-statutes:connecticut",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.cga.ct.gov/current/pub/titles.htm"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1753,12 +2083,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ct-code-17b-112",
-      "fetch_method": "scraper:connecticut-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ct",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.cga.ct.gov/current/pub/titles.htm",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:connecticut-statutes.",
+      "official_url": "https://www.cga.ct.gov/current/pub/chap_319oo.htm#sec_17b-112",
       "parser": "state-statutes:connecticut",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.cga.ct.gov/current/pub/titles.htm"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1767,12 +2105,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ct-code-17b-600",
-      "fetch_method": "scraper:connecticut-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ct",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.cga.ct.gov/current/pub/titles.htm",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:connecticut-statutes.",
+      "official_url": "https://www.cga.ct.gov/current/pub/chap_319v.htm#sec_17b-600",
       "parser": "state-statutes:connecticut",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.cga.ct.gov/current/pub/titles.htm"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1781,12 +2127,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-dc-code-47",
-      "fetch_method": "scraper:dc-law-xml",
+      "fetch_method": "http-get",
       "jurisdiction": "us-dc",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://code.dccouncil.gov/us/dc/council/code",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:dc-law-xml.",
+      "official_url": "https://code.dccouncil.gov/us/dc/council/code/sections/47-1806.03",
       "parser": "state-statutes:dc",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://code.dccouncil.gov/us/dc/council/code"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1800,12 +2154,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-de-code-30",
-      "fetch_method": "scraper:delaware-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-de",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://delcode.delaware.gov/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:delaware-code.",
+      "official_url": "https://delcode.delaware.gov/title30/c011/index.html",
       "parser": "state-statutes:delaware",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://delcode.delaware.gov/"
+        }
+      }
     },
     {
       "confidence": "low",
@@ -1862,9 +2224,9 @@
       ],
       "document_class": "statute",
       "document_id": "us-ga-code-48",
-      "fetch_method": "scraper:georgia-official-code",
+      "fetch_method": "manual-recovery",
       "jurisdiction": "us-ga",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
+      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://www.legis.ga.gov/legislation/all",
       "parser": "new:georgia-official-code",
       "proposed_version": "2026-07-13-recovery"
@@ -1876,32 +2238,174 @@
       ],
       "document_class": "manual",
       "document_id": "us-ga-dfcs-medicaid",
-      "fetch_method": "scraper:ga-pamms",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ga",
-      "notes": "Best available official-government target from repository metadata and adapter conventions; low confidence means the executor must resolve the exact document link.",
-      "official_url": "https://pamms.dhs.ga.gov/dfcs/medicaid/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ga-pamms.",
+      "official_url": "https://pamms.dhs.ga.gov/dfcs/medicaid/2578/",
       "parser": "new:ga-pamms-html",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://pamms.dhs.ga.gov/dfcs/medicaid/"
+        }
+      }
     },
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-ga/manual/dfcs/snap/3612",
-        "us-ga/manual/dfcs/snap/3613",
-        "us-ga/manual/dfcs/snap/3614",
-        "us-ga/manual/dfcs/snap/3615",
-        "us-ga/manual/dfcs/snap/3616",
-        "us-ga/manual/dfcs/snap/3617",
-        "us-ga/manual/dfcs/snap/3618"
+        "us-ga/manual/dfcs/snap/3612"
       ],
       "document_class": "manual",
       "document_id": "us-ga-dfcs-snap",
-      "fetch_method": "scraper:ga-pamms",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ga",
-      "notes": "Best available official-government target from repository metadata and adapter conventions; low confidence means the executor must resolve the exact document link.",
-      "official_url": "https://pamms.dhs.ga.gov/dfcs/snap/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ga-pamms.",
+      "official_url": "https://pamms.dhs.ga.gov/dfcs/snap/3612/",
       "parser": "new:ga-pamms-html",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://pamms.dhs.ga.gov/dfcs/snap/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ga/manual/dfcs/snap/3613"
+      ],
+      "document_class": "manual",
+      "document_id": "us-ga-dfcs-snap-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ga",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ga-pamms.",
+      "official_url": "https://pamms.dhs.ga.gov/dfcs/snap/3613/",
+      "parser": "new:ga-pamms-html",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://pamms.dhs.ga.gov/dfcs/snap/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ga/manual/dfcs/snap/3614"
+      ],
+      "document_class": "manual",
+      "document_id": "us-ga-dfcs-snap-p3",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ga",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ga-pamms.",
+      "official_url": "https://pamms.dhs.ga.gov/dfcs/snap/3614/",
+      "parser": "new:ga-pamms-html",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://pamms.dhs.ga.gov/dfcs/snap/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ga/manual/dfcs/snap/3615"
+      ],
+      "document_class": "manual",
+      "document_id": "us-ga-dfcs-snap-p4",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ga",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ga-pamms.",
+      "official_url": "https://pamms.dhs.ga.gov/dfcs/snap/3615/",
+      "parser": "new:ga-pamms-html",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://pamms.dhs.ga.gov/dfcs/snap/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ga/manual/dfcs/snap/3616"
+      ],
+      "document_class": "manual",
+      "document_id": "us-ga-dfcs-snap-p5",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ga",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ga-pamms.",
+      "official_url": "https://pamms.dhs.ga.gov/dfcs/snap/3616/",
+      "parser": "new:ga-pamms-html",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://pamms.dhs.ga.gov/dfcs/snap/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ga/manual/dfcs/snap/3617"
+      ],
+      "document_class": "manual",
+      "document_id": "us-ga-dfcs-snap-p6",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ga",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ga-pamms.",
+      "official_url": "https://pamms.dhs.ga.gov/dfcs/snap/3617/",
+      "parser": "new:ga-pamms-html",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://pamms.dhs.ga.gov/dfcs/snap/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ga/manual/dfcs/snap/3618"
+      ],
+      "document_class": "manual",
+      "document_id": "us-ga-dfcs-snap-p7",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ga",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ga-pamms.",
+      "official_url": "https://pamms.dhs.ga.gov/dfcs/snap/3618/",
+      "parser": "new:ga-pamms-html",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://pamms.dhs.ga.gov/dfcs/snap/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1910,12 +2414,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-hi-code-235-54",
-      "fetch_method": "scraper:hawaii-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-hi",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://data.capitol.hawaii.gov/hrscurrent/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:hawaii-statutes.",
+      "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol04_Ch0201-0257/HRS0235/HRS_0235-0054.htm",
       "parser": "state-statutes:hawaii",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://data.capitol.hawaii.gov/hrscurrent/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1924,12 +2436,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-hi-code-235-55.6",
-      "fetch_method": "scraper:hawaii-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-hi",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://data.capitol.hawaii.gov/hrscurrent/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:hawaii-statutes.",
+      "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol04_Ch0201-0257/HRS0235/HRS_0235-0055_0006.htm",
       "parser": "state-statutes:hawaii",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://data.capitol.hawaii.gov/hrscurrent/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1938,12 +2458,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-hi-code-235-55.7",
-      "fetch_method": "scraper:hawaii-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-hi",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://data.capitol.hawaii.gov/hrscurrent/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:hawaii-statutes.",
+      "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol04_Ch0201-0257/HRS0235/HRS_0235-0055_0007.htm",
       "parser": "state-statutes:hawaii",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://data.capitol.hawaii.gov/hrscurrent/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1952,12 +2480,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-hi-code-235-55.85",
-      "fetch_method": "scraper:hawaii-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-hi",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://data.capitol.hawaii.gov/hrscurrent/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:hawaii-statutes.",
+      "official_url": "https://data.capitol.hawaii.gov/hrscurrent/Vol04_Ch0201-0257/HRS0235/HRS_0235-0055_0085.htm",
       "parser": "state-statutes:hawaii",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://data.capitol.hawaii.gov/hrscurrent/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1966,12 +2502,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ia-code-422.12",
-      "fetch_method": "scraper:iowa-code",
+      "fetch_method": "pdf",
       "jurisdiction": "us-ia",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.legis.iowa.gov/law/iowaCode",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:iowa-code.",
+      "official_url": "https://www.legis.iowa.gov/docs/code/2026/422.12.pdf",
       "parser": "state-statutes:iowa",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "application/pdf",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.legis.iowa.gov/law/iowaCode"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1980,12 +2524,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ia-code-422.12b",
-      "fetch_method": "scraper:iowa-code",
+      "fetch_method": "pdf",
       "jurisdiction": "us-ia",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.legis.iowa.gov/law/iowaCode",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:iowa-code.",
+      "official_url": "https://www.legis.iowa.gov/docs/code/2026/422.12B.pdf",
       "parser": "state-statutes:iowa",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "application/pdf",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.legis.iowa.gov/law/iowaCode"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -1994,12 +2546,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ia-code-422.12c",
-      "fetch_method": "scraper:iowa-code",
+      "fetch_method": "pdf",
       "jurisdiction": "us-ia",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.legis.iowa.gov/law/iowaCode",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:iowa-code.",
+      "official_url": "https://www.legis.iowa.gov/docs/code/2026/422.12C.pdf",
       "parser": "state-statutes:iowa",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "application/pdf",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.legis.iowa.gov/law/iowaCode"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2008,12 +2568,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-id-code-63-3022d",
-      "fetch_method": "scraper:idaho-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-id",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:idaho-statutes.",
+      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3022D/",
       "parser": "state-statutes:idaho",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.idaho.gov/statutesrules/idstat/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2022,12 +2590,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-id-code-63-3022e",
-      "fetch_method": "scraper:idaho-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-id",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:idaho-statutes.",
+      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3022E/",
       "parser": "state-statutes:idaho",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.idaho.gov/statutesrules/idstat/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2036,12 +2612,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-id-code-63-3024",
-      "fetch_method": "scraper:idaho-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-id",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:idaho-statutes.",
+      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3024/",
       "parser": "state-statutes:idaho",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.idaho.gov/statutesrules/idstat/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2050,12 +2634,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-id-code-63-3024a",
-      "fetch_method": "scraper:idaho-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-id",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:idaho-statutes.",
+      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3024A/",
       "parser": "state-statutes:idaho",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.idaho.gov/statutesrules/idstat/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2064,45 +2656,460 @@
       ],
       "document_class": "statute",
       "document_id": "us-id-code-63-3025d",
-      "fetch_method": "scraper:idaho-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-id",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:idaho-statutes.",
+      "official_url": "https://legislature.idaho.gov/statutesrules/idstat/Title63/T63CH30/SECT63-3025D/",
       "parser": "state-statutes:idaho",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.idaho.gov/statutesrules/idstat/"
+        }
+      }
     },
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-il/statute/35/5/1105",
-        "us-il/statute/35/5/1202",
-        "us-il/statute/35/5/201",
-        "us-il/statute/35/5/204",
-        "us-il/statute/35/5/206",
-        "us-il/statute/35/5/212",
-        "us-il/statute/35/5/306",
-        "us-il/statute/35/5/402",
-        "us-il/statute/35/5/404",
-        "us-il/statute/35/5/506.5",
-        "us-il/statute/35/5/512",
-        "us-il/statute/35/5/604",
-        "us-il/statute/35/5/605",
-        "us-il/statute/35/5/705",
-        "us-il/statute/35/5/706",
-        "us-il/statute/35/5/707",
-        "us-il/statute/35/5/913",
-        "us-il/statute/35/5/915",
-        "us-il/statute/35/5/916",
-        "us-il/statute/35/5/918"
+        "us-il/statute/35/5/1105"
       ],
       "document_class": "statute",
       "document_id": "us-il-code-35",
-      "fetch_method": "scraper:illinois-ilcs",
+      "fetch_method": "http-get",
       "jurisdiction": "us-il",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K1105.html",
       "parser": "state-statutes:illinois",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/1202"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K1202.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/201"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p3",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K201.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/204"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p4",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K204.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/206"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p5",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K206.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/212"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p6",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K212.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/306"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p7",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K306.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/402"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p8",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K402.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/404"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p9",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K404.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/506.5"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p10",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K506.5.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/512"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p11",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K512.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/604"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p12",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K604.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/605"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p13",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K605.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/705"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p14",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K705.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/706"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p15",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K706.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/707"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p16",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K707.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/913"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p17",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K913.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/915"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p18",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K915.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/916"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p19",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K916.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-il/statute/35/5/918"
+      ],
+      "document_class": "statute",
+      "document_id": "us-il-code-35-p20",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-il",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:illinois-ilcs.",
+      "official_url": "https://www.ilga.gov/ftp/ILCS/Ch%200035/Act%200005/003500050K918.html",
+      "parser": "state-statutes:illinois",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ilga.gov/Legislation/ILCS/ILCS.asp"
+        }
+      }
     },
     {
       "confidence": "low",
@@ -2111,12 +3118,20 @@
       ],
       "document_class": "manual",
       "document_id": "us-il-csmm",
-      "fetch_method": "scraper:il-dhs-manual",
+      "fetch_method": "http-get",
       "jurisdiction": "us-il",
-      "notes": "Best available official-government target from repository metadata and adapter conventions; low confidence means the executor must resolve the exact document link.",
-      "official_url": "https://www.dhs.state.il.us/page.aspx?item=13473",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:il-dhs-manual.",
+      "official_url": "https://www.dhs.state.il.us/page.aspx?item=19812",
       "parser": "new:il-dhs-html",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.dhs.state.il.us/page.aspx?item=13473"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2125,12 +3140,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-12-15-32-6",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/12",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2139,12 +3162,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-12-15-32-6.5",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/12",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2153,12 +3184,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-6-3-2-10",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/6",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2167,12 +3206,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-6-3-2-22",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/6",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2181,12 +3228,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-6-3-2-28",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/6",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2195,12 +3250,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-6-3-2-4",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/6",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2209,12 +3272,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-6-3-2-6",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/6",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2223,12 +3294,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-6-3-3-12",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/6",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2237,12 +3316,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-6-3-3-9",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/6",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2251,12 +3338,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-in-code-6-3.1-21-6",
-      "fetch_method": "scraper:indiana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-in",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://iga.in.gov/laws/current/ic/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:indiana-code.",
+      "official_url": "https://iga.in.gov/laws/2025/ic/titles/6",
       "parser": "state-statutes:indiana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://iga.in.gov/laws/current/ic/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2295,7 +3390,7 @@
       "document_id": "us-ks-ssp-memo-2007",
       "fetch_method": "manual-recovery",
       "jurisdiction": "us-ks",
-      "notes": "Only an official landing page is evidenced and it blocks automation. Manually locate and verify the 2007 SSP memo; do not accept the landing HTML as the document.",
+      "notes": "Only an official landing page is evidenced and it blocks automation. Manually locate and verify the 2007 SSP memo; do not accept the landing HTML as the document. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://www.kancare.ks.gov/providers/policies-and-guidelines",
       "parser": "documents:pdf-single-block",
       "proposed_version": "2026-07-13-recovery",
@@ -2317,9 +3412,9 @@
       ],
       "document_class": "statute",
       "document_id": "us-ky-code-11",
-      "fetch_method": "scraper:kentucky-statutes",
+      "fetch_method": "manual-recovery",
       "jurisdiction": "us-ky",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
+      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://apps.legislature.ky.gov/law/statutes/",
       "parser": "new:kentucky-statutes-html",
       "proposed_version": "2026-07-13-recovery"
@@ -2331,9 +3426,9 @@
       ],
       "document_class": "statute",
       "document_id": "us-la-code-47-294",
-      "fetch_method": "scraper:louisiana-statutes",
+      "fetch_method": "manual-recovery",
       "jurisdiction": "us-la",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
+      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://www.legis.la.gov/Legis/Laws_Toc.aspx?folder=75&level=Parent",
       "parser": "state-statutes:louisiana",
       "proposed_version": "2026-07-13-recovery"
@@ -2345,9 +3440,9 @@
       ],
       "document_class": "statute",
       "document_id": "us-la-code-47-295",
-      "fetch_method": "scraper:louisiana-statutes",
+      "fetch_method": "manual-recovery",
       "jurisdiction": "us-la",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
+      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://www.legis.la.gov/Legis/Laws_Toc.aspx?folder=75&level=Parent",
       "parser": "state-statutes:louisiana",
       "proposed_version": "2026-07-13-recovery"
@@ -2359,9 +3454,9 @@
       ],
       "document_class": "statute",
       "document_id": "us-la-code-47-297.4",
-      "fetch_method": "scraper:louisiana-statutes",
+      "fetch_method": "manual-recovery",
       "jurisdiction": "us-la",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
+      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://www.legis.la.gov/Legis/Laws_Toc.aspx?folder=75&level=Parent",
       "parser": "state-statutes:louisiana",
       "proposed_version": "2026-07-13-recovery"
@@ -2373,9 +3468,9 @@
       ],
       "document_class": "statute",
       "document_id": "us-la-code-47-297.8",
-      "fetch_method": "scraper:louisiana-statutes",
+      "fetch_method": "manual-recovery",
       "jurisdiction": "us-la",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
+      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://www.legis.la.gov/Legis/Laws_Toc.aspx?folder=75&level=Parent",
       "parser": "state-statutes:louisiana",
       "proposed_version": "2026-07-13-recovery"
@@ -2387,78 +3482,460 @@
       ],
       "document_class": "manual",
       "document_id": "us-la-fitap-manual",
-      "fetch_method": "manual-recovery",
+      "fetch_method": "http-get",
       "jurisdiction": "us-la",
-      "notes": "RuleSpec metadata identifies PowerDMS document 398921 for the cited FITAP income-limit section. Recover required FITAP sections as separate official PowerDMS documents; the DCFS program landing page is not the manual.",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces manual-recovery.",
       "official_url": "https://public.powerdms.com/LADCFS/documents/398921",
       "parser": "new:louisiana-fitap-manual",
       "proposed_version": "2026-07-13-recovery",
       "fetch_hints": {
         "method": "GET",
-        "accept": "text/html,application/pdf",
+        "accept": "text/html,application/xhtml+xml",
         "headers": {
-          "User-Agent": "Mozilla/5.0"
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://public.powerdms.com/LADCFS/documents/398921"
         }
       }
     },
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-ma/statute/62/10a",
-        "us-ma/statute/62/11a",
-        "us-ma/statute/62/14",
-        "us-ma/statute/62/16",
-        "us-ma/statute/62/3",
-        "us-ma/statute/62/4",
-        "us-ma/statute/62/42",
-        "us-ma/statute/62/54",
-        "us-ma/statute/62/6",
-        "us-ma/statute/62/62",
-        "us-ma/statute/62/64",
-        "us-ma/statute/62/6l"
+        "us-ma/statute/62/10a"
       ],
       "document_class": "statute",
       "document_id": "us-ma-code-62",
-      "fetch_method": "scraper:massachusetts-general-laws",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ma",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://malegislature.gov/Laws/GeneralLaws",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section10a",
       "parser": "state-statutes:massachusetts",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
     },
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-md/statute/gtg/10-105",
-        "us-md/statute/gtg/10-211"
+        "us-ma/statute/62/11a"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section11a",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/14"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p3",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section14",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/16"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p4",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section16",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/3"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p5",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section3",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/4"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p6",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section4",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/42"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p7",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section42",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/54"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p8",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section54",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/6"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p9",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section6",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/62"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p10",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section62",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/64"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p11",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section64",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ma/statute/62/6l"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ma-code-62-p12",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ma",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:massachusetts-general-laws.",
+      "official_url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section6l",
+      "parser": "state-statutes:massachusetts",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://malegislature.gov/Laws/GeneralLaws"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-md/statute/gtg/10-105"
       ],
       "document_class": "statute",
       "document_id": "us-md-code-gtg",
-      "fetch_method": "scraper:maryland-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-md",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/Statutes",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:maryland-code.",
+      "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ggt&section=10-105",
       "parser": "state-statutes:maryland",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://mgaleg.maryland.gov/mgawebsite/Laws/Statutes"
+        }
+      }
     },
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-me/statute/36/5111",
-        "us-me/statute/36/5124-C",
-        "us-me/statute/36/5126-A",
-        "us-me/statute/36/5213-A",
-        "us-me/statute/36/5219-S",
-        "us-me/statute/36/5219-SS"
+        "us-md/statute/gtg/10-211"
+      ],
+      "document_class": "statute",
+      "document_id": "us-md-code-gtg-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-md",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:maryland-code.",
+      "official_url": "https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=ggt&section=10-211",
+      "parser": "state-statutes:maryland",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://mgaleg.maryland.gov/mgawebsite/Laws/Statutes"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-me/statute/36/5111"
       ],
       "document_class": "statute",
       "document_id": "us-me-code-36",
-      "fetch_method": "scraper:maine-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-me",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://legislature.maine.gov/statutes/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:maine-statutes.",
+      "official_url": "https://legislature.maine.gov/statutes/36/title36sec5111.html",
       "parser": "state-statutes:maine",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.maine.gov/statutes/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-me/statute/36/5124-C"
+      ],
+      "document_class": "statute",
+      "document_id": "us-me-code-36-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-me",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:maine-statutes.",
+      "official_url": "https://legislature.maine.gov/statutes/36/title36sec5124-C.html",
+      "parser": "state-statutes:maine",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.maine.gov/statutes/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-me/statute/36/5126-A"
+      ],
+      "document_class": "statute",
+      "document_id": "us-me-code-36-p3",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-me",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:maine-statutes.",
+      "official_url": "https://legislature.maine.gov/statutes/36/title36sec5126-A.html",
+      "parser": "state-statutes:maine",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.maine.gov/statutes/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-me/statute/36/5213-A"
+      ],
+      "document_class": "statute",
+      "document_id": "us-me-code-36-p4",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-me",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:maine-statutes.",
+      "official_url": "https://legislature.maine.gov/statutes/36/title36sec5213-A.html",
+      "parser": "state-statutes:maine",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.maine.gov/statutes/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-me/statute/36/5219-S"
+      ],
+      "document_class": "statute",
+      "document_id": "us-me-code-36-p5",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-me",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:maine-statutes.",
+      "official_url": "https://legislature.maine.gov/statutes/36/title36sec5219-S.html",
+      "parser": "state-statutes:maine",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.maine.gov/statutes/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-me/statute/36/5219-SS"
+      ],
+      "document_class": "statute",
+      "document_id": "us-me-code-36-p6",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-me",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:maine-statutes.",
+      "official_url": "https://legislature.maine.gov/statutes/36/title36sec5219-SS.html",
+      "parser": "state-statutes:maine",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislature.maine.gov/statutes/"
+        }
+      }
     },
     {
       "confidence": "medium",
@@ -2481,12 +3958,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-mi-code-206.272",
-      "fetch_method": "scraper:michigan-mcl",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mi",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.legislature.mi.gov/Laws/MCL",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:michigan-mcl.",
+      "official_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206.272",
       "parser": "state-statutes:michigan",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.legislature.mi.gov/Laws/MCL"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2501,12 +3986,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-mi-code-206.30",
-      "fetch_method": "scraper:michigan-mcl",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mi",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.legislature.mi.gov/Laws/MCL",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:michigan-mcl.",
+      "official_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206.30",
       "parser": "state-statutes:michigan",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.legislature.mi.gov/Laws/MCL"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2517,12 +4010,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-mi-code-206.51",
-      "fetch_method": "scraper:michigan-mcl",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mi",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.legislature.mi.gov/Laws/MCL",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:michigan-mcl.",
+      "official_url": "https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-206.51",
       "parser": "state-statutes:michigan",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.legislature.mi.gov/Laws/MCL"
+        }
+      }
     },
     {
       "confidence": "medium",
@@ -2545,12 +4046,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-mn-code-290.0121",
-      "fetch_method": "scraper:minnesota-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mn",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.revisor.mn.gov/statutes/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:minnesota-statutes.",
+      "official_url": "https://www.revisor.mn.gov/statutes/cite/290.0121",
       "parser": "state-statutes:minnesota",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.revisor.mn.gov/statutes/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2559,12 +4068,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-mn-code-290.0123",
-      "fetch_method": "scraper:minnesota-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mn",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.revisor.mn.gov/statutes/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:minnesota-statutes.",
+      "official_url": "https://www.revisor.mn.gov/statutes/cite/290.0123",
       "parser": "state-statutes:minnesota",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.revisor.mn.gov/statutes/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2573,12 +4090,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-mn-code-290.06",
-      "fetch_method": "scraper:minnesota-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mn",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.revisor.mn.gov/statutes/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:minnesota-statutes.",
+      "official_url": "https://www.revisor.mn.gov/statutes/cite/290.06",
       "parser": "state-statutes:minnesota",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.revisor.mn.gov/statutes/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2587,12 +4112,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-mn-code-290.067",
-      "fetch_method": "scraper:minnesota-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mn",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.revisor.mn.gov/statutes/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:minnesota-statutes.",
+      "official_url": "https://www.revisor.mn.gov/statutes/cite/290.067",
       "parser": "state-statutes:minnesota",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.revisor.mn.gov/statutes/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2601,12 +4134,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-mn-code-290.0671",
-      "fetch_method": "scraper:minnesota-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mn",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.revisor.mn.gov/statutes/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:minnesota-statutes.",
+      "official_url": "https://www.revisor.mn.gov/statutes/cite/290.0671",
       "parser": "state-statutes:minnesota",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.revisor.mn.gov/statutes/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2629,12 +4170,20 @@
       ],
       "document_class": "regulation",
       "document_id": "us-mt-arm-37-78",
-      "fetch_method": "scraper:montana-arm",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mt",
-      "notes": "Best available official-government target from repository metadata and adapter conventions; low confidence means the executor must resolve the exact document link.",
-      "official_url": "https://rules.mt.gov/gateway/ChapterHome.asp?Chapter=37.78",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:montana-arm.",
+      "official_url": "https://rules.mt.gov/gateway/RuleNo.asp?RN=37.78.420",
       "parser": "new:montana-arm-html",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://rules.mt.gov/gateway/ChapterHome.asp?Chapter=37.78"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2643,12 +4192,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-mt-code-15-30-2318",
-      "fetch_method": "scraper:montana-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-mt",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://mca.legmt.gov/bills/mca/index.html",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:montana-code.",
+      "official_url": "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0180/0150-0300-0230-0180.html",
       "parser": "state-statutes:montana",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://mca.legmt.gov/bills/mca/index.html"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2661,12 +4218,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-nc-code-105",
-      "fetch_method": "scraper:north-carolina-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-nc",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.ncleg.gov/Laws/GeneralStatutes",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:north-carolina-statutes.",
+      "official_url": "https://www.ncleg.gov/EnactedLegislation/Statutes/HTML/ByChapter/Chapter_105.html",
       "parser": "new:north-carolina-statutes-html",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.ncleg.gov/Laws/GeneralStatutes"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2675,28 +4240,86 @@
       ],
       "document_class": "statute",
       "document_id": "us-nd-code-57",
-      "fetch_method": "scraper:north-dakota-code",
+      "fetch_method": "pdf",
       "jurisdiction": "us-nd",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://ndlegis.gov/general-information/north-dakota-century-code",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:north-dakota-code.",
+      "official_url": "https://ndlegis.gov/cencode/t57c38.pdf",
       "parser": "new:north-dakota-code",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "application/pdf",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://ndlegis.gov/general-information/north-dakota-century-code"
+        }
+      }
     },
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-ne/statute/77/77-2715.03",
-        "us-ne/statute/77/77-2715.07",
-        "us-ne/statute/77/77-2716.01"
+        "us-ne/statute/77/77-2715.03"
       ],
       "document_class": "statute",
       "document_id": "us-ne-code-77",
-      "fetch_method": "scraper:nebraska-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ne",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://nebraskalegislature.gov/laws/browse-statutes.php",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:nebraska-statutes.",
+      "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2715.03",
       "parser": "state-statutes:nebraska",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://nebraskalegislature.gov/laws/browse-statutes.php"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ne/statute/77/77-2715.07"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ne-code-77-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ne",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:nebraska-statutes.",
+      "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2715.07",
+      "parser": "state-statutes:nebraska",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://nebraskalegislature.gov/laws/browse-statutes.php"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ne/statute/77/77-2716.01"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ne-code-77-p3",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ne",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:nebraska-statutes.",
+      "official_url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2716.01",
+      "parser": "state-statutes:nebraska",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://nebraskalegislature.gov/laws/browse-statutes.php"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2705,9 +4328,9 @@
       ],
       "document_class": "statute",
       "document_id": "us-nj-code-54a-4-7",
-      "fetch_method": "scraper:new-jersey-statutes",
+      "fetch_method": "manual-recovery",
       "jurisdiction": "us-nj",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
+      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://www.njleg.state.nj.us/legislative-roster/constitution-laws-and-rules",
       "parser": "state-statutes:new-jersey",
       "proposed_version": "2026-07-13-recovery"
@@ -2745,9 +4368,9 @@
       ],
       "document_class": "statute",
       "document_id": "us-nm-code-7-2-18.15",
-      "fetch_method": "scraper:new-mexico-statutes",
+      "fetch_method": "manual-recovery",
       "jurisdiction": "us-nm",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
+      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://nmonesource.com/nmos/en/nav.do",
       "parser": "state-statutes:new-mexico",
       "proposed_version": "2026-07-13-recovery"
@@ -2759,9 +4382,9 @@
       ],
       "document_class": "statute",
       "document_id": "us-nm-code-7-2-5.8",
-      "fetch_method": "scraper:new-mexico-statutes",
+      "fetch_method": "manual-recovery",
       "jurisdiction": "us-nm",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
+      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source. No stable citation-derived direct official URL is determinable from in-repo evidence.",
       "official_url": "https://nmonesource.com/nmos/en/nav.do",
       "parser": "state-statutes:new-mexico",
       "proposed_version": "2026-07-13-recovery"
@@ -2769,26 +4392,244 @@
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-ny/statute/TAX/601-A",
-        "us-ny/statute/TAX/611",
-        "us-ny/statute/TAX/613",
-        "us-ny/statute/TAX/617",
-        "us-ny/statute/TAX/618",
-        "us-ny/statute/TAX/620-A",
-        "us-ny/statute/TAX/621",
-        "us-ny/statute/TAX/672",
-        "us-ny/statute/TAX/673",
-        "us-ny/statute/TAX/674",
-        "us-ny/statute/TAX/675"
+        "us-ny/statute/TAX/601-A"
       ],
       "document_class": "statute",
       "document_id": "us-ny-code-tax",
-      "fetch_method": "scraper:new-york-openlegislation",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ny",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://legislation.nysenate.gov/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/601-A",
       "parser": "state-statutes:new-york",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/611"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/611",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/613"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p3",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/613",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/617"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p4",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/617",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/618"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p5",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/618",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/620-A"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p6",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/620-A",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/621"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p7",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/621",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/672"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p8",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/672",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/673"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p9",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/673",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/674"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p10",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/674",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-ny/statute/TAX/675"
+      ],
+      "document_class": "statute",
+      "document_id": "us-ny-code-tax-p11",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-ny",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:new-york-openlegislation.",
+      "official_url": "https://www.nysenate.gov/legislation/laws/TAX/675",
+      "parser": "state-statutes:new-york",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://legislation.nysenate.gov/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2797,12 +4638,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-oh-code-5747.02",
-      "fetch_method": "scraper:ohio-revised-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-oh",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://codes.ohio.gov/ohio-revised-code",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ohio-revised-code.",
+      "official_url": "https://codes.ohio.gov/ohio-revised-code/section-5747.02",
       "parser": "state-statutes:ohio",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://codes.ohio.gov/ohio-revised-code"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2811,12 +4660,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-oh-code-5747.025",
-      "fetch_method": "scraper:ohio-revised-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-oh",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://codes.ohio.gov/ohio-revised-code",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ohio-revised-code.",
+      "official_url": "https://codes.ohio.gov/ohio-revised-code/section-5747.025",
       "parser": "state-statutes:ohio",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://codes.ohio.gov/ohio-revised-code"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2825,12 +4682,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-oh-code-5747.71",
-      "fetch_method": "scraper:ohio-revised-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-oh",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://codes.ohio.gov/ohio-revised-code",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ohio-revised-code.",
+      "official_url": "https://codes.ohio.gov/ohio-revised-code/section-5747.71",
       "parser": "state-statutes:ohio",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://codes.ohio.gov/ohio-revised-code"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2839,12 +4704,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-oh-code-5747.98",
-      "fetch_method": "scraper:ohio-revised-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-oh",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://codes.ohio.gov/ohio-revised-code",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:ohio-revised-code.",
+      "official_url": "https://codes.ohio.gov/ohio-revised-code/section-5747.98",
       "parser": "state-statutes:ohio",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://codes.ohio.gov/ohio-revised-code"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2853,12 +4726,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-or-code-315.264",
-      "fetch_method": "scraper:oregon-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-or",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.oregonlegislature.gov/bills_laws/Pages/ORS.aspx",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:oregon-statutes.",
+      "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors315.html",
       "parser": "state-statutes:oregon",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.oregonlegislature.gov/bills_laws/Pages/ORS.aspx"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2867,12 +4748,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-or-code-315.266",
-      "fetch_method": "scraper:oregon-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-or",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.oregonlegislature.gov/bills_laws/Pages/ORS.aspx",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:oregon-statutes.",
+      "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors315.html",
       "parser": "state-statutes:oregon",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.oregonlegislature.gov/bills_laws/Pages/ORS.aspx"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2881,12 +4770,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-or-code-316.085",
-      "fetch_method": "scraper:oregon-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-or",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.oregonlegislature.gov/bills_laws/Pages/ORS.aspx",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:oregon-statutes.",
+      "official_url": "https://www.oregonlegislature.gov/bills_laws/ors/ors316.html",
       "parser": "state-statutes:oregon",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.oregonlegislature.gov/bills_laws/Pages/ORS.aspx"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2895,12 +4792,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ri-code-44-30-103",
-      "fetch_method": "scraper:rhode-island-statutes",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ri",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://webserver.rilegislature.gov/Statutes/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:rhode-island-statutes.",
+      "official_url": "https://webserver.rilegislature.gov/Statutes/TITLE44/44-30/44-30-103.htm",
       "parser": "state-statutes:rhode-island",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://webserver.rilegislature.gov/Statutes/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2909,12 +4814,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-sc-code-12-6-520",
-      "fetch_method": "scraper:south-carolina-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-sc",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://www.scstatehouse.gov/code/statmast.php",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:south-carolina-code.",
+      "official_url": "https://www.scstatehouse.gov/code/t12c006.php",
       "parser": "state-statutes:south-carolina",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.scstatehouse.gov/code/statmast.php"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2923,12 +4836,20 @@
       ],
       "document_class": "manual",
       "document_id": "us-tx-works-handbook",
-      "fetch_method": "scraper:texas-works-handbook",
+      "fetch_method": "http-get",
       "jurisdiction": "us-tx",
-      "notes": "Best available official-government target from repository metadata and adapter conventions; low confidence means the executor must resolve the exact document link.",
-      "official_url": "https://www.hhs.texas.gov/handbooks/texas-works-handbook",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:texas-works-handbook.",
+      "official_url": "https://www.hhs.texas.gov/handbooks/texas-works-handbook/c-110-tanf",
       "parser": "new:texas-hhs-html",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://www.hhs.texas.gov/handbooks/texas-works-handbook"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2937,12 +4858,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ut-code-59-10-1018",
-      "fetch_method": "scraper:utah-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ut",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://le.utah.gov/xcode/code.html",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:utah-code.",
+      "official_url": "https://le.utah.gov/xcode/Title59/Chapter10/59_10_1018.html",
       "parser": "state-statutes:utah",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://le.utah.gov/xcode/code.html"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2951,12 +4880,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-ut-code-59-10-1019",
-      "fetch_method": "scraper:utah-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ut",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://le.utah.gov/xcode/code.html",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:utah-code.",
+      "official_url": "https://le.utah.gov/xcode/Title59/Chapter10/59_10_1019.html",
       "parser": "state-statutes:utah",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://le.utah.gov/xcode/code.html"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -2965,45 +4902,174 @@
       ],
       "document_class": "statute",
       "document_id": "us-ut-code-59-10-104",
-      "fetch_method": "scraper:utah-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-ut",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://le.utah.gov/xcode/code.html",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:utah-code.",
+      "official_url": "https://le.utah.gov/xcode/Title59/Chapter10/59_10_104.html",
       "parser": "state-statutes:utah",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://le.utah.gov/xcode/code.html"
+        }
+      }
     },
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-va/statute/58.1/58.1-320",
-        "us-va/statute/58.1/58.1-321",
-        "us-va/statute/58.1/58.1-322.03",
-        "us-va/statute/58.1/58.1-339.8"
+        "us-va/statute/58.1/58.1-320"
       ],
       "document_class": "statute",
       "document_id": "us-va-code-58.1",
-      "fetch_method": "scraper:virginia-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-va",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://law.lis.virginia.gov/vacode",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:virginia-code.",
+      "official_url": "https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-320/",
       "parser": "new:virginia-code-html",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://law.lis.virginia.gov/vacode"
+        }
+      }
     },
     {
       "confidence": "high",
       "covers_citation_paths": [
-        "us-wa/statute/82/82.87/82.87.040",
-        "us-wa/statute/82/82.87/82.87.060",
-        "us-wa/statute/82/82.87/82.87.080"
+        "us-va/statute/58.1/58.1-321"
+      ],
+      "document_class": "statute",
+      "document_id": "us-va-code-58.1-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-va",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:virginia-code.",
+      "official_url": "https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-321/",
+      "parser": "new:virginia-code-html",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://law.lis.virginia.gov/vacode"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-va/statute/58.1/58.1-322.03"
+      ],
+      "document_class": "statute",
+      "document_id": "us-va-code-58.1-p3",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-va",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:virginia-code.",
+      "official_url": "https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-322.03/",
+      "parser": "new:virginia-code-html",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://law.lis.virginia.gov/vacode"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-va/statute/58.1/58.1-339.8"
+      ],
+      "document_class": "statute",
+      "document_id": "us-va-code-58.1-p4",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-va",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:virginia-code.",
+      "official_url": "https://law.lis.virginia.gov/vacode/title58.1/chapter3/section58.1-339.8/",
+      "parser": "new:virginia-code-html",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://law.lis.virginia.gov/vacode"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-wa/statute/82/82.87/82.87.040"
       ],
       "document_class": "statute",
       "document_id": "us-wa-code-82",
-      "fetch_method": "scraper:washington-rcw",
+      "fetch_method": "http-get",
       "jurisdiction": "us-wa",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://app.leg.wa.gov/RCW/default.aspx",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:washington-rcw.",
+      "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=82.87.040",
       "parser": "state-statutes:washington",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://app.leg.wa.gov/RCW/default.aspx"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-wa/statute/82/82.87/82.87.060"
+      ],
+      "document_class": "statute",
+      "document_id": "us-wa-code-82-p2",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-wa",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:washington-rcw.",
+      "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=82.87.060",
+      "parser": "state-statutes:washington",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://app.leg.wa.gov/RCW/default.aspx"
+        }
+      }
+    },
+    {
+      "confidence": "high",
+      "covers_citation_paths": [
+        "us-wa/statute/82/82.87/82.87.080"
+      ],
+      "document_class": "statute",
+      "document_id": "us-wa-code-82-p3",
+      "fetch_method": "http-get",
+      "jurisdiction": "us-wa",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:washington-rcw.",
+      "official_url": "https://app.leg.wa.gov/RCW/default.aspx?cite=82.87.080",
+      "parser": "state-statutes:washington",
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://app.leg.wa.gov/RCW/default.aspx"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -3012,12 +5078,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-wv-code-11-21-10",
-      "fetch_method": "scraper:west-virginia-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-wv",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://code.wvlegislature.gov/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:west-virginia-code.",
+      "official_url": "https://code.wvlegislature.gov/11-21-10/",
       "parser": "state-statutes:west-virginia",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://code.wvlegislature.gov/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -3026,12 +5100,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-wv-code-11-21-16",
-      "fetch_method": "scraper:west-virginia-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-wv",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://code.wvlegislature.gov/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:west-virginia-code.",
+      "official_url": "https://code.wvlegislature.gov/11-21-16/",
       "parser": "state-statutes:west-virginia",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://code.wvlegislature.gov/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -3040,12 +5122,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-wv-code-11-21-21",
-      "fetch_method": "scraper:west-virginia-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-wv",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://code.wvlegislature.gov/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:west-virginia-code.",
+      "official_url": "https://code.wvlegislature.gov/11-21-21/",
       "parser": "state-statutes:west-virginia",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://code.wvlegislature.gov/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -3054,12 +5144,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-wv-code-11-21-23",
-      "fetch_method": "scraper:west-virginia-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-wv",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://code.wvlegislature.gov/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:west-virginia-code.",
+      "official_url": "https://code.wvlegislature.gov/11-21-23/",
       "parser": "state-statutes:west-virginia",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://code.wvlegislature.gov/"
+        }
+      }
     },
     {
       "confidence": "high",
@@ -3068,12 +5166,20 @@
       ],
       "document_class": "statute",
       "document_id": "us-wv-code-11-21-3",
-      "fetch_method": "scraper:west-virginia-code",
+      "fetch_method": "http-get",
       "jurisdiction": "us-wv",
-      "notes": "Official code entry point; named existing corpus adapter discovers and snapshots the exact title/chapter source.",
-      "official_url": "https://code.wvlegislature.gov/",
+      "notes": "Direct official URL derived from local RuleSpec citation metadata, same-state corpus URL patterns, and/or the local axiom-scrapers configuration. Replaces scraper:west-virginia-code.",
+      "official_url": "https://code.wvlegislature.gov/11-21-3/",
       "parser": "state-statutes:west-virginia",
-      "proposed_version": "2026-07-13-recovery"
+      "proposed_version": "2026-07-13-recovery",
+      "fetch_hints": {
+        "method": "GET",
+        "accept": "text/html,application/xhtml+xml",
+        "headers": {
+          "User-Agent": "Mozilla/5.0",
+          "Referer": "https://code.wvlegislature.gov/"
+        }
+      }
     },
     {
       "confidence": "medium",
