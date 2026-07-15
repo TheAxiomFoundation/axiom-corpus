@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-al/manual/2026-05-27-al-snap-poe-manual.json",
-      "sha256": "392d3e6d7854028ea49778ee5083172b1b9adcb875381ed7bf742a876041b157"
+      "sha256": "4d58215ed4034abad34d016ead1a654f1cdf4d1e598a5c9574d3beffba3a0169"
     },
     {
       "path": "data/corpus/provisions/us-al/manual/2026-05-27-al-snap-poe-manual.jsonl",
-      "sha256": "294299c2a84f515ab9a441c0ec8b6114634dd49588ee70aa9921bdeb7042d449"
+      "sha256": "2ec207153d87cc174fafcfd170b89638b9367aa213b4d398c770b939fbaade8f"
     },
     {
       "path": "data/corpus/sources/us-al/manual/2026-05-27-al-snap-poe-manual/official-documents/release-scope-us-al-manual-2026-05-27-al-snap-poe-manual",
@@ -39,15 +39,10 @@
     "source_count": 149
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:24.245335+00:00",
+  "generated_at": "2026-07-15T18:57:32.827436+00:00",
   "jurisdiction": "us-al",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "JUIb5unk8tWfOQ75qKtKEW0JIDW+hNYOXPHRnOA06W2K1TzEip4cyXxT8a5jjC0PUvPa4E+c1iljOzvJycEzAQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-al-snap-poe-manual"
 }

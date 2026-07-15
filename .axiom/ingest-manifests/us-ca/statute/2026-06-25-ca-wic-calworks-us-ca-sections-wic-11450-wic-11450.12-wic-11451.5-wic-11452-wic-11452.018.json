@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018.jsonl",
-      "sha256": "669e54e8b0aa7dc628c73779d8c8aefe8c82019c0d9b518f3b17a8a63edadde0"
+      "sha256": "3bba15d966487b2bb2f501a524b195be7ea904a5eafdde9560736f37cf1d5898"
     },
     {
       "path": "data/corpus/sources/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018/california-leginfo-sections/WIC-11450.12.html",
@@ -51,15 +51,10 @@
     "source_count": 5
   },
   "document_class": "statute",
-  "generated_at": "2026-06-25T02:56:01.701809+00:00",
+  "generated_at": "2026-07-15T18:58:20.578597+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "WGvPcFX1VObiI7BKbU9sBW6yVNgu9mt5AuUN0epjAnyYiOS0kv9+hl878W6lxAtSSS3/Wx5QnoAXXu02QNTxDA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018"
 }

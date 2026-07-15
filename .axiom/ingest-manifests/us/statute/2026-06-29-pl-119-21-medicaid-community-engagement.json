@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us/statute/2026-06-29-pl-119-21-medicaid-community-engagement.json",
-      "sha256": "37d1a64e3a5ff3ebedbe0b76d672f35da97d98e46ce20a36073aff7099d04288"
+      "sha256": "e458e0f16a571d2dfd889691cce5944dcf330db9db345b3d534af00aa92c455b"
     },
     {
       "path": "data/corpus/provisions/us/statute/2026-06-29-pl-119-21-medicaid-community-engagement.jsonl",
-      "sha256": "bff85b2aa0c46dc0ec1ad5b46716cd07ecf4a5bd64fb6c6194e36ea04f4a3a8c"
+      "sha256": "a7e12029fa91853b4b96cd3f074a178462d62b4dcb240be1d3de54b53d4c8ac0"
     },
     {
       "path": "data/corpus/sources/us/statute/2026-06-29-pl-119-21-medicaid-community-engagement/uslm/PLAW-119publ21.xml",
@@ -35,7 +35,7 @@
     "source_count": 12
   },
   "document_class": "statute",
-  "generated_at": "2026-07-01T08:42:05.817888+00:00",
+  "generated_at": "2026-07-15T18:58:20.474076+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [
     {
@@ -44,11 +44,6 @@
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "e5vdgLL5l1FyzrKMM7LkiT72xhojEfXWdg5A2ee/AvmfYhL1URkVFVSXZYyjBJD69LP9yPHUzT7T0Z9+8FjiBw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-29-pl-119-21-medicaid-community-engagement"
 }

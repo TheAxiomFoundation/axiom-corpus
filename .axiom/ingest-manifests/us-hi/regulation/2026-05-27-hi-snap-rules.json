@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-hi/regulation/2026-05-27-hi-snap-rules.json",
-      "sha256": "50ccd9af8af8a5be61b631768cce1ac41f1b0e0f63607db95ce269c774f10cb3"
+      "sha256": "8562b24333b31b3af96bb416122ebe36e463ba8c1dd4778a339868ce1b542e95"
     },
     {
       "path": "data/corpus/provisions/us-hi/regulation/2026-05-27-hi-snap-rules.jsonl",
-      "sha256": "7cb21df1def545793f1d268f02b27108ec7a9d25938346e45834b0a26ee9d3ec"
+      "sha256": "c4988cf4ff814c899834c49bbfd29ff8a8eb31630c4ba063e7a9f70de6c8d837"
     },
     {
       "path": "data/corpus/sources/us-hi/regulation/2026-05-27-hi-snap-rules/official-documents/release-scope-us-hi-regulation-2026-05-27-hi-snap-rules",
@@ -39,15 +39,10 @@
     "source_count": 594
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:38.668719+00:00",
+  "generated_at": "2026-07-15T18:57:33.003620+00:00",
   "jurisdiction": "us-hi",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "Xl/O6OEo8/Y9fxdSEO3ZghSL8UZjxHqej1ydvz4M3Q4u35Mjo6zpHqdHt4rfNHyKsgnxJ5z9w104Ln6dupbFAA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-hi-snap-rules"
 }

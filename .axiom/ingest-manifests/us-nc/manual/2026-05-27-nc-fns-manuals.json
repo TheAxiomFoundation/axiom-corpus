@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-nc/manual/2026-05-27-nc-fns-manuals.json",
-      "sha256": "ada9a90dba4e72df7d32390a6230f61c1f883a0c466a312b321b97294d7a93c9"
+      "sha256": "a50c59ece236b1469f41b359de6b12819a25ffdd811b0a08012cc5ea652d993d"
     },
     {
       "path": "data/corpus/provisions/us-nc/manual/2026-05-27-nc-fns-manuals.jsonl",
-      "sha256": "d863162e4213ccf14a280b0894a4019f9f9ac57851312c9609c7233be133899f"
+      "sha256": "e0ff914cde6fbdf57fed2793fa5611eae1160a3cb1737fdbf066fffcfb117e7c"
     },
     {
       "path": "data/corpus/sources/us-nc/manual/2026-05-27-nc-fns-manuals/official-documents/release-scope-us-nc-manual-2026-05-27-nc-fns-manuals",
@@ -39,15 +39,10 @@
     "source_count": 723
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:58.124086+00:00",
+  "generated_at": "2026-07-15T18:57:33.149786+00:00",
   "jurisdiction": "us-nc",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "t38wnS4bHcQLkSY3t0+wrXWly50XQqspiX0owjclidOoMthZuTMOUahINDiQPGnma14U3IvEJ5shcotI+mNVDw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-nc-fns-manuals"
 }

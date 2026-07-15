@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ks/manual/2026-05-27-ks-keesm.json",
-      "sha256": "6873c8afccb083b807a99877579000305f58834962c4bae2a0154aad19b969f7"
+      "sha256": "e708f6aeb8b1e1b803ac3190ae678472eed8ca7f317ec7c9dc08a6bfc7da262f"
     },
     {
       "path": "data/corpus/provisions/us-ks/manual/2026-05-27-ks-keesm.jsonl",
-      "sha256": "a4ef2c2d68926b2a2d2ce944ae3a1660e72debb6f9a72777ef5aa1ad431a659d"
+      "sha256": "7944a345614964f9031b7a01e13c5d55d6226e10de2819210f705b7764cec2f8"
     },
     {
       "path": "data/corpus/sources/us-ks/manual/2026-05-27-ks-keesm/official-documents/release-scope-us-ks-manual-2026-05-27-ks-keesm",
@@ -39,15 +39,10 @@
     "source_count": 510
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:46.885271+00:00",
+  "generated_at": "2026-07-15T18:57:33.085354+00:00",
   "jurisdiction": "us-ks",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "feFDzTzP0qJ7yo+dD20U0ajrRQfARm2kovqQCAB4PbEBw59p/KjUX8ETro6RebusNGd8M8/c5nmlaBxMoE41Bw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-ks-keesm"
 }

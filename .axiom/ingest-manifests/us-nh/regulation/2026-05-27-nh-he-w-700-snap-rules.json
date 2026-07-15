@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules.json",
-      "sha256": "47e2bec9dab14ba658f824c36ed03c37d39dce57b0fdc4b2b881bf2520c391f9"
+      "sha256": "62b3874ed0b167c45c26ab32c205cb1aec857c3f1c74a84b0ef07ea9e58b86a5"
     },
     {
       "path": "data/corpus/provisions/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules.jsonl",
-      "sha256": "a9d2e6586f015b98ca8652d5cad79f9dc34140b30c24209f35d9b767565b43ab"
+      "sha256": "aad27a3fb5c7fd4440720648357d32f24e45a91d9ea647bb72904d98e7cee338"
     },
     {
       "path": "data/corpus/sources/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules/official-documents/release-scope-us-nh-regulation-2026-05-27-nh-he-w-700-snap-rules",
@@ -39,15 +39,10 @@
     "source_count": 54
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:19:01.311638+00:00",
+  "generated_at": "2026-07-15T18:57:33.159695+00:00",
   "jurisdiction": "us-nh",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "RLbidyU6NTpl2R7sjzYgjhkp3TV+EEmj2AWkANFlBJhgkmPKE5nHMqWGoftjG9brBs1CFi2VUkq88QHbah8bBg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-nh-he-w-700-snap-rules"
 }

@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-ca/regulation/2026-07-13-recovery.jsonl",
-      "sha256": "46c6eac4e9dace08dacc6771c269432ec456e675396d40bbfe32aa1b2fa1d048"
+      "sha256": "a3dbf1276f8b86b2b3b40951b0ec900aee29b35c5ccbd1b1e14b35a71693d4c8"
     },
     {
       "path": "data/corpus/sources/us-ca/regulation/2026-07-13-recovery/official-documents/us-ca-mpp-63-300",
@@ -159,15 +159,10 @@
     "source_count": 557
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:29.570264+00:00",
+  "generated_at": "2026-07-15T18:58:20.573250+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "Lf+78cDEMNSnukVD4PJeJCWp1j5w1jBjR3LHzgNMovbyez50wkLBvgoQpsuAIvVK1G+JTZapI409HVgB9aZpAw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
 }

@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-id/regulation/2026-05-27-id-food-stamp-rules.json",
-      "sha256": "3a03770c9b2d6afdc46bc382b791362d94fca7ed6188d012edf73034bf924179"
+      "sha256": "6390fbfa76ed373289356366f66c4d3bb05787d5e3b4552d51082978548216b0"
     },
     {
       "path": "data/corpus/provisions/us-id/regulation/2026-05-27-id-food-stamp-rules.jsonl",
-      "sha256": "95a41984e8881e2e9433237f75de9455e0f1ec48a94c20fa1c175a726cec5047"
+      "sha256": "6bc260ab9f5b3fbe57e2b1b0755974a08e992658e226d4611c73dd8fed722dc2"
     },
     {
       "path": "data/corpus/sources/us-id/regulation/2026-05-27-id-food-stamp-rules/official-documents/release-scope-us-id-regulation-2026-05-27-id-food-stamp-rules",
@@ -39,15 +39,10 @@
     "source_count": 71
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:41.121424+00:00",
+  "generated_at": "2026-07-15T18:57:33.046712+00:00",
   "jurisdiction": "us-id",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "Q1uGKOs7ZMo+y6+0W6Nv4qp38cw/NFPx+ckr+TF2fpX2bDH+OjKGl2jZyX1mwV7i8vjgTNcabx79yLST1HH5CA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-id-food-stamp-rules"
 }

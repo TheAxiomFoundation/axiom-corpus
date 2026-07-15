@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement.json",
-      "sha256": "16fac391a1ccea46701598d295c0623a64a5eadc07564c2c8d3735621c5745c3"
+      "sha256": "585051dd8f96d9adb290c3b11febb1af8b9c311563a002dc93c25659a0285f8d"
     },
     {
       "path": "data/corpus/provisions/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement.jsonl",
-      "sha256": "365f1f815593014b20976a1c2aef0a5700f638b1e6374c2569415f008875691e"
+      "sha256": "a325521c86d4568f36051cda63e3a2d087ce2fc46c74f10a6108c6de45d91ed3"
     },
     {
       "path": "data/corpus/sources/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement/official-documents/release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement",
@@ -39,15 +39,10 @@
     "source_count": 14
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:20.504434+00:00",
+  "generated_at": "2026-07-15T18:57:32.762730+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "z8gPleb8ChNHYkgpthVJfbSXNGSVsToL+tAg8tqCJX0eh0XuZV+djRCS9P61GOIIitVJWXKoYMW24FPI7bUHBg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement"
 }

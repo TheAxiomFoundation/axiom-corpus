@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-fl/regulation/2026-05-29.json",
-      "sha256": "bdec4c97e2b6fc0ef0ef7074ee1ab0288cfcdb4b687d8d00b913d249082392a2"
+      "sha256": "3598e70239d68840f24bf9fb4293cdf9351b6f1fbbb5821d7d42890ddce4ea28"
     },
     {
       "path": "data/corpus/provisions/us-fl/regulation/2026-05-29.jsonl",
-      "sha256": "c011f8c3e413569e57197fb5e9b3d2243c7ebc66cbc33bf8b9d6f93a3fd04ca3"
+      "sha256": "862f654aebfa16e80575a438341b5810985ede7cd73ce8db4fcbc56a9eed02c9"
     },
     {
       "path": "data/corpus/sources/us-fl/regulation/2026-05-29/official-documents/release-scope-us-fl-regulation-2026-05-29",
@@ -39,15 +39,10 @@
     "source_count": 204
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:36.162473+00:00",
+  "generated_at": "2026-07-15T18:57:32.989982+00:00",
   "jurisdiction": "us-fl",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "3bFP9IfgtHy+yMpwS1ynxEKpPTn6uZomqkZ64kPcYZPThHjimHsiiu3QzZioe+NSBh5W8Ad4CdUOUc9xYcMIBA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-29"
 }

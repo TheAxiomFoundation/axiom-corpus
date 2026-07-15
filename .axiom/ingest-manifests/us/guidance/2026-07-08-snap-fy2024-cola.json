@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/guidance/2026-07-08-snap-fy2024-cola.json",
-      "sha256": "065a9791781a7dabe60ae013aa6fb6bda16319173f1091fe0b1a3e85e7a787f0"
+      "sha256": "b256c84c6ef9f5b66566f264dbe94cdbe34b8b1a18d52f216709db64dff04bc9"
     },
     {
       "path": "data/corpus/inventory/us/guidance/2026-07-08-snap-fy2024-cola.json",
-      "sha256": "96d6837075eb316d0fc4c56dfc1210592b6aab7ce8a349eff64a71d474739c13"
+      "sha256": "a32ff82dfc22fd60e0e3bcea5d2d350c9bf8ea5cbd291a6591b66b5d99eb54a2"
     },
     {
       "path": "data/corpus/provisions/us/guidance/2026-07-08-snap-fy2024-cola.jsonl",
-      "sha256": "f7e83e5e340f93bedf54d58ea606ee6c39f7cd4fa79d1160f075befaf992ffff"
+      "sha256": "cf95bd487adf1e2da2db4f94937031903ec0fa5f56afe5bc9c457d84c2639d47"
     },
     {
       "path": "data/corpus/sources/us/guidance/2026-07-08-snap-fy2024-cola/official-documents/release-scope-us-guidance-2026-07-08-snap-fy2024-cola",
@@ -39,15 +39,10 @@
     "source_count": 6
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-15T15:18:01.566244+00:00",
+  "generated_at": "2026-07-15T18:57:32.726283+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "SvB03gU7Q8iPBonT4BJDi2VZ5KSn2x5n2sG7TKlqpp/fh16uFLMfbPawgkzLgEOFul+01nQU+zxtjG7Nu1MhBQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-08-snap-fy2024-cola"
 }

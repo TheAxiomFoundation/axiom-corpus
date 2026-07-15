@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616.jsonl",
-      "sha256": "46ff3763704eb83f5e19d1f8151a78c224a5d4e280da6b7b78fca267136b55de"
+      "sha256": "c9513c936e31200b318b40fa5f3f73dfef6e805284668fd42b3848263e916247"
     },
     {
       "path": "data/corpus/sources/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616/new-york-openleg-json/TAX/601.json",
@@ -51,15 +51,10 @@
     "source_count": 5
   },
   "document_class": "statute",
-  "generated_at": "2026-07-06T11:06:37.413315+00:00",
+  "generated_at": "2026-07-15T18:58:20.786725+00:00",
   "jurisdiction": "us-ny",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "r3dgx79ImNe5je01SZ0kz8FMRbX/Z2gAm/kcCLjhxHN+CK9gJ1vvvHw2ZNYAguWTsXYgxgJwPeqbNNgjux42Aw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616"
 }

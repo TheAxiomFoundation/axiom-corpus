@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-wy/manual/2026-05-27-wy-manuals.json",
-      "sha256": "a395b4c53328dcd9093bb8bad1a11fbb77e5d8857c066dc2884dae7ab339c1dd"
+      "sha256": "222974f77fa2e1f1d7cc63782b5412dca2981c03d94fb4df0bcbda58b07b58bd"
     },
     {
       "path": "data/corpus/provisions/us-wy/manual/2026-05-27-wy-manuals.jsonl",
-      "sha256": "c3385e9b9635c4ac19c2fd87c16a876cd59a9b40b9dcc36de5f410f82bfbb23b"
+      "sha256": "51ca82d89aa20c5d47e381b1462202ce9dbbad36baed44f4594babca0def0de4"
     },
     {
       "path": "data/corpus/sources/us-wy/manual/2026-05-27-wy-manuals/official-documents/release-scope-us-wy-manual-2026-05-27-wy-manuals",
@@ -39,15 +39,10 @@
     "source_count": 9
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:19:20.147358+00:00",
+  "generated_at": "2026-07-15T18:57:33.237228+00:00",
   "jurisdiction": "us-wy",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "XF9tAXhmWM1mdCVT5uTvTAWKN9JYm3nW9RU2dcv0TIkSOUP3sQJMWC/83i8wa6LjhymxiOSZfG5Ktg4n0UnNCQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-wy-manuals"
 }

@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-fl/manual/2026-05-27-fl-ess-manual.json",
-      "sha256": "335866d6f226a7e0bf65a4970031b8a3abab7bcd62c6d7088e12b878f7192a1d"
+      "sha256": "e6a6c2acd2f0889607444807d338b41b8624a1a78d5ae8d1a7093c3ceddb9687"
     },
     {
       "path": "data/corpus/provisions/us-fl/manual/2026-05-27-fl-ess-manual.jsonl",
-      "sha256": "ce2c3ce7ccee525a55aeea3753ce23a48551b10f7fdb68848ca70fc61a10f5fb"
+      "sha256": "265ab8bc40318a826b798a4198e8261ec743cfefdabc686348fe7406f24683c3"
     },
     {
       "path": "data/corpus/sources/us-fl/manual/2026-05-27-fl-ess-manual/official-documents/release-scope-us-fl-manual-2026-05-27-fl-ess-manual",
@@ -39,15 +39,10 @@
     "source_count": 1107
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:34.897760+00:00",
+  "generated_at": "2026-07-15T18:57:32.988490+00:00",
   "jurisdiction": "us-fl",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "ZaJDIpTIjpdykSdqJ4j3pVKTAS7yQ/BTR8o7htjjIpsfdX/6AqaWf9GQaTZOZsgpmjU2wIAgDnVo2BLZ0J4+CA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-fl-ess-manual"
 }

@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-co/regulation/2026-04-29-10-ccr-2506-1.json",
-      "sha256": "83972273d4cb9e6bf63cba83ecc70536982bde44881eb793cabe72371aebaf47"
+      "sha256": "e713245c8187150183f29a1c940504f213b1ccc57e9bcdbcc006268bad87c4d7"
     },
     {
       "path": "data/corpus/provisions/us-co/regulation/2026-04-29-10-ccr-2506-1.jsonl",
-      "sha256": "0e099c4a6faa072751fcaea8166c5c70592caa4fc7b7f3782ec8a6c210606f88"
+      "sha256": "7c8bb8fb3780bf4c8c9a46cb004cb707d8b5c191cb30ffb5adea98d9f4d8ee6b"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-04-29-10-ccr-2506-1/official-documents/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1",
@@ -39,15 +39,10 @@
     "source_count": 291
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:31.113790+00:00",
+  "generated_at": "2026-07-15T18:57:32.915620+00:00",
   "jurisdiction": "us-co",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "8My138RCyumzhMOOMTiKl356/Y6xvF5pL3B+MQAQpnXw9NKOjzCd2e6ZeyBPTXoLV3yUL7JJR+OmH2X2HWOgBg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-04-29-10-ccr-2506-1"
 }

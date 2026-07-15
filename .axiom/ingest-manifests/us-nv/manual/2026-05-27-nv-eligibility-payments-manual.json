@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-nv/manual/2026-05-27-nv-eligibility-payments-manual.json",
-      "sha256": "ef5206b3f0da145e5b4a986db1f4c62d44310cf018983729d1143b53b05901ed"
+      "sha256": "0ae4737b6f949f77a2307a37e4bbcd4a91bb2d0f9619cd6af184d9c29d6e6937"
     },
     {
       "path": "data/corpus/provisions/us-nv/manual/2026-05-27-nv-eligibility-payments-manual.jsonl",
-      "sha256": "670703267ddb66667ac7fe884b67dcfca25abac8c86f219488dde43e461d450e"
+      "sha256": "55590986f3a92aeeeeb7740e41634aa604ef79baef4059d47d25bd86f1a8d204"
     },
     {
       "path": "data/corpus/sources/us-nv/manual/2026-05-27-nv-eligibility-payments-manual/official-documents/release-scope-us-nv-manual-2026-05-27-nv-eligibility-payments-manual",
@@ -39,15 +39,10 @@
     "source_count": 821
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:19:04.482714+00:00",
+  "generated_at": "2026-07-15T18:57:33.171179+00:00",
   "jurisdiction": "us-nv",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "6ba3M4aRqflUV84toZluHWEe+5ACcIi8NzqS1aAaKyQfnJQeuPZ5+skAMIf4xmBfPKt0cinPb0Gt44DgpiePBA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-nv-eligibility-payments-manual"
 }

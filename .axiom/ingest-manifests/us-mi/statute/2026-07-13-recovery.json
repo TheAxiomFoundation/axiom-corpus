@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-mi/statute/2026-07-13-recovery.jsonl",
-      "sha256": "22ae0d25bf4f0f92575750ed35b3aaeba885a8b9b101ceb437db57157f7f163d"
+      "sha256": "fe814ef6b1c2491bc86cbef085610626218dda7cb1fd822613e272a0f7215e7b"
     },
     {
       "path": "data/corpus/sources/us-mi/statute/2026-07-13-recovery/official-documents/us-mi-code-206.272",
@@ -55,15 +55,10 @@
     "source_count": 15
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T15:18:52.836959+00:00",
+  "generated_at": "2026-07-15T18:58:20.735282+00:00",
   "jurisdiction": "us-mi",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "fHofKnjM61ji1hC7R0aIHVSOMXVZAJmrKxqVP2oLw8cpwYWs5ME70YicDuL0pAlUrRI3KAI4twbB1a8qxKC0BA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
 }

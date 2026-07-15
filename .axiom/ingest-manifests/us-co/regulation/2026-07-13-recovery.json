@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery.jsonl",
-      "sha256": "22a282a0e40229743e03a692623af7d74121f1f2e31bfd31c621f7388c3a76fa"
+      "sha256": "18f6d6e1e7fe3f79690946ede10531ea499f234ef1efdc6eec3578c2a066198e"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery/official-documents/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1",
@@ -55,15 +55,10 @@
     "source_count": 192
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:31.893052+00:00",
+  "generated_at": "2026-07-15T18:58:20.591265+00:00",
   "jurisdiction": "us-co",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "xOnCySortgRNcpUksTp3bOy3/hgmzFVIC5GkWdJy9MF1Vgf1SFcy50IiAy4vp4v3rtBKj/ekatPhD8EfUIxjCQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
 }

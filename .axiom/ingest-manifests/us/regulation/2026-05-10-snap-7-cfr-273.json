@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us/regulation/2026-05-10-snap-7-cfr-273.json",
-      "sha256": "8490a2aa31e628e2d55cdec9f38fe1d4a37925301deb2b6105e32ea1fee5b9e3"
+      "sha256": "67fef0a16bba8f92e6809a0bba272a03de284c1725c61f80246af3fc976080bd"
     },
     {
       "path": "data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273.jsonl",
-      "sha256": "4f8d10fd7abd792de62365237a15b2b9e0c73f791703b0277a999176cd293c5b"
+      "sha256": "29a8a180c8c65c13ad664a89c17ae37c2b641ec4e4cd9240a81ceaba11115db6"
     },
     {
       "path": "data/corpus/sources/us/regulation/2026-05-10-snap-7-cfr-273/official-documents/release-scope-us-regulation-2026-05-10-snap-7-cfr-273",
@@ -39,15 +39,10 @@
     "source_count": 10
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:02.825978+00:00",
+  "generated_at": "2026-07-15T18:57:32.761700+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "Q3HpBZavS3dwmQXZ29OZ90UUwAUh6jM/3BthIPxWGBCJXQPODNi+8OJV3/asWLbFMdRnnB8DHyNSEkcuCxvzCQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-10-snap-7-cfr-273"
 }

@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us/statute/2026-05-10-snap-sections.json",
-      "sha256": "fc08aa39ad6669198d505d425dde1043499beb1a4e1ff28ce1c04dbbaeb0f96b"
+      "sha256": "2ade7359c3f56b0cd1e0c1dae9929fd0ae3bdc1c7a16c799403403cb8da5291c"
     },
     {
       "path": "data/corpus/provisions/us/statute/2026-05-10-snap-sections.jsonl",
-      "sha256": "8f35faed03362390ce4758b4fe537862eb02f80a9f68ffd1adaa8652ec4796fc"
+      "sha256": "b07364b31e32416d4a0fdc978c2f0f4b9a258eb355f06d064c7b461e11da42e0"
     },
     {
       "path": "data/corpus/sources/us/statute/2026-05-10-snap-sections/official-documents/release-scope-us-statute-2026-05-10-snap-sections",
@@ -39,15 +39,10 @@
     "source_count": 4
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T15:18:22.301704+00:00",
+  "generated_at": "2026-07-15T18:58:20.465974+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "60+v335wWWp8WeR+J7zVtw2ahw7ttFFcD7x2KWJOYu+RkR8Vr+wMWq1hJtdCyRWcRmlsJ2LB/CNr2UoiAZSsDw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-10-snap-sections"
 }

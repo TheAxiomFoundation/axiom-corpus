@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments.json",
-      "sha256": "47dfc39eb1f3f245a9b05c1a09bbb51ff51921bea1ebecb94df841492eb61d57"
+      "sha256": "16124cd27a349e95b3f6b795bcdcd0b7f3ac6a8b4014298bc2cc9b0032592f57"
     },
     {
       "path": "data/corpus/provisions/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments.jsonl",
-      "sha256": "256420ef9a56eb9ff48edb07cea65f672d906d354106d636e702871b7dc22c16"
+      "sha256": "4c6d4060f977c5e507707dedbc5d218e2140f5aff569a054775a677e138c37f1"
     },
     {
       "path": "data/corpus/sources/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments/official-documents/release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments",
@@ -39,15 +39,10 @@
     "source_count": 11
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:21.106368+00:00",
+  "generated_at": "2026-07-15T18:57:32.763631+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "h7pR9qhyOa3PKrOO9FvzhY4l2KJyW+fPK7kUawjxxuYa52LdikQ4vZucSGdDO47C5s4zF0Sqpq+MHL9AFoMcAA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments"
 }

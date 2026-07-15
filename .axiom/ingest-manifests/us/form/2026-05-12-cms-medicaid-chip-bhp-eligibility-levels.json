@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.json",
-      "sha256": "e5a1ec845730104197226f7893d2a34e81a635e5a15af65037350d8f8f37331e"
+      "sha256": "347355fe19c667cadd78e5b9754539a1e6ab0488edc6f7b50da96030cba38584"
     },
     {
       "path": "data/corpus/provisions/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.jsonl",
@@ -35,15 +35,10 @@
     "source_count": 2
   },
   "document_class": "form",
-  "generated_at": "2026-07-15T15:17:59.628374+00:00",
+  "generated_at": "2026-07-15T18:57:32.719319+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "On6xIpx+6+mB+qP51EL/yCLMuxqZczFGLu0rdHkM3npywtsrkZbXqY+BM4xv53ZnEA0gSUbAR+kzUXg0ybK4Bw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-12-cms-medicaid-chip-bhp-eligibility-levels"
 }

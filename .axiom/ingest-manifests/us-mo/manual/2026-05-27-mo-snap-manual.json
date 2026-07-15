@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-mo/manual/2026-05-27-mo-snap-manual.json",
-      "sha256": "846676b00a9d471bc82d3edd2b01d8260082129194397badc66fcbefe22a87a5"
+      "sha256": "e4804ea4ea2f8524ccaebab52cd574ae854847120767eb4166eb3b206923afdd"
     },
     {
       "path": "data/corpus/provisions/us-mo/manual/2026-05-27-mo-snap-manual.jsonl",
-      "sha256": "5d0780d87b01daa43f8bb5e6f2902078c562a4c535f417f64a5865d4c85a1f05"
+      "sha256": "2e6514d5139251e4e3dc5262ddb480718a888257a3d225bacce615776d5c44ec"
     },
     {
       "path": "data/corpus/sources/us-mo/manual/2026-05-27-mo-snap-manual/official-documents/release-scope-us-mo-manual-2026-05-27-mo-snap-manual",
@@ -39,15 +39,10 @@
     "source_count": 1054
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:55.525826+00:00",
+  "generated_at": "2026-07-15T18:57:33.143942+00:00",
   "jurisdiction": "us-mo",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "pSxO/UmKmklOPSPdDfZ4ZMLbT7PIyj575s5Czp3Mc0XPSgpB5E0o0SgFGkoLtS4AdfTqVmJ1zj3skgIMuXjNAw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-mo-snap-manual"
 }

@@ -884,26 +884,26 @@
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "uv run python scripts/slim_us_recovery_statutes.py"
   },
   "coverage": {
     "complete": true,
-    "extra_count": 0,
+    "document_class": "statute",
+    "duplicate_provision_citations": [],
+    "duplicate_source_citations": [],
+    "extra_provisions": [],
+    "jurisdiction": "us",
     "matched_count": 2454,
-    "missing_count": 0,
+    "missing_from_provisions": [],
     "provision_count": 2454,
-    "source_count": 2454
+    "source_count": 2454,
+    "version": "2026-07-13-recovery"
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T15:35:09.965200+00:00",
+  "generated_at": "2026-07-15T19:01:17.729094+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "yDX/Ji09rPnEwCELCukgchpmcqR1w1hoVIcBTix7q2GatO2g77AEIyxFuVXFgDBM6JdsRg3I1PcLNKR25xGeCg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
 }

@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us/guidance/2026-07-13-recovery.jsonl",
-      "sha256": "06233cef4cb31c4f138f3abb3debf8c876dcabe9bb7ba6c587a5ca8ba564dd01"
+      "sha256": "bbb5283dbefc08dfee6c705375ccb52987c368083978a6a11f8d3323a8f127e1"
     },
     {
       "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/official-documents/release-scope-us-guidance-2026-05-01-snap-fy2026-cola",
@@ -87,15 +87,10 @@
     "source_count": 102
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-15T15:18:02.192452+00:00",
+  "generated_at": "2026-07-15T18:58:20.402838+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "i2ByVhepy+NZ0L7F/ND+tpTm2HhgEIe0zE+fCtmXiWtQALYGSwpcocIHJx3dzEECmCJimF77DXV35MgHNtXiAw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
 }

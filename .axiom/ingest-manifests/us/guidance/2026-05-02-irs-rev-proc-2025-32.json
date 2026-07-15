@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us/guidance/2026-05-02-irs-rev-proc-2025-32.json",
-      "sha256": "8c9b173c1b8737dc6f7cbb555fdd09cbc9fc5de0de082acd8aa974fbcdbf6f75"
+      "sha256": "70b9bc05996a9db5c87ea3094fe7456be2f3716b1b1fc98a1ded7068d0aa06c5"
     },
     {
       "path": "data/corpus/provisions/us/guidance/2026-05-02-irs-rev-proc-2025-32.jsonl",
-      "sha256": "bdbf734dfcebdf4e89e28e41c6ccfe21587d13ab16882f6aef30de1a4dde3643"
+      "sha256": "190007c00684347e287b9f79e09c39a70eaa47fb5b75d2af57b07540be6fc210"
     },
     {
       "path": "data/corpus/sources/us/guidance/2026-05-02-irs-rev-proc-2025-32/official-documents/rp-25-32.pdf",
@@ -39,15 +39,10 @@
     "source_count": 37
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-15T15:13:39.360167+00:00",
+  "generated_at": "2026-07-15T18:57:32.722398+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "uJSWLq1gaUvJS5tcvXqBvVrV13diJJxhM32QsuFRrvj+ofVFb8B25W1WbOitASJK2E30bVBA0/daj/FqB6QlCw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-02-irs-rev-proc-2025-32"
 }

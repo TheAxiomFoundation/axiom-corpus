@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-tn/manual/2026-05-27-tn-snap-policies.json",
-      "sha256": "0ae0065805df7d4f9781b62585c0a90331c97d67e29c317a2c08e51ba5977827"
+      "sha256": "c495636e851d4e5707d551590ab440d5cf6e4e7c3a25e01744d04d0ace0f6222"
     },
     {
       "path": "data/corpus/provisions/us-tn/manual/2026-05-27-tn-snap-policies.jsonl",
-      "sha256": "08b98cf0d31f93445e7d6399f8e96376d5a7929e0909352f15b2358602b8c742"
+      "sha256": "971999e46bdad3d21ed0b91fa4f4d494eea7c56902dd6023e2948e044fceca85"
     },
     {
       "path": "data/corpus/sources/us-tn/manual/2026-05-27-tn-snap-policies/official-documents/release-scope-us-tn-manual-2026-05-27-tn-snap-policies",
@@ -39,15 +39,10 @@
     "source_count": 233
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:19:12.849503+00:00",
+  "generated_at": "2026-07-15T18:57:33.201330+00:00",
   "jurisdiction": "us-tn",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "XB4G+22VrWFy+QpdQojn/k1gP+/16uqntnZcr/GBM8aJtjinDH+XINu4sHGXDHPJDZr+hv1wjU9VymqJLqfTAQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-tn-snap-policies"
 }

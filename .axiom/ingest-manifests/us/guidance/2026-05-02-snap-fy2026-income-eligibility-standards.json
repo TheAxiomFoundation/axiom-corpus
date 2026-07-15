@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards.json",
-      "sha256": "235ba66f24483dbb6e0c984489362d8134f676d32fb7c3d6d5dc0a16165edb16"
+      "sha256": "20c48510f0090c0096aa0b7fb789e58394a599177b134f84139a927561b078b0"
     },
     {
       "path": "data/corpus/provisions/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards.jsonl",
-      "sha256": "4e675020fb2218085003ebf60a0ba8598b779cf2795261fd594f98be42c71c12"
+      "sha256": "6eef2876d6ce4e21576b0a2e617f397cf7f13a5678fe888c61fb84d71c869eaf"
     },
     {
       "path": "data/corpus/sources/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards/official-documents/release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards",
@@ -39,15 +39,10 @@
     "source_count": 3
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-15T15:18:00.940038+00:00",
+  "generated_at": "2026-07-15T18:57:32.723388+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "OjZ/YW/69anGO9QxGQKYIiD8L62/uBFVRTutjeW7lmTu0kKNXVtKhmquhTlEH9hqKXJdCsuJs7VMA9moucWdBg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-02-snap-fy2026-income-eligibility-standards"
 }

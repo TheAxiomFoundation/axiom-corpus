@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-tx/manual/2026-05-27-tx-manuals.json",
-      "sha256": "38a682aaee9c6b5506fde3a60e1c0cc26310b94ad106294f2f6af4211299025a"
+      "sha256": "d3cc7014060acf2a359d9ef30bb34a769bf1cf29e865f576672781ee0285ee75"
     },
     {
       "path": "data/corpus/provisions/us-tx/manual/2026-05-27-tx-manuals.jsonl",
-      "sha256": "14fb7b7704d77d4aef7f169f7cb6dbeb7536a0ee88fde72cd5521a33ca9d7ef8"
+      "sha256": "64939aa2e5e78e09ab2a039f8291b318c251d68b83806e8255db8adfc1754aad"
     },
     {
       "path": "data/corpus/sources/us-tx/manual/2026-05-27-tx-manuals/official-documents/release-scope-us-tx-manual-2026-05-27-tx-manuals",
@@ -39,15 +39,10 @@
     "source_count": 550
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:19:15.330596+00:00",
+  "generated_at": "2026-07-15T18:57:33.205422+00:00",
   "jurisdiction": "us-tx",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "AVLCjtZ20KZgQewcxXJL8jlOZNB1QEmdYOBNkalj4gAMEQBKu4CWx5cA1nGcD0Y19fslgLT4XLwxjGjak7SqBg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-tx-manuals"
 }
