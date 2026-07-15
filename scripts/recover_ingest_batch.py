@@ -46,6 +46,7 @@ PLAN = REPO / "us-source-recovery-plan.json"
 BASE = REPO / "data/corpus"
 REPORT = REPO / "recovered-coverage-report.json"
 REPROCESS = {
+    "release-scope-us-az-manual-2025-10-30-az-des-faa5-manual",
     "us-al-code-40-18-15",
     "us-al-code-40-18-19",
     "us-al-code-40-18-5",
@@ -96,6 +97,16 @@ REPROCESS = {
     "uscode-title-37",
     "uscode-title-5",
     "uscode-title-8",
+}
+ASSEMBLED_SCOPE_REPLACEMENTS = {
+    "release-scope-us-az-manual-2025-10-30-az-des-faa5-manual",
+}
+AZ_FAA5_REQUIRED_CITATIONS = {
+    "us-az/manual/des/faa5/ca-jobs-mandatory-referrals",
+    "us-az/manual/des/faa5/ca-payment-standard-a1-2fa2",
+    "us-az/manual/des/faa5/na-transitional-benefit-assistance-tba",
+    "us-az/manual/des/faa5/supplemental-payments-and-restored-benefits",
+    "us-az/manual/des/faa5/transitional-child-care-tcc",
 }
 MANUAL_RECOVERY_DOCUMENTS = {
     "release-scope-us-ma-regulation-2026-05-28",
@@ -582,6 +593,84 @@ def _generic(
     return _materialize_planned_targets(entry, items, records)
 
 
+def _assembled_html_pages(
+    entry: dict[str, Any], data: bytes, provenance: dict[str, Any], source_key: str
+) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
+    """Parse a provenance-described concatenation of official HTML pages."""
+    decoded = data.decode("utf-8-sig")
+    page_markers = list(
+        re.finditer(
+            r"<!-- =+\s*PAGE: (?P<name>[^\r\n]+).*?"
+            r"SOURCE: (?P<url>[^\r\n]+).*?"
+            r"citation_path: (?P<citation>[^\r\n]+).*?"
+            r"=+ -->",
+            decoded,
+            re.S,
+        )
+    )
+    declared_pages = provenance.get("pages")
+    if not isinstance(declared_pages, list) or len(page_markers) != len(declared_pages):
+        raise ValueError("assembled HTML page markers do not match provenance pages")
+    by_citation = {str(page["citation_path"]): page for page in declared_pages}
+    if len(by_citation) != len(declared_pages):
+        raise ValueError("assembled HTML provenance contains duplicate citation paths")
+    required = set(provenance.get("required_citations") or [])
+    if required != AZ_FAA5_REQUIRED_CITATIONS:
+        raise ValueError("assembled HTML required citations do not match AZ FAA5 recovery scope")
+
+    items: list[SourceInventoryItem] = []
+    records: list[ProvisionRecord] = []
+    for ordinal, marker in enumerate(page_markers, 1):
+        citation = marker.group("citation").strip()
+        page = by_citation.pop(citation, None)
+        if page is None or marker.group("url").strip() != str(page["source_url"]):
+            raise ValueError(f"assembled HTML marker disagrees with provenance for {citation}")
+        end = page_markers[ordinal].start() if ordinal < len(page_markers) else len(decoded)
+        page_html = decoded[marker.end() : end].strip()
+        page_bytes = page_html.encode()
+        if hashlib.sha256(page_bytes).hexdigest() != str(page["sha256"]):
+            raise ValueError(f"assembled HTML page sha256 mismatch for {citation}")
+        soup = BeautifulSoup(page_html, "lxml")
+        for tag in soup.find_all(["script", "style", "nav", "header", "footer"]):
+            tag.decompose()
+        body = re.sub(r"\s+", " ", soup.get_text(" ", strip=True)).strip()
+        if len(body) < 100 or str(page["section_identifier"]).lower() not in body.lower():
+            raise ValueError(f"assembled HTML page lacks verified legal text for {citation}")
+        metadata = {
+            "assembled_page_sha256": page["sha256"],
+            "fetched_at": provenance["fetched_at"],
+            "primary_source": True,
+            "recovery_parser": entry["parser"],
+            "role": page["role"],
+        }
+        items.append(SourceInventoryItem(
+            citation, str(page["source_url"]), source_key, "html",
+            str(provenance["sha256"]), metadata,
+        ))
+        records.append(ProvisionRecord(
+            id=deterministic_provision_id(citation),
+            jurisdiction=str(entry["jurisdiction"]),
+            document_class=str(entry["document_class"]),
+            citation_path=citation,
+            body=body,
+            citation_label=str(page["section_identifier"]),
+            version=str(entry["proposed_version"]),
+            source_url=str(page["source_url"]),
+            source_path=source_key,
+            source_id=f"az-des-faa5-{safe_segment(str(page['name']))}",
+            source_format="html",
+            source_as_of="2025-10-30",
+            expression_date="2025-10-30",
+            level=citation.count("/") - 1,
+            ordinal=ordinal,
+            kind="section",
+            metadata=metadata,
+        ))
+    if by_citation:
+        raise ValueError(f"assembled HTML provenance pages lack markers: {sorted(by_citation)}")
+    return items, records
+
+
 def _materialize_planned_targets(
     entry: dict[str, Any],
     items: list[SourceInventoryItem],
@@ -739,6 +828,8 @@ def _parse(
 ) -> tuple[list[SourceInventoryItem], list[ProvisionRecord]]:
     parser = str(entry["parser"])
     document_id = str(entry["document_id"])
+    if document_id in ASSEMBLED_SCOPE_REPLACEMENTS:
+        return _assembled_html_pages(entry, data, provenance, source_key)
     if document_id == "release-scope-us-regulation-2026-05-10-snap-7-cfr-273":
         # This release snapshot is the official eCFR HTML rendition, not XML.
         return _generic(entry, path, data, provenance, source_key)
@@ -848,12 +939,15 @@ def main() -> int:
         and value.get("parsed") is True
     }
     files: dict[str, Path] = {}
+    only_document_id = os.environ.get("AXIOM_RECOVERY_ONLY_DOCUMENT_ID")
     ignored_duplicates: list[str] = []
     for path in sorted(FETCHED.iterdir()):
         if not path.is_file() or path.name.endswith(".provenance.json"):
             continue
         document_id = _plan_document_id(path, set(entries))
         if document_id is None:
+            continue
+        if only_document_id and document_id != only_document_id:
             continue
         if document_id in files:
             preferred = path.name.startswith("ecfrtitle-") or path.name == "rp-25-32.pdf"
@@ -938,13 +1032,18 @@ def main() -> int:
         coverage_path = store.coverage_path(*scope)
         existing_items: list[SourceInventoryItem] = []
         existing_records: list[ProvisionRecord] = []
-        if inventory_path.exists():
+        replace_scope = any(
+            str(record.source_id).startswith("az-des-faa5-")
+            and (record.metadata or {}).get("recovery_parser") == "assembled:az-des-faa5-html"
+            for record in records
+        )
+        if inventory_path.exists() and not replace_scope:
             inventory_payload = json.loads(inventory_path.read_text())
             existing_items = [
                 SourceInventoryItem.from_mapping(row)
                 for row in inventory_payload.get("items", [])
             ]
-        if provisions_path.exists():
+        if provisions_path.exists() and not replace_scope:
             existing_records = [
                 ProvisionRecord.from_mapping(json.loads(line))
                 for line in provisions_path.read_text().splitlines()

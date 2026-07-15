@@ -13,6 +13,7 @@ import pytest
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
 from scripts.recover_ingest import load_fetched_files, recover
 from scripts.recover_ingest_batch import (
+    _assembled_html_pages,
     _ecfr_paragraph_records,
     _load_file,
     _plan_document_id,
@@ -121,6 +122,28 @@ def test_recovery_normalizes_montana_printed_rule_dots() -> None:
     _, records = _targeted_state_html(entry, html, provenance, "sources/test.html")
 
     assert records[0].citation_path == target
+
+
+def test_recovery_parses_assembled_az_faa5_at_declared_citation_depth() -> None:
+    path = REPO / "recovered-fetched/release-scope-us-az-manual-2025-10-30-az-des-faa5-manual"
+    provenance = json.loads(path.with_name(path.name + ".provenance.json").read_text())
+    entry = {
+        "document_id": provenance["document_id"],
+        "jurisdiction": provenance["jurisdiction"],
+        "document_class": provenance["document_class"],
+        "proposed_version": provenance["version"],
+        "parser": "assembled:az-des-faa5-html",
+        "covers_citation_paths": provenance["required_citations"],
+    }
+
+    items, records = _assembled_html_pages(
+        entry, path.read_bytes(), provenance, "sources/us-az/manual/faa5.html"
+    )
+
+    assert len(items) == len(records) == 7
+    assert provenance["required_citations"] == [
+        row.citation_path for row in records if row.metadata["role"] == "REQUIRED-CITATION"
+    ]
 
 
 def _fetched(tmp_path: Path, *sources: str) -> Path:
