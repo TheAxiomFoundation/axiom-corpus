@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import heapq
 import json
 import os
 import re
@@ -1574,14 +1575,19 @@ def _dependency_ordered_inserts(
         if parent_key is not None and parent_key != row_id and parent_key in pending_by_id:
             children_by_parent.setdefault(parent_key, []).append(row_id)
             in_degree[row_id] += 1
-    ordered_ids = [row_id for row_id, degree in in_degree.items() if degree == 0]
-    cursor = 0
-    while cursor < len(ordered_ids):
-        for child in children_by_parent.get(ordered_ids[cursor], ()):
+    # A heap makes the otherwise under-specified order between independent
+    # trees deterministic.  This matters operationally: every retry produces
+    # the same chunk boundaries while still guaranteeing parents-first order.
+    ready = [row_id for row_id, degree in in_degree.items() if degree == 0]
+    heapq.heapify(ready)
+    ordered_ids: list[str] = []
+    while ready:
+        row_id = heapq.heappop(ready)
+        ordered_ids.append(row_id)
+        for child in sorted(children_by_parent.get(row_id, ())):
             in_degree[child] -= 1
             if in_degree[child] == 0:
-                ordered_ids.append(child)
-        cursor += 1
+                heapq.heappush(ready, child)
     if len(ordered_ids) != len(pending_by_id):
         for row_id, degree in in_degree.items():
             if degree > 0:
