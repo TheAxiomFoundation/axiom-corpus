@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "dbbe24a0c48023b366647796e4fd5f9c95b3ce07",
+    "commit": "f76c88a7de43acc37a192808508a74eb412386a8",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,10 +39,15 @@
     "source_count": 821
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T19:51:06.259739+00:00",
+  "generated_at": "2026-07-15T22:26:26.483923+00:00",
   "jurisdiction": "us-nv",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BG4hwPnXf9AyFEgYFkK5wv9Oq1NUnExrKgJiRVZyG9Eu0hvylypgXpkPohWqXpCR2YUZX89MNbaMvcZxQ5JqDA=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained"
 }
