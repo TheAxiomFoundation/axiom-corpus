@@ -30,32 +30,32 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "759e76154225bb24803476e851f361c79582ecfd",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-co-oap-artifacts-20260625"
+    "commit": "3f8cfd9b3fb03c6d0d94f5668b0acd524cc0655d",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run axiom-corpus-ingest extract-colorado-ccr --base data/corpus --version 2026-06-19-co-oap --only-series \"9 CCR 2503-5\" --source-as-of 2026-06-19 --expression-date 2026-06-19 --workers 1 --download-dir /tmp/axiom-co-oap-download"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 92,
+    "matched_count": 91,
     "missing_count": 0,
-    "provision_count": 92,
-    "source_count": 92
+    "provision_count": 91,
+    "source_count": 91
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-25T09:53:13.973506+00:00",
+  "generated_at": "2026-07-15T22:26:17.458012+00:00",
   "jurisdiction": "us-co",
-  "reasoning_logs": [
-    {
-      "path": ".axiom/reasoning-logs/us-co-regulation-2026-06-19-co-oap-9-ccr-2503-5-r2026-07-15-self-contained.md",
-      "sha256": "a9640fa2f2f6c276e8fedb44b1dbef32842ab5f627370ebe4a2fe3fc230ceeb5"
-    }
-  ],
+  "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "I9oYIjvNNgZ6h3i7wL07CKHvTNGXvfxxnclD4DMm/25RrhAU+ldrqwnnr7UphWswrONZ82hZ9fdDKOGmGY0UAA=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-19-co-oap-9-ccr-2503-5-r2026-07-15-self-contained"
 }
