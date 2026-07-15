@@ -14,7 +14,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f56ce69781b8b98474641445e85b9b63c1cebd43",
+    "commit": "481378b9c53664438e2a5d8366c823824cbaa726",
     "dirty_tracked": false,
     "root": "."
   },
@@ -31,10 +31,15 @@
     "source_count": 1
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-15T13:35:56.334804+00:00",
+  "generated_at": "2026-07-15T19:51:36.781208+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "V/CTXSoaoYqqc2u5oPl0emRp44XWGwvQ1G0mILpeFt/IngjiIwuWfdGE4Ntcy2EEWAdZ8YK41N17pJtUx+KVBw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-26-ssa-contribution-and-benefit-base-2024"
 }
