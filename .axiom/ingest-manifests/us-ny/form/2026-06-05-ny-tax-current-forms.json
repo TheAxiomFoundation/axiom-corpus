@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/form/2026-06-05-ny-tax-current-forms.json",
+      "sha256": "d6c58e4c9785a29e5726e997e5b685c9f80eadb4420028301ef5f4beaf9795dd"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/form/2026-06-05-ny-tax-current-forms.json",
+      "sha256": "e95d93aa9192ccadfd255ec174787bd2b58ac53f4bef1ca9144b7b2f6a371667"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/form/2026-06-05-ny-tax-current-forms.jsonl",
+      "sha256": "d76d3ad8903003fcd85016208ff3392e2eb53bf2f268550e60eddc5128566a60"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/form/2026-06-05-ny-tax-current-forms/official-documents/ny-it-201-instructions.pdf",
+      "sha256": "29489d6eed7529bc1388e57a5bf0814e6e6d94d02288c5c83a377d21e3773f72"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/form/2026-06-05-ny-tax-current-forms/official-documents/ny-it-215-instructions.pdf",
+      "sha256": "50a119620fd3bf8e6e73386a08a078c7e818db8fc50402dbc1b182d3e53193a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/form/2026-06-05-ny-tax-current-forms/official-documents/ny-it-216-instructions.pdf",
+      "sha256": "e9ff82820d2a811929b5ce0a90ef160c55a5ac373f88ab30eec64d7a29e5c757"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "34be1a05793f65c67499c2a25f8df76835066702",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 54,
+    "missing_count": 0,
+    "provision_count": 54,
+    "source_count": 54
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-15T15:19:05.716248+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xDbvv1ZQgD0/rVateyjZKQShykHW3nfbEtnOx8hYtjDrSxSrkjpHkzoQ/+C6K8X+nOhKEcOS4S41HDtv3FAbDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-05-ny-tax-current-forms"
+}

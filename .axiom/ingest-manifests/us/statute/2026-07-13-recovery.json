@@ -1,0 +1,909 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-13-recovery.json",
+      "sha256": "bda98494aa59fc6f7c4f95bb3c063ce79d6b967af7f7941134e45f732e1a5569"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-13-recovery.json",
+      "sha256": "641dd97a31c2ab80720199933f1fc552f559facecd7aa1be45194a6af7338afa"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-13-recovery.jsonl",
+      "sha256": "110bbd519cb00668d6d211b4273291933864cd33502cbcc1b643db2a6321ef95"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/release-scope-us-statute-2026-05-10-snap-sections",
+      "sha256": "ee6e64df68cfc2a6ac8e1a563b47ca7912e96d059fe35965ad818eaebecef1c1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/release-scope-us-statute-2026-05-10-tax-sections",
+      "sha256": "ce8b0ed86616c74c2b3926b516b5c42a8f7419157e4623ee9d05c392764c546e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc05-section-5566.xml",
+      "sha256": "76ba94270215e9babfdc29683ce592b05e538ee9193f207c3a6b2f3c696bb0cd"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc08-section-1612.xml",
+      "sha256": "e4105ca46d8f9e6e75727235e7181b2271aedd4bee36b94560a7bd4c6e99414e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc08-section-1613.xml",
+      "sha256": "713c6985de9e75a5e1c3b2e8dd5ca9a0e981e66042934e540513bdc1e224b69f"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc08-section-1641.xml",
+      "sha256": "d431e5242ad3e83a67f56c1a21392d45765ae52bf79e702bf502f930d4e41f6e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc20-section-1070a.xml",
+      "sha256": "c58d3ee8f96e44b5e2103c7dd9339cbb0acc8919b0faf87aeb2fc5fce80390d4"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-1.xml",
+      "sha256": "995b2a7bdff7ba985788f2669db2ea579622e326cd2938f9c0acd5e9677778f9"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-102.xml",
+      "sha256": "531886cf4369ec7ea0340417d5bae6b674008cde9689b2117cf77ea791dd5ef1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-104.xml",
+      "sha256": "7ff9ca7b0d3996fdd6ff2f71e9915cd44e2aa594900801f129fa891c580cce9d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-112.xml",
+      "sha256": "258760dbe21b672e5d5b3f4182342f12fabebb9078004b024467445dcce7f531"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-1211.xml",
+      "sha256": "0840e715bad06cbf1a0d44c8ac614dbaf2591c3c8915752acc432ce947aa2fc3"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-1212.xml",
+      "sha256": "fc66561cb17fddeb2a8874d931daef09ad7ccded3a359fa13830ec97dd6918e3"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-1222.xml",
+      "sha256": "8a0aa5073e1ad315fb82f041c15280ddcb57d8fca25e265d31e8a0d755b1225a"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-1402.xml",
+      "sha256": "0626e1ea52dc7d1e23725659591fb308a54a0168b3ca800a3b192449ffe5fc3a"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-1411.xml",
+      "sha256": "6d4d858f6ed9a3eb11aa3d4e1d78f6a15793f090d62745959e8c26db61359f3f"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-151.xml",
+      "sha256": "6460e3492e5e0a0f343dd3d9ee7a4199c47d87f1f88167e8a11950955a145577"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-152.xml",
+      "sha256": "7d3d6ac0292ebaeead8e9e78b1b89b748a84847c1d8018c78ae17b660243c556"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-163.xml",
+      "sha256": "2cba89e2833e851d45324dcc65fe0a624a231a5e256c016d995d20935fd33c83"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-164.xml",
+      "sha256": "10be28565c858929b8319d43a6674cae4b1fe691830bf0f35587dda4d6279171"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-170.xml",
+      "sha256": "3b3d717afba8e68ae422fcae42740a1cf1db3331aa7f208f4a5f0f493177704f"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-172.xml",
+      "sha256": "1629a7b438055f9fbd5581f0f5deffeb771bd2c8fde22b410e968d77effe8988"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-199A.xml",
+      "sha256": "8fe080d07f8e6579668b2d5151fd8ccea677eeaa0207f9cde0bc4d41316696cc"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-2.xml",
+      "sha256": "f95d26fd355ec46d005ae6848e38702a76f95aab7fdc8b0997fd27c88db10754"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-21.xml",
+      "sha256": "98d2e881ec31dc5c3e5f41c944bb7968399d24238fa642a65cda0c5bdc4144e9"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-212.xml",
+      "sha256": "dd18301aad320bb8cf0ea9f23663e3116ebdd0daf393e252cd80b30bd1fcd84b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-213.xml",
+      "sha256": "9c4363e0e313a19a2f8fe7ab3fef1f11abd326598494aad122e53b36ffc1fce2"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-219.xml",
+      "sha256": "b11cd5cea06f2621c32c65274aac5ebb799c89ef0e1405be391e2c6f06f120df"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-22.xml",
+      "sha256": "05d26b2d027b6020af84b4f87a9382aafe05c86082b7bd097cc904de2e23a759"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-221.xml",
+      "sha256": "3db3322f2829879d6d02b55259f1a5a1e9910e4724b8b8740fa0aae779029a16"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-223.xml",
+      "sha256": "1ebbd067d8663a05806f756bd513c6b064fbd9526afbf3dfbbd51733a841d6c1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-224.xml",
+      "sha256": "f20218790d817016949ca594e487783d779c02634d3ae0666efeb6dee7e5302d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-225.xml",
+      "sha256": "fba28fb1d2d6d2f3c79c1d92aecc093de6a4ac5874817a8c21bf0dc24badad71"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-24.xml",
+      "sha256": "5028b119274093b6eebd65e2351c4a38b57d0bcc9f056e5072c2a85976ad4dde"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-25A.xml",
+      "sha256": "85c582b018352144cedc09877cf898aee82dbdd44d0a4f002eea65bb6c2cb7d1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-25B.xml",
+      "sha256": "07c45fbb7f655a7b66d727af135c23f7820b3c51b1572b256d68d0c754d8410d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-25C.xml",
+      "sha256": "e55d746408f9a677b50fe3036daa64d01659ed49f28079ee510145f84de5a353"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-25D.xml",
+      "sha256": "d0d36f93ff9023ef45dfbd57b6148f7ce56f1fc8961da5b9f2487f27b83f11f7"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-25E.xml",
+      "sha256": "73902017f6f2d7c75aec2ec954dc82645441690b2b626546cdcda3972ef86e91"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-26.xml",
+      "sha256": "b4058b441ca9226676cd0be676b8836a08ad36d4d1a51943541dfcfeb61a483a"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-30D.xml",
+      "sha256": "0f8fe41a95ff7beecb7522d050521eb5029e6ac7144b04283b24840074066331"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3102.xml",
+      "sha256": "2b47707ebe9180dfc5c782c89793db0e997249d4f05d2e3395aff2c125fde8c2"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3121.xml",
+      "sha256": "bf78c1824219566be01f0ca11bc706155fb565311bcabe1c86226b6dea7a4fac"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3127.xml",
+      "sha256": "2012b6a70830aa253633f7bf1a005ee3b5ca0b0ce46eb6912442cbd6759f8d46"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3128.xml",
+      "sha256": "eb420f6aa54a52a97da533c53bb17efb272e13b74677ae9e75dbc38da9dba8c5"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3131.xml",
+      "sha256": "f8a2becbe8d742d0b0e7407dfff094217818f1abdfdef46af54c3c115112c9f0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3132.xml",
+      "sha256": "ba2bfac0eb1a9ae9579efdc9b7a89b733f475ee1d7eb8a33b6e52fa369638f4d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3133.xml",
+      "sha256": "b846ba2b8c2f304533ae772131ab293b76dace9d9e1e7ecb3e1e11b4dab56426"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3134.xml",
+      "sha256": "6627358366f1ec9d676bf8ae395fd650ac75c669e968b0e802fef7ddc3a9ad54"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-32.xml",
+      "sha256": "60e0a6ab95a067dac745d29b8dd2049cf06a8b75b08016a5110e91c69f1c1cd5"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3201.xml",
+      "sha256": "6208f69e2ccd2227dab57a567f38398f272ca7f43771eafc793f51657d6fbe3b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3202.xml",
+      "sha256": "410c69e6c559eba292e6178423c5cb7d467d9664cc76c76c0170817552b5ea63"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3211.xml",
+      "sha256": "94d3495cf29e67daf3cc527f62a077b206dc658bd58b22acfda33ee9157037ec"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3212.xml",
+      "sha256": "3a902342c305fd88a9c3543b5f272017667c35fc79c9a895adffa1ea8b27833e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3221.xml",
+      "sha256": "cedc7612a79ca1d9828cc10316712fab417d5ea73b7a7e2f4eeb79619b94cbbe"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3231.xml",
+      "sha256": "0d9bca42ed8d1d2a10d252b7e827b3efc2919e754cae522f081c81771b873bb8"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3232.xml",
+      "sha256": "f1991ba653ef60266adaff0796f3a2371acf2de84d441fedf10e75961bd1879b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3233.xml",
+      "sha256": "5ffb735249165352fa8eeb94c8cfbfcfdb61e8acf7a648b8ea31640f12495f90"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3241.xml",
+      "sha256": "37cd7cdcf2900156d1953c47c63348eaaeaa1823e20e669cf9b949d9b3e0bd3c"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3301.xml",
+      "sha256": "41087cc27450190d8f7ec6ac8728ba46a26002abf0a72295de074f614c2ce7e7"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3302.xml",
+      "sha256": "56c8089f2f3c0bce276743d5e95106f71f56abde4a96804f304849b133a85247"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3303.xml",
+      "sha256": "b574ef53c5bfc4f483f8be8babac88a128d41c726dd2d3e9da0b3f36f47938c7"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3304.xml",
+      "sha256": "406f45d15f8babb3fb04f2c4888b895236e7a6577e3ddbda7178b4379faf8ad5"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3305.xml",
+      "sha256": "33b627c1970e82f62865aa1f7501ac70bfd680d5b8b2af1ef3e442404a99726c"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3306.xml",
+      "sha256": "a1db72a4fdf15ec0d7a35f526138c209d16a78637fb6cb17535a29aef69dfec4"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3307.xml",
+      "sha256": "5c35e109177d3062aaa5534969a01aa5a97fca9aafca0720964bfae53124b641"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3308.xml",
+      "sha256": "03a4195c3cf0fd31faeff69ac254402d7ca86c857f8757dddead2e3cf6e453cb"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3309.xml",
+      "sha256": "558449f5c5604ac3895293a5f34942075cb97a09f0b1310144225a5f39fcda82"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3310.xml",
+      "sha256": "a748beab35f68cfa22451f423a477bb6e26e3ce455e91ccbc95c4e4914bd5198"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3311.xml",
+      "sha256": "352b539c0367d480b26d5ef020fe97a01d9c6b41f8cc71d27123512eca91c07c"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3401.xml",
+      "sha256": "fe7d886c58fa7b393fc4b013efff59c984c1036ee47fa646e9d87309c4db1b76"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3402.xml",
+      "sha256": "35b9a3aacaf434a1ebad2dafa17e3759244e1dcf2a5e4eefb5e1e6ddf514ab7a"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3403.xml",
+      "sha256": "a0d0566937a71c7aa283eeb766cc2d9575b404f2a4848b16b8553f52ba7bbe5b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3404.xml",
+      "sha256": "c460880d39b9fe8db161b96d472142fd4fb4781dac91b9bce3387dca0978da16"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3405.xml",
+      "sha256": "b4c69dbd7964c46aeb0a7058ac333b59214217582bc462d6eb1ee13c9208aa28"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3406.xml",
+      "sha256": "3f82cdfdb99fbce22763170744f89b073aad090afca1d09292655e062aefadc8"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3501.xml",
+      "sha256": "b1fd8b6e1607dae69fe8c70e95e6a801c91c01beb7d31e81918c93ed07edb0fc"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3502.xml",
+      "sha256": "06f21750f5aabc2edd4667baf03dd0e6599ef639e961f708b01bbc7f26645feb"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3503.xml",
+      "sha256": "f3b23ed0effe8891cc71b51f48f11cbdabc590698d540cd82342fa3a75ea5e36"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3504.xml",
+      "sha256": "fec36877a4ea41d1dae749caa4aa5c56ebd5561a7ec7ca2503da29f27de65221"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3505.xml",
+      "sha256": "a0db656cd974ac488b0f12c177b000139409bc372b945a6e6860a42695248aa3"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3506.xml",
+      "sha256": "7a23cd6ac70b4f1ac335f021257c9d84910185468a8437943be8a28ac1df5bf8"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3507.xml",
+      "sha256": "37368f43794bd7d6775c711f74d22b8e3a2440da1966bd7fb3d3bff2d8296e1c"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3508.xml",
+      "sha256": "1429fe7a43132a6d226f86906d5d408d9a4c3b6509b280c3c3c0a3a8c3a8bde9"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3509.xml",
+      "sha256": "25620751f8b3cafb1073a538266bb060c0f03134467b7a8e82de35cca41313cd"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3510.xml",
+      "sha256": "477d5e06d1ab9e72163217483317ff5b634a5a90747df5d61bac62362c28c818"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3511.xml",
+      "sha256": "50456374098a37d721699acd5a60766a0d5f47f42a4ebe377513dcbc2086257d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-3512.xml",
+      "sha256": "c9ef2e14e488b900f910776ceb8dfaff814286517696b748ae692b5420258470"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-36B.xml",
+      "sha256": "6a34690b3dd0236b04cb3eb02074deb29868909200729c5a490851c0a0cbcdc5"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-408.xml",
+      "sha256": "2bffa2883e6af2e958b18eeba201ff2d225e29d6b1ec3418b50c1376532e1390"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-443.xml",
+      "sha256": "0f264bf0e2756d8f4d421bbdbacc298c23bb2fbf68896728c8edaa9f1243eda1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-55.xml",
+      "sha256": "2695ca3a33cecb818b0dd29068a50f84f9b56d9164560879a93d5fc6652e0022"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-56.xml",
+      "sha256": "5e53f27ef81583b141924e17fb8d659f2952d7bf0f267ec395d8054cb07b70ea"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-6012.xml",
+      "sha256": "a03e2c95f8179085f0bef74fbae40892b3fc4814e591b59c69b85e7dc0a80890"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-6013.xml",
+      "sha256": "eed38b098537515d736954b28c9b066bbad45f1765b75014e4530d9bc8cd4364"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-61.xml",
+      "sha256": "9593bcbda77fab2e2ffd72fb4fe569be439429717d04dbe4933381ab0bc4924e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-62.xml",
+      "sha256": "6e36b059bccb32d5013753f2a6b817e5da99411db4a4fc08421415b316ca96d5"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-64.xml",
+      "sha256": "3c809757315e80f3babf285f841ecbca106715fc0ea6ce59b8219136f0cfa55c"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-6401.xml",
+      "sha256": "f98168f470780f777ff3fc30f4d88bc5037f2a9c07542e3fb2ccd2f1b14ed0cf"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-65.xml",
+      "sha256": "6f3bcd44d93cc22c90a7480387367029c13c484039b707444ced7f9413bce394"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-67.xml",
+      "sha256": "ae0d21e3457040393a2398b852858331352f27908355992f4ef05db72cc3e6c6"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-68.xml",
+      "sha256": "96be58cb3373dc04a0f50752a229206bd48ad67d9c560c4c9a386de6335d4880"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-7703.xml",
+      "sha256": "fdfcce5633e1dbebdd2a829d8da22d9dcee204cee3db1f0f295b1e7d6f2c459e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-86.xml",
+      "sha256": "5f63af8efed4faa5155d6341ca66628bb69baf1fceb0606395fea80dd6552938"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-911.xml",
+      "sha256": "1d2c1f4d9747c101d820873971abd2f0ae36ed008f4226089fac120fd8f84349"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-931.xml",
+      "sha256": "b70119d4b35df2d471d0c9b2014c24afabf335ab2c8f5ed97ed3667a9f9b9dca"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc26-section-933.xml",
+      "sha256": "6979f4a8109c503260f44557fbb451b87f2f550fbf8a91d068f91a5c03ce7d76"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/official-documents/usc37-section-556.xml",
+      "sha256": "db2cd7ff8e053276fed031fc04f7d7147514d89fb0158922f765ea098402b020"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/release-scope-us-statute-2026-05-10-snap-sections.json",
+      "sha256": "fcd84d10bfcf21b9afdd0c30169bd07bb0697db63ebfc11e4a7c786b027682b0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/release-scope-us-statute-2026-05-10-tax-sections.json",
+      "sha256": "c91540f00b6f2d15e85f96beb05d958ef2f07bb1a470b6e283c35784cc937397"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc05-section-5566.xml.json",
+      "sha256": "25265d9e93cf7085f2183922a12d383343601dd1aeb9721b5971c3dbd7e1d1d5"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc08-section-1612.xml.json",
+      "sha256": "5ad2b555165957f95025630f6b362369e9eebc8c1a1870ec0784e4a5c545653e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc08-section-1613.xml.json",
+      "sha256": "9ed5a43a4b29029c7158d932f1e3c1cce13e72398af07ebe89d0b991c412f3f1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc08-section-1641.xml.json",
+      "sha256": "9c4ed741bd6ff7e1a083ff4a9f67c391c99caadcb043cef41925f050de20126f"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc20-section-1070a.xml.json",
+      "sha256": "f6207b9398f4423d81638e2f9fa140db482714b57823593f8a1cba6f15f66098"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-1.xml.json",
+      "sha256": "25b10c8d25aaba8c635bb4d8fe5f7d8ac3873c564940ba8106a107bbe68c70e5"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-102.xml.json",
+      "sha256": "527b096b07a09665ca91cca4a6349f2d98d083c0d2329c5fa74d53f792d0de4d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-104.xml.json",
+      "sha256": "7d963ca32365e7aeb94bb41c42127ed67297ab51c8c215c25fe777a476cd5bc0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-112.xml.json",
+      "sha256": "d423d427bf14aa030c02fe5dbf158321667315563a1b0526dd804354ff927981"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-1211.xml.json",
+      "sha256": "be21028946296dd6c1d57cf08de0eef4732b9c0d36b1f62beff7f6d88acd24dd"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-1212.xml.json",
+      "sha256": "208a2fbe5b5479cfd637f2ca33b472061d16d4fbcc642af92fce62c6370589a1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-1222.xml.json",
+      "sha256": "9a63a37ae895d754bdd4c576ec6c4b27c893ae097f474cc5a0d62395e8010b08"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-1402.xml.json",
+      "sha256": "f7a4b7907bd8b0aada544f79b7797052d06b7bf398cd51826c08b582c97cfb8f"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-1411.xml.json",
+      "sha256": "ddc451dfab253b0c458159527ee1b14577b2fd6f82be96146c3e7f0826dd4059"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-151.xml.json",
+      "sha256": "ca8bcec631b8fe92f48595687eed5852d40a6d1c936f1da8ea556f1f643c6cda"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-152.xml.json",
+      "sha256": "f3b7bc33f10beca039920ef9dbe4041b96444b88fdcb31a289a0db6a2445b3f3"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-163.xml.json",
+      "sha256": "d0da644731c208be3b186cd6866d60dc8780ca67a7ad23a0045558a0727afc4d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-164.xml.json",
+      "sha256": "5bd5fde6ba584da965dd6a79be0d8e3468ca61fbc5fdf668f6f23e527a5a4612"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-170.xml.json",
+      "sha256": "368a15874adce40ef4ba06958b25195ace723299f522a86df7317b3f182410cf"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-172.xml.json",
+      "sha256": "bc8a6556e7dc7cddc918dc6e1db60158f20caed54ca10a593eb232538da9046a"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-199A.xml.json",
+      "sha256": "2e4a6c53ef51917da86a4de8663b815ca31b1e0e53797e9d64f86e760aa3d6ae"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-2.xml.json",
+      "sha256": "1bb7ad2babf04fd3177c7cfc72af1b5791f3c5dba9ac9c41e85cd23ac6c73d82"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-21.xml.json",
+      "sha256": "201686c19d616e65da098533f345820c40f16704596190a5074a7519e383d90b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-212.xml.json",
+      "sha256": "b6d4d816a11c23a158f1df9c931ccdd7befcfd06dea9d26043b910a6c0bc7219"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-213.xml.json",
+      "sha256": "24f69c9ea8def474053d57b57b49eb4bdcc49c0d71317c78cd7bc55d10cf3ad3"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-219.xml.json",
+      "sha256": "e3da7bb782e6e68318367e3127d5d688fe4a016231db5df799ae31e52fc96521"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-22.xml.json",
+      "sha256": "014e04439a4bbf6a49c2d56df6247dbf20be60369cad4a28d0faa958c9899e7f"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-221.xml.json",
+      "sha256": "3b4d247fda81dd2c7c117e15f56df9ac7c5cd136837e65b3ef5c982193b68171"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-223.xml.json",
+      "sha256": "911be6f4b817f4a3b0075e02f7f0488305d028359a53f82ffb4c5d664b9a3ab1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-224.xml.json",
+      "sha256": "963c6d062849fdbfd9ec04ebaa442702cc81e09c585bc50c9abd7ee29ebcc4b9"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-225.xml.json",
+      "sha256": "b49420bd6c895a7616aca3a1657a98e1722bf3a16c7f7786e76669d981f58e3c"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-24.xml.json",
+      "sha256": "4acff94b653be8ea0f70fc54de838a64e4929d364e7388b49d167d5b8fa631a3"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-25A.xml.json",
+      "sha256": "8039467c819b774d57f06b0fffd197e51327b00294aca53623c01618ca139d56"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-25B.xml.json",
+      "sha256": "0f026b44f0e304f24c73562bcc26ec02bb2722533614dbd8c2a274c8b8467d79"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-25C.xml.json",
+      "sha256": "18c7e181a7409ddcc380f3818bb1e9b38d819c86a069bc503f5161e77defb3f1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-25D.xml.json",
+      "sha256": "5cf00d2f6e3e152a6b982ed08235c9a7a8e4dfff860e94601a1a622169eb5b3b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-25E.xml.json",
+      "sha256": "ff3322270b47991db65f585aec792f8a8f7ec09cc7ba920b55a844a3300494e9"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-26.xml.json",
+      "sha256": "a03bf8e21dc1cfd6d3bcc8172311e3970ea93d2f5c5d43a51cc01816849109d7"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-30D.xml.json",
+      "sha256": "97f544cfddf8a553ae27ed115abf4f622906766a0ac189dd80651a0832b7ff70"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3102.xml.json",
+      "sha256": "66de948d717789b9565ea240812db80f271edc06611ec53cd15d38c38ed73ad9"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3121.xml.json",
+      "sha256": "7891fed9d314fb3b17bfcf342215bbd1a7561ca7c71c6169374a3b1718f997f2"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3127.xml.json",
+      "sha256": "d628c99ed90f7129bafad3715d149b7ec2b6891d6f825ba72924846a03572116"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3128.xml.json",
+      "sha256": "42c96782c3dba5f01b8c363051dcf54261fe1d534812a956b33e9c7a172ec2a0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3131.xml.json",
+      "sha256": "5c78a8e7aeb5f69c45ec8e58619364b4e5d878745545d6030e9e03b202250478"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3132.xml.json",
+      "sha256": "7d6e2665710208e9fac9dca3edca29f24f4ed55dec6248a32a764541d698a1cc"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3133.xml.json",
+      "sha256": "61955cddfb808448d698c4598b6c6ae8ce7dd3f7671255372763cc310492def7"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3134.xml.json",
+      "sha256": "e47b2a17baf8abc5e3cb28e54694603c11e89d7040e27c1341cb29e69ab42881"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-32.xml.json",
+      "sha256": "73a5bd8916e1ba1fb5cffa11905599f48980f3d537466e957a454d1692d6c81c"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3201.xml.json",
+      "sha256": "dc381c9c31a6f3b2a02bdd6b028470662a5f2807e779cffd488e76d08b134ad1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3202.xml.json",
+      "sha256": "1f758e557f76843a571acbab62f8de811b1f007d5a52c189dad93e77ad4d4ad2"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3211.xml.json",
+      "sha256": "b90f71f03d848667d33b4499ee5f11086f7017a0d436ab00e45f286cff52223b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3212.xml.json",
+      "sha256": "37b44e5b87a16079d8869c4ac26e830808c001d1d5d9b28feec2dbe017fc0a7f"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3221.xml.json",
+      "sha256": "e032cf7303ab94d6c9c6073c341f770d36cd3c15e5c41722b8b0153b7e91ce4d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3231.xml.json",
+      "sha256": "8bb79057f8089967e452ce38909a9acaa3e98a7755a706c92f2629a68aac1d85"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3232.xml.json",
+      "sha256": "83cdf5ad2906549bed12ca87da5a702bf5a4d56640df6507b44a457e11e6bbe2"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3233.xml.json",
+      "sha256": "855d28270a86212e559804ba4ce0c878f3289d461e4527fef3276b82e1594eb8"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3241.xml.json",
+      "sha256": "5a915de4a9a7e4b6240b18a655eb52609a4b8f437fa51d81b24bff3747c7d220"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3301.xml.json",
+      "sha256": "8f8eafa105c2aba4f0e431688a94a5585faaacb7b3d4a894facd1273660c48d0"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3302.xml.json",
+      "sha256": "fb9ff03e831a059f895404d324bc5b570484056810522f697045e2a2826ce06d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3303.xml.json",
+      "sha256": "7152d3efc3d45b2713cf429eff26c19d278f11536c084a4261e84a30f19c37ee"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3304.xml.json",
+      "sha256": "d340b5312a6c1265330588a0ee193ad45760d71b34113d15cd80c38f9678e4df"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3305.xml.json",
+      "sha256": "d01f3d2c43c0798ca6c65261a5478d28957d38f31c7e57dff739d67970077b75"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3306.xml.json",
+      "sha256": "3320d12260331e570692f575d5e40adc4da73c123a36137bdf87332ad4ca3e08"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3307.xml.json",
+      "sha256": "71c07796eb0a632c791a2738222882e8482cfb55b10ab4a8052b75097d492719"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3308.xml.json",
+      "sha256": "a087c08a8f1c3f896883404031a9746281bb2af5db4ca6490559e825ec83740c"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3309.xml.json",
+      "sha256": "f8b250f3b4c280ac478d29e3bb82c7c1467136710fd34fcef1967eb2173452dd"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3310.xml.json",
+      "sha256": "aa95b66b612a3ab7cefa9008145486971d8a7d59108271f3e1aa41dd9c9b2b6d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3311.xml.json",
+      "sha256": "e46702908e54928148cd121b42ae7dbe1eab00bf0baa33eea0250ee1e058b9cd"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3401.xml.json",
+      "sha256": "8fe02f9593cd9ee46cd3e22e79cf7b2e38b73cecafeddd6a5050595bc878601d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3402.xml.json",
+      "sha256": "0dd8f8d1b689d015e112bac8cd12b52c5d8fbba5bcfee33ecc58a45f5a494889"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3403.xml.json",
+      "sha256": "bc55ce615478c3a68571e99d116f451736c7469163a972a9140476a14b724e47"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3404.xml.json",
+      "sha256": "c4bb43e40ea3e621ecb1bfd13b7227a50401f9c1ac6cbd12c670c8088a17528e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3405.xml.json",
+      "sha256": "24b5b64211183a7cb0ccbe6e38e27eadf45d49ebd9a598c6cc810cf72950ab73"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3406.xml.json",
+      "sha256": "40ad3b8ddc905b9d48fe073a4a6cd1f1133c91ee533004f139b3b04af27246b2"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3501.xml.json",
+      "sha256": "90e370651616b62fcacfc081415b60a41a8424e09a712d90f4d60b92f3d3a7ff"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3502.xml.json",
+      "sha256": "dfcc9b142d608f6cc028b04da0805736cb51e1a2714b9e799bb6a5591232da69"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3503.xml.json",
+      "sha256": "04e65d311abf17317c0696545ee6668e4798cb39cfef6a1aa1ebda3191334dea"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3504.xml.json",
+      "sha256": "65039709956b6186f7e35f534a2cf148e2553465d9ee8b3cbc9efec27e9a524b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3505.xml.json",
+      "sha256": "253a83f77d7ffa721537821611449d325c2e13a322701eebf33e6426b0732015"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3506.xml.json",
+      "sha256": "2d65c07dd0394d20f766310b80ffb48a33c5387ee2f402feafa49fa6ffd20b7b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3507.xml.json",
+      "sha256": "1cfd707b9639f38517e48ce296e322d5d7b0f41e106fdf06019871668e937c8c"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3508.xml.json",
+      "sha256": "7861f36850395c86d9cdb0019e38ea877c2e45c056d30a1f04e45059907f10d6"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3509.xml.json",
+      "sha256": "1e5d6a86bf653cba792e4860d73ff1a1065fb95da93d90b9ee4e72e8cd3d8ab1"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3510.xml.json",
+      "sha256": "1ac12c99421a956908d4c1b1ce275fb53b16db00a6f04df8a99ab12b2826e2e2"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3511.xml.json",
+      "sha256": "15cee8f2e748daa76ba541596919743e2ed62ed41027f73c5a7e6e4632b7ecbc"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-3512.xml.json",
+      "sha256": "ac0e0d4fc1a73e7184eb9376ed4f54d02abb427c82128de4022a0d3b20545b0d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-36B.xml.json",
+      "sha256": "7997590fc508c12d04dc1f99522db6183eb870470d6d79b0dd40d62e85385ab6"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-408.xml.json",
+      "sha256": "af3f66491402c439e4d166a6bff99067ca7d9ae5aebf25ba47b7e82a3146c8e7"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-443.xml.json",
+      "sha256": "e0e2413a0ebb233d2cd02a5179b6cd675a66fd2e4beab0c174c6c70adf2bf937"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-55.xml.json",
+      "sha256": "e2cef138e33d0d50700200dfd6e91ffad4aa3b16141fa0207d83c66f8486c52b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-56.xml.json",
+      "sha256": "378b2e6ce85926f65c1575bfae2f2cb5c5bbfe0d0f87d921e2cb2d7296e7fe57"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-6012.xml.json",
+      "sha256": "bd42fc1e24b7486da8d5d53c07029a9c1c58bf742af65f730fc5facec586bdc6"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-6013.xml.json",
+      "sha256": "a8c4f1f198366861f1b7e6db1e7ca018023f00f380dcd38936775a8fdfeaa2ba"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-61.xml.json",
+      "sha256": "32cec9ec2ffc32f47cc5aa8aee094cfd308f9acb5001424d934fdc6b9ec3f236"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-62.xml.json",
+      "sha256": "4639530ecf110fa38b429f75527f01448627f972d29a37a3c23de9f1fb3668e8"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-64.xml.json",
+      "sha256": "3251200291351c85f14288279f78f776f87804430bf902a383fcc6c15ce45ee6"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-6401.xml.json",
+      "sha256": "f6172f6022c3e0b9d11118d84e7fe69a841f7f0b2d1bfd97f255b349cf5bd229"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-65.xml.json",
+      "sha256": "b2a2361eb9293c00e6dd510521bd8a04a14f2e857c6c40d62d7909562fe1338d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-67.xml.json",
+      "sha256": "d8f53b3b4ec14ff431ab3a59606233e86379933c617844757f06f9829a456ec4"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-68.xml.json",
+      "sha256": "a3cd2af0ab0e5b09c6c618f58dca1540b24d5712d0605ad13a6c0034b45c8ecf"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-7703.xml.json",
+      "sha256": "2644c568946d15ec5dac5afdef5f5cbdb5ae9dde0d57e1f9175ea3b07aae8afd"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-86.xml.json",
+      "sha256": "126c8d01fb1840196db0b41aabadc9c66e46c7a5d145375f12fc0e3ade8f3920"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-911.xml.json",
+      "sha256": "7acb99338227aacd7b38ab63c512a399bf32776c8508fe0a9ea5a27d1de3e26a"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-931.xml.json",
+      "sha256": "1aa868cebdacc50228b0ff82f228e50b56f3d3214c58564dfdc6991896d9ca0d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc26-section-933.xml.json",
+      "sha256": "3508c4b790e6d9148dd118f5bd3df39d6c4669ff49a9011f232adbdef1a4b8be"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery/provenance/usc37-section-556.xml.json",
+      "sha256": "6b8a4debededcb07f5ca804191a5630e6df77688467e153a090a192a3184fc13"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d400d7f0c8ea934b9eb051f6fd2d49a8f88162fe",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/slim_us_recovery_statutes.py"
+  },
+  "coverage": {
+    "complete": true,
+    "document_class": "statute",
+    "duplicate_provision_citations": [],
+    "duplicate_source_citations": [],
+    "extra_provisions": [],
+    "jurisdiction": "us",
+    "matched_count": 2454,
+    "missing_from_provisions": [],
+    "provision_count": 2454,
+    "source_count": 2454,
+    "version": "2026-07-13-recovery"
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-15T15:27:41.015572+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

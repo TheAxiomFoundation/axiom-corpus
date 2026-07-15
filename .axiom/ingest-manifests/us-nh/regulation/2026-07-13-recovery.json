@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/regulation/2026-07-13-recovery.json",
+      "sha256": "31e02d1b27c8f3a83bd6593db6345844d490ba83d567f67f34d372b5147b7998"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/regulation/2026-07-13-recovery.json",
+      "sha256": "1be69ec0d737dfc3fbf884caf6f23a485ac26353acaa49eafc2905fca08e5c23"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/regulation/2026-07-13-recovery.jsonl",
+      "sha256": "e172c5b6fd95ef71109914747b7f71cba8421967dc0b8709175f380c2b74d827"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/regulation/2026-07-13-recovery/official-documents/release-scope-us-nh-regulation-2026-05-27-nh-he-w-700-snap-rules",
+      "sha256": "357038fedc2609bcca0e46b442a35e40d103ca2051a0893d6292d704feaa3e41"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/regulation/2026-07-13-recovery/provenance/release-scope-us-nh-regulation-2026-05-27-nh-he-w-700-snap-rules.json",
+      "sha256": "8cbb8a8d3ffdf2e23fc8f8cf269647ba2e68e4fcb4df329430fcc87ed2b20040"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3fed0f0f7fd54bbbbc9dda228714a8eeb1aa62ea",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T15:19:01.956731+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "f26fPD5imKEAgLeQflRMYNPOSP6hoOO6DHaJ5h9wREotrvAyZscFWIWr4WVrEyrbZ0oguXnNDLqWPoBnGOa4DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

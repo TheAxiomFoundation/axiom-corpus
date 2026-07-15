@@ -1,0 +1,40 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/regulation/2026-05-29.json",
+      "sha256": "75d485d0d613d038f2decf821b2f7b3f851ffd01cda1f9caed4fa487317a146f"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/regulation/2026-05-29.json",
+      "sha256": "63f5f416ee73742e2efd7a64f7b92f23a2e616c977a6221c7d5c96e8e878704a"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/regulation/2026-05-29.jsonl",
+      "sha256": "ed630cd4fedbfdc583935afcaeba4550829761a68ea3d471f08feeda2ddb4981"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f56ce69781b8b98474641445e85b9b63c1cebd43",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 69,
+    "missing_count": 0,
+    "provision_count": 69,
+    "source_count": 69
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T13:35:56.398627+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-29"
+}

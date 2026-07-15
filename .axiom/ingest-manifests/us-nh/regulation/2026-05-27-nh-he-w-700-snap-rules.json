@@ -11,16 +11,24 @@
     {
       "path": "data/corpus/provisions/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules.jsonl",
       "sha256": "a9d2e6586f015b98ca8652d5cad79f9dc34140b30c24209f35d9b767565b43ab"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules/official-documents/release-scope-us-nh-regulation-2026-05-27-nh-he-w-700-snap-rules",
+      "sha256": "357038fedc2609bcca0e46b442a35e40d103ca2051a0893d6292d704feaa3e41"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules/provenance/release-scope-us-nh-regulation-2026-05-27-nh-he-w-700-snap-rules.json",
+      "sha256": "8cbb8a8d3ffdf2e23fc8f8cf269647ba2e68e4fcb4df329430fcc87ed2b20040"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "32f6e1d985bcd0a41e46b6bf3b81937a1044d4cf",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +39,14 @@
     "source_count": 54
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-07T19:50:36.393131+00:00",
+  "generated_at": "2026-07-15T15:19:01.311638+00:00",
   "jurisdiction": "us-nh",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "PSA0oYfMmvG6aAM0KzbDixPf+eljDRJBMoF3x602Ohg1u1sUm7qARnxXco+a+kfngJ3js9tEo096Ys5j9p24Bg=="
+    "value": "RLbidyU6NTpl2R7sjzYgjhkp3TV+EEmj2AWkANFlBJhgkmPKE5nHMqWGoftjG9brBs1CFi2VUkq88QHbah8bBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-nh-he-w-700-snap-rules"

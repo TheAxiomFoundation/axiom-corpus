@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-05-10-snap-7-cfr-273.json",
+      "sha256": "b43b5ef4065944f065466dda80913fd40311203dc413209b7181c069ec7baaa2"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-05-10-snap-7-cfr-273.json",
+      "sha256": "8490a2aa31e628e2d55cdec9f38fe1d4a37925301deb2b6105e32ea1fee5b9e3"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-05-10-snap-7-cfr-273.jsonl",
+      "sha256": "4f8d10fd7abd792de62365237a15b2b9e0c73f791703b0277a999176cd293c5b"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-05-10-snap-7-cfr-273/official-documents/release-scope-us-regulation-2026-05-10-snap-7-cfr-273",
+      "sha256": "8eae2d749ffb007fc304cd914f6f75022e3aa2dbbf30feb57e3744ec9a6156da"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-05-10-snap-7-cfr-273/provenance/release-scope-us-regulation-2026-05-10-snap-7-cfr-273.json",
+      "sha256": "a77e8dd0309592144f109105fdb13fd19938eb3154a4d0c89c11c114fcdb9dab"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "55e9007daf7be5a230f0f4248a8892db5cfccc46",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T15:18:02.825978+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Q3HpBZavS3dwmQXZ29OZ90UUwAUh6jM/3BthIPxWGBCJXQPODNi+8OJV3/asWLbFMdRnnB8DHyNSEkcuCxvzCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-10-snap-7-cfr-273"
+}

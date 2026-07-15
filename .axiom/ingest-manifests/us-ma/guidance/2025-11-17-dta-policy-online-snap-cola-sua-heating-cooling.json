@@ -1,30 +1,40 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/us-ma/guidance/2025-11-17-dta-policy-online-snap-cola-sua-heating-cooling.json",
+      "sha256": "37b729da9486ecbd95515bf5844bb073c911b9fc4607935a0af6d7557e868d5b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/guidance/2025-11-17-dta-policy-online-snap-cola-sua-heating-cooling.json",
+      "sha256": "b46f8093f2cab70fed151f3f828d3a80b5bad5a24bfbb6f1bacb7174f6da7363"
+    },
+    {
       "path": "data/corpus/provisions/us-ma/guidance/2025-11-17-dta-policy-online-snap-cola-sua-heating-cooling.jsonl",
       "sha256": "d55d78e3b54e4505799e1d20187f8567777706177e9779bebd5261f15e8bafdf"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2d7371611a875e90c18d00ad84973d5d7dc22547",
+    "commit": "f56ce69781b8b98474641445e85b9b63c1cebd43",
     "dirty_tracked": false,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "PavelMakarchuk source-backed MA SNAP package provision extraction from DTA Policy Online SNAP COLA SUA heating/cooling guidance"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
-  "coverage": null,
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
   "document_class": "guidance",
-  "generated_at": "2026-06-25T23:27:31.834557+00:00",
+  "generated_at": "2026-07-15T13:35:56.384723+00:00",
   "jurisdiction": "us-ma",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "OBhNuONXsH6nudXCYTAdtEHaoZBAlXWmHJP38WlN7TUYw4KoVJBTYFchCGvxyWromR2AJcWoYekUPjuSqNBhCw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2025-11-17-dta-policy-online-snap-cola-sua-heating-cooling"
 }

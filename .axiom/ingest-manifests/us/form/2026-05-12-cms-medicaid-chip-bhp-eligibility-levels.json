@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.json",
+      "sha256": "fab8164405675d07b2f787edd2e54494a237459a2f28faabc3d9c7d0f83a262b"
+    },
+    {
+      "path": "data/corpus/inventory/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.json",
+      "sha256": "e5a1ec845730104197226f7893d2a34e81a635e5a15af65037350d8f8f37331e"
+    },
+    {
+      "path": "data/corpus/provisions/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.jsonl",
+      "sha256": "14c5b6b59d174cd4c8accae71aa6c8ecac9c63ae694db801b4d1ed1139826c50"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels/official-documents/cms-medicaid-chip-bhp-eligibility-levels.html",
+      "sha256": "d063f0c375d89aec4886af48c045df8bd27a1d43b426d3560a0aa76420df6e07"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "444a6b0151df9c942e405994e2d163132cc80964",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-15T15:17:59.628374+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "On6xIpx+6+mB+qP51EL/yCLMuxqZczFGLu0rdHkM3npywtsrkZbXqY+BM4xv53ZnEA0gSUbAR+kzUXg0ybK4Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-12-cms-medicaid-chip-bhp-eligibility-levels"
+}

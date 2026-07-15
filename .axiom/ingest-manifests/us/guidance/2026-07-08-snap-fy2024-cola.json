@@ -11,16 +11,24 @@
     {
       "path": "data/corpus/provisions/us/guidance/2026-07-08-snap-fy2024-cola.jsonl",
       "sha256": "f7e83e5e340f93bedf54d58ea606ee6c39f7cd4fa79d1160f075befaf992ffff"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-08-snap-fy2024-cola/official-documents/release-scope-us-guidance-2026-07-08-snap-fy2024-cola",
+      "sha256": "9ceb4bd4800e6b9c815b4d118ae51619299b01fa27aeb5267c826509297a807f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-08-snap-fy2024-cola/provenance/release-scope-us-guidance-2026-07-08-snap-fy2024-cola.json",
+      "sha256": "4f723ca977770a56ea9e7cb3174a59ed80b8abb1108b617abc8e73b1bafe9fb0"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "614a186e1a0fda179f7ba4ef00bcd550015321ec",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-snap-fy2024"
+    "commit": "25268a7c1cd443ad19255acaf87d9bdbacd0e927",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "extract-official-documents --base data/corpus --version 2026-07-08-snap-fy2024-cola --manifest manifests/us-snap-guidance.yaml --only-source-id snap-fy2024-cola"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +39,14 @@
     "source_count": 6
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-08T16:23:29.643806+00:00",
+  "generated_at": "2026-07-15T15:18:01.566244+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "DFe01Ey4jJjMg8oU4joxZYIbYz8S47llwTyksb0xdz1tRPlqGRi9pN/yvzKDqLJH2WNvw3Z2Joob6ufl3qUBCw=="
+    "value": "SvB03gU7Q8iPBonT4BJDi2VZ5KSn2x5n2sG7TKlqpp/fh16uFLMfbPawgkzLgEOFul+01nQU+zxtjG7Nu1MhBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-08-snap-fy2024-cola"

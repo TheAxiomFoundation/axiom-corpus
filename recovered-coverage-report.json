@@ -1,0 +1,6008 @@
+{
+  "_duplicate_files": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "superseded retry filenames: ecfr-42-part-435, ecfr-7-part-273, ecfr-42-435.xml, ecfr-42-part-457, ecfr-7-part-246, ecfr-7-part-247, ecfr-7-273.xml, release-scope-us-guidance-2026-05-02-irs-rev-proc-2025-32, uscode-title-20, uscode-title-26, uscode-title-37, uscode-title-5, uscode-title-8"
+    ],
+    "parsed": false,
+    "rows": 0
+  },
+  "_summary": {
+    "newly_resolved": 11,
+    "parsed_document_targets": 700,
+    "previous_resolved": 695,
+    "remaining_classes": {
+      "manual-recovery": {
+        "count": 0,
+        "documents": []
+      },
+      "needs-fetch": {
+        "count": 0,
+        "documents": []
+      },
+      "official-source-gated": {
+        "count": 5,
+        "documents": [
+          "us-ga-code-48"
+        ]
+      },
+      "unrecoverable-parse": {
+        "count": 0,
+        "documents": []
+      }
+    },
+    "resolved": 706,
+    "signing_checklist": {
+      "all_711_planned_citations_accounted_for": true,
+      "all_exclusions_have_citations_reasons_and_tracking": true,
+      "all_fetched_files_have_valid_provenance": true,
+      "all_parsed_scopes_have_complete_coverage": true,
+      "explicit_documented_exclusions": [
+        {
+          "citations": [
+            "us-ga/statute/48/48-7-20",
+            "us-ga/statute/48/48-7-26",
+            "us-ga/statute/48/48-7-27",
+            "us-ga/statute/48/48-7-29.10",
+            "us-ga/statute/48/48-7A-3"
+          ],
+          "classification": "official-source-gated",
+          "document_id": "us-ga-code-48",
+          "reason": "official O.C.G.A. is CAPTCHA-gated for automated access (LexisNexis viewer); requires a human-fetched snapshot or licensed source; unofficial reproductions rejected",
+          "tracking_issue": "TODO(corpus-recovery): create follow-up issue"
+        }
+      ],
+      "parse_failures_reviewed": true,
+      "ready_to_sign": true
+    },
+    "targets": 711,
+    "unresolved_with_parsed_document": []
+  },
+  "ecfr-42-part-435": {
+    "citations_resolved": "24/24",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/regulation/42/435/601/a",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/601/a"
+      },
+      {
+        "citation_path": "us/regulation/42/435/601/d/1",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/601/d/1"
+      },
+      {
+        "citation_path": "us/regulation/42/435/601/d/2",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/601/d/2"
+      },
+      {
+        "citation_path": "us/regulation/42/435/601/d/3",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/601/d/3"
+      },
+      {
+        "citation_path": "us/regulation/42/435/601/d/4",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/601/d/4"
+      },
+      {
+        "citation_path": "us/regulation/42/435/601/d/5",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/601/d/5"
+      },
+      {
+        "citation_path": "us/regulation/42/435/602/a/1",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/602/a/1"
+      },
+      {
+        "citation_path": "us/regulation/42/435/602/a/2/i",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/602/a/2/i"
+      },
+      {
+        "citation_path": "us/regulation/42/435/602/a/2/ii",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/602/a/2/ii"
+      },
+      {
+        "citation_path": "us/regulation/42/435/602/a/2/iii",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/602/a/2/iii"
+      },
+      {
+        "citation_path": "us/regulation/42/435/602/a/2/iv",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/602/a/2/iv"
+      },
+      {
+        "citation_path": "us/regulation/42/435/602/b",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/602/b"
+      },
+      {
+        "citation_path": "us/regulation/42/435/602/c",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/602/c"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/a",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/a"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/b",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/b"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/c",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/c"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/d",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/d"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/e",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/e"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/f",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/f"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/g",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/g"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/h",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/h"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/i",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/i"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/j",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/j"
+      },
+      {
+        "citation_path": "us/regulation/42/435/603/k",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/435/603/k"
+      }
+    ],
+    "rows": 275,
+    "unresolved_citations": []
+  },
+  "ecfr-42-part-457": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/regulation/42/457/10",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/42/457/10"
+      }
+    ],
+    "rows": 175,
+    "unresolved_citations": []
+  },
+  "ecfr-7-part-246": {
+    "citations_resolved": "3/3",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/regulation/7/246/7/c",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/7/246/7/c"
+      },
+      {
+        "citation_path": "us/regulation/7/246/7/d",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/7/246/7/d"
+      },
+      {
+        "citation_path": "us/regulation/7/246/7/e",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/7/246/7/e"
+      }
+    ],
+    "rows": 268,
+    "unresolved_citations": []
+  },
+  "ecfr-7-part-247": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/regulation/7/247/9/b",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/7/247/9/b"
+      }
+    ],
+    "rows": 87,
+    "unresolved_citations": []
+  },
+  "ecfr-7-part-273": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/regulation/7/273/11",
+        "method": "exact-cross-scope",
+        "requested": "us/regulation/7/273/11"
+      }
+    ],
+    "rows": 41,
+    "unresolved_citations": []
+  },
+  "release-scope-us-al-manual-2026-05-27-al-snap-poe-manual": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 12,
+    "unresolved_citations": []
+  },
+  "release-scope-us-al-regulation-2026-05-29": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "unrecoverable: official response is an application shell with no legal text"
+    ],
+    "newly_ingested": true,
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-az-manual-2025-10-30-az-des-faa5-manual": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ca-guidance-2025-09-03-ca-cdss-acin": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 9,
+    "unresolved_citations": []
+  },
+  "release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-fl-manual-2026-05-27-fl-ess-manual": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "release-scope-us-fl-regulation-2026-05-29": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-form-2026-05-12-cms-medicaid-chip-bhp-eligibility-levels": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ga-manual-2026-05-27-ga-snap-manual": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "release-scope-us-guidance-2026-05-01-snap-fy2026-cola": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-guidance-2026-05-02-irs-rev-proc-2025-32": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 37,
+    "unresolved_citations": []
+  },
+  "release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-guidance-2026-05-17-ssa-automatic-determinations-2026": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-guidance-2026-05-26-ssa-contribution-and-benefit-base-2024": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-guidance-2026-07-08-snap-fy2024-cola": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-hi-regulation-2026-05-27-hi-snap-rules": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 5,
+    "unresolved_citations": []
+  },
+  "release-scope-us-id-regulation-2026-05-27-id-food-stamp-rules": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 71,
+    "unresolved_citations": []
+  },
+  "release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "release-scope-us-in-manual-2026-05-27-in-snap-manual": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ks-manual-2026-05-27-ks-keesm": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ma-regulation-2026-05-28": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-mn-manual-2026-05-27-mn-combined-manual": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 1354,
+    "unresolved_citations": []
+  },
+  "release-scope-us-mo-manual-2026-05-27-mo-snap-manual": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-nc-manual-2026-05-27-nc-fns-manuals": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "release-scope-us-nc-regulation-2026-05-29": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-nh-regulation-2026-05-27-nh-he-w-700-snap-rules": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-nv-manual-2026-05-27-nv-eligibility-payments-manual": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 28,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ny-form-2026-06-05-ny-tax-current-forms": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 42,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ny-policy-2026-06-05-ny-tanf": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ny-regulation-2025-10-01-otda-snap-sua": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ny-regulation-2026-05-09-ny-snap-eligibility": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-regulation-2026-05-10-snap-7-cfr-273": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 55,
+    "unresolved_citations": []
+  },
+  "release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 180,
+    "unresolved_citations": []
+  },
+  "release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 180,
+    "unresolved_citations": []
+  },
+  "release-scope-us-sc-manual-2026-05-27-sc-snap-manual": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 5,
+    "unresolved_citations": []
+  },
+  "release-scope-us-sc-regulation-2026-05-29": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "release-scope-us-statute-2026-05-10-snap-sections": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 30,
+    "unresolved_citations": []
+  },
+  "release-scope-us-statute-2026-05-10-tax-sections": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 43,
+    "unresolved_citations": []
+  },
+  "release-scope-us-tn-manual-2026-05-27-tn-snap-policies": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 10,
+    "unresolved_citations": []
+  },
+  "release-scope-us-tn-regulation-2026-05-29": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "release-scope-us-tx-manual-2026-05-27-tx-manuals": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 21,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ut-manual-2026-05-27-ut-manuals": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 7,
+    "unresolved_citations": []
+  },
+  "release-scope-us-wy-manual-2026-05-27-wy-manuals": {
+    "citations_resolved": "0/0",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-al-code-40-18-15": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-al/statute/40-18-15",
+        "method": "exact-cross-scope",
+        "requested": "us-al/statute/40-18-15"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-al-code-40-18-19": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-al/statute/40-18-19",
+        "method": "exact-cross-scope",
+        "requested": "us-al/statute/40-18-19"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-al-code-40-18-5": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-al/statute/40-18-5",
+        "method": "exact-cross-scope",
+        "requested": "us-al/statute/40-18-5"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-al-tanf-state-plan": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-al/policy/dhr/tanf/state-plan/2024",
+        "method": "exact-cross-scope",
+        "requested": "us-al/policy/dhr/tanf/state-plan/2024"
+      }
+    ],
+    "rows": 29,
+    "unresolved_citations": []
+  },
+  "us-az-code-43-1011": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-az/statute/43-1011",
+        "method": "exact-cross-scope",
+        "requested": "us-az/statute/43-1011"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-az-code-43-1023": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-az/statute/43-1023",
+        "method": "exact-cross-scope",
+        "requested": "us-az/statute/43-1023"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-az-code-43-1041": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-az/statute/43-1041",
+        "method": "exact-cross-scope",
+        "requested": "us-az/statute/43-1041"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-az-code-43-1072": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-az/statute/43-1072",
+        "method": "exact-cross-scope",
+        "requested": "us-az/statute/43-1072"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-az-code-43-1072.01": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-az/statute/43-1072.01",
+        "method": "exact-cross-scope",
+        "requested": "us-az/statute/43-1072.01"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-az-code-43-1073": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-az/statute/43-1073",
+        "method": "exact-cross-scope",
+        "requested": "us-az/statute/43-1073"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-az-code-43-1073.01": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-az/statute/43-1073.01",
+        "method": "exact-cross-scope",
+        "requested": "us-az/statute/43-1073.01"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-az-des-faa5": {
+    "citations_resolved": "5/5",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [
+      {
+        "citation_path": "us-az/manual/des/faa5/ca-jobs-mandatory-referrals",
+        "method": "exact-cross-scope",
+        "requested": "us-az/manual/des/faa5/ca-jobs-mandatory-referrals"
+      },
+      {
+        "citation_path": "us-az/manual/des/faa5/ca-payment-standard-a1-2fa2",
+        "method": "exact-cross-scope",
+        "requested": "us-az/manual/des/faa5/ca-payment-standard-a1-2fa2"
+      },
+      {
+        "citation_path": "us-az/manual/des/faa5/na-transitional-benefit-assistance-tba",
+        "method": "exact-cross-scope",
+        "requested": "us-az/manual/des/faa5/na-transitional-benefit-assistance-tba"
+      },
+      {
+        "citation_path": "us-az/manual/des/faa5/supplemental-payments-and-restored-benefits",
+        "method": "exact-cross-scope",
+        "requested": "us-az/manual/des/faa5/supplemental-payments-and-restored-benefits"
+      },
+      {
+        "citation_path": "us-az/manual/des/faa5/transitional-child-care-tcc",
+        "method": "exact-cross-scope",
+        "requested": "us-az/manual/des/faa5/transitional-child-care-tcc"
+      }
+    ],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17014",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17014"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc-p10": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17062.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17062.1"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17016",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17016"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc-p3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17017",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17017"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc-p4": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17029",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17029"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc-p5": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17034",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17034"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc-p6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17038",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17038"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc-p7": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17053.6",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17053.6"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc-p8": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17054.7",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17054.7"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-rtc-p9": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/rtc/17061",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/rtc/17061"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-code-wic": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/statute/wic/11450/a/1/A",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/statute/wic/11450/a/1/A"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-300": {
+    "citations_resolved": "31/31",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.21",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.21"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.23",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.23"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.232",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.232"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.233",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.233"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.234",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.234"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.24",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.24"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.25",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.25"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.3",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.3"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.31",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.31"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.32",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.32"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.321",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.321"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.322",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.322"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.34",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.34"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.36",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.36"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.37",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.37"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.381",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.381"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.42",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.42"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.43",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.43"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.44",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.44"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.45",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.45"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.46",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.46"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.461",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.461"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.462",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.462"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.463",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.463"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.464",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.464"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.465",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.465"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.5",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.5"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.6",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.6"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.622",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.622"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-300.623",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-300.623"
+      }
+    ],
+    "rows": 47,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-301": {
+    "citations_resolved": "61/61",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.2",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.2"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.3",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.3"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.31",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.31"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.311",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.311"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.33",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.33"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.4",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.4"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.411",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.411"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.412",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.412"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.42",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.42"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.421",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.421"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.422",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.422"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.423",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.423"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.424",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.424"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.431",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.431"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.432",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.432"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.441",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.441"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.442",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.442"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.511",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.511"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.512",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.512"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.513",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.513"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.523",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.523"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.531",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.531"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.532",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.532"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.533",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.533"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.541",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.541"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.542",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.542"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.543",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.543"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.544",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.544"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.545",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.545"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.546",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.546"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.547",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.547"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.548",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.548"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.61",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.61"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.611",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.611"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.62",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.62"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.63",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.63"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.631",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.631"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.632",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.632"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.633",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.633"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.71",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.71"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.72",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.72"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.73",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.73"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.733",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.733"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.734",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.734"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.741",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.741"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.751",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.751"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.752",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.752"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.753",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.753"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.755",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.755"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.756",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.756"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.76",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.76"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.81",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.81"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.812",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.812"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.821",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.821"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.823",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.823"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.824",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.824"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.825",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.825"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.9",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.9"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.91",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.91"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-301.92",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-301.92"
+      }
+    ],
+    "rows": 90,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-401": {
+    "citations_resolved": "5/5",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-401.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-401.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-401.2",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-401.2"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-401.4",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-401.4"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-401.5",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-401.5"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-401.6",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-401.6"
+      }
+    ],
+    "rows": 7,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-402": {
+    "citations_resolved": "15/15",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.11",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.11"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.13",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.13"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.131",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.131"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.141",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.141"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.142",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.142"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.143",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.143"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.144",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.144"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.146",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.146"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.15",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.15"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.151",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.151"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.16",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.16"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.17",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.17"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.21",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.21"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-402.211",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-402.211"
+      }
+    ],
+    "rows": 20,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-403": {
+    "citations_resolved": "5/5",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-403.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-403.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-403.2",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-403.2"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-403.21",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-403.21"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-403.31",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-403.31"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-403.4",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-403.4"
+      }
+    ],
+    "rows": 9,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-404": {
+    "citations_resolved": "15/15",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.11",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.11"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.13",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.13"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.21",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.21"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.31",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.31"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.33",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.33"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.34",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.34"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.41",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.41"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.511",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.511"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.52",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.52"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.53",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.53"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.62",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.62"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.63",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.63"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.64",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.64"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-404.7",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-404.7"
+      }
+    ],
+    "rows": 26,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-405": {
+    "citations_resolved": "45/45",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.111",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.111"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.112",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.112"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.113",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.113"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.114",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.114"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.115",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.115"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.116",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.116"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.117",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.117"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.121",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.121"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.122",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.122"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.123",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.123"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.124",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.124"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.125",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.125"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.126",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.126"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.211",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.211"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.212",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.212"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.221",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.221"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.222",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.222"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.3",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.3"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.311",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.311"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.312",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.312"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.331",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.331"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.332",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.332"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.333",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.333"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.4",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.4"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.411",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.411"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.412",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.412"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.42",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.42"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.51",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.51"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.511",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.511"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.512",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.512"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.52",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.52"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.522",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.522"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.53",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.53"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.531",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.531"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.532",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.532"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.551",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.551"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.552",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.552"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.553",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.553"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.555",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.555"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.556",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.556"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.557",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.557"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.558",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.558"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.71",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.71"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-405.72",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-405.72"
+      }
+    ],
+    "rows": 71,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-406": {
+    "citations_resolved": "17/17",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.11",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.11"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.111",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.111"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.121",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.121"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.122",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.122"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.21",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.21"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.212",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.212"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.213",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.213"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.214",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.214"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.215",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.215"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.216",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.216"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.217",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.217"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.22",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.22"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.231",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.231"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.232",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.232"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.233",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.233"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-406.3",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-406.3"
+      }
+    ],
+    "rows": 23,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-407": {
+    "citations_resolved": "58/58",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.21",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.21"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.211",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.211"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.221",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.221"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.222",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.222"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.23",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.23"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.231",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.231"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.24",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.24"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.241",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.241"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.242",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.242"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.311",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.311"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.313",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.313"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.41",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.41"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.42",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.42"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.43",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.43"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.44",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.44"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.51",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.51"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.53",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.53"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.531",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.531"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.532",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.532"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.533",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.533"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.54",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.54"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.542",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.542"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.543",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.543"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.61",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.61"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.62",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.62"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.711",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.711"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.713",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.713"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.714",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.714"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.721",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.721"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.722",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.722"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.723",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.723"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.724",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.724"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.725",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.725"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.81",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.81"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.811",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.811"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.813",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.813"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.814",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.814"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.815",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.815"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.82",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.82"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.821",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.821"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.83",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.83"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.841",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.841"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.842",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.842"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.851",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.851"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.852",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.852"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.853",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.853"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.854",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.854"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.855",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.855"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.856",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.856"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.857",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.857"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.861",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.861"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.862",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.862"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.863",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.863"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.87",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.87"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.89",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.89"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.892",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.892"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-407.893",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-407.893"
+      }
+    ],
+    "rows": 90,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-408": {
+    "citations_resolved": "20/20",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.11",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.11"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.111",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.111"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.12",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.12"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.121",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.121"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.211",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.211"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.212",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.212"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.214",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.214"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.221",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.221"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.222",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.222"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.223",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.223"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.225",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.225"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.31",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.31"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.4",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.4"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.41",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.41"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.42",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.42"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.5",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.5"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.61",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.61"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.62",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.62"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-408.63",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-408.63"
+      }
+    ],
+    "rows": 30,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-409": {
+    "citations_resolved": "4/4",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-409.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-409.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-409.111",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-409.111"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-409.112",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-409.112"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-409.12",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-409.12"
+      }
+    ],
+    "rows": 8,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-410": {
+    "citations_resolved": "31/31",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.12",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.12"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.13",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.13"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.14",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.14"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.211",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.211"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.212",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.212"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.213",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.213"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.221",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.221"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.222",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.222"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.321",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.321"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.322",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.322"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.323",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.323"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.33",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.33"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.34",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.34"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.35",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.35"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.41",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.41"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.411",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.411"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.412",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.412"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.413",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.413"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.42",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.42"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.43",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.43"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.431",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.431"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.44",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.44"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.51",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.51"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.511",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.511"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.512",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.512"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.513",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.513"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.52",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.52"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.521",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.521"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.53",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.53"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-410.6",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-410.6"
+      }
+    ],
+    "rows": 46,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-411": {
+    "citations_resolved": "6/6",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-411.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-411.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-411.11",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-411.11"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-411.2",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-411.2"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-411.21",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-411.21"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-411.22",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-411.22"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-411.3",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-411.3"
+      }
+    ],
+    "rows": 17,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-501": {
+    "citations_resolved": "2/2",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-501.11",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-501.11"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-501.112",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-501.112"
+      }
+    ],
+    "rows": 6,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-502": {
+    "citations_resolved": "5/5",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-502.1",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-502.1"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-502.11",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-502.11"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-502.111",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-502.111"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-502.112",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-502.112"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-502.121",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-502.121"
+      }
+    ],
+    "rows": 8,
+    "unresolved_citations": []
+  },
+  "us-ca-mpp-63-503": {
+    "citations_resolved": "38/38",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.12",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.12"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.131",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.131"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.132",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.132"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.14",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.14"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.141",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.141"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.15",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.15"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.151",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.151"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.16",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.16"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.22",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.22"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.241",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.241"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.25",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.25"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.253",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.253"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.254",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.254"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.255",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.255"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.31",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.31"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.311",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.311"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.312",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.312"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.321",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.321"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.322",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.322"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.323",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.323"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.324",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.324"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.326",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.326"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.327",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.327"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.328",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.328"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.329",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.329"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.41",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.41"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.411",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.411"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.412",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.412"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.413",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.413"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.414",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.414"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.416",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.416"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.421",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.421"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.423",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.423"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.43",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.43"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.431",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.431"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.432",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.432"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.433",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.433"
+      },
+      {
+        "citation_path": "us-ca/regulation/mpp/63-503.434",
+        "method": "exact-cross-scope",
+        "requested": "us-ca/regulation/mpp/63-503.434"
+      }
+    ],
+    "rows": 59,
+    "unresolved_citations": []
+  },
+  "us-cms-eligibility-levels": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/form/cms/medicaid-chip-bhp-eligibility-levels",
+        "method": "exact-cross-scope",
+        "requested": "us/form/cms/medicaid-chip-bhp-eligibility-levels"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-co-8-ccr-1403-1": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-co/regulation/8-ccr-1403-1/3.111",
+        "method": "exact-cross-scope",
+        "requested": "us-co/regulation/8-ccr-1403-1/3.111"
+      }
+    ],
+    "rows": 76,
+    "unresolved_citations": []
+  },
+  "us-co-9-ccr-2503-6": {
+    "citations_resolved": "3/3",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-co/regulation/9-ccr-2503-6/3.606.1",
+        "method": "exact-cross-scope",
+        "requested": "us-co/regulation/9-ccr-2503-6/3.606.1"
+      },
+      {
+        "citation_path": "us-co/regulation/9-ccr-2503-6/3.606.2",
+        "method": "exact-cross-scope",
+        "requested": "us-co/regulation/9-ccr-2503-6/3.606.2"
+      },
+      {
+        "citation_path": "us-co/regulation/9-ccr-2503-6/3.606.6",
+        "method": "exact-cross-scope",
+        "requested": "us-co/regulation/9-ccr-2503-6/3.606.6"
+      }
+    ],
+    "rows": 114,
+    "unresolved_citations": []
+  },
+  "us-ct-code-12-700": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ct/statute/12-700",
+        "method": "exact-cross-scope",
+        "requested": "us-ct/statute/12-700"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-ct-code-12-704e": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ct/statute/12-704e",
+        "method": "exact-cross-scope",
+        "requested": "us-ct/statute/12-704e"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-ct-code-12-704i": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ct/statute/12-704i",
+        "method": "exact-cross-scope",
+        "requested": "us-ct/statute/12-704i"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-ct-code-17b-104": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ct/statute/17b-104",
+        "method": "exact-cross-scope",
+        "requested": "us-ct/statute/17b-104"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ct-code-17b-112": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ct/statute/17b-112",
+        "method": "exact-cross-scope",
+        "requested": "us-ct/statute/17b-112"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ct-code-17b-600": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ct/statute/17b-600",
+        "method": "exact-cross-scope",
+        "requested": "us-ct/statute/17b-600"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-dc-code-47": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-dc/statute/47/47-1806.03",
+        "method": "exact-cross-scope",
+        "requested": "us-dc/statute/47/47-1806.03"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-de-code-30": {
+    "citations_resolved": "6/6",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-de/statute/30/1102",
+        "method": "exact-cross-scope",
+        "requested": "us-de/statute/30/1102"
+      },
+      {
+        "citation_path": "us-de/statute/30/1108",
+        "method": "exact-cross-scope",
+        "requested": "us-de/statute/30/1108"
+      },
+      {
+        "citation_path": "us-de/statute/30/1109",
+        "method": "exact-cross-scope",
+        "requested": "us-de/statute/30/1109"
+      },
+      {
+        "citation_path": "us-de/statute/30/1110",
+        "method": "exact-cross-scope",
+        "requested": "us-de/statute/30/1110"
+      },
+      {
+        "citation_path": "us-de/statute/30/1114",
+        "method": "exact-cross-scope",
+        "requested": "us-de/statute/30/1114"
+      },
+      {
+        "citation_path": "us-de/statute/30/1117",
+        "method": "exact-cross-scope",
+        "requested": "us-de/statute/30/1117"
+      }
+    ],
+    "rows": 6,
+    "unresolved_citations": []
+  },
+  "us-ed-2026-27-sai-pell-guide": {
+    "citations_resolved": "3/3",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/guidance/ed/fsa/2026-27-sai-pell-guide/page-30",
+        "method": "exact-cross-scope",
+        "requested": "us/guidance/ed/fsa/2026-27-sai-pell-guide/page-30"
+      },
+      {
+        "citation_path": "us/guidance/ed/fsa/2026-27-sai-pell-guide/page-31",
+        "method": "exact-cross-scope",
+        "requested": "us/guidance/ed/fsa/2026-27-sai-pell-guide/page-31"
+      },
+      {
+        "citation_path": "us/guidance/ed/fsa/2026-27-sai-pell-guide/page-8",
+        "method": "exact-cross-scope",
+        "requested": "us/guidance/ed/fsa/2026-27-sai-pell-guide/page-8"
+      }
+    ],
+    "rows": 52,
+    "unresolved_citations": []
+  },
+  "us-ed-gen-26-01": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/guidance/ed/fsa/gen-26-01-pell-award-amounts/block-1",
+        "method": "exact-cross-scope",
+        "requested": "us/guidance/ed/fsa/gen-26-01-pell-award-amounts/block-1"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-ga-code-48": {
+    "citations_resolved": "0/5",
+    "exclusion_reason": "official O.C.G.A. is CAPTCHA-gated for automated access (LexisNexis viewer); requires a human-fetched snapshot or licensed source; unofficial reproductions rejected",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolution_class": "official-source-gated",
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": [
+      "us-ga/statute/48/48-7-20",
+      "us-ga/statute/48/48-7-26",
+      "us-ga/statute/48/48-7-27",
+      "us-ga/statute/48/48-7-29.10",
+      "us-ga/statute/48/48-7A-3"
+    ]
+  },
+  "us-ga-dfcs-medicaid": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ga/manual/dfcs/medicaid/2578",
+        "method": "exact-cross-scope",
+        "requested": "us-ga/manual/dfcs/medicaid/2578"
+      }
+    ],
+    "rows": 8,
+    "unresolved_citations": []
+  },
+  "us-ga-dfcs-snap": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ga/manual/dfcs/snap/3612",
+        "method": "exact-cross-scope",
+        "requested": "us-ga/manual/dfcs/snap/3612"
+      }
+    ],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "us-ga-dfcs-snap-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ga/manual/dfcs/snap/3613",
+        "method": "exact-cross-scope",
+        "requested": "us-ga/manual/dfcs/snap/3613"
+      }
+    ],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "us-ga-dfcs-snap-p3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ga/manual/dfcs/snap/3614",
+        "method": "exact-cross-scope",
+        "requested": "us-ga/manual/dfcs/snap/3614"
+      }
+    ],
+    "rows": 13,
+    "unresolved_citations": []
+  },
+  "us-ga-dfcs-snap-p4": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ga/manual/dfcs/snap/3615",
+        "method": "exact-cross-scope",
+        "requested": "us-ga/manual/dfcs/snap/3615"
+      }
+    ],
+    "rows": 6,
+    "unresolved_citations": []
+  },
+  "us-ga-dfcs-snap-p5": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ga/manual/dfcs/snap/3616",
+        "method": "exact-cross-scope",
+        "requested": "us-ga/manual/dfcs/snap/3616"
+      }
+    ],
+    "rows": 5,
+    "unresolved_citations": []
+  },
+  "us-ga-dfcs-snap-p6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ga/manual/dfcs/snap/3617",
+        "method": "exact-cross-scope",
+        "requested": "us-ga/manual/dfcs/snap/3617"
+      }
+    ],
+    "rows": 14,
+    "unresolved_citations": []
+  },
+  "us-ga-dfcs-snap-p7": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ga/manual/dfcs/snap/3618",
+        "method": "exact-cross-scope",
+        "requested": "us-ga/manual/dfcs/snap/3618"
+      }
+    ],
+    "rows": 8,
+    "unresolved_citations": []
+  },
+  "us-hi-code-235-54": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-hi/statute/235-54",
+        "method": "exact-cross-scope",
+        "requested": "us-hi/statute/235-54"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-hi-code-235-55.6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-hi/statute/235-55.6",
+        "method": "exact-cross-scope",
+        "requested": "us-hi/statute/235-55.6"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-hi-code-235-55.7": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-hi/statute/235-55.7",
+        "method": "exact-cross-scope",
+        "requested": "us-hi/statute/235-55.7"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-hi-code-235-55.85": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-hi/statute/235-55.85",
+        "method": "exact-cross-scope",
+        "requested": "us-hi/statute/235-55.85"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ia-code-422.12": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ia/statute/422.12",
+        "method": "exact-cross-scope",
+        "requested": "us-ia/statute/422.12"
+      }
+    ],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "us-ia-code-422.12b": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ia/statute/422.12B",
+        "method": "exact-cross-scope",
+        "requested": "us-ia/statute/422.12B"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-ia-code-422.12c": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ia/statute/422.12C",
+        "method": "exact-cross-scope",
+        "requested": "us-ia/statute/422.12C"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-id-code-63-3022d": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-id/statute/63-3022D",
+        "method": "exact-cross-scope",
+        "requested": "us-id/statute/63-3022D"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-id-code-63-3022e": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-id/statute/63-3022E",
+        "method": "exact-cross-scope",
+        "requested": "us-id/statute/63-3022E"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-id-code-63-3024": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-id/statute/63-3024",
+        "method": "exact-cross-scope",
+        "requested": "us-id/statute/63-3024"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-id-code-63-3024a": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-id/statute/63-3024A",
+        "method": "exact-cross-scope",
+        "requested": "us-id/statute/63-3024A"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-id-code-63-3025d": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-id/statute/63-3025D",
+        "method": "exact-cross-scope",
+        "requested": "us-id/statute/63-3025D"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-il-code-35": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/1105",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/1105"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p10": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/506.5",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/506.5"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p11": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/512",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/512"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p12": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/604",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/604"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p13": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/605",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/605"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p14": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/705",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/705"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p15": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/706",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/706"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p16": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/707",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/707"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p17": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/913",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/913"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p18": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/915",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/915"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p19": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/916",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/916"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/1202",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/1202"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p20": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/918",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/918"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/201",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/201"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p4": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/204",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/204"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p5": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/206",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/206"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/212",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/212"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p7": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/306",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/306"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p8": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/402",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/402"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-code-35-p9": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/statute/35/5/404",
+        "method": "exact-cross-scope",
+        "requested": "us-il/statute/35/5/404"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-il-csmm": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-il/manual/dhs/csmm/19812",
+        "method": "exact-cross-scope",
+        "requested": "us-il/manual/dhs/csmm/19812"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-in-code-12-15-32-6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/12-15-32-6",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/12-15-32-6"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-in-code-12-15-32-6.5": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/12-15-32-6.5",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/12-15-32-6.5"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-in-code-6-3-2-10": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/6-3-2-10",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/6-3-2-10"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-in-code-6-3-2-22": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/6-3-2-22",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/6-3-2-22"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-in-code-6-3-2-28": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/6-3-2-28",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/6-3-2-28"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-in-code-6-3-2-4": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/6-3-2-4",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/6-3-2-4"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-in-code-6-3-2-6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/6-3-2-6",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/6-3-2-6"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-in-code-6-3-3-12": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/6-3-3-12",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/6-3-3-12"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-in-code-6-3-3-9": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/6-3-3-9",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/6-3-3-9"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-in-code-6-3.1-21-6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-in/statute/6-3.1-21-6",
+        "method": "exact-cross-scope",
+        "requested": "us-in/statute/6-3.1-21-6"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-irs-rev-proc-2025-25": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/guidance/irs/rev-proc-2025-25",
+        "method": "exact-cross-scope",
+        "requested": "us/guidance/irs/rev-proc-2025-25"
+      }
+    ],
+    "rows": 5,
+    "unresolved_citations": []
+  },
+  "us-ks-keesm": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ks/manual/dcf/keesm/keesm7410",
+        "method": "exact-cross-scope",
+        "requested": "us-ks/manual/dcf/keesm/keesm7410"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-ks-ssp-memo-2007": {
+    "citations_resolved": "1/1",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ks/guidance/khpa/policy-memo/2007-05-01/state-supplemental-payment-program",
+        "method": "exact-cross-scope",
+        "requested": "us-ks/guidance/khpa/policy-memo/2007-05-01/state-supplemental-payment-program"
+      }
+    ],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "us-ky-code-11": {
+    "citations_resolved": "4/4",
+    "issues": [],
+    "newly_ingested": true,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ky/statute/11/141.020",
+        "method": "exact-cross-scope",
+        "requested": "us-ky/statute/11/141.020"
+      },
+      {
+        "citation_path": "us-ky/statute/11/141.067",
+        "method": "exact-cross-scope",
+        "requested": "us-ky/statute/11/141.067"
+      },
+      {
+        "citation_path": "us-ky/statute/11/141.069",
+        "method": "exact-cross-scope",
+        "requested": "us-ky/statute/11/141.069"
+      },
+      {
+        "citation_path": "us-ky/statute/11/141.081",
+        "method": "exact-cross-scope",
+        "requested": "us-ky/statute/11/141.081"
+      }
+    ],
+    "rows": 10,
+    "unresolved_citations": []
+  },
+  "us-la-code-47-294": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": true,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-la/statute/47:294",
+        "method": "exact-cross-scope",
+        "requested": "us-la/statute/47:294"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-la-code-47-295": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": true,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-la/statute/47:295",
+        "method": "exact-cross-scope",
+        "requested": "us-la/statute/47:295"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-la-code-47-297.4": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": true,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-la/statute/47:297.4",
+        "method": "exact-cross-scope",
+        "requested": "us-la/statute/47:297.4"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-la-code-47-297.8": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": true,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-la/statute/47:297.8",
+        "method": "exact-cross-scope",
+        "requested": "us-la/statute/47:297.8"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-la-fitap-manual": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-la/manual/dcfs/economic-independence/b-640-fitap-income-limits-398921",
+        "method": "exact-cross-scope",
+        "requested": "us-la/manual/dcfs/economic-independence/b-640-fitap-income-limits-398921"
+      }
+    ],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/10a",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/10a"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p10": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/62",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/62"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p11": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/64",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/64"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p12": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/6l",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/6l"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/11a",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/11a"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/14",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/14"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p4": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/16",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/16"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p5": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/3",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/3"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/4",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/4"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p7": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/42",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/42"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p8": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/54",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/54"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-ma-code-62-p9": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ma/statute/62/6",
+        "method": "exact-cross-scope",
+        "requested": "us-ma/statute/62/6"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-md-code-gtg": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-md/statute/gtg/10-105",
+        "method": "exact-cross-scope",
+        "requested": "us-md/statute/gtg/10-105"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-md-code-gtg-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-md/statute/gtg/10-211",
+        "method": "exact-cross-scope",
+        "requested": "us-md/statute/gtg/10-211"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-me-code-36": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-me/statute/36/5111",
+        "method": "exact-cross-scope",
+        "requested": "us-me/statute/36/5111"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-me-code-36-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-me/statute/36/5124-C",
+        "method": "exact-cross-scope",
+        "requested": "us-me/statute/36/5124-C"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-me-code-36-p3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-me/statute/36/5126-A",
+        "method": "exact-cross-scope",
+        "requested": "us-me/statute/36/5126-A"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-me-code-36-p4": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-me/statute/36/5213-A",
+        "method": "exact-cross-scope",
+        "requested": "us-me/statute/36/5213-A"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-me-code-36-p5": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-me/statute/36/5219-S",
+        "method": "exact-cross-scope",
+        "requested": "us-me/statute/36/5219-S"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-me-code-36-p6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-me/statute/36/5219-SS",
+        "method": "exact-cross-scope",
+        "requested": "us-me/statute/36/5219-SS"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-mi-bem-660": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mi/manual/mdhhs/bridges/bem/660",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/manual/mdhhs/bridges/bem/660"
+      }
+    ],
+    "rows": 5,
+    "unresolved_citations": []
+  },
+  "us-mi-code-206.272": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mi/statute/206.272",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.272"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-mi-code-206.30": {
+    "citations_resolved": "7/7",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mi/statute/206.30/10",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.30/10"
+      },
+      {
+        "citation_path": "us-mi/statute/206.30/11",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.30/11"
+      },
+      {
+        "citation_path": "us-mi/statute/206.30/12",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.30/12"
+      },
+      {
+        "citation_path": "us-mi/statute/206.30/2",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.30/2"
+      },
+      {
+        "citation_path": "us-mi/statute/206.30/3",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.30/3"
+      },
+      {
+        "citation_path": "us-mi/statute/206.30/7",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.30/7"
+      },
+      {
+        "citation_path": "us-mi/statute/206.30/8",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.30/8"
+      }
+    ],
+    "rows": 9,
+    "unresolved_citations": []
+  },
+  "us-mi-code-206.51": {
+    "citations_resolved": "3/3",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mi/statute/206.51/1",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.51/1"
+      },
+      {
+        "citation_path": "us-mi/statute/206.51/10",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.51/10"
+      },
+      {
+        "citation_path": "us-mi/statute/206.51/6",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/statute/206.51/6"
+      }
+    ],
+    "rows": 5,
+    "unresolved_citations": []
+  },
+  "us-mi-rft-248": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mi/manual/mdhhs/rft/248",
+        "method": "exact-cross-scope",
+        "requested": "us-mi/manual/mdhhs/rft/248"
+      }
+    ],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "us-mn-code-290.0121": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mn/statute/290.0121",
+        "method": "exact-cross-scope",
+        "requested": "us-mn/statute/290.0121"
+      }
+    ],
+    "rows": 11,
+    "unresolved_citations": []
+  },
+  "us-mn-code-290.0123": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mn/statute/290.0123",
+        "method": "exact-cross-scope",
+        "requested": "us-mn/statute/290.0123"
+      }
+    ],
+    "rows": 14,
+    "unresolved_citations": []
+  },
+  "us-mn-code-290.06": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mn/statute/290.06",
+        "method": "exact-cross-scope",
+        "requested": "us-mn/statute/290.06"
+      }
+    ],
+    "rows": 67,
+    "unresolved_citations": []
+  },
+  "us-mn-code-290.067": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mn/statute/290.067",
+        "method": "exact-cross-scope",
+        "requested": "us-mn/statute/290.067"
+      }
+    ],
+    "rows": 16,
+    "unresolved_citations": []
+  },
+  "us-mn-code-290.0671": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mn/statute/290.0671",
+        "method": "exact-cross-scope",
+        "requested": "us-mn/statute/290.0671"
+      }
+    ],
+    "rows": 17,
+    "unresolved_citations": []
+  },
+  "us-mn-combined-manual": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mn/manual/dhs/combined-manual/msa-revised-sections-2026-01",
+        "method": "exact-cross-scope",
+        "requested": "us-mn/manual/dhs/combined-manual/msa-revised-sections-2026-01"
+      }
+    ],
+    "rows": 1354,
+    "unresolved_citations": []
+  },
+  "us-mt-arm-37-78": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mt/regulation/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420",
+        "method": "exact-cross-scope",
+        "requested": "us-mt/regulation/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-mt-code-15-30-2318": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-mt/statute/15-30-2318",
+        "method": "exact-cross-scope",
+        "requested": "us-mt/statute/15-30-2318"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-nc-code-105": {
+    "citations_resolved": "5/5",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-nc/statute/105/105-153.5/a",
+        "method": "exact-cross-scope",
+        "requested": "us-nc/statute/105/105-153.5/a"
+      },
+      {
+        "citation_path": "us-nc/statute/105/105-153.5/a1",
+        "method": "exact-cross-scope",
+        "requested": "us-nc/statute/105/105-153.5/a1"
+      },
+      {
+        "citation_path": "us-nc/statute/105/105-153.5/b",
+        "method": "exact-cross-scope",
+        "requested": "us-nc/statute/105/105-153.5/b"
+      },
+      {
+        "citation_path": "us-nc/statute/105/105-153.7",
+        "method": "exact-cross-scope",
+        "requested": "us-nc/statute/105/105-153.7"
+      },
+      {
+        "citation_path": "us-nc/statute/105/105-153.9",
+        "method": "exact-cross-scope",
+        "requested": "us-nc/statute/105/105-153.9"
+      }
+    ],
+    "rows": 6,
+    "unresolved_citations": []
+  },
+  "us-nd-code-57": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-nd/statute/57/57-38-01.28",
+        "method": "exact-cross-scope",
+        "requested": "us-nd/statute/57/57-38-01.28"
+      }
+    ],
+    "rows": 70,
+    "unresolved_citations": []
+  },
+  "us-ne-code-77": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ne/statute/77/77-2715.03",
+        "method": "exact-cross-scope",
+        "requested": "us-ne/statute/77/77-2715.03"
+      }
+    ],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "us-ne-code-77-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ne/statute/77/77-2715.07",
+        "method": "exact-cross-scope",
+        "requested": "us-ne/statute/77/77-2715.07"
+      }
+    ],
+    "rows": 5,
+    "unresolved_citations": []
+  },
+  "us-ne-code-77-p3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ne/statute/77/77-2716.01",
+        "method": "exact-cross-scope",
+        "requested": "us-ne/statute/77/77-2716.01"
+      }
+    ],
+    "rows": 4,
+    "unresolved_citations": []
+  },
+  "us-nj-code-54a-4-7": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": true,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-nj/statute/54a:4-7",
+        "method": "exact-cross-scope",
+        "requested": "us-nj/statute/54a:4-7"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-nj-njac-10-90": {
+    "citations_resolved": "6/6",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-nj/regulation/njac-10-90/10-90-3.19",
+        "method": "exact-cross-scope",
+        "requested": "us-nj/regulation/njac-10-90/10-90-3.19"
+      },
+      {
+        "citation_path": "us-nj/regulation/njac-10-90/10-90-3.2",
+        "method": "exact-cross-scope",
+        "requested": "us-nj/regulation/njac-10-90/10-90-3.2"
+      },
+      {
+        "citation_path": "us-nj/regulation/njac-10-90/10-90-3.20",
+        "method": "exact-cross-scope",
+        "requested": "us-nj/regulation/njac-10-90/10-90-3.20"
+      },
+      {
+        "citation_path": "us-nj/regulation/njac-10-90/10-90-3.3",
+        "method": "exact-cross-scope",
+        "requested": "us-nj/regulation/njac-10-90/10-90-3.3"
+      },
+      {
+        "citation_path": "us-nj/regulation/njac-10-90/10-90-3.8",
+        "method": "exact-cross-scope",
+        "requested": "us-nj/regulation/njac-10-90/10-90-3.8"
+      },
+      {
+        "citation_path": "us-nj/regulation/njac-10-90/10-90-3.9",
+        "method": "exact-cross-scope",
+        "requested": "us-nj/regulation/njac-10-90/10-90-3.9"
+      }
+    ],
+    "rows": 558,
+    "unresolved_citations": []
+  },
+  "us-nm-code-7-2-18.15": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": true,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-nm/statute/7-2-18.15",
+        "method": "exact-cross-scope",
+        "requested": "us-nm/statute/7-2-18.15"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-nm-code-7-2-5.8": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": true,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-nm/statute/7-2-5.8",
+        "method": "exact-cross-scope",
+        "requested": "us-nm/statute/7-2-5.8"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/601-A",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/601-A"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p10": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/674",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/674"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p11": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/675",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/675"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/611",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/611"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/613",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/613"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p4": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/617",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/617"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p5": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/618",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/618"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p6": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/620-A",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/620-A"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p7": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/621",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/621"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p8": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/672",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/672"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ny-code-tax-p9": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ny/statute/TAX/673",
+        "method": "exact-cross-scope",
+        "requested": "us-ny/statute/TAX/673"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-oh-code-5747.02": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-oh/statute/5747.02",
+        "method": "exact-cross-scope",
+        "requested": "us-oh/statute/5747.02"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-oh-code-5747.025": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-oh/statute/5747.025",
+        "method": "exact-cross-scope",
+        "requested": "us-oh/statute/5747.025"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-oh-code-5747.71": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-oh/statute/5747.71",
+        "method": "exact-cross-scope",
+        "requested": "us-oh/statute/5747.71"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-oh-code-5747.98": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-oh/statute/5747.98",
+        "method": "exact-cross-scope",
+        "requested": "us-oh/statute/5747.98"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-or-code-315.264": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-or/statute/315.264",
+        "method": "exact-cross-scope",
+        "requested": "us-or/statute/315.264"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-or-code-315.266": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-or/statute/315.266",
+        "method": "exact-cross-scope",
+        "requested": "us-or/statute/315.266"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-or-code-316.085": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-or/statute/316.085",
+        "method": "exact-cross-scope",
+        "requested": "us-or/statute/316.085"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-ri-code-44-30-103": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ri/statute/44-30-103",
+        "method": "exact-cross-scope",
+        "requested": "us-ri/statute/44-30-103"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-sc-code-12-6-520": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-sc/statute/12-6-520",
+        "method": "exact-cross-scope",
+        "requested": "us-sc/statute/12-6-520"
+      }
+    ],
+    "rows": 3,
+    "unresolved_citations": []
+  },
+  "us-tx-works-handbook": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-tx/manual/hhs/texas-works-handbook/c-110-tanf",
+        "method": "exact-cross-scope",
+        "requested": "us-tx/manual/hhs/texas-works-handbook/c-110-tanf"
+      }
+    ],
+    "rows": 8,
+    "unresolved_citations": []
+  },
+  "us-ut-code-59-10-1018": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ut/statute/59-10-1018",
+        "method": "exact-cross-scope",
+        "requested": "us-ut/statute/59-10-1018"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ut-code-59-10-1019": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ut/statute/59-10-1019",
+        "method": "exact-cross-scope",
+        "requested": "us-ut/statute/59-10-1019"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-ut-code-59-10-104": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-ut/statute/59-10-104",
+        "method": "exact-cross-scope",
+        "requested": "us-ut/statute/59-10-104"
+      }
+    ],
+    "rows": 1,
+    "unresolved_citations": []
+  },
+  "us-va-code-58.1": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-va/statute/58.1/58.1-320",
+        "method": "exact-cross-scope",
+        "requested": "us-va/statute/58.1/58.1-320"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-va-code-58.1-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-va/statute/58.1/58.1-321",
+        "method": "exact-cross-scope",
+        "requested": "us-va/statute/58.1/58.1-321"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-va-code-58.1-p3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-va/statute/58.1/58.1-322.03",
+        "method": "exact-cross-scope",
+        "requested": "us-va/statute/58.1/58.1-322.03"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-va-code-58.1-p4": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-va/statute/58.1/58.1-339.8",
+        "method": "exact-cross-scope",
+        "requested": "us-va/statute/58.1/58.1-339.8"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-wa-code-82": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-wa/statute/82/82.87/82.87.040",
+        "method": "exact-cross-scope",
+        "requested": "us-wa/statute/82/82.87/82.87.040"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-wa-code-82-p2": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-wa/statute/82/82.87/82.87.060",
+        "method": "exact-cross-scope",
+        "requested": "us-wa/statute/82/82.87/82.87.060"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-wa-code-82-p3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-wa/statute/82/82.87/82.87.080",
+        "method": "exact-cross-scope",
+        "requested": "us-wa/statute/82/82.87/82.87.080"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-wv-code-11-21-10": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-wv/statute/11-21-10",
+        "method": "exact-cross-scope",
+        "requested": "us-wv/statute/11-21-10"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-wv-code-11-21-16": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-wv/statute/11-21-16",
+        "method": "exact-cross-scope",
+        "requested": "us-wv/statute/11-21-16"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-wv-code-11-21-21": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-wv/statute/11-21-21",
+        "method": "exact-cross-scope",
+        "requested": "us-wv/statute/11-21-21"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-wv-code-11-21-23": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-wv/statute/11-21-23",
+        "method": "exact-cross-scope",
+        "requested": "us-wv/statute/11-21-23"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "us-wv-code-11-21-3": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us-wv/statute/11-21-3",
+        "method": "exact-cross-scope",
+        "requested": "us-wv/statute/11-21-3"
+      }
+    ],
+    "rows": 2,
+    "unresolved_citations": []
+  },
+  "uscode-title-20": {
+    "citations_resolved": "3/3",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/statute/20/1070a/b/1",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/20/1070a/b/1"
+      },
+      {
+        "citation_path": "us/statute/20/1070a/b/3",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/20/1070a/b/3"
+      },
+      {
+        "citation_path": "us/statute/20/1070a/b/5",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/20/1070a/b/5"
+      }
+    ],
+    "rows": 42,
+    "unresolved_citations": []
+  },
+  "uscode-title-26": {
+    "citations_resolved": "102/102",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/statute/26/1",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/1"
+      },
+      {
+        "citation_path": "us/statute/26/102",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/102"
+      },
+      {
+        "citation_path": "us/statute/26/104",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/104"
+      },
+      {
+        "citation_path": "us/statute/26/112",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/112"
+      },
+      {
+        "citation_path": "us/statute/26/1211",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/1211"
+      },
+      {
+        "citation_path": "us/statute/26/1212",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/1212"
+      },
+      {
+        "citation_path": "us/statute/26/1222",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/1222"
+      },
+      {
+        "citation_path": "us/statute/26/1402",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/1402"
+      },
+      {
+        "citation_path": "us/statute/26/1411",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/1411"
+      },
+      {
+        "citation_path": "us/statute/26/151",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/151"
+      },
+      {
+        "citation_path": "us/statute/26/152",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/152"
+      },
+      {
+        "citation_path": "us/statute/26/163",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/163"
+      },
+      {
+        "citation_path": "us/statute/26/164",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/164"
+      },
+      {
+        "citation_path": "us/statute/26/170",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/170"
+      },
+      {
+        "citation_path": "us/statute/26/172",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/172"
+      },
+      {
+        "citation_path": "us/statute/26/199A",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/199A"
+      },
+      {
+        "citation_path": "us/statute/26/2",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/2"
+      },
+      {
+        "citation_path": "us/statute/26/21",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/21"
+      },
+      {
+        "citation_path": "us/statute/26/212",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/212"
+      },
+      {
+        "citation_path": "us/statute/26/213",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/213"
+      },
+      {
+        "citation_path": "us/statute/26/219/b",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/219/b"
+      },
+      {
+        "citation_path": "us/statute/26/219/g",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/219/g"
+      },
+      {
+        "citation_path": "us/statute/26/22",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/22"
+      },
+      {
+        "citation_path": "us/statute/26/221",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/221"
+      },
+      {
+        "citation_path": "us/statute/26/223/b",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/223/b"
+      },
+      {
+        "citation_path": "us/statute/26/224",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/224"
+      },
+      {
+        "citation_path": "us/statute/26/225",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/225"
+      },
+      {
+        "citation_path": "us/statute/26/24",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/24"
+      },
+      {
+        "citation_path": "us/statute/26/25A",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/25A"
+      },
+      {
+        "citation_path": "us/statute/26/25B",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/25B"
+      },
+      {
+        "citation_path": "us/statute/26/25C",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/25C"
+      },
+      {
+        "citation_path": "us/statute/26/25D",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/25D"
+      },
+      {
+        "citation_path": "us/statute/26/25E",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/25E"
+      },
+      {
+        "citation_path": "us/statute/26/26",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/26"
+      },
+      {
+        "citation_path": "us/statute/26/30D",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/30D"
+      },
+      {
+        "citation_path": "us/statute/26/3102",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3102"
+      },
+      {
+        "citation_path": "us/statute/26/3121",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3121"
+      },
+      {
+        "citation_path": "us/statute/26/3127",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3127"
+      },
+      {
+        "citation_path": "us/statute/26/3128",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3128"
+      },
+      {
+        "citation_path": "us/statute/26/3131",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3131"
+      },
+      {
+        "citation_path": "us/statute/26/3132",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3132"
+      },
+      {
+        "citation_path": "us/statute/26/3133",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3133"
+      },
+      {
+        "citation_path": "us/statute/26/3134",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3134"
+      },
+      {
+        "citation_path": "us/statute/26/32",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/32"
+      },
+      {
+        "citation_path": "us/statute/26/3201",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3201"
+      },
+      {
+        "citation_path": "us/statute/26/3202",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3202"
+      },
+      {
+        "citation_path": "us/statute/26/3211",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3211"
+      },
+      {
+        "citation_path": "us/statute/26/3212",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3212"
+      },
+      {
+        "citation_path": "us/statute/26/3221",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3221"
+      },
+      {
+        "citation_path": "us/statute/26/3231",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3231"
+      },
+      {
+        "citation_path": "us/statute/26/3232",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3232"
+      },
+      {
+        "citation_path": "us/statute/26/3233",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3233"
+      },
+      {
+        "citation_path": "us/statute/26/3241",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3241"
+      },
+      {
+        "citation_path": "us/statute/26/3301",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3301"
+      },
+      {
+        "citation_path": "us/statute/26/3302",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3302"
+      },
+      {
+        "citation_path": "us/statute/26/3303",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3303"
+      },
+      {
+        "citation_path": "us/statute/26/3304",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3304"
+      },
+      {
+        "citation_path": "us/statute/26/3305",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3305"
+      },
+      {
+        "citation_path": "us/statute/26/3306",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3306"
+      },
+      {
+        "citation_path": "us/statute/26/3307",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3307"
+      },
+      {
+        "citation_path": "us/statute/26/3308",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3308"
+      },
+      {
+        "citation_path": "us/statute/26/3309",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3309"
+      },
+      {
+        "citation_path": "us/statute/26/3310",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3310"
+      },
+      {
+        "citation_path": "us/statute/26/3311",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3311"
+      },
+      {
+        "citation_path": "us/statute/26/3401",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3401"
+      },
+      {
+        "citation_path": "us/statute/26/3402",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3402"
+      },
+      {
+        "citation_path": "us/statute/26/3403",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3403"
+      },
+      {
+        "citation_path": "us/statute/26/3404",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3404"
+      },
+      {
+        "citation_path": "us/statute/26/3405",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3405"
+      },
+      {
+        "citation_path": "us/statute/26/3406",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3406"
+      },
+      {
+        "citation_path": "us/statute/26/3501",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3501"
+      },
+      {
+        "citation_path": "us/statute/26/3502",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3502"
+      },
+      {
+        "citation_path": "us/statute/26/3503",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3503"
+      },
+      {
+        "citation_path": "us/statute/26/3504",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3504"
+      },
+      {
+        "citation_path": "us/statute/26/3505",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3505"
+      },
+      {
+        "citation_path": "us/statute/26/3506",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3506"
+      },
+      {
+        "citation_path": "us/statute/26/3507",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3507"
+      },
+      {
+        "citation_path": "us/statute/26/3508",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3508"
+      },
+      {
+        "citation_path": "us/statute/26/3509",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3509"
+      },
+      {
+        "citation_path": "us/statute/26/3510",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3510"
+      },
+      {
+        "citation_path": "us/statute/26/3511",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3511"
+      },
+      {
+        "citation_path": "us/statute/26/3512",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/3512"
+      },
+      {
+        "citation_path": "us/statute/26/36B",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/36B"
+      },
+      {
+        "citation_path": "us/statute/26/36B/c/1/A",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/36B/c/1/A"
+      },
+      {
+        "citation_path": "us/statute/26/408",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/408"
+      },
+      {
+        "citation_path": "us/statute/26/443",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/443"
+      },
+      {
+        "citation_path": "us/statute/26/55",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/55"
+      },
+      {
+        "citation_path": "us/statute/26/56",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/56"
+      },
+      {
+        "citation_path": "us/statute/26/6012",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/6012"
+      },
+      {
+        "citation_path": "us/statute/26/6013",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/6013"
+      },
+      {
+        "citation_path": "us/statute/26/61",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/61"
+      },
+      {
+        "citation_path": "us/statute/26/62",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/62"
+      },
+      {
+        "citation_path": "us/statute/26/64",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/64"
+      },
+      {
+        "citation_path": "us/statute/26/6401",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/6401"
+      },
+      {
+        "citation_path": "us/statute/26/65",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/65"
+      },
+      {
+        "citation_path": "us/statute/26/67",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/67"
+      },
+      {
+        "citation_path": "us/statute/26/68",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/68"
+      },
+      {
+        "citation_path": "us/statute/26/7703",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/7703"
+      },
+      {
+        "citation_path": "us/statute/26/86",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/86"
+      },
+      {
+        "citation_path": "us/statute/26/911",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/911"
+      },
+      {
+        "citation_path": "us/statute/26/931",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/931"
+      },
+      {
+        "citation_path": "us/statute/26/933",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/26/933"
+      }
+    ],
+    "rows": 2268,
+    "unresolved_citations": []
+  },
+  "uscode-title-37": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/statute/37/556",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/37/556"
+      }
+    ],
+    "rows": 17,
+    "unresolved_citations": []
+  },
+  "uscode-title-5": {
+    "citations_resolved": "1/1",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/statute/5/5566",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/5/5566"
+      }
+    ],
+    "rows": 15,
+    "unresolved_citations": []
+  },
+  "uscode-title-8": {
+    "citations_resolved": "4/4",
+    "issues": [],
+    "newly_ingested": false,
+    "parsed": true,
+    "resolved_citations": [
+      {
+        "citation_path": "us/statute/8/1612/b/2/G",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/8/1612/b/2/G"
+      },
+      {
+        "citation_path": "us/statute/8/1613",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/8/1613"
+      },
+      {
+        "citation_path": "us/statute/8/1641",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/8/1641"
+      },
+      {
+        "citation_path": "us/statute/8/1641/b",
+        "method": "exact-cross-scope",
+        "requested": "us/statute/8/1641/b"
+      }
+    ],
+    "rows": 39,
+    "unresolved_citations": []
+  }
+}

@@ -22,7 +22,7 @@
       "type": "string",
       "description": "Slash-delimited hierarchical identifier. Segment 0 is the jurisdiction; segment 1 is the document_class; segments 2+ are the source-specific hierarchy down to a leaf provision. No leading slash, no trailing slash, no empty segments. A bare '<jurisdiction>/<document_class>' path (no hierarchy segment) is valid only for collection-root records (kind='collection', level=0).",
       "minLength": 3,
-      "pattern": "^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\\-\u2013]*)*$",
+      "pattern": "^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .:\\-–]*)*$",
       "$comment": "The pattern encodes: <jurisdiction>/<document_class>(/<segment>)*. A jurisdiction is a national root followed by zero or more lowercase subdivision or authority tokens, so both us-ca and uk-kingston-upon-thames are first-class. Each hierarchy segment starts with an alphanumeric and may contain letters, digits, spaces, dots, hyphens, and en-dashes (U+2013). The zero-hierarchy case matches collection roots. Segments that END in a hyphen/space (truncated source-heading slugs) match the pattern but are tracked and capped via known_irregulars_ratchet.truncated_segments so they cannot proliferate. See per-part definitions below for semantics."
     },
     "jurisdiction": {
@@ -116,8 +116,8 @@
     },
     "hierarchy_segment": {
       "description": "Segments 2+. Source-specific hierarchy tokens. Character set is [A-Za-z0-9], space, dot '.', hyphen '-', en-dash U+2013. Must start with an alphanumeric. Uppercase, spaces, and en-dashes are permitted because they occur in real published citation labels (see irregular_families). Well-formed segments end in an alphanumeric or dot; segments ending in a hyphen or space are truncated-slug artifacts, tracked under known_irregulars_ratchet.truncated_segments.",
-      "pattern": "^[A-Za-z0-9][A-Za-z0-9 .\\-\u2013]*$",
-      "well_formed_pattern": "^[A-Za-z0-9](?:[A-Za-z0-9 .\\-\u2013]*[A-Za-z0-9.])?$"
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9 .\\-–]*$",
+      "well_formed_pattern": "^[A-Za-z0-9](?:[A-Za-z0-9 .\\-–]*[A-Za-z0-9.])?$"
     }
   },
   "families": {
@@ -125,7 +125,7 @@
     "us_federal_statute": {
       "shape": "us/statute/<title>/<section>[/<subsection>...]",
       "example": "us/statute/26/3121/a/1",
-      "notes": "USLM-derived. <title> is the numeric US Code title (26 IRC, 42 Social Security Act host title). Subsection depth mirrors USLM (a, 1, A, i...). Aspirational target form 'us/statute/26/32/a/1' (EITC) follows this family once Title 26 \u00a732 is ingested."
+      "notes": "USLM-derived. <title> is the numeric US Code title (26 IRC, 42 Social Security Act host title). Subsection depth mirrors USLM (a, 1, A, i...). Aspirational target form 'us/statute/26/32/a/1' (EITC) follows this family once Title 26 §32 is ingested."
     },
     "us_federal_regulation": {
       "shape": "us/regulation/<title>/<part>[/<section>|/subpart-<X>...]",
@@ -193,17 +193,17 @@
   "known_irregulars_ratchet": {
     "description": "A ratcheted ceiling on irregular-family membership, checked by scripts/validate_citation_paths.py. The validator FAILS if a live count exceeds its baseline (a regression: someone introduced more irregular segments than existed at r0) unless the baseline is deliberately raised in this file. It does NOT fail if a count drops (irregulars being cleaned up). Baselines were measured against origin/main @ 9ee50de. Raising a baseline is a reviewed decision recorded in this file's git history.",
     "baselines": {
-      "block_n": 18615,
-      "page_n": 19680,
+        "block_n": 19532,
+        "page_n": 23501,
       "space_segments": 209,
-      "endash_segments": 21,
-      "uppercase_segments": 5224,
+        "endash_segments": 1795,
+        "uppercase_segments": 9063,
       "truncated_segments": 53,
       "collection_roots": 11
     }
   },
   "identity_drift_ratchet": {
-    "description": "Paths whose stored provision `id` matches NEITHER the path-only identity uuid5(NAMESPACE_URL,'axiom:'+citation_path) NOR the versioned identity uuid5(NAMESPACE_URL, json.dumps(['axiom', version, citation_path])). A non-empty set means a path was edited AFTER its UUID was minted, so the stored identity no longer derives from the current path \u2014 exactly the failure mode this grammar exists to prevent. These are tracked, not tolerated: the validator fails if the set GROWS beyond the baseline list, and the fix is to re-key (re-ingest) the provision and emit the path-mapping events specified in schema/citation-path.v1.md so downstream (rulespec `corpus_citation_path`, claims, reverse index) can follow. See docs/granularity-policy-proposal.md; several of these are the corpus side of axiom-programs#14.",
+    "description": "Paths whose stored provision `id` matches NEITHER the path-only identity uuid5(NAMESPACE_URL,'axiom:'+citation_path) NOR the versioned identity uuid5(NAMESPACE_URL, json.dumps(['axiom', version, citation_path])). A non-empty set means a path was edited AFTER its UUID was minted, so the stored identity no longer derives from the current path — exactly the failure mode this grammar exists to prevent. These are tracked, not tolerated: the validator fails if the set GROWS beyond the baseline list, and the fix is to re-key (re-ingest) the provision and emit the path-mapping events specified in schema/citation-path.v1.md so downstream (rulespec `corpus_citation_path`, claims, reverse index) can follow. See docs/granularity-policy-proposal.md; several of these are the corpus side of axiom-programs#14.",
     "baseline_paths": [
       "ca/policy/cra/t1-2025/child-care-expenses-deduction",
       "ca/policy/cra/t1-2025/moving-expenses-deduction",

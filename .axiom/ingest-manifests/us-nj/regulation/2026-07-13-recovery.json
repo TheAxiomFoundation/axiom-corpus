@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/regulation/2026-07-13-recovery.json",
+      "sha256": "cd38df047c204749f8bfc2a1564972ce9b7cfdc8ce149a412d930ef09e851c88"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/regulation/2026-07-13-recovery.json",
+      "sha256": "aee0a2480fcfdb55456bb7cfffe931c8413167377f761026eca7d34c6f0819fc"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/regulation/2026-07-13-recovery.jsonl",
+      "sha256": "02146e977d77ebfcf309cf35c6fa597ee9f4de97461cac1a2de04d7597161849"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/regulation/2026-07-13-recovery/official-documents/us-nj-njac-10-90",
+      "sha256": "687a14f299cad3038e27ea9c404d5461cf35b71a4db1ea0ae04ed4af11ef3cfe"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/regulation/2026-07-13-recovery/provenance/us-nj-njac-10-90.json",
+      "sha256": "520fc0bb97c5fe7148603bb8826fec2c85f2f627f029fa46940f52eda6895b8c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abbc1d37b904c1a7bda84b5eb80dedb5429df41d",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 558,
+    "missing_count": 0,
+    "provision_count": 558,
+    "source_count": 558
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T15:19:02.584182+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DmzkxVNqPgUYPIirAwD6IybyK6dNhsI4EQI81J7Kcs8DGpbFmLopfUoeCMjzJFXn0nz/9vHmhz6Z6eXnpakVCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

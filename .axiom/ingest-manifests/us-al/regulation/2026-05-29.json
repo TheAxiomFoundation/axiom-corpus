@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/regulation/2026-05-29.json",
+      "sha256": "ca13f40b75e755eee9f6b4cb9e9f105e861539fc1e51cf49b54a715c9ab283bc"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/regulation/2026-05-29.json",
+      "sha256": "dc94e2ad3deeff5de90ce45d533d6966bbc12f15a4fef986f8e2edb368483660"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/regulation/2026-05-29.jsonl",
+      "sha256": "37fd555a1240411d0f0314d94cfcb92caba2496eb4dd83b9d768d848448994a5"
+    },
+    {
+      "path": "data/corpus/sources/us-al/regulation/2026-05-29/official-documents/release-scope-us-al-regulation-2026-05-29",
+      "sha256": "f1618d6d1d18c44de70c72cfd024885879b5cbea05647888602fad730edc266d"
+    },
+    {
+      "path": "data/corpus/sources/us-al/regulation/2026-05-29/provenance/release-scope-us-al-regulation-2026-05-29.json",
+      "sha256": "29be149e548c95698f8d4b950915b37eee027a9b0893399316c4cb7e94a98760"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8579b0f5f567e7e297f39125023f52430c2a4d05",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 126,
+    "missing_count": 0,
+    "provision_count": 126,
+    "source_count": 126
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T15:18:26.124013+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UrcU22d0yV+ZKLV3HTSquJYGgIp7qN3EgKxIF3/yUqH7lCAu4PeyCkzV3IuC24V7h1bQkN60ogRnHeHO8zM/Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-29"
+}

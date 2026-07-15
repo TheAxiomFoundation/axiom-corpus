@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/statute/2026-07-13-recovery.json",
+      "sha256": "a4c1c828328fcee6828e4a7a1632a7af00f4a8801f0859d599a7c455740da331"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/statute/2026-07-13-recovery.json",
+      "sha256": "703b81ad7445ce5497d519218410d3f5c99a8ef9333e498bbed5afaf3dcb1127"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/statute/2026-07-13-recovery.jsonl",
+      "sha256": "391ab4e42d04e0f328c9780b8577b2120d602b72b10453ea6c80522d32506f07"
+    },
+    {
+      "path": "data/corpus/sources/us-al/statute/2026-07-13-recovery/official-documents/us-al-code-40-18-15",
+      "sha256": "4761f4e9e520ee793b01d40742cb78eab6ab9beb74907e00656d644f368fda9b"
+    },
+    {
+      "path": "data/corpus/sources/us-al/statute/2026-07-13-recovery/official-documents/us-al-code-40-18-19",
+      "sha256": "7f0ee234c9cd1a2bd5802f33c275d37548f2dd7bf62fd8a57e3ecbbfa38a61aa"
+    },
+    {
+      "path": "data/corpus/sources/us-al/statute/2026-07-13-recovery/official-documents/us-al-code-40-18-5",
+      "sha256": "ff9c58ede401e807daf3b91e14e0083a89033a3377835af67661c4fe19cb62f4"
+    },
+    {
+      "path": "data/corpus/sources/us-al/statute/2026-07-13-recovery/provenance/us-al-code-40-18-15.json",
+      "sha256": "02f4c04aa8384de2f9f841410389a2ab75c223d18a6d0fa1a4b91ffc9f4ac7e1"
+    },
+    {
+      "path": "data/corpus/sources/us-al/statute/2026-07-13-recovery/provenance/us-al-code-40-18-19.json",
+      "sha256": "7d22df1a3c4f7f2f55ab3be995d99e023bb6145ce0b9009effc37353c06ec1f9"
+    },
+    {
+      "path": "data/corpus/sources/us-al/statute/2026-07-13-recovery/provenance/us-al-code-40-18-5.json",
+      "sha256": "a00718b8b9b6b0559637c68256fae725944510bc83b90e3b58565d4401591ec5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "21eaa9a02f474e9425399afa3e6a88f88d03eb58",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-15T15:18:26.743144+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EhzEcD1euEQJPwWb6V9IKd5Ivuy91diOx4T+jCx745H+v2ILDaGzQmX3++BTA3f9F6mjRlWQBUpl+8/tFWpOBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

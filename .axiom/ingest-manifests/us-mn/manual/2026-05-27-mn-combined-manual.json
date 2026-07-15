@@ -11,16 +11,24 @@
     {
       "path": "data/corpus/provisions/us-mn/manual/2026-05-27-mn-combined-manual.jsonl",
       "sha256": "9d05a4d3a22b478f2c959549463765a35de4a504e8f875692589d062d4b85d9d"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-05-27-mn-combined-manual/official-documents/release-scope-us-mn-manual-2026-05-27-mn-combined-manual",
+      "sha256": "3f70f7b53567aaf0ff32c870ac65101bbbae777e921246b4553403939aca61b5"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-05-27-mn-combined-manual/provenance/release-scope-us-mn-manual-2026-05-27-mn-combined-manual.json",
+      "sha256": "243f5ac48b3c92e6b4a3c8d6743e0324920f7111ef54962e6ed02902a1026f70"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "e5dd355e9303d67f4e885dd638933df25cc4ee5e",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +39,14 @@
     "source_count": 1354
   },
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:32.069316+00:00",
+  "generated_at": "2026-07-15T15:18:53.530695+00:00",
   "jurisdiction": "us-mn",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "EoYcSxeqnGie60RjJRhRsPIe8bTVoHiaR7eyBJXCrlBqnzZTa1Fck3et6saoc8am5uhEjAOcT0BsgDHyDtYrDA=="
+    "value": "CmEorulR98vGHGqV1v6pAz0ICGApXxZjiKg4XJG6YbbtQqcovW6cbMlWtSF+amdZfQYsXj2VX5Pgg+SZd8pxAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-mn-combined-manual"

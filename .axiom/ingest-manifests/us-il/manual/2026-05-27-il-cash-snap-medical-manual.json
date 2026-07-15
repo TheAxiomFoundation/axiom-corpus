@@ -11,16 +11,24 @@
     {
       "path": "data/corpus/provisions/us-il/manual/2026-05-27-il-cash-snap-medical-manual.jsonl",
       "sha256": "76030d4355669e67082d3c3e60f87a1fa8ac90ff9eb761f7c6f602f769e307cb"
+    },
+    {
+      "path": "data/corpus/sources/us-il/manual/2026-05-27-il-cash-snap-medical-manual/official-documents/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual",
+      "sha256": "e6f40edf439d057fd53e8e7c2b1e662bc439dd3bf47f0990726e222104cb1f64"
+    },
+    {
+      "path": "data/corpus/sources/us-il/manual/2026-05-27-il-cash-snap-medical-manual/provenance/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual.json",
+      "sha256": "5f993349a8e9672191d382c49a4d41916ffe35a31e23a9428b66e5c64fd57d4a"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "77d400707b6bef9180a68884c447d209407bd365",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +39,14 @@
     "source_count": 12450
   },
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:26.753296+00:00",
+  "generated_at": "2026-07-15T15:18:43.035597+00:00",
   "jurisdiction": "us-il",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "l8jMc7ddgf4zmPuKt2EsAmXhZXmWCuUI/0/Jx+W7L7SjATcoG8RyJpauXLmF+z3qmbv2tauEZFOa4ChkvYO6Cw=="
+    "value": "xeRpi0tNyBeutXIaP1A9+/7Jd+2ANRL0SfCLgdfXefdkAunY0opH18Qvm6IeIOMDEDCyinNUvHysAn5P56b/DQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-il-cash-snap-medical-manual"

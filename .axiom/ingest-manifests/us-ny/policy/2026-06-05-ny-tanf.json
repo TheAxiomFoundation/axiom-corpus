@@ -1,0 +1,40 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/policy/2026-06-05-ny-tanf.json",
+      "sha256": "53e20a1a7429e18252cd598b5f958a5b3ed650f4fea254a7feb9a93510c508de"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/policy/2026-06-05-ny-tanf.json",
+      "sha256": "2d8f0d8302c1336a779d9de4f80351efad5b7260658fa9bb0116d691a82bc201"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/policy/2026-06-05-ny-tanf.jsonl",
+      "sha256": "ab63cd9c6f93f3abaa0de1a5ad0efb564fb6084226841b378f529c5c2dad377d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "14b427c0c18022558b5fb2f0de3d1f24b045e602",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 115,
+    "missing_count": 0,
+    "provision_count": 115,
+    "source_count": 115
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-15T12:01:33.256844+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-05-ny-tanf"
+}

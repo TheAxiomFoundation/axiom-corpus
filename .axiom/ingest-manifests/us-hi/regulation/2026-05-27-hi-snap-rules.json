@@ -11,16 +11,24 @@
     {
       "path": "data/corpus/provisions/us-hi/regulation/2026-05-27-hi-snap-rules.jsonl",
       "sha256": "7cb21df1def545793f1d268f02b27108ec7a9d25938346e45834b0a26ee9d3ec"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-05-27-hi-snap-rules/official-documents/release-scope-us-hi-regulation-2026-05-27-hi-snap-rules",
+      "sha256": "fceaba9b656670aa74927281379c9c44f6e5aace6706dc1b67f1e72f5cd7d5e8"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/regulation/2026-05-27-hi-snap-rules/provenance/release-scope-us-hi-regulation-2026-05-27-hi-snap-rules.json",
+      "sha256": "9e337ad6c1de9205b091d9b6ed6184a42f393cc7751f75744d2c63630bfd1195"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "91865cc1876a9b562c07175ab1dc065d4d838756",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +39,14 @@
     "source_count": 594
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-07T19:50:24.984631+00:00",
+  "generated_at": "2026-07-15T15:18:38.668719+00:00",
   "jurisdiction": "us-hi",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "UUx5Am3VKj4G3AWhAij7DPfeSKK+KznNLYBdF8UlwpWozRb+AwPd7Tt8N+fYbBI0FvFqkix/0XRP7EmKfx2mCw=="
+    "value": "Xl/O6OEo8/Y9fxdSEO3ZghSL8UZjxHqej1ydvz4M3Q4u35Mjo6zpHqdHt4rfNHyKsgnxJ5z9w104Ln6dupbFAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-hi-snap-rules"

@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/regulation/2026-07-13-recovery.json",
+      "sha256": "84c4518111259c3241cb9a1ac8262d9c219234ec1201e71283e1b8686cb00763"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/regulation/2026-07-13-recovery.json",
+      "sha256": "71a49f4b8d583bcef6d32ef09470726c1504ddec7a86ec3b5c8599f4b41c3f7f"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-13-recovery.jsonl",
+      "sha256": "22a282a0e40229743e03a692623af7d74121f1f2e31bfd31c621f7388c3a76fa"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery/official-documents/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1",
+      "sha256": "62edf85ec202b1009c4c4655519596a75ea2e4b716ad2e5a9ce5bc6544a72784"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery/official-documents/us-co-8-ccr-1403-1",
+      "sha256": "b76234b6ce316b86adef29e5ea8d5942bb490b1fe630c37c71a44516229765af"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery/official-documents/us-co-9-ccr-2503-6",
+      "sha256": "0e0ba2ab150c9327d9907af7e45a54dd2e14cb992c0d04f935245cfffe5fbf41"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery/provenance/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1.json",
+      "sha256": "a797ee3ace7de2b6af48bbaa4b7eaba0ff37a9e4542e5d6823e5967de19875ec"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery/provenance/us-co-8-ccr-1403-1.json",
+      "sha256": "033e2e748ef6f85a41f654f2b6b90d08a5e0f3f6a0389559d36691d6f6d32bc0"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-13-recovery/provenance/us-co-9-ccr-2503-6.json",
+      "sha256": "db8524b75128135a8d868ef94a8625ea8d83b73ff0b5770ed380f7c8311fdf13"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "cfb3f252c2b93b1718b27615764ebb36f93ff9c3",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 192,
+    "missing_count": 0,
+    "provision_count": 192,
+    "source_count": 192
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T15:18:31.893052+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xOnCySortgRNcpUksTp3bOy3/hgmzFVIC5GkWdJy9MF1Vgf1SFcy50IiAy4vp4v3rtBKj/ekatPhD8EfUIxjCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

@@ -1,0 +1,40 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-05-17-ssa-automatic-determinations-2026.json",
+      "sha256": "227f4c6c9ad63e895e78c0e0e9f3c557f2844b8253f24abbccaba6b4f02ef113"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-05-17-ssa-automatic-determinations-2026.json",
+      "sha256": "a571cdb9188be21a1e29a7b3495aca0f91854ad6ddb8003512732b4fbb52869a"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-05-17-ssa-automatic-determinations-2026.jsonl",
+      "sha256": "20a64faa0437382d5cfb4b848f8ffdadb94008e8b69337820dba46fb8ce60ef3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f56ce69781b8b98474641445e85b9b63c1cebd43",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-15T13:35:56.334158+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-17-ssa-automatic-determinations-2026"
+}

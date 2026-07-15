@@ -1,0 +1,402 @@
+		<!DOCTYPE html>
+		<html lang="en-US">
+		
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<meta name='robots' content='max-image-preview:large' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	<link rel='dns-prefetch' href='//ajax.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="West Virginia Code &raquo; Feed" href="https://code.wvlegislature.gov/feed" />
+<link rel="alternate" type="application/rss+xml" title="West Virginia Code &raquo; Comments Feed" href="https://code.wvlegislature.gov/comments/feed" />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/16.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/code.wvlegislature.gov\/wp-includes\/js\/wp-emoji-release.min.js?ver=286ba133fb0fa20e2cb3496487435dbd"}};
+/*! This file is auto-generated */
+!function(s,n){var o,i,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),a=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===a[t]})}function u(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);for(var n=e.getImageData(16,16,1,1),a=0;a<n.data.length;a++)if(0!==n.data[a])return!1;return!0}function f(e,t,n,a){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!a(e,"\ud83e\udedf")}return!1}function g(e,t,n,a){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):s.createElement("canvas"),o=r.getContext("2d",{willReadFrequently:!0}),i=(o.textBaseline="top",o.font="600 32px Arial",{});return e.forEach(function(e){i[e]=t(o,e,n,a)}),i}function t(e){var t=s.createElement("script");t.src=e,t.defer=!0,s.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",i=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){s.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+g.toString()+"("+[JSON.stringify(i),f.toString(),p.toString(),u.toString()].join(",")+"));",a=new Blob([e],{type:"text/javascript"}),r=new Worker(URL.createObjectURL(a),{name:"wpTestEmojiSupports"});return void(r.onmessage=function(e){c(n=e.data),r.terminate(),t(n)})}catch(e){}c(n=g(i,f,p,u))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<link rel='stylesheet' id='select2-css' href='https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/css/select2.css?ver=3.4.8' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery_ui-css' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css?ver=286ba133fb0fa20e2cb3496487435dbd' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-ui-sm-css' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/smoothness/jquery-ui.css?ver=286ba133fb0fa20e2cb3496487435dbd' type='text/css' media='all' />
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<link rel='stylesheet' id='parent-style-css' href='https://code.wvlegislature.gov/wp-content/themes/decree/style.css?ver=286ba133fb0fa20e2cb3496487435dbd' type='text/css' media='all' />
+<link rel='stylesheet' id='decree-web-font-css' href='https://code.wvlegislature.gov/wp-content/fonts/03810675eadf50f7048ec52ccff400fd.css' type='text/css' media='all' />
+<link rel='stylesheet' id='decree-style-css' href='https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/style.css?ver=2.2.0' type='text/css' media='all' />
+<link rel='stylesheet' id='decree-block-style-css' href='https://code.wvlegislature.gov/wp-content/themes/decree/css/blocks.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css' href='https://code.wvlegislature.gov/wp-content/themes/decree/css/font-awesome/css/all.min.css?ver=6.4.2' type='text/css' media='all' />
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<link rel="https://api.w.org/" href="https://code.wvlegislature.gov/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://code.wvlegislature.gov/xmlrpc.php?rsd" />
+
+
+	<title>West Virginia Code | &sect;11-21-23</title>
+	<meta name='description' content='§11-21-23. Refundable credit for real property taxes paid in excess of four percent of gross household income.' />
+	<meta name='twitter:card' value='summary'>
+	<meta property='og:title' content='West Virginia Code Section 11-21-23' />
+	<meta property='og:type' content='article' />
+	<meta property='fb:app_id' content='172477101741' />
+	<meta property='og:url' content='https://code.wvlegislature.gov/11-21-23/' />
+	<meta property='og:image' content='https://code.wvlegislature.gov/codeimg.php?str=11-21-23' />
+	<meta property='og:site_name' content='West Virginia Code' />
+	<meta property='og:description' content='§11-21-23. Refundable credit for real property taxes paid in excess of four percent of gross household income.' /><link rel="icon" href="https://code.wvlegislature.gov/wp-content/uploads/2020/06/wvstateseal320-80x80.png" sizes="32x32" />
+<link rel="icon" href="https://code.wvlegislature.gov/wp-content/uploads/2020/06/wvstateseal320-300x300.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://code.wvlegislature.gov/wp-content/uploads/2020/06/wvstateseal320-300x300.png" />
+<meta name="msapplication-TileImage" content="https://code.wvlegislature.gov/wp-content/uploads/2020/06/wvstateseal320-300x300.png" />
+</head>
+
+<body class="home blog wp-embed-responsive wp-theme-decree wp-child-theme-decreechildtheme layout-two-columns content-left excerpt mobile-menu-one news-ticker-above-content active-header-right">
+
+
+		<div id="page" class="hfeed site">
+				<div id="header-top" class="header-top-bar">
+			<div class="wrapper">
+				<div class="date ctdate">Monday, July 13, 2026</div>				<div id="header-top-menu" class="menu-header-top">
+					<div class="header-right-social-icons widget_decree_social_icons">
+						<a class="font-awesome fa-brands fa-facebook" target="_blank" title="Facebook" href="https://www.facebook.com/wvlegislature/"><span class="screen-reader-text">Facebook</span> </a><a class="font-awesome fa-brands fa-twitter" target="_blank" title="Twitter" href="https://twitter.com/wvlegislature/"><span class="screen-reader-text">Twitter</span> </a><a class="font-awesome fa-brands fa-youtube" target="_blank" title="YouTube" href="https://www.youtube.com/channel/UCyawg6i7FZaV8hH-e3c8zlQ"><span class="screen-reader-text">YouTube</span> </a>					</div><!-- #header-right-social-icons -->
+				</div><!-- #header-top-menu -->
+							</div><!-- .wrapper -->
+		</div><!-- #header-top -->
+				<header id="masthead" class="site-header">
+			<div class="wrapper">
+		<div id="site-branding">
+		<div id="site-header"><h1 class="site-title"><a href="https://code.wvlegislature.gov/">West Virginia Code</a></h1><p class="site-description"></p>
+		</div><!-- #site-header --></div><!-- #site-branding-->
+
+
+<aside class="sidebar sidebar-header-right widget-area">
+	</aside><!-- .sidebar .header-sidebar .widget-area -->
+
+			</div><!-- .wrapper -->
+		</header><!-- #masthead -->
+		<!-- Disable Header Image -->		<div id="primary-menu" class="menu-primary">
+			<div class="wrapper">
+				<button id="menu-toggle-primary" class="menu-toggle">Menu</button>
+
+				<div id="site-header-menu">
+					<nav id="site-navigation" class="main-navigation nav-primary search-enabled" role="navigation" aria-label="Primary Menu">
+						<h3 class="screen-reader-text">Primary menu</h3>
+						<ul id="menu-top" class="menu decree-nav-menu"><li id="menu-item-37" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-37"><a href="https://www.wvlegislature.gov/">WV Legislature Home Page</a></li>
+<li id="menu-item-120" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-120"><a href="https://code.wvlegislature.gov/enrolled-bills">Enrolled Bills</a></li>
+</ul>						<div id="search-toggle">
+							<a class="screen-reader-text" href="#search-container">Search</a>
+						</div>
+
+						<div id="search-container" class="displaynone">
+							
+<form role="search" method="get" class="search-form" action="https://code.wvlegislature.gov/">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" class="search-field" placeholder="Search... " value="" name="s" title="Search for:">
+	</label>
+	<input type="submit" class="search-submit" value="Search">
+</form>
+						</div>
+					</nav><!-- .nav-primary -->
+				</div><!-- #site-header-menu -->
+			</div><!-- .wrapper -->
+		</div><!-- #primary-menu-wrapper -->
+				<div id="content" class="site-content">
+			<div class="wrapper">
+			<div id="primary" class="content-area">
+				<main id="main" class="site-main" role="main">
+				
+<article id="post-" class="">
+	<!-- Page/Post Single Image Disabled or No Image set in Post Thumbnail -->	<div class="entry-container">
+		<header class="entry-header">
+			<h1 class="entry-title"></h1>
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<div id='chpsel-container' data-m='home' data-c='11' data-a='21' data-s='23' data-u='code.wvlegislature.gov/11-21-23/' style='margin:0 0 20px'>
+						<a id='codetop'></a><select id='sel-chapter' autocomplete='off'>
+<option value='1'>CHAPTER 1. THE STATE AND ITS SUBDIVISIONS.</option>
+<option value='2'>CHAPTER 2. COMMON LAW, STATUTES, LEGAL HOLIDAYS, DEFINITIONS AND LEGAL CAPACITY.</option>
+<option value='3'>CHAPTER 3. ELECTIONS.</option>
+<option value='4'>CHAPTER 4. THE LEGISLATURE.</option>
+<option value='5'>CHAPTER 5. GENERAL POWERS AND AUTHORITY OF THE GOVERNOR, SECRETARY OF STATE AND ATTORNEY GENERAL; BOARD OF PUBLIC WORKS; MISCELLANEOUS AGENCIES, COMMISSIONS, OFFICES, PROGRAMS, ETC.</option>
+<option value='5A'>CHAPTER 5A. DEPARTMENT OF ADMINISTRATION.</option>
+<option value='5B'>CHAPTER 5B. ECONOMIC DEVELOPMENT ACT OF 1985.</option>
+<option value='5C'>CHAPTER 5C. BASIC ASSISTANCE FOR INDUSTRY AND TRADE.</option>
+<option value='5D'>CHAPTER 5D. PUBLIC ENERGY AUTHORITY ACT.</option>
+<option value='5E'>CHAPTER 5E. VENTURE CAPITAL COMPANY.</option>
+<option value='5F'>CHAPTER 5F. REORGANIZATION OF THE EXECUTIVE BRANCH OF STATE GOVERNMENT.</option>
+<option value='5G'>CHAPTER 5G. PROCUREMENT OF ARCHITECT-ENGINEER SERVICES BY STATE AND ITS SUBDIVISIONS.</option>
+<option value='5H'>CHAPTER 5H. SURVIVOR BENEFITS.</option>
+<option value='6'>CHAPTER 6. GENERAL PROVISIONS RESPECTING OFFICERS.</option>
+<option value='6A'>CHAPTER 6A. EXECUTIVE AND JUDICIAL SUCCESSION.</option>
+<option value='6B'>CHAPTER 6B. PUBLIC OFFICERS AND EMPLOYEES; ETHICS; CONFLICTS OF INTEREST; FINANCIAL DISCLOSURE.</option>
+<option value='6C'>CHAPTER 6C. PUBLIC EMPLOYEES.</option>
+<option value='6D'>CHAPTER 6D. PUBLIC CONTRACTS.</option>
+<option value='7'>CHAPTER 7. COUNTY COMMISSIONS AND OFFICERS.</option>
+<option value='7A'>CHAPTER 7A. CONSOLIDATED LOCAL GOVERNMENT.</option>
+<option value='8'>CHAPTER 8. MUNICIPAL CORPORATIONS.</option>
+<option value='8A'>CHAPTER 8A. LAND USE PLANNING.</option>
+<option value='9'>CHAPTER 9. HUMAN SERVICES.</option>
+<option value='9A'>CHAPTER 9A. VETERANS' AFFAIRS.</option>
+<option value='10'>CHAPTER 10. PUBLIC LIBRARIES; PUBLIC RECREATION; ATHLETIC ESTABLISHMENTS; MONUMENTS AND MEMORIALS; ROSTER OF SERVICEMEN; EDUCATIONAL BROADCASTING AUTHORITY.</option>
+<option value='11' selected>CHAPTER 11. TAXATION.</option>
+<option value='11A'>CHAPTER 11A. COLLECTION AND ENFORCEMENT OF PROPERTY TAXES.</option>
+<option value='11B'>CHAPTER 11B. DEPARTMENT OF REVENUE.</option>
+<option value='12'>CHAPTER 12. PUBLIC MONEYS AND SECURITIES.</option>
+<option value='13'>CHAPTER 13. PUBLIC BONDED INDEBTEDNESS.</option>
+<option value='14'>CHAPTER 14. CLAIMS DUE AND AGAINST THE STATE.</option>
+<option value='15'>CHAPTER 15. PUBLIC SAFETY.</option>
+<option value='15A'>CHAPTER 15A. DEPARTMENT OF HOMELAND SECURITY.</option>
+<option value='16'>CHAPTER 16. PUBLIC HEALTH.</option>
+<option value='16A'>CHAPTER 16A. MEDICAL CANNABIS ACT.</option>
+<option value='16B'>CHAPTER 16B. INSPECTOR GENERAL.</option>
+<option value='17'>CHAPTER 17. ROADS AND HIGHWAYS.</option>
+<option value='17A'>CHAPTER 17A. MOTOR VEHICLE ADMINISTRATION, REGISTRATION, CERTIFICATE OF TITLE, AND ANTITHEFT PROVISIONS.</option>
+<option value='17B'>CHAPTER 17B. MOTOR VEHICLE DRIVER'S LICENSES.</option>
+<option value='17C'>CHAPTER 17C. TRAFFIC REGULATIONS AND LAWS OF THE ROAD.</option>
+<option value='17D'>CHAPTER 17D. MOTOR VEHICLE SAFETY RESPONSIBILITY LAW.</option>
+<option value='17E'>CHAPTER 17E. UNIFORM COMMERCIAL DRIVER'S LICENSE ACT.</option>
+<option value='17F'>CHAPTER 17F. ALL-TERRAIN VEHICLES.</option>
+<option value='17G'>CHAPTER 17G. RACIAL PROFILING DATA COLLECTION ACT.</option>
+<option value='17H'>CHAPTER 17H. FULLY AUTONOMOUS VEHICLE ACT.</option>
+<option value='18'>CHAPTER 18. EDUCATION.</option>
+<option value='18A'>CHAPTER 18A. SCHOOL PERSONNEL.</option>
+<option value='18B'>CHAPTER 18B. HIGHER EDUCATION.</option>
+<option value='18C'>CHAPTER 18C. STUDENT LOANS; SCHOLARSHIPS AND STATE AID.</option>
+<option value='19'>CHAPTER 19. AGRICULTURE.</option>
+<option value='20'>CHAPTER 20. NATURAL RESOURCES.</option>
+<option value='21'>CHAPTER 21.  LABOR</option>
+<option value='21A'>CHAPTER 21A. UNEMPLOYMENT COMPENSATION.</option>
+<option value='22'>CHAPTER 22. ENVIRONMENTAL RESOURCES.</option>
+<option value='22A'>CHAPTER 22A. MINERS' HEALTH, SAFETY AND TRAINING.</option>
+<option value='22B'>CHAPTER 22B. ENVIRONMENTAL BOARDS.</option>
+<option value='22C'>CHAPTER 22C. ENVIRONMENTAL RESOURCES; BOARDS, AUTHORITIES, COMMISSIONS AND COMPACTS.</option>
+<option value='23'>CHAPTER 23. WORKERS' COMPENSATION.</option>
+<option value='24'>CHAPTER 24. PUBLIC SERVICE COMMISSION.</option>
+<option value='24A'>CHAPTER 24A. COMMERCIAL MOTOR CARRIERS.</option>
+<option value='24B'>CHAPTER 24B. GAS PIPELINE SAFETY.</option>
+<option value='24C'>CHAPTER 24C. UNDERGROUND FACILITIES DAMAGE PREVENTION.</option>
+<option value='24D'>CHAPTER 24D. CABLE TELEVISION.</option>
+<option value='24E'>CHAPTER 24E. STATEWIDE ADDRESSING AND MAPPING.</option>
+<option value='24F'>CHAPTER 24F. VETERANS' GRAVE MARKERS.</option>
+<option value='25'>CHAPTER 25. DIVISION OF CORRECTIONS.</option>
+<option value='26'>CHAPTER 26. STATE HEALTH FACILITIES.
+</option>
+<option value='27'>CHAPTER 27. MENTALLY ILL PERSONS.</option>
+<option value='28'>CHAPTER 28. STATE CORRECTIONAL AND PENAL INSTITUTIONS.</option>
+<option value='29'>CHAPTER 29. MISCELLANEOUS BOARDS AND OFFICERS.</option>
+<option value='29A'>CHAPTER 29A. STATE ADMINISTRATIVE PROCEDURES ACT.</option>
+<option value='29B'>CHAPTER 29B. FREEDOM OF INFORMATION.</option>
+<option value='29C'>CHAPTER 29C. UNIFORM NOTARY ACT.</option>
+<option value='30'>CHAPTER 30. PROFESSIONS AND OCCUPATIONS.</option>
+<option value='31'>CHAPTER 31. CORPORATIONS.</option>
+<option value='31A'>CHAPTER 31A. BANKS AND BANKING.</option>
+<option value='31B'>CHAPTER 31B. UNIFORM LIMITED LIABILITY COMPANY ACT.</option>
+<option value='31C'>CHAPTER 31C. CREDIT UNIONS.</option>
+<option value='31D'>CHAPTER 31D. WEST VIRGINIA BUSINESS CORPORATION ACT.</option>
+<option value='31E'>CHAPTER 31E. WEST VIRGINIA NONPROFIT CORPORATION ACT.</option>
+<option value='31F'>CHAPTER 31F. WEST VIRGINIA BENEFIT CORPORATION ACT.</option>
+<option value='31G'>CHAPTER 31G. BROADBAND ENHANCEMENT AND EXPANSION POLICIES.</option>
+<option value='31H'>CHAPTER 31H. SMALL WIRELESS FACILITIES DEPLOYMENT ACT.</option>
+<option value='31I'>CHAPTER 31I. TRUST COMPANIES.</option>
+<option value='31J'>CHAPTER 31J. WIRELESS TOWER FACILITIES.</option>
+<option value='32'>CHAPTER 32. UNIFORM SECURITIES ACT.</option>
+<option value='32A'>CHAPTER 32A. LAND SALES; FALSE ADVERTISING; ISSUANCE AND SALE OF CHECKS, DRAFTS, MONEY ORDERS, ETC.</option>
+<option value='32B'>CHAPTER 32B. THE WEST VIRGINIA COMMODITIES ACT.</option>
+<option value='33'>CHAPTER 33.  INSURANCE.</option>
+<option value='34'>CHAPTER 34. ESTRAYS, DRIFT AND DERELICT PROPERTY.</option>
+<option value='35'>CHAPTER 35. PROPERTY OF RELIGIOUS, EDUCATIONAL AND CHARITABLE ORGANIZATIONS.</option>
+<option value='35A'>CHAPTER 35A. NAMES, EMBLEMS, ETC., OF ASSOCIATIONS, LODGES, ETC.</option>
+<option value='36'>CHAPTER 36. ESTATES AND PROPERTY.</option>
+<option value='36A'>CHAPTER 36A. CONDOMINIUMS AND UNIT PROPERTY.</option>
+<option value='36B'>CHAPTER 36B. UNIFORM COMMON INTEREST OWNERSHIP ACT.</option>
+<option value='37'>CHAPTER 37. REAL PROPERTY.</option>
+<option value='37A'>CHAPTER 37A. ZONING.</option>
+<option value='37B'>﻿CHAPTER 37B. MINERAL DEVELOPMENT.</option>
+<option value='37C'>CHAPTER 37C. MINERAL DEVELOPMENT.</option>
+<option value='38'>CHAPTER 38. LIENS.</option>
+<option value='39'>CHAPTER 39. RECORDS AND PAPERS.</option>
+<option value='39A'>CHAPTER 39A. ELECTRONIC COMMERCE.</option>
+<option value='39B'>CHAPTER 39B. UNIFORM POWER OF ATTORNEY ACT.</option>
+<option value='40'>CHAPTER 40. ACTS VOID AS TO CREDITORS AND PURCHASERS.</option>
+<option value='41'>CHAPTER 41. WILLS.</option>
+<option value='42'>CHAPTER 42. DESCENT AND DISTRIBUTION.</option>
+<option value='43'>CHAPTER 43. DOWER AND VALUATION OF LIFE ESTATES.</option>
+<option value='44'>CHAPTER 44. ADMINISTRATION OF ESTATES AND TRUSTS.</option>
+<option value='44A'>CHAPTER 44A. WEST VIRGINIA GUARDIANSHIP AND CONSERVATORSHIP ACT.</option>
+<option value='44B'>CHAPTER 44B. UNIFORM PRINCIPAL AND INCOME ACT.</option>
+<option value='44C'>CHAPTER 44C. UNIFORM ADULT GUARDIANSHIP AND PROTECTIVE PROCEEDINGS JURISDICTION ACT.</option>
+<option value='44D'>CHAPTER 44D. UNIFORM TRUST CODE.</option>
+<option value='45'>CHAPTER 45. SURETYSHIP AND GUARANTY.</option>
+<option value='46'>CHAPTER 46. UNIFORM COMMERCIAL CODE.</option>
+<option value='46A'>CHAPTER 46A. WEST VIRGINIA CONSUMER CREDIT AND PROTECTION ACT.</option>
+<option value='46B'>CHAPTER 46B. REGULATION OF THE RENTAL OF CONSUMER GOODS UNDER RENT-TO-OWN AGREEMENTS.</option>
+<option value='47'>CHAPTER 47. REGULATION OF TRADE.</option>
+<option value='47A'>CHAPTER 47A. WEST VIRGINIA LENDING AND CREDIT RATE BOARD.</option>
+<option value='47B'>CHAPTER 47B. UNIFORM PARTNERSHIP ACT.</option>
+<option value='48'>CHAPTER 48. DOMESTIC RELATIONS.</option>
+<option value='49'>CHAPTER 49. CHILD WELFARE.</option>
+<option value='49A'>CHAPTER 49A. CHILD ONLINE PROTECTION AND LIABILITY.
+		
+		
+		</option>
+<option value='50'>CHAPTER 50. MAGISTRATE COURTS.</option>
+<option value='51'>CHAPTER 51. COURTS AND THEIR OFFICERS.</option>
+<option value='52'>CHAPTER 52. JURIES.</option>
+<option value='53'>CHAPTER 53. EXTRAORDINARY REMEDIES.</option>
+<option value='54'>CHAPTER 54. EMINENT DOMAIN.</option>
+<option value='55'>CHAPTER 55. ACTIONS, SUITS AND ARBITRATION; JUDICIAL SALE.</option>
+<option value='56'>CHAPTER 56. PLEADING AND PRACTICE.</option>
+<option value='57'>CHAPTER 57. EVIDENCE AND WITNESSES.</option>
+<option value='58'>CHAPTER 58. APPEAL AND ERROR.</option>
+<option value='59'>CHAPTER 59. FEES, ALLOWANCES AND COSTS; NEWSPAPERS; LEGAL ADVERTISEMENTS.</option>
+<option value='60'>CHAPTER 60. STATE CONTROL OF ALCOHOLIC LIQUORS.</option>
+<option value='60A'>CHAPTER 60A. UNIFORM CONTROLLED SUBSTANCES ACT.</option>
+<option value='60B'>CHAPTER 60B. DONATED DRUG REPOSITORY PROGRAM.
+		</option>
+<option value='61'>CHAPTER 61. CRIMES AND THEIR PUNISHMENT.</option>
+<option value='62'>CHAPTER 62. CRIMINAL PROCEDURE.</option>
+<option value='63'>CHAPTER 63. REPEAL OF STATUTES.</option>
+<option value='64'>CHAPTER 64. LEGISLATIVE RULES.</option>
+</select><h3 style='font-size:16px;margin:10px 0;'>CHAPTER 11. TAXATION.</h3>
+						</div>
+						<div id='results-box'><div class='art-prev-next-box'><div class='art-prev'><a href='/11-20/'>Article 20</a></div><span class='art-mid' data-crnt='6257'><a href='/11/'>All Articles</a></span><div class='art-next'><a href='/11-21A/'>Article 21A</a></div></div><div style='clear:both'></div><div id='ah-21' class='art-head'>ARTICLE 21. PERSONAL INCOME TAX.</div><div class='sec-head' data-id='ah-21'>
+									
+									
+									<div class='sectiontext hid'><h4>§11-21-23. Refundable credit for real property taxes paid in excess of four percent of gross household income.</h4>
+		<p>(a) For the tax years beginning on or after January 1, 2008, any homeowner living in his or her homestead shall be allowed a refundable credit against the taxes imposed by this article equal to the amount of real property taxes paid in excess of four percent of gross household income: Provided, That for the tax years beginning on or after January 1, 2012, any low income homeowner living in his or her homestead in this state shall be allowed a refundable credit against the taxes imposed by this article equal to the amount by which the difference between West Virginia real property taxes paid for the tax year, minus the amount of credit authorized in section twenty-one of this article, exceeds four percent of the taxpayer&#39;s gross household income for the tax year, as determined for purposes of this article. If the refundable credit provided in this section exceeds the amount of taxes imposed by this article, the state Tax Department shall refund that amount to the homeowner.</p><p>(b) Due to the administrative cost of processing, the refundable credit authorized by this section may not be refunded if less than $10.</p><p>(c) The credit for each property tax year shall be claimed by filing a claim for refund within twelve months after the real property taxes are paid on the homestead.</p><p>(d) For the purposes of this section:</p><p>(1) &quot;Gross household income&quot; is defined as federal adjusted gross income plus the sum of the following:</p><p>(A) Modifications in subsection (b), section twelve of this article increasing federal adjusted gross income;</p><p>(B) Federal tax-exempt interest reported on federal tax return;</p><p>(C) Workers&#39; compensation and loss of earnings insurance; and</p><p>(D) Nontaxable Social Security benefits; and</p><p>(2) For the tax years beginning before January 1, 2008, &quot;real property taxes paid&quot; means the aggregate of regular levies, excess levies and bond levies extended against the homestead that are paid during the calendar year and determined after any application of any discount for early payment of taxes but before application of any penalty or interest for late payment of property taxes for property tax years that begin on or after January 1, 2008.</p><p>(e) A homeowner is eligible to benefit from this section or section twenty-one of this article, whichever section provides the most benefit as determined by the homeowner. No homeowner may receive benefits under both this section and section twenty-one of this article during the same taxable year: Provided, That for tax years beginning on or after January 1, 2012, a homeowner may take the credit provided in this section in addition to the credit provided in section twenty-one of this article, to be calculated as provided in subsection (a) of this section. For tax years beginning on and after January 1, 2009, any person who is required to pay the federal alternative minimum income tax in the current tax year is disqualified from receiving any tax credit provided under this section. Nothing in this section denies those entitled to the homestead exemption provided in section three, article six-b of this chapter.</p><p>(f) No homeowner may receive a refundable tax credit imposed by this article in excess of $1,000. This amount shall be reviewed annually by the Legislature to determine if an adjustment is necessary.</p><p>(g) For tax years commencing on or after January 1, 2012, no credit may be taken under this section for any homestead which is owned, in whole or in part, by any person who is not a low income person.</p><p>(h) Terms defined. -- For purposes of this section:</p><p>(1) The definitions set forth in section twenty-four of this article apply for purposes of this section.</p><p>(2) &quot;Low income&quot; means federal adjusted gross income for the tax year that is three hundred percent or less of the federal poverty guideline for the year in which property tax was paid, based upon the number of individuals in the family unit residing in the homestead, as determined annually by the United States Secretary of Health and Human Services.</p><p>(3) A &quot;low income person&quot; means a person whose federal adjusted gross income for the tax year meets the definition of &quot;low income&quot; as defined in this subsection.</p></div></div><div><div class='secdiv prev' data-c='11' data-a='21' data-s='22C'><a href='/11-21-22C/'><span>Previous</span>§11-21-22c. Administration.</a></div><div class='secdiv curr' data-c='11' data-a='21' data-s='23'>§11-21-23. Refundable credit for real property taxes paid in excess of four percent of gross household income.</div><div class='secdiv next' data-c='11' data-a='21' data-s='24'><a href='/11-21-24/'><span>Next</span>§11-21-24. Senior citizen property tax relief credit for tax years beginning before 2012.</a></div></div>
+					<div class='code-icon-box'>
+					  <a href='/email/11-21-23/'><img src='https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/images/email125x125.png' class='code-icons'></a>
+					  <a href='/pdf/11-21-23/'><img src='https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/images/pdf125x125.png' class='code-icons'></a>
+					  <img id='gendocx' src='https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/images/docx125x125.png' class='code-icons'>
+					  </div>
+					  </div><!-- #results-box -->
+					  <div id='results-box-loader' style='display:none'><h3>Loading Articles</h3><img src='https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/images/big-loading-circle.gif'></div>
+					  <div style='clear:both'></div><div id='duration' style='display:none'>0.0045759677886963</div><div id="download-area"></div>
+		</div><!-- .entry-content -->
+			</div><!-- .entry-container -->
+	<div id='favbuttoncontainer' class='hid'>
+		<img class='savemycode' src='https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/images/favorites-icon-48.png' data-a='https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/images/favorites-icon-48.png' data-b='https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/images/favorites-icon-48-checked.png'>		<div class='cb'></div>
+	</div><img class=''>
+</article><!-- #post-## -->
+
+<div id='codeaffected' class='hid'>
+		<section id='text-9999' class='widget widget_text' style=''>
+			<div class='widget-wrap'>
+				<h2 class='widget-title'>Bill History For &sect;11-21-23</h2>
+				<div class='textwidget'><div style='margin:0 0 10px'><a href='//www.wvlegislature.gov/bill_status/bills_history.cfm?input=2949&year=2011&sessiontype=RS&btype=bill' style='line-height:1.3'>
+					<div style='font-size:15px;font-variant:small-caps;color:blue'>2011 Regular Session</div>
+					<div style='font-size:14px'>HB2949</div>
+					</a>
+					</div><div style='margin:0 0 10px'><a href='//www.wvlegislature.gov/bill_status/bills_history.cfm?input=540&year=2009&sessiontype=RS&btype=bill' style='line-height:1.3'>
+					<div style='font-size:15px;font-variant:small-caps;color:blue'>2009 Regular Session</div>
+					<div style='font-size:14px'>SB540</div>
+					</a>
+					</div><div style='margin:0 0 10px'><a href='//www.wvlegislature.gov/bill_status/bills_history.cfm?input=541&year=2007&sessiontype=RS&btype=bill' style='line-height:1.3'>
+					<div style='font-size:15px;font-variant:small-caps;color:blue'>2007 Regular Session</div>
+					<div style='font-size:14px'>SB541</div>
+					</a>
+					</div></div>
+			</div>
+		</section></div><div id='codebills' class='hid'>
+		<section id='text-7777' class='widget widget_text' style=''>
+			<div class='widget-wrap'>
+				<h2 class='widget-title'>Signed Bills For &sect;11-21-23</h2>
+				<div class='textwidget'><div style='margin:0 0 10px'>
+						<a href='//code.wvlegislature.gov/signed_bills/2011\2011-RS-HB2949-SUB ENR_signed.pdf' style='line-height:1.3'>
+							<div style='font-size:15px;font-variant:small-caps;color:blue'>2011 Regular Session</div>
+							<div style='font-size:14px'>Enrolled Committee Substitute for House Bill 2949</div>
+						</a>
+					</div><div style='margin:0 0 10px'>
+						<a href='//code.wvlegislature.gov/signed_bills/2009\2009-RS-SB540-SUB1 ENR_signed.pdf' style='line-height:1.3'>
+							<div style='font-size:15px;font-variant:small-caps;color:blue'>2009 Regular Session</div>
+							<div style='font-size:14px'>Enrolled Committee Substitute for Senate Bill 540</div>
+						</a>
+					</div><div style='margin:0 0 10px'>
+						<a href='//code.wvlegislature.gov/signed_bills/2007\2007-RS-SB541-SUB2 ENR_signed.pdf' style='line-height:1.3'>
+							<div style='font-size:15px;font-variant:small-caps;color:blue'>2007 Regular Session</div>
+							<div style='font-size:14px'>Enrolled Committee Substitute for Committee Substitute for Senate Bill 541</div>
+						</a>
+					</div></div>
+			</div>
+		</section></div>	
+		</main><!-- #main -->
+				</div><!-- #primary -->
+			<aside class="sidebar sidebar-primary widget-area" role="complementary">
+		<section id="text-5" class="widget widget_text"><div class="widget-wrap"><h2 class="widget-title">Search</h2>			<div class="textwidget"><div><form id='srchform' action='/' method='get' role='search'>
+			<select style='width:300px' id='chptsel' name='q'>
+				<option value='all'>Search in all Chapters</option><option value='1'>Search in Chapter 1</option><option value='2'>Search in Chapter 2</option><option value='3'>Search in Chapter 3</option><option value='4'>Search in Chapter 4</option><option value='5'>Search in Chapter 5</option><option value='5A'>Search in Chapter 5A</option><option value='5B'>Search in Chapter 5B</option><option value='5C'>Search in Chapter 5C</option><option value='5D'>Search in Chapter 5D</option><option value='5E'>Search in Chapter 5E</option><option value='5F'>Search in Chapter 5F</option><option value='5G'>Search in Chapter 5G</option><option value='5H'>Search in Chapter 5H</option><option value='6'>Search in Chapter 6</option><option value='6A'>Search in Chapter 6A</option><option value='6B'>Search in Chapter 6B</option><option value='6C'>Search in Chapter 6C</option><option value='6D'>Search in Chapter 6D</option><option value='7'>Search in Chapter 7</option><option value='7A'>Search in Chapter 7A</option><option value='8'>Search in Chapter 8</option><option value='8A'>Search in Chapter 8A</option><option value='9'>Search in Chapter 9</option><option value='9A'>Search in Chapter 9A</option><option value='10'>Search in Chapter 10</option><option value='11'>Search in Chapter 11</option><option value='11A'>Search in Chapter 11A</option><option value='11B'>Search in Chapter 11B</option><option value='12'>Search in Chapter 12</option><option value='13'>Search in Chapter 13</option><option value='14'>Search in Chapter 14</option><option value='15'>Search in Chapter 15</option><option value='15A'>Search in Chapter 15A</option><option value='16'>Search in Chapter 16</option><option value='16A'>Search in Chapter 16A</option><option value='16B'>Search in Chapter 16B</option><option value='17'>Search in Chapter 17</option><option value='17A'>Search in Chapter 17A</option><option value='17B'>Search in Chapter 17B</option><option value='17C'>Search in Chapter 17C</option><option value='17D'>Search in Chapter 17D</option><option value='17E'>Search in Chapter 17E</option><option value='17F'>Search in Chapter 17F</option><option value='17G'>Search in Chapter 17G</option><option value='17H'>Search in Chapter 17H</option><option value='18'>Search in Chapter 18</option><option value='18A'>Search in Chapter 18A</option><option value='18B'>Search in Chapter 18B</option><option value='18C'>Search in Chapter 18C</option><option value='19'>Search in Chapter 19</option><option value='20'>Search in Chapter 20</option><option value='21'>Search in Chapter 21</option><option value='21A'>Search in Chapter 21A</option><option value='22'>Search in Chapter 22</option><option value='22A'>Search in Chapter 22A</option><option value='22B'>Search in Chapter 22B</option><option value='22C'>Search in Chapter 22C</option><option value='23'>Search in Chapter 23</option><option value='24'>Search in Chapter 24</option><option value='24A'>Search in Chapter 24A</option><option value='24B'>Search in Chapter 24B</option><option value='24C'>Search in Chapter 24C</option><option value='24D'>Search in Chapter 24D</option><option value='24E'>Search in Chapter 24E</option><option value='24F'>Search in Chapter 24F</option><option value='25'>Search in Chapter 25</option><option value='26'>Search in Chapter 26</option><option value='27'>Search in Chapter 27</option><option value='28'>Search in Chapter 28</option><option value='29'>Search in Chapter 29</option><option value='29A'>Search in Chapter 29A</option><option value='29B'>Search in Chapter 29B</option><option value='29C'>Search in Chapter 29C</option><option value='30'>Search in Chapter 30</option><option value='31'>Search in Chapter 31</option><option value='31A'>Search in Chapter 31A</option><option value='31B'>Search in Chapter 31B</option><option value='31C'>Search in Chapter 31C</option><option value='31D'>Search in Chapter 31D</option><option value='31E'>Search in Chapter 31E</option><option value='31F'>Search in Chapter 31F</option><option value='31G'>Search in Chapter 31G</option><option value='31H'>Search in Chapter 31H</option><option value='31I'>Search in Chapter 31I</option><option value='31J'>Search in Chapter 31J</option><option value='32'>Search in Chapter 32</option><option value='32A'>Search in Chapter 32A</option><option value='32B'>Search in Chapter 32B</option><option value='33'>Search in Chapter 33</option><option value='34'>Search in Chapter 34</option><option value='35'>Search in Chapter 35</option><option value='35A'>Search in Chapter 35A</option><option value='36'>Search in Chapter 36</option><option value='36A'>Search in Chapter 36A</option><option value='36B'>Search in Chapter 36B</option><option value='37'>Search in Chapter 37</option><option value='37A'>Search in Chapter 37A</option><option value='37B'>Search in Chapter 37B</option><option value='37C'>Search in Chapter 37C</option><option value='38'>Search in Chapter 38</option><option value='39'>Search in Chapter 39</option><option value='39A'>Search in Chapter 39A</option><option value='39B'>Search in Chapter 39B</option><option value='40'>Search in Chapter 40</option><option value='41'>Search in Chapter 41</option><option value='42'>Search in Chapter 42</option><option value='43'>Search in Chapter 43</option><option value='44'>Search in Chapter 44</option><option value='44A'>Search in Chapter 44A</option><option value='44B'>Search in Chapter 44B</option><option value='44C'>Search in Chapter 44C</option><option value='44D'>Search in Chapter 44D</option><option value='45'>Search in Chapter 45</option><option value='46'>Search in Chapter 46</option><option value='46A'>Search in Chapter 46A</option><option value='46B'>Search in Chapter 46B</option><option value='47'>Search in Chapter 47</option><option value='47A'>Search in Chapter 47A</option><option value='47B'>Search in Chapter 47B</option><option value='48'>Search in Chapter 48</option><option value='49'>Search in Chapter 49</option><option value='49A'>Search in Chapter 49A</option><option value='50'>Search in Chapter 50</option><option value='51'>Search in Chapter 51</option><option value='52'>Search in Chapter 52</option><option value='53'>Search in Chapter 53</option><option value='54'>Search in Chapter 54</option><option value='55'>Search in Chapter 55</option><option value='56'>Search in Chapter 56</option><option value='57'>Search in Chapter 57</option><option value='58'>Search in Chapter 58</option><option value='59'>Search in Chapter 59</option><option value='60'>Search in Chapter 60</option><option value='60A'>Search in Chapter 60A</option><option value='60B'>Search in Chapter 60B</option><option value='61'>Search in Chapter 61</option><option value='62'>Search in Chapter 62</option><option value='63'>Search in Chapter 63</option><option value='64'>Search in Chapter 64</option></select>
+		<input style='width:100%' class='search-field' placeholder='Type search terms here... ' value='' name='s' title='Search for:' type='search'>
+			<input id='main-search-button' type='submit' name='' value='Search'>
+		</form><input style='width:32%' id='go-chp' class='go-field' placeholder='Chapter...' value='' name='s-chp' type='text'>
+		  <input style='width:32%' id='go-art' class='go-field' placeholder='Article...' value='' name='s-art' type='text'>
+		  <input style='width:32%' id='go-sec' class='go-field' placeholder='Section...' value='' name='s-sec' type='text'>
+		  <input id='url-go-button' type='submit' name='' value='Go To'></div>
+<ul>
+<li>Searches are case insensitive.</li>
+<li>Search for phrases with double quotes around the phrase like this: &#8220;claims commission&#8221;</li>
+<li>Use a + symbol in front of a word to include it and use a &#8211; in front of a word to exclude it from searches like this: +railroad -sign</li>
+<li>If you type multiple words without quotes or +/- symbols, the search will look for all results containing any of the words</li>
+</ul>
+</div>
+		</div><!-- .widget-wrap --></section><!-- .widget --><section id="text-11" class="widget widget_text"><div class="widget-wrap"><h2 class="widget-title">My Saved WV Code</h2>			<div class="textwidget"><div id="text-mycode"></div>
+</div>
+		</div><!-- .widget-wrap --></section><!-- .widget -->	</aside><!-- .sidebar sidebar-primary widget-area -->
+			</div><!-- .wrapper -->
+		</div><!-- #content -->
+				<footer id="colophon" class="site-footer" role="contentinfo">
+					<div id="site-generator">
+				<div class="wrapper">
+				<div id='footer-content' class='copyright'>
+Copyright © 2026 <a href='https://code.wvlegislature.gov/'>West Virginia Code</a>. These West Virginia Code sections are updated regularly as new legislation takes effect. For the effective date of an individual act of the WV Legislature and the Code sections affected by that act, please consult our <a href='https://www.wvlegislature.gov/Bill_Status/bill_status.cfm'>Bill Status database</a>.
+</div>				</div><!-- .wrapper -->
+			</div><!-- #site-generator -->
+			</footer><!-- #colophon -->
+				</div><!-- #page -->
+		<a href="#masthead" id="scrollup"><span class="screen-reader-text">Scroll Up</span></a><script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/decreechildtheme\/*","\/wp-content\/themes\/decree\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decree/js/navigation.min.js?ver=2.2.0" id="decree-navigation-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decree/js/skip-link-focus-fix.min.js?ver=2.2.0" id="decree-skip-link-focus-fix-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decree/js/jquery.cycle/jquery.cycle2.min.js?ver=2.1.5" id="jquery-cycle2-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decree/js/jquery.cycle/jquery.cycle2.flip.min.js?ver=2.2.0" id="jquery-cycle2-flip-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decree/js/scrollup.min.js?ver=20072014" id="decree-scrollup-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decree/js/jquery.matchHeight.min.js?ver=20151215" id="jquery-match-height-js"></script>
+<script type="text/javascript" id="decree-custom-scripts-js-extra">
+/* <![CDATA[ */
+var screenReaderText = {"expand":"expand child menu","collapse":"collapse child menu"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decree/js/custom-scripts.min.js?ver=20150507" id="decree-custom-scripts-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/js/select2.min.js?ver=3.4.8" id="select2-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-includes/js/jquery/ui/mouse.min.js?ver=1.13.3" id="jquery-ui-mouse-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-includes/js/jquery/ui/slider.min.js?ver=1.13.3" id="jquery-ui-slider-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/js/bpopup-0.10.0.min.js?ver=0.10.0" id="bpopup-js"></script>
+<script type="text/javascript" id="themejs-js-extra">
+/* <![CDATA[ */
+var callAjax = {"ajaxurl":"https:\/\/code.wvlegislature.gov\/wp-admin\/admin-ajax.php"};
+var logoutredir = {"url":"https:\/\/code.wvlegislature.gov\/wp-login.php?action=logout&redirect_to=https%3A%2F%2Fcode.wvlegislature.gov&_wpnonce=099f0a9c57"};
+var website = {"root":"https:\/\/code.wvlegislature.gov"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/js/javascript.js?ver=1776967143" id="themejs-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/js/html-docx.js?ver=1.0" id="htmldocx-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/js/Blob.js?ver=1.0" id="blob-js"></script>
+<script type="text/javascript" src="https://code.wvlegislature.gov/wp-content/themes/decreechildtheme/js/FileSaver.js?ver=1.0" id="saveas-js"></script>
+</body>
+</html>

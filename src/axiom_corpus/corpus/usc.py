@@ -799,6 +799,15 @@ def _iter_by_local(elem: ET.Element, name: str) -> Iterator[ET.Element]:
         yield from _iter_by_local(child, name)
 
 
+def _iter_structural_sections(elem: ET.Element) -> Iterator[ET.Element]:
+    """Yield corpus sections without descending into quoted amendatory sections."""
+    if _local_name(elem.tag) == "section":
+        yield elem
+        return
+    for child in elem:
+        yield from _iter_structural_sections(child)
+
+
 def _clean_text(value: str | None) -> str:
     return re.sub(r"\s+", " ", value or "").strip()
 
@@ -964,9 +973,16 @@ def _title_heading(root: ET.Element, title: str) -> str | None:
 
 def _iter_sections(root: ET.Element, title: str) -> Iterator[UscSection]:
     seen: set[str] = set()
-    for elem in _iter_by_local(root, "section"):
+    for elem in _iter_structural_sections(root):
         identifier = elem.get("identifier")
-        section = _section_from_identifier(identifier, title) or _section_from_num(elem)
+        # Quoted amendatory text can contain nested ``section`` elements whose
+        # printed number is prose such as ``Sec. “(a)``. Only fall back to the
+        # printed number for legacy elements that genuinely lack an identifier.
+        section = (
+            _section_from_identifier(identifier, title)
+            if identifier
+            else _section_from_num(elem)
+        )
         if not section:
             continue
         section = section.strip()

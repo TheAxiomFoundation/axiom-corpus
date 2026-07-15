@@ -11,16 +11,24 @@
     {
       "path": "data/corpus/provisions/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards.jsonl",
       "sha256": "4e675020fb2218085003ebf60a0ba8598b779cf2795261fd594f98be42c71c12"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards/official-documents/release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards",
+      "sha256": "891dce6a0abdd3dcdac7eb5438827b5e986bc35c6ce550325e522da096b7c955"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards/provenance/release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards.json",
+      "sha256": "180f45305cc7d92f6caf564e87590807281ed4e037ab75105b7b9986c6913e2f"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "65ceb0611699f0e2fee2fbbace9b8fc3f05eb2b0",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +39,14 @@
     "source_count": 3
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-07T19:50:17.707825+00:00",
+  "generated_at": "2026-07-15T15:18:00.940038+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "GKT977iUMRWZ8xt40KfDqbgmh63nEZX04+seKaW6tpkQdYfI0A/B/fb/CT+ZorwjfnOAbBm04qDb4TeswQBOAg=="
+    "value": "OjZ/YW/69anGO9QxGQKYIiD8L62/uBFVRTutjeW7lmTu0kKNXVtKhmquhTlEH9hqKXJdCsuJs7VMA9moucWdBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-02-snap-fy2026-income-eligibility-standards"

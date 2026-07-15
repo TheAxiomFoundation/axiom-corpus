@@ -1,0 +1,101 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/statute/2026-07-13-recovery.json",
+      "sha256": "1d0fdf925a818ee8b9767302a0253d8dac353a1211dd375f02caa15364567df2"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/statute/2026-07-13-recovery.json",
+      "sha256": "555becad372ae6eacebabb535fc2e897b3799610cff6bc133ce1562bf5ad22b4"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/statute/2026-07-13-recovery.jsonl",
+      "sha256": "e22c71da063975aab19f40c8b1c83dc409d6e46813aed5dbe4675fc1926cdd89"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/official-documents/us-az-code-43-1011",
+      "sha256": "cb255ddf87e88b5e4209a8b1f213fbe6c5e365f931e07ea99da765a00515e785"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/official-documents/us-az-code-43-1023",
+      "sha256": "90025199d79ec2b370635283ef64597e43aa032de02e5b02eddf283b074dec72"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/official-documents/us-az-code-43-1041",
+      "sha256": "5fe912d4d8188a51bdad1a1a83daacc67546e980bca3d09fde66371848779e8e"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/official-documents/us-az-code-43-1072",
+      "sha256": "b21ef424043b834b19a0bfe35a8649732f59c0448790b5522c1bc01613bc5466"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/official-documents/us-az-code-43-1072.01",
+      "sha256": "b93d8202d6e6e68bf75baeddc207b53b51d38dda48e73e4d565ffd0386b63372"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/official-documents/us-az-code-43-1073",
+      "sha256": "28100fe5d7fb5c9d3a96f364b34d067aeadfcb343c5bb33bc85dc753e57754e3"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/official-documents/us-az-code-43-1073.01",
+      "sha256": "cf9f885d98d101bbc6f55f0a0eb619c648903085619ff109d55fce474f463511"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/provenance/us-az-code-43-1011.json",
+      "sha256": "0820fd20d162dfea6048cb529db6a514069b31a636a3cb7f5177cad99fbc1ed7"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/provenance/us-az-code-43-1023.json",
+      "sha256": "723e054ac04c5548327dcc6595ad20a5777d13dba1b4a4bb9f921f82bffe41a9"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/provenance/us-az-code-43-1041.json",
+      "sha256": "9463214dfaff3d8cbd69342df1fc7682bb930c29141b269f942fc6d841aa2a00"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/provenance/us-az-code-43-1072.01.json",
+      "sha256": "54e43fcaa8ee11480104414ec8848669998525b86674e22dc1b9636ff31c5e0c"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/provenance/us-az-code-43-1072.json",
+      "sha256": "abc0ffc4ef42cdd042d1bd9077689f2574667d6aee495905c93224913d123241"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/provenance/us-az-code-43-1073.01.json",
+      "sha256": "767b76af10e78283cfc0d1b7a0ef575806c9ab387b7b746f34eb37fd6ca534a1"
+    },
+    {
+      "path": "data/corpus/sources/us-az/statute/2026-07-13-recovery/provenance/us-az-code-43-1073.json",
+      "sha256": "c042ca94947115e0d50af7f67e4b9e758d0aaa29cc06d6de706b3d4a70a97598"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d82f5050abf5da32e65c8d748b657c8a856a8d6e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-15T15:18:27.378141+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uyJe6sKO2z4OTKmLrcLtzZj44iMICXiI+N2cYYEnmM28m3dZ9MBZTWs/WqzdQD08F66+BDpUXAQOSF4BGU2xDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

@@ -1,0 +1,40 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/regulation/2026-05-09-ny-snap-eligibility.json",
+      "sha256": "bcef72d63c47cce65873dda36ac1fb9bf10d23ecfb4bd8ae01bd5c812e6dda62"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/regulation/2026-05-09-ny-snap-eligibility.json",
+      "sha256": "d4759d90e67f9d374e5d6ad684866aa1f72c9e12e8831d40fc0b6f0949fe5516"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/regulation/2026-05-09-ny-snap-eligibility.jsonl",
+      "sha256": "255e2a6bba0a701b1b5ef98d0da9e0ff869f0bf29737eaa09197cbf1f5a16079"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f56ce69781b8b98474641445e85b9b63c1cebd43",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T13:35:56.405105+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-09-ny-snap-eligibility"
+}

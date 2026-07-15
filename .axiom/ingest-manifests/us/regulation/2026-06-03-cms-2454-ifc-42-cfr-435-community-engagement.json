@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement.json",
+      "sha256": "e786e00985ca435252773c12af9c74619ae9d24a1e9a601c107235b8f4a848cf"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement.json",
+      "sha256": "16fac391a1ccea46701598d295c0623a64a5eadc07564c2c8d3735621c5745c3"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement.jsonl",
+      "sha256": "365f1f815593014b20976a1c2aef0a5700f638b1e6374c2569415f008875691e"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement/official-documents/release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement",
+      "sha256": "2ef8bfb3eb99b5f5d93eb5c9b6d932e7c8adc4af3d4484f6583368920720eab9"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement/provenance/release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement.json",
+      "sha256": "02f1dda07551eef9ff7f07aac3a9d14cd5b215563d81b6acbb80600e70eb014d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "064fea9b9ac61f54b9a1c120f89291e6cf1bdbe4",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 14,
+    "missing_count": 0,
+    "provision_count": 14,
+    "source_count": 14
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T15:18:20.504434+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "z8gPleb8ChNHYkgpthVJfbSXNGSVsToL+tAg8tqCJX0eh0XuZV+djRCS9P61GOIIitVJWXKoYMW24FPI7bUHBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement"
+}

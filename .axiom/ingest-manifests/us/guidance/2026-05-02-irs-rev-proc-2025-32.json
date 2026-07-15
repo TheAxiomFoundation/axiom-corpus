@@ -11,16 +11,24 @@
     {
       "path": "data/corpus/provisions/us/guidance/2026-05-02-irs-rev-proc-2025-32.jsonl",
       "sha256": "bdbf734dfcebdf4e89e28e41c6ccfe21587d13ab16882f6aef30de1a4dde3643"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-02-irs-rev-proc-2025-32/official-documents/rp-25-32.pdf",
+      "sha256": "e9ada115fb43a4af5ea326ca91edd40ab0bf29b9be01d2c13d7b8fa96214635b"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-02-irs-rev-proc-2025-32/provenance/rp-25-32.pdf.json",
+      "sha256": "c730a14464b234aed6b4ddc57656f02782a7d6360b86e31c47ec530038609825"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "00b3cac0223fb42686f45c08d9c54dc49b660fe6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +39,14 @@
     "source_count": 37
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-07T19:50:17.102814+00:00",
+  "generated_at": "2026-07-15T15:13:39.360167+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "vsi8syRKpSviCwHbegT57hrom/f4m34C5eZlDrhE+IzJq5adPol4gnFbkBibjckRzwK9NA8VH370GkeMhmiWCw=="
+    "value": "uJSWLq1gaUvJS5tcvXqBvVrV13diJJxhM32QsuFRrvj+ofVFb8B25W1WbOitASJK2E30bVBA0/daj/FqB6QlCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-02-irs-rev-proc-2025-32"

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/statute/2026-07-13-recovery.json",
+      "sha256": "0e645f1aa93610a2ac8da07f8798f23694e23dbd75e5b5c9f6599f2f8a2543e3"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/statute/2026-07-13-recovery.json",
+      "sha256": "ad335f1231844e2893371f72d8748d5b85fddb588292bdb8c86dee33f4675bcc"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/statute/2026-07-13-recovery.jsonl",
+      "sha256": "7c1fb17560be50caff8e0fe59f5f10dcdfd4192f966a45ecd9862d750ba602b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-07-13-recovery/official-documents/us-ky-code-11",
+      "sha256": "566caef3575a695f6c6eb5e56e8518ba9142a4672bb5b2bd3644814e0a9f50ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/statute/2026-07-13-recovery/provenance/us-ky-code-11.json",
+      "sha256": "96b79bdebfe002f09d828713f3aea69fea4b3a44494e21dc96da5ee5090001e8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "97adf909d107d3d0b768b8b5d22f38e166faed62",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-15T15:18:48.192146+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8FdNwZuC+aFBPwCR0DScXlfocd+PPH8TA4Ha65nq7MdMxk/CGo8ky0c9IR5d1bdgrqCiMIkA85KnHrF0RepJBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

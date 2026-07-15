@@ -1,0 +1,567 @@
+
+<!-- 77-2715.03 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nebraska Legislature</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="description" content="Nebraska Legislature">
+    <meta name="author" content="LTC">
+	
+
+    <!-- Old Standard TT Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Old+Standard+TT:700,400,400italic" type="text/css">
+
+    <!-- Boostrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" crossorigin="anonymous">
+
+    <!-- Add to Calander -->
+    <link href="/css/addtocalendar.css" rel="stylesheet" type="text/css">
+
+    <!-- LTC CSS -->
+    <link rel="stylesheet" href="/css/bootstrap/style.css?v=2.0">
+
+        
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1TBVHCCCT" nonce="0900f7171d4c0feb4d49b8b4fc5fcacd"></script>
+<script nonce="0900f7171d4c0feb4d49b8b4fc5fcacd">
+
+	(function(w,d,s,l,i){
+		w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+		var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+		j.async=true;
+		j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+		var n=d.querySelector('[nonce]');
+		n&&j.setAttribute('nonce',n.nonce||n.getAttribute('nonce'));
+		f.parentNode.insertBefore(j,f);
+	})
+	(window,document,'script','dataLayer','G-G1TBVHCCCT');
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G1TBVHCCCT');
+
+</script>
+<body>
+    <div id="top"></div>
+            <div class="view-back d-none d-sm-block"><i class="fas fa-arrow-circle-up fa-lg"></i></div>
+    <div class="container view-front">
+        <div class="row ltc-header">
+            <div class="col-md-2 ltc-header-left d-none d-md-block">
+                <i class="ltc-stateseal-sepia"></i>
+            </div>
+            <div class="col-md-8 ltc-header-middle text-center">
+                <h1 class="icons-ltc-sower2-icon">NEBRASKA LEGISLATURE</h1>
+                <h2>
+                    <em>
+                        <small>
+                            The official site of the <span class="nobreak">Nebraska Unicameral Legislature</span>
+                        </small>
+                    </em>
+                </h2>
+            </div>
+            <div class="col-md-2 ltc-header-right d-none d-md-block">
+                <i class="ltc-seal-sepia float-end"></i>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-2 nopadding">
+                                <div class="sidebar-nav sticky-top">
+    <nav class="navbar navbar-expand-sm navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i> 
+                <span class="navbar-brand mb-0 h2">MENU</span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbarSupportedContent">
+            <ul class="nav nav-list flex-column">
+                <li class="active nav-item"><a href="/" class="nav-link icons-ltc-sower2-icon"> Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle text-wrap" data-bs-toggle="dropdown">Chamber Viewer <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/cv/view_bill.php">View Bills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/bills/">One Liners</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/laws/laws.php">Statutes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/dayview.php">Summary</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/hearings_range.php">Hearings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/agenda.php">Agenda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/dayview.php">Journal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/fiscal.php">Budget</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/FloorDocs/Current/PDF/Rules/RuleBook.pdf" target="_blank">Rule Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/FloorDocs/Current/PDF/Constitution/constitution.pdf" target="_blank">Constitution</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Legislature <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/about/about.php">About<span class="sr-only"> The Nebraska State Legislature</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/budget_process.php">The Budget Process</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/history_unicameral.php">History of the Unicameral</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/lawmaking.php">Lawmaking in Nebraska</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/maps.php">Maps</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/blue-book.php">Nebraska Blue Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/on_unicameralism.php">On Unicameralism</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/photos.php">Photos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/pubs.php">Publications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/sen_qualifications.php">Senator Qualifications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/education/student_programs.php">Student Programs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/testifying.php">Testifying at a Hearing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://update.legislature.ne.gov/" target="_blank">Unicameral Update</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/feature/visiting-capitol.php">Visiting the Capitol</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle text-wrap" data-bs-toggle="dropdown">Bills and Laws <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/bills/intro.php">Introduction</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/bills/">Search Bills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/laws/laws.php">Search Laws</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/print_on_demand/index.php">Print On Demand</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link" href="/calendar/calendar.php" class="nav-item">Calendar</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Committees <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/committees/committees.php">About <span class="sr-only"> Standing and Special Committees</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/committees/standing-committees.php">Standing Committees</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/committees/public-input.php">Public Input Options</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/committees/select-committees.php">Select &amp; Special Committees</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/committees/compact-commissions.php">Compact Commissions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/hearings_range.php">Hearing Schedules</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/committeesurvey_view.php">Occupational Board Reform Act Survey Results</a></li>
+                    </ul>
+                </li>
+                                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle text-wrap" data-bs-toggle="dropdown">Legislative Divisions <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/divisions/clerk.php">Clerk of the Legislature</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/divisions/oversight.php">Legislative Oversight</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/divisions/fiscal.php">Legislative Fiscal Office</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://news.legislature.ne.gov/lrd/">Legislative Research Office</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/divisions/ombud.php">Public Counsel/Ombudsman</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/divisions/revisor.php">Revisor of Statutes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/divisions/clerk_histories.php">Legislative Histories</a></li>
+                <li class="nav-item"><a class="nav-link" href="/history_request">History Request</a></li>
+                <li class="nav-item"><a class="nav-link" href="/news/news.php">News</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Reports <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/reports/reports.php">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/agencies/view.php">Agencies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/committee.php">Committee</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/fiscal.php">Fiscal/Budget</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/research.php">General Research</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/interim.php">Interim Studies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/lobby.php">Lobbyist Registration</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/oversight.php">Legislative Oversight</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/public_counsel.php">Public Counsel</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/revisor.php">Revisor of Statutes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Senators <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/senators/senator_list.php">Senators' Landing Pages</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/senators/senators.php">Senators' Duties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://news.legislature.ne.gov/speaker/">Speaker</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/senators/senator_find.php">Find your Senator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/senators/picture_list.php">Photos</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/session/session_info.php">Session Information</a></li>
+                <li class="nav-item"><a class="nav-link" href="/transcripts/">Transcripts</a></li>
+                <hr class="my-0" />
+                <li class="nav-item"><a class="nav-link" href="/feature/agencies.php">For Agencies</a></li>
+                <li class="nav-item"><a class="nav-link" href="/feature/citizen.php">For Citizens</a></li>
+                <li class="nav-item"><a class="nav-link" href="/feature/journalist.php">For Journalists</a></li>
+                <li class="nav-item"><a class="nav-link" href="/feature/lobbyists.php">For Lobbyists</a></li>
+                <li class="nav-item"><a class="nav-link" href="/feature/teach.php">For Students and Teachers</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</div>
+            </div>
+                        	<div class="col-sm-8 col-md-10 ltc-col-middle">
+										<div class="main-content">
+						
+<h1>Nebraska Revised Statute 77-2715.03</h1>
+	<div class="row">
+		<div class="col-12">
+			<div class="row d-flex justify-content-between">
+				<div class="col-sm-8">
+					<ul class="list-inline">
+						<li class="list-inline-item"><a href="/laws/browse-statutes.php">Revised Statutes</a></li>
+						<li class="list-inline-item"><i class="fas fa-angle-double-right"></i></li>
+						<li class="list-inline-item"><a href="/laws/browse-chapters.php?chapter=77">Chapter 77</a></li>
+						<li class="list-inline-item"><i class="fas fa-angle-double-right"></i></li>
+						<li class="list-inline-item">77-2715.03</li>
+					</ul>
+				</div>
+				<div class="col-sm-4 d-none d-sm-block text-end">
+					<a href="/laws/statutes.php?statute=77-2715.03&print=true"><i class="fas fa-print"></i> Print Friendly</a>
+				</div>
+			</div>
+			<div class="d-block d-sm-none mb-2">
+				<a class="btn btn-leg btn-block" href="/laws/statutes.php?statute=77-2715.03&print=true"><i class="fas fa-print"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-md-11">
+			<nav class="d-flex justify-content-center">
+				<ul class="pagination">
+											<li class="page-item"><a class="page-link" href="/laws/statutes.php?statute=77-2715.02"><i class="fas fa-chevron-left"></i><span class="sr-only">View Statute</span> 77-2715.02</a></li>
+										<li class="page-item"><a class="page-link" href="/laws/browse-chapters.php?chapter=77">Chapter 77 Index</a></li>
+											<li class="page-item"><a class="page-link" href="/laws/statutes.php?statute=77-2715.04"><span class="sr-only">View Statute</span>77-2715.04 <i class="fas fa-chevron-right"></i></a></li>
+									</ul>
+			</nav>
+						<div class="card mb-4" id="stat_panel">
+				<div class="card-header leg-header">
+					Chapter 77 				</div>
+				<div class="card-body">
+					<div class="statute">
+
+		
+		<h2>77-2715.03.
+		</h2>
+<h3>Individual income tax brackets and rates; Tax Commissioner; duties; tax tables; other taxes; tax rate.</h3>
+<p class="text-justify">(1) For taxable years beginning or deemed to begin on or after January 1, 2013, and before January 1, 2014, the following brackets and rates are hereby established for the Nebraska individual income tax:</p>
+<p class="text-justify"><div class="row"><div class="col-md-7 col-md-offset-1"><table class="table table-condensed table-statutes">
+<tr><td>Individual Income Tax Brackets and Rates</td></tr>
+<tr>
+<td>Bracket</td>
+<td>Single</td>
+<td>Married,</td>
+<td>Head of</td>
+<td>Married,</td>
+<td>Estates</td>
+<td>Tax</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>Individuals</td>
+<td>Filing</td>
+<td>Household</td>
+<td>Filing</td>
+<td>and</td>
+<td>Rate</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Jointly</td>
+<td></td>
+<td>Separate</td>
+<td>Trusts</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>$0-2,399</td>
+<td>$0-4,799</td>
+<td>$0-4,499</td>
+<td>$0-2,399</td>
+<td>$0-499</td>
+<td>2.46%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$2,400-</td>
+<td>$4,800-</td>
+<td>$4,500-</td>
+<td>$2,400-</td>
+<td>$500-</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>17,499</td>
+<td>34,999</td>
+<td>27,999</td>
+<td>17,499</td>
+<td>4,699</td>
+<td>3.51%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$17,500-</td>
+<td>$35,000-</td>
+<td>$28,000-</td>
+<td>$17,500-</td>
+<td>$4,700-</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>26,999</td>
+<td>53,999</td>
+<td>39,999</td>
+<td>26,999</td>
+<td>15,149</td>
+<td>5.01%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$27,000</td>
+<td>$54,000</td>
+<td>$40,000</td>
+<td>$27,000</td>
+<td>$15,150</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>and Over</td>
+<td>and Over</td>
+<td>and Over</td>
+<td>and Over</td>
+<td>and Over</td>
+<td>6.84%</td>
+</tr>
+</table></div></div></p>
+<p class="text-justify">(2)(a) For taxable years beginning or deemed to begin on or after January 1, 2014, the following brackets and rates are hereby established for the Nebraska individual income tax:</p>
+<p class="text-justify"><div class="row"><div class="col-md-7 col-md-offset-1"><table class="table table-condensed table-statutes">
+<tr><td>Individual Income Tax Brackets and Rates</td></tr>
+<tr>
+<td>Bracket</td>
+<td>Single</td>
+<td>Married,</td>
+<td>Head of</td>
+<td>Married,</td>
+<td>Estates</td>
+<td>Tax</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>Individuals</td>
+<td>Filing</td>
+<td>Household</td>
+<td>Filing</td>
+<td>and</td>
+<td>Rate</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Jointly</td>
+<td></td>
+<td>Separate</td>
+<td>Trusts</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>$0-2,999</td>
+<td>$0-5,999</td>
+<td>$0-5,599</td>
+<td>$0-2,999</td>
+<td>$0-499</td>
+<td>2.46%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$3,000-</td>
+<td>$6,000-</td>
+<td>$5,600-</td>
+<td>$3,000-</td>
+<td>$500-</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>17,999</td>
+<td>35,999</td>
+<td>28,799</td>
+<td>17,999</td>
+<td>4,699</td>
+<td>3.51%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$18,000-</td>
+<td>$36,000-</td>
+<td>$28,800-</td>
+<td>$18,000-</td>
+<td>$4,700-</td>
+<td>Rate</td>
+</tr>
+<tr>
+<td></td>
+<td>28,999</td>
+<td>57,999</td>
+<td>42,999</td>
+<td>28,999</td>
+<td>15,149</td>
+<td>Three</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$29,000</td>
+<td>$58,000</td>
+<td>$43,000</td>
+<td>$29,000</td>
+<td>$15,150</td>
+<td>Rate</td>
+</tr>
+<tr>
+<td></td>
+<td>and Over</td>
+<td>and Over</td>
+<td>and Over</td>
+<td>and Over</td>
+<td>and Over</td>
+<td>Four</td>
+</tr>
+</table></div></div></p>
+<p class="text-justify">(b) For purposes of this subsection, rate three shall be:</p>
+<p class="text-justify">(i) 5.01% for taxable years beginning or deemed to begin on or after January 1, 2014, and before January 1, 2026;</p>
+<p class="text-justify">(ii) 4.55% for taxable years beginning or deemed to begin on or after January 1, 2026, and before January 1, 2027; and</p>
+<p class="text-justify">(iii) 3.99% for taxable years beginning or deemed to begin on or after January 1, 2027.</p>
+<p class="text-justify">(c) For purposes of this subsection, rate four shall be:</p>
+<p class="text-justify">(i) 6.84% for taxable years beginning or deemed to begin on or after January 1, 2014, and before January 1, 2023;</p>
+<p class="text-justify">(ii) 6.64% for taxable years beginning or deemed to begin on or after January 1, 2023, and before January 1, 2024;</p>
+<p class="text-justify">(iii) 5.84% for taxable years beginning or deemed to begin on or after January 1, 2024, and before January 1, 2025;</p>
+<p class="text-justify">(iv) 5.20% for taxable years beginning or deemed to begin on or after January 1, 2025, and before January 1, 2026;</p>
+<p class="text-justify">(v) 4.55% for taxable years beginning or deemed to begin on or after January 1, 2026, and before January 1, 2027; and</p>
+<p class="text-justify">(vi) 3.99% for taxable years beginning or deemed to begin on or after January 1, 2027.</p>
+<p class="text-justify">(3)(a) For taxable years beginning or deemed to begin on or after January 1, 2015, the minimum and maximum dollar amounts for each income tax bracket provided in subsection (2) of this section shall be adjusted for inflation by the percentage determined under subdivision (3)(b) of this section. The rate applicable to any such income tax bracket shall not be changed as part of any adjustment under this subsection. The minimum and maximum dollar amounts for each income tax bracket as adjusted shall be rounded to the nearest ten-dollar amount. If the adjusted amount for any income tax bracket ends in a five, it shall be rounded up to the nearest ten-dollar amount.</p>
+<p class="text-justify">(b)(i) For taxable years beginning or deemed to begin on or after January 1, 2015, and before January 1, 2018, the Tax Commissioner shall adjust the income tax brackets by the percentage determined pursuant to the provisions of section 1(f) of the Internal Revenue Code of 1986, as it existed prior to December 22, 2017, except that in section 1(f)(3)(B) of the code the year 2013 shall be substituted for the year 1992. For 2015, the Tax Commissioner shall then determine the percent change from the twelve months ending on August 31, 2013, to the twelve months ending on August 31, 2014, and in each subsequent year, from the twelve months ending on August 31, 2013, to the twelve months ending on August 31 of the year preceding the taxable year. The Tax Commissioner shall prescribe new tax rate schedules that apply in lieu of the schedules set forth in subsection (2) of this section.</p>
+<p class="text-justify">(ii) For taxable years beginning or deemed to begin on or after January 1, 2018, the Tax Commissioner shall adjust the income tax brackets based on the percentage change in the Consumer Price Index for All Urban Consumers published by the federal Bureau of Labor Statistics from the twelve months ending on August 31, 2016, to the twelve months ending on August 31 of the year preceding the taxable year. The Tax Commissioner shall prescribe new tax rate schedules that apply in lieu of the schedules set forth in subsection (2) of this section.</p>
+<p class="text-justify">(4) Whenever the tax brackets or tax rates are changed by the Legislature, the Tax Commissioner shall update the tax rate schedules to reflect the new tax brackets or tax rates and shall publish such updated schedules.</p>
+<p class="text-justify">(5) The Tax Commissioner shall prepare, from the rate schedules, tax tables which can be used by a majority of the taxpayers to determine their Nebraska tax liability. The design of the tax tables shall be determined by the Tax Commissioner. The size of the tax table brackets may change as the level of income changes. The difference in tax between two tax table brackets shall not exceed fifteen dollars. The Tax Commissioner may build the personal exemption credit and standard deduction amounts into the tax tables.</p>
+<p class="text-justify">(6) For taxable years beginning or deemed to begin on or after January 1, 2013, the tax rate applied to other federal taxes included in the computation of the Nebraska individual income tax shall be 29.6 percent.</p>
+<p class="text-justify">(7) The Tax Commissioner may require by rule and regulation that all taxpayers shall use the tax tables if their income is less than the maximum income included in the tax tables.</p>
+			
+	<div>
+<h2>Source</h2>
+<ul class="fa-ul">
+<li><a href="/FloorDocs/102/PDF/Slip/LB970.pdf"><i class="fa fa-li fa-book"></i>Laws 2012, LB970, § 5; </a></li>
+<li><a href="/FloorDocs/103/PDF/Slip/LB987.pdf"><i class="fa fa-li fa-book"></i>Laws 2014, LB987, § 1; </a></li>
+<li><a href="/FloorDocs/105/PDF/Slip/LB1090.pdf"><i class="fa fa-li fa-book"></i>Laws 2018, LB1090, § 1; </a></li>
+<li><a href="/FloorDocs/107/PDF/Slip/LB873.pdf"><i class="fa fa-li fa-book"></i>Laws 2022, LB873, § 1; </a></li>
+<li><a href="/FloorDocs/108/PDF/Slip/LB754.pdf"><i class="fa fa-li fa-book"></i>Laws 2023, LB754, § 7. </a></li>
+</ul>
+</div>
+</div>
+
+									</div>
+			</div>
+			<nav class="d-flex d-sm-none justify-content-center" id="lower_nav">
+				<ul class="pagination">
+											<li class="page-item"><a class="page-link" href="/laws/statutes.php?statute=77-2715.02"><i class="fas fa-chevron-left"></i><span class="sr-only">View Statute</span> 77-2715.02</a></li>
+										<li class="page-item"><a class="page-link" href="/laws/browse-chapters.php?chapter=77">Chapter 77 Index</a></li>
+											<li class="page-item"><a class="page-link" href="/laws/statutes.php?statute=77-2715.04"><span class="sr-only">View Statute</span>77-2715.04 <i class="fas fa-chevron-right"></i></a></li>
+									</ul>
+			</nav>
+		</div>
+	</div>
+
+					</div>
+				</div>
+                    </div>
+        <div class="back_top d-done" id="bottom_top"><a class="btn btn-leg" href="#top"><i class="fas fa-angle-double-up"></i></a></div>
+        <div class="row ltc-footer ltc-footer-top pl-4 justify-content-between">
+            <div class="col-md-3 offset-md-2 col-sm-6">
+                <a href="/faq/faq.php"><i class="fas fa-question-circle"></i> Frequent Questions</a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="/about/ada.php"><i class="fas fa-info-circle"></i> Americans with Disabilities Act Notice</a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="/contact/privacy.php"><i class="fas fa-lock"></i> Privacy Policy</a>
+            </div>
+            <div class="col-md-3 offset-md-2 col-sm-6">
+                <a href="/about/glossary.php"><i class="fas fa-book"></i> Glossary of Terms</a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="/contact/email_form.php"><i class="fas fa-pencil-alt"></i> Contact Us</a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="/contact/disclaimer.php"><i class="fas fa-exclamation-circle"></i> Disclaimer</a>
+            </div>
+        </div>
+        <div class="row ltc-footer ltc-footer-bottom">
+            <div class="col-sm-6 text-center">
+                <i class="icons-ltc-nebraska-star-icon"> OFFICIAL NEBRASKA <span class="nobreak">GOVERNMENT WEBSITE</span></i>
+            </div>
+            <div class="col-sm-6 text-center">
+                <i class="ltc-copyright">Copyright © Nebraska Legislature, <span class="nobreak">all rights reserved.</span></i>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous" nonce="0900f7171d4c0feb4d49b8b4fc5fcacd"></script>
+
+    <!-- Bootstrap JavaScript bundle includes popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" nonce="0900f7171d4c0feb4d49b8b4fc5fcacd"></script>
+
+
+    <!-- Fontastic -->
+    <!-- don't think this is used, is slow to load -->
+    <!--<script src="//fontastic.s3.amazonaws.com/bfHMd9cfxMxBkEW5T2yGx7/icons.js"></script>-->
+
+    <!-- stickytableheaders jQuery plugin -->
+    <script src="/js/bootstrap/stickytableheaders.min.js" nonce="0900f7171d4c0feb4d49b8b4fc5fcacd"></script>
+	
+<script type="text/javascript" nonce="0900f7171d4c0feb4d49b8b4fc5fcacd">
+	$(document).ready(function(){
+		if($("#stat_panel").height() > 1000){
+			$("#lower_nav").removeClass("hidden");
+		}
+	})
+</script>
+
+    <script nonce="0900f7171d4c0feb4d49b8b4fc5fcacd">
+        $(document).ready(function () {
+                        
+            // view/hide the background image when clicking the arrow
+            $('.view-back').click( function() {
+                var self = this;
+                $('.view-front').slideToggle('slow', function() {
+                    $(self).find('i').toggleClass('fa-arrow-circle-up fa-arrow-circle-down');
+                });
+            });
+        });
+        $('#mapModal').on('show.bs.modal', function (e) {
+            e.relatedTarget.blur();
+        });
+        $(document).scroll(function() {
+            var y = $(this).scrollTop();
+            if($(window).width() > 576){
+                if (y > 700) {
+                    $('#bottom_top').fadeIn(800);
+                } else {
+                    $('#bottom_top').fadeOut(800);
+                }
+            }
+        });
+        $(".back_top a[href^='#']").on('click', function(e){
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop: $("#top").offset().top
+            }, 1250);
+        });
+        // google analytics event tracking for submitted search forms
+                // google analytics event tracking for clicked pdf links
+                // makes table headers sticky when the table is longer than the window height
+        $("table").stickyTableHeaders();
+
+        $(document).on('click','li',function(){
+
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
+</body>
+</html>

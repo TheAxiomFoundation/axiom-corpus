@@ -11,16 +11,24 @@
     {
       "path": "data/corpus/provisions/us-id/regulation/2026-05-27-id-food-stamp-rules.jsonl",
       "sha256": "95a41984e8881e2e9433237f75de9455e0f1ec48a94c20fa1c175a726cec5047"
+    },
+    {
+      "path": "data/corpus/sources/us-id/regulation/2026-05-27-id-food-stamp-rules/official-documents/release-scope-us-id-regulation-2026-05-27-id-food-stamp-rules",
+      "sha256": "1d542968b4ff439e383a4dc9b1c3bf143d2fea4ed0b417f9f3b5cb0149660144"
+    },
+    {
+      "path": "data/corpus/sources/us-id/regulation/2026-05-27-id-food-stamp-rules/provenance/release-scope-us-id-regulation-2026-05-27-id-food-stamp-rules.json",
+      "sha256": "9b4f85129e08ea01b548dfbd83d68b73b519e7de60468d9962ab02b79b1d412a"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "c63a780f63584683097527d8114cd94ce2b9e4e9",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +39,14 @@
     "source_count": 71
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-07T19:50:26.154961+00:00",
+  "generated_at": "2026-07-15T15:18:41.121424+00:00",
   "jurisdiction": "us-id",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "IxkNO7brXi3V8iK7EDaU7H4j2qiZWNkBM6Ng2PKG4QFBbEd0hNdSXNWLE5TVxC1lM2sAMLevO+gGAQLABjxLAg=="
+    "value": "Q1uGKOs7ZMo+y6+0W6Nv4qp38cw/NFPx+ckr+TF2fpX2bDH+OjKGl2jZyX1mwV7i8vjgTNcabx79yLST1HH5CA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-id-food-stamp-rules"
