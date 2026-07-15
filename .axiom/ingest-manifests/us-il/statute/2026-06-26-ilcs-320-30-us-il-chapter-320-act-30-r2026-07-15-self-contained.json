@@ -50,13 +50,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "04b0b92b98ad0696b6d2063eb0bc8fa05f73922f",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-il-scretd-20260626"
+    "commit": "0852e5b63e43af947f3c0c7192c2374bfb8abb12",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus extract-illinois-ilcs --base data/corpus --version 2026-06-26-ilcs-320-30 --only-chapter 320 --only-act 30 --source-as-of 2026-06-26 --expression-date 2026-06-26 --workers 4"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -67,15 +67,15 @@
     "source_count": 10
   },
   "document_class": "statute",
-  "generated_at": "2026-06-26T22:05:22.289286+00:00",
+  "generated_at": "2026-07-15T22:26:22.085976+00:00",
   "jurisdiction": "us-il",
-  "reasoning_logs": [
-    {
-      "path": ".axiom/reasoning-logs/us-il-statute-2026-06-26-ilcs-320-30.md",
-      "sha256": "1b7d4a9339b15ea75c00e2078ceb6b4d261c4b316a16e53514821d61930a306a"
-    }
-  ],
+  "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EVerx73V3kYzlNn+upnz4l3ayy90pf1osjef4NAYfm+my+IhywrU6FcxeMVWzJOiIaKLATcYQOa7A+kvTiBvDA=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-26-ilcs-320-30-us-il-chapter-320-act-30-r2026-07-15-self-contained"
 }
