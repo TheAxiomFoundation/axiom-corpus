@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "113beccd463b377ec38002280c21a6f215cb0ff6",
+    "commit": "d73e532547ff74c4aea8adfcb5fb88603bdad706",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,10 +39,15 @@
     "source_count": 149
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T18:57:32.827436+00:00",
+  "generated_at": "2026-07-15T19:50:54.581515+00:00",
   "jurisdiction": "us-al",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/ADeHKtEmArz2jC0KfHJr6/lpr4NsbQnJ6tOqbwDZo1kQMcQY6A/PXdJApN3OimAzkQRPCpUU0cSkvdCZYs3CA=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-al-snap-poe-manual"
 }
