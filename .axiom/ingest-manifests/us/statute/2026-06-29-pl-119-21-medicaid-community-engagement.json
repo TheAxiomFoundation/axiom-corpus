@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d7f148106bf55aa30a9fda6b98e80d236830366",
+    "commit": "d34567910e0626f83071e5fc71c0ea2330f49a9b",
     "dirty_tracked": false,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/extract_pl119_21_medicaid_community_engagement.py"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -35,15 +35,15 @@
     "source_count": 12
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T18:58:20.474076+00:00",
+  "generated_at": "2026-07-15T19:51:38.064317+00:00",
   "jurisdiction": "us",
-  "reasoning_logs": [
-    {
-      "path": "docs/ingest-runs/us-statute-2026-06-29-pl-119-21-medicaid-community-engagement.md",
-      "sha256": "49525722ba500bc52be8bc98a0275af1ca4187505d52d9fdfcce12d3da7349fc"
-    }
-  ],
+  "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bT8SeSLnH/0mRCrA4vk4QajfGg+QgCUTZBkFBWL/wNW4KPQzwYOT8+i6tmJkpznMmYNvtyETVc/GijBtkeLmCA=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-29-pl-119-21-medicaid-community-engagement"
 }
