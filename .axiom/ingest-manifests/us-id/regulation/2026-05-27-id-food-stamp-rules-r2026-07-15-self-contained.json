@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b6e7b3c05b6268ff63b87cf3cc48ddcc96846f62",
+    "commit": "813ba15926b689c99948a5469b9d4e2615f149a9",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,10 +39,15 @@
     "source_count": 71
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T19:50:59.859265+00:00",
+  "generated_at": "2026-07-15T22:26:20.691629+00:00",
   "jurisdiction": "us-id",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fnDJVAOtrXaDc/t9EUz4skcXixTPSYcBJ5hRFcPYvcG8K9xUvmg/0MhaURCZUE+imkzQco2PKElYLafCdJelAQ=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-id-food-stamp-rules-r2026-07-15-self-contained"
 }
