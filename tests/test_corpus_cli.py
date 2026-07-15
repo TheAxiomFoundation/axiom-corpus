@@ -962,6 +962,66 @@ def test_extract_ecfr_cli(tmp_path, capsys, monkeypatch):
     assert '"provisions_written": 1' in output
 
 
+def test_extract_ecfr_cli_rejects_failed_transcription_rebuild(
+    tmp_path, capsys, monkeypatch
+):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    coverage = ProvisionCoverageReport(
+        jurisdiction="us",
+        document_class="regulation",
+        version="2026-04-29-title-7",
+        source_count=1,
+        provision_count=1,
+        matched_count=1,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+    manifest = tmp_path / "graphics.json"
+    manifest.write_text(
+        '{"graphics":{"ER07OC94.022":{"sha256":"'
+        + "a" * 64
+        + '","text":"X = (a * b) / c"}}}'
+    )
+
+    def fake_extract(*args, **kwargs):
+        return EcfrExtractReport(
+            title_count=1,
+            part_count=1,
+            provisions_written=1,
+            inventory_path=base / "inventory.json",
+            provisions_path=base / "provisions.jsonl",
+            coverage_path=base / "coverage.json",
+            coverage=coverage,
+            source_paths=(),
+            title_error_count=1,
+            title_errors=("7 CFR: transcription digest mismatch",),
+        )
+
+    monkeypatch.setattr(cli, "extract_ecfr", fake_extract)
+
+    exit_code = main(
+        [
+            "extract-ecfr",
+            "--base",
+            str(base),
+            "--version",
+            "2026-04-29",
+            "--as-of",
+            "2024-04-16",
+            "--only-title",
+            "7",
+            "--graphic-transcriptions",
+            str(manifest),
+            "--allow-incomplete",
+        ]
+    )
+
+    assert exit_code == 2
+    assert '"title_error_count": 1' in capsys.readouterr().out
+
+
 def test_extract_official_documents_cli(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 
