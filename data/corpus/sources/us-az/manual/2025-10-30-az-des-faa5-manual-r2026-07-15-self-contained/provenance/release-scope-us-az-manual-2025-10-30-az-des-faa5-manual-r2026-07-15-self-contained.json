@@ -1,0 +1,141 @@
+{
+  "document_id": "release-scope-us-az-manual-2025-10-30-az-des-faa5-manual",
+  "url": "https://dbmefaapolicy.azdes.gov/FAA5.html",
+  "fetched_at": "2026-07-15T17:14:01Z",
+  "sha256": "1c9206a4fc109bcb5f747f55a72e1837a51548acd44c61f7f634a9d290152194",
+  "http": 200,
+  "fetch_method": "browser",
+  "source_urls": [
+    "https://dbmefaapolicy.azdes.gov/FAA5.html",
+    "https://dbmefaapolicy.azdes.gov/FAA5/Work_Registration_(WORW).html",
+    "https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Mandatory_Referrals.html",
+    "https://dbmefaapolicy.azdes.gov/FAA5/CA_Payment_Standard_(A1_2fA2).html",
+    "https://dbmefaapolicy.azdes.gov/FAA5/NA_Transitional_Benefit_Assistance_(TBA).html",
+    "https://dbmefaapolicy.azdes.gov/FAA5/Supplemental_Payments_and_Restored_Benefits.html",
+    "https://dbmefaapolicy.azdes.gov/FAA5/Transitional_Child_Care_(TCC).html"
+  ],
+  "jurisdiction": "us-az",
+  "document_class": "manual",
+  "version": "2025-10-30-az-des-faa5-manual",
+  "required_citations": [
+    "us-az/manual/des/faa5/ca-jobs-mandatory-referrals",
+    "us-az/manual/des/faa5/ca-payment-standard-a1-2fa2",
+    "us-az/manual/des/faa5/na-transitional-benefit-assistance-tba",
+    "us-az/manual/des/faa5/supplemental-payments-and-restored-benefits",
+    "us-az/manual/des/faa5/transitional-child-care-tcc"
+  ],
+  "plan_official_url": "https://dbmefaapolicy.azdes.gov/FAA5/Work_Registration_(WORW).html",
+  "page_count": 7,
+  "assembled_bytes": 179322,
+  "pages": [
+    {
+      "name": "FAA5_TOC",
+      "role": "toc-index",
+      "citation_path": "us-az/manual/des/faa5",
+      "source_url": "https://dbmefaapolicy.azdes.gov/FAA5.html",
+      "http": 200,
+      "bytes": 89246,
+      "sha256": "af2e768432dc869182b851a5951c39bb52cde890a62f8678e417c7645ac5b60c",
+      "section_identifier": "FAA5.A Work Registration (WORW)",
+      "verified_text": [
+        "CA Jobs Mandatory Referrals",
+        "CA Payment Standard",
+        "Transitional Child Care",
+        "Supplemental Payments and Restored Benefits",
+        "NA Transitional Benefit Assistance"
+      ]
+    },
+    {
+      "name": "Work_Registration_WORW",
+      "role": "plan-official-url-anchor",
+      "citation_path": "us-az/manual/des/faa5/work-registration-worw",
+      "source_url": "https://dbmefaapolicy.azdes.gov/FAA5/Work_Registration_(WORW).html",
+      "http": 200,
+      "bytes": 5138,
+      "sha256": "b6a3b6207387298e22c336f9af8aa8762c748d335c33f79a78934fcc723ad021",
+      "section_identifier": "Work Registration (WORW)",
+      "verified_text": [
+        "WORW - Purpose",
+        "CA Work Programs"
+      ]
+    },
+    {
+      "name": "CA_Jobs_Mandatory_Referrals",
+      "role": "REQUIRED-CITATION",
+      "citation_path": "us-az/manual/des/faa5/ca-jobs-mandatory-referrals",
+      "source_url": "https://dbmefaapolicy.azdes.gov/FAA5/CA_Jobs_Mandatory_Referrals.html",
+      "http": 200,
+      "bytes": 13594,
+      "sha256": "8d5c2f1fe05d586633b4d1e9674fbb1179e71e6f8777f0aebe7a6d059773ec49",
+      "section_identifier": "CA Jobs Mandatory Referrals",
+      "verified_text": [
+        "Refer the following CA participants to the Jobs Program",
+        "Jobs exempt",
+        "REVISION 51"
+      ]
+    },
+    {
+      "name": "CA_Payment_Standard_A1_A2",
+      "role": "REQUIRED-CITATION",
+      "citation_path": "us-az/manual/des/faa5/ca-payment-standard-a1-2fa2",
+      "source_url": "https://dbmefaapolicy.azdes.gov/FAA5/CA_Payment_Standard_(A1_2fA2).html",
+      "http": 200,
+      "bytes": 17933,
+      "sha256": "51df4446b6fd7aafe3058006121dd6066eb0c3d2d711d62101adb78612fcb28d",
+      "section_identifier": "CA Payment Standard (A1/A2)",
+      "verified_text": [
+        "A1 and A2 are the two payment standards",
+        "The A1 standard is used",
+        "The A2 standard is used",
+        "R6-12-701"
+      ]
+    },
+    {
+      "name": "NA_Transitional_Benefit_Assistance_TBA",
+      "role": "REQUIRED-CITATION",
+      "citation_path": "us-az/manual/des/faa5/na-transitional-benefit-assistance-tba",
+      "source_url": "https://dbmefaapolicy.azdes.gov/FAA5/NA_Transitional_Benefit_Assistance_(TBA).html",
+      "http": 200,
+      "bytes": 17127,
+      "sha256": "e042907f390c926b6f79a620a99a94708ff155499ed01669c0f0dc5e55ab90d9",
+      "section_identifier": "NA Transitional Benefit Assistance (TBA)",
+      "verified_text": [
+        "transition from CA to self-sufficiency",
+        "five-month approval period",
+        "273.10"
+      ]
+    },
+    {
+      "name": "Supplemental_Payments_and_Restored_Benefits",
+      "role": "REQUIRED-CITATION",
+      "citation_path": "us-az/manual/des/faa5/supplemental-payments-and-restored-benefits",
+      "source_url": "https://dbmefaapolicy.azdes.gov/FAA5/Supplemental_Payments_and_Restored_Benefits.html",
+      "http": 200,
+      "bytes": 15976,
+      "sha256": "497d202a7b86e99317d7d6513c206c35e14ea573f2d7a729a9929cf5b0f9cf54",
+      "section_identifier": "Supplemental Payments and Restored Benefits",
+      "verified_text": [
+        "Underpayments occur",
+        "Restored Benefits",
+        "274.6"
+      ]
+    },
+    {
+      "name": "Transitional_Child_Care_TCC",
+      "role": "REQUIRED-CITATION",
+      "citation_path": "us-az/manual/des/faa5/transitional-child-care-tcc",
+      "source_url": "https://dbmefaapolicy.azdes.gov/FAA5/Transitional_Child_Care_(TCC).html",
+      "http": 200,
+      "bytes": 15444,
+      "sha256": "d94392d610920bcd22f72c55da199f1b92f061e543beaac69f9a05e292c80b13",
+      "section_identifier": "Transitional Child Care (TCC)",
+      "verified_text": [
+        "24 consecutive months of TCC",
+        "TCC Time Limits",
+        "R6-12-508"
+      ]
+    }
+  ],
+  "verification": "each REQUIRED-CITATION page verified on disk: section identifier + distinctive policy text present; no challenge/error shells",
+  "notes": "Arizona DES CNAP manual FAA5 topics are MadCap Flare XHTML files; recovered verbatim via same-origin fetch() from the in-app Browser pane (curl/unattended HTTP is Cloudflare-gated). The 5 required citations are the FAA5 coverage gaps enumerated in ops/1101-migration/us-source-recovery/us-coverage-gaps.txt."
+}

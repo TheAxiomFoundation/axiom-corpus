@@ -1,0 +1,52 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json",
+      "sha256": "ad25f154b7d5e009ed846791c9dc602026ff50d8de56d523f5547d727ba11553"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json",
+      "sha256": "5d2f45e58daca83ef488d04dbfaa0b1287b2b01b4824f51c186f1c0c162b6c87"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.jsonl",
+      "sha256": "2fc782174181b8ae8966e473825aa5139db0a4521c8d5271cf6fef2e50b9eea2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/chapters/chapter-388-478-full.html",
+      "sha256": "375b1127bb44f4833d2270d1865ac2b67f660809af9df6b10a4f16119f574d33"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/index.html",
+      "sha256": "425ecebbb744e61c055699144e37cb3f5124817eef5ca2bae5e22ab78aae5220"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/titles/title-388.html",
+      "sha256": "2f8cba6ae71b17fe48ac8a2f1ee47bb8c1099af7821779a50688b7512f2d86ac"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6b3ad90909f6c1a598d61ddbd7823a1685058d37",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-washington-wac --base data/corpus --version 2026-06-25 --only-chapter 388-478 --workers 4"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-06-25T17:58:06.637295+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-25-388-478-r2026-07-15-self-contained"
+}

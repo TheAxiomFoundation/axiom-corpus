@@ -1,0 +1,48 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-05-10-tax-sections-r2026-07-15-self-contained.json",
+      "sha256": "9579f28dfdcd081c26ad4f0e33bbebe42a7da8228c91c475432a589623befa73"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-05-10-tax-sections-r2026-07-15-self-contained.json",
+      "sha256": "f9e8d0ac6459e88d650915619634254d9713ad077a04b3f77886458d89ecef10"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-05-10-tax-sections-r2026-07-15-self-contained.jsonl",
+      "sha256": "eec0cb4dadcc09ecb641741d2fa3fd8d913c37b2085ac4979fba306b365b70ff"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-05-10-tax-sections-r2026-07-15-self-contained/official-documents/release-scope-us-statute-2026-05-10-tax-sections-r2026-07-15-self-contained",
+      "sha256": "ce8b0ed86616c74c2b3926b516b5c42a8f7419157e4623ee9d05c392764c546e"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-05-10-tax-sections-r2026-07-15-self-contained/provenance/release-scope-us-statute-2026-05-10-tax-sections-r2026-07-15-self-contained.json",
+      "sha256": "c91540f00b6f2d15e85f96beb05d958ef2f07bb1a470b6e283c35784cc937397"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "55a3141659e1975466dd7531fd243281a2557709",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-15T19:50:53.391788+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-10-tax-sections-r2026-07-15-self-contained"
+}

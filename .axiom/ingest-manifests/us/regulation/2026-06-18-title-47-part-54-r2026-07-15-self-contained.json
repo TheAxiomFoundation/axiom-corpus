@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained.json",
+      "sha256": "ae5e6828983f9b68ff4867a9a4566ef605b6e8bd8bb31a16249b0250306ac67b"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained.json",
+      "sha256": "97faa8d2045e43e4b8d74c997a328626cd808b919946f06b2386804d7064c91b"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained.jsonl",
+      "sha256": "661c8e95f824845a2f820b424134c145e9d4edaf97e24db0272aa11a75eb1dd7"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained/ecfr/title-47-part-54.xml",
+      "sha256": "0488174308a602b5010528a48c7648b198243739c6ead70c5029f9dd79c0b6f0"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained/ecfr/title-47.structure.json",
+      "sha256": "e6c3999bbdec24e02df7e09bab699ece07dc8842d1e080f552cb852f6c58f1b1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "082c845023f09c1aa17ef04f397c21e16f2a7213",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-lifeline-54-20260623"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-06-18 --as-of 2026-06-18 --only-title 47 --only-part 54 --workers 1"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 272,
+    "missing_count": 0,
+    "provision_count": 272,
+    "source_count": 272
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-06-23T18:39:44.486897+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-regulation-2026-06-18-title-47-part-54-r2026-07-15-self-contained.md",
+      "sha256": "3fb42b8af43f5e65dc02b87a2217198e8698efcf2cd710c246ea2b9692f11618"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-18-title-47-part-54-r2026-07-15-self-contained"
+}

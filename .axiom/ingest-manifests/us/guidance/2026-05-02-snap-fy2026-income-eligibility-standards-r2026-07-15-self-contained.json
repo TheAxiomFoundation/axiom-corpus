@@ -1,0 +1,48 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained.json",
+      "sha256": "3ce49786442cec7be39d1d4d7512c71e0bcb6f448963e158794f058ba52b0b4d"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained.json",
+      "sha256": "a5605423a981f772ab7b37296e368113055de3f6c289222279286dbf15996ef4"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained.jsonl",
+      "sha256": "9b69ba7e32160b0c85db6ac7d36b57ded16ae4f944a6fb81de4798a5b59a77c6"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained/official-documents/release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained",
+      "sha256": "891dce6a0abdd3dcdac7eb5438827b5e986bc35c6ce550325e522da096b7c955"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained/provenance/release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained.json",
+      "sha256": "180f45305cc7d92f6caf564e87590807281ed4e037ab75105b7b9986c6913e2f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "306ef3abb3b471734a9745d0e51c08a8464abcce",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-15T19:50:49.305767+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained"
+}

@@ -1,0 +1,44 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-06-29-pl-119-21-medicaid-community-engagement-r2026-07-15-self-contained.json",
+      "sha256": "9567f83dc69b06ba0007083828afd31f17060b522c6e585ade7f9bdfc82eb4e3"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-06-29-pl-119-21-medicaid-community-engagement-r2026-07-15-self-contained.json",
+      "sha256": "b1a65164b4a45d1b6d2bdb1b3d73a12733dc02a9456d01c8464fad108154564f"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-06-29-pl-119-21-medicaid-community-engagement-r2026-07-15-self-contained.jsonl",
+      "sha256": "f345c96d47b104f880e186f3b526291c65ade797cef34b90848aeb500ae1c7b7"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-06-29-pl-119-21-medicaid-community-engagement-r2026-07-15-self-contained/uslm/PLAW-119publ21.xml",
+      "sha256": "762ae9af06640f023ddb9eb6f474ff7cfa275691de338d4fd985cfb04a7b6dea"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d34567910e0626f83071e5fc71c0ea2330f49a9b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12,
+    "missing_count": 0,
+    "provision_count": 12,
+    "source_count": 12
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-15T19:51:38.064317+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-29-pl-119-21-medicaid-community-engagement-r2026-07-15-self-contained"
+}

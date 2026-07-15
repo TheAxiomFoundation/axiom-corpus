@@ -1,0 +1,48 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ks/manual/2026-05-27-ks-keesm-r2026-07-15-self-contained.json",
+      "sha256": "dc1b13c44cc93d44a3e9fc2d24c45163e5161e050e04783d3987378b66916547"
+    },
+    {
+      "path": "data/corpus/inventory/us-ks/manual/2026-05-27-ks-keesm-r2026-07-15-self-contained.json",
+      "sha256": "1802d4acd06ee7b586b9f76111574338001286d34e25ca43cfbbb38a27a231dd"
+    },
+    {
+      "path": "data/corpus/provisions/us-ks/manual/2026-05-27-ks-keesm-r2026-07-15-self-contained.jsonl",
+      "sha256": "a5314b07ab3b8171c6979d9f0583df87bd1f562b0a4cfd5d39df4ccd3cd8349f"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-05-27-ks-keesm-r2026-07-15-self-contained/official-documents/release-scope-us-ks-manual-2026-05-27-ks-keesm-r2026-07-15-self-contained",
+      "sha256": "f726ec3f544b5fca02c98bdfa6dc9f7ffb96257c35eea10cbd0f680f77956366"
+    },
+    {
+      "path": "data/corpus/sources/us-ks/manual/2026-05-27-ks-keesm-r2026-07-15-self-contained/provenance/release-scope-us-ks-manual-2026-05-27-ks-keesm-r2026-07-15-self-contained.json",
+      "sha256": "b25397f9a20775685be24fa121012e5ee7ab5efae657476fecfedbc18b3bbe6a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ce6e5a67f825be904f2d7337282524b538057b3c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 510,
+    "missing_count": 0,
+    "provision_count": 510,
+    "source_count": 510
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T19:51:01.636596+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-ks-keesm-r2026-07-15-self-contained"
+}

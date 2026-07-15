@@ -1,0 +1,48 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained.json",
+      "sha256": "b06df0ce075db6c4b11687101e58e34680dd671816e1e5fc489f412910ee8f9c"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained.json",
+      "sha256": "c5502b38cb7db535c9308861a80fed9f1cd6e576e67bd1b5a09801f6571a8392"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained.jsonl",
+      "sha256": "d243867b5b9fc885d961e5b30ca5566de2d48527efce59118a8439165c29fbdd"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained/official-documents/release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained",
+      "sha256": "eeb1393b1017b7092da6bb9d714d12bd6bad8a0b1b89f55e3ae5070fdb619af5"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained/provenance/release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained.json",
+      "sha256": "7cf1e9f1529d775b57b68fd760580659c8466aa3722124ff005f1957840bd3cd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e2ff802b102d4d0035d68dc81415d74c365e74ec",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T19:50:52.219825+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained"
+}

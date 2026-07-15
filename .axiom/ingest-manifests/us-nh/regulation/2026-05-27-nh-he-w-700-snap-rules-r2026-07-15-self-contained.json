@@ -1,0 +1,48 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained.json",
+      "sha256": "1d3d4d621e36e4e324adab7081f4ef7964e1bc3b9fce49baa91e033ce7ea4e1c"
+    },
+    {
+      "path": "data/corpus/inventory/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained.json",
+      "sha256": "82956eefa56734dfbe6b17f274672f784680bb4e307743feb156ceea7c4c2d8d"
+    },
+    {
+      "path": "data/corpus/provisions/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained.jsonl",
+      "sha256": "90e451e4bd209b209688e5e5a520b7a6c41ec63f634fc95c132dfcc5514338fd"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained/official-documents/release-scope-us-nh-regulation-2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained",
+      "sha256": "357038fedc2609bcca0e46b442a35e40d103ca2051a0893d6292d704feaa3e41"
+    },
+    {
+      "path": "data/corpus/sources/us-nh/regulation/2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained/provenance/release-scope-us-nh-regulation-2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained.json",
+      "sha256": "8cbb8a8d3ffdf2e23fc8f8cf269647ba2e68e4fcb4df329430fcc87ed2b20040"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "cc58f9ae48327d70058222c5f5966c01955398fd",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 54,
+    "missing_count": 0,
+    "provision_count": 54,
+    "source_count": 54
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T19:51:05.101940+00:00",
+  "jurisdiction": "us-nh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-nh-he-w-700-snap-rules-r2026-07-15-self-contained"
+}
