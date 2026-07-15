@@ -1,16 +1,8 @@
 {
-  "_duplicate_files": {
-    "citations_resolved": "0/0",
-    "issues": [
-      "superseded retry filenames: ecfr-42-part-435, ecfr-7-part-273, ecfr-42-435.xml, ecfr-42-part-457, ecfr-7-part-246, ecfr-7-part-247, ecfr-7-273.xml, release-scope-us-guidance-2026-05-02-irs-rev-proc-2025-32, uscode-title-20, uscode-title-26, uscode-title-37, uscode-title-5, uscode-title-8"
-    ],
-    "parsed": false,
-    "rows": 0
-  },
   "_summary": {
-    "newly_resolved": 11,
-    "parsed_document_targets": 700,
-    "previous_resolved": 695,
+    "newly_resolved": 0,
+    "parsed_document_targets": 0,
+    "previous_resolved": 706,
     "remaining_classes": {
       "manual-recovery": {
         "count": 0,
@@ -60,9 +52,10 @@
   },
   "ecfr-42-part-435": {
     "citations_resolved": "24/24",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/regulation/42/435/601/a",
@@ -185,14 +178,15 @@
         "requested": "us/regulation/42/435/603/k"
       }
     ],
-    "rows": 275,
+    "rows": 0,
     "unresolved_citations": []
   },
   "ecfr-42-part-457": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/regulation/42/457/10",
@@ -200,14 +194,15 @@
         "requested": "us/regulation/42/457/10"
       }
     ],
-    "rows": 175,
+    "rows": 0,
     "unresolved_citations": []
   },
   "ecfr-7-part-246": {
     "citations_resolved": "3/3",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/regulation/7/246/7/c",
@@ -225,14 +220,15 @@
         "requested": "us/regulation/7/246/7/e"
       }
     ],
-    "rows": 268,
+    "rows": 0,
     "unresolved_citations": []
   },
   "ecfr-7-part-247": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/regulation/7/247/9/b",
@@ -240,14 +236,15 @@
         "requested": "us/regulation/7/247/9/b"
       }
     ],
-    "rows": 87,
+    "rows": 0,
     "unresolved_citations": []
   },
   "ecfr-7-part-273": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/regulation/7/273/11",
@@ -255,30 +252,10 @@
         "requested": "us/regulation/7/273/11"
       }
     ],
-    "rows": 41,
-    "unresolved_citations": []
-  },
-  "release-scope-us-al-manual-2026-05-27-al-snap-poe-manual": {
-    "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
-    "resolved_citations": [],
-    "rows": 12,
-    "unresolved_citations": []
-  },
-  "release-scope-us-al-regulation-2026-05-29": {
-    "citations_resolved": "0/0",
-    "issues": [
-      "unrecoverable: official response is an application shell with no legal text"
-    ],
-    "newly_ingested": true,
-    "parsed": false,
-    "resolved_citations": [],
     "rows": 0,
     "unresolved_citations": []
   },
-  "release-scope-us-az-manual-2025-10-30-az-des-faa5-manual": {
+  "release-scope-us-al-manual-2026-05-27-al-snap-poe-manual": {
     "citations_resolved": "0/0",
     "issues": [
       "official source snapshot is not present in recovered-fetched"
@@ -288,85 +265,113 @@
     "rows": 0,
     "unresolved_citations": []
   },
-  "release-scope-us-ca-guidance-2025-09-03-ca-cdss-acin": {
+  "release-scope-us-al-regulation-2026-05-29": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
+    "unresolved_citations": []
+  },
+  "release-scope-us-az-manual-2025-10-30-az-des-faa5-manual": {
     "citations_resolved": "0/0",
     "issues": [],
-    "newly_ingested": false,
+    "newly_ingested": true,
     "parsed": true,
     "resolved_citations": [],
-    "rows": 9,
+    "rows": 7,
+    "unresolved_citations": []
+  },
+  "release-scope-us-ca-guidance-2025-09-03-ca-cdss-acin": {
+    "citations_resolved": "0/0",
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
+    "resolved_citations": [],
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-fl-manual-2026-05-27-fl-ess-manual": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-fl-regulation-2026-05-29": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-form-2026-05-12-cms-medicaid-chip-bhp-eligibility-levels": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-ga-manual-2026-05-27-ga-snap-manual": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-guidance-2026-05-01-snap-fy2026-cola": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-guidance-2026-05-02-irs-rev-proc-2025-32": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 37,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-guidance-2026-05-17-ssa-automatic-determinations-2026": {
@@ -391,56 +396,62 @@
   },
   "release-scope-us-guidance-2026-07-08-snap-fy2024-cola": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-hi-regulation-2026-05-27-hi-snap-rules": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 5,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-id-regulation-2026-05-27-id-food-stamp-rules": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 71,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-in-manual-2026-05-27-in-snap-manual": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-ks-manual-2026-05-27-ks-keesm": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-ma-regulation-2026-05-28": {
@@ -455,29 +466,32 @@
   },
   "release-scope-us-mn-manual-2026-05-27-mn-combined-manual": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 1354,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-mo-manual-2026-05-27-mo-snap-manual": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-nc-manual-2026-05-27-nc-fns-manuals": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-nc-regulation-2026-05-29": {
@@ -492,29 +506,32 @@
   },
   "release-scope-us-nh-regulation-2026-05-27-nh-he-w-700-snap-rules": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-nv-manual-2026-05-27-nv-eligibility-payments-manual": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 28,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-ny-form-2026-06-05-ny-tax-current-forms": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 42,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-ny-policy-2026-06-05-ny-tanf": {
@@ -549,117 +566,130 @@
   },
   "release-scope-us-regulation-2026-05-10-snap-7-cfr-273": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 55,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 180,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 180,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-sc-manual-2026-05-27-sc-snap-manual": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 5,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-sc-regulation-2026-05-29": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-statute-2026-05-10-snap-sections": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 30,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-statute-2026-05-10-tax-sections": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 43,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-tn-manual-2026-05-27-tn-snap-policies": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 10,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-tn-regulation-2026-05-29": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-tx-manual-2026-05-27-tx-manuals": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 21,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-ut-manual-2026-05-27-ut-manuals": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 7,
+    "rows": 0,
     "unresolved_citations": []
   },
   "release-scope-us-wy-manual-2026-05-27-wy-manuals": {
     "citations_resolved": "0/0",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-al-code-40-18-15": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-al/statute/40-18-15",
@@ -667,14 +697,15 @@
         "requested": "us-al/statute/40-18-15"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-al-code-40-18-19": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-al/statute/40-18-19",
@@ -682,14 +713,15 @@
         "requested": "us-al/statute/40-18-19"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-al-code-40-18-5": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-al/statute/40-18-5",
@@ -697,14 +729,15 @@
         "requested": "us-al/statute/40-18-5"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-al-tanf-state-plan": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-al/policy/dhr/tanf/state-plan/2024",
@@ -712,14 +745,15 @@
         "requested": "us-al/policy/dhr/tanf/state-plan/2024"
       }
     ],
-    "rows": 29,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-az-code-43-1011": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-az/statute/43-1011",
@@ -727,14 +761,15 @@
         "requested": "us-az/statute/43-1011"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-az-code-43-1023": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-az/statute/43-1023",
@@ -742,14 +777,15 @@
         "requested": "us-az/statute/43-1023"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-az-code-43-1041": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-az/statute/43-1041",
@@ -757,14 +793,15 @@
         "requested": "us-az/statute/43-1041"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-az-code-43-1072": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-az/statute/43-1072",
@@ -772,14 +809,15 @@
         "requested": "us-az/statute/43-1072"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-az-code-43-1072.01": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-az/statute/43-1072.01",
@@ -787,14 +825,15 @@
         "requested": "us-az/statute/43-1072.01"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-az-code-43-1073": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-az/statute/43-1073",
@@ -802,14 +841,15 @@
         "requested": "us-az/statute/43-1073"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-az-code-43-1073.01": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-az/statute/43-1073.01",
@@ -817,7 +857,7 @@
         "requested": "us-az/statute/43-1073.01"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-az-des-faa5": {
@@ -858,9 +898,10 @@
   },
   "us-ca-code-rtc": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17014",
@@ -868,14 +909,15 @@
         "requested": "us-ca/statute/rtc/17014"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-rtc-p10": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17062.1",
@@ -883,14 +925,15 @@
         "requested": "us-ca/statute/rtc/17062.1"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-rtc-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17016",
@@ -898,14 +941,15 @@
         "requested": "us-ca/statute/rtc/17016"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-rtc-p3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17017",
@@ -913,14 +957,15 @@
         "requested": "us-ca/statute/rtc/17017"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-rtc-p4": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17029",
@@ -928,14 +973,15 @@
         "requested": "us-ca/statute/rtc/17029"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-rtc-p5": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17034",
@@ -943,14 +989,15 @@
         "requested": "us-ca/statute/rtc/17034"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-rtc-p6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17038",
@@ -958,14 +1005,15 @@
         "requested": "us-ca/statute/rtc/17038"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-rtc-p7": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17053.6",
@@ -973,14 +1021,15 @@
         "requested": "us-ca/statute/rtc/17053.6"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-rtc-p8": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17054.7",
@@ -988,14 +1037,15 @@
         "requested": "us-ca/statute/rtc/17054.7"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-rtc-p9": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/rtc/17061",
@@ -1003,14 +1053,15 @@
         "requested": "us-ca/statute/rtc/17061"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-code-wic": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/statute/wic/11450/a/1/A",
@@ -1018,14 +1069,15 @@
         "requested": "us-ca/statute/wic/11450/a/1/A"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-300": {
     "citations_resolved": "31/31",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-300.1",
@@ -1183,14 +1235,15 @@
         "requested": "us-ca/regulation/mpp/63-300.623"
       }
     ],
-    "rows": 47,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-301": {
     "citations_resolved": "61/61",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-301.1",
@@ -1498,14 +1551,15 @@
         "requested": "us-ca/regulation/mpp/63-301.92"
       }
     ],
-    "rows": 90,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-401": {
     "citations_resolved": "5/5",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-401.1",
@@ -1533,14 +1587,15 @@
         "requested": "us-ca/regulation/mpp/63-401.6"
       }
     ],
-    "rows": 7,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-402": {
     "citations_resolved": "15/15",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-402.1",
@@ -1618,14 +1673,15 @@
         "requested": "us-ca/regulation/mpp/63-402.211"
       }
     ],
-    "rows": 20,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-403": {
     "citations_resolved": "5/5",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-403.1",
@@ -1653,14 +1709,15 @@
         "requested": "us-ca/regulation/mpp/63-403.4"
       }
     ],
-    "rows": 9,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-404": {
     "citations_resolved": "15/15",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-404.1",
@@ -1738,14 +1795,15 @@
         "requested": "us-ca/regulation/mpp/63-404.7"
       }
     ],
-    "rows": 26,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-405": {
     "citations_resolved": "45/45",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-405.1",
@@ -1973,14 +2031,15 @@
         "requested": "us-ca/regulation/mpp/63-405.72"
       }
     ],
-    "rows": 71,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-406": {
     "citations_resolved": "17/17",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-406.1",
@@ -2068,14 +2127,15 @@
         "requested": "us-ca/regulation/mpp/63-406.3"
       }
     ],
-    "rows": 23,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-407": {
     "citations_resolved": "58/58",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-407.1",
@@ -2368,14 +2428,15 @@
         "requested": "us-ca/regulation/mpp/63-407.893"
       }
     ],
-    "rows": 90,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-408": {
     "citations_resolved": "20/20",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-408.1",
@@ -2478,14 +2539,15 @@
         "requested": "us-ca/regulation/mpp/63-408.63"
       }
     ],
-    "rows": 30,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-409": {
     "citations_resolved": "4/4",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-409.1",
@@ -2508,14 +2570,15 @@
         "requested": "us-ca/regulation/mpp/63-409.12"
       }
     ],
-    "rows": 8,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-410": {
     "citations_resolved": "31/31",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-410.1",
@@ -2673,14 +2736,15 @@
         "requested": "us-ca/regulation/mpp/63-410.6"
       }
     ],
-    "rows": 46,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-411": {
     "citations_resolved": "6/6",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-411.1",
@@ -2713,14 +2777,15 @@
         "requested": "us-ca/regulation/mpp/63-411.3"
       }
     ],
-    "rows": 17,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-501": {
     "citations_resolved": "2/2",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-501.11",
@@ -2733,14 +2798,15 @@
         "requested": "us-ca/regulation/mpp/63-501.112"
       }
     ],
-    "rows": 6,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-502": {
     "citations_resolved": "5/5",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-502.1",
@@ -2768,14 +2834,15 @@
         "requested": "us-ca/regulation/mpp/63-502.121"
       }
     ],
-    "rows": 8,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ca-mpp-63-503": {
     "citations_resolved": "38/38",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ca/regulation/mpp/63-503.12",
@@ -2968,14 +3035,15 @@
         "requested": "us-ca/regulation/mpp/63-503.434"
       }
     ],
-    "rows": 59,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-cms-eligibility-levels": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/form/cms/medicaid-chip-bhp-eligibility-levels",
@@ -2983,14 +3051,15 @@
         "requested": "us/form/cms/medicaid-chip-bhp-eligibility-levels"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-co-8-ccr-1403-1": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-co/regulation/8-ccr-1403-1/3.111",
@@ -2998,14 +3067,15 @@
         "requested": "us-co/regulation/8-ccr-1403-1/3.111"
       }
     ],
-    "rows": 76,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-co-9-ccr-2503-6": {
     "citations_resolved": "3/3",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-co/regulation/9-ccr-2503-6/3.606.1",
@@ -3023,14 +3093,15 @@
         "requested": "us-co/regulation/9-ccr-2503-6/3.606.6"
       }
     ],
-    "rows": 114,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ct-code-12-700": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ct/statute/12-700",
@@ -3038,14 +3109,15 @@
         "requested": "us-ct/statute/12-700"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ct-code-12-704e": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ct/statute/12-704e",
@@ -3053,14 +3125,15 @@
         "requested": "us-ct/statute/12-704e"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ct-code-12-704i": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ct/statute/12-704i",
@@ -3068,14 +3141,15 @@
         "requested": "us-ct/statute/12-704i"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ct-code-17b-104": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ct/statute/17b-104",
@@ -3083,14 +3157,15 @@
         "requested": "us-ct/statute/17b-104"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ct-code-17b-112": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ct/statute/17b-112",
@@ -3098,14 +3173,15 @@
         "requested": "us-ct/statute/17b-112"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ct-code-17b-600": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ct/statute/17b-600",
@@ -3113,14 +3189,15 @@
         "requested": "us-ct/statute/17b-600"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-dc-code-47": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-dc/statute/47/47-1806.03",
@@ -3128,14 +3205,15 @@
         "requested": "us-dc/statute/47/47-1806.03"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-de-code-30": {
     "citations_resolved": "6/6",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-de/statute/30/1102",
@@ -3168,14 +3246,15 @@
         "requested": "us-de/statute/30/1117"
       }
     ],
-    "rows": 6,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ed-2026-27-sai-pell-guide": {
     "citations_resolved": "3/3",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/guidance/ed/fsa/2026-27-sai-pell-guide/page-30",
@@ -3193,14 +3272,15 @@
         "requested": "us/guidance/ed/fsa/2026-27-sai-pell-guide/page-8"
       }
     ],
-    "rows": 52,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ed-gen-26-01": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/guidance/ed/fsa/gen-26-01-pell-award-amounts/block-1",
@@ -3208,7 +3288,7 @@
         "requested": "us/guidance/ed/fsa/gen-26-01-pell-award-amounts/block-1"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ga-code-48": {
@@ -3231,9 +3311,10 @@
   },
   "us-ga-dfcs-medicaid": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ga/manual/dfcs/medicaid/2578",
@@ -3241,14 +3322,15 @@
         "requested": "us-ga/manual/dfcs/medicaid/2578"
       }
     ],
-    "rows": 8,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ga-dfcs-snap": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ga/manual/dfcs/snap/3612",
@@ -3256,14 +3338,15 @@
         "requested": "us-ga/manual/dfcs/snap/3612"
       }
     ],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ga-dfcs-snap-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ga/manual/dfcs/snap/3613",
@@ -3271,14 +3354,15 @@
         "requested": "us-ga/manual/dfcs/snap/3613"
       }
     ],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ga-dfcs-snap-p3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ga/manual/dfcs/snap/3614",
@@ -3286,14 +3370,15 @@
         "requested": "us-ga/manual/dfcs/snap/3614"
       }
     ],
-    "rows": 13,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ga-dfcs-snap-p4": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ga/manual/dfcs/snap/3615",
@@ -3301,14 +3386,15 @@
         "requested": "us-ga/manual/dfcs/snap/3615"
       }
     ],
-    "rows": 6,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ga-dfcs-snap-p5": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ga/manual/dfcs/snap/3616",
@@ -3316,14 +3402,15 @@
         "requested": "us-ga/manual/dfcs/snap/3616"
       }
     ],
-    "rows": 5,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ga-dfcs-snap-p6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ga/manual/dfcs/snap/3617",
@@ -3331,14 +3418,15 @@
         "requested": "us-ga/manual/dfcs/snap/3617"
       }
     ],
-    "rows": 14,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ga-dfcs-snap-p7": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ga/manual/dfcs/snap/3618",
@@ -3346,14 +3434,15 @@
         "requested": "us-ga/manual/dfcs/snap/3618"
       }
     ],
-    "rows": 8,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-hi-code-235-54": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-hi/statute/235-54",
@@ -3361,14 +3450,15 @@
         "requested": "us-hi/statute/235-54"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-hi-code-235-55.6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-hi/statute/235-55.6",
@@ -3376,14 +3466,15 @@
         "requested": "us-hi/statute/235-55.6"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-hi-code-235-55.7": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-hi/statute/235-55.7",
@@ -3391,14 +3482,15 @@
         "requested": "us-hi/statute/235-55.7"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-hi-code-235-55.85": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-hi/statute/235-55.85",
@@ -3406,14 +3498,15 @@
         "requested": "us-hi/statute/235-55.85"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ia-code-422.12": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ia/statute/422.12",
@@ -3421,14 +3514,15 @@
         "requested": "us-ia/statute/422.12"
       }
     ],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ia-code-422.12b": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ia/statute/422.12B",
@@ -3436,14 +3530,15 @@
         "requested": "us-ia/statute/422.12B"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ia-code-422.12c": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ia/statute/422.12C",
@@ -3451,14 +3546,15 @@
         "requested": "us-ia/statute/422.12C"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-id-code-63-3022d": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-id/statute/63-3022D",
@@ -3466,14 +3562,15 @@
         "requested": "us-id/statute/63-3022D"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-id-code-63-3022e": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-id/statute/63-3022E",
@@ -3481,14 +3578,15 @@
         "requested": "us-id/statute/63-3022E"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-id-code-63-3024": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-id/statute/63-3024",
@@ -3496,14 +3594,15 @@
         "requested": "us-id/statute/63-3024"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-id-code-63-3024a": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-id/statute/63-3024A",
@@ -3511,14 +3610,15 @@
         "requested": "us-id/statute/63-3024A"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-id-code-63-3025d": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-id/statute/63-3025D",
@@ -3526,14 +3626,15 @@
         "requested": "us-id/statute/63-3025D"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/1105",
@@ -3541,14 +3642,15 @@
         "requested": "us-il/statute/35/5/1105"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p10": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/506.5",
@@ -3556,14 +3658,15 @@
         "requested": "us-il/statute/35/5/506.5"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p11": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/512",
@@ -3571,14 +3674,15 @@
         "requested": "us-il/statute/35/5/512"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p12": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/604",
@@ -3586,14 +3690,15 @@
         "requested": "us-il/statute/35/5/604"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p13": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/605",
@@ -3601,14 +3706,15 @@
         "requested": "us-il/statute/35/5/605"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p14": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/705",
@@ -3616,14 +3722,15 @@
         "requested": "us-il/statute/35/5/705"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p15": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/706",
@@ -3631,14 +3738,15 @@
         "requested": "us-il/statute/35/5/706"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p16": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/707",
@@ -3646,14 +3754,15 @@
         "requested": "us-il/statute/35/5/707"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p17": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/913",
@@ -3661,14 +3770,15 @@
         "requested": "us-il/statute/35/5/913"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p18": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/915",
@@ -3676,14 +3786,15 @@
         "requested": "us-il/statute/35/5/915"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p19": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/916",
@@ -3691,14 +3802,15 @@
         "requested": "us-il/statute/35/5/916"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/1202",
@@ -3706,14 +3818,15 @@
         "requested": "us-il/statute/35/5/1202"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p20": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/918",
@@ -3721,14 +3834,15 @@
         "requested": "us-il/statute/35/5/918"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/201",
@@ -3736,14 +3850,15 @@
         "requested": "us-il/statute/35/5/201"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p4": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/204",
@@ -3751,14 +3866,15 @@
         "requested": "us-il/statute/35/5/204"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p5": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/206",
@@ -3766,14 +3882,15 @@
         "requested": "us-il/statute/35/5/206"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/212",
@@ -3781,14 +3898,15 @@
         "requested": "us-il/statute/35/5/212"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p7": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/306",
@@ -3796,14 +3914,15 @@
         "requested": "us-il/statute/35/5/306"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p8": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/402",
@@ -3811,14 +3930,15 @@
         "requested": "us-il/statute/35/5/402"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-code-35-p9": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/statute/35/5/404",
@@ -3826,14 +3946,15 @@
         "requested": "us-il/statute/35/5/404"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-il-csmm": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-il/manual/dhs/csmm/19812",
@@ -3841,14 +3962,15 @@
         "requested": "us-il/manual/dhs/csmm/19812"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-12-15-32-6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/12-15-32-6",
@@ -3856,14 +3978,15 @@
         "requested": "us-in/statute/12-15-32-6"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-12-15-32-6.5": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/12-15-32-6.5",
@@ -3871,14 +3994,15 @@
         "requested": "us-in/statute/12-15-32-6.5"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-6-3-2-10": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/6-3-2-10",
@@ -3886,14 +4010,15 @@
         "requested": "us-in/statute/6-3-2-10"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-6-3-2-22": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/6-3-2-22",
@@ -3901,14 +4026,15 @@
         "requested": "us-in/statute/6-3-2-22"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-6-3-2-28": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/6-3-2-28",
@@ -3916,14 +4042,15 @@
         "requested": "us-in/statute/6-3-2-28"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-6-3-2-4": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/6-3-2-4",
@@ -3931,14 +4058,15 @@
         "requested": "us-in/statute/6-3-2-4"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-6-3-2-6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/6-3-2-6",
@@ -3946,14 +4074,15 @@
         "requested": "us-in/statute/6-3-2-6"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-6-3-3-12": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/6-3-3-12",
@@ -3961,14 +4090,15 @@
         "requested": "us-in/statute/6-3-3-12"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-6-3-3-9": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/6-3-3-9",
@@ -3976,14 +4106,15 @@
         "requested": "us-in/statute/6-3-3-9"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-in-code-6-3.1-21-6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-in/statute/6-3.1-21-6",
@@ -3991,14 +4122,15 @@
         "requested": "us-in/statute/6-3.1-21-6"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-irs-rev-proc-2025-25": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/guidance/irs/rev-proc-2025-25",
@@ -4006,14 +4138,15 @@
         "requested": "us/guidance/irs/rev-proc-2025-25"
       }
     ],
-    "rows": 5,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ks-keesm": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ks/manual/dcf/keesm/keesm7410",
@@ -4021,7 +4154,7 @@
         "requested": "us-ks/manual/dcf/keesm/keesm7410"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ks-ssp-memo-2007": {
@@ -4042,9 +4175,10 @@
   },
   "us-ky-code-11": {
     "citations_resolved": "4/4",
-    "issues": [],
-    "newly_ingested": true,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ky/statute/11/141.020",
@@ -4067,14 +4201,15 @@
         "requested": "us-ky/statute/11/141.081"
       }
     ],
-    "rows": 10,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-la-code-47-294": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": true,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-la/statute/47:294",
@@ -4082,14 +4217,15 @@
         "requested": "us-la/statute/47:294"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-la-code-47-295": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": true,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-la/statute/47:295",
@@ -4097,14 +4233,15 @@
         "requested": "us-la/statute/47:295"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-la-code-47-297.4": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": true,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-la/statute/47:297.4",
@@ -4112,14 +4249,15 @@
         "requested": "us-la/statute/47:297.4"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-la-code-47-297.8": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": true,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-la/statute/47:297.8",
@@ -4127,14 +4265,15 @@
         "requested": "us-la/statute/47:297.8"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-la-fitap-manual": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-la/manual/dcfs/economic-independence/b-640-fitap-income-limits-398921",
@@ -4142,14 +4281,15 @@
         "requested": "us-la/manual/dcfs/economic-independence/b-640-fitap-income-limits-398921"
       }
     ],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/10a",
@@ -4157,14 +4297,15 @@
         "requested": "us-ma/statute/62/10a"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p10": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/62",
@@ -4172,14 +4313,15 @@
         "requested": "us-ma/statute/62/62"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p11": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/64",
@@ -4187,14 +4329,15 @@
         "requested": "us-ma/statute/62/64"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p12": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/6l",
@@ -4202,14 +4345,15 @@
         "requested": "us-ma/statute/62/6l"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/11a",
@@ -4217,14 +4361,15 @@
         "requested": "us-ma/statute/62/11a"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/14",
@@ -4232,14 +4377,15 @@
         "requested": "us-ma/statute/62/14"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p4": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/16",
@@ -4247,14 +4393,15 @@
         "requested": "us-ma/statute/62/16"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p5": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/3",
@@ -4262,14 +4409,15 @@
         "requested": "us-ma/statute/62/3"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/4",
@@ -4277,14 +4425,15 @@
         "requested": "us-ma/statute/62/4"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p7": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/42",
@@ -4292,14 +4441,15 @@
         "requested": "us-ma/statute/62/42"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p8": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/54",
@@ -4307,14 +4457,15 @@
         "requested": "us-ma/statute/62/54"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ma-code-62-p9": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ma/statute/62/6",
@@ -4322,14 +4473,15 @@
         "requested": "us-ma/statute/62/6"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-md-code-gtg": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-md/statute/gtg/10-105",
@@ -4337,14 +4489,15 @@
         "requested": "us-md/statute/gtg/10-105"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-md-code-gtg-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-md/statute/gtg/10-211",
@@ -4352,14 +4505,15 @@
         "requested": "us-md/statute/gtg/10-211"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-me-code-36": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-me/statute/36/5111",
@@ -4367,14 +4521,15 @@
         "requested": "us-me/statute/36/5111"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-me-code-36-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-me/statute/36/5124-C",
@@ -4382,14 +4537,15 @@
         "requested": "us-me/statute/36/5124-C"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-me-code-36-p3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-me/statute/36/5126-A",
@@ -4397,14 +4553,15 @@
         "requested": "us-me/statute/36/5126-A"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-me-code-36-p4": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-me/statute/36/5213-A",
@@ -4412,14 +4569,15 @@
         "requested": "us-me/statute/36/5213-A"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-me-code-36-p5": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-me/statute/36/5219-S",
@@ -4427,14 +4585,15 @@
         "requested": "us-me/statute/36/5219-S"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-me-code-36-p6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-me/statute/36/5219-SS",
@@ -4442,14 +4601,15 @@
         "requested": "us-me/statute/36/5219-SS"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mi-bem-660": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mi/manual/mdhhs/bridges/bem/660",
@@ -4457,14 +4617,15 @@
         "requested": "us-mi/manual/mdhhs/bridges/bem/660"
       }
     ],
-    "rows": 5,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mi-code-206.272": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mi/statute/206.272",
@@ -4472,14 +4633,15 @@
         "requested": "us-mi/statute/206.272"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mi-code-206.30": {
     "citations_resolved": "7/7",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mi/statute/206.30/10",
@@ -4517,14 +4679,15 @@
         "requested": "us-mi/statute/206.30/8"
       }
     ],
-    "rows": 9,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mi-code-206.51": {
     "citations_resolved": "3/3",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mi/statute/206.51/1",
@@ -4542,14 +4705,15 @@
         "requested": "us-mi/statute/206.51/6"
       }
     ],
-    "rows": 5,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mi-rft-248": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mi/manual/mdhhs/rft/248",
@@ -4557,14 +4721,15 @@
         "requested": "us-mi/manual/mdhhs/rft/248"
       }
     ],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mn-code-290.0121": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mn/statute/290.0121",
@@ -4572,14 +4737,15 @@
         "requested": "us-mn/statute/290.0121"
       }
     ],
-    "rows": 11,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mn-code-290.0123": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mn/statute/290.0123",
@@ -4587,14 +4753,15 @@
         "requested": "us-mn/statute/290.0123"
       }
     ],
-    "rows": 14,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mn-code-290.06": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mn/statute/290.06",
@@ -4602,14 +4769,15 @@
         "requested": "us-mn/statute/290.06"
       }
     ],
-    "rows": 67,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mn-code-290.067": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mn/statute/290.067",
@@ -4617,14 +4785,15 @@
         "requested": "us-mn/statute/290.067"
       }
     ],
-    "rows": 16,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mn-code-290.0671": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mn/statute/290.0671",
@@ -4632,14 +4801,15 @@
         "requested": "us-mn/statute/290.0671"
       }
     ],
-    "rows": 17,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mn-combined-manual": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mn/manual/dhs/combined-manual/msa-revised-sections-2026-01",
@@ -4647,14 +4817,15 @@
         "requested": "us-mn/manual/dhs/combined-manual/msa-revised-sections-2026-01"
       }
     ],
-    "rows": 1354,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mt-arm-37-78": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mt/regulation/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420",
@@ -4662,14 +4833,15 @@
         "requested": "us-mt/regulation/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-mt-code-15-30-2318": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-mt/statute/15-30-2318",
@@ -4677,14 +4849,15 @@
         "requested": "us-mt/statute/15-30-2318"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-nc-code-105": {
     "citations_resolved": "5/5",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-nc/statute/105/105-153.5/a",
@@ -4712,14 +4885,15 @@
         "requested": "us-nc/statute/105/105-153.9"
       }
     ],
-    "rows": 6,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-nd-code-57": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-nd/statute/57/57-38-01.28",
@@ -4727,14 +4901,15 @@
         "requested": "us-nd/statute/57/57-38-01.28"
       }
     ],
-    "rows": 70,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ne-code-77": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ne/statute/77/77-2715.03",
@@ -4742,14 +4917,15 @@
         "requested": "us-ne/statute/77/77-2715.03"
       }
     ],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ne-code-77-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ne/statute/77/77-2715.07",
@@ -4757,14 +4933,15 @@
         "requested": "us-ne/statute/77/77-2715.07"
       }
     ],
-    "rows": 5,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ne-code-77-p3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ne/statute/77/77-2716.01",
@@ -4772,14 +4949,15 @@
         "requested": "us-ne/statute/77/77-2716.01"
       }
     ],
-    "rows": 4,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-nj-code-54a-4-7": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": true,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-nj/statute/54a:4-7",
@@ -4787,14 +4965,15 @@
         "requested": "us-nj/statute/54a:4-7"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-nj-njac-10-90": {
     "citations_resolved": "6/6",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-nj/regulation/njac-10-90/10-90-3.19",
@@ -4827,14 +5006,15 @@
         "requested": "us-nj/regulation/njac-10-90/10-90-3.9"
       }
     ],
-    "rows": 558,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-nm-code-7-2-18.15": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": true,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-nm/statute/7-2-18.15",
@@ -4842,14 +5022,15 @@
         "requested": "us-nm/statute/7-2-18.15"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-nm-code-7-2-5.8": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": true,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-nm/statute/7-2-5.8",
@@ -4857,14 +5038,15 @@
         "requested": "us-nm/statute/7-2-5.8"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/601-A",
@@ -4872,14 +5054,15 @@
         "requested": "us-ny/statute/TAX/601-A"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p10": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/674",
@@ -4887,14 +5070,15 @@
         "requested": "us-ny/statute/TAX/674"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p11": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/675",
@@ -4902,14 +5086,15 @@
         "requested": "us-ny/statute/TAX/675"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/611",
@@ -4917,14 +5102,15 @@
         "requested": "us-ny/statute/TAX/611"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/613",
@@ -4932,14 +5118,15 @@
         "requested": "us-ny/statute/TAX/613"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p4": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/617",
@@ -4947,14 +5134,15 @@
         "requested": "us-ny/statute/TAX/617"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p5": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/618",
@@ -4962,14 +5150,15 @@
         "requested": "us-ny/statute/TAX/618"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p6": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/620-A",
@@ -4977,14 +5166,15 @@
         "requested": "us-ny/statute/TAX/620-A"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p7": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/621",
@@ -4992,14 +5182,15 @@
         "requested": "us-ny/statute/TAX/621"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p8": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/672",
@@ -5007,14 +5198,15 @@
         "requested": "us-ny/statute/TAX/672"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ny-code-tax-p9": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ny/statute/TAX/673",
@@ -5022,14 +5214,15 @@
         "requested": "us-ny/statute/TAX/673"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-oh-code-5747.02": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-oh/statute/5747.02",
@@ -5037,14 +5230,15 @@
         "requested": "us-oh/statute/5747.02"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-oh-code-5747.025": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-oh/statute/5747.025",
@@ -5052,14 +5246,15 @@
         "requested": "us-oh/statute/5747.025"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-oh-code-5747.71": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-oh/statute/5747.71",
@@ -5067,14 +5262,15 @@
         "requested": "us-oh/statute/5747.71"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-oh-code-5747.98": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-oh/statute/5747.98",
@@ -5082,14 +5278,15 @@
         "requested": "us-oh/statute/5747.98"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-or-code-315.264": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-or/statute/315.264",
@@ -5097,14 +5294,15 @@
         "requested": "us-or/statute/315.264"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-or-code-315.266": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-or/statute/315.266",
@@ -5112,14 +5310,15 @@
         "requested": "us-or/statute/315.266"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-or-code-316.085": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-or/statute/316.085",
@@ -5127,14 +5326,15 @@
         "requested": "us-or/statute/316.085"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ri-code-44-30-103": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ri/statute/44-30-103",
@@ -5142,14 +5342,15 @@
         "requested": "us-ri/statute/44-30-103"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-sc-code-12-6-520": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-sc/statute/12-6-520",
@@ -5157,14 +5358,15 @@
         "requested": "us-sc/statute/12-6-520"
       }
     ],
-    "rows": 3,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-tx-works-handbook": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-tx/manual/hhs/texas-works-handbook/c-110-tanf",
@@ -5172,14 +5374,15 @@
         "requested": "us-tx/manual/hhs/texas-works-handbook/c-110-tanf"
       }
     ],
-    "rows": 8,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ut-code-59-10-1018": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ut/statute/59-10-1018",
@@ -5187,14 +5390,15 @@
         "requested": "us-ut/statute/59-10-1018"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ut-code-59-10-1019": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ut/statute/59-10-1019",
@@ -5202,14 +5406,15 @@
         "requested": "us-ut/statute/59-10-1019"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-ut-code-59-10-104": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-ut/statute/59-10-104",
@@ -5217,14 +5422,15 @@
         "requested": "us-ut/statute/59-10-104"
       }
     ],
-    "rows": 1,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-va-code-58.1": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-va/statute/58.1/58.1-320",
@@ -5232,14 +5438,15 @@
         "requested": "us-va/statute/58.1/58.1-320"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-va-code-58.1-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-va/statute/58.1/58.1-321",
@@ -5247,14 +5454,15 @@
         "requested": "us-va/statute/58.1/58.1-321"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-va-code-58.1-p3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-va/statute/58.1/58.1-322.03",
@@ -5262,14 +5470,15 @@
         "requested": "us-va/statute/58.1/58.1-322.03"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-va-code-58.1-p4": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-va/statute/58.1/58.1-339.8",
@@ -5277,14 +5486,15 @@
         "requested": "us-va/statute/58.1/58.1-339.8"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-wa-code-82": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-wa/statute/82/82.87/82.87.040",
@@ -5292,14 +5502,15 @@
         "requested": "us-wa/statute/82/82.87/82.87.040"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-wa-code-82-p2": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-wa/statute/82/82.87/82.87.060",
@@ -5307,14 +5518,15 @@
         "requested": "us-wa/statute/82/82.87/82.87.060"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-wa-code-82-p3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-wa/statute/82/82.87/82.87.080",
@@ -5322,14 +5534,15 @@
         "requested": "us-wa/statute/82/82.87/82.87.080"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-wv-code-11-21-10": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-wv/statute/11-21-10",
@@ -5337,14 +5550,15 @@
         "requested": "us-wv/statute/11-21-10"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-wv-code-11-21-16": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-wv/statute/11-21-16",
@@ -5352,14 +5566,15 @@
         "requested": "us-wv/statute/11-21-16"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-wv-code-11-21-21": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-wv/statute/11-21-21",
@@ -5367,14 +5582,15 @@
         "requested": "us-wv/statute/11-21-21"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-wv-code-11-21-23": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-wv/statute/11-21-23",
@@ -5382,14 +5598,15 @@
         "requested": "us-wv/statute/11-21-23"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "us-wv-code-11-21-3": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us-wv/statute/11-21-3",
@@ -5397,14 +5614,15 @@
         "requested": "us-wv/statute/11-21-3"
       }
     ],
-    "rows": 2,
+    "rows": 0,
     "unresolved_citations": []
   },
   "uscode-title-20": {
     "citations_resolved": "3/3",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/statute/20/1070a/b/1",
@@ -5422,14 +5640,15 @@
         "requested": "us/statute/20/1070a/b/5"
       }
     ],
-    "rows": 42,
+    "rows": 0,
     "unresolved_citations": []
   },
   "uscode-title-26": {
     "citations_resolved": "102/102",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/statute/26/1",
@@ -5942,14 +6161,15 @@
         "requested": "us/statute/26/933"
       }
     ],
-    "rows": 2268,
+    "rows": 0,
     "unresolved_citations": []
   },
   "uscode-title-37": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/statute/37/556",
@@ -5957,14 +6177,15 @@
         "requested": "us/statute/37/556"
       }
     ],
-    "rows": 17,
+    "rows": 0,
     "unresolved_citations": []
   },
   "uscode-title-5": {
     "citations_resolved": "1/1",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/statute/5/5566",
@@ -5972,14 +6193,15 @@
         "requested": "us/statute/5/5566"
       }
     ],
-    "rows": 15,
+    "rows": 0,
     "unresolved_citations": []
   },
   "uscode-title-8": {
     "citations_resolved": "4/4",
-    "issues": [],
-    "newly_ingested": false,
-    "parsed": true,
+    "issues": [
+      "official source snapshot is not present in recovered-fetched"
+    ],
+    "parsed": false,
     "resolved_citations": [
       {
         "citation_path": "us/statute/8/1612/b/2/G",
@@ -6002,7 +6224,7 @@
         "requested": "us/statute/8/1641/b"
       }
     ],
-    "rows": 39,
+    "rows": 0,
     "unresolved_citations": []
   }
 }

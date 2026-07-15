@@ -2,44 +2,47 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-az/manual/2025-10-30-az-des-faa5-manual.json",
-      "sha256": "9ee71dfc73ac8f7c1c12c86fc31e0e5281ec17ec228a25fe4e0f60b719b30aa3"
+      "sha256": "486ad66af3ea4fce3917e0fa11e1443c4b7ee7665ce2c4fb10630b858eb34d12"
     },
     {
       "path": "data/corpus/inventory/us-az/manual/2025-10-30-az-des-faa5-manual.json",
-      "sha256": "7f17ef29dcaffb4bed1c2d215afe99c5ab3c69c1bc12194d3cf9e2a7b7cde3cf"
+      "sha256": "775d0c238649181ae7d89d5a0f449e316b57476934b2e72b599ad4af5bc178c5"
     },
     {
       "path": "data/corpus/provisions/us-az/manual/2025-10-30-az-des-faa5-manual.jsonl",
-      "sha256": "ace96c15e9402901db8eb812fd97f74f26a8a5447a9b01c7e0e2cb46e08d6eb5"
+      "sha256": "de921f010b521cfbd0004313a48c19bf0bc1cb75ef3db02b64e56a39461ca31f"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2025-10-30-az-des-faa5-manual/official-documents/release-scope-us-az-manual-2025-10-30-az-des-faa5-manual",
+      "sha256": "1c9206a4fc109bcb5f747f55a72e1837a51548acd44c61f7f634a9d290152194"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2025-10-30-az-des-faa5-manual/provenance/release-scope-us-az-manual-2025-10-30-az-des-faa5-manual.json",
+      "sha256": "1ba80e1ed1139340207a2f4f5ac42311b8675b7033be796dbdcc36080eabf1f8"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "bb773b8b290d958bfe62b4b0d41265ace197ab6e",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 345,
+    "matched_count": 7,
     "missing_count": 0,
-    "provision_count": 345,
-    "source_count": 345
+    "provision_count": 7,
+    "source_count": 7
   },
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:20.076008+00:00",
+  "generated_at": "2026-07-15T17:20:44.608205+00:00",
   "jurisdiction": "us-az",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "s0PvUhBcBNmZVM5K/v22U/Ibzp3pgZnIDmUDkRV6kZS07U5hHavfvZeSQi5gPQ6aEyYfH+rHPaaFxz5NxEKCAQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2025-10-30-az-des-faa5-manual"
 }
