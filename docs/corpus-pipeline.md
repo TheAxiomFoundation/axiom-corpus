@@ -151,13 +151,18 @@ axiom-corpus-ingest extract-ecfr \
   --version 2026-04-29 \
   --as-of 2024-04-16 \
   --only-title 7 \
-  --only-part 273
+  --only-part 273 \
+  --graphic-transcriptions manifests/us-snap-ecfr-graphic-transcriptions.json
 ```
 
 When `--only-title`, `--only-part`, or `--limit` is supplied, the run id is
 derived from the base version, for example
 `2026-04-29-title-7-part-273`. Part-scoped eCFR extraction snapshots the part
-XML endpoint, not a whole-title XML file.
+XML endpoint, not a whole-title XML file. Image-only formula graphics are
+archived from the official Federal Register image host. A reviewed graphic
+transcription manifest binds normalized formula text to the exact image
+SHA-256; formulas without a transcription remain explicit source-asset markers
+instead of disappearing from the provision body.
 
 ## Federal Register Activity
 

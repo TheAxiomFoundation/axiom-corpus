@@ -6,21 +6,25 @@
     },
     {
       "path": "data/corpus/inventory/us-sc/manual/2026-05-27-sc-snap-manual.json",
-      "sha256": "109a160d9948e76564689bf3c612857c32a6683ef2efa631f06679ba4112a806"
+      "sha256": "3250d2889277ef6025db98fd39f8dfdb34d18647ca6722073806fc5c605e7818"
     },
     {
       "path": "data/corpus/provisions/us-sc/manual/2026-05-27-sc-snap-manual.jsonl",
       "sha256": "c21539d472ea105695da5e007b24839b5f4e8cea9f4e6066a933e6d3817a8e13"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/manual/2026-05-27-sc-snap-manual/official-documents/sc-dss-snap-policy-manual-vol-69.pdf",
+      "sha256": "e294a0a4bd6090341c37506cb128d4f0a1b7a1e66406913e0c48f909f480c26f"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "87633b306587c627324758d035ff4cd895fdf140",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-05-27-sc-snap-manual --manifest manifests/us-sc-snap-manual.yaml"
   },
   "coverage": {
     "complete": true,
@@ -31,14 +35,14 @@
     "source_count": 460
   },
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:42.941057+00:00",
+  "generated_at": "2026-07-15T15:33:28.508018+00:00",
   "jurisdiction": "us-sc",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Efj4nHmvhzzBe3k1JV6NmJfcIWztaQpm5zL1CChK5nDNgDFl0QUbKL27YCw86SbbkKpw9EX8PCogZ0hxSl2RAg=="
+    "value": "7PuYkoFKVgkGcApDpSLZbvWBCt9hIZ10mkxcmjiTCe44ioep9uF6OEdWMeB/x9KxkJ0vmSMAUxxkR+bp0r3NDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-sc-snap-manual"
