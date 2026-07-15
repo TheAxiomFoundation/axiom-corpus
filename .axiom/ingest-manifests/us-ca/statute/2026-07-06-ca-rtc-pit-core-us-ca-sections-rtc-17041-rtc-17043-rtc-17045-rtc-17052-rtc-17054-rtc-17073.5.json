@@ -38,13 +38,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "8e48989c9e46faa6d85a9624b7a2ebda0880656d",
+    "commit": "e02ba2c84316e515f7d2fd59d8d78f13b23ef3b4",
     "dirty_tracked": false,
-    "root": "/Users/maxghenis/_axiom-worktrees/statetax-cany-20260706/ca/axiom-corpus"
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-california-code-sections --base data/corpus --version 2026-07-06-ca-rtc-pit-core --source-as-of 2026-07-06 --expression-date 2026-07-06 --download-dir output/downloads --section RTC:17041 --section RTC:17043 --section RTC:17045 --section RTC:17052 --section RTC:17054 --section RTC:17073.5"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -55,10 +55,15 @@
     "source_count": 6
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T18:58:20.581579+00:00",
+  "generated_at": "2026-07-15T19:51:39.937073+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UYxzrJjTt+RX/8qlwSh5qOOGcHvAlTgfQPxRtUiZAFekiKzxiA0n536rRVxyEhxH8avbhKnGzg2k20BHFe58AA=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-06-ca-rtc-pit-core-us-ca-sections-rtc-17041-rtc-17043-rtc-17045-rtc-17052-rtc-17054-rtc-17073.5"
 }
