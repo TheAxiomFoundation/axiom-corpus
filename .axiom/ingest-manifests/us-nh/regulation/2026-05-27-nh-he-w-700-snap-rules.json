@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "32f6e1d985bcd0a41e46b6bf3b81937a1044d4cf",
+    "commit": "cc58f9ae48327d70058222c5f5966c01955398fd",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,10 +39,15 @@
     "source_count": 54
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T18:57:33.159695+00:00",
+  "generated_at": "2026-07-15T19:51:05.101940+00:00",
   "jurisdiction": "us-nh",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nnMM4zMHPBhnWS7/NjbXE72aII1kuSmdj8UHXPUGqVsd+ode/TqGpedhODsJvYxLc6mAyDduFiDZxgqJLikvAg=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-nh-he-w-700-snap-rules"
 }
