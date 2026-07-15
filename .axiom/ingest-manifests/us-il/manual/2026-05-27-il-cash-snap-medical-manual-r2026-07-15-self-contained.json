@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "aa7c6ca7ad163d8d6f6a0a7531a130cf138c29c0",
+    "commit": "272897fa558241670dda45af35d361d1dd376783",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,10 +39,15 @@
     "source_count": 12450
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T19:51:00.465562+00:00",
+  "generated_at": "2026-07-15T22:26:21.385877+00:00",
   "jurisdiction": "us-il",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "10WkVkdq+mUL5CVb8EZ8rKGGPNuJsEGtXQ2bRRGlyD8FkAnEakQhA4fWwREfpKvJeb4PuIZUOl15W/twBh8SDA=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained"
 }
