@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "01261abdcde5305d52bc9cad562a237a81e6b00c",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+    "commit": "f2eee0499f599157d9e13f1cf74edfc1848de876",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-06-26-medicaid --source-xml official Online@119-59 usc42.xml --title 42 --source-as-of 2025-12-08 --expression-date 2025-12-08 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/59/xml_usc42@119-59.zip --citation-path existing Medicaid scope plus us/statute/42/1396b/f"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -35,15 +35,15 @@
     "source_count": 112
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T18:58:20.472170+00:00",
+  "generated_at": "2026-07-15T19:51:37.362719+00:00",
   "jurisdiction": "us",
-  "reasoning_logs": [
-    {
-      "path": ".axiom/reasoning-logs/us-statute-2026-06-26-medicaid-title-xix.md",
-      "sha256": "3e22dc12aa041f09eaa5a48f1ebf501685df5af510ce655f058ecf64ca35af6c"
-    }
-  ],
+  "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UnbABMrOIiRtb8yNDQr1aHovXvNrpkhkUpq3dFKnotRChGYCTHYMfEGP4Ih8DlchPdYhqKBc1v0+9aQ0Y4btAQ=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-26-medicaid-title-42"
 }
