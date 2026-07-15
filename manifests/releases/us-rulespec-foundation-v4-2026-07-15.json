@@ -1,0 +1,311 @@
+{
+  "description": "Publication-safe United States RuleSpec corpus foundation across 61 federal and state tax and benefit scopes, adding the CMS Medicaid/CHIP/BHP eligibility table to the v3 foundation.",
+  "name": "us-rulespec-foundation-v4-2026-07-15",
+  "scopes": [
+    {
+      "document_class": "form",
+      "jurisdiction": "us",
+      "version": "2026-05-12-cms-medicaid-chip-bhp-eligibility-levels"
+    },
+    {
+      "document_class": "form",
+      "jurisdiction": "us",
+      "version": "2026-07-05-cms-chip-children-coverage-map"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-03-10-cms-original-medicare-part-a-b"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-07-03-dc-ossp-ssa-poms"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-07-05-ssa-cola-2026"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "us",
+      "version": "2026-07-05-cms-chip-fcep-spa"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-06-15-title-7-part-275"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-06-24-title-45-part-1302"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-07-15-title-7-part-273"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-05-oasdi-title-ii-title-42"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-ak",
+      "version": "2026-06-30-ak-apa-standards-ak-dpa-apa-standards-2026"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-ak",
+      "version": "2026-07-01-ak-atap-standards"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ak",
+      "version": "2026-07-01-ak-atap-regulations"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "us-al",
+      "version": "2026-07-02-al-tanf-official-documents"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-al",
+      "version": "2026-06-30-al-admin-code-660-2-4"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-al",
+      "version": "2026-07-02-al-admin-code-660-2-2"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-al",
+      "version": "2026-07-02-us-al-title-38"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "us-ar",
+      "version": "2026-07-02-ar-tea-official-documents"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-06-25-az-ccap"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-07-12-az-des-faa6-utility-amounts"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-az",
+      "version": "2026-06-25-az-aac-title-6-chapter-5-article-49"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-ca",
+      "version": "2026-06-24-ca-cdss-calworks-acl"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-ca",
+      "version": "2026-06-27-ca-dor-ssi-ssp-newsletter"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ca",
+      "version": "2026-06-27-ca-capi-regulations"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-co",
+      "version": "2026-07-12-crs-2025-title-39-article-22"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "us-ct",
+      "version": "2026-07-02-ct-ssp-upm-and-standards"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-dc",
+      "version": "2026-05-19-title-4"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-de",
+      "version": "2026-07-03-de-ssi-state-supplement-poms"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-de",
+      "version": "2026-07-03-de-dssm-13000"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-de",
+      "version": "2026-07-03-de-tanf-rules"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-de",
+      "version": "2026-07-04-us-de-title-31-chapter-5"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-ga",
+      "version": "2026-06-25-ga-tanf"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-ga",
+      "version": "2026-06-24-ga-ssp"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-ga",
+      "version": "2026-06-25-ga-caps"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-ga",
+      "version": "2026-06-25-ga-tanf"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ia",
+      "version": "2026-07-03-ia-fip-admin-rules"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-id",
+      "version": "2026-07-04-id-aabd-rules"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-in",
+      "version": "2026-07-04-in-ssp-sapn"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-ks",
+      "version": "2026-07-04-ks-sspp-guidance"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-ks",
+      "version": "2026-07-04-ks-sspp-statute"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ma",
+      "version": "2026-06-27-ma-tafdc-regulations"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-md",
+      "version": "2026-07-05-md-tca-2026-guidance"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-md",
+      "version": "2026-07-05-md-tca-guidance"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us-md",
+      "version": "2026-07-12-md-fia-snap-fy2026"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-md",
+      "version": "2026-07-03-md-tca-statutes"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-me",
+      "version": "2026-07-03-me-tanf-regulation"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-me",
+      "version": "2026-07-03-me-tanf-rule-125a"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-me",
+      "version": "2026-07-03-me-tanf-statute"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-mi",
+      "version": "2026-06-27-mi-mdhhs-rft-248"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-mn",
+      "version": "2026-06-27-mn-dhs-msa-revised-sections-2026-01"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-nc",
+      "version": "2026-07-03-nc-work-first-manual"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-ny",
+      "version": "2026-06-05-nyc-admin-code"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-sc",
+      "version": "2026-05-27-sc-snap-manual"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-tx",
+      "version": "2026-07-13-tx-twh-c120"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ut",
+      "version": "2026-07-02-ut-fep-official-documents"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ut",
+      "version": "2026-07-04-ut-fep-r986-239"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-wa",
+      "version": "2026-06-25-388-400"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-wa",
+      "version": "2026-06-25-388-424"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-wa",
+      "version": "2026-06-25-388-450"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-wa",
+      "version": "2026-06-25-388-470"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-wa",
+      "version": "2026-06-25-388-478"
+    }
+  ]
+}
