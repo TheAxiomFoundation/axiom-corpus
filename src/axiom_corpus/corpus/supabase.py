@@ -1271,9 +1271,6 @@ def load_provisions_to_supabase(
         rest_url=rest_url,
     )
     if plan.conflicts:
-        import json as _json, os as _os
-        if _os.environ.get("AXIOM_DUMP_CONFLICTS"):
-            _json.dump(plan.conflicts, open(_os.environ["AXIOM_DUMP_CONFLICTS"], "w"), default=str)
         raise ProvisionStagingConflictError(plan.conflicts)
 
     if progress_stream is not None and (
