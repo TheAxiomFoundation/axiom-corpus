@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "8d833126621cbece89528ce03a3b1b9cd160365b",
+    "commit": "0e5eed29fb129a63a4b9538c985439f2c6fe6ee9",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,10 +39,15 @@
     "source_count": 37
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-15T19:50:48.732124+00:00",
+  "generated_at": "2026-07-15T22:26:09.254157+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "k4zq9OMpH1V6PKDiBJcT8Qul42m/2RPMGSxAs/Pd1cilZj06FTrF1qhBQfegwYO97Kf8Dg2jdDR97riD/lc+Cw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained"
 }
