@@ -49,6 +49,10 @@ jobs:
 
       - uses: actions/checkout@v6.0.2
 
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.14"
+
       # Dependencies are installed BEFORE any secret enters the environment.
       - name: Install verifier and client (no secrets in env)
         run: |
