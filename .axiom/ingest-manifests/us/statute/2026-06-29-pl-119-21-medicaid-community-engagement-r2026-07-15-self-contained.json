@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "d34567910e0626f83071e5fc71c0ea2330f49a9b",
+    "commit": "91d9873cfa4c941d7dd48afd7259c01a6c0caf78",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,10 +35,15 @@
     "source_count": 12
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T19:51:38.064317+00:00",
+  "generated_at": "2026-07-15T22:26:13.376663+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jXgFGymvli1gDMNfTQ+zF+GGI2Vrcg9fACKeDTAoKzbNiI+p4uKfqou9zVf+CihQbtAsem4VUJYM92W1pxujBQ=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-29-pl-119-21-medicaid-community-engagement-r2026-07-15-self-contained"
 }
