@@ -104,7 +104,7 @@ sign_scope us-ny statute 2026-07-13-recovery
 sign_scope us-oh statute 2026-07-13-recovery
 sign_scope us-or statute 2026-07-13-recovery
 sign_scope us-ri statute 2026-07-13-recovery
-sign_scope us-sc manual 2026-05-27-sc-snap-manual
+sign_scope us-sc manual 2026-05-27-sc-snap-manual-r2026-07-15b
 sign_scope us-sc manual 2026-07-13-recovery
 sign_scope us-sc regulation 2026-05-29
 sign_scope us-sc regulation 2026-07-13-recovery
