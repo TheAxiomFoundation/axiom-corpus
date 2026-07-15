@@ -878,32 +878,32 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ed8464a37dc9299c6bf306ea44434207a6538efd",
+    "commit": "65811a6edc008b7a7d42bded786763658316ecf5",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/slim_us_recovery_statutes.py"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
-    "document_class": "statute",
-    "duplicate_provision_citations": [],
-    "duplicate_source_citations": [],
-    "extra_provisions": [],
-    "jurisdiction": "us",
+    "extra_count": 0,
     "matched_count": 2454,
-    "missing_from_provisions": [],
+    "missing_count": 0,
     "provision_count": 2454,
-    "source_count": 2454,
-    "version": "2026-07-13-recovery"
+    "source_count": 2454
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T19:01:17.729094+00:00",
+  "generated_at": "2026-07-15T19:50:53.961226+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "blmYbLoJ86DZa2yOXZMcVDKlpDxN+LyfoyBBSn950jrPcUG97alhIzM8ubE7RBniItNvqvcfX+5Qrpe+bDgNDw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
 }
