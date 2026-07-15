@@ -14,7 +14,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f56ce69781b8b98474641445e85b9b63c1cebd43",
+    "commit": "57eb5709f78a32b93be53b9df39d03e378557314",
     "dirty_tracked": false,
     "root": "."
   },
@@ -31,10 +31,15 @@
     "source_count": 789
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T13:35:56.385339+00:00",
+  "generated_at": "2026-07-15T19:51:42.267709+00:00",
   "jurisdiction": "us-ma",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1tf4+K5epd0wdlRIaSJqYbOcKdKfXWUzdlPbubnFnna0gaJMvVFX5JD+I5/C9i2yeYSALkxhf+hoCn7El6/uBQ=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-28"
 }
