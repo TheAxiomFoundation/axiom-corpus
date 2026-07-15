@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-07-15-title-7-part-273.json",
+      "sha256": "564bc272cb25d5c9697a535f792baa43fb59792938aebeec748cd9e7791a6c23"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-07-15-title-7-part-273.json",
+      "sha256": "83613dcc1d5c843d67e8d2d86759cdd89445b0b67ff1348b96ab0777d9f58746"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-07-15-title-7-part-273.jsonl",
+      "sha256": "57dd752844884c36999ff701c1057406a026b57be44d144dc484fdfbed56b9c9"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-15-title-7-part-273/ecfr/graphics/ER07OC94.022.png",
+      "sha256": "bd37eea051d5b7ac89f17200c3e93102d125311d6862204cf595e848ddcbc43c"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-15-title-7-part-273/ecfr/graphics/ER25SE06.014.png",
+      "sha256": "a77d1df4914b5189bc69e3be52cea31dd67e2fde1aa82f870ead45130ad82332"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-15-title-7-part-273/ecfr/graphics/ER25SE06.015.png",
+      "sha256": "aab36ac9452bbc9f98f6bf43d4efa25d11a453b4244ccf9091a941b0df13914c"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-15-title-7-part-273/ecfr/graphics/transcriptions.json",
+      "sha256": "6a50cf01b016379d208459d359aa1c960ffb51e83402e41fc0f9ee233c6ae446"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-15-title-7-part-273/ecfr/title-7-part-273.xml",
+      "sha256": "92d5f3baba66e0f7f8ba2a2887a2a664166fcc0deb275b1b143a7ca23a4114a6"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-07-15-title-7-part-273/ecfr/title-7.structure.json",
+      "sha256": "9e8f6995adf1d65a04053d6892d694ab81a37fc39556b1d0f5b4f8ad8e3af093"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "55b4908ce4d22b3c090ec665f0051590b3b14ce6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-ecfr --base data/corpus --version 2026-07-15 --as-of 2026-07-09 --expression-date 2026-07-09 --only-title 7 --only-part 273 --workers 1 --graphic-transcriptions manifests/us-snap-ecfr-graphic-transcriptions.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 39,
+    "missing_count": 0,
+    "provision_count": 39,
+    "source_count": 39
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T15:33:43.517352+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/d40jA7cH/iEV0qKMnUd1LUlQJo4ogbdK/YzbmgGblGUHLOYoeplB1kQei9hWLx3u+1ZALA6HkhedyK37my8Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-15-title-7-part-273"
+}
