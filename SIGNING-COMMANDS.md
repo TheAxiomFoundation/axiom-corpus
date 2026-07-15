@@ -46,6 +46,7 @@ sign_scope us-ca guidance 2026-07-13-recovery
 sign_scope us-ca regulation 2026-07-13-recovery
 sign_scope us-ca statute 2026-07-13-recovery
 sign_scope us-co regulation 2026-04-29-10-ccr-2506-1
+sign_scope us-co regulation 2026-06-19-co-oap-9-ccr-2503-5
 sign_scope us-co regulation 2026-07-13-recovery
 sign_scope us-ct statute 2026-07-13-recovery
 sign_scope us-dc statute 2026-07-13-recovery
