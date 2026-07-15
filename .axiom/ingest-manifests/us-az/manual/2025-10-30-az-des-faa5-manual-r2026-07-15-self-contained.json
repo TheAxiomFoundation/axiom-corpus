@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "49d7b14bf954dcbf9a6ebcb057431c2d612c73d3",
+    "commit": "c87c88614e28357f3beba0671c1f2ccc4eb43aca",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,10 +39,15 @@
     "source_count": 7
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T18:51:47.587235+00:00",
+  "generated_at": "2026-07-15T22:26:16.260951+00:00",
   "jurisdiction": "us-az",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "v0NK20zpjKhUuOpwDPpWnKhoS+ljqW4oi2E5G4TXZCU0ViFSmNF4+YxAcLbbOsx41xoR31KNOACO1fG2oHbIDw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained"
 }
