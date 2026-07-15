@@ -1,0 +1,141 @@
+name: Mirror release object to public bucket
+
+# The consumer-facing fetch (shared validate-rulespec workflow) reads release
+# objects from the dedicated public bucket (axiom-corpus-releases, interim
+# r2.dev domain). publish.yml validates, signs, and activates into the
+# canonical bucket but does not mirror — the 2026-07-12 objects were mirrored
+# manually. This dispatch-only workflow copies an EXISTING canonical release
+# object canonical -> public. Before any write it runs the repository's own
+# verifier (verify_release_object: schema, recomputed content address,
+# attestation, Ed25519 signature against the org trust root) — a tampered,
+# unsigned, or staged object cannot be mirrored. Public keys are immutable:
+# an existing destination must be byte-identical or the run fails.
+#
+# HARDENING NOTE (for the repo owner): move the R2_* secrets into the
+# `release-mirror` environment below and restrict it to the default branch
+# with required reviewers. Until then this workflow's secret exposure equals
+# publish.yml's (any write-collaborator dispatch of a modified ref).
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Release name (e.g. uk-rulespec-2026-07-14)
+        required: true
+        type: string
+      content-sha256:
+        description: The release object's content_sha256 (object key component)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    environment: release-mirror
+    env:
+      RELEASE_NAME: ${{ inputs.release }}
+      CONTENT_SHA: ${{ inputs.content-sha256 }}
+      R2_PUBLIC_BUCKET: axiom-corpus-releases
+      PUBLIC_BASE_URL: https://pub-a8952f8657fc49fda358146ac001366c.r2.dev
+    steps:
+      - name: Validate inputs
+        run: |
+          set -euo pipefail
+          [[ "$CONTENT_SHA" =~ ^[0-9a-f]{64}$ ]] || { echo "::error::content-sha256 must be 64 lowercase hex chars."; exit 1; }
+          [[ "$RELEASE_NAME" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] || { echo "::error::release must be lowercase alnum segments separated by single hyphens."; exit 1; }
+          [ "${#RELEASE_NAME}" -le 128 ] || { echo "::error::release name too long."; exit 1; }
+
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.14"
+
+      # Dependencies are installed BEFORE any secret enters the environment.
+      - name: Install verifier and client (no secrets in env)
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet 'boto3==1.40.11'
+          python -m pip install --quiet -e .
+
+      - name: Verify canonical object and mirror to public bucket
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          RELEASE_TRUST_ROOT: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+        run: |
+          set -euo pipefail
+          for var in R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_ENDPOINT R2_BUCKET RELEASE_TRUST_ROOT; do
+            if [ -z "${!var}" ]; then echo "::error::$var is not set."; exit 1; fi
+          done
+          python - <<'PY'
+          import hashlib, json, os, sys
+          import boto3
+          from botocore.exceptions import ClientError
+          from axiom_corpus.release.manifest import verify_release_object, ReleaseManifestError
+
+          name, sha = os.environ["RELEASE_NAME"], os.environ["CONTENT_SHA"]
+          key = f"releases/{name}/{sha}.json"
+          src, dst = os.environ["R2_BUCKET"], os.environ["R2_PUBLIC_BUCKET"]
+          s3 = boto3.client("s3", endpoint_url=os.environ["R2_ENDPOINT"],
+                            aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],
+                            aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"])
+
+          body = s3.get_object(Bucket=src, Key=key)["Body"].read()
+          payload = json.loads(body)
+          if payload.get("release") != name:
+              sys.exit("canonical object release name mismatch")
+          if payload.get("content_sha256") != sha:
+              sys.exit("canonical object content_sha256 field mismatch with requested key")
+          try:
+              verify_release_object(payload, public_key=os.environ["RELEASE_TRUST_ROOT"])
+          except ReleaseManifestError as exc:
+              sys.exit(f"canonical object failed full verification; refusing to mirror: {exc}")
+
+          canonical_digest = hashlib.sha256(body).hexdigest()
+          try:
+              s3.put_object(Bucket=dst, Key=key, Body=body,
+                            ContentType="application/json", IfNoneMatch="*")
+              print(f"mirrored {key}: {len(body)} bytes (conditional create)")
+          except ClientError as exc:
+              code = exc.response.get("Error", {}).get("Code", "")
+              if code not in ("PreconditionFailed", "412"):
+                  raise
+              existing = s3.get_object(Bucket=dst, Key=key)["Body"].read()
+              if hashlib.sha256(existing).hexdigest() != canonical_digest:
+                  sys.exit("destination exists with DIFFERENT bytes; public release keys are immutable — refusing to overwrite")
+              print(f"{key} already mirrored byte-identically; nothing to do")
+
+          back = s3.get_object(Bucket=dst, Key=key)["Body"].read()
+          if hashlib.sha256(back).hexdigest() != canonical_digest:
+              sys.exit("public readback bytes differ from canonical")
+          print("readback verified byte-identical")
+          PY
+
+      # No secrets in env for the public probe.
+      - name: Verify public availability and byte identity
+        run: |
+          set -euo pipefail
+          url="$PUBLIC_BASE_URL/releases/$RELEASE_NAME/$CONTENT_SHA.json"
+          ok=""
+          for i in 1 2 3 4 5 6; do
+            code=$(curl -s -o /tmp/public-object.json -w '%{http_code}' "$url" || echo 000)
+            if [ "$code" = "200" ]; then ok=1; break; fi
+            sleep 5
+          done
+          [ -n "$ok" ] || { echo "::error::public URL returns $code: $url"; exit 1; }
+          python - <<'PY'
+          import hashlib, json, os, sys
+          data = open("/tmp/public-object.json", "rb").read()
+          payload = json.loads(data)
+          if payload.get("release") != os.environ["RELEASE_NAME"]:
+              sys.exit("public object release name mismatch")
+          if payload.get("content_sha256") != os.environ["CONTENT_SHA"]:
+              sys.exit("public object content_sha256 mismatch")
+          print(f"public fetch OK and self-consistent ({len(data)} bytes, sha256 {hashlib.sha256(data).hexdigest()[:16]}…)")
+          PY
