@@ -1,0 +1,82 @@
+name: Mirror release object to public bucket
+
+# The consumer-facing fetch (shared validate-rulespec workflow) reads release
+# objects from the dedicated public bucket (axiom-corpus-releases, served at
+# the interim r2.dev domain). publish.yml validates, signs, and activates into
+# the canonical bucket but has never mirrored to the public one — the
+# 2026-07-12 objects were mirrored manually. This workflow makes the mirror
+# step explicit and idempotent: it copies an EXISTING, already-activated
+# release object canonical -> public, verifying the canonical bytes' content
+# hash against the requested sha before writing. It cannot create, sign, or
+# activate anything.
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Release name (e.g. uk-rulespec-2026-07-14)
+        required: true
+        type: string
+      content-sha256:
+        description: The release object's content_sha256 (object key component)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    env:
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+      R2_PUBLIC_BUCKET: axiom-corpus-releases
+      RELEASE_NAME: ${{ inputs.release }}
+      CONTENT_SHA: ${{ inputs.content-sha256 }}
+    steps:
+      - name: Require R2 credentials
+        run: |
+          set -euo pipefail
+          for var in R2_ACCOUNT_ID R2_ACCESS_KEY_ID R2_SECRET_ACCESS_KEY R2_ENDPOINT R2_BUCKET; do
+            if [ -z "${!var}" ]; then echo "::error::$var is not set."; exit 1; fi
+          done
+      - name: Copy canonical release object to the public bucket
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet boto3
+          python - <<'PY'
+          import boto3, hashlib, json, os, sys
+          endpoint = os.environ["R2_ENDPOINT"]
+          s3 = boto3.client("s3", endpoint_url=endpoint,
+                            aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],
+                            aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"])
+          name, sha = os.environ["RELEASE_NAME"], os.environ["CONTENT_SHA"]
+          key = f"releases/{name}/{sha}.json"
+          src, dst = os.environ["R2_BUCKET"], os.environ["R2_PUBLIC_BUCKET"]
+          body = s3.get_object(Bucket=src, Key=key)["Body"].read()
+          payload = json.loads(body)
+          if payload.get("release") != name:
+              sys.exit(f"canonical object release name mismatch: {payload.get('release')!r}")
+          if payload.get("content_sha256") != sha:
+              sys.exit("canonical object content_sha256 mismatch with requested key")
+          if "signature" not in payload:
+              sys.exit("canonical object carries no signature block; refusing to mirror")
+          s3.put_object(Bucket=dst, Key=key, Body=body, ContentType="application/json")
+          back = s3.get_object(Bucket=dst, Key=key)["Body"].read()
+          if hashlib.sha256(back).hexdigest() != hashlib.sha256(body).hexdigest():
+              sys.exit("public readback bytes differ from canonical")
+          print(f"mirrored {key}: {len(body)} bytes, readback verified")
+          PY
+      - name: Verify public availability
+        run: |
+          set -euo pipefail
+          url="https://pub-a8952f8657fc49fda358146ac001366c.r2.dev/releases/$RELEASE_NAME/$CONTENT_SHA.json"
+          for i in 1 2 3 4 5; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$url")
+            [ "$code" = "200" ] && { echo "public fetch OK: $url"; exit 0; }
+            sleep 5
+          done
+          echo "::error::public URL still returns $code after mirroring: $url"; exit 1
