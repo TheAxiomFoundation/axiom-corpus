@@ -1,0 +1,37 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/inventory/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.json",
+      "sha256": "347355fe19c667cadd78e5b9754539a1e6ab0488edc6f7b50da96030cba38584"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "da6e4b3f42abc2d5b4e613a7ec60fbce292fc70e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Repair inventory SHA-256 pins to match the tracked official CMS HTML source without changing source or provision bytes"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-15T20:34:54.544945+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Bn+tvYaniBKzFyA9tmPSI0zqrQQOd3Lh4ft/g7+/O1vvY1pZOOkopKaqHtJ6iQ4G/0ENGUa9sUdXrqHnOkU5Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-12-cms-medicaid-chip-bhp-eligibility-levels"
+}
