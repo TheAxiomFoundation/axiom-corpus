@@ -184,3 +184,19 @@ sources:
     metadata:
       source_authority: Indiana General Assembly
       source_scope_note: 2025 Indiana Code title 6 from the official IGA HTML release.
+
+  - source_id: us-wa-rcw
+    jurisdiction: us-wa
+    document_class: statute
+    adapter: washington-rcw
+    source_url: https://app.leg.wa.gov/RCW/default.aspx
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-wa-rcw/2026-07-16-pit-central
+      only_title: "82.87"
+      workers: 4
+    metadata:
+      source_authority: Washington State Legislature / Office of the Code Reviser
+      source_scope_note: Current Revised Code of Washington chapter 82.87 from the official Legislature HTML, including 2025 capital-gains amendments and 2026 chapter 191 effective June 11, 2026.
