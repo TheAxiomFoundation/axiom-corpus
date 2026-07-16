@@ -1,0 +1,110 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ga/manual/2026-07-13-recovery.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ga/manual/2026-07-13-recovery.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ga/manual/2026-07-13-recovery.jsonl"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/release-scope-us-ga-manual-2026-05-27-ga-snap-manual"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/us-ga-dfcs-medicaid"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/us-ga-dfcs-snap"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/us-ga-dfcs-snap-p2"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/us-ga-dfcs-snap-p3"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/us-ga-dfcs-snap-p4"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/us-ga-dfcs-snap-p5"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/us-ga-dfcs-snap-p6"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/us-ga-dfcs-snap-p7"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/provenance/release-scope-us-ga-manual-2026-05-27-ga-snap-manual.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/provenance/us-ga-dfcs-medicaid.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/provenance/us-ga-dfcs-snap-p2.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/provenance/us-ga-dfcs-snap-p3.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/provenance/us-ga-dfcs-snap-p4.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/provenance/us-ga-dfcs-snap-p5.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/provenance/us-ga-dfcs-snap-p6.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/provenance/us-ga-dfcs-snap-p7.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/provenance/us-ga-dfcs-snap.json"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "cdf7ccc6cf13fbe783e424361ecb9d7f8d238524",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
+  },
+  "coverage": null,
+  "document_class": "manual",
+  "generated_at": "2026-07-16T22:17:15.303160+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "HRlmXXHN4yf9LUS2ueiJCtZNDGVJsTKCMbkrqMfUbGDD16FaopSwykMWAscrOWnDueqHM0yTnHEzKxcsoNjcDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}
