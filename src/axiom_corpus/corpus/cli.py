@@ -184,6 +184,7 @@ from axiom_corpus.corpus.state_adapters.new_york import (
     extract_new_york_openleg_api,
     extract_new_york_openleg_sections,
 )
+from axiom_corpus.corpus.state_adapters.north_dakota import extract_north_dakota_code
 from axiom_corpus.corpus.state_adapters.nyc_admin_code import extract_nyc_admin_code
 from axiom_corpus.corpus.state_adapters.oklahoma import extract_oklahoma_statutes
 from axiom_corpus.corpus.state_adapters.oregon import (
@@ -3032,6 +3033,34 @@ def _extract_state_statute_source(
             workers=_optional_int(options.get("workers")) or 8,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
         )
+    if adapter == "north-dakota-code":
+        return extract_north_dakota_code(
+            store,
+            version=version,
+            source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            only_title=only_title,
+            limit=limit,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            code_index_url=_optional_text(options.get("code_index_url"))
+            or "https://ndlegis.gov/cencode/t57c38.html",
+            code_pdf_url=_optional_text(options.get("code_pdf_url"))
+            or "https://ndlegis.gov/cencode/t57c38.pdf",
+            individual_schedule_url=_optional_text(options.get("individual_schedule_url"))
+            or (
+                "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/"
+                "2025-iit/28709-form-nd-1es-2026.pdf"
+            ),
+            fiduciary_schedule_url=_optional_text(options.get("fiduciary_schedule_url"))
+            or (
+                "https://www.tax.nd.gov/sites/www/files/documents/forms/business/fiduciary/"
+                "2025-fiduciary/28723-form-38-es-2026.pdf"
+            ),
+            tax_year=_optional_int(options.get("tax_year")) or 2026,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+        )
     if adapter == "new-york-consolidated-laws":
         return extract_new_york_consolidated_laws(
             store,
@@ -3418,6 +3447,11 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "new-jersey-statutes-text": "new-jersey-statutes",
         "nj-statutes": "new-jersey-statutes",
         "njsa": "new-jersey-statutes",
+        "nd": "north-dakota-code",
+        "north-dakota": "north-dakota-code",
+        "north-dakota-code": "north-dakota-code",
+        "north-dakota-century-code": "north-dakota-code",
+        "ndcc": "north-dakota-code",
         "ok": "oklahoma-statutes",
         "oklahoma": "oklahoma-statutes",
         "oklahoma-statutes": "oklahoma-statutes",
@@ -3562,6 +3596,7 @@ def _state_statute_source_path_for_plan(
         "nevada-nrs",
         "new-hampshire-rsa",
         "new-jersey-statutes",
+        "north-dakota-code",
         "oklahoma-statutes",
         "south-dakota-codified-laws",
         "utah-code",

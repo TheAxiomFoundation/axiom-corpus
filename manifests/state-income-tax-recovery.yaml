@@ -200,3 +200,25 @@ sources:
     metadata:
       source_authority: Washington State Legislature / Office of the Code Reviser
       source_scope_note: Current Revised Code of Washington chapter 82.87 from the official Legislature HTML, including 2025 capital-gains amendments and 2026 chapter 191 effective June 11, 2026.
+
+  - source_id: us-nd-century-code
+    jurisdiction: us-nd
+    document_class: statute
+    adapter: north-dakota-code
+    source_url: https://ndlegis.gov/cencode/t57c38.html
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-nd-century-code/2026-07-16-pit-central
+      only_title: "57-38"
+      code_index_url: https://ndlegis.gov/cencode/t57c38.html
+      code_pdf_url: https://ndlegis.gov/cencode/t57c38.pdf
+      individual_schedule_url: https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/28709-form-nd-1es-2026.pdf
+      fiduciary_schedule_url: https://www.tax.nd.gov/sites/www/files/documents/forms/business/fiduciary/2025-fiduciary/28723-form-38-es-2026.pdf
+      tax_year: 2026
+      timeout_seconds: 90
+      request_attempts: 3
+    metadata:
+      source_authority: North Dakota Legislative Council and Office of State Tax Commissioner
+      source_scope_note: Current North Dakota Century Code chapter 57-38 with the operative 2026 individual, estate, and trust rate schedules prescribed under N.D.C.C. section 57-38-30.3(1)(g) by the State Tax Commissioner.
