@@ -72,3 +72,22 @@ sources:
     metadata:
       source_authority: Kansas Office of Revisor of Statutes
       source_scope_note: Current Kansas Statutes chapter 79, article 32, Income Tax, from the official Revisor HTML, including K.S.A. 79-32,110 and the 2025 contingent rate-adjustment authority in K.S.A. 79-32,110c.
+
+  - source_id: us-pa-tax-reform-code-article-3
+    jurisdiction: us-pa
+    document_class: statute
+    adapter: pennsylvania-unconsolidated-statutes
+    source_url: https://www.palegis.us/statutes/unconsolidated/law-information?ActNum=2&SessInd=0&SessYr=1971
+    version: "2026-07-16-pit-west"
+    options:
+      act_year: 1971
+      act_number: 2
+      only_article: 3
+      source_as_of: "2025-05-29"
+      expression_date: "2025-05-29"
+      download_dir: ../data/corpus/downloads/us-pa-tax-reform-code/2026-07-16-pit-west
+      timeout_seconds: 120
+      request_attempts: 3
+    metadata:
+      source_authority: Pennsylvania General Assembly
+      source_scope_note: Official current-as-amended HTML for Article III, Personal Income Tax, of the unconsolidated Tax Reform Code of 1971; the source document reports revision on May 29, 2025, and section 302 was last amended by Act 64 of 2023.

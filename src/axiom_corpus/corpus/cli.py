@@ -192,6 +192,9 @@ from axiom_corpus.corpus.state_adapters.oregon import (
     extract_oregon_ors,
 )
 from axiom_corpus.corpus.state_adapters.pennsylvania import extract_pennsylvania_statutes
+from axiom_corpus.corpus.state_adapters.pennsylvania_unconsolidated import (
+    extract_pennsylvania_unconsolidated_statutes,
+)
 from axiom_corpus.corpus.state_adapters.rhode_island import (
     RHODE_ISLAND_GENERAL_LAWS_DEFAULT_YEAR,
     extract_rhode_island_general_laws,
@@ -3132,6 +3135,21 @@ def _extract_state_statute_source(
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 120.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
         )
+    if adapter == "pennsylvania-unconsolidated-statutes":
+        return extract_pennsylvania_unconsolidated_statutes(
+            store,
+            version=version,
+            act_year=_optional_int(options.get("act_year")) or 1971,
+            act_number=_optional_int(options.get("act_number")) or 2,
+            article=_optional_int(options.get("only_article")) or 3,
+            source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            limit=limit,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 120.0,
+        )
     if adapter == "south-carolina-code":
         return extract_south_carolina_code(
             store,
@@ -3507,6 +3525,9 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "pennsylvania-consolidated-statutes-html": "pennsylvania-statutes",
         "pacode": "pennsylvania-statutes",
         "pa-consolidated-statutes": "pennsylvania-statutes",
+        "pennsylvania-unconsolidated-statutes": "pennsylvania-unconsolidated-statutes",
+        "pennsylvania-unconsolidated-statutes-html": "pennsylvania-unconsolidated-statutes",
+        "pa-unconsolidated-statutes": "pennsylvania-unconsolidated-statutes",
         "sc": "south-carolina-code",
         "south-carolina": "south-carolina-code",
         "south-carolina-code": "south-carolina-code",
@@ -3607,6 +3628,7 @@ def _state_statute_source_path_for_plan(
         "delaware-code",
         "oregon-ors",
         "pennsylvania-statutes",
+        "pennsylvania-unconsolidated-statutes",
         "south-carolina-code",
         "west-virginia-code",
         "new-mexico-statutes",
