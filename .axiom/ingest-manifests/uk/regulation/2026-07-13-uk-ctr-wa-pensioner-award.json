@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award.jsonl",
-      "sha256": "8e366c526d234ac46498e3d6a2494cde3989d1a0f173bbc4bceacbc401e7c782"
+      "sha256": "c68be6ffe90e35208abe3c4a8593571a1d0b5fd261e324456fb4ed8a1f5b1913"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award/wsi/2013/3029/schedule-1-paragraph-1.xml",
@@ -34,13 +34,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "commit": "def9b01afad340815c1d622ef0c9e13a34119d14",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-wa-pensioner-award --citation wsi/2013/3029/schedule/1/paragraph/1 --citation wsi/2013/3029/schedule/1/paragraph/2 --citation wsi/2013/3029/schedule/1/paragraph/3 --citation wsi/2013/3029/schedule/1/paragraph/4 --citation wsi/2013/3029/schedule/1/paragraph/31"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -51,14 +51,14 @@
     "source_count": 5
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T01:38:50.499701+00:00",
+  "generated_at": "2026-07-16T18:42:26.355893+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "KlNRESAEl2bAfud3e6cxXb0jgS3ccHYA4UcJj7RCofs2lsxmTE3MPCBRxz3SM/AbVMksVtWXFVM5yaHOKyAtCQ=="
+    "value": "Kt0aqF1xmtwqlL4zFWTjDh4rDrtOgpLNxWKvuYB9FdludKjS4NBkT3vAKj78gp2OFs802lg6y0lpG597BLMLAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-wa-pensioner-award"

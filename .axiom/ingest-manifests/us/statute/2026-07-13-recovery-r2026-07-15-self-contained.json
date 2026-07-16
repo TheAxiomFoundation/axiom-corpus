@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/statute/2026-07-13-recovery-r2026-07-15-self-contained.json",
-      "sha256": "60102978b70d45a6d2c59ff552e47a6db60c49a105b6225f5e35cb6f9af54bd2"
+      "sha256": "7e9b872694602264cd0b3fc5d56741a0a3c752bb0304307dad5a11980524efb6"
     },
     {
       "path": "data/corpus/inventory/us/statute/2026-07-13-recovery-r2026-07-15-self-contained.json",
-      "sha256": "24a6e917971ca6f6a788adab468d36e02dc6fa009bc7cebe7f40d82a7ebf3a54"
+      "sha256": "ea2880e6c1d3b87458d57d6adcdf02f8e95876d75646796434b69f01a995d1b0"
     },
     {
       "path": "data/corpus/provisions/us/statute/2026-07-13-recovery-r2026-07-15-self-contained.jsonl",
-      "sha256": "1b0b185ca3335eb06c4fe10af488a8984bdd2cedd4087badf78583c267af7b7b"
+      "sha256": "a57fa0fa486616e9c93def5738b6b1504808b36740bb2d9287d178049b2a32ca"
     },
     {
       "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/release-scope-us-statute-2026-05-10-snap-sections",
@@ -878,7 +878,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "aef7225706451291d7d6d29d65a45d74bcee6d8a",
+    "commit": "cc922c31ca34c98f91c9683d183fc8123ed9bf3c",
     "dirty_tracked": false,
     "root": "."
   },
@@ -889,20 +889,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 2454,
+    "matched_count": 2453,
     "missing_count": 0,
-    "provision_count": 2454,
-    "source_count": 2454
+    "provision_count": 2453,
+    "source_count": 2453
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T22:26:14.522714+00:00",
+  "generated_at": "2026-07-16T18:18:21.030030+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Wy7chPG6V/MuVcYRuQS1LZK0Cg0JXjeC5l7d2vYj9k3GA4dDuo5/f41IC6RyTY0QpL67GKAE7ODhLyx28tCsBA=="
+    "value": "Wgc/bO3LmphrnX3VQPYyZHfJSIElLoC3aLzqSmuB6+q5loAuoQ0y8wb41t+mzkn/WSbEhgvg2DaK5fHVSebACw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery-r2026-07-15-self-contained"

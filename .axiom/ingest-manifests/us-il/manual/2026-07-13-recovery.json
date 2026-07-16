@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-il/manual/2026-07-13-recovery.json",
-      "sha256": "3d2b3a65344f1db0dd6ff5fd4ca41f0761a1553f927a981199384b77788b7ba0"
+      "sha256": "3132e4f68f3385a7a96dc34421b73be1f2c812fbf2f0217e428e35205bebbdad"
     },
     {
       "path": "data/corpus/inventory/us-il/manual/2026-07-13-recovery.json",
-      "sha256": "6e813a4b3a2c486a31b088c9a19aac0ba22bd364e97d887d1a33e276da6c6339"
+      "sha256": "b308f6a0c7b9f0d7d73ce8d7d4c7b6234075ab4c68e54449df699352c0eb65f9"
     },
     {
       "path": "data/corpus/provisions/us-il/manual/2026-07-13-recovery.jsonl",
-      "sha256": "7433f348f10850492715514e0a09ce008bdbc416f09980db52c6b0f89d90c8ef"
+      "sha256": "02a2d2f06e0461bdbd3958025ede8cf9e20948e22c09ab2c53fa73cd1a556814"
     },
     {
       "path": "data/corpus/sources/us-il/manual/2026-07-13-recovery/official-documents/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual",
@@ -30,7 +30,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "bd267ebf0daf8c4d3dea947796c08f34800e7087",
+    "commit": "b68bb9fa98cc127d1d141d9a3009ec8f5f4388ab",
     "dirty_tracked": false,
     "root": "."
   },
@@ -41,20 +41,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 7,
+    "matched_count": 5,
     "missing_count": 0,
-    "provision_count": 7,
-    "source_count": 7
+    "provision_count": 5,
+    "source_count": 5
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:43.686102+00:00",
+  "generated_at": "2026-07-16T18:18:23.091753+00:00",
   "jurisdiction": "us-il",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "G507NeT+wLckq3eNuOXNi+xNdxTmbXKpvktw2//pELv3nVIlXU1b2dUyA5E+9Y0m+IhS8ZRraGAhKEv04HHPAw=="
+    "value": "6kQpVptNKUQbk+9hhtSgNUR1NLx/5+W80/3XKlE+NDse2KUGDym1A/+r5LDOnHEr+XnvRsolKa4CluFU4JcOBg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"

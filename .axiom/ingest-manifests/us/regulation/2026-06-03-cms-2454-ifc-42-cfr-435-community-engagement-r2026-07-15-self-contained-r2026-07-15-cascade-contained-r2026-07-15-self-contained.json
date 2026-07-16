@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained.json",
-      "sha256": "fd107b8ccb79f6ba7387836ad0f0604a4830f7df1601c7f104f3ccd6a6db5f5c"
+      "sha256": "4236ce07db98af4b2eb974fcf934753c8f251ccfe176e579f6e1e8b4e8780219"
     },
     {
       "path": "data/corpus/inventory/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained.json",
-      "sha256": "22368332ff6068b3c9d2c8b02ce255a1c869c2f8087115024687be2ed6039c3f"
+      "sha256": "5b8e499b91e6b39e38ad927c4cb517d2183c67ebe075d9a8283cf5138149e742"
     },
     {
       "path": "data/corpus/provisions/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained.jsonl",
-      "sha256": "6235f02928e2397cd89e42c7ea3f0aa9bb9083174df2fa5e1b6d9f207a39116c"
+      "sha256": "086f7ae978f08a65ae4b0c955dff3192aa14711bfefe7620f799208917fb3d59"
     },
     {
       "path": "data/corpus/sources/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained/official-documents/release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained",
@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "eb94c6682ca3b1cf0b15a915acbe3d2b32d22271",
+    "commit": "e82919ed64527c435d365ba298e45ed3dcaab4b4",
     "dirty_tracked": false,
     "root": "."
   },
@@ -33,20 +33,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 15,
+    "matched_count": 14,
     "missing_count": 0,
-    "provision_count": 15,
-    "source_count": 15
+    "provision_count": 14,
+    "source_count": 14
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-16T01:02:06.158558+00:00",
+  "generated_at": "2026-07-16T18:18:15.072116+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "sX56W61hoVvJsx34ebTN5UkfXSWMrKu6nfddq2mLCjNv1cDMZqhk+IHJB7EamRqO+2jsi6uklKfwZho1DDYxCQ=="
+    "value": "eEL1GXPCSv/qS6/MP3uO8XiyHTR76r6vjkdTWvrlaI6ECEAhIXfUYi/HmQn/NWUXJT/agyRoqHYWnHxh/BsaAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained"

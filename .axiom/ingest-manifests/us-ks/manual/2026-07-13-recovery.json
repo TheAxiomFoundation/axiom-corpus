@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-ks/manual/2026-07-13-recovery.json",
-      "sha256": "2c1e697422792f4fd0000b4fa3587c0696e931f3cf7937597f0cae4340b43252"
+      "sha256": "2d0889f3286c4a1737562d64d142f05bba3f33c2c6d2bdecd08d684043269522"
     },
     {
       "path": "data/corpus/inventory/us-ks/manual/2026-07-13-recovery.json",
-      "sha256": "fa4d0a54ccdb2bddf2ec39b586a63d42064758728ac82e9a5e9fd50e43e0d81e"
+      "sha256": "43c591b976ca47186cc087a783253fe29d3f829380cf0dc23df07ef68a224429"
     },
     {
       "path": "data/corpus/provisions/us-ks/manual/2026-07-13-recovery.jsonl",
-      "sha256": "6a2ec6bf571612e10f89fc3283c7241ad128529959872310a60b51db2bf5941e"
+      "sha256": "36e257a8d64c57b7f07454918c72612c2e772710e20f3215437af55852b9ef27"
     },
     {
       "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/official-documents/release-scope-us-ks-manual-2026-05-27-ks-keesm",
@@ -30,7 +30,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "903a692d0834ae0996560377f7762280b8758073",
+    "commit": "7e52d6cefc4f958d21483216a2874325ef868f04",
     "dirty_tracked": false,
     "root": "."
   },
@@ -41,20 +41,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 4,
+    "matched_count": 2,
     "missing_count": 0,
-    "provision_count": 4,
-    "source_count": 4
+    "provision_count": 2,
+    "source_count": 2
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:47.529378+00:00",
+  "generated_at": "2026-07-16T18:18:23.767877+00:00",
   "jurisdiction": "us-ks",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "divR9Xuxyt62DRffwHKP0ptgTpGkvF96taR101iUidVo4MlmBOk7Mzw7NjCj+MnTEGJRbCLaZcGeWmjtbma8CQ=="
+    "value": "KxHw+8clykTPOSuKDywWi8OpO4jOSbU9O6K1RKgmWaRnGkYU4n42p2A81DJpLtTDAc4q7C8wjn5Y27s57VgpBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"

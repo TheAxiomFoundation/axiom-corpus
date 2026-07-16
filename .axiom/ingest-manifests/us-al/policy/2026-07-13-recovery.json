@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-al/policy/2026-07-13-recovery.json",
-      "sha256": "d6486cb3ada64fa4e85b5756585d792466af157f4122a32581e2939a7b2af290"
+      "sha256": "de93dbbbae6366fbc9c304208b41018bb58756bb0500badf7c3d9a78c24f200c"
     },
     {
       "path": "data/corpus/inventory/us-al/policy/2026-07-13-recovery.json",
-      "sha256": "28270db89adcda1e19df4b288a7a88c67b55e2938c4a3985351a501fd654e960"
+      "sha256": "0343639fac1511a32a4c9a92c7655a6e9f9ad3a600fc6f30b5bdad6806160a97"
     },
     {
       "path": "data/corpus/provisions/us-al/policy/2026-07-13-recovery.jsonl",
-      "sha256": "23b125112453f584973a681ef46d20bca11ccf219e717335c2964df707f8d1d5"
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "path": "data/corpus/sources/us-al/policy/2026-07-13-recovery/official-documents/us-al-tanf-state-plan",
@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "42f4d8f866ddd5c87e00e396ce0a5c7a980e7fdd",
+    "commit": "01b41870b3b5eb165d18babb9eea7333d1b73e46",
     "dirty_tracked": false,
     "root": "."
   },
@@ -31,22 +31,22 @@
     "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
-    "complete": true,
+    "complete": false,
     "extra_count": 0,
-    "matched_count": 29,
+    "matched_count": 0,
     "missing_count": 0,
-    "provision_count": 29,
-    "source_count": 29
+    "provision_count": 0,
+    "source_count": 0
   },
   "document_class": "policy",
-  "generated_at": "2026-07-15T15:18:25.480866+00:00",
+  "generated_at": "2026-07-16T18:18:21.758481+00:00",
   "jurisdiction": "us-al",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "xUnFLbOWiDgJ+8yt6yPnbseXBUl7P88b8ywpRtkNxw7pHb7wm0sz+wChJjLbRu2wKRTXaMd2HbE9XKsSLscODw=="
+    "value": "wBmv56JB+jUx61RYIcvPOgPXK9di711JTFeSqBu1rQd1mcHgrBjMat3x0FwLV6yAs1mu/bkkMH7sa0VWc4eiAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
