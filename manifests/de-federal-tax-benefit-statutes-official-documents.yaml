@@ -1,0 +1,210 @@
+# Germany (Bund) federal tax and social-benefit statutes captured from the
+# official Bundesministerium der Justiz portal gesetze-im-internet.de as
+# consolidated juris XML (one xml.zip per law, each holding a single BJNR*.xml
+# document). This is the best-case source class: official, consolidated,
+# structured, no OCR.
+#
+# The extract-de-gii converter fetches each law's xml.zip, retains the inner XML
+# under sources/ with its sha256, and emits one provision per <norm>:
+#   de/<document_class>/<gesetz-slug>            law-level parent (kind=document)
+#   de/<document_class>/<gesetz-slug>/<norm>     per-section child (§ N, Anlage N,
+#                                                Inhaltsübersicht, weggefallen
+#                                                ranges, division headings)
+#
+# citation_path here is the LAW-LEVEL parent node; the converter appends the
+# per-norm slug derived from each norm's <enbez> (or gliederungskennzahl). All
+# eleven slugs below were verified HTTP 200 today.
+#
+# Run (per law group; the ingest wave uses signed manifests):
+#   uv run axiom-corpus-ingest extract-de-gii \
+#     --base data/corpus \
+#     --version <version> \
+#     --manifest manifests/de-federal-tax-benefit-statutes-official-documents.yaml
+documents:
+  - source_id: de-estg
+    jurisdiction: de
+    document_class: statute
+    slug: estg
+    citation_path: de/statute/estg
+    title: Einkommensteuergesetz (EStG)
+    source_url: 'https://www.gesetze-im-internet.de/estg/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: EStG
+      ausfertigung_datum: '1934-10-16'
+      source_family: income-tax/estg
+  - source_id: de-solzg-1995
+    jurisdiction: de
+    document_class: statute
+    slug: solzg_1995
+    citation_path: de/statute/solzg-1995
+    title: Solidaritätszuschlaggesetz 1995 (SolzG 1995)
+    source_url: 'https://www.gesetze-im-internet.de/solzg_1995/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: SolZG 1995
+      ausfertigung_datum: '1993-06-23'
+      source_family: income-tax/solidarity-surcharge
+  - source_id: de-sgb-2
+    jurisdiction: de
+    document_class: statute
+    slug: sgb_2
+    citation_path: de/statute/sgb-2
+    title: Sozialgesetzbuch Zweites Buch (SGB II) - Grundsicherung für Arbeitsuchende
+    source_url: 'https://www.gesetze-im-internet.de/sgb_2/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: SGB 2
+      ausfertigung_datum: '2003-12-24'
+      source_family: social-code/basic-income-support
+  - source_id: de-sgb-3
+    jurisdiction: de
+    document_class: statute
+    slug: sgb_3
+    citation_path: de/statute/sgb-3
+    title: Sozialgesetzbuch Drittes Buch (SGB III) - Arbeitsförderung
+    source_url: 'https://www.gesetze-im-internet.de/sgb_3/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: SGB 3
+      ausfertigung_datum: '1997-03-24'
+      source_family: social-code/employment-promotion
+  - source_id: de-sgb-4
+    jurisdiction: de
+    document_class: statute
+    slug: sgb_4
+    citation_path: de/statute/sgb-4
+    title: Sozialgesetzbuch Viertes Buch (SGB IV) - Gemeinsame Vorschriften für die Sozialversicherung
+    source_url: 'https://www.gesetze-im-internet.de/sgb_4/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: SGB 4
+      ausfertigung_datum: '1976-12-23'
+      source_family: social-code/common-provisions
+  - source_id: de-sgb-5
+    jurisdiction: de
+    document_class: statute
+    slug: sgb_5
+    citation_path: de/statute/sgb-5
+    title: Sozialgesetzbuch Fünftes Buch (SGB V) - Gesetzliche Krankenversicherung
+    source_url: 'https://www.gesetze-im-internet.de/sgb_5/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: SGB 5
+      ausfertigung_datum: '1988-12-20'
+      source_family: social-code/statutory-health-insurance
+  - source_id: de-sgb-6
+    jurisdiction: de
+    document_class: statute
+    slug: sgb_6
+    citation_path: de/statute/sgb-6
+    title: Sozialgesetzbuch Sechstes Buch (SGB VI) - Gesetzliche Rentenversicherung
+    source_url: 'https://www.gesetze-im-internet.de/sgb_6/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: SGB 6
+      ausfertigung_datum: '1989-12-18'
+      source_family: social-code/statutory-pension-insurance
+  - source_id: de-sgb-11
+    jurisdiction: de
+    document_class: statute
+    slug: sgb_11
+    citation_path: de/statute/sgb-11
+    title: Sozialgesetzbuch Elftes Buch (SGB XI) - Soziale Pflegeversicherung
+    source_url: 'https://www.gesetze-im-internet.de/sgb_11/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: SGB 11
+      ausfertigung_datum: '1994-05-26'
+      source_family: social-code/long-term-care-insurance
+  - source_id: de-bkgg-1996
+    jurisdiction: de
+    document_class: statute
+    slug: bkgg_1996
+    citation_path: de/statute/bkgg-1996
+    title: Bundeskindergeldgesetz (BKGG)
+    source_url: 'https://www.gesetze-im-internet.de/bkgg_1996/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: BKGG 1996
+      ausfertigung_datum: '1995-10-11'
+      source_family: family-benefits/child-benefit
+  - source_id: de-wogg
+    jurisdiction: de
+    document_class: statute
+    slug: wogg
+    citation_path: de/statute/wogg
+    title: Wohngeldgesetz (WoGG)
+    source_url: 'https://www.gesetze-im-internet.de/wogg/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: WoGG
+      ausfertigung_datum: '2008-09-24'
+      source_family: housing-benefit/wohngeld
+  - source_id: de-estdv-1955
+    jurisdiction: de
+    document_class: regulation
+    slug: estdv_1955
+    citation_path: de/regulation/estdv-1955
+    title: Einkommensteuer-Durchführungsverordnung (EStDV)
+    source_url: 'https://www.gesetze-im-internet.de/estdv_1955/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    source_as_of: '2026-07-16'
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: EStDV 1955
+      ausfertigung_datum: '1955-12-21'
+      source_family: income-tax/estg-implementing-regulation
