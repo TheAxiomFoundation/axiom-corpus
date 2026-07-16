@@ -8,6 +8,7 @@ import shutil
 import zipfile
 from pathlib import Path
 
+import pathlib
 import pytest
 
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
@@ -122,6 +123,12 @@ def test_recovery_normalizes_montana_printed_rule_dots() -> None:
     _, records = _targeted_state_html(entry, html, provenance, "sources/test.html")
 
     assert records[0].citation_path == target
+
+
+def _require_recovery_payloads():
+    root = pathlib.Path(__file__).resolve().parents[1] / "recovered-fetched"
+    if not root.exists():
+        pytest.skip("local recovery payloads (recovered-fetched/) not present; recovery fixtures are session-local")
 
 
 def test_recovery_parses_assembled_az_faa5_at_declared_citation_depth() -> None:
