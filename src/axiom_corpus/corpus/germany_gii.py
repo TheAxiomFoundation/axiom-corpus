@@ -280,14 +280,27 @@ def extract_german_gii(
     grouped_inventory: dict[tuple[str, str], list[SourceInventoryItem]] = defaultdict(list)
     grouped_sources: dict[tuple[str, str], dict[str, Path]] = defaultdict(dict)
     law_counts: Counter[tuple[str, str]] = Counter()
+    seen_parents: dict[str, str] = {}
 
     for law in selected:
+        scope = (law.jurisdiction, law.document_class)
+        # Two distinct site slugs can slugify to the same parent path
+        # (e.g. ``sgb_2`` and ``sgb-2`` both map to ``de/statute/sgb-2``),
+        # which would collide the two laws' provision paths. Fail loudly
+        # rather than let coverage dedup silently drop one law.
+        prior = seen_parents.get(law.parent_citation_path)
+        if prior is not None and prior != law.slug:
+            raise ValueError(
+                f"laws {prior!r} and {law.slug!r} map to the same citation path "
+                f"{law.parent_citation_path!r}"
+            )
+        seen_parents[law.parent_citation_path] = law.slug
+
         xml_bytes, inner_name = _load_law_bytes(law, request_timeout=request_timeout)
         norms = parse_gii_law(xml_bytes, law=law)
         if not norms:
             raise ValueError(f"no <norm> elements parsed from {law.slug}")
 
-        scope = (law.jurisdiction, law.document_class)
         law_counts[scope] += 1
         relative_name = f"{law.slug}/{inner_name}"
         source_artifact_path = store.source_path(

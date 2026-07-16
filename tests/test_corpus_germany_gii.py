@@ -326,6 +326,18 @@ def test_zip_source_is_unpacked(tmp_path):
     assert retained.exists()
 
 
+def test_extract_rejects_two_slugs_that_map_to_the_same_citation_path(tmp_path):
+    base = tmp_path / "data" / "corpus"
+    source = _write_source(tmp_path)
+    # "sgb_2" and "sgb-2" both slugify to de/statute/sgb-2 -> loud failure.
+    laws = (
+        GermanLaw(slug="sgb_2", local_source=source),
+        GermanLaw(slug="sgb-2", local_source=source),
+    )
+    with pytest.raises(ValueError, match="map to the same citation path"):
+        extract_german_gii(CorpusArtifactStore(base), version="2026-07-16-de", laws=laws)
+
+
 # ---------------------------------------------------------------------------
 # Citation-path grammar conformance
 # ---------------------------------------------------------------------------
