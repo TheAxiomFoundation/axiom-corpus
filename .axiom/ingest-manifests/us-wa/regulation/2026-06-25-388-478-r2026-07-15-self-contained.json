@@ -1,0 +1,50 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/coverage/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/inventory/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.jsonl"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/chapters/chapter-388-478-full.html"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/index.html"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/titles/title-388.html"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d9d08b76519c68c5661598e4961fdcdf2a415ead",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
+  },
+  "coverage": null,
+  "document_class": "regulation",
+  "generated_at": "2026-07-16T22:17:15.710401+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vPpsUFCVyHn0S6ix1oXrLCsmx8rJVn6raGrmND5LIfRnQeRJ4snTbM9Zjf70eMOHnLXeKoOHQvEO7edeUH/ZBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-25-388-478-r2026-07-15-self-contained"
+}
