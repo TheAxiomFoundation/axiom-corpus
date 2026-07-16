@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained-r2026-07-17-dedup.jsonl",
-      "sha256": "00876fea211d431c96500fc6cfe9e4c7a7d631fe0583f1520fd1fad9bb8af6cb"
+      "sha256": "d19f16b3ad8ddc761ab798d486e9309ab8a510c4592470f76e5c01c7d6e5eb76"
     },
     {
       "path": "data/corpus/sources/us/regulation/2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained-r2026-07-17-dedup/official-documents/release-scope-us-regulation-2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained-r2026-07-17-dedup",
@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "e4f4705f7fba2ccc4a1db580d254377b35d8fe57",
+    "commit": "01d44285acaf3a0968968cad9019fd5275b947e2",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,14 +39,14 @@
     "source_count": 14
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-16T21:01:41.426572+00:00",
+  "generated_at": "2026-07-16T23:43:52.176049+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "aEaunSnzCjRjkdfCPny91502vfgUjPvFxaxyPokZCdH6Z8/MBBD0dkjoOGqHjq/Civc3Tk/y9kfsC9W9PUXoBw=="
+    "value": "v7jm5tTe1kWi/I5EfN2YseLHlXPTyqqHNzJ0pYX6mlvURQr9/rcWJPOKOJDAw9Ke0fapSap6ycVaQDSHd1tNAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained-r2026-07-17-dedup"
