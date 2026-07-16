@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/TheAxiomFoundation/axiom-corpus/schema/citation-path.v1.json",
   "title": "Axiom corpus citation-path grammar",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Versioned, machine-readable grammar for the `citation_path` field of every record in data/corpus/provisions/**/*.jsonl. A citation_path is the stable public identity of a corpus provision: the provision UUID is uuid5(NAMESPACE_URL, 'axiom:' + citation_path) (see schema/citation-path.v1.md and src/axiom_corpus/ingest/supabase.py). Any change to a path changes the provision's identity. This document is derived empirically from the committed corpus (see the `derivation` block) and is enforced by scripts/validate_citation_paths.py. It is additive and descriptive: it does not rename any existing path. The regexes here are the normative check; the prose companion (citation-path.v1.md) is explanatory.",
   "derivation": {
     "source": "data/corpus/provisions/**/*.jsonl",
@@ -22,7 +22,7 @@
       "type": "string",
       "description": "Slash-delimited hierarchical identifier. Segment 0 is the jurisdiction; segment 1 is the document_class; segments 2+ are the source-specific hierarchy down to a leaf provision. No leading slash, no trailing slash, no empty segments. A bare '<jurisdiction>/<document_class>' path (no hierarchy segment) is valid only for collection-root records (kind='collection', level=0).",
       "minLength": 3,
-      "pattern": "^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .:\\-–]*)*$",
+      "pattern": "^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking|district-plan)(/[A-Za-z0-9][A-Za-z0-9 .:\\-–]*)*$",
       "$comment": "The pattern encodes: <jurisdiction>/<document_class>(/<segment>)*. A jurisdiction is a national root followed by zero or more lowercase subdivision or authority tokens, so both us-ca and uk-kingston-upon-thames are first-class. Each hierarchy segment starts with an alphanumeric and may contain letters, digits, spaces, dots, hyphens, and en-dashes (U+2013). The zero-hierarchy case matches collection roots. Segments that END in a hyphen/space (truncated source-heading slugs) match the pattern but are tracked and capped via known_irregulars_ratchet.truncated_segments so they cannot proliferate. See per-part definitions below for semantics."
     },
     "jurisdiction": {
@@ -102,7 +102,8 @@
         "guidance",
         "policy",
         "form",
-        "rulemaking"
+        "rulemaking",
+        "district-plan"
       ],
       "semantics": {
         "statute": "Codified primary legislation (US Code titles, UK ukpga, Belgian loi/decreet/ordonnance, state codes).",
@@ -111,7 +112,8 @@
         "guidance": "Sub-regulatory guidance (IRS revenue procedures, SSA automatic determinations, agency ACLs/ACINs).",
         "policy": "State plans and policy documents (TANF state plans, SNAP E&T state plans).",
         "form": "Official forms and their published parameter tables (tax forms, CMS eligibility-level tables).",
-        "rulemaking": "In-progress rulemaking documents (e.g. NJAC proposed-rule dockets)."
+        "rulemaking": "In-progress rulemaking documents (e.g. NJAC proposed-rule dockets).",
+        "district-plan": "Council-made land-use instruments: a binding regulatory instrument made by a local/territorial authority (not central-government statute or regulation). New Zealand district plans made under Schedule 1 of the Resource Management Act 1991 (e.g. the Wellington City 2024 District Plan) are the first family. Issuer-scoped shape: <jurisdiction>/district-plan/<territorial-authority>/<plan-version>/<chapter>/<provision>. The US analogue (municipal zoning ordinances) is expected to take a sibling per-family class name over the same issuer-scoped shape."
       }
     },
     "hierarchy_segment": {
@@ -155,6 +157,11 @@
       "shape": "us-XX/regulation/<code-slug>/<part>/<section>[/<subsection>|/block-<n>]",
       "example": "us-ma/regulation/106-cmr/365/180/block-1",
       "notes": "State administrative code. Note that where a section is not further segmented, its content is carried in a single 'block-1' leaf (see irregular_families.block_n). This is the crux of axiom-programs#14: program specs sometimes reference a deeper subsection ('.../365/180/A') than the corpus segments."
+    },
+    "nz_district_plan": {
+      "shape": "nz/district-plan/<territorial-authority>/<plan-version>/<chapter>/<provision>",
+      "example": "nz/district-plan/wellington-city/2024/muz/r13",
+      "notes": "Issuer-scoped council instrument. <territorial-authority> is the council slug (wellington-city); <plan-version> is the operative-plan version year (2024); <chapter> is the zone/chapter code lowercased (muz, giz, ccz) or 'definitions'; <provision> is the plan's own rule identifier with the chapter prefix dropped and lowercased (MUZ-R13 -> r13, MUZ-P3 -> p3, MUZ-PREC01-R1 -> prec01-r1) or the definition slug. Extracted by src/axiom_corpus/corpus/district_plan.py from the IsoPlan ePlan platform used by most NZ councils. The same issuer-scoped shape is intended to carry US municipal zoning ordinances under a sibling per-family class name."
     }
   },
   "irregular_families": {

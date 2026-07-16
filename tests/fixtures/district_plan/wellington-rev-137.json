@@ -1,0 +1,133 @@
+{
+ "planChanges": [],
+ "definitions": [
+  {
+   "id": 0,
+   "glossaryHeading": "COMMERCIAL ACTIVITY",
+   "glossaryText": "<p>means any activity trading in goods, equipment or services. It includes any ancillary activity to the commercial activity (for example administrative or head offices).</p>",
+   "plan": null,
+   "planId": 1,
+   "nps": true,
+   "group": "All",
+   "glossaryType": null,
+   "defStyle": "",
+   "exampleInclude": "",
+   "exampleExclude": "",
+   "pcid": 0
+  },
+  {
+   "id": 0,
+   "glossaryHeading": "GROSS FLOOR AREA",
+   "glossaryText": "<p>means the sum of the total area of all floors of a building or buildings (including any void area in each of those floors, such as service shafts, liftwells or stairwells), measured:</p><ol style=\"list-style-type: lower-alpha\"><li>where there are exterior walls, from the exterior faces of those exterior walls</li><li>where there are walls separating two buildings, from the centre lines of the walls separating the two buildings</li><li>where a wall or walls are lacking (for example, a mezzanine floor) and the edge of the floor is discernible, from the edge of the floor.</li></ol>",
+   "plan": null,
+   "planId": 1,
+   "nps": true,
+   "group": "All",
+   "glossaryType": null,
+   "defStyle": "",
+   "exampleInclude": "",
+   "exampleExclude": "",
+   "pcid": 0
+  },
+  {
+   "id": 0,
+   "glossaryHeading": "integrated retail activity",
+   "glossaryText": "<p>means an individual retail development, or a collection of any two or more retail activities that are developed and operate as a coherent entity (whether or not the activities are located on separate legal titles), and share one or more of the following:</p><ol style=\"list-style-type: lower-alpha\"><li>servicing and/or loading facilities;</li><li>vehicle and/or pedestrian access;</li><li>car parking;</li><li>public spaces and/or facilities.</li></ol><p>This definition includes shopping malls and large-format retail parks, but does not include trade supply retail, wholesale retail, yard-based retail or building improvement centres.</p>",
+   "plan": null,
+   "planId": 1,
+   "nps": false,
+   "group": "All",
+   "glossaryType": null,
+   "defStyle": "",
+   "exampleInclude": "",
+   "exampleExclude": "",
+   "pcid": 0
+  },
+  {
+   "id": 0,
+   "glossaryHeading": "Large format retail",
+   "glossaryText": "<p>means any individual retail activity exceeding 450m<sup>2</sup> gross floor area.</p>",
+   "plan": null,
+   "planId": 1,
+   "nps": false,
+   "group": "All",
+   "glossaryType": null,
+   "defStyle": "",
+   "exampleInclude": "",
+   "exampleExclude": "",
+   "pcid": 0
+  },
+  {
+   "id": 0,
+   "glossaryHeading": "RETAIL ACTIVITY",
+   "glossaryText": "<p>an activity displaying or offering services or goods for the sale or hire to the trade or public and includes, but is not limited to: integrated retail developments, trade supply retail, yard based retail, supermarkets, service retail, and ancillary retail.</p>",
+   "plan": null,
+   "planId": 1,
+   "nps": false,
+   "group": "All",
+   "glossaryType": null,
+   "defStyle": "",
+   "exampleInclude": "",
+   "exampleExclude": "",
+   "pcid": 0
+  },
+  {
+   "id": 0,
+   "glossaryHeading": "Supermarket",
+   "glossaryText": "<p>means a retail shop selling a wide range of foodstuffs, including fresh produce, meat, fish, dairy, alcoholic and other beverages, and packaged food for consumption off-site, as well as non-food grocery items and household goods. This definition includes discount stores, hypermarkets, department stores and warehouse club stores, where foodstuffs comprise more than 10% of the total gross floor area.</p>",
+   "plan": null,
+   "planId": 1,
+   "nps": false,
+   "group": "All",
+   "glossaryType": null,
+   "defStyle": "",
+   "exampleInclude": "",
+   "exampleExclude": "",
+   "pcid": 0
+  }
+ ],
+ "primaryChapters": [
+  {
+   "revisionId": 137,
+   "linkSection": 228,
+   "zones": [
+    "city centre zone"
+   ]
+  },
+  {
+   "revisionId": 137,
+   "linkSection": 229,
+   "zones": [
+    "metropolitan centre zone"
+   ]
+  },
+  {
+   "revisionId": 137,
+   "linkSection": 231,
+   "zones": [
+    "mixed use zone"
+   ]
+  },
+  {
+   "revisionId": 137,
+   "linkSection": 232,
+   "zones": [
+    "local centre zone"
+   ]
+  },
+  {
+   "revisionId": 137,
+   "linkSection": 233,
+   "zones": [
+    "neighbourhood centre zone"
+   ]
+  },
+  {
+   "revisionId": 137,
+   "linkSection": 235,
+   "zones": [
+    "general industrial zone"
+   ]
+  }
+ ]
+}

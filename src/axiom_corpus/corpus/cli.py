@@ -42,6 +42,10 @@ from axiom_corpus.corpus.california_mpp import (
 )
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
 from axiom_corpus.corpus.coverage import compare_provision_coverage
+from axiom_corpus.corpus.district_plan import (
+    DistrictPlanExtractReport,
+    extract_nz_district_plan,
+)
 from axiom_corpus.corpus.document_sections import split_document_body
 from axiom_corpus.corpus.documents import extract_official_documents
 from axiom_corpus.corpus.ecfr import (
@@ -1418,6 +1422,48 @@ def _nz_legislation_report_json(report: NZLegislationExtractReport) -> dict[str,
             }
             for class_report in report.class_reports
         ],
+    }
+
+
+def _cmd_extract_nz_district_plan(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_nz_district_plan(
+        store,
+        manifest_path=args.manifest,
+        version=args.version,
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        retrieved_at=args.retrieved_at,
+        only_chapter=args.only_chapter,
+        limit=args.limit,
+        progress_stream=sys.stderr,
+    )
+    print(json.dumps(_nz_district_plan_report_json(report), indent=2, sort_keys=True))
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
+def _nz_district_plan_report_json(report: DistrictPlanExtractReport) -> dict[str, Any]:
+    return {
+        "adapter": "nz-district-plan",
+        "jurisdiction": report.jurisdiction,
+        "territorial_authority": report.territorial_authority,
+        "document_class": report.document_class,
+        "plan_version": report.plan_version,
+        "revision": report.revision,
+        "as_at": report.as_at,
+        "chapter_count": report.chapter_count,
+        "definition_count": report.definition_count,
+        "provisions_written": report.provisions_written,
+        "inventory_path": str(report.inventory_path),
+        "provisions_path": str(report.provisions_path),
+        "coverage_path": str(report.coverage_path),
+        "coverage_complete": report.coverage.complete,
+        "source_count": report.coverage.source_count,
+        "provision_count": report.coverage.provision_count,
+        "matched_count": report.coverage.matched_count,
+        "missing_count": len(report.coverage.missing_from_provisions),
+        "extra_count": len(report.coverage.extra_provisions),
     }
 
 
@@ -5293,6 +5339,35 @@ def build_parser() -> argparse.ArgumentParser:
     extract_nz_cmd.add_argument("--limit", type=int)
     extract_nz_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_nz_cmd.set_defaults(func=_cmd_extract_nz_legislation)
+
+    extract_ndp_cmd = sub.add_parser(
+        "extract-nz-district-plan",
+        help=(
+            "Snapshot an IsoPlan council district plan (e.g. Wellington City) and "
+            "extract normalized district-plan provision JSONL."
+        ),
+    )
+    extract_ndp_cmd.add_argument("--base", type=Path, required=True)
+    extract_ndp_cmd.add_argument("--version", required=True)
+    extract_ndp_cmd.add_argument(
+        "--manifest",
+        type=Path,
+        required=True,
+        help="District-plan extraction manifest (territorial authority + chapter endpoints).",
+    )
+    extract_ndp_cmd.add_argument(
+        "--only-chapter",
+        help="Restrict extraction to a single chapter/zone code (skips the definitions index).",
+    )
+    extract_ndp_cmd.add_argument(
+        "--retrieved-at",
+        help="Override the recorded retrieval timestamp (ISO 8601; defaults to now, UTC).",
+    )
+    extract_ndp_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_ndp_cmd.add_argument("--expression-date")
+    extract_ndp_cmd.add_argument("--limit", type=int)
+    extract_ndp_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_ndp_cmd.set_defaults(func=_cmd_extract_nz_district_plan)
 
     extract_be_cmd = sub.add_parser(
         "extract-belgian-eli",

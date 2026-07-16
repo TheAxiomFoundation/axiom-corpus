@@ -50,8 +50,30 @@ def test_schema_is_valid_json_and_versioned(schema):
     assert schema["version"].startswith("1.")
     assert re.compile(schema["$defs"]["citation_path"]["pattern"])  # compiles
     assert set(schema["$defs"]["document_class"]["enum"]) == {
-        "statute", "regulation", "manual", "guidance", "policy", "form", "rulemaking"
+        "statute", "regulation", "manual", "guidance", "policy", "form", "rulemaking",
+        "district-plan",
     }
+
+
+def test_district_plan_class_paths_validate(tmp_path, schema):
+    # The district-plan council-instrument class (schema v1.1) validates end to end:
+    # a Wellington City district-plan provision path must pass the grammar and the
+    # segment-1/document_class consistency check.
+    pattern = re.compile(schema["$defs"]["citation_path"]["pattern"])
+    path = "nz/district-plan/wellington-city/2024/muz/r13"
+    assert pattern.match(path)
+    provisions = _write_jsonl(
+        tmp_path,
+        [
+            _good_record(path=path),
+            _good_record(path="nz/district-plan/wellington-city/2024/giz/r5"),
+            _good_record(path="nz/district-plan/wellington-city/2024/definitions/supermarket"),
+        ],
+    )
+    res = validate_mod.validate(provisions, schema)
+    assert res["ok"] is True, res
+    assert res["pattern_failures"] == []
+    assert res["unknown_docclass"] == []
 
 
 def test_every_irregular_family_has_a_baseline(schema):
