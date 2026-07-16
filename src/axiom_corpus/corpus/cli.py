@@ -2955,6 +2955,7 @@ def _extract_state_statute_source(
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
+            only_chapter=_optional_text(options.get("only_chapter")),
             limit=limit,
             workers=_optional_int(options.get("workers")) or 1,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
@@ -2962,6 +2963,12 @@ def _extract_state_statute_source(
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.25,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 30.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 2,
+            repeal_authority_2021_url=_optional_text(
+                options.get("repeal_authority_2021_url")
+            ),
+            repeal_acceleration_2023_url=_optional_text(
+                options.get("repeal_acceleration_2023_url")
+            ),
         )
     if adapter == "new-jersey-statutes":
         return extract_new_jersey_statutes(

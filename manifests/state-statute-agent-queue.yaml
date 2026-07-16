@@ -372,7 +372,7 @@ states:
     production_status: blocked_primary_source
     supabase_count: 584
     priority: 3
-    notes: Source-first adapter and tests were drafted against the official General Court RSA HTML, but the site timed out after title TOC fetches during extraction from this public IP; retry with the polite single-worker adapter after access cools down or use an official bulk/source export.
+    notes: A bounded PIT recovery now covers complete current RSA chapter 77 from official General Court HTML, including its January 1, 2025 repeal and the 2021/2023 chaptered-law authority. Statewide recovery remains blocked by prior title-wide timeouts; retain legacy rows until a polite full extraction or official bulk export succeeds.
   - jurisdiction: us-nj
     name: New Jersey
     queue_status: done

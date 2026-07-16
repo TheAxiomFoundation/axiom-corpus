@@ -268,3 +268,26 @@ sources:
     metadata:
       source_authority: Mississippi Legislature, Office of the Governor, and Mississippi Department of Revenue
       source_scope_note: Bounded recovery of Mississippi Code section 27-7-5 from its complete enacted replacement in 2025 House Bill 1, Section 1, effective July 1, 2025, with official signing confirmation and the operative 2026 individual rate confirmed by Department of Revenue guidance; statewide public Code text remains robot-blocked.
+
+  - source_id: us-nh-interest-dividends-tax
+    jurisdiction: us-nh
+    document_class: statute
+    adapter: new-hampshire-rsa
+    source_url: https://gc.nh.gov/rsa/html/nhtoc.htm
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-nh-interest-dividends-tax/2026-07-16-pit-central
+      only_title: "V"
+      only_chapter: "77"
+      base_url: https://gc.nh.gov/rsa/html/
+      repeal_authority_2021_url: https://gc.nh.gov/legislation/2021/HB0002.html
+      repeal_acceleration_2023_url: https://gc.nh.gov/bill_status/legacy/bs2016/billText.aspx?id=1081&sy=2023&txtFormat=html&v=current
+      workers: 1
+      request_delay_seconds: 0.25
+      timeout_seconds: 60
+      request_attempts: 3
+    metadata:
+      source_authority: New Hampshire General Court
+      source_scope_note: Complete current RSA chapter 77 repealed-chapter scope from official RSA HTML, verified against the original repeal in Laws 2021, chapter 91, section 99(II), and its acceleration by Laws 2023, chapter 79, sections 85 through 88; the interest and dividends tax is not imposed for taxable periods beginning after December 31, 2024.
