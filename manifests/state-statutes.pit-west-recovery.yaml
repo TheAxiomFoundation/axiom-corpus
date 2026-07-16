@@ -91,3 +91,24 @@ sources:
     metadata:
       source_authority: Pennsylvania General Assembly
       source_scope_note: Official current-as-amended HTML for Article III, Personal Income Tax, of the unconsolidated Tax Reform Code of 1971; the source document reports revision on May 29, 2025, and section 302 was last amended by Act 64 of 2023.
+
+  - source_id: us-wv-code
+    jurisdiction: us-wv
+    document_class: statute
+    adapter: west-virginia-code
+    source_url: https://code.wvlegislature.gov/11-21/
+    version: "2026-07-16-pit-west"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-wv-code/2026-07-16-pit-west
+      base_url: https://code.wvlegislature.gov
+      only_chapter: "11"
+      only_article: "21"
+      request_delay_seconds: 0.05
+      timeout_seconds: 90
+      request_attempts: 3
+      workers: 8
+    metadata:
+      source_authority: West Virginia Legislature
+      source_scope_note: Current complete West Virginia Code chapter 11, article 21, Personal Income Tax, including the future rate-reduction trigger in §11-21-4h and the operative 2026 schedules enacted in §11-21-4j by 2026 Regular Session SB 392, effective June 12, 2026.
