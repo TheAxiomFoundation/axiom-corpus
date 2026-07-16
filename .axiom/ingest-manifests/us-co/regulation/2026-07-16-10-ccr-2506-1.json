@@ -6,23 +6,23 @@
     },
     {
       "path": "data/corpus/inventory/us-co/regulation/2026-07-16-10-ccr-2506-1.json",
-      "sha256": "1909ccd87febe3049f05491d229e9858e8100a40b4696f7e81847ae3822770eb"
+      "sha256": "71a4a578d12945a987061d46e407fd8eeac89277efd47ef60c81fc7cfb90f7c5"
     },
     {
       "path": "data/corpus/provisions/us-co/regulation/2026-07-16-10-ccr-2506-1.jsonl",
-      "sha256": "836f52ee3fbd8bd6841e65525311846837a9107cd0888da1af2f0a565d16df28"
+      "sha256": "a0b3492973e1d87d62237aee457157413d65725667ab6e285cc8aa4285e9880b"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-07-16-10-ccr-2506-1/colorado-ccr-html/NumericalDeptList.html",
-      "sha256": "19152c55515f7a8b6b8d9fc0fdd9c968c823337546e626ab84bbe024a78b018a"
+      "sha256": "9c5c46b657dcb7f3d85eb88b0f4ac00c4948ffca4847e6d711ad567c3380c459"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-07-16-10-ccr-2506-1/colorado-ccr-html/Welcome.html",
-      "sha256": "3caa0e8b6aac90d141d129ff1f300bf846c6c04f5b08ad06962f7ba76aa52346"
+      "sha256": "96bfea54caa7d106239877767643bb319ac3fd56d03eac4356d2b88ecd3c9768"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-07-16-10-ccr-2506-1/colorado-ccr-html/rule-info/10-ccr-2506-1.html",
-      "sha256": "bb4e8e467d8b3644dea56762b9633be32bf7049cc0d678b963eb2c23b2ab4808"
+      "sha256": "ee477e9bd21e636d23bc71eccb0b65a0ce5b87f6a1e994dd001817eee41c1259"
     },
     {
       "path": "data/corpus/sources/us-co/regulation/2026-07-16-10-ccr-2506-1/colorado-ccr-pdf/10-ccr-2506-1.pdf",
@@ -30,7 +30,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "0218820b38bf8302a33a6bb71ae581502b85b265",
+    "commit": "1a4628c9fc00694ae4d685bb0e716dfe9d2cfc54",
     "dirty_tracked": false,
     "root": "."
   },
@@ -47,14 +47,14 @@
     "source_count": 290
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-16T22:46:23.033747+00:00",
+  "generated_at": "2026-07-16T22:58:19.799728+00:00",
   "jurisdiction": "us-co",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "e21Wm6eb1RmVNRSmPbnlBzK8VQ6uMVl2DEbgGygilqXxmUspVVIFX+k7msUVYvn0jfNUk8K9G1KEA44+bsheCQ=="
+    "value": "NdbKxgMO3WmWGc71ihNqK04OuJ7uUbYTSCMBMN+8CS4rWy7tkMqqDEwZk6h6WXrTc8lC0AZ8csP7YAtEpTYvAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-16-10-ccr-2506-1"
