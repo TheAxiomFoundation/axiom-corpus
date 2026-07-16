@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "51c4873aaa39cb5754305b261aacf29a08754825",
+    "commit": "c3e9617995c44d0c134464a78515d7b94bdb85a5",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "US release dedup adjudication: retain original canonical carriers and remove duplicate rows"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -35,10 +35,15 @@
     "source_count": 51
   },
   "document_class": "statute",
-  "generated_at": "2026-07-16T18:06:16.377239+00:00",
+  "generated_at": "2026-07-16T18:18:18.269294+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BE9P7CDPz9hqQ9J5/agOub4FQ6GRvrpdkTtRxQv1q5xf6+lAdhQFk1Akeh+AmJ5sfRc58EUMhO/Fh5+K/jJ2Dw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained"
 }
