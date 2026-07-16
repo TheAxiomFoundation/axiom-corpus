@@ -12,8 +12,25 @@
 #                                                ranges, division headings)
 #
 # citation_path here is the LAW-LEVEL parent node; the converter appends the
-# per-norm slug derived from each norm's <enbez> (or gliederungskennzahl). All
-# eleven slugs below were verified HTTP 200 today.
+# per-norm slug derived from each norm's <enbez> (or gliederungskennzahl).
+# All nineteen slugs below were verified HTTP 200 on 2026-07-16.
+#
+# source_as_of is deliberately NOT set on live-fetch entries: the converter
+# stamps each run with the actual fetch date (a manifest value would relabel
+# later re-fetches with a stale date — the org date-field bug class). Offline
+# ingests of retained artifacts pass an explicit --source-as-of instead.
+#
+# HISTORICAL-VERSION CAVEAT: gesetze-im-internet serves only the CURRENT
+# consolidation. The lane's validation year is 2025 (rules in force
+# 2025-06-30); where a value was amended after that date, the current XML no
+# longer states the 2025 wording — ground those from the amending act or the
+# BGBl archive (www.recht.bund.de) as separate captures. Known instance:
+# Buergergeld-V is being superseded by GrusiGV.
+#
+# NOT CAPTURABLE HERE: RBSFV 2025 (Regelbedarfsstufen-Fortschreibungs-
+# verordnung 2025, essential for 2025 SGB II/XII amounts) — its GII xml.zip
+# returns 404; capture from the BGBl 2024 I Nr. 312 archive as an offline
+# ingest with explicit source_as_of.
 #
 # Run (per law group; the ingest wave uses signed manifests):
 #   uv run axiom-corpus-ingest extract-de-gii \
@@ -29,7 +46,6 @@ documents:
     title: Einkommensteuergesetz (EStG)
     source_url: 'https://www.gesetze-im-internet.de/estg/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -46,7 +62,6 @@ documents:
     title: Solidaritätszuschlaggesetz 1995 (SolzG 1995)
     source_url: 'https://www.gesetze-im-internet.de/solzg_1995/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -63,7 +78,6 @@ documents:
     title: Sozialgesetzbuch Zweites Buch (SGB II) - Grundsicherung für Arbeitsuchende
     source_url: 'https://www.gesetze-im-internet.de/sgb_2/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -80,7 +94,6 @@ documents:
     title: Sozialgesetzbuch Drittes Buch (SGB III) - Arbeitsförderung
     source_url: 'https://www.gesetze-im-internet.de/sgb_3/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -97,7 +110,6 @@ documents:
     title: Sozialgesetzbuch Viertes Buch (SGB IV) - Gemeinsame Vorschriften für die Sozialversicherung
     source_url: 'https://www.gesetze-im-internet.de/sgb_4/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -114,7 +126,6 @@ documents:
     title: Sozialgesetzbuch Fünftes Buch (SGB V) - Gesetzliche Krankenversicherung
     source_url: 'https://www.gesetze-im-internet.de/sgb_5/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -131,7 +142,6 @@ documents:
     title: Sozialgesetzbuch Sechstes Buch (SGB VI) - Gesetzliche Rentenversicherung
     source_url: 'https://www.gesetze-im-internet.de/sgb_6/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -148,7 +158,6 @@ documents:
     title: Sozialgesetzbuch Elftes Buch (SGB XI) - Soziale Pflegeversicherung
     source_url: 'https://www.gesetze-im-internet.de/sgb_11/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -165,7 +174,6 @@ documents:
     title: Bundeskindergeldgesetz (BKGG)
     source_url: 'https://www.gesetze-im-internet.de/bkgg_1996/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -182,7 +190,6 @@ documents:
     title: Wohngeldgesetz (WoGG)
     source_url: 'https://www.gesetze-im-internet.de/wogg/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -199,7 +206,6 @@ documents:
     title: Einkommensteuer-Durchführungsverordnung (EStDV)
     source_url: 'https://www.gesetze-im-internet.de/estdv_1955/xml.zip'
     source_format: gesetze-im-internet.de-juris-xml
-    source_as_of: '2026-07-16'
     request:
       browser_user_agent: true
     metadata:
@@ -208,3 +214,123 @@ documents:
       jurabk: EStDV 1955
       ausfertigung_datum: '1955-12-21'
       source_family: income-tax/estg-implementing-regulation
+  - source_id: de-beeg
+    jurisdiction: de
+    document_class: statute
+    slug: beeg
+    citation_path: de/statute/beeg
+    title: Bundeselterngeld- und Elternzeitgesetz (BEEG)
+    source_url: 'https://www.gesetze-im-internet.de/beeg/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: BEEG
+      source_family: family-benefits/elterngeld
+  - source_id: de-uhvorschg
+    jurisdiction: de
+    document_class: statute
+    slug: uhvorschg
+    citation_path: de/statute/uhvorschg
+    title: Unterhaltsvorschussgesetz (UhVorschG)
+    source_url: 'https://www.gesetze-im-internet.de/uhvorschg/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: UhVorschG
+      source_family: family-benefits/unterhaltsvorschuss
+  - source_id: de-sgb-12
+    jurisdiction: de
+    document_class: statute
+    slug: sgb_12
+    citation_path: de/statute/sgb-12
+    title: Sozialgesetzbuch Zwölftes Buch (SGB XII) - Sozialhilfe
+    source_url: 'https://www.gesetze-im-internet.de/sgb_12/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: SGB 12
+      source_family: social-assistance/sgb-12
+  - source_id: de-svbezgrv-2025
+    jurisdiction: de
+    document_class: regulation
+    slug: svbezgrv_2025
+    citation_path: de/regulation/svbezgrv-2025
+    title: Sozialversicherungsrechengrößen-Verordnung 2025 (SVBezGrV 2025)
+    source_url: 'https://www.gesetze-im-internet.de/svbezgrv_2025/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: SVBezGrV 2025
+      source_family: social-insurance/rechengroessen
+  - source_id: de-buergergeld-v
+    jurisdiction: de
+    document_class: regulation
+    slug: algiiv_2008
+    citation_path: de/regulation/algiiv-2008
+    title: Bürgergeld-Verordnung (Bürgergeld-V; GII slug retains the former Arbeitslosengeld II/Sozialgeld-Verordnung name)
+    source_url: 'https://www.gesetze-im-internet.de/algiiv_2008/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: Bürgergeld-V
+      source_family: citizens-benefit/buergergeld-v
+  - source_id: de-rbeg-2021
+    jurisdiction: de
+    document_class: statute
+    slug: rbeg_2021
+    citation_path: de/statute/rbeg-2021
+    title: Regelbedarfsermittlungsgesetz (RBEG 2021)
+    source_url: 'https://www.gesetze-im-internet.de/rbeg_2021/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: RBEG 2021
+      source_family: citizens-benefit/regelbedarf
+  - source_id: de-wogv
+    jurisdiction: de
+    document_class: regulation
+    slug: wogv
+    citation_path: de/regulation/wogv
+    title: Wohngeldverordnung (WoGV)
+    source_url: 'https://www.gesetze-im-internet.de/wogv/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: WoGV
+      source_family: housing-benefit/wohngeld
+  - source_id: de-minuhv
+    jurisdiction: de
+    document_class: regulation
+    slug: minuhv
+    citation_path: de/regulation/minuhv
+    title: Mindestunterhaltsverordnung (MinUhV)
+    source_url: 'https://www.gesetze-im-internet.de/minuhv/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: MinUhV
+      source_family: family-benefits/mindestunterhalt

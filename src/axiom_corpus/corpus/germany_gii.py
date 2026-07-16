@@ -256,6 +256,7 @@ def extract_german_gii(
     manifest: str | Path | None = None,
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
+    fetch_date: date | str | None = None,
     request_timeout: float = 60.0,
     limit: int | None = None,
 ) -> GermanGiiExtractReport:
@@ -275,6 +276,7 @@ def extract_german_gii(
         selected = selected[:limit]
 
     expression_text = _date_text(expression_date)
+    run_fetch_date = _date_text(fetch_date) or date.today().isoformat()
 
     grouped_records: dict[tuple[str, str], list[ProvisionRecord]] = defaultdict(list)
     grouped_inventory: dict[tuple[str, str], list[SourceInventoryItem]] = defaultdict(list)
@@ -310,8 +312,32 @@ def extract_german_gii(
         grouped_sources[scope][relative_name] = source_artifact_path
         source_key = _source_key(law.jurisdiction, law.document_class, version, relative_name)
 
-        law_as_of = law.source_as_of or source_as_of or version
+        # source_as_of semantics: a live fetch is stamped with the actual
+        # fetch date — a manifest value cannot relabel it (mislabeling a
+        # later re-fetch with a stale date is the org-wide date-field bug
+        # class). Offline artifacts carry no inferable fetch date, so an
+        # explicit per-law or run-level value is required. A version slug
+        # is never an acceptable fallback.
+        if law.local_source is None:
+            if law.source_as_of and law.source_as_of != run_fetch_date:
+                raise ValueError(
+                    f"{law.slug}: manifest source_as_of {law.source_as_of!r} "
+                    f"conflicts with the live fetch date {run_fetch_date}; drop "
+                    "the manifest value (live fetches self-stamp) or ingest the "
+                    "retained artifact offline with an explicit date"
+                )
+            law_as_of = run_fetch_date
+        else:
+            law_as_of = law.source_as_of or source_as_of
+            if not law_as_of:
+                raise ValueError(
+                    f"{law.slug}: offline sources require source_as_of (per-law "
+                    "manifest value or --source-as-of) recording when the "
+                    "artifact was fetched from gesetze-im-internet.de"
+                )
+        _require_iso_date(law_as_of, field_name="source_as_of", slug=law.slug)
         law_expression = _date_text(law.expression_date) or expression_text or law_as_of
+        _require_iso_date(law_expression, field_name="expression_date", slug=law.slug)
 
         for norm in norms:
             citation_path = _citation_path(law, norm)
@@ -840,6 +866,21 @@ def _date_text(value: date | str | None) -> str | None:
         return None
     if isinstance(value, date):
         return value.isoformat()
+    return value
+
+
+_ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def _require_iso_date(value: str, *, field_name: str, slug: str) -> str:
+    """Reject any provision date that is not a real ISO date.
+
+    Version slugs and other non-dates must never reach provision rows'
+    ``source_as_of``/``expression_date`` (the date-field contamination class
+    caught org-wide on 2026-07-16).
+    """
+    if not _ISO_DATE_RE.match(value):
+        raise ValueError(f"{slug}: {field_name} must be an ISO date (YYYY-MM-DD), got {value!r}")
     return value
 
 

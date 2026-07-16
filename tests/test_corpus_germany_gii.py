@@ -21,6 +21,7 @@ from pathlib import Path
 
 import pytest
 
+import axiom_corpus.corpus.germany_gii as germany_gii
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.germany_gii import (
     GermanLaw,
@@ -247,6 +248,7 @@ def test_extract_retains_source_bytes_with_matching_sha256(tmp_path):
         CorpusArtifactStore(base),
         version="2026-07-16-de",
         laws=(law,),
+        source_as_of="2026-07-16",
     )
 
     retained = base / "sources/de/statute/2026-07-16-de/testg_2020/testg_2020.xml"
@@ -268,6 +270,7 @@ def test_provision_records_carry_provenance_and_identity_fields(tmp_path):
         CorpusArtifactStore(base),
         version="2026-07-16-de",
         laws=(GermanLaw(slug="testg_2020", title="Testgesetz", local_source=source),),
+        source_as_of="2026-07-16",
     )
     records = {
         r["citation_path"]: r
@@ -300,7 +303,12 @@ def test_extract_groups_statute_and_regulation_into_separate_scopes(tmp_path):
         GermanLaw(slug="testg_2020", local_source=source),
         GermanLaw(slug="testv_2020", document_class="regulation", local_source=source),
     )
-    report = extract_german_gii(CorpusArtifactStore(base), version="2026-07-16-de", laws=laws)
+    report = extract_german_gii(
+        CorpusArtifactStore(base),
+        version="2026-07-16-de",
+        laws=laws,
+        source_as_of="2026-07-16",
+    )
 
     scopes = {(s.jurisdiction, s.document_class) for s in report.scope_reports}
     assert scopes == {("de", "statute"), ("de", "regulation")}
@@ -320,6 +328,7 @@ def test_zip_source_is_unpacked(tmp_path):
         CorpusArtifactStore(base),
         version="2026-07-16-de",
         laws=(GermanLaw(slug="testg_2020", local_source=zip_path),),
+        source_as_of="2026-07-16",
     )
     assert report.provisions_written == 9
     retained = base / "sources/de/statute/2026-07-16-de/testg_2020/BJNRTESTG00000000.xml"
@@ -335,7 +344,12 @@ def test_extract_rejects_two_slugs_that_map_to_the_same_citation_path(tmp_path):
         GermanLaw(slug="sgb-2", local_source=source),
     )
     with pytest.raises(ValueError, match="map to the same citation path"):
-        extract_german_gii(CorpusArtifactStore(base), version="2026-07-16-de", laws=laws)
+        extract_german_gii(
+            CorpusArtifactStore(base),
+            version="2026-07-16-de",
+            laws=laws,
+            source_as_of="2026-07-16",
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -349,6 +363,7 @@ def test_every_citation_path_matches_the_grammar_and_avoids_irregular_families(t
         CorpusArtifactStore(base),
         version="2026-07-16-de",
         laws=(GermanLaw(slug="testg_2020", local_source=source),),
+        source_as_of="2026-07-16",
     )
     records = _read_jsonl(base / "provisions/de/statute/2026-07-16-de.jsonl")
     pattern = _citation_pattern()
@@ -473,6 +488,8 @@ def test_cli_extract_de_gii_reads_a_source_directory(tmp_path, capsys):
             "2026-07-16-de",
             "--source-dir",
             str(source_dir),
+            "--source-as-of",
+            "2026-07-16",
         ]
     )
 
@@ -524,6 +541,7 @@ def test_extract_fetches_via_requests_when_no_local_source(tmp_path, monkeypatch
         CorpusArtifactStore(tmp_path / "data" / "corpus"),
         version="2026-07-16-de",
         laws=(GermanLaw(slug="testg_2020"),),
+        source_as_of="2026-07-16",
     )
 
     assert report.provisions_written == 9
@@ -550,6 +568,7 @@ documents:
         version="2026-07-16-de",
         manifest=manifest,
         limit=1,
+        source_as_of="2026-07-16",
     )
 
     # limit=1 keeps only the first manifest law.
@@ -567,6 +586,7 @@ def test_extract_accepts_a_date_object_for_expression_date(tmp_path):
         version="2026-07-16-de",
         laws=(GermanLaw(slug="testg_2020", local_source=source),),
         expression_date=date(2026, 7, 16),
+        source_as_of="2026-07-16",
     )
     records = _read_jsonl(base / "provisions/de/statute/2026-07-16-de.jsonl")
     assert records[0]["expression_date"] == "2026-07-16"
@@ -580,7 +600,12 @@ def test_law_metadata_is_merged_and_primary_source_flag_is_honoured(tmp_path):
         local_source=source,
         metadata={"primary_source": False, "source_family": "test/family"},
     )
-    extract_german_gii(CorpusArtifactStore(base), version="2026-07-16-de", laws=(law,))
+    extract_german_gii(
+        CorpusArtifactStore(base),
+        version="2026-07-16-de",
+        laws=(law,),
+        source_as_of="2026-07-16",
+    )
 
     records = {
         r["citation_path"]: r
@@ -749,3 +774,78 @@ def test_rendering_tolerates_comments_untitled_divisions_and_malformed_lists():
     assert by_slug["4"].body == "(weggefallen)"
     assert "lose Angabe" in by_slug["6"].body
     assert "1." in by_slug["6"].body
+
+
+# ---------------------------------------------------------------------------
+# Date-field integrity (the 2026-07-16 org-wide contamination class)
+# ---------------------------------------------------------------------------
+def test_live_fetch_stamps_actual_fetch_date(tmp_path, monkeypatch):
+    monkeypatch.setattr(
+        germany_gii,
+        "_fetch_zip",
+        lambda url, timeout: SAMPLE_JURIS_XML.encode("utf-8"),
+    )
+    base = tmp_path / "data" / "corpus"
+    law = GermanLaw(slug="testg_2020", title="Testgesetz")
+
+    extract_german_gii(
+        CorpusArtifactStore(base),
+        version="2026-07-16-de",
+        laws=(law,),
+        fetch_date="2026-07-16",
+    )
+
+    records = _read_jsonl(base / "provisions" / "de" / "statute" / "2026-07-16-de.jsonl")
+    assert records
+    assert {r["source_as_of"] for r in records} == {"2026-07-16"}
+
+
+def test_live_fetch_rejects_conflicting_manifest_source_as_of(tmp_path, monkeypatch):
+    monkeypatch.setattr(
+        germany_gii,
+        "_fetch_zip",
+        lambda url, timeout: SAMPLE_JURIS_XML.encode("utf-8"),
+    )
+    law = GermanLaw(slug="testg_2020", title="Testgesetz", source_as_of="2026-01-01")
+
+    with pytest.raises(ValueError, match="conflicts with the live fetch date"):
+        extract_german_gii(
+            CorpusArtifactStore(tmp_path / "data" / "corpus"),
+            version="2026-07-16-de",
+            laws=(law,),
+            fetch_date="2026-07-16",
+        )
+
+
+def test_offline_source_requires_explicit_source_as_of(tmp_path):
+    source = _write_source(tmp_path)
+    law = GermanLaw(slug="testg_2020", title="Testgesetz", local_source=source)
+
+    with pytest.raises(ValueError, match="offline sources require source_as_of"):
+        extract_german_gii(
+            CorpusArtifactStore(tmp_path / "data" / "corpus"),
+            version="2026-07-16-de",
+            laws=(law,),
+        )
+
+
+def test_version_slug_never_reaches_date_fields(tmp_path):
+    source = _write_source(tmp_path)
+    base = tmp_path / "data" / "corpus"
+    law = GermanLaw(slug="testg_2020", title="Testgesetz", local_source=source)
+
+    extract_german_gii(
+        CorpusArtifactStore(base),
+        version="2026-07-16-de",
+        laws=(law,),
+        source_as_of="2026-07-09",
+    )
+
+    iso = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+    records = _read_jsonl(base / "provisions" / "de" / "statute" / "2026-07-16-de.jsonl")
+    assert records
+    for record in records:
+        assert iso.match(record["source_as_of"]), record["source_as_of"]
+        assert iso.match(record["expression_date"]), record["expression_date"]
+        assert record["source_as_of"] != "2026-07-16-de"
+        assert record["expression_date"] != "2026-07-16-de"
