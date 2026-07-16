@@ -714,6 +714,13 @@ def _render_content(content: Any | None) -> str:
         return ""
     blocks: list[str] = []
     for child in content:
+        if not isinstance(child.tag, str):
+            # XML comments / processing instructions are juris-internal markup
+            # (e.g. "Start:"/"Ende:"/"SPLIT UMBAU") — never statutory content.
+            # Text following a block-level comment is statutory, keep it.
+            if child.tail and child.tail.strip():
+                blocks.append(child.tail.strip())
+            continue
         tag = _local(child)
         if tag == "table":
             blocks.append(_render_table(child))
@@ -731,6 +738,12 @@ def _inline_text(element: Any) -> str:
     if element.text:
         parts.append(element.text)
     for child in element:
+        if not isinstance(child.tag, str):
+            # Skip juris-internal XML comments but keep the text that follows
+            # them — dropping a comment must never drop statutory text.
+            if child.tail:
+                parts.append(child.tail)
+            continue
         tag = _local(child)
         if tag == "BR":
             parts.append("\n")
@@ -772,7 +785,25 @@ def _render_dl(dl: Any) -> str:
 
 def _render_table(table: Any) -> str:
     rows: list[str] = []
+    for child in table:
+        # CALS table titles are statutory content (e.g. SGB VI Anlage 5's
+        # "1. Freiwillige Beiträge zur Versicherungsanstalt Berlin").
+        if isinstance(child.tag, str) and _local(child).lower() == "title":
+            title = _inline_text(child).strip()
+            if title:
+                rows.append(title)
     for row in table.iter("row"):
+        # Direct rows only: a nested table inside an <entry> is rendered by
+        # _inline_text within its cell — letting the OUTER table's descendant
+        # iteration also collect the inner rows duplicated every nested row
+        # (WoGG Anlage 2's formula tables, round-2 gate finding).
+        ancestor = row.getparent()
+        while ancestor is not None and not (
+            isinstance(ancestor.tag, str) and _local(ancestor) == "table"
+        ):
+            ancestor = ancestor.getparent()
+        if ancestor is not table:
+            continue
         cells = [_inline_text(entry).strip() for entry in row.findall("entry")]
         line = " | ".join(cell for cell in cells if cell)
         if line:
