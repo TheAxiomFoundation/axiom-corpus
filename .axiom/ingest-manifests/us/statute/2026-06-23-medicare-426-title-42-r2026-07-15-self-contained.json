@@ -18,27 +18,32 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "a2e13854db57390dcd780f5f050a32b6ad09af05",
+    "commit": "70be035dad9ccb85a2a05eb3843a879c5a224d3f",
     "dirty_tracked": false,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-medicare-426-20260623"
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run axiom-corpus extract-usc --base data/corpus --version 2026-06-23-medicare-426 --source-xml /tmp/axiom-uscode/current/usc42.xml --title 42 --section 426 --source-as-of 2026-06-23 --expression-date 2026-06-23 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/99/xml_usc42@119-99.zip"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 25,
+    "matched_count": 26,
     "missing_count": 0,
-    "provision_count": 25,
-    "source_count": 25
+    "provision_count": 26,
+    "source_count": 26
   },
   "document_class": "statute",
-  "generated_at": "2026-06-23T16:33:04.998788+00:00",
+  "generated_at": "2026-07-16T01:02:07.811286+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GFPUGtpPjwndO8R/Ch5UmsMSo13R8A22i4AAH4x8hjkCgqkhtE9TDuc6/bbxwxYHXM/B8QQQNwQySMygro5rBw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-23-medicare-426-title-42-r2026-07-15-self-contained"
 }
