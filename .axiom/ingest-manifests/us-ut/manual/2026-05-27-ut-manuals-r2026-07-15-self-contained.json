@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/manual/2026-05-27-ut-manuals-r2026-07-15-self-contained.json",
+      "sha256": "d05091ee4481050bd98be5fc9d78f778c007fa76f21244eb03f48ab1ccdf338c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/manual/2026-05-27-ut-manuals-r2026-07-15-self-contained.json",
+      "sha256": "1833cb0f1814e450a93266bf89646d0cea2ae612de0706c9eee61974eaa3cbd8"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/manual/2026-05-27-ut-manuals-r2026-07-15-self-contained.jsonl",
+      "sha256": "9930f612a350dbd0ce6bfa636a32e2d7c6af2c498522927864e4f2cba74f1fce"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-05-27-ut-manuals-r2026-07-15-self-contained/official-documents/release-scope-us-ut-manual-2026-05-27-ut-manuals-r2026-07-15-self-contained",
+      "sha256": "597cfce0f6f2e93abcc84b3278d9b3ec292980512b97a7c143f709967e2bea33"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-05-27-ut-manuals-r2026-07-15-self-contained/provenance/release-scope-us-ut-manual-2026-05-27-ut-manuals-r2026-07-15-self-contained.json",
+      "sha256": "8b3beb2e52c3d380d3621dc6ac5d6d5ea762bd41ef3fb9c47f2ea96b344cab2b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9404a96ff14eb81b9f3716713f5c2b8cb241d6dd",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2398,
+    "missing_count": 0,
+    "provision_count": 2398,
+    "source_count": 2398
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T22:26:29.339116+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Vggb+g1m94MbETORtF2xGuCgPrjxYV8+lGz+3OOt2KirPBYv0RxMn+r2qUfUsY1BQ6fDi69AVDfL2JNWvgyaDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-ut-manuals-r2026-07-15-self-contained"
+}

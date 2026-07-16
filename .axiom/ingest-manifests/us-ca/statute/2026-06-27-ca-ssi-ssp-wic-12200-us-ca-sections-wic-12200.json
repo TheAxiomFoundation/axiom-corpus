@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-ca/statute/2026-06-27-ca-ssi-ssp-wic-12200-us-ca-sections-wic-12200.jsonl",
-      "sha256": "cc8eb04679f7ac94fcf6b112c0b8a352da0ec2b5969161c556c0d1f5b45f6beb"
+      "sha256": "f36e4fd757cb67d3e49c0c7678e2ae488b423b369c42748b4315a0bf93d92d01"
     },
     {
       "path": "data/corpus/sources/us-ca/statute/2026-06-27-ca-ssi-ssp-wic-12200-us-ca-sections-wic-12200/california-leginfo-sections/WIC-12200.html",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "555bd9654631c3f54068b6c59908f7c60eefafa9",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ca-ssp-20260627"
+    "commit": "b7693e4806ad581acb0c9f5e3634534c3f951a94",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-california-code-sections --base data/corpus --version 2026-06-27-ca-ssi-ssp-wic-12200 --source-as-of 2026-06-27 --expression-date 2026-06-27 --download-dir output/downloads --section WIC:12200"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -35,19 +35,14 @@
     "source_count": 1
   },
   "document_class": "statute",
-  "generated_at": "2026-06-27T02:33:17.511165+00:00",
+  "generated_at": "2026-07-15T19:51:39.338544+00:00",
   "jurisdiction": "us-ca",
-  "reasoning_logs": [
-    {
-      "path": ".axiom/reasoning-logs/us-ca-statute-2026-06-27-ca-ssi-ssp-wic-12200.md",
-      "sha256": "d6e07d23cc8ee9d918bad0ce0dd07aaccc07ff4d0829dae608a4356f7c0308b0"
-    }
-  ],
+  "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ZqWfre47iu4JXth0O8YTsw92/6Wy8p2VaacjPx/9IQf96vAUrKAqaWYAPcklVmMyZ/DiErojDvKkryhmqbnDDw=="
+    "value": "21XNltdEkuPkovU3Ux2I44IzcPlY6gFFdIwJG5H6+PGYA4dB4SBYCx6FxQ5NQZzb+G9oYajgN8APoxz+HgGKAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-27-ca-ssi-ssp-wic-12200-us-ca-sections-wic-12200"

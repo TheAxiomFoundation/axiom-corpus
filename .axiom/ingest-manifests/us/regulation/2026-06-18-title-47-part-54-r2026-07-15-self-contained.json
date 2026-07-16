@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained.json",
+      "sha256": "ae5e6828983f9b68ff4867a9a4566ef605b6e8bd8bb31a16249b0250306ac67b"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained.json",
+      "sha256": "97faa8d2045e43e4b8d74c997a328626cd808b919946f06b2386804d7064c91b"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained.jsonl",
+      "sha256": "661c8e95f824845a2f820b424134c145e9d4edaf97e24db0272aa11a75eb1dd7"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained/ecfr/title-47-part-54.xml",
+      "sha256": "0488174308a602b5010528a48c7648b198243739c6ead70c5029f9dd79c0b6f0"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-18-title-47-part-54-r2026-07-15-self-contained/ecfr/title-47.structure.json",
+      "sha256": "e6c3999bbdec24e02df7e09bab699ece07dc8842d1e080f552cb852f6c58f1b1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1b71e3ffb801e12bff755c295f4f5715b467cad0",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 272,
+    "missing_count": 0,
+    "provision_count": 272,
+    "source_count": 272
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T22:26:11.652006+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GZsmEdhoa+fhQTki1WwzsXzd0Y66v/MbygNGapjRx2nq3BbKeylqt55g5vsCj1bVJF4ZYuBABAO0Aax60iuICA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-18-title-47-part-54-r2026-07-15-self-contained"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nv/manual/2026-07-13-recovery.json",
+      "sha256": "3adc428cb20008ae1a9b1fdf9f018b6b540dd7ee6c34442027187cff1962ab3a"
+    },
+    {
+      "path": "data/corpus/inventory/us-nv/manual/2026-07-13-recovery.json",
+      "sha256": "2ad7135f452777e648289e9c5307e364663b0b7dd19832aa41e9499949cd2257"
+    },
+    {
+      "path": "data/corpus/provisions/us-nv/manual/2026-07-13-recovery.jsonl",
+      "sha256": "abd08a7c01a636277e6eb62fa8d13d1546ea5b048a797960139d8858d30913ee"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/manual/2026-07-13-recovery/official-documents/release-scope-us-nv-manual-2026-05-27-nv-eligibility-payments-manual",
+      "sha256": "c66a56a0069f89704d86c1620302d6eb16f83a722f771c65417e647be84f9816"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/manual/2026-07-13-recovery/provenance/release-scope-us-nv-manual-2026-05-27-nv-eligibility-payments-manual.json",
+      "sha256": "681bbafea1ba36a706dad79f95b07abe823b2c2ace819c9fea82b0af4ffd0af5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "365253ebf63beef1b7a695a727fdd0cf2c1022a7",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 28,
+    "missing_count": 0,
+    "provision_count": 28,
+    "source_count": 28
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T15:19:05.086957+00:00",
+  "jurisdiction": "us-nv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "TS88iGRXJODkdKl8ZKLIsGIeCFiyVxGzE6llEXN9CHtBR0n/BeHLifeJbZoeiOTuXEMBmpYfBGiefKd0ym4tDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

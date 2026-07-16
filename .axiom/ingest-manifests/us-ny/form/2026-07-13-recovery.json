@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/form/2026-07-13-recovery.json",
+      "sha256": "9f20ae8f9e0b1d3ef1f6d4419314c81c15cf0d74efe3a8405295eeb901076cca"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/form/2026-07-13-recovery.json",
+      "sha256": "71647e87397eda3bf2715d2894137cc8348da04d3ef38113c2bb7e592bc4d14e"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/form/2026-07-13-recovery.jsonl",
+      "sha256": "5467f146c132624dfa2b80cac983d582127e865e119bd19a7064847b2add8c24"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/form/2026-07-13-recovery/official-documents/release-scope-us-ny-form-2026-06-05-ny-tax-current-forms",
+      "sha256": "29489d6eed7529bc1388e57a5bf0814e6e6d94d02288c5c83a377d21e3773f72"
+    },
+    {
+      "path": "data/corpus/sources/us-ny/form/2026-07-13-recovery/provenance/release-scope-us-ny-form-2026-06-05-ny-tax-current-forms.json",
+      "sha256": "bbcf94c8238533937403c8275de693e15b21d4669431476921299df4f62a3928"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8d91d3257941558d24f7802590bc08c9f5ed2091",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 42,
+    "missing_count": 0,
+    "provision_count": 42,
+    "source_count": 42
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-15T15:19:06.344524+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "i8pyCZSbojl8onlajlyf11+lSSIgkDSLJK4NLCEAJsAIvJXnBWAJeunOodZt8IG/XxOiZhyrt9rV4dhMJpu1DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/manual/2026-07-13-recovery.json",
+      "sha256": "0d7c85d638e8261fbbd67c8d373aed985f8a66247bc1f5892647fb6757304be4"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/manual/2026-07-13-recovery.json",
+      "sha256": "bd86d52baf0f4e3710fa82a44d4b25319f144121d2a52fb581c88b50e813d97b"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/manual/2026-07-13-recovery.jsonl",
+      "sha256": "d16ae1b8fb05cd8e7edec7a644c24a0e7799cba3d2644aa6c421ffe5cc77c855"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-07-13-recovery/official-documents/release-scope-us-nc-manual-2026-05-27-nc-fns-manuals",
+      "sha256": "de139a894013d31242817a50b620bfefa95809896f6867ab445f54cbbad0c0e4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-07-13-recovery/provenance/release-scope-us-nc-manual-2026-05-27-nc-fns-manuals.json",
+      "sha256": "e0329e7ab2822e5103fdfe60b56836a13e900e0cdc23bec5c3fcbbccdeb9fd0c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ff8411edd1d462ff3a032dfa2f5de4119a40a8d9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T15:18:58.783836+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XyjYbOiYSPkbEha9DbQJud7QqFLySFQ0MV64i8P8tRbdnjbncOJA7VSIDWaiCrYOXl51veHW6M+N2OlPbtDoAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

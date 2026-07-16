@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616.jsonl",
-      "sha256": "46ff3763704eb83f5e19d1f8151a78c224a5d4e280da6b7b78fca267136b55de"
+      "sha256": "c9513c936e31200b318b40fa5f3f73dfef6e805284668fd42b3848263e916247"
     },
     {
       "path": "data/corpus/sources/us-ny/statute/2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616/new-york-openleg-json/TAX/601.json",
@@ -34,13 +34,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ced6e76fd171547ceb8134011befbdc9a7ce80ad",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/statetax-cany-20260706/ny/axiom-corpus"
+    "commit": "ecf6e6196c6bc270ffb32f25c562965e15f2dafd",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-new-york-openleg-sections --base data/corpus --version 2026-07-06-ny-tax-article22-core --source-as-of 2026-07-06 --expression-date 2026-07-06 --download-dir output/downloads --section TAX:601 --section TAX:606 --section TAX:614 --section TAX:615 --section TAX:616"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -51,14 +51,14 @@
     "source_count": 5
   },
   "document_class": "statute",
-  "generated_at": "2026-07-06T11:06:37.413315+00:00",
+  "generated_at": "2026-07-15T19:51:45.143453+00:00",
   "jurisdiction": "us-ny",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "r3dgx79ImNe5je01SZ0kz8FMRbX/Z2gAm/kcCLjhxHN+CK9gJ1vvvHw2ZNYAguWTsXYgxgJwPeqbNNgjux42Aw=="
+    "value": "iT7YvgpFQ66ezXO8TTNjLk0eVUhCZZh607LiDFDaQfnia5y3eiivHxeLOwcdqmT/RTgaQ5v3ynu7jSKbYoxGDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616"

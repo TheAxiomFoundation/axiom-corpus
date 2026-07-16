@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/regulation/2026-05-28.json",
+      "sha256": "f0a73bfd48c078f419d214f8656a4958711438e401e15520d5ce0d345ddce14d"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/regulation/2026-05-28.json",
+      "sha256": "8c6909271d4532240a6e019cfedda665fe5238d7d39fdfaf73e77d07178a38cd"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/regulation/2026-05-28.jsonl",
+      "sha256": "d4230fe1613738de4eede68d8c89d18818225b4e0fa75c8db382938aa227a010"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "57eb5709f78a32b93be53b9df39d03e378557314",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 789,
+    "missing_count": 0,
+    "provision_count": 789,
+    "source_count": 789
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T19:51:42.267709+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1tf4+K5epd0wdlRIaSJqYbOcKdKfXWUzdlPbubnFnna0gaJMvVFX5JD+I5/C9i2yeYSALkxhf+hoCn7El6/uBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-28"
+}

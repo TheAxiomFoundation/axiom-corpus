@@ -1,0 +1,2111 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="lnet-flex-fill">
+    <head>
+
+        <title>
+          
+            Sec. 290.06 MN Statutes
+          
+        </title>
+        <meta charset="utf-8" />  <!-- for html5 -->
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+        <meta content="ie=edge" http-equiv="x-ua-compatible">
+        <link rel="icon" href="/static/images/favicon.aaff69a12e25.ico">
+        <link href="/static/js/jquery-ui-1.12.1.custom/jquery-ui.min.fc0fab4ce1bd.css" rel="stylesheet">
+        <link href="/static/css/revisor_bootstrap.b4271faa5572.css" rel="stylesheet">
+
+        
+        
+ <link rel="stylesheet" type="text/css" media="screen, print" href="/static/css/docs/base.4576c0fc1b76.css"/>
+ <link rel="stylesheet" rel="stylesheet" type="text/css" media="screen, print" href="/static/css/docs/statutes.489b1d25c6e2.css"/>
+ <link rel="stylesheet" rel="stylesheet" type="text/css" media="screen, print" href="/static/statutes/css/law_banner.c31b6280320b.css"/>
+
+
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script src="/static/js/navbarhelper/bootstrap/navbarhelper.17cd710b3530.js"></script>
+        <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+        <script type="text/javascript" src="/static/js/banners.df4055dcd1c0.js" defer></script>
+
+        
+        <script type="text/javascript" src="/static/js/base_js.0c8ad6509964.js"></script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/static/js/load_topics.dad8e1d553a3.js"></script>
+    <script type="text/javascript" src="/static/js/revisor.2d797cf412a3.js"></script>
+    <script src="/static/statutes/js/law_banner.a1a13e01ce75.js" type="text/javascript"></script>
+
+
+
+        
+            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-5G6DQMRC0C"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'G-5G6DQMRC0C');
+            </script>
+        
+    </head>
+<body class="joint lnet-flex-fill" data-bs>
+
+
+<!--stopindex-->
+<!--skip nav for accessibility-->
+      <nav class="skip-links">
+        <a href="#legContainerMain">Skip to main content</a>
+        <a href="#legFooter">Skip to footer</a>
+      </nav>
+
+      <div class="container-fluid" style="display: flex; flex-direction: column; flex: 1 1 auto;"> <!-- closing tag in footer -->
+      
+    <div class="leg-brand-container bg-darkgray py-0 pl-0 d-print-none">
+    <div class="container d-flex align-items-center justify-content-center pl-0 pl-md-3 d-print-none">
+        <a class="leg-brand-text text-white d-flex align-items-center" href="https://www.leg.mn.gov/"><img
+                src="/static/images/capitol2.svg" alt="Capital Icon"
+                style="opacity: 0.95;height:19px" class="mr-1">
+                <span style="padding-top: 2px;">Minnesota Legislature</span></a>
+        <form class="form-inline float-right ml-auto d-none d-md-block p-0">
+            <a href="https://www.leg.mn.gov/search.aspx"
+                class="text-white js-search-adv mr-1 text-nowrap btn btn-darkgray btn-sm"
+                style="display: none;">Advanced
+                Search</a>
+            <label class="sr-only" for="main-search">Search Legislature</label>
+            <input class="form-control form-control-sm align-top mr-2 js-search" id="main-search" name="search"
+                style="display: none;" placeholder="Search..." type="text">
+            <button class="js-search-btn btn btn-darkgray btn-sm"><i class="fas fa-search"
+                    style="font-weight: 400;"></i><span class="p-1"> Search</span></button>
+        </form>
+    </div>
+</div>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg px-0 py-1 d-block d-print-none">
+    <div class="container">
+        <div class="w-100 px-auto">
+            <div class="col-12 position-static pl-sm-0 pl-md-3 pl-lg-0">
+                <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler" data-target="#top-nav" data-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <span class="d-lg-none pl-1 text-white leg-menu-text" data-toggle="collapse" data-target="#top-nav">
+                    Menu</span>
+
+                <div class="collapse navbar-collapse py-0" id="top-nav">
+                    <ul class="navbar-nav mt-2 mt-lg-0 px-2 pl-lg-0">
+                         <li class="nav-item">
+    <a aria-controls="houseExternalContent" aria-expanded="false"
+        class="nav-link dropdown-toggle pl-0" data-parent="#top-nav" data-toggle="collapse"
+        href="#houseExternalContent">House</a>
+</li>
+<div class="dropdown collapse navbar-nav-collapse" id="houseExternalContent">
+    <div class="bg-dark">
+        <div class="container px-3">
+            <div class="row">
+                <div class="col nav-header"><a href="https://www.house.leg.state.mn.us/">Minnesota House of Representatives</a></div>
+            </div>
+            <hr class="my-1 bg-secondary">
+            <div class="row">
+                
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">House Members and Staff</dt>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/members/list">House Members</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/members/leadership">Leadership</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hinfo/staff.asp">Staff</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/has/employment.asp">Employment</a></dd>
+                            
+                            <dd><a href="https://www.gis.leg.mn/iMaps/districts/">Who Represents Me?</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Committees</dt>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/committees">Committee List</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hinfo/leginfo/comroster.pdf">Committee Roster</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/Schedules/Info">Upcoming Meetings</a></dd>
+                            
+                            <dd><a href="https://www.house.mn.gov/hinfo/comgrid.pdf">Standing Committee Schedule</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/Committees/minutes/list">Minutes</a></dd>
+                            
+                            <dd><a href="https://www.leg.mn.gov/leg/deadlines.aspx">Committee Deadlines</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Offices</dt>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/cco.asp">Chief Clerk</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/fiscal/fahome.asp">Fiscal Analysis</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hrd/hrd.aspx">House Research</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hinfo/hinfo.asp">Public Information</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/sergeant/sergeant.asp">Sergeant-at-Arms</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/caucuses.asp">Caucuses - DFL/GOP</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Other Information</dt>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/journals/journl.asp">House Journal</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/rules/permrule/permrule.asp">House Rules</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/rules/jtrule/jtrule.asp">Joint Rules</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/sergeant/education.asp">Educational Programs</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/members/pronunciation">Pronunciation Guide</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/members/meminfo.xls">Address Spreadsheet</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>  <li class="nav-item">
+    <a aria-controls="senateExternalContent" aria-expanded="false"
+        class="nav-link dropdown-toggle " data-parent="#top-nav" data-toggle="collapse"
+        href="#senateExternalContent">Senate</a>
+</li>
+<div class="dropdown collapse navbar-nav-collapse" id="senateExternalContent">
+    <div class="bg-dark">
+        <div class="container px-3">
+            <div class="row">
+                <div class="col nav-header"><a href="https://www.senate.mn/">Minnesota Senate</a></div>
+            </div>
+            <hr class="my-1 bg-secondary">
+            <div class="row">
+                
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Senators and Staff</dt>
+                            
+                            <dd><a href="https://www.senate.mn/members/index.php">Senators</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/members?id=leadership">Leadership</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/employees/index.php">Staff</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/jobs/index.php">Employment</a></dd>
+                            
+                            <dd><a href="https://www.gis.leg.mn/iMaps/districts/">Who Represents Me?</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Committees</dt>
+                            
+                            <dd><a href="https://www.senate.mn/committees">Committee List</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/committees/display_pdf_cmte_roster.php">Committee Roster</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/schedule/senate/upcoming-all">Upcoming Meetings</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/schedule/senate/standing">Standing Committee Schedule</a></dd>
+                            
+                            <dd><a href="https://www.leg.mn.gov/leg/deadlines">Committee Deadlines</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Offices</dt>
+                            
+                            <dd><a href="https://www.senate.mn/departments/secretary/index.php">Secretary of the Senate</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/scrfa/home">Senate Counsel, Research &amp; Fiscal Analysis</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/caucus/index.php">Caucuses - DFL/GOP</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Other Information</dt>
+                            
+                            <dd><a href="https://www.senate.mn/journals/journal_list.php">Senate Journal</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/rules/rules_senate.php">Senate Rules</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/rules/rules_joint.php">Joint Rules</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/departments/secretary/info/interns/index.php">Educational Programs</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/members/member_labels_page.php">Address Labels</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/subscription/index.php">Subscriptions</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>  <li class="nav-item">
+    <a aria-controls="jointExternalContent" aria-expanded="false"
+        class="nav-link dropdown-toggle " data-parent="#top-nav" data-toggle="collapse"
+        href="#jointExternalContent">Joint</a>
+</li>
+<div class="dropdown collapse navbar-nav-collapse" id="jointExternalContent">
+    <div class="bg-dark">
+        <div class="container px-3">
+            <div class="row">
+                <div class="col nav-header"><a href="https://www.commissions.leg.state.mn.us/">Joint Department, Offices, and Commissions</a></div>
+            </div>
+            <hr class="my-1 bg-secondary">
+            <div class="row">
+                
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Joint Legislative Offices</dt>
+                            
+                            <dd><a href="https://www.lbo.mn.gov/">Legislative Budget Office</a></dd>
+                            
+                            <dd><a href="https://www.lcc.leg.mn/">Legislative Coordinating Commission (LCC)</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/">Legislative Reference Library</a></dd>
+                            
+                            <dd><a href="https://www.auditor.leg.state.mn.us/">Office of the Legislative Auditor</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/">Office of the Revisor of Statutes</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Commissions</dt>
+                            
+                            <dd><a href="https://www.lccmr.leg.mn/">Legislative-Citizen Commission on MN Resources</a></dd>
+                            
+                            <dd><a href="https://www.lcpr.leg.mn/">Legislative Commission on Pernsions &amp; Retirement</a></dd>
+                            
+                            <dd><a href="https://www.lsohc.leg.mn/">Lessard-Sams Outdoor Heritage Council</a></dd>
+                            
+                            <dd><a href="https://www.commissions.leg.state.mn.us/directory/">More...</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">More Information</dt>
+                            
+                            <dd><a href="https://www.commissions.leg.state.mn.us/directory/#directory">Joint Offices Directory</a></dd>
+                            
+                            <dd><a href="https://www.commissions.leg.state.mn.us/directory/#staff">Joint Offices Staff</a></dd>
+                            
+                            <dd><a href="https://www.lcc.mn.gov/diversity-and-inclusion/accessibility/">Accessibility</a></dd>
+                            
+                            <dd><a href="https://www.legacy.mn.gov/">Legacy Amendment</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>  <li class="nav-item">
+    <a aria-controls="schedulesExternalContent" aria-expanded="false"
+        class="nav-link dropdown-toggle " data-parent="#top-nav" data-toggle="collapse"
+        href="#schedulesExternalContent">Schedules</a>
+</li>
+<div class="dropdown collapse navbar-nav-collapse" id="schedulesExternalContent">
+    <div class="bg-dark">
+        <div class="container px-3">
+            <div class="row">
+                <div class="col nav-header"><a href="https://www.leg.mn.gov/leg/schedules">Schedules, Calendars, and Legislative Business</a></div>
+            </div>
+            <hr class="my-1 bg-secondary">
+            <div class="row">
+                
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">House</dt>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/schedules/">House Schedules</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/orders/orders.htm">Order of Business</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/calendar.asp">Calendar for the Day</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/calendarsup.asp">Supplemental Calendar for the Day</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/fiscal.asp">Fiscal Calendar</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Senate</dt>
+                            
+                            <dd><a href="https://www.senate.mn/schedule/senate/upcoming-all">Senate Schedules</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/orders/index.php">Order of Business</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/orders/calendar.html">Senate Calendar</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/orders/go.html">General Orders of the Day</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Joint</dt>
+                            
+                            <dd><a href="https://www.leg.mn.gov/cal?type=all">Combined Upcoming Meetings</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/htv/htv.asp">Broadcast TV Schedule</a></dd>
+                            
+                            <dd><a href="https://www.leg.mn.gov/leg/deadlines.aspx">Committee Deadlines</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>  <li class="nav-item">
+    <a aria-controls="committeesExternalContent" aria-expanded="false"
+        class="nav-link dropdown-toggle " data-parent="#top-nav" data-toggle="collapse"
+        href="#committeesExternalContent">Committees</a>
+</li>
+<div class="dropdown collapse navbar-nav-collapse" id="committeesExternalContent">
+    <div class="bg-dark">
+        <div class="container px-3">
+            <div class="row">
+                <div class="col nav-header"><a href="https://www.leg.mn.gov/leg/committees">Legislative Committees</a></div>
+            </div>
+            <hr class="my-1 bg-secondary">
+            <div class="row">
+                
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">House</dt>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/committees">Committee List</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hinfo/leginfo/comroster.pdf">Committee Roster</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/Schedules/Info">Upcoming Meetings</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hinfo/comgrid.pdf">Standing Committee Schedule</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/Committees/minutes/list">Minutes</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Senate</dt>
+                            
+                            <dd><a href="https://www.senate.mn/committees/">Committee List</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/committees/display_pdf_cmte_roster.php">Committee Roster</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/schedule/senate/upcoming-all">Upcoming Meetings</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/committees/cmte_meeting_schedule.php">Standing Committee Schedule</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Joint</dt>
+                            
+                            <dd><a href="https://www.commissions.leg.state.mn.us/">Joint Committees &amp; Task Forces</a></dd>
+                            
+                            <dd><a href="https://www.leg.mn.gov/leg/deadlines">Committee Deadlines</a></dd>
+                            
+                            <dd><a href="https://www.leg.mn.gov/leg/cc/">Bills In Conference Committee</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/side_by_sides/">Side by Side Comparisons</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>  <li class="nav-item">
+    <a aria-controls="billsExternalContent" aria-expanded="false"
+        class="nav-link dropdown-toggle " data-parent="#top-nav" data-toggle="collapse"
+        href="#billsExternalContent">Bills</a>
+</li>
+<div class="dropdown collapse navbar-nav-collapse" id="billsExternalContent">
+    <div class="bg-dark">
+        <div class="container px-3">
+            <div class="row">
+                <div class="col nav-header"><a href="https://www.leg.mn.gov/leg/legis">Bills</a></div>
+            </div>
+            <hr class="my-1 bg-secondary">
+            <div class="row">
+                
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">House</dt>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/bills/status_search.php?body=House">Bill Search &amp; Status (House)</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/introductions.asp">Bill Introductions</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hrd/billsum.aspx">Bill Summaries</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hrd/actsum.aspx">Act Summaries</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/fiscal/tracking.asp">Fiscal Tracking Sheets</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Senate</dt>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/bills/status_search.php?body=Senate">Bill Search &amp; Status (Senate)</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/orders/intros/intro_list_from_db.php">Bill Introductions</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/departments/scr/billsumm/index.php?summary_type=bill">Bill Summaries</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/departments/scr/billsumm/act_summaries.html">Act Summaries</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/departments/fiscalpol/tracking/index.php">Fiscal Tracking Sheets</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Joint</dt>
+                            
+                            <dd><a href="https://www.leg.mn.gov/leg/legis.aspx">Bill Search &amp; Status</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/leg/billsublogin.asp">MyBills</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/side_by_sides/">Side by Side Comparisons</a></dd>
+                            
+                            <dd><a href="https://www.leg.mn.gov/leg/cc/">Bills In Conference Committee</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/vetoes/vetodetails.aspx">Vetoes</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/laws/current/">Current Session Laws</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>  <li class="nav-item">
+    <a aria-controls="lawExternalContent" aria-expanded="false"
+        class="nav-link dropdown-toggle " data-parent="#top-nav" data-toggle="collapse"
+        href="#lawExternalContent">Law</a>
+</li>
+<div class="dropdown collapse navbar-nav-collapse" id="lawExternalContent">
+    <div class="bg-dark">
+        <div class="container px-3">
+            <div class="row">
+                <div class="col nav-header"><a href="https://www.revisor.mn.gov/pubs/">Statutes, Laws, and Rules</a></div>
+            </div>
+            <hr class="my-1 bg-secondary">
+            <div class="row">
+                
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Statutes</dt>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/search/?collection=statute">Keyword Search</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/statutes/">Current Statutes</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/index/statute/">Statutes by Topic (Index)</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/statutes/archive">Statutes Archive</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Session Laws</dt>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/search/?collection=law">Keyword Search</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/laws/current/">Current Session Laws</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/index/law/">Session Laws by Topic (Index)</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/laws/">Session Laws Archive</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/laws/table1">Session Laws Changed (Table 1)</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/statutes/table2">Statutes Changed (Table 2)</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Administrative Rules</dt>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/search/?collection=rule">Keyword Search</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/rules/">Current Rules</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/index/rule/">Rules by Topic (Index)</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/rules/archive/">Rules Archive</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/rules/status/">Minnesota Rule Status</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/state_register/">State Register</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Other Legal Materials</dt>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/constitution/">Minnesota Constitution</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/mngov/constitutionalamendments.aspx">State Constitutional Amendments</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/court_rules/">Court Rules</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>  <li class="nav-item">
+    <a aria-controls="multimediaExternalContent" aria-expanded="false"
+        class="nav-link dropdown-toggle " data-parent="#top-nav" data-toggle="collapse"
+        href="#multimediaExternalContent">Multimedia</a>
+</li>
+<div class="dropdown collapse navbar-nav-collapse" id="multimediaExternalContent">
+    <div class="bg-dark">
+        <div class="container px-3">
+            <div class="row">
+                <div class="col nav-header"><a href="https://www.leg.mn.gov/leg/multimedia">Multimedia - Audio, Video, Broadcast TV, News, &amp; Photos</a></div>
+            </div>
+            <hr class="my-1 bg-secondary">
+            <div class="row">
+                
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">House</dt>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/live/1">Live Video</a></dd>
+                            
+                            <dd><a href="https://www.leg.mn.gov/leg/multimedia">Audio</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/htv/schedule.asp">Webcast Schedule</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/audio/default.asp">Audio &amp; Video Archives</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/sessiondaily/">Session Daily</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hinfo/images.asp">Photos</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Senate</dt>
+                            
+                            <dd><a href="https://www.youtube.com/MnSenateMedia">Live Video</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/media/media_coming_up.php#live-audio">Audio</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/media/media_coming_up.html">Webcast Schedule</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/media/">Audio &amp; Video Archives</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/media/index.php">Senate Media Services</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/media-gallery/">Photos</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                    <div class="col-12 col-sm-4">
+                        
+                        <dl>
+                            <dt class="text-white pb-1">Joint</dt>
+                            
+                            <dd><a href="https://www.leg.mn.gov/leg/multimedia">Combined Media Page</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/media/">Legislative Media Archive</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/htv/htv.asp">Broadcast TV Schedule</a></dd>
+                            
+                            <dd><a href="https://www.commissions.leg.state.mn.us/meetings-all.htm">Commission Audio/Video</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>  <li class="nav-item">
+    <a aria-controls="publicationsExternalContent" aria-expanded="false"
+        class="nav-link dropdown-toggle " data-parent="#top-nav" data-toggle="collapse"
+        href="#publicationsExternalContent">Publications</a>
+</li>
+<div class="dropdown collapse navbar-nav-collapse" id="publicationsExternalContent">
+    <div class="bg-dark">
+        <div class="container px-3">
+            <div class="row">
+                <div class="col nav-header"><a href="https://www.leg.mn.gov/leg/publicat">Legislative Research, Reports &amp; Information</a></div>
+            </div>
+            <hr class="my-1 bg-secondary">
+            <div class="row">
+                
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Office Research &amp; Reports</dt>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/fiscal/fahome.asp">House Fiscal Analysis</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hrd/publications.aspx">House Research</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/scrfa/publications">Senate Counsel Publications</a></dd>
+                            
+                            <dd><a href="https://www.auditor.leg.state.mn.us/allreports.htm">Legislative Auditor</a></dd>
+                            
+                            <dd><a href="https://www.revisor.mn.gov/office/publications">Revisor Publications</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/">Legislative Reference Library</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">News</dt>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hinfo/sdaily.asp">House Session Daily</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/media/index.php">Senate Media Services</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/publications">Senate Information</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/hinfo/leginfo/memroster.pdf">Legislators Roster</a></dd>
+                            
+                            <dd><a href="https://www.house.mn/hinfo/leginfo/elecdir.htm">Member Guide</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Legislative History</dt>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/leg/history/histstep.aspx">Legislative History Guide</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/legdb/">Legislators Past &amp; Present</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/cco/journals/journl.asp">House Journal</a></dd>
+                            
+                            <dd><a href="https://www.senate.mn/journals/journal_list.php">Senate Journal</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/timecapsule/">Legislative Time Capsule</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/vetoes/vetoes.aspx">Vetoes</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                
+                <div class="col-12 col-sm-6 col-md-3">
+                    
+                        <dl>
+                            <dt class="text-white pb-1">Notable Documents</dt>
+                            
+                            <dd><a href="https://www.senate.mn/departments/scr/report/index.php">Fiscal Review</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/guides/">Minnesota Issues Guides</a></dd>
+                            
+                            <dd><a href="https://www.house.leg.state.mn.us/newlaws/">New Laws</a></dd>
+                            
+                            <dd><a href="https://www.lrl.mn.gov/booksreports.aspx">Books &amp; reports</a></dd>
+                            
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div> 
+                    </ul>
+                    <form class="form-inline ml-auto d-block d-md-none p-2">
+                        <label class="sr-only js-search-sm-label" for="sm-search">Search Legislature</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                            <input class="form-control form-control-sm js-sm-search" id="sm-search" name="search"
+                                aria-label="Search Legislature" aria-describedby="searchButton" placeholder="Search..."
+                                type="text" />
+                            <div class="input-group-append">
+                                <button class="js-search-sm-btn btn btn-darkgray btn-sm" type="button" id="searchButton"
+                                    alt="Search Button">
+                                    <i class="fa fa-search"></i><span class="sr-only sr-only-focusable">Search</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <div class="leg-banner img-joint">
+        <div class="position-relative h-100">
+            <div class="leg-title-container pl-0">
+                <div class="container pl-sm-0 pl-md-3">
+                    <a class="leg-title-text text-white" href="https://www.revisor.mn.gov/" id="leg-title-text-link"
+                       style="">Office of the Revisor of Statutes</a><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="d-none d-print-block text-center" id="leg-title-text" style="">Office of the Revisor of Statutes</h1>
+
+    <nav id="legSubNav" class="navbar navbar-expand-md navbar-joint bg-joint  d-print-none">
+        <div class="container">
+            <div class="d-block ml-0">
+                <button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler" data-target="#navbarNav" data-toggle="collapse" type="button"><span
+                        class="navbar-toggler-icon"></span></button>
+                <span class="d-md-none pl-1 text-white" data-toggle="collapse"
+                      data-target="#navbarNav">Revisor Menu</span>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item pl-md-0 d-none d-lg-inline">
+                        
+
+                            <form id="docbox" class="retrieve d-flex justify-content-center mt-1"
+                                  action="//retrieve/" method="post">
+                                <label class="sr-only" for="docnum">Retrieve by number</label>
+                                <input class="bg-light navbar-form form-control mr-1 w-100" name="docnum" id="docnum" 
+                                        type="text" placeholder="Retrieve by number" maxlength="200"/>
+                                        
+                                <label class="sr-only" for="doctype">Document type</label>
+                                <div class="input-group flex-nowrap">
+                                    <select class="bg-light custom-select custom-select-sm form-control navbar-form"
+                                            id="doctype" name="type">
+                                        <!-- class="form-control form-control-sm text-primary" -->
+                                        <option value="statutes" >Statutes
+                                        </option>
+                                        <option value="laws" >
+                                            Laws
+                                        </option>
+                                        <option value="rules" >Rules
+                                        </option>
+                                        <option value="bills" >Bills
+                                        </option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-sm btn-secondary navbar-form pb-2">GO</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.revisor.mn.gov/statutes/">Statutes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.revisor.mn.gov/laws/">Laws</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.revisor.mn.gov/rules/">Rules</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.revisor.mn.gov/court_rules/">Court Rules</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.revisor.mn.gov/constitution/">Constitution</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                           data-toggle="dropdown"
+                           href="#" id="navbarDropdownMenuLink">Revisor's Office</a>
+                        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+                            <a class="dropdown-item" href="https://intra.revisor.mn.gov/">Revisor Intranet</a>
+                            <a class="dropdown-item" href="https://www.revisor.mn.gov/staff/drafting_areas">Attorney
+                                Drafting Areas</a>
+                            <a class="dropdown-item" href="https://www.revisor.mn.gov/staff/">Staff Directory</a>
+                            <a class="dropdown-item" href="https://www.revisor.mn.gov/office/duties">Office Duties</a>
+                            <a class="dropdown-item" href="https://www.revisor.mn.gov/office/publications">Publications</a>
+                            <a class="dropdown-item" href="https://www.revisor.mn.gov/seminars/">Educational
+                                Seminars</a>
+                            <a class="dropdown-item" href="https://www.revisor.mn.gov/employment/">Employment
+                                Openings</a>
+                            <a class="dropdown-item" href="https://www.revisor.mn.gov/office/order">Order Publications</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.revisor.mn.gov/search/">Search Law by Keyword</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto d-flex flex-row">
+                    
+                    
+                    
+                    <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Print">
+                        <a aria-label="print page" class="nav-link" href="javascript:window.print();"><i
+                                class="fas fa-lg fa-print"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+<div id="bannerSlot" class="d-flex flex-column align-items-end lnet-width w-100 d-print-none"></div>
+
+      <!--startindex-->
+      <div class="container-fluid">
+        
+      </div>
+      
+      
+      <main id="legContainerMain" class="container leg-content pt-0 pb-4 lnet-flex-fill">
+          <div class="row leg-row-print-full">
+            <div class="col leg-col-print-12">
+              
+
+              
+
+<div id="breadcrumb" class="mb-3">
+    <ul>
+    
+        
+            <li>
+                <a href="/statutes/">2025 Minnesota Statutes</a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/statutes/part/VARIOUS%2520STATE%2520TAXES%2520AND%2520PROGRAMS">VARIOUS STATE TAXES AND PROGRAMS</a>
+            </li>
+        
+    
+        
+            <li>
+                <a href="/statutes/cite/290">Chapter 290</a>
+            </li>
+        
+    
+        
+            <li>Section 290.06</li>
+        
+    
+    </ul>
+</div>
+
+
+              
+    
+    <div id="doc_nav">
+        
+            
+                <a class="previous" href="https://www.revisor.mn.gov/statutes/cite/290.05">290.05</a>
+            
+        
+        
+            
+                <a class="next" href="https://www.revisor.mn.gov/statutes/cite/290.0601">290.0601</a></p>
+            
+        
+    </div>
+    
+
+              
+                <div id="header" class="row mb-2 mt-3">
+                  <div class="col-12 col-md-8">
+                    <h1>
+                      2025 Minnesota Statutes
+                    </h1>
+                  </div>
+                  <div class="col-12 col-md-4">
+                    <div class="float-left float-md-right">
+                    
+<ul class="pl-0">
+    <li><a class="pdf_doc_type_link" class="pl-0" href="https://www.revisor.mn.gov/authenticate/">Authenticate</a></li>
+    
+    
+    <li><a class="pdf_doc_type_link" href="https://www.revisor.mn.gov/statutes/cite/290.06/pdf"><i class="far fa-file-pdf fa-2x" style="color:#990033;"></i> PDF</a></li>
+    
+    
+</ul>
+
+                    </div>
+                  </div>
+                </div>
+              
+              <div class="row">
+                
+    
+
+<div id="resource_box" class="col-lg-3 order-2 mt-lg-4 d-print-none">
+    <div class="card">
+        <div class="card-header" id="cardheading">
+            <h3>
+                <a data-toggle="collapse" href="#collapse" aria-expanded="true" role="button" aria-controls="collapse">
+                Resources
+                </a>
+            </h3>
+        </div>
+        <div id="collapse" class="collapse show" data-parent="#resource_box">
+            <div class="card-body">
+                <div class="container">
+                    
+                    
+
+                    
+
+                    
+
+                        <ul>
+                            
+                            
+                            
+                            <li><a href="/search/?collection=statute">Search Minnesota Statutes</a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="/statutes/info">About Minnesota Statutes</a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="/statutes/table2">2025 Statutes New, Amended or Repealed</a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="/statutes/">2025 Table of Chapters</a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="/index/statute/?year=2025">2025 Statutes Topics (Index)</a></li>
+                            
+                            
+                            
+                        </ul>
+                        
+                    
+                    
+                    <h2>Chapter 290</h2>
+                    
+
+                    
+
+                    
+
+                        <ul>
+                            
+                            
+                            
+                            <li><a href="/statutes/cite/290">Table of Sections</a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="/statutes/cite/290/full">Full Chapter Text</a></li>
+                            
+                            
+                            
+                            
+                            
+                            <li><a href="/statutes/cite/290/versions">Version List</a></li>
+                            
+                            
+                            
+                        </ul>
+                        
+                    
+                    
+                    <h2>Section 290.06</h2>
+                    
+
+                    
+
+                    
+
+                        <ul>
+                            
+                            
+                            
+                            <li><a href="/statutes/cite/290.06/versions">Version List</a></li>
+                            
+                            
+                            
+                        </ul>
+                        
+                    
+                    
+
+                    
+                    <h2><a href="/statutes/table2?full=290.06">Recent History</a></h2>
+                    
+
+                    
+                    <div style="max-height: 15em; overflow: auto;">
+                        
+
+                        <ul>
+                            
+                            
+                            
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2026/cite/290.06/subd/290.06.2c">2026 Subd. 2c</a> Amended <a href="/laws/2026/0/128/laws.1.24.0">2026 c 128 art 1 s 24</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2026/cite/290.06/subd/290.06.2h">2026 Subd. 2h</a> Amended <a href="/laws/2026/0/128/laws.1.25.0">2026 c 128 art 1 s 25</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2026/cite/290.06/subd/290.06.23a">2026 Subd. 23a</a> Amended <a href="/laws/2026/0/128/laws.2.12.0">2026 c 128 art 2 s 12</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2026/cite/290.06/subd/290.06.29">2026 Subd. 29</a> Repealed <a href="/laws/2026/0/128/laws.11.18.0">2026 c 128 art 11 s 18</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2026/cite/290.06/subd/290.06.40">2026 Subd. 40</a> Amended <a href="/laws/2026/0/128/laws.2.13.0">2026 c 128 art 2 s 13</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2025/cite/290.06/subd/290.06.2c">2025 Subd. 2c</a> Amended <a href="/laws/2025/0/20/laws.0.231.0">2025 c 20 s 231</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2025/cite/290.06/subd/290.06.23">2025 Subd. 23</a> Amended <a href="/laws/2025/1/13/laws.1.9.0">2025 c 13 art 1 s 9</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2025/cite/290.06/subd/290.06.23a">2025 Subd. 23a</a> Amended <a href="/laws/2025/0/20/laws.0.232.0">2025 c 20 s 232</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2023/cite/290.06/subd/290.06.2c">2023 Subd. 2c</a> Amended <a href="/laws/2023/0/64/laws.2.4.0">2023 c 64 art 2 s 4</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2023/cite/290.06/subd/290.06.2c">2023 Subd. 2c</a> Amended <a href="/laws/2023/0/1/laws.0.15.0">2023 c 1 s 15</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2023/cite/290.06/subd/290.06.22">2023 Subd. 22</a> Amended <a href="/laws/2023/0/64/laws.16.2.0">2023 c 64 art 16 s 2</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2023/cite/290.06/subd/290.06.23">2023 Subd. 23</a> Amended <a href="/laws/2023/0/64/laws.1.31.0">2023 c 64 art 1 s 31</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2023/cite/290.06/subd/290.06.23a">2023 Subd. 23a</a> New <a href="/laws/2023/0/64/laws.1.32.0">2023 c 64 art 1 s 32</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2023/cite/290.06/subd/290.06.39">2023 Subd. 39</a> Amended <a href="/laws/2023/0/64/laws.1.33.0">2023 c 64 art 1 s 33</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2021/cite/290.06/subd/290.06.2c">2021 Subd. 2c</a> Amended <a href="/laws/2021/1/14/laws.3.4.0">2021 c 14 art 3 s 4</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2021/cite/290.06/subd/290.06.22">2021 Subd. 22</a> Amended <a href="/laws/2021/1/14/laws.3.5.0">2021 c 14 art 3 s 5</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2021/cite/290.06/subd/290.06.39">2021 Subd. 39</a> New <a href="/laws/2021/1/14/laws.1.9.0">2021 c 14 art 1 s 9</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2021/cite/290.06/subd/290.06.40">2021 Subd. 40</a> New <a href="/laws/2021/1/14/laws.3.6.0">2021 c 14 art 3 s 6</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2019/cite/290.06/subd/290.06.2c">2019 Subd. 2c</a> Amended <a href="/laws/2019/1/6/laws.12.2.0">2019 c 6 art 12 s 2</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2019/cite/290.06/subd/290.06.2c">2019 Subd. 2c</a> Amended <a href="/laws/2019/1/6/laws.2.16.0">2019 c 6 art 2 s 16</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2019/cite/290.06/subd/290.06.2d">2019 Subd. 2d</a> Amended <a href="/laws/2019/1/6/laws.12.3.0">2019 c 6 art 12 s 3</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2019/cite/290.06/subd/290.06.2d">2019 Subd. 2d</a> Amended <a href="/laws/2019/1/6/laws.1.36.0">2019 c 6 art 1 s 36</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2019/cite/290.06/subd/290.06.2h">2019 Subd. 2h</a> Amended <a href="/laws/2019/1/6/laws.1.37.0">2019 c 6 art 1 s 37</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2019/cite/290.06/subd/290.06.2h">2019 Subd. 2h</a> Amended <a href="/laws/2019/0/50/laws.1.90.0">2019 c 50 art 1 s 90</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2017/cite/290.06/subd/290.06.2g">2017 Subd. 2g</a> New <a href="/laws/2017/1/1/laws.1.13.0">2017 c 1 art 1 s 13</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2017/cite/290.06/subd/290.06.2h">2017 Subd. 2h</a> New <a href="/laws/2017/1/1/laws.1.14.0">2017 c 1 art 1 s 14</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2017/cite/290.06/subd/290.06.22">2017 Subd. 22</a> Amended <a href="/laws/2017/1/1/laws.1.15.0">2017 c 1 art 1 s 15</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2017/cite/290.06/subd/290.06.36">2017 Subd. 36</a> Repealed <a href="/laws/2017/1/1/laws.1.44.0">2017 c 1 art 1 s 44</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2017/cite/290.06/subd/290.06.37">2017 Subd. 37</a> New <a href="/laws/2017/1/1/laws.1.16.0">2017 c 1 art 1 s 16</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2017/cite/290.06/subd/290.06.38">2017 Subd. 38</a> New <a href="/laws/2017/1/1/laws.1.17.0">2017 c 1 art 1 s 17</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2016/cite/290.06/subd/290.06.2c">2016 Subd. 2c</a> Amended <a href="/laws/2016/0/158/laws.3.12.0">2016 c 158 art 3 s 12</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2016/cite/290.06/subd/290.06.22">2016 Subd. 22</a> Amended <a href="/laws/2016/0/158/laws.3.13.0">2016 c 158 art 3 s 13</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2014/cite/290.06/subd/290.06.2c">2014 Subd. 2c</a> Amended <a href="/laws/2014/0/150/laws.1.14.0">2014 c 150 art 1 s 14</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2014/cite/290.06/subd/290.06.30">2014 Subd. 30</a> Repealed <a href="/laws/2014/0/308/laws.9.94.0">2014 c 308 art 9 s 94</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2014/cite/290.06/subd/290.06.31">2014 Subd. 31</a> Repealed <a href="/laws/2014/0/308/laws.9.94.0">2014 c 308 art 9 s 94</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2013/cite/290.06/subd/290.06.2c">2013 Subd. 2c</a> Amended <a href="/laws/2013/0/143/laws.6.10.0">2013 c 143 art 6 s 10</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2013/cite/290.06/subd/290.06.2d">2013 Subd. 2d</a> Amended <a href="/laws/2013/0/143/laws.6.11.0">2013 c 143 art 6 s 11</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2013/cite/290.06/subd/290.06.22a">2013 Subd. 22a</a> Repealed <a href="/laws/2013/0/143/laws.6.34.0">2013 c 143 art 6 s 34</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2013/cite/290.06/subd/290.06.36">2013 Subd. 36</a> New <a href="/laws/2013/0/143/laws.6.12.0">2013 c 143 art 6 s 12</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2012/cite/290.06/subd/290.06.2c">2012 Subd. 2c</a> Amended <a href="/laws/2012/0/294/laws.2.11.0">2012 c 294 art 2 s 11</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2012/cite/290.06/subd/290.06.24">2012 Subd. 24</a> Repealed <a href="/laws/2012/0/294/laws.2.43.0">2012 c 294 art 2 s 43</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2012/cite/290.06/subd/290.06.32">2012 Subd. 32</a> Repealed <a href="/laws/2012/0/294/laws.2.43.0">2012 c 294 art 2 s 43</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2011/cite/290.06/subd/290.06.2c">2011 Subd. 2c</a> Amended <a href="/laws/2011/0/112/laws.6.3.0">2011 c 112 art 6 s 3</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2011/cite/290.06/subd/290.06.10">2011 Subd. 10</a> Repealed <a href="/laws/2011/0/112/laws.5.8.0">2011 c 112 art 5 s 8</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2010/cite/290.06/subd/290.06.2c">2010 Subd. 2c</a> Amended <a href="/laws/2010/0/389/laws.3.12.0">2010 c 389 art 3 s 12</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2010/cite/290.06/subd/290.06.34">2010 Subd. 34</a> Repealed <a href="/laws/2010/0/216/laws.0.62.0">2010 c 216 s 62</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2009/cite/290.06/subd/290.06.2c">2009 Subd. 2c</a> Amended <a href="/laws/2009/0/88/laws.1.8.0">2009 c 88 art 1 s 8</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2008/cite/290.06/subd/290.06.2c">2008 Subd. 2c</a> Amended <a href="/laws/2008/0/154/laws.4.6.0">2008 c 154 art 4 s 6</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2008/cite/290.06/subd/290.06.33">2008 Subd. 33</a> Amended <a href="/laws/2008/0/366/laws.4.7.0">2008 c 366 art 4 s 7</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2008/cite/290.06/subd/290.06.33">2008 Subd. 33</a> Amended <a href="/laws/2008/0/154/laws.11.13.0">2008 c 154 art 11 s 13</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2008/cite/290.06/subd/290.06.34">2008 Subd. 34</a> New <a href="/laws/2008/0/152/laws.3.2.0">2008 c 152 art 3 s 2</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2008/cite/290.06/subd/290.06.35">2008 Subd. 35</a> New <a href="/laws/2008/0/366/laws.5.9.0">2008 c 366 art 5 s 9</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2007/cite/290.06/subd/290.06.24">2007 Subd. 24</a> Amended <a href="/laws/2007/0/138/laws.0.11.0">2007 c 138 s 11</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2006/cite/290.06/subd/.290.06.33">2006 Subd. 33</a> New <a href="/laws/2006/0/259/laws.1.1.0">2006 c 259 art 1 s 1</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2005/cite/290.06">2005 Subd. 2c</a> Amended <a href="/laws/2005/1/3/a10">2005 c 3 art 10 s 4</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2005/cite/290.06">2005 Subd. 2c</a> Amended <a href="/laws/2005/1/3/a4">2005 c 3 art 4 s 10</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2005/cite/290.06">2005 Subd. 22</a> Amended <a href="/laws/2005/0/151/a6">2005 c 151 art 6 s 15</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2005/cite/290.06">2005 Subd. 32</a> New <a href="/laws/2005/1/3/a10">2005 c 3 art 10 s 5</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2003/cite/290.06">2003 Subd. 2c</a> Amended <a href="/laws/2003/1/21/a1">2003 c 21 art 1 s 5</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2003/cite/290.06">2003 Subd. 2c</a> Amended <a href="/laws/2003/0/127/a3">2003 c 127 art 3 s 10</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2003/cite/290.06">2003 Subd. 24</a> Amended <a href="/laws/2003/0/127/a14">2003 c 127 art 14 s 4</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2003/cite/290.06">2003 Subd. 29</a> New <a href="/laws/2003/1/21/a1">2003 c 21 art 1 s 6</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2003/cite/290.06">2003 Subd. 30</a> New <a href="/laws/2003/1/21/a2">2003 c 21 art 2 s 4</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2003/cite/290.06">2003 Subd. 31</a> New <a href="/laws/2003/1/21/a2">2003 c 21 art 2 s 5</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2001/cite/290.06">2001 Subd. 2c</a> Amended <a href="/laws/2001/1/5/a7">2001 c 5 art 7 s 34</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2001/cite/290.06">2001 Subd. 22</a> Amended <a href="/laws/2001/1/5/a9">2001 c 5 art 9 s 10</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2001/cite/290.06">2001 Subd. 23</a> Amended <a href="/laws/2001/1/5/a7">2001 c 5 art 7 s 35</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2001/cite/290.06">2001 Subd. 25</a> Repealed <a href="/laws/2001/1/5/a7">2001 c 5 art 7 s 66</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2001/cite/290.06">2001 Subd. 26</a> Repealed <a href="/laws/2001/1/5/a9">2001 c 5 art 9 s 30</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2000/cite/290.06">2000 Subd. 2c</a> Amended <a href="/laws/2000/0/490/a4">2000 c 490 art 4 s 12</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2000/cite/290.06">2000 Subd. 2d</a> Amended <a href="/laws/2000/0/490/a4">2000 c 490 art 4 s 13</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2000/cite/290.06">2000 Subd. 22</a> Amended <a href="/laws/2000/0/490/a4">2000 c 490 art 4 s 14</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2000/cite/290.06">2000 Subd. 22a</a> New <a href="/laws/2000/0/490/a4">2000 c 490 art 4 s 15</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2000/cite/290.06">2000 Subd. 23</a> Amended <a href="/laws/2000/0/263/%20">2000 c 263 s 1</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/2000/cite/290.06">2000 Subd. 28</a> New <a href="/laws/2000/0/490/a4">2000 c 490 art 4 s 16</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1999/cite/290.06">1999 Subd. 2c</a> Amended <a href="/laws/1999/0/243/a2">1999 c 243 art 2 s 8</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1999/cite/290.06">1999 Subd. 2d</a> Amended <a href="/laws/1999/0/243/a2">1999 c 243 art 2 s 9</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1999/cite/290.06">1999 Subd. 23</a> Amended <a href="/laws/1999/0/220/%20">1999 c 220 s 49</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1999/cite/290.06">1999 Subd. 26</a> New <a href="/laws/1999/0/243/a2">1999 c 243 art 2 s 10</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1999/cite/290.06">1999 Subd. 27</a> New <a href="/laws/1999/0/243/a2">1999 c 243 art 2 s 11</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1998/cite/290.06">1998 Subd. 2c</a> Amended <a href="/laws/1998/0/389/a7">1998 c 389 art 7 s 6</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1998/cite/290.06">1998 Subd. 2c</a> Amended <a href="/laws/1998/0/389/a6">1998 c 389 art 6 s 6</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1997/cite/290.06">1997 Subd. 22</a> Amended <a href="/laws/1997/0/231/a6">1997 c 231 art 6 s 12</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1997/cite/290.06">1997 Subd. 22</a> Amended <a href="/laws/1997/0/31/a1">1997 c 31 art 1 s 15</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;"><a href="/statutes/1997/cite/290.06">1997 Subd. 25</a> New <a href="/laws/1997/0/231/a5">1997 c 231 art 5 s 5</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;">1996 Subd. 2c Amended <a href="/laws/1996/0/471/a1">1996 c 471 art 1 s 4</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;">1996 Subd. 21 Repealed <a href="/laws/1996/0/471/a9">1996 c 471 art 9 s 16</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;">1996 Subd. 22 Amended <a href="/laws/1996/0/471/a1">1996 c 471 art 1 s 5</a></li>
+                            
+                            
+                            
+                            <li style="font-size: 0.75em;">1994 Subd. 2c Amended <a href="/laws/1994/0/587/a1">1994 c 587 art 1 s 12</a></li>
+                            
+                            
+                        </ul>
+                        
+                    </div>
+                    
+                    
+                    </ul></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+  <script>
+    call_get_topics('statute', 2025, '290.06', 'https://api.revisor.mn.gov/revisor-indexing/api')
+  </script>
+  
+
+                <div class="col-lg order-1">
+                  
+    
+    
+        <div id="warning" class="alert alert-warning" role="alert">
+            This section has been affected by law enacted during the 2026 Regular Session. <a id="more_info_link" href="#">More info...</a>
+            <div id="more_info">
+                <ul>
+                
+                    <li>
+                        
+                        290.06 subd. 2c has been amended by  <a href="/laws/2026/0/128/laws.1.24.0">Chapter 128, Article 1, Section 24</a>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        290.06 subd. 2h has been amended by  <a href="/laws/2026/0/128/laws.1.25.0">Chapter 128, Article 1, Section 25</a>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        290.06 subd. 23a has been amended by  <a href="/laws/2026/0/128/laws.2.12.0">Chapter 128, Article 2, Section 12</a>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        290.06 subd. 29 has been repealed by  <a href="/laws/2026/0/128/laws.11.18.0">Chapter 128, Article 11, Section 18</a>
+                        
+                    </li>
+                
+                    <li>
+                        
+                        290.06 subd. 40 has been amended by  <a href="/laws/2026/0/128/laws.2.13.0">Chapter 128, Article 2, Section 13</a>
+                        
+                    </li>
+                
+                </ul>
+                <p id="more_info_info">Note: see session law sections for effective dates.</p>
+            </div>
+        </div>
+    
+
+
+    
+
+    
+
+    
+    <div xmlns="http://www.w3.org/1999/xhtml" id="xtend" class="statute">
+  <div class="section" id="stat.290.06">
+    <h1 class="shn">290.06 RATES OF TAX; CREDITS.</h1>
+    <div class="subd" id="stat.290.06.1">
+      <a title="Link to Subdivision 1." class="permalink" href="#stat.290.06.1">§</a>
+      <h2 class="subd_no">Subdivision 1.<span class="headnote">Computation, corporations.</span></h2>
+      <p>The franchise tax imposed upon corporations shall be computed by applying to their taxable income the rate of 9.8 percent.</p>
+    </div>
+    <div class="subd" id="stat.290.06.1a">
+      <a title="Link to Subd. 1a." class="permalink" href="#stat.290.06.1a">§</a>
+      <h2 class="subd_no">Subd. 1a.</h2>
+      <p>[Repealed, <a href="/laws/1990/0/604/#laws.2.21.0">1990 c 604 art 2 s 21</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.2">
+      <a title="Link to Subd. 2." class="permalink" href="#stat.290.06.2">§</a>
+      <h2 class="subd_no">Subd. 2.</h2>
+      <p>[Repealed, <a href="/laws/1971/1/31/#laws.18.6.0">Ex1971 c 31 art 18 s 6</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.2a">
+      <a title="Link to Subd. 2a." class="permalink" href="#stat.290.06.2a">§</a>
+      <h2 class="subd_no">Subd. 2a.</h2>
+      <p>[Repealed, <a href="/laws/1967/1/32/#laws.14.12.0">Ex1967 c 32 art 14 s 12</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.2b">
+      <a title="Link to Subd. 2b." class="permalink" href="#stat.290.06.2b">§</a>
+      <h2 class="subd_no">Subd. 2b.</h2>
+      <p>[Repealed, <a href="/laws/1980/0/419/#laws.0.46.0">1980 c 419 s 46</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.2c">
+      <a title="Link to Subd. 2c." class="permalink" href="#stat.290.06.2c">§</a>
+      <h2 class="subd_no">Subd. 2c.<span class="headnote">Schedules of rates for individuals, estates, and trusts.</span></h2>
+      <p class="in">(a) The income taxes imposed by this chapter upon married individuals filing joint returns and surviving spouses as defined in section 2(a) of the Internal Revenue Code must be computed by applying to their taxable net income the following schedule of rates:</p>
+      <p class="in">(1) On the first $38,770, 5.35 percent;</p>
+      <p class="in">(2) On all over $38,770, but not over $154,020, 6.8 percent;</p>
+      <p class="in">(3) On all over $154,020, but not over $269,010, 7.85 percent;</p>
+      <p>(4) On all over $269,010, 9.85 percent.</p>
+      <p class="in">Married individuals filing separate returns, estates, and trusts must compute their income tax by applying the above rates to their taxable income, except that the income brackets will be one-half of the above amounts after the adjustment required in subdivision 2d.</p>
+      <p class="in">(b) The income taxes imposed by this chapter upon unmarried individuals must be computed by applying to taxable net income the following schedule of rates:</p>
+      <p class="in">(1) On the first $26,520, 5.35 percent;</p>
+      <p class="in">(2) On all over $26,520, but not over $87,110, 6.8 percent;</p>
+      <p class="in">(3) On all over $87,110, but not over $161,720, 7.85 percent;</p>
+      <p>(4) On all over $161,720, 9.85 percent.</p>
+      <p class="in">(c) The income taxes imposed by this chapter upon unmarried individuals qualifying as a head of household as defined in section 2(b) of the Internal Revenue Code must be computed by applying to taxable net income the following schedule of rates:</p>
+      <p class="in">(1) On the first $32,650, 5.35 percent;</p>
+      <p class="in">(2) On all over $32,650, but not over $131,190, 6.8 percent;</p>
+      <p class="in">(3) On all over $131,190, but not over $214,980, 7.85 percent;</p>
+      <p>(4) On all over $214,980, 9.85 percent.</p>
+      <p class="in">(d) In lieu of a tax computed according to the rates set forth in this subdivision, the tax of any individual taxpayer whose taxable net income for the taxable year is less than an amount determined by the commissioner must be computed in accordance with tables prepared and issued by the commissioner of revenue based on income brackets of not more than $100. The amount of tax for each bracket shall be computed at the rates set forth in this subdivision, provided that the commissioner may disregard a fractional part of a dollar unless it amounts to 50 cents or more, in which case it may be increased to $1.</p>
+      <p class="in">(e) An individual who is not a Minnesota resident for the entire year must compute the individual's Minnesota income tax as provided in this subdivision. After the application of the nonrefundable credits provided in this chapter, the tax liability must then be multiplied by a fraction in which:</p>
+      <p class="in">(1) the numerator is the individual's Minnesota source federal adjusted gross income as defined in section 62 of the Internal Revenue Code and increased by:</p>
+      <p class="in">(i) the additions required under sections <a href="/statutes/2025/cite/290.0131">290.0131, subdivisions 2, 6, 8 to 10, 16, 17, 19, and 20</a>, and <a href="/statutes/2025/cite/290.0137">290.0137</a>, paragraph (a); and reduced by</p>
+      <p class="in">(ii) the Minnesota assignable portion of the subtraction for United States government interest under section <a href="/statutes/2025/cite/290.0132#stat.290.0132.2">290.0132, subdivision 2</a>, the subtractions under sections <a href="/statutes/2025/cite/290.0132">290.0132, subdivisions 9, 14, 15, 18, 27, 31, and 32</a>, and <a href="/statutes/2025/cite/290.0137">290.0137</a>, paragraph (c), after applying the allocation and assignability provisions of section <a href="/statutes/2025/cite/290.081">290.081</a>, clause (a), or <a href="/statutes/2025/cite/290.17">290.17</a>; and</p>
+      <p class="in">(2) the denominator is the individual's federal adjusted gross income as defined in section 62 of the Internal Revenue Code, increased by:</p>
+      <p class="in">(i) the additions required under sections <a href="/statutes/2025/cite/290.0131">290.0131, subdivisions 2, 6, 8 to 10, 16, 17, 19, and 20</a>, and <a href="/statutes/2025/cite/290.0137">290.0137</a>, paragraph (a); and reduced by</p>
+      <p class="in">(ii) the subtractions under sections <a href="/statutes/2025/cite/290.0132">290.0132, subdivisions 2, 9, 14, 15, 18, 27, 31, and 32</a>, and <a href="/statutes/2025/cite/290.0137">290.0137</a>, paragraph (c).</p>
+      <p>(f) If an individual who is not a Minnesota resident for the entire year is a qualifying owner of a qualifying entity that elects to pay tax as provided in section <a href="/statutes/2025/cite/289A.08#stat.289A.08.7a">289A.08, subdivision 7a</a>, paragraph (b), the individual must compute the individual's Minnesota income tax as provided in paragraph (e), and also must include, to the extent attributed to the electing qualifying entity:</p>
+      <p>(1) in paragraph (e), clause (1), item (i), and paragraph (e), clause (2), item (i), the addition under section <a href="/statutes/2025/cite/290.0131#stat.290.0131.5">290.0131, subdivision 5</a>; and</p>
+      <p>(2) in paragraph (e), clause (1), item (ii), and paragraph (e), clause (2), item (ii), the subtraction under section <a href="/statutes/2025/cite/290.0132#stat.290.0132.3">290.0132, subdivision 3</a>.</p>
+    </div>
+    <div class="subd" id="stat.290.06.2d">
+      <a title="Link to Subd. 2d." class="permalink" href="#stat.290.06.2d">§</a>
+      <h2 class="subd_no">Subd. 2d.<span class="headnote">Inflation adjustment of brackets.</span></h2>
+      <p>The commissioner shall annually adjust the minimum and maximum dollar amounts for each rate bracket for which a tax is imposed in subdivision 2c as provided in section <a href="/statutes/2025/cite/270C.22">270C.22</a>. The statutory year is taxable year 2019. The rate applicable to any rate bracket must not be changed. The dollar amounts setting forth the tax shall be adjusted to reflect the changes in the rate brackets. The rate brackets as adjusted must be rounded to the nearest $10 amount. If the rate bracket ends in $5, it must be rounded up to the nearest $10 amount. The commissioner shall determine the rate bracket for married filing separate returns after this adjustment is done. The rate bracket for married filing separate must be one-half of the rate bracket for married filing joint.</p>
+    </div>
+    <div class="subd" id="stat.290.06.2e">
+      <a title="Link to Subd. 2e." class="permalink" href="#stat.290.06.2e">§</a>
+      <h2 class="subd_no">Subd. 2e.</h2>
+      <p>[Repealed, <a href="/laws/1984/0/502/#laws.2.17.0">1984 c 502 art 2 s 17</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.2f">
+      <a title="Link to Subd. 2f." class="permalink" href="#stat.290.06.2f">§</a>
+      <h2 class="subd_no">Subd. 2f.</h2>
+      <p>[Repealed, <a href="/laws/1986/1/1/#laws.8.19.0">1Sp1986 c 1 art 8 s 19</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.2g">
+      <a title="Link to Subd. 2g." class="permalink" href="#stat.290.06.2g">§</a>
+      <h2 class="subd_no">Subd. 2g.<span class="headnote">First-time home buyer savings account.</span></h2>
+      <p>(a) For purposes of this subdivision, the terms defined in section <a href="/statutes/2025/cite/462D.02">462D.02</a> have the meanings given in that section.</p>
+      <p>(b) In addition to the tax computed under subdivision 2c, an additional amount of tax applies equal to the additional tax computed for the taxable year for the account holder of a first-time home buyer account under section <a href="/statutes/2025/cite/462D.06#stat.462D.06.3">462D.06, subdivision 3</a>.</p>
+    </div>
+    <div class="subd" id="stat.290.06.2h">
+      <a title="Link to Subd. 2h." class="permalink" href="#stat.290.06.2h">§</a>
+      <h2 class="subd_no">Subd. 2h.<span class="headnote">Section 529 plan recapture.</span></h2>
+      <p>(a) For the purposes of this subdivision:</p>
+      <p>(1) the definitions under section <a href="/statutes/2025/cite/290.0684">290.0684</a> apply;</p>
+      <p>(2) "account owner" means an individual who owns one or more qualified accounts;</p>
+      <p>(3) "credit ratio" means the ratio of (i) two times the total amount of credits that an account owner claimed under section <a href="/statutes/2025/cite/290.0684">290.0684</a> for contributions to the account owner's qualified accounts to (ii) the total contributions in all taxable years to the account owner's qualified accounts;</p>
+      <p>(4) "qualified higher education expenses" has the meaning given in section 529(e)(3) of the Internal Revenue Code, except section 529(c)(7) does not apply; and</p>
+      <p>(5) "subtraction ratio" means the ratio of (i) the total amount of subtractions that an account owner claimed under section <a href="/statutes/2025/cite/290.0132#stat.290.0132.23">290.0132, subdivision 23</a>, for contributions to the account owner's qualified accounts to (ii) the total contributions in all taxable years to the account owner's qualified accounts.</p>
+      <p>(b) If a distribution from a qualified account is used for a purpose other than to pay for qualified higher education expenses, the account owner must pay an additional tax equal to:</p>
+      <p>(1) 50 percent of the product of the credit ratio and the amount of the distribution; plus</p>
+      <p>(2) ten percent of the product of the subtraction ratio and the amount of the distribution.</p>
+      <p>(c) The additional tax under this subdivision does not apply to any portion of a distribution that is subject to the additional tax under section 529(c)(6) of the Internal Revenue Code.</p>
+    </div>
+    <div class="subd" id="stat.290.06.3">
+      <a title="Link to Subd. 3." class="permalink" href="#stat.290.06.3">§</a>
+      <h2 class="subd_no">Subd. 3.</h2>
+      <p>[Repealed, <a href="/laws/1967/1/32/#laws.14.12.0">Ex1967 c 32 art 14 s 12</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.3a">
+      <a title="Link to Subd. 3a." class="permalink" href="#stat.290.06.3a">§</a>
+      <h2 class="subd_no">Subd. 3a.</h2>
+      <p>[Repealed, <a href="/laws/1980/0/419/#laws.0.46.0">1980 c 419 s 46</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.3b">
+      <a title="Link to Subd. 3b." class="permalink" href="#stat.290.06.3b">§</a>
+      <h2 class="subd_no">Subd. 3b.</h2>
+      <p>[Repealed, <a href="/laws/1980/0/419/#laws.0.46.0">1980 c 419 s 46</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.3c">
+      <a title="Link to Subd. 3c." class="permalink" href="#stat.290.06.3c">§</a>
+      <h2 class="subd_no">Subd. 3c.</h2>
+      <p>[Repealed, <a href="/laws/1982/0/523/#laws.1.72.0">1982 c 523 art 1 s 72</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.3d">
+      <a title="Link to Subd. 3d." class="permalink" href="#stat.290.06.3d">§</a>
+      <h2 class="subd_no">Subd. 3d.</h2>
+      <p>[Repealed, <a href="/laws/1985/1/14/#laws.1.59.0">1Sp1985 c 14 art 1 s 59</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.3e">
+      <a title="Link to Subd. 3e." class="permalink" href="#stat.290.06.3e">§</a>
+      <h2 class="subd_no">Subd. 3e.</h2>
+      <p>[Repealed, <a href="/laws/1985/1/14/#laws.1.59.0">1Sp1985 c 14 art 1 s 59</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.3f">
+      <a title="Link to Subd. 3f." class="permalink" href="#stat.290.06.3f">§</a>
+      <h2 class="subd_no">Subd. 3f.</h2>
+      <p>[Repealed, <a href="/laws/1987/0/268/#laws.1.127.0">1987 c 268 art 1 s 127</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.3g">
+      <a title="Link to Subd. 3g." class="permalink" href="#stat.290.06.3g">§</a>
+      <h2 class="subd_no">Subd. 3g.</h2>
+      <p>[Repealed, <a href="/laws/1987/0/268/#laws.1.127.0">1987 c 268 art 1 s 127</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.4">
+      <a title="Link to Subd. 4." class="permalink" href="#stat.290.06.4">§</a>
+      <h2 class="subd_no">Subd. 4.</h2>
+      <p>[Repealed, <a href="/laws/1971/1/31/#laws.6.2.0">Ex1971 c 31 art 6 s 2</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.5">
+      <a title="Link to Subd. 5." class="permalink" href="#stat.290.06.5">§</a>
+      <h2 class="subd_no">Subd. 5.</h2>
+      <p>[Expired]</p>
+    </div>
+    <div class="subd" id="stat.290.06.6">
+      <a title="Link to Subd. 6." class="permalink" href="#stat.290.06.6">§</a>
+      <h2 class="subd_no">Subd. 6.</h2>
+      <p>[Repealed, <a href="/laws/1971/1/31/#laws.6.2.0">Ex1971 c 31 art 6 s 2</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.7">
+      <a title="Link to Subd. 7." class="permalink" href="#stat.290.06.7">§</a>
+      <h2 class="subd_no">Subd. 7.</h2>
+      <p>[Expired]</p>
+    </div>
+    <div class="subd" id="stat.290.06.8">
+      <a title="Link to Subd. 8." class="permalink" href="#stat.290.06.8">§</a>
+      <h2 class="subd_no">Subd. 8.</h2>
+      <p>[Repealed, <a href="/laws/1967/1/32/#laws.2.1.0">Ex1967 c 32 art 2 s 1</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.9">
+      <a title="Link to Subd. 9." class="permalink" href="#stat.290.06.9">§</a>
+      <h2 class="subd_no">Subd. 9.</h2>
+      <p>[Repealed, <a href="/laws/1983/0/342/#laws.1.44.0">1983 c 342 art 1 s 44</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.9a">
+      <a title="Link to Subd. 9a." class="permalink" href="#stat.290.06.9a">§</a>
+      <h2 class="subd_no">Subd. 9a.</h2>
+      <p>[Repealed, <a href="/laws/1983/0/342/#laws.1.44.0">1983 c 342 art 1 s 44</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.10">
+      <a title="Link to Subd. 10." class="permalink" href="#stat.290.06.10">§</a>
+      <h2 class="subd_no">Subd. 10.</h2>
+      <p>[Repealed, <a href="/laws/2011/0/112/#laws.5.8.0">2011 c 112 art 5 s 8</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.11">
+      <a title="Link to Subd. 11." class="permalink" href="#stat.290.06.11">§</a>
+      <h2 class="subd_no">Subd. 11.</h2>
+      <p>[Repealed, <a href="/laws/1987/0/268/#laws.1.127.0">1987 c 268 art 1 s 127</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.12">
+      <a title="Link to Subd. 12." class="permalink" href="#stat.290.06.12">§</a>
+      <h2 class="subd_no">Subd. 12.</h2>
+      <p>[Repealed, <a href="/laws/1979/0/303/#laws.1.23.0">1979 c 303 art 1 s 23</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.13">
+      <a title="Link to Subd. 13." class="permalink" href="#stat.290.06.13">§</a>
+      <h2 class="subd_no">Subd. 13.</h2>
+      <p>[Repealed, <a href="/laws/1984/0/502/#laws.14.20.0">1984 c 502 art 14 s 20</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.14">
+      <a title="Link to Subd. 14." class="permalink" href="#stat.290.06.14">§</a>
+      <h2 class="subd_no">Subd. 14.</h2>
+      <p>[Repealed, <a href="/laws/1985/1/14/#laws.1.59.0">1Sp1985 c 14 art 1 s 59</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.15">
+      <a title="Link to Subd. 15." class="permalink" href="#stat.290.06.15">§</a>
+      <h2 class="subd_no">Subd. 15.</h2>
+      <p>[Repealed, <a href="/laws/1986/1/1/#laws.3.21.0">1Sp1986 c 1 art 3 s 21</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.16">
+      <a title="Link to Subd. 16." class="permalink" href="#stat.290.06.16">§</a>
+      <h2 class="subd_no">Subd. 16.</h2>
+      <p>[Repealed, <a href="/laws/1985/1/14/#laws.1.59.0">1Sp1985 c 14 art 1 s 59</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.17">
+      <a title="Link to Subd. 17." class="permalink" href="#stat.290.06.17">§</a>
+      <h2 class="subd_no">Subd. 17.</h2>
+      <p>[Repealed, <a href="/laws/1985/1/14/#laws.1.59.0">1Sp1985 c 14 art 1 s 59</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.18">
+      <a title="Link to Subd. 18." class="permalink" href="#stat.290.06.18">§</a>
+      <h2 class="subd_no">Subd. 18.</h2>
+      <p>[Repealed, <a href="/laws/1985/1/14/#laws.1.59.0">1Sp1985 c 14 art 1 s 59</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.19">
+      <a title="Link to Subd. 19." class="permalink" href="#stat.290.06.19">§</a>
+      <h2 class="subd_no">Subd. 19.</h2>
+      <p>[Repealed, <a href="/laws/1985/1/14/#laws.1.59.0">1Sp1985 c 14 art 1 s 59</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.20">
+      <a title="Link to Subd. 20." class="permalink" href="#stat.290.06.20">§</a>
+      <h2 class="subd_no">Subd. 20.</h2>
+      <p>[Repealed, <a href="/laws/1988/0/719/#laws.1.21.0">1988 c 719 art 1 s 21</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.21">
+      <a title="Link to Subd. 21." class="permalink" href="#stat.290.06.21">§</a>
+      <h2 class="subd_no">Subd. 21.</h2>
+      <p>[Repealed, <a href="/laws/1996/0/471/#laws.9.16.0">1996 c 471 art 9 s 16</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.22">
+      <a title="Link to Subd. 22." class="permalink" href="#stat.290.06.22">§</a>
+      <h2 class="subd_no">Subd. 22.<span class="headnote">Credit for taxes paid to another state.</span></h2>
+      <p>(a) A taxpayer who is liable for taxes based on net income to another state, as provided in paragraphs (b) through (f), upon income allocated or apportioned to Minnesota, is entitled to a credit for the tax paid to another state if the tax is actually paid in the taxable year or a subsequent taxable year. A taxpayer who is a resident of this state pursuant to section <a href="/statutes/2025/cite/290.01#stat.290.01.7">290.01, subdivision 7</a>, paragraph (b), and who is subject to income tax as a resident in the state of the individual's domicile is not allowed this credit unless the state of domicile does not allow a similar credit.</p>
+      <p>(b) For an individual, estate, or trust, the credit is determined by multiplying the tax payable under this chapter by the ratio derived by dividing the income subject to tax in the other state that is also subject to tax in Minnesota while a resident of Minnesota by the taxpayer's federal adjusted gross income, as defined in section 62 of the Internal Revenue Code, modified by the addition required by section <a href="/statutes/2025/cite/290.0131#stat.290.0131.2">290.0131, subdivision 2</a>, and the subtraction allowed by section <a href="/statutes/2025/cite/290.0132#stat.290.0132.2">290.0132, subdivision 2</a>, to the extent the income is allocated or assigned to Minnesota under sections <a href="/statutes/2025/cite/290.081">290.081</a> and <a href="/statutes/2025/cite/290.17">290.17</a>.</p>
+      <p>(c) If the taxpayer is an athletic team that apportions all of its income under section <a href="/statutes/2025/cite/290.17#stat.290.17.5">290.17, subdivision 5</a>, the credit is determined by multiplying the tax payable under this chapter by the ratio derived from dividing the total net income subject to tax in the other state by the taxpayer's Minnesota taxable income.</p>
+      <p>(d)(1) The credit determined under paragraph (b) or (c) shall not exceed the amount of tax so paid to the other state on the gross income earned within the other state subject to tax under this chapter; and</p>
+      <p>(2) the allowance of the credit does not reduce the taxes paid under this chapter to an amount less than what would be assessed if the gross income earned within the other state were excluded from taxable net income.</p>
+      <p>(e) In the case of the tax assessed on a lump-sum distribution under section <a href="/statutes/2025/cite/290.032">290.032</a>, the credit allowed under paragraph (a) is the tax assessed by the other state on the lump-sum distribution that is also subject to tax under section <a href="/statutes/2025/cite/290.032">290.032</a>, and shall not exceed the tax assessed under section <a href="/statutes/2025/cite/290.032">290.032</a>. To the extent the total lump-sum distribution defined in section <a href="/statutes/2025/cite/290.032#stat.290.032.1">290.032, subdivision 1</a>, includes lump-sum distributions received in prior years or is all or in part an annuity contract, the reduction to the tax on the lump-sum distribution allowed under section <a href="/statutes/2025/cite/290.032#stat.290.032.2">290.032, subdivision 2</a>, includes tax paid to another state that is properly apportioned to that distribution.</p>
+      <p>(f) If a Minnesota resident reported an item of income to Minnesota and is assessed tax in such other state on that same income after the Minnesota statute of limitations has expired, the taxpayer shall receive a credit for that year under paragraph (a), notwithstanding any statute of limitations to the contrary. The claim for the credit must be submitted within one year from the date the taxes were paid to the other state. The taxpayer must submit sufficient proof to show entitlement to a credit.</p>
+      <p>(g) For the purposes of this subdivision, a resident shareholder of a corporation treated as an "S" corporation under section <a href="/statutes/2025/cite/290.9725">290.9725</a>, must be considered to have paid a tax imposed on the shareholder in an amount equal to the shareholder's pro rata share of any net income tax paid by the S corporation to another state. For the purposes of the preceding sentence, the term "net income tax" means any tax imposed on or measured by a corporation's net income.</p>
+      <p>(h) For the purposes of this subdivision, a resident partner of an entity taxed as a partnership under the Internal Revenue Code must be considered to have paid a tax imposed on the partner in an amount equal to the partner's pro rata share of any net income tax paid by the partnership to another state. For purposes of the preceding sentence, the term "net income" tax means any tax imposed on or measured by a partnership's net income. For purposes of this paragraph, "partnership" includes a limited liability company and "partner" includes a member of a limited liability company.</p>
+      <p>(i) For the purposes of this subdivision, "another state":</p>
+      <p>(1) includes:</p>
+      <p>(i) the District of Columbia; and</p>
+      <p>(ii) a province or territory of Canada; but</p>
+      <p>(2) excludes Puerto Rico and the several territories organized by Congress.</p>
+      <p>(j) The limitations on the credit in paragraphs (b), (c), and (d), are imposed on a state by state basis.</p>
+      <p>(k) For a tax imposed by a province or territory of Canada, the tax for purposes of this subdivision is the excess of the tax over the amount of the foreign tax credit allowed under section 27 of the Internal Revenue Code. In determining the amount of the foreign tax credit allowed, the net income taxes imposed by Canada on the income are deducted first. Any remaining amount of the allowable foreign tax credit reduces the provincial or territorial tax that qualifies for the credit under this subdivision.</p>
+      <p>(l)(1) The credit allowed to a qualifying individual under this section for tax paid to a qualifying state equals the credit calculated under paragraphs (b) and (d), plus the amount calculated by multiplying:</p>
+      <p>(i) the difference between the preliminary credit and the credit calculated under paragraphs (b) and (d), by</p>
+      <p>(ii) the ratio derived by dividing the income subject to tax in the qualifying state that consists of compensation for performance of personal or professional services by the total amount of income subject to tax in the qualifying state.</p>
+      <p>(2) If the amount of the credit that a qualifying individual is eligible to receive under clause (1) for tax paid to a qualifying state exceeds the tax due under this chapter before the application of the credit calculated under clause (1), the commissioner shall refund the excess to the qualifying individual. An amount sufficient to pay the refunds required by this subdivision is appropriated to the commissioner from the general fund.</p>
+      <p class="in">(3) For purposes of this paragraph, "preliminary credit" means the credit that a qualifying individual is eligible to receive under paragraphs (b) and (d) for tax paid to a qualifying state without regard to the limitation in paragraph (d), clause (2); "qualifying individual" means a Minnesota resident under section <a href="/statutes/2025/cite/290.01#stat.290.01.7">290.01, subdivision 7</a>, paragraph (a), who received compensation during the taxable year for the performance of personal or professional services within a qualifying state; and "qualifying state" means a state with which an agreement under section <a href="/statutes/2025/cite/290.081">290.081</a> is not in effect for the taxable year but was in effect for a taxable year beginning before January 1, 2010.</p>
+      <p>(m) For purposes of this subdivision, a resident sole member of a disregarded limited liability company must be considered to have paid a tax imposed on the sole member in an amount equal to the net income tax paid by the disregarded limited liability company to another state. For the purposes of this paragraph, the term "disregarded limited liability company" means a limited liability company that is disregarded as an entity separate from its owner as defined in Code of Federal Regulations, title 26, section <a href="/statutes/2025/cite/301.7701">301.7701</a>, and "net income tax" means any tax imposed on or measured by a disregarded limited liability company's net income.</p>
+    </div>
+    <div class="subd" id="stat.290.06.22a">
+      <a title="Link to Subd. 22a." class="permalink" href="#stat.290.06.22a">§</a>
+      <h2 class="subd_no">Subd. 22a.</h2>
+      <p>[Repealed, <a href="/laws/2013/0/143/#laws.6.34.0">2013 c 143 art 6 s 34</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.23">
+      <a title="Link to Subd. 23." class="permalink" href="#stat.290.06.23">§</a>
+      <h2 class="subd_no">Subd. 23.<span class="headnote">Refund of contributions to political parties and candidates.</span></h2>
+      <p>(a) A taxpayer may claim a refund equal to the amount of the taxpayer's contributions made in the calendar year to candidates and to a political party. The maximum total refund per calendar year for an individual must not exceed $75 and for a married couple, filing jointly, must not exceed $150. The commissioner must not issue a refund, whether in one payment or in aggregate, to a taxpayer that exceeds the maximum refund amounts specified in this subdivision. A refund of a contribution is allowed only if the taxpayer files:</p>
+      <p>(1) a form required by the commissioner and attaches to the form an official refund receipt issued by the candidate or party and signed by the candidate, the treasurer of the candidate's principal campaign committee, or the chair or treasurer of the party unit, after the contribution was received; or</p>
+      <p>(2) a claim using the electronic filing system authorized in paragraph (i).</p>
+      <p class="bl">The form or claim must include one or more unique receipt validation numbers from receipts issued pursuant to section <a href="/statutes/2025/cite/10A.322#stat.10A.322.4">10A.322, subdivision 4</a>.</p>
+      <p>(b) A claim must be filed with the commissioner no sooner than January 1 of the calendar year in which the contribution was made and no later than April 15 of the calendar year following the calendar year in which the contribution was made. A claim must be for a minimum of $10. Amounts paid by the commissioner after June 15 of the calendar year following the calendar year in which the contribution was made must include interest at the rate specified in section <a href="/statutes/2025/cite/270C.405">270C.405</a>.</p>
+      <p>(c) No refund is allowed under this subdivision for a contribution to a candidate unless the candidate:</p>
+      <p>(1) has signed an agreement to limit campaign expenditures as provided in section <a href="/statutes/2025/cite/10A.322">10A.322</a>;</p>
+      <p>(2) is seeking an office for which voluntary spending limits are specified in section <a href="/statutes/2025/cite/10A.25">10A.25</a>; and</p>
+      <p>(3) has designated a principal campaign committee.</p>
+      <p class="bl">This subdivision does not limit the campaign expenditures of a candidate who does not sign an agreement but accepts a contribution for which the contributor improperly claims a refund.</p>
+      <p>(d) For purposes of this subdivision, "political party" means a major political party as defined in section <a href="/statutes/2025/cite/200.02#stat.200.02.7">200.02, subdivision 7</a>, or a minor political party qualifying for inclusion on the income tax or property tax refund form under section <a href="/statutes/2025/cite/10A.31#stat.10A.31.3a">10A.31, subdivision 3a</a>.</p>
+      <p>A "major party" or "minor party" includes the aggregate of that party's organization within each house of the legislature, the state party organization, and the party organization within congressional districts, counties, legislative districts, municipalities, and precincts.</p>
+      <p>"Candidate" means a candidate as defined in section <a href="/statutes/2025/cite/10A.01#stat.10A.01.10">10A.01, subdivision 10</a>, except a candidate for judicial office.</p>
+      <p>"Contribution" means a gift of money.</p>
+      <p>(e) The commissioner shall make copies of the form available to the public and candidates upon request.</p>
+      <p>(f) The following data collected or maintained by the commissioner under this subdivision are private: the identities of individuals claiming a refund, the identities of candidates to whom those individuals have made contributions, and the amount of each contribution.</p>
+      <p>(g) The commissioner shall report to the campaign finance and public disclosure board by each August 1 a summary showing the total number and aggregate amount of political contribution refunds made on behalf of each candidate and each political party. These data are public.</p>
+      <p>(h) The amount necessary to pay claims for the refund provided in this section is appropriated from the general fund to the commissioner of revenue.</p>
+      <p>(i) The commissioner must establish an electronic filing system by which refunds are claimed.</p>
+      <p class="see_note">[See Note.]</p>
+    </div>
+    <div class="subd" id="stat.290.06.23a">
+      <a title="Link to Subd. 23a." class="permalink" href="#stat.290.06.23a">§</a>
+      <h2 class="subd_no">Subd. 23a.<span class="headnote">Pass-through entity tax paid to another state.</span></h2>
+      <p>(a) A credit is allowed against the tax imposed on a qualifying entity under section <a href="/statutes/2025/cite/289A.08#stat.289A.08.7a">289A.08, subdivision 7a</a>, for pass-through entity tax paid to another state. The credit under this subdivision is allowed as a credit for taxes paid to another state under subdivision 22, paragraph (a), and may only be claimed by a qualifying owner. The credit allowed under this subdivision must be claimed in a manner prescribed by the commissioner.</p>
+      <p>(b) This subdivision expires at the same time and on the same terms as section 164(b)(6)(B) of the Internal Revenue Code, except that the expiration of this subdivision does not affect the commissioner's authority to audit or power of examination and assessments for credits claimed under this section.</p>
+      <p>(c) As used in this subdivision, the following terms have the meanings given:</p>
+      <p>(1) "income" has the meaning provided in section <a href="/statutes/2025/cite/290.01#stat.290.01.19">290.01, subdivision 19</a>, paragraph (i);</p>
+      <p>(2) "pass-through entity tax" means an entity-level tax imposed on the income of a partnership, limited liability corporation, or S corporation;</p>
+      <p>(3) "qualifying entity" has the meaning provided in section <a href="/statutes/2025/cite/289A.08#stat.289A.08.7a">289A.08, subdivision 7a</a>, paragraph (a); and</p>
+      <p>(4) "qualifying owner" has the meaning provided in section <a href="/statutes/2025/cite/289A.08#stat.289A.08.7a">289A.08, subdivision 7a</a>, paragraph (b).</p>
+    </div>
+    <div class="subd" id="stat.290.06.24">
+      <a title="Link to Subd. 24." class="permalink" href="#stat.290.06.24">§</a>
+      <h2 class="subd_no">Subd. 24.</h2>
+      <p>[Repealed, <a href="/laws/2012/0/294/#laws.2.43.0">2012 c 294 art 2 s 43</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.25">
+      <a title="Link to Subd. 25." class="permalink" href="#stat.290.06.25">§</a>
+      <h2 class="subd_no">Subd. 25.</h2>
+      <p>[Repealed, <a href="/laws/2001/1/5/#laws.7.66.0">1Sp2001 c 5 art 7 s 66</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.26">
+      <a title="Link to Subd. 26." class="permalink" href="#stat.290.06.26">§</a>
+      <h2 class="subd_no">Subd. 26.</h2>
+      <p>[Repealed, <a href="/laws/2001/1/5/#laws.9.30.0">1Sp2001 c 5 art 9 s 30</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.27">
+      <a title="Link to Subd. 27." class="permalink" href="#stat.290.06.27">§</a>
+      <h2 class="subd_no">Subd. 27.<span class="headnote">Tax paid to another state; corporations.</span></h2>
+      <p>(a) A credit is allowed against the tax imposed under subdivision 1 for tax paid to another state based on net income. The credit must be claimed in a manner prescribed by the commissioner.</p>
+      <p>(b) The amount of the credit equals the amount of qualifying tax paid to the other state for the taxable year, multiplied by the taxpayer's apportionment percentage under section <a href="/statutes/2025/cite/290.191">290.191</a>. If the item of income or gain is assigned to Minnesota as nonbusiness income, the entire amount of the qualifying tax is allowed as a credit. The maximum amount of the credit is limited to the tax liability under subdivision 1 for the taxable year and, in no case, may the credit exceed the reduction in the amount of tax under subdivision 1 if the item of income or gain were excluded from net income.</p>
+      <p>(c) For purposes of this subdivision, "qualifying tax" means the amount of tax paid to another state on an item of income or gain for the taxable year, if:</p>
+      <p>(1) the law of another state requires and the taxpayer assigns the entire amount of the income or gain to one other state; and</p>
+      <p>(2) the income or gain is included in the measure of the exercise of the corporate franchise that is taxable under subdivision 1.</p>
+      <p>(d) The amount of tax paid to another state on an item of income or gain is the difference between the tax paid to the state and the amount of tax that would have been paid to the state if the item of income or gain had not been included in the net income of that state.</p>
+      <p>(e) The taxpayer must report to the commissioner of revenue any change in tax in the other state, the change in qualifying tax, and a copy of the final determination of the tax by the taxing authority of the other state. A taxpayer who claims the credit consents to extend the period of limitation for the commissioner to recompute the credit and reassess the tax due, including a refund, for a period of one year following a report by the taxpayer of a final determination of tax by the state in which the entire amount of income or gain is reported, notwithstanding any period of limitations to the contrary, or within any applicable period of limitations, whichever is longer. If a taxpayer fails to report as required by this paragraph, the commissioner may recompute the tax, including a refund, based on the information available to the commissioner. The tax may be recomputed within six years after the report should have been filed, notwithstanding any period of limitations to the contrary.</p>
+    </div>
+    <div class="subd" id="stat.290.06.28">
+      <a title="Link to Subd. 28." class="permalink" href="#stat.290.06.28">§</a>
+      <h2 class="subd_no">Subd. 28.<span class="headnote">Credit for transit passes.</span></h2>
+      <p>A taxpayer may take a credit against the tax due under this chapter equal to 30 percent of the expense incurred by the taxpayer to provide transit passes, for use in Minnesota, to employees of the taxpayer. As used in this subdivision, "transit pass" has the meaning given in section 132(f)(5)(A) of the Internal Revenue Code. If the taxpayer purchases the transit passes from the transit system operator, and resells them to the employees, the credit is based on the amount of the difference between the price paid for the passes by the employer and the amount charged to employees.</p>
+    </div>
+    <div class="subd" id="stat.290.06.29">
+      <a title="Link to Subd. 29." class="permalink" href="#stat.290.06.29">§</a>
+      <h2 class="subd_no">Subd. 29.<span class="headnote">Job opportunity building zone job credit.</span></h2>
+      <p>A taxpayer that is a qualified business, as defined in section <a href="/statutes/2025/cite/469.310#stat.469.310.11">469.310, subdivision 11</a>, is allowed a credit as determined under section <a href="/statutes/2025/cite/469.318">469.318</a> against the tax imposed by this chapter.</p>
+    </div>
+    <div class="subd" id="stat.290.06.30">
+      <a title="Link to Subd. 30." class="permalink" href="#stat.290.06.30">§</a>
+      <h2 class="subd_no">Subd. 30.</h2>
+      <p>[Repealed, <a href="/laws/2014/0/308/#laws.9.94.0">2014 c 308 art 9 s 94</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.31">
+      <a title="Link to Subd. 31." class="permalink" href="#stat.290.06.31">§</a>
+      <h2 class="subd_no">Subd. 31.</h2>
+      <p>[Repealed, <a href="/laws/2014/0/308/#laws.9.94.0">2014 c 308 art 9 s 94</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.32">
+      <a title="Link to Subd. 32." class="permalink" href="#stat.290.06.32">§</a>
+      <h2 class="subd_no">Subd. 32.</h2>
+      <p>[Repealed, <a href="/laws/2012/0/294/#laws.2.43.0">2012 c 294 art 2 s 43</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.33">
+      <a title="Link to Subd. 33." class="permalink" href="#stat.290.06.33">§</a>
+      <h2 class="subd_no">Subd. 33.<span class="headnote">Bovine testing credit.</span></h2>
+      <p class="in">(a) An owner of cattle in Minnesota may take a credit against the tax due under this chapter for an amount equal to: (1) for corporate filers, including shareholders of an S corporation under section <a href="/statutes/2025/cite/290.9725">290.9725</a>, 25 percent of the expenses incurred during the taxable year to conduct tuberculosis testing on those cattle; and (2) for all other filers, one-half the expenses incurred during the taxable year to conduct tuberculosis testing on those cattle.</p>
+      <p class="in">(b) If the amount of credit which the taxpayer is eligible to receive under this subdivision exceeds the taxpayer's tax liability under this chapter, the commissioner of revenue shall refund the excess to the taxpayer.</p>
+      <p class="in">(c) The amount necessary to pay claims for the refund provided in this subdivision is appropriated from the general fund to the commissioner of revenue.</p>
+      <p class="in">(d) Expenses incurred in a calendar year in which tuberculosis testing of cattle in Minnesota is not federally required are not allowed in claiming the credit under paragraph (a).</p>
+    </div>
+    <div class="subd" id="stat.290.06.34">
+      <a title="Link to Subd. 34." class="permalink" href="#stat.290.06.34">§</a>
+      <h2 class="subd_no">Subd. 34.</h2>
+      <p>[Repealed, <a href="/laws/2010/0/216/#laws.0.62.0">2010 c 216 s 62</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.35">
+      <a title="Link to Subd. 35." class="permalink" href="#stat.290.06.35">§</a>
+      <h2 class="subd_no">Subd. 35.<span class="headnote">Seed capital investment credit.</span></h2>
+      <p class="in">(a) An individual, estate, or trust is allowed a credit against the tax imposed by this chapter for investments in a qualifying business certified under section <a href="/statutes/2025/cite/116J.8732#stat.116J.8732.3">116J.8732, subdivision 3</a>. The credit equals 45 percent of the amount invested by the taxpayer in qualified businesses during the taxable year. The credit must not exceed $112,500 for each taxable year.</p>
+      <p class="in">(b) A pass-through entity that invests in a qualified business must be considered to be the taxpayer for purposes of the investment limitations in this subdivision and the amount of the credit allowed with respect to a pass-through entity's investment in a qualified business must be determined at the pass-through entity level. The amount of the total credit determined at the pass-through entity level must be allowed to the members in proportion to their respective interests in the pass-through entity.</p>
+      <p class="in">(c) An investment made in a qualified business from the assets of a retirement plan is deemed to be the retirement plan participant's investment for the purpose of this subdivision if a separate account is maintained for the plan participant and the participant directly controls where the account assets are invested.</p>
+      <p class="in">(d) The investment must be made on or after the certification effective date and must be at risk in the business to be eligible for the tax credit under this subdivision. An investment for which a credit is received under this subdivision must remain in the qualified business for at least three years. Investments placed in escrow do not qualify for the credit.</p>
+      <p class="in">(e) The entire amount of an investment for which a credit is claimed under this subdivision must be expended by the qualified business for plant, equipment, research and development, marketing and sales activity, or working capital for the qualified business.</p>
+      <p class="in">(f) A taxpayer who owns a controlling interest in the qualified business or who receives more than 50 percent of the taxpayer's gross annual income from the qualified business is not entitled to a credit under this subdivision. A member of the immediate family of a taxpayer disqualified by this subdivision is not entitled to the credit under this subdivision. For purposes of this subdivision, "immediate family" means the taxpayer's spouse, parent, sibling, or child or the spouse of any such person.</p>
+      <p class="in">(g) The commissioner may disallow any credit otherwise allowed under this subdivision if any representation by a business in the application for certification as a qualified business proves to be false or if the taxpayer or qualified business fails to satisfy any conditions under this subdivision or section <a href="/statutes/2025/cite/116J.8732">116J.8732</a> or any conditions consistent with those requirements otherwise determined by the commissioner. The commissioner has four years after the due date of the return or after the return was filed, whichever period expires later, to audit the credit and assess additional tax that may be found due to failure to comply with the provisions of this subdivision and section <a href="/statutes/2025/cite/116J.8732">116J.8732</a>. The amount of any credit disallowed by the commissioner that reduced the taxpayer's income tax liability for any or all applicable tax years, plus penalty and interest as provided under chapter 289A, must be paid by the taxpayer.</p>
+      <p class="in">(h) If the amount of the credit under this subdivision for any taxable year exceeds the limitations under paragraph (a), the excess is a credit carryover to each of the four succeeding taxable years. The entire amount of the excess unused credit for the taxable year must be carried first to the earliest of the taxable years to which the credit may be carried. The amount of the unused credit that may be added under this paragraph may not exceed the taxpayer's liability for tax, less the credit for the taxable year. Each year, the aggregate amount of seed capital investment tax credit allowed for investments under this subdivision is limited to allocations that a border city has available for tax reductions in border city enterprise zones under section <a href="/statutes/2025/cite/469.169">469.169</a>. The city must annually notify the commissioner of the amount of its section <a href="/statutes/2025/cite/469.169">469.169</a> allocations that it wishes to use to provide credits under this paragraph and the commissioner, after verifying the available allocation, shall implement the limit under this paragraph. If investments in qualified businesses reported to the commissioner exceed the limit on credits for investments imposed by this subdivision, the credit must be allowed to taxpayers in the chronological order of their investments in qualified businesses as determined from the forms filed under section <a href="/statutes/2025/cite/116J.8732">116J.8732</a>.</p>
+    </div>
+    <div class="subd" id="stat.290.06.36">
+      <a title="Link to Subd. 36." class="permalink" href="#stat.290.06.36">§</a>
+      <h2 class="subd_no">Subd. 36.</h2>
+      <p>[Repealed, <a href="/laws/2017/1/1/#laws.1.44.0">1Sp2017 c 1 art 1 s 44</a>]</p>
+    </div>
+    <div class="subd" id="stat.290.06.37">
+      <a title="Link to Subd. 37." class="permalink" href="#stat.290.06.37">§</a>
+      <h2 class="subd_no">Subd. 37.<span class="headnote">Beginning farmer incentive credit.</span></h2>
+      <p>(a) A beginning farmer incentive credit is allowed against the tax due under this chapter for the sale or rental of agricultural assets to a beginning farmer according to section <a href="/statutes/2025/cite/41B.0391#stat.41B.0391.2">41B.0391, subdivision 2</a>, and is limited to the amount stated on the certificate issued under section <a href="/statutes/2025/cite/41B.0391#stat.41B.0391.4">41B.0391, subdivision 4</a>.</p>
+      <p>(b) The credit may be claimed only after approval and certification by the Rural Finance Authority according to section <a href="/statutes/2025/cite/41B.0391">41B.0391</a>.</p>
+      <p>(c) The credit is limited to the liability for tax, as computed under this chapter, for the taxable year. If the amount of the credit determined under this subdivision for any taxable year exceeds this limitation, the excess is a beginning farmer incentive credit carryover to each of the 15 succeeding taxable years. The entire amount of the excess unused credit for the taxable year is carried first to the earliest of the taxable years to which the credit may be carried and then to each successive year to which the credit may be carried. The amount of the unused credit which may be added under this paragraph must not exceed the taxpayer's liability for tax, less the beginning farmer incentive credit for the taxable year.</p>
+      <p>(d) Credits allowed to a partnership, a limited liability company taxed as a partnership, an S corporation, or multiple owners of property are passed through to the partners, members, shareholders, or owners, respectively, pro rata to each based on the partner's, member's, shareholder's, or owner's share of the entity's assets or as specially allocated in the organizational documents or any other executed agreement, as of the last day of the taxable year.</p>
+      <p>(e) For a nonresident or part-year resident, the credit under this section must be allocated using the percentage calculated in section <a href="/statutes/2025/cite/290.06#stat.290.06.2c">290.06, subdivision 2c</a>, paragraph (e).</p>
+      <p>(f) Notwithstanding the approval and certification by the Rural Finance Authority under section <a href="/statutes/2025/cite/41B.0391">41B.0391</a>, the commissioner may utilize any audit and examination powers under chapter 270C or 289A to the extent necessary to verify that the taxpayer is eligible for the credit and to assess for the amount of any improperly claimed credit.</p>
+      <p>(g) This subdivision expires at the same time and on the same terms as section <a href="/statutes/2025/cite/41B.0391">41B.0391</a>, except that the expiration of this subdivision does not affect the commissioner of revenue's authority to audit or power of examination and assessment for credits claimed under this subdivision.</p>
+    </div>
+    <div class="subd" id="stat.290.06.38">
+      <a title="Link to Subd. 38." class="permalink" href="#stat.290.06.38">§</a>
+      <h2 class="subd_no">Subd. 38.<span class="headnote">Beginning farmer management credit.</span></h2>
+      <p>(a) A taxpayer who is a beginning farmer may take a credit against the tax due under this chapter for participation in a financial management program according to section <a href="/statutes/2025/cite/41B.0391#stat.41B.0391.3">41B.0391, subdivision 3</a>.</p>
+      <p>(b) The credit may be claimed only after approval and certification by the Rural Finance Authority according to section <a href="/statutes/2025/cite/41B.0391">41B.0391</a>.</p>
+      <p>(c) The credit is limited to the liability for tax, as computed under this chapter, for the taxable year. If the amount of the credit determined under this subdivision for any taxable year exceeds this limitation, the excess is a beginning farmer management credit carryover to each of the three succeeding taxable years. The entire amount of the excess unused credit for the taxable year is carried first to the earliest of the taxable years to which the credit may be carried and then to each successive year to which the credit may be carried. The amount of the unused credit which may be added under this paragraph must not exceed the taxpayer's liability for tax, less the beginning farmer management credit for the taxable year.</p>
+      <p>(d) For a part-year resident, the credit under this section must be allocated using the percentage calculated in section <a href="/statutes/2025/cite/290.06#stat.290.06.2c">290.06, subdivision 2c</a>, paragraph (e).</p>
+      <p>(e) Notwithstanding the approval and certification by the Rural Finance Authority under section <a href="/statutes/2025/cite/41B.0391">41B.0391</a>, the commissioner may utilize any audit and examination powers under chapter 270C or 289A to the extent necessary to verify that the taxpayer is eligible for the credit and to assess for the amount of any improperly claimed credit.</p>
+      <p>(f) This subdivision expires at the same time and on the same terms as section <a href="/statutes/2025/cite/41B.0391">41B.0391</a>, except that the expiration of this subdivision does not affect the commissioner of revenue's authority to audit or power of examination and assessment for credits claimed under this subdivision.</p>
+    </div>
+    <div class="subd" id="stat.290.06.39">
+      <a title="Link to Subd. 39." class="permalink" href="#stat.290.06.39">§</a>
+      <h2 class="subd_no">Subd. 39.<span class="headnote">Film production credit.</span></h2>
+      <p>(a) A taxpayer, including a taxpayer to whom a credit has been assigned under section <a href="/statutes/2025/cite/116U.27#stat.116U.27.3">116U.27, subdivision 3</a>, may claim a credit against the tax imposed by this chapter equal to the amount certified on a credit certificate under section <a href="/statutes/2025/cite/116U.27">116U.27</a>, subject to the limitations in this subdivision.</p>
+      <p>(b) The credit is limited to the liability for tax, as computed under this chapter, for the taxable year. If the amount of the credit determined under this subdivision for any taxable year exceeds this limitation, the excess is a film production credit carryover to each of the five succeeding taxable years. The entire amount of the excess unused credit for the taxable year is carried first to the earliest of the taxable years to which the credit may be carried and then to each successive year to which the credit may be carried. The amount of the unused credit that may be added under this paragraph must not exceed the taxpayer's liability for tax, less any film production credit for the taxable year.</p>
+      <p>(c) Credits allowed to a partnership, a limited liability company taxed as a partnership, or an S corporation are passed through to the partners, members, shareholders, or owners, respectively, pro rata to each based on the partner's, member's, shareholder's, or owner's share of the entity's assets, or as specially allocated in the organizational documents or any other executed agreement, as of the last day of the taxable year.</p>
+      <p>(d) Notwithstanding the approval and certification by the commissioner of employment and economic development under section <a href="/statutes/2025/cite/116U.27">116U.27</a>, the commissioner may utilize any audit and examination powers under chapter 270C or 289A to the extent necessary to verify that the taxpayer is eligible for the credit and to assess the amount of any improperly claimed credit. The commissioner may only assess the original recipient of the credit certificate for the amount of improperly claimed credits. The commissioner may not assess a credit certificate assignee for any amount of improperly claimed credits, and an assignee's claim for credit is not affected by the commissioner's assessment of improperly claimed credits against the assignor.</p>
+      <p>(e) This subdivision expires January 1, 2031, for taxable years beginning after December 31, 2030, except that the expiration of this section does not affect the commissioner of revenue's authority to audit or power of examination and assessment for credits claimed under this subdivision.</p>
+    </div>
+    <div class="subd" id="stat.290.06.40">
+      <a title="Link to Subd. 40." class="permalink" href="#stat.290.06.40">§</a>
+      <h2 class="subd_no">Subd. 40.<span class="headnote">Pass-through entity tax credit.</span></h2>
+      <p>(a) A qualifying owner of a qualifying entity that elects to pay the pass-through entity tax under section <a href="/statutes/2025/cite/289A.08#stat.289A.08.7a">289A.08, subdivision 7a</a>, may claim a credit against the tax due under this chapter equal to the amount of the owner's tax liability as calculated under section <a href="/statutes/2025/cite/289A.08#stat.289A.08.7a">289A.08, subdivision 7a</a>, paragraph (d).</p>
+      <p>(b) If the amount of the credit the taxpayer may claim under this subdivision exceeds the taxpayer's tax liability under this chapter, the commissioner of revenue shall refund the excess to the taxpayer. The amount necessary to pay the claim for the refund provided in this subdivision is appropriated from the general fund to the commissioner of revenue.</p>
+      <p>(c) For purposes of this subdivision, "qualifying entity," "qualifying owner," and "tax liability" have the meanings given in section <a href="/statutes/2025/cite/289A.08#stat.289A.08.7a">289A.08, subdivision 7a</a>, paragraphs (a) and (d).</p>
+    </div>
+  </div>
+  <div class="history" id="stat.290.06.history&#10;&#9;&#9;&#9;">
+    <h2>History: </h2>
+    <p class="first">(<a href="/statutes/1940A/cite/11">2394-6</a>) <a href="/laws/1933/0/405/#laws.0.6.0">1933 c 405 s 6</a>; <a href="/laws/1937/1/49/#laws.0.6.0">Ex1937 c 49 s 6</a>; <a href="/laws/1939/0/446/#laws.0.3.0">1939 c 446 s 3</a>; <a href="/laws/1941/0/550/#laws.0.3.0">1941 c 550 s 3</a>; <a href="/laws/1943/0/656/#laws.0.2.0">1943 c 656 s 2</a>; <a href="/laws/1945/0/604/#laws.0.3.0">1945 c 604 s 3</a>; <a href="/laws/1947/0/635/#laws.0.4.0">1947 c 635 s 4</a>; <a href="/laws/1949/0/642/#laws.0.13.0">1949 c 642 s 13</a>; <a href="/laws/1949/0/734/#laws.0.4.0">1949 c 734 s 4</a>,5; <a href="/laws/1951/0/605/#laws.0.1.0">1951 c 605 s 1</a>,2; <a href="/laws/1951/0/676/#laws.0.1.0">1951 c 676 s 1</a>; <a href="/laws/1953/0/667/#laws.0.1.0">1953 c 667 s 1</a>,2; <a href="/laws/1955/0/84/#laws.0.1.0">1955 c 84 s 1</a>; <a href="/laws/1957/0/847/#laws.0.1.0">1957 c 847 s 1</a>; <a href="/laws/1957/1/1/#laws.1.1.0">Ex1957 c 1 art 1 s 1</a>; art 2 s 1; art 7 s 2; <a href="/laws/1959/1/70/#laws.3.1.0">Ex1959 c 70 art 3 s 1</a>-5; <a href="/laws/1961/1/91/#laws.1.1.0">Ex1961 c 91 art 1 s 1</a>,2; art 5 s 1,3,4; art 6 s 1; <a href="/laws/1963/0/835/#laws.0.1.0">1963 c 835 s 1</a>; <a href="/laws/1963/0/886/#laws.0.1.0">1963 c 886 s 1</a>-4; <a href="/laws/1965/0/884/#laws.1.1.0">1965 c 884 art 1 s 1</a>-4; <a href="/laws/1967/1/32/#laws.12.1.0">Ex1967 c 32 art 12 s 1</a>; art 14 s 1-5; <a href="/laws/1969/0/399/#laws.0.25.0">1969 c 399 s 25</a>,26; <a href="/laws/1969/0/881/#laws.0.2.0">1969 c 881 s 2</a>-5; <a href="/laws/1969/0/1000/#laws.0.1.0">1969 c 1000 s 1</a>; <a href="/laws/1971/0/35/#laws.0.1.0">1971 c 35 s 1</a>; <a href="/laws/1971/0/794/#laws.0.1.0">1971 c 794 s 1</a>,2; <a href="/laws/1971/1/2/#laws.0.1.0">Ex1971 c 2 s 1</a>,2; <a href="/laws/1971/1/31/#laws.6.1.0">Ex1971 c 31 art 6 s 1</a>; art 18 s 1-4; <a href="/laws/1973/0/22/#laws.0.1.0">1973 c 22 s 1</a>; <a href="/laws/1973/0/582/#laws.0.3.0">1973 c 582 s 3</a>; <a href="/laws/1973/0/650/#laws.22.1.0">1973 c 650 art 22 s 1</a>; <a href="/laws/1974/0/470/#laws.0.35.0">1974 c 470 s 35</a>; <a href="/laws/1974/0/556/#laws.0.3.0">1974 c 556 s 3</a>; <a href="/laws/1975/0/349/#laws.0.8.0">1975 c 349 s 8</a>,9; <a href="/laws/1975/0/355/#laws.0.1.0">1975 c 355 s 1</a>; <a href="/laws/1975/0/437/#laws.9.2.0">1975 c 437 art 9 s 2</a>; <a href="/laws/1976/0/2/#laws.0.103.0">1976 c 2 s 103</a>; <a href="/laws/1977/0/250/#laws.0.1.0">1977 c 250 s 1</a>; <a href="/laws/1977/0/386/#laws.0.2.0">1977 c 386 s 2</a>; <a href="/laws/1977/0/423/#laws.1.4.0">1977 c 423 art 1 s 4</a>,5; <a href="/laws/1978/0/463/#laws.0.106.0">1978 c 463 s 106</a>; <a href="/laws/1978/0/721/#laws.2.1.0">1978 c 721 art 2 s 1</a>; art 3 s 1; art 4 s 1; art 7 s 1; art 8 s 1; art 9 s 1; <a href="/laws/1979/0/59/#laws.0.7.0">1979 c 59 s 7</a>; <a href="/laws/1979/0/303/#laws.1.5.0">1979 c 303 art 1 s 5</a>-10; art 4 s 1-3; art 5 s 1-3; art 10 s 6; <a href="/laws/1980/0/509/#laws.0.113.0">1980 c 509 s 113</a>,114; <a href="/laws/1980/0/607/#laws.1.3.0">1980 c 607 art 1 s 3</a>-7,32; art 9 s 1; <a href="/laws/1981/0/29/#laws.7.30.0">1981 c 29 art 7 s 30</a>; <a href="/laws/1981/0/60/#laws.0.2.0">1981 c 60 s 2</a>; <a href="/laws/1981/0/178/#laws.0.12.0">1981 c 178 s 12</a>-16; <a href="/laws/1981/0/343/#laws.0.3.0">1981 c 343 s 3</a>; <a href="/laws/1981/0/356/#laws.0.192.0">1981 c 356 s 192</a>; <a href="/laws/1981/1/1/#laws.1.1.0">1Sp1981 c 1 art 1 s 1</a>,2; <a href="/laws/1981/3/2/#laws.3.3.0">3Sp1981 c 2 art 3 s 3</a>,4; <a href="/laws/1982/0/424/#laws.0.130.0">1982 c 424 s 130</a>; <a href="/laws/1982/0/523/#laws.1.8.0">1982 c 523 art 1 s 8</a>,9; art 10 s 1; art 29 s 1; art 40 s 14; <a href="/laws/1982/3/1/#laws.5.3.0">3Sp1982 c 1 art 5 s 3</a>; <a href="/laws/1983/0/15/#laws.0.4.0">1983 c 15 s 4</a>-7; <a href="/laws/1983/0/207/#laws.0.43.0">1983 c 207 s 43</a>; <a href="/laws/1983/0/216/#laws.2.6.0">1983 c 216 art 2 s 6</a>; <a href="/laws/1983/0/289/#laws.0.115.0">1983 c 289 s 115</a> subd 1; <a href="/laws/1983/0/301/#laws.0.178.0">1983 c 301 s 178</a>; <a href="/laws/1983/0/342/#laws.1.6.0">1983 c 342 art 1 s 6</a>,7,11,43; <a href="/laws/1984/0/502/#laws.2.5.0">1984 c 502 art 2 s 5</a>,6; <a href="/laws/1984/0/514/#laws.1.8.0">1984 c 514 art 1 s 8</a>; art 2 s 9-12,14; <a href="/laws/1984/0/640/#laws.0.32.0">1984 c 640 s 32</a>; <a href="/laws/1984/0/644/#laws.0.52.0">1984 c 644 s 52</a>-54; <a href="/laws/1985/0/210/#laws.2.1.0">1985 c 210 art 2 s 1</a>; <a href="/laws/1985/1/14/#laws.1.15.0">1Sp1985 c 14 art 1 s 15</a>-20; <a href="/laws/1986/0/444/#laws.0.0.0">1986 c 444</a>; <a href="/laws/1986/1/1/#laws.1.9.0">1Sp1986 c 1 art 1 s 9</a>; art 3 s 2; <a href="/laws/1987/0/268/#laws.1.30.0">1987 c 268 art 1 s 30</a>-34; <a href="/laws/1987/0/384/#laws.3.11.0">1987 c 384 art 3 s 11</a>; <a href="/laws/1988/0/719/#laws.1.7.0">1988 c 719 art 1 s 7</a>,8; art 2 s 19,20; art 3 s 12; <a href="/laws/1989/0/28/#laws.0.10.0">1989 c 28 s 10</a>,11,25; <a href="/laws/1989/1/1/#laws.10.13.0">1Sp1989 c 1 art 10 s 13</a>-16; <a href="/laws/1990/0/604/#laws.2.4.0">1990 c 604 art 2 s 4</a>,5,16; <a href="/laws/1990/0/608/#laws.3.28.0">1990 c 608 art 3 s 28</a>; <a href="/laws/1991/0/291/#laws.6.21.0">1991 c 291 art 6 s 21</a>-24,46; art 7 s 10; <a href="/laws/1991/0/350/#laws.1.18.0">1991 c 350 art 1 s 18</a>; <a href="/laws/1992/0/511/#laws.6.13.0">1992 c 511 art 6 s 13</a>,19; <a href="/laws/1992/0/517/#laws.1.11.0">1992 c 517 art 1 s 11</a>; <a href="/laws/1993/0/318/#laws.2.50.0">1993 c 318 art 2 s 50</a>; <a href="/laws/1993/0/375/#laws.8.14.0">1993 c 375 art 8 s 14</a>; <a href="/laws/1994/0/587/#laws.1.12.0">1994 c 587 art 1 s 12</a>,24; <a href="/laws/1995/0/264/#laws.1.4.0">1995 c 264 art 1 s 4</a>; <a href="/laws/1996/0/471/#laws.1.4.0">1996 c 471 art 1 s 4</a>,5; <a href="/laws/1997/0/31/#laws.1.15.0">1997 c 31 art 1 s 15</a>; <a href="/laws/1997/0/202/#laws.2.63.0">1997 c 202 art 2 s 63</a>; <a href="/laws/1997/0/231/#laws.5.5.0">1997 c 231 art 5 s 5</a>; art 6 s 12; <a href="/laws/1998/0/389/#laws.6.6.0">1998 c 389 art 6 s 6</a>; art 7 s 6; <a href="/laws/1999/0/220/#laws.0.49.0">1999 c 220 s 49</a>,50; <a href="/laws/1999/0/243/#laws.2.8.0">1999 c 243 art 2 s 8</a>-11; <a href="/laws/2000/0/263/#laws.0.1.0">2000 c 263 s 1</a>; <a href="/laws/2000/0/490/#laws.4.12.0">2000 c 490 art 4 s 12</a>-16; <a href="/laws/2001/1/5/#laws.7.34.0">1Sp2001 c 5 art 7 s 34</a>,35; art 9 s 10; <a href="/laws/2003/0/127/#laws.3.10.0">2003 c 127 art 3 s 10</a>; art 14 s 4; <a href="/laws/2003/1/21/#laws.1.5.0">1Sp2003 c 21 art 1 s 5</a>,6; art 2 s 4,5; <a href="/laws/2005/0/151/#laws.2.17.0">2005 c 151 art 2 s 17</a>; art 6 s 15; <a href="/laws/2005/1/3/#laws.4.10.0">1Sp2005 c 3 art 4 s 10</a>; art 10 s 4,5; <a href="/laws/2006/0/259/#laws.1.1.0">2006 c 259 art 1 s 1</a>; <a href="/laws/2007/0/138/#laws.0.11.0">2007 c 138 s 11</a>; <a href="/laws/2008/0/152/#laws.3.2.0">2008 c 152 art 3 s 2</a>; <a href="/laws/2008/0/154/#laws.4.6.0">2008 c 154 art 4 s 6</a>; art 11 s 13; <a href="/laws/2008/0/366/#laws.4.7.0">2008 c 366 art 4 s 7</a>; art 5 s 9; <a href="/laws/2009/0/88/#laws.1.8.0">2009 c 88 art 1 s 8</a>; <a href="/laws/2010/0/389/#laws.3.12.0">2010 c 389 art 3 s 12</a>; <a href="/laws/2010/1/1/#laws.13.4.0">1Sp2010 c 1 art 13 s 4</a>; <a href="/laws/2011/0/112/#laws.6.3.0">2011 c 112 art 6 s 3</a>; <a href="/laws/2011/1/7/#laws.6.22.0">1Sp2011 c 7 art 6 s 22</a>; <a href="/laws/2012/0/294/#laws.2.11.0">2012 c 294 art 2 s 11</a>; <a href="/laws/2013/0/143/#laws.6.10.0">2013 c 143 art 6 s 10</a>-12; <a href="/laws/2014/0/150/#laws.1.14.0">2014 c 150 art 1 s 14</a>; <a href="/laws/2016/0/158/#laws.3.12.0">2016 c 158 art 3 s 12</a>,13; <a href="/laws/2017/1/1/#laws.1.13.0">1Sp2017 c 1 art 1 s 13</a>-17; <a href="/laws/2019/0/50/#laws.1.90.0">2019 c 50 art 1 s 90</a>; <a href="/laws/2019/1/6/#laws.1.36.0">1Sp2019 c 6 art 1 s 36</a>,37; art 2 s 16; art 12 s 2,3; <a href="/laws/2021/1/14/#laws.1.9.0">1Sp2021 c 14 art 1 s 9</a>; art 3 s 4-6; <a href="/laws/2023/0/1/#laws.0.15.0">2023 c 1 s 15</a>; <a href="/laws/2023/0/64/#laws.1.31.0">2023 c 64 art 1 s 31</a>-33; art 2 s 4,7; art 16 s 2; <a href="/laws/2025/0/20/#laws.0.231.0">2025 c 20 s 231</a>,232; <a href="/laws/2025/1/13/#laws.1.9.0">1Sp2025 c 13 art 1 s 9</a></p>
+  </div>
+  <p><b>NOTE: </b>The amendment to subdivision 23 by Laws 2025, First Special Session chapter 13, article 1, section 9, is effective for contributions made after December 31, 2026. Laws 2025, First Special Session chapter 13, article 1, section 9, the effective date.</p>
+</div>
+
+    
+
+    
+
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  
+                      <p style="text-align: center">
+                          Official Publication of the State of Minnesota<br/>
+                          Revisor of Statutes
+                      </p>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+      </main>
+      <!--stopindex-->
+      <footer id="legFooter" class="d-print-none">
+    <div class="footer bg-light">
+        <div class="container">
+            <div class="row pt-3 px-md-4">
+                <div class="col-sm-6 col-md-3">
+                    <h5 class="title-widget text-left">About the Legislature</h5>
+                    <ul class="list-unstyled clear-margins">
+                        <li>
+                            <a href="https://www.lrl.mn.gov/history/">Historical Information</a>
+                        </li>
+                        <li>
+                            <a href="https://www.leg.mn.gov/leg/jobs.aspx">Employment/Internships</a>
+                        </li>
+                        <li>
+                            <a href="https://www.leg.mn.gov/leg/faq/faq?subject=14">Visiting the Capitol</a>
+                        </li>
+                        <li>
+                            <a href="https://www.lcc.mn.gov/diversity-and-inclusion/accessibility/">Accessibility</a>
+                        </li>
+                        <li>
+                            <a href="http://www.leg.mn.gov/leg/faq/faqtoc.aspx">Frequently Asked Questions</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <h5 class="title-widget text-left">Contact Your Legislator</h5>
+                    <ul class="list-unstyled clear-margins">
+                        <li class="mt-2"><a href="http://www.gis.leg.mn/OpenLayers/districts/">Who Represents Me?</a>
+                        </li>
+                        <li><a href="http://www.house.leg.state.mn.us/members/hmem.asp">House Members</a></li>
+                        <li><a href="https://www.senate.mn/members/index.php">Senators</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <h5 class="title-widget text-left">General Contact</h5>
+                    <ul class="list-unstyled clear-margins">
+                        <li class="mt-2">Contact a legislative librarian:</li>
+                        <li><a href="tel:651-296-8338">(651) 296-8338</a> or <a
+                                href="https://www.lrl.mn.gov/comments">Email</a></li>
+                        <li class="mt-2"><a href="https://www.leg.mn.gov/leg/legdir">Phone Numbers</a></li>
+                        <li><a href="https://www.lrl.mn.gov/comments">Submit website comments</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <h5 class="title-widget">Get Connected</h5>
+                    <ul class="list-unstyled clear-margins">
+                        <li><a href="http://www.house.mn/hinfo/news.asp">House News</a></li>
+                        <li><a href="http://www.senate.mn/media/">Senate News</a></li>
+                        <li><a href="https://www.leg.mn.gov/mybills/">MyBills</a></li>
+                        <li><a href="https://www.leg.mn.gov/leg/elists">Email Updates &amp; RSS Feeds</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mx-0">
+        <div class="col-12 bg-dark">
+            <div class="text-center text-light py-1 leg-subfooter">
+                Minnesota Office of the Revisor of Statutes, Centennial Office Building,
+                3rd Floor, 658 Cedar Street, St. Paul, MN 55155
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+<!-- container -->
+<script src="/static/js/jquery-ui-1.12.1.custom/jquery-ui.min.20011b446b0e.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

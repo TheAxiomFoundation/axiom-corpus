@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<APM_DO_NOT_TOUCH>
+
+<script type="text/javascript">
+(function(){
+window.WOw=!!window.WOw;try{(function(){(function iS(){var I=!1;function l(I){for(var l=0;I--;)l+=z(document.documentElement,null);return l}function z(I,l){var s="vi";l=l||new Z;return IS(I,function(I){I.setAttribute("data-"+s,l.l1());return z(I,l)},null)}function Z(){this.il=1;this.lJ=0;this.j_=this.il;this._I=null;this.l1=function(){this._I=this.lJ+this.j_;if(!isFinite(this._I))return this.reset(),this.l1();this.lJ=this.j_;this.j_=this._I;this._I=null;return this.j_};this.reset=function(){this.il++;this.lJ=0;this.j_=this.il}}var s=!1;
+function SS(I,l){var z=document.createElement(I);l=l||document.body;l.appendChild(z);z&&z.style&&(z.style.display="none")}function _S(l,z){z=z||l;var Z="|";function SS(I){I=I.split(Z);var l=[];for(var z=0;z<I.length;++z){var s="",_S=I[z].split(",");for(var JS=0;JS<_S.length;++JS)s+=_S[JS][JS];l.push(s)}return l}var _S=0,IS="datalist,details,embed,figure,hrimg,strong,article,formaddress|audio,blockquote,area,source,input|canvas,form,link,tbase,option,details,article";IS.split(Z);IS=SS(IS);IS=new RegExp(IS.join(Z),
+"g");while(IS.exec(l))IS=new RegExp((""+new Date)[8],"g"),I&&(s=!0),++_S;return z(_S&&1)}function IS(I,l,z){(z=z||s)&&SS("div",I);I=I.children;var Z=0;for(var _S in I){z=I[_S];try{z instanceof HTMLElement&&(l(z),++Z)}catch(IS){}}return Z}_S(iS,l)})();var jS=35;try{var LS,OS,sS=_(575)?1:0,__=_(696)?1:0;for(var J_=(_(530),0);J_<OS;++J_)sS+=(_(898),2),__+=_(771)?3:1;LS=sS+__;window.I_===LS&&(window.I_=++LS)}catch(l_){window.I_=LS}var Z_=!0;function J(S,I){S+=I;return S.toString(36)}
+function s_(S){var I=76;!S||document[L(I,194,181,191,181,174,181,184,181,192,197,159,192,173,192,177)]&&document[O(I,194,181,191,181,174,181,184,181,192,197,159,192,173,192,177)]!==J(68616527590,I)||(Z_=!1);return Z_}function O(S){var I=arguments.length,l=[],z=1;while(z<I)l[z-1]=arguments[z++]-S;return String.fromCharCode.apply(String,l)}function L(S){var I=arguments.length,l=[];for(var z=1;z<I;++z)l.push(arguments[z]-S);return String.fromCharCode.apply(String,l)}function Si(){}
+s_(window[Si[J(1086819,jS)]]===Si);s_(typeof ie9rgb4!==O(jS,137,152,145,134,151,140,146,145));s_(RegExp("\x3c")[J(1372170,jS)](function(){return"\x3c"})&!RegExp(O(jS,155,86,135))[J(1372170,jS)](function(){return"'x3'+'d';"}));
+var ii=window[O(jS,132,151,151,132,134,139,104,153,136,145,151)]||RegExp(O(jS,144,146,133,140,159,132,145,135,149,146,140,135),J(-17,jS))[L(jS,151,136,150,151)](window["\x6e\x61vi\x67a\x74\x6f\x72"]["\x75\x73e\x72A\x67\x65\x6et"]),Ii=+new Date+(_(958)?6E5:429103),li,Li,oi,zi=window[L(jS,150,136,151,119,140,144,136,146,152,151)],Zi=ii?_(670)?3E4:29628:_(574)?6E3:7999;
+document[O(jS,132,135,135,104,153,136,145,151,111,140,150,151,136,145,136,149)]&&document[O(jS,132,135,135,104,153,136,145,151,111,140,150,151,136,145,136,149)](L(jS,153,140,150,140,133,140,143,140,151,156,134,139,132,145,138,136),function(S){var I=88;document[O(I,206,193,203,193,186,193,196,193,204,209,171,204,185,204,189)]&&(document[O(I,206,193,203,193,186,193,196,193,204,209,171,204,185,204,189)]===J(1058781895,I)&&S[O(I,193,203,172,202,205,203,204,189,188)]?oi=!0:document[O(I,206,193,203,193,
+186,193,196,193,204,209,171,204,185,204,189)]===J(68616527578,I)&&(li=+new Date,oi=!1,iI()))});function iI(){if(!document[O(40,153,157,141,154,161,123,141,148,141,139,156,151,154)])return!0;var S=+new Date;if(S>Ii&&(_(272)?6E5:443721)>S-li)return s_(!1);var I=s_(Li&&!oi&&li+Zi<S);li=S;Li||(Li=!0,zi(function(){Li=!1},_(659)?1:0));return I}iI();var II=[_(94)?17795081:25482235,_(394)?27611931586:2147483647,_(925)?1558153217:1733571828];
+function jI(S){var I=38;S=typeof S===J(1743045638,I)?S:S[O(I,154,149,121,154,152,143,148,141)](_(305)?36:29);var l=window[S];if(!l||!l[L(I,154,149,121,154,152,143,148,141)])return;var z=""+l;window[S]=function(S,I){Li=!1;return l(S,I)};window[S][L(I,154,149,121,154,152,143,148,141)]=function(){return z}}for(var lI=(_(615),0);lI<II[J(1294399170,jS)];++lI)jI(II[lI]);s_(!1!==window[L(jS,122,114,154)]);window.lS=window.lS||{};window.lS.Zl="08040a3b201940001d33ab8c4c23529874b3fb6ee3c6825ba67535688edaccec2e9af687f57867b5e409872202c1ec86f3a096b62643a7ed1cf53b94d493af6ccd4afa6375645afb";
+function LI(S){var I=+new Date,l;!document[O(20,133,137,121,134,141,103,121,128,121,119,136,131,134,85,128,128)]||I>Ii&&(_(687)?6E5:401926)>I-li?l=s_(!1):(l=s_(Li&&!oi&&li+Zi<I),li=I,Li||(Li=!0,zi(function(){Li=!1},_(852)?1:0)));return!(arguments[S]^l)}function _(S){return 996>S}(function oI(I){return I?0:oI(I)*oI(I)})(!0);})();}catch(x){}finally{ie9rgb4=void(0);};function ie9rgb4(a,b){return a>>b>>0};
+
+})();
+
+</script>
+</APM_DO_NOT_TOUCH>
+
+<script type="text/javascript" src="/TSPD/08035532b9ab2000de030027850b2a9845aef7520aa1d9c6bf3f4c8739b065faa74a2e1d3c2f8bef?type=9"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+  15-30-2318. Earned income tax credit, MCA
+</title>
+    <link rel='shortcut icon' type='../../../../image/x-icon' href='../../../../images/favicon-16x16.png'>
+    <link rel="stylesheet" type="text/css" href="../../../../bootstrap/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../../../../font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/mca-navigation.css">
+    <link rel="stylesheet" type="text/css" href="../../../../css/mt.css">
+</head>
+<body class="section-doc">
+
+<nav class="navbar navbar-inverse mca-navbar">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://www.legmt.gov">
+                <img class="nav-img" src="../../../../images/branch-logo-web.png" alt="Montana Legislature">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="../../../../index.html">MCA Contents</a></li>
+                <li><a href="https://archive.legmt.gov/search/index.html#start=0&query=mca&collection=MCA">Search</a></li>
+                <li><a href="../../../../help.html">Help</a></li>
+            </ul>
+            
+<ul class="nav navbar-nav navbar-right">
+  <li>
+      <a class="navbar-link" href="../sections_index.html" title="Part 23. Specific Tax Credits and Tax Checkoffs">Part Contents</a>
+  </li>
+  
+    <li>
+      <a class="navbar-link" href="../section_0040/0150-0300-0230-0040.html" title="15-30-2304 through 15-30-2317 reserved"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;Previous Section</a>
+    </li>
+  
+  
+    <li>
+      <a class="navbar-link" href="../section_0190/0150-0300-0230-0190.html" title="15-30-2319 Repealed">Next Section&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+  
+</ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+    <ol class="breadcrumb">
+  
+    <li><a href="../../../../index.html" title="MCA Table of Contents">MCA Contents</a></li>
+  
+    <li><a href="../../../chapters_index.html" title="TITLE 15. TAXATION">TITLE 15</a></li>
+  
+    <li><a href="../../parts_index.html" title="CHAPTER 30. INDIVIDUAL INCOME TAX">CHAPTER 30</a></li>
+  
+    <li><a href="../sections_index.html" title="Part 23. Specific Tax Credits and Tax Checkoffs">Part 23</a></li>
+  
+    <li class="active"><span title="15-30-2318 Earned income tax credit">15-30-2318 Earned income tax credit</span></li>
+  
+</ol>
+
+
+<div class="mca-content mca-toc">
+    
+  <h1>Montana Code Annotated 2025</h1>
+  <div class="section-header">
+    <h4 class="section-title-title">
+      TITLE 15. TAXATION
+    </h4>
+    <h3 class="section-chapter-title">
+      CHAPTER 30. INDIVIDUAL INCOME TAX
+    </h3>
+    <h2 class="section-part-title">
+      Part 23. Specific Tax Credits and Tax Checkoffs
+    </h2>
+    <h1 class="section-section-title">
+      Earned Income Tax Credit
+    </h1>
+  </div>
+
+  <div class="section-doc" id="mca_0150-0300-0230-0180">
+        <div class="section-content">
+            <p class="line-indent">
+                <span class="catchline"><span class="citation">15-30-2318</span>.&#8195;Earned income tax credit.</span> (1) Except as provided in subsection (3), a resident taxpayer is allowed as a credit against the tax imposed by <a href="../../part_0210/section_0030/0150-0300-0210-0030.html"><span class="citation">15-30-2103</span></a> a percentage of the credit allowed for the federal earned income credit for which the individual taxpayer is eligible for the tax year under section 32 of the Internal Revenue Code, 26 U.S.C. 32.
+            </p>
+            <p class="line-indent">
+                (2)	The amount of the credit allowed under subsection (1) is 20% of the amount of the credit determined for the tax year under section 32 of the Internal Revenue Code, 26 U.S.C. 32.
+            </p>
+            <p class="line-indent">
+                (3)	The credit is not allowed on earned income that is treated as a dividend received by a member of an agricultural organization provided for in section 501(d) of the Internal Revenue Code, 26 U.S.C. 501(d). For the purpose of this subsection, the amount of the state tax credit provided for in subsection (2) is reduced by the reduction percentage.
+            </p>
+            <p class="line-indent">
+                (4)	The taxpayer is entitled to a refund equal to the amount by which the credit exceeds the taxpayer's tax liability or, if the taxpayer has no tax liability under this chapter, a refund equal to the amount of the credit. The credit may be claimed by filing a Montana income tax return.
+            </p>
+            <p class="line-indent">
+                (5)	For the purpose of this section, the following definitions apply:
+            </p>
+            <p class="line-indent">
+                (a)	"Earned income" means earned income, as defined in section 32 of the Internal Revenue Code, 26 U.S.C. 32, that was used to determine the amount of the federal earned income tax credit under subsection (2).
+            </p>
+            <p class="line-indent">
+                (b)	"Reduction percentage" means a percentage that is calculated by dividing the earned income that is disallowed under subsection (3) by the total amount of earned income.
+            </p>
+        </div>
+    </div><div class="history-doc" id="mca_0150-0300-0230-0180_hist">
+    <div class="history-content">
+      <p class="line-indent">
+        <span class="header">History:</span>&#8195;En. Sec. 1, Ch. 381, L. 2017; amd. Sec. 2, Ch. 50, L. 2023; amd. Sec. 3, Ch. 701, L. 2023; amd. Sec. 3, Ch. 227, L. 2025.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="mca-footer">
+    <div class="container mca-footer">
+        <div class="row">
+            <div class="col-md-12 mca-footer-text">
+                <p>
+                    <a name="disc"></a>
+                    <span class="text-bold">Disclaimer:</span> The Internet version of the
+                    Montana Code Annotated is provided as a research tool to users of the Code. In case of
+                    inconsistencies resulting from omissions or other errors, the printed version will prevail.
+                </p>
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+<script src="../../../../lib/jquery-2.2.4.min.js"></script>
+<script src="../../../../bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

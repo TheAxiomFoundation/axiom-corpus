@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/manual/2026-07-13-recovery.json",
+      "sha256": "a78e12d2d4b5d085886594080db6576d3c91c7da5552c60b95cc8d5d7b954d6d"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/manual/2026-07-13-recovery.json",
+      "sha256": "092104ec196d7208cb9422d91f5fc1ab2b3ab6863d66c3253fd6dad750ed7080"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/manual/2026-07-13-recovery.jsonl",
+      "sha256": "89d4327f6141bb707ceafb88a47d27192353ed451d818beb5444f6be8a918ad6"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-13-recovery/official-documents/us-mi-bem-660",
+      "sha256": "da1ea5ca1033934138c675b7d9e92df9272ae5c8e54f96bcc8ed6d0dad0d181d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-13-recovery/official-documents/us-mi-rft-248",
+      "sha256": "f87f1e068786ae96513735beba44916a4555ddfe8fea999955c123c53e67cf57"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-13-recovery/provenance/us-mi-bem-660.json",
+      "sha256": "30788169cf701cb474b179742f39e6c0eca2a9b586d9fcd2c5515b4a2419cb93"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-13-recovery/provenance/us-mi-rft-248.json",
+      "sha256": "4dc6d06c8e176b962f3c98d30ff02023e292b5e90dcc37cbbb312a84d6c8d6d9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "fc98abe254cdfe63eee3aafaf2c5fadce038426a",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T15:18:52.174323+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pk/JZzBXrS6eOVPMzb8v+4kp7bbPeWl967uEA7qMZNg0il/PrB1UE6WfXwln5BeFC0LFXlYmDc+8hewpqH9NBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

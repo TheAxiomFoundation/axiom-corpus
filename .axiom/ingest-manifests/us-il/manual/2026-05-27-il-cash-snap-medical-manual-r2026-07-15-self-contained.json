@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained.json",
+      "sha256": "0a67089c72e08798cab521d5975e6afd62a6b55d96b43061018b193c899c7a9a"
+    },
+    {
+      "path": "data/corpus/inventory/us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained.json",
+      "sha256": "a3bba5cef7213ecbd70aab8374bcd6bdc367caee0c34d931cd29f5aa8262f618"
+    },
+    {
+      "path": "data/corpus/provisions/us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained.jsonl",
+      "sha256": "0ee5bcae1dfd3a609445d3cd1266f924f2bfd110d3083e044fae127b2c9141e4"
+    },
+    {
+      "path": "data/corpus/sources/us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained/official-documents/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained",
+      "sha256": "e6f40edf439d057fd53e8e7c2b1e662bc439dd3bf47f0990726e222104cb1f64"
+    },
+    {
+      "path": "data/corpus/sources/us-il/manual/2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained/provenance/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained.json",
+      "sha256": "5f993349a8e9672191d382c49a4d41916ffe35a31e23a9428b66e5c64fd57d4a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "272897fa558241670dda45af35d361d1dd376783",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 12450,
+    "missing_count": 0,
+    "provision_count": 12450,
+    "source_count": 12450
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T22:26:21.385877+00:00",
+  "jurisdiction": "us-il",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "10WkVkdq+mUL5CVb8EZ8rKGGPNuJsEGtXQ2bRRGlyD8FkAnEakQhA4fWwREfpKvJeb4PuIZUOl15W/twBh8SDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-il-cash-snap-medical-manual-r2026-07-15-self-contained"
+}

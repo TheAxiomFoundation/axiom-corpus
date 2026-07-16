@@ -1,0 +1,2351 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/Icons/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/Icons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/Icons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/Icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/Icons/favicon-16x16.png" sizes="16x16" />
+    <link rel="manifest" href="/Icons/manifest.json" />
+    <link rel="mask-icon" href="/Icons/safari-pinned-tab.svg" color="#0168c9" />
+    <link rel="shortcut icon" href="/Icons/favicon.ico" />
+    <meta name="msapplication-config" content="/Icons/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+        <meta name="mg_organization" content="massachusetts-legislature" />
+        <meta name="category" content="laws-regulations" />
+                <meta name="mg_type" content="general-law" />
+                <meta name="mg_key_actions" content="[{ &quot;name&quot;: &quot;Search Sections within this Chapter&quot;, &quot;url&quot;: &quot;https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62&quot;},
+                                                   { &quot;name&quot;: &quot;Search for General Laws&quot;, &quot;url&quot;: &quot;https:\/\/malegislature.gov\/Laws\/GeneralLaws&quot;}]" />
+    <title>General Law - Part I, Title IX, Chapter 62, Section 6</title>
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="/bundles/css/core.min.css?v=XpyF4rztSUyNThI4B99oMBndXCknTrVtwumvkb8yo9w" />
+
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Cinzel|Cinzel+Decorative|Raleway|Roboto&display=swap" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/Content/font-awesome.min.css" />
+
+    
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0RK1DK5FZ1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-S38HL5DE45');
+        </script>
+    <script src="/bundles/jquery.min.js"></script>
+    
+    <script src="/bundles/virtualtour.min.js"></script>
+</head>
+<body class="subpage">
+
+    <div id="alertContainer">
+        <!-- Alert Banner -->
+    </div>
+
+    <!-- Skip to Content Link -->
+    <a href="#mainContent" class="sr-only sr-only-focusable skipToContent">Skip to Content</a>
+    <div id="background" style="background: ">
+        <!--Header-->
+        
+<header>
+    
+        <div class="visible-lg-inline weatherBox">
+    <span class="weatherDate">July 13, 2026</span>
+    <img id="wicon" class="weatherIcon" src="https://openweathermap.org/img/w/04n.png" alt="Clouds">
+    <span class="weatherDivider"> &#124; </span>
+    <span class="weatherStats">77&deg;F</span>
+</div>
+
+    
+    <div class="container">
+        <a class="masthead" href="/">
+            <span class="headNumber">The 194th General Court of the </span>
+            <span class="headCommonwealth">Commonwealth of <span class="headMass">Massachusetts</span></span>
+        </a>
+        <div class="utilityLinks hidden-xs dropdown navbar-right">
+                <button id="utilMyLegBtn" class="utilityButton dropdown-toggle" aria-controls="loginFlyout" data-toggle="dropdown">
+                    <span class="fa-stack fa-lg">
+                        <span class="fa fa-user fa-stack-2x"></span>
+                    </span>
+                    <span class="fa-stack mlTitle">MyLegislature <span class="fa fa-caret-down"></span></span>
+                </button>
+                <div id="loginFlyout" class="dropdown-menu dropdownLogin" aria-live="assertive">
+                    
+<h2 class="text-center loginTitle">MyLegislature</h2>
+<p class="sr-only">Use MyLegislature to follow bills, hearings, and legislators that interest you.</p>
+<form id="loginFlyoutForm" class="form-horizontal clearfix" role="form" method="post" data-ajax="true" data-ajax-method="POST" data-ajax-begin="inProgress" data-ajax-complete="loginFlyoutFormOnComplete" action="/Account/Login?isModal=false">
+    
+<legend class="text-center legSignIn">Sign in with MyLegislature Account</legend>
+<span class="requiredFields">* Indicates required fields</span>
+<div class="form-group">
+    <label class="col-sm-3 control-label" for="Email">Email*</label>
+    <div class="col-sm-9">
+        <input autocomplete="email" class="form-control" data-val="true" data-val-email="Invalid email address." data-val-required="Email address is required." id="Email" name="Email" type="text" value="" />
+        <span class="help-block field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+    </div>
+</div>
+<div class="form-group passwordField">
+    <label class="col-sm-3 control-label" for="Password">Password*</label>
+    <div class="col-sm-9 clearfix">
+        <input autocomplete="off" class="form-control" data-val="true" data-val-required="Password required." id="Password" name="Password" type="password" />
+        <span class="help-block field-validation-valid" data-valmsg-for="Password" data-valmsg-replace="true"></span>
+        
+    </div>
+</div>
+<div class="col-xs-12 text-center">
+    <div class="clearfix">
+        <a class="forgotPassword" aria-haspopup="true" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
+    </div>
+    <input type="submit" value="Sign in" class="btn btn-default btn-lg fnStart"/>
+    <input type="submit" value="Signing In..." class="btn btn-default btn-lg fnEnd" style="display: none" />
+</div>
+
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8HIVWfIXwzZOnTpy4PLP6iMtdez1PW8EAyQhvXVfsSeh_uvWUMygRXkgqCQANrqTcneh9ZgAOSq4Quv_Vcb5gkM7WEAov6KBLQmKEbaGSZYGCDw1wXxqgf3bmqrpFjxT6MVFEDKNa7lOMJMlo--w6FA" /></form>
+<div class="form-group text-center">
+    <button type="button" onclick="window.location='/Account/ExternalLogin?provider=Facebook';" class="btn btn-facebook btn-md oauthButton"><span class="fa fa-facebook-official fa-fw"></span> Sign in with Facebook</button>
+    <button type="button" onclick="window.location='/Account/ExternalLogin?provider=Google';" class="btn btn-google btn-md oauthButton"><span class="fa fa-google-plus fa-fw"></span> Sign in with Google</button>
+</div>
+<div class="row">
+    <div class="col-xs-12 loginFooterWrapper">
+        <p class="loginFooter clearfix">
+          <a class="pull-left" href="#" data-toggle="modal" data-target="#registrationModal">Not Registered?</a>
+          <a class="pull-right" href="/MyLegislature/About">Learn More Here! &raquo;</a>
+        </p>
+    </div>
+</div>
+
+                </div>
+        </div>
+        <!-- /.utilityLinks -->
+    </div>
+    <!-- /.container -->
+</header>
+
+        <!-- NAVIGATION -->
+        
+<nav class="navbar yamm" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed btn menubutton" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" tabindex="0">Menu<span class="sr-only">Toggle navigation</span></button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="visible-xs"><a href="/">Home</a></li>
+                <li class="visible-xs"><a role="button" href="#" data-toggle="modal" data-target="#mobileSearch" aria-haspopup="true">Search</a></li>
+                    <li class="visible-xs">
+                        <a data-toggle="modal" data-target="#loginModal">
+                            <span class="fa fa-user"></span>
+                            MyLegislature
+                        </a>
+                    </li>
+                <li class="dropdown yamm-fw">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Bills &amp; Laws</a>
+        <ul class="dropdown-menu">
+            <li>
+                <div class="yamm-content">
+                    <div class="row">
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Bills">Bills</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Bills/Search">
+        All Bills
+    </a>
+</li>
+<li>
+    <a href="/Bills/RecentBills">
+        Recent &amp; Popular Bills
+    </a>
+</li>
+<li>
+    <a href="/ClerksOffice/Senate/Deadlines">
+        Senate Deadlines
+    </a>
+</li>
+<li>
+    <a href="/ClerksOffice/House/Deadlines">
+        House Deadlines
+    </a>
+</li>
+<li>
+    <a href="/Bills/CityTown">
+        Browse Bills by City/Town
+    </a>
+</li>
+
+
+<li class="form-group">
+    <form action="/Bills/Search" method="get">    <label class="" for="billsSearch">Search Bills</label>
+    <div class="typeahead-container">
+        <div class="typeahead-field">
+            <div class="input-group typeahead-query ">
+                <input id="billsSearch"
+                       name="SearchTerms"
+                       class="searchBox form-control"
+                       type="search"
+                       data-tt-search-type="Bills"
+                       data-tt-search-reset="Bills"
+                       data-tt-url="/TypeAheadSearch"
+                       data-tt-branch=""
+                       data-tt-limit="7"
+                       aria-haspopup="true"
+                       aria-autocomplete="list"
+                       autocomplete="off"
+                       placeholder="Search Bills..." />
+
+                <div class="input-group-btn typeahead-button">
+                    <button type="submit" class="btn btn-primary searchButton" aria-label="Search Bills">
+                                <span class="fa fa-search"></span>
+                                <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Laws/GeneralLaws">General Laws</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Laws/GeneralLaws">
+        Browse General Laws
+    </a>
+</li>
+
+
+<li class="form-group">
+    <form action="/Laws/GeneralLaws/Search" method="get">    <label class="" for="generalLawsSearch">Search General Laws</label>
+    <div class="typeahead-container">
+        <div class="typeahead-field">
+            <div class="input-group typeahead-query ">
+                <input id="generalLawsSearch"
+                       name="SearchTerms"
+                       class="searchBox form-control"
+                       type="search"
+                       data-tt-search-type="GeneralLaws"
+                       data-tt-search-reset="GeneralLaws"
+                       data-tt-url="/TypeAheadSearch"
+                       data-tt-branch=""
+                       data-tt-limit="7"
+                       aria-haspopup="true"
+                       aria-autocomplete="list"
+                       autocomplete="off"
+                       placeholder="Search General Laws..." />
+
+                <div class="input-group-btn typeahead-button">
+                    <button type="submit" class="btn btn-primary searchButton" aria-label="Search General Laws">
+                                <span class="fa fa-search"></span>
+                                <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</li>
+
+
+
+<li class="form-inline generalLawsDirect">
+<form action="/Laws/GeneralLaws/GoTo" method="get">            <span class="navLabel">Go to a General Law:</span>
+            <div class="form-group">
+                <label for="GLChapterGoTo" class="sr-only">Chapter:</label>
+                <input id="GLChapterGoTo" name="ChapterGoTo" type="text" value="" class="form-control" placeholder="Chapter"/>
+            </div>
+            <div class="form-group">
+                <label for="GLSectionGoTo" class="sr-only">Section Number:</label>
+                <input id="GLSectionGoTo" name="SectionGoTo" type="text" value="" class="form-control" placeholder="Section"/>
+            </div>
+            <div class="form-group">
+                <label for="keyword" class="sr-only">Keyword:</label>
+                <input id="keyword" name="keyword" type="text" value="" class="form-control" placeholder="Keyword"/>
+            </div>
+            <button class="btn btn-primary searchButton" type="submit">Go <span class="sr-only"> to that General Law</span><span class="fa fa-angle-right"></span></button>
+</form></li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Laws/SessionLaws">Session Laws</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Laws/SessionLaws">
+        Browse Session Laws
+    </a>
+</li>
+
+
+<li class="form-group">
+    <form action="/Laws/SessionLaws/Search" method="get">    <label class="" for="sessionLawsSearch">Search Session Laws</label>
+    <div class="typeahead-container">
+        <div class="typeahead-field">
+            <div class="input-group typeahead-query ">
+                <input id="sessionLawsSearch"
+                       name="SearchTerms"
+                       class="searchBox form-control"
+                       type="search"
+                       data-tt-search-type="SessionLaws"
+                       data-tt-search-reset="SessionLaws"
+                       data-tt-url="/TypeAheadSearch"
+                       data-tt-branch=""
+                       data-tt-limit="7"
+                       aria-haspopup="true"
+                       aria-autocomplete="list"
+                       autocomplete="off"
+                       placeholder="Search Session Laws..." />
+
+                <div class="input-group-btn typeahead-button">
+                    <button type="submit" class="btn btn-primary searchButton" aria-label="Search Session Laws">
+                                <span class="fa fa-search"></span>
+                                <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</li>
+
+
+
+<li class="form-inline generalLawsDirect">
+<form action="/Laws/SessionLaws/GoTo" method="get">            <script>
+                var sessionLawActYears = [{"Disabled":false,"Group":null,"Selected":false,"Text":"2026","Value":"2026"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2025","Value":"2025"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2024","Value":"2024"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2023","Value":"2023"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2022","Value":"2022"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2021","Value":"2021"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2020","Value":"2020"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2019","Value":"2019"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2018","Value":"2018"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2017","Value":"2017"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2016","Value":"2016"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2015","Value":"2015"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2014","Value":"2014"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2013","Value":"2013"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2012","Value":"2012"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2011","Value":"2011"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2010","Value":"2010"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2009","Value":"2009"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2008","Value":"2008"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2007","Value":"2007"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2006","Value":"2006"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2005","Value":"2005"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2004","Value":"2004"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2003","Value":"2003"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2002","Value":"2002"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2001","Value":"2001"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2000","Value":"2000"},{"Disabled":false,"Group":null,"Selected":false,"Text":"1999","Value":"1999"},{"Disabled":false,"Group":null,"Selected":false,"Text":"1998","Value":"1998"},{"Disabled":false,"Group":null,"Selected":false,"Text":"1997","Value":"1997"}];
+                var sessionLawResolveYears = [{"Disabled":false,"Group":null,"Selected":false,"Text":"2024","Value":"2024"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2020","Value":"2020"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2018","Value":"2018"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2016","Value":"2016"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2014","Value":"2014"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2013","Value":"2013"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2012","Value":"2012"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2010","Value":"2010"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2009","Value":"2009"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2008","Value":"2008"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2007","Value":"2007"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2006","Value":"2006"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2004","Value":"2004"},{"Disabled":false,"Group":null,"Selected":false,"Text":"2001","Value":"2001"},{"Disabled":false,"Group":null,"Selected":false,"Text":"1998","Value":"1998"}];
+            </script>
+            <span class="navLabel">Go to a Session Law:</span>
+            <div class="form-group sessionLawType">
+                <label for="TypeGoTo" class="sr-only">Type:</label>
+                <select name="TypeGoTo" id="TypeGoTo" class="form-control" onchange="sessionLawTypeChange(this, 'Resolves')">
+                        <option value="Acts">Act</option>
+                        <option value="Resolves">Resolve</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="SLChapterGoTo" class="sr-only">Chapter:</label>
+                <input id="SLChapterGoTo" name="ChapterGoTo" type="text" value="" class="form-control" placeholder="Chapter"/>
+            </div>
+            <div class="form-group">
+                <label for="YearGoTo" class="sr-only">Year:</label>
+                <select name="YearGoTo" id="YearGoTo" class="form-control sessionLawYearList">
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                        <option value="2002">2002</option>
+                        <option value="2001">2001</option>
+                        <option value="2000">2000</option>
+                        <option value="1999">1999</option>
+                        <option value="1998">1998</option>
+                        <option value="1997">1997</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Go <span class="sr-only">to Session Law</span><span class="fa fa-angle-right"></span></button>
+</form></li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+
+
+<li>
+    <h3>
+        <a href="/Laws/Constitution">
+            Massachusetts Constitution
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/Journal/Senate">
+            Senate Journals
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/Journal/House">
+            House Journals
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/Laws/Rules/Joint">
+            Rules
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/Reports">
+            Reports and Communications
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/Download/Joint/Legislative%20Drafting%20Manual" target="_blank">
+            Drafting Manual
+                <span class="fa fa-file-pdf-o"></span>
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/StateHouse/Glossary">
+            Glossary
+        </a>
+    </h3>
+</li>
+
+    </ul>
+</div>
+
+                        <button class="sr-only sr-only-focusable btn-link" onclick="closeNavMenu()">Close Menu</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+</li>
+<li class="dropdown yamm-fw">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Budget</a>
+<ul class="dropdown-menu" id="budgetMenu">
+    <li>
+        <div class="yamm-content homeBudget">
+            <h2><a href="/Budget">FY 2027 Budget</a></h2>
+            <ol>
+                    <li class="completed" aria-current="">
+                        <a href="/Budget/GovernorsBudget">
+                            Governor&#x27;s Budget
+                            <span class="indicator" aria-hidden="true"></span>
+                                <span class="indicatorLine right" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="completed" aria-current="">
+                        <a href="/Budget/HouseWaysMeansBudget">
+                            House Ways &amp; Means Budget
+                            <span class="indicator" aria-hidden="true"></span>
+                                <span class="indicatorLine left" aria-hidden="true"></span>
+                                <span class="indicatorLine right" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="completed" aria-current="">
+                        <a href="/Budget/HouseDebate">
+                            House Debate
+                            <span class="indicator" aria-hidden="true"></span>
+                                <span class="indicatorLine left" aria-hidden="true"></span>
+                                <span class="indicatorLine right" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="completed" aria-current="">
+                        <a href="/Budget/HouseBudget">
+                            House Budget
+                            <span class="indicator" aria-hidden="true"></span>
+                                <span class="indicatorLine left" aria-hidden="true"></span>
+                                <span class="indicatorLine right" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="completed" aria-current="">
+                        <a href="/Budget/SenateWaysMeansBudget">
+                            Senate Ways &amp; Means Budget
+                            <span class="indicator" aria-hidden="true"></span>
+                                <span class="indicatorLine left" aria-hidden="true"></span>
+                                <span class="indicatorLine right" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="completed" aria-current="">
+                        <a href="/Budget/SenateDebate">
+                            Senate Debate
+                            <span class="indicator" aria-hidden="true"></span>
+                                <span class="indicatorLine left" aria-hidden="true"></span>
+                                <span class="indicatorLine right" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="completed" aria-current="">
+                        <a href="/Budget/SenateBudget">
+                            Senate Budget
+                            <span class="indicator" aria-hidden="true"></span>
+                                <span class="indicatorLine left" aria-hidden="true"></span>
+                                <span class="indicatorLine right" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="current" aria-current="step">
+                        <a href="/Budget/ConferenceCommittee">
+                            Conference Committee
+                            <span class="indicator" aria-hidden="true"></span>
+                                <span class="indicatorLine left" aria-hidden="true"></span>
+                                <span class="indicatorLine right" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="" aria-current="">
+                        <a href="/Budget/FinalBudget">
+                                <span class="sr-only">Not completed:</span>
+                            Final Budget
+                            <span class="indicator" aria-hidden="true"></span>
+                                <span class="indicatorLine left" aria-hidden="true"></span>
+                        </a>
+                    </li>
+            </ol>
+            <button class="sr-only sr-only-focusable btn-link" onclick="closeNavMenu()">Close Menu</button>
+        </div>
+    </li>
+</ul></li>
+<li class="dropdown yamm-fw">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Legislators</a>
+        <ul class="dropdown-menu">
+            <li>
+                <div class="yamm-content">
+                    <div class="row">
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Legislators">Legislators</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Redistricting">
+        Redistricting
+    </a>
+</li>
+<li>
+    <a href="/Search/FindMyLegislator">
+        Find Your Legislators
+    </a>
+</li>
+
+
+<li class="form-group">
+    <form action="/Legislators/Search" method="get">    <label class="" for="legisSearch">Search Legislators</label>
+    <div class="typeahead-container">
+        <div class="typeahead-field">
+            <div class="input-group typeahead-query ">
+                <input id="legisSearch"
+                       name="SearchTerms"
+                       class="searchBox form-control"
+                       type="search"
+                       data-tt-search-type="Legislators"
+                       data-tt-search-reset="Legislators"
+                       data-tt-url="/TypeAheadSearch"
+                       data-tt-branch=""
+                       data-tt-limit="7"
+                       aria-haspopup="true"
+                       aria-autocomplete="list"
+                       autocomplete="off"
+                       placeholder="Search Legislators..." />
+
+                <div class="input-group-btn typeahead-button">
+                    <button type="submit" class="btn btn-primary searchButton" aria-label="Search Legislators">
+                                <span class="fa fa-search"></span>
+                                <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Legislators/Leadership">Legislative Leadership</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Legislators/Leadership">
+        All Leadership
+    </a>
+</li>
+<li>
+    <a href="/Legislators/Leadership/Senate">
+        Senate Leadership
+    </a>
+</li>
+<li>
+    <a href="/Legislators/Leadership/House">
+        House Leadership
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Legislators/Senate">Senate</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Legislators/Members/Senate">
+        All Senators
+    </a>
+</li>
+<li>
+    <a href="/ClerksOffice/Senate">
+        Senate Clerk
+    </a>
+</li>
+<li>
+    <a href="/OpenRecords/Senate">
+        Senate Open Records
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Legislators/House">House</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Legislators/Members/House">
+        All Representatives
+    </a>
+</li>
+<li>
+    <a href="/ClerksOffice/House">
+        House Clerk
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+                        <button class="sr-only sr-only-focusable btn-link" onclick="closeNavMenu()">Close Menu</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+</li>
+<li class="dropdown yamm-fw">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Clerks</a>
+        <ul class="dropdown-menu">
+            <li>
+                <div class="yamm-content">
+                    <div class="row">
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3 class="navbar-nav category-plain">
+                    Dockets
+                </h3>
+            <ul class="list-unstyled">
+
+
+<li class="form-group">
+    <form action="" method="get">    <label class="" for="docketsSearch">Search Dockets</label>
+    <div class="typeahead-container">
+        <div class="typeahead-field">
+            <div class="input-group typeahead-query ">
+                <input id="docketsSearch"
+                       name="SearchTerms"
+                       class="searchBox form-control"
+                       type="search"
+                       data-tt-search-type="Dockets"
+                       data-tt-search-reset="Dockets"
+                       data-tt-url="/TypeAheadSearch"
+                       data-tt-branch=""
+                       data-tt-limit="7"
+                       aria-haspopup="true"
+                       aria-autocomplete="list"
+                       autocomplete="off"
+                       placeholder="Search Dockets..." />
+
+                <div class="input-group-btn typeahead-button">
+                    <button type="submit" class="btn btn-primary searchButton" aria-label="Search Dockets">
+                                <span class="fa fa-search"></span>
+                                <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/ClerksOffice/Senate">Senate Clerk</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/ClerksOffice/Senate/Agenda">
+        Agenda
+    </a>
+</li>
+<li>
+    <a href="/ClerksOffice/Senate/Calendar">
+        Calendar
+    </a>
+</li>
+<li>
+    <a href="/ClerksOffice/Senate/Dockets">
+        Dockets
+    </a>
+</li>
+<li>
+    <a href="/Laws/Rules/Senate">
+        Rules
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/ClerksOffice/House">House Clerk</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/ClerksOffice/House/Calendar">
+        Calendar
+    </a>
+</li>
+<li>
+    <a href="/ClerksOffice/House/Dockets">
+        Dockets
+    </a>
+</li>
+<li>
+    <a href="/Laws/Rules/House">
+        Rules
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+
+
+<li>
+    <h3>
+        <a href="/ClerksOffice/Senate/Audits">
+            Senate Audits
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/Journal/Senate">
+            Senate Journals
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/ClerksOffice/House/Audits">
+            House Audits
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/Journal/House">
+            House Journals
+        </a>
+    </h3>
+</li>
+
+    </ul>
+</div>
+
+                        <button class="sr-only sr-only-focusable btn-link" onclick="closeNavMenu()">Close Menu</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+</li>
+<li class="dropdown yamm-fw">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Hearings &amp; Events</a>
+        <ul class="dropdown-menu">
+            <li>
+                <div class="yamm-content">
+                    <div class="row">
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Events">All Hearings &amp; Events</a>
+                </h3>
+            <ul class="list-unstyled">
+
+
+<li class="form-group">
+    <form action="/Events/Search" method="get">    <label class="" for="eventSearch">Search Events</label>
+    <div class="typeahead-container">
+        <div class="typeahead-field">
+            <div class="input-group typeahead-query ">
+                <input id="eventSearch"
+                       name="SearchTerms"
+                       class="searchBox form-control"
+                       type="search"
+                       data-tt-search-type="Events"
+                       data-tt-search-reset="Events"
+                       data-tt-url="/TypeAheadSearch"
+                       data-tt-branch=""
+                       data-tt-limit="7"
+                       aria-haspopup="true"
+                       aria-autocomplete="list"
+                       autocomplete="off"
+                       placeholder="Search Events..." />
+
+                <div class="input-group-btn typeahead-button">
+                    <button type="submit" class="btn btn-primary searchButton" aria-label="Search Events">
+                                <span class="fa fa-search"></span>
+                                <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Events/Sessions">Sessions</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Events/Sessions/Joint">
+        Joint Sessions
+    </a>
+</li>
+<li>
+    <a href="/Events/Sessions/Senate">
+        Senate Sessions
+    </a>
+</li>
+<li>
+    <a href="/Events/Sessions/House">
+        House Sessions
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Events/Hearings">Hearings</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Events/Hearings/Senate">
+        Senate Committee Hearings
+    </a>
+</li>
+<li>
+    <a href="/Events/Hearings/House">
+        House Committee Hearings
+    </a>
+</li>
+<li>
+    <a href="/Events/Hearings/Joint">
+        Joint Committee Hearings
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+
+
+<li>
+    <h3>
+        <a href="/Events/SpecialEvents">
+            Special Events
+        </a>
+    </h3>
+</li>
+
+    </ul>
+</div>
+
+                        <button class="sr-only sr-only-focusable btn-link" onclick="closeNavMenu()">Close Menu</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+</li>
+<li class="dropdown yamm-fw">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Committees &amp; Commissions</a>
+        <ul class="dropdown-menu">
+            <li>
+                <div class="yamm-content">
+                    <div class="row">
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Committees">All Committees</a>
+                </h3>
+            <ul class="list-unstyled">
+
+
+<li class="form-group">
+    <form action="/Committees/Search" method="get">    <label class="" for="committeeSearch">Search Committees</label>
+    <div class="typeahead-container">
+        <div class="typeahead-field">
+            <div class="input-group typeahead-query ">
+                <input id="committeeSearch"
+                       name="SearchTerms"
+                       class="searchBox form-control"
+                       type="search"
+                       data-tt-search-type="Committees"
+                       data-tt-search-reset="Committees"
+                       data-tt-url="/TypeAheadSearch"
+                       data-tt-branch=""
+                       data-tt-limit="7"
+                       aria-haspopup="true"
+                       aria-autocomplete="list"
+                       autocomplete="off"
+                       placeholder="Search Committees..." />
+
+                <div class="input-group-btn typeahead-button">
+                    <button type="submit" class="btn btn-primary searchButton" aria-label="Search Committees">
+                                <span class="fa fa-search"></span>
+                                <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Committees">Committees</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Committees/Joint">
+        Joint Committees
+    </a>
+</li>
+<li>
+    <a href="/Committees/Senate">
+        Senate Committees
+    </a>
+</li>
+<li>
+    <a href="/Committees/House">
+        House Committees
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/Events/Hearings">Committee Hearings</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/Events/Hearings/Joint">
+        Joint Committee Hearings
+    </a>
+</li>
+<li>
+    <a href="/Events/Hearings/Senate">
+        Senate Committee Hearings
+    </a>
+</li>
+<li>
+    <a href="/Events/Hearings/House">
+        House Committee Hearings
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+
+
+<li>
+    <h3>
+        <a href="/Commissions">
+            Commissions
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/Download/House/Committee%20Book" target="_blank">
+            Committee Book
+                <span class="fa fa-file-pdf-o"></span>
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/Committees/HearingAttendanceOverview">
+            Hearing Attendance
+        </a>
+    </h3>
+</li>
+
+    </ul>
+</div>
+
+                        <button class="sr-only sr-only-focusable btn-link" onclick="closeNavMenu()">Close Menu</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+</li>
+<li class="dropdown yamm-fw">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">State House</a>
+        <ul class="dropdown-menu">
+            <li>
+                <div class="yamm-content">
+                    <div class="row">
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/StateHouse/Visit">Visit the State House</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/StateHouse/Tour">
+        On-site Tour
+    </a>
+</li>
+<li>
+    <a href="/VirtualTour/Home">
+        Virtual Tour
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/StateHouse/Accessibility">Accessibility</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/StateHouse/AccessibilityForm">
+        Request Accessibility
+    </a>
+</li>
+<li>
+    <a href="/StateHouse/WebAccessibilityPolicy">
+        Web Accessibility Policy
+    </a>
+</li>
+<li>
+    <a href="/StateHouse/AccessibilityInitiatives">
+        Accessibility Initiatives
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+        <li>
+                <h3>
+                    <a href="/StateHouse/EducationalOpportunities">Educational Opportunities</a>
+                </h3>
+            <ul class="list-unstyled">
+<li>
+    <a href="/StateHouse/EducationalOpportunities/Internships">
+        Internships
+    </a>
+</li>
+<li>
+    <a href="/StateHouse/EducationalOpportunities/StudentGovernmentDay">
+        Student Government Day
+    </a>
+</li>
+<li>
+    <a href="/StateHouse/EducationalOpportunities/CitizensLegislativeSeminar">
+        Citizens&#x27; Legislative Seminar
+    </a>
+</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+
+<div class="col-xs-12 col-sm-3">
+    <ul class="list-unstyled">
+
+
+<li>
+    <h3>
+        <a href="/CreateYourOwnBill/Idea">
+            Create Your Own Bill
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/StateHouse/MediaGallery">
+            Media Gallery
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/StateHouse/FAQ">
+            FAQ
+        </a>
+    </h3>
+</li>
+
+
+
+<li>
+    <h3>
+        <a href="/StateHouse/Contact">
+            Contact Us
+        </a>
+    </h3>
+</li>
+
+    </ul>
+</div>
+
+                        <button class="sr-only sr-only-focusable btn-link" onclick="closeNavMenu()">Close Menu</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+</li>
+
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.container -->
+</nav>
+
+        <!-- MAIN CONTENT -->
+        <span id="mainContent" class="sr-only"></span>
+        <main>
+            
+<div class="titleBar clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-8">
+                <ol class="breadcrumb-titleBar">
+                        <li class="hidden-print">
+                            <a href="/Laws/GeneralLaws">General Laws</a>
+                        </li>
+                        <li>
+                            <a href="/Laws/GeneralLaws/PartI">
+                                <span>Part I</span>
+                                <span class="visible-print-inline">ADMINISTRATION OF THE GOVERNMENT</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Laws/GeneralLaws/PartI/TitleIX">
+                                <span>Title IX</span>
+                                <span class="visible-print-inline">TAXATION</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/Laws/GeneralLaws/PartI/TitleIX/Chapter62">
+                                <span>Chapter 62</span>
+                                <span class="visible-print-inline">TAXATION OF INCOMES</span>
+                            </a>
+                        </li>
+                        <li class="visible-print-block">
+                            <a href="#">
+                                <span>Section 6</span>
+                                <span>Credits</span>
+                            </a>
+                        </li>
+
+                </ol>
+                <h1>Section 6</h1>
+            </div>
+            <div class="hidden-xs col-sm-5 col-md-4">
+                <form action="/Search" method="get">        <h2 class="sr-only">Search the Legislature</h2>
+    <label class="sr-only" for="detailSearch">Search the Legislature</label>
+    <div class="typeahead-container">
+        <div class="typeahead-field">
+            <div class="input-group typeahead-query ">
+                <input id="detailSearch"
+                       name="SearchTerms"
+                       class="searchBox form-control"
+                       type="search"
+                       data-tt-search-type="Bills, GeneralLaws, SessionLaws, Committees, Legislators, Events, Journals, Reports, Videos, Amendments, ClerkContents"
+                       data-tt-search-reset="Bills, GeneralLaws, SessionLaws, Committees, Legislators, Events, Journals, Reports, Videos, Amendments, ClerkContents"
+                       data-tt-url="/TypeAheadSearch"
+                       data-tt-branch=""
+                       data-tt-limit="7"
+                       aria-haspopup="true"
+                       aria-autocomplete="list"
+                       autocomplete="off"
+                       placeholder="Search the Legislature..." />
+
+                <div class="input-group-btn typeahead-button">
+                    <button type="submit" class="btn btn-primary searchButton" aria-label="Search the Legislature">
+                                <span class="fa fa-search"></span>
+                                <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /TITLEBAR -->
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            
+<div class="col-xs-12 col-md-4 sidebarWrap">
+    <aside id="tableOfContentsWrapper" class="sidebar clearfix" data-expanded="false">
+        <h2 class="inlineHeader">General Laws</h2>
+        
+<form action="/Laws/GeneralLaws/GoTo" method="post">      <div class="col-xs-12 form-inline generalLawsDirect">
+          <h3 class="h4">Go Directly to a General Law</h3>
+          <div class="form-group">
+              <label for="ChapterGoTo">Chapter</label>
+              <input class="form-control" data-val="true" data-val-required="The Chapter field is required." id="ChapterGoTo" name="ChapterGoTo" type="text" value="" />
+              <span class="field-validation-valid" data-valmsg-for="ChapterGoTo" data-valmsg-replace="true"></span>
+          </div>
+          <div class="form-group">
+              <label for="SectionGoTo">Section</label>
+              <input class="form-control" id="SectionGoTo" name="SectionGoTo" type="text" value="" />
+              <span class="field-validation-valid" data-valmsg-for="SectionGoTo" data-valmsg-replace="true"></span>
+          </div>
+          <button type="submit" class="btn btn-primary">Go <span class="sr-only">to General Law</span><span class="fa fa-angle-right"></span></button>
+      </div>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8HIVWfIXwzZOnTpy4PLP6iMtdez1PW8EAyQhvXVfsSeh_uvWUMygRXkgqCQANrqTcneh9ZgAOSq4Quv_Vcb5gkM7WEAov6KBLQmKEbaGSZYGCDw1wXxqgf3bmqrpFjxT6MVFEDKNa7lOMJMlo--w6FA" /></form>
+        <a href="#" id="tableOfContentsToggle" class="pull-right hidden-xs hidden-sm"><span class="fa fa-caret-right fa-2x"></span></a>
+        <a class="hidden-xs hidden-sm sr-only sr-only-focusable" href="#skipTo">Skip to Content</a>
+        <div id="treeviewCollapse" class="hidden-xs hidden-sm collapse in">
+            <div id="jstree">
+            </div>
+        </div>
+    </aside>
+</div>
+            <div class="col-xs-12 col-md-8">
+                <div class="row">
+                    <div class="col-xs-12">
+                        
+<div class="btn-toolbar pull-right" role="toolbar">
+    <div class="btn-group" role="group">
+        <button class="btn btn-sm btn-secondary printButton" type="button" onclick="javascript:window.print();" aria-haspopup="true"><span class="fa fa-print"></span>&nbsp;Print Page</button>
+    </div>
+	<div class="btn-group" role="group">
+			<button class="btn btn-sm btn-secondary prevButton" onclick="location.href ='/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section5C';"><span class="fa fa-angle-left"></span> Prev<span class="sr-only">ious</span></button>
+	        <button class="btn btn-sm btn-secondary nextButton" onclick="location.href = '/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section6A,%206B';">Next <span class="fa fa-angle-right"></span></button>
+	</div>
+</div>
+
+                        <hr class="visible-print-block" />
+                        <h2 id="skipTo" class="h3 genLawHeading hidden-print">Section 6: <small>Credits</small>
+                        </h2>
+                        <p><p>Section 6. The following credits shall be allowed against the tax imposed by this chapter:  </p>
+
+<p>(a) A credit shall be allowed against taxes imposed by this chapter to a resident for taxes due any other state, territory or possession of the United States, or the Dominion of Canada or any of its provinces on account of any item of Massachusetts gross income subject to the following restrictions and limitations: (i) the amount of such taxes due on such income shall exclude interest and penalties; (ii) the amount of such taxes due shall be reduced by any federal credit therefor allowable on the resident's federal income tax return; and (iii) the amount of the credit allowable shall be the lesser of such taxes as reduced by (i) and (ii), or the amount of tax imposed by this chapter multiplied by a fraction the numerator of which is such item of Massachusetts Part A, Part B or Part C income and the denominator of which is the total Massachusetts Part A, Part B or Part C income, as the case may be.  The credit hereunder shall be allowed to estates of residents and to trustees or other fiduciaries described in subsection (c) of section ten.  </p>
+
+<p>In the case of dividends received out of tax-free earnings and profits of a corporate trust previously subject to tax under this chapter, shareholders of the corporate trust shall be entitled to a credit for income taxes paid to other jurisdictions on those earnings and profits, either by the corporate trust or by the shareholders, as otherwise calculated under this subsection.  </p>
+
+<p><i>[There is no subsection (b) or (c).]  </p>
+</i></p>
+<p>(d) any owner or tenant of residential property located in the commonwealth who is not a dependent of another taxpayer and who occupies said property as his principal residence, shall be allowed a credit equal to fifteen per cent of the net expenditure for a renewable energy source property or one thousand dollars, whichever is lesser; provided, however, that in the case of a newly constructed residence the credit shall be available to the original owner/occupant. Any taxpayer entitled to this credit for any taxable year, the amount of which exceeds his total tax due for the then current taxable year, may carry over the excess amount, as reduced from year to year, and apply it to his tax liability for any one or more of the next succeeding three taxable years; provided, however, that in no taxable year may the amount of the credit allowed exceed the total tax due of the taxpayer for the relevant taxable year. Joint owners of a residential property shall share any credit available to the property under this subsection in the same proportion as their ownership interest.  </p>
+
+<p>As used in this section the following words shall have the following meanings:  </p>
+
+<p>(I) ''Renewable energy source property'', property, including materials and component parts thereof, separately purchased and assembled by such residential property owner;  </p>
+
+<p>(A) which, when installed in connection with a dwelling, transmits or uses:  </p>
+
+<p>(1) solar energy or any other form of renewable energy which the commissioner specified by regulations, for the purpose of heating or cooling such dwelling or providing hot water for use within such dwelling, or produces electricity for such purposes, or  </p>
+
+<p>(2) wind energy for nonbusiness residential purposes;  </p>
+
+<p>(B) the original use of which begins with the taxpayer;  </p>
+
+<p>(C) which can reasonably be expected to remain in operation for at least five years; and  </p>
+
+<p>(D) which meets the performance and quality standards, if any, which:  </p>
+
+<p>(i) have been prescribed by the commissioner by regulation; and  </p>
+
+<p>(ii) are in effect at the time of the acquisition of the property.  </p>
+
+<p>(II) ''Net expenditure'', the total of the purchase price for any renewable energy source property, plus installation cost less any credits received pursuant to the Internal Revenue Code and less grants or rebates received from the United States Department of Housing and Urban Development.  </p>
+
+<p><i>[Subsection (e) effective for taxable years beginning on or after January 1, 2023. See 2023, 50 Sec. 49.]  </p>
+</i></p>
+<p>(e) Any owner of a residential premises who pays for the containment or abatement of any paint, plaster or other accessible structural materials containing dangerous levels of lead or who pays for the replacement of one or more window units in a dwelling unit constructed prior to nineteen hundred and seventy-eight for the purpose of bringing a dwelling unit into full compliance with the provisions of sections one hundred and eighty-nine A to one hundred and ninety-nine B, inclusive, of chapter one hundred and eleven concerning materials containing dangerous levels of lead shall be allowed a credit in the amount of the cost of said removal, containment or replacement or $3,000 per dwelling unit, whichever is less. Any owner of a residential premises who pays for the containment or abatement of any paint, plaster or other accessible structural materials containing dangerous levels of lead or who pays for the replacement of one or more window units in a dwelling unit constructed prior to nineteen hundred and seventy-eight in pursuit of an emergency lead management plan and letter of interim control, as provided for in subsection (b) of section one hundred and ninety-seven of chapter one hundred and eleven concerning materials containing dangerous levels of lead shall be allowed a credit in the amount of one-half the cost of said removal, containment, or replacement or $1,000 per dwelling unit, whichever is less, provided that any costs claimed as part of such credit must be certified by a licensed inspector to be costs necessary to achieving ultimate full compliance; and provided, further, that any credit received for interim control shall be considered as part of the maximum credit allowable per unit for any owner pursuing full compliance. Tax credits for full compliance or interim controls shall include window replacement done for the purposes of lead abatement. Such credits shall be allowed for the containment, abatement or replacement of any paint, plaster or other accessible structural materials containing dangerous levels of lead only if (i) the presence of lead is established by an inspector licensed by the childhood lead poisoning prevention program, and (ii) following such removal, the owner obtains a letter of compliance or interim control from a licensed inspector pursuant to subsections (b), (c) and (d) of section one hundred and ninety-seven of chapter one hundred and eleven and files with the department of revenue such letter of compliance or interim control and a certification, in recordable form, stating the number of dwelling units, as defined in the state sanitary code for which such credit is being claimed. Any taxpayer eligible for the foregoing tax credit for the then taxable year may carry forward any such unused credit or any unused portions thereof and apply it to his tax liability in any one or more of the succeeding seven taxable years. The commissioner shall, in consultation with the director of the childhood lead poisoning prevention program and the director of labor and workforce development, promulgate regulations to implement the provisions of this section.  </p>
+
+<p>(f) There is hereby established a credit for businesses offering health insurance to their employees. For the purposes of this section, the term ''businesses'' shall include professions, sole proprietorships, trades, businesses, or partnerships.  </p>
+
+<p>Any business which (a) has one or more full-time equivalent employees unrelated to its owners or partners but no more than fifty of such employees calculated on an average annual basis, (b) in any period of three consecutive years beginning after December thirty-first, nineteen hundred and eighty-four and before April twenty-first, nineteen hundred and eighty-eight makes no expenditure for the full or partial payment of premiums for a health insurance plan covering any of its then employees, and (c) makes qualifying health insurance premium expenditures for a health insurance plan covering its employees in each year beginning after such three year period, including any year in which a credit is taken pursuant to this section, shall be allowed a credit against its income tax due under this chapter in two consecutive tax years.  </p>
+
+<p>The amount of such credit in the first tax year in which it is taken shall be twenty per cent of the entire amount of the qualifying health insurance premium expenditure made by such business in such tax year. The amount of such credit in the second tax year in which it is taken shall be ten per cent of the entire amount of such qualifying health insurance premium expenditure made by such business in such tax year. To qualify for such credits, the health insurance premium expenditure of such business must equal at least fifty per cent of the total cost of the premiums for such health insurance plan and such health insurance plan must be available at least to all of the full-time employees of such business. For the purposes of this section, ''unrelated'' shall mean not having the familial relationship of spouse, mother, father, or child.  </p>
+
+<p>Credits pursuant to this subsection shall be available only in tax years beginning on or after January first, nineteen hundred and ninety and ending on or before December thirty-first, nineteen hundred and ninety-two. This subsection shall expire on December thirty-first, nineteen hundred and ninety-two.  </p>
+
+<p>(g)(1) As used in this subsection, ''certified project'', ''controlling business'', ''EACC'', ''EDIP contract'', ''proportion of compliance'', ''proposed project'' and ''refundable credit'' shall have the same meanings as ascribed to them in section 3A of chapter 23A.  </p>
+
+<p>(2) A credit shall be allowed against the tax liability imposed by this chapter on the owner or lessee of a certified project, to the extent the credit is authorized by the EACC. The amount of the credit shall be determined by the EACC under section 3D of chapter 23A and other criteria or guidance that the council shall from time to time adopt. A credit allowed under this section shall be taken only after the taxpayer executes an EDIP contract under said section 3D of said chapter 23A.  </p>
+
+<p>(3) The total amount of credits that may be authorized by the EACC in a calendar year pursuant to this section and section 38N of chapter 63 shall not exceed $30,000,000 annually; provided, however, that the total amount shall not include credits granted pursuant to subsection (q) of section of 6 of this chapter and section 38BB of said chapter 63; and provided further, that the total amount shall include: (i) refundable credits granted during the year pursuant to this section or said section 38N of said chapter 63; (ii) nonrefundable credits granted during the year pursuant to this section or said section 38N of said chapter 63 to the extent that such nonrefundable credits are estimated by the commissioner to offset tax liabilities during the year; and (iii) carryforwards of credits from prior years under this section or said section 38N of said chapter 63 to the extent that the credit carryforwards, if any, are estimated by the commissioner to offset tax liabilities during the year. A portion of the annual cap not awarded by the EACC in a calendar year shall not be applied to an award in a subsequent year.  The EACC shall provide the commissioner with the documentation that the commissioner deems necessary to confirm compliance with the annual cap and the commissioner shall provide a report confirming compliance to the secretary of administration and finance and the secretary of economic development.  Notwithstanding section 21 of chapter 62C, the department of revenue shall provide the EACC with documentation confirming tax credits claimed under this subsection by the owner or lessee of a certified project.  </p>
+
+<p>(4) A taxpayer entitled to a credit under this subsection for a taxable year may, to the extent authorized by the EACC, carry over and apply to the tax liability imposed by this chapter for any of the next succeeding 10 taxable years the portion, as reduced from year to year, of those credits that exceed the tax liability imposed by this chapter for the taxable year; provided, however, that the taxpayer shall not apply the credit to the tax liability imposed by this chapter for a taxable year beginning more than 5 years after the certified project ceases to qualify as a certified project under chapter 23A; and provided further, that notwithstanding the foregoing, the EACC may limit or restrict the carryover of credits under section 3D of said chapter 23A.  </p>
+
+<p>(5) For the purposes of this subsection, the commissioner may aggregate the activities of entities, whether or not incorporated, under common control as established in 26 U.S.C. 41(f).  </p>
+
+<p>(6) The commissioner shall promulgate the rules and regulations necessary to implement this subsection including, but not limited to, provisions to prevent the generation of multiple credits with respect to the same property.  </p>
+
+<p>(7) If a credit allowed under paragraph (2) is designated by the EACC as a refundable credit, the credit shall first be applied against the tax liability of the taxpayer imposed by this chapter and 100 per cent of the balance of the credit may, at the option of the taxpayer and to the extent authorized by the EACC, be refundable to the taxpayer. In each case, the EACC shall specify the timing of the refund which may be for the taxable year in which all or a portion of the certified project is placed in service or the taxable year subsequent to the year in which the required jobs are created. If the credit balance is refunded to the taxpayer, the credit carryover provisions of paragraph (4) shall not apply.  </p>
+
+<p>(8) If the EACC revokes the certification of a project under section 3F of chapter 23A, a portion of the tax credit otherwise allowed by this section and claimed by the taxpayer prior to the date on which EACC makes the determination to revoke its certification of the project shall be added back as additional tax due and shall be reported as such on the return of the taxpayer for the taxable period in which the EACC makes the determination to revoke the certification of the project. The amount of credits subject to recapture shall be proportionate to the taxpayer's compliance with the job creation requirements applicable to the certified project. The amount of credits subject to recapture shall be equal to the taxpayer's proportion of compliance, as determined by the EACC as part of its revocation process and reported to the taxpayer and the department of revenue at the time that certification is revoked.  </p>
+
+<p>(9) If a certified project is sold or otherwise disposed of, a tax credit allowed under this subsection may be transferred to the purchaser of the certified project; provided, however, that the EDIP contract shall be assigned to and assumed by the purchaser of the certified project and the assignment and assumption shall be approved in writing by the EACC.  </p>
+
+<p>(10) Nothing in this subsection shall limit the authority of the commissioner to make an adjustment to a taxpayer's liability upon audit.  </p>
+
+<p><i>[Paragraph (1) of subsection (h) effective for taxable years beginning on or after January 1, 2023. See 2023, 50 Sec. 49.]  </p>
+</i></p>
+<p>(h) (1) A taxpayer shall be allowed a credit against the taxes imposed by this chapter if that person qualified for and claimed the earned income credit allowed under section 32 of the Code, as amended and in effect for the taxable year. With respect to a person who is a nonresident for part of the taxable year, the credit shall be limited to 40 per cent of the federal credit multiplied by a fraction, the numerator of which shall be the number of days in the taxable year the person resided in the commonwealth and the denominator of which shall be the number of days in the taxable year. A person who is a nonresident for the entire taxable year shall not be allowed the credit. The credit allowed by this subsection shall equal 40 per cent of the federal credit received by the taxpayer for the taxable year. If other credits allowed under this section are utilized by the taxpayer for the taxable year, the credit afforded by this subsection shall be applied last. If the amount of the credit allowed under this subsection exceeds the taxpayer's liability, the commissioner shall treat the excess as an overpayment and shall pay the taxpayer the amount of the excess without interest.  </p>
+
+<p>(2) For the purposes of this subsection, a married taxpayer shall satisfy the joint filing requirement under section 32 of the Code if the taxpayer files an income tax return using a filing status of married filing separately and the taxpayer: (i) is living apart from the taxpayer's spouse at the time the taxpayer files the tax return; (ii) is unable to file a joint return because the taxpayer is a victim of domestic abuse; and (iii) indicates on the taxpayer's income tax return that the taxpayer meets the criteria of clauses (i) and (ii).  </p>
+
+<p>(i) Any owner of residential property located in the commonwealth who is not a dependent of another taxpayer and who occupies said property as their principal residence, shall be allowed a credit equal to 60 per cent of the expenditures for design and construction expenses for the repair, replacement or upgrade of a cesspool or septic system or connection to a sanitary sewer collection system, if such repair, replacement, upgrade or sewer connection is required pursuant to the provisions of Title 5 of the state environmental code, a watershed permit issued by the department of environmental protection or other requirements or conditions for implementation of the watershed permit imposed by the permittee or the department of environmental protection. Said expenditures shall be the actual cost to the taxpayer or $30,000, whichever is less; provided, however, that said credit shall be available to eligible taxpayers beginning in the tax year in which the repair, replacement, upgrade or sewer connection was completed; and provided further, that said credit shall not exceed $4,000 in any tax year and any excess credit may be applied over the following 5 subsequent tax years up to an aggregate maximum of $18,000. The department shall promulgate such rules and regulations as are necessary to administer the credit afforded by this subsection, including, but not limited to, a notification system by the commonwealth to recipients of said interest subsidy or grant of the amount of the total subsidy provided by the commonwealth.  </p>
+
+<p>(j)(1) A taxpayer or nonprofit organization which commences and diligently pursues an environmental response action on or before August 5, 2028, and who achieves and maintains a permanent solution or remedy operation status in compliance with chapter 21E and the regulations promulgated pursuant thereto which includes an activity and use limitation shall, at the time such permanent solution or remedy operation status is achieved, be allowed a base credit of 25 per cent of the net response and removal costs incurred between August 1, 1998, and January 1, 2029, for any property it owns or leases for business purposes and which is located within an economically-distressed area as defined in section 2 of chapter 21E. Such costs shall be not less than 15 per cent of the assessed value of the property prior to response action on or before remediation and the site shall be reported to the department of environmental protection. A credit of 50 per cent of such costs shall be allowed for any such taxpayer or nonprofit organization which achieves and maintains a permanent solution or remedy operation status in compliance with said chapter 21E and the Massachusetts Contingency Plan at 310 CMR 40.0000, as amended, which does not include an activity and use limitation. Only a taxpayer or nonprofit organization that is an eligible person, as defined in section 2 of said chapter 21E, and not subject to any enforcement action brought pursuant to said chapter 21E shall be allowed a credit.  </p>
+
+<p>Any credit allowed under this subsection may be taken only after a response action outcome statement or remedy operation status submittal has been filed with the department of environmental protection as set forth in said Massachusetts Contingency Plan.  </p>
+
+<p>(2) If the taxpayer ceases to maintain the remedy operation status or the permanent solution in violation of the Massachusetts Contingency Plan prior to the sale of the property or the termination of the lease, the difference between the credit taken and the credit allowed for maintaining the remedy shall be added back as additional taxes due in the year the taxpayer fails to maintain the remedy operation status or permanent solution. The amount of the credit allowed for maintaining the remedy shall be determined by multiplying the original credit by the ratio of the number of months the remedy was adequately maintained over the number of months of useful life of the property. For the purposes of this paragraph, the useful life of the property shall be the same as that used by corporations for depreciation purposes when computing federal income tax liability; provided, however, that in the case of real property that is not depreciable, the useful life shall be deemed to be 12 months.  </p>
+
+<p>(3) Notwithstanding the provisions of this subsection, the maximum amount of credits otherwise allowable in any taxable year to a taxpayer shall not exceed 50 per cent of its excise imposed by this chapter. Any taxpayer entitled to a credit under this subsection for any taxable year may carry over and apply to its tax liability for any subsequent taxable year, not to exceed 5 taxable years, the portion of those credits, as reduced from year to year, which were not allowed under this subparagraph; provided, however, that in no event shall the taxpayer apply the credit in any taxable year in which it has ceased to maintain the remedy operation status or the permanent solution for which the credit was granted.  </p>
+
+<p>(4) For the purposes of this section, net response and removal costs shall be expenses paid by the taxpayer for the purpose of achieving a permanent solution or remedy operation status in compliance with chapter 21E. No credit shall be allowed under this section for the amount of state financial assistance received from the Redevelopment Access to Capital program established pursuant to section 60 of chapter 23A or from the Brownfields Redevelopment Fund, established in section 29A of chapter 23G. For the purposes of the Redevelopment Access to Capital program, the amount of state financial assistance shall be calculated as the amount of state funds paid on behalf of the borrower for participation in the program and not the amount of the loan guaranteed but, if the loan guarantee is invoked, any credit taken for the amount of the loan shall be added back as taxes due in the year the loan is paid.  </p>
+
+<p>(5) All or any portion of tax credits issued in accordance with this subsection may be transferred, sold or assigned to a taxpayer with a liability under this chapter or chapter 63 or to a nonprofit organization. A taxpayer or nonprofit organization desiring to make a transfer, sale or assignment shall submit to the commissioner a statement which describes the amount of the Massachusetts environmental response action tax credit for which the transfer, sale or assignment of Massachusetts environmental response action tax credit is eligible. The taxpayer or nonprofit organization shall provide to the commissioner appropriate information so that the environmental response action tax credit can be properly allocated. The commissioner shall issue a certificate to the party receiving the environmental response action tax credit reflecting the amount of the tax credit received, a copy of which shall be attached by the party receiving the environmental response action tax credit to each tax return in which the tax credits are used.  </p>
+
+<p>(6) The commissioner shall annually, not later than September 1, file a report with the house and senate committees on ways and means, the chairs of the joint committee on community development and small businesses and the chairs of the joint committee on economic development and emerging technologies identifying the total amount of tax credits claimed pursuant to this subsection and the total amount of tax credits transferred, sold or assigned pursuant to paragraph (5) for the preceding fiscal year.  </p>
+
+<p>(k)(1) As used in this subsection, the following words shall have the following meanings:&mdash;  </p>
+
+<p>''Cost-of-housing adjustment'', for any calendar year, the percentage, if any, by which the average assessed value for a single-family home in the commonwealth for the preceding calendar year, as calculated by the department of revenue, exceeds the average assessed value for a single-family home in the commonwealth for calendar year 2004, as reported by the department.  </p>
+
+<p>''Cost-of-living adjustment'', for any calendar year, the percentage, if any, by which the CPI for the preceding calendar year exceeds the CPI for calendar year 1999.  </p>
+
+<p>''CPI'', the consumer price index for any calendar year as defined in section 1 of the Code.  </p>
+
+<p>''Head of household'', as defined in section 2(b) of the Code.  </p>
+
+<p>''Real estate tax payment'', the real estate tax levied pursuant to chapter 59 on the taxpayer's residence and actually paid by the taxpayer during the taxable year, including water and sewer debt service charges assessed pursuant to subsection (n) of section 21C of chapter 59, exclusive of special assessments and delinquent interest, and less any abatement granted. For owners of residential property located in communities which have not exercised the option to assess water or sewer debt service charges pursuant to subsection (n) of section 21C of chapter 59, the real estate tax payment to be considered for purposes of calculating this credit shall also include 50 per cent of the owner's water and sewer charges actually paid in the taxable year for which the credit is sought. In the case of a multi-unit dwelling, a land area in excess of one acre or a multi-purpose building or land area, the real estate tax payment, including the water and sewer charges as applicable, shall constitute that portion of the real estate tax levied and paid, and that portion of applicable water and sewer charges actually paid, on the entire building or area, which corresponds to the portion of the area or building used and occupied as the residence of the taxpayer, in accordance with procedures established by the commissioner.  </p>
+
+<p>''Rent constituting real estate tax payment'', 25 per cent of the rent actually paid by the taxpayer, under a good faith rental agreement, for the right of occupancy of the residence during the taxable year or a portion thereof.  </p>
+
+<p>''Residence'', the building or portion thereof, including a mobile home, owned or rented and actually occupied by the taxpayer as the taxpayer's primary dwelling during the taxable year and located within the commonwealth, together with so much of the land surrounding it, not to exceed one acre, as is reasonably necessary to the use of the dwelling as a home. A residence may consist of a part of a multi-unit or multi-purpose building.  </p>
+
+<p>''Taxpayer's total income'', the sum of the taxpayer's Part A adjusted gross income, Part B adjusted gross income and Part C adjusted gross income, as defined in section 2, increased by, to the extent they are excluded or subtracted from adjusted gross income, the following: the total amount of income and receipts from social security, retirement, pension, or annuities, cash, but not in-kind, public assistance, tax-exempt interest and dividends, net capital losses deducted pursuant to paragraph (2) of subsection (c) of section 2, net losses in any class of Part C adjusted gross income as defined in subsection (e) of section 2, capital gains deducted pursuant to subparagraph (K) of paragraph (1) of subsection (d) of section 2, income from a partnership or trust not included therein and gross receipts from any other source other than assistance received by this subsection; and reduced by the total amount of the exemptions allowed by subparagraphs (B) and (C) of paragraph (1), subparagraphs (B) and (C) of paragraph (1A), subparagraphs (B) and (C) of paragraph (2), and paragraph (3), of subsection (b) of section 3.  </p>
+
+<p><i>[Paragraph (2) effective for taxable years beginning on or after January 1, 2023. See 2023, 50 Sec. 49.]  </p>
+</i></p>
+<p>(2) An owner or tenant of residential property located in the commonwealth, who is 65 years of age or older, who is not a dependent of another taxpayer and who occupies said property as his principal residence, shall be allowed a credit equal to the amount by which the real estate tax payment or the rent constituting real estate tax payment exceeds 10 per cent of the taxpayer's total income, but the credit shall not exceed $1,500.  </p>
+
+<p>(3) The credit shall be available only if:  </p>
+
+<p>(i) the taxpayer's total income does not exceed $40,000 for a single individual who is not the head of a household, $50,000 for a head of household, and $60,000 for a husband and wife filing a joint return; and  </p>
+
+<p>(ii) the assessed valuation of the residence does not exceed $600,000.  </p>
+
+<p>(4) For a taxable year beginning on or after January 1, 2001 and before January 1, 2005, the income, valuation and credit limits in this subsection shall be increased by amounts equal to such income, valuation and credit limits multiplied by the cost-of-living adjustment for the calendar year in which such taxable year begins. For a taxable year beginning on or after January 1, 2005, the income and credit limits in this subsection shall be increased by amounts equal to such income and credit limits multiplied by the cost-of-living adjustment for the calendar year in which such taxable year begins, and the valuation limit in this subsection shall be increased by an amount equal to such valuation limit multiplied by the cost-of-housing adjustment for the calendar year in which such taxable year begins. If any such increase in an income or valuation limit is not a multiple of $1,000, such increase shall be rounded to the next lowest multiple of $1,000. If the increase in the credit limit is not a multiple of $10, such increase shall be rounded to the next lowest multiple of $10.  </p>
+
+<p>(5) No credit shall be allowed for a married individual unless a joint return is filed.  </p>
+
+<p>(6) No credit shall be allowed by this subsection with respect to the real estate tax payment or rent constituting a real estate tax payment on more than one residence of any taxpayer during any taxable year, but a taxpayer whose principal place of residence changes during the course of the year may claim a credit for the real estate tax payment or rent constituting a real estate tax payment with respect to each such principal residence actually occupied during the year.  </p>
+
+<p>(7) The credit allowed by this subsection shall be allowed against the taxes imposed by this chapter for the taxable year, reduced by the other credits permitted by this section. If the credit exceeds the tax as so reduced, the commissioner shall treat such excess as an overpayment and shall pay the taxpayer, without interest, the amount of such excess. Any person entitled to claim any credit pursuant to this subsection and not otherwise required to file a return under section 6 of chapter 62C may obtain a refund in the amount of such credit by filing a return and claiming a refund.  </p>
+
+<p>(8) Any credit provided by this subsection shall not be counted as income in determining eligibility or benefits under any other means-tested assistance program, including but not limited to all such cash, food, medical, housing, energy and educational assistance programs.  </p>
+
+<p>(9) No credit shall be provided by this subsection if the state or federal government subsidizes the claimant's rent through any rental assistance program.  </p>
+
+<p>(l)(1) As used in this subsection the following words shall, unless the context clearly requires otherwise, have the following meanings:&mdash;  </p>
+
+<p>''Motion picture'', a feature-length film, video, digital media project, television series defined as a season not to exceed 27 episodes, or a commercial made in the commonwealth, in whole or in part, for theatrical or television viewing or as a television pilot. The term ''motion picture'' shall not include a production featuring news, current events, weather and financial market reports, talk show, game show, sporting events, awards show or other gala event, a production whose sole purpose is fundraising, a long-form production that primarily markets a product or service, a production containing obscene material or performances.  </p>
+
+<p>''Motion picture production company'', a company including any subsidiaries engaged in the business of producing motion pictures, videos, television series, or commercials intended for a theatrical release or for television viewing. The term ''motion picture production company'' shall not mean or include any company which is more than 25 per cent owned, affiliated, or controlled, by any company or person which is in default on a loan made by the commonwealth or a loan guaranteed by the commonwealth.  </p>
+
+<p>''Massachusetts production expense'', a production expense for the motion picture clearly and demonstrably incurred in the commonwealth.  </p>
+
+<p>''Principal photography'', the phase of production during which the motion picture is actually filmed. The term shall not include preproduction or postproduction.  </p>
+
+<p>''Production expense'' or ''production cost'', preproduction, production and postproduction expenditures directly incurred in the production of a motion picture. Said term includes wages and salaries paid to individuals employed in the production of the motion picture; the costs of set construction and operation, editing and related services, photography, sound synchronization, lighting, wardrobe, make-up and accessories; film processing, transfer, sound mixing, special and visual effects; music; location fees and the cost of purchase or rental of facilities and equipment or any other production expense as may be determined by the department of revenue to be an eligible production expense. The term shall not include costs incurred in marketing or advertising a motion picture, any costs related to the transfer of tax credits or any amounts paid to persons or businesses as a result of their participation in profits from the exploitation of the production.  </p>
+
+<p>''Secretary'', the secretary of economic development.  </p>
+
+<p>(2) A taxpayer engaged in the making of a motion picture shall be allowed a credit against the taxes imposed by this chapter for the employment of persons within the commonwealth in connection with the filming or production of 1 or more motion pictures in the commonwealth within any consecutive 12 month period. The credit shall be equal to 25 per cent of the total aggregate payroll paid by a motion picture production company that constitutes Massachusetts source income, when total production costs incurred in the commonwealth equal or exceed $50,000 during the taxable year. For purposes of this subsection, the term ''total aggregate payroll'' shall not include the salary of any employee whose salary is equal to or greater than $1,000,000.  </p>
+
+<p><i>[Subparagraph (3) of subsection (l) effective for tax years beginning on or after January 1, 2022. See 2021, 24, Sec. 147.]  </p>
+</i></p>
+<p>(3) A taxpayer shall be allowed an additional credit against the taxes imposed by this chapter equal to 25 per cent of all Massachusetts production expenses, not including the payroll expenses used to claim a credit pursuant to paragraph (2), where the motion picture is also eligible for a credit pursuant to paragraph (2) and either Massachusetts production expenses exceed 75 per cent of the total production expenses for a motion picture or at least 75 per cent of the total principal photography days of the film take place in the commonwealth.  </p>
+
+<p>(4) The tax credit shall be taken against the taxes imposed under this chapter and shall, at the election of the taxpayer, be refundable to the extent provided for in section 6L. Any amount of the tax credit that exceeds the tax due for a taxable year may be carried forward by the taxpayer to any of the 5 subsequent taxable years.  </p>
+
+<p><i>[Subparagraph (i) of paragraph (5) of subsection (l) effective for tax years beginning on or after January 1, 2006 and before January 1, 2013. See 2005, 167, Sec. 5.]  </p>
+</i></p>
+<p>(5)(i) All or any portion of tax credits issued in accordance with this subsection may be transferred, sold or assigned to other taxpayers with tax liabilities under this chapter or chapter 63. Any tax credit that is transferred, sold or assigned and taken against taxes imposed by this chapter or said chapter 63 shall not be refundable. Any amount of the tax credit that exceeds the tax due for a taxable year may be carried forward by the transferee, buyer or assignee to any of the 5 subsequent taxable years from which a certificate is initially issued by the department of revenue.  </p>
+
+<p>(ii) An owner or transferee desiring to make a transfer, sale or assignment shall submit to the commissioner a statement which describes the amount of tax credit for which the transfer, sale or assignment of tax credit is eligible.  The owner or transferee shall provide to the commissioner information as the commissioner may require for the proper allocation of the credit. The commissioner shall provide to the taxpayer a certificate of eligibility to transfer, sell or assign the tax credits. The commissioner shall not issue a certificate to a taxpayer that has an outstanding tax obligation with the commonwealth in connection with any motion picture for any prior taxable year.  A tax credit shall not be transferred, sold or assigned without a certificate.  </p>
+
+<p><i>[There is no paragraph (6).]  </p>
+</i></p>
+<p>(7) The commissioner, in consultation with the secretary, shall promulgate regulations necessary for the administration of this subsection.  </p>
+
+<p>(8) Notwithstanding any other provision of this section, aggregate salary and compensation amounts including all per diems, housing and other allowances, paid to, or for the services of, an individual shall not qualify for the credit under this subsection or for the credit under section 38X of chapter 63 to the extent that such amounts exceed $2,000,000.  </p>
+
+<p><i>[Subsections (m) and (n) effective until December 31, 2028. Deleted by 2008, 130, Sec. 18. See 2008, 130, Sec. 54 as amended by 2011, 9, Sec. 25; 2013, 46, Sec. 57; and 2018, 112, Sec. 10. See also, 2011, 9, Sec. 56; 2013, 46, Sec. 87; and 2018, 273, Sec. 26.]  </p>
+</i></p>
+<p>(m)(1) As used in this subsection and subsections (n) and (r), the following words shall, unless the context clearly requires otherwise, have the following meanings:&mdash;  </p>
+
+<p>''Life sciences'', advanced and applied sciences that expand the understanding of human physiology and have the potential to lead to medical advances or therapeutic applications including, but not limited to, agricultural biotechnology, biogenerics, bioinformatics, biomedical engineering, biopharmaceuticals, biotechnology, chemical synthesis, chemistry technology, diagnostics, genomics, image analysis, marine biology, marine technology, medical devices, nanotechnology, natural product pharmaceuticals, proteomics, regenerative medicine, RNA interference, stem cell research and veterinary science.  </p>
+
+<p>''Person'', a natural person, corporation, association, partnership or other legal entity.  </p>
+
+<p>''Primarily'', more than 50 per cent.  </p>
+
+<p>''Research and development costs'', in-house research expenses within the meaning of section 41(b)(2) of the Internal Revenue Code.  </p>
+
+<p>''Taxpayer'', a certified life sciences company or person subject to the taxes imposed by chapters 62, 63, 64H or 64I.  </p>
+
+<p>''User fees'', the monetary amount actually paid by a taxpayer to the U.S. F.D.A. that constitutes the fee due upon the submission of a human drug application or supplement pursuant to 21 U.S.C. section 379h(a)(1) for a human drug, the research and development costs of which, were primarily incurred in the commonwealth.  </p>
+
+<p>''U.S.F.D.A.'', the United States Food and Drug Administration.  </p>
+
+<p>(2) A taxpayer may, to the extent authorized pursuant to the life sciences tax incentive program established by section 5 of chapter 23I, take a credit against the taxes imposed by this chapter in an amount equal to 10 per cent of the cost of qualifying property acquired, constructed, reconstructed or erected during the taxable year and used exclusively in the commonwealth.  </p>
+
+<p>Qualifying property shall be tangible personal property and other tangible property including buildings and structural components of buildings acquired by purchase, as defined by section 179(d) of the Internal Revenue Code, as amended and in effect for the taxable year, but not including property that is taxable under chapter 60A; provided, however, that such property shall be depreciable under section 167 of the Internal Revenue Code and have a useful life of 4 years or more. With respect to property which is disposed of or ceases to be in qualified use prior to the end of the taxable year in which the credit is to be taken, the amount of the credit shall be that portion of the credit provided for in this paragraph which represents the ratio which the months of qualified use bear to the months of useful life. If property on which credit has been taken is disposed of or ceases to be in qualified use prior to the end of its useful life, the difference between the credit taken and the credit allowed for actual use must be added back as additional taxes due in the year of disposition; provided, however, if such property is disposed of or ceases to be in qualified use after it has been in qualified use for more than twelve consecutive years, it shall not be necessary to add back the credit, as provided in this paragraph. The amount of credit allowed for actual use shall be determined by multiplying the original credit by the ratio which the months of qualified use bear to the months of useful life.  For the purposes of this paragraph, useful life of property shall be the same as that used by the corporation for depreciation purposes when computing federal income tax liability.  </p>
+
+<p>A taxpayer taking a credit allowed under this subsection may not take the credit allowed by subsection (g) except to such extent, not to exceed 2 per cent of the cost of any qualifying property, as may be provided in a certification pursuant to said section 5 of chapter 23I.  </p>
+
+<p>Nothing in this section shall limit the authority of the commissioner to make adjustments to a taxpayer's liability upon audit or limit any other legal remedies available to the commissioner or the commonwealth against said taxpayer.  </p>
+
+<p>(3) Any taxpayer entitled to a credit under this section for any taxable year may, to the extent authorized pursuant to the life sciences tax incentive program established by said section 5 of said chapter 23I, carry over and apply to its tax for any 1 or more of the next succeeding 10 taxable years, the portion, as reduced from year to year, of those credits which exceed the tax for the taxable year.  </p>
+
+<p>(4) The commissioner in consultation with the Massachusetts Life Sciences Center established by section 3 of chapter 23I, shall promulgate regulations necessary for the administration of this subsection; provided, further, that said regulations may provide the adjustment of intercompany prices and elimination of intercompany transactions to ensure that all amounts upon which the credit is based reasonably reflect fair market value; and provided, further, that said regulations shall include provisions to prevent the generation of multiple credits with respect to the same property.  </p>
+
+<p>(5) If a credit allowed under this subsection, or such credit as may be allowed under subsection (g) as limited in this subsection, exceeds the tax otherwise due under chapter 62, 90 per cent of the balance of such credit may, at the option of the taxpayer and to the extent authorized pursuant to the life sciences tax incentive program established by section 5 of chapter 23I, be refundable to the taxpayer for the taxable year in which qualified property giving rise to that credit is placed in service. If such credit balance is refunded to the taxpayer, then the credit carryover provisions of paragraph (3), and paragraph (2) of subsection (g), shall not apply.  </p>
+
+<p>(n)(1) Except as otherwise limited by paragraph (4), a taxpayer may, to the extent authorized pursuant to the life sciences tax incentive program established by said section 5 of said chapter 23I, be allowed a refundable credit against the tax liability imposed under this chapter in an amount equal to 100 per cent of the cost of user fees paid by such taxpayer.  </p>
+
+<p>(2) A taxpayer shall claim the credit in the taxable year in which its application for the licensure of an establishment to manufacture the human drug in the commonwealth is approved by the U.S.F.D.A.  </p>
+
+<p>(3) If a credit allowed to a taxpayer exceeds the tax otherwise due under chapter 62, 90 per cent of the balance of that credit may, to the extent authorized pursuant to the life sciences tax incentive program established by section 5 of said chapter 23I, be refundable to the taxpayer for the taxable year in which the credit is claimed.  </p>
+
+<p>(4) The deduction from gross income that may be taken with respect to any expenditures qualifying for the credit under this section shall be disallowed to the extent of the credit.  </p>
+
+<p>(5) Only user fees paid by a taxpayer to the U.S.F.D.A. on or after the effective date of this section shall be eligible for the credit.  </p>
+
+<p>(o)(1) There shall be established a dairy farmer tax credit program under which a taxpayer who holds a certificate of registration as a dairy farmer pursuant to section 16A of chapter 94 may be allowed a refundable income tax credit based on the amount of milk produced and sold. The credit shall be claimed against the taxes due pursuant to chapter 62. The credit shall be established to offset the cyclical downturns in milk prices paid to dairy farmers and shall be based on the United States Federal Milk Marketing Order for the applicable market such that if the United States Federal Milk Marketing Order price drops below a trigger price anytime during the taxable year such taxpayer may receive the tax credit.  </p>
+
+<p>(2) The commissioner of agricultural resources, in consultation with the commissioner of revenue, shall adopt regulations for the implementation, administration and enforcement of this subsection, including the establishment of the trigger price, which shall take into account the operating costs of milk production, including hired labor and some portion of the value of unpaid labor, and the amount of the tax credit which shall be based upon volume of milk production. Said regulations shall provide that when the board of food and agriculture, established pursuant to section 1 of chapter 20, determines that an error has been made in calculating the trigger price or in reporting or collecting data used in the calculation of the trigger price or the tax credit, the commissioner shall recalculate, with or without amendments, the trigger price or tax credit.  </p>
+
+<p><i>[Paragraph (3) of subsection (o) effective for taxable years beginning on or after January 1, 2023. See 2023, 50 Sec. 49.]  </p>
+</i></p>
+<p>(3) The total cumulative value of the credits authorized pursuant to this section and section 38Z of chapter 63 shall not exceed $8,000,000 annually.  </p>
+
+<p>(4) If the amount of the credit allowed hereunder exceeds the taxpayer's liability, the commissioner of revenue shall treat such excess as an overpayment and shall pay the taxpayer 100 per cent of the amount of such excess, without interest. The commissioner of agricultural resources shall certify to the department of revenue whether a dairy farmer claiming credits under this section has met the eligibility requirements provided in this subsection and the amount of credit to which any such eligible applicant is entitled.  </p>
+
+<p>(p)(1) As used in this subsection, the following words shall have the following meanings:-  </p>
+
+<p>''Bargain sale'', the sale of an interest in real property by a taxpayer at a cost below appraised market value, when a portion of the value of the interest in real property is a qualified donation, as such term is defined herein and which meets the requirements of section 1011(b) of the Internal Revenue Code of 1986, as amended.  </p>
+
+<p>''Certified land'', an interest in real property, the donation or bargain sale of which has first been determined by the secretary of energy and environmental affairs to be in the public interest for natural resource protection including, but not limited to, drinking water supplies, wildlife habitat and biological diversity, agricultural and forestry production, recreational opportunities, or scenic and cultural values; provided, however, that the secretary of energy and environmental affairs shall assure that all certified lands are protected in perpetuity.  </p>
+
+<p>''Interest in real property'', any right in real property in the commonwealth, with or without improvements thereon, or water including, but not limited to, fee simple, life estate, restriction, easement, covenant, condition, partial interest, remainder, future interest, lease, license, mineral right, riparian right or other interest or right in real property that may be conveyed concerning the power to transfer property.  </p>
+
+<p>''Public or private conservation agency'', the commonwealth, or any subdivision thereof, or any municipality, or private nonprofit corporation organized for the purposes of land conservation, which is authorized to do business in the commonwealth, and which has tax-exempt status as a nonprofit charitable organization as described in Section 501(c)(3) of the Internal Revenue Code of 1986, as amended.  </p>
+
+<p>''Qualified donation'', a donation, or the donated portion of a bargain sale, made in perpetuity of a fee interest in real property or a less-than-fee interest in real property, including a conservation restriction, agricultural preservation restriction or watershed preservation restriction, pursuant to chapter 184, provided that such less-than-fee interest meets the requirements of qualified conservation contributions under section 170(h) of the Internal Revenue Code of 1986.  </p>
+
+<p>''Taxpayer'', a taxpayer subject to the income tax under this chapter.  </p>
+
+<p>(2) A taxpayer making a qualified donation of certified land to a public or private conservation agency shall be allowed a refundable credit against the taxes imposed by this chapter. The credit shall be equal to 50 per cent of the fair market value of the qualified donation. The amount of the credit that may be claimed by a taxpayer for each qualified donation shall not exceed $75,000.  </p>
+
+<p>(3) The fair market value of a qualified donation of certified land shall be substantiated by a qualified appraisal, as defined in United States Treasury Regulation section 1.170A&ndash;13(c)(3), and shall be prepared by a qualified appraiser, as defined in United States Treasury Regulation section 1.170A&ndash;13(c)(5). For a taxpayer to qualify for the credit provided for in this subsection, the taxpayer shall, as part of the certification process, file with the secretary of energy and environmental affairs a summary of a qualified appraisal or, if requested by the secretary, the taxpayer shall submit the appraisal itself. The secretary shall transmit the summary or the qualified appraisal itself and certification to the commissioner, upon request. For purposes of determining the credit under this subsection, the fair market value of a qualified donation shall be subject to review by the commissioner under chapter 62C.  </p>
+
+<p>(4) If the amount of the credit allowed under this subsection exceeds the taxpayer's tax liability, the commissioner shall treat the excess as an overpayment and shall pay the taxpayer the entire amount of the excess.  </p>
+
+<p>(5) All or any tax credits issued in accordance with this section may be in addition to any charitable deductions claimed on the taxpayer's federal income tax return for the same qualified donations of certified lands.  </p>
+
+<p>(6) Any taxpayer claiming a state income tax or excise tax credit under this section may not claim an additional state income tax credit or deduction during any one tax year for costs related to the same interest in certified lands.  </p>
+
+<p>(7) Any tax credits which arise under this section from the qualified donation of certified land by a pass-through tax entity such as a trust, estate, partnership, corporation, limited partnership, limited liability partnership, limited liability corporation, subchapter S organization, or other fiduciary, shall be used either by such entity in the event it is the taxpayer on behalf of such entity or by the member, partner, shareholder, or beneficiary, as the case may be, in proportion to its interest in such entity in the event that income, deductions, and tax liability passes through such entity to such member, partner, shareholder, or beneficiary. Such tax credits may not be claimed by both the entity and the member, partner, shareholder, or beneficiary, for the same conveyance.  </p>
+
+<p>(8) Any tax credits which arise under this chapter from the qualified donations of certified land by a married couple shall be used only if the spouses file a joint return, if both spouses are required to file Massachusetts income tax returns. If only one spouse is required to file a Massachusetts income tax return, that spouse may claim the credit allowed by this chapter on a separate return.  </p>
+
+<p>(9) The secretaries of energy and environmental affairs and administration and finance, acting jointly and in writing, shall authorize tax credits under this subsection together with section 38AA of chapter 63. The total cumulative value of the tax credits authorized pursuant to this section and said section 38AA of said chapter 63 shall not exceed $2,000,000 annually. No credits shall be allowed under this subsection except to the extent authorized in this paragraph. The commissioner, after consulting with the secretaries concerning, among other things, the land conservation objectives of this section, shall adopt regulations governing applications for and other administration of the tax credits.  </p>
+
+<p>(q)(1) A credit shall be allowed against the tax liability imposed by this chapter, to the extent awarded by the executive office of housing and livable communities, hereinafter referred to as ''EOHLC'', for a certified housing development project, as defined in chapter 40V, in an amount up to 25 per cent of the cost of qualified project expenditures of the market rate units within the projects, as defined in section 1 of chapter 40V. The credit under this subsection shall be allowed for the taxable year in which executive office of housing and livable communities gives the commissioner written notification of completion of the certified housing development project.  </p>
+
+<p>(2) Taxpayers eligible for the this credit may, with prior notice to and under regulations adopted by the commissioner of revenue, transfer the credits, in whole or in part, to any individual or entity, and the transferee shall be entitled to apply the credits against the tax with the same effect as if the transferee had incurred the qualified project expenditures itself. If the sponsor of the certified housing development project is a partnership or a limited liability company taxed as a partnership, the credit, if transferred must be transferred by the partnership or the limited liability company. If the credits allowed to a partnership, a limited liability company taxed as a partnership or multiple owners of property are not transferred they shall be passed through to the persons designated as partners, members or owners, respectively, pro rata or pursuant to an executed agreement among the persons designated as partners, members or owners documenting an alternative distribution method without regard to their sharing of other tax or economic attributes of the entity. Credits passed through to individual partners and members are not transferable.  </p>
+
+<p>(3) If the credit allowable for any taxable year exceeds the taxpayer's tax liability for that tax year, the taxpayer may carry forward and apply in any subsequent taxable year, the portion, as reduced from year to year, of those credits which exceed the tax for the taxable year; provided, however, that in no event shall the taxpayer apply the credit to the tax for any taxable year beginning more than 10 years after the taxable year in which executive office of housing and livable communities gives the commissioner written notification of completion of the certified housing development project. If the credit is transferred by the taxpayer, the carry over provisions applicable to the transferee apply.  </p>
+
+<p>A transferee shall use the credit in the year it is transferred. If the credit allowable for any taxable year exceeds the transferee's tax liability for that tax year, the transferee may carry forward and apply in any subsequent taxable year, the portion, as reduced from year to year, of those credits which exceed the tax for the taxable year; provided, however, that in no event shall the transferee apply the credit to the tax for any taxable year beginning more than 10 years after the taxable year in which EOHLC gives the commissioner written notification of completion of the certified housing development project.  </p>
+
+<p>(4) For any certified housing development project, qualified project expenditures applicable to this credit shall be treated for purposes of this subsection as made on the date that EOHLC gives the Commissioner written notification of completion of the certified housing development project.  </p>
+
+<p>(5) EOHLC may authorize not more than $30,000,000 in credits annually under this subsection and section 38BB of chapter 63. EOHLC may authorize annually any credits under this subsection or said section 38BB of said chapter 63 returned to EOHLC by a certified housing development project. The total amount of credits authorized during a year shall include: (1) credits granted during the year pursuant to this subsection or said section 38BB of said chapter 63; and (2) carry forwards of credits from prior years pursuant to this subsection or said section 38BB of said chapter 63, to the extent that such credit carry forwards are estimated by the commissioner to offset tax liabilities during the year. Any portion of the $30,000,000 annual cap not authorized by EOHLC during a calendar year shall be added to the amount EOHLC may authorize in subsequent years. EOHLC shall provide the commissioner of revenue with any documentation that the commissioner deems necessary to confirm compliance with the annual cap and the commissioner shall provide a report confirming compliance with the annual cap to the secretary of administration and finance and the secretary of housing and livable communities.  </p>
+
+<p>(6) The commissioner, in consultation with the EOHLC, shall prescribe regulations necessary to carry out this subsection.  </p>
+
+<p>(r)(1) A taxpayer, to the extent authorized by the life sciences tax incentive program established in section 5 of chapter 23I, may be allowed a refundable jobs credit against the tax liability imposed under this chapter in an amount determined by the Massachusetts Life Sciences Center in consultation with the department.  </p>
+
+<p>(2) A taxpayer taking a credit under this subsection shall commit to the creation of a minimum of 50 net new permanent full-time positions in the commonwealth.  </p>
+
+<p>(3) A credit allowed under this subsection shall reduce the liability of the taxpayer under this chapter for the taxable year. If a credit claimed under this subsection by a taxpayer exceeds the taxpayer's liability as otherwise determined under this chapter for the taxable year, 90 per cent of such excess credit, to the extent authorized by the life sciences tax incentive program shall be refundable to the taxpayer. Excess credit amounts shall not be carried forward to other taxable years.  </p>
+
+<p><i>[Paragraph (4) of subsection (r) effective for tax years beginning on or after January 1, 2024. See 2024, 238, Sec. 325.]  </p>
+</i></p>
+<p>(4) The department shall issue the refundable portion of the jobs credit without further appropriation and in accordance with the cumulative amount, including the current year costs of incentives allowed in previous years, which shall not exceed $40,000,000 annually as set forth in subsection (d) of said section 5 of said chapter 23I.  </p>
+
+<p>(s)(1) A taxpayer primarily engaged in agriculture or farming, as defined in section 1A of chapter 128, on land zoned pursuant to section 3 of chapter 40A or engaged in commercial fishing, which shall include only those landing a minimum of 5,000 pounds of fish per year and possessing either a state or federal fishing permit shall be allowed a credit as provided in this paragraph against the tax liability imposed by this chapter. The amount of the credit shall be 3 per cent of the cost or other basis for federal income tax purposes of qualifying property acquired, constructed, reconstructed or erected during the taxable year after deduction therefrom of any federally authorized tax credit taken with respect to the property. ''Qualifying property'' shall be tangible personal property and other tangible property, including buildings and structural components of buildings: (i) acquired by purchase as defined in 26 U.S.C. &sect; 179(d), as amended and in effect for the taxable year; (ii) used solely in agriculture, farming or fishing; (iii) not taxable pursuant to chapter 60A; (iv) used by the taxpayer in the commonwealth; (v) situated in the commonwealth on the last day of the taxable year; and (vi) depreciable under 26 U.S.C. &sect; 167 and with a useful life of at least 4 years.  </p>
+
+<p>(2) A taxpayer primarily engaged in agriculture or farming, as defined in said section 1A of said chapter 128, on land zoned pursuant to said section 3 of said chapter 40A or in commercial fishing, which shall include only those landing a minimum of 5,000 pounds of fish per year and possessing either a state or federal fishing permit shall be allowed a credit as provided in this paragraph against the tax liability imposed by this chapter. The amount of the credit shall be 3 per cent of the lessor's adjusted basis in qualifying property for federal income tax purposes at the beginning of the lease term, multiplied by a fraction, the numerator of which shall be the number of days of the taxable year during which the lessee leases the qualifying property and the denominator of which shall be the number of days in the useful life of the property. ''Useful life'' shall be the same as that used by the lessor for depreciation purposes when computing federal income tax liability.  ''Operating lease'' shall be any contract or agreement to lease or rent or for a license to use qualifying property. ''Qualifying property'' shall be tangible personal property and other personal property, including buildings and structural components of buildings: (i) leased, and not a purchase as defined under 26 U.S.C. &sect; 179(d), as amended and in effect for the taxable year; (ii) used solely in agriculture, farming or fishing; (iii) not taxable under chapter 60A; (iv) used by the lessee in the commonwealth; (v) situated in the commonwealth throughout the entire lease term; and (vi) depreciable by the lessor under 26 U.S.C. &sect; 167 and with a useful life of at least 4 years. The credit shall not be available to a lessee if the lessor has previously received a credit with respect to the leased tangible personal property.  </p>
+
+<p>(3) The commissioner shall by regulation require documentation of the lessor and lessee to substantiate a credit claimed pursuant to paragraph (2).  </p>
+
+<p>(4) A taxpayer shall not receive a credit under paragraphs (1) or (2) with respect to tangible personal property and other tangible property, including buildings and structural components of buildings, which it leases as a lessor.  For the purposes of this paragraph, a contract or agreement to lease or rent or for a license to use such property shall be considered a lease. This paragraph shall not apply to equine-based businesses where care and boarding of horses is a function of the agricultural activity.  </p>
+
+<p>(5) With respect to property that is disposed of or ceases to be in qualified use prior to the end of the taxable year in which the credit is to be taken, the amount of the credit shall be that portion of the credit provided for in paragraphs (1) or (2) which represents the ratio which the months of qualified use bear to the months of useful life. If property on which credit has been taken is disposed of or ceases to be in qualified use prior to the end of its useful life, the difference between the credit taken and the credit allowed for actual use must be added back as additional taxes due in the year of disposition; provided, however, that if the property is disposed of or ceases to be in qualified use after it has been in qualified use for more than 12 consecutive years, it shall not be necessary to add back the credit as provided in this subsection. The amount of credit allowed for actual use shall be determined by multiplying the original credit by the ratio which the months of qualified use bear to the months of useful life. For the purposes of this subsection, ''useful life of property'' shall be the same as that used by the individual for depreciation purposes.  </p>
+
+<p>(6) A taxpayer entitled to a credit for any taxable year in accordance with paragraphs (1) to (5), inclusive, may carry over and apply to its tax liability imposed by this chapter for any 1 or more of the next succeeding 3 taxable years the portion, as reduced from year to year, of its credit which exceeds its tax liability imposed by this chapter for the taxable year.  </p>
+
+<p><i>[There is no subsection (t).]  </p>
+</i></p>
+<p><i>[Paragraph (1) of subsection (u) effective for taxable years beginning on January 1, 2024. See 2024, 178, Sec. 153.]  </p>
+</i></p>
+<p>(u) (1) A partnership, limited liability corporation or other legal entity engaged in business in the commonwealth that: (i) is not a business corporation subject to the excise under chapter 63; (ii) employs not more than 100 employees; (iii) is certified by the secretary of veterans' services pursuant to section 2C of chapter 115; and (iv) qualifies for and claims the Work Opportunity Credit allowed under section 51 of the Code, as amended and in effect for the taxable year, for the hiring of qualified veterans in the commonwealth, shall be allowed a credit equal to $2,500 for each qualified veteran hired by the partnership, limited liability corporation or other legal entity. For the purposes of this subsection, ''qualified veteran'' shall have the same meaning as under section 51(d)(3) of the Code.  </p>
+
+<p>(2) To be eligible for a credit under this subsection: (i) the primary place of employment and the primary residence of the qualified veteran shall be in the commonwealth and (ii) not later than six months after an individual begins work, a business shall have obtained the applicable certification from the department of career services or any successor agency that the individual is a qualified veteran.  </p>
+
+<p>(3) The credit under this subsection shall be attributed on a pro rata basis to the owners, partners or members of the legal entity entitled to the credit under this subsection and shall be allowed as a credit against the tax due under this chapter from such owners, partners or members in a manner determined by the commissioner.  </p>
+
+<p><i>[Paragraph (4) of subsection (u) effective for taxable years beginning on January 1, 2024. See 2024, 178, Sec. 153.]  </p>
+</i></p>
+<p>(4) A business that is eligible for and claims the credit allowed under this subsection in a taxable year with respect to a qualified veteran shall be eligible for a second credit of $2,500 in the subsequent taxable year with respect to such qualified veteran, subject to certification of continued employment during the subsequent taxable year in the manner required by the commissioner. A credit allowed under this subsection shall not be transferable or refundable. Any amount of the credit allowed under this subsection that exceeds the tax due for a taxable year may be carried forward to any of the 3 subsequent taxable years.  </p>
+
+<p>(5) The total cumulative value of the credits authorized pursuant to this subsection and section 38GG of chapter 63 shall not exceed $1,000,000 annually.  </p>
+
+<p><i>[Paragraph (1) of subsection (v) effective for taxable years beginning on or after January 1, 2023. See 2023, 50 Sec. 49.]  </p>
+</i></p>
+<p>(v)(1) An employer that is not a business corporation subject to the excise under chapter 63, shall be allowed a credit equal to $4,800 or 50 per cent of the wages paid to each qualified apprentice in a taxable year, whichever is less, against the tax liability imposed by this chapter. If a credit allowed by this subsection exceeds the tax otherwise due under this chapter, 100 per cent of the balance of such credit may, at the option of the taxpayer, be refundable to the taxpayer. In order to qualify, the apprentice must meet the definition of apprentice in section 11H of chapter 23 and must be hired and trained in 1 of the following occupations, as defined by the Bureau of Labor Statistics: computer occupations, as defined by Standard Occupational Codes 15&ndash;1200; health technologists and technicians, as defined by Standard Occupational Codes 29&ndash;2000; health practitioner support technologists and technicians, as defined by Standard Occupational Codes 29&ndash;2050; healthcare support occupations, as defined by Standard Occupational Codes 31&ndash;0000; or production occupations if employed in the manufacturing industry, as defined by Standard Occupational Codes 51&ndash;0000, NAICS code 31&ndash;33 or other expansion industries the secretary of labor and workforce development identifies as critical to a regional labor market economy.  </p>
+
+<p>(2) To be eligible for a credit under this subsection: (a) the primary place of employment of the apprentice must be in the commonwealth; (b) the business must be registered with the division of apprentice standards as an apprenticeship program sponsor and have an apprentice agreement, as defined in section 11H of chapter 23, with each apprentice for whom the credit is claimed; and (c) the apprentice must have been employed as an apprentice by the business for at least 180 calendar days in the taxable year in which the credit is claimed.  </p>
+
+<p>(3) An employer that is eligible for and claims the credit allowed under this subsection in a taxable year with respect to a qualified apprentice shall be eligible for a credit in the subsequent taxable year with respect to such qualified apprentice, subject to certification by the division of apprentice standards of continued employment as an apprentice during the subsequent taxable year in the manner required by the commissioner. Any credit allowed under this subsection shall not be transferable.  </p>
+
+<p>(4) The secretary of labor and workforce development, in consultation with the commissioner, shall promulgate regulations establishing an application process for the credit; provided, however, that the regulations shall include a maximum number of qualified apprentices for which a taxpayer may claim the credit in a year.  </p>
+
+<p>(5) The credit under this subsection shall be attributed on a pro rata basis to the owners, partners or members of the legal entity entitled to the credit under this subsection, and shall be allowed as a credit against the tax due under this chapter of such owners, partners or members, in a manner determined by the commissioner.  </p>
+
+<p>(6) The secretaries of labor and workforce development and administration and finance, acting jointly and in writing shall authorize tax credits pursuant to this subsection and section 38HH of chapter 63. The total amount of credits that may be authorized in a calendar year pursuant to this subsection and said section 38HH of said chapter 63 shall not exceed $2,500,000. No credits shall be allowed under this subsection except to the extent authorized in this paragraph. The commissioner, after consulting with the secretaries, on the criteria set forth in paragraphs (1) and (2) of this subsection, shall adopt regulations governing applications for and other administration of the tax credits. The secretaries and the division of apprentice standards shall provide the commissioner with the documentation that the commissioner deems necessary to confirm compliance with the annual cap.  </p>
+
+<p>(7) The commissioner, in consultation with the secretaries, shall annually, not later than March 1, file a report with the house and senate committees on ways and means, the joint committee on economic development and emerging technologies, and the joint committee on labor and workforce development, identifying the following: (i) total amount of tax credits claimed pursuant to this subsection; (ii) the number of participating apprentices and relevant wage information; (iii) the number of applications received and the number of participating employers; (iv) the areas of occupation by qualifying tax credit beneficiaries; (v) program outcomes for apprentices, including job retention and further employment opportunities; and (vi) whether the tax credit program is achieving its public policy purpose to create talent pipelines for businesses and provide career pathways toward high demand occupations for unemployed and underemployed residents of the commonwealth.  </p>
+
+<p><i>[Subsection (w) added by 2020, 358, Sec. 57 effective January 14, 2021 until January 1, 2030. Repealed by 2021, 24, Sec. 28. See 2021, 24, Sec. 148 as amended by 2024, 238, Sec. 277.]  </p>
+</i></p>
+<p>(w)(1) As used in this subsection, the following words shall have the following meanings unless the context clearly requires otherwise:  </p>
+
+<p>&Prime;Commissioner&Prime;, the commissioner of revenue.  </p>
+
+<p>&Prime;Cranberry bog&Prime;, an area actively cultivated for the harvesting or production of cranberries.  </p>
+
+<p>&Prime;Qualified renovation'', the renovation, repair, replacement, regrading or restoration of a cranberry bog for the cultivation, harvesting or production of cranberries or any other activity or action associated with the renovation of an abandoned cranberry bog; provided, however, that &Prime;qualified renovation&Prime; shall not include the construction of facilities or structures for the processing of cranberries.  </p>
+
+<p>''Qualified renovation expenditure'', an expenditure or a cost directly incurred in connection with the qualified renovation of a cranberry bog; provided, however, that ''qualified renovation expenditure'' shall not include costs incurred in acquiring or purchasing property for the construction of facilities or structures for the cultivation, harvesting or production of cranberries.  </p>
+
+<p>&Prime;Secretary&Prime;, the secretary of energy and environmental affairs.  </p>
+
+<p>&Prime;Taxpayer'', a taxpayer subject to taxation under this chapter.  </p>
+
+<p>(2)(i) A taxpayer primarily engaged in cranberry production shall be allowed a credit against the taxes imposed by this chapter equal to 25 per cent of the total qualified renovation expenditures incurred in connection with the qualified renovation of a cranberry bog during the taxable year; provided, however, the amount of the credit that may be claimed by a taxpayer under this section shall not exceed $100,000.  </p>
+
+<p>(ii) The credit under this subsection shall be taken against the taxes imposed under this chapter and shall be refundable. The commissioner shall apply the credit against the liability of the taxpayer as determined on its return, as first reduced by any other available credits, and shall then refund to the taxpayer the balance of the credits. If the amount of the credit allowed under this subsection exceeds the taxpayer's tax liability, the commissioner shall treat the excess as an overpayment and shall pay the taxpayer the entire amount of the excess. Any amount of the tax credit that exceeds the tax due for a taxable year may be carried forward by the taxpayer to any of the 5 subsequent taxable years.  </p>
+
+<p>(iii) The secretary, in consultation with the commissioner of agricultural resources, shall authorize annually tax credits under this subsection together with section 38II of chapter 63 in an amount not to exceed $2,000,000 per taxable year. No credits shall be allowed under this subsection except to the extent authorized in this paragraph.  </p>
+
+<p>(3) For a taxpayer to qualify for a credit under this subsection, the taxpayer shall file with the secretary a summary of qualified renovation expenditures in connection with the qualified renovation. The secretary shall approve the summary of qualified renovation expenditures and provide notice to the commissioner. Any qualified renovation expenditures applicable to this credit shall be treated for purposes of this subsection as made on the date that the secretary provides notice of the certification to the commissioner.  </p>
+
+<p>(4) Any portion of tax credits not awarded by the secretary in a calendar year shall not be applied to awards in a subsequent calendar year. The secretary shall provide any documentation that the commissioner may deem necessary to confirm compliance with subparagraph (iii) of paragraph (2) and the commissioner shall provide a report confirming compliance to the secretary of administration and finance.  </p>
+
+<p>(5) The secretary shall annually, not later than September 1, file a report with the house and senate committees on ways and means, the joint committee on environment, natural resources and agriculture and the joint committee on revenue identifying the total amount of tax credits claimed and the total amount of tax credits refunded pursuant to this subsection in the preceding fiscal year.  </p>
+
+<p>(6) The secretary, in consultation with the commissioner of agricultural resources and the commissioner of revenue, shall promulgate regulations or other guidelines necessary for the administration and implementation of this subsection.  </p>
+
+<p><i>[Subsection (x) as amended by 2023, 50, Sec. 21 does not take effect.]  </p>
+</i></p>
+<p>(x) For the purposes of this subsection, ''maintains a household'' shall have the same meaning as in section 21 of the Code.  With respect to a taxpayer who is a non-resident for part of the taxable year, the credit shall be further limited to the amount of allowable credit multiplied by a fraction, the numerator of which shall be the number of days in the taxable year the person resided in the commonwealth and the denominator of which shall be the number of days in the taxable year. A taxpayer who maintains a household that includes as a member at least 1 individual: (i) under the age of 13 who qualifies for exemption as a dependent under section 151 of the Code; (ii) who is a qualifying individual as defined in said section 21 of the Code; or (iii) who (A) is not less than 65 years of age or is disabled and (B) qualifies as a dependent under section 152 of the Code, shall be allowed a credit in an amount equal to $440 for each such dependent or qualifying individual with respect to the taxpayer; provided, however, that if the taxpayer is married at the close of the taxable year, the credit provided in this subsection shall be allowed if: (a) the taxpayer and the taxpayer's spouse file a joint return for the taxable year; or (b) the taxpayer qualifies as a head of household under section 2(b) of the Code. A person who is a non-resident for the entire taxable year shall not qualify for the credit. If the amount of the credit allowed under this subsection exceeds the taxpayer's tax liability, the commissioner shall treat the excess as an overpayment and shall pay the taxpayer the entire amount of the excess without interest.  </p>
+
+<p><i>[Subsection (x) effective for taxable years beginning on or after January 1, 2023. See, also, 2024, 206, Sec. 62. See, also, 2023, 50, Secs. 45 and 49.]  </p>
+</i></p>
+<p>(x) For the purposes of this subsection, ''maintains a household'' shall have the same meaning as in section 21 of the Code.  With respect to a taxpayer who is a non-resident for part of the taxable year, the credit shall be further limited to the amount of allowable credit multiplied by a fraction, the numerator of which shall be the number of days in the taxable year the person resided in the commonwealth and the denominator of which shall be the number of days in the taxable year. A taxpayer who maintains a household that includes as a member at least 1 individual: (i) under the age of 13 who qualifies for exemption as a dependent under section 151 of the Code; (ii) who is a qualifying individual as defined in said section 21 of the Code without regard to paragraph (5) of subsection (e) of said section 21 of the Code; or (iii) who (A) is not less than 65 years of age or is disabled and (B) qualifies as a dependent under section 152 of the Code, shall be allowed a credit in an amount equal to $440 for each such dependent or qualifying individual with respect to the taxpayer; provided, however, that if the taxpayer is married at the close of the taxable year, the credit provided in this subsection shall be allowed if: (a) the taxpayer and the taxpayer's spouse file a joint return for the taxable year; or (b) the taxpayer qualifies as a head of household under section 2(b) of the Code. A person who is a non-resident for the entire taxable year shall not qualify for the credit. If the amount of the credit allowed under this subsection exceeds the taxpayer's tax liability, the commissioner shall treat the excess as an overpayment and shall pay the taxpayer the entire amount of the excess without interest.  </p>
+
+<p><i>[There is no subsection (y).]  </p>
+</i></p>
+<p>(z)(1) An employer that is not a business corporation subject to the excise under chapter 63, shall be allowed a credit equal to $5,000 or 30 per cent of the wages paid to each qualified employee with a disability in the first taxable year of employment, whichever is less, against the tax liability imposed by this chapter. Such employer shall be allowed a credit equal to $2,000 or 30 per cent of the wages paid to each qualified employee with a disability in each subsequent taxable year of employment, whichever is less, against the tax liability imposed by this chapter. If a credit allowed by this subsection exceeds the tax otherwise due under this chapter, 100 per cent of the balance of such credit may, at the option of the taxpayer, be refundable to the taxpayer. In order to qualify, the employee with a disability shall be: (i) certified by MassAbility as meeting the definition of disability under the Americans with Disabilities Act, 42 U.S.C. 12102; (ii) capable of working independently; (iii) physically or mentally impaired in a manner that constitutes or results in a substantial impediment to employment for the individual; and (iv) hired by the employer after July 1, 2021.  </p>
+
+<p>(2) To be eligible for a credit under this subsection: (i) the primary place of employment and the primary place of residence of the employee shall be in the commonwealth; (ii) the business shall receive the applicable certification from MassAbility that the employee qualifies not later than the day the employee begins work; provided, that reasonable exceptions to this timeframe may be established through regulation; and (iii) the employee shall be employed by the business for a period of not less than 12 consecutive months prior to and in the taxable year in which the credit is claimed.  </p>
+
+<p>(3) An employer that is eligible for and claims the credit allowed under this subsection in a taxable year with respect to a qualified employee with a disability shall be eligible for such credit in the subsequent taxable year with respect to such qualified employee. Any credit allowed under this subsection shall not be transferable.  </p>
+
+<p>(4) The secretary of health and human services, in consultation with the commissioner, shall promulgate regulations establishing an application process for the credit.  </p>
+
+<p>(5) The credit under this subsection shall be attributed on a pro rata basis to the owners, partners or members of the legal entity entitled to the credit under this subsection, and shall be allowed as a credit against the tax due under this chapter of such owners, partners or members, in a manner determined by the commissioner.  </p>
+
+<p><i>[Subsection (aa) applicable to qualified employees who are hired after July 1, 2022 and for tax years beginning on or after January 1, 2023. See 2022, 268, Sec. 269.]  </p>
+</i></p>
+<p>(aa)(1) An employer engaged in business in the commonwealth that is not a business corporation subject to the excise under chapter 63 and employs not more than 100 employees may be allowed a credit equal to $2,000 for each member of the Massachusetts national guard hired by the employer. A business that is eligible for and claims the credit allowed under this subsection in a taxable year shall be eligible for a second credit of $2,000 in the subsequent taxable year with respect to such member of the Massachusetts national guard, subject to certification of continued employment by the employer to the Massachusetts office of business development during the subsequent taxable year.  </p>
+
+<p>(2) To be eligible for a credit under this subsection: (i) the primary place of employment and the primary residence of the member of the Massachusetts national guard shall be in the commonwealth; and (ii) not later than 6 months after an individual begins work, a business shall have obtained the applicable certification from the office of the adjutant general that the individual is a member of the Massachusetts national guard.  </p>
+
+<p>(3) The credit under this subsection shall be attributed on a pro rata basis to the owners, partners or members of the legal entity entitled to the credit under this subsection and shall be allowed as a credit against the tax due under this chapter from such owners, partners or members in a manner determined by the commissioner.  </p>
+
+<p>(4) A credit allowed under this subsection shall not be transferable or refundable. Any amount of the credit allowed under this subsection that exceeds the tax due for a taxable year may be carried forward to any of the 3 subsequent taxable years.  </p>
+
+<p>(5) The total cumulative value of the credits authorized pursuant to this subsection and section 38KK of chapter 63 shall not exceed $1,000,000 annually.  </p>
+
+<p>(6) The Massachusetts office of business development, in consultation with the commissioner, shall authorize, administer and determine eligibility for the tax credit pursuant to this subsection and section 38KK of chapter 63 and shall allocate the credit in accordance with the standards and requirements set forth in regulations promulgated pursuant to this subsection.  </p>
+
+<p>(7) The Massachusetts office of business development, in consultation with the commissioner, shall promulgate regulations establishing an application process for the credit; provided, however, that the credit shall be authorized for all eligible applicants on a first-come, first-served basis; provided, that the $1,000,000 limit on the total cumulative value of the credits authorized annually set forth in subparagraph (5) shall not be exceeded.  </p>
+
+<p><i>[Subsection (bb) effective until January 1, 2033 applicable for tax years beginning on or after January 1, 2023. Repealed by 2022, 268, Sec. 272. See 2022, 268, Secs. 271 and 273.]  </p>
+</i></p>
+<p>(bb)(1) A taxpayer, to the extent authorized by the offshore wind tax incentive program established in subsection (d) of section 8A of chapter 23J, may be allowed a refundable jobs credit against the tax liability imposed under this chapter in an amount determined by the Massachusetts clean energy technology center established in section 2 of said chapter 23J, in consultation with the department of revenue.  </p>
+
+<p>(2) A taxpayer taking a credit under this subsection shall commit to the creation of not less than 10 net new permanent full-time employees in the commonwealth.  </p>
+
+<p>(3) A credit allowed under this subsection shall reduce the liability of the taxpayer under this chapter for the taxable year. If a credit claimed under this subsection by a taxpayer exceeds the taxpayer's liability as otherwise determined under this chapter for the taxable year, 90 per cent of such excess credit, to the extent authorized by the offshore wind tax incentive program, shall be refundable to the taxpayer. Excess credit amounts shall not be carried forward to other taxable years.  </p>
+
+<p>(4) The department of revenue shall issue the refundable portion of the jobs credit without further appropriation and in accordance with the cumulative amount, including the current year costs of incentives allowed in previous years, which shall not exceed $35,000,000 annually as set forth in subsection (d) of section 8A of chapter 23J.  </p>
+
+<p>(5) The credit under this subsection shall be attributed on a pro rata basis to the owners, partners or members of the legal entity entitled to the credit under this subsection and shall be allowed as a credit against the tax due under this chapter from such owners, partners or members in a manner determined by the commissioner.  </p>
+
+<p><i>[Subsection (cc) effective until January 1, 2033 applicable for tax years beginning on or after January 1, 2023. Repealed by 2022, 268, Sec. 272. See 2022, 268, Secs. 271 and 273.]  </p>
+</i></p>
+<p>(cc)(1) As used in this subsection, the following words shall, unless the context clearly requires otherwise, have the following meanings:  </p>
+
+<p>''Capital investment'', expenses incurred for the site preparation and construction, repair, renovation, improvement or equipping of a building, structure, facility or other improvements to real property, including, but not limited to, site-related utility and transportation infrastructure improvements.  </p>
+
+<p>''Center'', the Massachusetts clean energy technology center established in section 2 of chapter 23J.  </p>
+
+<p>''Certified offshore wind company'', as defined in section 1 of chapter 23J.  </p>
+
+<p>''Offshore wind facility'', any building, complex of buildings or structural components of buildings, including water access infrastructure, and all machinery and equipment used in the manufacturing, assembly, development or administration of component parts that are primarily used to support the offshore wind industry.  </p>
+
+<p>''Owner'', a taxpayer subject to tax under this chapter that: (i) holds title to an offshore wind facility; or (ii) ground leases the land underlying the facility for at least 50 years.  </p>
+
+<p>''Tenant'', a taxpayer subject to tax under this chapter that is a lessee in an offshore wind facility.  </p>
+
+<p>(2) An owner or tenant, to the extent authorized by the offshore wind tax incentive program established in section 8A of chapter 23J, may take a refundable credit against the taxes imposed by this chapter in an amount, as determined by the center, of up to 50 per cent of the owner's total capital investment in an offshore wind facility. The total amount of tax credit awarded pursuant to this subsection shall be distributed in equal parts over the 5 taxable years that correspond to the period in which the owner or tenant is certified pursuant to said section 8A of said chapter 23J.  </p>
+
+<p>(3) An owner shall be eligible for a tax credit authorized under this subsection if the owner demonstrates to the center that: (i) the owner is a certified offshore wind company; (ii) the owner's total capital investment in the offshore wind facility equals not less than $35,000,000; and (iii) the offshore wind facility will employ not less than 200 new full-time employees by the fifth year of the owner's certification period under section 8A of chapter 23J. Upon verification, the center shall provide this information to the department of revenue for the purpose of administering the credit.  </p>
+
+<p>(4) A tenant shall be eligible for a tax credit authorized pursuant to this subsection if the tenant demonstrates to the center that: (i) the tenant is a certified offshore wind company; (ii) the owner has made a total capital investment in the facility that equals not less than $35,000,000; (iii) the tenant occupies a leased area of the offshore wind facility that represents not less than 25 per cent of the total leasable square footage of the facility; and (iv) the tenant will employ not less than 50 full-time employees by the fifth year of the tenant's certification period pursuant to section 8A of chapter 23J. Upon verification, the center will provide this information to the department of revenue for the purpose of administering the credit. The amount of tax credits awarded to a tenant under this subsection for a taxable year shall not exceed the tenant's total lease payments for occupancy of the offshore wind facility for the taxable year.  </p>
+
+<p>(5) An owner or tenant taking a credit authorized in this subsection shall not take the credits authorized in subsections (g) or (bb) in the same taxable year.  </p>
+
+<p>(6) The department of revenue shall issue the refundable portion of the credit without further appropriation and in accordance with the cumulative amount, including the current year costs of incentives allowed in previous years, which shall not exceed $35,000,000 annually as set forth in subsection (d) of section 8A of chapter 23J.  </p>
+
+<p>(7) The credit under this subsection shall be attributed on a pro rata basis to the owners, partners or members of the legal entity entitled to the credit under this subsection and shall be allowed as a credit against the tax due under this chapter from such owners, partners or members in a manner determined by the commissioner.  </p>
+
+<p>(8) The department of revenue shall promulgate such rules and regulations as are necessary to administer the credit established in this subsection.  </p>
+
+<p><i>[Subsection (dd) added by 2024, 88, Sec. 5 effective April 30, 2024 for tax years beginning on or after January 1, 2024. See 2024, 88, Sec. 29. Repealed by 2024, 88, Sec. 6, applicable as provided by 2024, 88, Sec. 30.]  </p>
+</i></p>
+<p>(dd)(1) As used in this subsection, the following words shall, unless the context clearly requires otherwise, have the following meanings:  </p>
+
+<p>''Authorized training program'', a program approved by the secretary of administration and finance and the secretary of labor and workforce development that is offered by an employer to train qualified trainees; provided, that said program shall assist qualified trainees in developing skills and accessing resources to prepare qualified trainees to enter the workforce; and provided further, that no authorized training program shall provide compensation to a qualified trainee without work authorization and said program shall ensure the qualified trainee has no expectation of compensation for training.  </p>
+
+<p>''Qualified trainee'', an individual receiving benefits through the emergency housing assistance program pursuant to section 30 of chapter 23B and 760 CMR 67.00 or an individual in an overflow emergency shelter site established in response to the capacity limitation on said program pursuant to a declaration issued by the secretary of housing and livable communities dated October 31, 2023, the extension of the declaration dated February 28, 2024 and any subsequent extensions, issued pursuant to 760 CMR 67.10, as inserted by emergency regulations issued by the executive office of housing and livable communities on October 31, 2023 and accompanying guidance issued pursuant to said declaration and 760 CMR 67.10, who: (i)(A) has not received work authorization; or (B) is currently unemployed; and (ii) is participating in an authorized training program.  </p>
+
+<p>''Training'', teaching, developing or enhancing skills and knowledge to improve capacity, productivity and performance to enter the workforce, including, but not limited to, classes, clinics or other hands-on methods.  </p>
+
+<p>''Work authorization'', federal authorization to work in the United States pursuant to 8 CFR 274a.  </p>
+
+<p>(2) A partnership, limited liability corporation or other legal entity that is not a business corporation subject to the excise under chapter 63 may be allowed a nonrefundable credit equal to $2,500 for each qualified trainee who receives training through an authorized training program by said partnership, limited liability corporation or other legal entity in a taxable year. If the credit allowed for a taxable year exceeds the taxpayer's liability for that taxable year, the taxpayer may carry forward and apply the credit in the subsequent taxable year.  </p>
+
+<p>(3) To be eligible for the credit pursuant to paragraph (2), the partnership, limited liability corporation or other legal entity shall: (i) have a place of business in the commonwealth; (ii) conduct the authorized training program in the commonwealth and in compliance with recommendations of the secretary of labor and workforce development pursuant to paragraph (5); and (iii) meet any additional requirements determined by the secretary of administration and finance and the secretary of labor and workforce development.  </p>
+
+<p>(4) The total amount of credits that may be authorized in a taxable year pursuant to this subsection and section 38NN of chapter 63 shall not exceed $10,000,000.  </p>
+
+<p>(5) The secretary of labor and workforce development shall:  </p>
+
+<p>(i) identify industries with the greatest workforce needs in geographically diverse areas of the commonwealth in which qualified trainees may be employed after receiving work authorization; provided, that the secretary of labor and workforce development shall identify industries with varying work experience, education, certification and licensure requirements for training;  </p>
+
+<p>(ii) provide recommendations for training criteria to enable qualified trainees to be successful in the workforce; provided, that the secretary of labor and workforce development shall provide specific industry recommendations for training; and provided further, that the secretary may identify existing training programs that meet said training criteria; and  </p>
+
+<p>(iii) perform outreach to industries identified as having the greatest workforce needs to provide notice of the tax credit program established pursuant to this subsection.  </p>
+
+<p><i>[Subsection (ee) effective until January 1, 2030, for tax years beginning on or after January 1, 2025. See 2024, 150, Sec. 140. Repealed by 2024, 150 Sec. 137. See 2024, 150, Sec. 142.]  </p>
+</i></p>
+<p>(ee)(1) As used in this subsection, the following words shall, unless the context clearly requires otherwise, have the following meanings:  </p>
+
+<p>''Development cost'', as defined in section 36 of chapter 23B.  </p>
+
+<p>''Executive office'', the executive office of housing and livable communities, established pursuant to chapter 23B.  </p>
+
+<p>''Qualified conversion project'', as defined in section 36 of chapter 23B.  </p>
+
+<p>''Sponsors'', as defined in section 25 of chapter 23B.  </p>
+
+<p>(2) A credit shall be allowed against the tax liability imposed by this chapter, to the extent authorized by the executive office, in consultation with the commissioner, for a qualified conversion project that has been completed and certified by the executive office pursuant to section 36 of chapter 23B. The credit shall be equal to an amount not more than 10 per cent of the qualified conversion project development costs. The credit shall be allowed for the taxable year in which the executive office provides the commissioner written notification of completion of the certified qualified conversion project. For any certified qualified conversion project, development costs applicable to this credit shall be treated for purposes of this subsection as made on the date that the executive office provides the commissioner written notification of completion of the certified qualified conversion project and any data related to the development costs.  </p>
+
+<p>(3) A taxpayer eligible for the credit may, with prior notice to the commissioner, transfer the credit, in whole or in part, to any individual or entity with tax labilities under this chapter or chapter 63, and the transferee shall be entitled to apply the credit against the tax liability with the same effect as if the transferee had incurred the development costs itself. Any amount of the tax credit that exceeds the tax due for a taxable year may be carried forward by the transferee, buyer or assignee in subsequent taxable years from which a certificate is initially issued by the executive office; provided, however, that in no event shall the transferee apply the credit to the tax due for any taxable year beginning more than 10 years after the taxable year in which the executive office provides the commissioner written notification of completion of the certified qualified conversion project.  </p>
+
+<p>(4) If the credit allowable for any taxable year exceeds the taxpayer's tax liability for that tax year, the taxpayer may carry forward and apply in any subsequent taxable year, the portion, as reduced from year to year, of the credit which exceed the tax for the taxable year; provided, however, that in no event shall the taxpayer apply the credit to the tax due for any taxable year beginning more than 10 years after the taxable year in which the executive office provides the commissioner written notification of completion of the certified qualified conversion project.  </p>
+
+<p>(5) The commissioner may, as of the effective date of a revocation pursuant to subsection (f) of section 36 of chapter 23B, disallow any credits allowed under this section.  </p>
+
+<p>(6) The commissioner, in consultation with the executive office, may adopt regulations necessary to carry out this subsection, including regulations to recapture the value of any tax credits allowed under this subsection.  </p>
+
+<p><i>[ Subsection (ff) effective until January 1, 2030 for taxable years beginning on or after January 1, 2025. Repealed by 2024, 238, Sec. 315. See 2024, 238, Secs. 319 and 322.]  </p>
+</i></p>
+<p>(ff)(1) As used in this subsection, the following words shall, unless the context clearly requires otherwise, have the following meanings:  </p>
+
+<p>''Advertising and public relations expenditure'', a cost incurred within the commonwealth by an eligible theater production for goods or services related to the marketing, public relations, creation and placement of print, electronic, television, billboards or other forms of advertising to promote the eligible theater production.  </p>
+
+<p>''Eligible theater production'', a live stage musical, dance or theatrical production or tour being presented in a qualified production facility that is either: (i) a pre-Broadway production; (ii) a pre-off Broadway production; (iii) a national tour launch; or (iv) a regional professional theater production.  </p>
+
+<p>''Eligible theater production certificate'', a certificate issued by the office, in consultation with the commissioner, certifying that a production is an eligible theater production that meets the rules or regulations of the office and has been awarded a tax credit in a specified amount, pursuant to section 3M of chapter 23A.  </p>
+
+<p>''National tour launch'', a live stage production that, in its original or adaptive version, is performed in a qualified production facility and opens its national tour in the commonwealth.  </p>
+
+<p>''Office'', the Massachusetts office of business development established in section 1 of chapter 23A or any constituent office thereof.  </p>
+
+<p>''Payroll'', all salaries, wages, fees and other compensation from sources within the commonwealth, including, but not limited to, taxes, benefits and any other consideration incurred or paid to talent and non-talent employees of the applicant for services rendered within the commonwealth to and on behalf of an eligible theater production; provided, that the payroll expenditure shall be incurred or paid by the applicant for services related to any portion of an eligible theater production from its pre-production stages, including, but not limited to: (i) the writing of the script; (ii) casting; (iii) hiring of service providers; (iv) purchases from vendors; (v) marketing; (vi) advertising; (vii) public relations; (viii) load in; (ix) rehearsals; (x) performances; (xi) other eligible theater production related activities; and (xii) load out; and provided further, that the payroll expenditure shall be directly attributable to the eligible theater production and shall be limited to the first $100,000 of wages incurred or paid to each employee of an eligible theater production in each tax year.  </p>
+
+<p>''Pre-Broadway production'', a live stage production that, in its original or adaptive version, is performed in a qualified production facility having a presentation scheduled for the city of New York's Broadway theater district within 24 months after its presentation in the commonwealth.  </p>
+
+<p>''Pre-off-Broadway production'', a live stage production that, in its original or adaptive version, is performed in a qualified production facility having a presentation scheduled for the city of New York's off-Broadway theater district within 24 months after its presentation in the commonwealth.  </p>
+
+<p>''Production and performance expenditures'', a contemporaneous exchange of cash or cash equivalent for goods or services related to development, production, performance or operating expenditures incurred in the commonwealth for a qualified theater production, including, but not limited to, expenditures for design, construction and operation, including sets, special and visual effects, costumes, wardrobes, make-up, accessories, costs associated with sound, lighting, staging, advertising and public relations expenditures, facility expenses, rentals, per diems, accommodations and other related costs.  </p>
+
+<p>''Qualified production facility'', a facility located in the commonwealth in which live theater productions are, or are intended to be, exclusively presented that contains at least 1 stage, a seating capacity of not less than 175 seats, dressing rooms, storage areas and other ancillary amenities necessary for the eligible theater production.  </p>
+
+<p>''Regional professional theater production'', a live stage production that is performed in a qualified production facility with a professional cast and crew.  </p>
+
+<p>''Transportation expenditures'', expenses incurred in the commonwealth for the packaging, crating and transportation both to the commonwealth for use in a qualified theater production of sets, costumes or other tangible property constructed or manufactured outside the commonwealth, or from the commonwealth after use in a qualified theater production of sets, costumes or other tangible property constructed or manufactured in the commonwealth and the transportation of the cast and crew to and from the commonwealth; provided, that ''transportation expenditures'' shall include any portion performed in the commonwealth of the packaging, crating and transporting of property and equipment used for special and visual effects, sound, lighting and staging, costumes, wardrobes, make-up and related accessories and materials and any other performance or production-related property and equipment.  </p>
+
+<p>(2) Any taxpayer that has been awarded an eligible theater production certificate and has completed a cost accounting pursuant to subsection (c) of section 3M of chapter 23A shall be allowed a tax credit against taxes imposed by this chapter. The credit shall not exceed $7,000,000 and shall be equal to: (i) 35 per cent of the total in-state payroll costs; (ii) 25 per cent of the production and performance expenditures; and (iii) 25 per cent of transportation expenditures. Additionally, the credit shall not exceed the amount of credit specified in the eligible theater production certificate.  </p>
+
+<p>(3) The tax credit shall be allowed against the tax for the taxable period in which the credit is issued and any amount of the tax credit that exceeds the tax due for a taxable year may be carried forward for not more than 5 succeeding tax years.  </p>
+
+<p>(4) If a taxpayer has not claimed the tax credits, in whole or part, a taxpayer eligible for the tax credits may assign, transfer or convey the tax credits, in whole or in part, by sale or otherwise to any individual or entity, and such assignee of the tax credits that have not claimed the tax credits, in whole or in part, may assign, transfer or convey the tax credits, in whole or in part, by sale or otherwise to any individual or entity. The assignee of the tax credits may use acquired credits to offset up to 100 per cent of the tax liabilities otherwise imposed pursuant to this chapter. The assignee may apply the tax credits against taxes imposed on the assignee for not more than 5 succeeding tax years from the date an eligible theater production certificate is first issued by the office. The assignor shall perfect the transfer by notifying the commissioner, in writing, within 30 calendar days following the effective date of the transfer and shall provide any information as may be required by the commissioner to administer and carry out this subsection.  </p>
+
+<p>(5) The commissioner shall promulgate such rules and regulations necessary for the administration of this subsection.  </p>
+
+<p><i>[Subsections (gg) and (hh) effective for taxable years beginning on or after January 1, 2024. See 2024, 238, Sec. 325.]  </p>
+</i></p>
+<p>(gg)(1) As used in this subsection, the following words shall have the following meanings unless the context clearly requires otherwise:&mdash;  </p>
+
+<p>''Capital investment'', expenses incurred for the site preparation and construction, repair, renovation, improvement or equipping of a building, structure or facility or other improvements to real property including, but not limited to, site-related utility and transportation infrastructure improvements.  </p>
+
+<p>''Center'', the Massachusetts clean energy technology center established in section 2 of chapter 23J.  </p>
+
+<p>''Certified climatetech company'', as defined in section 1 of chapter 23J.  </p>
+
+<p>''Climatetech facility'', any building, complex of buildings or structural components of buildings, including access infrastructure and machinery and equipment used in the research, manufacturing, assembly, development, provision or administration of goods or services in the climatetech sector.  </p>
+
+<p>''Owner'', a taxpayer subject to tax under this chapter that: (i) holds title to a climatetech facility; or (ii) ground leases the land underlying a climatetech facility for not less than 50 years.  </p>
+
+<p>''Tenant'', a taxpayer subject to tax under this chapter that is a lessee in a climatetech facility.  </p>
+
+<p>(2) An owner or tenant, to the extent authorized by the climatetech tax incentive program established in section 16 of chapter 23J, may take a refundable credit against the taxes imposed by this chapter in an amount, as determined by the center, of not more than 50 per cent of the owner's total capital investment in a climatetech facility. The total amount of tax credit awarded pursuant to this subsection shall be distributed in equal parts over the 5 taxable years that correspond with the period in which the owner or tenant is certified pursuant to said section 16 of said chapter 23J.  </p>
+
+<p>(3) An owner shall be eligible for a tax credit authorized under this subsection if the owner demonstrates to the center that the: (i) owner is a certified climatetech company; (ii) owner's total capital investment in the climatetech facility is not less than $5,000,000; and (iii) climatetech facility will employ not less than 50 new full-time employees by the fifth year of the owner's certification period under section 16 of chapter 23J.  Upon verification, the center shall provide this information to the department of revenue for the purpose of administering the credit.  </p>
+
+<p>(4) A tenant shall be eligible for a tax credit authorized under this subsection if the tenant demonstrates to the center that the: (i) tenant is a certified climatetech company; (ii) owner has made a total capital investment in the facility that is not less than $5,000,000; (iii) tenant occupies a leased area of the climatetech facility that represents not less than 25 per cent of the total leasable square footage of the facility; and (iv) tenant will employ not less 13 full-time employees by the fifth year of the tenant's certification period under section 16 of chapter 23J. Upon verification, the center shall provide this information to the department of revenue for the purpose of administering the credit. The amount of tax credits awarded under this subsection to a tenant for a taxable year shall not exceed the tenant's total lease payments for occupancy of the climatetech facility for the taxable year.  </p>
+
+<p>(5) The department of revenue shall issue the refundable portion of the credit without further appropriation and in accordance with the cumulative amount, including the current year costs of incentives allowed in previous years, which shall not exceed $30,000,000 annually as set forth in subsection (d) of section 16 of chapter 23J.  </p>
+
+<p>(6) The credit under this subsection shall be attributed on a pro rata basis to the owners, partners or members of the legal entity entitled to the credit under this subsection and shall be allowed as a credit against the tax due under this chapter from such owners, partners or members in a manner determined by the commissioner.  </p>
+
+<p>(7) The department of revenue shall promulgate such rules and regulations as necessary to administer the credit established in this subsection.  </p>
+
+<p>(hh)(1) A taxpayer, to the extent authorized by the climatetech tax incentive program established in section 16 of chapter 23J, may be allowed a refundable jobs credit against the tax liability imposed under this chapter in an amount determined by the Massachusetts clean energy technology center established in section 2 of said chapter 23J, in consultation with the department of revenue.  </p>
+
+<p>(2) A taxpayer taking a credit under this subsection shall commit to the creation of not less than 5 net new permanent full-time employees in the commonwealth.  </p>
+
+<p>(3) A credit allowed under this subsection shall reduce the liability of the taxpayer under this chapter for the taxable year. If a credit claimed under this subsection by a taxpayer exceeds the taxpayer's liability as otherwise determined under this chapter for the taxable year, 90 per cent of such excess credit, to the extent authorized by the climatetech tax incentive program, shall be refundable to the taxpayer. Excess credit amounts shall not be carried forward to other taxable years.  </p>
+
+<p>(4) The department of revenue shall issue the refundable portion of the jobs credit without further appropriation and in accordance with the cumulative amount, including the current year costs of incentives allowed in previous years, which shall not exceed $30,000,000 annually as set forth in subsection (d) of section 16 of chapter 23J.  </p>
+
+<p>(5) The credit under this subsection shall be attributed on a pro rata basis to the owners, partners or members of the legal entity entitled to the credit under this subsection and shall be allowed as a credit against the tax due under this chapter from such owners, partners or members in a manner determined by the commissioner.  </p>
+
+<p><i>[Subsection (ii) added by 2024, 238, Sec. 194 effective as provided by 2024, 238, Sec. 320. Repealed by 2024, 238, Sec. 316 effective as provided by 2024, 238, Sec. 324.]  </p>
+</i></p>
+<p>(ii)(1) An employer engaged in business in the commonwealth, which is not a business corporation subject to the excise under chapter 63, may be allowed a credit in each taxable year against the tax liability imposed by this chapter equal to $5,000 or 50 per cent of the wages paid to each net-new qualified intern employed in the taxable year, whichever is less. If a credit allowed pursuant to this subsection exceeds the tax otherwise due under this chapter, 100 per cent of the balance of such credit may, at the option of the taxpayer, be refunded to the taxpayer.  </p>
+
+<p>(2) For an employer to be eligible for a credit under this subsection: (i) the intern shall be enrolled in or a recent graduate of a public or private institution of higher education located in the commonwealth; (ii) the intern shall have been employed as a qualified intern by the employer for not less than 12 weeks in the taxable year for which the credit is claimed; and (iii) the employer shall demonstrate that the total number of interns employed in the taxable year exceeds the average number of interns employed by the taxpayer per year over the previous 3 years. An intern shall not be qualified if the intern participating in another internship or apprenticeship program for which an employer has claimed a credit in the taxable year under this subsection or chapter 63.  </p>
+
+<p>(3) The total cumulative value of the credits authorized pursuant to this subsection and section 38UU of chapter 63 shall not exceed $10,000,000 annually. An employer shall not claim more than $100,000 in credits under this subsection for any taxable year. A credit allowed under this subsection shall not be transferable.  </p>
+
+<p>(4) The credit under this subsection shall be attributed on a pro rata basis to the owners, partners or members of the legal entity entitled to the credit under this subsection and shall be allowed as a credit against the tax due under this chapter of such owners, partners or members, in a manner determined by the commissioner.  </p>
+
+<p>(5) The executive office of economic development, in consultation with the commissioner, shall authorize, administer and determine eligibility for the tax credit pursuant to this subsection and section 38UU of chapter 63 and shall allocate the credit in accordance with the standards and requirements set forth in regulations promulgated pursuant to this subsection. The secretary of economic development, in consultation with the commissioner, shall promulgate regulations establishing an application process for the credit.  </p>
+
+<p>(6) The secretary of economic development shall annually file a report with the house and senate committees on ways and means, the joint committee on economic development and emerging technologies and the joint committee on labor and workforce development identifying the following: (i) total amount of tax credits claimed pursuant to this subsection and section 38UU of chapter 63; (ii) the number of participating interns; and (iii) the number of participating employers. In the fourth submission of said annual report, the secretary of economic development shall provide an assessment of the effectiveness of the credit offered under this subsection and section 38UU of chapter 63 in achieving the goal of retaining graduating talent in the commonwealth. Notwithstanding section 21 of chapter 62C, the department of revenue may provide to the secretary of economic development de-identified, statistical tax return information related to the tax filings of former participating interns for the 5 tax years beginning after the conclusion of the internship to evaluate whether former interns are employed and domiciled in the commonwealth after the internship; provided, that such information shall be shared in a manner that prevents the identification of particular tax returns.  </p> 
+
+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/bundles/enhancedInteractions.min.js?v=_W8fynUFhIxET6cAFuG8IyJ0fPW899lWPriT1nvDB6U"></script>
+
+<script>
+    $(document).ready(function () {
+        initJsTree('/Laws/GeneralLaws/GetJsTree', 'I', 'IX', '62', '', '6');
+    });
+</script>
+
+        </main>
+    </div>
+    <!--Footer-->
+    <footer>
+    <h2 class="sr-only">Site Information & Links</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <h3>Helpful Massachusetts Links</h3>
+                <ul class="list-unstyled">
+                    <li><a target="_blank" href="http://www.mass.gov/">Mass.gov <p class="sr-only">link to an external site</p><span class="fa fa-external-link"></span></a></li>
+                    <li><a target="_blank" href="http://jobs.hrd.state.ma.us/">Commonwealth Employment Opportunities <p class="sr-only">link to an external site</p><span class="fa fa-external-link"></span></a></li>
+                    <li><a target="_blank" href="http://www.sec.state.ma.us/">Secretary of the Commonwealth <p class="sr-only">link to an external site</p><span class="fa fa-external-link"></span></a></li>
+                    <li><a target="_blank" href="https://www.mass.gov/orgs/massachusetts-department-of-transportation/">Mass DOT <p class="sr-only">link to an external site</p><span class="fa fa-external-link"></span></a></li>
+                    <li><a target="_blank" href="https://www.mass.gov/appointments-to-boards-and-commissions">Boards & Commissions <p class="sr-only">link to an external site</p><span class="fa fa-external-link"></span></a></li>
+                    <li><a target="_blank" href="http://www.mass.gov/ago/doing-business-in-massachusetts/public-charities-or-not-for-profits/">Non-Profits & Charities <p class="sr-only">link to an external site</p><span class="fa fa-external-link"></span></a></li>
+                    <li><a target="_blank" href="http://libraries.state.ma.us/">Libraries <p class="sr-only">link to an external site</p><span class="fa fa-external-link"></span></a></li>
+                    <li><a target="_blank" href="https://cloud.google.com/translate/attribution">Google Translate <p class="sr-only">link to an external site</p><span class="fa fa-external-link"></span></a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <h3>Quick Links</h3>
+                <ul class="list-unstyled">
+                    <li><a href="/StateHouse/Accessibility">Accessibility</a></li>
+                    <li><a href="/MyLegislature">MyLegislature</a></li>
+                    <li><a href="/Laws/GeneralLaws">Massachusetts General Laws</a></li>
+                    <li><a href="/Search/FindMyLegislator">Find My Legislator</a></li>
+                    <li><a href="/StateHouse/Visit">Visit the State House</a></li>
+                    <li><a href="/StateHouse/Contact">Contact Us</a></li>
+                    <li><a href="/StateHouse/Privacy">Privacy Policy</a></li>
+                    <li><a href="/StateHouse/TermsAndConditions">Terms And Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-md-6 copyright">
+                Copyright &copy; 2026 The General Court of the Commonwealth of Massachusetts
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" id="registrationModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content registrationModal">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Register for MyLegislature</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5">
+                        <h5 class="text-center">Register With An Existing Account</h5>
+                        <button onclick="window.location = '/Account/ExternalLogin?provider=Facebook'" type="button" class="btn btn-facebook btn-lg btn-block oauthButton"><span class="fa fa-facebook-official fa-fw"></span> Sign in<span class="hidden-xs hidden-sm"> with Facebook</span></button>
+<button onclick="window.location = '/Account/ExternalLogin?provider=Google'" type="button" class="btn btn-google btn-lg btn-block oauthButton"><span class="fa fa-google-plus fa-fw"></span> Sign in<span class="hidden-xs hidden-sm"> with Google</span></button>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 vDivide">
+                        <h5 class="text-center">Register With Your Email Address</h5>
+                        <form method="post" id="registrationModalForm" role="form" data-ajax="true" data-ajax-method="POST" data-ajax-begin="inProgress" data-ajax-success="registrationModalFormOnSuccess" action="/Account/Register">
+                            
+
+
+<div class="form-group">
+    <label class="sr-only" for="RegistrationEmail">Email Address</label>
+    <div class="input-group">
+        <span class="input-group-addon"><span class="fa fa-user fa-fw"></span></span>
+        <input autocomplete="email" class="form-control" data-val="true" data-val-email="Invalid email address." data-val-required="Email address is required." id="RegistrationEmail" name="RegistrationEmail" placeholder="Email Address" type="email" value="" />
+    </div>
+    <span class="help-block field-validation-valid" data-valmsg-for="RegistrationEmail" data-valmsg-replace="true"></span>
+</div>
+<div class="form-group">
+    <label class="sr-only" for="RegistrationPassword">Password</label>
+    <div class="input-group">
+        <span class="input-group-addon"><span class="fa fa-lock fa-fw"></span></span>
+        <input aria-label="Passwords must contain at least one number, lowercase and uppercase letters, and be seven or more characters long." autocomplete="off" class="form-control fnPasswordStrength" data-placement="top" data-toggle="password-tooltip" data-val="true" data-val-required="Password required." id="RegistrationPassword" name="RegistrationPassword" placeholder="Password" type="password" />
+    </div>
+    <span class="help-block field-validation-valid" data-valmsg-for="RegistrationPassword" data-valmsg-replace="true"></span>
+</div>
+<div class="form-group">
+    <label class="sr-only" for="PasswordConfirmation">Confirm Password</label>
+    <div class="input-group">
+        <span class="input-group-addon"><span class="fa fa-lock fa-fw"></span></span>
+        <input autocomplete="off" class="form-control" data-val="true" data-val-equalto="Passwords do not match." data-val-equalto-other="*.RegistrationPassword" data-val-required="Password confirmation required." id="PasswordConfirmation" name="PasswordConfirmation" placeholder="Confirm Password" type="password" />
+    </div>
+    <span class="help-block field-validation-valid" data-valmsg-for="PasswordConfirmation" data-valmsg-replace="true"></span>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-xs-offset-0 captcha">
+        <script src='https://www.google.com/recaptcha/api.js'></script><div class="g-recaptcha" data-callback="recaptcha_callback" data-sitekey="6LffVvYUAAAAAFgtGnNLexZBT_BK7JzNbOEBaljw"></div>
+        
+    </div>
+</div>
+<button class="btn btn-primary btn-lg btn-default actionButton fnStart" type="submit">Register</button>
+<button class="btn btn-primary btn-lg btn-default actionButton fnEnd" style="display: none" type="button" disabled>Registering...</button>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8HIVWfIXwzZOnTpy4PLP6iMtdez1PW8EAyQhvXVfsSeh_uvWUMygRXkgqCQANrqTcneh9ZgAOSq4Quv_Vcb5gkM7WEAov6KBLQmKEbaGSZYGCDw1wXxqgf3bmqrpFjxT6MVFEDKNa7lOMJMlo--w6FA" /></form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="switchModal('#loginModal')">Already have an account? Sign in here.</button>
+                <button type="button" class="btn btn-secondary" onclick="switchModal('#forgotPasswordModal')">Forgot Password?</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="loginModal" aria-modal="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content loginModal">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" type="button" aria-label="Close dialog">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Sign in to MyLegislature</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row fnProgressLoader">
+                    <div class="col-xs-12 col-sm-5">
+                        <h5 class="text-center sr-only">Sign In With Your Facebook or Google+ Account</h5>
+                        <button onclick="window.location = '/Account/ExternalLogin?provider=Facebook'" type="button" class="btn btn-facebook btn-lg btn-block oauthButton"><span class="fa fa-facebook-official fa-fw"></span> Sign in<span class="hidden-xs hidden-sm"> with Facebook</span></button>
+<button onclick="window.location = '/Account/ExternalLogin?provider=Google'" type="button" class="btn btn-google btn-lg btn-block oauthButton"><span class="fa fa-google-plus fa-fw"></span> Sign in<span class="hidden-xs hidden-sm"> with Google</span></button>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 vDivide">
+                        <h5 class="text-center sr-only">Sign In With Your MyLegislature Account</h5>
+                        <form method="post" id="loginModalForm" role="form" data-ajax="true" data-ajax-method="POST" data-ajax-begin="inProgress" data-ajax-complete="loginModalFormOnComplete" action="/Account/Login?isModal=true">
+                            
+<div class="form-group">
+    <label class="sr-only" for="loginEmail">Email*</label>
+    <div class="input-group">
+        <span class="input-group-addon"><span class="fa fa-user fa-fw"></span></span>
+        <input class="form-control" data-val="true" data-val-email="Invalid email address." data-val-required="Email address is required." id="loginEmail" name="Email" placeholder="Email Address" type="text" value="" />
+    </div>
+    <span class="help-block field-validation-valid" data-valmsg-for="loginEmail" data-valmsg-replace="true"></span>
+</div>
+<div class="form-group passwordField">
+    <label class="sr-only" for="loginPassword">Password*</label>
+    <div class="input-group">
+        <span class="input-group-addon"><span class="fa fa-lock fa-fw"></span></span>
+        <input autocomplete="false" class="form-control" data-val="true" data-val-required="Password required." id="loginPassword" name="Password" placeholder="Password" type="password" />
+    </div>
+    <span class="help-block field-validation-valid" data-valmsg-for="loginPassword" data-valmsg-replace="true"></span>
+</div>
+<div class="form-group clearfix">
+    <a class="forgotPassword" aria-haspopup="true" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
+</div>
+<div class="center-block">
+    <button type="submit" class="btn btn-primary btn-lg btn-default actionButton fnStart">Sign In</button>
+    <button class="btn btn-primary btn-lg btn-default actionButton fnEnd" style="display: none">Signing In...</button>
+</div>
+                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8HIVWfIXwzZOnTpy4PLP6iMtdez1PW8EAyQhvXVfsSeh_uvWUMygRXkgqCQANrqTcneh9ZgAOSq4Quv_Vcb5gkM7WEAov6KBLQmKEbaGSZYGCDw1wXxqgf3bmqrpFjxT6MVFEDKNa7lOMJMlo--w6FA" /></form>
+                    </div>
+                </div>
+            </div>
+          <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="switchModal('#registrationModal')">Not Registered? Click here.</button>
+                <a class="text-center visible-xs-block" href="/MyLegislature/About">Learn More Here! &raquo;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" id="forgotPasswordModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">
+                    <span aria-hidden="true">&times;</span>                    
+                </button>
+            <h4 class="modal-title">Forgot Password</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="forgotPasswordModalForm" role="form" onsubmit="if($(this).valid()){ $(this).find('.fnEnd').show(); $(this).find('.fnStart').hide(); }" data-ajax="true" data-ajax-method="POST" data-ajax-complete="forgotPasswordModalFormOnComplete" action="/Account/ForgotPassword">
+                        <p><strong>Please enter your email address.</strong> If there is an account associated with that address, a password reset link will be mailed to you.</p>
+    <div class="row">
+        <div class="form-group clearfix">
+            <div class="col-sm-12 col-md-9">
+                <label class="sr-only" for="EmailAddress">Email Address</label>
+                <input autocomplete="email" class="form-control" data-val="true" data-val-email="Invalid email address." data-val-required="Email required." id="EmailAddress" name="EmailAddress" placeholder="Email Address" type="text" value="" />
+                <span class="help-block field-validation-valid" data-valmsg-for="EmailAddress" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 resetButtons">
+            <button type="submit" id="passwordResetButton" class="btn btn-danger fnStart">Reset Password</button>
+            <button type="button" class="btn btn-danger fnEnd" style="display: none">Processing...</button>
+            <button data-dismiss="modal" type="button" class="btn btn-secondary">Cancel</button>
+        </div>
+    </div>
+
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8HIVWfIXwzZOnTpy4PLP6iMtdez1PW8EAyQhvXVfsSeh_uvWUMygRXkgqCQANrqTcneh9ZgAOSq4Quv_Vcb5gkM7WEAov6KBLQmKEbaGSZYGCDw1wXxqgf3bmqrpFjxT6MVFEDKNa7lOMJMlo--w6FA" /></form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal fade fnModalStack" tabindex="-1" role="dialog" aria-modal="true" id="exclusiveFeatureModal">
+  <div class="modal-dialog exclusiveModal">
+    <div class="modal-content">
+      <div class="modal-header">
+          <button class="close" data-dismiss="modal" type="button" aria-label="Close dialog">
+              <span aria-hidden="true">&times;</span>
+          </button>
+        <h4 class="modal-title">Sign In Required</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+        	<div class="row">
+        	  <div class="col-xs-12">
+        	    <p class="exclusiveModalContent">This feature is exclusive to users of<span>MyLegislature</span></p>
+        	  </div>
+        	  <div class="col-xs-6">
+        	    <button type="button" onclick="switchModal('#loginModal')" class="btn btn-primary btn-lg btn-block">Sign In</button>
+        	  </div>
+        	  <div class="col-xs-6">
+        	    <button type="button" onclick="switchModal('#registrationModal')" class="btn btn-primary btn-lg btn-block">Register</button>
+        	  </div>
+        	</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div id="locationModal" class="modal fade fnModalRemoveData fnModalStack" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+    <div id="billModal" class="modal fade fnModalRemoveData modalFixedHeight"tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog printPreviewModal">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<div id="amendmentModal" class="modal fade fnModalRemoveData modalFixedHeight" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<div id="downloadModal" class="modal fade fnModalRemoveData modalFixedHeight" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+    <div class="modal" id="mobileSearch" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close dialog">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Search The Legislature</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/Search" class="container" method="get">        <h2 class="sr-only">Search the Legislature</h2>
+    <label class="sr-only" for="mobileFullSearch">Search the Legislature</label>
+    <div class="typeahead-container">
+        <div class="typeahead-field">
+            <div class="input-group typeahead-query input-group-lg">
+                <input id="mobileFullSearch"
+                       name="SearchTerms"
+                       class="searchBox form-control"
+                       type="search"
+                       value=""
+                       data-tt-search-type="Bills, GeneralLaws, SessionLaws, Committees, Legislators, Events, Journals, Reports, Videos, Amendments, ClerkContents"
+                       data-tt-search-reset="Bills, GeneralLaws, SessionLaws, Committees, Legislators, Events, Journals, Reports, Videos, Amendments, ClerkContents"
+                       data-tt-url="/TypeAheadSearch"
+                       data-tt-branch=""
+                       data-tt-limit="7"
+                       aria-haspopup="true"
+                       aria-autocomplete="list"
+                       autocomplete="off"
+                       placeholder="Search the Legislature..." />
+
+                <div class="input-group-btn typeahead-button">
+                    <button type="submit" class="btn btn-primary searchButton" aria-label="Search the Legislature">
+                                <span class="fa fa-search"></span>
+                                <span class="sr-only">Search</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="badgeModal" class="modal fade fnModalRemoveData fnModalStack" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+    <script src="/bundles/bootstrap.min.js"></script>
+    <script src="/bundles/common.min.js"></script>
+    <script src="/bundles/validate.min.js"></script>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/Scripts/ie10-viewport-bug-workaround.js"></script>
+    <script src="/Scripts/jquery-yammcessible.js"></script>
+
+    <script>
+        $("document").ready(function () {
+            $('.yamm').accessibleMegaMenu();
+        });
+    </script>
+</body>
+</html>

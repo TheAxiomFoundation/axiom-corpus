@@ -1,0 +1,507 @@
+
+<!-- 77-2715.07 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nebraska Legislature</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="description" content="Nebraska Legislature">
+    <meta name="author" content="LTC">
+	
+
+    <!-- Old Standard TT Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Old+Standard+TT:700,400,400italic" type="text/css">
+
+    <!-- Boostrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" crossorigin="anonymous">
+
+    <!-- Add to Calander -->
+    <link href="/css/addtocalendar.css" rel="stylesheet" type="text/css">
+
+    <!-- LTC CSS -->
+    <link rel="stylesheet" href="/css/bootstrap/style.css?v=2.0">
+
+        
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G1TBVHCCCT" nonce="cdc1e91d2258a708b2def6390efbdfb9"></script>
+<script nonce="cdc1e91d2258a708b2def6390efbdfb9">
+
+	(function(w,d,s,l,i){
+		w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+		var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+		j.async=true;
+		j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+		var n=d.querySelector('[nonce]');
+		n&&j.setAttribute('nonce',n.nonce||n.getAttribute('nonce'));
+		f.parentNode.insertBefore(j,f);
+	})
+	(window,document,'script','dataLayer','G-G1TBVHCCCT');
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G1TBVHCCCT');
+
+</script>
+<body>
+    <div id="top"></div>
+            <div class="view-back d-none d-sm-block"><i class="fas fa-arrow-circle-up fa-lg"></i></div>
+    <div class="container view-front">
+        <div class="row ltc-header">
+            <div class="col-md-2 ltc-header-left d-none d-md-block">
+                <i class="ltc-stateseal-sepia"></i>
+            </div>
+            <div class="col-md-8 ltc-header-middle text-center">
+                <h1 class="icons-ltc-sower2-icon">NEBRASKA LEGISLATURE</h1>
+                <h2>
+                    <em>
+                        <small>
+                            The official site of the <span class="nobreak">Nebraska Unicameral Legislature</span>
+                        </small>
+                    </em>
+                </h2>
+            </div>
+            <div class="col-md-2 ltc-header-right d-none d-md-block">
+                <i class="ltc-seal-sepia float-end"></i>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-2 nopadding">
+                                <div class="sidebar-nav sticky-top">
+    <nav class="navbar navbar-expand-sm navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i> 
+                <span class="navbar-brand mb-0 h2">MENU</span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbarSupportedContent">
+            <ul class="nav nav-list flex-column">
+                <li class="active nav-item"><a href="/" class="nav-link icons-ltc-sower2-icon"> Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle text-wrap" data-bs-toggle="dropdown">Chamber Viewer <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/cv/view_bill.php">View Bills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/bills/">One Liners</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/laws/laws.php">Statutes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/dayview.php">Summary</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/hearings_range.php">Hearings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/agenda.php">Agenda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/dayview.php">Journal</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/fiscal.php">Budget</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/FloorDocs/Current/PDF/Rules/RuleBook.pdf" target="_blank">Rule Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/FloorDocs/Current/PDF/Constitution/constitution.pdf" target="_blank">Constitution</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Legislature <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/about/about.php">About<span class="sr-only"> The Nebraska State Legislature</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/budget_process.php">The Budget Process</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/history_unicameral.php">History of the Unicameral</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/lawmaking.php">Lawmaking in Nebraska</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/maps.php">Maps</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/blue-book.php">Nebraska Blue Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/on_unicameralism.php">On Unicameralism</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/photos.php">Photos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/pubs.php">Publications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/sen_qualifications.php">Senator Qualifications</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/education/student_programs.php">Student Programs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/about/testifying.php">Testifying at a Hearing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://update.legislature.ne.gov/" target="_blank">Unicameral Update</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/feature/visiting-capitol.php">Visiting the Capitol</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle text-wrap" data-bs-toggle="dropdown">Bills and Laws <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/bills/intro.php">Introduction</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/bills/">Search Bills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/laws/laws.php">Search Laws</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/print_on_demand/index.php">Print On Demand</a></li>
+                    </ul>
+                </li>
+                <li><a class="nav-link" href="/calendar/calendar.php" class="nav-item">Calendar</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Committees <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/committees/committees.php">About <span class="sr-only"> Standing and Special Committees</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/committees/standing-committees.php">Standing Committees</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/committees/public-input.php">Public Input Options</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/committees/select-committees.php">Select &amp; Special Committees</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/committees/compact-commissions.php">Compact Commissions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calendar/hearings_range.php">Hearing Schedules</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/committeesurvey_view.php">Occupational Board Reform Act Survey Results</a></li>
+                    </ul>
+                </li>
+                                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle text-wrap" data-bs-toggle="dropdown">Legislative Divisions <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/divisions/clerk.php">Clerk of the Legislature</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/divisions/oversight.php">Legislative Oversight</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/divisions/fiscal.php">Legislative Fiscal Office</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://news.legislature.ne.gov/lrd/">Legislative Research Office</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/divisions/ombud.php">Public Counsel/Ombudsman</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/divisions/revisor.php">Revisor of Statutes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/divisions/clerk_histories.php">Legislative Histories</a></li>
+                <li class="nav-item"><a class="nav-link" href="/history_request">History Request</a></li>
+                <li class="nav-item"><a class="nav-link" href="/news/news.php">News</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Reports <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/reports/reports.php">Overview</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/agencies/view.php">Agencies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/committee.php">Committee</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/fiscal.php">Fiscal/Budget</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/research.php">General Research</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/interim.php">Interim Studies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/lobby.php">Lobbyist Registration</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/oversight.php">Legislative Oversight</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/public_counsel.php">Public Counsel</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/reports/revisor.php">Revisor of Statutes</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Senators <i class="fas fa-caret-right float-sm-end ps-3 ps-sm-0"></i></a>
+                    <ul class="drop-list dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="/senators/senator_list.php">Senators' Landing Pages</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/senators/senators.php">Senators' Duties</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://news.legislature.ne.gov/speaker/">Speaker</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/senators/senator_find.php">Find your Senator</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/senators/picture_list.php">Photos</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/session/session_info.php">Session Information</a></li>
+                <li class="nav-item"><a class="nav-link" href="/transcripts/">Transcripts</a></li>
+                <hr class="my-0" />
+                <li class="nav-item"><a class="nav-link" href="/feature/agencies.php">For Agencies</a></li>
+                <li class="nav-item"><a class="nav-link" href="/feature/citizen.php">For Citizens</a></li>
+                <li class="nav-item"><a class="nav-link" href="/feature/journalist.php">For Journalists</a></li>
+                <li class="nav-item"><a class="nav-link" href="/feature/lobbyists.php">For Lobbyists</a></li>
+                <li class="nav-item"><a class="nav-link" href="/feature/teach.php">For Students and Teachers</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</div>
+            </div>
+                        	<div class="col-sm-8 col-md-10 ltc-col-middle">
+										<div class="main-content">
+						
+<h1>Nebraska Revised Statute 77-2715.07</h1>
+	<div class="row">
+		<div class="col-12">
+			<div class="row d-flex justify-content-between">
+				<div class="col-sm-8">
+					<ul class="list-inline">
+						<li class="list-inline-item"><a href="/laws/browse-statutes.php">Revised Statutes</a></li>
+						<li class="list-inline-item"><i class="fas fa-angle-double-right"></i></li>
+						<li class="list-inline-item"><a href="/laws/browse-chapters.php?chapter=77">Chapter 77</a></li>
+						<li class="list-inline-item"><i class="fas fa-angle-double-right"></i></li>
+						<li class="list-inline-item">77-2715.07</li>
+					</ul>
+				</div>
+				<div class="col-sm-4 d-none d-sm-block text-end">
+					<a href="/laws/statutes.php?statute=77-2715.07&print=true"><i class="fas fa-print"></i> Print Friendly</a>
+				</div>
+			</div>
+			<div class="d-block d-sm-none mb-2">
+				<a class="btn btn-leg btn-block" href="/laws/statutes.php?statute=77-2715.07&print=true"><i class="fas fa-print"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-md-11">
+			<nav class="d-flex justify-content-center">
+				<ul class="pagination">
+											<li class="page-item"><a class="page-link" href="/laws/statutes.php?statute=77-2715.06"><i class="fas fa-chevron-left"></i><span class="sr-only">View Statute</span> 77-2715.06</a></li>
+										<li class="page-item"><a class="page-link" href="/laws/browse-chapters.php?chapter=77">Chapter 77 Index</a></li>
+											<li class="page-item"><a class="page-link" href="/laws/statutes.php?statute=77-2715.08"><span class="sr-only">View Statute</span>77-2715.08 <i class="fas fa-chevron-right"></i></a></li>
+									</ul>
+			</nav>
+						<div class="card mb-4" id="stat_panel">
+				<div class="card-header leg-header">
+					Chapter 77 				</div>
+				<div class="card-body">
+					<div class="statute">
+    
+		
+		<h2>77-2715.07.
+		</h2>
+<h3>Income tax credits.</h3>
+<p class="text-justify">(1) There shall be allowed to qualified resident individuals as a nonrefundable credit against the income tax imposed by the Nebraska Revenue Act of 1967:</p>
+<p class="text-justify">(a) A credit equal to the federal credit allowed under section 22 of the Internal Revenue Code; and</p>
+<p class="text-justify">(b) A credit for taxes paid to another state as provided in section <a href="/laws/statutes.php?statute=77-2730">77-2730</a>.</p>
+<p class="text-justify">(2) There shall be allowed to qualified resident individuals against the income tax imposed by the Nebraska Revenue Act of 1967:</p>
+<p class="text-justify">(a) For returns filed reporting federal adjusted gross incomes of greater than twenty-nine thousand dollars, a nonrefundable credit equal to twenty-five percent of the federal credit allowed under section 21 of the Internal Revenue Code of 1986, as amended, except that for taxable years beginning or deemed to begin on or after January 1, 2015, such nonrefundable credit shall be allowed only if the individual would have received the federal credit allowed under section 21 of the code after adding back in any carryforward of a net operating loss that was deducted pursuant to such section in determining eligibility for the federal credit;</p>
+<p class="text-justify">(b) For returns filed reporting federal adjusted gross income of twenty-nine thousand dollars or less, a refundable credit equal to a percentage of the federal credit allowable under section 21 of the Internal Revenue Code of 1986, as amended, whether or not the federal credit was limited by the federal tax liability. The percentage of the federal credit shall be one hundred percent for incomes not greater than twenty-two thousand dollars, and the percentage shall be reduced by ten percent for each one thousand dollars, or fraction thereof, by which the reported federal adjusted gross income exceeds twenty-two thousand dollars, except that for taxable years beginning or deemed to begin on or after January 1, 2015, such refundable credit shall be allowed only if the individual would have received the federal credit allowed under section 21 of the code after adding back in any carryforward of a net operating loss that was deducted pursuant to such section in determining eligibility for the federal credit;</p>
+<p class="text-justify">(c) A refundable credit as provided in section <a href="/laws/statutes.php?statute=77-5209.01">77-5209.01</a> for individuals who qualify for an income tax credit as a qualified beginning farmer or livestock producer under the Beginning Farmer Tax Credit Act for all taxable years beginning or deemed to begin on or after January 1, 2006, under the Internal Revenue Code of 1986, as amended;</p>
+<p class="text-justify">(d) A refundable credit for individuals who qualify for an income tax credit under the Adoption Tax Credit Act, the Angel Investment Tax Credit Act, the Nebraska Advantage Microenterprise Tax Credit Act, the Nebraska Advantage Research and Development Act, the Reverse Osmosis System Tax Credit Act, or the Volunteer Emergency Responders Incentive Act;</p>
+<p class="text-justify">(e) A refundable credit equal to ten percent of the federal credit allowed under section 32 of the Internal Revenue Code of 1986, as amended, except that for taxable years beginning or deemed to begin on or after January 1, 2015, such refundable credit shall be allowed only if the individual would have received the federal credit allowed under section 32 of the code after adding back in any carryforward of a net operating loss that was deducted pursuant to such section in determining eligibility for the federal credit; and</p>
+<p class="text-justify">(f) A refundable credit as provided in section <a href="/laws/statutes.php?statute=77-7203">77-7203</a> for individuals who qualify for an income tax credit under the Child Care Tax Credit Act for all taxable years beginning or deemed to begin on or after January 1, 2024, under the Internal Revenue Code of 1986, as amended.</p>
+<p class="text-justify">(3) There shall be allowed to all individuals as a nonrefundable credit against the income tax imposed by the Nebraska Revenue Act of 1967:</p>
+<p class="text-justify">(a) A credit for personal exemptions allowed under section <a href="/laws/statutes.php?statute=77-2716.01">77-2716.01</a>;</p>
+<p class="text-justify">(b) A credit for (i) contributions to programs or projects certified for tax credit status as provided in the Creating High Impact Economic Futures Act and (ii) contributions to certified community betterment programs as provided in the Community Development Assistance Act. Each partner, each shareholder of an electing subchapter S corporation, each beneficiary of an estate or trust, or each member of a limited liability company shall report his or her share of the credit in the same manner and proportion as he or she reports the partnership, subchapter S corporation, estate, trust, or limited liability company income;</p>
+<p class="text-justify">(c) A credit for investment in a biodiesel facility as provided in section <a href="/laws/statutes.php?statute=77-27,236">77-27,236</a>;</p>
+<p class="text-justify">(d) A credit as provided in the New Markets Job Growth Investment Act;</p>
+<p class="text-justify">(e) A credit as provided in the Nebraska Job Creation and Mainstreet Revitalization Act;</p>
+<p class="text-justify">(f) A credit to employers as provided in sections <a href="/laws/statutes.php?statute=77-27,238">77-27,238</a> and <a href="/laws/statutes.php?statute=77-27,240">77-27,240</a>;</p>
+<p class="text-justify">(g) A credit as provided in the Affordable Housing Tax Credit Act;</p>
+<p class="text-justify">(h) A credit to grocery store retailers, restaurants, and agricultural producers as provided in section <a href="/laws/statutes.php?statute=77-27,241">77-27,241</a>;</p>
+<p class="text-justify">(i) A credit as provided in the Sustainable Aviation Fuel Tax Credit Act;</p>
+<p class="text-justify">(j) A credit as provided in the Nebraska Shortline Rail Modernization Act;</p>
+<p class="text-justify">(k) A credit as provided in the Nebraska Pregnancy Help Act; and</p>
+<p class="text-justify">(l) A credit as provided in the Caregiver Tax Credit Act.</p>
+<p class="text-justify">(4) There shall be allowed as a credit against the income tax imposed by the Nebraska Revenue Act of 1967:</p>
+<p class="text-justify">(a) A credit to all resident estates and trusts for taxes paid to another state as provided in section <a href="/laws/statutes.php?statute=77-2730">77-2730</a>;</p>
+<p class="text-justify">(b) A credit to all estates and trusts for (i) contributions to programs or projects certified for tax credit status as provided in the Creating High Impact Economic Futures Act and (ii) contributions to certified community betterment programs as provided in the Community Development Assistance Act; and</p>
+<p class="text-justify">(c) A refundable credit for individuals who qualify for an income tax credit as an owner of agricultural assets under the Beginning Farmer Tax Credit Act for all taxable years beginning or deemed to begin on or after January 1, 2009, under the Internal Revenue Code of 1986, as amended. The credit allowed for each partner, shareholder, member, or beneficiary of a partnership, corporation, limited liability company, or estate or trust qualifying for an income tax credit as an owner of agricultural assets under the Beginning Farmer Tax Credit Act shall be equal to the partner's, shareholder's, member's, or beneficiary's portion of the amount of tax credit distributed pursuant to subsection (6) of section <a href="/laws/statutes.php?statute=77-5211">77-5211</a>.</p>
+<p class="text-justify">(5)(a) For all taxable years beginning on or after January 1, 2007, and before January 1, 2009, under the Internal Revenue Code of 1986, as amended, there shall be allowed to each partner, shareholder, member, or beneficiary of a partnership, subchapter S corporation, limited liability company, or estate or trust a nonrefundable credit against the income tax imposed by the Nebraska Revenue Act of 1967 equal to fifty percent of the partner's, shareholder's, member's, or beneficiary's portion of the amount of franchise tax paid to the state under sections <a href="/laws/statutes.php?statute=77-3801">77-3801</a> to <a href="/laws/statutes.php?statute=77-3807">77-3807</a> by a financial institution.</p>
+<p class="text-justify">(b) For all taxable years beginning on or after January 1, 2009, under the Internal Revenue Code of 1986, as amended, there shall be allowed to each partner, shareholder, member, or beneficiary of a partnership, subchapter S corporation, limited liability company, or estate or trust a nonrefundable credit against the income tax imposed by the Nebraska Revenue Act of 1967 equal to the partner's, shareholder's, member's, or beneficiary's portion of the amount of franchise tax paid to the state under sections <a href="/laws/statutes.php?statute=77-3801">77-3801</a> to <a href="/laws/statutes.php?statute=77-3807">77-3807</a> by a financial institution.</p>
+<p class="text-justify">(c) Each partner, shareholder, member, or beneficiary shall report his or her share of the credit in the same manner and proportion as he or she reports the partnership, subchapter S corporation, limited liability company, or estate or trust income. If any partner, shareholder, member, or beneficiary cannot fully utilize the credit for that year, the credit may not be carried forward or back.</p>
+<p class="text-justify">(6) There shall be allowed to all individuals nonrefundable credits against the income tax imposed by the Nebraska Revenue Act of 1967 as provided in section <a href="/laws/statutes.php?statute=77-3604">77-3604</a> and refundable credits against the income tax imposed by the Nebraska Revenue Act of 1967 as provided in section <a href="/laws/statutes.php?statute=77-3605">77-3605</a>.</p>
+<p class="text-justify">(7)(a) For taxable years beginning or deemed to begin on or after January 1, 2020, and before January 1, 2032, under the Internal Revenue Code of 1986, as amended, a nonrefundable credit against the income tax imposed by the Nebraska Revenue Act of 1967 in the amount of five thousand dollars shall be allowed to any individual who purchases a residence during the taxable year if such residence:</p>
+<p class="text-justify">(i) Is located within an area that has been declared an extremely blighted area under section <a href="/laws/statutes.php?statute=18-2101.02">18-2101.02</a>;</p>
+<p class="text-justify">(ii) Is the individual's primary residence; and</p>
+<p class="text-justify">(iii) Was not purchased from a family member of the individual or a family member of the individual's spouse.</p>
+<p class="text-justify">(b) The credit provided in this subsection shall be claimed for the taxable year in which the residence is purchased. If the individual cannot fully utilize the credit for such year, the credit may be carried forward to subsequent taxable years until fully utilized.</p>
+<p class="text-justify">(c) No more than one credit may be claimed under this subsection with respect to a single residence.</p>
+<p class="text-justify">(d) The credit provided in this subsection shall be subject to recapture by the Department of Revenue if the individual claiming the credit sells or otherwise transfers the residence or quits using the residence as his or her primary residence within five years after the end of the taxable year in which the credit was claimed.</p>
+<p class="text-justify">(e) For purposes of this subsection, family member means an individual's spouse, child, parent, brother, sister, grandchild, or grandparent, whether by blood, marriage, or adoption.</p>
+<p class="text-justify">(8) There shall be allowed to all individuals refundable credits against the income tax imposed by the Nebraska Revenue Act of 1967 as provided in the Cast and Crew Nebraska Act, the Domestic Violence and Human Trafficking Service Providers Tax Credit Act, the Nebraska Biodiesel Tax Credit Act, the Nebraska Higher Blend Tax Credit Act, the Nebraska Property Tax Incentive Act, the Relocation Incentive Act, and the Renewable Chemical Production Tax Credit Act.</p>
+<p class="text-justify">(9)(a) For taxable years beginning or deemed to begin on or after January 1, 2022, under the Internal Revenue Code of 1986, as amended, a refundable credit against the income tax imposed by the Nebraska Revenue Act of 1967 shall be allowed to the parent of a stillborn child if:</p>
+<p class="text-justify">(i) A fetal death certificate is filed pursuant to subsection (1) of section <a href="/laws/statutes.php?statute=71-606">71-606</a> for such child;</p>
+<p class="text-justify">(ii) Such child had advanced to at least the twentieth week of gestation; and</p>
+<p class="text-justify">(iii) Such child would have been a dependent of the individual claiming the credit.</p>
+<p class="text-justify">(b) The amount of the credit shall be two thousand dollars.</p>
+<p class="text-justify">(c) The credit shall be allowed for the taxable year in which the stillbirth occurred.</p>
+<p class="text-justify">(10) There shall be allowed to all individuals nonrefundable credits against the income tax imposed by the Nebraska Revenue Act of 1967 as provided in section <a href="/laws/statutes.php?statute=77-7204">77-7204</a>.</p>
+<p class="text-justify">(11) There shall be allowed to all individuals refundable credits against the income tax imposed by the Nebraska Revenue Act of 1967 as provided in section <a href="/laws/statutes.php?statute=77-3157">77-3157</a> and nonrefundable credits against the income tax imposed by the Nebraska Revenue Act of 1967 as provided in sections <a href="/laws/statutes.php?statute=77-3156">77-3156</a>, <a href="/laws/statutes.php?statute=77-3158">77-3158</a>, and <a href="/laws/statutes.php?statute=77-3159">77-3159</a>.</p>
+			
+	<div>
+<h2>Source</h2>
+<ul class="fa-ul">
+<li><a href="/FloorDocs/90/PDF/Slip/LB773.pdf"><i class="fa fa-li fa-book"></i>Laws 1987, LB 773, § 6; </a></li>
+<li><a href="/FloorDocs/91/PDF/Slip/LB739.pdf"><i class="fa fa-li fa-book"></i>Laws 1989, LB 739, § 2; </a></li>
+<li><a href="/FloorDocs/93/PDF/Slip/LB5.pdf"><i class="fa fa-li fa-book"></i>Laws 1993, LB 5, § 3; </a></li>
+<li><a href="/FloorDocs/93/PDF/Slip/LB121.pdf"><i class="fa fa-li fa-book"></i>Laws 1993, LB 121, § 503; </a></li>
+<li><a href="/FloorDocs/93/PDF/Slip/LB240.pdf"><i class="fa fa-li fa-book"></i>Laws 1993, LB 240, § 4; </a></li>
+<li><a href="/FloorDocs/93/PDF/Slip/LB815.pdf"><i class="fa fa-li fa-book"></i>Laws 1993, LB 815, § 23; </a></li>
+<li><a href="/FloorDocs/93/PDF/Slip/LB977.pdf"><i class="fa fa-li fa-book"></i>Laws 1994, LB 977, § 12; </a></li>
+<li><a href="/FloorDocs/94/PDF/Slip/LB898.pdf"><i class="fa fa-li fa-book"></i>Laws 1996, LB 898, § 5; </a></li>
+<li><a href="/FloorDocs/95/PDF/Slip/LB1028.pdf"><i class="fa fa-li fa-book"></i>Laws 1998, LB 1028, § 2; </a></li>
+<li><a href="/FloorDocs/96/PDF/Slip/LB630.pdf"><i class="fa fa-li fa-book"></i>Laws 1999, LB 630, § 1; </a></li>
+<li><a href="/FloorDocs/97/PDF/Slip/LB433.pdf"><i class="fa fa-li fa-book"></i>Laws 2001, LB 433, § 4; </a></li>
+<li><a href="/FloorDocs/99/PDF/Slip/LB312.pdf"><i class="fa fa-li fa-book"></i>Laws 2005, LB 312, § 12; </a></li>
+<li><a href="/FloorDocs/99/PDF/Slip/LB968.pdf"><i class="fa fa-li fa-book"></i>Laws 2006, LB 968, § 8; </a></li>
+<li><a href="/FloorDocs/99/PDF/Slip/LB990.pdf"><i class="fa fa-li fa-book"></i>Laws 2006, LB 990, § 1; </a></li>
+<li><a href="/FloorDocs/100/PDF/Slip/LB343.pdf"><i class="fa fa-li fa-book"></i>Laws 2007, LB343, § 3; </a></li>
+<li><a href="/FloorDocs/100/PDF/Slip/LB367.pdf"><i class="fa fa-li fa-book"></i>Laws 2007, LB367, § 20; </a></li>
+<li><a href="/FloorDocs/100/PDF/Slip/LB456.pdf"><i class="fa fa-li fa-book"></i>Laws 2007, LB456, § 1; </a></li>
+<li><a href="/FloorDocs/101/PDF/Slip/LB165.pdf"><i class="fa fa-li fa-book"></i>Laws 2009, LB165, § 12; </a></li>
+<li><a href="/FloorDocs/102/PDF/Slip/LB389.pdf"><i class="fa fa-li fa-book"></i>Laws 2011, LB389, § 12; </a></li>
+<li><a href="/FloorDocs/102/PDF/Slip/LB1128.pdf"><i class="fa fa-li fa-book"></i>Laws 2012, LB1128, § 22; </a></li>
+<li><a href="/FloorDocs/103/PDF/Slip/LB191.pdf"><i class="fa fa-li fa-book"></i>Laws 2014, LB191, § 17; </a></li>
+<li><a href="/FloorDocs/104/PDF/Slip/LB591.pdf"><i class="fa fa-li fa-book"></i>Laws 2015, LB591, § 12; </a></li>
+<li><a href="/FloorDocs/104/PDF/Slip/LB774.pdf"><i class="fa fa-li fa-book"></i>Laws 2016, LB774, § 7; </a></li>
+<li><a href="/FloorDocs/104/PDF/Slip/LB884.pdf"><i class="fa fa-li fa-book"></i>Laws 2016, LB884, § 19; </a></li>
+<li><a href="/FloorDocs/104/PDF/Slip/LB886.pdf"><i class="fa fa-li fa-book"></i>Laws 2016, LB886, § 6; </a></li>
+<li><a href="/FloorDocs/104/PDF/Slip/LB889.pdf"><i class="fa fa-li fa-book"></i>Laws 2016, LB889, § 10; </a></li>
+<li><a href="/FloorDocs/106/PDF/Slip/LB86.pdf"><i class="fa fa-li fa-book"></i>Laws 2019, LB86, § 10; </a></li>
+<li><a href="/FloorDocs/106/PDF/Slip/LB560.pdf"><i class="fa fa-li fa-book"></i>Laws 2019, LB560, § 1; </a></li>
+<li><a href="/FloorDocs/106/PDF/Slip/LB1107.pdf"><i class="fa fa-li fa-book"></i>Laws 2020, LB1107, § 130; </a></li>
+<li><a href="/FloorDocs/107/PDF/Slip/LB432.pdf"><i class="fa fa-li fa-book"></i>Laws 2021, LB432, § 11; </a></li>
+<li><a href="/FloorDocs/107/PDF/Slip/LB917.pdf"><i class="fa fa-li fa-book"></i>Laws 2022, LB917, § 3; </a></li>
+<li><a href="/FloorDocs/107/PDF/Slip/LB1261.pdf"><i class="fa fa-li fa-book"></i>Laws 2022, LB1261, § 10; </a></li>
+<li><a href="/FloorDocs/108/PDF/Slip/LB727.pdf"><i class="fa fa-li fa-book"></i>Laws 2023, LB727, § 69; </a></li>
+<li><a href="/FloorDocs/108/PDF/Slip/LB753.pdf"><i class="fa fa-li fa-book"></i>Laws 2023, LB753, § 14; </a></li>
+<li><a href="/FloorDocs/108/PDF/Slip/LB754.pdf"><i class="fa fa-li fa-book"></i>Laws 2023, LB754, § 8; </a></li>
+<li><a href="/FloorDocs/108/PDF/Slip/LB937.pdf"><i class="fa fa-li fa-book"></i>Laws 2024, LB937, § 74; </a></li>
+<li><a href="/FloorDocs/108/PDF/Slip/LB1023.pdf"><i class="fa fa-li fa-book"></i>Laws 2024, LB1023, § 9; </a></li>
+<li><a href="/FloorDocs/108/PDF/Slip/LB1344.pdf"><i class="fa fa-li fa-book"></i>Laws 2024, LB1344, § 9; </a></li>
+<li><a href="/FloorDocs/108/PDF/Slip/LB1402.pdf"><i class="fa fa-li fa-book"></i>Laws 2024, LB1402, § 2; </a></li>
+<li><a href="/FloorDocs/109/PDF/Slip/LB208.pdf"><i class="fa fa-li fa-book"></i>Laws 2025, LB208 § 4; </a></li>
+<li><a href="/FloorDocs/109/PDF/Slip/LB647.pdf"><i class="fa fa-li fa-book"></i>Laws 2025, LB647, § 34; </a></li>
+<li><a href="/FloorDocs/109/PDF/Slip/LB650.pdf"><i class="fa fa-li fa-book"></i>Laws 2025, LB650, § 41; </a></li>
+<li><a href="/FloorDocs/109/PDF/Slip/LB901.pdf"><i class="fa fa-li fa-book"></i>Laws 2026, LB901, § 24. </a></li>
+<li>
+<i class="fa fa-li fa-calendar"></i><strong>Operative Date: January 1, 2027</strong>
+</li>
+</ul>
+</div>
+		
+		<div class="statute_source">
+<h2>Cross References</h2>
+<ul class="fa-ul">
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Adoption Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-3171">77-3171</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Affordable Housing Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-2501">77-2501</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Angel Investment Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-6301">77-6301</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Beginning Farmer Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-5201">77-5201</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Caregiver Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-3163">77-3163</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Cast and Crew Nebraska Act,</span> see section <a href="/laws/statutes.php?statute=77-3121">77-3121</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Child Care Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-7201">77-7201</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Community Development Assistance Act,</span> see section <a href="/laws/statutes.php?statute=77-2913">77-2913</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Creating High Impact Economic Futures Act,</span> see section <a href="/laws/statutes.php?statute=77-3113">77-3113</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Domestic Violence and Human Trafficking Service Providers Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-3174">77-3174</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Nebraska Advantage Microenterprise Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-5901">77-5901</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Nebraska Advantage Research and Development Act,</span> see section <a href="/laws/statutes.php?statute=77-5801">77-5801</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Nebraska Biodiesel Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-7009">77-7009</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Nebraska Higher Blend Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-7001">77-7001</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Nebraska Job Creation and Mainstreet Revitalization Act,</span> see section <a href="/laws/statutes.php?statute=77-2901">77-2901</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Nebraska Pregnancy Help Act,</span> see section <a href="/laws/statutes.php?statute=77-3144">77-3144</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Nebraska Property Tax Incentive Act,</span> see section <a href="/laws/statutes.php?statute=77-6701">77-6701</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Nebraska Revenue Act of 1967,</span> see section <a href="/laws/statutes.php?statute=77-2701">77-2701</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Nebraska Shortline Rail Modernization Act,</span> see section <a href="/laws/statutes.php?statute=77-3134">77-3134</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">New Markets Job Growth Investment Act,</span> see section <a href="/laws/statutes.php?statute=77-1101">77-1101</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Relocation Incentive Act,</span> see section <a href="/laws/statutes.php?statute=77-3107">77-3107</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Renewable Chemical Production Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-6601">77-6601</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Reverse Osmosis System Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-3167">77-3167</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Sustainable Aviation Fuel Tax Credit Act,</span> see section <a href="/laws/statutes.php?statute=77-7017">77-7017</a>.</li>
+<li>
+<i class="fa fa-li fa-book"></i><span style="font-weight: bold;">Volunteer Emergency Responders Incentive Act,</span> see section <a href="/laws/statutes.php?statute=77-3101">77-3101</a>.</li>
+</ul>
+</div>
+		
+	</div>
+
+									</div>
+			</div>
+			<nav class="d-flex d-sm-none justify-content-center" id="lower_nav">
+				<ul class="pagination">
+											<li class="page-item"><a class="page-link" href="/laws/statutes.php?statute=77-2715.06"><i class="fas fa-chevron-left"></i><span class="sr-only">View Statute</span> 77-2715.06</a></li>
+										<li class="page-item"><a class="page-link" href="/laws/browse-chapters.php?chapter=77">Chapter 77 Index</a></li>
+											<li class="page-item"><a class="page-link" href="/laws/statutes.php?statute=77-2715.08"><span class="sr-only">View Statute</span>77-2715.08 <i class="fas fa-chevron-right"></i></a></li>
+									</ul>
+			</nav>
+		</div>
+	</div>
+
+					</div>
+				</div>
+                    </div>
+        <div class="back_top d-done" id="bottom_top"><a class="btn btn-leg" href="#top"><i class="fas fa-angle-double-up"></i></a></div>
+        <div class="row ltc-footer ltc-footer-top pl-4 justify-content-between">
+            <div class="col-md-3 offset-md-2 col-sm-6">
+                <a href="/faq/faq.php"><i class="fas fa-question-circle"></i> Frequent Questions</a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="/about/ada.php"><i class="fas fa-info-circle"></i> Americans with Disabilities Act Notice</a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="/contact/privacy.php"><i class="fas fa-lock"></i> Privacy Policy</a>
+            </div>
+            <div class="col-md-3 offset-md-2 col-sm-6">
+                <a href="/about/glossary.php"><i class="fas fa-book"></i> Glossary of Terms</a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="/contact/email_form.php"><i class="fas fa-pencil-alt"></i> Contact Us</a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="/contact/disclaimer.php"><i class="fas fa-exclamation-circle"></i> Disclaimer</a>
+            </div>
+        </div>
+        <div class="row ltc-footer ltc-footer-bottom">
+            <div class="col-sm-6 text-center">
+                <i class="icons-ltc-nebraska-star-icon"> OFFICIAL NEBRASKA <span class="nobreak">GOVERNMENT WEBSITE</span></i>
+            </div>
+            <div class="col-sm-6 text-center">
+                <i class="ltc-copyright">Copyright © Nebraska Legislature, <span class="nobreak">all rights reserved.</span></i>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous" nonce="cdc1e91d2258a708b2def6390efbdfb9"></script>
+
+    <!-- Bootstrap JavaScript bundle includes popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" nonce="cdc1e91d2258a708b2def6390efbdfb9"></script>
+
+
+    <!-- Fontastic -->
+    <!-- don't think this is used, is slow to load -->
+    <!--<script src="//fontastic.s3.amazonaws.com/bfHMd9cfxMxBkEW5T2yGx7/icons.js"></script>-->
+
+    <!-- stickytableheaders jQuery plugin -->
+    <script src="/js/bootstrap/stickytableheaders.min.js" nonce="cdc1e91d2258a708b2def6390efbdfb9"></script>
+	
+<script type="text/javascript" nonce="cdc1e91d2258a708b2def6390efbdfb9">
+	$(document).ready(function(){
+		if($("#stat_panel").height() > 1000){
+			$("#lower_nav").removeClass("hidden");
+		}
+	})
+</script>
+
+    <script nonce="cdc1e91d2258a708b2def6390efbdfb9">
+        $(document).ready(function () {
+                        
+            // view/hide the background image when clicking the arrow
+            $('.view-back').click( function() {
+                var self = this;
+                $('.view-front').slideToggle('slow', function() {
+                    $(self).find('i').toggleClass('fa-arrow-circle-up fa-arrow-circle-down');
+                });
+            });
+        });
+        $('#mapModal').on('show.bs.modal', function (e) {
+            e.relatedTarget.blur();
+        });
+        $(document).scroll(function() {
+            var y = $(this).scrollTop();
+            if($(window).width() > 576){
+                if (y > 700) {
+                    $('#bottom_top').fadeIn(800);
+                } else {
+                    $('#bottom_top').fadeOut(800);
+                }
+            }
+        });
+        $(".back_top a[href^='#']").on('click', function(e){
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop: $("#top").offset().top
+            }, 1250);
+        });
+        // google analytics event tracking for submitted search forms
+                // google analytics event tracking for clicked pdf links
+                // makes table headers sticky when the table is longer than the window height
+        $("table").stickyTableHeaders();
+
+        $(document).on('click','li',function(){
+
+        });
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/add-to-calendar-button@2" async defer></script>
+</body>
+</html>

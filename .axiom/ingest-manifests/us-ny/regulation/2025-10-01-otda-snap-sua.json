@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ny/regulation/2025-10-01-otda-snap-sua.json",
+      "sha256": "19bedc0cef4ec84d810b77f9f664247b8041c9f78e78930d807078504d2e7425"
+    },
+    {
+      "path": "data/corpus/inventory/us-ny/regulation/2025-10-01-otda-snap-sua.json",
+      "sha256": "fb1c7361c9a24c831d57b58230852af67b2a2793f7afc2d557992bdc17d46907"
+    },
+    {
+      "path": "data/corpus/provisions/us-ny/regulation/2025-10-01-otda-snap-sua.jsonl",
+      "sha256": "0cd30050826c2912e2f2d3ae15f4a5586a8c11b02afd0d99498d8ef5b3e0b278"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e20f03aab3dbeb3e61573814f36d2064f7465286",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T19:51:44.001320+00:00",
+  "jurisdiction": "us-ny",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZGt/KKy8cd4OFPi0ymrSIwzENUGn2nYaj4eCFZ+iCR+VoyVQ3vGGArEnSHnb4CPlJzaFPtCgVAqt57s4/f+FCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2025-10-01-otda-snap-sua"
+}

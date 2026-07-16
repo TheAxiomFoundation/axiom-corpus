@@ -1179,6 +1179,14 @@ def test_load_provisions_to_supabase_orders_inserts_by_dependency_not_input(monk
     parent = _record("us/regulation/7/273", level=0)
     fake = FakeSupabaseProvisions()
     monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+    inserted_paths = []
+    original_insert = supabase.insert_supabase_rows
+
+    def recording_insert(rows, **kwargs):
+        inserted_paths.extend(str(row["citation_path"]) for row in rows)
+        original_insert(rows, **kwargs)
+
+    monkeypatch.setattr(supabase, "insert_supabase_rows", recording_insert)
 
     report = load_provisions_to_supabase(
         [child, parent],
@@ -1190,6 +1198,7 @@ def test_load_provisions_to_supabase_orders_inserts_by_dependency_not_input(monk
     assert report.rows_inserted == 2
     child_id = deterministic_provision_id("us/regulation/7/273/1", "2026-05-13")
     parent_id = deterministic_provision_id("us/regulation/7/273", "2026-05-13")
+    assert inserted_paths == ["us/regulation/7/273", "us/regulation/7/273/1"]
     assert fake.rows[child_id]["parent_id"] == parent_id
 
 
@@ -1466,15 +1475,16 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     release_object, public_key = _signed_release_object()
     captured = {}
 
-    class FakeResponse:
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            return json.dumps(
+    def fake_run(command, *, input, capture_output, check, timeout):
+        captured["command"] = command
+        captured["payload"] = json.loads(input)
+        captured["capture_output"] = capture_output
+        captured["check"] = check
+        captured["timeout"] = timeout
+        return supabase.subprocess.CompletedProcess(
+            command,
+            0,
+            stdout=json.dumps(
                 [
                     {
                         "result": {
@@ -1484,16 +1494,11 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
                         }
                     }
                 ]
-            ).encode()
+            ).encode(),
+            stderr=b"",
+        )
 
-    def fake_urlopen(req, timeout):
-        captured["method"] = req.get_method()
-        captured["url"] = req.full_url
-        captured["payload"] = json.loads(req.data)
-        captured["timeout"] = timeout
-        return FakeResponse()
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(supabase.subprocess, "run", fake_run)
 
     result = activate_corpus_release(
         release_object,
@@ -1503,14 +1508,42 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     )
 
     assert result["active"] is True
-    assert captured["method"] == "POST"
-    assert captured["url"] == "https://api.supabase.com/v1/projects/example/database/query"
+    command = captured["command"]
+    assert command[0] == "curl"
+    assert "--fail-with-body" in command
+    assert "--data-binary" in command
+    assert command[-1] == "https://api.supabase.com/v1/projects/example/database/query"
+    assert "Authorization: Bearer management" in command
+    assert "User-Agent: axiom-corpus/0.1" in command
     assert captured["payload"] == {
         "query": "SELECT corpus.activate_corpus_release($1::jsonb) AS result",
         "parameters": [json.dumps(release_object, sort_keys=True)],
         "read_only": False,
     }
-    assert captured["timeout"] == 600
+    assert captured["timeout"] == 610
+    assert captured["capture_output"] is True
+    assert captured["check"] is False
+
+
+def test_activate_corpus_release_reports_curl_http_body(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    monkeypatch.setattr(
+        supabase.subprocess,
+        "run",
+        lambda *args, **kwargs: supabase.subprocess.CompletedProcess(
+            args[0], 22, stdout=b'{"message":"invalid query"}', stderr=b"curl: (22) 400"
+        ),
+    )
+
+    with pytest.raises(RuntimeError, match="invalid query"):
+        activate_corpus_release(
+            release_object,
+            access_token="management",
+            public_key=public_key,
+            supabase_url="https://example.supabase.co",
+        )
 
 
 def test_fetch_released_scope_objects_returns_exact_signed_rows(monkeypatch):
@@ -1562,8 +1595,8 @@ def test_activate_rejects_invalid_signature_before_network(monkeypatch):
     release_object, public_key = _signed_release_object()
     release_object["signature"]["value"] = b64encode(b"invalid").decode()
     monkeypatch.setattr(
-        supabase.urllib.request,
-        "urlopen",
+        supabase.subprocess,
+        "run",
         lambda *args, **kwargs: pytest.fail("invalid object must not reach the network"),
     )
 
@@ -1696,17 +1729,11 @@ def test_activate_corpus_release_rejects_malformed_rpc_response(
 ):
     import axiom_corpus.corpus.supabase as supabase
 
-    class FakeResponse:
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            return json.dumps(response).encode()
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", lambda *args, **kwargs: FakeResponse())
+    monkeypatch.setattr(
+        supabase,
+        "_management_api_post_json_with_curl",
+        lambda *args, **kwargs: response,
+    )
     release_object, public_key = _signed_release_object()
 
     with pytest.raises(RuntimeError, match=message):

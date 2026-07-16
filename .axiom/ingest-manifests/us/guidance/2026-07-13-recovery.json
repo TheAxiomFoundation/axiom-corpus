@@ -1,0 +1,101 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-07-13-recovery.json",
+      "sha256": "7da7266423f9bb812fc89965404956ab7afd57adc970beb6412caf075340b922"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-07-13-recovery.json",
+      "sha256": "33e38df21b67d8cbac5fe6ba081f70b66144be5102aad98734c1a8de2528cfd9"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-07-13-recovery.jsonl",
+      "sha256": "bbb5283dbefc08dfee6c705375ccb52987c368083978a6a11f8d3323a8f127e1"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/official-documents/release-scope-us-guidance-2026-05-01-snap-fy2026-cola",
+      "sha256": "891dce6a0abdd3dcdac7eb5438827b5e986bc35c6ce550325e522da096b7c955"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/official-documents/release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards",
+      "sha256": "891dce6a0abdd3dcdac7eb5438827b5e986bc35c6ce550325e522da096b7c955"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/official-documents/release-scope-us-guidance-2026-07-08-snap-fy2024-cola",
+      "sha256": "9ceb4bd4800e6b9c815b4d118ae51619299b01fa27aeb5267c826509297a807f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/official-documents/rp-25-32.pdf",
+      "sha256": "e9ada115fb43a4af5ea326ca91edd40ab0bf29b9be01d2c13d7b8fa96214635b"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/official-documents/us-ed-2026-27-sai-pell-guide",
+      "sha256": "bd8f32edabc93215df301c50e086a46393a0f88c7e7cbceb02367fa429c08c9a"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/official-documents/us-ed-gen-26-01",
+      "sha256": "86f33bda4b5df0172933c31c0faf8352bfbcddeb2558df2e1ab4e68bc2081008"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/official-documents/us-irs-rev-proc-2025-25",
+      "sha256": "ba950034c6d6d7f6ca70b9dc94754d923acc34f3d5646593fd12340fb6b67697"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/provenance/release-scope-us-guidance-2026-05-01-snap-fy2026-cola.json",
+      "sha256": "0ec5c7feeb8ea073730ad3c03deffcc733b6d533e4b0524679763ed2f6b998c2"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/provenance/release-scope-us-guidance-2026-05-02-snap-fy2026-income-eligibility-standards.json",
+      "sha256": "180f45305cc7d92f6caf564e87590807281ed4e037ab75105b7b9986c6913e2f"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/provenance/release-scope-us-guidance-2026-07-08-snap-fy2024-cola.json",
+      "sha256": "4f723ca977770a56ea9e7cb3174a59ed80b8abb1108b617abc8e73b1bafe9fb0"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/provenance/rp-25-32.pdf.json",
+      "sha256": "c730a14464b234aed6b4ddc57656f02782a7d6360b86e31c47ec530038609825"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/provenance/us-ed-2026-27-sai-pell-guide.json",
+      "sha256": "a8cfb99c79c79c3c298148bfc9a97eef717063507eb8bb97b6dac33ef23f4e30"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/provenance/us-ed-gen-26-01.json",
+      "sha256": "0736079cd2d886004cb0e29180496a68cf5b37fba2c9304497da5d17dc516160"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-07-13-recovery/provenance/us-irs-rev-proc-2025-25.json",
+      "sha256": "8949001af0a312de4223873ccafe3afc3061ef3002c0e2c704b94e4a39f5d26b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "32267f6613b01dec556ece162d09c3e848a10eb5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 102,
+    "missing_count": 0,
+    "provision_count": 102,
+    "source_count": 102
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-15T19:50:50.475266+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AGKHIVJJyBcOvCBdVw2Aa6TOaNeutwpqzpNV/tNN0P0KyunnBrw5Idj8YFA4SPpwu7Hb+5XbD9IaAehL3U2lCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

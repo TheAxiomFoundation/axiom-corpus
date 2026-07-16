@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-la/manual/2026-07-13-recovery.json",
+      "sha256": "3608621bdb07904a3d064b5245107a6ec4138580dd6e2a21eeac1ff5638f43a9"
+    },
+    {
+      "path": "data/corpus/inventory/us-la/manual/2026-07-13-recovery.json",
+      "sha256": "d6cc5349d3ee7a24d38d08a5af381956cbc7e3d3287ac918751ae4475b753768"
+    },
+    {
+      "path": "data/corpus/provisions/us-la/manual/2026-07-13-recovery.jsonl",
+      "sha256": "427c6b6b2f2bf4247b9c419a8e505666e2614794bb8f229a6d5a0209cc4745f8"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-07-13-recovery/official-documents/us-la-fitap-manual",
+      "sha256": "1aeffbca6b0d80118b4c3056840beb1fa901fd740ca0699c44e36e0d9b8d7765"
+    },
+    {
+      "path": "data/corpus/sources/us-la/manual/2026-07-13-recovery/provenance/us-la-fitap-manual.json",
+      "sha256": "42fb9e36ba7987541baf41a422a255d62727aa722d945a5cedfda924235ef532"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3065e4ffae08cd4041d1c2bbbbd09620e4e91040",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T15:18:48.853978+00:00",
+  "jurisdiction": "us-la",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oTy1zenm7AtxIl2ZtYMPl87msQLIRVe1kZ3LfXoqoAQbr1AuN2+OAKphD96ugGzc7BY+i4mJeyoLawH+Pq24Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

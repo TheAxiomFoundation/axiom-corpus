@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/regulation/2026-05-29-r2026-07-15-self-contained.json",
+      "sha256": "2f915f75e0f65815e32604ea5a5cbbf4c741a9b447fa42ba757e41a403924059"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/regulation/2026-05-29-r2026-07-15-self-contained.json",
+      "sha256": "8c5360d91b6ee1baf9e4ca522644aceed9bb1d1672f00772b4bb28093e0d9b3f"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/regulation/2026-05-29-r2026-07-15-self-contained.jsonl",
+      "sha256": "879abd013a67a18b0074ecd9256373c87dcc275bc716c905e017abe4d6851658"
+    },
+    {
+      "path": "data/corpus/sources/us-al/regulation/2026-05-29-r2026-07-15-self-contained/official-documents/release-scope-us-al-regulation-2026-05-29-r2026-07-15-self-contained",
+      "sha256": "f1618d6d1d18c44de70c72cfd024885879b5cbea05647888602fad730edc266d"
+    },
+    {
+      "path": "data/corpus/sources/us-al/regulation/2026-05-29-r2026-07-15-self-contained/provenance/release-scope-us-al-regulation-2026-05-29-r2026-07-15-self-contained.json",
+      "sha256": "29be149e548c95698f8d4b950915b37eee027a9b0893399316c4cb7e94a98760"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bfd08be852aeab88c9572ca409a92f3f56295146",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 126,
+    "missing_count": 0,
+    "provision_count": 126,
+    "source_count": 126
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T22:26:15.698556+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PnUHXWb8Zy2JytKM5ohYbaH+ltD93LFdaxYBmEzfTQlnva7n1jVAVNoUjojjw+1S19A/abxuGPABBuX6q4NFAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-29-r2026-07-15-self-contained"
+}

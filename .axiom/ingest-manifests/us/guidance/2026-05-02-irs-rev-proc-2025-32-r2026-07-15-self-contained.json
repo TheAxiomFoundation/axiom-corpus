@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained.json",
+      "sha256": "4717b8387489c3ddbc0ed4b847fb839e7d69accacd183e06be7ec59ef357df1b"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained.json",
+      "sha256": "b2dc5c0fd4ef5ea23af068f08d30ebb70261b40b8d3ace531a313a38cd27c880"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained.jsonl",
+      "sha256": "5c8d241ad0bf3e64787958b17c5a2124f9aa5d4fe8cd73c09fd202a84a70d184"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained/official-documents/rp-25-32.pdf",
+      "sha256": "e9ada115fb43a4af5ea326ca91edd40ab0bf29b9be01d2c13d7b8fa96214635b"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained/provenance/rp-25-32.pdf.json",
+      "sha256": "c730a14464b234aed6b4ddc57656f02782a7d6360b86e31c47ec530038609825"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0e5eed29fb129a63a4b9538c985439f2c6fe6ee9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 37,
+    "missing_count": 0,
+    "provision_count": 37,
+    "source_count": 37
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-15T22:26:09.254157+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "k4zq9OMpH1V6PKDiBJcT8Qul42m/2RPMGSxAs/Pd1cilZj06FTrF1qhBQfegwYO97Kf8Dg2jdDR97riD/lc+Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained"
+}

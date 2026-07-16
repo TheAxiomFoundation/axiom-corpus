@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024.json",
+      "sha256": "7b8c7bb1953699b9091582d1a4f5df47d272a7081e1054652b7b9272845d965b"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024.json",
+      "sha256": "242aad9eee5a0c58c0482edd91c6c06e9b6899836d1f7c6f5083b679ea6d2091"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-05-26-ssa-contribution-and-benefit-base-2024.jsonl",
+      "sha256": "4f8dccad3b7a8fc40f476f272165825ce8d2ef9eab8e16b6b706e7f313f33558"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "481378b9c53664438e2a5d8366c823824cbaa726",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-15T19:51:36.781208+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "V/CTXSoaoYqqc2u5oPl0emRp44XWGwvQ1G0mILpeFt/IngjiIwuWfdGE4Ntcy2EEWAdZ8YK41N17pJtUx+KVBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-26-ssa-contribution-and-benefit-base-2024"
+}

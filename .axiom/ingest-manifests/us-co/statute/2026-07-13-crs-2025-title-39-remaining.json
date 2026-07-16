@@ -6,25 +6,21 @@
     },
     {
       "path": "data/corpus/inventory/us-co/statute/2026-07-13-crs-2025-title-39-remaining.json",
-      "sha256": "c3a34e66505b272ccac5f5f967a867014740993f079aecd930c86049d3e5ebf6"
+      "sha256": "bec2c404131da1321dfd2c47f0de2bf14110e61927ee4eeb29af2e5c61c501a6"
     },
     {
       "path": "data/corpus/provisions/us-co/statute/2026-07-13-crs-2025-title-39-remaining.jsonl",
       "sha256": "9b17066e07f3c34437c8ab7dd948ff8092b70bd05686e78bda157ec6fd55f9bc"
-    },
-    {
-      "path": "data/corpus/sources/us-co/statute/2026-07-13-crs-2025-title-39-remaining/crs2025-title-39.htm",
-      "sha256": "5dab1d1ab7f4e79a222fdbd32d860ef36148bc9b1d417b66472f8da49074427d"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "360a58d7baeb5ec4418f07a56a6709faca347e86",
+    "commit": "7f3e7c68eafb2230150954bb58bfb8321a61fa4b",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run axiom-corpus-ingest extract-state-statutes --base data/corpus --manifest manifests/us-co-crs-title-39-remaining.yaml"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -35,14 +31,14 @@
     "source_count": 801
   },
   "document_class": "statute",
-  "generated_at": "2026-07-13T21:08:20.205474+00:00",
+  "generated_at": "2026-07-15T19:51:40.538549+00:00",
   "jurisdiction": "us-co",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "iasXTrlyXZDBKe4EAYTQg3JEaB8GV1gAtqdBglVmfoQTSdvjyhOKHpGMTpPw2IRc9auPxONcVuGiRJ2FC3b5DQ=="
+    "value": "5BKaXeHo9Ig9CYvxEjF5+3ibSxNlcaCJ0aDNTqJRPFpPnf79S1aHO0qbn3aCc9Hq7fyYLALJ4FFvUlqD28vzBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-crs-2025-title-39-remaining"

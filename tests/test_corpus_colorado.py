@@ -103,6 +103,27 @@ def test_extract_colorado_ccr_local_release_writes_records(tmp_path):
     assert records[3].legal_identifier == "10 CCR 2506-1 4.000.1"
 
 
+def test_extract_colorado_ccr_only_series_is_self_contained(tmp_path):
+    release_dir = tmp_path / "ccr-release"
+    _write_ccr_release(release_dir)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_colorado_ccr(
+        store,
+        version="2026-04-29",
+        only_series="10 CCR 2506-1",
+        release_dir=release_dir,
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert report.coverage.complete
+    assert report.provisions_written == 3
+    assert records[0].citation_path == "us-co/regulation/10-ccr-2506-1"
+    assert records[0].parent_citation_path is None
+    assert records[0].parent_id is None
+    assert records[1].parent_citation_path == records[0].citation_path
+
+
 def test_extract_colorado_ccr_splits_hyphenated_heading_and_skips_editor_notes(
     tmp_path,
 ):

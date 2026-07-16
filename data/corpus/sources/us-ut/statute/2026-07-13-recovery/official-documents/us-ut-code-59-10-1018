@@ -1,0 +1,756 @@
+<html lang="en-US" class=" no-touchy"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link type="text/css" rel="stylesheet" href="/css/styles.css?r=13">
+
+	<link rel="apple-touch-icon" href="/images/apple-touch-icon.png" sizes="114x114">
+	<link rel="icon" type="image/png" href="/images/favicon.ico" sizes="32x32">
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="/js/libs/jquery.cookie.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+  <script src="/js/navigation.js?r=9"></script>
+<title>Utah Code Section 59-10-1018</title>
+<link rel="stylesheet" href="/css/styleCode.css">
+<link rel="stylesheet" href="/css/newstyleCode.css">
+<script src="../../js/code.js"></script>
+<script type="text/javascript">
+var affectURL = "59-10-S1018_bills.html";
+var versionArr = [
+['C59-10-S1018_2026050620260506.html','Current Version','C59-10-S1018_2026050620260506']
+];
+var versionDefault="C59-10-S1018_2026050620260506";
+</script>
+<script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/65/6a/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/65/6a/util.js"></script></head>
+
+<body class="secondary">
+	<header>
+		<div class="overlay"></div>
+		<nav>
+			<!-- settings.shtml -->
+            <div class="skip-links" tabindex="0">
+                <ul>
+                    <li>Accessibility</li>
+                    <li>Use the Settings Button to view other accessibility Settings</li>
+                    <li><a href="#main-content" tabindex="0" id="skip-btn">Skip to Content</a></li>
+                </ul>
+            </div>
+			<div id="settingsNav">
+                <div id="dateline">
+                    <div id="button-nav">
+                        <div id="settings-section">
+                            <button aria-controls="search-div" id="toggle-search">
+                                Search <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="15 15 20 20"><path fill="#DBDBDB" d="M33.9 34.9c-.3 0-.5-.1-.8-.3l-6.2-6-.6.3c-1.2.7-2.5 1.1-3.8 1.1-2 0-3.9-.8-5.3-2.2-2.9-2.9-2.9-7.6 0-10.5 1.4-1.4 3.3-2.2 5.3-2.2s3.9.8 5.3 2.2c2.4 2.4 2.9 6.3 1.1 9.2l-.4.5 6.1 5.9c.4.4.5 1.1 0 1.6-.2.2-.4.4-.7.4zM22.5 16.6c-1.6 0-3 .6-4.1 1.7-2.3 2.3-2.3 6 0 8.2 1.1 1.1 2.6 1.7 4.1 1.7 1.6 0 3-.6 4.1-1.7 2.3-2.3 2.3-6 0-8.2-1.1-1.1-2.5-1.7-4.1-1.7z"></path></svg>
+                            </button>
+                            <button aria-controls="settings" aria-label="view accessibility settings" id="toggleSettings" tabindex="0">
+                                <span>Settings</span>
+                                <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><style>.st0{fill:#dbdbdb}</style><path class="st0" d="M96.8 40.1h-7.9c-1.1-3.6-2.5-7.2-4.3-10.5l5.8-5.8c1.4-1.4 1.4-3.2 0-4.7L81 9.7c-1.4-1.4-3.2-1.4-4.7 0l-5.8 5.8c-3.2-2.2-6.8-3.2-10.4-4.3v-8c0-1.8-1.8-3.2-3.2-3.2H43.5c-1.8 0-3.2 1.8-3.2 3.2v7.9c-3.6 1.1-7.2 2.5-10.4 4.3l-5.8-6.1c-1.4-1.4-3.2-1.4-4.7 0L10 19c-1.4 1.4-1.4 3.2 0 4.7l5.8 5.8c-2.2 3.2-3.2 6.9-4.3 10.5H3.2C1.4 40 0 41.8 0 43.2v13.4c0 1.8 1.8 3.2 3.2 3.2h7.9c1.1 3.6 2.5 7.2 4.3 10.5l-5.8 5.8c-1.4 1.4-1.4 3.2 0 4.7l9.4 9.4c1.4 1.4 3.2 1.4 4.7 0l5.8-5.8c3.2 2.2 6.8 3.2 10.4 4.3v7.9c0 1.8 1.8 3.2 3.2 3.2h13.3c1.8 0 3.2-1.8 3.2-3.2v-7.9c3.6-1.1 7.2-2.5 10.4-4.3l5.8 5.8c1.4 1.4 3.2 1.4 4.7 0l9.4-9.4c1.4-1.4 1.4-3.2 0-4.7l-5.8-5.8c2.2-3.2 3.2-6.9 4.3-10.5h8.3c1.8 0 3.2-1.8 3.2-3.2V43.3c.1-1.1-1.7-3.2-3.1-3.2zM49.6 69c-10.1 0-18.3-8.3-18.3-18.4s7.9-18.8 18.3-18.8S68 40.1 68 50.2 59.4 69 49.6 69z"></path></svg>
+                            </button>
+                            <div id="login-div">
+                                <a href="/tracking/tracking.jsp" id="toploginbutton" title="Login">
+                                    <span id="loginspan">Login</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="#FFF" d="M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0zm-8.4 54c0-.1 0-.1 0 0zm41.7 23c.1-.5.1-1 .2-1.5v-.4c0-1.6.1-3.2-.4-4.7-.2-.9-.6-1.8-1.2-2.6v-.1c-.4-.5-.9-1-1.3-1.6-.6-.5-1.1-.9-1.7-1.4-1.1-.6-2.3-1.3-3.4-1.9l-.6-.3c-1.4-.5-2.8-.9-4.2-1.4-1-.3-2-.5-3-.8-.9-.2-1.9-.5-2.8-.7-.8-.2-1.7-.5-2.5-.7-.4-.2-.9-.3-1.3-.5-1-.4-2-.9-2.5-2 0-1.1-.1-2.1-.1-3.2.3-.4.5-.8.8-1.2 1.7-2.6 2.7-5.4 3.4-8.4.1-.5.3-.8.7-1.1.9-.6 1.8-1.3 2-2.4.4-1.4.6-2.8.7-4.2.1-.9-.3-1.2-1.2-.9 0-.1 0-.3.1-.4.4-1.9.5-3.8.2-5.7-.7-4.3-3-7.6-6.8-9.8-4.2-2.4-8.6-2.8-13.3-1.8-4.3 1-7.4 3.5-9.5 7.4-1.7 3.3-1.7 6.7-1.1 10.2H34c-.5 0-.8.3-.9.7 0 .3-.1.6 0 .8.2.8.4 1.7.5 2.5.2.9.6 1.6 1.2 2.3.3.3.6.6.8.9l.3.3.6.6c.2.7.3 1.3.5 2 .4 1.1.7 2.2 1.1 3.2.4.9.9 1.8 1.3 2.7.5.8 1.1 1.6 1.6 2.4.1.2.2.4.2.6v1.4c.1 1.2-.6 2.1-1.6 2.6-1.2.5-2.4 1-3.7 1.4-2.9.8-5.8 1.5-8.7 2.4-2.6.8-5.1 1.9-7.2 3.6-2.2 1.8-3.6 4-3.7 6.9-.1 1.5 0 3.1.1 4.6-6.2-7.6-9.5-17-9.5-26.9 0-11.5 4.5-22.2 12.6-30.3 8.3-8 19-12.5 30.5-12.5s22.2 4.5 30.3 12.6c8.1 8.1 12.6 18.9 12.6 30.3 0 10-3.4 19.4-9.6 27z"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="stream-meeting"></div>
+                    </div>
+                </div>
+                <div id="search-div">
+                    <div>
+                        <form id="navSearch" action="/solrsearch.jsp" onsubmit="return doNavSearch(this)" method="get">
+                            <input tabindex="-1" type="text" name="request" aria-label="Search le.utah.gov" placeholder="Search le.utah.gov">
+							<input type="hidden" name="stype" class="hiddenStype" value="">
+                            <button tabindex="-1" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+			</div>
+
+			<!-- END settings.shtml -->
+        <div id="fullNavContainer">
+            <div id="fullNav">
+                <a id="logo" href="https://le.utah.gov/" title="Home">
+                    <div>
+                        <img src="/images/logos/web-logo-horizontal.png" alt="Utah State Legislature Home">
+                    </div>
+                </a>
+                <button id="menuOpen" aria-controls="mainNav" aria-label="Open Menu" tabindex="0"><svg class="menu" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.2 40.2"><path d="M0 16.6h58.2v7H0zM0 0h58.2v7H0zm0 33.2h58.2v7H0z" fill="#FFF"></path></svg></button>
+                <ul class="mainNav" id="mainNav">
+                    <li>
+                        <button id="menuClose" aria-controls="mainNav" aria-label="Close Menu"><svg class="close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="#fff" d="M100 10.1L89.9 0 50 39.9 10.1 0 0 10.1 39.9 50 0 89.9 10.1 100 50 60.1 89.9 100 100 89.9 60.1 50 100 10.1z"></path></svg></button>
+                    </li>
+                    <li class="menu-item" id="leg-menu-item">
+                        <a href="/Documents/find.htm" class="has-drop">Legislators</a>
+                        <div id="legislator-div" class="drop-down">
+                            <div class="nav-div">
+                                <div>
+                                    <button class="nav-header" aria-controls="all-list" aria-haspopup="true" tabindex="0">All Legislators</button>
+                                    <a href="/Documents/find.htm" class="sub-header">All Legislators</a>
+                                    <ul id="all-list">
+                                        <li class="hide-large"><a href="/Documents/find.htm">Find Legislators</a></li>
+                                        <li><a href="/asp/roster/roster.asp">By Session (1896-Current)</a></li>
+                                        <li><a href="/asp/roster/complist.asp">Alphabetical (Historical)</a></li>
+                                        <li><a href="/GIS/findDistrict.jsp">Find by Address/Map</a></li>
+                                        <li><a href="/sessions/sessions.jsp">Sessions</a></li>
+                                        <li><a href="https://readingcalendar.le.utah.gov/">Reading Calendars</a></li>
+                                        <li><a href="/asp/schedule/journal.asp">Journals</a></li>
+                                        <li><a href="/sessionSchedule/sessdates.jsp">Session Dates</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <a href="https://house.utleg.gov/" class="sub-header">House</a>
+                                    <button class="nav-header" aria-controls="house-list" aria-haspopup="true" tabindex="0">House</button>
+                                    <ul id="house-list">
+                                        <li class="hide-large"><a href="https://house.utleg.gov/">House Home</a></li>
+                                        <li><a href="https://house.utleg.gov/about/">About the House</a></li>
+                                        <li><a href="https://house.utleg.gov/house-leadership/">Leadership</a></li>
+                                        <li><a href="https://house.utleg.gov/house-members/">Roster</a></li>
+                                        <li><a href="/asp/seating/hseat.asp">Seating Chart</a></li>
+                                        <li><a href="https://house.utleg.gov/conflict-disclosures/">Conflict of Interest Forms</a></li>
+                                        <li><a href="/asp/audio/index.asp?House=H">Past Floor Debates</a></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <a href="https://senate.utah.gov/" class="sub-header">Senate</a>
+                                    <button class="nav-header" aria-haspopup="true" aria-controls="senate-list" tabindex="0">Senate</button>
+                                    <ul id="senate-list">
+                                        <li class="hide-large"><a href="https://senate.utah.gov/">Senate Home</a></li>
+                                        <li><a href="https://senate.utah.gov/about-the-senate/">About the Senate</a></li>
+                                        <li><a href="https://senate.utah.gov/leadership/">Leadership</a></li>
+                                        <li><a href="https://senate.utah.gov/senate-roster/">Roster</a></li>
+                                        <li><a href="/asp/seating/sseat.asp">Seating Chart</a></li>
+                                        <li><a href="/sessions/es.jsp">Extraordinary Sessions</a></li>
+                                        <li><a href="/asp/audio/index.asp?House=S">Past Floor Debates</a></li>
+                                        <li><a href="https://disclosures.utah.gov/Search/PublicSearch?type=PCC">Disclosure Forms</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/bills/bills_By_Session.jsp" class="has-drop">Bills</a>
+                        <div id="bills-div" class="drop-down">
+                            <div class="nav-div">
+                                <div>
+                                    <a href="/bills/bills_By_Session.jsp" class="big-header">View Bills</a>
+                                    <ul>
+                                        <li><a href="/billlist.jsp?session=2026GS">2026 Bills</a></li>
+                                        <li><a href="https://le.utah.gov/bills/billSearch.jsp">Browse by Session</a></li>
+                                        <li><a href="/asp/passedbills/passedbills.asp">Passed Bills</a></li>
+
+                                        <li><a href="/solrsearch.jsp?ktype=Bill">Keyword Search</a></li>
+                                        <li><a href="/tracking/tracking.jsp">Tracking Service</a></li>
+                                        <li><a href="http://images.archives.utah.gov/cdm/search/collection/432n!428/searchterm/working%20bills/field/all/mode/all/conn/and/order/identi/ad/asc">Working Bills (1896-1989)</a></li>
+                                        <li><a href="/lrgc/bill-data.html">Bill Data</a></li>
+                                        <!-- <li><a href="https://image.le.utah.gov/imaging/bill.asp">Bill Drafting/Research Files (1990-Ongoing)</a></li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/xcode/code.html" class="has-drop">Code</a>
+                        <div id="code-div" class="drop-down">
+                            <div class="nav-div">
+                                <div>
+                                    <a href="/xcode/code.html" class="big-header">Utah Code </a>
+                                    <ul>
+                                        <li><a href="/Documents/code_const.htm">Code and Constitution</a></li>
+                                        <li><a href="/solrsearch.jsp?ktype=Code">Keyword Search</a></li>
+                                        <li><a href="/xcode/constitution.html">Utah Constitution</a></li>
+                                        <li><a href="/documents/conconv/utconstconv.htm">Constitutional Convention</a></li>
+										<li><a href="/documents/laws-recent.htm">Laws of Utah 2014-ongoing</a></li>
+										<li><a href="https://onlinelibrary.utah.gov/library-resource/uspl/?topic=law-legal">Historical Laws of Utah</a></li>
+                                        <li><a href="/xcode/R.html">Legislative Rules</a></li>
+                                        <li><a href="https://adminrules.utah.gov/">Utah Administrative Rules</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/asp/interim/Main.asp?ComType=All&amp;List=2" class="has-drop">Committees</a>
+                        <div id="committees-div" class="drop-down">
+                            <div class="nav-div">
+                                <div>
+                                    <a href="/asp/interim/Main.asp?ComType=All&amp;List=2" class="big-header">All Committees</a>
+                                    <ul>
+                                        <li><a href="/asp/interim/Main.asp?ComType=App&amp;List=2">Appropriations</a></li>
+                                        <li><a href="/asp/interim/Main.asp?ComType=Com&amp;List=2">Commissions</a></li>
+                                        <li><a href="/asp/interim/Main.asp?ComType=Cnf&amp;List=2">Confirmation</a></li>
+                                        <li><a href="/asp/interim/Main.asp?ComType=Int&amp;List=2">Interim</a></li>
+                                        <li><a href="/asp/interim/Main.asp?ComType=Std&amp;List=2">Standing</a></li>
+                                        <li><a href="/asp/interim/Main.asp?ComType=Sub&amp;List=2">Subcommittees</a></li>
+                                        <li><a href="/asp/interim/Main.asp?ComType=Tsk&amp;List=2">Task Forces</a></li>
+                                        <li><a href="/asp/billsintro/committeebills.asp">Bills in Committees</a></li>
+                                        <!-- <li><a href="https://image.le.utah.gov/imaging/History.asp">Interim Committee Histories (1990-Ongoing)</a></li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                     <li class="menu-item">
+                        <a href="https://lag.utleg.gov/" class="has-drop">Audits</a>
+                        <div id="audits-div" class="drop-down">
+                            <div class="nav-div">
+                                <div>
+                                        <ul>
+                                            <li><a href="https://lag.utleg.gov/audits_current.jsp">New Audits</a></li>
+                                            <li><a href="https://le.utah.gov/committee/committee.jsp?com=SPEAUD">Audit Subcommittee</a></li>
+                                            <li><a href="https://lag.utleg.gov/best_practices.jsp">Government Excellence</a></li>
+                                            <li><a href="https://lag.utleg.gov/annual_report.jsp">Annual Reports</a></li>
+                                            <li><a href="https://lag.utleg.gov/">Office of the Legislative Auditor General</a></li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <a href="https://budget.utah.gov/" class="has-drop">Budget</a>
+                        <div id="budget-div" class="drop-down">
+                            <div class="nav-div">
+                                <div>
+                                    <a href="https://budget.utah.gov/" class="big-header">Budget.Utah.gov</a>
+                                    <ul>
+                                        <li><a href="/CobiServlet/cobi/BudgetRD?key=stateBudget">State Budget (PDF)</a></li>
+                                        <li><a href="/CobiServlet/cobi/BudgetRD?key=cobi">COBI</a></li>
+                                        <li><a href="/CobiServlet/cobi/BudgetRD?key=quickFacts">Quick Facts (PDF)</a></li>
+                                        <li><a href="/CobiServlet/cobi/BudgetRD?key=fiscalHealth">Fiscal Health</a></li>
+                                        <li><a href="/CobiServlet/cobi/BudgetRD?key=taxpayerReceipt">Taxpayer Receipt</a></li>
+                                        <li><a href="/CobiServlet/cobi/BudgetRD?key=budgetVisualizer">Data Visualizer</a></li>
+                                        <li><a href="/CobiServlet/cobi/BudgetRD?key=appsByBills">Budget Bills</a></li>
+                                        <li><a href="/CobiServlet/cobi/BudgetRD?key=appsBySubcommittees">Budget Committees</a></li>
+                                        <li><a href="/asp/lfa/lfareports.asp">Budget Publications</a></li>
+                                        <li><a href="https://budget.utah.gov/products/aboutLFA/">Office of the Legislative Fiscal Analyst</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="menu-item" style="min-width: 120px;">
+                        <a href="/lrgc/home.html" class="has-drop">Research and Legal</a>
+                        <div id="research-div" class="drop-down">
+                            <div class="nav-div">
+                                <div>
+                                    <ul>
+                                        <li><a href="/lrgc/home.html">Office of Legislative Research and General Counsel</a></li>
+                                        <li><a href="/lrgc/publications.html">Publications</a></li>
+                                        <li><a href="/lrgc/bill-data.html">Bill Data</a></li>
+                                        <li><a href="/lrgc/researchMaterials.htm">Legislative Information</a></li>
+                                        <li><a href="/AgencyRP/index.jsp">Agency Reporting</a></li>
+                                        <li><a href="/lawSearch.jsp">Advanced Law Search</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+		</nav>
+        <div class="modal" id="settings">
+            <div id="settings-modal">
+                <button aria-label="close" id="close-settings" class="close">
+                    <svg class="close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <path fill="#fff" d="M100 10.1L89.9 0 50 39.9 10.1 0 0 10.1 39.9 50 0 89.9 10.1 100 50 60.1 89.9 100 100 89.9 60.1 50 100 10.1z"></path>
+                    </svg>
+                </button>
+                <h2>Additional Accessibility Settings</h2>
+                <p class="settings">
+                    <button class="defaultStyles">Default Settings</button>
+                    <button class="highContrast">High Contrast</button>
+                    <button class="textOnly">Text Only</button>
+                </p>
+                <div id="fontSizer">
+                    <span>Font Size:</span>
+                    <button title="Font size smaller" aria-label="Font size smaller" class="fontsize small" data-size="smallFont">A</button>
+                    <button title="Font size default" aria-label="Font size default" class="fontsize default active">A</button>
+                    <button title="Font size larger" aria-label="Font size larger" class="fontsize large" data-size="largeFont">A</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Site under maintenance notice -->
+        <!-- <div id="alert-div">
+        <div>
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            viewBox="0 0 154.6 156.6" style="enable-background:new 0 0 154.6 156.6;" xml:space="preserve">
+            <style type="text/css">
+                .alert0{fill:none;stroke:#FFFFFF;stroke-width:11;stroke-miterlimit:10;}
+                .alert1{fill:#FFFFFF;}
+                .alert2{font-family:'MyriadPro-Regular';}
+                .alert3{font-size:133px;}
+            </style>
+            <circle class="alert0" cx="77.6" cy="77.6" r="70.5"/>
+            <g class="st1">
+                <path class="alert1" d="M69.8,117.9c0-4.8,3.3-8.2,7.8-8.2c4.8,0,7.8,3.5,7.8,8.2c0,4.7-3.1,8.2-7.8,8.2
+                    C73,126.1,69.8,122.5,69.8,117.9z M73.1,98.8L71.3,35H84l-1.9,63.8H73.1z"/>
+            </g>
+		</svg>  
+        The Playback of past Legislative meetings will be unavailable until 12:00pm today October 20th. We apologize for any inconvenience and appreciate your understanding.
+        </div>
+    </div> -->
+
+	</header>
+
+<div id="main-block">
+	<main id="main-content" class="max-width">
+
+<div id="viewbox"><div id="content">
+<ul id="breadcrumb">
+<li>
+<a href="/">Home</a>
+</li>
+<li>
+<a href="../../code.html">
+                          Utah Code
+                        </a>
+</li>
+<li>
+<a href="../../Title59/59.html">Title 59</a>
+</li>
+<li>
+<a href="../../Title59/Chapter10/59-10.html">Chapter 10</a>
+</li>
+<li>
+<a href="../../Title59/Chapter10/59-10-P10.html">Part 10</a>
+</li>
+<li>Section 1018</li>
+</ul><div id="ovBox"><a href="/UtahCode/historical.jsp">Historical Code</a></div>
+<h3 class="heading">Title 59&nbsp;
+                      Chapter 10&nbsp;
+                      Part 10&nbsp;
+                      Section 1018</h3>
+<table id="topnavtbl" width="100%">
+<tbody><tr>
+<td class="navleftAlign"><a href="../../Title59/Chapter10/59-10-S1017.html">&lt;&lt; Previous Section (59-10-1017)
+                  </a></td><td class="navcenterAlign">
+                Download Options
+                
+                  &nbsp;<a href="C59-10-S1018_2026050620260506.pdf">PDF</a>
+                    &nbsp;|&nbsp;<a href="C59-10-S1018_2026050620260506.rtf">RTF</a>
+                  &nbsp;|&nbsp;<a href="C59-10-S1018_2026050620260506.xml">XML</a></td><td class="navrightAlign"><a href="../../Title59/Chapter10/59-10-S1019.html">
+                    Next Section (59-10-1019) &gt;&gt;</a></td>
+</tr>
+</tbody></table>
+<table id="parenttbl">
+<tbody><tr>
+<td style="text-align:right; font-weight:bold"><a href="../../code.html">Index</a></td><td style="font-weight:bold">Utah Code</td>
+</tr>
+<tr>
+<td style="text-align:right; font-weight:bold"><a href="../../Title59/59.html">Title 59</a></td><td style="font-weight:bold">Revenue and Taxation</td>
+</tr>
+<tr>
+<td style="text-align:right; font-weight:bold"><a href="../../Title59/Chapter10/59-10.html">Chapter 10</a></td><td style="font-weight:bold">Individual Income Tax Act</td>
+</tr>
+<tr>
+<td style="text-align:right; font-weight:bold"><a href="../../Title59/Chapter10/59-10-P10.html">Part 10</a></td><td style="font-weight:bold">Nonrefundable Tax Credit Act</td>
+</tr>
+<tr>
+<td style="text-align:right; font-weight:bold">Section 1018</td><td style="font-weight:bold">Definitions -- Nonrefundable taxpayer tax credits.<div style="display:inline">
+<b><i>(Effective 1/1/2026)</i></b>
+</div>
+</td>
+</tr>
+</tbody></table>
+<hr>
+<br>
+<div id="secdiv">
+<b><i>
+                      Effective 1/1/2026</i></b>
+<br>
+<b>59-10-1018.&nbsp;
+          </b><b>Definitions -- Nonrefundable taxpayer tax credits.</b>
+<br>
+<a id="59-10-1018(1)" name="59-10-1018(1)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(1)</td><td style="width:99%">As used in this section:<a id="59-10-1018(1)(a)" name="59-10-1018(1)(a)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(a)</td><td style="width:99%">"Head of household filing status" means a head of household, as defined in Section 2(b), Internal Revenue Code, who files a single federal individual income tax return for the taxable year.</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(b)" name="59-10-1018(1)(b)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(b)</td><td style="width:99%">"Joint filing status" means:<a id="59-10-1018(1)(b)(i)" name="59-10-1018(1)(b)(i)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(i)</td><td style="width:99%">spouses who file a single return jointly under this chapter for a taxable year; or</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(b)(ii)" name="59-10-1018(1)(b)(ii)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(ii)</td><td style="width:99%">a surviving spouse, as defined in Section 2(a), Internal Revenue Code, who files a single federal individual income tax return for the taxable year.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(c)" name="59-10-1018(1)(c)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(c)</td><td style="width:99%">"Qualifying dependent" means an individual with respect to whom the claimant is allowed to claim a tax credit under Section 24, Internal Revenue Code, on the claimant's federal individual income tax return for the taxable year.</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(d)" name="59-10-1018(1)(d)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(d)</td><td style="width:99%">"Single filing status" means:<a id="59-10-1018(1)(d)(i)" name="59-10-1018(1)(d)(i)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(i)</td><td style="width:99%">a single individual who files a single federal individual income tax return for the taxable year; or</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(d)(ii)" name="59-10-1018(1)(d)(ii)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(ii)</td><td style="width:99%">a married individual who:<a id="59-10-1018(1)(d)(ii)(A)" name="59-10-1018(1)(d)(ii)(A)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(A)</td><td style="width:99%">does not file a single federal individual income tax return jointly with that married individual's spouse for the taxable year; and</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(d)(ii)(B)" name="59-10-1018(1)(d)(ii)(B)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(B)</td><td style="width:99%">files a single federal individual income tax return for the taxable year.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(e)" name="59-10-1018(1)(e)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(e)</td><td style="width:99%">"State or local income tax" means the lesser of:<a id="59-10-1018(1)(e)(i)" name="59-10-1018(1)(e)(i)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(i)</td><td style="width:99%">the amount of state or local income tax that the claimant:<a id="59-10-1018(1)(e)(i)(A)" name="59-10-1018(1)(e)(i)(A)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(A)</td><td style="width:99%">pays for the taxable year; and</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(e)(i)(B)" name="59-10-1018(1)(e)(i)(B)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(B)</td><td style="width:99%">reports on the claimant's federal individual income tax return for the taxable year; and</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(e)(ii)" name="59-10-1018(1)(e)(ii)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(ii)</td><td style="width:99%">the amount of state or local income tax that is included and allowed as an itemized deduction on the claimant's federal individual income tax return for the taxable year.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(f)" name="59-10-1018(1)(f)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(f)</td><td style="width:99%"><a id="59-10-1018(1)(f)(i)" name="59-10-1018(1)(f)(i)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(i)</td><td style="width:99%">"Utah itemized deduction" means the amount the claimant deducts as allowed as an itemized deduction on the claimant's federal individual income tax return for that taxable year minus any amount of state or local income tax for the taxable year.</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(f)(ii)" name="59-10-1018(1)(f)(ii)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(ii)</td><td style="width:99%">"Utah itemized deduction" does not include any amount of qualified business income that the claimant subtracts as allowed by Section 199A, Internal Revenue Code, on the claimant's federal income tax return for that taxable year.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(1)(g)" name="59-10-1018(1)(g)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(g)</td><td style="width:99%">"Utah personal exemption" means, subject to Subsection <a href="#59-10-1018(6)">(6)</a>, $1,750 multiplied by the number of the claimant's qualifying dependents plus an additional qualifying dependent in the year of a qualifying dependent's birth.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(2)" name="59-10-1018(2)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(2)</td><td style="width:99%">Except as provided in Section <a href="../../Title59/Chapter10/59-10-S1002.2.html?v=C59-10-S1002.2_2025010120250507">59-10-1002.2</a>, and subject to Subsections <a href="#59-10-1018(3)">(3)</a> through <a href="#59-10-1018(5)">(5)</a>, a claimant may claim a nonrefundable tax credit against taxes otherwise due under this part equal to the sum of:<a id="59-10-1018(2)(a)" name="59-10-1018(2)(a)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(a)</td><td style="width:99%"><a id="59-10-1018(2)(a)(i)" name="59-10-1018(2)(a)(i)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(i)</td><td style="width:99%">for a claimant that deducts the standard deduction on the claimant's federal individual income tax return for the taxable year, 6% of the amount the claimant deducts as allowed as the standard deduction on the claimant's federal individual income tax return for that taxable year; or</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(2)(a)(ii)" name="59-10-1018(2)(a)(ii)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(ii)</td><td style="width:99%">for a claimant that itemizes deductions on the claimant's federal individual income tax return for the taxable year, 6% of the amount of the claimant's Utah itemized deduction; and</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(2)(b)" name="59-10-1018(2)(b)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(b)</td><td style="width:99%">6% of the claimant's Utah personal exemption.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(3)" name="59-10-1018(3)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(3)</td><td style="width:99%">A claimant may not carry forward or carry back a tax credit under this section.</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(4)" name="59-10-1018(4)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(4)</td><td style="width:99%">The tax credit allowed by Subsection <a href="#59-10-1018(2)">(2)</a> shall be reduced by $.013 for each dollar by which a claimant's state taxable income exceeds:<a id="59-10-1018(4)(a)" name="59-10-1018(4)(a)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(a)</td><td style="width:99%">for a claimant who has a single filing status, $15,095;</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(4)(b)" name="59-10-1018(4)(b)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(b)</td><td style="width:99%">for a claimant who has a head of household filing status, $22,643; or</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(4)(c)" name="59-10-1018(4)(c)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(c)</td><td style="width:99%">for a claimant who has a joint filing status, $30,190.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(5)" name="59-10-1018(5)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(5)</td><td style="width:99%"><a id="59-10-1018(5)(a)" name="59-10-1018(5)(a)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(a)</td><td style="width:99%">For a taxable year beginning on or after January 1, 2022, the commission shall increase or decrease annually the following dollar amounts by a percentage equal to the percentage difference between the consumer price index for the preceding calendar year and the consumer price index for calendar year 2020:<a id="59-10-1018(5)(a)(i)" name="59-10-1018(5)(a)(i)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(i)</td><td style="width:99%">the dollar amount listed in Subsection <a href="#59-10-1018(4)(a)">(4)(a)</a>; and</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(5)(a)(ii)" name="59-10-1018(5)(a)(ii)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(ii)</td><td style="width:99%">the dollar amount listed in Subsection <a href="#59-10-1018(4)(b)">(4)(b)</a>.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(5)(b)" name="59-10-1018(5)(b)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(b)</td><td style="width:99%">After the commission increases or decreases the dollar amounts listed in Subsection <a href="#59-10-1018(5)(a)">(5)(a)</a>, the commission shall round those dollar amounts listed in Subsection <a href="#59-10-1018(5)(a)">(5)(a)</a> to the nearest whole dollar.</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(5)(c)" name="59-10-1018(5)(c)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(c)</td><td style="width:99%">After the commission rounds the dollar amounts as required by Subsection <a href="#59-10-1018(5)(b)">(5)(b)</a>, the commission shall increase or decrease the dollar amount listed in Subsection <a href="#59-10-1018(4)(c)">(4)(c)</a> so that the dollar amount listed in Subsection <a href="#59-10-1018(4)(c)">(4)(c)</a> is equal to the product of:<a id="59-10-1018(5)(c)(i)" name="59-10-1018(5)(c)(i)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(i)</td><td style="width:99%">the dollar amount listed in Subsection <a href="#59-10-1018(4)(a)">(4)(a)</a>; and</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(5)(c)(ii)" name="59-10-1018(5)(c)(ii)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(ii)</td><td style="width:99%">two.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(5)(d)" name="59-10-1018(5)(d)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(d)</td><td style="width:99%">For purposes of Subsection <a href="#59-10-1018(5)(a)">(5)(a)</a>, the commission shall calculate the consumer price index as provided in Sections 1(f)(4) and 1(f)(5), Internal Revenue Code.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(6)" name="59-10-1018(6)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(6)</td><td style="width:99%"><a id="59-10-1018(6)(a)" name="59-10-1018(6)(a)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(a)</td><td style="width:99%">For a taxable year beginning on or after January 1, 2022, the commission shall increase annually the Utah personal exemption amount listed in Subsection <a href="#59-10-1018(1)(g)">(1)(g)</a> by a percentage equal to the percentage by which the consumer price index for the preceding calendar year exceeds the consumer price index for calendar year 2020.</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(6)(b)" name="59-10-1018(6)(b)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(b)</td><td style="width:99%">After the commission increases the Utah personal exemption amount as described in Subsection <a href="#59-10-1018(6)(a)">(6)(a)</a>, the commission shall round the Utah personal exemption amount to the nearest whole dollar.</td>
+</tr>
+</tbody></table>
+<a id="59-10-1018(6)(c)" name="59-10-1018(6)(c)"></a>
+<table width="100%">
+<tbody><tr>
+<td style="vertical-align:text-top">(c)</td><td style="width:99%">For purposes of Subsection <a href="#59-10-1018(6)(a)">(6)(a)</a>, the commission shall calculate the consumer price index as provided in Sections 1(f)(4) and 1(f)(5), Internal Revenue Code.</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<br>
+<br>Amended by Chapter <a href="http://le.utah.gov/UtahCode/ChapterLookup.jsp?chap=299&amp;sess=2026GS">299</a>, 2026 General Session<br>
+</div>
+<table id="childtbl"></table>
+<hr>
+<table width="100%">
+<tbody><tr>
+<td class="navleftAlign"><a href="../../Title59/Chapter10/59-10-S1017.html">
+                    &lt;&lt; Previous Section (59-10-1017)
+                  </a></td><td class="navcenterAlign">
+                Download Options
+                
+                  &nbsp;<a href="C59-10-S1018_2026050620260506.pdf">PDF</a>
+                  &nbsp;|&nbsp;<a href="C59-10-S1018_2026050620260506.rtf">RTF</a>
+                  &nbsp;|&nbsp;<a href="C59-10-S1018_2026050620260506.xml">XML</a></td><td class="navrightAlign"><a href="../../Title59/Chapter10/59-10-S1019.html">
+                    Next Section (59-10-1019) &gt;&gt;
+                  </a></td>
+</tr>
+</tbody></table>
+</div></div>
+<div id="affectbox"></div>
+
+</main></div>
+
+
+<footer>
+
+<!-- twitter.html -->
+<!--
+<div id="twitter">
+<div>Loading Twitter Feed...</div>
+</div>
+-->
+<!-- END twitter.html -->
+
+<div id="footerDetails">
+
+<div class="footerSection" id="footerSenate">
+	<a href="https://senate.utah.gov/"><div><img src="/images/logos/senate.svg" alt="Seal for Utah State Senate"><h2>State<br>Senate</h2></div></a>
+    <ul>
+		<li>
+			350 North State, Suite 320<br>
+			PO Box 145115<br>
+			Salt Lake City, Utah 84114
+		</li>
+		<li class="telephone">Telephone: <a href="tel:8015381035">(801) 538-1408</a></li>
+		<li><a href="https://senate.utah.gov" target="_blank">https://senate.utah.gov</a></li>
+        <li><a href="https://senate.utah.gov/contact/" class="button">Contact a Senator</a></li>
+	</ul>
+</div>
+
+<div class="footerSection" id="footerHouse">
+	<a href="https://house.utleg.gov"><div><img src="/images/logos/house.svg" alt="Seal for Utah House of Representatives"><h2>House of<br> Representatives</h2></div></a>
+    <ul>
+		<li>
+			350 North State, Suite 350<br>
+			PO Box 145030<br>
+			Salt Lake City, Utah 84114
+		</li>
+		<li class="telephone">Telephone: <a href="tel:8015381408">(801) 538-1408</a></li>
+		<li><a href="https://house.utleg.gov" target="_blank">https://house.utleg.gov</a></li>
+        <li><a href="https://house.utleg.gov/contact/" class="button">Contact a Representative</a></li>
+	</ul>
+</div>
+
+<div class="footerSection" id="footerStaff">
+    <div><a href="/Documents/staff.htm"><h2>Staff Offices</h2></a></div>
+    <ul>
+        <li><a href="https://lag.utleg.gov/">Legislative Auditor General</a></li>
+        <li><a href="https://budget.utah.gov/products/aboutLFA/">Legislative Fiscal Analyst</a></li>
+        <li><a href="/lrgc/home.html">Legislative Research and General Counsel</a></li>
+        <li><a href="/legservices/home.html">Legislative Services</a></li>
+        <li><a href="/ncsl/utahstaffawards.htm">Staff Awards</a></li>
+        <li><a href="/lrgc/researchMaterials.htm" class="button">Public Information</a></li>
+	</ul>
+</div>
+
+</div>
+
+<div id="footerNav">
+	<ul>
+		<li><a href="/Documents/recordsrequests.htm">Records Requests</a></li>
+		<li><a href="/rfp_legal.htm">Procurement</a></li>
+		<li><a href="/contact.htm">Contact the Webmaster</a></li>
+		<li><a href="/jobs/jobs.htm">Job Opportunities</a></li>
+		<!-- <li><a href="/faq.jsp">FAQ</a></li> -->
+		<li><a href="/sitemap.htm">Site Map</a></li>
+		<li><a href="/documents/disclaimer.htm">Terms of Use</a></li>
+		<li><a href="/documents/ADAnotice.htm">ADA</a></li>
+		<li><a href="http://utah.gov/">Utah.gov</a></li>
+	</ul>
+</div>
+
+</footer>
+
+<script src="/js/scripts.min.js?r=19"></script>
+<script src="/js/search.js?r=15"></script>
+<!--<script type="text/javascript" src="https://www.utah.gov/code/libs/uii.aggregator.min.js"></script>-->
+<script>
+//$.backstretch("/images/background.jpg");
+/*
+var lebgr = {};
+lebgr.baseUrl = '/images/backgrounds/';
+//lebgr.imgEl = document.querySelector('.backstretch-item img');
+lebgr.backgrounds = [
+'background-01.jpg',
+'background-02.jpg',
+'background-03.jpg',
+'background-04.jpg',
+'background-05.jpg',
+'background-06.jpg',
+];
+
+lebgr.random = function(max) {
+return Math.floor(Math.random() * (max - 0)) + 0;
+};
+
+lebgr.output = function(options) {
+var backgroundName = lebgr.backgrounds[lebgr.random(lebgr.backgrounds.length)];
+var backgroundUrl = lebgr.baseUrl + backgroundName;
+//lebgr.imgEl.src = backgroundUrl;
+$.backstretch(backgroundUrl);
+};
+lebgr.output();
+*/
+</script>
+
+
+
+
+</body></html>
