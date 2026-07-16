@@ -6,6 +6,7 @@ import heapq
 import json
 import os
 import re
+import subprocess
 import time
 import urllib.error
 import urllib.parse
@@ -820,25 +821,16 @@ def activate_corpus_release(
     verify_release_object(release_object, public_key=public_key)
     project_ref = _project_ref_from_url(supabase_url)
     query = "SELECT corpus.activate_corpus_release($1::jsonb) AS result"
-    req = urllib.request.Request(
+    rows = _management_api_post_json_with_curl(
         f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
-        data=json.dumps(
-            {
-                "query": query,
-                "parameters": [json.dumps(release_object, sort_keys=True)],
-                "read_only": False,
-            }
-        ).encode("utf-8"),
-        headers={
-            "Authorization": f"Bearer {access_token}",
-            "Accept": "application/json",
-            "Content-Type": "application/json",
-            "User-Agent": USER_AGENT,
+        payload={
+            "query": query,
+            "parameters": [json.dumps(release_object, sort_keys=True)],
+            "read_only": False,
         },
-        method="POST",
+        access_token=access_token,
+        timeout=600,
     )
-    with urllib.request.urlopen(req, timeout=600) as resp:
-        rows = json.loads(resp.read())
     if (
         not isinstance(rows, list)
         or len(rows) != 1
@@ -854,6 +846,66 @@ def activate_corpus_release(
     if result.get("content_sha256") != release_object.get("content_sha256"):
         raise RuntimeError("activated release digest does not match the requested object")
     return result
+
+
+def _management_api_post_json_with_curl(
+    url: str,
+    *,
+    payload: Mapping[str, object],
+    access_token: str,
+    timeout: int,
+) -> object:
+    """POST JSON through curl for Management API TLS/WAF compatibility.
+
+    ``api.supabase.com`` can reject Python urllib's TLS fingerprint before the
+    request reaches the Management API. Curl uses the same verified system CA
+    path as the operator's successful shim while keeping transport errors,
+    non-2xx responses, and malformed JSON fatal.
+    """
+    command = [
+        "curl",
+        "--fail-with-body",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        str(timeout),
+        "--request",
+        "POST",
+        "--header",
+        f"Authorization: Bearer {access_token}",
+        "--header",
+        "Accept: application/json",
+        "--header",
+        "Content-Type: application/json",
+        "--header",
+        f"User-Agent: {USER_AGENT}",
+        "--data-binary",
+        "@-",
+        url,
+    ]
+    request_body = json.dumps(payload, separators=(",", ":"), sort_keys=True).encode("utf-8")
+    try:
+        completed = subprocess.run(
+            command,
+            input=request_body,
+            capture_output=True,
+            check=False,
+            timeout=timeout + 10,
+        )
+    except FileNotFoundError as exc:
+        raise RuntimeError("curl is required for Supabase Management API requests") from exc
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError(f"Supabase Management API request timed out after {timeout}s") from exc
+    if completed.returncode != 0:
+        body = completed.stdout.decode("utf-8", errors="replace")[:1000]
+        error = completed.stderr.decode("utf-8", errors="replace")[:1000]
+        detail = body or error or f"curl exit {completed.returncode}"
+        raise RuntimeError(f"Supabase Management API request failed: {detail}")
+    try:
+        return json.loads(completed.stdout)
+    except json.JSONDecodeError as exc:
+        body = completed.stdout.decode("utf-8", errors="replace")[:1000]
+        raise RuntimeError(f"Supabase Management API returned invalid JSON: {body}") from exc
 
 
 def _fill_zero_release_counts_from_provisions(
