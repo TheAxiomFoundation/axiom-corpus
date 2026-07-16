@@ -26,13 +26,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "commit": "9b47502000796634960e743ff554476d77be2d71",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-wa-pensioner-applicable-amounts --citation wsi/2013/3029/schedule/2/paragraph/1 --citation wsi/2013/3029/schedule/2/paragraph/2 --citation wsi/2013/3029/schedule/2/paragraph/3"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -43,10 +43,15 @@
     "source_count": 3
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T01:38:51.471623+00:00",
+  "generated_at": "2026-07-16T18:42:25.431056+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n/oQvV5x7W+ASSa4v0oX5yvXf3oniAXMCa+0+4Y+DGgRN5RJKCxydCS5CQqe/AYwSkrbV16mPtgYSKJVYOrBAg=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-wa-pensioner-applicable-amounts"
 }
