@@ -197,7 +197,7 @@ states:
     production_status: supabase_only_legacy
     supabase_count: 25480
     priority: 2
-    notes: Official Mississippi Code public access routes through Lexis; TOC is visible, but section text access triggers CAPTCHA/robot validation. Keep legacy Supabase rows until a primary bulk source, licensed feed, or manual source export is available.
+    notes: Official Mississippi Code public access routes through Lexis; TOC is visible, but section text access triggers CAPTCHA/robot validation. A bounded PIT recovery now covers section 27-7-5 from the complete enacted replacement in 2025 House Bill 1 plus official Governor and DOR confirmation, but statewide recovery remains blocked. Keep legacy Supabase rows until a primary bulk source, licensed feed, or manual source export is available.
   - jurisdiction: us-nm
     name: New Mexico
     queue_status: done

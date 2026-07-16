@@ -162,6 +162,13 @@ from axiom_corpus.corpus.state_adapters.massachusetts import (
 from axiom_corpus.corpus.state_adapters.michigan import (
     extract_michigan_compiled_laws,
 )
+from axiom_corpus.corpus.state_adapters.mississippi import (
+    MISSISSIPPI_DOR_RATES_URL,
+    MISSISSIPPI_HB1_HTML_URL,
+    MISSISSIPPI_HB1_PDF_URL,
+    MISSISSIPPI_HB1_SIGNING_URL,
+    extract_mississippi_income_tax_statute,
+)
 from axiom_corpus.corpus.state_adapters.missouri import (
     extract_missouri_revised_statutes,
 )
@@ -2907,6 +2914,39 @@ def _extract_state_statute_source(
             rate_schedule_url=_optional_text(options.get("rate_schedule_url")),
             tax_year=_optional_int(options.get("tax_year")) or 2026,
         )
+    if adapter == "mississippi-session-law":
+        return extract_mississippi_income_tax_statute(
+            store,
+            version=version,
+            source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            only_title=only_title,
+            limit=limit,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            bill_html_url=_optional_text(options.get("bill_html_url"))
+            or source.source_url
+            or MISSISSIPPI_HB1_HTML_URL,
+            bill_pdf_url=_optional_text(options.get("bill_pdf_url"))
+            or MISSISSIPPI_HB1_PDF_URL,
+            signing_url=_optional_text(options.get("signing_url"))
+            or MISSISSIPPI_HB1_SIGNING_URL,
+            rate_guidance_url=_optional_text(options.get("rate_guidance_url"))
+            or MISSISSIPPI_DOR_RATES_URL,
+            tax_year=_optional_int(options.get("tax_year")) or 2026,
+            request_delay_seconds=_optional_float(options.get("request_delay_seconds"))
+            or 0.05,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            legislature_verify_ssl=_optional_bool(
+                options.get("legislature_verify_ssl"),
+                default=True,
+            ),
+            dor_verify_ssl=_optional_bool(
+                options.get("dor_verify_ssl"),
+                default=True,
+            ),
+        )
     if adapter == "new-hampshire-rsa":
         return extract_new_hampshire_rsa(
             store,
@@ -3445,6 +3485,11 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "missouri-revised-statutes": "missouri-revised-statutes",
         "missouri-rs": "missouri-revised-statutes",
         "rsmo": "missouri-revised-statutes",
+        "ms": "mississippi-session-law",
+        "mississippi": "mississippi-session-law",
+        "mississippi-code": "mississippi-session-law",
+        "mississippi-session-law": "mississippi-session-law",
+        "ms-session-law": "mississippi-session-law",
         "mt": "montana-code",
         "montana": "montana-code",
         "montana-code": "montana-code",
@@ -3615,6 +3660,7 @@ def _state_statute_source_path_for_plan(
         "massachusetts-general-laws",
         "michigan-compiled-laws",
         "missouri-revised-statutes",
+        "mississippi-session-law",
         "montana-code",
         "nevada-nrs",
         "new-hampshire-rsa",

@@ -244,3 +244,27 @@ sources:
     metadata:
       source_authority: Missouri Revisor of Statutes and Missouri Department of Revenue
       source_scope_note: Current Revised Statutes of Missouri chapter 143 as of July 16, 2026, excluding the future August 28, 2026 version of section 143.611, with the operative 2026 individual rate schedule published on Form MO-1040ES under sections 143.011 and 143.021.
+
+  - source_id: us-ms-income-tax-statute
+    jurisdiction: us-ms
+    document_class: statute
+    adapter: mississippi-session-law
+    source_url: https://billstatus.ls.state.ms.us/documents/2025/html/HB/0001-0099/HB0001SG.htm
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-ms-income-tax-statute/2026-07-16-pit-central
+      only_title: "27-7-5"
+      bill_pdf_url: https://billstatus.ls.state.ms.us/documents/2025/pdf/HB/0001-0099/HB0001SG.pdf
+      signing_url: https://governorreeves.ms.gov/gov-reeves-signs-historic-legislation-eliminating-mississippis-individual-income-tax/
+      rate_guidance_url: https://www.dor.ms.gov/general-information
+      tax_year: 2026
+      request_delay_seconds: 0.05
+      timeout_seconds: 90
+      request_attempts: 3
+      legislature_verify_ssl: false
+      dor_verify_ssl: false
+    metadata:
+      source_authority: Mississippi Legislature, Office of the Governor, and Mississippi Department of Revenue
+      source_scope_note: Bounded recovery of Mississippi Code section 27-7-5 from its complete enacted replacement in 2025 House Bill 1, Section 1, effective July 1, 2025, with official signing confirmation and the operative 2026 individual rate confirmed by Department of Revenue guidance; statewide public Code text remains robot-blocked.
