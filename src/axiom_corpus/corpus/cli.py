@@ -3116,6 +3116,9 @@ def _extract_state_statute_source(
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.15,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            session_law_url=_optional_text(options.get("session_law_url")),
+            session_law_section=_optional_text(options.get("session_law_section")),
+            session_law_source_id=_optional_text(options.get("session_law_source_id")),
         )
     if adapter == "west-virginia-code":
         return extract_west_virginia_code(

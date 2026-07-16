@@ -1,0 +1,572 @@
+
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	
+	<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="robots" content="noimageindex">
+	    <meta charset="iso-8859-1">
+	    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+	    	    <title>South Carolina Code of Laws</title>
+	    <link rel="SHORTCUT ICON" href="/images/stateflagsmall.ico" />
+		<link rel="icon" href="/images/stateflagsmall.ico" type="image/ico" />
+		<link rel="SHORTCUT ICON" href="/images/South-Carolina-Flag2.ico" />
+
+		<link type="text/css" rel="stylesheet" href="/css/main.css" media="all" />
+				
+		<!--[if lte IE 7]>
+		<link type="text/css" rel="stylesheet" href="/css/ie7main.css" media="all" />
+		<![endif]-->
+		<!--[if gte IE 7]>
+		<link type="text/css" rel="stylesheet" href="/css/iemain.css" media="all" />
+		<![endif]-->
+		<link type="text/css" rel="stylesheet" href="/css/print.css" media="print" />
+		<link type="text/css" rel="stylesheet" href="/css/supplement.css" media="screen" />
+		<!--<link type="text/css" rel="stylesheet" href="/css/zipsearch.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/css/vote.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/css/contact.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/css/navwrap.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/css/linkbar.css" media="screen" />-->
+	
+		<!--<script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>-->
+		<script type="text/javascript" src="/js/jquery-3.5.1.min.js"></script>
+				<script type="text/javascript" src="/js/main_linux.js"></script>
+		
+
+		
+
+
+
+		<!--<script type="text/javascript" src="/js/common.js"></script>
+		<script type="text/javascript" src="/js/utils.js"></script>
+		<script type="text/javascript" src="/js/date.js"></script>
+		<script type="text/javascript" src="/js/lightbox.js"></script>
+		<script type="text/javascript" src="/js/legislation.js"></script>
+		<script type="text/javascript" src="/js/logon_lits.js"></script>
+		<script type="text/javascript" src="/js/message.js"></script>
+		<script type="text/javascript" src="/js/comm_meeting.js"></script>-->
+		<script type="text/vbscript" src="/vbs/comm_meeting.vbs"></script>
+		<!--<script type="text/javascript" src="/js/regs.js"></script>-->
+				
+	   	<script type="text/javascript">
+	    //document.onclick = function () { document.getElementById('transbox').style.display= 'none' };
+	    	var xmlhttp=false;
+			xmlhttp = create_xml_object();
+	
+			function getElement(ele)
+			{
+				var theobj = false;
+				if(typeof ele == 'string')
+					theobj = (document.getElementById)?document.getElementById(ele):document.all[ele];
+				else
+					theobj = ele;
+			
+				return theobj;
+			}
+		
+			function checkreader(friendlyalert)
+			{
+			 	/*friendlyalert=friendlyalert||false;
+			 	
+			 	var browser_info = perform_acrobat_detection();
+				if (!browser_info.acrobat)
+				{
+				 	loadadobebox('adobebox', '/adobe.php');
+					return false;
+				}
+				else if (friendlyalert)
+				{
+			 		alert(friendlyalert);
+				}*/
+				return true;
+			}
+				
+			function loadadobebox(boxname, url)
+			{
+				var response = false;
+	
+				doRequest(xmlhttp, "GET", url, false, null, null);
+				if (xmlhttp.status == 200)
+				{
+		         	response = xmlhttp.responseText;
+				}
+	
+				if(response)
+				{
+			 		var ele = document.getElementById(boxname);
+				 	if (ele)
+				 	{
+				 		ele.style.visibility = 'hidden';
+		 				ele.style.display = 'block';
+	
+		 				positionElement(ele, 'center', 'center', true);
+	
+						ele.innerHTML = response;
+					    ele.style.visibility = 'visible';
+					    ele.style.display = 'block';
+	//				    ele.scrollIntoView(true);
+					}
+				}
+				return response;
+			}
+	
+	
+			function init()
+			{
+		 		var ld=document.getElementById("loading");
+				if(ld)
+				{
+					ld.style.display = 'none';
+				}
+			}
+			
+			function openmore()
+			{
+			 	var id = document.getElementById('quicksearch');
+			 	if (id)
+			 	{
+				 	var pos = findPos(id);
+				 	id.style.zIndex = 10;
+		//		 	id.style.left = pos[0]+'px';
+		//		  	id.style.top = pos[1]+'px';
+				  	id.style.height = '295px';
+				  	id.style.position = 'absolute';
+				  	id.style.backgroundColor = '#f7f4ec';
+				  	var id2 = document.getElementById('searchmore');
+				  	if (id2)
+				  	{
+				  	 	id2.style.display = 'none';
+				  	}
+				  	var id3 = document.getElementById('contactlegislatordiv');
+				  	if (id3)
+				  	{
+				  	 	id3.style.display = 'none';
+				  	}
+				}
+			}
+		
+			function closemore()
+			{
+			 	var id = document.getElementById('quicksearch');
+			 	if (id)
+			 	{
+				  	id.style.height = '135px';
+				  	id.style.position = '';
+				  	id.style.backgroundColor = 'transparent';
+				  	var id2 = document.getElementById('searchmore');
+				  	if (id2)
+				  	{
+				  	 	id2.style.display = 'block';
+				  	}
+				  	var id3 = document.getElementById('contactlegislatordiv');
+				  	if (id3)
+				  	{
+				  	 	id3.style.display = '';
+				  	}
+				}		 	
+			}
+		
+		<!-- This script and many more are available free online at -->
+		<!-- The JavaScript Source!! http://javascript.internet.com -->
+		
+		<!-- Begin
+		function right(e) {
+		var msg = "Use of this image is strictly prohibited unless express written permission is given to the user by South Carolina Legislative Services Agency.";
+		if (navigator.appName == 'Netscape' && e.which == 3) {
+		alert(msg);
+		return false;
+		stopEvent(e);
+		}
+		if (navigator.appName == 'Microsoft Internet Explorer' && event.button==2) {
+		alert(msg);
+		return false;
+			stopEvent(event);
+		}
+		else return true;
+		}
+		
+	function trap() 
+	{
+		if(document.images)
+		{
+			for(i=0;i<document.images.length;i++)
+			{
+				if(document.images[i].className == 'allowcontextmenu')
+				{
+					// this should have no scripting
+				}
+				else
+				{
+				 	document.images[i].onmousedown = right;
+					document.images[i].oncontextmenu = function(){ return false; };
+					//document.images[i].onmouseup = right;
+				}
+			}
+		}
+	}
+
+	function findfwtext(texttofind) 
+	{
+	 	var fwtextele = document.getElementById('fwtext');
+		if(fwtextele)
+		{
+			fwtextele.value = texttofind;
+		}
+	}	
+		// End -->
+		</script>
+
+		<!-- ADDED FOR V4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LJY6FMNQKH"></script>
+
+
+<script type="text/javascript">
+
+//ADDED FOR V4
+//Google tag (gtag.js) 
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LJY6FMNQKH');
+
+ 
+ /* COMMENTING OUT UPGRADING TO V4 -A
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36207109-1']);
+  _gaq.push(['_setDomainName', 'scstatehouse.gov']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+ 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+*/
+  
+      $(document).ready(function(){
+        // COMMENTING THIS OUT NO LONGER BEING ACTIVELY USED TO MONITOR FOR TRAFFIC TO SPECIFIC LINKS - A
+        /*
+          var anchors = $('div#contentsection a');
+
+          //console.log('anchors...'+anchors.length);
+          if(anchors.length > 0){
+            //console.log('setting up event handler...');
+            anchors.click(function(){
+              var a = $(this).attr('href');
+              if(_gaq && (a.substr(-3) == 'htm' || a.substr(-4) == 'html' || a.substr(-3) == 'doc' || a.substr(-4) == 'docx' || a.substr(-3) == 'pdf' || a.substr(-3) == 'xls' || a.substr(-4) == 'xlsx')) {
+                //console.log(a);
+                _gaq.push(['_trackPageview', $(this).attr('href')]);
+              }
+              
+              var aText = $(this).text().toLowerCase();
+              if (a.indexOf('getfile.php') > -1 && aText === 'word'){
+                    _gaq.push(['_trackEvent', 'Word Doc', 'Download', ('from page: ' + document.location + ' - href: ' + a)]);
+              }
+
+            });
+          }
+          */
+      });
+
+</script>
+	</head>
+	
+		
+	<body class="home"  onload="init(); trap();">
+	<noscript>Your browser does not support JavaScript!  This page will not render correctly.</noscript> 
+
+
+	
+	<div id="adobebox" style="position:absolute; width:400px; height:150px; border:2px solid #555555; background-color:#cccccc; display:none;"></div>
+	<div id="container" >	
+				<div id="header" class="nodisplay" style="text-align:center; height:100px;" >
+									<img id="headerimg" class="nodisplay" alt="South Carolina Legislature" title="South Carolina Legislature" src="/images/header8.png" />
+								
+							<!--	<div class="award"><span style="color:#831224; font-weight:bold; font-size:1.5em;">*</span> Recipient of<br>the Notable State Documents Award<br>by the<br>South Carolina<br>State Library.</div>-->
+				
+				
+			</div>
+			<div class="printdisplay"><img border="0" src="/images/titleprint.jpg" alt="South Carolina Legislature" title="South Carolina Legislature" alt="South Carolina Legislature" title="South Carolina State Legislature" /><br /><hr /><br /></div>
+	
+			<div id="pagebody" >
+	
+	
+<!--<div id="topmessage">
+<br style="display:block; margin-top:10px;">
+Searches and data queries will be unavailable beginning Friday, August 19, 2016, from 8:00 PM until Saturday, August 20th at 8:00 AM<br>due to scheduled maintenance.</div>-->
+				<!-- Prompt IE 8/7/6 users to upgrade to a newer browser. -->
+				<!--[if lte IE 8]>
+				<div class="oldframe">In order to improve your experience using this website, please <a href="http://browsehappy.com/">upgrade your browser</a>.</div>
+				<![endif]-->
+			
+			
+			
+			<div id="menu" class="nodisplay">
+				<ul class="nodisplay">
+				<li><a href="/index.php">Home</a></li>
+<li><a href="/senate.php">Senate</a></li>
+<li><a href="/house.php">House</a></li>
+<li><a href="/committeeinfo.php">Committee&nbsp;Postings&nbsp;and&nbsp;Reports</a></li>
+<li><a href="/council.php">Legislative Council</a></li>
+<li><a href="/citizens.php">Citizens&#39; Interest</a></li>
+<li><a href="/publications.php">Publications</a></li>
+		    	</ul>
+			</div>
+			<div id="search" class="nodisplay" style="height: 28px;"><div class="nodisplay" style="float:right; margin:6px 20px 0px 0;">
+							<!--<a style="color:#f7f4ec; height:15px;" href="#" onClick="rsswindow();"><img border=0 src="/images/lock.png" style="vertical-align: middle; width: 15px; height: 15px;">&nbsp;Staff&nbsp;Portal</a>-->
+<!--				<a style="color:#f7f4ec; height:15px;" href="/splashpage/splashpage.html"><img border=0 src="/images/lock.png" style="vertical-align: middle; width: 15px; height: 15px;">&nbsp;Staff&nbsp;Portal</a> -->
+				<a style="color:#f7f4ec; height:15px;" href="/onlineservices/index.php"><img border="0" src="/images/lock.png" style="vertical-align: middle; width: 15px; height: 15px;">&nbsp;Staff&nbsp;Portal</a>
+			<!--	<a style="color:#f7f4ec; height:15px;" href="/maintenance_portal.php"><img border=0 src="/images/lock.png" style="vertical-align: middle; width: 15px; height: 15px;">&nbsp;Staff&nbsp;Portal</a>-->
+						</div></div>
+			
+	
+					<div id="sidebar" class="nodisplay">
+	<div id="vidlinks" style="height: 50px;">
+						<!--<img src="/images/videobutton12d.png">-->
+											<ul id="vidsidemenu">
+	<li id="vidinnermenu" style="font-size:16px; margin: 0 0 5px 0;">Chamber Video</li>
+<li id="sbroadcast" style="float: left; width:50%;">
+<a id="liveS" style="width: 100%; text-decoration:underline;" href="javascript:void(0);" onClick="live_stream('S', false, false, '0')">Senate</a><br><a id="liveaudioS" style="margin:-3px 0 0 0; text-decoration:underline; width: 100%; font-size: 8px;" href="javascript:void(0);" onClick="live_stream('S', false, false, '1');">(Audio Only)</a>
+</li>
+<li id="hbroadcast" style="float: left; width:50%;">
+<a id="liveH" style="width: 100%; text-decoration:underline;" href="javascript:void(0);" onClick="live_stream('H', false, false, '0')">House</a><br><a id="liveaudioH" style="margin:-3px 0 0 0; text-decoration:underline; width: 100%; font-size: 8px;" href="javascript:void(0);" onClick="live_stream('H', false, false, '1');">(Audio Only)</a>
+</li>
+						</ul>
+					</div>
+					<div id="commvidlinks"><a href="/video/schedule.php">Video&nbsp;Schedule</a><a style="border-top:1px solid #fff; padding-top:12px;" href="/video/archives.php">Video Archives</a></div>
+										<div id="sidemenu">
+						<ul id="innermenu">
+		
+							<li><a href="/howdoi.php">How do I...</a></li>
+										
+							
+								<li class="nolink" onMouseOver="var ele=document.getElementById('sidesearch'); if(ele){ele.style.display='block'; document.sidesearchform.searchtext.focus();}" onMouseOut="var ele=document.getElementById('sidesearch'); if(ele){ele.style.display='none';}"><div class="nolinkdiv">Quick Search</div>
+								<div id="sidesearch" class="sidesubmenu">
+									<form id="sidesearchform" name="sidesearchform" method="POST" action="/search.php">
+									<input type="hidden" name="search" value="side" />
+									<div class="topelement"><label for="searchtext"><span class="label">Search for:</span></label><input id="searchtext" name="searchtext" type="text"/><a id="searchlink2" href="javascript:void(0);" onClick="document.sidesearchform.submit();"><img id="searchicon" src="/images/searchbutton.png" alt="Search" title="Search"/></a></div>
+			<!--						<div><input type="checkbox" id="searchchoice_all" name="searchchoice_all" value="all" /><label for="searchchoice_all">All</label></div>-->
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_fullsite" name="category" value="FULLSITE" /><label for="searchchoice_fullsite">&nbsp;Full Site Search</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_billnumber" name="category" value="BILL" /><label for="searchchoice_billnumber">&nbsp;Bill Number</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_legislation" name="category" value="LEGISLATION" CHECKED /><label for="searchchoice_legislation">&nbsp;Legislation</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_budget" name="category" value="BUDGET" /><label for="searchchoice_budget">&nbsp;Budget</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_codeoflaws" name="category" value="CODEOFLAWS" /><label for="searchchoice_codeoflaws">&nbsp;Code of Laws</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_codeofregs" name="category" value="CODEOFREGS" /><label for="searchchoice_codeofregs">&nbsp;Code of Regulations</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_constitution" name="category" value="CONSTITUTION" /><label for="searchchoice_constitution">&nbsp;Constitution</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_housejournals" name="category" value="HOUSEJOURNALS" /><label for="searchchoice_housejournals">&nbsp;House Journals</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_senatejournals" name="category" value="SENATEJOURNALS" /><label for="searchchoice_senatejournals">&nbsp;Senate Journals</label></div>
+									<div class="bottomelement" style="padding-left:20px;"><input type="radio" id="searchchoice_billsummary" name="category" value="SUMMARY" /><label for="searchchoice_billsummary">&nbsp;LSA Bill Summary</label></div>
+								</form>
+									
+								</div>
+							</li>
+							<li><a href="/legislatorssearch.php">Find Your Legislators</a></li>
+							<li id="contactLegislatorLink"><a href="/email.php?chamber=B">Contact Your Legislator</a></li>
+									
+							<li><a href="/legislation.php">Legislation</a></li>
+							<li><a href="/listtracking/main.php" target="LTS">Track Legislation</a></li>
+							<li><a href="/multicriteria2/search.php" target="MCS">Multi-Criteria Search</a></li>
+									<!--<li><a href="#" onclick="multisearchwindow('INTROBOTH');">Multi-Criteria Search</a></li>-->
+									<!--<li><a href="#" onclick="multisearchwindow('INTROMANUAL');">Multi-Criteria Search</a></li>-->
+									<li><a href="/research.php">Research</a></li>
+	
+								<li class="nolink" onMouseOver="var ele=document.getElementById('law'); if(ele){ele.style.display='block';}" onMouseOut="var ele=document.getElementById('law'); if(ele){ele.style.display='none';}"><div class="nolinkdiv">South Carolina Law</div> 
+								<div id="law" class="sidesubmenu">
+									<div class="sidediv topelement"><a href="/newlaws.php">Ratifications &amp; Acts</a></div>
+									<div class="sidediv"><a href="/code/statmast.php">Code of Laws</a></div>
+									<div class="sidediv"><a href="/coderegs/statmast.php">Code of Regulations</a></div>
+									<div class="sidediv"><a href="/scconstitution/scconst.php">Constitution</a></div>
+									<div class="sidediv bottomelement"><a href="/state_register.php">State Register</a></div>
+								</div>
+							</li>
+										<li class="nolink" onMouseOver="var ele=document.getElementById('manual'); if(ele){ele.style.display='block';}" onMouseOut="var ele=document.getElementById('manual'); if(ele){ele.style.display='none';}"><div class="nolinkdiv">Legislative Manual</div>
+								<div id="manual" class="sidesubmenu">
+								
+<!--									<div class="sidediv topelement"><a href="https://web.sc.gov/LSAShoppingcart/Default.aspx" target="_blank">Purchase Manual</a></div>-->
+								
+<!--									<div class="sidediv topelement"><a href="https://secure.scstatehouse.gov/cgi-bin/webstore.exe" target="_blank">Purchase Manual</a></div>-->
+									<div class="sidediv topelement"><a href="javascript:#" onClick="alert('We are sorry, but we are unable to process online transactions at this time.\n\nIf you would still like to make a purchase, please contact us directly at (803) 212-4490 during normal business hours (8:30am - 5:00pm EST).');">Purchase Manual</a></div>
+									<div class="sidediv bottomelement"><a href="/man25/manual25.php">View Manual Online</a></div>
+								</div>
+							</li>
+							<li><a href="http://www.studentconnection.scstatehouse.gov">Student Connection</a></li>
+							<li><a href="/visit.php">Visiting the State House</a></li>
+							<li><a href="/archives.php">Archives</a></li>
+							<li><a href="http://www.sc.gov/Agency-Listing" target="_blank">State Agency Websites</a></li>
+							<!--<li><a href="/stateagencysites.php">State Agency Websites</a></li>-->
+							<li><a href="/citizensinterestpage/media.php">Media Links</a></li>
+				 		</ul>
+			    	</div>
+	
+					<div id="side_ad">
+						<A href="http://www.sc.gov/" target="_blank"><img border=0 src="/images/scgov3.jpg" alt="SC.gov" title="SC.gov" /></a>
+													<A href="http://www.statelibrary.sc.gov" target="_blank"><img border=0 src="/images/scsl_logo_rgb_web.png" alt="StateLibrary.SC.gov" title="StateLibrary.SC.gov" /></a>
+											</div>	    	
+			</div>
+
+	
+	<script type="text/javascript"> 
+		if ( '' === '1'){
+		 	
+			var link = document.getElementById('contactLegislatorLink');
+			if (link != 'undefined' && link != null){
+				link.style.display = 'none'; 
+				link.style.visibility = 'hidden';
+			}
+		}
+		if ( '' === '1'){
+		 	setTimeout(function(){
+				var link2 = document.getElementById('sendMsgLink');
+				if (link2 != 'undefined' && link2 != null){
+					link2.style.display = 'none'; 
+					link2.style.visibility = 'hidden';
+				};
+			}, 20);
+			
+		}  
+	</script>
+<div class="mainwidepanel">
+
+				<div id="breadcrumbs">
+						South Carolina Law &gt; South Carolina Code of Laws 
+				</div>
+
+					<h2 class="barheader" >South Carolina Code of Laws</h2>
+
+				<div id="contentsection">
+
+<!--<a href="/query.php?search=FIRST&searchtext=&category=CODEOFLAWS">-->
+
+<!--<a href="http://search.scstatehouse.gov/index.php?q=&site=Code_of_Laws&client=scstatehouse&output=xml_no_dtd&proxystylesheet=scstatehouse&filter=0-->
+
+<a href="/query.php?search=FIRST&searchtext=&category=CODEOFLAWS"><span style="font-weight: bold;">Search the Full Text of the Code of Laws</a></span><br />
+<br />
+
+<!--new per Ashley Harwell-Beach as of May 4, 2016-->
+<!--Use this for updates during the year-->
+<!--also change disclaimer to reflect the Act no.--> 
+<!--<div style="font-size: 14px; color:red;">June 13, 2017 12:00 PM - The 1976 Code of Laws updated through Act Number 15 of the 2017 Session of the General Assembly is now available on this website. The 1976 Code of Laws on this website will be updated online periodically; however, the official version of the 1976 Code of Laws remains the print version which will continue to be updated on a yearly basis before the start of each legislative session.</div>
+<br />
+-->
+<!--Use this for the end of the year updates (through the end of a Session)-->
+
+
+<hr>
+<br />
+
+<div style="text-align: center;">DISCLAIMER</div>
+<br />
+The South Carolina Legislative Council is offering access to the South Carolina Code of Laws on the Internet as a service to the public. The South Carolina Code on the General Assembly's website is now current through the 2025 Session of the General Assembly. The Code of Laws on this website will be updated online periodically; however, the official version of the Code of Laws remains the print version which will continue to be updated on a yearly basis before the start of each legislative session. The South Carolina Code, consisting only of Code text, numbering, history, and Effect of Amendment, Editor's, and Code Commissioner&#39;s notes may be copied from this website at the reader's expense and effort without need for permission. <br >
+<br />
+
+The Legislative Council is unable to assist users of this service with legal questions. Also, legislative staff cannot respond to requests for legal advice or the application of the law to specific facts. Therefore, to understand and protect your legal rights, you should consult your own private lawyer regarding all legal questions.   <br />
+<br >
+
+While every effort was made to ensure the accuracy and completeness of the South Carolina Code available on the South Carolina General Assembly's website, this version of the South Carolina Code is not official, and the state agencies preparing this website and the General Assembly are not responsible for any errors or omissions which may occur in these files. Only the current published volumes of the South Carolina Code of Laws Annotated and any pertinent acts and joint resolutions contain the official version.<br />
+<br />
+Please note that the Legislative Council is not able to respond to individual inquiries regarding research or the features, format, or use of this website. However, you may notify the Legislative Services Agency at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e726d7f7e4d5d4d4a5f4a5b56514b4d5b10595148">[email&#160;protected]</a> regarding any apparent errors or omissions in content of Code sections on this website, in which case LSA will relay the information to appropriate staff members of the South Carolina Legislative Council for investigation.<br />
+<br />
+
+<hr>
+
+<br />
+<a href="/code/title1.php">Title 1</a> - Administration of the Government</span><br />
+<a href="/code/title2.php">Title 2</a> - General Assembly</span><br />
+<a href="/code/title3.php">Title 3</a> - U.S. Government, Agreements and Relations With</span><br />
+<a href="/code/title4.php">Title 4</a> - Counties</span><br />
+<a href="/code/title5.php">Title 5</a> - Municipal Corporations</span><br />
+<a href="/code/title6.php">Title 6</a> - Local Government - Provisions Applicable to Special Purpose
+Districts and Other Political Subdivisions</span><br />
+<a href="/code/title7.php">Title 7</a> - Elections</span><br />
+<a href="/code/title8.php">Title 8</a> - Public Officers and Employees</span><br />
+<a href="/code/title9.php">Title 9</a> - Retirement Systems</span><br />
+<a href="/code/title10.php">Title 10</a> - Public Buildings and Property</span><br />
+<a href="/code/title11.php">Title 11</a> - Public Finance</span><br />
+<a href="/code/title12.php">Title 12</a> - Taxation</span><br />
+<a href="/code/title13.php">Title 13</a> - Planning, Research and Development</span><br />
+<a href="/code/title14.php">Title 14</a> - Courts</span><br />
+<a href="/code/title15.php">Title 15</a> - Civil Remedies and Procedures</span><br />
+<a href="/code/title16.php">Title 16</a> - Crimes and Offenses</span><br />
+<a href="/code/title17.php">Title 17</a> - Criminal Procedures</span><br />
+<a href="/code/title18.php">Title 18</a> - Appeals</span><br />
+<a href="/code/title19.php">Title 19</a> - Evidence</span><br />
+<a href="/code/title20.php">Title 20</a> - Domestic Relations</span><br />
+<a href="/code/title21.php">Title 21</a> - Estates, Trusts, Guardians and Fiduciaries</span><br />
+<a href="/code/title22.php">Title 22</a> - Magistrates and Constables</span><br />
+<a href="/code/title23.php">Title 23</a> - Law Enforcement and Public Safety</span><br />
+<a href="/code/title24.php">Title 24</a> - Corrections, Jails, Probations, Paroles and Pardons</span><br />
+<a href="/code/title25.php">Title 25</a> - Military, Civil Defense and Veterans Affairs</span><br />
+<a href="/code/title26.php">Title 26</a> - Notaries Public and Acknowledgements</span><br />
+<a href="/code/title27.php">Title 27</a> - Property and Conveyances</span><br />
+<a href="/code/title28.php">Title 28</a> - Eminent Domain</span><br />
+<a href="/code/title29.php">Title 29</a> - Mortgages and Other Liens</span><br />
+<a href="/code/title30.php">Title 30</a> - Public Records</span><br />
+<a href="/code/title31.php">Title 31</a> - Housing and Redevelopment</span><br />
+<a href="/code/title32.php">Title 32</a> - Contracts and Agents</span><br />
+<a href="/code/title33.php">Title 33</a> - Corporations, Partnerships and Associations</span><br />
+<a href="/code/title34.php">Title 34</a> - Banking, Financial Institutions and Money</span><br />
+<a href="/code/title35.php">Title 35</a> - Securities</span><br />
+<a href="/code/title36.php">Title 36</a> - Commercial Code</span><br />
+<a href="/code/title37.php">Title 37</a> - Consumer Protection Code</span><br />
+<a href="/code/title38.php">Title 38</a> - Insurance</span><br />
+<a href="/code/title39.php">Title 39</a> - Trade and Commerce</span><br />
+<a href="/code/title40.php">Title 40</a> - Professions and Occupations</span><br />
+<a href="/code/title41.php">Title 41</a> - Labor and Employment</span><br />
+<a href="/code/title42.php">Title 42</a> - Workers&#39; Compensation</span><br />
+<a href="/code/title43.php">Title 43</a> - Social Services</span><br />
+<a href="/code/title44.php">Title 44</a> - Health</span><br />
+<a href="/code/title45.php">Title 45</a> - Hotels, Motels, Restaurants and Boardinghouses</span><br />
+<a href="/code/title46.php">Title 46</a> - Agriculture</span><br />
+<a href="/code/title47.php">Title 47</a> - Animals, Livestock and Poultry</span><br />
+<a href="/code/title48.php">Title 48</a> - Environmental Protection and Conservation</span><br />
+<a href="/code/title49.php">Title 49</a> - Waters, Water Resources and Drainage</span><br />
+<a href="/code/title50.php">Title 50</a> - Fish, Game and Watercraft</span><br />
+<a href="/code/title51.php">Title 51</a> - Parks, Recreation and Tourism</span><br />
+<a href="/code/title52.php">Title 52</a> - Amusements and Athletic Contests</span><br />
+<a href="/code/title53.php">Title 53</a> - Sundays, Holidays and Other Special Days</span><br />
+<a href="/code/title54.php">Title 54</a> - Ports and Maritime Matters</span><br />
+<a href="/code/title55.php">Title 55</a> - Aeronautics</span><br />
+<a href="/code/title56.php">Title 56</a> - Motor Vehicles</span><br />
+<a href="/code/title57.php">Title 57</a> - Highways, Bridges and Ferries</span><br />
+<a href="/code/title58.php">Title 58</a> - Public Utilities, Services and Carriers</span><br />
+<a href="/code/title59.php">Title 59</a> - Education</span><br />
+<a href="/code/title60.php">Title 60</a> - Libraries, Archives, Museums and Arts</span><br />
+<a href="/code/title61.php">Title 61</a> - Alcohol and Alcoholic Beverages</span><br />
+<a href="/code/title62.php">Title 62</a> - South Carolina Probate Code</span><br />
+<a href="/code/title63.php">Title 63</a> - South Carolina Children&#39;s Code</span><br /></span><br />
+<hr>
+<br />
+OTHER LEGAL RESEARCH DATA BASES:<br />
+<a href="/coderegs/statmast.php">Code of Regulations</a><br />
+<a href="http://www.loc.gov" target="_blank">Global Legal Information Catalog - Law Library of Congress</a><br />
+<br />
+<!-- This page last updated: October 13, 2022 9:30 AM -->
+<br />
+
+</div>
+					</div>		 <!-- mainwidepanel -->
+					
+				</div>		 <!-- pagebody -->
+				
+				<div id="footer" class="nodisplay" style="height: 30px;" onContextMenu="return false;">
+			<div id="footerdiv" style="margin:0;">
+				South Carolina Legislative Services Agency * 223 Blatt Building * 1105 Pendleton Street * Columbia, SC 29201<!-- * 803-212-4420--><br>
+				
+								<a href="/disclaimer.php">Disclaimer</a> * <a href="/policies.php">Policies</a> * <a href="/credits.php">Photo Credits</a> * <a href="/contact.php">Contact Us</a>
+							</div>
+		</div>
+		<div id="printfooter" class="printdisplay serifNormal" align=center style="font-size: 8pt;">
+			<br>
+			<br>
+			<hr>
+			Legislative Services Agency
+			<br>
+			h t t p : / / w w w . s c s t a t e h o u s e . g o v
+		</div>
+	
+		</div>	<!-- container or main in mobile page-->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
+
