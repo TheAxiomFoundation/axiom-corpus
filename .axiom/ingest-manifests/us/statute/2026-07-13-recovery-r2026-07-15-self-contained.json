@@ -1,0 +1,902 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/coverage/us/statute/2026-07-13-recovery-r2026-07-15-self-contained.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/inventory/us/statute/2026-07-13-recovery-r2026-07-15-self-contained.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us/statute/2026-07-13-recovery-r2026-07-15-self-contained.jsonl"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/release-scope-us-statute-2026-05-10-snap-sections"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/release-scope-us-statute-2026-05-10-tax-sections"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc05-section-5566.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc08-section-1612.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc08-section-1613.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc08-section-1641.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc20-section-1070a.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-1.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-102.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-104.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-112.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-1211.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-1212.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-1222.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-1402.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-1411.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-151.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-152.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-163.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-164.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-170.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-172.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-199A.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-2.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-21.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-212.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-213.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-219.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-22.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-221.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-223.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-224.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-225.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-24.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-25A.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-25B.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-25C.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-25D.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-25E.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-26.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-30D.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3102.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3121.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3127.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3128.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3131.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3132.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3133.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3134.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-32.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3201.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3202.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3211.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3212.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3221.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3231.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3232.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3233.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3241.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3301.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3302.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3303.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3304.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3305.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3306.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3307.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3308.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3309.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3310.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3311.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3401.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3402.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3403.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3404.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3405.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3406.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3501.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3502.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3503.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3504.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3505.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3506.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3507.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3508.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3509.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3510.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3511.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-3512.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-36B.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-408.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-443.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-55.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-56.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-6012.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-6013.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-61.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-62.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-64.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-6401.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-65.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-67.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-68.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-7703.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-86.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-911.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-931.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc26-section-933.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/official-documents/usc37-section-556.xml"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/release-scope-us-statute-2026-05-10-snap-sections.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/release-scope-us-statute-2026-05-10-tax-sections.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc05-section-5566.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc08-section-1612.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc08-section-1613.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc08-section-1641.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc20-section-1070a.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-1.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-102.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-104.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-112.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-1211.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-1212.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-1222.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-1402.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-1411.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-151.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-152.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-163.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-164.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-170.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-172.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-199A.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-2.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-21.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-212.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-213.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-219.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-22.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-221.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-223.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-224.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-225.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-24.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-25A.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-25B.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-25C.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-25D.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-25E.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-26.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-30D.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3102.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3121.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3127.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3128.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3131.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3132.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3133.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3134.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-32.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3201.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3202.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3211.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3212.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3221.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3231.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3232.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3233.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3241.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3301.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3302.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3303.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3304.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3305.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3306.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3307.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3308.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3309.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3310.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3311.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3401.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3402.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3403.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3404.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3405.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3406.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3501.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3502.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3503.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3504.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3505.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3506.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3507.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3508.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3509.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3510.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3511.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-3512.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-36B.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-408.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-443.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-55.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-56.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-6012.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-6013.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-61.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-62.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-64.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-6401.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-65.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-67.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-68.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-7703.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-86.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-911.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-931.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc26-section-933.xml.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-13-recovery-r2026-07-15-self-contained/provenance/usc37-section-556.xml.json"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "869fa0e1af2f731eb49fc1a226ca20036cc5f3ff",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
+  },
+  "coverage": null,
+  "document_class": "statute",
+  "generated_at": "2026-07-16T22:17:15.201802+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n5S7gyxHPnC7cLDJtOYb3UYo6nv7VyEcFvmeUDNiCR/7wWT9RN1ueBBQL8K2f/fB3ZuehsrTQhiYkJ6uhB+UBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery-r2026-07-15-self-contained"
+}
