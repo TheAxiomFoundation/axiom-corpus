@@ -51,3 +51,24 @@ sources:
     metadata:
       source_authority: Wisconsin Legislative Reference Bureau
       source_scope_note: Updated 2023-24 Wisconsin Statutes chapter 71, Income and Franchise Taxes, from the official Legislature HTML, published April 3, 2026.
+
+  - source_id: us-ks-statutes
+    jurisdiction: us-ks
+    document_class: statute
+    adapter: kansas-statutes
+    source_url: https://ksrevisor.gov/ksa.html
+    version: "2026-07-16-pit-west"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-ks-statutes/2026-07-16-pit-west
+      base_url: https://ksrevisor.gov/
+      only_title: "79"
+      only_article: "32"
+      request_delay_seconds: 0.01
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 24
+    metadata:
+      source_authority: Kansas Office of Revisor of Statutes
+      source_scope_note: Current Kansas Statutes chapter 79, article 32, Income Tax, from the official Revisor HTML, including K.S.A. 79-32,110 and the 2025 contingent rate-adjustment authority in K.S.A. 79-32,110c.

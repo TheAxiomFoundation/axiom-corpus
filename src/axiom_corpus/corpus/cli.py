@@ -2616,6 +2616,7 @@ def _extract_state_statute_source(
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
+            only_article=_optional_text(options.get("only_article")),
             limit=limit,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
             base_url=_optional_text(options.get("base_url")) or "https://ksrevisor.gov/",
