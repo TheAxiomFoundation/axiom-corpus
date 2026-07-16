@@ -328,13 +328,14 @@ def extract_german_gii(
                 )
             law_as_of = run_fetch_date
         else:
-            law_as_of = law.source_as_of or source_as_of
-            if not law_as_of:
+            offline_as_of = law.source_as_of or source_as_of
+            if not offline_as_of:
                 raise ValueError(
                     f"{law.slug}: offline sources require source_as_of (per-law "
                     "manifest value or --source-as-of) recording when the "
                     "artifact was fetched from gesetze-im-internet.de"
                 )
+            law_as_of = offline_as_of
         _require_iso_date(law_as_of, field_name="source_as_of", slug=law.slug)
         law_expression = _date_text(law.expression_date) or expression_text or law_as_of
         _require_iso_date(law_expression, field_name="expression_date", slug=law.slug)
