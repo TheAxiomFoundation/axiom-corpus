@@ -214,6 +214,7 @@ from axiom_corpus.corpus.state_adapters.utah import (
     UTAH_CODE_SOURCE_URL,
     extract_utah_code,
 )
+from axiom_corpus.corpus.state_adapters.vermont import extract_vermont_statutes
 from axiom_corpus.corpus.state_adapters.west_virginia import extract_west_virginia_code
 from axiom_corpus.corpus.state_adapters.wisconsin import (
     WISCONSIN_STATUTES_TOC_URL,
@@ -3233,6 +3234,42 @@ def _extract_state_statute_source(
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
         )
+    if adapter == "vermont-statutes":
+        return extract_vermont_statutes(
+            store,
+            version=version,
+            source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            only_title=only_title,
+            only_chapter=_optional_text(options.get("only_chapter")),
+            limit=limit,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            chapter_index_url=_optional_text(options.get("chapter_index_url"))
+            or "https://legislature.vermont.gov/statutes/chapter/32/151",
+            full_chapter_url=_optional_text(options.get("full_chapter_url"))
+            or "https://legislature.vermont.gov/statutes/fullchapter/32/151",
+            acts_registry_url=_optional_text(options.get("acts_registry_url"))
+            or (
+                "https://legislature.vermont.gov/"
+                "bill/loadBillActsAffectingStatutes/2026"
+            ),
+            act_152_url=_optional_text(options.get("act_152_url"))
+            or (
+                "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT152/"
+                "ACT152%20As%20Enacted.pdf"
+            ),
+            act_164_url=_optional_text(options.get("act_164_url"))
+            or (
+                "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT164/"
+                "ACT164%20As%20Enacted.pdf"
+            ),
+            request_delay_seconds=_optional_float(options.get("request_delay_seconds"))
+            or 0.1,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            verify_ssl=_optional_bool(options.get("verify_ssl"), default=True),
+        )
     if adapter == "new-mexico-statutes":
         return extract_new_mexico_statutes(
             store,
@@ -3592,6 +3629,11 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "west-virginia-code": "west-virginia-code",
         "west-virginia-code-html": "west-virginia-code",
         "wv-code": "west-virginia-code",
+        "vt": "vermont-statutes",
+        "vermont": "vermont-statutes",
+        "vermont-statutes": "vermont-statutes",
+        "vermont-statutes-online": "vermont-statutes",
+        "vsa": "vermont-statutes",
         "nm": "new-mexico-statutes",
         "new-mexico": "new-mexico-statutes",
         "new-mexico-statutes": "new-mexico-statutes",
@@ -3686,6 +3728,7 @@ def _state_statute_source_path_for_plan(
         "pennsylvania-unconsolidated-statutes",
         "south-carolina-code",
         "west-virginia-code",
+        "vermont-statutes",
         "new-mexico-statutes",
         "rhode-island-general-laws",
     }:

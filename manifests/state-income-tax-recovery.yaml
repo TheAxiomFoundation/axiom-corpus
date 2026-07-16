@@ -291,3 +291,28 @@ sources:
     metadata:
       source_authority: New Hampshire General Court
       source_scope_note: Complete current RSA chapter 77 repealed-chapter scope from official RSA HTML, verified against the original repeal in Laws 2021, chapter 91, section 99(II), and its acceleration by Laws 2023, chapter 79, sections 85 through 88; the interest and dividends tax is not imposed for taxable periods beginning after December 31, 2024.
+
+  - source_id: us-vt-income-tax-statutes
+    jurisdiction: us-vt
+    document_class: statute
+    adapter: vermont-statutes
+    source_url: https://legislature.vermont.gov/statutes/chapter/32/151
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-vt-income-tax-statutes/2026-07-16-pit-central
+      only_title: "32"
+      only_chapter: "151"
+      chapter_index_url: https://legislature.vermont.gov/statutes/chapter/32/151
+      full_chapter_url: https://legislature.vermont.gov/statutes/fullchapter/32/151
+      acts_registry_url: https://legislature.vermont.gov/bill/loadBillActsAffectingStatutes/2026
+      act_152_url: https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT152/ACT152%20As%20Enacted.pdf
+      act_164_url: https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT164/ACT164%20As%20Enacted.pdf
+      request_delay_seconds: 0.1
+      timeout_seconds: 90
+      request_attempts: 3
+      verify_ssl: false
+    metadata:
+      source_authority: Vermont General Assembly
+      source_scope_note: Complete current 32 V.S.A. chapter 151 from the official chapter index and full-chapter HTML through the 2025 session, closed through July 16, 2026 with the official acts-affecting-statutes registry and enacted Acts 152 and 164, including operative and future-effective amendment metadata.
