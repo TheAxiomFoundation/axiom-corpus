@@ -30,13 +30,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5e98c135cb3c5f5fd1dfcbf3e59cb6a4834cd505",
+    "commit": "e8caaace4f9007669066e30e338f859a28bf35bc",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-14-uk-ctr-enp-applicable-amounts --citation uksi/2012/2885/schedule/2/part/1/paragraph/1 --citation uksi/2012/2885/schedule/2/part/1/paragraph/2 --citation uksi/2012/2885/schedule/2/part/2/paragraph/3 --citation uksi/2012/2885/schedule/2/part/4"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -47,10 +47,15 @@
     "source_count": 4
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T08:54:06.701516+00:00",
+  "generated_at": "2026-07-16T18:42:32.317225+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WtHtuJrhHUgBGybOU3kBZuj5/tw2PikoeI8AJ3Rrcfof4t1tWSUPqb2lxaOG736smQ88x/dvJ+7UU83sFFU9Bg=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-14-uk-ctr-enp-applicable-amounts"
 }
