@@ -1,60 +1,53 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-tx/manual/2026-07-13-recovery.json",
-      "sha256": "16c64338266d44641898d83d5f2633b2baffa6aeb692f0ff466a01c72b8c8246"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-tx/manual/2026-07-13-recovery.json"
     },
     {
-      "path": "data/corpus/inventory/us-tx/manual/2026-07-13-recovery.json",
-      "sha256": "98d480e49d310b1a4077018a8982dcde9a581c1e657aac2176a56c6479c56894"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-tx/manual/2026-07-13-recovery.json"
     },
     {
-      "path": "data/corpus/provisions/us-tx/manual/2026-07-13-recovery.jsonl",
-      "sha256": "1f986ded163a8cd9b9cb4f979f6e44a5b46ad4886c82228278fbe7dab3500aea"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-tx/manual/2026-07-13-recovery.jsonl"
     },
     {
-      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/official-documents/release-scope-us-tx-manual-2026-05-27-tx-manuals",
-      "sha256": "b6a996acbd5fc5205656601f83b23724d4a2e38196e074b1d57c50517a7581b1"
+      "deleted": true,
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/official-documents/release-scope-us-tx-manual-2026-05-27-tx-manuals"
     },
     {
-      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/official-documents/us-tx-works-handbook",
-      "sha256": "892306a38f550c38b2febde418dcdee18b2ad669dac7114915428f3e6db7e4ae"
+      "deleted": true,
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/official-documents/us-tx-works-handbook"
     },
     {
-      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/provenance/release-scope-us-tx-manual-2026-05-27-tx-manuals.json",
-      "sha256": "eff884d12dc5d8cb3276b83d48d6e2f2cacfeb50217b694721003f7e07bd744f"
+      "deleted": true,
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/provenance/release-scope-us-tx-manual-2026-05-27-tx-manuals.json"
     },
     {
-      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/provenance/us-tx-works-handbook.json",
-      "sha256": "9e3e23c3537e8543479551f2014520ff2c3e5bd404e5f73679b3d6de3cf11047"
+      "deleted": true,
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/provenance/us-tx-works-handbook.json"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "02d23473f86170f4b4c8891c6e93ad6393870e9d",
+    "commit": "6be6d2ffcf2a9afeac616b9cc888bbfaee215521",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 22,
-    "missing_count": 0,
-    "provision_count": 22,
-    "source_count": 22
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-16T19:47:23.542716+00:00",
+  "generated_at": "2026-07-16T22:17:15.549032+00:00",
   "jurisdiction": "us-tx",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "dDy3KjjhgzlCdZ4WzZcx229QZ5Xql7Afny1SnwRE82TBw3Xw+Ndt41Bg05kSflbYcDfD90icPnrqXO7WRK4IDw=="
+    "value": "oUye86JXdk6MlnL5H4is894TGg9FXTdhdlDqMfmebQnsnkABoFlihgsfHfEP8pdgWzCIbVX8AFpKOjv5WGkdAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
