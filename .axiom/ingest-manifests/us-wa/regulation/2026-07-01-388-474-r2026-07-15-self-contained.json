@@ -26,13 +26,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b1720b7d277797c3e54c95ed6051a061101afe4d",
+    "commit": "e999a87ad6e2019eb83ff8d46b983c2df557119d",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "Regenerate post-#358-dedup inventory and coverage from retained scope provisions."
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -43,10 +43,15 @@
     "source_count": 5
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-16T19:34:30.827023+00:00",
+  "generated_at": "2026-07-16T19:47:25.407926+00:00",
   "jurisdiction": "us-wa",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FJZhlH0ECIIDyDrI3WczPefhdQNNgZPW4CDpiPazH/t9E8RuyIMGwCdCjapjnTRaQCgxH8gBxeR+wD6tJ1bNDg=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-388-474-r2026-07-15-self-contained"
 }
