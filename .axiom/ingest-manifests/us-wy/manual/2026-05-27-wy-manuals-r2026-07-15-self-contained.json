@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/manual/2026-05-27-wy-manuals-r2026-07-15-self-contained.json",
+      "sha256": "2d3cd4becec8da1e0b2a492e1e544b4c710b553d025730d6b0c48afba8554d71"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/manual/2026-05-27-wy-manuals-r2026-07-15-self-contained.json",
+      "sha256": "4ff99168caa613361fe3971abe24d5c36c0a656a66808677ca039952bcfccaaf"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/manual/2026-05-27-wy-manuals-r2026-07-15-self-contained.jsonl",
+      "sha256": "ec5a969633326f080a5f51388f3cd42e0e43f3d303a82e73d776e9b32faef228"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/manual/2026-05-27-wy-manuals-r2026-07-15-self-contained/official-documents/release-scope-us-wy-manual-2026-05-27-wy-manuals-r2026-07-15-self-contained",
+      "sha256": "9c1513db4c87abd3dcfbd7883ed6c8305b076f6668ef4ab98b8f8e39cd4824a4"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/manual/2026-05-27-wy-manuals-r2026-07-15-self-contained/provenance/release-scope-us-wy-manual-2026-05-27-wy-manuals-r2026-07-15-self-contained.json",
+      "sha256": "7ec3d17303099d90ecbd410efb290a69db135958f7a50d8e4103a4fc0a324eb7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "552b4a4aa7b7f78f8a0a972933786c8cdad7f12b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T22:26:31.631819+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jt3rB9qRTCzK9Zq3xAIjr2oZC4TaBbBHN5uNXZxAqX5dL4dtuVjm265EzCSrjEgofLpkCVz4HXqv/t5X/PjIDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-wy-manuals-r2026-07-15-self-contained"
+}

@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/statute/2026-07-13-recovery.json",
+      "sha256": "f9bd002232d920b97ef76360f8b341e1e7d06b8f90075330b57318b663b054d5"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/statute/2026-07-13-recovery.json",
+      "sha256": "ac63349f53ee53d343800fb28998f7bafca941dc3d2aac5943c59a4a79413952"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/statute/2026-07-13-recovery.jsonl",
+      "sha256": "90509954abf927591585b37eb681346aeab402ba82d0097c5bc38c602836f5fc"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-13-recovery/official-documents/us-or-code-315.264",
+      "sha256": "db2a33bb097cb7fad802abe45793cc44fac1ba228d7251b5de49d83f750ba9c4"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-13-recovery/official-documents/us-or-code-315.266",
+      "sha256": "db2a33bb097cb7fad802abe45793cc44fac1ba228d7251b5de49d83f750ba9c4"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-13-recovery/official-documents/us-or-code-316.085",
+      "sha256": "c556b25dd3be1653212a5f1dd5d03c4948baff28ca1307ab77066a9619563621"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-13-recovery/provenance/us-or-code-315.264.json",
+      "sha256": "94501f00ed7dc5ab058382469ea665ba131f2a349da38c769feb895f32e14cd6"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-13-recovery/provenance/us-or-code-315.266.json",
+      "sha256": "95498630c45ee6a401800f31875adfae53d06eedefd268a9a50ff33c21ed58c4"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-13-recovery/provenance/us-or-code-316.085.json",
+      "sha256": "ccd36d31d52f52c22764c87ea6f14fcf7b9fb7df8b85913ee3bfc634fb1fd8d8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "81c6705ead4298b9d30c020c357fe8c843029652",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-15T15:19:08.360119+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "RSoXheGY0udHn4o+JdM8EWxxr/CVuLz36/2xv7X+/41DUJP5yb81IeK1ZEhgUZteiTF1CUCzSA1PlA25vxmcAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

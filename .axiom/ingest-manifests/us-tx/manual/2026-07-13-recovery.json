@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/manual/2026-07-13-recovery.json",
+      "sha256": "ad16cdaaca8bd066a493ba749b6a174e6186318a92d34c8c265cf072a9a6e868"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/manual/2026-07-13-recovery.json",
+      "sha256": "06a59fce06c9714eba8f0f9cad200411d8584791bb1fbae5a07c133683b41f85"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/manual/2026-07-13-recovery.jsonl",
+      "sha256": "66ce774ac76a5aa3dad52a5c90224ce915ecddab8a41d80bf930064e7c10bf6d"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/official-documents/release-scope-us-tx-manual-2026-05-27-tx-manuals",
+      "sha256": "b6a996acbd5fc5205656601f83b23724d4a2e38196e074b1d57c50517a7581b1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/official-documents/us-tx-works-handbook",
+      "sha256": "892306a38f550c38b2febde418dcdee18b2ad669dac7114915428f3e6db7e4ae"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/provenance/release-scope-us-tx-manual-2026-05-27-tx-manuals.json",
+      "sha256": "eff884d12dc5d8cb3276b83d48d6e2f2cacfeb50217b694721003f7e07bd744f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/provenance/us-tx-works-handbook.json",
+      "sha256": "9e3e23c3537e8543479551f2014520ff2c3e5bd404e5f73679b3d6de3cf11047"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "63688709def8f926b1660f3c51f7178e57ffc679",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 29,
+    "missing_count": 0,
+    "provision_count": 29,
+    "source_count": 29
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T15:19:15.950073+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zCVfBlLxJdz7oa2J5XQi9OeFugFidiwp9yrdix+QbUEINV8z8UqYqQB1uo4GLp3WaCSEzk/N2b+efIWY4eggBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

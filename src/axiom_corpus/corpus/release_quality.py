@@ -140,6 +140,7 @@ def validate_release(
         artifact_rows = {
             (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
         }
+    release_citation_paths = _release_citation_paths(store, release, artifact_rows)
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             collector.add(
@@ -152,7 +153,7 @@ def validate_release(
                 scope=scope,
             )
             continue
-        _validate_scope(store, scope, collector)
+        _validate_scope(store, scope, collector, release_citation_paths)
     return ReleaseValidationReport(
         release_name=release.name,
         scope_count=len(release.scopes),
@@ -162,6 +163,29 @@ def validate_release(
         max_issues=max_issues,
         strict_warnings=strict_warnings,
     )
+
+
+def _release_citation_paths(
+    store: CorpusArtifactStore,
+    release: ReleaseManifest,
+    artifact_rows: Mapping[tuple[str, str, str], Any],
+) -> set[str]:
+    """Collect parents available anywhere in the local release cut.
+
+    A release may deliberately split a legal hierarchy across source snapshots.
+    Parent integrity is therefore a release-wide invariant, not a scope-local one.
+    Parsing errors remain owned by ``_validate_scope`` so they are reported once.
+    """
+    paths: set[str] = set()
+    for scope in release.scopes:
+        if _scope_has_remote_artifacts(scope, artifact_rows):
+            continue
+        path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
+        try:
+            paths.update(record.citation_path for record in load_provisions(path))
+        except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
+            continue
+    return paths
 
 
 def _validate_artifact_report(
@@ -228,6 +252,7 @@ def _validate_scope(
     store: CorpusArtifactStore,
     scope: ReleaseScope,
     collector: _IssueCollector,
+    release_citation_paths: set[str],
 ) -> None:
     inventory_path = store.inventory_path(scope.jurisdiction, scope.document_class, scope.version)
     provisions_path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
@@ -244,6 +269,7 @@ def _validate_scope(
         inventory_source_paths,
         scope,
         collector,
+        release_citation_paths,
     )
     recomputed = compare_provision_coverage(
         inventory,
@@ -529,6 +555,7 @@ def _validate_provisions(
     inventory_source_paths: set[str],
     scope: ReleaseScope,
     collector: _IssueCollector,
+    release_citation_paths: set[str] | None = None,
 ) -> None:
     try:
         DocumentClass(scope.document_class)
@@ -591,7 +618,9 @@ def _validate_provisions(
                     path=record.source_path,
                 )
     for record in provisions:
-        _validate_provision_record(record, by_path, scope, collector)
+        _validate_provision_record(
+            record, by_path, scope, collector, release_citation_paths or set(by_path)
+        )
 
 
 def _warn_unsectioned_document(
@@ -630,6 +659,7 @@ def _validate_provision_record(
     by_path: dict[str, ProvisionRecord],
     scope: ReleaseScope,
     collector: _IssueCollector,
+    release_citation_paths: set[str],
 ) -> None:
     if record.jurisdiction != scope.jurisdiction:
         collector.add(
@@ -662,6 +692,8 @@ def _validate_provision_record(
     _warn_unsectioned_document(record, by_path, scope, collector)
     if record.parent_citation_path:
         parent = by_path.get(record.parent_citation_path)
+        # Supabase derives versioned parent UUIDs, so a citation found only in
+        # another release scope cannot satisfy this scope's FK.
         if parent is None:
             collector.add(
                 "error",
@@ -669,7 +701,7 @@ def _validate_provision_record(
                 f"{record.citation_path} parent not found: {record.parent_citation_path}",
                 scope=scope,
             )
-        elif record.parent_id and parent.id and record.parent_id != parent.id:
+        elif parent is not None and record.parent_id and parent.id and record.parent_id != parent.id:
             collector.add(
                 "error",
                 "parent_id_mismatch",

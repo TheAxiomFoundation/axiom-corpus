@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/guidance/2026-07-13-recovery.json",
+      "sha256": "3516946913691bf2f28d3287936cbb442a20289cf3617f816b7e0925e23655b1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/guidance/2026-07-13-recovery.json",
+      "sha256": "3c559474156bfde2def777f4fd3fc8cb5dc17a66c98c8bc873ca2bed29dc24db"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/guidance/2026-07-13-recovery.jsonl",
+      "sha256": "ae4a13aa23b8b7ecaf4814e28e9f90be110848d3acfc93090dd11fb556b10262"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-07-13-recovery/official-documents/release-scope-us-ca-guidance-2025-09-03-ca-cdss-acin",
+      "sha256": "1df4a3686c1abc5de10345ef9b14575a0b8605721429acb079f1fd7b19ddcd7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-07-13-recovery/provenance/release-scope-us-ca-guidance-2025-09-03-ca-cdss-acin.json",
+      "sha256": "12cef1ce09b078b8cf424ca2fc9a02dd158c9c496ab17af612042708f721404c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7ff4314510e219cada13e57384449cb18531f4f5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-15T15:18:28.842671+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vee96pwV6h5YnXWjCl6zGkbuFG+I95p4jLzjy/+XOVqsxh5GxXM9TS2Qjx5dYTQwV7WP5V2r469yd6Pf9YgPBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

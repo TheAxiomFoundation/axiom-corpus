@@ -1,0 +1,1273 @@
+
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	
+	<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="robots" content="noimageindex">
+	    <meta charset="iso-8859-1">
+	    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+	    	    <title>South Carolina Code of Regulations</title>
+	    <link rel="SHORTCUT ICON" href="/images/stateflagsmall.ico" />
+		<link rel="icon" href="/images/stateflagsmall.ico" type="image/ico" />
+		<link rel="SHORTCUT ICON" href="/images/South-Carolina-Flag2.ico" />
+
+		<link type="text/css" rel="stylesheet" href="/css/main.css" media="all" />
+				
+		<!--[if lte IE 7]>
+		<link type="text/css" rel="stylesheet" href="/css/ie7main.css" media="all" />
+		<![endif]-->
+		<!--[if gte IE 7]>
+		<link type="text/css" rel="stylesheet" href="/css/iemain.css" media="all" />
+		<![endif]-->
+		<link type="text/css" rel="stylesheet" href="/css/print.css" media="print" />
+		<link type="text/css" rel="stylesheet" href="/css/supplement.css" media="screen" />
+		<!--<link type="text/css" rel="stylesheet" href="/css/zipsearch.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/css/vote.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/css/contact.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/css/navwrap.css" media="screen" />
+		<link type="text/css" rel="stylesheet" href="/css/linkbar.css" media="screen" />-->
+	
+		<!--<script type="text/javascript" src="/js/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>-->
+		<script type="text/javascript" src="/js/jquery-3.5.1.min.js"></script>
+				<script type="text/javascript" src="/js/main_linux.js"></script>
+		
+
+		
+
+
+
+		<!--<script type="text/javascript" src="/js/common.js"></script>
+		<script type="text/javascript" src="/js/utils.js"></script>
+		<script type="text/javascript" src="/js/date.js"></script>
+		<script type="text/javascript" src="/js/lightbox.js"></script>
+		<script type="text/javascript" src="/js/legislation.js"></script>
+		<script type="text/javascript" src="/js/logon_lits.js"></script>
+		<script type="text/javascript" src="/js/message.js"></script>
+		<script type="text/javascript" src="/js/comm_meeting.js"></script>-->
+		<script type="text/vbscript" src="/vbs/comm_meeting.vbs"></script>
+		<!--<script type="text/javascript" src="/js/regs.js"></script>-->
+				
+	   	<script type="text/javascript">
+	    //document.onclick = function () { document.getElementById('transbox').style.display= 'none' };
+	    	var xmlhttp=false;
+			xmlhttp = create_xml_object();
+	
+			function getElement(ele)
+			{
+				var theobj = false;
+				if(typeof ele == 'string')
+					theobj = (document.getElementById)?document.getElementById(ele):document.all[ele];
+				else
+					theobj = ele;
+			
+				return theobj;
+			}
+		
+			function checkreader(friendlyalert)
+			{
+			 	/*friendlyalert=friendlyalert||false;
+			 	
+			 	var browser_info = perform_acrobat_detection();
+				if (!browser_info.acrobat)
+				{
+				 	loadadobebox('adobebox', '/adobe.php');
+					return false;
+				}
+				else if (friendlyalert)
+				{
+			 		alert(friendlyalert);
+				}*/
+				return true;
+			}
+				
+			function loadadobebox(boxname, url)
+			{
+				var response = false;
+	
+				doRequest(xmlhttp, "GET", url, false, null, null);
+				if (xmlhttp.status == 200)
+				{
+		         	response = xmlhttp.responseText;
+				}
+	
+				if(response)
+				{
+			 		var ele = document.getElementById(boxname);
+				 	if (ele)
+				 	{
+				 		ele.style.visibility = 'hidden';
+		 				ele.style.display = 'block';
+	
+		 				positionElement(ele, 'center', 'center', true);
+	
+						ele.innerHTML = response;
+					    ele.style.visibility = 'visible';
+					    ele.style.display = 'block';
+	//				    ele.scrollIntoView(true);
+					}
+				}
+				return response;
+			}
+	
+	
+			function init()
+			{
+		 		var ld=document.getElementById("loading");
+				if(ld)
+				{
+					ld.style.display = 'none';
+				}
+			}
+			
+			function openmore()
+			{
+			 	var id = document.getElementById('quicksearch');
+			 	if (id)
+			 	{
+				 	var pos = findPos(id);
+				 	id.style.zIndex = 10;
+		//		 	id.style.left = pos[0]+'px';
+		//		  	id.style.top = pos[1]+'px';
+				  	id.style.height = '295px';
+				  	id.style.position = 'absolute';
+				  	id.style.backgroundColor = '#f7f4ec';
+				  	var id2 = document.getElementById('searchmore');
+				  	if (id2)
+				  	{
+				  	 	id2.style.display = 'none';
+				  	}
+				  	var id3 = document.getElementById('contactlegislatordiv');
+				  	if (id3)
+				  	{
+				  	 	id3.style.display = 'none';
+				  	}
+				}
+			}
+		
+			function closemore()
+			{
+			 	var id = document.getElementById('quicksearch');
+			 	if (id)
+			 	{
+				  	id.style.height = '135px';
+				  	id.style.position = '';
+				  	id.style.backgroundColor = 'transparent';
+				  	var id2 = document.getElementById('searchmore');
+				  	if (id2)
+				  	{
+				  	 	id2.style.display = 'block';
+				  	}
+				  	var id3 = document.getElementById('contactlegislatordiv');
+				  	if (id3)
+				  	{
+				  	 	id3.style.display = '';
+				  	}
+				}		 	
+			}
+		
+		<!-- This script and many more are available free online at -->
+		<!-- The JavaScript Source!! http://javascript.internet.com -->
+		
+		<!-- Begin
+		function right(e) {
+		var msg = "Use of this image is strictly prohibited unless express written permission is given to the user by South Carolina Legislative Services Agency.";
+		if (navigator.appName == 'Netscape' && e.which == 3) {
+		alert(msg);
+		return false;
+		stopEvent(e);
+		}
+		if (navigator.appName == 'Microsoft Internet Explorer' && event.button==2) {
+		alert(msg);
+		return false;
+			stopEvent(event);
+		}
+		else return true;
+		}
+		
+	function trap() 
+	{
+		if(document.images)
+		{
+			for(i=0;i<document.images.length;i++)
+			{
+				if(document.images[i].className == 'allowcontextmenu')
+				{
+					// this should have no scripting
+				}
+				else
+				{
+				 	document.images[i].onmousedown = right;
+					document.images[i].oncontextmenu = function(){ return false; };
+					//document.images[i].onmouseup = right;
+				}
+			}
+		}
+	}
+
+	function findfwtext(texttofind) 
+	{
+	 	var fwtextele = document.getElementById('fwtext');
+		if(fwtextele)
+		{
+			fwtextele.value = texttofind;
+		}
+	}	
+		// End -->
+		</script>
+
+		<!-- ADDED FOR V4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LJY6FMNQKH"></script>
+
+
+<script type="text/javascript">
+
+//ADDED FOR V4
+//Google tag (gtag.js) 
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LJY6FMNQKH');
+
+ 
+ /* COMMENTING OUT UPGRADING TO V4 -A
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36207109-1']);
+  _gaq.push(['_setDomainName', 'scstatehouse.gov']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+ 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+*/
+  
+      $(document).ready(function(){
+        // COMMENTING THIS OUT NO LONGER BEING ACTIVELY USED TO MONITOR FOR TRAFFIC TO SPECIFIC LINKS - A
+        /*
+          var anchors = $('div#contentsection a');
+
+          //console.log('anchors...'+anchors.length);
+          if(anchors.length > 0){
+            //console.log('setting up event handler...');
+            anchors.click(function(){
+              var a = $(this).attr('href');
+              if(_gaq && (a.substr(-3) == 'htm' || a.substr(-4) == 'html' || a.substr(-3) == 'doc' || a.substr(-4) == 'docx' || a.substr(-3) == 'pdf' || a.substr(-3) == 'xls' || a.substr(-4) == 'xlsx')) {
+                //console.log(a);
+                _gaq.push(['_trackPageview', $(this).attr('href')]);
+              }
+              
+              var aText = $(this).text().toLowerCase();
+              if (a.indexOf('getfile.php') > -1 && aText === 'word'){
+                    _gaq.push(['_trackEvent', 'Word Doc', 'Download', ('from page: ' + document.location + ' - href: ' + a)]);
+              }
+
+            });
+          }
+          */
+      });
+
+</script>
+	</head>
+	
+		
+	<body class="home"  onload="init(); trap();">
+	<noscript>Your browser does not support JavaScript!  This page will not render correctly.</noscript> 
+
+
+	
+	<div id="adobebox" style="position:absolute; width:400px; height:150px; border:2px solid #555555; background-color:#cccccc; display:none;"></div>
+	<div id="container" >	
+				<div id="header" class="nodisplay" style="text-align:center; height:100px;" >
+									<img id="headerimg" class="nodisplay" alt="South Carolina Legislature" title="South Carolina Legislature" src="/images/header8.png" />
+								
+							<!--	<div class="award"><span style="color:#831224; font-weight:bold; font-size:1.5em;">*</span> Recipient of<br>the Notable State Documents Award<br>by the<br>South Carolina<br>State Library.</div>-->
+				
+				
+			</div>
+			<div class="printdisplay"><img border="0" src="/images/titleprint.jpg" alt="South Carolina Legislature" title="South Carolina Legislature" alt="South Carolina Legislature" title="South Carolina State Legislature" /><br /><hr /><br /></div>
+	
+			<div id="pagebody" >
+	
+	
+<!--<div id="topmessage">
+<br style="display:block; margin-top:10px;">
+Searches and data queries will be unavailable beginning Friday, August 19, 2016, from 8:00 PM until Saturday, August 20th at 8:00 AM<br>due to scheduled maintenance.</div>-->
+				<!-- Prompt IE 8/7/6 users to upgrade to a newer browser. -->
+				<!--[if lte IE 8]>
+				<div class="oldframe">In order to improve your experience using this website, please <a href="http://browsehappy.com/">upgrade your browser</a>.</div>
+				<![endif]-->
+			
+			
+			
+			<div id="menu" class="nodisplay">
+				<ul class="nodisplay">
+				<li><a href="/index.php">Home</a></li>
+<li><a href="/senate.php">Senate</a></li>
+<li><a href="/house.php">House</a></li>
+<li><a href="/committeeinfo.php">Committee&nbsp;Postings&nbsp;and&nbsp;Reports</a></li>
+<li><a href="/council.php">Legislative Council</a></li>
+<li><a href="/citizens.php">Citizens&#39; Interest</a></li>
+<li><a href="/publications.php">Publications</a></li>
+		    	</ul>
+			</div>
+			<div id="search" class="nodisplay" style="height: 28px;"><div class="nodisplay" style="float:right; margin:6px 20px 0px 0;">
+							<!--<a style="color:#f7f4ec; height:15px;" href="#" onClick="rsswindow();"><img border=0 src="/images/lock.png" style="vertical-align: middle; width: 15px; height: 15px;">&nbsp;Staff&nbsp;Portal</a>-->
+<!--				<a style="color:#f7f4ec; height:15px;" href="/splashpage/splashpage.html"><img border=0 src="/images/lock.png" style="vertical-align: middle; width: 15px; height: 15px;">&nbsp;Staff&nbsp;Portal</a> -->
+				<a style="color:#f7f4ec; height:15px;" href="/onlineservices/index.php"><img border="0" src="/images/lock.png" style="vertical-align: middle; width: 15px; height: 15px;">&nbsp;Staff&nbsp;Portal</a>
+			<!--	<a style="color:#f7f4ec; height:15px;" href="/maintenance_portal.php"><img border=0 src="/images/lock.png" style="vertical-align: middle; width: 15px; height: 15px;">&nbsp;Staff&nbsp;Portal</a>-->
+						</div></div>
+			
+	
+					<div id="sidebar" class="nodisplay">
+	<div id="vidlinks" style="height: 50px;">
+						<!--<img src="/images/videobutton12d.png">-->
+											<ul id="vidsidemenu">
+	<li id="vidinnermenu" style="font-size:16px; margin: 0 0 5px 0;">Chamber Video</li>
+<li id="sbroadcast" style="float: left; width:50%;">
+<a id="liveS" style="width: 100%; text-decoration:underline;" href="javascript:void(0);" onClick="live_stream('S', false, false, '0')">Senate</a><br><a id="liveaudioS" style="margin:-3px 0 0 0; text-decoration:underline; width: 100%; font-size: 8px;" href="javascript:void(0);" onClick="live_stream('S', false, false, '1');">(Audio Only)</a>
+</li>
+<li id="hbroadcast" style="float: left; width:50%;">
+<a id="liveH" style="width: 100%; text-decoration:underline;" href="javascript:void(0);" onClick="live_stream('H', false, false, '0')">House</a><br><a id="liveaudioH" style="margin:-3px 0 0 0; text-decoration:underline; width: 100%; font-size: 8px;" href="javascript:void(0);" onClick="live_stream('H', false, false, '1');">(Audio Only)</a>
+</li>
+						</ul>
+					</div>
+					<div id="commvidlinks"><a href="/video/schedule.php">Video&nbsp;Schedule</a><a style="border-top:1px solid #fff; padding-top:12px;" href="/video/archives.php">Video Archives</a></div>
+										<div id="sidemenu">
+						<ul id="innermenu">
+		
+							<li><a href="/howdoi.php">How do I...</a></li>
+										
+							
+								<li class="nolink" onMouseOver="var ele=document.getElementById('sidesearch'); if(ele){ele.style.display='block'; document.sidesearchform.searchtext.focus();}" onMouseOut="var ele=document.getElementById('sidesearch'); if(ele){ele.style.display='none';}"><div class="nolinkdiv">Quick Search</div>
+								<div id="sidesearch" class="sidesubmenu">
+									<form id="sidesearchform" name="sidesearchform" method="POST" action="/search.php">
+									<input type="hidden" name="search" value="side" />
+									<div class="topelement"><label for="searchtext"><span class="label">Search for:</span></label><input id="searchtext" name="searchtext" type="text"/><a id="searchlink2" href="javascript:void(0);" onClick="document.sidesearchform.submit();"><img id="searchicon" src="/images/searchbutton.png" alt="Search" title="Search"/></a></div>
+			<!--						<div><input type="checkbox" id="searchchoice_all" name="searchchoice_all" value="all" /><label for="searchchoice_all">All</label></div>-->
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_fullsite" name="category" value="FULLSITE" /><label for="searchchoice_fullsite">&nbsp;Full Site Search</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_billnumber" name="category" value="BILL" /><label for="searchchoice_billnumber">&nbsp;Bill Number</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_legislation" name="category" value="LEGISLATION" CHECKED /><label for="searchchoice_legislation">&nbsp;Legislation</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_budget" name="category" value="BUDGET" /><label for="searchchoice_budget">&nbsp;Budget</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_codeoflaws" name="category" value="CODEOFLAWS" /><label for="searchchoice_codeoflaws">&nbsp;Code of Laws</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_codeofregs" name="category" value="CODEOFREGS" /><label for="searchchoice_codeofregs">&nbsp;Code of Regulations</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_constitution" name="category" value="CONSTITUTION" /><label for="searchchoice_constitution">&nbsp;Constitution</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_housejournals" name="category" value="HOUSEJOURNALS" /><label for="searchchoice_housejournals">&nbsp;House Journals</label></div>
+									<div style="padding-left:20px;"><input type="radio" id="searchchoice_senatejournals" name="category" value="SENATEJOURNALS" /><label for="searchchoice_senatejournals">&nbsp;Senate Journals</label></div>
+									<div class="bottomelement" style="padding-left:20px;"><input type="radio" id="searchchoice_billsummary" name="category" value="SUMMARY" /><label for="searchchoice_billsummary">&nbsp;LSA Bill Summary</label></div>
+								</form>
+									
+								</div>
+							</li>
+							<li><a href="/legislatorssearch.php">Find Your Legislators</a></li>
+							<li id="contactLegislatorLink"><a href="/email.php?chamber=B">Contact Your Legislator</a></li>
+									
+							<li><a href="/legislation.php">Legislation</a></li>
+							<li><a href="/listtracking/main.php" target="LTS">Track Legislation</a></li>
+							<li><a href="/multicriteria2/search.php" target="MCS">Multi-Criteria Search</a></li>
+									<!--<li><a href="#" onclick="multisearchwindow('INTROBOTH');">Multi-Criteria Search</a></li>-->
+									<!--<li><a href="#" onclick="multisearchwindow('INTROMANUAL');">Multi-Criteria Search</a></li>-->
+									<li><a href="/research.php">Research</a></li>
+	
+								<li class="nolink" onMouseOver="var ele=document.getElementById('law'); if(ele){ele.style.display='block';}" onMouseOut="var ele=document.getElementById('law'); if(ele){ele.style.display='none';}"><div class="nolinkdiv">South Carolina Law</div> 
+								<div id="law" class="sidesubmenu">
+									<div class="sidediv topelement"><a href="/newlaws.php">Ratifications &amp; Acts</a></div>
+									<div class="sidediv"><a href="/code/statmast.php">Code of Laws</a></div>
+									<div class="sidediv"><a href="/coderegs/statmast.php">Code of Regulations</a></div>
+									<div class="sidediv"><a href="/scconstitution/scconst.php">Constitution</a></div>
+									<div class="sidediv bottomelement"><a href="/state_register.php">State Register</a></div>
+								</div>
+							</li>
+										<li class="nolink" onMouseOver="var ele=document.getElementById('manual'); if(ele){ele.style.display='block';}" onMouseOut="var ele=document.getElementById('manual'); if(ele){ele.style.display='none';}"><div class="nolinkdiv">Legislative Manual</div>
+								<div id="manual" class="sidesubmenu">
+								
+<!--									<div class="sidediv topelement"><a href="https://web.sc.gov/LSAShoppingcart/Default.aspx" target="_blank">Purchase Manual</a></div>-->
+								
+<!--									<div class="sidediv topelement"><a href="https://secure.scstatehouse.gov/cgi-bin/webstore.exe" target="_blank">Purchase Manual</a></div>-->
+									<div class="sidediv topelement"><a href="javascript:#" onClick="alert('We are sorry, but we are unable to process online transactions at this time.\n\nIf you would still like to make a purchase, please contact us directly at (803) 212-4490 during normal business hours (8:30am - 5:00pm EST).');">Purchase Manual</a></div>
+									<div class="sidediv bottomelement"><a href="/man25/manual25.php">View Manual Online</a></div>
+								</div>
+							</li>
+							<li><a href="http://www.studentconnection.scstatehouse.gov">Student Connection</a></li>
+							<li><a href="/visit.php">Visiting the State House</a></li>
+							<li><a href="/archives.php">Archives</a></li>
+							<li><a href="http://www.sc.gov/Agency-Listing" target="_blank">State Agency Websites</a></li>
+							<!--<li><a href="/stateagencysites.php">State Agency Websites</a></li>-->
+							<li><a href="/citizensinterestpage/media.php">Media Links</a></li>
+				 		</ul>
+			    	</div>
+	
+					<div id="side_ad">
+						<A href="http://www.sc.gov/" target="_blank"><img border=0 src="/images/scgov3.jpg" alt="SC.gov" title="SC.gov" /></a>
+													<A href="http://www.statelibrary.sc.gov" target="_blank"><img border=0 src="/images/scsl_logo_rgb_web.png" alt="StateLibrary.SC.gov" title="StateLibrary.SC.gov" /></a>
+											</div>	    	
+			</div>
+
+	
+	<script type="text/javascript"> 
+		if ( '' === '1'){
+		 	
+			var link = document.getElementById('contactLegislatorLink');
+			if (link != 'undefined' && link != null){
+				link.style.display = 'none'; 
+				link.style.visibility = 'hidden';
+			}
+		}
+		if ( '' === '1'){
+		 	setTimeout(function(){
+				var link2 = document.getElementById('sendMsgLink');
+				if (link2 != 'undefined' && link2 != null){
+					link2.style.display = 'none'; 
+					link2.style.visibility = 'hidden';
+				};
+			}, 20);
+			
+		}  
+	</script>
+<div class="mainwidepanel">
+
+				<div id="breadcrumbs">
+						South Carolina Law &gt; South Carolina Code of State Regulations 
+				</div>
+
+					<h2 class="barheader" >South Carolina Code of State Regulations<br />
+					</h2>
+
+				<div id="contentsection">
+
+
+<a href="/query.php?search=FIRST&searchtext=&category=CODEOFREGS"><span style="font-weight: bold;">Search the Full Text of the Code of State Regulations</a></span><br />
+
+<!--<a href="http://search.scstatehouse.gov/index.php?q=&site=Code_of_Regs&client=scstatehouse&output=xml_no_dtd&proxystylesheet=scstatehouse&filter=0<span style="font-weight: bold;">Search the Full Text of the Code of Regulations</a></span><br />-->
+
+<!--<a href="/coderegs/toc.php">Table of Contents for each chapter</a><br />-->
+<br />
+
+<!--<div style="font-weight: bold; text-align: center;">Files are current through State Register Volume 40, Issue 8, effective August 25, 2017/div><br />-->
+
+<div style="font-size: 14px; color:red; text-align: center;">Files are current through State Register Volume 50, Issue 3, effective March 27, 2026.</div><br />
+
+<span style="font-weight: bold;">PLEASE NOTE:</span><!--&#32;A Microsoft Word version of the Code of Regulations is now available.-->  For the best rendering of tables, charts and images, please refer to the PDF version.
+<br />
+
+<!--<span style="font-weight: bold;">PLEASE NOTE:</span> On May 9, 2016 these files were updated to match the currency date in the hard bound volumes of the Code of Regulations.  <span style="font-weight: bold;">Files are now current through State Register Volume 35, Issue 9, effective September 23, 2011. </span><br />-->
+<br />
+<hr>
+<br />
+
+<div style="text-align: center;">DISCLAIMER</div>
+<br />
+
+The South Carolina Legislative Council is offering access to the unannotated South Carolina Code of Regulations on the Internet as a service to the public. The unannotated South Carolina Code of Regulations on the General Assembly’s website is now current through State Register Volume 50, Issue 3, effective March 27, 2026. The unannotated South Carolina Code of Regulations, consisting only of Regulation text, numbering, and history, may be copied from this website at the reader's expense and effort without need for permission.
+<br />
+The Legislative Council is unable to assist users of this service with legal questions. Also, legislative staff cannot respond to requests for legal advice or the application of the law to specific facts. Therefore, to understand and protect your legal rights, you should consult your own private lawyer regarding all legal questions.
+<br />
+While every effort was made to ensure the accuracy and completeness of the unannotated South Carolina Code of Regulations available on the South Carolina General Assembly&#39;s website, the unannotated South Carolina Code of Regulations is not official, and the state agencies preparing this website and the General Assembly are not responsible for any errors or omissions which may occur in these files. Only the current published volumes of the South Carolina Code of Regulations Annotated and any pertinent acts and joint resolutions contain the official version.
+<br />
+Please note that the Legislative Council is not able to respond to individual inquiries regarding research or the features, format, or use of this website. However, you may notify the Legislative Services Agency at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5418071514273727203520313c3b2127317a333b22">[email&#160;protected]</a> regarding any apparent errors or omissions in content of Regulation sections on this website, in which case LSA will relay the information to appropriate staff members of the South Carolina Legislative Council for investigation.
+<br />
+<br>
+<hr>
+
+<br />
+
+<table width="100%" border="0" cellspacing="8" cellpadding="0">
+
+  <tr>
+    <td>CHAPTER 1 - DEPARTMENT OF LABOR, LICENSING AND REGULATION - BOARD OF ACCOUNTANCY</td>
+<!--    <td><a href="/coderegs/c001.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=1">Word</a></td>
+    <td><a href="/coderegs/Chapter 1.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 3 - DEPARTMENT OF COMMERCE - AERONAUTICS DIVISION</td>
+<!--    <td><a href="/coderegs/c003.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=3">Word</a></td>
+    <td><a href="/coderegs/Chapter 3.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 5 - DEPARTMENT OF AGRICULTURE</td>
+<!--    <td><a href="/coderegs/c005.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=5">Word</a></td>
+    <td><a href="/coderegs/Chapter 5.pdf">PDF</a></td>
+
+  </tr>
+
+  <tr>
+    <td>CHAPTER 7 - ALCOHOLIC BEVERAGES, BEER AND WINE</td>
+<!--    <td><a href="/coderegs/c007.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=7">Word</a></td>
+    <td><a href="/coderegs/Chapter 7.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 8 - BUILDING CODES COUNCIL</td>
+<!--    <td><a href="/coderegs/c008.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=8">Word</a></td>
+    <td><a href="/coderegs/Chapter 8.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 9 - INSTITUTE OF ARCHEOLOGY AND ANTHROPOLOGY</td>
+<!--    <td><a href="/coderegs/c009.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=9">Word</a></td>
+    <td><a href="/coderegs/Chapter 9.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 10 - DEPARTMENT OF LABOR, LICENSING AND REGULATION</td>
+<!--    <td><a href="/coderegs/c010.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=10">Word</a></td>
+    <td><a href="/coderegs/Chapter 10.pdf">PDF</a></td>    
+    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 11 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF ARCHITECTURAL EXAMINERS</td>
+<!--    <td><a href="/coderegs/c011.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=11">Word</a></td>
+    <td><a href="/coderegs/Chapter 11.pdf">PDF</a></td>     
+  </tr>
+
+  <tr>
+    <td>CHAPTER 12 - SOUTH CAROLINA DEPARTMENT OF ARCHIVES AND HISTORY</td>
+<!--    <td><a href="/coderegs/c012.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=12">Word</a></td>
+    <td><a href="/coderegs/Chapter 12.pdf">PDF</a></td>     
+  </tr>
+
+  <tr>
+    <td>CHAPTER 13 - ATTORNEY GENERAL</td>
+<!--    <td><a href="/coderegs/c013.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=13">Word</a></td>
+    <td><a href="/coderegs/Chapter 13.pdf">PDF</a></td>     
+  </tr>
+
+  <tr>
+    <td>CHAPTER 14 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA AUCTIONEERS&#39; COMMISSION</td>
+<!--    <td><a href="/coderegs/c014.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=14">Word</a></td>
+    <td><a href="/coderegs/Chapter 14.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 15 - STATE BOARD OF FINANCIAL INSTITUTIONS</td>
+<!--    <td><a href="/coderegs/c015.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=15">Word</a></td>
+    <td><a href="/coderegs/Chapter 15.pdf">PDF</a></td> 
+  </tr>
+  
+    <tr>
+    <td>CHAPTER 16 - SOUTH CAROLINA CONSERVATION BANK</td>
+<!--    <td><a href="/coderegs/c016.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=16">Word</a></td>
+    <td><a href="/coderegs/Chapter 16.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 17 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF BARBER EXAMINERS</td>
+<!--    <td><a href="/coderegs/c017.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=17">Word</a></td>
+    <td><a href="/coderegs/Chapter 17.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 18 - SOUTH CAROLINA COMMISSION FOR THE BLIND</td>
+<!--    <td><a href="/coderegs/c018.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=18">Word</a></td>
+    <td><a href="/coderegs/Chapter 18.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 19 - STATE BUDGET AND CONTROL BOARD</td>
+<!--    <td><a href="/coderegs/c019.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=19">Word</a></td>
+    <td><a href="/coderegs/Chapter 19.pdf">PDF</a></td> 
+
+  </tr>
+  <tr>
+    <td>CHAPTER 20 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE ATHLETIC COMMISSION</td>
+<!--    <td><a href="/coderegs/c020.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=20">Word</a></td>
+    <td><a href="/coderegs/Chapter 20.pdf">PDF</a></td>     
+  </tr>
+
+  <tr>
+    <td>CHAPTER 21 - SOUTH CAROLINA CEMETERY BOARD</td>
+<!--    <td><a href="/coderegs/c021.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=21">Word</a></td>
+    <td><a href="/coderegs/Chapter 21.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 22 - COASTAL CAROLINA UNIVERSITY</td>
+<!--    <td><a href="/coderegs/c022.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=22">Word</a></td>
+    <td><a href="/coderegs/Chapter 22.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 23 - THE COLLEGE OF CHARLESTON</td>
+<!--    <td><a href="/coderegs/c023.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=23">Word</a></td>
+    <td><a href="/coderegs/Chapter 23.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 24 - OFFICE OF THE GOVERNOR-- DIVISION FOR REVIEW OF THE FOSTER CARE OF CHILDREN</td>
+<!--    <td><a href="/coderegs/c024.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=24">Word</a></td>
+    <td><a href="/coderegs/Chapter 24.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 25 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA BOARD OF CHIROPRACTIC EXAMINERS</td>
+<!--    <td><a href="/coderegs/c025.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=25">Word</a></td>
+    <td><a href="/coderegs/Chapter 25.pdf">PDF</a></td> 
+  </tr>
+  
+  <tr>
+    <td>CHAPTER 26 - THE CITADEL</td>
+<!--    <td><a href="/coderegs/c026.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=26">Word</a></td>
+    <td><a href="/coderegs/Chapter 26.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 27 - CLEMSON UNIVERSITY</td>
+<!--    <td><a href="/coderegs/c027.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=27">Word</a></td>
+    <td><a href="/coderegs/Chapter 27.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 28 - DEPARTMENT OF CONSUMER AFFAIRS</td>
+<!--    <td><a href="/coderegs/c028.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=28">Word</a></td>
+    <td><a href="/coderegs/Chapter 28.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 29 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE LICENSING BOARD FOR CONTRACTORS</td>
+<!--    <td><a href="/coderegs/c029.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=29">Word</a></td>
+    <td><a href="/coderegs/Chapter 29.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 30 - DEPARTMENT OF ENVIRONMENTAL SERVICES-- COASTAL DIVISION</td>
+<!--    <td><a href="/coderegs/c030.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=30">Word</a></td>
+    <td><a href="/coderegs/Chapter 30.pdf">PDF</a></td> 
+  </tr>
+
+  <tr>
+    <td>CHAPTER 31 - OFFICE OF THE GOVERNOR-- CONTINUUM OF CARE FOR EMOTIONALLY DISTURBED CHILDREN DIVISION</td>
+<!--    <td><a href="/coderegs/c031.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=31">Word</a></td>
+    <td><a href="/coderegs/Chapter 31.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 33 - DEPARTMENT OF CORRECTIONS</td>
+<!--    <td><a href="/coderegs/c033.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=33">Word</a></td>
+    <td><a href="/coderegs/Chapter 33.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 35 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF COSMETOLOGY</td>
+<!--    <td><a href="/coderegs/c035.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=35">Word</a></td>
+    <td><a href="/coderegs/Chapter 35.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 36 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- BOARD OF EXAMINERS FOR LICENSURE OF PROFESSIONAL COUNSELORS, MARRIAGE AND FAMILY THERAPISTS, ADDICTION COUNSELORS AND PSYCHO-EDUCATIONAL SPECIALISTS</td>
+<!--    <td><a href="/coderegs/c036.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=36">Word</a></td>
+    <td><a href="/coderegs/Chapter 36.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 37 - SOUTH CAROLINA CRIMINAL JUSTICE ACADEMY</td>
+<!--    <td><a href="/coderegs/c037.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=37">Word</a></td>
+    <td><a href="/coderegs/Chapter 37.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 38 - DEPARTMENT OF PUBLIC SAFETY</td>
+<!--    <td><a href="/coderegs/c038.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=38">Word</a></td>
+    <td><a href="/coderegs/Chapter 38.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 39 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF DENTISTRY</td>
+<!--    <td><a href="/coderegs/c039.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=39">Word</a></td>
+    <td><a href="/coderegs/Chapter 39.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 40 - DEPARTMENT OF LABOR, LICENSING AND REGULATION PANEL FOR DIETETICS</td>
+<!--    <td><a href="/coderegs/c040.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=40">Word</a></td>
+    <td><a href="/coderegs/Chapter 40.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 41 - DEPARTMENT OF LABOR, LICENSING AND REGULATION - SOUTH CAROLINA BOARD OF GENETIC COUNSELORS</td>
+<!--    <td><a href="/coderegs/c041.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=41">Word</a></td>
+    <td><a href="/coderegs/Chapter 41.pdf">PDF</a></td>
+  </tr>
+
+
+
+
+  <tr>
+    <td>CHAPTER 42 - STATE EDUCATION ASSISTANCE AUTHORITY</td>
+<!--    <td><a href="/coderegs/c042.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=42">Word</a></td>
+    <td><a href="/coderegs/Chapter 42.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 43 - STATE BOARD OF EDUCATION</td>
+<!--    <td><a href="/coderegs/c043.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=43">Word</a></td>
+    <td><a href="/coderegs/Chapter 43.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 44 - SOUTH CAROLINA LOTTERY COMMISSION</td>
+<!--    <td><a href="/coderegs/c044.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=44">Word</a></td>
+    <td><a href="/coderegs/Chapter 44.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 45 - STATE ELECTION COMMISSION</td>
+<!--    <td><a href="/coderegs/c045.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=45">Word</a></td>
+    <td><a href="/coderegs/Chapter 45.pdf">PDF</a></td>
+	</tr>
+
+  <tr>
+    <td>CHAPTER 47 - DEPARTMENT OF EMPLOYMENT AND WORKFORCE</td>
+<!--    <td><a href="/coderegs/c047.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=47">Word</a></td>
+    <td><a href="/coderegs/Chapter 47.pdf">PDF</a></td>	
+	</tr>
+
+  <tr>
+    <td>CHAPTER 49 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA STATE BOARD OF REGISTRATION FOR PROFESSIONAL ENGINEERS AND LAND SURVEYORS</td>
+<!--    <td><a href="/coderegs/c049.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=49">Word</a></td>
+    <td><a href="/coderegs/Chapter 49.pdf">PDF</a></td>	
+	</tr>
+
+  <tr>
+    <td>CHAPTER 50 - SOUTH CAROLINA STATE BOARD OF EXAMINERS FOR REGISTERED ENVIRONMENTAL SANITARIANS</td>
+<!--    <td><a href="/coderegs/c050.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=50">Word</a></td>
+    <td><a href="/coderegs/Chapter 50.pdf">PDF</a></td>
+	</tr>
+
+  <tr>
+    <td>CHAPTER 51 - SOUTH CAROLINA ENVIRONMENTAL CERTIFICATION BOARD</td>
+<!--    <td><a href="/coderegs/c051.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=51">Word</a></td>
+    <td><a href="/coderegs/Chapter 51.pdf">PDF</a></td>	
+	</tr>
+
+  <tr>
+    <td>CHAPTER 52 - STATE ETHICS COMMISSION</td>
+<!--    <td><a href="/coderegs/c052.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=52">Word</a></td>
+    <td><a href="/coderegs/Chapter 52.pdf">PDF</a></td>	
+	</tr>
+
+  <tr>
+    <td>CHAPTER 53 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF REGISTRATION FOR FORESTERS</td>
+<!--    <td><a href="/coderegs/c053.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=53">Word</a></td>
+    <td><a href="/coderegs/Chapter 53.pdf">PDF</a></td>	
+	</tr>
+
+  <tr>
+    <td>CHAPTER 55 - SOUTH CAROLINA FORESTRY COMMISSION</td>
+<!--    <td><a href="/coderegs/c055.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=55">Word</a></td>
+    <td><a href="/coderegs/Chapter 55.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 57 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA STATE BOARD OF FUNERAL SERVICE</td>
+<!--    <td><a href="/coderegs/c057.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=57">Word</a></td>
+    <td><a href="/coderegs/Chapter 57.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 58 - OFFICE OF THE GOVERNOR</td>
+<!--    <td><a href="/coderegs/c058.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=58">Word</a></td>
+    <td><a href="/coderegs/Chapter 58.pdf">PDF</a></td>
+  </tr>
+
+
+  <tr>
+    <td>CHAPTER 60 - DEPARTMENT OF PUBLIC HEALTH</td>
+<!--    <td><a href="six60.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=60">Word</a></td>
+    <td><a href="/coderegs/Chapter 60.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 61 - DEPARTMENT OF ENVIRONMENTAL SERVICES</td>
+<!--    <td><a href="six61.php">HTML</a></td>-->
+    <td><a href="Chapter61Word.php">Word</a></td>
+    <td><a href="/coderegs/Chapter61.php">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 62 - STATE COMMISSION ON HIGHER EDUCATION</td>
+<!--    <td><a href="/coderegs/c062.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=62">Word</a></td>
+    <td><a href="/coderegs/Chapter 62.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 63 - DEPARTMENT OF TRANSPORTATION</td>
+<!--    <td><a href="/coderegs/c063.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=63">Word</a></td>
+    <td><a href="/coderegs/Chapter 63.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 64 - SOUTH CAROLINA STATE HOUSING FINANCE AND DEVELOPMENT AUTHORITY</td>
+<!--    <td><a href="/coderegs/c064.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=64">Word</a></td>
+    <td><a href="/coderegs/Chapter 64.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 65 - SOUTH CAROLINA HUMAN AFFAIRS COMMISSION</td>
+<!--    <td><a href="/coderegs/c065.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=65">Word</a></td>
+    <td><a href="/coderegs/Chapter 65.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 67 - SOUTH CAROLINA WORKERS&#39; COMPENSATION COMMISSION</td>
+<!--    <td><a href="/coderegs/c067.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=67">Word</a></td>
+    <td><a href="/coderegs/Chapter 67.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 68 - SOUTH CAROLINA JOBS--ECONOMIC DEVELOPMENT AUTHORITY</td>
+<!--    <td><a href="/coderegs/c068.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=68">Word</a></td>
+    <td><a href="/coderegs/Chapter 68.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 69 - DEPARTMENT OF INSURANCE</td>
+<!--    <td><a href="/coderegs/c069.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=69">Word</a></td>
+    <td><a href="/coderegs/Chapter 69.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 71 - DEPARTMENT OF LABOR, LICENSING AND REGULATION--DIVISION OF LABOR</td>
+<!--    <td><a href="/coderegs/c071.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=71">Word</a></td>
+    <td><a href="/coderegs/Chapter 71.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 72 - DEPARTMENT OF ENVIRONMENTAL SERVICES--LAND RESOURCES AND CONSERVATION DISTRICTS DIVISION</td>
+<!--    <td><a href="/coderegs/c072.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=72">Word</a></td>
+    <td><a href="/coderegs/Chapter 72.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 73 - SOUTH CAROLINA LAW ENFORCEMENT DIVISION</td>
+<!--    <td><a href="/coderegs/c073.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=73">Word</a></td>
+    <td><a href="/coderegs/Chapter 73.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 75 - SOUTH CAROLINA STATE LIBRARY</td>
+<!--    <td><a href="/coderegs/c075.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=75">Word</a></td>
+    <td><a href="/coderegs/Chapter 75.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 76 - BOARD OF LANDSCAPE ARCHITECTURAL EXAMINERS</td>
+<!--    <td><a href="/coderegs/c076.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=76">Word</a></td>
+    <td><a href="/coderegs/Chapter 76.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 77 - MASSAGE THERAPY BOARD</td>
+<!--    <td><a href="/coderegs/c077.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=77">Word</a></td>
+    <td><a href="/coderegs/Chapter 77.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 79 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- MANUFACTURED HOUSING BOARD</td>
+<!--    <td><a href="/coderegs/c079.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=79">Word</a></td>
+    <td><a href="/coderegs/Chapter 79.pdf">PDF</a></td>
+  </tr>
+
+  <tr>
+    <td>CHAPTER 80 - THE SOUTH CAROLINA MARITIME SECURITY COMMISSION AND NAVAL MILITIA</td>
+<!--    <td><a href="/coderegs/c080.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=80">Word</a></td>
+    <td><a href="/coderegs/Chapter 80.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 81 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF MEDICAL EXAMINERS</td>
+<!--    <td><a href="/coderegs/c081.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=81">Word</a></td>
+    <td><a href="/coderegs/Chapter 81.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 83 - THE MEDICAL UNIVERSITY OF SOUTH CAROLINA</td>
+<!--    <td><a href="/coderegs/c083.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=83">Word</a></td>
+    <td><a href="/coderegs/Chapter 83.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 87 - DEPARTMENT OF MENTAL HEALTH</td>
+<!--    <td><a href="/coderegs/c087.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=87">Word</a></td>
+    <td><a href="/coderegs/Chapter 87.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 88 - DEPARTMENT OF DISABILITIES AND SPECIAL NEEDS</td>
+<!--    <td><a href="/coderegs/c088.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=88">Word</a></td>
+    <td><a href="/coderegs/Chapter 88.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 89 - OFFICE OF THE GOVERNOR--MINING COUNCIL OF SOUTH CAROLINA</td>
+<!--    <td><a href="/coderegs/c089.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=89">Word</a></td>
+    <td><a href="/coderegs/Chapter 89.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 90 - DEPARTMENT OF MOTOR VEHICLES</td>
+<!--    <td><a href="/coderegs/c090.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=90">Word</a></td>
+    <td><a href="/coderegs/Chapter 90.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 91 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF NURSING</td>
+<!--    <td><a href="/coderegs/c091.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=91">Word</a></td>
+    <td><a href="/coderegs/Chapter 91.pdf">PDF</a></td>        
+  </tr>
+
+  <tr>
+    <td>CHAPTER 93 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA BOARD OF LONG TERM HEALTH CARE ADMINISTRATORS</td>
+<!--    <td><a href="/coderegs/c093.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=93">Word</a></td>
+    <td><a href="/coderegs/Chapter 93.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 94 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA BOARD OF OCCUPATIONAL THERAPY</td>
+<!--    <td><a href="/coderegs/c094.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=94">Word</a></td>
+    <td><a href="/coderegs/Chapter 94.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 95 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- BOARD OF EXAMINERS IN OPTOMETRY</td>
+<!--    <td><a href="/coderegs/c095.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=95">Word</a></td>
+    <td><a href="/coderegs/Chapter 95.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 96 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA BOARD OF EXAMINERS IN OPTICIANRY</td>
+<!--    <td><a href="/coderegs/c096.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=96">Word</a></td>
+    <td><a href="/coderegs/Chapter 96.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 99 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF PHARMACY</td>
+<!--    <td><a href="/coderegs/c099.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=99">Word</a></td>
+    <td><a href="/coderegs/Chapter 99.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 100 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF EXAMINERS IN PSYCHOLOGY</td>
+<!--    <td><a href="/coderegs/c100.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=100">Word</a></td>
+    <td><a href="/coderegs/Chapter 100.pdf">PDF</a></td>    
+</tr>
+
+  <tr>
+    <td>CHAPTER 101 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF PHYSICAL THERAPY EXAMINERS</td>
+<!--    <td><a href="/coderegs/c101.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=101">Word</a></td>
+    <td><a href="/coderegs/Chapter 101.pdf">PDF</a></td>        
+  </tr>
+
+  <tr>
+    <td>CHAPTER 102 - ATTORNEY GENERAL--DIVISION OF PUBLIC CHARITIES</td>
+ <!--   <td><a href="/coderegs/c102.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=102">Word</a></td>
+    <td><a href="/coderegs/Chapter 102.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 103 - PUBLIC SERVICE COMMISSION</td>
+<!--    <td><a href="/coderegs/c103.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=103">Word</a></td>
+    <td><a href="/coderegs/Chapter 103.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 104 - SOUTH CAROLINA STATE PORTS AUTHORITY</td>
+<!--    <td><a href="/coderegs/c104.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=104">Word</a></td>
+    <td><a href="/coderegs/Chapter 104.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 105 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA REAL ESTATE COMMISSION</td>
+<!--    <td><a href="/coderegs/c105.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=105">Word</a></td>
+    <td><a href="/coderegs/Chapter 105.pdf">PDF</a></td>        
+  </tr>
+
+  <tr>
+    <td>CHAPTER 106 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA RESIDENTIAL BUILDERS COMMISSION</td>
+<!--    <td><a href="/coderegs/c106.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=106">Word</a></td>
+    <td><a href="/coderegs/Chapter 106.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 108 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOIL CLASSIFIERS ADVISORY COUNCIL</td>
+<!--    <td><a href="/coderegs/c108.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=108">Word</a></td>
+    <td><a href="/coderegs/Chapter 108.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 110 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF SOCIAL WORK EXAMINERS</td>
+<!--    <td><a href="/coderegs/c110.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=110">Word</a></td>
+    <td><a href="/coderegs/Chapter 110.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 111 - OFFICE OF REGULATORY STAFF </td>
+<!--    <td><a href="/coderegs/c111.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=111">Word</a></td>
+    <td><a href="/coderegs/Chapter 111.pdf">PDF</a></td>    
+  </tr>
+
+
+
+  <tr>
+    <td>CHAPTER 112 - STATE REORGANIZATION COMMISSION</td>
+<!--    <td><a href="/coderegs/c112.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=112">Word</a></td>
+    <td><a href="/coderegs/Chapter 112.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 113 - SECRETARY OF STATE</td>
+<!--    <td><a href="/coderegs/c113.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=113">Word</a></td>
+    <td><a href="/coderegs/Chapter 113.pdf">PDF</a></td>    
+  </tr>
+
+  <tr>
+    <td>CHAPTER 114 - DEPARTMENT OF SOCIAL SERVICES</td>
+<!--    <td><a href="/coderegs/c114.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=114">Word</a></td>
+    <td><a href="/coderegs/Chapter 114.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 115 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- BOARD OF EXAMINERS IN SPEECH/LANGUAGE PATHOLOGY AND AUDIOLOGY</td>
+<!--    <td><a href="/coderegs/c115.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=115">Word</a></td>
+    <td><a href="/coderegs/Chapter 115.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 117 - DEPARTMENT OF REVENUE</td>
+<!--    <td><a href="/coderegs/c117.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=117">Word</a></td>
+    <td><a href="/coderegs/Chapter 117.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 119 - UNIVERSITY OF SOUTH CAROLINA</td>
+<!--    <td><a href="/coderegs/c119.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=119">Word</a></td>
+    <td><a href="/coderegs/Chapter 119.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 120 - DEPARTMENT OF LABOR, LICENSING AND REGULATION--BOARD OF VETERINARY MEDICAL EXAMINERS</td>
+<!--    <td><a href="/coderegs/c120.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=120">Word</a></td>
+    <td><a href="/coderegs/Chapter 120.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 121 - DEPARTMENT OF NATURAL RESOURCES</td>
+<!--    <td><a href="/coderegs/c121.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=121">Word</a></td>
+    <td><a href="/coderegs/Chapter 121.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 123 - DEPARTMENT OF NATURAL RESOURCES</td>
+<!--    <td><a href="/coderegs/c123.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=123">Word</a></td>
+    <td><a href="/coderegs/Chapter 123.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 125 - WINTHROP UNIVERSITY</td>
+<!--    <td><a href="/coderegs/c125.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=125">Word</a></td>
+    <td><a href="/coderegs/Chapter 125.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 126 - DEPARTMENT OF HEALTH AND HUMAN SERVICES</td>
+<!--    <td><a href="/coderegs/c126.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=126">Word</a></td>
+    <td><a href="/coderegs/Chapter 126.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 127 - SOUTH CAROLINA OCCUPATIONAL HEALTH AND SAFETY REVIEW BOARD</td>
+<!--    <td><a href="/coderegs/c127.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=127">Word</a></td>
+    <td><a href="/coderegs/Chapter 127.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 130 - DEPARTMENT OF PROBATION, PAROLE AND PARDON SERVICES</td>
+<!--    <td><a href="/coderegs/c130.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=130">Word</a></td>
+    <td><a href="/coderegs/Chapter 130.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 131 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- STATE BOARD OF REGISTRATION FOR GEOLOGISTS</td>
+<!--    <td><a href="/coderegs/c131.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=131">Word</a></td>
+    <td><a href="/coderegs/Chapter 131.pdf">PDF</a></td>      
+  </tr>
+
+  <tr>
+    <td>CHAPTER 132 - SOUTH CAROLINA CRIME VICTIM&#39;S ADVISORY BOARD</td>
+<!--    <td><a href="/coderegs/c132.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=132">Word</a></td>
+    <td><a href="/coderegs/Chapter 132.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 133 - DEPARTMENT OF PARKS, RECREATION AND TOURISM</td>
+<!--    <td><a href="/coderegs/c133.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=133">Word</a></td>
+    <td><a href="/coderegs/Chapter 133.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 134 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- BOARD OF PODIATRY EXAMINERS</td>
+<!--    <td><a href="/coderegs/c134.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=134">Word</a></td>
+    <td><a href="/coderegs/Chapter 134.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 136 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- COMMISSIONERS OF PILOTAGE</td>
+<!--    <td><a href="/coderegs/c136.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=136">Word</a></td>
+    <td><a href="/coderegs/Chapter 136.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 137 - DEPARTMENT OF LABOR, LICENSING AND REGULATION-- SOUTH CAROLINA REAL ESTATE APPRAISERS BOARD</td>
+<!--    <td><a href="/coderegs/c137.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=137">Word</a></td>
+    <td><a href="/coderegs/Chapter 137.pdf">PDF</a></td>  
+  </tr>
+
+  <tr>
+    <td>CHAPTER 139 - COMMISSION FOR MINORITY AFFAIRS</td>
+<!--    <td><a href="/coderegs/c139.php">HTML</a></td>-->
+    <td><a href="/getfile.php?TYPE=CODEOFREGS&CHAPTER=139">Word</a></td>
+    <td><a href="/coderegs/Chapter 139.pdf">PDF</a></td>  
+  </tr>
+</table>
+<br />
+<!--This page last updated August 7, 2010 at 3:13 PM -->
+</table>
+<br />
+
+
+</div>
+					</div>		 <!-- mainwidepanel -->
+					
+				</div>		 <!-- pagebody -->
+				
+				<div id="footer" class="nodisplay" style="height: 30px;" onContextMenu="return false;">
+			<div id="footerdiv" style="margin:0;">
+				South Carolina Legislative Services Agency * 223 Blatt Building * 1105 Pendleton Street * Columbia, SC 29201<!-- * 803-212-4420--><br>
+				
+								<a href="/disclaimer.php">Disclaimer</a> * <a href="/policies.php">Policies</a> * <a href="/credits.php">Photo Credits</a> * <a href="/contact.php">Contact Us</a>
+							</div>
+		</div>
+		<div id="printfooter" class="printdisplay serifNormal" align=center style="font-size: 8pt;">
+			<br>
+			<br>
+			<hr>
+			Legislative Services Agency
+			<br>
+			h t t p : / / w w w . s c s t a t e h o u s e . g o v
+		</div>
+	
+		</div>	<!-- container or main in mobile page-->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
+

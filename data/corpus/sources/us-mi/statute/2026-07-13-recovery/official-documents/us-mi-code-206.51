@@ -1,0 +1,372 @@
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>MCL - Section 206.51 - Michigan Legislature</title>
+
+        <link rel="shortcut icon" href="/images/favicon.png">
+
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/site.css?v=8hGFZyIpDhOvbwduAFfXEcJ5wpqq21vYqMxGm7fiX10">
+        <link rel="stylesheet" href="/css/forms.css?v=EBOZzsLggL7ckwxH18P3qh5q2aTccGDiT3TKAyLVfi4">
+
+            <link rel="stylesheet" href="/css/dark.css?v=2DD16JZ994EbaoxGUgrHM-hAqZ68zKVQ09VPytM44vA">
+
+        <script src="/lib/jquery/dist/jquery.min.js"></script>
+        <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/site.js?v=qB3LUUXdzEa_61d20S94OojrZ6EDC9QNsBSYwwcSNjY"></script>
+
+        <script type="text/javascript">
+            let prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            let prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+            let theme = "dark";
+            let userSetTheme = "True";
+
+            if (navigator.cookieEnabled && userSetTheme == "False" && ((theme == "dark" && prefersLight) || (theme == "light" && prefersDark)))
+            {
+                window.location.href = "/Home/ToggleTheme?ReturnUrl=%2FLaws%2FMCL%3FobjectName%3Dmcl-206-51";
+            }
+        </script>
+
+        <noscript b-99ebu3icm7="">
+            <style>
+                .collapsible+div {
+                    display: block;
+                }
+            </style>
+        </noscript>
+    </head>
+
+    <body>
+        <header b-99ebu3icm7="" style="display:unset; z-index:1000;">
+
+            <div b-99ebu3icm7="">
+                <a b-99ebu3icm7="" href="#main" class="skipLink">Skip to content</a>
+            </div>
+
+            <div b-99ebu3icm7="" class="banner">
+
+                <div b-99ebu3icm7="" class="banner-center">
+                    <h1 b-99ebu3icm7="">
+                        <a b-99ebu3icm7="" href="/">Michigan Legislature</a>
+                    </h1>
+                    <div b-99ebu3icm7="" style="font-size:large">
+                        <span b-99ebu3icm7="" class="desktop">
+                            Michigan Compiled Laws Complete Through PA 20 of 2026
+                        </span>
+                        <span b-99ebu3icm7="" class="mobile">
+                            MCL Complete Through PA 20 of 2026
+                        </span>
+                    </div>
+                </div>
+                <div b-99ebu3icm7="" class="banner-bottom">
+                    <div b-99ebu3icm7="" class="banner-left">
+                        <span b-99ebu3icm7="" class="small desktop">
+                            Senate adjourned until Wednesday, July 15, 2026 10:00 AM
+                        </span>
+                        <span b-99ebu3icm7="" class="small mobile">
+                            Senate adjourned until 07/15/26 10:00 AM
+                        </span>
+                    </div>
+                    <div b-99ebu3icm7="" class="banner-right">
+                        <span b-99ebu3icm7="" class="small desktop">
+                            House adjourned until Wednesday, July 15, 2026 1:30 PM
+                        </span>
+                        <span b-99ebu3icm7="" class="small mobile">
+                            House adjourned until 07/15/26 1:30 PM
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <nav b-99ebu3icm7="" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3">
+                <div b-99ebu3icm7="" class="container-fluid">
+
+                    <button b-99ebu3icm7="" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span b-99ebu3icm7="" class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div b-99ebu3icm7="" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul b-99ebu3icm7="" class="navbar-nav flex-grow-1">
+                            <li b-99ebu3icm7="" class="nav-item">
+                                <a class="nav-link text-light" href="/">Home</a>
+                            </li>
+
+                            <li b-99ebu3icm7="" class="nav-item dropdown">
+                                <a b-99ebu3icm7="" class="nav-link text-light dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Legislature</a>
+                                <ul b-99ebu3icm7="" class="dropdown-menu">
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Search/LegDocSearch">Legislative Document Search</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills">Bills</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills/Resolutions">Resolutions</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills/JointResolutions">Joint Resolutions</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills/ConcurrentResolutions">Concurrent Resolutions</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Calendars">Calendars</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Committees">Committees</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Committees/CBRs">Committee Bill Records</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Committees/Meetings">Committee Meetings</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills/Initiatives">Initiatives/Alternative Measures</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Journals">Journals</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Legislators">Legislators</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/PublicActs">Public and Local Acts (Signed Bills)</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/RulesAndSchedules">Rules and Schedules</a></li>
+                                </ul>
+                            </li>
+
+                            <li b-99ebu3icm7="" class="nav-item dropdown">
+                                <a b-99ebu3icm7="" class="nav-link text-light dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Laws</a>
+                                <ul b-99ebu3icm7="" class="dropdown-menu">
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/MCLSearch">MCL Search</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/PAMCLSearch">Public Act MCL Search</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/Constitution">Michigan Constitution</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/ChapterIndex">MCL Chapter Index</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/ExecutiveOrders">Executive Orders</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/ExecutiveReorgs">Executive Reorganization Orders</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/MCLTablesAndAppropriationActs">MCL Tables and Appropriation Acts</a></li>
+                                </ul>
+                            </li>
+
+                            <li b-99ebu3icm7="" class="nav-item dropdown">
+                                <a b-99ebu3icm7="" class="nav-link text-light dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
+                                <ul b-99ebu3icm7="" class="dropdown-menu">
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Archives">Archives</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/HistoricalDocuments">Historical Documents</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Home/ListServerSignUp">Committee Meeting Notifications</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Directory">Legislative Directory</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/MichiganManuals">Michigan Manuals</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Home/Publications">Publications</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Home/RelatedSites">Related Sites</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Home/Help">Help</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div b-99ebu3icm7="" class="d-flex">
+                            <ul b-99ebu3icm7="" class="navbar-nav flex-grow-1">
+
+                                <li b-99ebu3icm7="" class="nav-item">
+                                        <a b-99ebu3icm7="" class="nav-link text-light" title="Toggle Theme" href="/Home/ToggleTheme?ReturnUrl=%2FLaws%2FMCL%3FobjectName%3Dmcl-206-51"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#eaecf0" alt="Toggle Theme" title="" class="bi bi-moon-stars-fill" viewBox="0 0 16 16"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"></path></svg></a>
+                            </li>
+
+                                    <li b-99ebu3icm7="" class="nav-item">
+                                            <a b-99ebu3icm7="" class="nav-link text-light" href="/Account/SignUp?ReturnUrl=%2FLaws%2FMCL%3FobjectName%3Dmcl-206-51">Sign Up</a>
+                                    </li>
+                                    <li b-99ebu3icm7="" class="nav-item">
+                                            <a b-99ebu3icm7="" class="nav-link text-light" href="/Account/LogIn?ReturnUrl=%2FLaws%2FMCL%3FobjectName%3Dmcl-206-51">Log In</a>
+                                    </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+
+        <main b-99ebu3icm7="" id="main" class="container pb-3">
+            
+<style>
+    table tr td{
+        padding-right:10px;
+        padding-bottom:5px;
+    }
+</style>
+
+<h1>MCL - Section 206.51</h1>
+
+<div class="row" style="padding-bottom: 7px; margin-top: -9px;">
+    <div class="col-12" style="text-align: left;">
+        <div>
+            <span><a href="/Home/Document?objectName=mcl-206-51">Download Section</a></span>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row" style="padding-top: 7px;">
+    <div class="col-12 text-center">
+                    <span><a href="/Laws/MCL?objectName=mcl-chap206">Chapter 206</a></span><br>
+                    <span><a href="/Laws/MCL?objectName=mcl-Act-281-of-1967">Act 281 of 1967</a></span><br>
+                    <span><a href="/Laws/MCL?objectName=mcl-281-1967-1">281-1967-1</a></span><br>
+                    <span><a href="/Laws/MCL?objectName=mcl-281-1967-1-2">281-1967-1-2</a></span><br>
+    </div>
+</div>
+<div class="row" style="padding-bottom: 7px;">
+    <div class="col-6" style="text-align:right">
+                <span><a href="/Laws/MCL?objectName=mcl-206-36"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5495F7" class="bi bi-caret-left-fill" viewBox="0 0 16 16" alt="" title=""><path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"></path></svg> Previous Section</a></span>
+    </div>
+    <div class="col-6" style="text-align:left">
+                <span><a href="/Laws/MCL?objectName=mcl-206-51a">Next Section <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5495F7" class="bi bi-caret-right-fill" viewBox="0 0 16 16" alt="" title=""><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"></path></svg></a></span>
+    </div>
+</div>
+
+<div class="row" style="padding-bottom: 7px;">
+    <div class="col-12">
+        <div style="margin:auto;">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div>
+            <div class="sectionWrapper">
+  <div class="excerpt" style="text-align:center; font-weight:bold;">
+    <h1 class="h2">INCOME TAX ACT OF 1967 (EXCERPT)</h1><br><h1 class="h3">Act 281 of 1967</h1>
+  </div><br><h1 class="h4" style="font-weight:bold;">206.51 Tax rate on taxable income of person other than corporation; percentages of collections deposited in state school aid fund; farmland credits; renew Michigan fund; imposition of annualized rate; computation of taxable income of nonresident; resident beneficiary of trust; tax credit; including items of income and deductions from trust in taxable income; intent of section; definitions.</h1>
+  <p class="margin8Px">Sec. 51.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(1) For receiving, earning, or otherwise acquiring income from any source whatsoever, there is levied and imposed under this part upon the taxable income of every person other than a corporation a tax at the following rates in the following circumstances:</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(a) On and after October 1, 2007 and before October 1, 2012, 4.35%.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(b) Except as otherwise provided under subdivision (c), on and after October 1, 2012, 4.25%.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(c) For each tax year beginning on and after January 1, 2023, if the percentage increase in the total general fund/general purpose revenue from the immediately preceding fiscal year is greater than the inflation rate for the same period and the inflation rate is positive, then the current rate shall be reduced by an amount determined by multiplying that rate by a fraction, the numerator of which is the difference between the total general fund/general purpose revenue from the immediately preceding state fiscal year and the capped general fund/general purpose revenue and the denominator of which is the total revenue collected from this part in the immediately preceding state fiscal year. For purposes of this subdivision only, the state treasurer, the director of the senate fiscal agency, and the director of the house fiscal agency shall determine whether the total revenue distributed to general fund/general purpose revenue has increased as required under this subdivision based on the comprehensive annual financial report prepared and published by the department of technology, management, and budget in accordance with section 23 of article IX of the state constitution of 1963. The state treasurer, the director of the senate fiscal agency, and the director of the house fiscal agency shall make the determination under this subdivision no later than the date of the January 2023 revenue estimating conference conducted pursuant to sections 367a through 367f of the management and budget act, 1984 PA 431, MCL 18.1367a to 18.1367f, and the date of each January revenue estimating conference conducted each year thereafter. As used in this subdivision:</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(i) "Capped general fund/general purpose revenue" means the total general fund/general purpose revenue from the 2020-2021 state fiscal year multiplied by the sum of 1 plus the product of 1.425 times the difference between a fraction, the numerator of which is the Consumer Price Index for the state fiscal year ending in the tax year prior to the tax year for which the adjustment is being made and the denominator of which is the Consumer Price Index for the 2020-2021 state fiscal year, and 1.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(ii) "Total general fund/general purpose revenue" means the total general fund/general purpose revenue and other financing sources as published in the comprehensive annual financial report schedule of revenue and other financing sources – general fund for that fiscal year plus any distribution made pursuant to section 51d.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(2) Except as otherwise provided for December 1, 2018 through September 30, 2019, beginning January 1, 2000 through September 30, 2023, that percentage of the gross collections before refunds from the tax levied under this section that is equal to 1.012% divided by the income tax rate levied under this section shall be deposited in the state school aid fund created in section 11 of article IX of the state constitution of 1963. For December 1, 2018 through September 30, 2019 only, that percentage of the gross collections before refunds from the tax levied under this section that is equal to 0.954% divided by the income tax rate levied under this section shall be deposited in the state school aid fund created in section 11 of article IX of the state constitution of 1963. For October 1, 2023 through September 30, 2024 only, that percentage of the gross collections before refunds from the tax levied under this section that is equal to 1.015% divided by the income tax rate levied under this section shall be deposited in the state school aid fund created in section 11 of article IX of the state constitution of 1963. For October 1, 2024 through September 30, 2025 only, that percentage of the gross collections before refunds from the tax levied under this section that is equal to 1.023% divided by the income tax rate levied under this section shall be deposited in the state school aid fund created in section 11 of article IX of the state constitution of 1963. For October 1, 2025 through September 30, 2026 only, that percentage of the gross collections before refunds from the tax levied under this section that is equal to 1.033% divided by the income tax rate levied under this section shall be deposited in the state school aid fund created in section 11 of article IX of the state constitution of 1963. Beginning October 1, 2026, that percentage of the gross collections before refunds from the tax levied under this section that is equal to 1.040% divided by the income tax rate levied under this section shall be deposited in the state school aid fund created in section 11 of article IX of the state constitution of 1963.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(3) In addition to the distributions under subsections (2) and (4) and sections 51d, 51e, and 51f, beginning October 1, 2016, from the revenue collected under this section an amount equal to 3.5% of the average amount of farmland tax credits claimed under section 36109 of the natural resources and environmental protection act, 1994 PA 451, MCL 324.36109, for the immediately preceding 3 state fiscal years shall be deposited into the agricultural preservation fund created in section 36202 of the natural resources and environmental protection act, 1994 PA 451, MCL 324.36202.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(4) In addition to the distributions under subsections (2) and (3) and sections 51d, 51e, and 51f, and subject to the limitation under this subsection, beginning with the 2018-2019 state fiscal year and each fiscal year thereafter, from the revenue collected under this section $69,000,000.00 shall be deposited into the renew Michigan fund created in section 51g. However, if, in any 1 of the 2018-2019 through the 2021-2022 state fiscal years, the minimum foundation allowance falls below the 2017-2018 minimum foundation allowance established under section 20 of the state school aid act of 1979, 1979 PA 94, MCL 388.1620, as amended by 2017 PA 108, then no money shall be deposited into the renew Michigan fund pursuant to this subsection for that fiscal year.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(5) The department shall annualize rates provided in subsection (1) as necessary. The applicable annualized rate shall be imposed upon the taxable income of every person other than a corporation for those tax years.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(6) The taxable income of a nonresident shall be computed in the same manner that the taxable income of a resident is computed, subject to the allocation and apportionment provisions of this part.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(7) A resident beneficiary of a trust whose taxable income includes all or part of an accumulation distribution by a trust, as defined in section 665 of the internal revenue code, shall be allowed a credit against the tax otherwise due under this part. The credit shall be all or a proportionate part of any tax paid by the trust under this part for any preceding taxable year that would not have been payable if the trust had in fact made distribution to its beneficiaries at the times and in the amounts specified in section 666 of the internal revenue code. The credit shall not reduce the tax otherwise due from the beneficiary to an amount less than would have been due if the accumulation distribution were excluded from taxable income.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(8) The taxable income of a resident who is required to include income from a trust in the resident's federal income tax return under the provisions of 26 USC 671 to 679, shall include items of income and deductions from the trust in taxable income to the extent required by this part with respect to property owned outright.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(9) It is the intention of this section that the income subject to tax of every person other than corporations shall be computed in like manner and be the same as provided in the internal revenue code subject to adjustments specifically provided for in this part.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(10) As used in this section:</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(a) "Consumer Price Index" means the United States Consumer Price Index for all urban consumers as defined and reported by the United States Department of Labor, Bureau of Labor Statistics.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(b) "Inflation rate" means the annual percentage change in the Consumer Price Index, as determined by the department, comparing the 2 most recent completed state fiscal years.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(c) "Person other than a corporation" means a resident or nonresident individual or any of the following:</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(i) A partner in a partnership as defined in the internal revenue code.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(ii) A beneficiary of an estate or a trust as defined in the internal revenue code.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(iii) An estate or trust as defined in the internal revenue code.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(d) "Taxable income" means taxable income as defined in this part subject to the applicable source and attribution rules contained in this part.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span></p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span></p>
+  <p class="margin8Px">
+  </p>
+  <div class="editorials margin8Px" style="font-size:small !important;">
+    <p><span style="font-weight:bold;">History:</span> 1967, Act 281, Eff. Oct. 1, 1967 
+          ;--
+        
+Am. 1971, Act 76, Eff. Aug. 1, 1971 
+          ;--
+        
+Am. 1972, Act 181, Eff. Aug. 1, 1972 
+          ;--
+        
+Am. 1975, Act 19, Eff. May 1, 1975 
+          ;--
+        
+Am. 1977, Act 44, Imd. Eff. June 30, 1977 
+          ;--
+        
+Am. 1982, Act 155, Imd. Eff. May 17, 1982 
+          ;--
+        
+Am. 1983, Act 15, Imd. Eff. Mar. 29, 1983 
+          ;--
+        
+Am. 1984, Act 221, Imd. Eff. July 26, 1984 
+          ;--
+        
+Am. 1986, Act 16, Eff. Mar. 26, 1986 
+          ;--
+        
+Am. 1990, Act 283, Imd. Eff. Dec. 14, 1990 
+          ;--
+        
+Am. 1993, Act 328, Eff. Apr. 1, 1994 
+          ;--
+        
+Am. 1995, Act 194, Imd. Eff. Nov. 7, 1995 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=1999&amp;paNumber=1">1999, Act 1</a>, Imd. Eff. Feb. 25, 1999 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=1999&amp;paNumber=6">1999, Act 6</a>, Imd. Eff. Feb. 25, 1999 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2007&amp;paNumber=94">2007, Act 94</a>, Imd. Eff. Oct. 1, 2007 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2011&amp;paNumber=38">2011, Act 38</a>, Eff. Oct. 1, 2011 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2012&amp;paNumber=223">2012, Act 223</a>, Imd. Eff. June 29, 2012 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2015&amp;paNumber=180">2015, Act 180</a>, Imd. Eff. Nov. 10, 2015 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2016&amp;paNumber=266">2016, Act 266</a>, Imd. Eff. June 28, 2016 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2018&amp;paNumber=588">2018, Act 588</a>, Imd. Eff. Dec. 28, 2018 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2020&amp;paNumber=75">2020, Act 75</a>, Imd. Eff. Apr. 2, 2020 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2023&amp;paNumber=4">2023, Act 4</a>, Eff. Feb. 13, 2024 <br><span style="font-weight:bold">Compiler's Notes:</span> Section 4 of Act 76 of 1971 provides:"Expiration of act; conditions."Section 4. The provisions of this amendatory act shall expire August 1, 1972 unless prior thereto the legislature has submitted to the electors constitutional amendments which shall (a) grant property tax relief by limiting of levying of more than 10 mills on property for school operational purposes, (b) permit the legislature to enact taxes on income graduated either as to rate or base or both, or (c) a combination of (a) and (b) as one amendment and (a) as a separate amendment and which said amendments shall be voted upon at a special election to be held on November 2, 1971 or at the general election to be held November 1972."The legislature did not submit to the electors at a November 2, 1971 special election or at the November, 1972 general election proposed constitutional amendment(s) to effect the purposes enumerated in Section 4 of Act 76 of 1971.Section 51 of Act 250 of 1978, purporting to amend this section, was submitted to and disapproved by the people as part of Proposal E at the general election held on November 4, 1980.Section 2 of Act 15 of 1983 provides:"Legislative finding and purpose."Section 2. Because a severe economic recession has caused an actual deficit in state funds, the legislature finds that this amendatory act is necessary to, and it is the purpose of this amendatory act to, meet the actual deficiencies existing in state funds at the time of this enactment."Enacting section 1 of Act 588 of 2018 provides:"Enacting section 1. Section 51 of the income tax act of 1967, 1967 PA 281, MCL 206.51, as amended by this amendatory act, is retroactive and effective beginning December 1, 2018."</p>
+  </div>
+</div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+
+
+    </div>
+</div>
+
+        </main>
+
+        <footer b-99ebu3icm7="" class="border-top footer text-muted">
+            <div b-99ebu3icm7="" class="container text-center">
+                <div b-99ebu3icm7="" class="row" style="padding-top: 15px;">
+                    <div b-99ebu3icm7="" class="col-12">
+                        <div b-99ebu3icm7="">
+                            <a href="/Home/AcceptableUse">Acceptable Use Policy</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/Privacy">Privacy Policy</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/DMCA">DMCA Policy</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/CommentForm">Comment Form</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Legislature/Directory">Legislative Directory</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/Accessibility">Accessibility</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/SiteMap">Site Map</a>
+                        </div>
+                    </div>
+                </div>
+                <div b-99ebu3icm7="" class="row" style="padding-bottom: 15px; padding-top: 10px;">
+                    <div b-99ebu3icm7="" class="col-12">
+                        <div b-99ebu3icm7="">
+                            <a b-99ebu3icm7="" href="/documents/publications/RssFeeds/billupdate.xml"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5495F7" class="bi bi-rss-fill" viewBox="0 0 16 16" alt="Bills Rss Feed" title="">  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path></svg> Bills</a>
+                            <span b-99ebu3icm7="" class="delim"></span><a b-99ebu3icm7="" href="/documents/publications/RssFeeds/comschedule.xml"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5495F7" class="bi bi-rss-fill" viewBox="0 0 16 16" alt="Meetings Rss Feed" title="">  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path></svg> Meetings</a>
+                            <span b-99ebu3icm7="" class="delim"></span><a b-99ebu3icm7="" href="/documents/publications/RssFeeds/MCLupdate.xml"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5495F7" class="bi bi-rss-fill" viewBox="0 0 16 16" alt="Laws Rss Feed" title="">  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path></svg> Laws</a>
+                        </div>
+                    </div>
+                </div>
+                <div b-99ebu3icm7="" class="row">
+                    <p b-99ebu3icm7="">
+                        The Michigan Legislature Website is a free service of the Legislative Service Bureau in cooperation with the Michigan Legislative Council, the Michigan House
+                        of Representatives, the Michigan Senate, and the Library of Michigan. This site is intended to provide accurate and timely legislative information to the
+                        citizens of the State of Michigan and other interested parties. Additional historical documents can be found at
+                        <a b-99ebu3icm7="" href="https://www.michigan.gov/libraryofmichigan">https://www.michigan.gov/libraryofmichigan</a>. The information obtained from this site is not intended to replace
+                        official versions of that information and is subject to revision. The Legislature presents this information, without warranties, express or implied, regarding
+                        the accuracy of the information, timeliness, or completeness. If you believe the information is inaccurate, out-of-date, or incomplete or if you have problems
+                        accessing or reading the information, please send your concerns to the appropriate agency using the online Comment Form in the bar above this text.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    
+
+</body></html>

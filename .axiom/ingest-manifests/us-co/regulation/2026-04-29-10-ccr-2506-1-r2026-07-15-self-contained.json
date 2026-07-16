@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/regulation/2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained.json",
+      "sha256": "fca0bf44f1aab8818ab416389aef7b0a70d1f9b97b95a69fc7b30ee802fa3a57"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/regulation/2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained.json",
+      "sha256": "02cfb33754a5dd9e209a49d597215e75a913cee05ba1548944a957cf2dc60ff6"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/regulation/2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained.jsonl",
+      "sha256": "690056c197e6c505adbc5bd8aceec55c48d7b459e570017576b0a871009dac8f"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained/official-documents/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained",
+      "sha256": "62edf85ec202b1009c4c4655519596a75ea2e4b716ad2e5a9ce5bc6544a72784"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained/provenance/release-scope-us-co-regulation-2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained.json",
+      "sha256": "a797ee3ace7de2b6af48bbaa4b7eaba0ff37a9e4542e5d6823e5967de19875ec"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d4f54b10fc41e3aca1f87b8a67b8a7fbce0410f6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 290,
+    "missing_count": 0,
+    "provision_count": 290,
+    "source_count": 290
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-15T22:26:16.823993+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2WYjuYTYxP4/7rU7qrtYQu2w+7wsFasJgiDgUI5x27bd+PqF1yHXnhkeWY/84NQsSwaUHi/XjlMihPdwvJHgDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained"
+}

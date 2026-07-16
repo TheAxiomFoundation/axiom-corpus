@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/statute/2026-07-13-recovery.json",
+      "sha256": "7d8a6d2b4cf5b4ccc94f48923778c273dec952333ff952b8a7dbd7614c316336"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/statute/2026-07-13-recovery.json",
+      "sha256": "b54a7f320ad501b17d7f0f744df1f44151d14b143c1b6749fbea958af13eee36"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/statute/2026-07-13-recovery.jsonl",
+      "sha256": "fe814ef6b1c2491bc86cbef085610626218dda7cb1fd822613e272a0f7215e7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-07-13-recovery/official-documents/us-mi-code-206.272",
+      "sha256": "e0c3b08a247b418249d4d1a9c6eef3cdaa0ed265f02d094a0b8a5e2a16735a14"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-07-13-recovery/official-documents/us-mi-code-206.30",
+      "sha256": "ad885c383d692e21928ea498f0faf2e76a68e75258c91b7bc03491071b63ea86"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-07-13-recovery/official-documents/us-mi-code-206.51",
+      "sha256": "7c52a04b2a9a3988bf43b77ac4538d6150521b653608036ac6e39aef2257dd8b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-07-13-recovery/provenance/us-mi-code-206.272.json",
+      "sha256": "1c24cd1742581cccc9b33dee37c3e1a4ac654beb4ee12ea41ebf9d679ad6183e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-07-13-recovery/provenance/us-mi-code-206.30.json",
+      "sha256": "07b40d933c4da5f0ce93f3126dccf06648dc1e13338a1e2f22bf040c0303e393"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/statute/2026-07-13-recovery/provenance/us-mi-code-206.51.json",
+      "sha256": "dc64292c78f48f2ca9723ac24bf706da7633c2c2100ad5b4818738db3af35003"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6b2f5c9393a80a0c7f48dbf1f25a588a7a224fee",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-15T19:51:02.761678+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4V9T1NDKcqKmc25c3TlpVVcFBceMOES8D+dpvuaWFGZAzaKfuUh4wSvnRefypQ8QRfPnd+sGQw6PUhdoAzFkDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/statute/2026-07-13-recovery.json",
+      "sha256": "c1fca187a4ab88eadae40a594a38e817e07bf0fee8139ab2034aae913c0e38ef"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/statute/2026-07-13-recovery.json",
+      "sha256": "4d1fe55be2d16c4f9c1d45767a5a1d9462640b4dbdcf57245d474749d0286503"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/statute/2026-07-13-recovery.jsonl",
+      "sha256": "85030972cd1ab0b3b910e928c178a65b9653ffe6c234cc9c625a480d5246e86e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/official-documents/us-mn-code-290.0121",
+      "sha256": "6b1de57497d54caf92646baad410ef6bbe7422d53c7fa847a955b0dfa142f9e1"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/official-documents/us-mn-code-290.0123",
+      "sha256": "5e0ed21b83ea28e17dd94c39c668b1bb862effb08eef2fee34a4fe8215071398"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/official-documents/us-mn-code-290.06",
+      "sha256": "78ec93cd6ef203e0c096724fecb9a94baf41d08e3a4d406860606cf25e60b783"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/official-documents/us-mn-code-290.067",
+      "sha256": "1677305e787180daeec017ef912a81ba0fe298c6cd1564683547086a48fabdd0"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/official-documents/us-mn-code-290.0671",
+      "sha256": "38bdf991f18997d72277e53f44bedc64529e11bb00da57348f2db25cbee44494"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/provenance/us-mn-code-290.0121.json",
+      "sha256": "915c8a60ecdc1d0ac75b6b07e57912551b873ac771b26318e39eb17323a248e2"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/provenance/us-mn-code-290.0123.json",
+      "sha256": "93d2ac448808af8d0715aa720213baccbcf16405ce9df9a1ee81f6df7dfbed71"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/provenance/us-mn-code-290.06.json",
+      "sha256": "77283a8d62e80f58046214f71f2e56cdfec71dc7e6073f681e0a0c79b421a17e"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/provenance/us-mn-code-290.067.json",
+      "sha256": "d3b09b4c13e5ede9305ae6bd2c7f3ce402b59637eca21ad1383e18881e7251d4"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/statute/2026-07-13-recovery/provenance/us-mn-code-290.0671.json",
+      "sha256": "55bf71ff1ded30cd9c0c5c9cfc566348d14c520b9b19f3d05f193480e7ade607"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3e498861244c07033f705e0a5c24c2fd961159a2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 125,
+    "missing_count": 0,
+    "provision_count": 125,
+    "source_count": 125
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-15T15:18:54.855053+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "mESi8lNl3ZfZPDcHpowfvIcA+IpFwKrGT3tssxYjV+6UrnHg6YkbzRXjTpn1bDANS/2B3OFjDE/4WhTGh02VDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

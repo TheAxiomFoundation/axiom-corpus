@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nv/manual/2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained.json",
+      "sha256": "1cd87287faac914295a1d1ba032b07814aa916a4847b043f32f41ff9e89cba0d"
+    },
+    {
+      "path": "data/corpus/inventory/us-nv/manual/2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained.json",
+      "sha256": "12e0dbe22ff220d5beb83cd56d62c2b7b80f3cdbebadc763d6ecc0c4e93629bf"
+    },
+    {
+      "path": "data/corpus/provisions/us-nv/manual/2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained.jsonl",
+      "sha256": "ee9b83aac58ac83d0f04f7c9cade97bc44e0b3d9459d044ac872407402a4e0de"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/manual/2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained/official-documents/release-scope-us-nv-manual-2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained",
+      "sha256": "c66a56a0069f89704d86c1620302d6eb16f83a722f771c65417e647be84f9816"
+    },
+    {
+      "path": "data/corpus/sources/us-nv/manual/2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained/provenance/release-scope-us-nv-manual-2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained.json",
+      "sha256": "681bbafea1ba36a706dad79f95b07abe823b2c2ace819c9fea82b0af4ffd0af5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f76c88a7de43acc37a192808508a74eb412386a8",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 821,
+    "missing_count": 0,
+    "provision_count": 821,
+    "source_count": 821
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T22:26:26.483923+00:00",
+  "jurisdiction": "us-nv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BG4hwPnXf9AyFEgYFkK5wv9Oq1NUnExrKgJiRVZyG9Eu0hvylypgXpkPohWqXpCR2YUZX89MNbaMvcZxQ5JqDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-nv-eligibility-payments-manual-r2026-07-15-self-contained"
+}

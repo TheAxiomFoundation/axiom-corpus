@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-fl/manual/2026-05-27-fl-ess-manual-r2026-07-15-self-contained.json",
+      "sha256": "74f5c673e3222a8658700facd6383449b2de8c40d455b3347fc555165461a9c1"
+    },
+    {
+      "path": "data/corpus/inventory/us-fl/manual/2026-05-27-fl-ess-manual-r2026-07-15-self-contained.json",
+      "sha256": "025dfb3d16dfc00977651b4da0a17d0348b13e1e14dbf45a61b00375ff0548be"
+    },
+    {
+      "path": "data/corpus/provisions/us-fl/manual/2026-05-27-fl-ess-manual-r2026-07-15-self-contained.jsonl",
+      "sha256": "df6457c68714d84da88e01d24e43f7b008b65cd0be61d1a1410ccc2ffe667b1b"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/manual/2026-05-27-fl-ess-manual-r2026-07-15-self-contained/official-documents/release-scope-us-fl-manual-2026-05-27-fl-ess-manual-r2026-07-15-self-contained",
+      "sha256": "c72519f1fc9efeabe128e1e29fb410fb7a61081f362b64b06b2d02fca329bc9e"
+    },
+    {
+      "path": "data/corpus/sources/us-fl/manual/2026-05-27-fl-ess-manual-r2026-07-15-self-contained/provenance/release-scope-us-fl-manual-2026-05-27-fl-ess-manual-r2026-07-15-self-contained.json",
+      "sha256": "1fc3cbdab50500a483569ae30dcbfc5df2b3371809c905345c161a6337c01237"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "807a7eb4062e0572115bd8d0c765c74b1fa4b089",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1107,
+    "missing_count": 0,
+    "provision_count": 1107,
+    "source_count": 1107
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T22:26:18.078821+00:00",
+  "jurisdiction": "us-fl",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/WzzVpOWS417fLGoVEfkM9XnXa3b3ctKn42ndZaA9vx6ottGu0US9KP4OZ351FPwgtY36Go80PnmVcB22tM+AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-fl-ess-manual-r2026-07-15-self-contained"
+}

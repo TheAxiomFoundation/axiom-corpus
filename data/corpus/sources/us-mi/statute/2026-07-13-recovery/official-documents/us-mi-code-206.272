@@ -1,0 +1,300 @@
+<html lang="en"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>MCL - Section 206.272 - Michigan Legislature</title>
+
+        <link rel="shortcut icon" href="/images/favicon.png">
+
+        <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/site.css?v=8hGFZyIpDhOvbwduAFfXEcJ5wpqq21vYqMxGm7fiX10">
+        <link rel="stylesheet" href="/css/forms.css?v=EBOZzsLggL7ckwxH18P3qh5q2aTccGDiT3TKAyLVfi4">
+
+            <link rel="stylesheet" href="/css/dark.css?v=2DD16JZ994EbaoxGUgrHM-hAqZ68zKVQ09VPytM44vA">
+
+        <script src="/lib/jquery/dist/jquery.min.js"></script>
+        <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/site.js?v=qB3LUUXdzEa_61d20S94OojrZ6EDC9QNsBSYwwcSNjY"></script>
+
+        <script type="text/javascript">
+            let prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            let prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+            let theme = "dark";
+            let userSetTheme = "True";
+
+            if (navigator.cookieEnabled && userSetTheme == "False" && ((theme == "dark" && prefersLight) || (theme == "light" && prefersDark)))
+            {
+                window.location.href = "/Home/ToggleTheme?ReturnUrl=%2FLaws%2FMCL%3FobjectName%3Dmcl-206-272";
+            }
+        </script>
+
+        <noscript b-99ebu3icm7="">
+            <style>
+                .collapsible+div {
+                    display: block;
+                }
+            </style>
+        </noscript>
+    </head>
+
+    <body>
+        <header b-99ebu3icm7="" style="display:unset; z-index:1000;">
+
+            <div b-99ebu3icm7="">
+                <a b-99ebu3icm7="" href="#main" class="skipLink">Skip to content</a>
+            </div>
+
+            <div b-99ebu3icm7="" class="banner">
+
+                <div b-99ebu3icm7="" class="banner-center">
+                    <h1 b-99ebu3icm7="">
+                        <a b-99ebu3icm7="" href="/">Michigan Legislature</a>
+                    </h1>
+                    <div b-99ebu3icm7="" style="font-size:large">
+                        <span b-99ebu3icm7="" class="desktop">
+                            Michigan Compiled Laws Complete Through PA 20 of 2026
+                        </span>
+                        <span b-99ebu3icm7="" class="mobile">
+                            MCL Complete Through PA 20 of 2026
+                        </span>
+                    </div>
+                </div>
+                <div b-99ebu3icm7="" class="banner-bottom">
+                    <div b-99ebu3icm7="" class="banner-left">
+                        <span b-99ebu3icm7="" class="small desktop">
+                            Senate adjourned until Wednesday, July 15, 2026 10:00 AM
+                        </span>
+                        <span b-99ebu3icm7="" class="small mobile">
+                            Senate adjourned until 07/15/26 10:00 AM
+                        </span>
+                    </div>
+                    <div b-99ebu3icm7="" class="banner-right">
+                        <span b-99ebu3icm7="" class="small desktop">
+                            House adjourned until Wednesday, July 15, 2026 1:30 PM
+                        </span>
+                        <span b-99ebu3icm7="" class="small mobile">
+                            House adjourned until 07/15/26 1:30 PM
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <nav b-99ebu3icm7="" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark mb-3">
+                <div b-99ebu3icm7="" class="container-fluid">
+
+                    <button b-99ebu3icm7="" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span b-99ebu3icm7="" class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div b-99ebu3icm7="" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul b-99ebu3icm7="" class="navbar-nav flex-grow-1">
+                            <li b-99ebu3icm7="" class="nav-item">
+                                <a class="nav-link text-light" href="/">Home</a>
+                            </li>
+
+                            <li b-99ebu3icm7="" class="nav-item dropdown">
+                                <a b-99ebu3icm7="" class="nav-link text-light dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Legislature</a>
+                                <ul b-99ebu3icm7="" class="dropdown-menu">
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Search/LegDocSearch">Legislative Document Search</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills">Bills</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills/Resolutions">Resolutions</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills/JointResolutions">Joint Resolutions</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills/ConcurrentResolutions">Concurrent Resolutions</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Calendars">Calendars</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Committees">Committees</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Committees/CBRs">Committee Bill Records</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Committees/Meetings">Committee Meetings</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Bills/Initiatives">Initiatives/Alternative Measures</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Journals">Journals</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Legislators">Legislators</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/PublicActs">Public and Local Acts (Signed Bills)</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/RulesAndSchedules">Rules and Schedules</a></li>
+                                </ul>
+                            </li>
+
+                            <li b-99ebu3icm7="" class="nav-item dropdown">
+                                <a b-99ebu3icm7="" class="nav-link text-light dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Laws</a>
+                                <ul b-99ebu3icm7="" class="dropdown-menu">
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/MCLSearch">MCL Search</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/PAMCLSearch">Public Act MCL Search</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/Constitution">Michigan Constitution</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/ChapterIndex">MCL Chapter Index</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/ExecutiveOrders">Executive Orders</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/ExecutiveReorgs">Executive Reorganization Orders</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Laws/MCLTablesAndAppropriationActs">MCL Tables and Appropriation Acts</a></li>
+                                </ul>
+                            </li>
+
+                            <li b-99ebu3icm7="" class="nav-item dropdown">
+                                <a b-99ebu3icm7="" class="nav-link text-light dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
+                                <ul b-99ebu3icm7="" class="dropdown-menu">
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Archives">Archives</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/HistoricalDocuments">Historical Documents</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Home/ListServerSignUp">Committee Meeting Notifications</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/Directory">Legislative Directory</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Legislature/MichiganManuals">Michigan Manuals</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Home/Publications">Publications</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Home/RelatedSites">Related Sites</a></li>
+                                    <li b-99ebu3icm7=""><a class="dropdown-item" href="/Home/Help">Help</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div b-99ebu3icm7="" class="d-flex">
+                            <ul b-99ebu3icm7="" class="navbar-nav flex-grow-1">
+
+                                <li b-99ebu3icm7="" class="nav-item">
+                                        <a b-99ebu3icm7="" class="nav-link text-light" title="Toggle Theme" href="/Home/ToggleTheme?ReturnUrl=%2FLaws%2FMCL%3FobjectName%3Dmcl-206-272"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#eaecf0" alt="Toggle Theme" title="" class="bi bi-moon-stars-fill" viewBox="0 0 16 16"><path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"></path><path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"></path></svg></a>
+                            </li>
+
+                                    <li b-99ebu3icm7="" class="nav-item">
+                                            <a b-99ebu3icm7="" class="nav-link text-light" href="/Account/SignUp?ReturnUrl=%2FLaws%2FMCL%3FobjectName%3Dmcl-206-272">Sign Up</a>
+                                    </li>
+                                    <li b-99ebu3icm7="" class="nav-item">
+                                            <a b-99ebu3icm7="" class="nav-link text-light" href="/Account/LogIn?ReturnUrl=%2FLaws%2FMCL%3FobjectName%3Dmcl-206-272">Log In</a>
+                                    </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+
+        <main b-99ebu3icm7="" id="main" class="container pb-3">
+            
+<style>
+    table tr td{
+        padding-right:10px;
+        padding-bottom:5px;
+    }
+</style>
+
+<h1>MCL - Section 206.272</h1>
+
+<div class="row" style="padding-bottom: 7px; margin-top: -9px;">
+    <div class="col-12" style="text-align: left;">
+        <div>
+            <span><a href="/Home/Document?objectName=mcl-206-272">Download Section</a></span>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row" style="padding-top: 7px;">
+    <div class="col-12 text-center">
+                    <span><a href="/Laws/MCL?objectName=mcl-chap206">Chapter 206</a></span><br>
+                    <span><a href="/Laws/MCL?objectName=mcl-Act-281-of-1967">Act 281 of 1967</a></span><br>
+                    <span><a href="/Laws/MCL?objectName=mcl-281-1967-1">281-1967-1</a></span><br>
+                    <span><a href="/Laws/MCL?objectName=mcl-281-1967-1-5">281-1967-1-5</a></span><br>
+    </div>
+</div>
+<div class="row" style="padding-bottom: 7px;">
+    <div class="col-6" style="text-align:right">
+                <span><a href="/Laws/MCL?objectName=mcl-206-271"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5495F7" class="bi bi-caret-left-fill" viewBox="0 0 16 16" alt="" title=""><path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"></path></svg> Previous Section</a></span>
+    </div>
+    <div class="col-6" style="text-align:left">
+                <span><a href="/Laws/MCL?objectName=mcl-206-273">Next Section <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5495F7" class="bi bi-caret-right-fill" viewBox="0 0 16 16" alt="" title=""><path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"></path></svg></a></span>
+    </div>
+</div>
+
+<div class="row" style="padding-bottom: 7px;">
+    <div class="col-12">
+        <div style="margin:auto;">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div>
+            <div class="sectionWrapper">
+  <div class="excerpt" style="text-align:center; font-weight:bold;">
+    <h1 class="h2">INCOME TAX ACT OF 1967 (EXCERPT)</h1><br><h1 class="h3">Act 281 of 1967</h1>
+  </div><br><h1 class="h4" style="font-weight:bold;">206.272 Earned income tax credit; amount equal to federal credit; refund.</h1>
+  <p class="margin8Px">Sec. 272.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(1) A taxpayer may credit against the tax imposed by this act an amount equal to the specified percentages of the credit the taxpayer is allowed to claim as a credit under section 32 of the internal revenue code for a tax year on a return filed under this act for the same tax year:</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(a) For tax years that begin after December 31, 2007 and before January 1, 2009, 10%.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(b) For tax years that begin after December 31, 2008 and before January 1, 2012, 20%.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(c) For tax years that begin after December 31, 2011 and before January 1, 2023, 6%.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(d) For tax years that begin after December 31, 2022, 30%.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(2) For the 2022 tax year only, a taxpayer that claims a credit under this section on the taxpayer's return filed under this part for the 2022 tax year is entitled to an additional credit in an amount equal to 24% of the credit the taxpayer is allowed to claim as a credit under section 32 of the internal revenue code for the 2022 tax year. A taxpayer shall not claim this additional credit on the taxpayer's return filed under this part for the 2022 tax year or file an amended return for the 2022 tax year to claim this additional credit. In a form and manner as determined by the department, the department shall calculate the amount of the additional credit that each taxpayer is entitled to receive under this subsection. The amount of the additional credit calculated under this subsection must be refunded as soon as practical as provided in section 30 of 1941 PA 122, MCL 205.30. Notwithstanding section 352, the department shall issue any refund under this subsection to the taxpayer in the form of a fully negotiable check.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span>(3) If the credit allowed by this section exceeds the tax liability of the taxpayer for the tax year, the state treasurer shall refund the excess to the taxpayer without interest, except as provided in section 30 of 1941 PA 122, MCL 205.30.</p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span></p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight:bold;"></span></p>
+  <p class="margin8Px">
+  </p>
+  <div class="editorials margin8Px" style="font-size:small !important;">
+    <p><span style="font-weight:bold;">History:</span> Add. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2006&amp;paNumber=372">2006, Act 372</a>, Imd. Eff. Sept. 22, 2006 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2011&amp;paNumber=38">2011, Act 38</a>, Eff. Jan. 1, 2012 
+          ;--
+        
+Am. <a href="/Search/ExecuteSearch?docTypes=PABill&amp;paYear=2023&amp;paNumber=4">2023, Act 4</a>, Eff. Feb. 13, 2024 <br><span style="font-weight:bold">Compiler's Notes:</span> Enacting section 1 of Act 469 of 2014 provides:"Enacting section 1. This amendatory act does not take effect unless House Joint Resolution UU of the 97th Legislature becomes a part of the state constitution of 1963 as provided in section 1 of article XII of the state constitution of 1963."House Joint Resolution UU was presented to the electors as Proposal 15-1 at the May 5, 2015 special election.  The proposal to amend the constitution was not approved by the voters and Act 469 of 2014 does not go into effect.</p>
+  </div>
+</div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+
+
+    </div>
+</div>
+
+        </main>
+
+        <footer b-99ebu3icm7="" class="border-top footer text-muted">
+            <div b-99ebu3icm7="" class="container text-center">
+                <div b-99ebu3icm7="" class="row" style="padding-top: 15px;">
+                    <div b-99ebu3icm7="" class="col-12">
+                        <div b-99ebu3icm7="">
+                            <a href="/Home/AcceptableUse">Acceptable Use Policy</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/Privacy">Privacy Policy</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/DMCA">DMCA Policy</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/CommentForm">Comment Form</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Legislature/Directory">Legislative Directory</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/Accessibility">Accessibility</a>
+                            <span b-99ebu3icm7="" class="delim"></span>
+                            <a href="/Home/SiteMap">Site Map</a>
+                        </div>
+                    </div>
+                </div>
+                <div b-99ebu3icm7="" class="row" style="padding-bottom: 15px; padding-top: 10px;">
+                    <div b-99ebu3icm7="" class="col-12">
+                        <div b-99ebu3icm7="">
+                            <a b-99ebu3icm7="" href="/documents/publications/RssFeeds/billupdate.xml"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5495F7" class="bi bi-rss-fill" viewBox="0 0 16 16" alt="Bills Rss Feed" title="">  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path></svg> Bills</a>
+                            <span b-99ebu3icm7="" class="delim"></span><a b-99ebu3icm7="" href="/documents/publications/RssFeeds/comschedule.xml"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5495F7" class="bi bi-rss-fill" viewBox="0 0 16 16" alt="Meetings Rss Feed" title="">  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path></svg> Meetings</a>
+                            <span b-99ebu3icm7="" class="delim"></span><a b-99ebu3icm7="" href="/documents/publications/RssFeeds/MCLupdate.xml"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#5495F7" class="bi bi-rss-fill" viewBox="0 0 16 16" alt="Laws Rss Feed" title="">  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"></path></svg> Laws</a>
+                        </div>
+                    </div>
+                </div>
+                <div b-99ebu3icm7="" class="row">
+                    <p b-99ebu3icm7="">
+                        The Michigan Legislature Website is a free service of the Legislative Service Bureau in cooperation with the Michigan Legislative Council, the Michigan House
+                        of Representatives, the Michigan Senate, and the Library of Michigan. This site is intended to provide accurate and timely legislative information to the
+                        citizens of the State of Michigan and other interested parties. Additional historical documents can be found at
+                        <a b-99ebu3icm7="" href="https://www.michigan.gov/libraryofmichigan">https://www.michigan.gov/libraryofmichigan</a>. The information obtained from this site is not intended to replace
+                        official versions of that information and is subject to revision. The Legislature presents this information, without warranties, express or implied, regarding
+                        the accuracy of the information, timeliness, or completeness. If you believe the information is inaccurate, out-of-date, or incomplete or if you have problems
+                        accessing or reading the information, please send your concerns to the appropriate agency using the online Comment Form in the bar above this text.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    
+
+</body></html>

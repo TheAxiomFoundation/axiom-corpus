@@ -1,0 +1,502 @@
+    <!-- #region Login -->
+    <!-- #endregion -->
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head id="Head1">
+		    <title>&#167; 58.1-339.8. Income tax credit for low-income taxpayers</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+		<link rel="apple-touch-icon" href="./images/favicon-law16.png" sizes="16x16" />
+		<link rel="apple-touch-icon" href="./images/favicon-law32.png" sizes="32x32" />
+        <script src="/Scripts/session.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="/Content/base.css" type="text/css" media="all" />
+		<!--[if lt IE 9 ]><link rel="stylesheet" href="./Content/720_grid.css" type="text/css" /><![endif]-->
+		<link rel="stylesheet" href="/Content/720_grid.css" type="text/css" media="screen and (min-width: 720px)" />
+		<link rel="stylesheet" href="/Content/986_grid.css" type="text/css" media="screen and (min-width: 986px)" />
+		<link rel="stylesheet" href="/Content/1236_grid.css" media="screen and (min-width: 1236px)" />
+		<link rel="stylesheet" href="/Content/font-awesome.min.css" />
+		<link href='https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700' rel='stylesheet' type='text/css' />
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT Serif:r,i,400,700" />
+		
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,700,300,300italic,400italic,700italic' rel='stylesheet' type='text/css' />
+		<link rel="stylesheet" href="/Content/jquery.fancybox.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="/Content/jquery.qtip.min.css" type="text/css" media="all" />
+		
+		<meta name='docid' content='004921' /><meta name='title' content='Title 58.1. Taxation' /><meta name='COVtitle' content='Title 58.1. Taxation' /><meta name='subject' content='' /><meta name='subject' content='' />
+
+		<style type="text/css">.fancybox-margin {margin-right: 0px;}</style>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6YYKCXH17"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-F6YYKCXH17');
+        </script>
+        <script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+        <script src="/Scripts/jquery-ui.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $('document').ready(function () {
+                $('#print').attr("aria-label", "Print Button");
+                $('#txtsearch-in').attr("aria-label", "Search within the current selection");
+                
+                $("#mobile-menu-toggle").click(function () {
+                    $("#section-menu").toggleClass("open");
+                    $(".mobile-overlay").toggleClass("open");
+                });
+
+                $(".mobile-overlay").click(function () {
+                    $("#section-menu").removeClass("open");
+                    $(".mobile-overlay").removeClass("open");
+                });
+            });
+        </script>
+        <script>
+            $(function () {
+                var searchList = document.getElementById("searchList");
+                if (!searchList.length) {
+                    return;
+                }
+
+                var path = (window.location.pathname || "").toLowerCase();
+                var selectedValue = "all";
+                document.getElementById("searchList").value = "LAW";
+
+                if (path.includes("/admincode")) {
+                    selectedValue = "admin";
+                    document.getElementById("searchBtn").value = "Administrative_Code";
+                } else if (path.includes("/constitution")) {
+                    selectedValue = "constitution";
+                    document.getElementById("searchBtn").value = "Constitution";
+                } else if (path.includes("/vacode")) {
+                    selectedValue = "code";
+                    document.getElementById("searchBtn").value = "Code_of_Virginia";
+                } else if (path.includes("/charters")) {
+                    selectedValue = "charters";
+                    document.getElementById("searchBtn").value = "Charters";
+                } else if (path.includes("/authorities")) {
+                    selectedValue = "authorities";
+                    document.getElementById("searchBtn").value = "Authorities";
+                } else if (path.includes("/compacts")) {
+                    selectedValue = "compacts";
+                    document.getElementById("searchBtn").value = "Compacts";
+                } else if (path.includes("/uncodifiedacts")) {
+                    selectedValue = "uncodified";
+                    document.getElementById("searchBtn").value = "Uncodified_Acts";
+                }
+
+                searchList.querySelectorAll("option").forEach(function(option) {
+                    option.selected = false;
+                });
+                var selectedOption = searchList.querySelector('option[value="' + selectedValue + '"]');
+                if (selectedOption) {
+                    selectedOption.selected = true;
+                }
+            });
+        </script>
+	</head>
+
+<body>
+    <input aria-hidden="true" type="text" style="width:0;height:0;visibility:hidden;position:absolute;left:0;top:0" /> 
+    <input aria-hidden="true" type="password" style="width:0;height:0;visibility:hidden;position:absolute;left:0;top:0" />
+    <input aria-hidden="true" type="hidden" id="hidSignIn" value="0" />
+    
+    
+    <div class="mobile-overlay"></div>
+    <div class="top-bar"></div>
+    <header>
+        <nav>
+            <div class="lis-links-content full">
+                <ul>
+                    <li><a href="https://virginiageneralassembly.gov/">Virginia General Assembly</a> /</li>
+                    <li><a href="https://help.lis.virginia.gov">LIS Learning Center</a> /</li>
+                    <li><a href="https://lis.virginia.gov/privacy">Privacy Policy</a> /</li>
+                    <li><a href="https://lis.virginia.gov">LIS home</a> /</li>
+                    <li><a href="https://lis.virginia.gov/register-account">Register Account</a> /</li>
+                    <li><a href="https://lis.virginia.gov/login">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="grid-wrapper one-and-three halves">
+        
+			<a href="https://lis.virginia.gov" id="logo-link">
+				<img alt="LIS Logo" src="/images/lis_logo.png" /> 
+			</a>
+		
+        <div class="portal-links">
+            <ul>
+                <li>
+                    <a class="txt-blue" href="https://lis.virginia.gov">Session Information</a>
+                </li>
+                <li>
+                    <a class="txt-dark-blue" href="https://lis.virginia.gov/bill-search">Bills & Resolutions</a>
+                </li>
+                <li>
+                    <a class="txt-green" href="https://budget.lis.virginia.gov/default/2025/1">State Budget</a>
+                </li>
+                <li>
+                    <a class="txt-light-green" href="https://law.lis.virginia.gov/">Virginia Law</a>
+                </li>
+                <li>
+                    <a class="txt-orange" href="https://rga.lis.virginia.gov/">Reports to the General Assembly</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mobile-menu">
+            <i id="mobile-menu-toggle" class="fa fa-bars"></i>
+        </div>
+    </div>
+        
+        
+        <div class="va-law">
+            <div class="grid">
+                <div class="row">
+                    <div class="slot-0-1-2">
+                        <h1><a href="https://law.lis.virginia.gov">Virginia Law</a></h1>
+                    </div>
+                    <div class="slot-3-4-5">
+                        <div class="input-group .search-comp ">
+                            <div class="input-group-btn">
+                                <label for="searchList" class="sr-only">Select Search Type</label>
+                                <select id="searchList" name="searchTypeSelect" class="btn input-sm btn-default dropdown-toggle" aria-label="Select Search Type">
+                                    <option value="all">All</option>
+                                    <option value="code">Code of Virginia</option>
+                                    <option value="admin">Administrative Code</option>
+                                    <option value="constitution">Constitution</option>
+                                    <option value="charters">Charters</option>
+                                    <option value="authorities">Authorities</option>
+                                    <option value="compacts">Compacts</option>
+                                    <option value="uncodified">Uncodified Acts</option>
+                                </select>
+                            </div>
+                            <input aria-label="search input" type="text" id="txtSearch" class="form-control input-sm" placeholder="Search" />
+                            <span class="input-group-btn">
+                                <button aria-label="search button" class="btn btn-sm btn-default" id="searchBtn" type="submit" value="LAW">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="grid">
+            <!-- #region Variables -->
+<!-- #endregion -->
+<!-- #region Highlights -->
+<!-- #endregion -->
+<!-- #region Build Pages -->
+<!-- #endregion -->
+
+
+<body class="flipcol ">
+	<input type="hidden" id="hidST" />
+	<input type="hidden" id="hidToC" value="1" />
+	<input type="hidden" id="hidID" />
+	<input type="hidden" id="hidNote"/>
+	<input type="hidden" id="hidBiP" value="false" />
+	<input type="hidden" id="hidReport" value="0" />
+	<input type="hidden" id="hidSegments" value="58.1-339.8" />
+    <input type="hidden" id="hidPage" value="vacode" />
+	<div class="grid">
+		<div class="row">
+			<div class="slot-6-7-8">
+				<section id="pageTitle"><h2 class='pg-title'>Code of Virginia</h2></section>
+				<section class="breadcrumbs" id="breadcrumbs"><p><a href='/vacode/'>Table of Contents</a> &raquo; <a href='/vacode/title58.1/'>Title 58.1. Taxation</a> &raquo; <a href='/vacode/title58.1#subtitleI/'>Subtitle I. Taxes Administered by the Department of Taxation</a>  &raquo; <a href='/vacode/title58.1/chapter3/'>Chapter 3. Income Tax</a>  &raquo; <a href='/vacode/title58.1/chapter3#article3/'>Article 3. Tax Credits for Individuals</a>  &raquo; <span class='breadcrumb-inactive'>§ 58.1-339.8. Income tax credit for low-income taxpayers</span></p></section>
+				<section class="content-header-menu" id="menucontainer">
+					<nav class="content-header-menu-left"><ul><li><a title='§ 58.1-339.9. Repealed' href='/vacode/title58.1/chapter3/section58.1-339.9/''><i class='fa fa-long-arrow-left'></i></a> Section <a title='§ 58.1-339.11. Repealed' href='/vacode/title58.1/chapter3/section58.1-339.11/''><i class='fa fa-long-arrow-right'></i></a></li></ul></nav>
+					<a href="#" class="scroll_top" aria-hidden="true"><i class="fa fa-arrow-up"></i></a>
+					<nav class="content-header-menu-middle"><ul><li><span id='printNorm'><a title='Print page' id='print' href='' ><i class='fa fa-print'></i> Print</a></span></li><li><a id='A3' data-section='vacode/58.1-339.8' title ='Download PDF' href=''><i class='fa fa-file-text'></i> PDF</a></li><li><a class='fancybox fancybox.iframe' href='/emailForm'><i class='fa fa-envelope'></i> email</a></li></ul></nav>
+							<nav class="content-header-menu-right"></nav>
+
+				</section>
+				<p class="sidenote alert rptCheckbox"><strong>Creating a Report:</strong> Check the sections you'd like to appear in the report, then use the "Create Report" button at the bottom of the page to generate your report. Once the report is generated you'll then have the option to download it as a pdf, print or email the report.</p>
+				<article id="vacode" class="content">
+					<div id="printStuff"><div id='printHeader'>Code of Virginia<br/>Title 58.1. Taxation<br/>Chapter 3. Income Tax</div><div id='printDate'>7/13/2026</div></div>
+					<span id='va_code' class="content"><!--googleon: index--><h2> <span id='v0'>§ 58.1-339.8</span>. Income tax credit for low-income taxpayers.</h2><section class='body editable' id='edit45385' data-table='CoV' data-field='body'><p>A. For purposes of this section:</p><p>"Family Virginia adjusted gross income" means the combined Virginia adjusted gross income of an individual, the individual's spouse, and any person claimed as a dependent on the individual's or his spouse's income tax return for the taxable year.</p><p>"Household" means an individual, or in the case of married individuals, an individual and his spouse, regardless of whether or not the individual and his spouse file combined or separate Virginia individual income tax returns.</p><p>"Poverty guidelines" means the poverty guidelines for the 48 contiguous states and the District of Columbia updated annually in the Federal Register by the U.S. Department of Health and Human Services under the authority of § 673(2) of the Omnibus Budget Reconciliation Act of 1981.</p><p>"Virginia adjusted gross income" has the same meaning as the term is defined in § <a href='/vacode/58.1-321/'>58.1-321</a>.</p><p>B. 1.  For taxable years beginning on and after January 1, 2000, any individual or married individuals filing jointly whose family Virginia adjusted gross income does not exceed 100 percent of the poverty guideline amount corresponding to a household of an equal number of persons as listed in the poverty guidelines published during such taxable year, shall be allowed a nonrefundable credit against the tax levied pursuant to § <a href='/vacode/58.1-320/'>58.1-320</a> in an amount equal to $ 300 each for the individual, the individual's spouse, and any person claimed as a dependent on the individual's or married individuals' income tax return for the taxable year. For any taxable year in which married individuals file separate Virginia income tax returns, the credit provided under this section shall be allowed against the tax for only one of such two tax returns. Additionally, the credit provided under this section shall not be allowed against such tax of a dependent of the individual or of married individuals.</p><p>2. For taxable years beginning on and after January 1, 2006, any individual or married individuals filing jointly, eligible for a tax credit pursuant to § 32 of the Internal Revenue Code, may for the taxable year, in lieu of the credit authorized under subdivision 1, claim a nonrefundable credit against the tax imposed pursuant to § <a href='/vacode/58.1-320/'>58.1-320</a> in an amount equal to 20 percent of the credit claimed by the individual or married individuals for federal individual income taxes pursuant to § 32 of the Internal Revenue Code for the taxable year. In no case shall a household be allowed a credit pursuant to this subdivision and subdivision 1 or 3 for the same taxable year.</p><p>3. a.  For taxable years beginning on and after January 1, 2022, but before January 1, 2025 any individual or married individuals filing jointly, eligible for a tax credit pursuant to § 32 of the Internal Revenue Code, may for the taxable year, in lieu of the credit authorized under subdivision 1 or 2, claim a refundable credit against the tax imposed pursuant to § <a href='/vacode/58.1-320/'>58.1-320</a> in an amount equal to 15 percent of the credit claimed by the individual or married individuals for federal individual income taxes pursuant to § 32 of the Internal Revenue Code for the taxable year.</p><p>b. For taxable years beginning on and after January 1, 2025 but before January 1, 2027, any individual or married individuals filing jointly may, for the taxable year, in lieu of the credit authorized under subdivision 1 or 2, claim a refundable credit against the tax imposed pursuant to § <a href='/vacode/58.1-320/'>58.1-320</a> in an amount equal to 20 percent of the credit claimed by the individual or married individuals for federal individual income taxes pursuant to § 32 of the Internal Revenue Code for the taxable year.</p><p>c. The refundable credit claimed pursuant to this subdivision 3 shall be claimed on the Virginia income tax return and redeemed by the Tax Commissioner. In no case shall a household be allowed a credit pursuant to this subdivision 3 and subdivision 1 or 2 for the same taxable year.</p><p>C. The amount of the credit claimed pursuant to subdivision B 1 and B 2, or in the case of a nonresident or a person to which § <a href='/vacode/58.1-303/'>58.1-303</a> applies, subdivision B 3, for any taxable year shall not exceed the individual's or married individuals' Virginia income tax liability.</p><p>D. Notwithstanding any other provision of this section, no credit shall be allowed pursuant to subsection B in any taxable year in which the individual, the individual's spouse, or both, or any person claimed as a dependent on such individual's or married individuals' income tax return, claims one or any combination of the following on his or their income tax return for such taxable year:</p><p>1. The subtraction under subdivision 8 of § <a href='/vacode/58.1-322.02/'>58.1-322.02</a>;</p><p>2. The subtraction under subdivision 15 of § <a href='/vacode/58.1-322.02/'>58.1-322.02</a>;</p><p>3. The subtraction under subdivision 16 of § <a href='/vacode/58.1-322.02/'>58.1-322.02</a>;</p><p>4. The deduction for the additional personal exemption for blind or aged taxpayers under subdivision 2 b of § <a href='/vacode/58.1-322.03/'>58.1-322.03</a>; or</p><p>5. The deduction under subdivision 5 of § <a href='/vacode/58.1-322.03/'>58.1-322.03</a>.</p><p>2000, c. <a href='http://legacylis.virginia.gov/cgi-bin/legp604.exe?001+ful+CHAP0397'>397</a>; 2004, Sp. Sess. I, c. <a href='http://legacylis.virginia.gov/cgi-bin/legp604.exe?042+ful+CHAP0003'>3</a>; 2017, c. <a href='http://legacylis.virginia.gov/cgi-bin/legp604.exe?171+ful+CHAP0444'>444</a>; 2020, c. <a href='http://legacylis.virginia.gov/cgi-bin/legp604.exe?201+ful+CHAP0900'>900</a>; 2022, Sp. Sess. I, cc. <a href='http://legacylis.virginia.gov/cgi-bin/legp604.exe?222+ful+CHAP0001'>1</a>, <a href='http://legacylis.virginia.gov/cgi-bin/legp604.exe?222+ful+CHAP0002'>2</a>; 2023, Sp. Sess. I, c. <a href='http://legacylis.virginia.gov/cgi-bin/legp604.exe?232+ful+CHAP0001'>1</a>; 2025, c. <a href='https://lis.virginia.gov/bill-details/20251/HB1600/text/CHAP0725'>725</a>; 2026, c. <a href='https://lis.virginia.gov/bill-details/20261/HB29/text/CHAP0007'>7</a>.</p></section><input type='hidden' class='dataType' id='dataTable' value='CoV'/><input type='hidden' class='dataType' id='dataMember' value='id'/><input type='hidden' class='dataType' id='dataField' value='body'/><!--googleoff: index--></span>
+
+
+
+				</article>
+				<div id="HistoryNote"><p class='sidenote'>The chapters of the acts of assembly referenced in the historical citation at the end of this section may not constitute a comprehensive list of such chapters and may exclude chapters whose provisions have expired.</p></div>
+						<nav class="content-footer-menu"><ul><li><a title='§ 58.1-339.9. Repealed' href='/vacode/title58.1/chapter3/section58.1-339.9/''><i class='fa fa-long-arrow-left'></i></a> Section <a title='§ 58.1-339.11. Repealed' href='/vacode/title58.1/chapter3/section58.1-339.11/''><i class='fa fa-long-arrow-right'></i></a></li></ul></nav>
+
+			</div>
+			<div class="slot-9">
+				<nav id="section-menu">
+					<ul class="section-header-menu">
+						<li class="selected" aria-label="Currently selected page">
+							<a href="/vacode">Code of Virginia</a>
+						</li>
+						<li class="sub-menu">
+							<a href="/vacodepopularnames">Popular Names</a>
+						</li>
+						<li id="covUpdates" class="sub-menu">
+							<a  href='/vacodeupdates/'>2026 Updates</a>
+						</li>
+						<li id='search-box' class="sub-menu">
+							<label class="form-title" for="search-text">Section Look Up</label>
+						
+						
+							<div action='/search' id='search-form' method='get' target='_top'>
+								<input aria-label="Section look up input" title="Section look up input" type="text" id='search-text' name='q' placeholder='ex.  2.2-4007.01' readonly onfocus="if (this.hasAttribute('readonly')) {this.removeAttribute('readonly'); this.blur(); this.focus(); }"/>
+								<button aria-label="Section look up button" title="Section look up button" id='search-button' type='submit'>Go</button>
+							</div>
+						</li>
+						<li>
+							<a href="/admincode">Administrative Code</a>
+						</li>
+						<li>
+							<a href="/constitution">Constitution of Virginia</a>
+						</li>
+						<li>
+							<a href="/charters">Charters</a>
+						</li>
+						<li>
+							<a href="/authorities">Authorities</a>
+						</li>
+						<li>
+							<a href="/compacts">Compacts</a>
+						</li>
+						<li>
+							<a href="/uncodifiedacts">Uncodified Acts</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+    <script type="text/javascript">var siteurl = 'https://law.lis.virginia.gov';</script>
+	<script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="/Scripts/responsive.js" type="text/javascript"></script>
+	<script src="/Scripts/modernizer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/jquery.fancybox.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/fancybox/jquery.easing-1.3.pack.js" type="text/javascript"></script>
+	<script src="/Scripts/fancybox/jquery.mousewheel-3.0.4.pack.js" type="text/javascript"></script>
+	<script src="/Scripts/jquery.floatThead.min.js" type="text/javascript"></script>
+	<script src="/Scripts/printThisCoV.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+	<script src="/Scripts/search.js" type="text/javascript"></script>
+	<script src="/Scripts/searchCoV.js" type="text/javascript"></script>
+	<script src="/Scripts/isFontFaceSupported.js" type="text/javascript"></script>
+	<script src="/Scripts/jquery.qtip.js" type="text/javascript"></script>
+	
+	<link rel="stylesheet" href="/Content/msgBoxLight.css" />
+	<script src="/Scripts/jquery.msgBox.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/tinymce/tinymce.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/Scripts/edit.js" type="text/javascript"></script>
+	<script src="/Scripts/CoVInit.js" type="text/javascript"></script>
+	
+	<script src="/Scripts/report.js" type="text/javascript"></script>
+	<script src="/Scripts/default.js" type="text/javascript"></script>
+	<script src="/Scripts/pdf.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		    $('document').ready(function () {
+		        $('#print').click(function () {
+		            $("#vacode").printThis();
+		            return (false);
+		        });
+
+		        var val = parseInt($.browser.version);
+		        if ($.browser.msie || (val > 7 && val <= 11)) {
+		            //stuff here (like adding an IE10 class to the body or html tag
+		            $(".input-sm").css("margin-top", "1px");
+		        }
+
+		        $('a.fancybox').fancybox({
+		            type: "iframe",
+		            'width': 650,
+		            'height': 520
+		        });
+
+		        $("a.single_image").fancybox({
+		            type: "iframe",
+		            'width': 650,
+		            'height': 720
+		        });
+
+		        $('.fancybox').attr('href', "/emailForm?parent=vacode/" + $('#hidSegments').val());
+
+		        $('.hdr-read-text a').fancybox({
+		            type: "iframe",
+		            'width': 650,
+		            'height': 701,
+		            'autoDimensions': false,
+		            'autoSize': false,
+		            afterClose: function (event, ui) {
+		                //parent.document.getElementById("hidBiP").value = "false";
+		                parent.$("#hidBiP").val("false");
+		            }
+		        });
+
+		        var _hidVal = $('#hidBiP').val();
+		        if (_hidVal == 'true') {
+		            $('.hdr-read-text a').click();
+		        }
+
+		        if (isFontFaceSupported() == false) {
+		            $('.fa').iconfontFallback();
+		        }
+
+		        $('p.hdr-read-text a').qtip({
+		            content: 'Bills currently before the General Assembly',
+		            style: {
+		                textAlign: 'center',
+		                tip: true,
+		                classes: 'qtip-rounded qtip-shadow',
+		            },
+		            position: {
+		                my: 'top center',
+		                at: 'bottom center'
+		            }
+		        });
+
+				$('#reportClick').attr("aria-label", "Create a report based on the current selection");
+				$('.number-descrip-list > dt > input').each(function () {
+					$(this).attr('aria-label', $(this).attr("id") + " checkbox");
+		    	});
+				$('.parentCheck').attr('aria-label', "Select all children in selection checkbox")
+				$('.va-law-footer').attr('style', "padding-top: 20px;");
+				$('.reportClick.rptCheckbox').attr('aria-label', "Cancel Report");
+				$('.reportClick.rptCheckbox').attr('name', "Cancel Report");
+				$('.fancybox-iframe').attr('title', "Email form" );
+
+			});
+
+		    function PrintPreview() {
+		        $('table').floatThead('reflow');
+		        $('table').floatThead('reflow');
+		        printWindow = window.open("", "", "location=1,status=1,scrollbars=1,width=650,height=600");
+		        printWindow.document.write('<!DOCTYPE html><html><head>');
+		        printWindow.document.write('<link rel="stylesheet" href="./css/base.css" type="text/css" media="all" />');
+		        printWindow.document.write('<link rel="stylesheet" href="./css/720_grid.css" type="text/css" media="all" />');
+		        printWindow.document.write('<style type="text/css">@media print{.no-print, .no-print *{display: none !important;}h6{display:none !important;}#printPages{display:none !important;}}#printDate {display:none !important;}</style>');
+		        printWindow.document.write('<style type="text/css">#printHeader{display:block;font-size:1em;line-height:1.3em;text-align:left;margin-bottom:.8em;}</style>');
+
+		        printWindow.document.write('<style type="text/css">body{color:#444;font-family:"PT Serif",Georgia,serif;line-height:1.3em;font-size: .95em;}h2{margin:0 0 .1em 0;font-weight:normal;line-height:1.2em;font-size:1.4em;letter-spacing:.01em;padding:0 .35em 0 0.25em;}');
+		        printWindow.document.write('.hdr-read-text,.read-text,.rptCheckbox{display:none;}ul .outline{margin-bottom:1em;}ul{list-style:none;}.outline ul{margin-left:1em;}a, a:link{color:#1a73ae;text-decoration:none;}');
+		        printWindow.document.write('b{margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;}.number-descrip-list{line-height:1.55em;margin-bottom:1em;height:auto;}');
+		        printWindow.document.write('.number-descrip-list dt {clear: left;float: left;display: table-cell;font-weight: bold;width: 6.75em;}.number-descrip-list dd {padding-bottom: .125em;display: table-cell;}');
+		        printWindow.document.write('.number-descrip-list-outline{margin-left:1em;line-height:1.55em;}.number-descrip-list-outline dt{width:7em;font-weight:bold;}');
+		        printWindow.document.write('.number-descrip-list-outline dd{display:table-cell;padding-bottom:0;}</style>');
+
+		        printWindow.document.write('<style type="text/css">h6 {font-family: "Lato", Helvetica, Arial, sans-serif;font-size: 14px;border-bottom: 1px solid #ddd;padding-bottom: 15px;}');
+		        printWindow.document.write('table{border-collapse: collapse;border-spacing: 0;margin-bottom: 15px;}.printButtons {width: 100%;text-align: right;position: absolute;right: 10px;top: 28px;}</style>');
+		        printWindow.document.write('<style>#printPages{position:absolute;left: 120px;top: 30px;}.hiddenTable {display: none !important;}</style>');
+
+		        printWindow.document.write('</head><body>');
+		        printWindow.document.write('<h6>Print Preview</h6><span id="printPages"></span>')
+		        printWindow.document.write('<div class="printButtons">');
+
+		        //Print and cancel button
+		        printWindow.document.write('<input type="button" id="btnPrint" value="Print" class="no-print" onclick="window.print();window.onfocus=function(){window.close();}" />');
+		        printWindow.document.write('<input type="button" id="btnCancel" value="Cancel" class="no-print" onclick="window.close()" />');
+
+		        printWindow.document.write('</div>');
+
+		        //You can include any data this way.
+		        var _page = '<div id="va_code" class="va_code">' + $('#printStuff').html() + $('#va_code').html() + '</div>';
+		        printWindow.document.write(_page);
+		        printWindow.document.write('<scr' + 'ipt type="text/javascript">var divHeight;var obj = document.getElementById("va_code");if(obj.offsetHeight){divHeight=obj.offsetHeight;}else if(obj.style.pixelHeight){divHeight=obj.style.pixelHeight;}document.getElementById("printPages").innerHTML="Approximate Number of Pages: " + Math.ceil(divHeight / 850);</sc' + 'ript>');
+		        printWindow.document.write('</body></html>');
+		        printWindow.document.close();
+		        printWindow.focus();
+		    }
+	</script>
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+</body>
+        </div>
+        
+        
+            <div class="va-law-footer" id="valawfooter">
+                <div class="grid">
+                    <div class="row">
+                        <div class="slot-6 foot-callout">
+                            <h4><i class="fa fa-book"></i> Virginia Law Library</h4>
+                            
+                            <p>The Code of Virginia, Constitution of Virginia, Charters, Authorities, Compacts and Uncodified Acts are available in both PDF and CSV formats. <a aria-label="Virginia Law Library" class="more" href="/law-library"><i class="fa fa-arrow-circle-right"></i></a></p>
+                        </div>
+                        <div class="slot-7 foot-callout">
+                            <h4><i class="fa fa-question-circle"></i> Helpful Resources</h4>
+                            <ul>
+                                <li><a href="http://codecommission.dls.virginia.gov/">Virginia Code Commission</a></li>
+                                <li><a href="http://register.dls.virginia.gov/">Virginia Register of Regulations</a></li>
+                                <li><a href="https://www.archives.gov/exhibits/charters/constitution_transcript.html">U.S. Constitution</a></li>
+                            </ul>
+                        </div>
+                        <div class="slot-8 foot-callout">
+                            <h4 href="/developers"><i class="fa fa-wrench"></i> For Developers</h4>
+                            <p>The Virginia Law website data is available via a web service. <a aria-label="For Developers" class="more" href="/developers"><i class="fa fa-arrow-circle-right"></i></a></p>
+                        </div>
+                        <div class="slot-9 foot-callout">
+                            
+                            
+                            <div style="height: 4px;"></div>
+                            <img id="ga-seal" src="/images/ga_seal_lis.png" alt="virginia general assembly seal" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="footer">
+            <nav class="footer-links" style="line-height: 1.4;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div aria-hidden="true" id='generic_login_div' style="display:none;z-index:9999;padding:10px;" class="corners dropshadow">
+                            <h3>Sign In</h3>
+                            <div class='form-row'>
+                                <label id='lblusername' for='username'>Username:&nbsp; </label>
+                                <input type='text' class="user" name='username' placeholder="Username" id='username' />
+                                <label id="userError"></label>
+                            </div>
+                            <div class='form-row'>
+                                <label id='lblpassword' for='password'>Password:&nbsp; </label>
+                                <input type='password' class="pass" name='password' placeholder="Password" id='password' />
+                                <label id="passError"></label>
+                            </div>
+                            <div class='submit-row'>
+                                <input type='button' id="btnLogin" class="button" value='Login' />
+                                <a onclick='hideLogin()' class="hover">Cancel</a>
+                            </div>
+                        </div>
+                        <div id="dialog-modal" style="display:none;"></div>
+                        <span class="col-xs-12 text-center">
+                            <ul>
+                                <li><a href="https://lis.virginia.gov">LIS Home</a></li>
+                                <li><a id="aLIAB" href="https://lis.virginia.gov/register-account">Lobbyist-in-a-Box</a></li>
+                                <li><a href="https://lis.virginia.gov/privacy">Privacy Policy</a></li>
+                                
+                            </ul>
+                            <p>
+                                © Copyright Commonwealth of Virginia,
+                                <script>document.write(new Date().getFullYear())</script>. All rights reserved. Site developed by the <a href="http://dlas.virginia.gov">Division of Legislative Automated Systems (DLAS)</a>.
+                                <a aria-hidden="true" href="" id="signin" onclick="showLogin();return false;">Sign In</a>
+                                
+                            </p>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+</body>
+</html>
+
+<!--[if lt IE 10 ]><script async src="<%: FriendlyUrl.Href("~/Scripts/placeHolder.js" type="text/javascript"></script><![endif]-->
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="~/Scripts/html5shiv.js"></script>
+<script src="~/Scripts/respond.js"></script>
+<![endif]-->
+
+<script src="/Scripts/SwitchMode.js" type="text/javascript"></script>

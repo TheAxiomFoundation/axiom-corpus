@@ -176,35 +176,37 @@ def extract_colorado_ccr(
         source_paths.append(browse_path)
 
     root_path = "us-co/regulation"
+    self_contained_series = only_series is not None
     root_source_path = (
         f"sources/us-co/{document_class}/{run_id}/colorado-ccr-html/Welcome.html"
         if discovery.welcome_html
         else None
     )
-    items.append(
-        SourceInventoryItem(
-            citation_path=root_path,
-            source_url=COLORADO_CCR_WELCOME_URL,
-            source_path=root_source_path,
-            source_format=COLORADO_CCR_INDEX_SOURCE_FORMAT,
-            sha256=welcome_sha,
-            metadata={
-                "kind": "collection",
-                "current_through": discovery.current_through,
-                "document_count": len(discovery.documents),
-            },
+    if not self_contained_series:
+        items.append(
+            SourceInventoryItem(
+                citation_path=root_path,
+                source_url=COLORADO_CCR_WELCOME_URL,
+                source_path=root_source_path,
+                source_format=COLORADO_CCR_INDEX_SOURCE_FORMAT,
+                sha256=welcome_sha,
+                metadata={
+                    "kind": "collection",
+                    "current_through": discovery.current_through,
+                    "document_count": len(discovery.documents),
+                },
+            )
         )
-    )
-    records.append(
-        _ccr_root_provision(
-            version=run_id,
-            source_path=root_source_path,
-            source_as_of=source_as_of_text,
-            expression_date=expression_date_text,
-            current_through=discovery.current_through,
-            document_count=len(discovery.documents),
+        records.append(
+            _ccr_root_provision(
+                version=run_id,
+                source_path=root_source_path,
+                source_as_of=source_as_of_text,
+                expression_date=expression_date_text,
+                current_through=discovery.current_through,
+                document_count=len(discovery.documents),
+            )
         )
-    )
 
     extracts = _extract_colorado_ccr_documents(
         discovery.documents,
@@ -270,6 +272,7 @@ def extract_colorado_ccr(
                 expression_date=expression_date_text,
                 full_text=extract.full_text if not extract.sections else None,
                 metadata=document_metadata,
+                self_contained=self_contained_series,
             )
         )
 
@@ -830,6 +833,7 @@ def _ccr_document_provision(
     expression_date: str,
     full_text: str | None,
     metadata: dict[str, Any],
+    self_contained: bool = False,
 ) -> ProvisionRecord:
     citation_path = f"us-co/regulation/{document.token}"
     return ProvisionRecord(
@@ -847,8 +851,8 @@ def _ccr_document_provision(
         source_format=COLORADO_CCR_SOURCE_FORMAT,
         source_as_of=source_as_of,
         expression_date=expression_date,
-        parent_citation_path="us-co/regulation",
-        parent_id=deterministic_provision_id("us-co/regulation"),
+        parent_citation_path=None if self_contained else "us-co/regulation",
+        parent_id=None if self_contained else deterministic_provision_id("us-co/regulation"),
         level=1,
         ordinal=_ccr_series_ordinal(document.series),
         kind="document",

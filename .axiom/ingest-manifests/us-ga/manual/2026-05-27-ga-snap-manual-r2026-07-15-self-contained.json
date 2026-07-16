@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/manual/2026-05-27-ga-snap-manual-r2026-07-15-self-contained.json",
+      "sha256": "b905640bb04c5e889effc2ce6041ba0e516a456f228ba0fcebad9add4b10d5ef"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/manual/2026-05-27-ga-snap-manual-r2026-07-15-self-contained.json",
+      "sha256": "a8a30e50f2cf77be6c767c1e6bc242bdb3b23a48837a6f2f5f478f418ddbb259"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/manual/2026-05-27-ga-snap-manual-r2026-07-15-self-contained.jsonl",
+      "sha256": "94851857003b1d678be9513cc0ae9306434c7f73e93e078fb2fc01344a616eb1"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-05-27-ga-snap-manual-r2026-07-15-self-contained/official-documents/release-scope-us-ga-manual-2026-05-27-ga-snap-manual-r2026-07-15-self-contained",
+      "sha256": "baf221bef656061bb1aab3bf0387daeb61719ab5020e6c29ff6a8e0737786562"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-05-27-ga-snap-manual-r2026-07-15-self-contained/provenance/release-scope-us-ga-manual-2026-05-27-ga-snap-manual-r2026-07-15-self-contained.json",
+      "sha256": "6ccf952ce245e6efbc4a1d91a645f495800c8c9e00f12533b0c2672829de7c37"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a878734e8118d23f9fbb81e98de6cd8ed5f05939",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1214,
+    "missing_count": 0,
+    "provision_count": 1214,
+    "source_count": 1214
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T22:26:19.440150+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4nGguTFdSZMAkSqzqB3+eJC/CLNaVA/yXZtbl7ifZuw2BaUTcJ0tjNoa5l6fBOGXse4HU4wcYEUUd90kA6oSAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-ga-snap-manual-r2026-07-15-self-contained"
+}

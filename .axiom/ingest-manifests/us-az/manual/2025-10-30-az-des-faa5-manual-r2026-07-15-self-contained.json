@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-az/manual/2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained.json",
+      "sha256": "9ebd39122cc835dd823031e88c8db69583e09b1f43b8f9bf866d103db801a691"
+    },
+    {
+      "path": "data/corpus/inventory/us-az/manual/2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained.json",
+      "sha256": "6dbe471e30eb7c35cec6dc027681c84bfa192df8687ebd8175436cb9b0722d8a"
+    },
+    {
+      "path": "data/corpus/provisions/us-az/manual/2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained.jsonl",
+      "sha256": "35965089f0f21979670bda683f2b9c392d3c79efe787887518ad5d141fd08504"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained/official-documents/release-scope-us-az-manual-2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained",
+      "sha256": "1c9206a4fc109bcb5f747f55a72e1837a51548acd44c61f7f634a9d290152194"
+    },
+    {
+      "path": "data/corpus/sources/us-az/manual/2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained/provenance/release-scope-us-az-manual-2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained.json",
+      "sha256": "1ba80e1ed1139340207a2f4f5ac42311b8675b7033be796dbdcc36080eabf1f8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c87c88614e28357f3beba0671c1f2ccc4eb43aca",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T22:26:16.260951+00:00",
+  "jurisdiction": "us-az",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "v0NK20zpjKhUuOpwDPpWnKhoS+ljqW4oi2E5G4TXZCU0ViFSmNF4+YxAcLbbOsx41xoR31KNOACO1fG2oHbIDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2025-10-30-az-des-faa5-manual-r2026-07-15-self-contained"
+}

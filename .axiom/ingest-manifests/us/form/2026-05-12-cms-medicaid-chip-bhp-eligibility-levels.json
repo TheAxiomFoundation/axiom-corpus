@@ -1,18 +1,30 @@
 {
   "applied_files": [
     {
+      "path": "data/corpus/coverage/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.json",
+      "sha256": "fab8164405675d07b2f787edd2e54494a237459a2f28faabc3d9c7d0f83a262b"
+    },
+    {
       "path": "data/corpus/inventory/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.json",
       "sha256": "347355fe19c667cadd78e5b9754539a1e6ab0488edc6f7b50da96030cba38584"
+    },
+    {
+      "path": "data/corpus/provisions/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels.jsonl",
+      "sha256": "14c5b6b59d174cd4c8accae71aa6c8ecac9c63ae694db801b4d1ed1139826c50"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-05-12-cms-medicaid-chip-bhp-eligibility-levels/official-documents/cms-medicaid-chip-bhp-eligibility-levels.html",
+      "sha256": "d063f0c375d89aec4886af48c045df8bd27a1d43b426d3560a0aa76420df6e07"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "da6e4b3f42abc2d5b4e613a7ec60fbce292fc70e",
+    "commit": "de4c33abb73e7dae2505763b07049278ffb900c4",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "Repair inventory SHA-256 pins to match the tracked official CMS HTML source without changing source or provision bytes"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -23,14 +35,14 @@
     "source_count": 2
   },
   "document_class": "form",
-  "generated_at": "2026-07-15T20:34:54.544945+00:00",
+  "generated_at": "2026-07-15T19:50:47.546510+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Bn+tvYaniBKzFyA9tmPSI0zqrQQOd3Lh4ft/g7+/O1vvY1pZOOkopKaqHtJ6iQ4G/0ENGUa9sUdXrqHnOkU5Cg=="
+    "value": "kCAm8lFXhMeTQ5RYzrtxNIhwj3lTt9BC2uH1+t9kKtVEqnIFZadQZjFBW6NjLc3kTIwNKxFWx/M/NelPDrM9Ag=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-12-cms-medicaid-chip-bhp-eligibility-levels"

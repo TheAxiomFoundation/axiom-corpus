@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/manual/2026-07-13-recovery.json",
+      "sha256": "e8af95e42c53ab07fd366a91da3cea621c10a209d186732e75dec761ab0c1ea6"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/manual/2026-07-13-recovery.json",
+      "sha256": "38efb5782e000930934990e201187160f7ca801eebb2da68ee147efc466091da"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/manual/2026-07-13-recovery.jsonl",
+      "sha256": "29f8ac30f87c475e8749afb7a7e2c525aac323afb2b50d42025cbdc43a40a1cf"
+    },
+    {
+      "path": "data/corpus/sources/us-in/manual/2026-07-13-recovery/official-documents/release-scope-us-in-manual-2026-05-27-in-snap-manual",
+      "sha256": "80c988e26faa971e9c145a7972bfae3d59cb12169d3865427443a7684286e964"
+    },
+    {
+      "path": "data/corpus/sources/us-in/manual/2026-07-13-recovery/provenance/release-scope-us-in-manual-2026-05-27-in-snap-manual.json",
+      "sha256": "332729bfab6a1292d1661428d0f24fe99b29ccc40cd3076b3e4eb6ed0b333274"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "84339ce70bb0142e54cd9cfa18105084841ace8f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T15:18:45.605892+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gJOTzkrEF8cGhVy023tDpQHbUZbGpzFLnEMXEc5XiDMg8apbDVDfK29vX51rcbbqeEtF26yNG82M+N4frRwjCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

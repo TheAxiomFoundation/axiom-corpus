@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tn/manual/2026-05-27-tn-snap-policies-r2026-07-15-self-contained.json",
+      "sha256": "71c8f706f64765f8bd88a2e809c0ee1d302938f5d9f55e276fb8880cc904f782"
+    },
+    {
+      "path": "data/corpus/inventory/us-tn/manual/2026-05-27-tn-snap-policies-r2026-07-15-self-contained.json",
+      "sha256": "06dcb84e7616eea35963915cdad6c06b0733d769c55c61f2b743b612f5ca30f7"
+    },
+    {
+      "path": "data/corpus/provisions/us-tn/manual/2026-05-27-tn-snap-policies-r2026-07-15-self-contained.jsonl",
+      "sha256": "3bd08c8f293e4ee743b07e43bdb3e3ace40485f28add397d5851d77eaab38b3c"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/manual/2026-05-27-tn-snap-policies-r2026-07-15-self-contained/official-documents/release-scope-us-tn-manual-2026-05-27-tn-snap-policies-r2026-07-15-self-contained",
+      "sha256": "e0e14bb679fc93a343345e0c6490fc920b63d6ba2a26e9bee091aca7106c8bc2"
+    },
+    {
+      "path": "data/corpus/sources/us-tn/manual/2026-05-27-tn-snap-policies-r2026-07-15-self-contained/provenance/release-scope-us-tn-manual-2026-05-27-tn-snap-policies-r2026-07-15-self-contained.json",
+      "sha256": "0a7915457164366eefa869b0dc74aa8d6d00de64d2a081173858098e02120bdd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d5e70d57030b4a561a3f00d207985802df5a4163",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 233,
+    "missing_count": 0,
+    "provision_count": 233,
+    "source_count": 233
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T22:26:27.640379+00:00",
+  "jurisdiction": "us-tn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EgXmjmUchnsZay0gXJ27ysiuuPFqhvHYDztWZAQmAbvS90cFB5rNr+kCShm62n0JQ8RvFP9GN/Qkkc1smym2Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-tn-snap-policies-r2026-07-15-self-contained"
+}

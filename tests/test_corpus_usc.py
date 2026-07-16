@@ -119,6 +119,20 @@ def test_build_usc_inventory_from_xml():
     assert inventory.items[1].metadata["references_to"] == ["us/statute/26/151"]
 
 
+def test_build_usc_inventory_ignores_unidentified_amendatory_sections():
+    xml = SAMPLE_USLM.replace(
+        "</uslm:section>",
+        "<uslm:content><uslm:section><uslm:num>Sec. “(a)</uslm:num>"
+        "<uslm:content><uslm:p>Quoted amendment.</uslm:p></uslm:content>"
+        "</uslm:section></uslm:content></uslm:section>",
+        1,
+    )
+
+    inventory = build_usc_inventory_from_xml(xml)
+
+    assert all(item.citation_path != "us/statute/26/Sec" for item in inventory.items)
+
+
 def test_build_usc_inventory_from_xml_respects_allowed_citations():
     inventory = build_usc_inventory_from_xml(
         SAMPLE_USLM,

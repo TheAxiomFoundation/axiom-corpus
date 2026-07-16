@@ -1179,6 +1179,14 @@ def test_load_provisions_to_supabase_orders_inserts_by_dependency_not_input(monk
     parent = _record("us/regulation/7/273", level=0)
     fake = FakeSupabaseProvisions()
     monkeypatch.setattr(supabase.urllib.request, "urlopen", fake.urlopen)
+    inserted_paths = []
+    original_insert = supabase.insert_supabase_rows
+
+    def recording_insert(rows, **kwargs):
+        inserted_paths.extend(str(row["citation_path"]) for row in rows)
+        original_insert(rows, **kwargs)
+
+    monkeypatch.setattr(supabase, "insert_supabase_rows", recording_insert)
 
     report = load_provisions_to_supabase(
         [child, parent],
@@ -1190,6 +1198,7 @@ def test_load_provisions_to_supabase_orders_inserts_by_dependency_not_input(monk
     assert report.rows_inserted == 2
     child_id = deterministic_provision_id("us/regulation/7/273/1", "2026-05-13")
     parent_id = deterministic_provision_id("us/regulation/7/273", "2026-05-13")
+    assert inserted_paths == ["us/regulation/7/273", "us/regulation/7/273/1"]
     assert fake.rows[child_id]["parent_id"] == parent_id
 
 

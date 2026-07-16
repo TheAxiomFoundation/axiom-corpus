@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-al/policy/2026-07-13-recovery.json",
+      "sha256": "d6486cb3ada64fa4e85b5756585d792466af157f4122a32581e2939a7b2af290"
+    },
+    {
+      "path": "data/corpus/inventory/us-al/policy/2026-07-13-recovery.json",
+      "sha256": "28270db89adcda1e19df4b288a7a88c67b55e2938c4a3985351a501fd654e960"
+    },
+    {
+      "path": "data/corpus/provisions/us-al/policy/2026-07-13-recovery.jsonl",
+      "sha256": "23b125112453f584973a681ef46d20bca11ccf219e717335c2964df707f8d1d5"
+    },
+    {
+      "path": "data/corpus/sources/us-al/policy/2026-07-13-recovery/official-documents/us-al-tanf-state-plan",
+      "sha256": "0644630011360285a997e636449ba76db36127fb36436d9c6bfc7089f8c33896"
+    },
+    {
+      "path": "data/corpus/sources/us-al/policy/2026-07-13-recovery/provenance/us-al-tanf-state-plan.json",
+      "sha256": "47fff688cb4d64b3579d4e80e39f20b9134d97251a6c6a0a859311c50e2011da"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "42f4d8f866ddd5c87e00e396ce0a5c7a980e7fdd",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 29,
+    "missing_count": 0,
+    "provision_count": 29,
+    "source_count": 29
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-15T15:18:25.480866+00:00",
+  "jurisdiction": "us-al",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xUnFLbOWiDgJ+8yt6yPnbseXBUl7P88b8ywpRtkNxw7pHb7wm0sz+wChJjLbRu2wKRTXaMd2HbE9XKsSLscODw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

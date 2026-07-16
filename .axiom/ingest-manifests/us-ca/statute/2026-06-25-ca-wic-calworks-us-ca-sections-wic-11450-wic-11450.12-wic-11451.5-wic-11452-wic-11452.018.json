@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018.jsonl",
-      "sha256": "669e54e8b0aa7dc628c73779d8c8aefe8c82019c0d9b518f3b17a8a63edadde0"
+      "sha256": "3bba15d966487b2bb2f501a524b195be7ea904a5eafdde9560736f37cf1d5898"
     },
     {
       "path": "data/corpus/sources/us-ca/statute/2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018/california-leginfo-sections/WIC-11450.12.html",
@@ -34,13 +34,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "db1101f2e65866ca4fdec4dd40cc935edf20676f",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ca-wic-calworks-20260625"
+    "commit": "69a884b22ac2eb55c04a3898692e0489a0c2eb87",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev axiom-corpus-ingest extract-california-code-sections --base data/corpus --version 2026-06-25-ca-wic-calworks --source-as-of 2026-06-25 --expression-date 2026-06-25 --download-dir output/downloads --section WIC:11450 --section WIC:11450.12 --section WIC:11451.5 --section WIC:11452 --section WIC:11452.018"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -51,14 +51,14 @@
     "source_count": 5
   },
   "document_class": "statute",
-  "generated_at": "2026-06-25T02:56:01.701809+00:00",
+  "generated_at": "2026-07-15T19:51:38.736244+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "WGvPcFX1VObiI7BKbU9sBW6yVNgu9mt5AuUN0epjAnyYiOS0kv9+hl878W6lxAtSSS3/Wx5QnoAXXu02QNTxDA=="
+    "value": "HDvEVmB7HLBkzFLeZul8kVqQgFdrlTpaDD+CVlNE9GKpTZf1CFnx/6j149Pmg+74hqTaeACl8YAUjmDz9Uj3CQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-25-ca-wic-calworks-us-ca-sections-wic-11450-wic-11450.12-wic-11451.5-wic-11452-wic-11452.018"
