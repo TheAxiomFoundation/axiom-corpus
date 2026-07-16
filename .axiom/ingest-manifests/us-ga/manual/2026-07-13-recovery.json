@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-ga/manual/2026-07-13-recovery.json",
-      "sha256": "e76d495c8f0cc45468cd445fa009721c65f473f456e9d2a135127798c36f65cf"
+      "sha256": "3953cc4c336afc8824fb85b32dc13b3eafad826e0bb86ee943176775ad7c677a"
     },
     {
       "path": "data/corpus/inventory/us-ga/manual/2026-07-13-recovery.json",
-      "sha256": "ba37722178f24e48134d0cb7774ee7bec7cf5f6598cda617f7c23dff2d5f0cf6"
+      "sha256": "07afd3d1336602aa42a82230a320306dcc0b1bb53127fec26d3c091df5c4e6ac"
     },
     {
       "path": "data/corpus/provisions/us-ga/manual/2026-07-13-recovery.jsonl",
-      "sha256": "607181b90564449eb271f99d97f11d8e4587eb6891c7335285dddb9ee0f2f27a"
+      "sha256": "b4258e8441e583e8a1135dc5bbd8e68497ee49b3068d64344526e80b0a88a99b"
     },
     {
       "path": "data/corpus/sources/us-ga/manual/2026-07-13-recovery/official-documents/release-scope-us-ga-manual-2026-05-27-ga-snap-manual",
@@ -86,32 +86,27 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5205ed9feda65d88914940393517dcd1e6c4b324",
+    "commit": "51c4873aaa39cb5754305b261aacf29a08754825",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "US release dedup adjudication: retain original canonical carriers and remove duplicate rows"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 66,
+    "matched_count": 13,
     "missing_count": 0,
-    "provision_count": 66,
-    "source_count": 66
+    "provision_count": 13,
+    "source_count": 13
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:38.027021+00:00",
+  "generated_at": "2026-07-16T18:06:16.230519+00:00",
   "jurisdiction": "us-ga",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "t2LFsx/gPnAhsNEeDjFaDh4xJ61eFMi7dE3e9bDDYEShCsVfi1hzxuBzKpr80FH0zK+vLi3dMwJpYaVIXIxMCw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
 }

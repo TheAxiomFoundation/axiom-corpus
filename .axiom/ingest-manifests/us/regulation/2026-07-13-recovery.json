@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/regulation/2026-07-13-recovery.json",
-      "sha256": "1017791e7896d18cf79d844f0791598f819a626cafc73e0592e05c6b79f7037b"
+      "sha256": "b3fd860e40526429fa54483859abcbec293d8260e3d63212773416b375d62fca"
     },
     {
       "path": "data/corpus/inventory/us/regulation/2026-07-13-recovery.json",
-      "sha256": "d00862ac59d49155fc053d9c856e445e05f473b206a5989afaf205d33ba4e636"
+      "sha256": "2bd67b99d3d548fbd8055ac18e34a5a864692ecb8a1faa41334bf722845ceed2"
     },
     {
       "path": "data/corpus/provisions/us/regulation/2026-07-13-recovery.jsonl",
-      "sha256": "93a72bc4499a97ecfcbe27332d995c65dedbeb06de5a7073dca96a3b5328c4e8"
+      "sha256": "511e23321769bee004f8450c57905003722a9de7bdb319127c27cc37be0e1e94"
     },
     {
       "path": "data/corpus/sources/us/regulation/2026-07-13-recovery/official-documents/ecfrtitle-42-part-435.xml",
@@ -78,32 +78,27 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7f8a471b60aa4f35e071435a05e85b8d70bd6b32",
+    "commit": "51c4873aaa39cb5754305b261aacf29a08754825",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "US release dedup adjudication: retain original canonical carriers and remove duplicate rows"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 1261,
+    "matched_count": 1073,
     "missing_count": 0,
-    "provision_count": 1261,
-    "source_count": 1261
+    "provision_count": 1073,
+    "source_count": 1073
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T15:18:21.693916+00:00",
+  "generated_at": "2026-07-16T18:06:16.109929+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "nC8aHBYxU9Ysv0PbjGjK7VWmR23NDGj4sFSN51Y6hxFDyaqpM6jtMGCxIV/k3HOZ7zKQPVfxdG0vz1Cevsv6Aw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
 }

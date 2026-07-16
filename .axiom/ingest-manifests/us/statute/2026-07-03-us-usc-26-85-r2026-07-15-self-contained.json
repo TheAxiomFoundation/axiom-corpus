@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/statute/2026-07-03-us-usc-26-85-r2026-07-15-self-contained.json",
-      "sha256": "523e4fcf6d10b946a8a25bb67a67b2edb82085a2eefc5f8a8474a660856737ac"
+      "sha256": "81f1688f373ac43ab43a990029b0ae5fc4c14b7209e67b0aae1f180773fbb01b"
     },
     {
       "path": "data/corpus/inventory/us/statute/2026-07-03-us-usc-26-85-r2026-07-15-self-contained.json",
-      "sha256": "9a3f93cf3dc947f77f7a37fde2c45c0a3694898955080265a50e902063583f28"
+      "sha256": "8db0b91f9b372c3b99f6ea58421767bf7f304905b1a38131ed7541b85afcecaa"
     },
     {
       "path": "data/corpus/provisions/us/statute/2026-07-03-us-usc-26-85-r2026-07-15-self-contained.jsonl",
-      "sha256": "b5b3f9b796c51343135f757780ab32f48d262ee9d5268515b98bf089f9df938b"
+      "sha256": "11d244fef38defebe5c1a87c93df8bf164ea969ae180b5f7af1e86ca7eaae7bb"
     },
     {
       "path": "data/corpus/sources/us/statute/2026-07-03-us-usc-26-85-r2026-07-15-self-contained/official-documents/uscode-2024-title26-section85.html",
@@ -18,32 +18,27 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "51548672ff014fb2a81a3c9c84b3539086ca9549",
+    "commit": "51c4873aaa39cb5754305b261aacf29a08754825",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "US release dedup adjudication: retain original canonical carriers and remove duplicate rows"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 2,
+    "matched_count": 1,
     "missing_count": 0,
-    "provision_count": 2,
-    "source_count": 2
+    "provision_count": 1,
+    "source_count": 1
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T22:26:13.956562+00:00",
+  "generated_at": "2026-07-16T18:06:16.539657+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "Hz9ENcBV2m+Lc+yMacoKJo5GxU1RpUXc+fr7EYJU3O9Sk/8LJjt9YJkZjgziOvMsgdA1IW7qPky0uJqvkPnRCQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-us-usc-26-85-r2026-07-15-self-contained"
 }

@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.json",
-      "sha256": "96a7721b2b7d86d7ed80fc860f6e0895321e12b12abb911e2d106b6d9075c559"
+      "sha256": "790e22f9102375277afbfea8047e6c7f498d1c8d1b2c6cf3bc9d0225098deab2"
     },
     {
       "path": "data/corpus/inventory/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.json",
-      "sha256": "a040ff14e2027efd93aa1946e87f881fa4c3449731252aac19a15c4f5bd70a44"
+      "sha256": "935e92da1bfe470760e071bee676665f9d197fef4c19b2b1fd7cadb19c3a5eb5"
     },
     {
       "path": "data/corpus/provisions/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.jsonl",
-      "sha256": "c5994a4f8e3919273a50abc4d22895d3dca99a05560ba012423cf58d91c42302"
+      "sha256": "606dbe85a50cba5403a9104097e3c32efc4c94cd5d04a637217fd4ccaf52cfb6"
     },
     {
       "path": "data/corpus/sources/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained/uslm/usc42.xml",
@@ -18,32 +18,27 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "70be035dad9ccb85a2a05eb3843a879c5a224d3f",
+    "commit": "51c4873aaa39cb5754305b261aacf29a08754825",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "US release dedup adjudication: retain original canonical carriers and remove duplicate rows"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 26,
+    "matched_count": 25,
     "missing_count": 0,
-    "provision_count": 26,
-    "source_count": 26
+    "provision_count": 25,
+    "source_count": 25
   },
   "document_class": "statute",
-  "generated_at": "2026-07-16T01:02:07.811286+00:00",
+  "generated_at": "2026-07-16T18:06:16.353025+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "GFPUGtpPjwndO8R/Ch5UmsMSo13R8A22i4AAH4x8hjkCgqkhtE9TDuc6/bbxwxYHXM/B8QQQNwQySMygro5rBw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-23-medicare-426-title-42-r2026-07-15-self-contained"
 }

@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json",
-      "sha256": "ad25f154b7d5e009ed846791c9dc602026ff50d8de56d523f5547d727ba11553"
+      "sha256": "d0d84cb81d0c7f710d61b81e433fb1a0ca1a43f1b874ee3065b4e4b47bdb413b"
     },
     {
       "path": "data/corpus/inventory/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json",
-      "sha256": "5d2f45e58daca83ef488d04dbfaa0b1287b2b01b4824f51c186f1c0c162b6c87"
+      "sha256": "34dbfaff6a5d32ed1e10bab64963c9c54e7037e3e2844bc2199fb7dcf7b2f365"
     },
     {
       "path": "data/corpus/provisions/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.jsonl",
-      "sha256": "2fc782174181b8ae8966e473825aa5139db0a4521c8d5271cf6fef2e50b9eea2"
+      "sha256": "6a8c15d7459947e13a6bea2356db126f29e28f774cd349d2278e3ac18003db25"
     },
     {
       "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/chapters/chapter-388-478-full.html",
@@ -26,32 +26,27 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "c8bc3c15a131f0d1a1573a48bd76acaa7a13fd07",
+    "commit": "51c4873aaa39cb5754305b261aacf29a08754825",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "US release dedup adjudication: retain original canonical carriers and remove duplicate rows"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 15,
+    "matched_count": 13,
     "missing_count": 0,
-    "provision_count": 15,
-    "source_count": 15
+    "provision_count": 13,
+    "source_count": 13
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T22:26:30.481512+00:00",
+  "generated_at": "2026-07-16T18:06:16.475814+00:00",
   "jurisdiction": "us-wa",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "fhXObVN062I+FuW6+syMMPeSkyCY1q4DMKhlp+v5KXrQHD0ba8l9XYigZzUcTl//zzgFtjvOxwsK/GOcNm/aAg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-25-388-478-r2026-07-15-self-contained"
 }
