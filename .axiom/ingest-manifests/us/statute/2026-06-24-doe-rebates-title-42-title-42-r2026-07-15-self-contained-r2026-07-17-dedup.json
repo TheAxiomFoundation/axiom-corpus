@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "73a1269b0f86b4d6347199ac5d6a5e4c89af593d",
+    "commit": "2efb4c609f34a551b3121f72cb330f4f1dcd4c7b",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,10 +35,15 @@
     "source_count": 51
   },
   "document_class": "statute",
-  "generated_at": "2026-07-16T19:47:29.368679+00:00",
+  "generated_at": "2026-07-16T21:01:43.640770+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WkgLYltuR8/K6S9VkiktxRrFP4Yd9oB24igfX0Xr7Xf/wGqi2/+ikRyFhaFe2SJJndHx7rxc711rKxxBEbIRAg=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
 }
