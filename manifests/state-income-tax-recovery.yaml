@@ -1,0 +1,74 @@
+version: "2026-07-16-pit-central"
+sources:
+  - source_id: us-la-revised-statutes
+    jurisdiction: us-la
+    document_class: statute
+    adapter: louisiana-revised-statutes
+    source_url: https://www.legis.la.gov/Legis/Laws_Toc.aspx?folder=75&level=Parent
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-05-10"
+      expression_date: "2026-05-10"
+      download_dir: ../data/corpus/downloads/us-la-revised-statutes/2026-07-16-pit-central
+      base_url: https://www.legis.la.gov/Legis/
+      root_folder: "75"
+      only_title: "47"
+      request_delay_seconds: 0.02
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 16
+    metadata:
+      source_authority: Louisiana State Legislature
+      source_scope_note: Current Louisiana Revised Statutes title 47 table of contents and printable law pages from the official Legislature site.
+
+  - source_id: us-mt-code
+    jurisdiction: us-mt
+    document_class: statute
+    adapter: montana-code
+    source_url: https://mca.legmt.gov/bills/mca/index.html
+    version: "2026-07-16-pit-central"
+    options:
+      source_year: 2025
+      source_as_of: "2026-03-24"
+      expression_date: "2026-03-24"
+      only_title: "15"
+      workers: 24
+    metadata:
+      source_authority: Montana Legislature
+      source_scope_note: 2025 Montana Code Annotated title 15 from the official Legislature site.
+
+  - source_id: us-nm-statutes
+    jurisdiction: us-nm
+    document_class: statute
+    adapter: new-mexico-statutes
+    source_url: https://nmonesource.com/nmos/nmsa/en/nav_date.do
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-05-09"
+      expression_date: "2026-05-09"
+      download_dir: ../data/corpus/downloads/us-nm-statutes/2026-07-16-pit-central
+      only_title: "7"
+      request_delay_seconds: 0.1
+    metadata:
+      source_authority: New Mexico Compilation Commission
+      source_scope_note: New Mexico Statutes Annotated chapter 7 from the official Compilation Commission source.
+
+  - source_id: us-ok-statutes
+    jurisdiction: us-ok
+    document_class: statute
+    adapter: oklahoma-statutes
+    source_url: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-05-10"
+      expression_date: "2026-05-10"
+      download_dir: ../data/corpus/downloads/us-ok-statutes/2026-07-16-pit-central
+      base_url: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/
+      only_title: "68"
+      request_delay_seconds: 0.05
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 4
+    metadata:
+      source_authority: Oklahoma Legislature
+      source_scope_note: Current Oklahoma Statutes title 68 RTF from the official Legislature CompleteTitles directory.
