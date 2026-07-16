@@ -38,13 +38,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5e98c135cb3c5f5fd1dfcbf3e59cb6a4834cd505",
+    "commit": "d1620aaf33329d64499e43c7aaf4f69d7431a057",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-14-uk-ctr-end-sch3 --citation uksi/2012/2886/appendix/3/paragraph/1 --citation uksi/2012/2886/appendix/3/paragraph/3 --citation uksi/2012/2886/appendix/3/paragraph/4 --citation uksi/2012/2886/appendix/3/paragraph/17 --citation uksi/2012/2886/appendix/3/paragraph/23 --citation uksi/2012/2886/appendix/3/paragraph/24"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -55,10 +55,15 @@
     "source_count": 6
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T08:56:13.998284+00:00",
+  "generated_at": "2026-07-16T18:42:30.712316+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZOzwEJBAR5vrDEan3HPUjZAm5oTGLIPJTYAHIZ6DZkNSYTykNEL+s3U0UzmvahNI7hD84xHgM+jcraqpJEdWCw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-14-uk-ctr-end-sch3"
 }
