@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-scp-award.jsonl",
-      "sha256": "5e5180d6a5ad707b0cf402744755650591fc872fd54ebc5ac09b914b61b105ec"
+      "sha256": "8e8219024bfbb2117fb2f17027f07a057a415363a315810f8b4bb2f26b0ac622"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award/ssi/2012/319/regulation-14.xml",
@@ -50,13 +50,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "commit": "b269eca7f9f8cff89fed6951e2413d695725258a",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-scp-award --citation ssi/2012/319/regulation/14 --citation ssi/2012/319/regulation/14A --citation ssi/2012/319/regulation/20 --citation ssi/2012/319/regulation/40 --citation ssi/2012/319/regulation/47 --citation ssi/2012/319/regulation/48 --citation ssi/2012/319/regulation/56 --citation ssi/2012/319/schedule/1/paragraph/2 --citation ssi/2012/319/schedule/5/paragraph/1"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -67,14 +67,14 @@
     "source_count": 9
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T01:38:49.507148+00:00",
+  "generated_at": "2026-07-16T18:42:23.692567+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "cZnAdhj49ER2kD3d4zm+q+/L1SedVDoR/X7NO9Inurmli3MnpQxs4bk8/EQHykyD9VL9N59dWsE1Ugrpn+SDDg=="
+    "value": "8P834PuuwIhF9Ecc4VDq9wXJnwlDuXsgAFLggwqYpllxjkAxCLlpKRiIn0mrawNkw7uPepOd/XGAWFo3SLoxCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-scp-award"

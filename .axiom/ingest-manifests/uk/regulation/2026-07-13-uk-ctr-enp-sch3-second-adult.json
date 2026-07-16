@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-enp-sch3-second-adult.jsonl",
-      "sha256": "e9c45e8e065ee3fcf769f1e471fca94ea60b849ec4d5c210e617c94dc47425fe"
+      "sha256": "871418f1318e500e2894f81d8078200ebaed98371a36c123497a668eac0e2f1d"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch3-second-adult/uksi/2012/2885/schedule-3-paragraph-1.xml",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "commit": "b393ba10cbac50f19c93dfcc43f886277e514e76",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-enp-sch3-second-adult --citation uksi/2012/2885/schedule/3/paragraph/1 --citation uksi/2012/2885/schedule/3/paragraph/3"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 2
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T01:38:47.055492+00:00",
+  "generated_at": "2026-07-16T18:42:19.180530+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ZXwg7nBbg/KZb2vjxwu+Wrlkk+LMNga492zcn/AdNOqL1eMtUTfiquDps557LoldSVcNve8QEXvEwD/OenzbBA=="
+    "value": "sSQ2SXpjYR71s1h0E9AJi8saSovzCjO9xSeZSgTc9IHUOAUO0fDjk1RP3yYz9kpFtfm0RTimv7P8Ho79wBESAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-enp-sch3-second-adult"

@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/form/2026-07-13-recovery.json",
-      "sha256": "783eea3e5411a58f1bb7d9299ac2ddfe986778242c20b629e6496429c51ebe14"
+      "sha256": "6189bfd7d36de1252ff2d59a0c50fb26a82da02d0fdfa9b9ff2fb1c708ac3e21"
     },
     {
       "path": "data/corpus/inventory/us/form/2026-07-13-recovery.json",
-      "sha256": "70b28562b6a246b4d6c9e13e9ef9a23632144bc46caf07de65138b269a3bc72d"
+      "sha256": "e83c83531df50c90a252a3f03b9013b567c01dfb0a321c5e9c644a792bc77229"
     },
     {
       "path": "data/corpus/provisions/us/form/2026-07-13-recovery.jsonl",
-      "sha256": "0cea78a5339e8352a7b10ab067a0e36e63eff76ea1f668df2eb38cbd6e8e939c"
+      "sha256": "c80e2276c4fb090595c5b4d4900f985aa965c1fcd27dceb1d805b3d593b1d1fa"
     },
     {
       "path": "data/corpus/sources/us/form/2026-07-13-recovery/official-documents/release-scope-us-form-2026-05-12-cms-medicaid-chip-bhp-eligibility-levels",
@@ -30,7 +30,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "fb686a39b5676f821b8d9239437f538de4fe7c2a",
+    "commit": "43cdd7948e2b1c02f8908541840842eb0ff1fc4f",
     "dirty_tracked": false,
     "root": "."
   },
@@ -41,20 +41,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 4,
+    "matched_count": 2,
     "missing_count": 0,
-    "provision_count": 4,
-    "source_count": 4
+    "provision_count": 2,
+    "source_count": 2
   },
   "document_class": "form",
-  "generated_at": "2026-07-15T15:18:00.300514+00:00",
+  "generated_at": "2026-07-16T18:18:14.231148+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "B1k/yMzRwIXx7EcCfnFVQ3Ur9qBZJTDpIfG5vMCN8Rw+Y1IcWwc2lz0ivpf+SJw+NeCUaZo6WDZNg2hq2puKDQ=="
+    "value": "89z04rZUBr/Ts4zKpA8Wa5zioFwk+9AecFaZuWQ5guU4D0JL/pA2GN/+MBLJH+ET0dIAS7VB0GmbNtWLbsFdAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"

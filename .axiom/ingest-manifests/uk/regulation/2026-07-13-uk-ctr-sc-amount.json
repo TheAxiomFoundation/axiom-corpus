@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-sc-amount.jsonl",
-      "sha256": "811ba8b837d652a6409ca5e374fa2f5dd85f1ec83f3bf5e02b241ef85571fdfc"
+      "sha256": "592e5628fe675e0dfae817e8142f6966df2a503f0c2a0f669286eab5f1bf9a5e"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-amount/ssi/2021/249/regulation-35.xml",
@@ -42,13 +42,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "commit": "30156cdddd61cda40545e759bf80f1181a4a438d",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-sc-amount --citation ssi/2021/249/regulation/35 --citation ssi/2021/249/regulation/79 --citation ssi/2021/249/regulation/90 --citation ssi/2021/249/regulation/91 --citation ssi/2021/249/schedule/1/paragraph/1 --citation ssi/2021/249/schedule/1/paragraph/2 --citation ssi/2021/249/schedule/2/paragraph/1"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -59,14 +59,14 @@
     "source_count": 7
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T01:38:49.013661+00:00",
+  "generated_at": "2026-07-16T18:42:21.047848+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ux5+rTegPZVAJdClIwk759DRFvBWjxP38ZTo3qrbz1suh7T1tOd/kLQO0dEFeSRF/XLB5Tfw00mo73BT9kYJCw=="
+    "value": "kJjyDg4G9RU9UalsgznnW1Qci98eaKCVGWexTzAVl7aQBMV+RhlKHFvs9+Jrj7NWOd8KXZHn7vj5l/8+hhOWCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-sc-amount"

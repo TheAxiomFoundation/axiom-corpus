@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/statute/2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained.json",
-      "sha256": "923e7131d08a24d6ef3f695f60d3419a6ca8881fdd7410d3ab8c94d8957c9a3b"
+      "sha256": "1767ab0a349d02b7eeb69bc73e9761cc256966822c8bb597d26410a9e6d47f96"
     },
     {
       "path": "data/corpus/inventory/us/statute/2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained.json",
-      "sha256": "64349a35286170d971a0951c2521a5c25365d600b531b64c678882ff49f52d19"
+      "sha256": "4ae2978e6f65e1882b87b350901db8e40537947423acc277fed6a456a57c8156"
     },
     {
       "path": "data/corpus/provisions/us/statute/2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained.jsonl",
-      "sha256": "6baf94c9472999adbd646772cdb1d69e4dfa3642d3febda4c79a5ba6c9ab43ca"
+      "sha256": "790eaba46c0536700b5174141327f7e2c588ed5ea007c063a895b342908118f5"
     },
     {
       "path": "data/corpus/sources/us/statute/2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained/uslm/usc42.xml",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "177c33c67caa00a3fd97e7102450497f10364ce5",
+    "commit": "421ff5d5d80645862eb23d26a71cb9011f66a031",
     "dirty_tracked": false,
     "root": "."
   },
@@ -29,20 +29,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 227,
+    "matched_count": 226,
     "missing_count": 0,
-    "provision_count": 227,
-    "source_count": 227
+    "provision_count": 226,
+    "source_count": 226
   },
   "document_class": "statute",
-  "generated_at": "2026-07-16T01:02:07.254895+00:00",
+  "generated_at": "2026-07-16T18:18:16.662498+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "sJGOBLaClD63GoL26cmnDkbTEB5ku75Q4kh1zAg5/0BvRpWKC3RZNT7zhTPx+B/z3V3TLwDOCi8wSloGo9x5BQ=="
+    "value": "mFjcXrlWIN1o+/49GqZR5dLQif5k11oJkcRYQGI99w6HI406JwpLQQuyCLXTAUu52dGXhkspDwMvYtBNQ0x6BQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained"

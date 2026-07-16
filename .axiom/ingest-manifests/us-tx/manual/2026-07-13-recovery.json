@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-tx/manual/2026-07-13-recovery.json",
-      "sha256": "ad16cdaaca8bd066a493ba749b6a174e6186318a92d34c8c265cf072a9a6e868"
+      "sha256": "16c64338266d44641898d83d5f2633b2baffa6aeb692f0ff466a01c72b8c8246"
     },
     {
       "path": "data/corpus/inventory/us-tx/manual/2026-07-13-recovery.json",
-      "sha256": "06a59fce06c9714eba8f0f9cad200411d8584791bb1fbae5a07c133683b41f85"
+      "sha256": "98d480e49d310b1a4077018a8982dcde9a581c1e657aac2176a56c6479c56894"
     },
     {
       "path": "data/corpus/provisions/us-tx/manual/2026-07-13-recovery.jsonl",
-      "sha256": "66ce774ac76a5aa3dad52a5c90224ce915ecddab8a41d80bf930064e7c10bf6d"
+      "sha256": "1f986ded163a8cd9b9cb4f979f6e44a5b46ad4886c82228278fbe7dab3500aea"
     },
     {
       "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/official-documents/release-scope-us-tx-manual-2026-05-27-tx-manuals",
@@ -30,7 +30,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "63688709def8f926b1660f3c51f7178e57ffc679",
+    "commit": "7ba712b0a4cc46b87bfd4e59228b3460c5d4bc46",
     "dirty_tracked": false,
     "root": "."
   },
@@ -41,20 +41,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 29,
+    "matched_count": 22,
     "missing_count": 0,
-    "provision_count": 29,
-    "source_count": 29
+    "provision_count": 22,
+    "source_count": 22
   },
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:19:15.950073+00:00",
+  "generated_at": "2026-07-16T18:18:24.448717+00:00",
   "jurisdiction": "us-tx",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "zCVfBlLxJdz7oa2J5XQi9OeFugFidiwp9yrdix+QbUEINV8z8UqYqQB1uo4GLp3WaCSEzk/N2b+efIWY4eggBg=="
+    "value": "jFHVAHnyKlZQV5weKHi5RcRssiFfpfHxJAMmhVnUSiusXQjq6yMmYeIsSz9IMLzYhN37tEvbpFdcJK/aeGLYBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"

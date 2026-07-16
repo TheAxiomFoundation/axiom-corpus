@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained.json",
-      "sha256": "89f8883de116e536345c1d41c2200146f5e29c9c70c858dc12c4351e0a63afd9"
+      "sha256": "b01fb0bc704639af7f03bf1981b7d1436d9ecfba485b4a7d4857d79c70919465"
     },
     {
       "path": "data/corpus/inventory/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained.json",
-      "sha256": "060b73dd31021bc8eb730a5a25cc2a08d58f2af33024738aed27865d1a63c2e9"
+      "sha256": "71a8c253879f1c2b961b4965430c3289bd7c6f5ac8cbf037bb35e4514b043b24"
     },
     {
       "path": "data/corpus/provisions/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained.jsonl",
-      "sha256": "fdfe3a2a90251433328a8b89e2d2919d504ebdafa6ef7b9649c2fe11342d6ec8"
+      "sha256": "86bbf1da4f407ede1e8f1d9a306ae11138bede46c6c27dd418a7a2fff2dc02f0"
     },
     {
       "path": "data/corpus/sources/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained/uslm/usc42.xml",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "e74e3387c5cd7296fc3fafdca74cb23d91dd2b8e",
+    "commit": "c3e9617995c44d0c134464a78515d7b94bdb85a5",
     "dirty_tracked": false,
     "root": "."
   },
@@ -29,20 +29,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 52,
+    "matched_count": 51,
     "missing_count": 0,
-    "provision_count": 52,
-    "source_count": 52
+    "provision_count": 51,
+    "source_count": 51
   },
   "document_class": "statute",
-  "generated_at": "2026-07-16T01:02:08.364788+00:00",
+  "generated_at": "2026-07-16T18:18:18.269294+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ybL6Zaobi/4kFTOSXYxKItaA6VhnRJfJ7/h7HWTfIwjXmvi0HBacrxqXfXBrCnrLmtjohbjuuKmPHSOZ4+D9Aw=="
+    "value": "BE9P7CDPz9hqQ9J5/agOub4FQ6GRvrpdkTtRxQv1q5xf6+lAdhQFk1Akeh+AmJ5sfRc58EUMhO/Fh5+K/jJ2Dw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained"

@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-sc-income-capital.jsonl",
-      "sha256": "056779da4f63c2cc64a17db78a2a697749db5d0f59b3c3f7d74e461fee8cce13"
+      "sha256": "7885ba07db7a2a88a6c77abd75d7de990b7edc77b7ccb02127450d8b7a9d828b"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-income-capital/ssi/2021/249/regulation-63.xml",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "commit": "737c1bff84ea95deb8f242590fd40e3484a48dd9",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-sc-income-capital --citation ssi/2021/249/regulation/66 --citation ssi/2021/249/regulation/63"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 2
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T01:38:48.049127+00:00",
+  "generated_at": "2026-07-16T18:42:22.836536+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "6vj9gBHgyY5rrj4/7VtxwuiRIZ0it1XnHIvIkU+GvWV0xAQ0+RP016K8c5Wya6MovdkvqrAtXdS3JO2sq6h/CQ=="
+    "value": "MYU2BeTu2KP3fVy9T0//vmwNlTeIdBgvojX5jSfzqm7vkDXGS2KpKZAezYcyrjBqRQz18oCtrPOZgSu3H8LJDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-sc-income-capital"
