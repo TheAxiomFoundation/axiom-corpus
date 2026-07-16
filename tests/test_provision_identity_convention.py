@@ -31,7 +31,7 @@ PROVISIONS_ROOT = Path(__file__).resolve().parents[1] / "data" / "corpus" / "pro
 
 # Rows whose ids predate the convention and live in published (frozen) scopes.
 # Restamp each one when its scope is next re-versioned, then drop it here.
-# Tracked in TheAxiomFoundation/axiom-corpus#368.
+# Tracked in TheAxiomFoundation/axiom-corpus#374.
 KNOWN_PRE_CONVENTION_ROWS = {
     # Pre-convention CFR ingest: uuid5 of the bare citation path.
     ("us-ny/policy/2026-06-05-ny-tanf.jsonl", 4),
