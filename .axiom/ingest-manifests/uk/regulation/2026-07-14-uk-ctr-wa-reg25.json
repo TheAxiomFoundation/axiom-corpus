@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5e98c135cb3c5f5fd1dfcbf3e59cb6a4834cd505",
+    "commit": "339101d6dd325ed97fef1ef476965cc7313e7cc7",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-14-uk-ctr-wa-reg25 --citation wsi/2013/3029/regulation/25"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -35,10 +35,15 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T08:49:04.729489+00:00",
+  "generated_at": "2026-07-16T18:42:33.849564+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tmYjlQ9hJvBQ7S5wDABlBPlulHnEyNW0CIUY66MZUtubX13ZbW0m8Pq93BAd4h2p/qPlk2A7SuUNYQbj9acaDQ=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-14-uk-ctr-wa-reg25"
 }
