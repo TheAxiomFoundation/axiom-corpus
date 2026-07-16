@@ -78,7 +78,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "81ee086188f9f8cce3f002cdae66a92a19da11f3",
+    "commit": "2f45b8e6ff0d2d0a37efde10578fb5edf6d91307",
     "dirty_tracked": false,
     "root": "."
   },
@@ -95,10 +95,15 @@
     "source_count": 1073
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-16T19:47:27.330652+00:00",
+  "generated_at": "2026-07-16T21:01:41.985607+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oWCl56yKfwDoQwFgZ+FddPXU0ooRluE4qdmxOCZwM4xwOAwZd8jN86rqF9FXASA8z9cMuwAO68Eg82Ro6IrTBQ=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery-r2026-07-17-dedup"
 }
