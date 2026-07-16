@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "57679443d07ac9027022f6280e1652590c369d0d",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+    "commit": "ef40a409ac54b7c5a31c01a2568bf23b4f42b41b",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +35,14 @@
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-09T18:08:50.950562+00:00",
+  "generated_at": "2026-07-16T15:49:45.306004+00:00",
   "jurisdiction": "tz",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "BU4X94BPTmvGgnXJ0Pk/nIIlAb/YFbgaX2t7mw0ETClyeXjjzIADBL9c0dC9/RGAK/tRyeen8IGesPeJXOHzCQ=="
+    "value": "vkTKBfo/0Guv6ScMrvsPvvyVotgHGcdmdmpLBaz7lnSJhYz8GJE+QGtgedJm6u4WNrwqE52lfFzzY76lQkv+AQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-09-tz-pssn-policy"
