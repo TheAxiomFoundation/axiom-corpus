@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-ca/regulation/2026-07-13-recovery.jsonl",
-      "sha256": "a3dbf1276f8b86b2b3b40951b0ec900aee29b35c5ccbd1b1e14b35a71693d4c8"
+      "sha256": "f4eca6d4c5072982918733eb80ecf29b1e0302d2135e7209a47881d7c38b5841"
     },
     {
       "path": "data/corpus/sources/us-ca/regulation/2026-07-13-recovery/official-documents/us-ca-mpp-63-300",
@@ -142,13 +142,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "21f73b2ce5872da40339a711267418fe803fd72f",
+    "commit": "f4388f8d9b873b0687dd9a5a0004d607489addbe",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "uv run python scripts/backfill_provision_identity.py --base data/corpus --jurisdiction us-ca --document-class regulation --version 2026-07-13-recovery"
   },
   "coverage": {
     "complete": true,
@@ -159,14 +159,14 @@
     "source_count": 557
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T19:50:55.766000+00:00",
+  "generated_at": "2026-07-16T20:28:26.738280+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "yDG7uL5RWxqjh98SImW0nLrp3TuWbKYR849N82zftIRuN4K4S59OaiUDkBQgjBsPeFRHl7aL22wesoQ8zdANBw=="
+    "value": "Id1LgOy+xw/NQxTl4dq5Oxc0YZyDIQRF/28CklfxQaK9eZ0IEl1m8maqJDtvJIbK+8nGc1F/na3dTAZ+fhdFAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
