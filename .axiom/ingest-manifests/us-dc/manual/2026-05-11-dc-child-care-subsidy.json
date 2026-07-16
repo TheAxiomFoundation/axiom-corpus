@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/manual/2026-05-11-dc-child-care-subsidy.json",
+      "sha256": "3c938752bd9db636d407078851819e7702eadd956800587724f03508895ecb89"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/manual/2026-05-11-dc-child-care-subsidy.json",
+      "sha256": "d5f732c43f3b1f6e020d1c807e9ea80bd5dd1217feaf75e2264617367901502b"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/manual/2026-05-11-dc-child-care-subsidy.jsonl",
+      "sha256": "492afa4791ab62d359f6346286b6a4e76f4a57bcdabf843fb5d0ac6756acba85"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/manual/2026-05-11-dc-child-care-subsidy/official-documents/dc-osse-child-care-subsidy-policy-manual.pdf",
+      "sha256": "4cba655fd1b2b3021dbf32dee4f0d6c077e10513938c8b2f2beb36c1e3337a13"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a3e7e77bd829d334f2165caf8513829497e1ba2e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-05-11-dc-child-care-subsidy --manifest manifests/us-dc-child-care-subsidy-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 49,
+    "missing_count": 0,
+    "provision_count": 49,
+    "source_count": 49
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-16T18:23:52.989153+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "S8oZitYb+CXzFI+Z30vy3UeOIlZrgomD/o8WeZZnpVNXkLoRksoEI4387MBgbN4RBSAbRxXS35hcokpXtbgeCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-11-dc-child-care-subsidy"
+}

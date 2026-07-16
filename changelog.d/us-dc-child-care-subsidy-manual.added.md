@@ -1,0 +1,1 @@
+Ingest the District of Columbia Child Care Subsidy Program Policy Manual published by the Office of the State Superintendent of Education, effective May 11, 2026, as 49 coverage-complete records (one document record and 48 page records) with an Ed25519-signed ingest manifest. Raise the citation-path grammar `page_n` baseline from 23,501 to 23,549 for the 48 new paginated records.
