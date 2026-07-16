@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-sc-income-capital.json",
+      "sha256": "2fad37c4efc0f0131404131721eca3246599ba8039fc6e1ba92165393c63e62c"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-sc-income-capital.json",
+      "sha256": "c1d7086ad1d0fbfcbd57ae5f97ec35bc554e066b756a2acd9f563612682f7bf4"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-sc-income-capital.jsonl",
+      "sha256": "056779da4f63c2cc64a17db78a2a697749db5d0f59b3c3f7d74e461fee8cce13"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-income-capital/ssi/2021/249/regulation-63.xml",
+      "sha256": "1b864f7fd369197f69dbb0b221fa5fafc57efa7f4a3ff93e0e9080038d12bc9d"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-income-capital/ssi/2021/249/regulation-66.xml",
+      "sha256": "2ed0833a27e6a2917c9f4c57ef164be1bf5a83a90efb5d2929084b59090bc47a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-sc-income-capital --citation ssi/2021/249/regulation/66 --citation ssi/2021/249/regulation/63"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T01:38:48.049127+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6vj9gBHgyY5rrj4/7VtxwuiRIZ0it1XnHIvIkU+GvWV0xAQ0+RP016K8c5Wya6MovdkvqrAtXdS3JO2sq6h/CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-sc-income-capital"
+}

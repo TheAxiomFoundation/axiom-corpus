@@ -24,7 +24,12 @@ from axiom_corpus.corpus.models import (
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.fetchers.legislation_uk import UKLegislationFetcher
 from axiom_corpus.fetchers.lex import LexClient, LexSection
-from axiom_corpus.models_uk import UK_REGULATION_TYPES, UKCitation, UKSection
+from axiom_corpus.models_uk import (
+    UK_REGULATION_TYPES,
+    UK_SCHEDULE_LIKE_KINDS,
+    UKCitation,
+    UKSection,
+)
 from axiom_corpus.parsers.clml import parse_section
 
 UK_SOURCE_FORMAT = "legislation.gov.uk-clml"
@@ -34,6 +39,27 @@ LEX_SOURCE_FORMAT = "lex.lab.i.ai.gov.uk"
 _LEX_DEFAULT_LIMIT = 2000
 
 _PROVISION_URI_RE = re.compile(r"/(section|regulation|schedule)/([0-9A-Za-z]+)")
+
+# legislation.gov.uk CLML embeds editorial-annotation identifiers of the form
+# ``key-<32 hex>`` (an MD5-shaped digest), optionally suffixed with a volatile
+# ``-<epoch-ms>`` timestamp. They occur only inside XML tags -- as attribute
+# values such as ``ChangeId``, ``CommentaryRef``/``Ref``, ``EffectId`` and
+# Commentary ``id``, and as the final path segment of effect ``URI`` values in
+# ``ukm:UnappliedEffects`` blocks -- never in element text. Archiving them
+# verbatim is doubly harmful: the 32-hex shape is a false positive for GitHub's
+# Mailgun API-key push-protection detector (which blocks every commit that adds
+# such a file), and the epoch-ms suffix is regenerated on every fetch, so
+# byte-identical legislation re-fetched later produces a spuriously different
+# source capture.
+#
+# Sanitization is scoped to tag content (``_CLML_TAG_RE``) so that a matching
+# literal in legislative text, a title, or other substantive content is never
+# rewritten -- that would desync the archived capture from the provisions, which
+# derive from the pre-sanitization bytes. The ``{32,}`` quantifier (rather than
+# exactly ``{32}``) guarantees no ``key-<32 hex>`` substring can survive even for
+# a longer future digest.
+_CLML_TAG_RE = re.compile(r"<[^>]*>")
+_CLML_EDITORIAL_ANCHOR_RE = re.compile(r"key-([0-9a-f]{32,})(?:-[0-9]+)?")
 
 
 @dataclass(frozen=True)
@@ -214,12 +240,19 @@ def uk_citation_path(section: UKSection) -> str:
         str(citation.year),
         str(citation.number),
     ]
-    if citation.section:
-        if citation.provision_segment == "schedule":
-            parts.extend(["schedule", citation.section])
-            if citation.paragraph:
-                parts.extend(["paragraph", citation.paragraph])
-        elif citation.provision_segment == "article":
+    if citation.provision_kind in UK_SCHEDULE_LIKE_KINDS:
+        # Schedule-like containers keep the ``schedule``/``appendix`` segment even
+        # when unnumbered, and preserve any ``part`` and ``paragraph`` segments, so
+        # a paragraph is never silently dropped when the container has no number.
+        parts.append(citation.provision_kind)
+        if citation.section:
+            parts.append(citation.section)
+        if citation.part:
+            parts.extend(["part", citation.part])
+        if citation.paragraph:
+            parts.extend(["paragraph", citation.paragraph])
+    elif citation.section:
+        if citation.provision_segment == "article":
             parts.extend([citation.provision_segment, citation.section])
         else:
             parts.append(citation.section)
@@ -240,7 +273,7 @@ def _section_record(
     citation = section.citation
     parent_path = _parent_citation_path(citation, citation_path)
     kind = _provision_kind(citation)
-    ordinal = _provision_ordinal(citation.paragraph or citation.section)
+    ordinal = _provision_ordinal(citation.paragraph or citation.part or citation.section)
     identifiers = {
         "legislation.gov.uk:type": citation.type,
         "legislation.gov.uk:year": str(citation.year),
@@ -252,8 +285,11 @@ def _section_record(
         "references_to": section.references_to,
         "retrieved_at": (section.retrieved_at.isoformat() if section.retrieved_at else None),
     }
-    if citation.provision_segment == "schedule" and citation.paragraph:
-        metadata["schedule"] = citation.section
+    if citation.provision_kind in UK_SCHEDULE_LIKE_KINDS and (citation.paragraph or citation.part):
+        if citation.section:
+            metadata["schedule"] = citation.section
+        if citation.part:
+            metadata["part"] = citation.part
     return ProvisionRecord(
         id=deterministic_provision_id(citation_path),
         jurisdiction="uk",
@@ -283,10 +319,14 @@ def _section_record(
 
 def _prepare_clml_source(source_name: str, source_bytes: bytes) -> _PreparedSource:
     normalized_source_bytes = _normalize_clml_source_bytes(source_bytes)
+    # Provisions, coverage and inventory citations are derived from the
+    # pre-sanitization bytes, so editorial-anchor sanitization cannot affect
+    # them; only the archived source capture (``raw_bytes``) is sanitized.
     section = parse_section(normalized_source_bytes.decode("utf-8"))
+    sanitized_source_bytes = _sanitize_clml_editorial_anchors(normalized_source_bytes)
     return _PreparedSource(
         section=section,
-        raw_bytes=normalized_source_bytes,
+        raw_bytes=sanitized_source_bytes,
         source_format=UK_SOURCE_FORMAT,
         relative_name=_source_relative_name(section),
         source_name=source_name,
@@ -300,6 +340,52 @@ def _normalize_clml_source_bytes(source_bytes: bytes) -> bytes:
     if text.endswith(("\n", "\r")):
         normalized_text += "\n"
     return normalized_text.encode("utf-8")
+
+
+def _sanitize_clml_editorial_anchors(source_bytes: bytes) -> bytes:
+    """Rewrite volatile CLML editorial-annotation anchors to deterministic,
+    document-local placeholders for the archived source capture.
+
+    Each distinct ``key-<hex>`` anchor found **inside a tag** is replaced with
+    ``key-a<N>``, where ``N`` counts distinct anchors in first-occurrence order
+    (the first distinct anchor becomes ``key-a1``, the second ``key-a2`` ...),
+    and the volatile ``-<epoch-ms>`` timestamp suffix is dropped. The mapping is
+    keyed on the hex digest, so identical source anchors always map to the same
+    placeholder and intra-document referential pairing is preserved: a
+    ``CommentaryRef``/``Ref`` and the ``Commentary`` ``id`` it targets stay
+    matched, an ``EffectId`` and its effect ``URI`` stay matched, and two
+    ``Substitution`` elements that share one commentary but carry different
+    ``ChangeId`` timestamps collapse onto the same placeholder.
+
+    Replacement is scoped to tag content, so an identical literal appearing in
+    element text (a body, a title) is left untouched -- the archived capture must
+    not diverge from the substantive text that provisions are derived from.
+
+    The transform is deterministic for a fixed input and idempotent: a
+    placeholder ``key-a<N>`` is far shorter than the 32-hex-minimum input
+    pattern, so a second pass matches nothing and returns the input unchanged.
+
+    Only the archived source capture is sanitized. Provision, coverage and
+    inventory-citation derivations are parsed from the pre-sanitization bytes in
+    :func:`_prepare_clml_source`, so they are unaffected; the accompanying tests
+    additionally prove provision bodies are byte-identical whether parsed from
+    sanitized or unsanitized XML, because bodies strip editorial markup.
+    """
+    placeholders: dict[str, str] = {}
+
+    def _placeholder(match: re.Match[str]) -> str:
+        digest = match.group(1)
+        placeholder = placeholders.get(digest)
+        if placeholder is None:
+            placeholder = f"key-a{len(placeholders) + 1}"
+            placeholders[digest] = placeholder
+        return placeholder
+
+    def _sanitize_tag(tag_match: re.Match[str]) -> str:
+        return _CLML_EDITORIAL_ANCHOR_RE.sub(_placeholder, tag_match.group(0))
+
+    text = source_bytes.decode("utf-8")
+    return _CLML_TAG_RE.sub(_sanitize_tag, text).encode("utf-8")
 
 
 def _fetch_lex_sources(
@@ -350,6 +436,7 @@ def _fetch_lex_sources(
                 number=citation.number,
                 section=provision,
                 provision_kind=citation.provision_kind,
+                part=None,
                 paragraph=None,
                 subsection=None,
             )
@@ -414,8 +501,11 @@ async def _fetch_citation_xmls(citations: Sequence[str]) -> list[tuple[str, byte
     fetched: list[tuple[str, bytes]] = []
     for raw_citation in citations:
         citation = UKCitation.from_string(raw_citation)
-        if not citation.section:
-            raise ValueError(f"section, regulation, article, or schedule required: {raw_citation}")
+        if not _citation_addresses_provision(citation):
+            raise ValueError(
+                "section, regulation, article, schedule, or appendix required: "
+                f"{raw_citation}"
+            )
         url = fetcher.build_url(citation)
         xml = await fetcher._fetch_xml(url)
         fetched.append((_source_relative_name_from_citation(citation), xml.encode()))
@@ -431,7 +521,28 @@ def _source_relative_name_from_citation(citation: UKCitation) -> str:
     return f"{citation.type}/{citation.year}/{citation.number}/{provision}.xml"
 
 
+def _citation_addresses_provision(citation: UKCitation) -> bool:
+    """True when a citation names a fetchable provision, including an unnumbered
+    schedule addressed only by paragraph (``.../schedule/paragraph/16``)."""
+    if citation.section:
+        return True
+    return citation.provision_kind in UK_SCHEDULE_LIKE_KINDS and bool(
+        citation.paragraph or citation.part
+    )
+
+
 def _source_provision_name(citation: UKCitation) -> str:
+    if citation.provision_kind in UK_SCHEDULE_LIKE_KINDS:
+        name = citation.provision_kind
+        if citation.section:
+            name += f"-{citation.section}"
+        if citation.part:
+            name += f"-part-{citation.part}"
+        if citation.paragraph:
+            name += f"-paragraph-{citation.paragraph}"
+        if not (citation.section or citation.part or citation.paragraph):
+            name += "-document"
+        return name
     if citation.section is None:
         return f"{citation.provision_segment}-document"
     name = f"{citation.provision_segment}-{citation.section}"
@@ -441,24 +552,37 @@ def _source_provision_name(citation: UKCitation) -> str:
 
 
 def _parent_citation_path(citation: UKCitation, citation_path: str) -> str:
-    if citation.provision_segment == "schedule" and citation.paragraph:
-        return "/".join(citation_path.split("/")[:-2])
+    segments = citation_path.split("/")
+    if citation.provision_kind in UK_SCHEDULE_LIKE_KINDS and (citation.paragraph or citation.part):
+        # A paragraph's parent is its part or container; a part's parent is its
+        # container. Both drop the trailing ``<segment>/<value>`` pair.
+        return "/".join(segments[:-2])
     if citation.provision_segment == "article":
-        return "/".join(citation_path.split("/")[:-2])
-    return "/".join(citation_path.split("/")[:-1])
+        return "/".join(segments[:-2])
+    return "/".join(segments[:-1])
 
 
 def _provision_kind(citation: UKCitation) -> str:
-    if citation.provision_segment == "schedule" and citation.paragraph:
-        return "paragraph"
+    if citation.provision_kind in UK_SCHEDULE_LIKE_KINDS:
+        if citation.paragraph:
+            return "paragraph"
+        if citation.part:
+            return "part"
     return citation.provision_segment
 
 
 def _legislation_provision_identifier(citation: UKCitation) -> str:
+    if citation.provision_kind in UK_SCHEDULE_LIKE_KINDS and (citation.part or citation.paragraph):
+        identifier = citation.provision_kind
+        if citation.section:
+            identifier += f"/{citation.section}"
+        if citation.part:
+            identifier += f"/part/{citation.part}"
+        if citation.paragraph:
+            identifier += f"/paragraph/{citation.paragraph}"
+        return identifier
     if not citation.section:
         return ""
-    if citation.provision_segment == "schedule" and citation.paragraph:
-        return f"schedule/{citation.section}/paragraph/{citation.paragraph}"
     if citation.provision_segment == "article":
         return f"{citation.provision_segment}/{citation.section}"
     return citation.section

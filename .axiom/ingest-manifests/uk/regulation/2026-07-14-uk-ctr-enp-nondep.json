@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-14-uk-ctr-enp-nondep.json",
+      "sha256": "62bf9b0ac70e440160b06869efb5cef07fc8091319202496003b621cbd3be766"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-14-uk-ctr-enp-nondep.json",
+      "sha256": "6aac67b818cd0c653d9ace54b8ae6e2f6418e3351bfdccef9334eb3d2cd3aa1b"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-enp-nondep.jsonl",
+      "sha256": "68ecb2ccddd940cc4b85a4d3ced69a01cc784fec31ac274ed3e910bdc95642d5"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-enp-nondep/uksi/2012/2885/schedule-1-paragraph-8.xml",
+      "sha256": "2788d67e36ae8e355ccb16e4b305e6bcc10755d243b973ac04b0a53e5421fb87"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5e98c135cb3c5f5fd1dfcbf3e59cb6a4834cd505",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-14-uk-ctr-enp-nondep --citation uksi/2012/2885/schedule/1/paragraph/8"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T08:54:08.652890+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kVF83NdFCApnIkSJHYE49RHBSZDb4nYJdP4ZFN7kuuE4XZ3wxF8kFY4qyVVNEwMht9lDAxqO7KbmEGy9QeMZBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-14-uk-ctr-enp-nondep"
+}

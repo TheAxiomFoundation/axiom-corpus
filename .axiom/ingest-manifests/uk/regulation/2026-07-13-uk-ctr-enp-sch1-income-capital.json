@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital.json",
+      "sha256": "b27f06c7ca1eb31ccb6c457667744a7125bfaf49150c44d19ca2d0ae6633cf51"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital.json",
+      "sha256": "cdc4a0093181b45e165b3e1a87fe88f4e4c11e8260f3920fcc7558fb305129bc"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital.jsonl",
+      "sha256": "63e6086626d8c9d0c03505124d07a166cc3c9c04bacd44373c319266da88d363"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital/uksi/2012/2885/schedule-1-paragraph-11.xml",
+      "sha256": "ec7a5f06dcc5216525357da7c5762ee8c80959c5486754a1b5c7593a720ea7ed"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital/uksi/2012/2885/schedule-1-paragraph-12.xml",
+      "sha256": "f737c8e2f52a1f581f91d2a3f06706910c4d09a06655851d2644902659352549"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital/uksi/2012/2885/schedule-1-paragraph-13.xml",
+      "sha256": "bd371c58ec3ec00b8db423207dc2fd224d0e460f0d3210cb50fe51180f3ff6b7"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital/uksi/2012/2885/schedule-1-paragraph-31.xml",
+      "sha256": "f129f11ee86d1746a81c72fbf7b1dc5c97d48e312ec3ec35005f000db7f02fb0"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital/uksi/2012/2885/schedule-1-paragraph-32.xml",
+      "sha256": "0146148f427e57a10e5cf3228029804ec7c3b17f005cdc5ac6dcdb9c37bf95c0"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital/uksi/2012/2885/schedule-1-paragraph-34.xml",
+      "sha256": "a0924dc2f98a09da78bee491de32c8b27dc603bbd493fdab6b6884ab7a5bb962"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch1-income-capital/uksi/2012/2885/schedule-1-paragraph-36.xml",
+      "sha256": "e0ad2bda8e73bd0c163cc07a23715f8149edcd26efd494959327d081811ead0b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-enp-sch1-income-capital --citation uksi/2012/2885/schedule/1/paragraph/11 --citation uksi/2012/2885/schedule/1/paragraph/12 --citation uksi/2012/2885/schedule/1/paragraph/13 --citation uksi/2012/2885/schedule/1/paragraph/31 --citation uksi/2012/2885/schedule/1/paragraph/32 --citation uksi/2012/2885/schedule/1/paragraph/34 --citation uksi/2012/2885/schedule/1/paragraph/36"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T01:38:46.092356+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Ov/PqaVQ5szytcPsDM6RTEm6kp6wSOrFa6ATiibcVzA4fGHjuFv2/wafCww5z6JBBE8tPpS/7A7xK0mfvYdJCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-enp-sch1-income-capital"
+}

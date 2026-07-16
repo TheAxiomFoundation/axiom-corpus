@@ -44,7 +44,12 @@ from axiom_corpus.corpus.colorado import extract_colorado_ccr
 from axiom_corpus.corpus.coverage import compare_provision_coverage
 from axiom_corpus.corpus.document_sections import split_document_body
 from axiom_corpus.corpus.documents import extract_official_documents
-from axiom_corpus.corpus.ecfr import build_ecfr_inventory, ecfr_run_id, extract_ecfr
+from axiom_corpus.corpus.ecfr import (
+    build_ecfr_inventory,
+    ecfr_run_id,
+    extract_ecfr,
+    load_ecfr_graphic_transcriptions,
+)
 from axiom_corpus.corpus.eli import extract_eli_documents
 from axiom_corpus.corpus.federal_register import (
     DEFAULT_DOCUMENT_TYPES,
@@ -1173,6 +1178,11 @@ def _single_provision_scope(records: tuple[ProvisionRecord, ...]) -> tuple[str, 
 def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date or args.as_of)
+    graphic_transcriptions = (
+        load_ecfr_graphic_transcriptions(args.graphic_transcriptions)
+        if args.graphic_transcriptions
+        else None
+    )
     report = extract_ecfr(
         store,
         version=args.version,
@@ -1183,6 +1193,7 @@ def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
         limit=args.limit,
         workers=args.workers,
         progress_stream=sys.stderr,
+        graphic_transcriptions=graphic_transcriptions,
     )
     print(
         json.dumps(
@@ -1211,6 +1222,8 @@ def _cmd_extract_ecfr(args: argparse.Namespace) -> int:
             sort_keys=True,
         )
     )
+    if graphic_transcriptions and report.title_error_count:
+        return 2
     return 0 if report.coverage.complete or args.allow_incomplete else 2
 
 
@@ -5098,6 +5111,14 @@ def build_parser() -> argparse.ArgumentParser:
     extract_ecfr_cmd.add_argument("--only-part")
     extract_ecfr_cmd.add_argument("--limit", type=int)
     extract_ecfr_cmd.add_argument("--workers", type=int, default=2)
+    extract_ecfr_cmd.add_argument(
+        "--graphic-transcriptions",
+        type=Path,
+        help=(
+            "Reviewed SHA-256-bound transcriptions for image-only eCFR formulas. "
+            "Formula images are archived even when no transcription is supplied."
+        ),
+    )
     extract_ecfr_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_ecfr_cmd.set_defaults(func=_cmd_extract_ecfr)
 

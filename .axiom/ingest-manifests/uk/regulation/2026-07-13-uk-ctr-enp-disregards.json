@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-enp-disregards.json",
+      "sha256": "67e11be72f192e46a9d3c549bc5b5ead3e4f8ac0475851b39af36c9c04b8a320"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-enp-disregards.json",
+      "sha256": "210aa52b8c938871fd71c0a72e0396534ae476d9d1e5e019c85e5b6f57085308"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-enp-disregards.jsonl",
+      "sha256": "d77be69d204fd3a2d3280b3eef250a9dca92e4d8e698ad4c5f417510c5f0eb4e"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-disregards/uksi/2012/2885/schedule-4-paragraph-1.xml",
+      "sha256": "f80d624f3bcabfe5780cfd61600a79ab1d61b28215ac9401e49e81616070f550"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-disregards/uksi/2012/2885/schedule-4-paragraph-2.xml",
+      "sha256": "da2ba39081ebcfab08ebfd8e0658b81a8eb3d7a643372faecb34fe12c404b70c"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-disregards/uksi/2012/2885/schedule-4-paragraph-4.xml",
+      "sha256": "7baf0a0b4a18cc79035235d922c3df4ee9fc1ac13222189c2d89d82c87fb8f7f"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-disregards/uksi/2012/2885/schedule-4-paragraph-9.xml",
+      "sha256": "b0efd9b3698177cc343244591448757d56a0a7aecbb9e5b2df298a7fe2d0786b"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-disregards/uksi/2012/2885/schedule-5-paragraph-7.xml",
+      "sha256": "75b20441aba918f385406091fb021785310cb28c100b1ffcd32ac77621084d91"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-disregards/uksi/2012/2885/schedule-5-paragraph-8.xml",
+      "sha256": "88b04198d9ec3d589584ddeb32d43d778dc4647748dc39d310f101803e14e88f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-enp-disregards --citation uksi/2012/2885/schedule/4/paragraph/1 --citation uksi/2012/2885/schedule/4/paragraph/2 --citation uksi/2012/2885/schedule/4/paragraph/4 --citation uksi/2012/2885/schedule/4/paragraph/9 --citation uksi/2012/2885/schedule/5/paragraph/7 --citation uksi/2012/2885/schedule/5/paragraph/8"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T01:38:46.569209+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "L9kssP6a7OvruD/q3v/F4NBkgg4pTWu0RmIFjL7djh1bx/yuSXox+Sjb0U2SSEwnC8cr2CjDdjN5UVFYRWkdBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-enp-disregards"
+}

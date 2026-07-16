@@ -12,6 +12,7 @@ from collections.abc import Callable, Iterator, Mapping
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import date
+from functools import partial
 from pathlib import Path
 from typing import Any, TextIO, cast
 from xml.etree import ElementTree as ET
@@ -63,10 +64,17 @@ class EcfrExtractReport:
 
 
 @dataclass(frozen=True)
+class EcfrGraphicTranscription:
+    sha256: str
+    text: str
+
+
+@dataclass(frozen=True)
 class _EcfrTitleResult:
     title: int
     provisions: tuple[ProvisionRecord, ...] = ()
     source_paths: tuple[Path, ...] = ()
+    transcription_evidence: Mapping[str, Mapping[str, str]] | None = None
     source_sha256: str | None = None
     error: str | None = None
 
@@ -115,6 +123,16 @@ def fetch_ecfr_part_xml(title: int, part: str, as_of: str) -> str:
     return bytes(data).decode("utf-8")
 
 
+def fetch_ecfr_graphic(identifier: str) -> bytes:
+    url = (
+        f"https://img.federalregister.gov/{identifier}/"
+        f"{identifier}_original_size.png"
+    )
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        return bytes(resp.read())
+
+
 def _retry_after_seconds(exc: urllib.error.HTTPError, attempt: int) -> float:
     retry_after = exc.headers.get("Retry-After")
     if retry_after:
@@ -146,6 +164,57 @@ def _fetch_with_retries(label: str, fetch: Callable[[], str], retries: int = 8) 
                 raise
         time.sleep(min(30.0, 2.0**attempt))
     raise RuntimeError(f"failed to fetch {label}: {last_exc}")
+
+
+def _fetch_bytes_with_retries(
+    label: str, fetch: Callable[[], bytes], retries: int = 8
+) -> bytes:
+    last_exc: BaseException | None = None
+    for attempt in range(1, retries + 1):
+        try:
+            return fetch()
+        except urllib.error.HTTPError as exc:
+            last_exc = exc
+            if exc.code in (404, 410) or attempt == retries:
+                raise
+            time.sleep(_retry_after_seconds(exc, attempt))
+            continue
+        except (TimeoutError, urllib.error.URLError) as exc:
+            last_exc = exc
+            if attempt == retries:
+                raise
+        time.sleep(min(30.0, 2.0**attempt))
+    raise RuntimeError(f"failed to fetch {label}: {last_exc}")
+
+
+def load_ecfr_graphic_transcriptions(
+    path: Path,
+) -> dict[str, EcfrGraphicTranscription]:
+    payload = json.loads(path.read_text())
+    if not isinstance(payload, dict) or set(payload) != {"graphics"}:
+        raise ValueError("eCFR graphic transcription manifest must contain only 'graphics'")
+    graphics = payload["graphics"]
+    if not isinstance(graphics, dict):
+        raise ValueError("eCFR graphic transcription manifest graphics must be an object")
+
+    transcriptions: dict[str, EcfrGraphicTranscription] = {}
+    for raw_identifier, raw_entry in graphics.items():
+        identifier = str(raw_identifier).upper()
+        if not re.fullmatch(r"[A-Z0-9]+(?:\.[A-Z0-9]+)+", identifier):
+            raise ValueError(f"invalid eCFR graphic identifier: {raw_identifier!r}")
+        if not isinstance(raw_entry, dict) or set(raw_entry) != {"sha256", "text"}:
+            raise ValueError(f"invalid eCFR graphic transcription entry: {identifier}")
+        digest = raw_entry["sha256"]
+        text = raw_entry["text"]
+        if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+            raise ValueError(f"invalid eCFR graphic sha256: {identifier}")
+        if not isinstance(text, str) or not text.strip():
+            raise ValueError(f"empty eCFR graphic transcription: {identifier}")
+        transcriptions[identifier] = EcfrGraphicTranscription(
+            sha256=digest,
+            text=_clean_text(text),
+        )
+    return transcriptions
 
 
 def _clean_text(value: str | None) -> str:
@@ -514,15 +583,45 @@ def _section_heading(elem: ET.Element, part: str, section: str) -> str | None:
     return heading.strip(" .") or None
 
 
-def _section_body(elem: ET.Element) -> str:
+def _graphic_identifier(src: str | None) -> str | None:
+    if not src:
+        return None
+    filename = src.rsplit("/", 1)[-1]
+    identifier = filename.rsplit(".", 1)[0].upper()
+    if not re.fullmatch(r"[A-Z0-9]+(?:\.[A-Z0-9]+)+", identifier):
+        return None
+    return identifier
+
+
+def _math_graphic_identifiers(root: ET.Element) -> tuple[str, ...]:
+    identifiers: list[str] = []
+    seen: set[str] = set()
+    for elem in root.iter():
+        if _local_name(elem.tag) != "MATH":
+            continue
+        for image in elem.iter():
+            if _local_name(image.tag) != "IMG":
+                continue
+            identifier = _graphic_identifier(image.get("src"))
+            if identifier and identifier not in seen:
+                identifiers.append(identifier)
+                seen.add(identifier)
+    return tuple(identifiers)
+
+
+def _section_body(
+    elem: ET.Element,
+    graphic_transcriptions: Mapping[str, str] | None = None,
+) -> str:
     blocks: list[str] = []
+    transcriptions = graphic_transcriptions or {}
 
     def visit(node: ET.Element) -> None:
         for child in node:
             tag = _local_name(child.tag)
             if tag in {"HEAD", "CITA"}:
                 continue
-            if tag in {"P", "PSPACE"}:
+            if tag in {"P", "PSPACE"} or tag == "FP" or tag.startswith("FP-"):
                 text = _element_text(child)
                 if text:
                     blocks.append(text)
@@ -531,6 +630,18 @@ def _section_body(elem: ET.Element) -> str:
                 text = _table_text(child)
                 if text:
                     blocks.append(text)
+                continue
+            if tag == "MATH":
+                for identifier in _math_graphic_identifiers(child):
+                    transcription = transcriptions.get(identifier)
+                    if transcription:
+                        blocks.append(
+                            f"Formula ({identifier}, verified official image): {transcription}"
+                        )
+                    else:
+                        blocks.append(
+                            f"[Official formula image: ecfr/graphics/{identifier}.png]"
+                        )
                 continue
             visit(child)
 
@@ -828,6 +939,7 @@ def _section_provision(
     parent_citation_path: str,
     level: int,
     subpart: str | None = None,
+    graphic_transcriptions: Mapping[str, str] | None = None,
 ) -> ProvisionRecord | None:
     parsed = _section_citation_from_element(title, elem)
     if parsed is None:
@@ -841,7 +953,7 @@ def _section_provision(
         citation_path=citation_path,
         citation_label=f"{title} CFR {part}.{section}",
         heading=heading,
-        body=_section_body(elem),
+        body=_section_body(elem, graphic_transcriptions),
         version=version,
         source_url=_ecfr_section_url(title, part, section, target.chapter, target.subchapter),
         source_path=source_path,
@@ -875,6 +987,7 @@ def iter_ecfr_title_provisions(
     source_as_of: str | None = None,
     expression_date: str | None = None,
     allowed_citation_paths: set[str] | None = None,
+    graphic_transcriptions: Mapping[str, str] | None = None,
 ) -> Iterator[ProvisionRecord]:
     root = ET.fromstring(xml_content)
     target_by_part = {target.part: target for target in targets}
@@ -932,6 +1045,7 @@ def iter_ecfr_title_provisions(
                         parent_citation_path=subpart_record.citation_path,
                         level=2,
                         subpart=div6.get("N"),
+                        graphic_transcriptions=graphic_transcriptions,
                     )
                     if record is None:
                         continue
@@ -957,6 +1071,7 @@ def iter_ecfr_title_provisions(
                 expression_date=expression_date or source_as_of or version,
                 parent_citation_path=parent_citation_path,
                 level=1,
+                graphic_transcriptions=graphic_transcriptions,
             )
             if record is None:
                 continue
@@ -978,6 +1093,7 @@ def extract_ecfr(
     limit: int | None = None,
     workers: int = 2,
     progress_stream: TextIO | None = None,
+    graphic_transcriptions: Mapping[str, EcfrGraphicTranscription] | None = None,
 ) -> EcfrExtractReport:
     expression_date_text = (expression_date or date.fromisoformat(as_of)).isoformat()
     titles = (only_title,) if only_title is not None else DEFAULT_CFR_TITLES
@@ -1020,7 +1136,7 @@ def extract_ecfr(
         paths = title_paths.get(title, set())
         if not paths:
             continue
-        if paths <= set(existing_records):
+        if paths <= set(existing_records) and not graphic_transcriptions:
             continue
         targets = tuple(
             target
@@ -1039,17 +1155,22 @@ def extract_ecfr(
 
     title_errors: list[str] = []
     failed_titles: set[int] = set()
-    for result in _extract_title_results(
-        store,
-        pending_titles,
-        run_id,
-        version,
-        as_of,
-        expression_date_text,
-        allowed_citation_paths,
-        only_part=only_part,
-        workers=workers,
-    ):
+    transcription_evidence: dict[str, Mapping[str, str]] = {}
+    title_results = tuple(
+        _extract_title_results(
+            store,
+            pending_titles,
+            run_id,
+            version,
+            as_of,
+            expression_date_text,
+            allowed_citation_paths,
+            only_part=only_part,
+            workers=workers,
+            graphic_transcriptions=graphic_transcriptions,
+        )
+    )
+    for result in title_results:
         source_paths.extend(result.source_paths)
         if result.source_sha256 is not None:
             source_sha256_by_title[result.title] = result.source_sha256
@@ -1059,14 +1180,33 @@ def extract_ecfr(
             if progress_stream is not None:
                 print(f"error title {result.title}: {result.error}", file=progress_stream)
             continue
-        for record in result.provisions:
-            existing_records[record.citation_path] = record
         if progress_stream is not None:
             print(
                 f"extracted title {result.title} ({len(result.provisions)} provisions)",
                 file=progress_stream,
                 flush=True,
             )
+
+    commit_title_results = not (graphic_transcriptions and title_errors)
+    if commit_title_results:
+        for result in title_results:
+            if result.error is not None:
+                continue
+            transcription_evidence.update(result.transcription_evidence or {})
+            for record in result.provisions:
+                existing_records[record.citation_path] = record
+    else:
+        failed_titles.update(result.title for result in title_results)
+
+    if commit_title_results and transcription_evidence:
+        evidence_path = store.source_path(
+            "us",
+            DocumentClass.REGULATION,
+            run_id,
+            "ecfr/graphics/transcriptions.json",
+        )
+        store.write_json(evidence_path, {"graphics": transcription_evidence})
+        source_paths.append(evidence_path)
 
     for structure in structures:
         title = int(structure["identifier"])
@@ -1122,6 +1262,61 @@ def extract_ecfr(
     )
 
 
+def _capture_ecfr_math_graphics(
+    store: CorpusArtifactStore,
+    run_id: str,
+    xml_content: str,
+    transcriptions: Mapping[str, EcfrGraphicTranscription],
+) -> tuple[
+    tuple[Path, ...],
+    dict[str, str],
+    dict[str, dict[str, str]],
+]:
+    root = ET.fromstring(xml_content)
+    source_paths: list[Path] = []
+    used_transcriptions: dict[str, str] = {}
+    transcription_evidence: dict[str, dict[str, str]] = {}
+
+    for identifier in _math_graphic_identifiers(root):
+        graphic_path = store.source_path(
+            "us",
+            DocumentClass.REGULATION,
+            run_id,
+            f"ecfr/graphics/{identifier}.png",
+        )
+        if graphic_path.exists():
+            content = graphic_path.read_bytes()
+        else:
+            content = _fetch_bytes_with_retries(
+                f"eCFR graphic {identifier}",
+                partial(fetch_ecfr_graphic, identifier),
+            )
+            store.write_bytes(graphic_path, content)
+        if not content.startswith(b"\x89PNG\r\n\x1a\n"):
+            raise ValueError(f"eCFR graphic is not a PNG: {identifier}")
+
+        digest = sha256_bytes(content)
+        source_paths.append(graphic_path)
+        transcription = transcriptions.get(identifier)
+        if transcription is None:
+            continue
+        if digest != transcription.sha256:
+            raise ValueError(
+                f"eCFR graphic sha256 does not match transcription manifest: {identifier}"
+            )
+        used_transcriptions[identifier] = transcription.text
+        transcription_evidence[identifier] = {
+            "sha256": digest,
+            "source_url": (
+                f"https://img.federalregister.gov/{identifier}/"
+                f"{identifier}_original_size.png"
+            ),
+            "text": transcription.text,
+        }
+
+    return tuple(source_paths), used_transcriptions, transcription_evidence
+
+
 def _extract_title_results(
     store: CorpusArtifactStore,
     pending_titles: list[tuple[int, tuple[EcfrPartTarget, ...], set[str]]],
@@ -1133,6 +1328,7 @@ def _extract_title_results(
     *,
     only_part: str | None,
     workers: int,
+    graphic_transcriptions: Mapping[str, EcfrGraphicTranscription] | None,
 ) -> Iterator[_EcfrTitleResult]:
     max_workers = max(1, workers)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -1148,6 +1344,7 @@ def _extract_title_results(
                 expression_date,
                 allowed_citation_paths,
                 only_part,
+                graphic_transcriptions,
             ): title
             for title, targets, _paths in pending_titles
         }
@@ -1165,6 +1362,7 @@ def _extract_one_title(
     expression_date: str,
     allowed_citation_paths: set[str],
     only_part: str | None,
+    graphic_transcriptions: Mapping[str, EcfrGraphicTranscription] | None,
 ) -> _EcfrTitleResult:
     source_relative_name = _ecfr_source_relative_name(title, only_part)
     source_path = store.source_path(
@@ -1189,6 +1387,14 @@ def _extract_one_title(
                 ),
             )
             source_sha256 = store.write_text(source_path, xml_content)
+        graphic_paths, used_transcriptions, transcription_evidence = (
+            _capture_ecfr_math_graphics(
+                store,
+                run_id,
+                xml_content,
+                graphic_transcriptions or {},
+            )
+        )
         provisions = tuple(
             iter_ecfr_title_provisions(
                 xml_content,
@@ -1198,13 +1404,21 @@ def _extract_one_title(
                 source_as_of=as_of,
                 expression_date=expression_date,
                 allowed_citation_paths=allowed_citation_paths,
+                graphic_transcriptions=used_transcriptions,
             )
         )
-    except (TimeoutError, urllib.error.HTTPError, urllib.error.URLError, ET.ParseError) as exc:
+    except (
+        TimeoutError,
+        ValueError,
+        urllib.error.HTTPError,
+        urllib.error.URLError,
+        ET.ParseError,
+    ) as exc:
         return _EcfrTitleResult(title=title, error=f"{title} CFR: {exc}")
     return _EcfrTitleResult(
         title=title,
         provisions=provisions,
-        source_paths=(source_path,),
+        source_paths=(source_path, *graphic_paths),
+        transcription_evidence=transcription_evidence,
         source_sha256=source_sha256,
     )

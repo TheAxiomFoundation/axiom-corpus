@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards.json",
+      "sha256": "d4a42af7be29711cc209abae3bde7eaf92a5b1823cc13d3a41ee2600bfc61904"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards.json",
+      "sha256": "5e15821a442bb020e3adaf08ef24433cfe1fc9c54578f6bba0cc68a8aed58909"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards.jsonl",
+      "sha256": "625cfa4feb7957b9c25b3f82860b7a2c959651cec74b13203d9d95544c9384e2"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards/uksi/2012/2886/appendix-4-paragraph-1.xml",
+      "sha256": "4bb4924d0776e504cc789889cf044769d6a506a1433feae3d8b057cb15c9127c"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards/uksi/2012/2886/appendix-4-paragraph-2.xml",
+      "sha256": "8bff5236e969af403b8042a60b056307d70bf9c6ec335d7aa129318e99f82a1f"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards/uksi/2012/2886/appendix-7-paragraph-9.xml",
+      "sha256": "00dff58fd55d7776744b45acea76b91faf0f3eb38d846801f68e8be75abe4483"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards/uksi/2012/2886/appendix-8-paragraph-20.xml",
+      "sha256": "7f7b0d3539f891ed4074a27dd2c3ad5f3e3b1d00f67e62bbbef7540682ac9868"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards/uksi/2012/2886/appendix-8-paragraph-21.xml",
+      "sha256": "cf57db1c15c17807ed92c51ed0c1824cdde0dd56c60087f86b2d56ba60df588f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5e98c135cb3c5f5fd1dfcbf3e59cb6a4834cd505",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-14-uk-ctr-end-sch4-disregards --citation uksi/2012/2886/appendix/4/paragraph/1 --citation uksi/2012/2886/appendix/4/paragraph/2 --citation uksi/2012/2886/appendix/7/paragraph/9 --citation uksi/2012/2886/appendix/8/paragraph/20 --citation uksi/2012/2886/appendix/8/paragraph/21"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T08:56:14.715643+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ueFnIa/3RfPJufLa9Cf24PHohKWatnlZ3eqlv6V9rMqwqzhv6bqehEI2Djkww3XM55l1bxtBxIaentiyadkiAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-14-uk-ctr-end-sch4-disregards"
+}

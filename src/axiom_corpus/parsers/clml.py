@@ -16,12 +16,24 @@ from datetime import date
 from xml.etree import ElementTree as ET
 
 from axiom_corpus.models_uk import (
+    UK_SCHEDULE_LIKE_KINDS,
     UKAct,
     UKAmendment,
     UKCitation,
     UKPart,
     UKSection,
     UKSubsection,
+)
+
+# Matches a schedule/appendix provision inside a legislation.gov.uk URI. The
+# container number, ``part`` segment, and ``paragraph`` segment are each optional,
+# so this captures numbered and unnumbered schedules, internal schedules served as
+# appendices, part-qualified paragraphs, and paragraph-less parts alike.
+_SCHEDULE_LIKE_URI_RE = re.compile(
+    r"/(schedule|appendix)"
+    r"(?:/(\d+[A-Za-z]*))?"  # container number (absent for an unnumbered schedule)
+    r"(?:/part/(\d+[A-Za-z]*))?"  # part
+    r"(?:/paragraph/(\d+[A-Za-z]*))?"  # paragraph
 )
 
 # CLML namespaces
@@ -32,6 +44,39 @@ NAMESPACES = {
     "atom": "http://www.w3.org/2005/Atom",
     "xhtml": "http://www.w3.org/1999/xhtml",
 }
+
+# CLML writes a vulgar fraction as a <Superior> (numerator) element followed by
+# an <Inferior> (denominator) element, e.g. the mixed number "2 6/7 per cent" is
+# ``2<Superior>6</Superior>/<Inferior>7</Inferior> per cent``. Flattening that
+# subtree with ``ElementTree.itertext`` concatenates the integer part directly
+# onto the numerator ("2" + "6" + "/" + "7" -> "26/7"), silently turning the
+# mixed number 2 6/7 (2.857...) into the improper fraction 26/7 (3.714...). The
+# encoder grounds numeric literals against the provision body, so that corruption
+# can pass grounding as a wrong value -- a silent-wrong-value failure (issue #321).
+#
+# Audit of the other CLML uses of these tags dictates a deliberately narrow rule:
+#   * <Superior> alone marks exponents (``m<Superior>2</Superior>`` for m^2) and
+#     footnote / reference markers. Those MUST NOT gain a separating space, or
+#     "m2" would become "m 2".
+#   * legislation.gov.uk encodes a vulgar fraction as <Superior> (numerator)
+#     immediately followed by <Inferior> (denominator) -- the adjacency, not the
+#     tag in isolation, is the fraction signal.
+# So the fraction rendering fires only for a <Superior> whose next sibling is an
+# <Inferior> AND whose intervening tail is nothing but a bare solidus or U+2044
+# fraction slash; any other intervening text (a footnote <Superior> followed later
+# by an unrelated <Inferior>) is left alone. A lone <Superior> is emitted exactly
+# as ``itertext`` would, leaving exponents and footnote markers untouched. When
+# the pair does fire, a single separating space is inserted only when the numerator
+# directly follows an alphanumeric (the integer part of a mixed number), and the
+# numerator and denominator are always joined by one "/". For any element whose
+# subtree contains no such pair, the output is byte-identical to
+# ``"".join(elem.itertext())``.
+_SUPERIOR_TAG = f"{{{NAMESPACES['leg']}}}Superior"
+_INFERIOR_TAG = f"{{{NAMESPACES['leg']}}}Inferior"
+# Literal text tolerated between the <Superior> and <Inferior> of one fraction:
+# nothing, an ASCII solidus, or U+2044 FRACTION SLASH. Any other tail means the
+# two elements are unrelated (e.g. a footnote <Superior> and a later <Inferior>).
+_FRACTION_SEPARATORS = frozenset({"", "/", "⁄"})
 
 
 def extract_text(xml_str: str) -> str:
@@ -92,8 +137,82 @@ def extract_citations(xml_str: str) -> list[str]:
 
 
 def _get_text_content(elem: ET.Element) -> str:
-    """Get all text content from an element, including nested elements."""
-    return "".join(elem.itertext())
+    """Get all text content from an element, including nested elements.
+
+    Equivalent to ``"".join(elem.itertext())`` except that a CLML
+    <Superior>/<Inferior> vulgar-fraction pair is rendered as a spaced mixed
+    number (``2 6/7``) instead of being flattened into an improper fraction
+    (``26/7``). See the module-level note and issue #321. Elements whose subtree
+    holds no such pair render byte-identically to ``itertext``.
+    """
+    parts: list[str] = []
+    _append_text_content(elem, parts)
+    return "".join(parts)
+
+
+def _append_text_content(elem: ET.Element, parts: list[str]) -> None:
+    """Depth-first ``itertext`` walk that renders Superior/Inferior fractions.
+
+    Mirrors ``ElementTree.itertext``: emit ``elem.text``, then for each child
+    emit its rendered text followed by the child's ``tail``. (``parse_section``
+    always builds the tree with ``ET.fromstring``, which discards comment and
+    processing-instruction nodes, so only string-tagged elements are reached.)
+    """
+    if elem.text:
+        parts.append(elem.text)
+    children = list(elem)
+    index = 0
+    while index < len(children):
+        child = children[index]
+        following = children[index + 1] if index + 1 < len(children) else None
+        if following is not None and _is_fraction_pair(child, following):
+            _append_fraction(child, following, parts)
+            if following.tail:
+                parts.append(following.tail)
+            index += 2
+            continue
+        _append_text_content(child, parts)
+        if child.tail:
+            parts.append(child.tail)
+        index += 1
+
+
+def _is_fraction_pair(numerator: ET.Element, denominator: ET.Element) -> bool:
+    """True when the two elements are an adjacent Superior/Inferior fraction pair.
+
+    Only a bare solidus or fraction slash may sit between them; any other tail
+    (e.g. a footnote <Superior> followed later by an unrelated <Inferior>) is
+    rejected so the two are not joined into a spurious fraction. The caller has
+    already established ``denominator`` is present.
+    """
+    return (
+        numerator.tag == _SUPERIOR_TAG
+        and denominator.tag == _INFERIOR_TAG
+        and (numerator.tail is None or numerator.tail.strip() in _FRACTION_SEPARATORS)
+    )
+
+
+def _append_fraction(
+    numerator: ET.Element, denominator: ET.Element, parts: list[str]
+) -> None:
+    """Render one Superior/Inferior pair as ``a/b``, space-separated from any
+    preceding integer so a mixed number keeps its value (``2 6/7``, not ``26/7``).
+
+    The numerator and denominator are read with the full text walker rather than
+    ``.text`` so nested markup inside them (e.g. an ``<Emphasis>`` wrapper) is not
+    silently dropped.
+    """
+    if _last_emitted_char(parts).isalnum():
+        parts.append(" ")
+    parts.append(f"{_get_text_content(numerator).strip()}/{_get_text_content(denominator).strip()}")
+
+
+def _last_emitted_char(parts: list[str]) -> str:
+    """Return the last non-empty character emitted so far, or ``""``."""
+    for chunk in reversed(parts):
+        if chunk:
+            return chunk[-1]
+    return ""
 
 
 def _clean_text(text: str) -> str:
@@ -186,28 +305,45 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
     if not uri:
         return None
 
-    schedule_paragraph_match = re.search(
-        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)/schedule/(\d+[A-Za-z]*)/paragraph/(\d+[A-Za-z]*)",
+    # Schedule-like provisions (numbered/unnumbered schedules, appendices,
+    # part-qualified or flat paragraphs, paragraph-less parts, or the bare
+    # container) parsed as ONE coherent instrument+provision URI, e.g.
+    #   .../uksi/2012/2885/schedule/2/part/1/paragraph/1
+    #   .../uksi/2012/2885/schedule/2/part/4       (paragraph-less part)
+    #   .../uksi/2012/2886/schedule/paragraph/16   (unnumbered outer schedule)
+    #   .../uksi/2012/2886/appendix/3/paragraph/1  (internal schedule as appendix)
+    # A bare ``/schedule`` or ``/appendix`` (no number/part/paragraph) is accepted
+    # symmetrically as the whole container.
+    #
+    # The match is intentionally a prefix, not anchored to end-of-string: legislation.gov.uk
+    # appends point-in-time / version segments to provision URIs (e.g.
+    # ``.../schedule/2/part/4/2026-04-06``), and those trailing segments identify a
+    # version, not a deeper provision, so they are ignored for citation identity.
+    # Anchoring the pattern would drop every version-dated capture. This mirrors the
+    # non-schedule branch below and the long-standing behaviour of this parser.
+    schedule_like = re.search(
+        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)/(schedule|appendix)"
+        r"(?:/(\d+[A-Za-z]*))?(?:/part/(\d+[A-Za-z]*))?(?:/paragraph/(\d+[A-Za-z]*))?",
         uri,
     )
-    if schedule_paragraph_match:
+    if schedule_like is not None:
         return UKCitation(
-            type=schedule_paragraph_match.group(1),
-            year=int(schedule_paragraph_match.group(2)),
-            number=int(schedule_paragraph_match.group(3)),
-            provision_kind="schedule",
-            section=schedule_paragraph_match.group(4),
-            paragraph=schedule_paragraph_match.group(5),
+            type=schedule_like.group(1),
+            year=int(schedule_like.group(2)),
+            number=int(schedule_like.group(3)),
+            provision_kind=schedule_like.group(4),
+            section=schedule_like.group(5),
+            part=schedule_like.group(6),
+            paragraph=schedule_like.group(7),
             subsection=None,
         )
 
-    # Extract type/year/number/provision from URI
+    # Extract type/year/number/provision from URI for non-schedule provisions
     # e.g., http://www.legislation.gov.uk/ukpga/2003/1/section/62
     #       http://www.legislation.gov.uk/uksi/2013/376/regulation/36
     #       http://www.legislation.gov.uk/uksi/2026/148/article/14
-    #       http://www.legislation.gov.uk/uksi/2002/2005/schedule/2
     match = re.search(
-        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)(?:/(section|regulation|article|schedule)/(\d+[A-Za-z]*))?",
+        r"legislation\.gov\.uk/(?:id/)?([a-z]+)/(\d+)/(\d+)(?:/(section|regulation|article)/(\d+[A-Za-z]*))?",
         uri,
     )
     if match:
@@ -217,6 +353,7 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
             number=int(match.group(3)),
             provision_kind=match.group(4),
             section=match.group(5),
+            part=None,
             paragraph=None,
             subsection=None,
         )
@@ -225,20 +362,24 @@ def _parse_citation_from_uri(uri: str) -> UKCitation | None:
 
 def _find_provision_root(root: ET.Element, ns: dict) -> ET.Element | None:
     """Find the provision element for section/regulation/article/schedule snippets."""
-    target_paragraph = _document_target_schedule_paragraph(root, ns)
-    if target_paragraph is not None:
-        schedule_number, paragraph_number = target_paragraph
-        for p1 in root.findall(".//leg:P1", ns):
-            if _element_matches_schedule_paragraph(p1, schedule_number, paragraph_number):
-                return p1
+    target = _document_target_provision(root, ns)
+    if target is not None:
+        # A paragraph target resolves to its <P1>; a paragraph-less part target
+        # resolves to its <Part> so the body is scoped to that part, not the whole
+        # schedule (matters when a source document carries multiple parts).
+        _kind, _number, part, paragraph = target
+        search_tag = "leg:P1" if paragraph is not None else "leg:Part"
+        for element in root.findall(f".//{search_tag}", ns):
+            if _element_matches_provision(element, target):
+                return element
 
-    schedule = root.find(".//leg:Schedule", ns)
-    if schedule is not None and _document_targets_schedule(root, ns):
-        return schedule
+    container = _find_schedule_like_container(root, ns)
+    if container is not None and _document_targets_schedule_like(root, ns):
+        return container
     p1 = root.find(".//leg:P1", ns)
     if p1 is not None:
         return p1
-    return schedule
+    return container
 
 
 def _document_uri_candidates(root: ET.Element, ns: dict) -> list[str]:
@@ -250,34 +391,84 @@ def _document_uri_candidates(root: ET.Element, ns: dict) -> list[str]:
     return [candidate for candidate in candidates if candidate]
 
 
-def _document_target_schedule_paragraph(
+def _document_target_provision(
     root: ET.Element,
     ns: dict,
-) -> tuple[str, str] | None:
-    """Return the requested schedule and paragraph when the document targets one."""
+) -> tuple[str, str | None, str | None, str | None] | None:
+    """Return ``(kind, number, part, paragraph)`` for the schedule-like leaf the
+    document targets, covering numbered/unnumbered schedules, appendices,
+    part-qualified paragraphs, and paragraph-less parts. Only returned when a
+    ``part`` or ``paragraph`` is present (a bare container has no sub-element to
+    locate); ``number`` and ``part`` (and, for a paragraph-less part, ``paragraph``)
+    may be ``None``."""
     for value in _document_uri_candidates(root, ns):
-        match = re.search(r"/schedule/(\d+[A-Za-z]*)/paragraph/(\d+[A-Za-z]*)", value)
-        if match:
-            return match.group(1), match.group(2)
+        match = re.search(
+            r"/(schedule|appendix)(?:/(\d+[A-Za-z]*))?(?:/part/(\d+[A-Za-z]*))?"
+            r"(?:/paragraph/(\d+[A-Za-z]*))?",
+            value,
+        )
+        if match and (match.group(3) or match.group(4)):
+            return match.group(1), match.group(2), match.group(3), match.group(4)
     return None
 
 
-def _element_matches_schedule_paragraph(
+def _element_matches_provision(
     elem: ET.Element,
-    schedule_number: str,
-    paragraph_number: str,
+    target: tuple[str, str | None, str | None, str | None],
 ) -> bool:
-    target = (
-        rf"/schedule/{re.escape(schedule_number)}"
-        rf"/paragraph/{re.escape(paragraph_number)}(?:/|$)"
-    )
+    kind, number, part, paragraph = target
+    pattern = f"/{kind}"
+    if number:
+        pattern += rf"/{re.escape(number)}"
+    if part:
+        pattern += rf"/part/{re.escape(part)}"
+    if paragraph:
+        pattern += rf"/paragraph/{re.escape(paragraph)}"
+    pattern += r"(?:/|$)"
     candidates = [elem.get("DocumentURI", ""), elem.get("IdURI", "")]
-    return any(re.search(target, candidate) for candidate in candidates)
+    return any(re.search(pattern, candidate) for candidate in candidates)
 
 
-def _document_targets_schedule(root: ET.Element, ns: dict) -> bool:
-    """Return true when a CLML document is a schedule-level snippet."""
-    return any("/schedule/" in value for value in _document_uri_candidates(root, ns))
+def _find_schedule_like_container(root: ET.Element, ns: dict) -> ET.Element | None:
+    """Return the outer <Schedule> or <Appendix> element, if present."""
+    for tag in ("leg:Schedule", "leg:Appendix"):
+        elem = root.find(f".//{tag}", ns)
+        if elem is not None:
+            return elem
+    return None
+
+
+def _document_targets_schedule_like(root: ET.Element, ns: dict) -> bool:
+    """Return true when a CLML document is a schedule- or appendix-level snippet."""
+    return any(
+        re.search(r"/(schedule|appendix)(?:/|$)", value)
+        for value in _document_uri_candidates(root, ns)
+    )
+
+
+def _most_specific_provision_uri(root: ET.Element, ns: dict) -> str | None:
+    """Return the schedule/appendix document identifier carrying the most detail.
+
+    The provision root's own ``DocumentURI`` for an unnumbered outer schedule or a
+    paragraph-less part is only the bare container (``.../schedule``), so the
+    citation must instead come from the most specific identifier available -- the
+    ``dc:identifier`` legislation.gov.uk sets to the exact requested provision.
+    """
+    best: str | None = None
+    best_score = 0
+    for value in _document_uri_candidates(root, ns):
+        match = _SCHEDULE_LIKE_URI_RE.search(value)
+        if match is None:
+            continue
+        _kind, number, part, paragraph = match.groups()
+        # Rank by terminal depth so the exact leaf always wins a tie: a paragraph
+        # outranks a part, which outranks a bare container number. (A bare
+        # ``.../schedule/N`` and a ``.../schedule/paragraph/N`` must not tie.)
+        score = 1 + (2 if number else 0) + (4 if part else 0) + (8 if paragraph else 0)
+        if score > best_score:
+            best_score = score
+            best = value
+    return best
 
 
 def _p1group_title(root: ET.Element, ns: dict, provision_root: ET.Element | None) -> str | None:
@@ -291,6 +482,35 @@ def _p1group_title(root: ET.Element, ns: dict, provision_root: ET.Element | None
                 title = _clean_text(_get_text_content(title_elem))
                 if title:
                     return title
+    return None
+
+
+def _schedule_like_title(citation: UKCitation) -> str:
+    """Build a structural title for a schedule/appendix provision, tolerating an
+    unnumbered outer schedule and an optional part."""
+    label = "Appendix" if citation.provision_kind == "appendix" else "Schedule"
+    title = label
+    if citation.section:
+        title += f" {citation.section}"
+    if citation.part:
+        title += f" Part {citation.part}"
+    if citation.paragraph:
+        title += f" paragraph {citation.paragraph}"
+    return title
+
+
+def _schedule_like_part_title(root: ET.Element, ns: dict, citation: UKCitation) -> str | None:
+    """Return the <Part> title for a paragraph-less schedule/appendix part."""
+    if not citation.part:
+        return None  # pragma: no cover
+    for part_elem in root.findall(".//leg:Part", ns):
+        uris = (part_elem.get("DocumentURI", ""), part_elem.get("IdURI", ""))
+        if any(re.search(rf"/part/{re.escape(citation.part)}(?:/|$)", uri) for uri in uris):
+            title_elem = part_elem.find("leg:Title", ns)
+            if title_elem is not None:
+                title_text = _clean_text(_get_text_content(title_elem))
+                if title_text:
+                    return title_text
     return None
 
 
@@ -367,6 +587,14 @@ def parse_section(xml_str: str) -> UKSection:
     if not doc_uri:
         doc_uri = root.get("DocumentURI", "")
 
+    # For a schedule-like snippet the provision root's DocumentURI can be only the
+    # bare container (an unnumbered outer schedule serves ``.../schedule``, a
+    # paragraph-less part serves ``.../schedule/N``); prefer the most specific
+    # identifier so the part/paragraph/appendix segments are not dropped.
+    specific_uri = _most_specific_provision_uri(root, ns)
+    if specific_uri is not None:
+        doc_uri = specific_uri
+
     # Parse citation from URI
     citation = _parse_citation_from_uri(doc_uri)
     if citation is None:
@@ -391,6 +619,7 @@ def parse_section(xml_str: str) -> UKSection:
             number=number,
             section=section,
             provision_kind="section",
+            part=None,
             paragraph=None,
             subsection=None,
         )
@@ -399,20 +628,23 @@ def parse_section(xml_str: str) -> UKSection:
     title_elem = root.find(".//dc:title", ns)
     title = title_elem.text if title_elem is not None else ""
 
-    # If this is a section-level doc, use section number as title
-    if citation.section:
-        if citation.provision_segment == "schedule" and citation.paragraph:
-            title = f"Schedule {citation.section} paragraph {citation.paragraph}"
+    # Give schedule-like and numbered provisions a structural title.
+    if citation.provision_kind in UK_SCHEDULE_LIKE_KINDS:
+        title = _schedule_like_title(citation)
+        if citation.paragraph:
             paragraph_heading = _p1group_title(root, ns, provision_root)
             if paragraph_heading:
                 title += f" - {paragraph_heading}"
-        else:
-            title_prefix = {
-                "article": "Article",
-                "regulation": "Regulation",
-                "schedule": "Schedule",
-            }.get(citation.provision_segment, "Section")
-            title = f"{title_prefix} {citation.section}"
+        elif citation.part:
+            part_heading = _schedule_like_part_title(root, ns, citation)
+            if part_heading:
+                title += f" - {part_heading}"
+    elif citation.section:
+        title_prefix = {
+            "article": "Article",
+            "regulation": "Regulation",
+        }.get(citation.provision_segment, "Section")
+        title = f"{title_prefix} {citation.section}"
 
     # Extract full text
     content_root = provision_root if provision_root is not None else root
@@ -488,6 +720,7 @@ def parse_act_metadata(xml_str: str) -> UKAct:
             number=number,
             section=None,
             provision_kind=None,
+            part=None,
             paragraph=None,
             subsection=None,
         )

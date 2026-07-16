@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-14-uk-ctr-end-award.json",
+      "sha256": "f3c5e08ba288ebdd8047dd125145254e4cd996cda85d0979ba1aebe3c9cd0efa"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-14-uk-ctr-end-award.json",
+      "sha256": "732b81568eca7e0524d0a6306cc26ea56bcc79219ccb33cf5e963c909dc8ea1a"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-end-award.jsonl",
+      "sha256": "e7ca14f3069598014696fe8949982910f27e3a3329689116c677a1c57689f1fa"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-12.xml",
+      "sha256": "a443981cbf4f7d1581544170a3e789d06e276196fbd5b8fb334e99593a3e30bf"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-16.xml",
+      "sha256": "c0dace479fdcb45c3445d9320b573cac95c5d53df7883013fd2051920d65b679"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-17.xml",
+      "sha256": "f9986c9e678b1628a01f4aef9750337f0675d8769526d94def2b97268197b4f5"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-20.xml",
+      "sha256": "46f4cbe489a3a21d0217996c3b3005fa4a8aa709556e5fe3de6543e37250f3aa"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-22.xml",
+      "sha256": "f002f732077495e39e4aa3c31a08649c316a5c7a29cc5e2b3e403d9a2b89d75b"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-23.xml",
+      "sha256": "143de74cab950f9e993b3c53965050f789386a5536fd99017cebe31eaec150e1"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-24.xml",
+      "sha256": "74e4654677d9990e1a628e01e484cf2d0459288190394c9f19b9f2fbdbebe0ab"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-29.xml",
+      "sha256": "47bdd572c6aba3fe3cd23362e6409b7e16d3328b971b39652464ae9c475bb71d"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-31.xml",
+      "sha256": "d5f84531a7d74b996c494e6e766485ed5bed6b9c8f5dc250926cb3cffe2c48ff"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-award/uksi/2012/2886/schedule-paragraph-32.xml",
+      "sha256": "19b183b274531d37deaa7a377b282cf0fcebbfa9d0b220632f12bc0f7cde52a2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5e98c135cb3c5f5fd1dfcbf3e59cb6a4834cd505",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-14-uk-ctr-end-award --citation uksi/2012/2886/schedule/paragraph/12 --citation uksi/2012/2886/schedule/paragraph/16 --citation uksi/2012/2886/schedule/paragraph/17 --citation uksi/2012/2886/schedule/paragraph/20 --citation uksi/2012/2886/schedule/paragraph/22 --citation uksi/2012/2886/schedule/paragraph/23 --citation uksi/2012/2886/schedule/paragraph/24 --citation uksi/2012/2886/schedule/paragraph/29 --citation uksi/2012/2886/schedule/paragraph/31 --citation uksi/2012/2886/schedule/paragraph/32"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T08:56:12.595870+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NdR4uIBLle6bh/k9dpIFBltFjlW+nR0QttKVUruHBOSV/W5cBNt4ZvXPREBlJqHHo3/ihHtNB2Wsg+xQP6ohBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-14-uk-ctr-end-award"
+}

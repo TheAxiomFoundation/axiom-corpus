@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-14-uk-ctr-wa-reg25.json",
+      "sha256": "5d49103039f2bf976c38fdaf44e9e026a2d2f7307af09ec06b37c0c55f407709"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-14-uk-ctr-wa-reg25.json",
+      "sha256": "23b3e9399b6f6d7e8549b28768fd987da3b61f41f0b5adee0d1766392c6328ff"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-wa-reg25.jsonl",
+      "sha256": "d93334a3abb038688b99a619c6265fdef5746c5cbbdaa3be8d4d793bc7cd04f8"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-wa-reg25/wsi/2013/3029/regulation-25.xml",
+      "sha256": "ef9ce5faedc5291ed94717454ca087ce90d677e247e8e752cc83bb0d7e4b303a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5e98c135cb3c5f5fd1dfcbf3e59cb6a4834cd505",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-14-uk-ctr-wa-reg25 --citation wsi/2013/3029/regulation/25"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-14T08:49:04.729489+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iHoG+X8nUMq3XXyOVfCuGKofOFsd60piDnjI/UKdebx+161Cdxn/g6SX0HP/Zk/FZJ5MafYyQVE41SwST5u5Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-14-uk-ctr-wa-reg25"
+}

@@ -617,7 +617,9 @@ def test_extract_uk_legislation_fetches_article_citation_xml(tmp_path, monkeypat
 
 
 def test_extract_uk_legislation_fetch_rejects_document_level_citations(tmp_path):
-    with pytest.raises(ValueError, match="section, regulation, article, or schedule required"):
+    with pytest.raises(
+        ValueError, match="section, regulation, article, schedule, or appendix required"
+    ):
         extract_uk_legislation_sections(
             CorpusArtifactStore(tmp_path / "data" / "corpus"),
             version="2026-05-29-uk-benefits",

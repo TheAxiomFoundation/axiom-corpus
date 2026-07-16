@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/manual/2026-05-27-sc-snap-manual.json",
+      "sha256": "5717b4d7ebb3eb10e4a784936ad96fc9bd4d75f7f433ff4b79d09ea43874d114"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/manual/2026-05-27-sc-snap-manual.json",
+      "sha256": "3250d2889277ef6025db98fd39f8dfdb34d18647ca6722073806fc5c605e7818"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/manual/2026-05-27-sc-snap-manual.jsonl",
+      "sha256": "c21539d472ea105695da5e007b24839b5f4e8cea9f4e6066a933e6d3817a8e13"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/manual/2026-05-27-sc-snap-manual/official-documents/sc-dss-snap-policy-manual-vol-69.pdf",
+      "sha256": "e294a0a4bd6090341c37506cb128d4f0a1b7a1e66406913e0c48f909f480c26f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "87633b306587c627324758d035ff4cd895fdf140",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-05-27-sc-snap-manual --manifest manifests/us-sc-snap-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 460,
+    "missing_count": 0,
+    "provision_count": 460,
+    "source_count": 460
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-15T15:33:28.508018+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7PuYkoFKVgkGcApDpSLZbvWBCt9hIZ10mkxcmjiTCe44ioep9uF6OEdWMeB/x9KxkJ0vmSMAUxxkR+bp0r3NDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-sc-snap-manual"
+}
