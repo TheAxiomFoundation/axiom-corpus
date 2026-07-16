@@ -2,7 +2,7 @@ import json
 import os
 from collections.abc import Iterator, Mapping
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import pytest
 import yaml
@@ -21,7 +21,11 @@ SOURCE_REFETCH_REQUIRED = "source_refetch_required"
 
 def _queue() -> list[dict[str, Any]]:
     queue_path = REPO_ROOT / "manifests" / "state-snap-manual-agent-queue.yaml"
-    return yaml.safe_load(queue_path.read_text())["states"]
+    payload = yaml.safe_load(queue_path.read_text())
+    assert isinstance(payload, dict)
+    states = payload.get("states")
+    assert isinstance(states, list) and all(isinstance(state, dict) for state in states)
+    return cast(list[dict[str, Any]], states)
 
 
 def _scope_paths(scope: Mapping[str, Any]) -> dict[str, Path]:
@@ -66,7 +70,7 @@ def _nested_source_paths(value: object) -> Iterator[str]:
             yield from _nested_source_paths(nested)
 
 
-def test_state_snap_queue_statuses_match_retained_sources():
+def test_state_snap_queue_statuses_match_retained_sources() -> None:
     queue = _queue()
     assert len(queue) == 51
 
@@ -118,6 +122,9 @@ def test_state_snap_queue_statuses_match_retained_sources():
             for path in [*source_files, paths["inventory"], paths["provisions"], paths["coverage"]]
         }
         assert expected_paths <= applied.keys(), state["jurisdiction"]
+        assert all(applied[path].get("deleted") is not True for path in expected_paths), state[
+            "jurisdiction"
+        ]
         for relative_path, item in applied.items():
             if item.get("deleted") is True:
                 continue
@@ -143,12 +150,14 @@ def test_state_snap_queue_statuses_match_retained_sources():
             assert expected_citation_path in citation_paths
 
 
-def test_published_state_snap_ingest_manifests_are_authenticated():
+def test_published_state_snap_ingest_manifests_are_authenticated() -> None:
     public_key = os.environ.get("AXIOM_CORPUS_INGEST_PUBLIC_KEY")
     if not public_key:
+        if os.environ.get("CI"):
+            pytest.fail("AXIOM_CORPUS_INGEST_PUBLIC_KEY is required in CI")
         pytest.skip("AXIOM_CORPUS_INGEST_PUBLIC_KEY is required for signature verification")
 
-    issues = {}
+    issues: dict[str, list[str]] = {}
     for state in _queue():
         if state["queue_status"] != PUBLISHED_CURRENT:
             continue
