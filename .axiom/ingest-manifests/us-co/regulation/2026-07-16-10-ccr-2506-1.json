@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/regulation/2026-07-16-10-ccr-2506-1.json",
+      "sha256": "fe30310241c5af3b3a8432f5c9832f4df519767ad289e93657c3e123b1f8128d"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/regulation/2026-07-16-10-ccr-2506-1.json",
+      "sha256": "1909ccd87febe3049f05491d229e9858e8100a40b4696f7e81847ae3822770eb"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/regulation/2026-07-16-10-ccr-2506-1.jsonl",
+      "sha256": "836f52ee3fbd8bd6841e65525311846837a9107cd0888da1af2f0a565d16df28"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-16-10-ccr-2506-1/colorado-ccr-html/NumericalDeptList.html",
+      "sha256": "19152c55515f7a8b6b8d9fc0fdd9c968c823337546e626ab84bbe024a78b018a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-16-10-ccr-2506-1/colorado-ccr-html/Welcome.html",
+      "sha256": "3caa0e8b6aac90d141d129ff1f300bf846c6c04f5b08ad06962f7ba76aa52346"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-16-10-ccr-2506-1/colorado-ccr-html/rule-info/10-ccr-2506-1.html",
+      "sha256": "bb4e8e467d8b3644dea56762b9633be32bf7049cc0d678b963eb2c23b2ab4808"
+    },
+    {
+      "path": "data/corpus/sources/us-co/regulation/2026-07-16-10-ccr-2506-1/colorado-ccr-pdf/10-ccr-2506-1.pdf",
+      "sha256": "1c51b50fa5dda17cf0242aa1d4cf1fcbb73976c9309d9551904a203a889832b9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0218820b38bf8302a33a6bb71ae581502b85b265",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-colorado-ccr --base data/corpus --version 2026-07-16 --only-series '10 CCR 2506-1' --source-as-of 2026-07-16 --expression-date 2026-07-16 --workers 4"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 290,
+    "missing_count": 0,
+    "provision_count": 290,
+    "source_count": 290
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-16T22:46:23.033747+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "e21Wm6eb1RmVNRSmPbnlBzK8VQ6uMVl2DEbgGygilqXxmUspVVIFX+k7msUVYvn0jfNUk8K9G1KEA44+bsheCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-10-ccr-2506-1"
+}
