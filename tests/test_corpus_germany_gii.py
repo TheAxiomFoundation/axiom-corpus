@@ -443,6 +443,34 @@ def test_cli_extract_de_gii_writes_artifacts_and_returns_zero(tmp_path, capsys):
     assert (base / "provisions/de/statute/2026-07-16-de.jsonl").exists()
 
 
+def test_cli_extract_de_gii_reads_a_source_directory(tmp_path, capsys):
+    from axiom_corpus.corpus.cli import main
+
+    base = tmp_path / "data" / "corpus"
+    source_dir = tmp_path / "de-sources"
+    source_dir.mkdir()
+    (source_dir / "testg_2020.xml").write_text(SAMPLE_JURIS_XML, encoding="utf-8")
+    (source_dir / "ignore.txt").write_text("not a law", encoding="utf-8")
+
+    exit_code = main(
+        [
+            "extract-de-gii",
+            "--base",
+            str(base),
+            "--version",
+            "2026-07-16-de",
+            "--source-dir",
+            str(source_dir),
+        ]
+    )
+
+    assert exit_code == 0
+    report = json.loads(capsys.readouterr().out)
+    # Only the .xml file is treated as a law; the .txt is ignored.
+    assert report["scopes"][0]["law_count"] == 1
+    assert report["provisions_written"] == 9
+
+
 # ---------------------------------------------------------------------------
 # Network fetch, manifest-driven extraction, and edge branches
 # ---------------------------------------------------------------------------
