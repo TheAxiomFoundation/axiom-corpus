@@ -1,0 +1,44 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained-r2026-07-17-dedup.json",
+      "sha256": "891994012da42bbed14cb19740d9c32bc35b8064b70e0f43dd40dbdd7079eb67"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained-r2026-07-17-dedup.json",
+      "sha256": "185a0b78b36c7d5e22519872e86425cb951af88d0dac0f9586e88661f4731f1f"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained-r2026-07-17-dedup.jsonl",
+      "sha256": "a3999e4db5be509e1c7a0cb9cf9e01beb695c9b13019020ce0aa85911afbc5a5"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained-r2026-07-17-dedup/uslm/usc42.xml",
+      "sha256": "bcb75f33c3f9720b9d2f26d9bf0c0524cac53d2672a168a5465df49f1460075b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8610a8dc4f91f7b6d847c0b84921bd5f04103f1e",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-16T19:47:28.702669+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-23-medicare-426-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
+}

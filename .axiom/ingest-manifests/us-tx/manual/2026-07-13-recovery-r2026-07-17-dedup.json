@@ -1,0 +1,56 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-tx/manual/2026-07-13-recovery-r2026-07-17-dedup.json",
+      "sha256": "63db184e3b1e9aea017955017c75d827c2f29e2fab986f0329a64efdcdf2127e"
+    },
+    {
+      "path": "data/corpus/inventory/us-tx/manual/2026-07-13-recovery-r2026-07-17-dedup.json",
+      "sha256": "d07aded3da8b389d0bbab57f47e212593aa7918309ae1199a34ac04bb06ecec6"
+    },
+    {
+      "path": "data/corpus/provisions/us-tx/manual/2026-07-13-recovery-r2026-07-17-dedup.jsonl",
+      "sha256": "08379645df34931cbd55f6dc66a5d18c20e0e489805bfd68eb61ace31a8f39f1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery-r2026-07-17-dedup/official-documents/release-scope-us-tx-manual-2026-05-27-tx-manuals",
+      "sha256": "b6a996acbd5fc5205656601f83b23724d4a2e38196e074b1d57c50517a7581b1"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery-r2026-07-17-dedup/official-documents/us-tx-works-handbook",
+      "sha256": "892306a38f550c38b2febde418dcdee18b2ad669dac7114915428f3e6db7e4ae"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery-r2026-07-17-dedup/provenance/release-scope-us-tx-manual-2026-05-27-tx-manuals.json",
+      "sha256": "eff884d12dc5d8cb3276b83d48d6e2f2cacfeb50217b694721003f7e07bd744f"
+    },
+    {
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery-r2026-07-17-dedup/provenance/us-tx-works-handbook.json",
+      "sha256": "9e3e23c3537e8543479551f2014520ff2c3e5bd404e5f73679b3d6de3cf11047"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "02d23473f86170f4b4c8891c6e93ad6393870e9d",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-16T19:47:23.542716+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery-r2026-07-17-dedup"
+}

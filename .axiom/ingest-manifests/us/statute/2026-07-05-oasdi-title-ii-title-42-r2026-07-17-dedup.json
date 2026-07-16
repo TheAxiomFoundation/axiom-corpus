@@ -1,0 +1,44 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-05-oasdi-title-ii-title-42-r2026-07-17-dedup.json",
+      "sha256": "3f2b457cb1868cb2712840f9e41129dad9381b76328bb6d04d91193415cc77c0"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-05-oasdi-title-ii-title-42-r2026-07-17-dedup.json",
+      "sha256": "701a3c66f31948c7bb02cebd4842a97b6ecb21bfa7e3d3f6943ae81db0375038"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-05-oasdi-title-ii-title-42-r2026-07-17-dedup.jsonl",
+      "sha256": "0cf626cb1e45e8f187450ec657071f7e97dae35fc213d8135d02fde2f369b14d"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-05-oasdi-title-ii-title-42-r2026-07-17-dedup/uslm/usc42.xml",
+      "sha256": "664adb351c7dd6a27844ad9db2491c406f8fc5351b260c627f485523c6a022aa"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4a045d2986568c562f498f51f866fa3d2cee9780",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 276,
+    "missing_count": 0,
+    "provision_count": 276,
+    "source_count": 276
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-16T19:47:31.396686+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-oasdi-title-ii-title-42-r2026-07-17-dedup"
+}
