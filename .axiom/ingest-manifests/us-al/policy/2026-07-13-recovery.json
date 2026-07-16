@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "51c4873aaa39cb5754305b261aacf29a08754825",
+    "commit": "01b41870b3b5eb165d18babb9eea7333d1b73e46",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "US release dedup adjudication: retain original canonical carriers and remove duplicate rows"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": false,
@@ -39,10 +39,15 @@
     "source_count": 0
   },
   "document_class": "policy",
-  "generated_at": "2026-07-16T18:06:16.206312+00:00",
+  "generated_at": "2026-07-16T18:18:21.758481+00:00",
   "jurisdiction": "us-al",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wBmv56JB+jUx61RYIcvPOgPXK9di711JTFeSqBu1rQd1mcHgrBjMat3x0FwLV6yAs1mu/bkkMH7sa0VWc4eiAw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"
 }
