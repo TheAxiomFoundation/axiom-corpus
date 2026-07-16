@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+import pathlib
 import shutil
 import zipfile
 from pathlib import Path
 
-import pathlib
 import pytest
 
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
@@ -25,15 +25,11 @@ REPO = Path(__file__).parents[1]
 
 
 def test_recovery_matches_fetch_safe_document_id() -> None:
-    assert _plan_document_id(Path("agency_rule_part"), {"agency/rule/part"}) == (
-        "agency/rule/part"
-    )
+    assert _plan_document_id(Path("agency_rule_part"), {"agency/rule/part"}) == ("agency/rule/part")
 
 
 def test_recovery_matches_uslm_title_archive() -> None:
-    assert _plan_document_id(Path("usc-title05.zip"), {"uscode-title-5"}) == (
-        "uscode-title-5"
-    )
+    assert _plan_document_id(Path("usc-title05.zip"), {"uscode-title-5"}) == ("uscode-title-5")
 
 
 def test_recovery_verifies_and_extracts_single_uslm_archive(tmp_path: Path) -> None:
@@ -89,9 +85,14 @@ def test_recovery_ecfr_emits_verified_paragraph_depth() -> None:
 
 def test_recovery_splits_assembled_state_sections_at_planned_depth() -> None:
     targets = [f"us-de/statute/30/{section}" for section in (1102, 1108, 1109)]
-    html = b"<html><body><h2>\xc2\xa7 1102. One</h2><p>" + b"a" * 200 + (
-        b"</p><h2>\xc2\xa7 1108. Two</h2><p>" + b"b" * 200
-    ) + b"</p><h2>\xc2\xa7 1109. Three</h2><p>" + b"c" * 200 + b"</p></body></html>"
+    html = (
+        b"<html><body><h2>\xc2\xa7 1102. One</h2><p>"
+        + b"a" * 200
+        + (b"</p><h2>\xc2\xa7 1108. Two</h2><p>" + b"b" * 200)
+        + b"</p><h2>\xc2\xa7 1109. Three</h2><p>"
+        + b"c" * 200
+        + b"</p></body></html>"
+    )
     entry = {
         "document_id": "us-de-code-30",
         "jurisdiction": "us-de",
@@ -109,7 +110,11 @@ def test_recovery_splits_assembled_state_sections_at_planned_depth() -> None:
 
 def test_recovery_normalizes_montana_printed_rule_dots() -> None:
     target = "us-mt/regulation/title-37/chapter-37-78/subchapter-37-78-4/rule-37-78-420"
-    html = ("<html><body><h1>37.78.420 Assistance standards</h1><p>" + "text " * 60 + "</p></body></html>").encode()
+    html = (
+        "<html><body><h1>37.78.420 Assistance standards</h1><p>"
+        + "text " * 60
+        + "</p></body></html>"
+    ).encode()
     entry = {
         "document_id": "us-mt-arm-37-78",
         "jurisdiction": "us-mt",
@@ -128,7 +133,9 @@ def test_recovery_normalizes_montana_printed_rule_dots() -> None:
 def _require_recovery_payloads():
     root = pathlib.Path(__file__).resolve().parents[1] / "recovered-fetched"
     if not root.exists():
-        pytest.skip("local recovery payloads (recovered-fetched/) not present; recovery fixtures are session-local")
+        pytest.skip(
+            "local recovery payloads (recovered-fetched/) not present; recovery fixtures are session-local"
+        )
 
 
 def test_recovery_parses_assembled_az_faa5_at_declared_citation_depth() -> None:
