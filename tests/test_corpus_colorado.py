@@ -5,6 +5,7 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.cli import main
 from axiom_corpus.corpus.colorado import extract_colorado_ccr
 from axiom_corpus.corpus.io import load_provisions
+from axiom_corpus.corpus.navigation import build_navigation_nodes
 
 CCR_SAMPLE_LINES = [
     "CodeofColoradoRegulations",
@@ -122,6 +123,40 @@ def test_extract_colorado_ccr_only_series_is_self_contained(tmp_path):
     assert records[0].parent_citation_path is None
     assert records[0].parent_id is None
     assert records[1].parent_citation_path == records[0].citation_path
+
+
+def test_extract_colorado_ccr_preserves_source_section_order(tmp_path):
+    release_dir = tmp_path / "ccr-release"
+    _write_ccr_release(
+        release_dir,
+        [
+            *CCR_SAMPLE_LINES[:7],
+            "4.000 SNAP",
+            "Program overview.",
+            "4.000.1 SNAP DEFINITIONS",
+            "Definitions text.",
+            "4.100 SNAP INTRODUCTION",
+            "Introduction text.",
+        ],
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_colorado_ccr(
+        store,
+        version="2026-04-29",
+        only_series="10 CCR 2506-1",
+        release_dir=release_dir,
+    )
+
+    records = load_provisions(report.provisions_path)
+    section_records = records[1:]
+    assert [record.ordinal for record in section_records] == [1, 2, 3]
+    navigation = build_navigation_nodes(records)
+    children = sorted(
+        (node for node in navigation if node.parent_path == records[0].citation_path),
+        key=lambda node: node.sort_key,
+    )
+    assert [node.segment for node in children] == ["4.000", "4.000.1", "4.100"]
 
 
 def test_extract_colorado_ccr_splits_hyphenated_heading_and_skips_editor_notes(

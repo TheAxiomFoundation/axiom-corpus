@@ -598,7 +598,7 @@ def _ccr_sections_from_lines(
             heading=current_heading,
             body=body,
             source_id=current_source_id or f"pdf-section-{len(sections) + 1}",
-            ordinal=_ccr_section_ordinal(current_section),
+            ordinal=len(sections) + 1,
         )
         if candidate.citation_path in seen_paths:
             candidate = _replace_ccr_section_variant(
@@ -997,16 +997,6 @@ def _ccr_series_ordinal(series: str) -> int | None:
     if sort_key[0] == 999_999:
         return None
     return sort_key[0] * 1_000_000 + sort_key[1] * 1_000 + sort_key[2]
-
-
-def _ccr_section_ordinal(section: str) -> int | None:
-    numbers = [int(part) for part in re.findall(r"\d+", section)]
-    if not numbers:
-        return None
-    ordinal = min(numbers[0], 99_999)
-    for number in numbers[1:3]:
-        ordinal = ordinal * 100 + min(number, 99)
-    return ordinal
 
 
 def _clean_text(value: str | None) -> str:
