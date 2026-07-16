@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/manual/2026-07-16-or-programs-eligibility-notebook.json",
+      "sha256": "799219515982f7881f49ffc8a3041f93839ed40dd2fb93de87e197e084af935a"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/manual/2026-07-16-or-programs-eligibility-notebook.json",
+      "sha256": "9119e22a351d408a54d0e4010fe8b28d2d5c7c8a9933195d2bc255382f55e784"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/manual/2026-07-16-or-programs-eligibility-notebook.jsonl",
+      "sha256": "dc47c114ceeea1a8b0e641dab0a03b1e8e317ae2a3588dbb222e2d757899c919"
+    },
+    {
+      "path": "data/corpus/sources/us-or/manual/2026-07-16-or-programs-eligibility-notebook/official-documents/or-open-2818.pdf",
+      "sha256": "9c7ba980c74c0500d8f259b679b6590dda117fd314238eb16b41337e8634859a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f1f62ac2c4b9ee6d076e3dc13042f866ce9d2a57",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-16-or-programs-eligibility-notebook --manifest manifests/us-or-snap-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1323,
+    "missing_count": 0,
+    "provision_count": 1323,
+    "source_count": 1323
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-16T23:38:00.550956+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zevMHI4hMN3Q8JBahdm2TqxfZaP0a9LHwjHZs5AF0zONFDR68kqpTj0DnpMVe/Sa+W5bqj5l7J4dS1SAIaQiBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-or-programs-eligibility-notebook"
+}
