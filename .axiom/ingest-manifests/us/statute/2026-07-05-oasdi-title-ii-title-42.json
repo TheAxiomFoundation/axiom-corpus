@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "51c4873aaa39cb5754305b261aacf29a08754825",
+    "commit": "db03685e6bb29444029050db3b01c381a9b918a1",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "US release dedup adjudication: retain original canonical carriers and remove duplicate rows"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -35,10 +35,15 @@
     "source_count": 276
   },
   "document_class": "statute",
-  "generated_at": "2026-07-16T18:06:16.427680+00:00",
+  "generated_at": "2026-07-16T18:18:20.355865+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "tYxzDvNb77oJ2AfhcaYWFOLfduGeVYzjexfZTt251crfrGZGu1wl6XIGZAkzB0aHkHA7lQb6Wn4JRqfCMNk/BA=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-oasdi-title-ii-title-42"
 }
