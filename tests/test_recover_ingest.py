@@ -7,14 +7,17 @@ import json
 import pathlib
 import shutil
 import zipfile
+from io import BytesIO
 from pathlib import Path
 
 import pytest
 
 from axiom_corpus.corpus.ecfr import EcfrPartTarget, iter_ecfr_title_provisions
+from axiom_corpus.corpus.supabase import deterministic_provision_id
 from scripts.recover_ingest import load_fetched_files, recover
 from scripts.recover_ingest_batch import (
     _assembled_html_pages,
+    _california_mpp,
     _ecfr_paragraph_records,
     _load_file,
     _plan_document_id,
@@ -128,6 +131,44 @@ def test_recovery_normalizes_montana_printed_rule_dots() -> None:
     _, records = _targeted_state_html(entry, html, provenance, "sources/test.html")
 
     assert records[0].citation_path == target
+
+
+def test_recovery_california_mpp_emits_scope_roots_with_deterministic_identity() -> None:
+    paragraph_xml = "".join(
+        f"<w:p><w:r><w:t>{text}</w:t></w:r></w:p>"
+        for text in (
+            "63-301 APPLICATION PROCESSING TIME STANDARDS",
+            ".1 Normal Processing Standard",
+            "The CWD shall act within 30 days.",
+        )
+    )
+    document_xml = (
+        '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+        f"<w:body>{paragraph_xml}</w:body></w:document>"
+    )
+    buffer = BytesIO()
+    with zipfile.ZipFile(buffer, "w") as archive:
+        archive.writestr("word/document.xml", document_xml)
+    entry = {"document_id": "us-ca-mpp-63-301", "proposed_version": "2026-07-13-recovery"}
+    provenance = {"url": "https://www.cdss.ca.gov/fsman03.docx", "sha256": "0" * 64}
+
+    items, records = _california_mpp(
+        entry,
+        buffer.getvalue(),
+        provenance,
+        "sources/us-ca/regulation/2026-07-13-recovery/official-documents/us-ca-mpp-63-301",
+    )
+
+    section_path = "us-ca/regulation/mpp/63-301"
+    assert [item.citation_path for item in items] == [section_path, f"{section_path}.1"]
+    section, subsection = records
+    assert section.citation_path == section_path
+    assert section.parent_citation_path is None
+    assert section.parent_id is None
+    assert section.id == deterministic_provision_id(section_path)
+    assert subsection.parent_citation_path == section_path
+    assert subsection.parent_id == section.id
+    assert subsection.id == deterministic_provision_id(subsection.citation_path)
 
 
 def _require_recovery_payloads():
