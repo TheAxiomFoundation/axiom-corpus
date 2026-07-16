@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-sc-entitlement.jsonl",
-      "sha256": "a09723e8ab01b1121828b200c6b92a7c9ce9deb8530a2edcf591469063946889"
+      "sha256": "f5fd6d28eca8cfd5dcbad86a54f62e0073425a15d97a77898213e705dc9d67e7"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-sc-entitlement/ssi/2021/249/regulation-13.xml",
@@ -43,11 +43,6 @@
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "lb3/0ermgvG9IiQMsXkz//M0IOsTjtr53lvhjbWgTa+Q7iL6bU14xhNSjbklj3UMoXpYTqNWGHvs/5vJUaRyCg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-sc-entitlement"
 }

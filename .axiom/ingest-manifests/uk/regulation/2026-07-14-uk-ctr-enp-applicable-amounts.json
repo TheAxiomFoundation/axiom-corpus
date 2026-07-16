@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-enp-applicable-amounts.jsonl",
-      "sha256": "e37eb27d934d13101579a278d30032a16b1999375f41ffd723618eb09d48f4a6"
+      "sha256": "0d4ff292a3ed7375390f23b45871814cfbf19f5a6a2f932ae9f81f74473fe083"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-enp-applicable-amounts/uksi/2012/2885/schedule-2-part-1-paragraph-1.xml",
@@ -51,11 +51,6 @@
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "1vLXnspJ5KFBC0DP/9oZSjRMJWDVrAJd+2oC/Y6zFYOwEtoMWmSFp91Qq1a81UCd0HGeBYRihUpMUUykUlMKAw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-14-uk-ctr-enp-applicable-amounts"
 }

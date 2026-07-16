@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-end-income.jsonl",
-      "sha256": "f3d4d7a5f16a4104702b404b8acccf8b71a951283eb09569ff0e8b1faea1c9a2"
+      "sha256": "7f2f9fe10e7296991309af41c60005a930deb433e59263c422bb39d9d6d8dff9"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-income/uksi/2012/2886/schedule-paragraph-26.xml",
@@ -83,11 +83,6 @@
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "d3qE6yC7qQp5KU4mDqB+Yk226Oe8YJjVttx/WBltZ9w1sEIwzsZK56y+IMrwNy2bMtieNvv0XXT7N1DeGjkMDw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-14-uk-ctr-end-income"
 }

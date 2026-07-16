@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-enp-regs.jsonl",
-      "sha256": "a787e9b3717cec5af5c11add527543a35982b54ebfd68848de4675492f9fda28"
+      "sha256": "1e768c8e201e2bf7c300893cd789a2d43f84074d5f62baa539f9b1a5ed62ac72"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-regs/uksi/2012/2885/regulation-11.xml",
@@ -39,11 +39,6 @@
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "nkOxfreiEQqMGcUYTpk42VZnLmYOwBEPb5z5gUz/2Q4/Wwt3zekzJn+ix3UOPDUgZXa/fU3ztwOU9rEb+knSBA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-enp-regs"
 }

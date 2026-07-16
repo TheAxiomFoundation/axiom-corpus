@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-wa-classes.jsonl",
-      "sha256": "b89ca6af745f2ef5e81284c02018f3f0163fb967484603ce5161002f828207f1"
+      "sha256": "bb8c97d368174126eabcf25295c41750b882cbf54c7f7da1a7d8adf2ff049b1c"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-classes/wsi/2013/3029/regulation-22.xml",
@@ -51,11 +51,6 @@
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "2xJIJT1XTdtdM7NTlMGO1jNnCs+9QxCDkVMEnIzzgqHkOEYqG8MtSO2QlavfRcNBir7FccXgyip9tX+l2YtWBQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-wa-classes"
 }

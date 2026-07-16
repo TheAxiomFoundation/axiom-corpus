@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award.jsonl",
-      "sha256": "4877dab971b38074670e69278694817d4e78bab93c841972d80faf4a9037b4e9"
+      "sha256": "169c438d6a428ee0bbd2877d08a83b4a807e79f984d2ab90341446be1387522f"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award/wsi/2013/3029/schedule-6-paragraph-1.xml",
@@ -59,11 +59,6 @@
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "YmCwFyseiheX5h0bTyCpSwlF4LdVH4OrxAJiIRI8u/a14upeDzzMspucQ4N5MPfewP5TxaOi82OKKz8GcOSMDw=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-wa-workingage-award"
 }

@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-end-sch3.jsonl",
-      "sha256": "576680cfc010d5f612a00183caf1c62ab503f4ded33ab01959fcf2bbce204756"
+      "sha256": "971a3704ef3af05034b64ae87f5cecdbf584b80d37fe95683cfc6978354f6b52"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch3/uksi/2012/2886/appendix-3-paragraph-1.xml",
@@ -59,11 +59,6 @@
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "MwayP1NLSalWy57h2aJwtw9fXur1p2G26nAJKehcBZYyBnLOuxKqkiD8kJLch7N6oVDIAD6rDM/Ugc7mj++1DA=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-14-uk-ctr-end-sch3"
 }

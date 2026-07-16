@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-scp-award.jsonl",
-      "sha256": "5e5180d6a5ad707b0cf402744755650591fc872fd54ebc5ac09b914b61b105ec"
+      "sha256": "8e8219024bfbb2117fb2f17027f07a057a415363a315810f8b4bb2f26b0ac622"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award/ssi/2012/319/regulation-14.xml",
@@ -71,11 +71,6 @@
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "cZnAdhj49ER2kD3d4zm+q+/L1SedVDoR/X7NO9Inurmli3MnpQxs4bk8/EQHykyD9VL9N59dWsE1Ugrpn+SDDg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-scp-award"
 }

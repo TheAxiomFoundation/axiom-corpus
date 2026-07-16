@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award.jsonl",
-      "sha256": "8e366c526d234ac46498e3d6a2494cde3989d1a0f173bbc4bceacbc401e7c782"
+      "sha256": "c68be6ffe90e35208abe3c4a8593571a1d0b5fd261e324456fb4ed8a1f5b1913"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award/wsi/2013/3029/schedule-1-paragraph-1.xml",
@@ -55,11 +55,6 @@
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "KlNRESAEl2bAfud3e6cxXb0jgS3ccHYA4UcJj7RCofs2lsxmTE3MPCBRxz3SM/AbVMksVtWXFVM5yaHOKyAtCQ=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-wa-pensioner-award"
 }
