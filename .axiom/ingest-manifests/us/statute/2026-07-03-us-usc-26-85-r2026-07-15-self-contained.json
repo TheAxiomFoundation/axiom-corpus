@@ -1,0 +1,42 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/coverage/us/statute/2026-07-03-us-usc-26-85-r2026-07-15-self-contained.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/inventory/us/statute/2026-07-03-us-usc-26-85-r2026-07-15-self-contained.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us/statute/2026-07-03-us-usc-26-85-r2026-07-15-self-contained.jsonl"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-03-us-usc-26-85-r2026-07-15-self-contained/official-documents/uscode-2024-title26-section85.html"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "bbbe2f5be4c85ef6c402ac68564f6ddfe4765c7c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
+  },
+  "coverage": null,
+  "document_class": "statute",
+  "generated_at": "2026-07-16T22:17:15.030976+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "H6xt6j119V7sZPlSd1qo+CghllkY1vn1VZixZ1B6BQZ8iLdGtgm1Jkc5oyOhLsIcxpMbpws2Yf0VZwr0fxJpBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-us-usc-26-85-r2026-07-15-self-contained"
+}
