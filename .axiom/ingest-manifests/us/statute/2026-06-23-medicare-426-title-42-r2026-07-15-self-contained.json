@@ -1,0 +1,44 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.json",
+      "sha256": "96a7721b2b7d86d7ed80fc860f6e0895321e12b12abb911e2d106b6d9075c559"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.json",
+      "sha256": "a040ff14e2027efd93aa1946e87f881fa4c3449731252aac19a15c4f5bd70a44"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.jsonl",
+      "sha256": "c5994a4f8e3919273a50abc4d22895d3dca99a05560ba012423cf58d91c42302"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained/uslm/usc42.xml",
+      "sha256": "bcb75f33c3f9720b9d2f26d9bf0c0524cac53d2672a168a5465df49f1460075b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a2e13854db57390dcd780f5f050a32b6ad09af05",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-medicare-426-20260623"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus extract-usc --base data/corpus --version 2026-06-23-medicare-426 --source-xml /tmp/axiom-uscode/current/usc42.xml --title 42 --section 426 --source-as-of 2026-06-23 --expression-date 2026-06-23 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/99/xml_usc42@119-99.zip"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "statute",
+  "generated_at": "2026-06-23T16:33:04.998788+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-23-medicare-426-title-42-r2026-07-15-self-contained"
+}

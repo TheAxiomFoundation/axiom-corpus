@@ -28,12 +28,12 @@ sign_scope us guidance 2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-containe
 sign_scope us guidance 2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained
 sign_scope us guidance 2026-07-08-snap-fy2024-cola
 sign_scope us guidance 2026-07-13-recovery
-sign_scope us regulation 2026-05-10-snap-7-cfr-273
-sign_scope us regulation 2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained
+sign_scope us regulation 2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained
+sign_scope us regulation 2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained
 sign_scope us regulation 2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained
 sign_scope us regulation 2026-07-13-recovery
 sign_scope us statute 2026-05-10-snap-sections
-sign_scope us statute 2026-05-10-tax-sections-r2026-07-15-self-contained
+sign_scope us statute 2026-05-10-tax-sections-r2026-07-15-self-contained-r2026-07-15-self-contained
 sign_scope us statute 2026-07-13-recovery-r2026-07-15-self-contained
 sign_scope us-al manual 2026-05-27-al-snap-poe-manual-r2026-07-15-self-contained
 sign_scope us-al manual 2026-07-13-recovery

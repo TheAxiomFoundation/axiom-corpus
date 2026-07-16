@@ -168,6 +168,21 @@ def _close_scope(
                 row for row in existing.values() if row.get("parent_citation_path") == parent_path
             )
             parent = _choose_parent_template(parent_path, scope, child, by_path)
+            # A template borrowed from another scope must not retain that
+            # scope's source path: release validation and provenance require
+            # every synthesized container to point into its own source tree.
+            source_prefix = f"sources/{scope[0]}/{scope[1]}/{scope[2]}/"
+            source_template = next(
+                (
+                    candidate
+                    for candidate in existing.values()
+                    if str(candidate.get("source_path") or "").startswith(source_prefix)
+                ),
+                child,
+            )
+            for field in ("source_url", "source_path", "source_format"):
+                if source_template.get(field):
+                    parent[field] = source_template[field]
             canonical_parent_id = deterministic_provision_id(parent_path)
             parent["id"] = canonical_parent_id
             metadata = dict(parent.get("metadata") or {})
@@ -266,7 +281,13 @@ def _rename_sources(old: Path, new: Path, old_version: str, new_version: str) ->
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--conflicts", type=Path, required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--conflicts", type=Path)
+    source.add_argument(
+        "--audit-residuals",
+        action="store_true",
+        help="repair every scope whose own artifact omits a referenced parent",
+    )
     parser.add_argument("--repo", type=Path, default=Path("."))
     parser.add_argument("--release", type=Path, default=Path("manifests/releases/us-rulespec-2026-07-13.json"))
     parser.add_argument("--suffix", default=DEFAULT_SUFFIX)
@@ -277,14 +298,29 @@ def main() -> int:
     release_path = repo / args.release
     release = _json(release_path)
     scopes = _release_scopes(release)
-    conflicts = _json(args.conflicts)
-    if not isinstance(conflicts, list) or len(conflicts) != 27849:
-        raise ValueError("expected the complete 27,849-row publisher conflict plan")
     by_path, by_legacy_id = _artifact_index(base, scopes)
 
     repair: set[tuple[str, str, str]] = set()
     assigned = 0
     cascade_parent_paths: dict[str, str] = {}
+    if args.audit_residuals:
+        conflicts: list[dict[str, Any]] = []
+        for scope in scopes:
+            rows = _rows(_scope_paths(base, scope)["provisions"])
+            local_paths = {str(row["citation_path"]) for row in rows}
+            if any(
+                row.get("parent_citation_path")
+                and str(row["parent_citation_path"]) not in local_paths
+                for row in rows
+            ) or any(
+                (row.get("metadata") or {}).get("self_containment_container")
+                for row in rows
+            ):
+                repair.add(scope)
+    else:
+        conflicts = _json(args.conflicts)
+        if not isinstance(conflicts, list) or len(conflicts) != 27849:
+            raise ValueError("expected the complete 27,849-row publisher conflict plan")
     for conflict in conflicts:
         direct = _direct_scope(conflict, scopes)
         if direct is not None:
@@ -366,6 +402,15 @@ def main() -> int:
                     if candidate.get("parent_citation_path") == row["citation_path"]
                 )
                 template = inventory_by_path.get(str(child["citation_path"]))
+                if template is None:
+                    template = next(
+                        (
+                            item
+                            for path, item in inventory_by_path.items()
+                            if path.startswith(f"{row['citation_path']}/")
+                        ),
+                        None,
+                    )
                 if template is None:
                     raise ValueError(f"no inventory template for added container {row['citation_path']}")
                 for field in ("source_url", "source_path", "source_format"):

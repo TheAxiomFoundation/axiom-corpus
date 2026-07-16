@@ -692,7 +692,9 @@ def _validate_provision_record(
     _warn_unsectioned_document(record, by_path, scope, collector)
     if record.parent_citation_path:
         parent = by_path.get(record.parent_citation_path)
-        if parent is None and record.parent_citation_path not in release_citation_paths:
+        # Supabase derives versioned parent UUIDs, so a citation found only in
+        # another release scope cannot satisfy this scope's FK.
+        if parent is None:
             collector.add(
                 "error",
                 "missing_parent_citation",

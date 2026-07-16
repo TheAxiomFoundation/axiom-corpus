@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained.json",
+      "sha256": "923e7131d08a24d6ef3f695f60d3419a6ca8881fdd7410d3ab8c94d8957c9a3b"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained.json",
+      "sha256": "64349a35286170d971a0951c2521a5c25365d600b531b64c678882ff49f52d19"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained.jsonl",
+      "sha256": "6baf94c9472999adbd646772cdb1d69e4dfa3642d3febda4c79a5ba6c9ab43ca"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained/uslm/usc42.xml",
+      "sha256": "92ad6fa75b4d5309883713e8f0bf7307b044734296dc7711ed10486019546303"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "970a696bec53ae9a518a1d789fec5205543d47ff",
+    "dirty_tracked": true,
+    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ssi-paragraphs-20260620"
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-usc --base data/corpus --version 2026-06-20-ssi-title-xvi --source-xml /tmp/axiom-usc-title42/usc42.xml --source-as-of 2025-12-08 --expression-date 2025-12-08 --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/59/xml_usc42@119-59.zip --section 1381 --section 1382 --section 1382a --section 1382b --section 1382c --section 1382d --section 1382e --section 1382f --section 1382g --section 1382h --section 1382i --section 1382j"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 226,
+    "missing_count": 0,
+    "provision_count": 226,
+    "source_count": 226
+  },
+  "document_class": "statute",
+  "generated_at": "2026-06-20T15:59:00.156116+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-06-20-ssi-title-xvi.md",
+      "sha256": "0ddbde688e6ac36cfe4e1f447871d818a1c1e1b483d07e64a68c362566acade4"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained"
+}
