@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f2bec9cd58e959d6e31a7205348e5fdc7b12aa41",
+    "commit": "b1720b7d277797c3e54c95ed6051a061101afe4d",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "Regenerate post-#358-dedup inventory and coverage from retained scope provisions."
   },
   "coverage": {
     "complete": true,
@@ -35,15 +35,10 @@
     "source_count": 25
   },
   "document_class": "statute",
-  "generated_at": "2026-07-16T19:11:29.518110+00:00",
+  "generated_at": "2026-07-16T19:34:30.969943+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
-  "signature": {
-    "algorithm": "ed25519",
-    "key_id": "axiom-corpus-ingest-v1",
-    "value": "Q56sVLnZZa5Sp5ZxtxYiZmnPcYtlW8z3WMPUWtjCdsoKMexlbdDxYo8zQvl8QOTzjS/zhNixT37EZRnoXLb+Dg=="
-  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-23-medicare-426-title-42-r2026-07-15-self-contained"
 }
