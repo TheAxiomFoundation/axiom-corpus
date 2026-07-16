@@ -1000,8 +1000,6 @@ def _require_tracked_release_inputs(
                 "ls-files",
                 "-z",
                 "--cached",
-                "--",
-                *sorted(required),
             ],
             check=True,
             capture_output=True,
