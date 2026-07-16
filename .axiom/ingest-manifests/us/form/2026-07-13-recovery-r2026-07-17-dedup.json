@@ -30,7 +30,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "210a0991089dab66fd34f05ffb5c1e9a8be63d12",
+    "commit": "989e5ad9223abc0a1b600e9861ea9b8d47e079af",
     "dirty_tracked": false,
     "root": "."
   },
@@ -47,10 +47,15 @@
     "source_count": 2
   },
   "document_class": "form",
-  "generated_at": "2026-07-16T19:47:26.052381+00:00",
+  "generated_at": "2026-07-16T21:01:40.847612+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WHD700S6tMJ4OxYvQgNujWIE8VdgO9JXDUJO7ymglL+ZDliUFAb42HnKkfnIwzknWlAzH+tGSIOAUMQRi7bWDA=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery-r2026-07-17-dedup"
 }
