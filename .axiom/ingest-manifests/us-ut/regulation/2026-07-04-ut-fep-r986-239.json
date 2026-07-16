@@ -1,48 +1,41 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-ut/regulation/2026-07-04-ut-fep-r986-239.json",
-      "sha256": "4446bc9365a171dee48c7154e94db293eb8ff420241e5c5866e55368df336759"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ut/regulation/2026-07-04-ut-fep-r986-239.json"
     },
     {
-      "path": "data/corpus/inventory/us-ut/regulation/2026-07-04-ut-fep-r986-239.json",
-      "sha256": "16157d11086724543508829691582ad14f6b68d7da3227f503fac38b48712df5"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ut/regulation/2026-07-04-ut-fep-r986-239.json"
     },
     {
-      "path": "data/corpus/provisions/us-ut/regulation/2026-07-04-ut-fep-r986-239.jsonl",
-      "sha256": "2771a782b9433ca2f18ad2358bc5db0c0a7eb5e2b0e51fc1767d50858831e09b"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ut/regulation/2026-07-04-ut-fep-r986-239.jsonl"
     },
     {
-      "path": "data/corpus/sources/us-ut/regulation/2026-07-04-ut-fep-r986-239/official-documents/ut-admin-rules-r986-200-239-current.html",
-      "sha256": "dfeea52232106a22928363299ce010d5c3aa5e74c8b9cc49c5e07b6fdfe7ecf0"
+      "deleted": true,
+      "path": "data/corpus/sources/us-ut/regulation/2026-07-04-ut-fep-r986-239/official-documents/ut-admin-rules-r986-200-239-current.html"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "d40d6b59866a7452432824f4ef1f8868f0d26dd3",
+    "commit": "a7cc36331b4498f26a201f8aefa3772b72b1bcd1",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 1,
-    "missing_count": 0,
-    "provision_count": 1,
-    "source_count": 1
-  },
+  "coverage": null,
   "document_class": "regulation",
-  "generated_at": "2026-07-16T19:47:24.159322+00:00",
+  "generated_at": "2026-07-16T22:17:15.628415+00:00",
   "jurisdiction": "us-ut",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ACR7LDZIzWfoG+Qk07f6QYI7llWO97Y76jIhM2tlLY2HFv7eXaO2Ui2g3u7Z9TlZxw6icASpHPvpVXyLyjPOAQ=="
+    "value": "e+No1DDLf0BYoLG/je9D6Q4Vcwc3rSPl6uf92CBoQYCqY39PWlxqM4yq4jqxTRrjXgL0Hitw2TMZj/j/folwBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-ut-fep-r986-239"
