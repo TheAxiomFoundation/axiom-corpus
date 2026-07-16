@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/coverage/us-tx/manual/2026-07-13-recovery.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/inventory/us-tx/manual/2026-07-13-recovery.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us-tx/manual/2026-07-13-recovery.jsonl"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/official-documents/release-scope-us-tx-manual-2026-05-27-tx-manuals"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/official-documents/us-tx-works-handbook"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/provenance/release-scope-us-tx-manual-2026-05-27-tx-manuals.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-tx/manual/2026-07-13-recovery/provenance/us-tx-works-handbook.json"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6be6d2ffcf2a9afeac616b9cc888bbfaee215521",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
+  },
+  "coverage": null,
+  "document_class": "manual",
+  "generated_at": "2026-07-16T22:17:15.549032+00:00",
+  "jurisdiction": "us-tx",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oUye86JXdk6MlnL5H4is894TGg9FXTdhdlDqMfmebQnsnkABoFlihgsfHfEP8pdgWzCIbVX8AFpKOjv5WGkdAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}
