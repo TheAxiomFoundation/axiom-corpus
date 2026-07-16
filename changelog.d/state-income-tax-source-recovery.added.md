@@ -1,1 +1,1 @@
-Add complete official statute scopes for Louisiana title 47, Montana title 15, New Mexico chapter 7, and Oklahoma title 68, including the central state income tax rate provisions.
+Add complete official statute scopes for Louisiana title 47, Montana title 15, New Mexico chapter 7, New Jersey title 54A, and Oklahoma title 68, including their state income tax rate provisions, and preserve New Jersey bodies whose official text repeats a section header.

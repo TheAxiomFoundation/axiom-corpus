@@ -72,3 +72,20 @@ sources:
     metadata:
       source_authority: Oklahoma Legislature
       source_scope_note: Current Oklahoma Statutes title 68 RTF from the official Legislature CompleteTitles directory.
+
+  - source_id: us-nj-statutes
+    jurisdiction: us-nj
+    document_class: statute
+    adapter: new-jersey-statutes
+    source_url: https://pub.njleg.state.nj.us/Statutes/STATUTES-TEXT.zip
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-nj-statutes/2026-07-16-pit-central
+      only_title: "54A"
+      timeout_seconds: 180
+      request_attempts: 3
+    metadata:
+      source_authority: New Jersey Legislature
+      source_scope_note: Current New Jersey Statutes title 54A from the official Legislature bulk text release.
