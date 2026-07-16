@@ -132,6 +132,7 @@ def _require_recovery_payloads():
 
 
 def test_recovery_parses_assembled_az_faa5_at_declared_citation_depth() -> None:
+    _require_recovery_payloads()
     path = REPO / "recovered-fetched/release-scope-us-az-manual-2025-10-30-az-des-faa5-manual"
     provenance = json.loads(path.with_name(path.name + ".provenance.json").read_text())
     entry = {
