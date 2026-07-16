@@ -261,6 +261,12 @@ def test_extract_provisions_stable_across_timestamp_churn(tmp_path):
             version=version,
             source_xmls=(source_xml,),
             expression_date="2026-02-13",
+            # version ("v-original"/"v-refetch") is not a date-prefixed
+            # ingest slug, so an explicit source_as_of is required
+            # (_date_text fails closed instead of persisting it verbatim).
+            # A constant value keeps this identical across both runs, same
+            # as expression_date, so it needs no neutralization below.
+            source_as_of="2026-02-13",
         )
         source_bytes = next((base / "data" / "corpus" / "sources").rglob("*.xml")).read_bytes()
         provisions = (

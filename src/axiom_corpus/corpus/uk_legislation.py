@@ -120,8 +120,8 @@ def extract_uk_legislation_sections(
     if source not in ("clml", "lex"):
         raise ValueError(f"unknown source backend: {source}")
 
-    source_as_of_text = source_as_of or version
-    expression_date_text = _date_text(expression_date, source_as_of_text)
+    source_as_of_text = _date_text(source_as_of, version, flag="--source-as-of")
+    expression_date_text = _date_text(expression_date, source_as_of_text, flag="--expression-date")
 
     prepared: list[_PreparedSource] = [
         _prepare_clml_source(name, source_bytes)
@@ -598,12 +598,68 @@ def _provision_ordinal(provision: str | None) -> int | None:
     return int(provision) if provision.isdigit() else None
 
 
-def _date_text(value: date | str | None, fallback: str) -> str:
-    if value is None:
-        return fallback
+# Matches a leading ISO ``YYYY-MM-DD`` date, with or without trailing content.
+_ISO_DATE_PREFIX_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
+
+
+def _date_text(value: date | str | None, fallback: str, *, flag: str) -> str:
+    """Resolve an ``expression_date``/``source_as_of`` value to a validated ISO
+    ``YYYY-MM-DD`` string, or raise.
+
+    Both call sites in :func:`extract_uk_legislation_sections` route through
+    this one function -- ``source_as_of_text`` first, then
+    ``expression_date_text`` falling back to *it* -- so neither corpus date
+    field can end up holding non-date text. This is the fail-closed fix for
+    axiom-corpus#358 / rulespec-uk#140: ~100 provision rows were written with
+    ``expression_date``/``source_as_of`` equal to the raw ingest version slug
+    (e.g. ``"2026-07-13-uk-ctr-enp-regs"``) because ``source_as_of_text`` used
+    to be computed as plain ``source_as_of or version`` (bypassing this
+    function entirely), and this function used to return an unvalidated
+    ``fallback`` verbatim whenever ``value`` was ``None``. Release
+    deep-validation then flagged those rows as
+    ``invalid_expression_date``/``invalid_source_as_of``.
+
+    Behavior, checked against whichever of ``value``/``fallback`` is in play
+    (``value`` wins when given; ``fallback`` is used only when ``value`` is
+    ``None``):
+
+      (a) A ``date`` instance -> its ``.isoformat()``, unchanged.
+      (b) A string that is already an exact ``YYYY-MM-DD`` date -> returned
+          unchanged.
+      (c) A string with a *leading* ``YYYY-MM-DD`` prefix followed by other
+          text -> the validated date prefix is extracted and the trailing
+          text is dropped. This is the documented ingest version-slug
+          convention (``<date>-<description>``, e.g.
+          ``"2026-07-13-uk-ctr-enp-regs"``): when a caller omits
+          ``--source-as-of``/``--expression-date``, the version is the only
+          date-bearing value available, and its leading date component *is*
+          correct data for a date field -- only the trailing description was
+          ever noise. Extracting the prefix preserves that existing "derive
+          the date from the version when not given explicitly" behavior for
+          slugs shaped this way, while (d) below refuses to fabricate a date
+          for anything that isn't.
+      (d) Anything else (no parseable leading date at all, e.g. a bare label
+          like ``"ctr"``) raises ``ValueError`` naming the offending value and
+          ``flag``, so the caller must pass an explicit, valid date rather
+          than have non-date text silently persisted into a date field.
+    """
     if isinstance(value, date):
         return value.isoformat()
-    return value
+    candidate = fallback if value is None else value
+    match = _ISO_DATE_PREFIX_RE.match(candidate)
+    if match:
+        prefix = match.group(1)
+        try:
+            date.fromisoformat(prefix)
+        except ValueError:
+            pass
+        else:
+            return prefix
+    raise ValueError(
+        f"{flag} must be an ISO YYYY-MM-DD date, or start with one (as an "
+        f"ingest version slug does, e.g. '2026-07-13-uk-ctr-enp-regs'); got "
+        f"{candidate!r}. Pass an explicit {flag} instead."
+    )
 
 
 def _dedupe_records(records: Iterable[ProvisionRecord]) -> tuple[ProvisionRecord, ...]:
