@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "d18df58f5d89350c22507573b749eaaa2162fa88",
+    "commit": "98c52230715d2c5085ecb3ab995002550f884bc5",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,10 +39,15 @@
     "source_count": 6
   },
   "document_class": "statute",
-  "generated_at": "2026-07-15T22:26:12.223622+00:00",
+  "generated_at": "2026-07-16T01:02:06.712045+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vxuB4NR/OnSKvYuCh5eM5HJK5gK4lQKRDTLCsDJTsHJS3HY33J/HapbQ2cf93S5hMddTfCJ1F4xAqiMEToLuBw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-10-tax-sections-r2026-07-15-self-contained-r2026-07-15-self-contained"
 }
