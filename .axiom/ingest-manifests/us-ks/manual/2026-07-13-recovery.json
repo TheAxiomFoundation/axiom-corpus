@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ks/manual/2026-07-13-recovery.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ks/manual/2026-07-13-recovery.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ks/manual/2026-07-13-recovery.jsonl"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/official-documents/release-scope-us-ks-manual-2026-05-27-ks-keesm"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/official-documents/us-ks-keesm"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/provenance/release-scope-us-ks-manual-2026-05-27-ks-keesm.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/provenance/us-ks-keesm.json"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4736fedfc817f2de9f07ac20f0aad416b044f756",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
+  },
+  "coverage": null,
+  "document_class": "manual",
+  "generated_at": "2026-07-16T22:17:15.470752+00:00",
+  "jurisdiction": "us-ks",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kHsve2tP6NJ43xpjsqw2MsIQNuOOtD27gMxL+7qPXfOdZLqS9PatfAXKTwJmMoP9R1rkStxiFlHvMGF9ZgbNAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}
