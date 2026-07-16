@@ -868,3 +868,28 @@ def test_internal_xml_comments_never_reach_bodies_but_their_tails_do():
     assert "Ende:" not in p66.body
     # The text split across the comment must survive intact.
     assert "Das Kindergeld beträgt 255 Euro monatlich." in p66.body
+
+
+def test_nested_table_rows_render_exactly_once():
+    xml = SAMPLE_JURIS_XML.replace(
+        "<row><entry>1</entry><entry>255 Euro</entry></row>",
+        "<row><entry>1</entry><entry>255 Euro</entry></row>"
+        '<row><entry>Formel</entry><entry><table><tgroup cols="1"><tbody>'
+        "<row><entry>M = 1,15 - Faktor</entry></row>"
+        "</tbody></tgroup></table></entry></row>",
+    )
+    norms = parse_gii_law(xml.encode("utf-8"), law=SAMPLE_LAW)
+    anlage = next(n for n in norms if n.norm_slug == "anlage-1")
+    assert anlage.body.count("M = 1,15 - Faktor") == 1
+
+
+def test_block_level_comment_tail_is_preserved():
+    xml = SAMPLE_JURIS_XML.replace(
+        "<P>(2) Ausgenommen sind K\u00f6rperschaften des \u00f6ffentlichen Rechts.</P>",
+        "<P>(2) Ausgenommen sind K\u00f6rperschaften des \u00f6ffentlichen Rechts.</P>"
+        "<!-- Start: Umbau -->Nachgestellter Gesetzestext.",
+    )
+    norms = parse_gii_law(xml.encode("utf-8"), law=SAMPLE_LAW)
+    p1 = next(n for n in norms if n.norm_slug == "1")
+    assert "Start:" not in p1.body
+    assert "Nachgestellter Gesetzestext." in p1.body
