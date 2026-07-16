@@ -1,0 +1,53 @@
+version: "2026-07-16-pit-west"
+sources:
+  - source_id: us-or-ors
+    jurisdiction: us-or
+    document_class: statute
+    adapter: oregon-ors
+    source_url: https://www.oregonlegislature.gov/bills_laws/Pages/ORS.aspx
+    version: "2026-07-16-pit-west"
+    options:
+      source_dir: ../data/corpus/sources/us-or/statute/2026-05-06/oregon-ors-html
+      source_year: 2025
+      source_as_of: "2026-05-06"
+      expression_date: "2026-05-06"
+      only_chapter: "316"
+      workers: 8
+    metadata:
+      source_authority: Oregon State Legislature
+      source_scope_note: Current Oregon Revised Statutes chapter 316, Personal Income Tax, from the official Legislature HTML.
+
+  - source_id: us-ri-general-laws
+    jurisdiction: us-ri
+    document_class: statute
+    adapter: rhode-island-general-laws
+    source_url: https://webserver.rilegislature.gov/Statutes/
+    version: "2026-07-16-pit-west"
+    options:
+      source_dir: ../data/corpus/sources/us-ri/statute/2026-05-06/rhode-island-general-laws-html
+      source_year: 2026
+      source_as_of: "2026-05-06"
+      expression_date: "2026-05-06"
+      only_title: "44"
+      only_chapter: "44-30"
+      workers: 8
+    metadata:
+      source_authority: Rhode Island General Assembly
+      source_scope_note: Current Rhode Island General Laws chapter 44-30, Personal Income Tax, from the official General Assembly HTML.
+
+  - source_id: us-wi-statutes
+    jurisdiction: us-wi
+    document_class: statute
+    adapter: wisconsin-statutes
+    source_url: https://docs.legis.wisconsin.gov/statutes/prefaces/toc
+    version: "2026-07-16-pit-west"
+    options:
+      source_dir: ../data/corpus/sources/us-wi/statute/2026-05-10/wisconsin-statutes-html
+      source_as_of: "2026-04-03"
+      expression_date: "2026-04-03"
+      base_url: https://docs.legis.wisconsin.gov
+      only_title: "71"
+      workers: 8
+    metadata:
+      source_authority: Wisconsin Legislative Reference Bureau
+      source_scope_note: Updated 2023-24 Wisconsin Statutes chapter 71, Income and Franchise Taxes, from the official Legislature HTML, published April 3, 2026.
