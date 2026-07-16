@@ -75,7 +75,7 @@ SAMPLE_JURIS_XML = """\
 </norm>
 <norm builddate="20260716000000" doknr="BJNRTESTG00000000BJNE000500000">
 <metadaten><jurabk>TestG 2020</jurabk><enbez>§ 66</enbez><titel format="XML">Höhe des Kindergeldes</titel></metadaten>
-<textdaten><text format="XML"><Content><P>Das Kindergeld beträgt 255 Euro monatlich.</P></Content></text></textdaten>
+<textdaten><text format="XML"><Content><P><!-- Start: interner Umbruch -->Das Kindergeld beträgt <!-- SPLIT UMBAU -->255 Euro monatlich.</P><!-- Ende: interner Umbruch --></Content></text></textdaten>
 </norm>
 <norm builddate="20260716000000" doknr="BJNRTESTG00000000BJNE000700000">
 <metadaten><jurabk>TestG 2020</jurabk><enbez>(XXXX) §§ 7c bis 7d</enbez><titel format="XML">(weggefallen)</titel></metadaten>
@@ -83,7 +83,7 @@ SAMPLE_JURIS_XML = """\
 </norm>
 <norm builddate="20260716000000" doknr="BJNRTESTG00000000BJNE000800000">
 <metadaten><jurabk>TestG 2020</jurabk><enbez>Anlage 1</enbez><titel format="XML">(zu § 66)Kindergeldtabelle</titel></metadaten>
-<textdaten><text format="XML"><Content><table><tgroup cols="2"><tbody>
+<textdaten><text format="XML"><Content><table><Title Align="auto">1. Kindergeldtabelle nach Ordnungsnummern</Title><tgroup cols="2"><tbody>
 <row><entry>Kinder</entry><entry>Betrag</entry></row>
 <row><entry>1</entry><entry>255 Euro</entry></row>
 </tbody></tgroup></table></Content></text></textdaten>
@@ -849,3 +849,22 @@ def test_version_slug_never_reaches_date_fields(tmp_path):
         assert iso.match(record["expression_date"]), record["expression_date"]
         assert record["source_as_of"] != "2026-07-16-de"
         assert record["expression_date"] != "2026-07-16-de"
+
+
+# ---------------------------------------------------------------------------
+# Rendering fidelity regressions (gate findings on the first live ingest)
+# ---------------------------------------------------------------------------
+def test_table_titles_are_statutory_content():
+    norms = parse_gii_law(SAMPLE_JURIS_XML.encode("utf-8"), law=SAMPLE_LAW)
+    anlage = next(n for n in norms if n.norm_slug == "anlage-1")
+    assert "1. Kindergeldtabelle nach Ordnungsnummern" in anlage.body
+
+
+def test_internal_xml_comments_never_reach_bodies_but_their_tails_do():
+    norms = parse_gii_law(SAMPLE_JURIS_XML.encode("utf-8"), law=SAMPLE_LAW)
+    p66 = next(n for n in norms if n.norm_slug == "66")
+    assert "Start:" not in p66.body
+    assert "SPLIT UMBAU" not in p66.body
+    assert "Ende:" not in p66.body
+    # The text split across the comment must survive intact.
+    assert "Das Kindergeld beträgt 255 Euro monatlich." in p66.body
