@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "bd615efe549d81e711bd838e9142d96d51984944",
+    "commit": "18ecbdc41daf0f98094f766164435de8fa94dd3a",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,10 +35,15 @@
     "source_count": 112
   },
   "document_class": "statute",
-  "generated_at": "2026-07-16T19:47:30.049094+00:00",
+  "generated_at": "2026-07-16T21:01:44.191892+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UHl8ObcGNRfKxHC9+kHunKq3fAPI1K/5zPssp/9kngvmGdmd1TsAhqdHHIXuj9X7oQeRJvMu9/2uMavzppI0Cg=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained-r2026-07-17-dedup"
 }
