@@ -22,7 +22,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3fc2d78f75e7e0728162d98faf5bcf997cff1999",
+    "commit": "e4f4705f7fba2ccc4a1db580d254377b35d8fe57",
     "dirty_tracked": false,
     "root": "."
   },
@@ -39,10 +39,15 @@
     "source_count": 14
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-16T19:47:26.682112+00:00",
+  "generated_at": "2026-07-16T21:01:41.426572+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "aEaunSnzCjRjkdfCPny91502vfgUjPvFxaxyPokZCdH6Z8/MBBD0dkjoOGqHjq/Civc3Tk/y9kfsC9W9PUXoBw=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained-r2026-07-17-dedup"
 }
