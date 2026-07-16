@@ -30,13 +30,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "commit": "c76d2864b5aff45d211efd1b163ef58090f7effe",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-enp-sch1-award --citation uksi/2012/2885/schedule/1/paragraph/1 --citation uksi/2012/2885/schedule/1/paragraph/4 --citation uksi/2012/2885/schedule/1/paragraph/6 --citation uksi/2012/2885/schedule/1/paragraph/9"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -47,10 +47,15 @@
     "source_count": 4
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T01:38:45.611833+00:00",
+  "generated_at": "2026-07-16T18:42:17.098099+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iLyWyYFTFFEOugTNi5nyLdPQHQl97RqfIsZu+yHJV7IX+qTopqgSwR48BgG0goYlTL0ZiOsyuai6+sM3MGWdAQ=="
+  },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-enp-sch1-award"
 }
