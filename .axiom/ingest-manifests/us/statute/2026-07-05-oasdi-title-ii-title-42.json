@@ -1,48 +1,41 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us/statute/2026-07-05-oasdi-title-ii-title-42.json",
-      "sha256": "1125dee5a120cd643f0cd2b96c455594acc93410c3ce4dd257eade6110efca23"
+      "deleted": true,
+      "path": "data/corpus/coverage/us/statute/2026-07-05-oasdi-title-ii-title-42.json"
     },
     {
-      "path": "data/corpus/inventory/us/statute/2026-07-05-oasdi-title-ii-title-42.json",
-      "sha256": "22fbc0cbdd9ee70ea7188e58aa407910d0fc389044f6b9c5c4f9b37f5920dbc4"
+      "deleted": true,
+      "path": "data/corpus/inventory/us/statute/2026-07-05-oasdi-title-ii-title-42.json"
     },
     {
-      "path": "data/corpus/provisions/us/statute/2026-07-05-oasdi-title-ii-title-42.jsonl",
-      "sha256": "2f159dc18a5c88af2f66f8282ee0734a9e11f11113fe4d5799389c57df1b30e1"
+      "deleted": true,
+      "path": "data/corpus/provisions/us/statute/2026-07-05-oasdi-title-ii-title-42.jsonl"
     },
     {
-      "path": "data/corpus/sources/us/statute/2026-07-05-oasdi-title-ii-title-42/uslm/usc42.xml",
-      "sha256": "664adb351c7dd6a27844ad9db2491c406f8fc5351b260c627f485523c6a022aa"
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-07-05-oasdi-title-ii-title-42/uslm/usc42.xml"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "4a045d2986568c562f498f51f866fa3d2cee9780",
+    "commit": "a4511bf118d05223fe1f584ef6ba62560d079eb4",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 276,
-    "missing_count": 0,
-    "provision_count": 276,
-    "source_count": 276
-  },
+  "coverage": null,
   "document_class": "statute",
-  "generated_at": "2026-07-16T19:47:31.396686+00:00",
+  "generated_at": "2026-07-16T22:17:15.113688+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "HAkmJjUicO7etC8d6fqyI4Zh98xM2trdKKxKyaxCCMwZ0fnrPN1KbfDca9EhM9xx+0VWcBRWNyH0ag4EGtB2Dw=="
+    "value": "QmDa2NOQbgKircR7lCjVYbdrR8XEhu/wUoXCWL2QT/AoPEKPY+3tGvjHlUlqP1AOkO/qKPHNcPjUMsjruR0nAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-oasdi-title-ii-title-42"

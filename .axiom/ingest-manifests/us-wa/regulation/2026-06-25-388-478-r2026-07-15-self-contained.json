@@ -1,56 +1,49 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json",
-      "sha256": "d0d84cb81d0c7f710d61b81e433fb1a0ca1a43f1b874ee3065b4e4b47bdb413b"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json"
     },
     {
-      "path": "data/corpus/inventory/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json",
-      "sha256": "34dbfaff6a5d32ed1e10bab64963c9c54e7037e3e2844bc2199fb7dcf7b2f365"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.json"
     },
     {
-      "path": "data/corpus/provisions/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.jsonl",
-      "sha256": "6a8c15d7459947e13a6bea2356db126f29e28f774cd349d2278e3ac18003db25"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained.jsonl"
     },
     {
-      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/chapters/chapter-388-478-full.html",
-      "sha256": "375b1127bb44f4833d2270d1865ac2b67f660809af9df6b10a4f16119f574d33"
+      "deleted": true,
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/chapters/chapter-388-478-full.html"
     },
     {
-      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/index.html",
-      "sha256": "425ecebbb744e61c055699144e37cb3f5124817eef5ca2bae5e22ab78aae5220"
+      "deleted": true,
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/index.html"
     },
     {
-      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/titles/title-388.html",
-      "sha256": "2f8cba6ae71b17fe48ac8a2f1ee47bb8c1099af7821779a50688b7512f2d86ac"
+      "deleted": true,
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478-r2026-07-15-self-contained/washington-wac-html/titles/title-388.html"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3f61d939dbaaaeefb89c1683c746e44c439fc8b0",
+    "commit": "d9d08b76519c68c5661598e4961fdcdf2a415ead",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 13,
-    "missing_count": 0,
-    "provision_count": 13,
-    "source_count": 13
-  },
+  "coverage": null,
   "document_class": "regulation",
-  "generated_at": "2026-07-16T19:47:24.771424+00:00",
+  "generated_at": "2026-07-16T22:17:15.710401+00:00",
   "jurisdiction": "us-wa",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "REkZACrYkqSrNt7Q8QkAGcGuY8sHXNbLhLRtVcUnOZ1tynuM766MubwIOLwqXg40FHWt8tJTw4DQydwD6vwbCg=="
+    "value": "vPpsUFCVyHn0S6ix1oXrLCsmx8rJVn6raGrmND5LIfRnQeRJ4snTbM9Zjf70eMOHnLXeKoOHQvEO7edeUH/ZBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-25-388-478-r2026-07-15-self-contained"

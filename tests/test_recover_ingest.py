@@ -187,13 +187,13 @@ def _fetched(tmp_path: Path, *sources: str) -> Path:
     [
         (
             "uscode-olrc-xml",
-            "data/corpus/sources/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained/uslm/usc42.xml",
+            "data/corpus/sources/us/statute/2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup/uslm/usc42.xml",
             {},
             "statute",
         ),
         (
             "uscode-olrc-xml",
-            "data/corpus/sources/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained/uslm/usc42.xml",
+            "data/corpus/sources/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained-r2026-07-17-dedup/uslm/usc42.xml",
             {},
             "statute",
         ),
