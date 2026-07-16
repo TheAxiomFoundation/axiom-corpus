@@ -425,7 +425,7 @@ states:
     notes: Current scope uses the public rules.ok.gov production API for OAC 340 Chapter 50 Supplemental Nutrition Assistance Program, exposed by the official Oklahoma Administrative Rules app.
   - jurisdiction: us-or
     name: Oregon
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_integrated_pdf_manual
     primary_source_url: https://sharedsystems.dhsoha.state.or.us/DHSForms/Served/de2818.pdf
     target_manifest: manifests/us-or-snap-manual.yaml
@@ -433,7 +433,7 @@ states:
     target_scope:
       jurisdiction: us-or
       document_class: manual
-      version: 2026-05-27-or-programs-eligibility-notebook
+      version: 2026-07-16-or-programs-eligibility-notebook
   - jurisdiction: us-pa
     name: Pennsylvania
     queue_status: source_refetch_required
