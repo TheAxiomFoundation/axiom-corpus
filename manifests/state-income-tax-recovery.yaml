@@ -222,3 +222,25 @@ sources:
     metadata:
       source_authority: North Dakota Legislative Council and Office of State Tax Commissioner
       source_scope_note: Current North Dakota Century Code chapter 57-38 with the operative 2026 individual, estate, and trust rate schedules prescribed under N.D.C.C. section 57-38-30.3(1)(g) by the State Tax Commissioner.
+
+  - source_id: us-mo-revised-statutes
+    jurisdiction: us-mo
+    document_class: statute
+    adapter: missouri-revised-statutes
+    source_url: https://revisor.mo.gov/main/OneChapter.aspx?chapter=143
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-mo-revised-statutes/2026-07-16-pit-central
+      only_title: "143"
+      base_url: https://revisor.mo.gov/main/
+      rate_schedule_url: https://dor.mo.gov/forms/MO-1040ES_2026.pdf
+      tax_year: 2026
+      workers: 1
+      request_delay_seconds: 0.25
+      timeout_seconds: 90
+      request_attempts: 3
+    metadata:
+      source_authority: Missouri Revisor of Statutes and Missouri Department of Revenue
+      source_scope_note: Current Revised Statutes of Missouri chapter 143 as of July 16, 2026, excluding the future August 28, 2026 version of section 143.611, with the operative 2026 individual rate schedule published on Form MO-1040ES under sections 143.011 and 143.021.

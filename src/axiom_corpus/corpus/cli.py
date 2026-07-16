@@ -2904,6 +2904,8 @@ def _extract_state_statute_source(
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.02,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 60.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            rate_schedule_url=_optional_text(options.get("rate_schedule_url")),
+            tax_year=_optional_int(options.get("tax_year")) or 2026,
         )
     if adapter == "new-hampshire-rsa":
         return extract_new_hampshire_rsa(
