@@ -3469,6 +3469,150 @@ documents:
     assert records[1].metadata["section_label"] == "section-1"
 
 
+def test_extract_labeled_pdf_sections_can_require_bold_headings(
+    tmp_path: Path,
+) -> None:
+    pdf_path = tmp_path / "styled-manual.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Rule 4.5 Interview.", fontname="tibi")
+    page.insert_text((72, 96), "Interview requirements apply.")
+    page.insert_text((72, 120), "Rule 4.13 Processing Timeframes.", fontname="tiit")
+    page.insert_text((72, 144), "Rule 4.13 Eligibility for U.S.", fontname="tibi")
+    page.insert_text((72, 168), "Citizens.", fontname="tibi")
+    page.insert_text((72, 192), "The seven-day timeframe applies.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: styled-manual
+    jurisdiction: us-test
+    document_class: manual
+    title: Styled Manual
+    source_url: https://example.test/styled-manual.pdf
+    citation_path: us-test/manual/styled
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Rule (?P<label>\\d+\\.\\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-styled-manual",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-test/manual/styled",
+        "us-test/manual/styled/4.5",
+        "us-test/manual/styled/4.13",
+    ]
+    assert records[1].body == (
+        "Interview requirements apply. Rule 4.13 Processing Timeframes."
+    )
+    assert records[2].heading == "4.13 Eligibility for U.S. Citizens."
+    assert records[2].body == "The seven-day timeframe applies."
+
+
+def test_bold_pdf_headings_compose_with_start_after_filter(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "filtered-styled-manual.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Rule 4.13 Processing Timeframes.", fontname="tiit")
+    page.insert_text((72, 96), "BEGIN RULE TEXT")
+    page.insert_text((72, 120), "Rule 4.13 Processing Timeframes.", fontname="tibi")
+    page.insert_text((72, 144), "The seven-day timeframe applies.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: filtered-styled-manual
+    jurisdiction: us-test
+    document_class: manual
+    title: Filtered Styled Manual
+    source_url: https://example.test/filtered-styled-manual.pdf
+    citation_path: us-test/manual/filtered-styled
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^BEGIN RULE TEXT$'
+      section_heading_pattern: '^Rule (?P<label>\\d+\\.\\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-filtered-styled-manual",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-test/manual/filtered-styled",
+        "us-test/manual/filtered-styled/4.13",
+    ]
+    assert records[1].body == "The seven-day timeframe applies."
+
+
+def test_complete_bold_pdf_heading_does_not_consume_bold_body(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "bold-body-manual.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Rule 14.14 Provider Determination.", fontname="tibi")
+    page.insert_text((72, 96), "A. The agency must ensure provider responsibility", fontname="tibo")
+    page.insert_text((72, 120), "to determine whether an individual is ill suited.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: bold-body-manual
+    jurisdiction: us-test
+    document_class: manual
+    title: Bold Body Manual
+    source_url: https://example.test/bold-body-manual.pdf
+    citation_path: us-test/manual/bold-body
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Rule (?P<label>\\d+\\.\\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-bold-body-manual",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "14.14 Provider Determination."
+    assert records[1].body == (
+        "A. The agency must ensure provider responsibility to determine whether an "
+        "individual is ill suited."
+    )
+
+
 def test_extract_labeled_pdf_sections_supports_label_heading_next_line(
     tmp_path: Path,
 ) -> None:
