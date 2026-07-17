@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ms/manual/2026-07-17-ms-snap-policy-manual.json",
-      "sha256": "d2a2775a02048c8d8be63232c6265f7481929f0e5b659e449e881aff164b8be4"
+      "sha256": "7d04296d434fb565030a4b378d0d78f19616b888847988e0b8461c41dde4e2d6"
     },
     {
       "path": "data/corpus/provisions/us-ms/manual/2026-07-17-ms-snap-policy-manual.jsonl",
-      "sha256": "364294c6323fd230a9bad36dbc76a696fc69eed56e5e29121e36fe3e550a1742"
+      "sha256": "da585b4ead84c22626655dd278c0db85ddb24d3c5e71f47e992bcbd23abcc780"
     },
     {
       "path": "data/corpus/sources/us-ms/manual/2026-07-17-ms-snap-policy-manual/official-documents/ms-mdhs-snap-policy-manual-part-14.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "ec691f69bc587bb1f42006126dbd5f518b81e3ed",
+    "commit": "c6ebd52c5177e92d337b6db4b40c2906210c6cc0",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,7 +35,7 @@
     "source_count": 385
   },
   "document_class": "manual",
-  "generated_at": "2026-07-17T17:45:26.884848+00:00",
+  "generated_at": "2026-07-17T18:05:10.415205+00:00",
   "jurisdiction": "us-ms",
   "reasoning_logs": [
     {
@@ -47,7 +47,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "whdtDB2yM8J/FaVdo5rGyzMA402ZWXMEFX+AP64Ie/uAMeK6dl6+vZAKVPO87kmoDKBws9fje9ElQevhIjf1Bg=="
+    "value": "00SSNyevJONMlXLcfBQO8CuTp0A89KU2m6qK/OkdsfcPwH1vVm9f4pQdQ8pblNqYK/ZTUlacHio7KwjfiYKxDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-ms-snap-policy-manual"
