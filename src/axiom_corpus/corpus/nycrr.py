@@ -3,16 +3,18 @@
 from __future__ import annotations
 
 import re
+import subprocess
 import sys
 import time
 from collections import deque
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Protocol, TextIO
 from urllib.parse import parse_qsl, urlencode, urljoin, urlsplit, urlunsplit
 
+import fitz  # type: ignore[import-untyped]
 import requests
 from bs4 import BeautifulSoup
 
@@ -82,6 +84,22 @@ class NycrrPartSource:
     expected_document_count: int | None = None
     expected_section_count: int | None = None
     metadata: Mapping[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class NycrrAdoptedAmendment:
+    """An adopted NYCRR amendment whose final notice incorporates prior text."""
+
+    amendment_id: str
+    target_citation_path: str
+    text_source_url: str
+    adoption_source_url: str
+    effective_date: str
+    text_anchor: str
+    text_end: str
+    adoption_confirmation: str
+    clause_headings: Mapping[str, str]
+    required_text: Mapping[str, Sequence[str]] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -261,6 +279,7 @@ def extract_nycrr_parts(
     *,
     version: str,
     part_sources: Sequence[NycrrPartSource],
+    adopted_amendments: Sequence[NycrrAdoptedAmendment] = (),
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
     delay_seconds: float = 0.25,
@@ -434,6 +453,20 @@ def extract_nycrr_parts(
                     flush=True,
                 )
 
+    for amendment in adopted_amendments:
+        amendment_paths = _apply_adopted_amendment(
+            store,
+            client,
+            version,
+            amendment,
+            items,
+            records,
+            refresh=refresh,
+            delay_seconds=delay_seconds,
+            retry_attempts=retry_attempts,
+        )
+        source_paths.extend(amendment_paths)
+
     inventory_path = store.inventory_path("us-ny", DocumentClass.REGULATION, version)
     store.write_inventory(inventory_path, items)
     provisions_path = store.provisions_path("us-ny", DocumentClass.REGULATION, version)
@@ -460,6 +493,215 @@ def extract_nycrr_parts(
         coverage=coverage,
         source_paths=tuple(source_paths),
     )
+
+
+def _apply_adopted_amendment(
+    store: CorpusArtifactStore,
+    session: _Session,
+    version: str,
+    amendment: NycrrAdoptedAmendment,
+    items: list[SourceInventoryItem],
+    records: list[ProvisionRecord],
+    *,
+    refresh: bool,
+    delay_seconds: float,
+    retry_attempts: int,
+) -> tuple[Path, Path]:
+    text_source = _read_or_fetch_binary(
+        store,
+        session,
+        version,
+        amendment.text_source_url,
+        f"nycrr/amendment/{amendment.amendment_id}-text.pdf",
+        refresh=refresh,
+        delay_seconds=delay_seconds,
+        retry_attempts=retry_attempts,
+    )
+    adoption_source = _read_or_fetch_binary(
+        store,
+        session,
+        version,
+        amendment.adoption_source_url,
+        f"nycrr/amendment/{amendment.amendment_id}-adoption.pdf",
+        refresh=refresh,
+        delay_seconds=delay_seconds,
+        retry_attempts=retry_attempts,
+    )
+    adoption_text = _normalized_pdf_text(adoption_source.content)
+    if amendment.adoption_confirmation not in adoption_text:
+        raise RuntimeError(
+            f"adoption confirmation missing for {amendment.amendment_id}: "
+            f"{amendment.adoption_confirmation!r}"
+        )
+    clauses = _extract_adopted_clauses(
+        _normalized_pdf_text(text_source.content),
+        anchor=amendment.text_anchor,
+        end_marker=amendment.text_end,
+        labels=tuple(amendment.clause_headings),
+    )
+    for label, required_values in amendment.required_text.items():
+        for required_value in required_values:
+            if required_value not in clauses[label]:
+                raise RuntimeError(
+                    f"{amendment.amendment_id} clause {label} is missing "
+                    f"required text {required_value!r}"
+                )
+
+    record_indexes = {record.citation_path: index for index, record in enumerate(records)}
+    item_indexes = {item.citation_path: index for index, item in enumerate(items)}
+    target_paths = {
+        amendment.target_citation_path: "\n".join(
+            clauses[label] for label in amendment.clause_headings
+        ),
+        **{
+            f"{amendment.target_citation_path}/{label}": body
+            for label, body in clauses.items()
+        },
+    }
+    for citation_path, body in target_paths.items():
+        if citation_path not in record_indexes or citation_path not in item_indexes:
+            raise RuntimeError(
+                f"adopted amendment target is absent from NYCRR base: {citation_path}"
+            )
+        record_index = record_indexes[citation_path]
+        record = records[record_index]
+        label = citation_path.rsplit("/", 1)[-1]
+        heading = amendment.clause_headings.get(label, record.heading)
+        metadata = {
+            **record.metadata,
+            "adopted_amendment": amendment.amendment_id,
+            "adopted_effective_date": amendment.effective_date,
+            "amendment_text_source_url": amendment.text_source_url,
+            "amendment_text_source_path": text_source.source_key,
+            "amendment_text_source_sha256": text_source.sha256,
+            "adoption_source_url": amendment.adoption_source_url,
+            "adoption_source_path": adoption_source.source_key,
+            "adoption_source_sha256": adoption_source.sha256,
+            "adoption_confirmation": amendment.adoption_confirmation,
+            "bracketed_prior_text_removed": True,
+        }
+        updated = replace(
+            record,
+            body=body,
+            heading=heading,
+            source_url=amendment.text_source_url,
+            source_path=text_source.source_key,
+            source_id=amendment.amendment_id,
+            source_format="ny-state-register-pdf",
+            source_as_of=amendment.effective_date,
+            expression_date=amendment.effective_date,
+            metadata=metadata,
+        )
+        records[record_index] = updated
+        items[item_indexes[citation_path]] = SourceInventoryItem(
+            citation_path=citation_path,
+            source_url=amendment.text_source_url,
+            source_path=text_source.source_key,
+            source_format="ny-state-register-pdf",
+            sha256=text_source.sha256,
+            metadata=metadata,
+        )
+    return text_source.source_path, adoption_source.source_path
+
+
+@dataclass(frozen=True)
+class _FetchedBinary:
+    content: bytes
+    sha256: str
+    source_path: Path
+    source_key: str
+
+
+def _read_or_fetch_binary(
+    store: CorpusArtifactStore,
+    session: _Session,
+    run_id: str,
+    url: str,
+    relative_name: str,
+    *,
+    refresh: bool,
+    delay_seconds: float,
+    retry_attempts: int,
+) -> _FetchedBinary:
+    source_path = store.source_path(
+        "us-ny", DocumentClass.REGULATION, run_id, relative_name
+    )
+    source_key = f"sources/us-ny/regulation/{run_id}/{relative_name}"
+    if source_path.exists() and not refresh:
+        content = source_path.read_bytes()
+        return _FetchedBinary(content, sha256_bytes(content), source_path, source_key)
+    try:
+        response = _get_with_retries(
+            session,
+            url,
+            delay_seconds=delay_seconds,
+            retry_attempts=retry_attempts,
+        )
+        content = response.content
+    except requests.RequestException:
+        completed = subprocess.run(
+            [
+                "curl",
+                "--fail",
+                "--location",
+                "--silent",
+                "--show-error",
+                "--retry",
+                str(max(1, retry_attempts)),
+                "--retry-all-errors",
+                url,
+            ],
+            check=True,
+            capture_output=True,
+        )
+        content = completed.stdout
+    digest = store.write_bytes(source_path, content)
+    return _FetchedBinary(content, digest, source_path, source_key)
+
+
+def _normalized_pdf_text(content: bytes) -> str:
+    with fitz.open(stream=content, filetype="pdf") as document:
+        text = "\n".join(page.get_text() for page in document)
+    text = text.replace("ﬁ", "fi").replace("ﬂ", "fl")
+    text = text.replace("Department ofAgriculture", "Department of Agriculture")
+    text = re.sub(r"(?<=[A-Za-z])-\s*\n\s*(?=[a-z])", "", text)
+    text = re.sub(
+        r"NYS Register/[A-Za-z]+ \d{1,2}, \d{4}\s+Rule Making Activities\s+\d+",
+        " ",
+        text,
+    )
+    return _clean_text(text)
+
+
+def _extract_adopted_clauses(
+    text: str,
+    *,
+    anchor: str,
+    end_marker: str,
+    labels: Sequence[str],
+) -> dict[str, str]:
+    try:
+        start = text.index(anchor) + len(anchor)
+        end = text.index(end_marker, start)
+    except ValueError as exc:
+        raise RuntimeError("unable to locate adopted amendment text boundary") from exc
+    amendment_text = text[start:end].strip()
+    marker_pattern = re.compile(
+        rf"\((?P<label>{'|'.join(re.escape(label) for label in labels)})\)\s+"
+    )
+    matches = list(marker_pattern.finditer(amendment_text))
+    found_labels = [match.group("label") for match in matches]
+    if found_labels != list(labels):
+        raise RuntimeError(
+            f"unexpected adopted clause labels: {found_labels}; expected {list(labels)}"
+        )
+    clauses = {}
+    for index, match in enumerate(matches):
+        clause_end = matches[index + 1].start() if index + 1 < len(matches) else None
+        body = amendment_text[match.start() : clause_end].strip()
+        body = re.sub(r"\[[^\]]+\]\s*", "", body)
+        clauses[match.group("label")] = _clean_text(body)
+    return clauses
 
 
 def _scoped_part_metadata(

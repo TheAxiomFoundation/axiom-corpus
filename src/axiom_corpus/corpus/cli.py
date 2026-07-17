@@ -93,6 +93,7 @@ from axiom_corpus.corpus.navigation_supabase import (
 )
 from axiom_corpus.corpus.ny_rulemaking import extract_ny_state_register
 from axiom_corpus.corpus.nycrr import (
+    NycrrAdoptedAmendment,
     NycrrPartSource,
     extract_nycrr,
     extract_nycrr_parts,
@@ -4262,6 +4263,43 @@ def _load_nycrr_part_sources(manifest_path: Path) -> tuple[NycrrPartSource, ...]
     return tuple(sources)
 
 
+def _load_nycrr_adopted_amendments(
+    manifest_path: Path,
+) -> tuple[NycrrAdoptedAmendment, ...]:
+    manifest = yaml.safe_load(manifest_path.read_text())
+    raw_amendments = manifest.get("adopted_amendments", [])
+    if not isinstance(raw_amendments, list):
+        raise ValueError("NYCRR adopted_amendments must be a list")
+    amendments = []
+    for raw_amendment in raw_amendments:
+        if not isinstance(raw_amendment, dict):
+            raise ValueError("each adopted amendment must be a mapping")
+        raw_clauses = raw_amendment.get("clauses")
+        if not isinstance(raw_clauses, dict) or not raw_clauses:
+            raise ValueError("each adopted amendment must declare clauses")
+        amendments.append(
+            NycrrAdoptedAmendment(
+                amendment_id=str(raw_amendment["amendment_id"]),
+                target_citation_path=str(raw_amendment["target_citation_path"]),
+                text_source_url=str(raw_amendment["text_source_url"]),
+                adoption_source_url=str(raw_amendment["adoption_source_url"]),
+                effective_date=str(raw_amendment["effective_date"]),
+                text_anchor=str(raw_amendment["text_anchor"]),
+                text_end=str(raw_amendment["text_end"]),
+                adoption_confirmation=str(raw_amendment["adoption_confirmation"]),
+                clause_headings={
+                    str(label): str(clause["heading"])
+                    for label, clause in raw_clauses.items()
+                },
+                required_text={
+                    str(label): tuple(str(value) for value in clause.get("required_text", ()))
+                    for label, clause in raw_clauses.items()
+                },
+            )
+        )
+    return tuple(amendments)
+
+
 def _cmd_extract_nycrr_parts(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -4269,6 +4307,7 @@ def _cmd_extract_nycrr_parts(args: argparse.Namespace) -> int:
         store,
         version=args.version,
         part_sources=_load_nycrr_part_sources(args.manifest),
+        adopted_amendments=_load_nycrr_adopted_amendments(args.manifest),
         source_as_of=args.source_as_of,
         expression_date=expression_date,
         delay_seconds=args.delay_seconds,
