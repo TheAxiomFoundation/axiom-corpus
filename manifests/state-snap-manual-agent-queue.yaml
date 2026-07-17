@@ -34,14 +34,14 @@ states:
     notes: Current scope includes all 17 official DHR POE Online Manual PDF chapters linked from the public portal.
   - jurisdiction: us-ak
     name: Alaska
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: http://dpaweb.hss.state.ak.us/manuals/fs/fsp.htm#t=title_page_alaska_fsp_manual.htm
     target_manifest: manifests/us-ak-snap-manual.yaml
     target_scope:
       jurisdiction: us-ak
       document_class: manual
-      version: 2026-05-27-ak-snap-manual
+      version: 2026-07-16-ak-snap-manual
   - jurisdiction: us-az
     name: Arizona
     queue_status: published_current
