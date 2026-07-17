@@ -38,7 +38,7 @@ Rules that hold for every path:
 - Segment 0 is the **jurisdiction**; it equals the record's `jurisdiction`
   field.
 - Segment 1 is the **document_class**; it equals the record's `document_class`
-  field and is one of a closed set of seven values.
+  field and is one of a closed set of eight values.
 - Segments 2+ are source-specific hierarchy tokens down to the leaf provision.
 - A bare `<jurisdiction>/<document_class>` (no hierarchy segment) is valid
   **only** for collection-root records (`kind: collection`, `level: 0`).
@@ -46,7 +46,7 @@ Rules that hold for every path:
 Normative pattern (see JSON `$defs.citation_path.pattern`):
 
 ```
-^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking)(/[A-Za-z0-9][A-Za-z0-9 .\-–]*)*$
+^[a-z]{2,3}(?:-[a-z]{2,32})*/(statute|regulation|manual|guidance|policy|form|rulemaking|district-plan)(/[A-Za-z0-9][A-Za-z0-9 .\-–]*)*$
 ```
 
 ## 2. Segment 0 — jurisdiction
@@ -68,7 +68,7 @@ inventory.
 
 ## 3. Segment 1 — document_class
 
-A closed enumeration of seven values (JSON `$defs.document_class.enum`):
+A closed enumeration of eight values (JSON `$defs.document_class.enum`):
 
 | class | meaning | volume note |
 |---|---|---|
@@ -79,9 +79,11 @@ A closed enumeration of seven values (JSON `$defs.document_class.enum`):
 | `policy` | State plans and policy documents (TANF/SNAP state plans) | |
 | `form` | Official forms and their published parameter tables | |
 | `rulemaking` | In-progress rulemaking dockets (e.g. NJAC proposed rules) | |
+| `district-plan` | Council-made land-use instruments (NZ district plans under RMA 1991 Schedule 1, e.g. Wellington City 2024) — binding, but neither central-government statute nor regulation | added in `v1.1`; issuer-scoped (see §4) |
 
 Adding a new document_class is a **grammar change** (a `v1 → v1.x` schema edit),
-not a data-only change, because the enum is normative.
+not a data-only change, because the enum is normative. `district-plan` was added
+in **`v1.1`** for council-made instruments (see §4 and §7).
 
 ## 4. Segments 2+ — source hierarchy and the family conventions
 
@@ -102,6 +104,17 @@ grows.
 | Belgium statute | `be[-region]/statute/<instrument>/<yyyy>/<mm>/<dd>/<eli-id>/article/<n>` | `be/statute/loi/1989/01/16/1989021010/article/N` |
 | US state manual (paginated) | `us-XX/manual/<agency>/…/page-<n>` | `us-or/manual/odhs/…/page-42` |
 | US state regulation | `us-XX/regulation/<code>/<part>/<section>[/<sub>\|/block-<n>]` | `us-ma/regulation/106-cmr/365/180/block-1` |
+| NZ district plan (council instrument) | `nz/district-plan/<territorial-authority>/<plan-version>/<chapter>/<provision>` | `nz/district-plan/wellington-city/2024/muz/r13` |
+
+The `district-plan` family is **issuer-scoped**: segment 2 is the territorial
+authority (`wellington-city`), segment 3 the operative-plan version (`2024`),
+segment 4 the zone/chapter code (`muz`, `giz`, `ccz`) or `definitions`, and the
+leaf is the plan's own rule identifier with the chapter prefix dropped and
+lowercased (`MUZ-R13` → `r13`, `MUZ-P3` → `p3`, `MUZ-PREC01-R1` → `prec01-r1`) or
+a definition slug. Extracted by `src/axiom_corpus/corpus/district_plan.py` from the
+IsoPlan ePlan platform most NZ councils publish on. The US analogue (municipal
+zoning ordinances) is expected to reuse this issuer-scoped shape under a sibling
+per-family class name.
 
 ### 4.1 Corpus namespace vs rulespec module namespace (do not confuse)
 
@@ -247,6 +260,10 @@ object; `merge` uses a list under `from` and a single `to`; `retire` omits `to`;
 ## 7. Versioning of this grammar
 
 - **`v1`** = this document + `citation-path.v1.json`.
+- **`v1.1`** = added the `district-plan` document_class (council-made instruments;
+  NZ district plans first) to the enum and the citation-path pattern. Additive:
+  no existing path changes identity. The file names stay `citation-path.v1.*`; the
+  `version` field in the JSON carries the `1.1.0` minor bump.
 - A change to the segment charset, the jurisdiction pattern, the document_class
   enum, or the identity formula is a **new schema version** (`v1.1`, `v2`) with
   a changelog fragment. Adding to the `observed` jurisdiction list, raising a

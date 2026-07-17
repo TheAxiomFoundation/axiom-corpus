@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"A. Monthly SNAP Issuance","type":"item","tilePath":"","description":"","url":"606/606-1.htm#606_1_a__monthly_food_stamp_issuance"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

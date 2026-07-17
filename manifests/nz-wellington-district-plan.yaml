@@ -1,0 +1,54 @@
+# Wellington City 2024 District Plan (operative) — IsoPlan ePlan extraction manifest.
+#
+# Consumed by: axiom-corpus-ingest extract-nz-district-plan --manifest <this file>.
+# This is an EXTRACTION manifest (source endpoint list), not a signed ingest
+# manifest or a release artifact. The extractor fetches each chapter's revision-
+# pinned JSON payload from the IsoPlan API, snapshots it with a per-payload sha256,
+# and emits normalized district-plan provision records.
+#
+# Platform note: the IsoPlan viewer sits behind a WAF that rejects non-browser
+# clients; the adapter's default fetcher sends browser-shaped headers. The "as at"
+# date pins the plan content, so payloads are byte-stable across retrievals — the
+# sha256 digests below were verified to reproduce the hand-captured snapshot in
+# rulespec-nz#90 (data/sources/nz/wellington-city-council/district-plan-2024/
+# supermarket-zoning.source.md).
+jurisdiction: nz
+territorial_authority: wellington-city
+territorial_authority_name: Wellington City Council
+plan_version: "2024"
+plan_title: Wellington City 2024 District Plan
+plan_status: operative
+revision: "137"
+as_at: 14-Jul-2026
+base_url: https://eplan.wellington.govt.nz/proposed/
+revision_index:
+  # Definitions glossary + chapter index (verified sha256
+  # 942da6652498c50d25acc99e0d6c83fe3ca227d1552d0a211eaf802b1c0e507a).
+  url: https://eplan.wellington.govt.nz/proposed/api/l/rev/137/14-Jul-2026/1
+chapters:
+  - code: CCZ
+    name: City Centre Zone
+    section_id: "228"
+    url: https://eplan.wellington.govt.nz/proposed/api/l/r/228/0/false/14-Jul-2026/false
+  - code: MCZ
+    name: Metropolitan Centre Zone
+    section_id: "229"
+    url: https://eplan.wellington.govt.nz/proposed/api/l/r/229/0/false/14-Jul-2026/false
+  - code: MUZ
+    name: Mixed Use Zone
+    section_id: "231"
+    # verified sha256 f26eb6a4f0d13d4978f662da26c177163e479f59da9e295ff6c6a4e589e1cdb6
+    url: https://eplan.wellington.govt.nz/proposed/api/l/r/231/0/false/14-Jul-2026/false
+  - code: LCZ
+    name: Local Centre Zone
+    section_id: "232"
+    url: https://eplan.wellington.govt.nz/proposed/api/l/r/232/0/false/14-Jul-2026/false
+  - code: NCZ
+    name: Neighbourhood Centre Zone
+    section_id: "233"
+    url: https://eplan.wellington.govt.nz/proposed/api/l/r/233/0/false/14-Jul-2026/false
+  - code: GIZ
+    name: General Industrial Zone
+    section_id: "235"
+    # verified sha256 ee6cab9e05e78c6289160ed3cebd389f9bda5df99e3a9122fecf41c30d8d117d
+    url: https://eplan.wellington.govt.nz/proposed/api/l/r/235/0/false/14-Jul-2026/false

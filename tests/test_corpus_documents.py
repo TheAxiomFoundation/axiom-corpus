@@ -33,6 +33,7 @@ from axiom_corpus.corpus.documents import (
     _extract_json_html_blocks,
     _extract_json_record_blocks,
     _extract_labeled_html_section_blocks,
+    _extract_plain_text_blocks,
     _get_with_retries,
     _infer_source_format,
     _legacy_word_document_text,
@@ -177,6 +178,14 @@ def test_infer_source_format_handles_common_official_downloads(tmp_path: Path) -
     assert _infer_source_format(pdf, downloaded(pdf, b"%PDF-1.7", None)) == "pdf"
     html = source("https://example.test/file")
     assert _infer_source_format(html, downloaded(html, b"<!doctype html>", None)) == "html"
+    javascript = source("https://example.test/toc.new.js")
+    assert (
+        _infer_source_format(
+            javascript,
+            downloaded(javascript, b"const toc = [];", "text/javascript"),
+        )
+        == "javascript"
+    )
     xls = source("https://example.test/file.xls?download=1")
     assert _infer_source_format(xls, downloaded(xls, b"legacy", None)) == "xls"
     doc = source("https://example.test/file")
@@ -232,6 +241,18 @@ def test_extract_blocks_rejects_unsupported_and_bad_json_config() -> None:
             title="File",
             extraction=None,
         )
+
+
+def test_extract_plain_text_blocks_decodes_and_normalizes_javascript() -> None:
+    blocks = _extract_plain_text_blocks(
+        b"\xef\xbb\xbf(function() {\r\n  const toc = [];\r\n})();\r\n",
+        title="Official TOC",
+    )
+
+    assert len(blocks) == 1
+    assert blocks[0].heading == "Official TOC"
+    assert blocks[0].body == "(function() { const toc = []; })();"
+    assert _extract_plain_text_blocks(b" \r\n", title="Empty") == ()
 
     with pytest.raises(ValueError, match="requires json_html_field"):
         _extract_blocks(
@@ -432,6 +453,15 @@ def test_extract_json_record_blocks_rejects_bad_field_configs() -> None:
 
 
 def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
+    assert (
+        _extract_json_html_blocks(
+            b'[{"id": "topic-1", "text": "Navigation only"}]',
+            source_url="https://example.test/toc.json",
+            fallback_title="Official TOC",
+            extraction={"segmentation": "source_only"},
+        )
+        == ()
+    )
     with pytest.raises(ValueError, match="did not resolve to HTML text"):
         _extract_json_html_blocks(
             b'{"html": "   "}',
@@ -455,6 +485,17 @@ def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
         )
         == ()
     )
+
+
+@pytest.mark.parametrize("content", [b"", b"not json", b"<html>error</html>"])
+def test_extract_json_source_only_rejects_non_json_content(content: bytes) -> None:
+    with pytest.raises(ValueError):
+        _extract_json_html_blocks(
+            content,
+            source_url="https://example.test/toc.json",
+            fallback_title="Official TOC",
+            extraction={"segmentation": "source_only"},
+        )
 
 
 def test_extract_anchor_range_html_blocks_validates_config_and_extracts_ranges() -> None:
