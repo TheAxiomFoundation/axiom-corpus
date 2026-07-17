@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-16-hr6644-dependencies-current-law-title-12.json",
+      "sha256": "dc46126bc5ab693442801798186bb1f906023bd08c70971bd0019f3db5a313ad"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-16-hr6644-dependencies-current-law-title-12.json",
+      "sha256": "8a26412a89933197ae450a41cae8e36a4ba71577a4ff9b95ccb64aa4e4b7553f"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-16-hr6644-dependencies-current-law-title-12.jsonl",
+      "sha256": "04d8c77df0d1a897e11ce26d8aeea693a6707fa8c244b69d8e3844151d573db9"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-16-hr6644-dependencies-current-law-title-12/uslm/usc12.xml",
+      "sha256": "d8f3c76a21576e0697f8f47312702aa6369b9d361cacb1be18f07c9100dd0495"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0c9ba4761400375c39e78413cb11b7b9ee2af119",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-usc --base data/corpus --version 2026-07-16-hr6644-dependencies-current-law --source-xml data/uscode/dependency-2026-07-16/usc12.xml --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/102not101/xml_usc12@119-102not101.zip --section 1464 --section 1467a --section 1715l --section 1831o --section 1842"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 294,
+    "missing_count": 0,
+    "provision_count": 294,
+    "source_count": 294
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-16T20:05:31.077929+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+iOF7ZWNlOpJ6E2Cwl1Gj7fVOw4PFeoCPCSQaDrGuuT40h8W8jxylgbIDWIjiKn00hwVbvDZbFWdTRsHV8soCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-hr6644-dependencies-current-law-title-12"
+}

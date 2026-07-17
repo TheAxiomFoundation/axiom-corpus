@@ -1,44 +1,37 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-ct/manual/2026-05-27-ct-snap-manual.json",
-      "sha256": "f26ddf778bb3f6cfafc5d2ebd72daa8c3527728f74f7c2f1bb354c5fa60534be"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ct/manual/2026-05-27-ct-snap-manual.json"
     },
     {
-      "path": "data/corpus/inventory/us-ct/manual/2026-05-27-ct-snap-manual.json",
-      "sha256": "df6d3164df8ae010d82e8d1a4142dbcbaed7c98ac23192fbb6a8cb3086724526"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ct/manual/2026-05-27-ct-snap-manual.json"
     },
     {
-      "path": "data/corpus/provisions/us-ct/manual/2026-05-27-ct-snap-manual.jsonl",
-      "sha256": "f4153e79106e49e624e9ec55970e70aa46c226f1654fbb68e58177917c2bb478"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ct/manual/2026-05-27-ct-snap-manual.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "6e86cc003f2f2dabc35e36949e353e2bf174166a",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "Retire source-less Connecticut SNAP scope after authenticated 2026-07-17 replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 1272,
-    "missing_count": 0,
-    "provision_count": 1272,
-    "source_count": 1272
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:21.999143+00:00",
+  "generated_at": "2026-07-17T02:35:42.804071+00:00",
   "jurisdiction": "us-ct",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Qii5OwDZ5qR+wW5QTJTK10wfwTOOZtqmQz7hycos2RV/SxlYH3m0qUfQ7ZDr3vpCUhVPA1pDedV8ZzCow/ViBA=="
+    "value": "/VqXGRLJwnEWoyOlB7JYmrzhyQecMPL80X3nEsbxb/mx62v88ACwI4FqoZJIYperAKRrdF5v1e3AY25WYO0HBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-ct-snap-manual"

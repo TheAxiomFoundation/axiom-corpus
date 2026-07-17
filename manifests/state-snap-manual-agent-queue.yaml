@@ -66,15 +66,15 @@ states:
     notes: Current scope retains the April 2026 base manual, May 2026 appendices and basis-of-issuance charts, July 2026 final filing, FY2026 eligibility chart, nutrition-waiver pages, and current work/time-limit page from official DHS sources.
   - jurisdiction: us-ca
     name: California
-    queue_status: source_refetch_required
-    source_kind: official_docx_pdf_manual_regulations
+    queue_status: published_current
+    source_kind: official_docx_and_ocr_pdf_manual_regulations
     primary_source_url: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/CalFresh-Regulations
     target_manifest: manifests/us-ca-cdss-mpp-calfresh-complete.yaml
     target_scope:
       jurisdiction: us-ca
       document_class: regulation
-      version: 2026-05-27-ca-cdss-mpp-calfresh
-    notes: Current scope includes all 15 official CDSS Food Stamp Manual files linked from the CalFresh Regulations page.
+      version: 2026-07-17-ca-cdss-mpp-calfresh
+    notes: Current scope retains all 15 official CDSS Food Stamp Manual files linked from the CalFresh Regulations page; the 166-page image-only section is extracted with OCR while preserving the exact official PDF.
   - jurisdiction: us-co
     name: Colorado
     queue_status: published_current
@@ -94,35 +94,37 @@ states:
     notes: Colorado SNAP policy is covered through 10 CCR 2506-1 plus supplemental CDHS policy documents.
   - jurisdiction: us-ct
     name: Connecticut
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://portal.ct.gov/dss/snap/snap-policy-manual
     target_manifest: manifests/us-ct-snap-manual.yaml
     target_scope:
       jurisdiction: us-ct
       document_class: manual
-      version: 2026-05-27-ct-snap-manual
+      version: 2026-07-17-ct-snap-manual
+    notes: Current scope retains the official DSS landing page, exact live table of contents, and all 277 linked SNAP Policy Manual topic pages.
   - jurisdiction: us-de
     name: Delaware
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://regulations.delaware.gov/AdminCode/title16/9000
     target_manifest: manifests/us-de-snap-rules.yaml
     target_scope:
       jurisdiction: us-de
       document_class: regulation
-      version: 2026-05-27-de-snap-rules
+      version: 2026-07-17-de-snap-rules
+    notes: Current scope retains the complete official 114-page Title 16 section 9000 consolidated PDF through 29 DE Reg. 531.
   - jurisdiction: us-dc
     name: District of Columbia
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_policy_manual_page
     primary_source_url: https://dhs.dc.gov/publication/esa-policy-manuals
     target_manifest: manifests/us-dc-snap-manual.yaml
     target_scope:
       jurisdiction: us-dc
       document_class: manual
-      version: 2026-05-27-dc-snap-manual
-    notes: Existing DC child care manual artifact remains separate from this SNAP manual scope.
+      version: 2026-07-17-dc-snap-manual
+    notes: Current scope retains the complete official 349-page FY2025 ESA SNAP Policy Manual; the separate DC child care manual remains out of scope.
   - jurisdiction: us-fl
     name: Florida
     queue_status: published_current

@@ -1941,6 +1941,9 @@ def _extract_json_html_blocks(
     fallback_title: str | None,
     extraction: dict[str, Any] | None,
 ) -> tuple[_DocumentBlock, ...]:
+    if (extraction or {}).get("segmentation") == "source_only":
+        json_loads(content.decode("utf-8-sig"))
+        return ()
     if (extraction or {}).get("segmentation") == "records":
         return _extract_json_record_blocks(
             content,
