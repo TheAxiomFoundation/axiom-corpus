@@ -29,10 +29,12 @@ Employment Policy Manual pages. Coverage is complete at 340 of 340 with no
 missing, extra, or duplicate citation paths. Employment pages use stable `p-N`
 segments instead of increasing the corpus's legacy `page-N` ratchet.
 
-Aggregate generated-artifact digest after the successful extraction:
+A clean-room second extraction downloaded all 17 sources into a temporary corpus
+root and reproduced every one of the 20 retained/generated artifacts byte for
+byte. The SHA-256 digest of their sorted relative-path checksum manifest was:
 
 ```text
-04e93169a306830c3833e39096599baedc8aa7b20a82b5b5adfe5503efe9052b
+e3c175069f2edae3b85482ee54ff8cf231bfc4b3f7e0724f5ac58d0fe2ed4c3c
 ```
 
 No corpus rows or retained source files were authored or edited manually. The
