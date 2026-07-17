@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-17-hr6644-dependency-closure-title-15-title-15.json",
+      "sha256": "b4baf7d31007d6dbf2ac92865d999bfbe7ef64cc8bbdfc38faf9556cedb96ca6"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-17-hr6644-dependency-closure-title-15-title-15.json",
+      "sha256": "660a82e626c683b42a30505b8a82e88c236ec9122a7858801326d9eaa7242ec5"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-17-hr6644-dependency-closure-title-15-title-15.jsonl",
+      "sha256": "d751aaa2cdebb08c717f6ba316e4b615d6fad222334a6a06d7231facf68e00f4"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-17-hr6644-dependency-closure-title-15-title-15/uslm/usc15.xml",
+      "sha256": "02d0b115d717a20b59585af8643a3520f4903b6dcd756aeb948ec4687dfbfe68"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ec2b7c90fee8ff713258dc4fd3499aaaaeccfe67",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-usc title 15 HR6644 dependency closure from official US Code releasepoint 119-102not101"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
+    "missing_count": 0,
+    "provision_count": 13,
+    "source_count": 13
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-17T17:05:25.348433+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yseSZIxyNtyb86OsdYqBrl0orZbkZ6uFdFeY4VH04FQSTd/rBrInO7QJVs7pi6E92D4PVIk6R8y0ajAzTtFNBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-hr6644-dependency-closure-title-15-title-15"
+}

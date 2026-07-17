@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-17-hr6644-dependency-closure-title-42-title-42.json",
+      "sha256": "6655ab1f23d7d1ff21d2e44d756e4c01a6d821952b5903a7bccbfd583d2f2af2"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-17-hr6644-dependency-closure-title-42-title-42.json",
+      "sha256": "450b0508e1f53ca5f06f370e3081a4881680f1b6c623be6478eb87dbf4dc2bd1"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-17-hr6644-dependency-closure-title-42-title-42.jsonl",
+      "sha256": "d078164ff7ae152a3ec7f0fce4384b71ddec43b60944b6c5403c423cafa2cdcc"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-17-hr6644-dependency-closure-title-42-title-42/uslm/usc42.xml",
+      "sha256": "1a8c534a44bfe7abec7a32b2634afc72150184d613c88bae9a57bf51e990881e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ec2b7c90fee8ff713258dc4fd3499aaaaeccfe67",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-usc title 42 HR6644 dependency closure from official US Code releasepoint 119-102not101"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 306,
+    "missing_count": 0,
+    "provision_count": 306,
+    "source_count": 306
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-17T17:05:06.917172+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2VR1zxFCIO2kyjI2R8lu7s3laVgYE5dlH4nd8sXkcqWECQxsW3Q5z1QH35YLHTPKFKhsPrnt+tyFxINGy3E+Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-hr6644-dependency-closure-title-42-title-42"
+}
