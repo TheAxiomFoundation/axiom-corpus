@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"608-1 Fair Hearings","type":"book","tilePath":"","description":"","url":"608/608-1.htm","key":"toc40"},{"name":"608-2 Administrative Disqualification Hearings","type":"book","tilePath":"","description":"","url":"608/608-2.htm","key":"toc41"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

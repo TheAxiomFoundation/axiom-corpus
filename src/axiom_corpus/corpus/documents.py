@@ -722,6 +722,8 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
         return "pdf"
     if "html" in content_type or downloaded.content.lstrip().startswith((b"<!doctype", b"<html")):
         return "html"
+    if "javascript" in content_type or source.source_url.lower().split("?", 1)[0].endswith(".js"):
+        return "javascript"
     if "excel" in content_type or source.source_url.lower().split("?", 1)[0].endswith(".xls"):
         return "xls"
     if "msword" in content_type or downloaded.content.startswith(_LEGACY_WORD_DOCUMENT_MAGIC):
@@ -760,6 +762,8 @@ def _extension(source_format: str) -> str:
         return ".pdf"
     if source_format == "html":
         return ".html"
+    if source_format == "javascript":
+        return ".js"
     return f".{safe_segment(source_format)}"
 
 
@@ -784,6 +788,8 @@ def _extract_blocks(
             fallback_title=title,
             extraction=extraction,
         )
+    if source_format == "javascript":
+        return _extract_plain_text_blocks(content, title=title)
     if source_format == "docx":
         return _extract_docx_blocks(content, extraction=extraction)
     if source_format == "doc":
@@ -793,6 +799,30 @@ def _extract_blocks(
     if source_format == "xls":
         return _extract_xls_blocks(content, extraction=extraction)
     raise ValueError(f"unsupported official document source_format: {source_format}")
+
+
+def _extract_plain_text_blocks(
+    content: bytes,
+    *,
+    title: str | None,
+) -> tuple[_DocumentBlock, ...]:
+    """Extract a retained plain-text source as one auditable block."""
+    try:
+        text = content.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        text = content.decode("cp1252")
+    body = _normalize_text(text)
+    if not body:
+        return ()
+    return (
+        _DocumentBlock(
+            kind="block",
+            ordinal=1,
+            heading=title,
+            body=body,
+            metadata={},
+        ),
+    )
 
 
 def _extract_pdf_blocks(
