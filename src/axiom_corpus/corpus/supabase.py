@@ -638,22 +638,12 @@ def fetch_staged_release_scope_evidence(
             for scope in release.scopes
         ]
     }
-    req = urllib.request.Request(
+    rows = _corpus_rpc_post_json_with_curl(
         f"{_rest_url(supabase_url)}/rpc/get_staged_release_scope_evidence",
-        data=json.dumps(payload).encode("utf-8"),
-        headers={
-            "apikey": service_key,
-            "Authorization": f"Bearer {service_key}",
-            "Accept": "application/json",
-            "Accept-Profile": "corpus",
-            "Content-Type": "application/json",
-            "Content-Profile": "corpus",
-            "User-Agent": USER_AGENT,
-        },
-        method="POST",
+        payload=payload,
+        service_key=service_key,
+        timeout=600,
     )
-    with urllib.request.urlopen(req, timeout=600) as resp:
-        rows = json.loads(resp.read())
     if not isinstance(rows, list):
         raise RuntimeError("unexpected staged release-evidence response")
     evidence: dict[tuple[str, str, str], StagedScopeEvidence] = {}
@@ -749,22 +739,12 @@ def fetch_released_scope_objects(
                 for scope in batch
             ]
         }
-        req = urllib.request.Request(
+        rows = _corpus_rpc_post_json_with_curl(
             f"{_rest_url(supabase_url)}/rpc/get_released_scope_objects",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "apikey": service_key,
-                "Authorization": f"Bearer {service_key}",
-                "Accept": "application/json",
-                "Accept-Profile": "corpus",
-                "Content-Type": "application/json",
-                "Content-Profile": "corpus",
-                "User-Agent": USER_AGENT,
-            },
-            method="POST",
+            payload=payload,
+            service_key=service_key,
+            timeout=600,
         )
-        with urllib.request.urlopen(req, timeout=600) as resp:
-            rows = json.loads(resp.read())
         if not isinstance(rows, list):
             raise RuntimeError("unexpected released-scope response")
 
@@ -859,6 +839,73 @@ def activate_corpus_release(
     if result.get("content_sha256") != release_object.get("content_sha256"):
         raise RuntimeError("activated release digest does not match the requested object")
     return result
+
+
+def _corpus_rpc_post_json_with_curl(
+    url: str,
+    *,
+    payload: Mapping[str, object],
+    service_key: str,
+    timeout: int,
+) -> object:
+    """POST a corpus-schema PostgREST RPC through curl.
+
+    Cloudflare in front of Supabase intermittently rejects Python urllib's TLS
+    fingerprint (520 here, 1010 on api.supabase.com), which fails publish runs
+    at the evidence/released-object fetches. Curl uses the same verified
+    system CA path as the activation helper while keeping transport errors,
+    non-2xx responses, and malformed JSON fatal.
+    """
+    command = [
+        "curl",
+        "--fail-with-body",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        str(timeout),
+        "--request",
+        "POST",
+        "--header",
+        f"apikey: {service_key}",
+        "--header",
+        f"Authorization: Bearer {service_key}",
+        "--header",
+        "Accept: application/json",
+        "--header",
+        "Accept-Profile: corpus",
+        "--header",
+        "Content-Type: application/json",
+        "--header",
+        "Content-Profile: corpus",
+        "--header",
+        f"User-Agent: {USER_AGENT}",
+        "--data-binary",
+        "@-",
+        url,
+    ]
+    request_body = json.dumps(payload, separators=(",", ":"), sort_keys=True).encode("utf-8")
+    try:
+        completed = subprocess.run(
+            command,
+            input=request_body,
+            capture_output=True,
+            check=False,
+            timeout=timeout + 10,
+        )
+    except FileNotFoundError as exc:
+        raise RuntimeError("curl is required for corpus RPC requests") from exc
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError(f"corpus RPC request timed out after {timeout}s") from exc
+    if completed.returncode != 0:
+        body = completed.stdout.decode("utf-8", errors="replace")[:1000]
+        error = completed.stderr.decode("utf-8", errors="replace")[:1000]
+        detail = body or error or f"curl exit {completed.returncode}"
+        raise RuntimeError(f"corpus RPC request failed: {detail}")
+    try:
+        return json.loads(completed.stdout)
+    except json.JSONDecodeError as exc:
+        body = completed.stdout.decode("utf-8", errors="replace")[:1000]
+        raise RuntimeError(f"corpus RPC returned invalid JSON: {body}") from exc
 
 
 def _management_api_post_json_with_curl(
