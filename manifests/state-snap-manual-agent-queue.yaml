@@ -372,26 +372,15 @@ states:
     notes: DHHS Food Stamp Manual HTML remains access-blocked from unattended clients; current scope uses official General Court Chapter He-W 700 SNAP administrative rules.
   - jurisdiction: us-nj
     name: New Jersey
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_regulations_page
     primary_source_url: https://www.nj.gov/humanservices/notices/rules-and-fees/rules-and-regulations/
-    target_manifest: manifests/us-nj-snap-rules-reconstructed.yaml
+    target_manifest: manifests/us-nj-snap-rules.yaml
     target_scope:
       jurisdiction: us-nj
       document_class: regulation
-      version: 2026-05-28-nj-snap-rules-reconstructed
-    historical_base_manifest: manifests/us-nj-snap-rules-2017-base.yaml
-    historical_base_scope:
-      jurisdiction: us-nj
-      document_class: regulation
-      version: 2017-02-06-nj-snap-rules-base
-    supporting_manifest: manifests/us-nj-snap-rulemaking-notices.yaml
-    supporting_scope:
-      jurisdiction: us-nj
-      document_class: rulemaking
-      version: 2026-05-28-nj-snap-rulemaking-notices
-    supporting_queue_status: source_refetch_required
-    notes: Official rules-and-regulations page links one current N.J.A.C. 10:87 PDF, but that PDF physically ends at section 10:87-5.5. The current scope is reconstructed from the complete 2017 archived official DHS courtesy PDF plus official DHS/NJ Register rulemaking notices that modify N.J.A.C. 10:87 after that base, including the June 2024 DFD terminology administrative change and September 2025 SNAP amendments. The reconstructed scope is source-first and primary-official, but it is not an OAL/LexisNexis compiled-code export; the 2017 official courtesy PDF states that official New Jersey Administrative Rules are available through LexisNexis, the publisher licensed by the New Jersey Office of Administrative Law, or through local public libraries.
+      version: 2026-07-17-nj-snap-rules
+    notes: The official DHS rules page now links a complete 570-page N.J.A.C. 10:87 manual compiled through the October 6, 2025 New Jersey Register. The current scope retains that PDF and extracts all 261 codified sections, two subchapter-notes blocks, and Appendix A. Older reconstructed, archived-base, and rulemaking scopes remain historical evidence but are not the current target.
   - jurisdiction: us-nm
     name: New Mexico
     queue_status: source_refetch_required
