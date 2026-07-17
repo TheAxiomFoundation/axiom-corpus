@@ -1,44 +1,42 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-ny/regulation/2026-05-09-ny-snap-eligibility.json",
-      "sha256": "bcef72d63c47cce65873dda36ac1fb9bf10d23ecfb4bd8ae01bd5c812e6dda62"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ny/regulation/2026-05-09-ny-snap-eligibility.json"
     },
     {
-      "path": "data/corpus/inventory/us-ny/regulation/2026-05-09-ny-snap-eligibility.json",
-      "sha256": "d4759d90e67f9d374e5d6ad684866aa1f72c9e12e8831d40fc0b6f0949fe5516"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ny/regulation/2026-05-09-ny-snap-eligibility.json"
     },
     {
-      "path": "data/corpus/provisions/us-ny/regulation/2026-05-09-ny-snap-eligibility.jsonl",
-      "sha256": "255e2a6bba0a701b1b5ef98d0da9e0ff869f0bf29737eaa09197cbf1f5a16079"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ny/regulation/2026-05-09-ny-snap-eligibility.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "054d45709a94623b8b1cf210a781612881703f80",
+    "commit": "8119197e8308f089e77da3f2a32c4192b520d16c",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "retired secondary-source eligibility slice after source-backed 2026-07-17-ny-snap-regulations replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 14,
-    "missing_count": 0,
-    "provision_count": 14,
-    "source_count": 14
-  },
+  "coverage": null,
   "document_class": "regulation",
-  "generated_at": "2026-07-15T19:51:44.570442+00:00",
+  "generated_at": "2026-07-17T22:40:42.137947+00:00",
   "jurisdiction": "us-ny",
-  "reasoning_logs": [],
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-17-ny-snap-regulations.md",
+      "sha256": "3714af4bb8cf6d672e1d0264688ac603f8a31e4f577c22924872a0f8ab012d7e"
+    }
+  ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JnPo5prziqMzLGMDfAPWgwPaAI+yRVZyJSHY7XS0Qkas/6MAF/IIYOC59ML73spnh6qxy65VJvIkSWkhXF9JBw=="
+    "value": "AN+Ms8z2rcJVJ2ZxkErJqnjbewJjBoIW+vl4N72PdAym7JU2MzuqoAjKSGB7BBTBpPwQrz/WHTes69jIJSE9Bw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-09-ny-snap-eligibility"
