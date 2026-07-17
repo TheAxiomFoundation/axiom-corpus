@@ -208,14 +208,15 @@ states:
       version: 2026-05-27-ks-keesm-r2026-07-15-self-contained
   - jurisdiction: us-ky
     name: Kentucky
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_agency_page
     primary_source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
     target_manifest: manifests/us-ky-snap-manual.yaml
     target_scope:
       jurisdiction: us-ky
       document_class: manual
-      version: 2026-05-27-ky-snap-manual
+      version: 2026-07-17-ky-snap-manual
+    notes: Current scope retains every page of the official DFS Volume II SNAP manual and Volume IIA SNAP work-requirements manual. Volume IX is all-program transmittal history and Volume X contains no SNAP material, so neither is misclassified as current SNAP policy.
   - jurisdiction: us-la
     name: Louisiana
     queue_status: source_refetch_required
