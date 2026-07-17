@@ -32,6 +32,10 @@ env -u UV_FROZEN uv run --extra dev axiom-corpus extract-official-documents \
   --manifest manifests/us-mt-snap-manual.yaml
 ```
 
+A second full extraction produced the same aggregate artifact digest
+`b5ccb3f47f4a4172d7eccb23698f179b056173a6c0f02a490de568b6a9f03298` and complete
+435-of-435 coverage, with no missing or extra provisions.
+
 The superseded `2026-05-27-mt-snap-manual` scope contains 429 derived rows but retains
 none of its 82 referenced source files. It is removed only after this source-backed
 replacement is committed and signed.
