@@ -70,6 +70,7 @@ def test_california_calfresh_scope_retains_complete_official_manual() -> None:
         "ocr": True,
         "ocr_dpi": 200,
         "ocr_language": "eng",
+        "page_citation_prefix": "page",
     }
     assert all("extraction" not in document for document in documents if document is not ocr_document)
 
@@ -91,3 +92,11 @@ def test_california_image_only_manual_section_has_ocr_text() -> None:
     assert len(ocr_pages) == 142
     assert all(provision["body"].strip() for provision in ocr_pages)
     assert "FOOD STAMP HANDBOOK" in ocr_pages[0]["body"]
+    assert all(
+        provision["citation_path"].endswith(f"/page-{provision['metadata']['page_number']}")
+        for provision in ocr_pages
+    )
+    assert {provision["metadata"]["page_number"] for provision in ocr_pages} == (
+        set(range(1, 167))
+        - {2, 8, 14, 24, 28, 34, 36, 46, 62, 64, 66, 70, 76, 82, 88, 96, 98, 104, 110, 112, 120, 132, 146, 166}
+    )
