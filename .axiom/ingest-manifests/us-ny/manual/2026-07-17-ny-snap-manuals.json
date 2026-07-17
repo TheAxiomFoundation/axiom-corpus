@@ -82,7 +82,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "aa66983770dd2a6f6134968ce48593cdcad43f52",
+    "commit": "47540a4d920d1c5083dfdd79e830ffd9b62c341c",
     "dirty_tracked": false,
     "root": "."
   },
@@ -99,19 +99,19 @@
     "source_count": 340
   },
   "document_class": "manual",
-  "generated_at": "2026-07-17T21:54:13.387720+00:00",
+  "generated_at": "2026-07-17T21:57:33.793357+00:00",
   "jurisdiction": "us-ny",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-17-ny-snap-manuals.md",
-      "sha256": "332f4aab15bbed57e6700dbfb91d83f11709e8eb6ef8f03c1a79b4cf29366185"
+      "sha256": "43e80bc693f38381ddf35f8774d6f6a56b77da1dd57a6b4ee3823b83f88a0f9c"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "UI6yQLn381r36u/b4xo15J6GBynOq/e82kQBsG4UKJWExyF7fgqFimQEcA/9TNIvGopihEzbEDZrVbAmlowACw=="
+    "value": "+xkBLpyAtcAgQMyGivvmdQ7mzeU22tkmgDQGBZQoFw3+wxe+tCGNHVUa0tJ09IlWdQBwNTu3xpWa3EpdqSyYCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-ny-snap-manuals"
