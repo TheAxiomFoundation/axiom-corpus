@@ -1,7 +1,187 @@
 {
-  "name": "us-rulespec-2026-07-17-pit-recovery",
   "description": "Successor to us-rulespec-2026-07-17 adding reviewed official state individual-income-tax statute recoveries; unpublished.",
+  "name": "us-rulespec-2026-07-17-pit-recovery",
   "scopes": [
+    {
+      "document_class": "form",
+      "jurisdiction": "us",
+      "version": "2026-05-12-cms-medicaid-chip-bhp-eligibility-levels"
+    },
+    {
+      "document_class": "form",
+      "jurisdiction": "us",
+      "version": "2026-07-13-recovery-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-03-10-cms-original-medicare-part-a-b"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-05-01-snap-fy2026-cola-r2026-07-15-self-contained"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-05-17-ssa-automatic-determinations-2026"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-05-26-ssa-contribution-and-benefit-base-2024"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-07-03-dc-ossp-ssa-poms"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-07-05-ssa-cola-2026"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-07-08-snap-fy2024-cola"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-07-13-recovery"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "us",
+      "version": "2026-07-05-cms-chip-fcep-spa"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-06-15-title-7-part-275"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-06-18-title-47-part-54-r2026-07-15-self-contained"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-06-24-title-45-part-1302"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-06-25-title-42-part-435"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us",
+      "version": "2026-07-13-recovery-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-05-10-snap-sections"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-05-10-tax-sections-r2026-07-15-self-contained-r2026-07-15-self-contained"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-06-23-medicare-426-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-06-26-chip-title-xxi-title-42"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-06-29-pl-119-21-medicaid-community-engagement-r2026-07-15-self-contained"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-03-us-usc-26-85-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-05-oasdi-title-ii-title-42-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-16-hr6644-dependencies-current-law-title-12"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-16-hr6644-dependencies-current-law-title-26"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-16-hr6644-dependencies-current-law-title-42"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-16-hr6644-dependencies-current-law-title-42-1437c-1-title-42"
+    },
     {
       "document_class": "guidance",
       "jurisdiction": "us-ak",
@@ -76,6 +256,11 @@
       "document_class": "manual",
       "jurisdiction": "us-az",
       "version": "2026-07-12-az-des-faa6-utility-amounts"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-az",
+      "version": "2026-07-17-faa5-recovery"
     },
     {
       "document_class": "regulation",
@@ -156,6 +341,16 @@
       "document_class": "statute",
       "jurisdiction": "us-co",
       "version": "2026-07-12-crs-2025-title-39-article-22"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-co",
+      "version": "2026-07-13-crs-2025-title-39-remaining"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us-co",
+      "version": "2026-07-13-us-co-tax-credit-session-laws"
     },
     {
       "document_class": "policy",
@@ -385,6 +580,11 @@
     {
       "document_class": "regulation",
       "jurisdiction": "us-ma",
+      "version": "2026-05-28"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ma",
       "version": "2026-06-27-ma-tafdc-regulations"
     },
     {
@@ -488,6 +688,11 @@
       "version": "2026-07-13-recovery"
     },
     {
+      "document_class": "regulation",
+      "jurisdiction": "us-nc",
+      "version": "2026-05-29"
+    },
+    {
       "document_class": "statute",
       "jurisdiction": "us-nc",
       "version": "2026-07-13-recovery"
@@ -555,31 +760,6 @@
     {
       "document_class": "manual",
       "jurisdiction": "us-nv",
-      "version": "2026-07-13-recovery"
-    },
-    {
-      "document_class": "form",
-      "jurisdiction": "us-ny",
-      "version": "2026-06-05-ny-tax-current-forms"
-    },
-    {
-      "document_class": "form",
-      "jurisdiction": "us-ny",
-      "version": "2026-07-13-recovery"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ny",
-      "version": "2026-06-05-nyc-admin-code"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ny",
-      "version": "2026-07-06-ny-tax-article22-core-us-ny-sections-tax-601-tax-606-tax-614-tax-615-tax-616"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-ny",
       "version": "2026-07-13-recovery"
     },
     {
@@ -761,156 +941,6 @@
       "document_class": "manual",
       "jurisdiction": "us-wy",
       "version": "2026-07-13-recovery"
-    },
-    {
-      "document_class": "form",
-      "jurisdiction": "us",
-      "version": "2026-05-12-cms-medicaid-chip-bhp-eligibility-levels"
-    },
-    {
-      "document_class": "form",
-      "jurisdiction": "us",
-      "version": "2026-07-13-recovery-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "guidance",
-      "jurisdiction": "us",
-      "version": "2026-03-10-cms-original-medicare-part-a-b"
-    },
-    {
-      "document_class": "guidance",
-      "jurisdiction": "us",
-      "version": "2026-05-01-snap-fy2026-cola-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "guidance",
-      "jurisdiction": "us",
-      "version": "2026-05-02-irs-rev-proc-2025-32-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "guidance",
-      "jurisdiction": "us",
-      "version": "2026-05-02-snap-fy2026-income-eligibility-standards-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "guidance",
-      "jurisdiction": "us",
-      "version": "2026-07-03-dc-ossp-ssa-poms"
-    },
-    {
-      "document_class": "guidance",
-      "jurisdiction": "us",
-      "version": "2026-07-05-ssa-cola-2026"
-    },
-    {
-      "document_class": "guidance",
-      "jurisdiction": "us",
-      "version": "2026-07-08-snap-fy2024-cola"
-    },
-    {
-      "document_class": "guidance",
-      "jurisdiction": "us",
-      "version": "2026-07-13-recovery"
-    },
-    {
-      "document_class": "policy",
-      "jurisdiction": "us",
-      "version": "2026-07-05-cms-chip-fcep-spa"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us",
-      "version": "2026-05-10-snap-7-cfr-273-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us",
-      "version": "2026-06-03-cms-2454-ifc-42-cfr-435-community-engagement-r2026-07-15-self-contained-r2026-07-15-cascade-contained-r2026-07-15-self-contained-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us",
-      "version": "2026-06-03-cms-2454-ifc-42-cfr-conforming-amendments-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us",
-      "version": "2026-06-15-title-7-part-275"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us",
-      "version": "2026-06-18-title-47-part-54-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us",
-      "version": "2026-06-24-title-45-part-1302"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us",
-      "version": "2026-06-25-title-42-part-435"
-    },
-    {
-      "document_class": "regulation",
-      "jurisdiction": "us",
-      "version": "2026-07-13-recovery-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-05-10-snap-sections"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-05-10-tax-sections-r2026-07-15-self-contained-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-06-23-medicare-426-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-06-26-chip-title-xxi-title-42"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-06-29-pl-119-21-medicaid-community-engagement-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-07-03-us-usc-26-85-r2026-07-15-self-contained-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-07-05-oasdi-title-ii-title-42-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-07-13-recovery-r2026-07-15-self-contained-r2026-07-17-dedup"
     }
   ]
 }

@@ -108,3 +108,19 @@ def test_deduplicate_rejects_ambiguous_added_carriers(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="ambiguous citation carrier"):
         deduplicate(corpus, canonical, target, apply=False)
+
+
+def test_deduplicate_reports_inherited_canonical_collisions(tmp_path: Path) -> None:
+    corpus = tmp_path / "corpus"
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_scope(corpus, "canonical-one", ["us-example/statute/1"])
+    _write_scope(corpus, "canonical-two", ["us-example/statute/1"])
+    _write_scope(corpus, "added", ["us-example/statute/2"])
+    _write_selector(canonical, ["canonical-one", "canonical-two"])
+    _write_selector(target, ["canonical-one", "canonical-two", "added"])
+
+    report = deduplicate(corpus, canonical, target, apply=False)
+    assert report["collision_count"] == 0
+    assert report["inherited_collision_count"] == 1
+    assert report["inherited_collision_paths"] == ["us-example/statute/1"]

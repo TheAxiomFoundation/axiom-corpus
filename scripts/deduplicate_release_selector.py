@@ -202,11 +202,15 @@ def deduplicate(
             carriers[citation_path].append((scope, scope in canonical_scopes))
 
     removals: dict[Scope, set[str]] = defaultdict(set)
+    inherited_collision_paths: list[str] = []
     for citation_path, matches in sorted(carriers.items()):
         if len(matches) == 1:
             continue
         canonical_matches = [scope for scope, canonical in matches if canonical]
         added_matches = [scope for scope, canonical in matches if not canonical]
+        if not added_matches:
+            inherited_collision_paths.append(citation_path)
+            continue
         if len(canonical_matches) != 1 or len(added_matches) != 1:
             rendered = ", ".join(
                 f"{scope.jurisdiction}/{scope.document_class}/{scope.version}"
@@ -223,6 +227,8 @@ def deduplicate(
     return {
         "applied": apply,
         "collision_count": sum(scope["removed_count"] for scope in scopes),
+        "inherited_collision_count": len(inherited_collision_paths),
+        "inherited_collision_paths": inherited_collision_paths,
         "scope_count": len(scopes),
         "scopes": scopes,
     }
