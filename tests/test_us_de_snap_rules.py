@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 import fitz  # type: ignore[import-untyped]
@@ -39,16 +40,29 @@ def test_delaware_snap_scope_retains_complete_official_pdf() -> None:
 
     assert len(retained_files) == 1
     assert retained_files[0].suffix == ".pdf"
-    assert len(inventory) == 260
+    assert len(inventory) == 265
     assert coverage["complete"] is True
-    assert coverage["matched_count"] == coverage["source_count"] == 260
-    assert coverage["provision_count"] == 260
+    assert coverage["matched_count"] == coverage["source_count"] == 265
+    assert coverage["provision_count"] == 265
     assert all(CORPUS_ROOT / item["source_path"] == retained_files[0] for item in inventory)
     assert all(item["sha256"] == sha256_file(retained_files[0]) for item in inventory)
 
     with fitz.open(retained_files[0]) as pdf:
         text = "\n".join(page.get_text() for page in pdf)
         assert pdf.page_count == 114
+    source_labels = {
+        match.group(1)
+        for line in text.splitlines()
+        if (match := re.match(r"^(9\d{3}(?:\.\d+)*)(?:\s|$)", line.strip()))
+    }
+    generated_labels = {
+        item["citation_path"].rsplit("/", 1)[-1]
+        for item in inventory
+        if item["metadata"]["kind"] != "document"
+    }
+    assert len(source_labels) == 264
+    assert generated_labels == source_labels
+    assert {"9068.1", "9068.2", "9085.2", "9092", "9093.7"} <= generated_labels
     assert "9000 Food Stamp Program" in text
     assert "29 DE Reg. 531 (12/01/25)" in text
     assert "9095.18 Treasury Offset Program (TOP)" in text

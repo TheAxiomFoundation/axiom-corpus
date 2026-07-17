@@ -11,9 +11,9 @@ documents:
     expression_date: "2025-12-01"
     extraction:
       segmentation: labeled_sections
-      section_heading_pattern: '^(?P<label>9\d{3}(?:\.\d+)*)\s+(?P<heading>[A-Z][A-Za-z0-9 ().,''/-]+)$'
+      section_heading_pattern: '^(?P<label>9\d{3}(?:\.\d+)*)\s+(?P<heading>[A-Z0-9][A-Za-z0-9 &():.,''/\N{EN DASH}-]+)$'
       section_label_pattern: '^(?P<label>9\d{3}(?:\.\d+)*)$'
-      label_only_heading_pattern: '^[A-Z][A-Za-z0-9 ().,''/-]+$'
+      label_only_heading_pattern: '^[A-Z0-9][A-Za-z0-9 &():.,''/\N{EN DASH}-]+$'
       label_only_requires_heading: true
       drop_lines:
         - TITLE 16 HEALTH AND SAFETY
