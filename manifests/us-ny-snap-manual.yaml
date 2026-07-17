@@ -1,3 +1,22 @@
+epm_extraction: &epm_extraction
+  page_citation_prefix: p
+
+epm_metadata: &epm_metadata
+  primary_source: true
+  source_authority: New York State Office of Temporary and Disability Assistance
+  document_subtype: employment_policy_manual_component
+  manual: Temporary Assistance and SNAP Employment Policy Manual
+  programs:
+    - SNAP
+    - Temporary Assistance
+  federal_program: SNAP
+  includes_snap_policy: true
+  archived_official_source: true
+  manual_landing_page: https://otda.ny.gov/resources/employment-manual/
+  source_discovery_group: us-ny/manual/snap
+  discovered_via: official-otda-employment-manual-index
+  verified_current_on: '2026-07-17'
+
 documents:
   - source_id: ny-otda-snap-source-book
     jurisdiction: us-ny
@@ -7,12 +26,12 @@ documents:
     source_url: https://otda.ny.gov/programs/snap/SNAPSB.pdf
     download_url: https://web.archive.org/web/20251031071939id_/https://otda.ny.gov/programs/snap/SNAPSB.pdf
     source_format: pdf
-    source_as_of: "2025-10-31"
-    expression_date: "2025-09-24"
+    source_as_of: '2025-10-31'
+    expression_date: '2025-09-24'
     extraction:
       segmentation: labeled_sections
       start_page: 7
-      section_heading_pattern: "^(?P<label>SECTION\\s+(?P<number>\\d+))(?::|\\s+[\\u2013-]\\s+)\\s*(?P<heading>.+)$"
+      section_heading_pattern: ^(?P<label>SECTION\s+(?P<number>\d+))(?::|\s+[\u2013-]\s+)\s*(?P<heading>.+)$
       section_label_template: section-{number}
       drop_repeated_section_headings: true
       drop_line_patterns:
@@ -28,9 +47,367 @@ documents:
       official_manual_version: Sept 2025
       archived_official_source: true
       archive_url: https://web.archive.org/web/20251031071939id_/https://otda.ny.gov/programs/snap/SNAPSB.pdf
-      archive_timestamp: "20251031071939"
-      original_last_modified: "2025-09-24"
-      manual_landing_page: https://otda.ny.gov/programs/snap/
+      archive_timestamp: '20251031071939'
+      original_last_modified: '2025-09-24'
+      manual_landing_page: https://otda.ny.gov/legal/
+      employment_manual_landing_page: https://otda.ny.gov/resources/employment-manual/
       source_discovery_group: us-ny/manual/snap
-      discovered_via: manual-review:state-snap-manual-agent-queue
-      notes: Live OTDA PDF requests return request-validation HTML to unattended clients; this scope uses an Internet Archive capture of the official OTDA PDF URL.
+      discovered_via: official-otda-legal-index
+      verified_current_on: '2026-07-17'
+      page_count: 576
+      provision_count: 21
+      source_sha256: 719ebf91d11071de67199b6c145eaedbcdc4e0affe0791d07603a9917fd0301b
+      source_byte_count: 3581357
+      notes: Live OTDA PDF requests reset unattended HTTP clients; the retained archive capture is the official OTDA URL and matches the current official 576-page September 2025 Source Book.
+
+  - source_id: ny-otda-employment-manual-introduction
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/introduction
+    title: New York TA and SNAP Employment Policy Manual - Introduction
+    source_url: https://otda.ny.gov/resources/employment-manual/Employment-Manual-Introduction.pdf
+    download_url: https://web.archive.org/web/20240530175931id_/https://www.otda.ny.gov/resources/employment-manual/Employment-Manual-Introduction.pdf
+    source_format: pdf
+    source_as_of: '2024-05-30'
+    expression_date: '2022-03-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: introduction
+      official_revision: 3/2022
+      archive_timestamp: '20240530175931'
+      archive_url: https://web.archive.org/web/20240530175931id_/https://www.otda.ny.gov/resources/employment-manual/Employment-Manual-Introduction.pdf
+      page_count: 4
+      provision_count: 4
+      source_sha256: 28c9a960a954ad226b9e7add1c2adaf3ea0bb3b67a7e13703717540b54dd173e
+      source_byte_count: 123128
+
+  - source_id: ny-otda-employment-manual-385-2
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-2
+    title: New York TA and SNAP Employment Policy Manual - Section 385.2 Participation and Exemptions
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-2.pdf
+    download_url: https://web.archive.org/web/20250528130651id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-2.pdf
+    source_format: pdf
+    source_as_of: '2025-05-28'
+    expression_date: '2025-04-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-2
+      official_revision: 4/2025
+      archive_timestamp: '20250528130651'
+      archive_url: https://web.archive.org/web/20250528130651id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-2.pdf
+      page_count: 38
+      provision_count: 38
+      source_sha256: 3b0a44d67381780500ba6cb844a2b7c1dea5223cb3f274db9499bac7c3539fae
+      source_byte_count: 328686
+
+  - source_id: ny-otda-employment-manual-385-3
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-3
+    title: New York TA and SNAP Employment Policy Manual - Section 385.3 SNAP Work Registration and Eligibility
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-3.pdf
+    download_url: https://web.archive.org/web/20250528130654id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-3.pdf
+    source_format: pdf
+    source_as_of: '2025-05-28'
+    expression_date: '2025-04-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-3
+      official_revision: 4/2025
+      archive_timestamp: '20250528130654'
+      archive_url: https://web.archive.org/web/20250528130654id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-3.pdf
+      page_count: 36
+      provision_count: 36
+      source_sha256: 68315e38abc893849d644f69a34178d8b1476530f96551affd3c0f28fbc0ba1e
+      source_byte_count: 413505
+
+  - source_id: ny-otda-employment-manual-385-4
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-4
+    title: New York TA and SNAP Employment Policy Manual - Section 385.4 Supportive Services
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-4.pdf
+    download_url: https://web.archive.org/web/20250528130657id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-4.pdf
+    source_format: pdf
+    source_as_of: '2025-05-28'
+    expression_date: '2025-04-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-4
+      official_revision: 4/2025
+      archive_timestamp: '20250528130657'
+      archive_url: https://web.archive.org/web/20250528130657id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-4.pdf
+      page_count: 14
+      provision_count: 14
+      source_sha256: 7fc6f1f94a816d01faa8561fc6931ef38bd3f12d858ba665b159f95922fda5b1
+      source_byte_count: 169498
+
+  - source_id: ny-otda-employment-manual-385-5
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-5
+    title: New York TA and SNAP Employment Policy Manual - Section 385.5 Orientation Requirements
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-5.pdf
+    download_url: https://web.archive.org/web/20250528130700id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-5.pdf
+    source_format: pdf
+    source_as_of: '2025-05-28'
+    expression_date: '2025-04-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-5
+      official_revision: 4/2025
+      archive_timestamp: '20250528130700'
+      archive_url: https://web.archive.org/web/20250528130700id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-5.pdf
+      page_count: 6
+      provision_count: 6
+      source_sha256: b5c2ad993292762cb6d1bae8461abdae4b33b328379a267ea3d21d6b3e3e68f8
+      source_byte_count: 121106
+
+  - source_id: ny-otda-employment-manual-385-6
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-6
+    title: New York TA and SNAP Employment Policy Manual - Section 385.6 Assessments for Households with Dependent Children
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-6.pdf
+    download_url: https://web.archive.org/web/20250528130704id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-6.pdf
+    source_format: pdf
+    source_as_of: '2025-05-28'
+    expression_date: '2025-04-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-6
+      official_revision: 4/2025
+      archive_timestamp: '20250528130704'
+      archive_url: https://web.archive.org/web/20250528130704id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-6.pdf
+      page_count: 9
+      provision_count: 9
+      source_sha256: c4a73cbd9b800192cc1e45e94f9c572654ef998aefd4f000a98d10f88d4ea473
+      source_byte_count: 179473
+
+  - source_id: ny-otda-employment-manual-385-7
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-7
+    title: New York TA and SNAP Employment Policy Manual - Section 385.7 Assessments for Households without Dependent Children
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-7.pdf
+    download_url: https://web.archive.org/web/20250528130712id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-7.pdf
+    source_format: pdf
+    source_as_of: '2025-05-28'
+    expression_date: '2025-04-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-7
+      official_revision: 4/2025
+      archive_timestamp: '20250528130712'
+      archive_url: https://web.archive.org/web/20250528130712id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-7.pdf
+      page_count: 9
+      provision_count: 9
+      source_sha256: 8a79ad5bdcebe5667f676d53dfb4c3c310f8d963752d6e3d53dc51815a24b455
+      source_byte_count: 130246
+
+  - source_id: ny-otda-employment-manual-385-8
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-8
+    title: New York TA and SNAP Employment Policy Manual - Section 385.8 Participation Rate Requirements
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-8.pdf
+    download_url: https://web.archive.org/web/20240530175948id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-8.pdf
+    source_format: pdf
+    source_as_of: '2024-05-30'
+    expression_date: '2022-03-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-8
+      official_revision: 3/2022
+      archive_timestamp: '20240530175948'
+      archive_url: https://web.archive.org/web/20240530175948id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-8.pdf
+      page_count: 23
+      provision_count: 23
+      source_sha256: 40d2aeb616cdab287615ea131779efdd77d5e1d13c292138d5cf186d8ba99814
+      source_byte_count: 227771
+
+  - source_id: ny-otda-employment-manual-385-9
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-9
+    title: New York TA and SNAP Employment Policy Manual - Section 385.9 Work Activities and Requirements
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-9.pdf
+    download_url: https://web.archive.org/web/20250528130720id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-9.pdf
+    source_format: pdf
+    source_as_of: '2025-05-28'
+    expression_date: '2025-04-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-9
+      official_revision: 4/2025
+      archive_timestamp: '20250528130720'
+      archive_url: https://web.archive.org/web/20250528130720id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-9.pdf
+      page_count: 27
+      provision_count: 27
+      source_sha256: 45fa3764731452406b9a9def46886f91004343b4328ccbfe9cb1439752b284f0
+      source_byte_count: 304612
+
+  - source_id: ny-otda-employment-manual-385-10
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-10
+    title: New York TA and SNAP Employment Policy Manual - Section 385.10 Local District Employment Plans
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-10.pdf
+    download_url: https://web.archive.org/web/20250421130131id_/https://otda.ny.gov/resources/employment-manual/Section-385-10.pdf
+    source_format: pdf
+    source_as_of: '2025-04-21'
+    expression_date: '2025-04-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-10
+      official_revision: 4/2025
+      archive_timestamp: '20250421130131'
+      archive_url: https://web.archive.org/web/20250421130131id_/https://otda.ny.gov/resources/employment-manual/Section-385-10.pdf
+      page_count: 5
+      provision_count: 5
+      source_sha256: 8eaba40d9e247a2e735642095f38bf79e0099bc3749993b218eecb2330ae67d6
+      source_byte_count: 98372
+
+  - source_id: ny-otda-employment-manual-385-11
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-11
+    title: New York TA and SNAP Employment Policy Manual - Section 385.11 Conciliation
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-11.pdf
+    download_url: https://web.archive.org/web/20240530175955id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-11.pdf
+    source_format: pdf
+    source_as_of: '2024-05-30'
+    expression_date: '2022-03-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-11
+      official_revision: 3/2022
+      archive_timestamp: '20240530175955'
+      archive_url: https://web.archive.org/web/20240530175955id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-11.pdf
+      page_count: 20
+      provision_count: 20
+      source_sha256: 8f0e458c0f2ed4f33d413dbe61323ae7c1566c420cf26936d8f72eecb4900466
+      source_byte_count: 223708
+
+  - source_id: ny-otda-employment-manual-385-12
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-12
+    title: New York TA and SNAP Employment Policy Manual - Section 385.12 Sanctions
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-12.pdf
+    download_url: https://web.archive.org/web/20240530175957id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-12.pdf
+    source_format: pdf
+    source_as_of: '2024-05-30'
+    expression_date: '2022-03-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-12
+      official_revision: 3/2022
+      archive_timestamp: '20240530175957'
+      archive_url: https://web.archive.org/web/20240530175957id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-12.pdf
+      page_count: 18
+      provision_count: 18
+      source_sha256: c8aa3c9fde39038f4ae0a382ce18edd146683fd888d726ebcb9d51f4d3b63ba7
+      source_byte_count: 204834
+
+  - source_id: ny-otda-employment-manual-385-13
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/385-13
+    title: New York TA and SNAP Employment Policy Manual - Section 385.13 Voluntary Quit
+    source_url: https://otda.ny.gov/resources/employment-manual/Section-385-13.pdf
+    download_url: https://web.archive.org/web/20240530180000id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-13.pdf
+    source_format: pdf
+    source_as_of: '2024-05-30'
+    expression_date: '2022-03-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: section-385-13
+      official_revision: 3/2022
+      archive_timestamp: '20240530180000'
+      archive_url: https://web.archive.org/web/20240530180000id_/https://www.otda.ny.gov/resources/employment-manual/Section-385-13.pdf
+      page_count: 15
+      provision_count: 15
+      source_sha256: 7a646dbc5a53ee95a5de110750de86dbbf18044937285b636d9268e4dc15c0a5
+      source_byte_count: 187836
+
+  - source_id: ny-otda-employment-manual-appendix-a
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/appendix-a
+    title: New York TA and SNAP Employment Policy Manual - Appendix A Model Documents and Worker Aids
+    source_url: https://otda.ny.gov/resources/employment-manual/Appendix-A.pdf
+    download_url: https://web.archive.org/web/20240530180002id_/https://www.otda.ny.gov/resources/employment-manual/Appendix-A.pdf
+    source_format: pdf
+    source_as_of: '2024-05-30'
+    expression_date: '2022-03-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: appendix-a
+      official_revision: 3/2022
+      archive_timestamp: '20240530180002'
+      archive_url: https://web.archive.org/web/20240530180002id_/https://www.otda.ny.gov/resources/employment-manual/Appendix-A.pdf
+      page_count: 17
+      provision_count: 17
+      source_sha256: 4390495b9f66e09a3c8671a98d84111c67f5b30eb555e25d50dddc591e90f448
+      source_byte_count: 278623
+
+  - source_id: ny-otda-employment-manual-appendix-b
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/appendix-b
+    title: New York TA and SNAP Employment Policy Manual - Appendix B Employment Tracking and WRTS
+    source_url: https://otda.ny.gov/resources/employment-manual/Appendix-B.pdf
+    download_url: https://web.archive.org/web/20240530180005id_/https://www.otda.ny.gov/resources/employment-manual/Appendix-B.pdf
+    source_format: pdf
+    source_as_of: '2024-05-30'
+    expression_date: '2022-03-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: appendix-b
+      official_revision: 3/2022
+      archive_timestamp: '20240530180005'
+      archive_url: https://web.archive.org/web/20240530180005id_/https://www.otda.ny.gov/resources/employment-manual/Appendix-B.pdf
+      page_count: 41
+      provision_count: 41
+      source_sha256: 5050de6a402d895b90a820353b9a34d6ea6ef239556e60c80ddc33ae98f0b683
+      source_byte_count: 1318772
+
+  - source_id: ny-otda-employment-manual-appendix-c
+    jurisdiction: us-ny
+    document_class: manual
+    citation_path: us-ny/manual/otda/employment-policy-manual/appendix-c
+    title: New York TA and SNAP Employment Policy Manual - Appendix C Client Notices and Instructions
+    source_url: https://otda.ny.gov/resources/employment-manual/Appendix-C.pdf
+    download_url: https://web.archive.org/web/20240530180011id_/https://www.otda.ny.gov/resources/employment-manual/Appendix-C.pdf
+    source_format: pdf
+    source_as_of: '2024-05-30'
+    expression_date: '2022-03-01'
+    extraction: *epm_extraction
+    metadata:
+      <<: *epm_metadata
+      manual_component: appendix-c
+      official_revision: 3/2022
+      archive_timestamp: '20240530180011'
+      archive_url: https://web.archive.org/web/20240530180011id_/https://www.otda.ny.gov/resources/employment-manual/Appendix-C.pdf
+      page_count: 20
+      provision_count: 20
+      source_sha256: c6a2935408b6f16138025b08991afda6bc898f4c00d1ae62d2888eca5ff83e3a
+      source_byte_count: 249941
