@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-de/regulation/2026-07-17-de-snap-rules.json",
+      "sha256": "66d5dde12f9adcfd7a028128a97c14ea1c436e0a70e80131bcae7365c9dd7943"
+    },
+    {
+      "path": "data/corpus/inventory/us-de/regulation/2026-07-17-de-snap-rules.json",
+      "sha256": "3a8040b5d60bc19014e524df3ffe95e1bffd53f59f8f1d774b2671eb8dfbbb57"
+    },
+    {
+      "path": "data/corpus/provisions/us-de/regulation/2026-07-17-de-snap-rules.jsonl",
+      "sha256": "797298210f3cdf9701744067f886e51dbe54f040cb754e26f740c1b2c27de9b4"
+    },
+    {
+      "path": "data/corpus/sources/us-de/regulation/2026-07-17-de-snap-rules/official-documents/de-dhss-dss-9000-food-stamp-program.pdf",
+      "sha256": "0e45cd0cbf010ba459e061b5887c4411e12983153fb08f927d70fb430dede943"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7838748dfdffb9ccbbaeb25ac72be75c69c6e472",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-17-de-snap-rules --manifest manifests/us-de-snap-rules.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 265,
+    "missing_count": 0,
+    "provision_count": 265,
+    "source_count": 265
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-17T03:11:51.012684+00:00",
+  "jurisdiction": "us-de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "f+1GrdpvOwzzqP7ed4m8N93xF8qT0oCIwfxuCUeuiqIaT/Wl8bkgT39tGkWYc7uzh30asjX5z1O16LGRzx07Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-de-snap-rules"
+}
