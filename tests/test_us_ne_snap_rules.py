@@ -136,7 +136,7 @@ def test_nebraska_sections_preserve_inline_text_and_policy_boundaries() -> None:
         "us-ne/regulation/title-475/chapter-1/002.24"
     ]["body"]
     self_employment = sections[
-        "us-ne/regulation/title-475/chapter-3/002.04(b)"
+        "us-ne/regulation/title-475/chapter-3/002.04.b"
     ]["body"]
     replacements = sections["us-ne/regulation/title-475/chapter-5/002.03"]["body"]
 
@@ -146,7 +146,7 @@ def test_nebraska_sections_preserve_inline_text_and_policy_boundaries() -> None:
     )
     assert "reported within ten days" in replacements
     assert "us-ne/regulation/title-475/chapter-3/273.11" not in sections
-    assert sections["us-ne/regulation/title-475/chapter-3/002.04(b)"]["heading"].startswith(
+    assert sections["us-ne/regulation/title-475/chapter-3/002.04.b"]["heading"].startswith(
         "002.04(B)"
     )
     assert not any(

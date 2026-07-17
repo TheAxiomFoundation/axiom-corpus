@@ -2004,7 +2004,7 @@ documents:
     extraction:
       segmentation: labeled_sections
       section_heading_pattern: '^(?P<label>\\d{{3}}(?:\\([A-Z]+\\))*)\\.\\s+(?P<heading>[A-Z ]+\\.)(?:\\s+(?P<body>.*))?$'
-      lowercase_parenthetical_label_components: true
+      normalize_parenthetical_label_components: true
 """
     )
     store = CorpusArtifactStore(tmp_path / "corpus")
@@ -2017,11 +2017,11 @@ documents:
 
     assert report.block_count == 2
     records = load_provisions(report.provisions_path)
-    assert records[1].citation_path.endswith("/001(a)")
+    assert records[1].citation_path.endswith("/001.a")
     assert records[1].heading == "001(A) FIRST POLICY."
     assert records[1].metadata["section_label"] == "001(A)"
     assert records[1].body == "Inline body starts here. Body continues here."
-    assert records[2].citation_path.endswith("/002(b)(iv)")
+    assert records[2].citation_path.endswith("/002.b.iv")
     assert records[2].body == "Second inline body."
 
 

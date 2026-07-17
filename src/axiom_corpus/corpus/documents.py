@@ -993,8 +993,8 @@ def _extract_labeled_pdf_section_blocks(
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
     heading_requires_bold = bool(extraction.get("section_heading_requires_bold", False))
-    lowercase_parentheticals = bool(
-        extraction.get("lowercase_parenthetical_label_components", False)
+    normalize_parentheticals = bool(
+        extraction.get("normalize_parenthetical_label_components", False)
     )
     if heading_requires_bold:
         styled_lines = _filtered_pdf_styled_lines(content, extraction=extraction)
@@ -1093,10 +1093,10 @@ def _extract_labeled_pdf_section_blocks(
             citation_label = (
                 re.sub(
                     r"\(([^)]+)\)",
-                    lambda component: f"({component.group(1).lower()})",
+                    lambda component: f".{component.group(1).lower()}",
                     label,
                 )
-                if lowercase_parentheticals
+                if normalize_parentheticals
                 else label
             )
             inline_body = ""
