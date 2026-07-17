@@ -3478,8 +3478,8 @@ def test_extract_labeled_pdf_sections_can_require_bold_headings(
     page.insert_text((72, 72), "Rule 4.5 Interview.", fontname="tibi")
     page.insert_text((72, 96), "Interview requirements apply.")
     page.insert_text((72, 120), "Rule 4.13 Processing Timeframes.", fontname="tiit")
-    page.insert_text((72, 144), "Rule 4.13 Processing Timeframes for", fontname="tibi")
-    page.insert_text((72, 168), "Expedited Applications.", fontname="tibi")
+    page.insert_text((72, 144), "Rule 4.13 Eligibility for U.S.", fontname="tibi")
+    page.insert_text((72, 168), "Citizens.", fontname="tibi")
     page.insert_text((72, 192), "The seven-day timeframe applies.")
     document.save(pdf_path)
     document.close()
@@ -3519,7 +3519,7 @@ documents:
     assert records[1].body == (
         "Interview requirements apply. Rule 4.13 Processing Timeframes."
     )
-    assert records[2].heading == "4.13 Processing Timeframes for Expedited Applications."
+    assert records[2].heading == "4.13 Eligibility for U.S. Citizens."
     assert records[2].body == "The seven-day timeframe applies."
 
 

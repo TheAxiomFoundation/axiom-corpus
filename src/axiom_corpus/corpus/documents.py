@@ -995,11 +995,11 @@ def _extract_labeled_pdf_section_blocks(
     heading_requires_bold = bool(extraction.get("section_heading_requires_bold", False))
     if heading_requires_bold:
         styled_lines = _filtered_pdf_styled_lines(content, extraction=extraction)
-        lines = tuple((line, page) for line, page, _is_bold in styled_lines)
-        line_boldness = tuple(is_bold for _line, _page, is_bold in styled_lines)
+        lines = tuple((line, page) for line, page, _style in styled_lines)
+        line_styles = tuple(style for _line, _page, style in styled_lines)
     else:
         lines = _filtered_pdf_lines(content, extraction=extraction)
-        line_boldness = ()
+        line_styles = ()
 
     sections: list[_DocumentBlock] = []
     current_label: str | None = None
@@ -1010,7 +1010,7 @@ def _extract_labeled_pdf_section_blocks(
     index = 0
 
     def is_heading_continuation(
-        candidate_index: int, *, allow_bold_continuation: bool
+        candidate_index: int, *, heading_style: int
     ) -> bool:
         candidate = lines[candidate_index][0]
         is_distinct_section = _match_labeled_pdf_section(
@@ -1021,10 +1021,11 @@ def _extract_labeled_pdf_section_blocks(
             label_replacements=label_replacements,
         )
         if (
-            allow_bold_continuation
-            and heading_requires_bold
-            and line_boldness[candidate_index]
+            heading_requires_bold
+            and line_styles[candidate_index] == heading_style
             and not is_distinct_section
+            and not re.match(r"^(?:[A-Z]|\d+)[.)]\s", candidate)
+            and not re.match(r"^\([A-Za-z0-9]+\)\s", candidate)
         ):
             return True
         return _looks_like_labeled_heading_continuation(
@@ -1070,20 +1071,21 @@ def _extract_labeled_pdf_section_blocks(
             label_template=str(label_template) if label_template is not None else None,
             label_replacements=label_replacements,
         )
-        if match and heading_requires_bold and not line_boldness[index]:
+        if (
+            match
+            and heading_requires_bold
+            and not line_styles[index] & fitz.TEXT_FONT_BOLD
+        ):
             match = None
         if match:
             label, heading_text = match
+            heading_style = line_styles[index] if heading_requires_bold else 0
             consumed_label_heading = False
             if drop_repeated and label == current_label:
                 index += 1
-                allow_bold_continuation = not heading_text.rstrip().endswith((".", "?", "!"))
                 while index < len(lines) and is_heading_continuation(
-                    index, allow_bold_continuation=allow_bold_continuation
+                    index, heading_style=heading_style
                 ):
-                    allow_bold_continuation = not lines[index][0].rstrip().endswith(
-                        (".", "?", "!")
-                    )
                     index += 1
                 continue
             if not heading_text and label_heading_re is not None:
@@ -1101,14 +1103,10 @@ def _extract_labeled_pdf_section_blocks(
             index += 1
             if consumed_label_heading:
                 index += 1
-            allow_bold_continuation = not heading_text.rstrip().endswith((".", "?", "!"))
             while index < len(lines) and is_heading_continuation(
-                index, allow_bold_continuation=allow_bold_continuation
+                index, heading_style=heading_style
             ):
                 heading_lines.append(lines[index][0])
-                allow_bold_continuation = not lines[index][0].rstrip().endswith(
-                    (".", "?", "!")
-                )
                 index += 1
             heading = " ".join(part for part in heading_lines if part)
             current_label = label
@@ -1673,7 +1671,7 @@ def _filtered_pdf_lines(
 ) -> tuple[tuple[str, int], ...]:
     return tuple(
         (line, page)
-        for line, page, _is_bold in _filtered_pdf_styled_lines(
+        for line, page, _style in _filtered_pdf_styled_lines(
             content, extraction=extraction
         )
     )
@@ -1681,7 +1679,7 @@ def _filtered_pdf_lines(
 
 def _filtered_pdf_styled_lines(
     content: bytes, *, extraction: dict[str, Any]
-) -> tuple[tuple[str, int, bool], ...]:
+) -> tuple[tuple[str, int, int], ...]:
     if extraction.get("page_windows") is not None:
         return _windowed_pdf_styled_lines(content, extraction=extraction)
     start_page = _positive_int(extraction.get("start_page"), default=1)
@@ -1698,21 +1696,21 @@ def _filtered_pdf_styled_lines(
         re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
     )
     started = start_after_re is None
-    lines: list[tuple[str, int, bool]] = []
+    lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         for page_index, page in enumerate(document, start=1):
             if page_index < start_page:
                 continue
             if parsed_end_page is not None and page_index > parsed_end_page:
                 break
-            for line, is_bold in _pdf_page_styled_lines(page, extraction=extraction):
+            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started:
                     if start_after_re is not None and start_after_re.search(line):
                         started = True
                     continue
-                lines.append((line, page_index, is_bold))
+                lines.append((line, page_index, style))
     return tuple(lines)
 
 
@@ -1763,7 +1761,7 @@ def _windowed_pdf_lines(
 ) -> tuple[tuple[str, int], ...]:
     return tuple(
         (line, page)
-        for line, page, _is_bold in _windowed_pdf_styled_lines(
+        for line, page, _style in _windowed_pdf_styled_lines(
             content, extraction=extraction
         )
     )
@@ -1771,7 +1769,7 @@ def _windowed_pdf_lines(
 
 def _windowed_pdf_styled_lines(
     content: bytes, *, extraction: dict[str, Any]
-) -> tuple[tuple[str, int, bool], ...]:
+) -> tuple[tuple[str, int, int], ...]:
     """Collect PDF text lines from discontiguous page windows.
 
     Each window is a mapping with ``start_page``/``end_page`` (1-based,
@@ -1795,7 +1793,7 @@ def _windowed_pdf_styled_lines(
     last_page = max(window.end_page for window in windows)
     started: dict[int, bool] = {id(window): window.start_at_re is None for window in windows}
     stopped: dict[int, bool] = {id(window): False for window in windows}
-    lines: list[tuple[str, int, bool]] = []
+    lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         for page_index, page in enumerate(document, start=1):
             if page_index > last_page:
@@ -1803,7 +1801,7 @@ def _windowed_pdf_styled_lines(
             page_window = window_by_page.get(page_index)
             if page_window is None or stopped[id(page_window)]:
                 continue
-            for line, is_bold in _pdf_page_styled_lines(page, extraction=extraction):
+            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started[id(page_window)]:
@@ -1811,20 +1809,20 @@ def _windowed_pdf_styled_lines(
                         line
                     ):
                         started[id(page_window)] = True
-                        lines.append((line, page_index, is_bold))
+                        lines.append((line, page_index, style))
                     continue
                 if page_window.stop_at_re is not None and page_window.stop_at_re.search(line):
                     stopped[id(page_window)] = True
                     break
-                lines.append((line, page_index, is_bold))
+                lines.append((line, page_index, style))
     return tuple(lines)
 
 
 def _pdf_page_styled_lines(
     page: Any, *, extraction: dict[str, Any]
-) -> tuple[tuple[str, bool], ...]:
-    """Pair the normal PDF text stream with first-span boldness by occurrence."""
-    styles: dict[str, list[bool]] = {}
+) -> tuple[tuple[str, int], ...]:
+    """Pair the normal PDF text stream with first-span font flags by occurrence."""
+    styles: dict[str, list[int]] = {}
     if not extraction.get("force_ocr"):
         page_dict = page.get_text("dict", sort=bool(extraction.get("sort_text")))
         for block in page_dict.get("blocks", ()):
@@ -1839,11 +1837,11 @@ def _pdf_page_styled_lines(
                 text = _normalize_text("".join(str(span.get("text", "")) for span in spans))
                 if text:
                     styles.setdefault(text, []).append(
-                        bool(int(first_span.get("flags", 0)) & fitz.TEXT_FONT_BOLD)
+                        int(first_span.get("flags", 0))
                     )
 
     occurrences: dict[str, int] = {}
-    lines: list[tuple[str, bool]] = []
+    lines: list[tuple[str, int]] = []
     for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
         line = _normalize_text(raw_line)
         if not line:
@@ -1851,7 +1849,7 @@ def _pdf_page_styled_lines(
         occurrence = occurrences.get(line, 0)
         occurrences[line] = occurrence + 1
         line_styles = styles.get(line, ())
-        lines.append((line, occurrence < len(line_styles) and line_styles[occurrence]))
+        lines.append((line, line_styles[occurrence] if occurrence < len(line_styles) else 0))
     return tuple(lines)
 
 
