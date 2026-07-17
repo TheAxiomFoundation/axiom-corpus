@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/regulation/2026-07-17-ma-dta-snap-regulations.json",
+      "sha256": "a4da4b8ea7a8ecedc9f4d73cb0c49285b7ff833cf3001a377cbe68d9e1d83e74"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/regulation/2026-07-17-ma-dta-snap-regulations.json",
+      "sha256": "f84b9b6747e02f4b243e646cb4fc2099fc789e7ef3ccf0516608e9cbc40d3104"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/regulation/2026-07-17-ma-dta-snap-regulations.jsonl",
+      "sha256": "52f9d8b4a180ab4f7452021dfefaeb122518ae6cb25b9dd93c3b80bcb40c8238"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-343.pdf",
+      "sha256": "ab1ac95b8c591b8c7bb950c9ac9b3b5c67904ae6f603775fb207ed93e1955a2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-360.pdf",
+      "sha256": "fd7b27c99d7ee3636e01e8e2b0cb64dc992da948841f55c0d7fc987712346964"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-361.pdf",
+      "sha256": "c9cf8baba5cc8aff2a7f62d94de59516dd97fd8a00857f7f75104b1b60e053b5"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-362.pdf",
+      "sha256": "9746686a82feabdd110c33386aa72c001c8527e918cafb46de92250c5a330e81"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-363.pdf",
+      "sha256": "026e74a26aa3d678cdced52991f7700d9622aaabe04676535ae37f980aa8e7db"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-364.pdf",
+      "sha256": "a67ed6db174ff931b9c6a02a4fbb63dd6d29cef0ad3f90eda353bd4568ba2754"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-365.docx",
+      "sha256": "cfa3440e442b1f834bb882d50674038700212f07e99ac33797ef4d458668a674"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-366.pdf",
+      "sha256": "a9f453c7302448751df406b8570dab11cf38415a9c99f7e2b6dd15f438e12827"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-367.pdf",
+      "sha256": "b130821e98ec2e8694c00614d5e212f58b3ce93a2cf06437a4401370643eb9bf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "90931d8aa34243a666817bfcda27703fd7155a18",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus extract-official-documents --base data/corpus --version 2026-07-17-ma-dta-snap-regulations --manifest manifests/us-ma-dta-snap-regulations.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 330,
+    "missing_count": 0,
+    "provision_count": 330,
+    "source_count": 330
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-17T16:13:19.860872+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "j99QMkmufZQL+EP7u14T/23Hs3dA3H+dsDhcYaTkyWpGi85cHL8mrnz5at9FGFG5YHTarounkM6LJUkqPL5KAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-ma-dta-snap-regulations"
+}
