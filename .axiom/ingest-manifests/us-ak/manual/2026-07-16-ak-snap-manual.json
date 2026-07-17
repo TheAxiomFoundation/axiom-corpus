@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-ak/manual/2026-07-16-ak-snap-manual.json",
-      "sha256": "989494301981b770d5a33bbca9c31d3092115ba29a1036203ba7af651dc90eb1"
+      "sha256": "d46c11a1461ef30d87231293608957635a9ee0d70c693b0c1f8c980c11203f5d"
     },
     {
       "path": "data/corpus/inventory/us-ak/manual/2026-07-16-ak-snap-manual.json",
-      "sha256": "e39b9215bda7144274b14061fff602c264ad5888021af0c801e0a3ac5a3f5bcd"
+      "sha256": "01839a553920507863c77038076729b449d761b67c991aea5aee6c952db902d7"
     },
     {
       "path": "data/corpus/provisions/us-ak/manual/2026-07-16-ak-snap-manual.jsonl",
-      "sha256": "b6d6a6291d6d665f3df200cffef9a3f10bf2a9cc01102a6738c42a8d0ceafbde"
+      "sha256": "01b43cfbdfb219c5d89114cef469eaa2043855e12e33d790cd68986808f8cabb"
     },
     {
       "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-a-caseworker-responsibilities.html",
@@ -497,6 +497,186 @@
       "sha256": "4a5617d05bb2399c2328b9346152e9c6c10d983315cb4dab81167d6bf31ffe3d"
     },
     {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-root.js",
+      "sha256": "929d320eaea5c8ceb57410d4670b3796d79236c2664f4539f4c00e1208a230b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc1.js",
+      "sha256": "efbdc1728f1a1f542c5c83ac87ec694ef78f5515d85680c241189fad563cc42f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc10.js",
+      "sha256": "4db116a5830f0f91a9d014c68d4004ee95c804358c3d0fbd906f4fa5abc222db"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc11.js",
+      "sha256": "65ac1c6c58bc830fb70c61e49b97e76ee8dcb94a167226485e624621c7eb565d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc12.js",
+      "sha256": "9d49ebccb9beef533607bd3a3e595364672b37074038b21872abf5c74045ee50"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc13.js",
+      "sha256": "bc166acf1e1b6e9f79f4b9b348d24f29104c9c00e18869f2c4f4ae98bb17b227"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc14.js",
+      "sha256": "d5d2436cdedcc19c4a14080727918cd266d94de1dec6358a638dc0176fffd8d6"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc15.js",
+      "sha256": "d5a468c858c35e715a1d40166c63b859c814bcba268a29623e68560b8e931c67"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc16.js",
+      "sha256": "6bfee442e2fb425f7284b5bc3ddcceac8e5aade992efbd97ba7afbafd1fb4ea4"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc17.js",
+      "sha256": "8877fedf81eaa00311e39292b2d35921421c9ce459d81e431ac947ce91c4a780"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc18.js",
+      "sha256": "e9c75214ed97c402822de1fa39664477dd65c25eb7f61f93db13a7620fbc1c68"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc19.js",
+      "sha256": "1389bcec64d7685823da638f83225a8f6eab25d6b15e446d009edea6ce9fc597"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc2.js",
+      "sha256": "614b0c34717c8b1e4806a6babac7bc570f9da4ba6fd3cab8d10f3b60d74b43bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc20.js",
+      "sha256": "f7c42f9e772ad7552d3a0f8bb2effdbb44243d924ee68353ff8ab4ba331b0c97"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc21.js",
+      "sha256": "a6010002ce216d634c9e7b801efad6512f6eea888bdf7eb9224ad1ed43455b40"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc22.js",
+      "sha256": "05f19651a6cc1e92d96ab598557ec6e9aef5c81268f331ab8ad44edd571fc79c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc23.js",
+      "sha256": "8e1ec75250e30dff4bc8667cd09794157147cb44d76a05d2c1c08fcf5fb4d903"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc24.js",
+      "sha256": "d96153c53d2382c0497411cdfd75a988a07a6f6f5d564034c9224cbdfe523b37"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc25.js",
+      "sha256": "b991b44958600f8a000596138d1b977a471247ae15583abf52da083dd2c1c6b7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc26.js",
+      "sha256": "e7683175e579cead984e4014684b93670d572bccbdc26b84c798384b42adb32c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc27.js",
+      "sha256": "07e2522ea921056bda1b6ca8feb5092cce88251b5e8b43e4d306deec5a9d3582"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc28.js",
+      "sha256": "216fb5331720c9aca6a887bf46806e3fe65dd3a292f921806d901fd6de675ccb"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc29.js",
+      "sha256": "04a0e3ff4bbfdba2086ce9edd7479aafea4a49af5c312e00895106549c824e23"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc3.js",
+      "sha256": "39bcaca6485843176e49221f40c216d67eb8167a3ff1500e36bdf3bc7a99b055"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc30.js",
+      "sha256": "dd482e11ccdf873829872274005542ec99a306d7303ed04cf727334ab23959e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc31.js",
+      "sha256": "24de99333c9df4782ed22f4930ee8c3b9f40c7175b6ec11c1a1c833e9f1b0f9a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc32.js",
+      "sha256": "c829eb4523f72be3256ce5ac2f93f00429609cf307f863fa5133aa6f26cd8d32"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc33.js",
+      "sha256": "77c55a0419509cf5e6025c90e0e6625798740e4c6877cb2cd51276cd08f2a485"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc34.js",
+      "sha256": "68a21cc6266fcaee13024f841ff02301da566ad5cdc2ac431d65e50a91c76ebb"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc35.js",
+      "sha256": "f26b6cd75b66f6bde1cd759137a11deec159564d432bdb244599fd8d64cf69af"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc36.js",
+      "sha256": "eb534ca3b0502beedcb57d50f05dd946819c9f1f1acd4625c3103a4b5a41f7b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc37.js",
+      "sha256": "6391faea075ea608f05476030bd796ab2adf8b2f75a9b97e261ce4b2daf3e349"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc38.js",
+      "sha256": "9de656a65c18fe571a566db0c89274b8025ce2be0874a1deac0e7ac693123c58"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc39.js",
+      "sha256": "e3e7dea1a93eb9cd42427a445f1fff3b00c4ba75c1394f3b12609e532f9206b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc4.js",
+      "sha256": "a6f8f280a052c8825125c0c289dbf1e12587689ea879c8cfdb78f5243bd311a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc40.js",
+      "sha256": "ab80f9a283f969e6f46a5b9e96082dadc137c5a423c9a0c1ae3e79ab55481976"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc41.js",
+      "sha256": "5c16eb2bc8feab08c6db2a83accccdf10e7ef61fff7e779ea4177996d73ac2e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc42.js",
+      "sha256": "969c79b6ae3d795afc0a1ae47e45ed116520ff9681da8c22adab8e2a4bfe4a07"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc43.js",
+      "sha256": "c80088908d9bf1925808eb212a82680cab535ed216264932789ac5f272200694"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc44.js",
+      "sha256": "fe8c7d92f1ef4395b9a63ba44eea7ce7a4c5f9d36da769d5d44285fc2af5adc8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc5.js",
+      "sha256": "4deac87bfc2d49dbc1a898754bd673b64034dd91b41fd06f10b594b92204ca54"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc6.js",
+      "sha256": "484f060d057f81de5278b29489aa8740a40dac71f1f85cdd48bdf66be90875e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc7.js",
+      "sha256": "5c54772b3ec6838c8db4fd52ac43db425e4c01ce09186491ad0939062bc47bcd"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc8.js",
+      "sha256": "0602237ee0e72551effda3409ab5cde559d1624592513cb437e3c1f501ebc838"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-toc-toc9.js",
+      "sha256": "3332aeb6b39ebc95fd29c543abd0699a772aeeb425db1a1d008a7e4de6affe5e"
+    },
+    {
       "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-2026-02-07-26.html",
       "sha256": "f8e60755ebaaaa59316ad14a6b21faedc43e431d42ebb48865e57493cc2ada66"
     },
@@ -790,7 +970,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2f35bbe3d7fc3e5f9023b14e094ce94a0751b197",
+    "commit": "3338a992546d04e16b80fd49b7d19f32b4b32f17",
     "dirty_tracked": false,
     "root": "."
   },
@@ -801,20 +981,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 388,
+    "matched_count": 478,
     "missing_count": 0,
-    "provision_count": 388,
-    "source_count": 388
+    "provision_count": 478,
+    "source_count": 478
   },
   "document_class": "manual",
-  "generated_at": "2026-07-17T00:08:31.832766+00:00",
+  "generated_at": "2026-07-17T00:21:12.542986+00:00",
   "jurisdiction": "us-ak",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "K9W8WKIhO7rOJdQO7tU+RQjpi43YvdN7u9EB40G2mxnuQMIztgeqnUYUwu3A7eMeIGsaDYfdmFfAWBVsjFElBw=="
+    "value": "Zd5UW2bnq5V12zgs7ZHP8D2ovGhkuosllLCG0Z9SX5iCusUnrrcHuDWwkLtUL4nqXxNaAcX4YhLgsmGQhP10AQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-16-ak-snap-manual"
