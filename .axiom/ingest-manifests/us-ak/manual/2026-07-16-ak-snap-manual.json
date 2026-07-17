@@ -1,0 +1,821 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ak/manual/2026-07-16-ak-snap-manual.json",
+      "sha256": "989494301981b770d5a33bbca9c31d3092115ba29a1036203ba7af651dc90eb1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ak/manual/2026-07-16-ak-snap-manual.json",
+      "sha256": "e39b9215bda7144274b14061fff602c264ad5888021af0c801e0a3ac5a3f5bcd"
+    },
+    {
+      "path": "data/corpus/provisions/us-ak/manual/2026-07-16-ak-snap-manual.jsonl",
+      "sha256": "b6d6a6291d6d665f3df200cffef9a3f10bf2a9cc01102a6738c42a8d0ceafbde"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-a-caseworker-responsibilities.html",
+      "sha256": "f097123c159e0658456b62c707eb2792319e4633e533ea3228c9604ab0dd9687"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-b-records-and-reports.html",
+      "sha256": "f4bb9f5a292ea6bb72c597dbb0183716f78c7bcfb6794c8f6be543b85c70c6dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-c-nondiscrimination.html",
+      "sha256": "8d4f1a507fe12b6191ef56bb5dd78a861e999ed12be3c142768cbe7249cfebdb"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-d-availability-of-public-information.html",
+      "sha256": "f6bb0a1544d3068803d2b967d3aaec9fa74dbf437f1ffc3ebf2f0d125bcde49d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-e-disclosure-and-use-of-information.html",
+      "sha256": "bdfe1b31f81e4a73bcc0a0bfee3c3bc56905b45b767192e17b75dbd9556e06e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-f-volunteers.html",
+      "sha256": "f5861cd099341b94a7d291c0236009cb5e1f55e25d9232f45214e55d8019ce6e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-g-quality-assessment-reviews.html",
+      "sha256": "c62c850e819991a55f69a291c4503c665f4606f658c8c34839654f65994883aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-h-documentation.html",
+      "sha256": "7737a9b74ac3ef82a4d8ef885b603f3c0138252ba9eacb98f5ef23ef5d0de4c3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-1-responsibilities-in-administration.html",
+      "sha256": "39444a1b69b7f78e3d0e603dbaed67f3e9d9a32f16b9c472ad1dae2ac1da4e90"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-2-definitions.html",
+      "sha256": "f079b4d96389c1fe44109584061d3ac827c52420716043f9d61036addf8a11db"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-600-600-introduction-and-definitions.html",
+      "sha256": "b3b2c031d0233e0ab39d821d9009861531cd465eaa28350db0c2de8b6fab468c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-601-601-1-a.html",
+      "sha256": "7bb57b73239c2454d8aa27ad33e7653f6e0de05767412fcdbab71f94fc0ac321"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-601-601-1-c-ssi-recipients-from-california.html",
+      "sha256": "e5f8ba8aca9d1ed2772b1095bffa98c849a973bb106d708924d0bdde810a9ca0"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-601-601-1.html",
+      "sha256": "75840fc64e083fbe11bff98092bb021d5160d4ec48f17b43e4fb0737d36e3f28"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-601-601-1b-food-distribution-program-on-indian-reservations-fdpir.html",
+      "sha256": "bf4833bafdc3c24e75da816118c0237e84ab4fa07d408ba7b1e056bf2e3d3e36"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-601-601-2-the-application-form.html",
+      "sha256": "94733015362e787f9be73a45f8fd262fd1895d052ecd8bd660e860a9d7f322b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-601-601-3.html",
+      "sha256": "7bebb4cf5714da1745fe2e1e960b0fec790e72b0f47745fdb22435bfc537d4c3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-601-601-4.html",
+      "sha256": "ccb9b9b214190da66a467532af603d4eb6b9c559582b1e9d23a60ad7508fbb40"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-601-601-5.html",
+      "sha256": "e56ad25500de43506eb41253f708f06003ae26d2c7ae903496090d1d899139a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-601-601.html",
+      "sha256": "d954cd6173afb592f992dc2f646104151b495e94902e9f979aa241fc2a40edd5"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-a.html",
+      "sha256": "905dba2577e14756d833110a4984f3d42488fa7b1348edfd3d449aec93351b5e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-b.html",
+      "sha256": "f5d5c413194f9c602a491a0bd9d91406a9ff904626dd5f68d4425522fdb66d58"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-c.html",
+      "sha256": "e873b06b0b5e46c3c2144fbf6631214ce13ab8f1e8c1738e97874a764c86f2e2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-d.html",
+      "sha256": "d02d5068295c0caf08814f00042680aac76925f0aaf05f34c950f387e210aaa2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-e.html",
+      "sha256": "a2e5d8dc8168dd481622e89bb96a1018636872a8769e48d3e78c526d4be6117a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-f.html",
+      "sha256": "5ce8ef76efcedbf3e9285ddf58ae307e03f4ec9941930cade98aa94169551e8f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-g.html",
+      "sha256": "627507bd6e3b8ab02b6375538f207f9b7134361d552afe7f98750c15bb442d6f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-h.html",
+      "sha256": "94365bc7615aee90cfb25f4454eacd157e8924c9ec736a64d610a96e97cec82a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-i.html",
+      "sha256": "12221fd90c71a855b1425f0aae5d019e6102e8b8ba32be631d9b1e86f929e12a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-j.html",
+      "sha256": "ee3ecc549bcf3d1ae053c6ff21e6df1254e4444883356b19e70840d162f08521"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-k.html",
+      "sha256": "a7cfef0ccab352912ab1c21a4d6a9a9baff4130f7812a561ca60e655ac5c95b7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-l.html",
+      "sha256": "1ed1b9c6a3c3e2bcac8e2811f2111f0f7f21c9da4c1bf6a68f0acc81758069b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-m.html",
+      "sha256": "108aa0c988568c27053ed3351fa671b61468efcfe1ef8c29669a31f20241c83b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1-n.html",
+      "sha256": "b17c4381532ad510f04686486cbd0639dcd01cda704798278dbc968a4bc9f4e1"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-1.html",
+      "sha256": "121b74b6972e227e2eba46585b48b88dd9ec188493225ca1c30035f9420d11b3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-2-a.html",
+      "sha256": "a8112931c84f645c45816f849becb01b782302ca02880bb4838799f6c308b5b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-2-b.html",
+      "sha256": "d214663d2b444fb1bf6a25b13575c34eb418a8e9c5dfae8736e5a6fe1c9b13a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-2-c.html",
+      "sha256": "c98e18635e358b42063fa31d9bd9f276a84d41702ac666a4205f8a392303ab62"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-2-d.html",
+      "sha256": "55a0c80a289bbc3013d7cf7768c8819b81c512fe6ef129bb81719f1b6716f455"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-2-e.html",
+      "sha256": "6860384279a6d7dff72b176afc342f2aec1e52e485e4d1cf66c77b8e89222592"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-2-f-conversion-or-sale-of-a-resource.html",
+      "sha256": "aeacf12839d5bdecc79007f98ced0c488f28d7aba7c847d6c2edff8810e6726e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-2.html",
+      "sha256": "cde6cbb3f92f4375bb951eb7483536c8ae7e3bc09c80e1c165957f3dc6ea7e67"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-3-a.html",
+      "sha256": "45d3b02ea7942737a8d982cbe1f87ca6290e3e73fb263fe410f6472412724529"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-3-b.html",
+      "sha256": "d1642a82c6e77e5124a008d470350719504967bf0cee6e6748d8ec8c03d362b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-3-c.html",
+      "sha256": "6059f86a07387ce3ee390b2c579feb65071baee7543ccc1c8b0d4ea81d1ca8ca"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-3-d-exempt-income.html",
+      "sha256": "09f75128d1dce76cb9535c5ee0979e99873eb9b6d0a5d7c904c86c24924bd1f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-3.html",
+      "sha256": "da3dd6f2c0dc31283f1b514e9e6bb41fde58cd13ba2b550a3ca7b2e5c7e06101"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-4-a.html",
+      "sha256": "4e20bcbae19910b6ab10652d5441b21959cec7a078fa8df7002c45c9b39bc38a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-4-b.html",
+      "sha256": "cff7342142726b3b608a66ae8a36bdff100373a3cbc7de56dd89478a876fe8ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-4-c.html",
+      "sha256": "3841c067e53e39ab5476a7af0cb316c9584deaf5011783abaa9093d9c78b3276"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-4-d.html",
+      "sha256": "1cc394ed9d2f039dd1538e0bd0731c0958a5d33a9714ee6b216d32f326109bc6"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-4-f.html",
+      "sha256": "57f08e2ebc6957b60b0351bb1a74bf3d7fcdb87ea4d8e7877e06f7d91e3307a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602-4.html",
+      "sha256": "29238d3643bf1befad711d78ff689bbcbf1dce96546cfc1adfd21a7d9502ffea"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-602.html",
+      "sha256": "4733699852e3624f093ac202318f3d32c1971c2ffb8c4a7822331e3ce0c0372f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-602-604-2-e.html",
+      "sha256": "f8299c1ae6cbf0a4659a27e051b82c8718e725d2c87c8086bed79e2aadba3857"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-603-603-1.html",
+      "sha256": "c8b441470e9b261b7af4c759ec356c2eeba620bf1336d37411cc2e000eb22ed3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-603-603-2.html",
+      "sha256": "392280bda5750dcebbc2d8d4625198ba98120f5ae4e0462b4bdf340fd8e5de16"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-603-603-3.html",
+      "sha256": "bb4fbdf3e16c4f89bcdd26e6484269eef820f347d682f77ab59c06a961524494"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-603-603.html",
+      "sha256": "ba51d9b7e8d28e2f62a6916b3bfe171d40c01ef993f3e1200d9148875df4b1f4"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-1.html",
+      "sha256": "07f0e227075e76361000c5f553ef0c21ed59947ed1e6a63bef2a62a62e68b723"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-2-interim-report.html",
+      "sha256": "b611ff810ada6833af8c26b6678c3cd967cdf0c20e86e7eda22f90d44a454e5c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-2.html",
+      "sha256": "956d3e2d96e0d193e818282f6f1a239b89c857c50639dd381972ed0c39a2b296"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-3-c.html",
+      "sha256": "ede48f75a90f2ae8103332a968fa3b637b02e9ca0de158d0d6f34c0dff06e4e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-3-d.html",
+      "sha256": "554385e3d79c13b14e157c6199e64dc462f81c271dd92629b9a6a9fba539b9ef"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-3-e.html",
+      "sha256": "354a09a3fb1fbb307462c293e65d7840b42d5f97af5a24635258f4d6e87901b8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-3-f.html",
+      "sha256": "09042be154ce27197345ddf91616048b2ffb78fe7d425ff732ce1b8bee7e1d40"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-3-g.html",
+      "sha256": "64db4b51b8f3fc3bd2cdde0509ecbb7d608c83c6b9ed6881f40abb9a9ca98f01"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-3-h.html",
+      "sha256": "63ed5fe92daaccb2efa2d9519e1a49efc19b3cfceff68ae44643d9da802896ef"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-3-i.html",
+      "sha256": "80983b389263a39cf8eb7d1086791cc8c723181e476bb920eea8d4038e12de0f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-3.html",
+      "sha256": "487929a739fc3b6f5409d7b5290c8217d2eb1a85270afda8bc65f2767ba24b40"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-4.html",
+      "sha256": "f209a1bfc9a42380a88fec387232c2fb0fc230768e56b2015c529e105ca45c5d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604-5.html",
+      "sha256": "e3701c65906b5e760c10c1ca31390dae8e466fd376da5649e3f185dd0318f225"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-604-604.html",
+      "sha256": "cde28e068e3c2840304e3f9da93e1923022685b73a018ede96af294d9c2336e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-1-a.html",
+      "sha256": "b3e276c96075c044281468ba19bb3b5e7ca423ff668eaa317fc49a65dda59033"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-1-b.html",
+      "sha256": "b66f78253c1480867c72b4f8906c9f5468c20c77ecbe65c787052f944437926e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-1-c.html",
+      "sha256": "eb724991653b4abbf384e26cac4201818c8dff810300ae535661ba3babd9d837"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-1-d.html",
+      "sha256": "f9bd4c0b040a65a10dbcd46e56f8033febd72b5be6642877d7a9d8d64168b4cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-1.html",
+      "sha256": "3f1d9672386c7778e852d91f074fa9ef05c78fea5d6dd279d314a6969ba16e8b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-2-a.html",
+      "sha256": "582ef5eb10f3a648919ca6385bc1a0ae284499d7f3e5625f8e0cc1c4f3186a6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-2-b.html",
+      "sha256": "a6466f59037c521cffad58baeb5a2f394783720d134eba44e9c978d4bc49c23c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-2-c.html",
+      "sha256": "bcffc6e7a253110c55bbd661782a136057006c5fa22363c78145ce0a80d60328"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-2-d.html",
+      "sha256": "6eecb3c000b20e381afe056dce3fce247327c0bd3eaa1e6531315b1089e44bb8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-2-e-military-pay.html",
+      "sha256": "9c08ac3fc3c19e051ecb3a9b688f3193aa1a8ce15f1b9eb7722dad95a037059f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-2.html",
+      "sha256": "5fb31afd6ce565879a3234a99d5806059b3d519beb538a9ec63234f2dbf907cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-3-a.html",
+      "sha256": "f376710b3bbb4dbc3a761af8bfc0be4f9826e004e5f4fa619ab2fdbcd22b82ea"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-3-b.html",
+      "sha256": "4c43fc93c8439dbd5270a4da8b0492175924008e0e5ae3363e33620e72f37afa"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-3-c.html",
+      "sha256": "4919b72b56fd7fd6eafff3c7d8055ac98aef28c604857246beb83b7aaeb8257a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-3-d.html",
+      "sha256": "34ecc88f9e96bfa40a478a91789fcaf843561d7c2d70425a36d8470675f72f36"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-3.html",
+      "sha256": "50188c6b7d00b1bd8dc8909bfa4375cea4d5b34820afea76cb1749b541c1e60d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-4-a.html",
+      "sha256": "802a073dce698998fffc743afb11fc6d5423ec15b7256ebddf2866d7945ce480"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-4-b.html",
+      "sha256": "e4809a0485e49ba8bf24e5a9bc781f7845db3329490b564550aa7f6e9e3125b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-4-c.html",
+      "sha256": "340460d16910df4a40db94b83ccea3949aa70d7f4b9d42218f30aa39e1e58cdc"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-4.html",
+      "sha256": "f480e93de7260065febfcd034a062b4275dc3f937f5bd0fcad87b37ad32aaf48"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-5.html",
+      "sha256": "93152dfca0fa84eaa5ce6b16eac5a587c4a97372c3574506baeb66da888ab37e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-6.html",
+      "sha256": "605d35f94b26d0d22f873e6f85cb736fe9d92fdd0a00273383672e1361fcba9c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605-7-permanent-fund-processing.html",
+      "sha256": "3a14033f9f5a21abeaa7d15219e18ab9c9ff5e3a60e8f86ed046ebcb7b486887"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-605-605.html",
+      "sha256": "b70c4fa0c36ad3f679ad7cd25c5bac2fe22c81fd1184d9646d6c6fe6905dd596"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-606-606-1.html",
+      "sha256": "e22c96f4ddf712b351edd0147e52f1007997ced21b91072c00295582ef8a2bcb"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-606-606-2.html",
+      "sha256": "7bd5b9ce94ac24abd83b90f131ae4459e50ac2e352623fe3c64513f322bd96ed"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-606-606-3.html",
+      "sha256": "756b2b314ba10b5b3d48df5bd7cd863c44662dea60823e3b80601dac91ff0bd0"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-606-606.html",
+      "sha256": "61eef1c70e7aaebd1c4c8526f6bb50e11e5dff915af95a7339344cf50b4a9843"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-607-607-1.html",
+      "sha256": "6030223ee842218cdec82ec05a001a41f7b9c2763b1288902bab0a0ef9efbb4f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-607-607-2.html",
+      "sha256": "9fcd8af95c5bc5b879e779b7a428f5ba84b8c16b91ba925fe406588bd962e96d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-607-607-3.html",
+      "sha256": "af37cd1ccd65f55cc73be814b4ee03c5fffcccefb39f0950aaa4c95afb33ebb5"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-607-607-4.html",
+      "sha256": "cf3af7d488e7fcb1e419ee8505e2a46d07bb14eb751c130b63f2f661fc7e6f66"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-607-607-5.html",
+      "sha256": "1a8447e93a687738b62f4f7325d81ec7b15c3b33b73a96af1004c2a006cc3059"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-607-607.html",
+      "sha256": "63847e4c11517894849d55b0fae0e528644df3fa7ea6fa1c1b611538f9f03a92"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-608-608-1.html",
+      "sha256": "af9134718ffc5518f9e1750b019bb754c555ea59fa914682a0cc03eda6556790"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-608-608-2.html",
+      "sha256": "4c145c782ed9f562e79932f5e763a5e63b91fdec62e904c7b331549791bd37d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-608-608.html",
+      "sha256": "fcc56bbeed702d6c9f543a26f43d2cbb4248308b9294e55802dfadd2b6777ac7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-1.html",
+      "sha256": "ce311d633fea328d0aa601ce9875ea41ab347394ba8fa281502fd543440fece9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-10.html",
+      "sha256": "57930f1cfcabbed5e5a52a0f29ec66994c02aadf3a2fc61205306b5d7f00593f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-2.html",
+      "sha256": "343c5f54c5f7c493df932bbee086fdff7341e3986470a313bf7350e2d0173039"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-3.html",
+      "sha256": "75edfa2b189dafa1c6b38b824767779de32434fdb83458265ba7b9f0ad7b2330"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-4.html",
+      "sha256": "aae55028cdf78613507be5dba425e1abc7d387c6de97d89801d77c6bd390a7de"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-5.html",
+      "sha256": "61829c27911ea303f53371bfa60ccfdf69cd51354a3646107c4f100bc9214a3c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-6.html",
+      "sha256": "95dbafef42dedd9bd3dc4c9e05c5e2418386dbc530159ebb28d4eb6010f202d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-7.html",
+      "sha256": "c92db29f92fff98f40a48e195ba9a259a0f92177a332f6fc5b617a74a5345c9c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-8.html",
+      "sha256": "cf831385b7baf085c2be7d535ddee4a4a896588c9b820a23207b8e586e9cf0dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-addenda-addendum-9.html",
+      "sha256": "01531785e1400e0aff2db861eebefa77c3e635689d58e53c9d8e43fadf196fc7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-title-page-alaska-fsp-manual.html",
+      "sha256": "4a5617d05bb2399c2328b9346152e9c6c10d983315cb4dab81167d6bf31ffe3d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-2026-02-07-26.html",
+      "sha256": "f8e60755ebaaaa59316ad14a6b21faedc43e431d42ebb48865e57493cc2ada66"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2007-01-fsp.html",
+      "sha256": "fe6e970e2d7b62f0bb7dea1f7c3555842237826616c6170c7cbcd1f2ae5a0f72"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2007-02-9-07.html",
+      "sha256": "4680fdc50214d4129fd9eb6335cb02299597f4f54193815211a95fd943b4f4cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2007-03-12-07.html",
+      "sha256": "524487180fbd67e074ba4bbfddedd1b719f42e81824967886c74426c013d708a"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2008-01-7-08.html",
+      "sha256": "bf5952222327eedadf1c6757f9c4e480d06a7085490f0cc13e28740526212859"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2008-02-9-08.html",
+      "sha256": "9be61605c65385a8b95c38626d353068fdde143259032509d791db267b1d4750"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2008-03-12-08.html",
+      "sha256": "143566fe19ccf03f7bb9b8c256f0e1d76f518c56a604a75253faf76f74d0a0d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2009-01-2-09.html",
+      "sha256": "3a7b07d1442c7f27746cb3b61a2b0d765b802aaf13f7b507b81577b12959b6a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2009-02-9-09.html",
+      "sha256": "a4be31ac56dee42b08b1692c67b08264d501558f81b67ec046fd3525a4876fc7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2010-01-1-10.html",
+      "sha256": "28c86ef275a888986ad1f0589ae5b13610b94c196edadbaeb4b9a30a3b844d95"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2010-02-4-10.html",
+      "sha256": "1af6e9be8390fe0ce97ec6c041be5f6ced98ec9448828d1ed03f48964bd8c6f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2010-03-10-10.html",
+      "sha256": "e9df253c52041ff6022476d623e20740f0648d01779ce701cad97ab3974d7f54"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2011-01-1-11.html",
+      "sha256": "7c4fea390c394dbedbdcd34e287777a265e25683498b015f22fb959e55e7e4e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2011-02-2-11.html",
+      "sha256": "61cea609cbc8fe88ad25443cd84e628853507c491342f514402fdd278c0cdfda"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2011-03-2-11.html",
+      "sha256": "b10cdeae2437c5a33cf0348025ce3ee235382b9b0b46b2370ec361204c3dd3c0"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2011-05-9-11.html",
+      "sha256": "80b9ebc7f3279495ac704fc139f81341938908f1b78b777b75f0fa271ae17246"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2011-06-11-11.html",
+      "sha256": "2b5b839b1473448d694438a9e7227f508c53a313bd25f69dbc4e831a98e08557"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2012-02-03-12.html",
+      "sha256": "4db031768b2842b36cd9f3942fdbf9a5e02db4ac7d9c1b470c5b2b3796a85b4d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2012-02-05-12.html",
+      "sha256": "3077e5bd2ab86d41ee0553e5fe2c4491d03144171d91d15b7edf7aeffafc8163"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2012-03-7-12.html",
+      "sha256": "d1867a46fbd17043f897c5538058046bbc25fc5f41af0bfeb28045960ae2eb9d"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2012-04-09-12.html",
+      "sha256": "88174a623f354780ffc1ac1b30518312448e09981c296b952645e559df29fafe"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2012-05-12-12.html",
+      "sha256": "08458be8796fbc825d610ebd2f728cdfa53e5079e4d1224fc965159597cab9f8"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2013-01-03-13.html",
+      "sha256": "228f214d85c6bcd14e867898eb309b8acab3578dde7b0e662f8701cf23dc7efd"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2013-02-7-13.html",
+      "sha256": "5b52b8edcc87889e41bb1d3a411799c951f1138538b9c521ee23786e8ef2df2c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2013-03.html",
+      "sha256": "380c34cd9afe6c129d670f96b2317217b7d463e2dbf264f221049283cab2f877"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2013-05-12-12.html",
+      "sha256": "3911d3eb40510949dbb836569a803f963f106b7ebc1e8bebfd64f1f6bc52c226"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2013-4-10-13.html",
+      "sha256": "bc0c5a46c6494dfac606c49f38ad5925cfc1abb2e6208588e615e0e2646db810"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2014-01-03-14.html",
+      "sha256": "75ed11bc7bc9b45407c5886d178449c585118aa1309e720bd788308a08839050"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2014-02-06-14.html",
+      "sha256": "ab46abd7302af06ac510dcc9f277c9159ff6f5477ce48fa8381bb005e5929348"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2014-03-09-14.html",
+      "sha256": "75aa2c574267831331509014785d0228921dc4910683c5fe1ed583ed5bc755a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2014-04-10-14.html",
+      "sha256": "f4d690acdbe9ebde0b05385d6bdcaf82505b60c137dcdb797cde73455b39d344"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2015-01-01-15.html",
+      "sha256": "e3e53e233df4723124923bd5ce09e07db3ed274fc75ba847069cd3d0484e5245"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2015-02-3-15.html",
+      "sha256": "104967067ce412cb4b5af38638d0f0422ff68cd67a423893ec0ba2fcf42f7e3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2015-03-06-15.html",
+      "sha256": "f1053f9bee8813f168d343c8b54e0b5f2465ec1a41e06c760f6609aadd4329ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2015-04-9-15.html",
+      "sha256": "9784ce7074ccff828bcf188c01a9098614db22528caa13ef87f05f3deb77cf49"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2015-05-12-15.html",
+      "sha256": "2ca8710415db0f8937f8fc30d3fd8378953834b195b82d6f04af922b1e268c16"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2016-01-01-16.html",
+      "sha256": "7975310a212f82e3be1f36e25efbc6e5f426ced62d1f4aaebbc169a28cd7674b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2016-02-03-16.html",
+      "sha256": "642cdd0e1b2793b1e80ed27bff812d9072f53df06036b86999cdad502923398c"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2016-03-07-16.html",
+      "sha256": "8c16fe3c2d091c9f52760c8e574d04b4c27ed16ac12f8add5cd16cebb1976028"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2016-04-10-16.html",
+      "sha256": "bcb7372a0250a8c1f585c5bedd57493f5561bfd13e3e54a82476a1a994363059"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2017-02-09-17.html",
+      "sha256": "9406845993a42e082b59a155b39326a000cf36a423807d94970a120d28637fc6"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2017-03-12-17.html",
+      "sha256": "7fa76463ea00b4126da9aa665f0a38b7a86d53928ebac9580df44b45b1f73c02"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2017-04-04-17.html",
+      "sha256": "634960e95aab45a76f0077efc50b227d07aa9300ef9f6b1dccf347b574085c4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2018-01-04-18.html",
+      "sha256": "4f1b9842f270e2a136bd0867b7e9ac30ff222736921b24aa8f2f02116f6adef7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2018-02-07-18.html",
+      "sha256": "98c737c77bee8fec46e26bf41004805df37bdf4a60a5d60b9edeb418ee439a64"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2018-03-09-18.html",
+      "sha256": "4b99d6c677a3441416fa5b6e76a4c92dc266efe6f90b70ee27b9ffe3bcce2757"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2018-04-12-18.html",
+      "sha256": "74531ab186649ad9e019b722278acadc5ad3e1c828bccea8dc4e68027627859b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2019-01-4-19.html",
+      "sha256": "4dab0cd6c5b79d26c67756121672df032e93c0110eb91e724081df2ad0680f31"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2019-02-09-19.html",
+      "sha256": "179cc60bd6ed79dd5eceb28d4efa5f45e7ea397a885c26834c3b05e2a753af42"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2019-03-09-19.html",
+      "sha256": "4459fc8e8ecba1f8c048170f111dfd25c7e4a32814111e75ffde0e11a4dc2865"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2019-04-12-19.html",
+      "sha256": "73ed68f129caf3f1bfb18328fa03dd0cc1adbd3675a9fbd765b09195ad999b38"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2020-01-04-20.html",
+      "sha256": "8dd7d06c530bfefc53b158d9f52e12db4218a2619132a0076c676241270791eb"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2020-02-09-20.html",
+      "sha256": "5edbcd813c97f2cf368017832b86da18e66c8a07c5244c2f908a3a39cf55811b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2020-03-12-20.html",
+      "sha256": "7576ebb5e0a145cf0286725a13477bc3996eb62c8182e88d0d160dcf44413dec"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2021-01-04-21.html",
+      "sha256": "1e01e51e406bb4b951b70f7d7fb665bd98eb3da2f9e78dee025efbdd832a038b"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2021-02-09-21.html",
+      "sha256": "73f21aab161825cd5efdb95a0610d471349cfee4ddf93a8270684a0cad9f5e5e"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2021-03-12-21.html",
+      "sha256": "af71b7682394bcf9b979b9baa56a7f37354f1e2fa08f138a110229eeb8deae45"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2022-01-04-22.html",
+      "sha256": "68eb1892f44297b89b765d9f74410de3ac0786b15d08339ac24791fa615fa896"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2022-02-09-22.html",
+      "sha256": "919e857c2e838336ff4abb5d00659790294a10a9225078e055eb40588e6bd919"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2022-03-12-22.html",
+      "sha256": "7df1a335c78c29c3ea62b61e5ac8d94486de3f40df044bc4cd1260adae887c15"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2023-01-04-23.html",
+      "sha256": "5978fb040bccc4a37edb9250d92a9b3453055be9eb7eb6ac0482db7718cd51b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2023-02-09-23.html",
+      "sha256": "d40deab7eceb9e564d17ca67f8b9acdea68e7deeb938983d78721057a0d10082"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2023-03-12-23.html",
+      "sha256": "779c9693af4533fcfd5bf1c6b2ddf0a83fd1ec6272bb630be1e5deba2b7feec4"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2024-01-04-24.html",
+      "sha256": "4e8db1b6bb4cf3fde15c1aa6f67d11473a4952927346a11076864b4b24880703"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2024-02-09-24.html",
+      "sha256": "59fa02a8d5910af261edb7d87868083d9dc9e6dea590f44f4d1d2d4b565167cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2024-03-12-24.html",
+      "sha256": "beb5eb116497ba7d2447b5b1ecd69e1d5da6e699e3dbd57f5d459e20417e9836"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2025-01-04-25.html",
+      "sha256": "e7f743cee531fdcaccddd31d67eeda3ffd5305dd5cc0a81838286ab915977349"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2025-02-09-25.html",
+      "sha256": "0673846fe210581951ca18eabb5176bd016410f26581b7df4b7644cf75a45da7"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2025-03-11-25.html",
+      "sha256": "7d95fb5351830952cddc739c9bcff23ac6c64f152152962aac6d1a85c7f31907"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2025-04-12-25.html",
+      "sha256": "96c1495f08ed40e1f2ff4215b86cadae52347e9cd2ef4400ad63ddbbea15d945"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-2026-01-04-26.html",
+      "sha256": "e87a19ad2b64b2fa2aae34e48bf4f4d44415cb050be270b283bbc5d6a715ec38"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-new-topic.html",
+      "sha256": "9c1b1e9edb22a866afeff07a32ccbf1468da31493915b65667cfc6cf39f9cea1"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/manual/2026-07-16-ak-snap-manual/official-documents/ak-dpa-snap-transmittals-previous-transmittals-transmittal-number-2011-4.html",
+      "sha256": "9c01801793d08655b229c0689112d09ada5cd84d4778688ea99ee2b3664174f3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "2f35bbe3d7fc3e5f9023b14e094ce94a0751b197",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-16-ak-snap-manual --manifest manifests/us-ak-snap-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 388,
+    "missing_count": 0,
+    "provision_count": 388,
+    "source_count": 388
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-17T00:08:31.832766+00:00",
+  "jurisdiction": "us-ak",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "K9W8WKIhO7rOJdQO7tU+RQjpi43YvdN7u9EB40G2mxnuQMIztgeqnUYUwu3A7eMeIGsaDYfdmFfAWBVsjFElBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-ak-snap-manual"
+}
