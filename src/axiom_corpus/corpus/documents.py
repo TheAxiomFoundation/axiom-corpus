@@ -2413,6 +2413,7 @@ def _extract_labeled_html_section_blocks(
             label, heading, body = match
             if normalize_label_internal_whitespace:
                 label = re.sub(r"(?<=\.)\s+(?=\d)", "", label)
+                label = re.sub(r"(?<=\d)\s*-\s*(?=\d)", "-", label)
             flush()
             current_label = label
             current_heading = heading or label

@@ -47,6 +47,7 @@ def _source_labels(document: dict) -> list[str]:
     for paragraph in soup.select(".WordSection1 p, .Section1 p"):
         text = " ".join(paragraph.get_text(" ", strip=True).split())
         text = re.sub(r"(?<=\.)\s+(?=\d)", "", text)
+        text = re.sub(r"(?<=\d)\s*-\s*(?=\d)", "-", text)
         if match := heading_pattern.match(text):
             labels.append(match.group(1))
     return labels
@@ -124,7 +125,7 @@ def test_new_mexico_sections_restore_split_labels_ranges_and_policy_text() -> No
     }
 
     assert sections["8.139.120.10"]["heading"] == "[RESERVED]"
-    assert sections["8.139.610.8 - 9"]["heading"] == "[RESERVED]"
+    assert sections["8.139.610.8-9"]["heading"] == "[RESERVED]"
     assert sections["8.139.502.8"]["heading"] == "STATE SNAP SUPPLEMENT BENEFITS:"
     assert "Maximum benefit amount" in sections["8.139.502.8"]["body"]
     assert "supplement benefits" not in sections["8.139.502.7"]["body"].lower()

@@ -2464,7 +2464,7 @@ documents:
     records = load_provisions(report.provisions_path)
     assert [record.metadata["section_label"] for record in records[1:]] == [
         "8.139.502.8",
-        "8.139.502.9 - 10",
+        "8.139.502.9-10",
     ]
     assert records[1].body == "Supplement body."
 
