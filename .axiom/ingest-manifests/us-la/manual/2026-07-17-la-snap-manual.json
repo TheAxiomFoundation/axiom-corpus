@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-la/manual/2026-07-17-la-snap-manual.json",
-      "sha256": "24844c5a183d86dc3a69175d052a99c7950c3b0923730d5fd026f372fc495847"
+      "sha256": "4c2c514994dadbae6421ee9c8c754b7126611854e5be2274684be935c85f302c"
     },
     {
       "path": "data/corpus/provisions/us-la/manual/2026-07-17-la-snap-manual.jsonl",
-      "sha256": "e76dade0c00cdb79c0d216ced806eb4b90ed5936a4e075d176025cc9146d9f40"
+      "sha256": "a8c7d1b761c24a1e05f79f7ea50f22970a71c5f679cf4d2ddac40efc6aff0313"
     },
     {
       "path": "data/corpus/sources/us-la/manual/2026-07-17-la-snap-manual/official-documents/la-dcfs-powerdms-393892.pdf",
@@ -1398,7 +1398,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "dac709c68c4b38e9052e631b832cb34a7ea00ac7",
+    "commit": "483fa057b150b339de2190304f9baf11a55018f5",
     "dirty_tracked": false,
     "root": "."
   },
@@ -1415,14 +1415,14 @@
     "source_count": 1483
   },
   "document_class": "manual",
-  "generated_at": "2026-07-17T14:41:35.994739+00:00",
+  "generated_at": "2026-07-17T15:01:21.773196+00:00",
   "jurisdiction": "us-la",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "X3/YKZ6t3Kf8h2UdlZv//LH5CLyF0BLfmceGpfd4iSToM2AG6rp1omR+0IpAoIMcr42FJVKsvUTvEH7ORXMwDw=="
+    "value": "ScI1Z8gZ2NtFYnNqIIlEI0HJiUEl7+LAXC1a+P5Vx/59LImB5dm+ZKxlJ2eyd2P5etre1PMsdtHLfcjZLLK6CA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-la-snap-manual"
