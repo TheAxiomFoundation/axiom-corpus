@@ -14,7 +14,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "d4570ef3baad74fbe71bf73ba6bc5f6ac106a08e",
+    "commit": "6f89e79c77dfdbe713608a42bacfda19bdfad317",
     "dirty_tracked": false,
     "root": "."
   },
@@ -24,19 +24,19 @@
   },
   "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-17T17:05:38.911985+00:00",
+  "generated_at": "2026-07-17T17:21:19.237519+00:00",
   "jurisdiction": "us-mi",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-17-mi-bridges-snap-manual.md",
-      "sha256": "b73e2926ac56ea6f38c721dcfe9499f8b973ef74a335307891e9fe01c0257a65"
+      "sha256": "1b4123e817e61bc1b9801c28a6a7797dd04347632b6b4fdb7e81d47d1f2676c3"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "5Km8apvpJvztxhaC31MjGTxi2jEUPOdgS9C2DnZfo2yZMucXrpu6ElDO0gsxSf19fSK3UuPPwpBXjg9SI9+QBw=="
+    "value": "MceAA69xU12vekUhGt5KBR5CJEd4gGTDNY40AhDsr5nTyC7OovuQH37wojPYPNYV48E/JeDQnUlEAi7m/Vr0AQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-mi-bridges-manual"
