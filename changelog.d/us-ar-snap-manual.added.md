@@ -1,1 +1,1 @@
-Retain and normalize the current Arkansas SNAP policy set from four official DHS PDFs and three official DHS policy pages, including the July 2026 final filing and program updates.
+Retain and normalize the current Arkansas SNAP policy set from five official DHS PDFs and three official DHS policy pages, including the 2026 manual, appendices, issuance charts, final filing, and program updates.

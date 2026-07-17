@@ -4,10 +4,11 @@ documents:
     document_class: manual
     citation_path: us-ar/manual/dhs/snap-policy-manual
     title: Arkansas SNAP Certification Manual
-    source_url: https://humanservices.arkansas.gov/wp-content/uploads/Supplemental-Nutrition-Assistance-Program-Policy-Manual.pdf
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Policy-Manual-04.02.2026.pdf
+    download_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Policy-Manual-04.02.2026.pdf?download=1
     source_format: pdf
     source_as_of: "2026-07-16"
-    expression_date: "2024-04-29"
+    expression_date: "2026-04-02"
     metadata:
       primary_source: true
       source_authority: Arkansas Department of Human Services
@@ -15,17 +16,18 @@ documents:
       program: SNAP
       extraction_granularity: pdf_page
       source_discovery_group: us-ar/manual/snap
-      discovered_via: manual-review:state-snap-manual-agent-queue
+      discovered_via: official-policy-index:arkansas-dhs-dco-policies
 
   - source_id: ar-dhs-snap-manual-appendices
     jurisdiction: us-ar
     document_class: manual
     citation_path: us-ar/manual/dhs/snap-manual-appendices
     title: Arkansas SNAP Certification Manual Appendices
-    source_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Appendices-04.05.2025.pdf
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Appendices-05.15.2026.pdf
+    download_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Appendices-05.15.2026.pdf?download=1
     source_format: pdf
     source_as_of: "2026-07-16"
-    expression_date: "2025-07-09"
+    expression_date: "2026-05-15"
     metadata:
       primary_source: true
       source_authority: Arkansas Department of Human Services
@@ -33,7 +35,7 @@ documents:
       program: SNAP
       extraction_granularity: pdf_page
       source_discovery_group: us-ar/manual/snap
-      discovered_via: official-search:arkansas-dhs-snap-manual
+      discovered_via: official-policy-index:arkansas-dhs-dco-policies
 
   - source_id: ar-dhs-snap-july-2026-final-filing
     jurisdiction: us-ar
@@ -75,6 +77,27 @@ documents:
       extraction_granularity: pdf_page
       source_discovery_group: us-ar/manual/snap
       discovered_via: official-program-page:arkansas-dhs-snap
+
+  - source_id: ar-dhs-snap-basis-of-issuance-ffy2026
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-basis-of-issuance-ffy2026
+    title: Arkansas SNAP Basis of Issuance Charts FFY2026
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/FFY26-NBI-Chart-Oct-2025-September-2026-05.21.2026.pdf
+    download_url: https://humanservices.arkansas.gov/wp-content/uploads/FFY26-NBI-Chart-Oct-2025-September-2026-05.21.2026.pdf?download=1
+    source_format: pdf
+    source_as_of: "2026-07-16"
+    expression_date: "2026-05-15"
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services
+      document_subtype: basis_of_issuance_charts
+      program: SNAP
+      federal_fiscal_year: 2026
+      effective_period: 2025-10-01/2026-09-30
+      extraction_granularity: pdf_page
+      source_discovery_group: us-ar/manual/snap
+      discovered_via: official-policy-index:arkansas-dhs-dco-policies
 
   - source_id: ar-dhs-snap-nutrition-waiver
     jurisdiction: us-ar
