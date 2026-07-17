@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-16-hr6644-dependencies-current-law-title-26.json",
+      "sha256": "843989c0336e85dce7391bd88350f7b7d38604b72e951086ae2fe01566eb7876"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-16-hr6644-dependencies-current-law-title-26.json",
+      "sha256": "cce1170393f8a2c4c9d76d96510c4f254fab705f2544d048a97d9a4976685a4b"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-16-hr6644-dependencies-current-law-title-26.jsonl",
+      "sha256": "16a85bbaa394abf38529aa2601b8c6e7f79aacd917d5203a77116e934eb3e354"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-16-hr6644-dependencies-current-law-title-26/uslm/usc26.xml",
+      "sha256": "d334ed90f58a35e3c0df48e73e7e6352e36d36412f8b1b486c3d7c04ccc3bdd4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0c9ba4761400375c39e78413cb11b7b9ee2af119",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-usc --base data/corpus --version 2026-07-16-hr6644-dependencies-current-law --source-xml data/uscode/dependency-2026-07-16/usc26.xml --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/102not101/xml_usc26@119-102not101.zip --section 42"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 86,
+    "missing_count": 0,
+    "provision_count": 86,
+    "source_count": 86
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-16T20:05:31.907375+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6lVlQyUdo8FOvCFMQ3CU0gBUiF6nTdJcXw83K/wAMX9TN4QP42bj0vuW5mGJHX+sTT7Us/MTyQOFC+S7EDEWCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-hr6644-dependencies-current-law-title-26"
+}

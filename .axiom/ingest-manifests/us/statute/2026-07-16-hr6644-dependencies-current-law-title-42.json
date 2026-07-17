@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-16-hr6644-dependencies-current-law-title-42.json",
+      "sha256": "dd48bf3b15f10c161e4d418121aecf3cf63ac1668ec61b2a6fddcfc97784f759"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-16-hr6644-dependencies-current-law-title-42.json",
+      "sha256": "cc8bc31bc5a5af2efcafb68f387812e7ee102a7b074133f8b8caf3f44d6f86e3"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-16-hr6644-dependencies-current-law-title-42.jsonl",
+      "sha256": "b7b94d2321e68c0a0be5fe380c005cf0a62e1c783ac87dd6adb53421e7239e4b"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-16-hr6644-dependencies-current-law-title-42/uslm/usc42.xml",
+      "sha256": "3441769bf661bf83381686cf7bc89fb17eb3138c34ae964816759a554ca88a36"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0c9ba4761400375c39e78413cb11b7b9ee2af119",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-usc --base data/corpus --version 2026-07-16-hr6644-dependencies-current-law --source-xml data/uscode/dependency-2026-07-16/usc42.xml --source-url https://uscode.house.gov/download/releasepoints/us/pl/119/102not101/xml_usc42@119-102not101.zip --section 12709 --section 12746 --section 12749 --section 12754 --section 13631 --section 1437a --section 1437d --section 1437f --section 1437g --section 1437n --section 1484 --section 1485 --section 1486 --section 1487 --section 1490a --section 1490m --section 4851b --section 5301 --section 5302"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 620,
+    "missing_count": 0,
+    "provision_count": 620,
+    "source_count": 620
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-16T20:05:32.723795+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5Lamd/PXquj+QOSgGWz3plxJ+XJWmQRzZnKJDF7nVD9E7Fe9Sh1gRpYfjWZqpS8Eg5ZVJxnErNr6H5tndjzGBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-hr6644-dependencies-current-law-title-42"
+}
