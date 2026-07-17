@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction.jsonl",
-      "sha256": "7c227f2a1301ceaf910ea3c2dce597c0a29f270a921257233d1ad37d49a616bd"
+      "sha256": "6d904d13a310c3038cc272fffc2feb0526c5a9f78f3381cb741484a84727a31b"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction/official-documents/cra-2025-t778-child-care-expenses.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "54238c000021bc519cf0e1731c2af1d9fbacfed2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:38:01.020500+00:00",
+  "generated_at": "2026-07-17T00:05:48.478982+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "a+OkwttGBNbQqkUOEMtfsYg5N7io/+d4HQsJ0zaVPvT3AejmmWITnmR85PsJK0C4dTOqRZY1xoA7tz//G6fiAg=="
+    "value": "3rusHtc3/t0gRRnybNtruKAAcmgZde2xyHtcHOz2vACIQsx3DTrta9XQ9NTqnhx0pEp7GrUGJUNuXmhSBDVyAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-cra-2025-child-care-expenses-deduction"

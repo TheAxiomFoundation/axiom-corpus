@@ -1,48 +1,41 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us/statute/2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained.json",
-      "sha256": "998e16dacb4d2a5d2ae79f8c9c577052e4a04b90a3062af9ef51ed681119d827"
+      "deleted": true,
+      "path": "data/corpus/coverage/us/statute/2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained.json"
     },
     {
-      "path": "data/corpus/inventory/us/statute/2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained.json",
-      "sha256": "bda954b2a19f3ed541f161cf829fe30e57c9bdbe438feddf6cceaa7b356ba8d7"
+      "deleted": true,
+      "path": "data/corpus/inventory/us/statute/2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained.json"
     },
     {
-      "path": "data/corpus/provisions/us/statute/2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained.jsonl",
-      "sha256": "78e603358d79714a4c90eb86815ab566a924aa345616536388b5495000bdf7bb"
+      "deleted": true,
+      "path": "data/corpus/provisions/us/statute/2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained.jsonl"
     },
     {
-      "path": "data/corpus/sources/us/statute/2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained/uslm/usc42.xml",
-      "sha256": "78cfc6d8672097e5887d07352936af01653024154c712b497eebeedc75b2e1f4"
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained/uslm/usc42.xml"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9f02215cac326957861c32c876cf58226e42f5d1",
+    "commit": "eb0ebb660f945439f26d96aeece829d572edf5a5",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 113,
-    "missing_count": 0,
-    "provision_count": 113,
-    "source_count": 113
-  },
+  "coverage": null,
   "document_class": "statute",
-  "generated_at": "2026-07-16T01:02:08.944727+00:00",
+  "generated_at": "2026-07-16T22:17:14.950015+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "F7erecS9WH37hEZOOKU62JAQFMEdw9SNaw9WHY3vF6enJOpTlAnuysOMji3+VLSVDe6GQ2bNJcDHGX+G7v8bDw=="
+    "value": "oVyZYxIF8kNyjl0WqfDwHgX/1Nt3vhN1UgPPdM6qjazn3OcgwMsRCOC8EaogYFiuUG4xCSOzLU1oWlibETqZBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-26-medicaid-title-42-r2026-07-15-self-contained-r2026-07-15-self-contained"

@@ -1,60 +1,53 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-il/manual/2026-07-13-recovery.json",
-      "sha256": "3d2b3a65344f1db0dd6ff5fd4ca41f0761a1553f927a981199384b77788b7ba0"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-il/manual/2026-07-13-recovery.json"
     },
     {
-      "path": "data/corpus/inventory/us-il/manual/2026-07-13-recovery.json",
-      "sha256": "6e813a4b3a2c486a31b088c9a19aac0ba22bd364e97d887d1a33e276da6c6339"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-il/manual/2026-07-13-recovery.json"
     },
     {
-      "path": "data/corpus/provisions/us-il/manual/2026-07-13-recovery.jsonl",
-      "sha256": "7433f348f10850492715514e0a09ce008bdbc416f09980db52c6b0f89d90c8ef"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-il/manual/2026-07-13-recovery.jsonl"
     },
     {
-      "path": "data/corpus/sources/us-il/manual/2026-07-13-recovery/official-documents/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual",
-      "sha256": "e6f40edf439d057fd53e8e7c2b1e662bc439dd3bf47f0990726e222104cb1f64"
+      "deleted": true,
+      "path": "data/corpus/sources/us-il/manual/2026-07-13-recovery/official-documents/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual"
     },
     {
-      "path": "data/corpus/sources/us-il/manual/2026-07-13-recovery/official-documents/us-il-csmm",
-      "sha256": "7df6851a837647f7ad92d8d268cde5b5201388783ebfa264cf3b9ae161ae5b58"
+      "deleted": true,
+      "path": "data/corpus/sources/us-il/manual/2026-07-13-recovery/official-documents/us-il-csmm"
     },
     {
-      "path": "data/corpus/sources/us-il/manual/2026-07-13-recovery/provenance/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual.json",
-      "sha256": "5f993349a8e9672191d382c49a4d41916ffe35a31e23a9428b66e5c64fd57d4a"
+      "deleted": true,
+      "path": "data/corpus/sources/us-il/manual/2026-07-13-recovery/provenance/release-scope-us-il-manual-2026-05-27-il-cash-snap-medical-manual.json"
     },
     {
-      "path": "data/corpus/sources/us-il/manual/2026-07-13-recovery/provenance/us-il-csmm.json",
-      "sha256": "947736a0cbcc4b17d4fee76b7519cf164c53f04b72c63c5e856745f4a22ed62a"
+      "deleted": true,
+      "path": "data/corpus/sources/us-il/manual/2026-07-13-recovery/provenance/us-il-csmm.json"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "bd267ebf0daf8c4d3dea947796c08f34800e7087",
+    "commit": "245e6ab1a8e27e6d6e16452035fa1e9dae4badf4",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 7,
-    "missing_count": 0,
-    "provision_count": 7,
-    "source_count": 7
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:43.686102+00:00",
+  "generated_at": "2026-07-16T22:17:15.389983+00:00",
   "jurisdiction": "us-il",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "G507NeT+wLckq3eNuOXNi+xNdxTmbXKpvktw2//pELv3nVIlXU1b2dUyA5E+9Y0m+IhS8ZRraGAhKEv04HHPAw=="
+    "value": "dEaaYn1CCd1roywPB3llfHnzR5NnQSL0YddchFqREhTGUGb5xPPdsNnaFK7XwJYhZtcezPUnC73LxjwwIi7OCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"

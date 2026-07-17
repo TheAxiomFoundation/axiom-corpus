@@ -1,60 +1,53 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-ks/manual/2026-07-13-recovery.json",
-      "sha256": "2c1e697422792f4fd0000b4fa3587c0696e931f3cf7937597f0cae4340b43252"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ks/manual/2026-07-13-recovery.json"
     },
     {
-      "path": "data/corpus/inventory/us-ks/manual/2026-07-13-recovery.json",
-      "sha256": "fa4d0a54ccdb2bddf2ec39b586a63d42064758728ac82e9a5e9fd50e43e0d81e"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ks/manual/2026-07-13-recovery.json"
     },
     {
-      "path": "data/corpus/provisions/us-ks/manual/2026-07-13-recovery.jsonl",
-      "sha256": "6a2ec6bf571612e10f89fc3283c7241ad128529959872310a60b51db2bf5941e"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ks/manual/2026-07-13-recovery.jsonl"
     },
     {
-      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/official-documents/release-scope-us-ks-manual-2026-05-27-ks-keesm",
-      "sha256": "f726ec3f544b5fca02c98bdfa6dc9f7ffb96257c35eea10cbd0f680f77956366"
+      "deleted": true,
+      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/official-documents/release-scope-us-ks-manual-2026-05-27-ks-keesm"
     },
     {
-      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/official-documents/us-ks-keesm",
-      "sha256": "5e07d2ea109428726aba0baffe25c0491273b3d5591f25a729d2d4993ce1d8f3"
+      "deleted": true,
+      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/official-documents/us-ks-keesm"
     },
     {
-      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/provenance/release-scope-us-ks-manual-2026-05-27-ks-keesm.json",
-      "sha256": "b25397f9a20775685be24fa121012e5ee7ab5efae657476fecfedbc18b3bbe6a"
+      "deleted": true,
+      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/provenance/release-scope-us-ks-manual-2026-05-27-ks-keesm.json"
     },
     {
-      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/provenance/us-ks-keesm.json",
-      "sha256": "01510ba9d679bc859cd4d1736a6af3e9186e2f80f55cab8e7ceea42c87ae12aa"
+      "deleted": true,
+      "path": "data/corpus/sources/us-ks/manual/2026-07-13-recovery/provenance/us-ks-keesm.json"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "903a692d0834ae0996560377f7762280b8758073",
+    "commit": "4736fedfc817f2de9f07ac20f0aad416b044f756",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 4,
-    "missing_count": 0,
-    "provision_count": 4,
-    "source_count": 4
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-15T15:18:47.529378+00:00",
+  "generated_at": "2026-07-16T22:17:15.470752+00:00",
   "jurisdiction": "us-ks",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "divR9Xuxyt62DRffwHKP0ptgTpGkvF96taR101iUidVo4MlmBOk7Mzw7NjCj+MnTEGJRbCLaZcGeWmjtbma8CQ=="
+    "value": "kHsve2tP6NJ43xpjsqw2MsIQNuOOtD27gMxL+7qPXfOdZLqS9PatfAXKTwJmMoP9R1rkStxiFlHvMGF9ZgbNAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-recovery"

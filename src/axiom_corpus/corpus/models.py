@@ -25,6 +25,7 @@ class DocumentClass(StrEnum):
     MANUAL = "manual"
     FORM = "form"
     RULEMAKING = "rulemaking"
+    DISTRICT_PLAN = "district-plan"
     OTHER = "other"
 
 

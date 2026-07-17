@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction.jsonl",
-      "sha256": "52da57ddca34a9e4874d8bf64703790938aaa594415a4894af61aabc62fa85ac"
+      "sha256": "a272e500b000bd85e240ff64df01571ef4c79e0c33bc537f60c3d4608c44d9fe"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction/official-documents/cra-2025-t1-m-moving-expenses.txt",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "8737c2437057ef4b62da275490ea3d467defb487",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 5
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:38:01.675341+00:00",
+  "generated_at": "2026-07-17T00:05:49.170248+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "rwCP2pHBJRKMFlal0S/+XApWd6Grk7vXWJiM3wj+wmLQ17r+iB5+MeVyrddOnaxaC4aHRc44qBOJNxyQgkE5Dw=="
+    "value": "IrnabURMisA2a89gfwoa19NwjxYWzM6Ma0Qkd5Vi7y+PMkONbGa1gVgAhu6fhkqy1n5NYFUkPmucOUFpqsw7Dw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-cra-2025-moving-expenses-deduction"

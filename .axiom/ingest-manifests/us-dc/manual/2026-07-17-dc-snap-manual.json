@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-dc/manual/2026-07-17-dc-snap-manual.json",
+      "sha256": "60d580db8add182766bd9a53cccfb3565a54e607f380c2a317b092e92b85d326"
+    },
+    {
+      "path": "data/corpus/inventory/us-dc/manual/2026-07-17-dc-snap-manual.json",
+      "sha256": "354873e37cb67fae65657f5b90209d7b424b1401a0cd573305e6b017c0f9683d"
+    },
+    {
+      "path": "data/corpus/provisions/us-dc/manual/2026-07-17-dc-snap-manual.jsonl",
+      "sha256": "25ba11fb0fd9229df5b76e4b5441383214d80694ecfc9966f2c704e641bd63da"
+    },
+    {
+      "path": "data/corpus/sources/us-dc/manual/2026-07-17-dc-snap-manual/official-documents/dc-dhs-esa-snap-policy-manual.pdf",
+      "sha256": "954fd17cd982ae84adcc813600365a8c617f5cb9e599741a62b7ee3551bb9efa"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f9ea2280b186ae9669ac42d34b93819f2e5b43de",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-17-dc-snap-manual --manifest manifests/us-dc-snap-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 350,
+    "missing_count": 0,
+    "provision_count": 350,
+    "source_count": 350
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-17T03:26:12.527769+00:00",
+  "jurisdiction": "us-dc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DagEX21asQUoQbj8riIHmt1mhr/1prFKgOen1KLBR2ghDCahg48BsK7MKyjRgMUxP+QkIXY8ZVFaF4ESrn3rAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-dc-snap-manual"
+}

@@ -1,0 +1,89 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/regulation/2026-07-16-agency-5101-4.json",
+      "sha256": "54cf5573e8b13c77de805d4b2fea8043d6849e41088285c801a28492369ec8fb"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/regulation/2026-07-16-agency-5101-4.json",
+      "sha256": "60b5fda5916870cd8bdb1b6bced1c76c0320fe41616d22e03cdc4d81749e8b60"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/regulation/2026-07-16-agency-5101-4.jsonl",
+      "sha256": "e6c621111e76c573f0ede2879c1ad78f791e011b77800821340616cb807bf859"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/agencies/5101-4.html",
+      "sha256": "146ce316b5be915084f5b43af4a6c22903bf581b3413674481736add959675b8"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/chapters/chapter-5101-4-1.html",
+      "sha256": "aea93d0992954ab1d05804e60bf20a5a2afc7eb62749299732420147dafbc342"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/chapters/chapter-5101-4-2.html",
+      "sha256": "e4ed7c3289e5fe31dd0af5b53cbc8fe8fe98c339be918d324e3af7cec18ef8fa"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/chapters/chapter-5101-4-3.html",
+      "sha256": "0bc4573c1ff716ce197e33c8eaee800bbffb89881f2b3b741f820ea683fe335c"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/chapters/chapter-5101-4-4.html",
+      "sha256": "47d9a2c207b216151230eeb927aa1403d678ab946159e693908df933a3cdf184"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/chapters/chapter-5101-4-5.html",
+      "sha256": "d9db7bc56d2d8e564698814a9c5a092f7db9ddeabe20732625b8fe2613f70529"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/chapters/chapter-5101-4-6.html",
+      "sha256": "d09945ebf7159fa208f7e8a3c77ab48b17727ac5dae4d0315c816f31e535e7e6"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/chapters/chapter-5101-4-7.html",
+      "sha256": "8c1037c1e87f85ec888b446ced8ecd7d49bceca7410c0cd5fa00ca24c584d933"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/chapters/chapter-5101-4-8.html",
+      "sha256": "f1b2e29af6b5d2468ec297ed5a9de1b0cffb4b295290bf90b175b6c7f7c3ffdd"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/chapters/chapter-5101-4-9.html",
+      "sha256": "d674d467bd91515e0fe87af148191ee3bb9ed685c5f3e21c8e0ae87b61c03eb6"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/regulation/2026-07-16-agency-5101-4/ohio-administrative-code/index.html",
+      "sha256": "cca9a45c903af691916d288e0b5aafb47f5ecb7d8c56f7c0d275565b74479774"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "070c00de28b7c4cdf6e667b77b88962453f70909",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-ohio-administrative-code --base data/corpus --version 2026-07-16 --only-agency 5101:4 --source-as-of 2026-07-16 --expression-date 2026-07-16 --workers 8"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 93,
+    "missing_count": 0,
+    "provision_count": 93,
+    "source_count": 93
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-16T22:28:27.123006+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "XAb95sa2N4ymWH84/bZ4M50KeuAa3LNx1gbKzG6vRPgXcxroIeHRcvAxKqb+Or3lllhi+469llrCVrYcmsJMBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-agency-5101-4"
+}

@@ -18,6 +18,8 @@ policy:
     - This queue covers state/DC SNAP manuals and equivalent primary official SNAP policy sources.
     - Some states publish SNAP policy as administrative regulations rather than a handbook.
     - BenefitsWiki was used only as a discovery lead list; corpus artifacts must cite official primary sources.
+    - published_current requires retained official source files plus a valid signed ingest manifest for the target scope.
+    - source_refetch_required preserves the prior normalized scope as recovery input but does not authorize encoding from it.
 states:
   - jurisdiction: us-al
     name: Alabama
@@ -39,7 +41,7 @@ states:
     target_scope:
       jurisdiction: us-ak
       document_class: manual
-      version: 2026-05-27-ak-snap-manual
+      version: 2026-07-16-ak-snap-manual
   - jurisdiction: us-az
     name: Arizona
     queue_status: published_current
@@ -54,24 +56,25 @@ states:
   - jurisdiction: us-ar
     name: Arkansas
     queue_status: published_current
-    source_kind: official_pdf_manual
-    primary_source_url: https://humanservices.arkansas.gov/wp-content/uploads/Supplemental-Nutrition-Assistance-Program-Policy-Manual.pdf
+    source_kind: official_pdf_and_html_policy_set
+    primary_source_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Policy-Manual-04.02.2026.pdf
     target_manifest: manifests/us-ar-snap-manual.yaml
     target_scope:
       jurisdiction: us-ar
       document_class: manual
-      version: 2026-05-27-ar-snap-manual
+      version: 2026-07-16-ar-snap-manual
+    notes: Current scope retains the April 2026 base manual, May 2026 appendices and basis-of-issuance charts, July 2026 final filing, FY2026 eligibility chart, nutrition-waiver pages, and current work/time-limit page from official DHS sources.
   - jurisdiction: us-ca
     name: California
     queue_status: published_current
-    source_kind: official_docx_pdf_manual_regulations
+    source_kind: official_docx_and_ocr_pdf_manual_regulations
     primary_source_url: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/CalFresh-Regulations
     target_manifest: manifests/us-ca-cdss-mpp-calfresh-complete.yaml
     target_scope:
       jurisdiction: us-ca
       document_class: regulation
-      version: 2026-05-27-ca-cdss-mpp-calfresh
-    notes: Current scope includes all 15 official CDSS Food Stamp Manual files linked from the CalFresh Regulations page.
+      version: 2026-07-17-ca-cdss-mpp-calfresh
+    notes: Current scope retains all 15 official CDSS Food Stamp Manual files linked from the CalFresh Regulations page; the 166-page image-only section is extracted with OCR while preserving the exact official PDF.
   - jurisdiction: us-co
     name: Colorado
     queue_status: published_current
@@ -81,12 +84,13 @@ states:
     target_scope:
       jurisdiction: us-co
       document_class: regulation
-      version: "2026-04-29"
+      version: 2026-07-16-10-ccr-2506-1
     supporting_manifest: manifests/us-co-snap-primary-policy.yaml
     supporting_scope:
       jurisdiction: us-co
       document_class: policy
       version: "2026-04-30"
+    supporting_queue_status: source_refetch_required
     notes: Colorado SNAP policy is covered through 10 CCR 2506-1 plus supplemental CDHS policy documents.
   - jurisdiction: us-ct
     name: Connecticut
@@ -97,7 +101,8 @@ states:
     target_scope:
       jurisdiction: us-ct
       document_class: manual
-      version: 2026-05-27-ct-snap-manual
+      version: 2026-07-17-ct-snap-manual
+    notes: Current scope retains the official DSS landing page, exact live table of contents, and all 277 linked SNAP Policy Manual topic pages.
   - jurisdiction: us-de
     name: Delaware
     queue_status: published_current
@@ -107,7 +112,8 @@ states:
     target_scope:
       jurisdiction: us-de
       document_class: regulation
-      version: 2026-05-27-de-snap-rules
+      version: 2026-07-17-de-snap-rules
+    notes: Current scope retains the complete official 114-page Title 16 section 9000 consolidated PDF through 29 DE Reg. 531.
   - jurisdiction: us-dc
     name: District of Columbia
     queue_status: published_current
@@ -117,8 +123,8 @@ states:
     target_scope:
       jurisdiction: us-dc
       document_class: manual
-      version: 2026-05-27-dc-snap-manual
-    notes: Existing DC child care manual artifact remains separate from this SNAP manual scope.
+      version: 2026-07-17-dc-snap-manual
+    notes: Current scope retains the complete official 349-page FY2025 ESA SNAP Policy Manual; the separate DC child care manual remains out of scope.
   - jurisdiction: us-fl
     name: Florida
     queue_status: published_current
@@ -181,7 +187,7 @@ states:
       version: 2026-05-27-in-snap-manual-r2026-07-15-self-contained
   - jurisdiction: us-ia
     name: Iowa
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_manual_index_pdf
     primary_source_url: https://hhs.iowa.gov/media/4035/download?inline
     target_manifest: manifests/us-ia-snap-manual.yaml
@@ -202,7 +208,7 @@ states:
       version: 2026-05-27-ks-keesm-r2026-07-15-self-contained
   - jurisdiction: us-ky
     name: Kentucky
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_agency_page
     primary_source_url: https://www.chfs.ky.gov/agencies/dcbs/dfs/Pages/default.aspx
     target_manifest: manifests/us-ky-snap-manual.yaml
@@ -212,7 +218,7 @@ states:
       version: 2026-05-27-ky-snap-manual
   - jurisdiction: us-la
     name: Louisiana
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_powerdms_manual_pdfs
     primary_source_url: https://public.powerdms.com/LADCFS/tree/documents/398463
     target_manifest: manifests/us-la-snap-manual.yaml
@@ -223,7 +229,7 @@ states:
     notes: Current scope includes official DCFS Economic Independence manual policy PDFs from public PowerDMS, excluding forms/instructions.
   - jurisdiction: us-me
     name: Maine
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_agency_rules
     primary_source_url: https://www.maine.gov/sos/rulemaking/agency-rules/department-health-and-human-services-rules
     target_manifest: manifests/us-me-snap-rules.yaml
@@ -233,7 +239,7 @@ states:
       version: 2026-05-27-me-snap-rules
   - jurisdiction: us-md
     name: Maryland
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_pdf_or_html_manual
     primary_source_url: https://dhs.maryland.gov/supplemental-nutrition-assistance-program/food-supplement-program-manual/
     target_manifest: manifests/us-md-fsp-manual.yaml
@@ -243,7 +249,7 @@ states:
       version: 2026-05-27-md-snap-manual
   - jurisdiction: us-ma
     name: Massachusetts
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_regulations
     primary_source_url: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     target_manifest: manifests/us-ma-dta-snap-regulations.yaml
@@ -253,7 +259,7 @@ states:
       version: 2026-05-27-ma-dta-snap-regulations
   - jurisdiction: us-mi
     name: Michigan
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_html_manual
     primary_source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/html/
     target_manifest: manifests/us-mi-bridges-manual.yaml
@@ -274,7 +280,7 @@ states:
     notes: Current scope uses the official full Combined Manual PDF because dynamic HTML manual pages redirect to an access-protected service.
   - jurisdiction: us-ms
     name: Mississippi
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_pdf_manual
     primary_source_url: https://www.sos.ms.gov/adminsearch/ACCode/00000331c.pdf
     target_manifest: manifests/us-ms-snap-manual.yaml
@@ -295,7 +301,7 @@ states:
     notes: Official DSS sitemap lists 516 SNAP manual pages. Current scope includes 452 live visible text-bearing pages plus 63 archived official DSS captures for pages that now return password-only shells. The omitted 1142.000.00 parent page has no substantive live or archived body, while its child policy sections are included. Official SOS 13 CSR 40-15 SNAP regulation PDF exists at https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-15.pdf, but Cloudflare currently blocks unattended source capture.
   - jurisdiction: us-mt
     name: Montana
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_html_manual
     primary_source_url: https://dphhs.mt.gov/HCSD/snapmanual
     target_manifest: manifests/us-mt-snap-manual.yaml
@@ -305,7 +311,7 @@ states:
       version: 2026-05-27-mt-snap-manual
   - jurisdiction: us-ne
     name: Nebraska
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_administrative_rules
     primary_source_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
     target_manifest: manifests/us-ne-snap-rules.yaml
@@ -336,7 +342,7 @@ states:
     notes: DHHS Food Stamp Manual HTML remains access-blocked from unattended clients; current scope uses official General Court Chapter He-W 700 SNAP administrative rules.
   - jurisdiction: us-nj
     name: New Jersey
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_regulations_page
     primary_source_url: https://www.nj.gov/humanservices/notices/rules-and-fees/rules-and-regulations/
     target_manifest: manifests/us-nj-snap-rules-reconstructed.yaml
@@ -354,10 +360,11 @@ states:
       jurisdiction: us-nj
       document_class: rulemaking
       version: 2026-05-28-nj-snap-rulemaking-notices
+    supporting_queue_status: source_refetch_required
     notes: Official rules-and-regulations page links one current N.J.A.C. 10:87 PDF, but that PDF physically ends at section 10:87-5.5. The current scope is reconstructed from the complete 2017 archived official DHS courtesy PDF plus official DHS/NJ Register rulemaking notices that modify N.J.A.C. 10:87 after that base, including the June 2024 DFD terminology administrative change and September 2025 SNAP amendments. The reconstructed scope is source-first and primary-official, but it is not an OAL/LexisNexis compiled-code export; the 2017 official courtesy PDF states that official New Jersey Administrative Rules are available through LexisNexis, the publisher licensed by the New Jersey Office of Administrative Law, or through local public libraries.
   - jurisdiction: us-nm
     name: New Mexico
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_administrative_code
     primary_source_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
     target_manifest: manifests/us-nm-snap-regulations.yaml
@@ -368,7 +375,7 @@ states:
     notes: Current scope includes HCA-linked SRCA NMAC Chapter 100 general public assistance provisions and Chapter 139 food stamp program regulations.
   - jurisdiction: us-ny
     name: New York
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: archived_official_pdf_manual
     primary_source_url: https://otda.ny.gov/programs/snap/snapsb.pdf
     target_manifest: manifests/us-ny-snap-manual.yaml
@@ -389,7 +396,7 @@ states:
       version: 2026-05-27-nc-fns-manuals-r2026-07-15-self-contained
   - jurisdiction: us-nd
     name: North Dakota
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_html_manual
     primary_source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
     target_manifest: manifests/us-nd-snap-manual.yaml
@@ -406,11 +413,11 @@ states:
     target_scope:
       jurisdiction: us-oh
       document_class: regulation
-      version: "2026-05-18"
+      version: 2026-07-16-agency-5101-4
     notes: Division 5101:4 SNAP rules are covered by the full Ohio Administrative Code ingestion, not a separate official-document manifest.
   - jurisdiction: us-ok
     name: Oklahoma
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_administrative_code
     primary_source_url: https://rules.ok.gov/home
     target_manifest: manifests/us-ok-snap-rules.yaml
@@ -429,10 +436,10 @@ states:
     target_scope:
       jurisdiction: us-or
       document_class: manual
-      version: 2026-05-27-or-programs-eligibility-notebook
+      version: 2026-07-16-or-programs-eligibility-notebook
   - jurisdiction: us-pa
     name: Pennsylvania
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_html_manual
     primary_source_url: http://services.dpw.state.pa.us/oimpolicymanuals/snap/index.htm#t=SNAP_Handbook_Title_Page.htm
     target_manifest: manifests/us-pa-snap-handbook.yaml
@@ -442,7 +449,7 @@ states:
       version: 2026-05-27-pa-snap-handbook
   - jurisdiction: us-ri
     name: Rhode Island
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_administrative_regulation
     primary_source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-1
     target_manifest: manifests/us-ri-snap-rules.yaml
@@ -462,7 +469,7 @@ states:
       version: 2026-05-27-sc-snap-manual
   - jurisdiction: us-sd
     name: South Dakota
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_pdf_manual
     primary_source_url: https://dss.sd.gov/docs/economicassistance/snap/snapmanual.pdf
     target_manifest: manifests/us-sd-snap-manual.yaml
@@ -504,7 +511,7 @@ states:
     notes: Utah SNAP policy is in the integrated Child Care, Financial and SNAP Eligibility Policy Manual.
   - jurisdiction: us-vt
     name: Vermont
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_html_manual
     primary_source_url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/assets/BRM/100GenInfo.htm
     target_manifest: manifests/us-vt-3squaresvt-manual.yaml
@@ -514,7 +521,7 @@ states:
       version: 2026-05-27-vt-3squaresvt-manual
   - jurisdiction: us-va
     name: Virginia
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_html_manual
     primary_source_url: https://www.dss.virginia.gov/relief/food-assistance/snap/snap-policy--procedures/snap-manual/
     target_manifest: manifests/us-va-snap-manual.yaml
@@ -524,7 +531,7 @@ states:
       version: 2026-05-27-va-snap-manual
   - jurisdiction: us-wa
     name: Washington
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_html_manual
     primary_source_url: https://www.dshs.wa.gov/esa/manuals/eaz
     target_manifest: manifests/us-wa-eaz-manual.yaml
@@ -534,7 +541,7 @@ states:
       version: 2026-05-27-wa-eaz-manual
   - jurisdiction: us-wv
     name: West Virginia
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_html_manual
     primary_source_url: https://bfa.wv.gov/page/income-maintenance-manual
     target_manifest: manifests/us-wv-manuals.yaml
@@ -544,7 +551,7 @@ states:
       version: 2026-05-27-wv-manuals
   - jurisdiction: us-wi
     name: Wisconsin
-    queue_status: published_current
+    queue_status: source_refetch_required
     source_kind: official_pdf_handbook
     primary_source_url: https://www.emhandbooks.wisconsin.gov/fsh/fsh.htm#t=home.htm
     target_manifest: manifests/us-wi-foodshare-manual.yaml

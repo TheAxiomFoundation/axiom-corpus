@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-wa-workingage-applicable-amounts.jsonl",
-      "sha256": "d14464548b531d73c40532fc9225cb87dc630bd7f620ed90eb8ea408590603d0"
+      "sha256": "d61db36257a26d7f3cdede7bfe276d907382775fac30f7126d0ca3260f13825c"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-workingage-applicable-amounts/wsi/2013/3029/schedule-7-paragraph-1.xml",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1d3db00d32ee3aa1e1a6793cd4c828fb8ab6ddeb",
+    "commit": "2b9ee8eed04c6b2b555da5ff2d20fb2b7ab2f6cd",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-13-uk-ctr-wa-workingage-applicable-amounts --citation wsi/2013/3029/schedule/7/paragraph/1"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T01:38:51.955087+00:00",
+  "generated_at": "2026-07-16T18:42:27.256842+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "b3J2lXvz3OPG57wkJ88PM2We6iO3oZX+2u5SfhuuPJR2ysSRlPFUnCS2ERmnZiAx+F0iEpMjAgIoCQvLN1RNCA=="
+    "value": "dbCIi2+iJ/6JaZYghjgOVWAoTvDE0qmnFblfBcmiPzNrRSIYEHEZ/1HNEGxjGCidRnAKQXUjMLxOoSXih7p8CA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-uk-ctr-wa-workingage-applicable-amounts"
