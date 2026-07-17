@@ -999,6 +999,9 @@ def _extract_labeled_pdf_section_blocks(
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
     heading_requires_bold = bool(extraction.get("section_heading_requires_bold", False))
+    allow_unstyled_repeated = bool(
+        extraction.get("allow_unstyled_repeated_section_headings", False)
+    )
     normalize_parentheticals = bool(
         extraction.get("normalize_parenthetical_label_components", False)
     )
@@ -1092,6 +1095,7 @@ def _extract_labeled_pdf_section_blocks(
             match
             and heading_requires_bold
             and not line_styles[index] & fitz.TEXT_FONT_BOLD
+            and not (allow_unstyled_repeated and match[0] == current_label)
         ):
             match = None
         if match:
@@ -1114,9 +1118,19 @@ def _extract_labeled_pdf_section_blocks(
             consumed_label_heading = False
             if drop_repeated and citation_label == current_citation_label:
                 index += 1
-                while index < len(lines) and is_heading_continuation(
-                    index, heading_style=heading_style
-                ):
+                full_heading = (current_heading or "").removeprefix(f"{label} ")
+                remaining_heading = (
+                    full_heading.removeprefix(heading_text).strip()
+                    if full_heading.startswith(heading_text)
+                    else ""
+                )
+                while remaining_heading and index < len(lines):
+                    continuation_line = lines[index][0]
+                    if not remaining_heading.startswith(continuation_line):
+                        break
+                    remaining_heading = remaining_heading.removeprefix(
+                        continuation_line
+                    ).strip()
                     index += 1
                 continue
             if not heading_text and label_heading_re is not None:

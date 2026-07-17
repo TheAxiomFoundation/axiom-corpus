@@ -1,32 +1,56 @@
 documents:
-- source_id: njac-10-87-nj-snap-manual
-  jurisdiction: us-nj
-  document_class: regulation
-  title: N.J.A.C. 10:87 New Jersey Supplemental Nutrition Assistance Program (NJ SNAP)
-    Manual
-  source_url: https://nj.gov/humanservices/notices/documents/rules-and-regulations/NJAC%2010_87%20NEW%20JERSEY%20SUPPLEMENTAL%20NUTRITION%20ASSISTANCE%20PROGRAM%20NJ%20SNAP%20MANUAL.PDF
-  source_format: pdf
-  source_as_of: '2025-07-08'
-  expression_date: '2025-06-16'
-  citation_path: us-nj/regulation/njac-10-87
-  extraction:
-    segmentation: labeled_sections
-    section_heading_pattern: "^\xA7\\s+(?P<label>10:87-[0-9A-Za-z.]+)\\s+(?P<heading>.+)$"
-    drop_line_patterns:
-    - ^This file includes all Regulations
-    - ^NJ - New Jersey Administrative Code
-    - ^CHAPTER 87\.
-    - ^MANUAL\s*$
-    - ^SUBCHAPTER\s+\d+\.
-    - ^Page \d+ of \d+$
-    - ^End of Document$
-    - ^NEW JERSEY ADMINISTRATIVE CODE
-    - '^Copyright '
-  metadata:
-    primary_source: true
-    document_subtype: administrative_code_manual
-    manual: New Jersey Supplemental Nutrition Assistance Program (NJ SNAP) Manual
-    regulation_chapter: N.J.A.C. 10:87
-    program: SNAP
-    source_discovery_group: us-nj/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+  - source_id: nj-dhs-njac-10-87-snap-manual
+    jurisdiction: us-nj
+    document_class: regulation
+    citation_path: us-nj/regulation/njac-10-87
+    title: N.J.A.C. 10:87 New Jersey Supplemental Nutrition Assistance Program (NJ SNAP) Manual
+    source_url: https://www.nj.gov/humanservices/notices/documents/rules-and-regulations/SNAPManual_10.14.25.pdf
+    source_format: pdf
+    source_as_of: "2026-07-17"
+    expression_date: "2025-10-06"
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: >-
+        ^\u00a7\s+(?P<label>10:87-\d+\.\d+[A-Z]?)\.?\s+(?P<heading>.+)$
+      section_label_pattern: >-
+        ^(?P<label>Title 10, Chapter 87, Subchapter 12 -- Subchapter Notes|Title 10, Chapter 87, Subchapter 13 -- Subchapter Notes|APPENDIX A)$
+      section_label_replacements:
+        Title 10, Chapter 87, Subchapter 12 -- Subchapter Notes: subchapter-12-notes
+        Title 10, Chapter 87, Subchapter 13 -- Subchapter Notes: subchapter-13-notes
+        APPENDIX A: appendix-a
+      label_only_heading_pattern: ^(?:History|FISCAL MANAGEMENT SECTION A)$
+      section_heading_requires_bold: true
+      allow_unstyled_repeated_section_headings: true
+      drop_line_patterns:
+        - ^Page \d+ of \d+$
+        - ^N\.J\.A\.C\. 10:87(?:-\d+(?:\.\d+[A-Z]?)?|, Appx\. A)?$
+        - ^This file includes all Regulations adopted and published through the New Jersey Register, Vol\.$
+        - ^57 No\. 19, October 6, 2025$
+        - ^NJ - New Jersey Administrative Code
+        - ^CHAPTER 87\.
+        - ^MANUAL(?:\s|$)
+        - ^NEW JERSEY ADMINISTRATIVE CODE$
+        - ^Copyright . 2025 by the New Jersey Office of Administrative Law$
+        - ^End of Document$
+    metadata:
+      primary_source: true
+      source_authority: New Jersey Department of Human Services, Division of Family Development
+      original_publisher: New Jersey Office of Administrative Law
+      document_subtype: current_compiled_administrative_code_manual
+      manual: New Jersey Supplemental Nutrition Assistance Program (NJ SNAP) Manual
+      regulation_chapter: N.J.A.C. 10:87
+      program: SNAP
+      federal_program: SNAP
+      rules_landing_page: https://www.nj.gov/humanservices/notices/rules-and-fees/rules-and-regulations/
+      compiled_through_register_volume: "57"
+      compiled_through_register_number: "19"
+      compiled_through_date: "2025-10-06"
+      pdf_release_date: "2025-10-14"
+      source_sha256: 34c913b5be2c7e64b8d7b3d9ac89563f7beba474be88a544609ba9fcd3ac2d64
+      page_count: 570
+      code_section_count: 261
+      extracted_block_count: 264
+      source_discovery_group: us-nj/regulation/snap
+      discovered_via: official-dhs-rules-and-regulations-page
