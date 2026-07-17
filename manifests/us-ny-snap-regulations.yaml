@@ -1,0 +1,53 @@
+parts:
+  - part: '385'
+    citation_path: us-ny/regulation/18-nycrr/385
+    title: Public Assistance and Supplemental Nutrition Assistance Program (SNAP) Employment Program Requirements
+    source_url: https://govt.westlaw.com/nycrr/Browse/Home/NewYork/UnofficialNewYorkCodesRulesandRegulations?contextData=%28sc.Default%29&guid=I6e267fe0b80f11dd9190c387f1d75965&originationContext=documenttoc&transitionType=Default
+    expected_document_count: 14
+    expected_section_count: 13
+    metadata:
+      document_subtype: administrative_code_part
+      official_title: 18 NYCRR Part 385
+      source_discovery_group: us-ny/regulation/snap
+      discovered_via: official-nycrr-part-browse
+      scope_reason: Part 385 contains New York public-assistance and SNAP employment program requirements.
+  - part: '387'
+    citation_path: us-ny/regulation/18-nycrr/387
+    title: Supplemental Nutrition Assistance Program
+    source_url: https://govt.westlaw.com/nycrr/Browse/Home/NewYork/UnofficialNewYorkCodesRulesandRegulations?contextData=%28sc.Default%29&guid=I6eba0d50b80f11dd9190c387f1d75965&originationContext=documenttoc&transitionType=Default
+    expected_document_count: 28
+    expected_section_count: 26
+    metadata:
+      document_subtype: administrative_code_part
+      official_title: 18 NYCRR Part 387
+      source_discovery_group: us-ny/regulation/snap
+      discovered_via: official-nycrr-part-browse
+      scope_reason: Part 387 is New York's Supplemental Nutrition Assistance Program regulation.
+
+adopted_amendments:
+  - amendment_id: ny-register-tda-41-25-00025
+    target_citation_path: us-ny/regulation/18-nycrr/387/12/f/3/v
+    text_source_url: https://dos.ny.gov/system/files/documents/2025/10/101525.pdf
+    adoption_source_url: https://dos.ny.gov/system/files/documents/2026/02/022526.pdf
+    effective_date: '2026-02-25'
+    text_anchor: 'Text of emergency/proposed rule: § 387.12(f)(3)(v)(a)-(c) of Title 18 NYCRR is amended to read as follows:'
+    text_end: 'This notice is intended:'
+    adoption_confirmation: 'Final rule as compared with last published rule: No changes.'
+    clauses:
+      a:
+        heading: Standard allowance for heating/cooling
+        required_text:
+          - '$1,062'
+          - '$988'
+          - '$877'
+          - 'Low Income Home Energy Assistance Act'
+      b:
+        heading: Standard allowance for utilities
+        required_text:
+          - '$419'
+          - '$388'
+          - '$355'
+      c:
+        heading: Standard allowance for telephone
+        required_text:
+          - '$32'
