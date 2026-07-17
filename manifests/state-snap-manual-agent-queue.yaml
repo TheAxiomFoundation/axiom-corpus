@@ -383,15 +383,21 @@ states:
     notes: The official DHS rules page links a complete 570-page N.J.A.C. 10:87 courtesy copy compiled through the October 6, 2025 New Jersey Register. DHS states that this copy is not the official Code publication and that the official Code controls discrepancies. The current scope retains the PDF and extracts the chapter notes, all 261 codified sections, two subchapter-notes blocks, and Appendix A. Superseded source-less partial, reconstructed, archived-base, and rulemaking artifacts are removed with signed tombstones.
   - jurisdiction: us-nm
     name: New Mexico
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
     target_manifest: manifests/us-nm-snap-regulations.yaml
     target_scope:
       jurisdiction: us-nm
       document_class: regulation
-      version: 2026-05-27-nm-snap-regulations
-    notes: Current scope includes HCA-linked SRCA NMAC Chapter 100 general public assistance provisions and Chapter 139 food stamp program regulations.
+      version: 2026-07-17-nm-snap-regulations
+    notes: >-
+      The current scope retains 28 official SRCA NMAC HTML documents current
+      through July 1, 2026: ten Chapter 100 general public-assistance parts and
+      eighteen Chapter 139 Food Stamp Program parts, including two repealed source
+      roots. It extracts all 360 independently enumerated codified headings and has
+      complete 388-of-388 coverage. The superseded source-less scope is removed with
+      a signed tombstone.
   - jurisdiction: us-ny
     name: New York
     queue_status: source_refetch_required

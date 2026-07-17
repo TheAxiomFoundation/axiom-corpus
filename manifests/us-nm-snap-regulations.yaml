@@ -849,6 +849,41 @@ documents:
     source_sha256: 31edaafe946de546f68104f3c2bca6f1b6ef488aafee54d966e47061ccd22849
     source_byte_count: 107653
     provision_count: 14
+- source_id: nm-srca-nmac-8-139-640
+  jurisdiction: us-nm
+  document_class: regulation
+  title: "8.139.640 NMAC Errors in Benefits - Restorations and Claims [Repealed]"
+  source_url: https://www.srca.nm.gov/parts/title08/08.139.0640.html
+  source_format: html
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
+  citation_path: us-nm/regulation/nmac/8/139/640
+  extraction:
+    html_content_selector: .WordSection1, .Section1
+    segmentation: labeled_sections
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*640\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
+  metadata:
+    primary_source: true
+    source_authority: New Mexico State Records Center and Archives
+    issuing_agency: New Mexico Health Care Authority
+    document_subtype: administrative_code
+    program: SNAP
+    nmac_citation: 8.139.640
+    nmac_title: '8'
+    nmac_chapter: '139'
+    nmac_part: '640'
+    source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
+    source_discovery_group: us-nm/regulation/snap
+    discovered_via: official-srca-chapter-139-index
+    discovery_ordinal: 26
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 57c49c29e1fdedefa9e7141ee5ffa0da46d68a17d7a319b07e7eb9ced28eb4ac
+    source_byte_count: 22076
+    provision_count: 0
+    repealed: true
 - source_id: nm-srca-nmac-8-139-647
   jurisdiction: us-nm
   document_class: regulation
@@ -877,7 +912,7 @@ documents:
     source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
-    discovery_ordinal: 26
+    discovery_ordinal: 27
     nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
     nmac_current_through: '2026-07-01'
     source_sha256: dc90d8e965042ea22880624be0523c4d1097ff83cfea74f19505c3fbb16974d3
@@ -911,7 +946,7 @@ documents:
     source_index_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
-    discovery_ordinal: 27
+    discovery_ordinal: 28
     nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
     nmac_current_through: '2026-07-01'
     source_sha256: 23a689421db889932309c35f885f76a13341f8c286e305adb1cfb0d8881dd498
