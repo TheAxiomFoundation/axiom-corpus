@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-de/regulation/2026-07-17-de-snap-rules.json",
-      "sha256": "4ebd1b9cb55f1129d1965c49bb6aa68f786fec1b6df6c278a5534f5b723ea42a"
+      "sha256": "66d5dde12f9adcfd7a028128a97c14ea1c436e0a70e80131bcae7365c9dd7943"
     },
     {
       "path": "data/corpus/inventory/us-de/regulation/2026-07-17-de-snap-rules.json",
-      "sha256": "35d339272047870abafaf0e4ccedc234eb8fd001a1b68aea94225693054791a6"
+      "sha256": "3a8040b5d60bc19014e524df3ffe95e1bffd53f59f8f1d774b2671eb8dfbbb57"
     },
     {
       "path": "data/corpus/provisions/us-de/regulation/2026-07-17-de-snap-rules.jsonl",
-      "sha256": "34ead1d8e3a984b57afdf5229635e0ca64a355076c149fa0d5938f63814a8853"
+      "sha256": "797298210f3cdf9701744067f886e51dbe54f040cb754e26f740c1b2c27de9b4"
     },
     {
       "path": "data/corpus/sources/us-de/regulation/2026-07-17-de-snap-rules/official-documents/de-dhss-dss-9000-food-stamp-program.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "222bce9d91089d71c64deb665b89ccfd6be2c9c2",
+    "commit": "7838748dfdffb9ccbbaeb25ac72be75c69c6e472",
     "dirty_tracked": false,
     "root": "."
   },
@@ -29,20 +29,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 260,
+    "matched_count": 265,
     "missing_count": 0,
-    "provision_count": 260,
-    "source_count": 260
+    "provision_count": 265,
+    "source_count": 265
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-17T03:02:39.766393+00:00",
+  "generated_at": "2026-07-17T03:11:51.012684+00:00",
   "jurisdiction": "us-de",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "gAakobX9qoOQHkdlACd2qjmvKYjHJnp6EPf9EdIONLqrIj62It48ht2i0uOEmHNmD6bjh9MM8uogE/tlt7l1Dw=="
+    "value": "f+1GrdpvOwzzqP7ed4m8N93xF8qT0oCIwfxuCUeuiqIaT/Wl8bkgT39tGkWYc7uzh30asjX5z1O16LGRzx07Aw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-de-snap-rules"
