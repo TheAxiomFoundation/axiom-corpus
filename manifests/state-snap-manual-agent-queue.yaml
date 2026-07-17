@@ -230,14 +230,18 @@ states:
     notes: Current scope retains all 346 policy PDFs and all 1,137 pages under the official DCFS Economic Independence PowerDMS tree. The separate forms and forms-instructions branch contains 446 documents and remains explicitly excluded from this policy-manual scope.
   - jurisdiction: us-me
     name: Maine
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_agency_rules
     primary_source_url: https://www.maine.gov/sos/rulemaking/agency-rules/department-health-and-human-services-rules
     target_manifest: manifests/us-me-snap-rules.yaml
     target_scope:
       jurisdiction: us-me
       document_class: regulation
-      version: 2026-05-27-me-snap-rules
+      version: 2026-07-17-me-snap-rules
+    notes: Current scope retains both SNAP rulebooks listed on the official Maine DHHS
+      rules index, Chapter 301 SNAP eligibility and benefit rules and Chapter 609 SNAP
+      Employment and Training rules. Chapter 302 SUN Bucks is a separate Summer EBT
+      program and is outside this SNAP scope.
   - jurisdiction: us-md
     name: Maryland
     queue_status: source_refetch_required
