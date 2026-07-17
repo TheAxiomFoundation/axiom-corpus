@@ -10,11 +10,11 @@
     },
     {
       "path": "data/corpus/provisions/us-ma/guidance/2025-11-17-dta-policy-online-snap-cola.jsonl",
-      "sha256": "9b99431042270a6c02e44e89e152dcce20b5ef5466d85e8bba51cb3c94f8c072"
+      "sha256": "5dd76da4f9f4384df7064d88d85379bcf77e99c3fccbfcecf68d2a59c980291f"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "153783622aca7e57158623532796dbe272e75cd7",
+    "commit": "17f40cdc8dfe566764e0cb3ddda8d2b744acf8cf",
     "dirty_tracked": false,
     "root": "."
   },
@@ -31,14 +31,14 @@
     "source_count": 1
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-15T19:51:41.689237+00:00",
+  "generated_at": "2026-07-17T00:05:50.522928+00:00",
   "jurisdiction": "us-ma",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "YCVkLvaJLzNDRId9g1WzlUr/O1+zRNMtyP3afeoNPNNZ5DnOL+bTssutFLooiEYRK9runLM1NoefCzcmK2c+Aw=="
+    "value": "fpADwvhYtHT6PVjTPgmzf/vDxXHbXjEu4qAzw9nfzby9BOdkg7Wmx2FZdUGZiVv78klfg4rai3QGMwoOUa4hCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2025-11-17-dta-policy-online-snap-cola"
