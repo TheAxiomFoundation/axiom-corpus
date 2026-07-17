@@ -257,14 +257,18 @@ states:
       both officially listed section 404 documents.
   - jurisdiction: us-ma
     name: Massachusetts
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_regulations
     primary_source_url: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     target_manifest: manifests/us-ma-dta-snap-regulations.yaml
     target_scope:
       jurisdiction: us-ma
       document_class: regulation
-      version: 2026-05-27-ma-dta-snap-regulations
+      version: 2026-07-17-ma-dta-snap-regulations
+    notes: Current scope retains the official DTA fair-hearing chapter 343 and all
+      eight SNAP regulation chapters 360 through 367 linked from the official
+      Mass.gov DTA regulations index. The duplicate chapter 365 index link that
+      returns HTTP 404 is excluded; the working official DOCX is retained.
   - jurisdiction: us-mi
     name: Michigan
     queue_status: source_refetch_required

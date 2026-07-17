@@ -2,12 +2,33 @@ documents:
 - source_id: ma-dta-106-cmr-343
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/343
+  citation_path: us-ma/regulation/106-cmr/343
   title: 'Massachusetts DTA Regulations: Chapter 343: Fair Hearing Rules'
   source_url: https://www.mass.gov/doc/chapter-343-fair-hearing-rules/download
   source_format: pdf
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2016-12-01'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_page: 3
+    section_heading_pattern: '^343\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
+    label_only_heading_pattern: '^[A-Z].+$'
+    label_only_requires_heading: true
+    drop_line_patterns: &mass_cmr_pdf_headers
+    - '^106 CMR: Department of Transitional Assistance$'
+    - '^Trans\. by S\.L\.'
+    - '^Prev\. S\.L\.'
+    - '^Supplemental Nutrition Assistance Program$'
+    - '^(?:Fair Hearing Rules|General Provisions|The Application Process|Nonfinancial Eligibility Standards|Financial Eligibility Standards|Determining Household Eligibility and Benefit Level|Additional Certification Functions|Violations Hearings and Claims)$'
+    - '^Chapter(?:\s+\d{3})?$'
+    - '^(?:343|36[0-7])$'
+    - '^Rev\.'
+    - '^\(?\d+ of \d+\)?$'
+    - '^Page(?:\s+.*)?$'
+    - '^(?:343|36[0-7])\.\d{3}$'
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -17,16 +38,26 @@ documents:
     legal_identifier: 106 CMR 343
     regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     source_discovery_group: us-ma/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovered_via: official-index:mass-dta-regulations
 - source_id: ma-dta-106-cmr-360
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/360
+  citation_path: us-ma/regulation/106-cmr/360
   title: 'Massachusetts DTA Regulations: Chapter 360: General Provisions'
   source_url: https://www.mass.gov/doc/chapter-360-general-provisions-0/download
   source_format: pdf
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2016-12-01'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_page: 2
+    section_heading_pattern: '^360\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
+    label_only_heading_pattern: '^[A-Z].+$'
+    label_only_requires_heading: true
+    drop_line_patterns: *mass_cmr_pdf_headers
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -36,16 +67,26 @@ documents:
     legal_identifier: 106 CMR 360
     regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     source_discovery_group: us-ma/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovered_via: official-index:mass-dta-regulations
 - source_id: ma-dta-106-cmr-361
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/361
+  citation_path: us-ma/regulation/106-cmr/361
   title: 'Massachusetts DTA Regulations: Chapter 361: The Application Process'
   source_url: https://www.mass.gov/doc/chapter-361-the-application-process-0/download
   source_format: pdf
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2016-12-01'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_page: 3
+    section_heading_pattern: '^361\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
+    label_only_heading_pattern: '^[A-Z].+$'
+    label_only_requires_heading: true
+    drop_line_patterns: *mass_cmr_pdf_headers
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -55,16 +96,26 @@ documents:
     legal_identifier: 106 CMR 361
     regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     source_discovery_group: us-ma/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovered_via: official-index:mass-dta-regulations
 - source_id: ma-dta-106-cmr-362
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/362
+  citation_path: us-ma/regulation/106-cmr/362
   title: 'Massachusetts DTA Regulations: Chapter 362: Nonfinancial Eligibility Standards'
   source_url: https://www.mass.gov/doc/chapter-362-nonfinancial-eligibility-standards-0/download
   source_format: pdf
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2017-02-01'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_page: 2
+    section_heading_pattern: '^362\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
+    label_only_heading_pattern: '^[A-Z].+$'
+    label_only_requires_heading: true
+    drop_line_patterns: *mass_cmr_pdf_headers
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -74,16 +125,26 @@ documents:
     legal_identifier: 106 CMR 362
     regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     source_discovery_group: us-ma/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovered_via: official-index:mass-dta-regulations
 - source_id: ma-dta-106-cmr-363
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/363
+  citation_path: us-ma/regulation/106-cmr/363
   title: 'Massachusetts DTA Regulations: Chapter 363: Financial Eligibility Standards'
   source_url: https://www.mass.gov/doc/chapter-363-financial-eligibility-standards/download
   source_format: pdf
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2024-05-01'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_page: 2
+    section_heading_pattern: '^363\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
+    label_only_heading_pattern: '^[A-Z].+$'
+    label_only_requires_heading: true
+    drop_line_patterns: *mass_cmr_pdf_headers
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -93,16 +154,26 @@ documents:
     legal_identifier: 106 CMR 363
     regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     source_discovery_group: us-ma/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovered_via: official-index:mass-dta-regulations
 - source_id: ma-dta-106-cmr-364
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/364
+  citation_path: us-ma/regulation/106-cmr/364
   title: 'Massachusetts DTA Regulations: Chapter 364: Determining Household Eligibility and Benefit Level'
   source_url: https://www.mass.gov/doc/chapter-364-determining-household-eligibility-and-benefit-level-0/download
   source_format: pdf
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2022-06-01'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_page: 3
+    section_heading_pattern: '^364\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
+    label_only_heading_pattern: '^[A-Z].+$'
+    label_only_requires_heading: true
+    drop_line_patterns: *mass_cmr_pdf_headers
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -112,16 +183,36 @@ documents:
     legal_identifier: 106 CMR 364
     regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     source_discovery_group: us-ma/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovered_via: official-index:mass-dta-regulations
 - source_id: ma-dta-106-cmr-365
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/365
+  citation_path: us-ma/regulation/106-cmr/365
   title: 'Massachusetts DTA Regulations: Chapter 365: Special Situation Households'
   source_url: https://www.mass.gov/doc/chapter-365-special-situation-households/download
   source_format: docx
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2017-01-01'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_after_pattern: '^Rev\..*\|\s*Page(?: Page)?\s*\|\s*365\.030$'
+    section_heading_pattern: '^365\.(?P<section>\d{3})(?::\s*|\s*)(?P<heading>[A-Z].+)$'
+    section_label_template: '{section}'
+    drop_line_patterns:
+    - '^106 CMR: Department of Transitional Assistance$'
+    - '^Trans\. by S\.L\.'
+    - '^Prev\. S\.L\.'
+    - '^Supplemental Nutrition Assistance Program$'
+    - '^Prev\. S\.L\..*\| Supplemental Nutrition Assistance Program$'
+    - '^Special Situation Households \| Chapter \| 365$'
+    - '^Chapter(?:\s+365)?$'
+    - '^365$'
+    - '^Rev\.'
+    - '^\(?\d+ of \d+\)?$'
+    - '^Page\s+'
+    - '^365\.\d{3}$'
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -131,16 +222,26 @@ documents:
     legal_identifier: 106 CMR 365
     regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     source_discovery_group: us-ma/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovered_via: official-index:mass-dta-regulations
 - source_id: ma-dta-106-cmr-366
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/366
+  citation_path: us-ma/regulation/106-cmr/366
   title: 'Massachusetts DTA Regulations: Chapter 366: Additional Certification Functions'
   source_url: https://www.mass.gov/doc/chapter-366-additional-certification-functions-0/download
   source_format: pdf
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2022-10-01'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_page: 2
+    section_heading_pattern: '^366\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
+    label_only_heading_pattern: '^[A-Z].+$'
+    label_only_requires_heading: true
+    drop_line_patterns: *mass_cmr_pdf_headers
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -150,16 +251,26 @@ documents:
     legal_identifier: 106 CMR 366
     regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     source_discovery_group: us-ma/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovered_via: official-index:mass-dta-regulations
 - source_id: ma-dta-106-cmr-367
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/367
+  citation_path: us-ma/regulation/106-cmr/367
   title: 'Massachusetts DTA Regulations: Chapter 367: Violations Hearings and Claims'
   source_url: https://www.mass.gov/doc/chapter-367-violations-hearings-and-claims-0/download
   source_format: pdf
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2016-12-01'
+  request:
+    browser_impersonation: true
+  extraction:
+    segmentation: labeled_sections
+    start_page: 3
+    section_heading_pattern: '^367\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
+    label_only_heading_pattern: '^[A-Z].+$'
+    label_only_requires_heading: true
+    drop_line_patterns: *mass_cmr_pdf_headers
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -169,4 +280,4 @@ documents:
     legal_identifier: 106 CMR 367
     regulation_landing_page: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     source_discovery_group: us-ma/regulation/snap
-    discovered_via: manual-review:state-snap-manual-agent-queue
+    discovered_via: official-index:mass-dta-regulations
