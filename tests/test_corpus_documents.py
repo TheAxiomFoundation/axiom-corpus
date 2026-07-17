@@ -3628,6 +3628,49 @@ documents:
     assert records[2].body == "Next body."
 
 
+def test_label_only_pdf_section_can_preserve_bold_body_lines(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "chapter-notes.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Chapter 7 -- Chapter Notes", fontname="tibi")
+    page.insert_text((72, 96), "Statutory Authority", fontname="tibi")
+    page.insert_text((72, 120), "CHAPTER AUTHORITY:", fontname="tibi")
+    page.insert_text((72, 144), "N.J.S.A. 30:1-12.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: chapter-notes
+    jurisdiction: us-test
+    document_class: regulation
+    title: Chapter Notes
+    source_url: https://example.test/chapter-notes.pdf
+    citation_path: us-test/regulation/chapter-7
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_label_pattern: '^Chapter (?P<label>7) -- Chapter Notes$'
+      label_only_heading_pattern: '^Statutory Authority$'
+      label_only_heading_continuation: false
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-chapter-notes",
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "7 Statutory Authority"
+    assert records[1].body == "CHAPTER AUTHORITY: N.J.S.A. 30:1-12."
+
+
 def test_bold_pdf_headings_compose_with_start_after_filter(tmp_path: Path) -> None:
     pdf_path = tmp_path / "filtered-styled-manual.pdf"
     document = fitz.open()

@@ -23,8 +23,8 @@ COVERAGE_PATH = CORPUS_ROOT / "coverage/us-nj/regulation" / f"{VERSION}.json"
 
 EXPECTED_SOURCE_SHA256 = "34c913b5be2c7e64b8d7b3d9ac89563f7beba474be88a544609ba9fcd3ac2d64"
 EXPECTED_CODE_SECTION_COUNT = 261
-EXPECTED_BLOCK_COUNT = 264
-EXPECTED_ROW_COUNT = 265
+EXPECTED_BLOCK_COUNT = 265
+EXPECTED_ROW_COUNT = 266
 SECTION_START_RE = re.compile(r"^\u00a7\s+(?P<label>10:87-\d+\.\d+[A-Z]?)\.?\s+")
 
 
@@ -47,6 +47,8 @@ def test_new_jersey_manifest_pins_current_complete_manual() -> None:
     assert document["metadata"]["page_count"] == 570
     assert document["metadata"]["code_section_count"] == EXPECTED_CODE_SECTION_COUNT
     assert document["metadata"]["source_sha256"] == EXPECTED_SOURCE_SHA256
+    assert "courtesy" in document["metadata"]["source_note"]
+    assert "not the official" in document["metadata"]["source_note"]
     assert document["extraction"]["section_heading_requires_bold"] is True
     assert document["extraction"]["allow_unstyled_repeated_section_headings"] is True
 
@@ -83,6 +85,7 @@ def test_new_jersey_scope_retains_every_code_section_and_appendix() -> None:
     assert coverage["matched_count"] == coverage["source_count"] == EXPECTED_ROW_COUNT
     assert coverage["provision_count"] == EXPECTED_ROW_COUNT
     assert {row["metadata"]["section_label"] for row in sections} - source_labels == {
+        "chapter-notes",
         "subchapter-12-notes",
         "subchapter-13-notes",
         "appendix-a",
@@ -96,6 +99,10 @@ def test_new_jersey_sections_preserve_multipage_text_and_current_policy() -> Non
         if row["kind"] == "section"
     }
 
+    chapter_notes = sections["chapter-notes"]["body"]
+    assert "N.J.S.A. 30:1-12" in chapter_notes
+    assert "Effective: November 16, 2022" in chapter_notes
+    assert "CHAPTER HISTORICAL NOTE" in chapter_notes
     assert sections["10:87-1.1A"]["metadata"]["page_end"] == 6
     assert "Actively seeking" in sections["10:87-3.17"]["body"]
     assert "CSSA" in sections["10:87-3.17"]["body"]

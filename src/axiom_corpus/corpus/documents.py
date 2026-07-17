@@ -997,6 +997,9 @@ def _extract_labeled_pdf_section_blocks(
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
+    label_heading_continuation = bool(
+        extraction.get("label_only_heading_continuation", True)
+    )
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
     heading_requires_bold = bool(extraction.get("section_heading_requires_bold", False))
     allow_unstyled_repeated = bool(
@@ -1169,7 +1172,9 @@ def _extract_labeled_pdf_section_blocks(
                         continuation_bodies.append((continuation_body, continuation_page))
                     if continuation_body or continuation_heading.endswith("."):
                         break
-            elif heading_continuation_re is None:
+            elif heading_continuation_re is None and (
+                not consumed_label_heading or label_heading_continuation
+            ):
                 while index < len(lines) and is_heading_continuation(
                     index, heading_style=heading_style
                 ):
