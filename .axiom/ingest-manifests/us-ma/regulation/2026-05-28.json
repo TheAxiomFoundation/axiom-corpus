@@ -2,19 +2,83 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-ma/regulation/2026-05-28.json",
-      "sha256": "f0a73bfd48c078f419d214f8656a4958711438e401e15520d5ce0d345ddce14d"
+      "sha256": "5a3c4363a64f86e20081d54808ad839fc59a0eb77d3c1f2081bac9fb62a87cff"
     },
     {
       "path": "data/corpus/inventory/us-ma/regulation/2026-05-28.json",
-      "sha256": "8c6909271d4532240a6e019cfedda665fe5238d7d39fdfaf73e77d07178a38cd"
+      "sha256": "73b1f37a5818fb1efe74f1e582dc544f1d7048327f8869171f5bd7d8bfed6e13"
     },
     {
       "path": "data/corpus/provisions/us-ma/regulation/2026-05-28.jsonl",
-      "sha256": "d4230fe1613738de4eede68d8c89d18818225b4e0fa75c8db382938aa227a010"
+      "sha256": "d8888fea191870a8b85d5c6ab9f8c5643d66f91d929fb1c75b407419fe806a49"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/official-documents/massgov-106-cmr-360.pdf",
+      "sha256": "14d17e42e30b9819f37bade4e85f11ed89b7c0ce9dc18622ae67a663e1b834e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/official-documents/massgov-106-cmr-361.pdf",
+      "sha256": "8983c500d0bccea04daaaefbd3cb82a7786daf8ffa04596bf5a4a22ba02c83f3"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/official-documents/massgov-106-cmr-362.pdf",
+      "sha256": "e2094cbb5b511647537e056eddfdc40078fba735ea145f84fb55bd44cc1d84a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/official-documents/massgov-106-cmr-363.pdf",
+      "sha256": "d2c40f294ec66372cfbed65994e6e940484fbaaf787015b7d11b6f155ad357de"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/official-documents/massgov-106-cmr-364.pdf",
+      "sha256": "5b010364fc013acd1cb412bab672cd9656215772087095dcae007ceeee413343"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/official-documents/massgov-106-cmr-365.pdf",
+      "sha256": "9b08bcbfb8e4e2c077fd27d56b3a4b7567f968d23e52cbc2cc0ef0fb91f09d12"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/official-documents/massgov-106-cmr-366.pdf",
+      "sha256": "679f6c1ffa81e07194034915221e640f498cf26f12e3d6ce6f69b5f28d789902"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/official-documents/massgov-106-cmr-367.pdf",
+      "sha256": "c952eba933a05f63e83cf8416e34ce0650351d242d013ac96b6b3a3fb5ffe5cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/provenance/massgov-106-cmr-360.provenance.json",
+      "sha256": "2f73958fe7139e5336a33d4a2f674607225e68202f25e439470b1e80a2a09876"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/provenance/massgov-106-cmr-361.provenance.json",
+      "sha256": "47cb6efa0d8e1ea02108983e336a6d4656ca89c09d965bc6d0a76b6a437a697c"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/provenance/massgov-106-cmr-362.provenance.json",
+      "sha256": "752ee0b7c749bdb9b383c39e0e884cbee6f9f7657448d4b0888566a6ba6dbf5d"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/provenance/massgov-106-cmr-363.provenance.json",
+      "sha256": "0354b3f4786409cd87bceb4a6874f53ff25de64b9e05fd7928f93724997d3261"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/provenance/massgov-106-cmr-364.provenance.json",
+      "sha256": "bf2102cc824385b9b506f8271acbd07ccb53510cee3a3c371e542f242054cab7"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/provenance/massgov-106-cmr-365.provenance.json",
+      "sha256": "9a6e78c2d3d78795cb82c93fb49b650420b0e0cdc878260aa18b4fbc88c885ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/provenance/massgov-106-cmr-366.provenance.json",
+      "sha256": "f6df36aa318e1d2ef1507c3852dffdf2999eff1f6c028bb81ed7b95b8460a9af"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-05-28/provenance/massgov-106-cmr-367.provenance.json",
+      "sha256": "af20edff8d5818cb324c49aaea35fb23c1ef7aad904b127c7cf2bee32a14837d"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "57eb5709f78a32b93be53b9df39d03e378557314",
+    "commit": "e6d646d37c42c075bad07fd4a2541f6c1c2918ff",
     "dirty_tracked": false,
     "root": "."
   },
@@ -25,20 +89,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 789,
+    "matched_count": 528,
     "missing_count": 0,
-    "provision_count": 789,
-    "source_count": 789
+    "provision_count": 528,
+    "source_count": 528
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T19:51:42.267709+00:00",
+  "generated_at": "2026-07-17T13:25:05.927358+00:00",
   "jurisdiction": "us-ma",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "1tf4+K5epd0wdlRIaSJqYbOcKdKfXWUzdlPbubnFnna0gaJMvVFX5JD+I5/C9i2yeYSALkxhf+hoCn7El6/uBQ=="
+    "value": "Juw7xf6yZsd2ojGLizi1fxbBCnR+01vDniYmKCJOI6cZAorAAhQxW1jA39EmLgdrxZkrycW4qp5DpSm5j2YFCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-28"
