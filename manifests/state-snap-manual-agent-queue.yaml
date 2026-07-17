@@ -244,14 +244,17 @@ states:
       program and is outside this SNAP scope.
   - jurisdiction: us-md
     name: Maryland
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_pdf_or_html_manual
     primary_source_url: https://dhs.maryland.gov/supplemental-nutrition-assistance-program/food-supplement-program-manual/
     target_manifest: manifests/us-md-fsp-manual.yaml
     target_scope:
       jurisdiction: us-md
       document_class: manual
-      version: 2026-05-27-md-snap-manual
+      version: 2026-07-17-md-snap-manual
+    notes: Current scope retains all 51 files linked from the official Maryland DHS
+      SNAP manual index, including the separate replacement-of-lost-food affidavit and
+      both officially listed section 404 documents.
   - jurisdiction: us-ma
     name: Massachusetts
     queue_status: source_refetch_required
