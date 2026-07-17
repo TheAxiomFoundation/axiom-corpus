@@ -1,1 +1,0 @@
-Added a shared document-sectioning module, a `section-provisions` CLI command that splits monolithic document-level provisions into per-section child provisions, and an `unsectioned_document_body` release-validation warning so unsplit documents surface in CI.

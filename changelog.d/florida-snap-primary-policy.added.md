@@ -1,1 +1,0 @@
-Added Florida SNAP primary-policy manifest (FAC 65A-1, 68 sections from Cornell LII) and ingested provisions (204 provisions; 8 sections have substantive body — most of the chapter has been repealed or moved).

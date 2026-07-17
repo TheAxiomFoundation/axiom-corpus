@@ -1,1 +1,0 @@
-Add SSA 2026 cost-of-living adjustment guidance corpus artifacts (us/guidance/ssa/cola/2026) from the official SSA OACT determination page and the Federal Register notice 90 FR 49047, carrying the 2.8 percent 2026 COLA verbatim.

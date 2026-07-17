@@ -1,1 +1,0 @@
-Added the `district-plan` document class to the citation-path grammar (schema v1.1) with the issuer-scoped `<jurisdiction>/district-plan/<territorial-authority>/<plan-version>/<chapter>/<provision>` shape.

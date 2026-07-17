@@ -1,1 +1,0 @@
-RuleSpec path discovery now resolves the country-monorepo layout (`rulespec-<country>/<prefix>/...`) before falling back to legacy sibling checkouts (`rulespec-<prefix>/...`), so `has_rulespec` navigation flags keep working through the jurisdiction-repo consolidation.

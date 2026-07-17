@@ -1,1 +1,0 @@
-Added Massachusetts SNAP primary-policy source manifest covering 106 CMR 360 through 367 (DTA SNAP regulations), the DTA Online Guide, DTA SNAP program page, DTA regulations index, and FNS ABAWD waiver and E&T state plan indexes.
