@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ms/manual/2026-07-17-ms-snap-policy-manual.json",
+      "sha256": "d13b8a171e0728c343f99ad8f86f8c64283f9730bbcef698a6334cf7545a7454"
+    },
+    {
+      "path": "data/corpus/inventory/us-ms/manual/2026-07-17-ms-snap-policy-manual.json",
+      "sha256": "d2a2775a02048c8d8be63232c6265f7481929f0e5b659e449e881aff164b8be4"
+    },
+    {
+      "path": "data/corpus/provisions/us-ms/manual/2026-07-17-ms-snap-policy-manual.jsonl",
+      "sha256": "364294c6323fd230a9bad36dbc76a696fc69eed56e5e29121e36fe3e550a1742"
+    },
+    {
+      "path": "data/corpus/sources/us-ms/manual/2026-07-17-ms-snap-policy-manual/official-documents/ms-mdhs-snap-policy-manual-part-14.pdf",
+      "sha256": "1093741e8c95d9b60ea5499242a43dcd07cb9433aaca1de88c82b719a6498764"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ec691f69bc587bb1f42006126dbd5f518b81e3ed",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus extract-official-documents --base data/corpus --version 2026-07-17-ms-snap-policy-manual --manifest manifests/us-ms-snap-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 385,
+    "missing_count": 0,
+    "provision_count": 385,
+    "source_count": 385
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-17T17:45:26.884848+00:00",
+  "jurisdiction": "us-ms",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-17-ms-snap-policy-manual.md",
+      "sha256": "a8ee94a2d55bac4a283fcc0aa2f9bd08c9c7f6efb1a78e9d3a82af80e1a2b891"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "whdtDB2yM8J/FaVdo5rGyzMA402ZWXMEFX+AP64Ie/uAMeK6dl6+vZAKVPO87kmoDKBws9fje9ElQevhIjf1Bg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-ms-snap-policy-manual"
+}
