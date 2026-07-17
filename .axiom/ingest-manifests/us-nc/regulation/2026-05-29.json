@@ -2,19 +2,203 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-nc/regulation/2026-05-29.json",
-      "sha256": "75d485d0d613d038f2decf821b2f7b3f851ffd01cda1f9caed4fa487317a146f"
+      "sha256": "28e804c4360fc485dd853f0d446c1537df13b0a55aab8360216279bd94b2ea02"
     },
     {
       "path": "data/corpus/inventory/us-nc/regulation/2026-05-29.json",
-      "sha256": "63f5f416ee73742e2efd7a64f7b92f23a2e616c977a6221c7d5c96e8e878704a"
+      "sha256": "9e1220d9225ee6f086c592b07247194d53ba3f00d49aa6921c5e0c81157a9530"
     },
     {
       "path": "data/corpus/provisions/us-nc/regulation/2026-05-29.jsonl",
-      "sha256": "ed630cd4fedbfdc583935afcaeba4550829761a68ea3d471f08feeda2ddb4981"
+      "sha256": "6256a5bbaadc134972bd2ac41f889cc5e4b983e459bde2742891cf42eb662b2a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0101.pdf",
+      "sha256": "ba87ea1924c75dc39842bb42a1e6d740939a6afaa4095e6b0d703462b3a88f10"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0201.pdf",
+      "sha256": "c6e5bbed5f9e03d11783513190e5dd1c2b1a3f9465259bbe8493d63279688a97"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0202.pdf",
+      "sha256": "7e217c37c54c1db115cb3e52317749caebddb8a27fdcd0d5ab572e2afe74924f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0203.pdf",
+      "sha256": "065217924c181e3bbba480887f1f8ab5aa4094cef6eb2b88f0e63c23b803b35f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0204.pdf",
+      "sha256": "46f10516f6ceecc08997906001587c70a73254b407e0f5dd5dffd974e70de768"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0205.pdf",
+      "sha256": "6c076ce69e8ce5a5b495ddf359813ca23d009bb66f687e4aa861ac6b5955f060"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0206.pdf",
+      "sha256": "04e48c551a68bf2a9e8b7f330f94550ac4b6683841894cc6675b332ae0325404"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0207.pdf",
+      "sha256": "771f4cf5a1012227d2553bc8af63979189e09580479ac4b79330f217ade294f4"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0208.pdf",
+      "sha256": "8aa06cc3da120ad7a20108812edb90357278cc5eb4970df4404f6f2b0687169a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0209.pdf",
+      "sha256": "e90f907e3d102e2036143e47449968b39a54011e0db7ed7de7ca34788e02287e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0210.pdf",
+      "sha256": "bcaf255799bd9e6d1ed5b2f86b0ef8177b476095bbad53fff4627c467e4bf500"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0211.pdf",
+      "sha256": "571a58fd5a3580bb227923a7721dcb1373ada0ad3d3b7584a9888427bcf02983"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0212.pdf",
+      "sha256": "7398069b409ccfccf8271d274bd7bce84e53e97e320c4856fa736519b455eafd"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0213.pdf",
+      "sha256": "71c02e212db13b37f384f462c4ddc3e65a73be3f40824bd5ac058e5616926ce7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0214.pdf",
+      "sha256": "e7a60f133a7c772998ff226dcf3eeac4ea24e2c4db91e64fb3f7b669ab6b9e07"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0215.pdf",
+      "sha256": "3304598a184aaa45d42fa38d15bfd9c6fe23726c157e702a5aae7bc4a8827d51"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0216.pdf",
+      "sha256": "4073c40a12493284378abe339ba877b5d4d63126e6e582a7e1f75c9de1671b9c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0301.pdf",
+      "sha256": "a4800a3dc3c7e2019617a405377bdefd0cf8e50f6018ea0d69bb349d9ceb2005"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0302.pdf",
+      "sha256": "0373aff8fdea7206c3174f8863c57e6074fe84c58ea1dc5b6d3242137afc7c83"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0303.pdf",
+      "sha256": "cce23fb7155615c58c9108b7aaff1f23d7c5bd387c9bdc2b5a016bdeef731d0b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0304.pdf",
+      "sha256": "43c6044dbf9a89613230beaac004f7df59cf0c26bd128ffbe1b728ad187fa6db"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0401.pdf",
+      "sha256": "0c5d8196525b651f48099a90835bb0944b940230d8e28afd41093998b451b2fc"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/official-documents/oah-10a-ncac-71u-0402.pdf",
+      "sha256": "eadb73f78961f49a18c152fb50d429e65bde32797cc3b97a10fb4ab014f0c513"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0101.provenance.json",
+      "sha256": "41b3281e329529f75a1f80161a6af97cd081d9cabe5fe2b9c7e8b6d8fcf6cb67"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0201.provenance.json",
+      "sha256": "673d12d97d35674b2ad509e46b28e19417866af020285e21b1508def7a2ec58c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0202.provenance.json",
+      "sha256": "c3fad15c16f72880f3d7389b7cfa0c2f2732b90dd8f32935b805aad211eddf7a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0203.provenance.json",
+      "sha256": "538f7db26f2f97696c910e6e1f2057b0fda5fe5847ee92e09c38d2508b108a7f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0204.provenance.json",
+      "sha256": "8ceaca87fb05b9431f082203d6e94ffe72db820f22f2bab01207ba20df46c8d1"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0205.provenance.json",
+      "sha256": "6bbb77e062b39eaff94cba7b881c958b8ae1b46ad1e7a03855ffb154b205b44f"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0206.provenance.json",
+      "sha256": "d4e278c792061795346d938d1567691c21cb9b2413d900cc6379df55ee229bab"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0207.provenance.json",
+      "sha256": "67197337d6e993d368d7031c6fa498840a7a1491580355aa59b7c22601d9dcfa"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0208.provenance.json",
+      "sha256": "59e4018c9c191219adb39c692fec749311a0342ecbf8e157356c803e8dd0a5f3"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0209.provenance.json",
+      "sha256": "200057f580c69113426bdf4cc893a4ce3f9015ab6682741d2850b1dc15abe7d2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0210.provenance.json",
+      "sha256": "9616941811645262a11cc2bd71c2377e2a3cb22b4d8866dbe46946611393597e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0211.provenance.json",
+      "sha256": "d3fd0c649155c3ca3548a771377354c197e21cc0fd26071337f569d44f04290c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0212.provenance.json",
+      "sha256": "fb082265ac9038ef0281b0e2112a1f165c802d2acecf58721fb9a317a20b618b"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0213.provenance.json",
+      "sha256": "bb5120d424f986b15048e38e8f7148e1965af90dfe2c8fe159bf7a4cea46a14a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0214.provenance.json",
+      "sha256": "ecb3d774346af8ef2e0e67d30b4ba265dcac3cf6c231036f8aba8a4839cdf1cc"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0215.provenance.json",
+      "sha256": "ce7e8be83b714bc2d0218ac51fc587ccac34b0e678cd8fdb4c7a7f131daa031c"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0216.provenance.json",
+      "sha256": "ca239e6ce5c438dea9d8fb4763df51a307fff290b2fe55e12067ee452c3d6758"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0301.provenance.json",
+      "sha256": "3329a9f18af70c8bbd1e03aa1c38d4c5e4a2e0c7bb18b9b562b29cc97893e14a"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0302.provenance.json",
+      "sha256": "2c46b67d83f3412a2eadc65cc878db37ca2f6f0ceb91a00988b56bf7fce66906"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0303.provenance.json",
+      "sha256": "d2bde35076007a7bc568e2134f6664e55d27cf03bb138d3f3859ca1f55140493"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0304.provenance.json",
+      "sha256": "fed3b8b957f856f1b08296c8dcdaa360dbf516973376489877d57310b521dfac"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0401.provenance.json",
+      "sha256": "bd92c7c5fa61296e55d4e32a782355fe55872cfb079338b58421b59635ee672e"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/regulation/2026-05-29/provenance/oah-10a-ncac-71u-0402.provenance.json",
+      "sha256": "9e64f7e46262eebbca82d711fc9b5f318b6e7abe1881bb8971b4cf74809b71ba"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9b6260bcd0ef3e1f86823cad3ca69b3792b2c673",
+    "commit": "3d783a0878dd56bc996e5d372da51ef00054cf99",
     "dirty_tracked": false,
     "root": "."
   },
@@ -25,20 +209,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 69,
+    "matched_count": 46,
     "missing_count": 0,
-    "provision_count": 69,
-    "source_count": 69
+    "provision_count": 46,
+    "source_count": 46
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-15T19:51:42.842043+00:00",
+  "generated_at": "2026-07-17T13:25:06.817151+00:00",
   "jurisdiction": "us-nc",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "X6tdDgxnseiCeyVUxjYzQFqsviQWkO8pG3bJMgt1d0a67AbI63Gc2opxuKSg0uir+SXobotYhMOiXCqFa3z4DQ=="
+    "value": "YW5vr82XakAKiAPqZnqAnizMsf+vLQCmlVBR0e1fZmvg6TcfGVL7dX1UBpzCB/w3pL9KQ9rX7tky7cFVAtWgAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-29"
