@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ne/regulation/2026-07-17-ne-snap-rules.json",
-      "sha256": "1f1c6f9f12a12aa0898d980bc49241667bfed69ba5547504d66be3240eb94431"
+      "sha256": "72aae4e52baa99c0b69f3b7f9cd4176259cf70490e1145d7d6482d4a8e3ff084"
     },
     {
       "path": "data/corpus/provisions/us-ne/regulation/2026-07-17-ne-snap-rules.jsonl",
-      "sha256": "55195307d0251bba12ea38f813c489013b83accd1e8bda57ed06045214d4e175"
+      "sha256": "6b7afff5166d6963c09657f1a6ea9491c3e922243f5059b6ac0083fdaafad08b"
     },
     {
       "path": "data/corpus/sources/us-ne/regulation/2026-07-17-ne-snap-rules/official-documents/ne-dhhs-title-475-chapter-1.pdf",
@@ -34,7 +34,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "0079f475db1d857755d5142a162aa70799015141",
+    "commit": "2d1f1d2b1a0d138b5404edd380369501b37e2840",
     "dirty_tracked": false,
     "root": "."
   },
@@ -51,14 +51,14 @@
     "source_count": 742
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-17T19:37:13.236283+00:00",
+  "generated_at": "2026-07-17T19:51:14.361790+00:00",
   "jurisdiction": "us-ne",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "n1QxK1zO47FuJFh6UWO4cCi0j/Mnumk0667KJ5Aunv3rj66imQBOgqNM7SbXPJYp/YRA++ZyqWszHCa41YUDCw=="
+    "value": "bzR+5zHSEGwrJvOOO/0iyAW+8S8k4AWUsJbYm2O6ebNXvoIwo1jUBnSChCivgnTRmVUJ+NbOwKPLimdHLYanAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-ne-snap-rules"
