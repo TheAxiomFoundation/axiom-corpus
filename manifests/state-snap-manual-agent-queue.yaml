@@ -66,15 +66,15 @@ states:
     notes: Current scope retains the April 2026 base manual, May 2026 appendices and basis-of-issuance charts, July 2026 final filing, FY2026 eligibility chart, nutrition-waiver pages, and current work/time-limit page from official DHS sources.
   - jurisdiction: us-ca
     name: California
-    queue_status: source_refetch_required
-    source_kind: official_docx_pdf_manual_regulations
+    queue_status: published_current
+    source_kind: official_docx_and_ocr_pdf_manual_regulations
     primary_source_url: https://www.cdss.ca.gov/inforesources/Rules-Regulations/Legislation-and-Regulations/CalWORKs-CalFresh-Regulations/CalFresh-Regulations
     target_manifest: manifests/us-ca-cdss-mpp-calfresh-complete.yaml
     target_scope:
       jurisdiction: us-ca
       document_class: regulation
-      version: 2026-05-27-ca-cdss-mpp-calfresh
-    notes: Current scope includes all 15 official CDSS Food Stamp Manual files linked from the CalFresh Regulations page.
+      version: 2026-07-17-ca-cdss-mpp-calfresh
+    notes: Current scope retains all 15 official CDSS Food Stamp Manual files linked from the CalFresh Regulations page; the 166-page image-only section is extracted with OCR while preserving the exact official PDF.
   - jurisdiction: us-co
     name: Colorado
     queue_status: published_current
