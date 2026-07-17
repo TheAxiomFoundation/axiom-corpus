@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ct/manual/2026-07-17-ct-snap-manual.json",
-      "sha256": "4d9453fd033e6aac10a0bc638971d7ffb59c837b5e04b07304be84ec20153b22"
+      "sha256": "85408139f8f1db2f67384a7e38ae4ffc82c7657f270e7af3abfc5ad66fd4102f"
     },
     {
       "path": "data/corpus/provisions/us-ct/manual/2026-07-17-ct-snap-manual.jsonl",
-      "sha256": "063256cf690fdb98091f961962a56d0998db5e22880be860337ca21541ab1e8a"
+      "sha256": "ab7776f91ca4422b76ef969e8b1c547342fe447c5aee0fc17d1ca5abfe5bc254"
     },
     {
       "path": "data/corpus/sources/us-ct/manual/2026-07-17-ct-snap-manual/official-documents/ct-dss-snap-a.html",
@@ -586,7 +586,7 @@
     },
     {
       "path": "data/corpus/sources/us-ct/manual/2026-07-17-ct-snap-manual/official-documents/ct-dss-snap-manual-landing.html",
-      "sha256": "fa4b8a83b66c47ad999637b9cea88bcc065190dbead74c7f9651808d58c780bf"
+      "sha256": "03b423591697a7e6a1c24747b234b7192d51f8e84c5b0bebcd7f5a3cd3a224b6"
     },
     {
       "path": "data/corpus/sources/us-ct/manual/2026-07-17-ct-snap-manual/official-documents/ct-dss-snap-manual-toc.json",
@@ -1130,7 +1130,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "28b018364423b9b14f1cf07f55d31725c2e58123",
+    "commit": "d61f03b2b8de37f0ae31fd25d013c88b512a8042",
     "dirty_tracked": false,
     "root": "."
   },
@@ -1147,14 +1147,14 @@
     "source_count": 1275
   },
   "document_class": "manual",
-  "generated_at": "2026-07-17T02:34:47.567164+00:00",
+  "generated_at": "2026-07-17T02:46:18.871584+00:00",
   "jurisdiction": "us-ct",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "rf0iIen8291uMaMPz/qmZPNjymQLWJxuOxsE8PvC4/Xbp9bs7LtOj5Gy1IIeHBwpeQtFUz//chH9XT+DaTLjAA=="
+    "value": "SsGFJG4vuuyusi3uBAnnEDlM4NnUjqX0KnukfjIstbJ96jNHJLEDPorVmOjOoZZo3Z7qOl+67e5uEIgmvRJ5Aw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-ct-snap-manual"
