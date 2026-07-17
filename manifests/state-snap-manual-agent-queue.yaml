@@ -116,15 +116,15 @@ states:
     notes: Current scope retains the complete official 114-page Title 16 section 9000 consolidated PDF through 29 DE Reg. 531.
   - jurisdiction: us-dc
     name: District of Columbia
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_policy_manual_page
     primary_source_url: https://dhs.dc.gov/publication/esa-policy-manuals
     target_manifest: manifests/us-dc-snap-manual.yaml
     target_scope:
       jurisdiction: us-dc
       document_class: manual
-      version: 2026-05-27-dc-snap-manual
-    notes: Existing DC child care manual artifact remains separate from this SNAP manual scope.
+      version: 2026-07-17-dc-snap-manual
+    notes: Current scope retains the complete official 349-page FY2025 ESA SNAP Policy Manual; the separate DC child care manual remains out of scope.
   - jurisdiction: us-fl
     name: Florida
     queue_status: published_current
