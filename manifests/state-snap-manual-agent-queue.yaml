@@ -94,14 +94,15 @@ states:
     notes: Colorado SNAP policy is covered through 10 CCR 2506-1 plus supplemental CDHS policy documents.
   - jurisdiction: us-ct
     name: Connecticut
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://portal.ct.gov/dss/snap/snap-policy-manual
     target_manifest: manifests/us-ct-snap-manual.yaml
     target_scope:
       jurisdiction: us-ct
       document_class: manual
-      version: 2026-05-27-ct-snap-manual
+      version: 2026-07-17-ct-snap-manual
+    notes: Current scope retains the official DSS landing page, exact live table of contents, and all 277 linked SNAP Policy Manual topic pages.
   - jurisdiction: us-de
     name: Delaware
     queue_status: source_refetch_required
