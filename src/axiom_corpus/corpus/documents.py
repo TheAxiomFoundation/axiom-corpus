@@ -988,11 +988,20 @@ def _extract_labeled_pdf_section_blocks(
     label_heading_re = (
         re.compile(str(label_heading_pattern)) if label_heading_pattern is not None else None
     )
+    heading_continuation_pattern = extraction.get("heading_continuation_pattern")
+    heading_continuation_re = (
+        re.compile(str(heading_continuation_pattern))
+        if heading_continuation_pattern is not None
+        else None
+    )
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
     heading_requires_bold = bool(extraction.get("section_heading_requires_bold", False))
+    normalize_parentheticals = bool(
+        extraction.get("normalize_parenthetical_label_components", False)
+    )
     if heading_requires_bold:
         styled_lines = _filtered_pdf_styled_lines(content, extraction=extraction)
         lines = tuple((line, page) for line, page, _style in styled_lines)
@@ -1003,6 +1012,7 @@ def _extract_labeled_pdf_section_blocks(
 
     sections: list[_DocumentBlock] = []
     current_label: str | None = None
+    current_citation_label: str | None = None
     current_heading: str | None = None
     current_body: list[str] = []
     current_body_pages: list[int] = []
@@ -1037,9 +1047,15 @@ def _extract_labeled_pdf_section_blocks(
         )
 
     def flush() -> None:
-        nonlocal current_label, current_heading, current_body, current_body_pages
+        nonlocal current_label, current_citation_label, current_heading
+        nonlocal current_body, current_body_pages
         nonlocal current_start_page
-        if current_label is None or current_heading is None or current_start_page is None:
+        if (
+            current_label is None
+            or current_citation_label is None
+            or current_heading is None
+            or current_start_page is None
+        ):
             return
         pages = current_body_pages or [current_start_page]
         sections.append(
@@ -1049,7 +1065,7 @@ def _extract_labeled_pdf_section_blocks(
                 heading=current_heading,
                 body=_normalize_text("\n".join(current_body)),
                 metadata={
-                    "citation_suffix": current_label,
+                    "citation_suffix": current_citation_label,
                     "section_label": current_label,
                     "page_start": min(pages),
                     "page_end": max(pages),
@@ -1057,6 +1073,7 @@ def _extract_labeled_pdf_section_blocks(
             )
         )
         current_label = None
+        current_citation_label = None
         current_heading = None
         current_body = []
         current_body_pages = []
@@ -1079,9 +1096,23 @@ def _extract_labeled_pdf_section_blocks(
             match = None
         if match:
             label, heading_text = match
+            citation_label = (
+                re.sub(
+                    r"\(([^)]+)\)",
+                    lambda component: f".{component.group(1).lower()}",
+                    label,
+                )
+                if normalize_parentheticals
+                else label
+            )
+            inline_body = ""
+            if section_heading_re is not None:
+                heading_match = section_heading_re.match(line)
+                if heading_match is not None:
+                    inline_body = (heading_match.groupdict().get("body") or "").strip()
             heading_style = line_styles[index] if heading_requires_bold else 0
             consumed_label_heading = False
-            if drop_repeated and label == current_label:
+            if drop_repeated and citation_label == current_citation_label:
                 index += 1
                 while index < len(lines) and is_heading_continuation(
                     index, heading_style=heading_style
@@ -1100,18 +1131,47 @@ def _extract_labeled_pdf_section_blocks(
                     continue
             flush()
             heading_lines = [heading_text] if heading_text else []
+            continuation_bodies: list[tuple[str, int]] = []
             index += 1
             if consumed_label_heading:
                 index += 1
-            while index < len(lines) and is_heading_continuation(
-                index, heading_style=heading_style
-            ):
-                heading_lines.append(lines[index][0])
-                index += 1
+            if heading_continuation_re is not None and not inline_body:
+                while index < len(lines):
+                    continuation_line, continuation_page = lines[index]
+                    continuation_match = heading_continuation_re.match(continuation_line)
+                    if continuation_match is None:
+                        break
+                    continuation_heading = (
+                        continuation_match.groupdict().get("heading") or ""
+                    ).strip()
+                    if not continuation_heading:
+                        break
+                    heading_lines.append(continuation_heading)
+                    continuation_body = (
+                        continuation_match.groupdict().get("body") or ""
+                    ).strip()
+                    index += 1
+                    if continuation_body:
+                        continuation_bodies.append((continuation_body, continuation_page))
+                    if continuation_body or continuation_heading.endswith("."):
+                        break
+            elif heading_continuation_re is None:
+                while index < len(lines) and is_heading_continuation(
+                    index, heading_style=heading_style
+                ):
+                    heading_lines.append(lines[index][0])
+                    index += 1
             heading = " ".join(part for part in heading_lines if part)
             current_label = label
+            current_citation_label = citation_label
             current_heading = f"{label} {heading}".strip()
             current_start_page = page
+            if inline_body:
+                current_body.append(inline_body)
+                current_body_pages.append(page)
+            for continuation_body, continuation_page in continuation_bodies:
+                current_body.append(continuation_body)
+                current_body_pages.append(continuation_page)
             continue
         if current_label is not None:
             current_body.append(line)
