@@ -1,0 +1,1 @@
+Published the complete official New York SNAP manual boundary: the 576-page SNAP Source Book and all 16 components of the 302-page TA and SNAP Employment Policy Manual, with 340 source-backed corpus rows and complete coverage.

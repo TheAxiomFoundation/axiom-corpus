@@ -400,15 +400,22 @@ states:
       a signed tombstone.
   - jurisdiction: us-ny
     name: New York
-    queue_status: source_refetch_required
-    source_kind: archived_official_pdf_manual
+    queue_status: published_current
+    source_kind: archived_official_pdf_manuals
     primary_source_url: https://otda.ny.gov/programs/snap/snapsb.pdf
     target_manifest: manifests/us-ny-snap-manual.yaml
     target_scope:
       jurisdiction: us-ny
       document_class: manual
-      version: 2026-05-27-ny-snap-source-book
-    notes: Current scope uses a 2025-10-31 Internet Archive capture of the official OTDA SNAP Source Book PDF URL because live OTDA PDF requests return request-validation HTML to unattended clients. Existing SNAP eligibility and SUA regulation slices remain separate.
+      version: 2026-07-17-ny-snap-manuals
+    notes: >-
+      The current scope retains the complete official manual boundary: the
+      576-page September 2025 SNAP Source Book plus all sixteen components and
+      302 pages of the TA and SNAP Employment Policy Manual. Official-URL
+      archive captures are pinned because live OTDA PDF requests reset
+      unattended clients. The extractor publishes 340 source-backed rows with
+      complete coverage. Existing SNAP eligibility and SUA regulation slices
+      remain separate.
   - jurisdiction: us-nc
     name: North Carolina
     queue_status: published_current
