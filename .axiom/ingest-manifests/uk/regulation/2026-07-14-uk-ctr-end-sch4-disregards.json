@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards.jsonl",
-      "sha256": "625cfa4feb7957b9c25b3f82860b7a2c959651cec74b13203d9d95544c9384e2"
+      "sha256": "09f067aebded08292cb63114109591a98d9c774967a738018184c6cf8de781a3"
     },
     {
       "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards/uksi/2012/2886/appendix-4-paragraph-1.xml",
@@ -34,13 +34,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5e98c135cb3c5f5fd1dfcbf3e59cb6a4834cd505",
+    "commit": "7b61b1a52fc3d830a188ad37a19e5cc84d371b71",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "axiom-corpus extract-uk-legislation --base data/corpus --version 2026-07-14-uk-ctr-end-sch4-disregards --citation uksi/2012/2886/appendix/4/paragraph/1 --citation uksi/2012/2886/appendix/4/paragraph/2 --citation uksi/2012/2886/appendix/7/paragraph/9 --citation uksi/2012/2886/appendix/8/paragraph/20 --citation uksi/2012/2886/appendix/8/paragraph/21"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -51,14 +51,14 @@
     "source_count": 5
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-14T08:56:14.715643+00:00",
+  "generated_at": "2026-07-16T18:42:31.510556+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ueFnIa/3RfPJufLa9Cf24PHohKWatnlZ3eqlv6V9rMqwqzhv6bqehEI2Djkww3XM55l1bxtBxIaentiyadkiAQ=="
+    "value": "Go/0TcUrFhcCLoHVNDTcfsrp/6ZgujylEaUmKY1ZK2F8pFesY76dxLJFT6jBtUy8KRLikqy3S2EfCzRK6rAxDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-14-uk-ctr-end-sch4-disregards"

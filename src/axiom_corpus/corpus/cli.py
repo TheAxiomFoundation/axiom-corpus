@@ -57,6 +57,11 @@ from axiom_corpus.corpus.federal_register import (
     extract_federal_register,
     extract_federal_register_cfr_sections,
 )
+from axiom_corpus.corpus.germany_gii import (
+    GermanGiiExtractReport,
+    GermanLaw,
+    extract_german_gii,
+)
 from axiom_corpus.corpus.illinois_admin_code import extract_illinois_admin_code
 from axiom_corpus.corpus.ingest_manifests import (
     INGEST_MANIFEST_PRIVATE_KEY_ENV,
@@ -1484,6 +1489,60 @@ def _belgian_eli_report_json(report: BelgianELIExtractReport) -> dict[str, Any]:
                 "extra_count": len(class_report.coverage.extra_provisions),
             }
             for class_report in report.class_reports
+        ],
+    }
+
+
+def _cmd_extract_de_gii(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    laws: list[GermanLaw] = []
+    for xml_path in args.source_xml or ():
+        laws.append(GermanLaw(slug=Path(xml_path).stem, local_source=Path(xml_path)))
+    if args.source_dir:
+        for path in sorted(Path(args.source_dir).glob("*")):
+            if path.suffix.lower() in {".xml", ".zip"}:
+                laws.append(GermanLaw(slug=path.stem, local_source=path))
+    report = extract_german_gii(
+        store,
+        version=args.version,
+        laws=tuple(laws),
+        manifest=args.manifest,
+        source_as_of=args.source_as_of,
+        expression_date=args.expression_date,
+        request_timeout=args.request_timeout,
+        limit=args.limit,
+    )
+    print(json.dumps(_de_gii_report_json(report), indent=2, sort_keys=True))
+    return (
+        0
+        if all(scope.coverage.complete for scope in report.scope_reports) or args.allow_incomplete
+        else 2
+    )
+
+
+def _de_gii_report_json(report: GermanGiiExtractReport) -> dict[str, Any]:
+    return {
+        "version": report.version,
+        "source_count": report.source_count,
+        "provisions_written": report.provisions_written,
+        "scopes": [
+            {
+                "jurisdiction": scope.jurisdiction,
+                "document_class": scope.document_class,
+                "law_count": scope.law_count,
+                "source_file_count": len(scope.source_paths),
+                "provisions_written": scope.provisions_written,
+                "inventory_path": str(scope.inventory_path),
+                "provisions_path": str(scope.provisions_path),
+                "coverage_path": str(scope.coverage_path),
+                "complete": scope.coverage.complete,
+                "source_count": scope.coverage.source_count,
+                "provision_count": scope.coverage.provision_count,
+                "matched_count": scope.coverage.matched_count,
+                "missing_count": len(scope.coverage.missing_from_provisions),
+                "extra_count": len(scope.coverage.extra_provisions),
+            }
+            for scope in report.scope_reports
         ],
     }
 
@@ -5273,6 +5332,38 @@ def build_parser() -> argparse.ArgumentParser:
     extract_be_cmd.add_argument("--limit", type=int)
     extract_be_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_be_cmd.set_defaults(func=_cmd_extract_belgian_eli)
+
+    extract_de_cmd = sub.add_parser(
+        "extract-de-gii",
+        help=(
+            "Fetch gesetze-im-internet.de juris XML for German federal statutes "
+            "and extract per-section normalized provision JSONL."
+        ),
+    )
+    extract_de_cmd.add_argument("--base", type=Path, required=True)
+    extract_de_cmd.add_argument("--version", required=True)
+    extract_de_cmd.add_argument(
+        "--manifest",
+        type=Path,
+        help="gesetze-im-internet official-documents manifest listing law slugs.",
+    )
+    extract_de_cmd.add_argument(
+        "--source-xml",
+        type=Path,
+        action="append",
+        help="Local juris XML or xml.zip file; the law slug is the filename stem.",
+    )
+    extract_de_cmd.add_argument(
+        "--source-dir",
+        type=Path,
+        help="Directory of local juris XML/zip files (slug = filename stem).",
+    )
+    extract_de_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
+    extract_de_cmd.add_argument("--expression-date")
+    extract_de_cmd.add_argument("--request-timeout", type=float, default=60.0)
+    extract_de_cmd.add_argument("--limit", type=int)
+    extract_de_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_de_cmd.set_defaults(func=_cmd_extract_de_gii)
 
     discover_be_cmd = sub.add_parser(
         "discover-belgian-moniteur",

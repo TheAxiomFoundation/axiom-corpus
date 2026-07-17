@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"A. Calculating the Monthly Allotment","type":"item","tilePath":"","description":"","url":"603/603-3.htm#603_3_a_calculating_the_monthly_allotment"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();

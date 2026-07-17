@@ -3,11 +3,12 @@ documents:
     jurisdiction: us-ar
     document_class: manual
     citation_path: us-ar/manual/dhs/snap-policy-manual
-    title: Arkansas SNAP Policy Manual
-    source_url: https://humanservices.arkansas.gov/wp-content/uploads/Supplemental-Nutrition-Assistance-Program-Policy-Manual.pdf
+    title: Arkansas SNAP Certification Manual
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Policy-Manual-04.02.2026.pdf
+    download_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Policy-Manual-04.02.2026.pdf?download=1
     source_format: pdf
-    source_as_of: "2026-05-27"
-    expression_date: "2026-05-27"
+    source_as_of: "2026-07-16"
+    expression_date: "2026-04-02"
     metadata:
       primary_source: true
       source_authority: Arkansas Department of Human Services
@@ -15,4 +16,142 @@ documents:
       program: SNAP
       extraction_granularity: pdf_page
       source_discovery_group: us-ar/manual/snap
-      discovered_via: manual-review:state-snap-manual-agent-queue
+      discovered_via: official-policy-index:arkansas-dhs-dco-policies
+
+  - source_id: ar-dhs-snap-manual-appendices
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-manual-appendices
+    title: Arkansas SNAP Certification Manual Appendices
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Appendices-05.15.2026.pdf
+    download_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-Appendices-05.15.2026.pdf?download=1
+    source_format: pdf
+    source_as_of: "2026-07-16"
+    expression_date: "2026-05-15"
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services
+      document_subtype: policy_manual_appendices
+      program: SNAP
+      extraction_granularity: pdf_page
+      source_discovery_group: us-ar/manual/snap
+      discovered_via: official-policy-index:arkansas-dhs-dco-policies
+
+  - source_id: ar-dhs-snap-july-2026-final-filing
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-july-2026-final-filing
+    title: Arkansas SNAP, TEA, and Work Pays Program Updates Final Filing
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/SNAP-TEA-and-Work-Pays-Program-Updates-A.pdf
+    source_format: pdf
+    source_as_of: "2026-07-16"
+    expression_date: "2026-07-01"
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services
+      document_subtype: policy_manual_update_final_filing
+      programs:
+        - SNAP
+        - TEA
+        - Work Pays
+      includes_snap_policy: true
+      extraction_granularity: pdf_page
+      source_discovery_group: us-ar/manual/snap
+      discovered_via: official-rule-page:arkansas-dhs-99626
+
+  - source_id: ar-dhs-snap-quick-reference-fy2026
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-quick-reference-fy2026
+    title: Arkansas SNAP Eligibility Quick Reference FY2026
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/Quick-Reference-SNAP-Eligibility-Chart-FY2026.pdf
+    source_format: pdf
+    source_as_of: "2026-07-16"
+    expression_date: "2025-10-01"
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services
+      document_subtype: eligibility_quick_reference
+      program: SNAP
+      fiscal_year: 2026
+      extraction_granularity: pdf_page
+      source_discovery_group: us-ar/manual/snap
+      discovered_via: official-program-page:arkansas-dhs-snap
+
+  - source_id: ar-dhs-snap-basis-of-issuance-ffy2026
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-basis-of-issuance-ffy2026
+    title: Arkansas SNAP Basis of Issuance Charts FFY2026
+    source_url: https://humanservices.arkansas.gov/wp-content/uploads/FFY26-NBI-Chart-Oct-2025-September-2026-05.21.2026.pdf
+    download_url: https://humanservices.arkansas.gov/wp-content/uploads/FFY26-NBI-Chart-Oct-2025-September-2026-05.21.2026.pdf?download=1
+    source_format: pdf
+    source_as_of: "2026-07-16"
+    expression_date: "2026-05-15"
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services
+      document_subtype: basis_of_issuance_charts
+      program: SNAP
+      federal_fiscal_year: 2026
+      effective_period: 2025-10-01/2026-09-30
+      extraction_granularity: pdf_page
+      source_discovery_group: us-ar/manual/snap
+      discovered_via: official-policy-index:arkansas-dhs-dco-policies
+
+  - source_id: ar-dhs-snap-nutrition-waiver
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-nutrition-waiver
+    title: Arkansas SNAP Nutrition Waiver
+    source_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/supplemental-nutrition-assistance-snap/snap-nutrition-waiver/
+    source_format: html
+    source_as_of: "2026-07-16"
+    expression_date: "2026-07-01"
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services
+      document_subtype: official_program_policy_page
+      program: SNAP
+      source_discovery_group: us-ar/manual/snap
+      discovered_via: official-program-page:arkansas-dhs-snap
+    extraction:
+      html_content_selector: .elementor-widget-theme-post-content
+
+  - source_id: ar-dhs-snap-nutrition-waiver-faq
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-nutrition-waiver-faq
+    title: Arkansas SNAP Nutrition Waiver FAQ
+    source_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/supplemental-nutrition-assistance-snap/snap-nutrition-waiver/snap-nutrition-waiver-faq/
+    source_format: html
+    source_as_of: "2026-07-16"
+    expression_date: "2026-07-01"
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services
+      document_subtype: official_program_policy_faq
+      program: SNAP
+      source_discovery_group: us-ar/manual/snap
+      discovered_via: official-program-page:arkansas-dhs-snap
+    extraction:
+      html_content_selector: .elementor-widget-theme-post-content
+
+  - source_id: ar-dhs-snap-time-limit-rules
+    jurisdiction: us-ar
+    document_class: manual
+    citation_path: us-ar/manual/dhs/snap-time-limit-rules
+    title: Arkansas SNAP Work Requirements and Time Limit Rules
+    source_url: https://humanservices.arkansas.gov/divisions-shared-services/county-operations/supplemental-nutrition-assistance-snap/snap-time-limit-rules/
+    source_format: html
+    source_as_of: "2026-07-16"
+    expression_date: "2026-07-01"
+    metadata:
+      primary_source: true
+      source_authority: Arkansas Department of Human Services
+      document_subtype: official_program_policy_page
+      program: SNAP
+      source_discovery_group: us-ar/manual/snap
+      discovered_via: official-program-page:arkansas-dhs-snap
+    extraction:
+      html_content_selector: .elementor-widget-theme-post-content

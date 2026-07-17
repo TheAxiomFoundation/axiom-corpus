@@ -1,48 +1,41 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.json",
-      "sha256": "96a7721b2b7d86d7ed80fc860f6e0895321e12b12abb911e2d106b6d9075c559"
+      "deleted": true,
+      "path": "data/corpus/coverage/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.json"
     },
     {
-      "path": "data/corpus/inventory/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.json",
-      "sha256": "a040ff14e2027efd93aa1946e87f881fa4c3449731252aac19a15c4f5bd70a44"
+      "deleted": true,
+      "path": "data/corpus/inventory/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.json"
     },
     {
-      "path": "data/corpus/provisions/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.jsonl",
-      "sha256": "c5994a4f8e3919273a50abc4d22895d3dca99a05560ba012423cf58d91c42302"
+      "deleted": true,
+      "path": "data/corpus/provisions/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained.jsonl"
     },
     {
-      "path": "data/corpus/sources/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained/uslm/usc42.xml",
-      "sha256": "bcb75f33c3f9720b9d2f26d9bf0c0524cac53d2672a168a5465df49f1460075b"
+      "deleted": true,
+      "path": "data/corpus/sources/us/statute/2026-06-23-medicare-426-title-42-r2026-07-15-self-contained/uslm/usc42.xml"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "70be035dad9ccb85a2a05eb3843a879c5a224d3f",
+    "commit": "5f2724559f35824a250bb2cd35901865b06a51ee",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "scope re-versioning for corpus#365 (dedup-changed keys; see PR body)"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 26,
-    "missing_count": 0,
-    "provision_count": 26,
-    "source_count": 26
-  },
+  "coverage": null,
   "document_class": "statute",
-  "generated_at": "2026-07-16T01:02:07.811286+00:00",
+  "generated_at": "2026-07-16T22:17:14.780139+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "GFPUGtpPjwndO8R/Ch5UmsMSo13R8A22i4AAH4x8hjkCgqkhtE9TDuc6/bbxwxYHXM/B8QQQNwQySMygro5rBw=="
+    "value": "JoEvhZ3z6kmMCbtjZf9e9ja5wf4KQncrgYxOqiA4HLO5gydAofXdotKVQzy5ysLHFk7r5XmRJW7Gh4bJjWSkCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-23-medicare-426-title-42-r2026-07-15-self-contained"
