@@ -1,0 +1,1 @@
+Route the publish path's corpus RPC reads (`get_staged_release_scope_evidence`, `get_released_scope_objects`) through curl like the activation query, so Cloudflare's intermittent rejection of Python urllib's TLS fingerprint (HTTP 520) can no longer fail auto-publish runs after a release selector merges.

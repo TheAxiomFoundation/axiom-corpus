@@ -1418,15 +1418,14 @@ def test_fetch_staged_release_scope_evidence_requires_exact_rpc_surface(monkeypa
 
     captured = {}
 
-    class FakeResponse:
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            return json.dumps(
+    def fake_run(command, *, input, capture_output, check, timeout):
+        captured["command"] = command
+        captured["payload"] = json.loads(input)
+        captured["timeout"] = timeout
+        return supabase.subprocess.CompletedProcess(
+            command,
+            0,
+            stdout=json.dumps(
                 [
                     {
                         "jurisdiction": "nz",
@@ -1438,15 +1437,11 @@ def test_fetch_staged_release_scope_evidence_requires_exact_rpc_surface(monkeypa
                         "navigation_projection_sha256": "b" * 64,
                     }
                 ]
-            ).encode()
+            ).encode(),
+            stderr=b"",
+        )
 
-    def fake_urlopen(req, timeout):
-        captured["url"] = req.full_url
-        captured["payload"] = json.loads(req.data)
-        captured["timeout"] = timeout
-        return FakeResponse()
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(supabase.subprocess, "run", fake_run)
     release = ReleaseManifest(
         name="nz-rulespec-v1",
         scopes=(ReleaseScope("nz", "statute", "v1"),),
@@ -1464,9 +1459,17 @@ def test_fetch_staged_release_scope_evidence_requires_exact_rpc_surface(monkeypa
             "b" * 64,
         )
     }
-    assert captured["url"].endswith("/rpc/get_staged_release_scope_evidence")
+    command = captured["command"]
+    assert command[0] == "curl"
+    assert "--fail-with-body" in command
+    assert command[-1].endswith("/rpc/get_staged_release_scope_evidence")
+    assert "apikey: service" in command
+    assert "Authorization: Bearer service" in command
+    assert "Accept-Profile: corpus" in command
+    assert "Content-Profile: corpus" in command
     assert captured["payload"]["p_scopes"][0]["version"] == "v1"
-    assert captured["timeout"] == 600
+    assert "600" in command
+    assert captured["timeout"] == 610
 
 
 def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
@@ -1551,15 +1554,13 @@ def test_fetch_released_scope_objects_returns_exact_signed_rows(monkeypatch):
 
     release_object, _public_key = _signed_release_object()
 
-    class FakeResponse:
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            return json.dumps(
+    monkeypatch.setattr(
+        supabase.subprocess,
+        "run",
+        lambda command, **kwargs: supabase.subprocess.CompletedProcess(
+            command,
+            0,
+            stdout=json.dumps(
                 [
                     {
                         "jurisdiction": "nz",
@@ -1570,9 +1571,10 @@ def test_fetch_released_scope_objects_returns_exact_signed_rows(monkeypatch):
                         "release_object": release_object,
                     }
                 ]
-            ).encode()
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", lambda *args, **kwargs: FakeResponse())
+            ).encode(),
+            stderr=b"",
+        ),
+    )
     release = ReleaseManifest(
         name="nz-rulespec-v2",
         scopes=(ReleaseScope("nz", "statute", "v1"),),
@@ -1589,6 +1591,29 @@ def test_fetch_released_scope_objects_returns_exact_signed_rows(monkeypatch):
     assert prior.release_object == release_object
 
 
+def test_fetch_released_scope_objects_reports_curl_http_body(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    monkeypatch.setattr(
+        supabase.subprocess,
+        "run",
+        lambda command, **kwargs: supabase.subprocess.CompletedProcess(
+            command, 22, stdout=b"error code: 520", stderr=b"curl: (22) 520"
+        ),
+    )
+    release = ReleaseManifest(
+        name="nz-rulespec-v2",
+        scopes=(ReleaseScope("nz", "statute", "v1"),),
+    )
+
+    with pytest.raises(RuntimeError, match="error code: 520"):
+        fetch_released_scope_objects(
+            release,
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+
 def test_fetch_released_scope_objects_batches_large_plans(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
@@ -1599,18 +1624,13 @@ def test_fetch_released_scope_objects_batches_large_plans(monkeypatch):
     )
     requested_payloads = []
 
-    class FakeResponse:
-        def __init__(self, payload):
-            self._payload = payload
-
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            return json.dumps(
+    def fake_run(command, *, input, **kwargs):
+        payload = json.loads(input)
+        requested_payloads.append(payload)
+        return supabase.subprocess.CompletedProcess(
+            command,
+            0,
+            stdout=json.dumps(
                 [
                     {
                         "jurisdiction": scope["jurisdiction"],
@@ -1620,16 +1640,13 @@ def test_fetch_released_scope_objects_batches_large_plans(monkeypatch):
                         "content_sha256": release_object["content_sha256"],
                         "release_object": release_object,
                     }
-                    for scope in self._payload["p_scopes"]
+                    for scope in payload["p_scopes"]
                 ]
-            ).encode()
+            ).encode(),
+            stderr=b"",
+        )
 
-    def fake_urlopen(req, **kwargs):
-        payload = json.loads(req.data.decode("utf-8"))
-        requested_payloads.append(payload)
-        return FakeResponse(payload)
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(supabase.subprocess, "run", fake_run)
     release = ReleaseManifest(name="nz-rulespec-v2", scopes=scopes)
 
     rows = fetch_released_scope_objects(
@@ -1666,18 +1683,17 @@ def test_fetch_released_scope_objects_fails_closed_on_late_batch_error(monkeypat
     )
     calls = []
 
-    class FakeResponse:
-        def __init__(self, payload):
-            self._payload = payload
-
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            return json.dumps(
+    def fake_run(command, *, input, **kwargs):
+        payload = json.loads(input)
+        calls.append(payload)
+        if len(calls) > 1:
+            return supabase.subprocess.CompletedProcess(
+                command, 22, stdout=b"error code: 520", stderr=b"curl: (22) 520"
+            )
+        return supabase.subprocess.CompletedProcess(
+            command,
+            0,
+            stdout=json.dumps(
                 [
                     {
                         "jurisdiction": scope["jurisdiction"],
@@ -1687,21 +1703,16 @@ def test_fetch_released_scope_objects_fails_closed_on_late_batch_error(monkeypat
                         "content_sha256": release_object["content_sha256"],
                         "release_object": release_object,
                     }
-                    for scope in self._payload["p_scopes"]
+                    for scope in payload["p_scopes"]
                 ]
-            ).encode()
+            ).encode(),
+            stderr=b"",
+        )
 
-    def fake_urlopen(req, **kwargs):
-        payload = json.loads(req.data.decode("utf-8"))
-        calls.append(payload)
-        if len(calls) > 1:
-            raise urllib.error.HTTPError(req.full_url, 520, "origin error", {}, io.BytesIO())
-        return FakeResponse(payload)
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(supabase.subprocess, "run", fake_run)
     release = ReleaseManifest(name="nz-rulespec-v2", scopes=scopes)
 
-    with pytest.raises(urllib.error.HTTPError):
+    with pytest.raises(RuntimeError, match="error code: 520"):
         fetch_released_scope_objects(
             release,
             service_key="service",
@@ -1721,41 +1732,31 @@ def test_fetch_released_scope_objects_mixed_released_and_unreleased(monkeypatch)
     )
     released = {"v0", f"v{scope_count - 1}"}
 
-    class FakeResponse:
-        def __init__(self, payload):
-            self._payload = payload
+    def fake_run(command, *, input, **kwargs):
+        payload = json.loads(input)
+        rows = []
+        for scope in payload["p_scopes"]:
+            if scope["version"] not in released:
+                continue
+            for name in ("nz-rulespec-v1b", "nz-rulespec-v1a"):
+                rows.append(
+                    {
+                        "jurisdiction": scope["jurisdiction"],
+                        "document_class": scope["document_class"],
+                        "version": scope["version"],
+                        "release_name": name,
+                        "content_sha256": release_object["content_sha256"],
+                        "release_object": {
+                            **release_object,
+                            "release": name,
+                        },
+                    }
+                )
+        return supabase.subprocess.CompletedProcess(
+            command, 0, stdout=json.dumps(rows).encode(), stderr=b""
+        )
 
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            rows = []
-            for scope in self._payload["p_scopes"]:
-                if scope["version"] not in released:
-                    continue
-                for name in ("nz-rulespec-v1b", "nz-rulespec-v1a"):
-                    rows.append(
-                        {
-                            "jurisdiction": scope["jurisdiction"],
-                            "document_class": scope["document_class"],
-                            "version": scope["version"],
-                            "release_name": name,
-                            "content_sha256": release_object["content_sha256"],
-                            "release_object": {
-                                **release_object,
-                                "release": name,
-                            },
-                        }
-                    )
-            return json.dumps(rows).encode()
-
-    def fake_urlopen(req, **kwargs):
-        return FakeResponse(json.loads(req.data.decode("utf-8")))
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(supabase.subprocess, "run", fake_run)
     release = ReleaseManifest(name="nz-rulespec-v2", scopes=scopes)
 
     rows = fetch_released_scope_objects(
@@ -1785,15 +1786,13 @@ def test_fetch_released_scope_objects_rejects_rows_outside_their_batch(monkeypat
         ReleaseScope("nz", "statute", f"v{index}") for index in range(scope_count)
     )
 
-    class FakeResponse:
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            return json.dumps(
+    monkeypatch.setattr(
+        supabase.subprocess,
+        "run",
+        lambda command, **kwargs: supabase.subprocess.CompletedProcess(
+            command,
+            0,
+            stdout=json.dumps(
                 [
                     {
                         "jurisdiction": "nz",
@@ -1804,10 +1803,9 @@ def test_fetch_released_scope_objects_rejects_rows_outside_their_batch(monkeypat
                         "release_object": release_object,
                     }
                 ]
-            ).encode()
-
-    monkeypatch.setattr(
-        supabase.urllib.request, "urlopen", lambda *args, **kwargs: FakeResponse()
+            ).encode(),
+            stderr=b"",
+        ),
     )
     release = ReleaseManifest(name="nz-rulespec-v2", scopes=scopes)
 
@@ -1896,17 +1894,13 @@ def test_fetch_staged_release_scope_evidence_rejects_malformed_rpc_rows(
 ):
     import axiom_corpus.corpus.supabase as supabase
 
-    class FakeResponse:
-        def __enter__(self):
-            return self
-
-        def __exit__(self, *args):
-            return None
-
-        def read(self):
-            return json.dumps(response).encode()
-
-    monkeypatch.setattr(supabase.urllib.request, "urlopen", lambda *args, **kwargs: FakeResponse())
+    monkeypatch.setattr(
+        supabase.subprocess,
+        "run",
+        lambda command, **kwargs: supabase.subprocess.CompletedProcess(
+            command, 0, stdout=json.dumps(response).encode(), stderr=b""
+        ),
+    )
     release = ReleaseManifest(
         name="nz-rulespec-v1",
         scopes=(ReleaseScope("nz", "statute", "v1"),),
