@@ -20,7 +20,7 @@ PROVISIONS_PATH = CORPUS_ROOT / "provisions" / "us-mi" / "manual" / f"{VERSION}.
 COVERAGE_PATH = CORPUS_ROOT / "coverage" / "us-mi" / "manual" / f"{VERSION}.json"
 
 EXPECTED_DOCUMENT_COUNT = 196
-EXPECTED_SNAP_DOCUMENT_COUNT = 97
+EXPECTED_SNAP_DOCUMENT_COUNT = 95
 EXPECTED_SOURCE_SET_SHA256 = (
     "7f556800e839027ee6bc227e730df9ddc7208034c577f1ee7e91a4e81261f43a"
 )
@@ -81,6 +81,14 @@ def test_michigan_manifest_pins_current_complete_bridges_manual() -> None:
         document["metadata"].get("federal_program") == "SNAP"
         for document in documents
         if document["metadata"]["contains_snap_policy"]
+    )
+    documents_by_id = {document["source_id"]: document for document in documents}
+    for source_id in {"mi-mdhhs-bridges-bem-240", "mi-mdhhs-bridges-bem-630"}:
+        assert documents_by_id[source_id]["metadata"]["contains_snap_policy"] is False
+        assert "federal_program" not in documents_by_id[source_id]["metadata"]
+    assert (
+        documents_by_id["mi-mdhhs-bridges-bem-205"]["metadata"]["source_revision"]
+        == "BPB 2024-025"
     )
 
 
