@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/us-co/statute/2026-07-13-us-co-tax-credit-session-laws.json",
-      "sha256": "7391020df59b7ffa2ef0f319069bb23ffaec70a8f29f26727c48f072b5f3ac12"
+      "sha256": "3e7f20386a6726c06a30f8975842927a47b804f8b7a6d75ed97b08c96371e188"
     },
     {
       "path": "data/corpus/provisions/us-co/statute/2026-07-13-us-co-tax-credit-session-laws.jsonl",
@@ -19,16 +19,24 @@
     {
       "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws/official-documents/us-co-hb24-1311-signed-act-2024.pdf",
       "sha256": "6b388535d46a1f1fb653ea16c2096c66db186cf861cb22448661aa8136b45fcc"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws/provenance/us-co-hb24-1134-signed-act-2024.provenance.json",
+      "sha256": "1d8039ebbe9c35ce6ab120ed930034305e1d908ed71b01a5ae9ffe5a135616fd"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-13-us-co-tax-credit-session-laws/provenance/us-co-hb24-1311-signed-act-2024.provenance.json",
+      "sha256": "47ce5e1e63cf359d490273aca915d82611cbc6bc45cfffef6b1b92261bc83ee8"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "986b4b1e6f36056e8da55a1c0b97ae5798f9b96f",
+    "commit": "31f74cf3866f293359f25d346eec446195a4bd31",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-13-us-co-tax-credit-session-laws --manifest manifests/us-co-tax-credit-session-laws-official-documents.yaml"
+    "text": "uv run python scripts/recover_ingest_batch.py"
   },
   "coverage": {
     "complete": true,
@@ -39,14 +47,14 @@
     "source_count": 4
   },
   "document_class": "statute",
-  "generated_at": "2026-07-13T08:10:36.748627+00:00",
+  "generated_at": "2026-07-17T13:25:10.328998+00:00",
   "jurisdiction": "us-co",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "VX90qwr1otTTbm57fQdJi/olAI/ZirDboC4PCjnfcCHSL34grH5K6uhvrvkSIno+F2hu6Q+HfxAh+EYUvp+oDw=="
+    "value": "HsLkywqbRkyg4chYB95a57XorP9Uqd4k4rAqNwPIPFLgwjun8RrvyZkCJVAKKW3MuS60FYw2kR/XXNqUnyPLDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-13-us-co-tax-credit-session-laws"
