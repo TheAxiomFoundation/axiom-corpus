@@ -993,6 +993,9 @@ def _extract_labeled_pdf_section_blocks(
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
     heading_requires_bold = bool(extraction.get("section_heading_requires_bold", False))
+    lowercase_parentheticals = bool(
+        extraction.get("lowercase_parenthetical_label_components", False)
+    )
     if heading_requires_bold:
         styled_lines = _filtered_pdf_styled_lines(content, extraction=extraction)
         lines = tuple((line, page) for line, page, _style in styled_lines)
@@ -1003,6 +1006,7 @@ def _extract_labeled_pdf_section_blocks(
 
     sections: list[_DocumentBlock] = []
     current_label: str | None = None
+    current_citation_label: str | None = None
     current_heading: str | None = None
     current_body: list[str] = []
     current_body_pages: list[int] = []
@@ -1037,9 +1041,15 @@ def _extract_labeled_pdf_section_blocks(
         )
 
     def flush() -> None:
-        nonlocal current_label, current_heading, current_body, current_body_pages
+        nonlocal current_label, current_citation_label, current_heading
+        nonlocal current_body, current_body_pages
         nonlocal current_start_page
-        if current_label is None or current_heading is None or current_start_page is None:
+        if (
+            current_label is None
+            or current_citation_label is None
+            or current_heading is None
+            or current_start_page is None
+        ):
             return
         pages = current_body_pages or [current_start_page]
         sections.append(
@@ -1049,7 +1059,7 @@ def _extract_labeled_pdf_section_blocks(
                 heading=current_heading,
                 body=_normalize_text("\n".join(current_body)),
                 metadata={
-                    "citation_suffix": current_label,
+                    "citation_suffix": current_citation_label,
                     "section_label": current_label,
                     "page_start": min(pages),
                     "page_end": max(pages),
@@ -1057,6 +1067,7 @@ def _extract_labeled_pdf_section_blocks(
             )
         )
         current_label = None
+        current_citation_label = None
         current_heading = None
         current_body = []
         current_body_pages = []
@@ -1079,6 +1090,15 @@ def _extract_labeled_pdf_section_blocks(
             match = None
         if match:
             label, heading_text = match
+            citation_label = (
+                re.sub(
+                    r"\(([^)]+)\)",
+                    lambda component: f"({component.group(1).lower()})",
+                    label,
+                )
+                if lowercase_parentheticals
+                else label
+            )
             inline_body = ""
             if section_heading_re is not None:
                 heading_match = section_heading_re.match(line)
@@ -1086,7 +1106,7 @@ def _extract_labeled_pdf_section_blocks(
                     inline_body = (heading_match.groupdict().get("body") or "").strip()
             heading_style = line_styles[index] if heading_requires_bold else 0
             consumed_label_heading = False
-            if drop_repeated and label == current_label:
+            if drop_repeated and citation_label == current_citation_label:
                 index += 1
                 while index < len(lines) and is_heading_continuation(
                     index, heading_style=heading_style
@@ -1115,6 +1135,7 @@ def _extract_labeled_pdf_section_blocks(
                 index += 1
             heading = " ".join(part for part in heading_lines if part)
             current_label = label
+            current_citation_label = citation_label
             current_heading = f"{label} {heading}".strip()
             current_start_page = page
             if inline_body:
