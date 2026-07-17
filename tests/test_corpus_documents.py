@@ -453,6 +453,15 @@ def test_extract_json_record_blocks_rejects_bad_field_configs() -> None:
 
 
 def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
+    assert (
+        _extract_json_html_blocks(
+            b'[{"id": "topic-1", "text": "Navigation only"}]',
+            source_url="https://example.test/toc.json",
+            fallback_title="Official TOC",
+            extraction={"segmentation": "source_only"},
+        )
+        == ()
+    )
     with pytest.raises(ValueError, match="did not resolve to HTML text"):
         _extract_json_html_blocks(
             b'{"html": "   "}',
@@ -476,6 +485,17 @@ def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
         )
         == ()
     )
+
+
+@pytest.mark.parametrize("content", [b"", b"not json", b"<html>error</html>"])
+def test_extract_json_source_only_rejects_non_json_content(content: bytes) -> None:
+    with pytest.raises(ValueError):
+        _extract_json_html_blocks(
+            content,
+            source_url="https://example.test/toc.json",
+            fallback_title="Official TOC",
+            extraction={"segmentation": "source_only"},
+        )
 
 
 def test_extract_anchor_range_html_blocks_validates_config_and_extracts_ranges() -> None:
