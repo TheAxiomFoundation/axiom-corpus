@@ -6,8 +6,8 @@ import re
 import sys
 import time
 from collections import deque
-from collections.abc import Mapping
-from dataclasses import dataclass
+from collections.abc import Mapping, Sequence
+from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Protocol, TextIO
@@ -69,6 +69,19 @@ class NycrrExtractReport:
     coverage_path: Path
     coverage: ProvisionCoverageReport
     source_paths: tuple[Path, ...]
+
+
+@dataclass(frozen=True)
+class NycrrPartSource:
+    """One explicitly scoped NYCRR part browse page."""
+
+    part: str
+    citation_path: str
+    source_url: str
+    title: str | None = None
+    expected_document_count: int | None = None
+    expected_section_count: int | None = None
+    metadata: Mapping[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -204,7 +217,10 @@ def extract_nycrr(
         if limit is not None and len(records) >= limit:
             break
         if page_type != "document":
-            child_links = _child_links(soup, only_title=only_title if citation_path == _root_path() else None)
+            child_links = _child_links(
+                soup,
+                only_title=only_title if citation_path == _root_path() else None,
+            )
             for ordinal, (href, text) in enumerate(child_links, start=1):
                 child_url = _normalize_url(href, include_browserhawk=True)
                 if child_url is None or child_url in seen or child_url in queued:
@@ -238,6 +254,430 @@ def extract_nycrr(
         coverage=coverage,
         source_paths=tuple(source_paths),
     )
+
+
+def extract_nycrr_parts(
+    store: CorpusArtifactStore,
+    *,
+    version: str,
+    part_sources: Sequence[NycrrPartSource],
+    source_as_of: str | None = None,
+    expression_date: date | str | None = None,
+    delay_seconds: float = 0.25,
+    retry_attempts: int = 4,
+    refresh: bool = False,
+    session: _Session | None = None,
+    progress_stream: TextIO | None = None,
+) -> NycrrExtractReport:
+    """Extract explicit NYCRR parts and their complete nested provision trees."""
+    if not part_sources:
+        raise ValueError("at least one NYCRR part source is required")
+
+    client = _nycrr_session(session)
+    expression_date_text = _date_text(expression_date, version)
+    source_as_of_text = source_as_of or version
+    items: list[SourceInventoryItem] = []
+    records: list[ProvisionRecord] = []
+    source_paths: list[Path] = []
+    seen_paths: set[str] = set()
+    browse_page_count = 0
+    document_page_count = 0
+
+    for source in part_sources:
+        part_url = _normalize_url(source.source_url, include_browserhawk=True)
+        if part_url is None:
+            raise ValueError(f"unsupported NYCRR part URL: {source.source_url}")
+        part_page = _QueuedPage(
+            part_url,
+            None,
+            source.title or f"Part {source.part}",
+            _outline_ordinal(source.part, 0),
+        )
+        fetched_part = _read_or_fetch_page(
+            store,
+            client,
+            version,
+            part_url,
+            refresh=refresh,
+            delay_seconds=delay_seconds,
+            retry_attempts=retry_attempts,
+        )
+        source_paths.append(fetched_part.source_path)
+        part_soup = BeautifulSoup(fetched_part.html, "lxml")
+        _raise_if_browserhawk_blocked(part_soup, part_url)
+        part_heading = _page_heading(part_soup, source.title)
+        if not part_heading or not re.match(
+            rf"^Part\s+{re.escape(source.part)}(?:\D|$)", part_heading
+        ):
+            raise RuntimeError(
+                f"NYCRR source did not resolve to Part {source.part}: {part_heading!r}"
+            )
+        part_metadata = _scoped_part_metadata(
+            _page_metadata(part_soup, part_page, "browse", fetched_part.url),
+            source,
+            source_as_of_text,
+        )
+        part_record = _provision_record(
+            part_soup,
+            citation_path=source.citation_path,
+            parent_citation_path=None,
+            version=version,
+            source_url=_display_url(fetched_part.url),
+            source_path=fetched_part.source_key,
+            source_as_of=source_as_of_text,
+            expression_date=expression_date_text,
+            page_type="browse",
+            metadata=part_metadata,
+            ordinal=_outline_ordinal(source.part, 0),
+        )
+        _append_scoped_record(
+            items,
+            records,
+            seen_paths,
+            part_record,
+            fetched_part,
+        )
+        browse_page_count += 1
+
+        child_links = _part_child_links(part_soup)
+        section_count = sum(
+            link_text.lower().startswith(f"s {source.part}.")
+            for _, link_text in child_links
+        )
+        if (
+            source.expected_document_count is not None
+            and len(child_links) != source.expected_document_count
+        ):
+            raise RuntimeError(
+                f"Part {source.part} exposed {len(child_links)} documents; "
+                f"expected {source.expected_document_count}"
+            )
+        if (
+            source.expected_section_count is not None
+            and section_count != source.expected_section_count
+        ):
+            raise RuntimeError(
+                f"Part {source.part} exposed {section_count} rule sections; "
+                f"expected {source.expected_section_count}"
+            )
+
+        for child_ordinal, (href, link_text) in enumerate(child_links, start=1):
+            child_url = _normalize_url(href, include_browserhawk=True)
+            if child_url is None:
+                raise RuntimeError(f"unsupported NYCRR child URL: {href}")
+            child_page = _QueuedPage(
+                child_url,
+                source.citation_path,
+                link_text,
+                child_ordinal,
+            )
+            fetched_child = _read_or_fetch_page(
+                store,
+                client,
+                version,
+                child_url,
+                refresh=refresh,
+                delay_seconds=delay_seconds,
+                retry_attempts=retry_attempts,
+            )
+            source_paths.append(fetched_child.source_path)
+            child_soup = BeautifulSoup(fetched_child.html, "lxml")
+            _raise_if_browserhawk_blocked(child_soup, child_url)
+            if child_soup.select_one("#co_document") is None:
+                raise RuntimeError(f"NYCRR part child was not a document: {child_url}")
+            child_metadata = _scoped_part_metadata(
+                _page_metadata(child_soup, child_page, "document", fetched_child.url),
+                source,
+                source_as_of_text,
+            )
+            child_path = _part_child_citation_path(
+                child_soup,
+                part=source.part,
+                part_citation_path=source.citation_path,
+                link_text=link_text,
+            )
+            child_record = _provision_record(
+                child_soup,
+                citation_path=child_path,
+                parent_citation_path=source.citation_path,
+                version=version,
+                source_url=_display_url(fetched_child.url),
+                source_path=fetched_child.source_key,
+                source_as_of=source_as_of_text,
+                expression_date=expression_date_text,
+                page_type="document",
+                metadata=child_metadata,
+                ordinal=child_ordinal,
+            )
+            _append_scoped_record(
+                items,
+                records,
+                seen_paths,
+                child_record,
+                fetched_child,
+            )
+            for nested_record in _nested_nycrr_provisions(child_soup, child_record):
+                _append_scoped_record(
+                    items,
+                    records,
+                    seen_paths,
+                    nested_record,
+                    fetched_child,
+                )
+            document_page_count += 1
+
+            if progress_stream is not None:
+                print(
+                    f"nycrr parts extracted {source.part} child {child_ordinal} "
+                    f"({len(records)} provisions)",
+                    file=progress_stream,
+                    flush=True,
+                )
+
+    inventory_path = store.inventory_path("us-ny", DocumentClass.REGULATION, version)
+    store.write_inventory(inventory_path, items)
+    provisions_path = store.provisions_path("us-ny", DocumentClass.REGULATION, version)
+    store.write_provisions(provisions_path, records)
+    coverage = compare_provision_coverage(
+        tuple(items),
+        tuple(records),
+        jurisdiction="us-ny",
+        document_class=DocumentClass.REGULATION.value,
+        version=version,
+    )
+    coverage_path = store.coverage_path("us-ny", DocumentClass.REGULATION, version)
+    store.write_json(coverage_path, coverage.to_mapping())
+    return NycrrExtractReport(
+        jurisdiction="us-ny",
+        document_class=DocumentClass.REGULATION.value,
+        page_count=len(records),
+        browse_page_count=browse_page_count,
+        document_page_count=document_page_count,
+        provisions_written=len(records),
+        inventory_path=inventory_path,
+        provisions_path=provisions_path,
+        coverage_path=coverage_path,
+        coverage=coverage,
+        source_paths=tuple(source_paths),
+    )
+
+
+def _scoped_part_metadata(
+    page_metadata: Mapping[str, Any],
+    source: NycrrPartSource,
+    verified_current_on: str,
+) -> dict[str, Any]:
+    return {
+        **page_metadata,
+        **source.metadata,
+        "primary_source": True,
+        "source_authority": "New York State Department of State",
+        "administering_agency": (
+            "New York State Office of Temporary and Disability Assistance"
+        ),
+        "program": "SNAP",
+        "federal_program": "SNAP",
+        "part_number": source.part,
+        "part_citation_path": source.citation_path,
+        "verified_current_on": verified_current_on,
+    }
+
+
+def _append_scoped_record(
+    items: list[SourceInventoryItem],
+    records: list[ProvisionRecord],
+    seen_paths: set[str],
+    record: ProvisionRecord,
+    fetched: _FetchedPage,
+) -> None:
+    if record.citation_path in seen_paths:
+        raise RuntimeError(f"duplicate NYCRR citation path: {record.citation_path}")
+    seen_paths.add(record.citation_path)
+    records.append(record)
+    items.append(
+        SourceInventoryItem(
+            citation_path=record.citation_path,
+            source_url=record.source_url,
+            source_path=fetched.source_key,
+            source_format=NYCRR_SOURCE_FORMAT,
+            sha256=fetched.sha256,
+            metadata=record.metadata,
+        )
+    )
+
+
+def _part_child_links(soup: BeautifulSoup) -> tuple[tuple[str, str], ...]:
+    links: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for anchor in soup.select("section.co_innertube a[href^='/nycrr/Document/']"):
+        href = anchor.get("href") or ""
+        text = _clean_text(anchor.get_text(" ", strip=True))
+        if not text or href in seen:
+            continue
+        seen.add(href)
+        links.append((href, text))
+    return tuple(links)
+
+
+def _part_child_citation_path(
+    soup: BeautifulSoup,
+    *,
+    part: str,
+    part_citation_path: str,
+    link_text: str,
+) -> str:
+    citation = _citation_label(soup)
+    if citation:
+        match = re.match(
+            rf"^\s*\d+\s+CRR-NY\s+{re.escape(part)}\.(?P<section>[A-Za-z0-9.-]+)\s*$",
+            citation,
+        )
+        if match:
+            return f"{part_citation_path}/{_slug(match.group('section'))}"
+    lowered = link_text.lower()
+    if lowered.endswith(" notes"):
+        return f"{part_citation_path}/notes"
+    if lowered.endswith(" refs"):
+        return f"{part_citation_path}/refs"
+    raise RuntimeError(
+        f"unable to derive Part {part} citation from {citation!r} / {link_text!r}"
+    )
+
+
+def _nested_nycrr_provisions(
+    soup: BeautifulSoup,
+    section_record: ProvisionRecord,
+) -> tuple[ProvisionRecord, ...]:
+    body = soup.select_one("#co_document .co_contentBlock.co_body")
+    if body is None or section_record.citation_label is None:
+        return ()
+
+    blocks: list[tuple[int, str | None, str]] = []
+    for text_block in body.select(
+        ".co_subsection > .co_headtext, .co_paragraphText"
+    ):
+        text = _direct_paragraph_text(text_block)
+        if not text:
+            continue
+        depth = _paragraph_depth(text_block.get("class", ()))
+        marker = re.match(r"^\(\s*(?P<label>[A-Za-z0-9-]+)\s*\)", text)
+        blocks.append((depth, marker.group("label").lower() if marker else None, text))
+
+    output: list[ProvisionRecord] = []
+    labels: list[str] = []
+    for index, (raw_depth, label, text) in enumerate(blocks):
+        if label is None:
+            continue
+        depth = min(raw_depth, len(labels) + 1)
+        labels = [*labels[: depth - 1], label]
+        path_labels = tuple(labels)
+        end = len(blocks)
+        for next_index in range(index + 1, len(blocks)):
+            next_depth, next_label, _ = blocks[next_index]
+            if next_label is not None and next_depth <= depth:
+                end = next_index
+                break
+        provision_body = "\n".join(block[2] for block in blocks[index:end])
+        citation_path = f"{section_record.citation_path}/{'/'.join(path_labels)}"
+        citation_label = section_record.citation_label + "".join(
+            f"({path_label})" for path_label in path_labels
+        )
+        parent_path = (
+            section_record.citation_path
+            if depth == 1
+            else f"{section_record.citation_path}/{'/'.join(path_labels[:-1])}"
+        )
+        metadata = {
+            **section_record.metadata,
+            "outline_depth": depth,
+            "outline_label": label,
+            "outline_path": list(path_labels),
+            "source_section_citation_path": section_record.citation_path,
+        }
+        output.append(
+            ProvisionRecord(
+                jurisdiction=section_record.jurisdiction,
+                document_class=section_record.document_class,
+                citation_path=citation_path,
+                id=deterministic_provision_id(citation_path),
+                body=provision_body,
+                heading=_nested_heading(text, label),
+                citation_label=citation_label,
+                version=section_record.version,
+                source_url=section_record.source_url,
+                source_path=section_record.source_path,
+                source_id=section_record.source_id,
+                source_format=section_record.source_format,
+                source_document_id=section_record.id,
+                source_as_of=section_record.source_as_of,
+                expression_date=section_record.expression_date,
+                parent_citation_path=parent_path,
+                parent_id=deterministic_provision_id(parent_path),
+                level=_level(citation_path),
+                ordinal=_outline_ordinal(label, depth),
+                kind=_outline_kind(depth),
+                legal_identifier=citation_label,
+                identifiers={
+                    **section_record.identifiers,
+                    "nycrr:outline": "/".join(path_labels),
+                },
+                metadata=metadata,
+            )
+        )
+    return tuple(output)
+
+
+def _direct_paragraph_text(text_block: Any) -> str:
+    strings = []
+    is_paragraph_text = "co_paragraphText" in (text_block.get("class") or ())
+    for value in text_block.find_all(string=True):
+        nearest_paragraph = value.find_parent(class_="co_paragraphText")
+        if not is_paragraph_text or nearest_paragraph is text_block:
+            strings.append(str(value))
+    return _clean_text(" ".join(strings))
+
+
+def _paragraph_depth(classes: Sequence[str]) -> int:
+    for class_name in classes:
+        if match := re.fullmatch(r"co_indentLeft(?P<indent>\d+)", class_name):
+            return int(match.group("indent")) // 2 + 1
+    return 1
+
+
+def _nested_heading(text: str, label: str) -> str:
+    without_marker = re.sub(
+        rf"^\(\s*{re.escape(label)}\s*\)\s*", "", text, count=1
+    )
+    first_line = without_marker.split("\n", 1)[0]
+    sentence = re.split(r"(?<=[.!?])\s+", first_line, maxsplit=1)[0]
+    return sentence[:240].rstrip()
+
+
+def _outline_kind(depth: int) -> str:
+    return {
+        1: "subdivision",
+        2: "paragraph",
+        3: "subparagraph",
+        4: "clause",
+        5: "subclause",
+    }.get(depth, "item")
+
+
+def _outline_ordinal(label: str, depth: int) -> int | None:
+    if label.isdigit():
+        return int(label)
+    if depth in {3, 6} and re.fullmatch(r"[ivxlcdm]+", label):
+        values = {"i": 1, "v": 5, "x": 10, "l": 50, "c": 100, "d": 500, "m": 1000}
+        total = 0
+        previous = 0
+        for character in reversed(label.lower()):
+            value = values[character]
+            total += -value if value < previous else value
+            previous = max(previous, value)
+        return total
+    if len(label) == 1 and label.isalpha():
+        return ord(label.lower()) - ord("a") + 1
+    return None
 
 
 def _nycrr_session(session: _Session | None = None) -> _Session:
