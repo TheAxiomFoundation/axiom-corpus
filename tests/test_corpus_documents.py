@@ -3577,6 +3577,100 @@ documents:
     assert records[2].body == "The seven-day timeframe applies."
 
 
+def test_bold_pdf_sections_preserve_body_after_unstyled_repeated_heading(
+    tmp_path: Path,
+) -> None:
+    pdf_path = tmp_path / "repeated-heading-manual.pdf"
+    document = fitz.open()
+    first_page = document.new_page()
+    first_page.insert_text((72, 72), "Rule 4.13 Eligibility for U.S.", fontname="tibi")
+    first_page.insert_text((72, 96), "Citizens.", fontname="tibi")
+    first_page.insert_text((72, 120), "First page body.")
+    second_page = document.new_page()
+    second_page.insert_text((72, 72), "Rule 4.13 Eligibility for U.S.")
+    second_page.insert_text((72, 96), "Citizens.")
+    second_page.insert_text((72, 120), "Second page body.")
+    second_page.insert_text((72, 144), "Rule 4.14 Next Rule.", fontname="tibi")
+    second_page.insert_text((72, 168), "Next body.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: repeated-heading-manual
+    jurisdiction: us-test
+    document_class: manual
+    title: Repeated Heading Manual
+    source_url: https://example.test/repeated-heading-manual.pdf
+    citation_path: us-test/manual/repeated-heading
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Rule (?P<label>\\d+\\.\\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
+      allow_unstyled_repeated_section_headings: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-repeated-heading-manual",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "4.13 Eligibility for U.S. Citizens."
+    assert records[1].body == "First page body. Second page body."
+    assert records[2].body == "Next body."
+
+
+def test_label_only_pdf_section_can_preserve_bold_body_lines(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "chapter-notes.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Chapter 7 -- Chapter Notes", fontname="tibi")
+    page.insert_text((72, 96), "Statutory Authority", fontname="tibi")
+    page.insert_text((72, 120), "CHAPTER AUTHORITY:", fontname="tibi")
+    page.insert_text((72, 144), "N.J.S.A. 30:1-12.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: chapter-notes
+    jurisdiction: us-test
+    document_class: regulation
+    title: Chapter Notes
+    source_url: https://example.test/chapter-notes.pdf
+    citation_path: us-test/regulation/chapter-7
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_label_pattern: '^Chapter (?P<label>7) -- Chapter Notes$'
+      label_only_heading_pattern: '^Statutory Authority$'
+      label_only_heading_continuation: false
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-chapter-notes",
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "7 Statutory Authority"
+    assert records[1].body == "CHAPTER AUTHORITY: N.J.S.A. 30:1-12."
+
+
 def test_bold_pdf_headings_compose_with_start_after_filter(tmp_path: Path) -> None:
     pdf_path = tmp_path / "filtered-styled-manual.pdf"
     document = fitz.open()
