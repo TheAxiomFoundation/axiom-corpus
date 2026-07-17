@@ -337,14 +337,18 @@ states:
       case management, hearings, quality control, and provider directories.
   - jurisdiction: us-ne
     name: Nebraska
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_rules
     primary_source_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
     target_manifest: manifests/us-ne-snap-rules.yaml
     target_scope:
       jurisdiction: us-ne
       document_class: regulation
-      version: 2026-05-27-ne-snap-rules
+      version: 2026-07-17-ne-snap-rules
+    notes: Current Title 475 scope retains the five official Nebraska Rules PDFs and
+      segments all 737 unique labeled provisions across general provisions, household
+      processing, eligibility, benefits, and EBT issuance and accountability. The
+      source-backed scope has complete 742-of-742 coverage and pinned source hashes.
   - jurisdiction: us-nv
     name: Nevada
     queue_status: published_current
