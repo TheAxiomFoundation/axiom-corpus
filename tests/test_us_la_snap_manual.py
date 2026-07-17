@@ -1,5 +1,6 @@
 import hashlib
 import json
+import re
 from pathlib import Path
 
 import fitz
@@ -19,6 +20,8 @@ COVERAGE_PATH = CORPUS_ROOT / "coverage" / "us-la" / "manual" / f"{VERSION}.json
 EXPECTED_DOCUMENT_COUNT = 346
 EXPECTED_PAGE_COUNT = 1137
 EXPECTED_ROW_COUNT = 1483
+EXPECTED_SNAP_DOCUMENT_COUNT = 221
+PROGRAMS = ("SNAP", "FITAP", "STEP", "DSNAP", "LaCAP", "KCSP")
 EXPECTED_SOURCE_INDEX_SHA256 = (
     "52da2f004f73fed27bfb2df22867dac8cfd1da83ebb5b078d83e5b541e0e4e0a"
 )
@@ -58,6 +61,43 @@ def test_louisiana_snap_manifest_pins_complete_powerdms_policy_tree() -> None:
         for document in documents
     )
 
+    snap_documents = 0
+    for document in documents:
+        metadata = document["metadata"]
+        classification_text = " ".join(
+            [document["title"], *metadata["powerdms_breadcrumbs"]]
+        )
+        expected_programs = [
+            program
+            for program in PROGRAMS
+            if re.search(
+                rf"(?<![A-Za-z]){re.escape(program)}(?![A-Za-z])",
+                classification_text,
+                re.IGNORECASE,
+            )
+        ]
+        assert metadata["programs"] == expected_programs
+        assert metadata["includes_snap_policy"] == ("SNAP" in expected_programs)
+        snap_documents += metadata["includes_snap_policy"]
+
+    assert snap_documents == EXPECTED_SNAP_DOCUMENT_COUNT
+
+
+def test_louisiana_month_precision_expression_date_is_explicit() -> None:
+    documents = yaml.safe_load(MANIFEST_PATH.read_text())["documents"]
+    sanction_chart = next(
+        document
+        for document in documents
+        if document["metadata"]["powerdms_document_id"] == "393892"
+    )
+
+    assert sanction_chart["expression_date"] == "2020-11-01"
+    assert sanction_chart["metadata"]["expression_date_precision"] == "month"
+    assert (
+        sanction_chart["metadata"]["expression_date_normalization"]
+        == "first_day_of_month"
+    )
+
 
 def test_louisiana_snap_scope_retains_every_official_pdf_page() -> None:
     documents = yaml.safe_load(MANIFEST_PATH.read_text())["documents"]
@@ -66,6 +106,19 @@ def test_louisiana_snap_scope_retains_every_official_pdf_page() -> None:
     coverage = json.loads(COVERAGE_PATH.read_text())
     retained_files = sorted(path for path in SOURCE_ROOT.rglob("*.pdf") if path.is_file())
     expressions = {document["source_id"]: document["expression_date"] for document in documents}
+    classifications = {
+        document["source_id"]: (
+            document["metadata"]["programs"],
+            document["metadata"]["includes_snap_policy"],
+        )
+        for document in documents
+    }
+    classifications_by_powerdms_id = {
+        document["metadata"]["powerdms_document_id"]: classifications[
+            document["source_id"]
+        ]
+        for document in documents
+    }
     source_index = []
 
     assert len(retained_files) == len(documents) == EXPECTED_DOCUMENT_COUNT
@@ -101,4 +154,20 @@ def test_louisiana_snap_scope_retains_every_official_pdf_page() -> None:
     assert all(
         provision["expression_date"] == expressions[provision["source_id"]]
         for provision in provisions
+    )
+    assert all(
+        (
+            provision["metadata"]["programs"],
+            provision["metadata"]["includes_snap_policy"],
+        )
+        == classifications[provision["source_id"]]
+        for provision in provisions
+    )
+    assert all(
+        (
+            item["metadata"]["programs"],
+            item["metadata"]["includes_snap_policy"],
+        )
+        == classifications_by_powerdms_id[item["metadata"]["powerdms_document_id"]]
+        for item in inventory
     )
