@@ -444,6 +444,15 @@ def _download_document_by_browser_impersonation(
                 _sleep_before_retry(attempt)
                 continue
             cast(Any, response).raise_for_status()
+            if _needs_browser_fallback(source, cast(requests.Response, response)):
+                cast(Any, response).close()
+                if attempt < _REQUEST_RETRY_ATTEMPTS:
+                    _sleep_before_retry(attempt)
+                    continue
+                raise RuntimeError(
+                    f"official document remained access-blocked after browser "
+                    f"impersonation: {download_url}"
+                )
             return _DownloadedDocument(
                 source=source,
                 content=response.content,

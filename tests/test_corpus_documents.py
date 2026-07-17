@@ -943,6 +943,56 @@ def test_download_document_by_browser_impersonation_uses_curl_cffi(monkeypatch):
     ]
 
 
+def test_download_document_by_browser_impersonation_rejects_pdf_access_denial(monkeypatch):
+    blocked_pdf = fitz.open()
+    page = blocked_pdf.new_page()
+    page.insert_text((72, 72), "The request is blocked.\n20260717T135819Z-request-id")
+    blocked_content = blocked_pdf.tobytes()
+
+    class FakeResponse:
+        status_code = 200
+        content = blocked_content
+        headers = {"content-type": "application/pdf"}
+        url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    calls = 0
+
+    def fake_get(url, **kwargs):
+        nonlocal calls
+        del url, kwargs
+        calls += 1
+        return FakeResponse()
+
+    fake_curl_cffi = types.SimpleNamespace(requests=types.SimpleNamespace(get=fake_get))
+    monkeypatch.setitem(sys.modules, "curl_cffi", fake_curl_cffi)
+    monkeypatch.setattr(documents_module.time, "sleep", lambda seconds: None)
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="manual",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+    )
+
+    with pytest.raises(RuntimeError, match="after browser impersonation"):
+        _download_document_by_browser_impersonation(
+            source,
+            source.source_url,
+            headers=None,
+            verify=True,
+            impersonate="chrome120",
+        )
+
+    assert calls == 4
+
+
 def test_download_document_retries_transient_request_errors(monkeypatch):
     class FakeResponse:
         status_code = 200
