@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ca/regulation/2026-07-17-ca-cdss-mpp-calfresh.json",
-      "sha256": "f8d75b75e12495230d670f5ba70868758ec1ab95551977384bb2f22a5f33a237"
+      "sha256": "4d5f92610fe1fd0fbcb3da68efb5e107872c8bbb2c9f939807171f8aa7d65c33"
     },
     {
       "path": "data/corpus/provisions/us-ca/regulation/2026-07-17-ca-cdss-mpp-calfresh.jsonl",
-      "sha256": "f1c4cdce9fe965d38b9a31df1523e5c4bf2fe389621bcd7e5e5952a0a7a73cf9"
+      "sha256": "e2b0dda0404fa23fb853423601be867a36291dad85148e288dda66ec18d48469"
     },
     {
       "path": "data/corpus/sources/us-ca/regulation/2026-07-17-ca-cdss-mpp-calfresh/official-documents/ca-cdss-mpp-calfresh-fsman01.docx",
@@ -74,7 +74,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "fbf1fb2460a6ded722d4889d05fc951489a46bd0",
+    "commit": "38351a2249c76753e27d07d066ab038c6b9eb3b9",
     "dirty_tracked": false,
     "root": "."
   },
@@ -91,14 +91,14 @@
     "source_count": 436
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-17T01:54:58.739416+00:00",
+  "generated_at": "2026-07-17T02:09:12.770458+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "/cfnkgCHmd8CVcahOrjVLp+ado8re3E5mNUUrYwtyf6u7G/hncDt/OXHVvdw7t6cmBkRZVBpDf9K6wPDo6r1Cw=="
+    "value": "I2i/h+Je8en6bDpxOiDI+hyktYYtM9ANJ4QTGIvuL2rDiTF1dVY7QaBcMuZeSuCVauVXT0FntDD8kahAhhg3DQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-ca-cdss-mpp-calfresh"
