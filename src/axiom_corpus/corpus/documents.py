@@ -993,6 +993,9 @@ def _extract_labeled_pdf_section_blocks(
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
     lines = _filtered_pdf_lines(content, extraction=extraction)
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
+    heading_requires_bold = bool(extraction.get("section_heading_requires_bold", False))
+    line_boldness = _pdf_line_boldness(content) if heading_requires_bold else {}
+    line_occurrences: dict[tuple[str, int], int] = {}
 
     sections: list[_DocumentBlock] = []
     current_label: str | None = None
@@ -1030,6 +1033,9 @@ def _extract_labeled_pdf_section_blocks(
 
     while index < len(lines):
         line, page = lines[index]
+        line_location = (line, page)
+        occurrence = line_occurrences.get(line_location, 0)
+        line_occurrences[line_location] = occurrence + 1
         match = _match_labeled_pdf_section(
             line,
             section_heading_re,
@@ -1037,6 +1043,10 @@ def _extract_labeled_pdf_section_blocks(
             label_template=str(label_template) if label_template is not None else None,
             label_replacements=label_replacements,
         )
+        if match and heading_requires_bold:
+            occurrences = line_boldness.get(line_location, ())
+            if occurrence >= len(occurrences) or not occurrences[occurrence]:
+                match = None
         if match:
             label, heading_text = match
             consumed_label_heading = False
@@ -1086,6 +1096,28 @@ def _extract_labeled_pdf_section_blocks(
         index += 1
     flush()
     return tuple(sections)
+
+
+def _pdf_line_boldness(content: bytes) -> dict[tuple[str, int], tuple[bool, ...]]:
+    """Return first-span boldness for each occurrence of a normalized PDF line."""
+    line_styles: dict[tuple[str, int], list[bool]] = {}
+    with fitz.open(stream=content, filetype="pdf") as document:
+        for page_index, page in enumerate(document, start=1):
+            for block in page.get_text("dict").get("blocks", ()):
+                for line in block.get("lines", ()):
+                    spans = line.get("spans", ())
+                    first_span = next(
+                        (span for span in spans if str(span.get("text", "")).strip()),
+                        None,
+                    )
+                    if first_span is None:
+                        continue
+                    text = _normalize_text("".join(str(span.get("text", "")) for span in spans))
+                    if text:
+                        line_styles.setdefault((text, page_index), []).append(
+                            bool(int(first_span.get("flags", 0)) & fitz.TEXT_FONT_BOLD)
+                        )
+    return {location: tuple(styles) for location, styles in line_styles.items()}
 
 
 def _extract_docx_blocks(

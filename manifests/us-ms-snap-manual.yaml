@@ -6,13 +6,23 @@ documents:
     title: Mississippi SNAP Policy Manual
     source_url: https://www.sos.ms.gov/adminsearch/ACCode/00000331c.pdf
     source_format: pdf
-    source_as_of: "2026-05-27"
+    source_as_of: "2026-07-17"
     expression_date: "2025-12-20"
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^Rule (?P<label>\d+\.\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
     metadata:
       primary_source: true
-      source_authority: Mississippi Department of Human Services
+      source_authority: Mississippi Secretary of State and Mississippi Department of Human Services
       document_subtype: policy_manual
       program: SNAP
-      extraction_granularity: pdf_page
+      federal_program: SNAP
+      extraction_granularity: numbered_rule
+      official_manual_revision: December 20, 2025
+      source_sha256: 1093741e8c95d9b60ea5499242a43dcd07cb9433aaca1de88c82b719a6498764
+      manual_landing_pages:
+        - https://www.mdhs.ms.gov/help/snap/
+        - https://www.mdhs.ms.gov/partner-resources/administrative-codes/
       source_discovery_group: us-ms/manual/snap
-      discovered_via: manual-review:state-snap-manual-agent-queue
+      discovered_via: official-current-manual-link:mississippi-mdhs

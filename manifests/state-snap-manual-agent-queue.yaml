@@ -297,14 +297,19 @@ states:
     notes: Current scope uses the official full Combined Manual PDF because dynamic HTML manual pages redirect to an access-protected service.
   - jurisdiction: us-ms
     name: Mississippi
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_pdf_manual
     primary_source_url: https://www.sos.ms.gov/adminsearch/ACCode/00000331c.pdf
     target_manifest: manifests/us-ms-snap-manual.yaml
     target_scope:
       jurisdiction: us-ms
       document_class: manual
-      version: 2026-05-27-ms-snap-manual
+      version: 2026-07-17-ms-snap-policy-manual
+    notes: The official MDHS SNAP and Administrative Codes pages both designate the
+      Secretary of State Part 14 PDF, revised December 20, 2025. The retained PDF is
+      segmented into all 384 uniquely numbered rules using its bold rule headings. An
+      unlinked MDHS upload labeled May 1, 2026 was observed but is not treated as current
+      until MDHS or the Secretary of State designates it as the operative manual.
   - jurisdiction: us-mo
     name: Missouri
     queue_status: published_current
