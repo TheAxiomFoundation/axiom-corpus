@@ -5,9 +5,10 @@
 The New Mexico State Records Center and Archives publishes the New Mexico
 Administrative Code and states that the current compilation includes rules effective
 on or before July 1, 2026. The Health Care Authority Income Support Division page
-links the ten Chapter 100 general public-assistance parts used by SNAP. The official
-SRCA Chapter 139 index supplies eighteen Food Stamp Program parts, including the
-repealed Part 640 and Part 650 pages retained as zero-provision source roots.
+lists the ten Chapter 100 general public-assistance parts used by SNAP and eighteen
+Chapter 139 Food Stamp Program parts. Part 640 appears as an unlinked citation on
+that official HCA index; its corresponding official SRCA page and the linked
+repealed Part 650 page are retained as zero-provision source roots.
 
 The manifest retains all 28 official HTML documents and pins each source URL, byte
 count, SHA-256 digest, NMAC citation, and extracted provision count. The prior
@@ -32,7 +33,7 @@ env -u UV_FROZEN uv run --extra dev axiom-corpus extract-official-documents \
 The generated scope contains 28 source roots plus 360 codified sections and has
 complete 388-of-388 coverage. A second live extraction produced the same aggregate
 artifact digest
-`6b40423674e3bbf4806f1a7921939f39a19342a83d1a9f65a08a29295fceb0a9`.
+`4608558e70473c976b6454c9d582af71c5a21f52f467e4d5946147c5ce906d8c`.
 
 The superseded `2026-05-27-nm-snap-regulations` scope retains no official source
 files. It is removed only after this source-backed replacement is committed and

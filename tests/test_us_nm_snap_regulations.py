@@ -25,6 +25,36 @@ COVERAGE_PATH = CORPUS_ROOT / "coverage/us-nm/regulation" / f"{VERSION}.json"
 EXPECTED_DOCUMENT_COUNT = 28
 EXPECTED_SECTION_COUNT = 360
 EXPECTED_ROW_COUNT = 388
+EXPECTED_NMAC_CITATIONS = {
+    "8.100.100",
+    "8.100.110",
+    "8.100.120",
+    "8.100.130",
+    "8.100.140",
+    "8.100.150",
+    "8.100.180",
+    "8.100.390",
+    "8.100.640",
+    "8.100.970",
+    "8.139.100",
+    "8.139.110",
+    "8.139.120",
+    "8.139.400",
+    "8.139.410",
+    "8.139.420",
+    "8.139.500",
+    "8.139.501",
+    "8.139.502",
+    "8.139.503",
+    "8.139.504",
+    "8.139.510",
+    "8.139.520",
+    "8.139.527",
+    "8.139.610",
+    "8.139.640",
+    "8.139.647",
+    "8.139.650",
+}
 
 
 def _documents() -> list[dict]:
@@ -58,6 +88,9 @@ def test_new_mexico_manifest_pins_complete_current_source_boundary() -> None:
 
     assert len(documents) == EXPECTED_DOCUMENT_COUNT
     assert len({document["source_id"] for document in documents}) == len(documents)
+    assert {
+        document["metadata"]["nmac_citation"] for document in documents
+    } == EXPECTED_NMAC_CITATIONS
     assert {document["metadata"]["nmac_chapter"] for document in documents} == {
         "100",
         "139",
@@ -81,6 +114,14 @@ def test_new_mexico_manifest_pins_complete_current_source_boundary() -> None:
         for document in documents
         if document["metadata"].get("repealed")
     } == {"8.139.640", "8.139.650"}
+    part_640 = next(
+        document
+        for document in documents
+        if document["metadata"]["nmac_citation"] == "8.139.640"
+    )
+    assert part_640["metadata"]["discovered_via"] == (
+        "official-hca-income-support-index"
+    )
 
 
 def test_new_mexico_scope_matches_every_retained_nmac_heading() -> None:
