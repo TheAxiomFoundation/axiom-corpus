@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-nj/regulation/2026-07-17-nj-snap-rules.json",
-      "sha256": "8c8206b1b806602ee4b333d59b5e4b3e75b82ef5ab2b4523ecc6365e5863df14"
+      "sha256": "6950d396a5c59838a47a79a68880eb56891a041a9e0bf00abb260e096dd55e08"
     },
     {
       "path": "data/corpus/inventory/us-nj/regulation/2026-07-17-nj-snap-rules.json",
-      "sha256": "f392213157ad8c6afba037aba02cac96973967d9b7f0de3bc9c764834687ce12"
+      "sha256": "8de57bac05363594a3d84943ea9ebed78c92d78802b08eff61d0fb90bc8ce6a3"
     },
     {
       "path": "data/corpus/provisions/us-nj/regulation/2026-07-17-nj-snap-rules.jsonl",
-      "sha256": "a477745577114edd46c2868f2d289eeb4c1fb163fad1719b176bbafa0b2a2d63"
+      "sha256": "ba64438b968c42f36a104846003e4d3ff505e5cb365acc93d14ed60ba0a62a8c"
     },
     {
       "path": "data/corpus/sources/us-nj/regulation/2026-07-17-nj-snap-rules/official-documents/nj-dhs-njac-10-87-snap-manual.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "86954aff9acf954433655e51509f242130fd9eb2",
+    "commit": "27de99b84f63303a8ec5a71e8d42ef1a139ce4ba",
     "dirty_tracked": false,
     "root": "."
   },
@@ -29,25 +29,25 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 265,
+    "matched_count": 266,
     "missing_count": 0,
-    "provision_count": 265,
-    "source_count": 265
+    "provision_count": 266,
+    "source_count": 266
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-17T20:14:43.740450+00:00",
+  "generated_at": "2026-07-17T20:31:23.456713+00:00",
   "jurisdiction": "us-nj",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-17-nj-snap-rules.md",
-      "sha256": "937694b36a065668b853240b51ec58cb26da941b82f896b13209b447f2c596d0"
+      "sha256": "93dba47e6ecf0d84226f22280c556c24bf7534dafcbbefac7f4eb16d4ac54118"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "HQDa0B8M32tB+HhgG1FPu7je4vG+OjBP6OzgPAjtcRZaw6nUhHefCSB/caUzqv8GeBC4FogYZOzOnqtHT9HrDw=="
+    "value": "yDbaWoNTjfWRm/zUvabmZuECo0jATxxGU3wfi1xoumViUqtYcEdzlyuuKZwsCF2VT9tyUu/EALbWWE8whZOmAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-nj-snap-rules"
