@@ -219,15 +219,15 @@ states:
     notes: Current scope retains every page of the official DFS Volume II SNAP manual and Volume IIA SNAP work-requirements manual. Volume IX is all-program transmittal history and Volume X contains no SNAP material, so neither is misclassified as current SNAP policy.
   - jurisdiction: us-la
     name: Louisiana
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_powerdms_manual_pdfs
     primary_source_url: https://public.powerdms.com/LADCFS/tree/documents/398463
     target_manifest: manifests/us-la-snap-manual.yaml
     target_scope:
       jurisdiction: us-la
       document_class: manual
-      version: 2026-05-27-la-snap-manual
-    notes: Current scope includes official DCFS Economic Independence manual policy PDFs from public PowerDMS, excluding forms/instructions.
+      version: 2026-07-17-la-snap-manual
+    notes: Current scope retains all 346 policy PDFs and all 1,137 pages under the official DCFS Economic Independence PowerDMS tree. The separate forms and forms-instructions branch contains 446 documents and remains explicitly excluded from this policy-manual scope.
   - jurisdiction: us-me
     name: Maine
     queue_status: source_refetch_required
