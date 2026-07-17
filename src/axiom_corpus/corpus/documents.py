@@ -2360,6 +2360,9 @@ def _extract_labeled_html_section_blocks(
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
+    normalize_label_internal_whitespace = bool(
+        extraction.get("normalize_label_internal_whitespace", False)
+    )
     stop_pattern = extraction.get("stop_text_pattern")
     stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
 
@@ -2408,6 +2411,8 @@ def _extract_labeled_html_section_blocks(
         )
         if match is not None:
             label, heading, body = match
+            if normalize_label_internal_whitespace:
+                label = re.sub(r"(?<=\.)\s+(?=\d)", "", label)
             flush()
             current_label = label
             current_heading = heading or label

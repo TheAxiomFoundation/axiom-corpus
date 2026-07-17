@@ -2422,6 +2422,53 @@ documents:
     )
 
 
+def test_labeled_html_sections_normalize_split_labels_and_ranges(tmp_path: Path) -> None:
+    html_path = tmp_path / "split-labels.html"
+    html_path.write_text(
+        """
+<html><body><div class="WordSection1">
+  <p><b>8.<span>139.502.8</span> STATE SNAP SUPPLEMENT BENEFITS:</b></p>
+  <p>Supplement body.</p>
+  <p><b>8.139.502.9 - 10 [RESERVED]</b></p>
+</div></body></html>
+"""
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        rf"""
+documents:
+  - source_id: split-labels
+    jurisdiction: us-test
+    document_class: regulation
+    title: Split Labels
+    source_url: https://example.test/split-labels.html
+    citation_path: us-test/regulation/split-labels
+    source_format: html
+    local_path: {json.dumps(str(html_path))}
+    extraction:
+      html_content_selector: .WordSection1
+      segmentation: labeled_sections
+      normalize_label_internal_whitespace: true
+      section_heading_pattern: >-
+        ^(?P<label>8\.\s*139\.\s*502\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{{0,180}}:|\[RESERVED\])(?:\s+(?P<body>.*))?$
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-split-labels",
+    )
+
+    records = load_provisions(report.provisions_path)
+    assert [record.metadata["section_label"] for record in records[1:]] == [
+        "8.139.502.8",
+        "8.139.502.9 - 10",
+    ]
+    assert records[1].body == "Supplement body."
+
+
 def test_extract_official_documents_formats_labeled_html_section_labels(
     tmp_path: Path,
 ) -> None:

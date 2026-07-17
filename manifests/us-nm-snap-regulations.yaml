@@ -5,13 +5,15 @@ documents:
   title: 8.100.100 NMAC General Operating Procedures
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0100.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/100
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.100\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*100\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -26,19 +28,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 1
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: e3c2744661cb386d8c131243817c7d6f9e3e238a9630b71b509765d5b645a4da
+    source_byte_count: 214797
+    provision_count: 23
 - source_id: nm-srca-nmac-8-100-110
   jurisdiction: us-nm
   document_class: regulation
   title: "8.100.110 NMAC General Operating Policies \u2013 Applications"
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0110.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/110
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.110\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*110\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -53,19 +62,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 2
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 7eb8053cddf8612e29333397152a93cba46c2062e3c6ab3efabd846fb4900543
+    source_byte_count: 87307
+    provision_count: 12
 - source_id: nm-srca-nmac-8-100-120
   jurisdiction: us-nm
   document_class: regulation
   title: "8.100.120 NMAC General Operating Policies \u2013 Case Management"
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0120.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/120
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.120\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*120\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -80,19 +96,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 3
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: b7c6eaebfea857348a67ee45f4ea9083732c5c792a3c8e3ab4b6234ce946842f
+    source_byte_count: 42409
+    provision_count: 9
 - source_id: nm-srca-nmac-8-100-130
   jurisdiction: us-nm
   document_class: regulation
   title: "8.100.130 NMAC General Operating \u2013 Eligibility and Verification Standards"
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0130.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/130
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.130\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*130\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -107,19 +130,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 4
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 3978af99959c7fbfa26279948c8c241090506591504658934dffa1e1f5f9c6bf
+    source_byte_count: 240439
+    provision_count: 28
 - source_id: nm-srca-nmac-8-100-140
   jurisdiction: us-nm
   document_class: regulation
   title: "8.100.140 NMAC General Operating Policies \u2013 Case Files"
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0140.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/140
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.140\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*140\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -134,19 +164,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 5
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 36c179687df1474adba5f2a4cfefefc7483c25f897dfd824a610e48255f8e843
+    source_byte_count: 51734
+    provision_count: 11
 - source_id: nm-srca-nmac-8-100-150
   jurisdiction: us-nm
   document_class: regulation
   title: "8.100.150 NMAC General Operating Policies \u2013 Record Retention Management"
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0150.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/150
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.150\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*150\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -161,19 +198,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 6
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 4612f434741ec112d71bc01e99c453a68a6c5f15bc3facfaadef6c98ba899725
+    source_byte_count: 45840
+    provision_count: 11
 - source_id: nm-srca-nmac-8-100-180
   jurisdiction: us-nm
   document_class: regulation
   title: "8.100.180 NMAC General Operating Policies \u2013 External Communications"
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0180.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/180
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.180\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*180\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -188,19 +232,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 7
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: c5a2f67862127c4f9d39d819fdf96f3678735f1d4caef9f9954805cc850321ba
+    source_byte_count: 96257
+    provision_count: 17
 - source_id: nm-srca-nmac-8-100-390
   jurisdiction: us-nm
   document_class: regulation
   title: "8.100.390 NMAC General Support \u2013 Information Systems"
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0390.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/390
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.390\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*390\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -215,19 +266,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 8
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 0d25cb10b767136d04fb942e505092a3f8af4f59749f5ba6fea85eaa7a6975a4
+    source_byte_count: 71427
+    provision_count: 14
 - source_id: nm-srca-nmac-8-100-640
   jurisdiction: us-nm
   document_class: regulation
   title: 8.100.640 NMAC Restoration and Claims
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0640.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/640
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.640\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*640\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -242,19 +300,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 9
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: beee5811e757471dedfb21675a80e7f4a200520871fa2e0e6d027ffe704dd3fc
+    source_byte_count: 241940
+    provision_count: 18
 - source_id: nm-srca-nmac-8-100-970
   jurisdiction: us-nm
   document_class: regulation
   title: "8.100.970 NMAC Oversight \u2013 Program Participation Hearings"
   source_url: https://www.srca.nm.gov/parts/title08/08.100.0970.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/100/970
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.100\.970\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*100\.\s*970\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -269,19 +334,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 10
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 02afa503a6e354f347714ea14d07c2855f12ba987100bc3a6914250cd4b350ba
+    source_byte_count: 168146
+    provision_count: 15
 - source_id: nm-srca-nmac-8-139-100
   jurisdiction: us-nm
   document_class: regulation
   title: 8.139.100 NMAC General Provisions for the Food Stamp Program
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0100.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/100
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.100\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*100\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -296,19 +368,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 11
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 5ed86730040ec663ae30a2a5e239fbbc41b6219568dc1edfe640ebf889c669d5
+    source_byte_count: 151780
+    provision_count: 13
 - source_id: nm-srca-nmac-8-139-110
   jurisdiction: us-nm
   document_class: regulation
   title: "8.139.110 NMAC General Administration \u2013 Application Processing"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0110.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/110
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.110\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*110\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -323,19 +402,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 12
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 55920de35704af156a78fcc5cbf8fbf7a1553a7c6cbe1624418c5076decd2fea
+    source_byte_count: 197540
+    provision_count: 16
 - source_id: nm-srca-nmac-8-139-120
   jurisdiction: us-nm
   document_class: regulation
   title: "8.139.120 NMAC Case Administration \u2013 Case Management"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0120.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/120
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.120\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*120\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -350,19 +436,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 13
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 78402f5be4b242d50783dcd9adb884183d13869000fee8ab4395e33777fe5596
+    source_byte_count: 143584
+    provision_count: 17
 - source_id: nm-srca-nmac-8-139-400
   jurisdiction: us-nm
   document_class: regulation
   title: "8.139.400 NMAC Recipient Policy \u2013 Who Can Be a Recipient"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0400.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/400
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.400\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*400\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -377,20 +470,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 14
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 557a20d4323c063bfff2ccc39f4234fd7eede7baa02a765290325f439d34248d
+    source_byte_count: 197563
+    provision_count: 15
 - source_id: nm-srca-nmac-8-139-410
   jurisdiction: us-nm
   document_class: regulation
-  title: "8.139.410 NMAC General Recipient Requirements \u2013 Non-Financial Eligibility\
-    \ Criteria"
+  title: "8.139.410 NMAC General Recipient Requirements \u2013 Non-Financial Eligibility Criteria"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0410.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/410
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.410\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*410\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -405,19 +504,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 15
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 63b7e4a4aa4827216f57142ebc819135564fbc9c2bffbcd23b26ebb27f3fb99b
+    source_byte_count: 110394
+    provision_count: 14
 - source_id: nm-srca-nmac-8-139-420
   jurisdiction: us-nm
   document_class: regulation
   title: "8.139.420 NMAC Recipient Requirements \u2013 Special Households"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0420.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/420
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.420\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*420\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -432,19 +538,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 16
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: c9ea5ea30331d068a08f59e3d4431a8ef3ceae8cf098df7d718198e712e63e05
+    source_byte_count: 85743
+    provision_count: 10
 - source_id: nm-srca-nmac-8-139-500
   jurisdiction: us-nm
   document_class: regulation
   title: "8.139.500 NMAC Financial Eligibility \u2013 Need Determination"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0500.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/500
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.500\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*500\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -459,19 +572,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 17
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 1b81c97b9b8e40f388f027339f23080b8c42045b25a018d2e9b8c759271eb02c
+    source_byte_count: 107347
+    provision_count: 12
 - source_id: nm-srca-nmac-8-139-501
   jurisdiction: us-nm
   document_class: regulation
   title: 8.139.501 NMAC Transitional Food Stamp Benefit Eligibility
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0501.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/501
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.501\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*501\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -486,19 +606,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 18
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: fc3279f6176fb23c5b06f7252c87de5b46a74c24f4eb74a753711b09a6f29eb3
+    source_byte_count: 59672
+    provision_count: 13
 - source_id: nm-srca-nmac-8-139-502
   jurisdiction: us-nm
   document_class: regulation
   title: 8.139.502 NMAC State Food Stamp Supplement
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0502.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/502
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.502\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*502\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -513,19 +640,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 19
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 07de05aa1449b0004d0a640b47f3ffabfecc1eaaf0b8076383016182dc9a4de1
+    source_byte_count: 75621
+    provision_count: 11
 - source_id: nm-srca-nmac-8-139-503
   jurisdiction: us-nm
   document_class: regulation
   title: 8.139.503 NMAC New Mexico Modified Combined Application Project
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0503.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/503
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.503\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*503\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -540,19 +674,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 20
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 781d9974355524293b44e631b4a4af566b764417ab1dce8570e11156f0f7b52e
+    source_byte_count: 60602
+    provision_count: 13
 - source_id: nm-srca-nmac-8-139-504
   jurisdiction: us-nm
   document_class: regulation
   title: 8.139.504 NMAC New Mexico Extra Help SNAP (Being Repealed)
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0504.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/504
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.504\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*504\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -567,19 +708,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 21
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: a2020538ee795a6bfaf4480d0b5034ade6b77a0b6ec63c3e6032aae4ed6cbbc2
+    source_byte_count: 96550
+    provision_count: 12
 - source_id: nm-srca-nmac-8-139-510
   jurisdiction: us-nm
   document_class: regulation
   title: "8.139.510 NMAC Eligibility Policy \u2013 Resources and Property"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0510.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/510
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.510\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*510\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -594,19 +742,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 22
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: f4cd50313b1536cc6eaecca78f36fe9155b0ca6cf64cfa95c025a10702c94ac4
+    source_byte_count: 100334
+    provision_count: 11
 - source_id: nm-srca-nmac-8-139-520
   jurisdiction: us-nm
   document_class: regulation
   title: "8.139.520 NMAC Eligibility Policy \u2013 Income and Deductions"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0520.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/520
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.520\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*520\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -621,20 +776,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 23
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: d72dc27e88cfb250a09c6f6f780ab30ea20a0bf9cda0a6a4549e00ac37836227
+    source_byte_count: 228073
+    provision_count: 12
 - source_id: nm-srca-nmac-8-139-527
   jurisdiction: us-nm
   document_class: regulation
-  title: "8.139.527 NMAC Food Stamp Program \u2013 Income and Resources Excluded by\
-    \ Federal Law"
+  title: "8.139.527 NMAC Food Stamp Program \u2013 Income and Resources Excluded by Federal Law"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0527.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/527
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.527\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*527\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -649,19 +810,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 24
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 73b6d6c576349c37b85c5829f46a91bff23dbf3e15285e891ceab50c0072122e
+    source_byte_count: 104804
+    provision_count: 10
 - source_id: nm-srca-nmac-8-139-610
   jurisdiction: us-nm
   document_class: regulation
   title: "8.139.610 NMAC Program Benefits \u2013 Issuance and Receipt"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0610.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/610
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.610\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*610\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -676,20 +844,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 25
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 31edaafe946de546f68104f3c2bca6f1b6ef488aafee54d966e47061ccd22849
+    source_byte_count: 107653
+    provision_count: 14
 - source_id: nm-srca-nmac-8-139-647
   jurisdiction: us-nm
   document_class: regulation
-  title: "8.139.647 NMAC Food Stamp Program \u2013 Administrative Disqualification\
-    \ Procedures"
+  title: "8.139.647 NMAC Food Stamp Program \u2013 Administrative Disqualification Procedures"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0647.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/647
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.647\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*647\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -704,19 +878,26 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 26
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: dc90d8e965042ea22880624be0523c4d1097ff83cfea74f19505c3fbb16974d3
+    source_byte_count: 104138
+    provision_count: 9
 - source_id: nm-srca-nmac-8-139-650
   jurisdiction: us-nm
   document_class: regulation
   title: "8.139.650 NMAC Food Stamp Definitions \u2013 Terms and Abbreviations [Repealed]"
   source_url: https://www.srca.nm.gov/parts/title08/08.139.0650.html
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-05-27'
+  source_as_of: '2026-07-17'
+  expression_date: '2026-07-01'
   citation_path: us-nm/regulation/nmac/8/139/650
   extraction:
     html_content_selector: .WordSection1, .Section1
     segmentation: labeled_sections
-    section_heading_pattern: ^(?P<label>8\.139\.650\.\d+)\s+(?P<heading>[A-Z][^:]{0,180}:)(?:\s+(?P<body>.*))?$
+    section_heading_pattern: ^(?P<label>8\.\s*139\.\s*650\.\s*\d+(?:\s*-\s*\d+)?)\s+(?P<heading>[A-Z][^:]{0,180}:|\[RESERVED\]|[A-Z][A-Z0-9
+      /()\[\]\-\u2013\u2014,'&]{0,180})(?:\s+(?P<body>.*))?$
+    normalize_label_internal_whitespace: true
   metadata:
     primary_source: true
     source_authority: New Mexico State Records Center and Archives
@@ -731,3 +912,9 @@ documents:
     source_discovery_group: us-nm/regulation/snap
     discovered_via: manual-review:state-snap-manual-agent-queue
     discovery_ordinal: 27
+    nmac_title_index_url: https://www.srca.nm.gov/nmac-home/nmac-titles/title-8-social-services/
+    nmac_current_through: '2026-07-01'
+    source_sha256: 23a689421db889932309c35f885f76a13341f8c286e305adb1cfb0d8881dd498
+    source_byte_count: 13088
+    provision_count: 0
+    repealed: true
