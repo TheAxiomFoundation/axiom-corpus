@@ -55,14 +55,15 @@ states:
     notes: Live DES pages challenge unattended clients; current manifest uses archived snapshots of official DES pages.
   - jurisdiction: us-ar
     name: Arkansas
-    queue_status: source_refetch_required
-    source_kind: official_pdf_manual
+    queue_status: published_current
+    source_kind: official_pdf_and_html_policy_set
     primary_source_url: https://humanservices.arkansas.gov/wp-content/uploads/Supplemental-Nutrition-Assistance-Program-Policy-Manual.pdf
     target_manifest: manifests/us-ar-snap-manual.yaml
     target_scope:
       jurisdiction: us-ar
       document_class: manual
-      version: 2026-05-27-ar-snap-manual
+      version: 2026-07-16-ar-snap-manual
+    notes: Current scope retains the base manual, appendices, July 2026 final filing, FY2026 eligibility chart, nutrition-waiver pages, and current work/time-limit page from official DHS sources.
   - jurisdiction: us-ca
     name: California
     queue_status: source_refetch_required
