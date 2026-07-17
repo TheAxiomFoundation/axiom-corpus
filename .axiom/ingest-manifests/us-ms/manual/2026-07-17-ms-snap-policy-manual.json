@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-ms/manual/2026-07-17-ms-snap-policy-manual.jsonl",
-      "sha256": "da585b4ead84c22626655dd278c0db85ddb24d3c5e71f47e992bcbd23abcc780"
+      "sha256": "e6d4fca111c2eb6663e2b3194c17e6511f55af499189efb861c99eb4f6531572"
     },
     {
       "path": "data/corpus/sources/us-ms/manual/2026-07-17-ms-snap-policy-manual/official-documents/ms-mdhs-snap-policy-manual-part-14.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "c6ebd52c5177e92d337b6db4b40c2906210c6cc0",
+    "commit": "174e2dbaef88d8b5972a5c01a0496464a2d32558",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,7 +35,7 @@
     "source_count": 385
   },
   "document_class": "manual",
-  "generated_at": "2026-07-17T18:05:10.415205+00:00",
+  "generated_at": "2026-07-17T18:13:49.661692+00:00",
   "jurisdiction": "us-ms",
   "reasoning_logs": [
     {
@@ -47,7 +47,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "00SSNyevJONMlXLcfBQO8CuTp0A89KU2m6qK/OkdsfcPwH1vVm9f4pQdQ8pblNqYK/ZTUlacHio7KwjfiYKxDg=="
+    "value": "25Mi+WguYm8+utu+zforMl159ehC+AF6jTft36ZrTI3m/uekMVC+U240+n2gf0cSErGB3aghxAMAchff8DCpDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-ms-snap-policy-manual"
