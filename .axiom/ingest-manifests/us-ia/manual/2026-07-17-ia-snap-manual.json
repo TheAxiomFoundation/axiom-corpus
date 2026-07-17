@@ -1,0 +1,93 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/manual/2026-07-17-ia-snap-manual.json",
+      "sha256": "f60ceb36866577a1f8b7ad345cff5661aff8ca74b3335260750c8f40edcf3980"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/manual/2026-07-17-ia-snap-manual.json",
+      "sha256": "200378fb2ee91420244a62a003f4b8f2fac07faa55571014dc7b89a539c17292"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/manual/2026-07-17-ia-snap-manual.jsonl",
+      "sha256": "7e28b901322e220afc90ad3c8a3340190126cf2128c80631ddbd6ecce7cf4a18"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-a.pdf",
+      "sha256": "97317cdd8e56e02cc5a6491f392fd59843c20ba5a147af662fbc696e588354a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-b.pdf",
+      "sha256": "ab40ec05ff61a5955a89e1dc98042974719a3bcd81f0b3ad96342456c2ea8394"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-c.pdf",
+      "sha256": "8890678e124f9034dfc44c72877fa0257dce985467759a2b3138c4a91def5a26"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-d.pdf",
+      "sha256": "f250fc6293e82b44f488a766e96d70bd9b944086940aa113c057dbef20e977b0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-e.pdf",
+      "sha256": "cabb5f53ffc17a342428480475b3dd1acc69d0108557d6cb0f5f885fce479f6f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-f.pdf",
+      "sha256": "8363be34c1e7d586350c9ea675c451fbae31beb8ddfd8b84bde1a2296d5ed8a7"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-g.pdf",
+      "sha256": "f642b534f967aca54ea54d84ae1344a91ecec95240356d5f6a06d78c1631befd"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-h.pdf",
+      "sha256": "daddcc87f10b9c082cc6574c4bf0d1000a2395f4e2778776835996cb22f85266"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-i.pdf",
+      "sha256": "e1c6bbc079e97527b67a7d10a5f73b33249a155b47f2446e355f69d8aea83727"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-j.pdf",
+      "sha256": "166b63b1fd121dfc8b02e2db6d9b9addb7ebf297c75f97a909559f5a65232062"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-7-m.pdf",
+      "sha256": "3b82e99987d57839c461734f81606244891583b2a976692a6ca70db504386043"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/manual/2026-07-17-ia-snap-manual/official-documents/ia-hhs-em-toc.pdf",
+      "sha256": "e42856e0ac3710b5010e6f8de88645e4bfc27cd9d014692f9ba6ba8eb82219e7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4fae1fad43981c97ed229f9eeeb741c61a17c25b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-17-ia-snap-manual --manifest manifests/us-ia-snap-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 443,
+    "missing_count": 0,
+    "provision_count": 443,
+    "source_count": 443
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-17T13:42:59.886593+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "UI0CMvK75UpURImo4NfsHrbfRrnzyjXW4sBz2WKnGbaeYv04m9fYAZXPvJ+LtkyxRglHQK9O7scmSZy85BVCDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-ia-snap-manual"
+}
