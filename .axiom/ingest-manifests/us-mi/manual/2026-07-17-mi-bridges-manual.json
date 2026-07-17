@@ -1,0 +1,834 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mi/manual/2026-07-17-mi-bridges-manual.json",
+      "sha256": "5b12d96c8713beeef6814378bc41a5eed13a373eccaaaeb3f0458ecf11bd7999"
+    },
+    {
+      "path": "data/corpus/inventory/us-mi/manual/2026-07-17-mi-bridges-manual.json",
+      "sha256": "5342d60e217e9b1d91a23836680f35d8693987e28af74ce818e1fc9be83c3fc7"
+    },
+    {
+      "path": "data/corpus/provisions/us-mi/manual/2026-07-17-mi-bridges-manual.jsonl",
+      "sha256": "943647442c2eb187bdf0882a1c6438d0956a10699f5bc321adcb715f78b1cfc7"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-105.pdf",
+      "sha256": "2151bc17239985c3f5f088412e3b1508d4bbfa06f004233329e018d5d8364401"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-110.pdf",
+      "sha256": "0586220cd487a65915ef8a5cdc700ec1fc8a257acea78a4fd92793e23f441acc"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-115.pdf",
+      "sha256": "413ea9c1e26ee05dc664e75653f585ef24797192278ab8e8962087131e569041"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-116.pdf",
+      "sha256": "f57b0816e2504289a4e9b336d10bd03e9cf2806c4d31c08355e8e9f0e4307517"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-117.pdf",
+      "sha256": "4079fa3c746584434be1eea140190566431562104182f6f901bbd650c3702e86"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-118.pdf",
+      "sha256": "e11b731b8ee1630345f9303d8fc71923017b629d9b918f4dffbeda9369ae9de1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-119.pdf",
+      "sha256": "937492fb7dca2e0f949d5fae82a6ffcc7e3ee835b43da6d30076139fc23d93f5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-120.pdf",
+      "sha256": "a11d513c0b5035cd65cb421ebdfc11b345256904fefc0efce6e39cf3c49f8cd5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-125.pdf",
+      "sha256": "9e2579eb2c6f399ae648a3d00943a888fa30dd207d32bf8f0dac64e1738ca560"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-130.pdf",
+      "sha256": "a6a0e3f0cf44b2beb809f35133702e5923f217afdd2df009151651574d4d32b9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-200.pdf",
+      "sha256": "a0cfec3a4864eb1e3c2f648de5325c666fc12358967a29c50b4a9465f06423e1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-205.pdf",
+      "sha256": "54b67bbda5e138f2730d62aee79135de1c5012d99e111f896280bf6579d05ce6"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-210.pdf",
+      "sha256": "b4b894e7423e2a0242d0f3d749a44a303d6d7b345df80862455ffe492735ef30"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-220.pdf",
+      "sha256": "df931919653db83d35e132c7719027bd31eb743121622f7e01ecc66706455efe"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-300.pdf",
+      "sha256": "aa66c10c9c97df39adc64e1ff0de6a2ae72833191fa950e7161be11c3939ee7d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-301.pdf",
+      "sha256": "10bdf8086e4fceaccedb4dbc7d463a4891884c798c17f5f79541c636c7773ac9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-305.pdf",
+      "sha256": "cbc9e20ae0732cc7d2f5005aa16b2a1478e5e2f3bcffd6b8d7a9cda359c60952"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-310.pdf",
+      "sha256": "f4d3e19f0fdfce4de811a105ef091d68c7b03129e31f0f996902b54ba3cc33f0"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-320.pdf",
+      "sha256": "5a73d25afc7f7a5a6ea7180b393e0de5eda1b4d7e496f5d04b26082bacae04c2"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-400.pdf",
+      "sha256": "9f1ca5c87295bd4cb7e7e701d5225da692e4889fef84d7012767eaeefd5a45c6"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-401e.pdf",
+      "sha256": "15f1f75e661c2725fbce67f1f772f91e89e951d48182d394f025207f9741a78b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-402.pdf",
+      "sha256": "a0775a3c1b78d72d105cccaf70a689b3d444765f1521a8eaab2afe423ab46f3e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-405.pdf",
+      "sha256": "2b55c8cf9ca5d9d9a11bdef1e19d36a5f7cc2b6bd6089d89de04a3637948686b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-406.pdf",
+      "sha256": "3eee9f6e46ca84ae8ee0403590dafd49cca61ce373f527af4afce9db04ce5d86"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-420.pdf",
+      "sha256": "4a21473ca71dd6f91f799719243408d92713438854bd2314a291ac18c372a79a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-425.pdf",
+      "sha256": "6ea945bd92c5ed6368be30a20c5e813c70240f502488e384b787ef7e03034bbf"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-430.pdf",
+      "sha256": "f3afca239458f843f5007ffd57d32b0170d17f4f019a4d11b41c1c79f99902ae"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-435.pdf",
+      "sha256": "5c585041e00d2a2534294a86b3a4455f290905f3c27de2a0748c7e49ba0f86f7"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-500.pdf",
+      "sha256": "da22fad4d4cacf9e246641c745bd5ae08be7cf6981b92e25c599e97041e65e83"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-502.pdf",
+      "sha256": "05df1bb365387a873d7b68a42c3df8ac3a9325777d07445465914a8bc17366a6"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-505.pdf",
+      "sha256": "9474df3456f25c6194d96c7436d24bab5df70f5d8c4b3579f47e150883a4f3ef"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-600.pdf",
+      "sha256": "b9b331cad412c3773d9d7d87317e8046055ba9e5b0db9882917bc93426c2ad5b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-700.pdf",
+      "sha256": "e06bf145053fa3ff96560781efbc77fac594207a779fa56bc83754d24397d6fd"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-705.pdf",
+      "sha256": "26b496970ede7ea1643f522253e549562b5b7de13003e1c4107f300064835c99"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-710.pdf",
+      "sha256": "ee5018468ad41c72116217d5e07232b24705f66b0b373baa4e75b8f201410b41"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-715.pdf",
+      "sha256": "fc4e9a2243f1a70e5767dfb6550bfef6f0ec9ed05a929d64311af2e57fcc34ab"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-720.pdf",
+      "sha256": "02b186c2d066a88a7c7998d40c1fabb6a63ad732db5edc9090ca7867ead74e72"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-725.pdf",
+      "sha256": "84ff21e0cf4afd8fc790bc64d85ac1187b3d457417f90e8d36f7bbfd3fdaf2ba"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-800.pdf",
+      "sha256": "210eb41e1c47a63c972a26272f9bb16fedf45bf2f78b37163e2b74dcbffde3fc"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-801.pdf",
+      "sha256": "81f1f2a3ae4c3d5b8b9513606d0d80d289517b00ae16218722d494abeac58252"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-802.pdf",
+      "sha256": "9aae764ba092b8ea1bf543542c5293a9b4537ca4eaade062bfe70e2cac9bf8ca"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-803.pdf",
+      "sha256": "9232f861e2ca1e3c6fc49f3216c40f9dd1425470b4b580cdf72b1b5056b8e9e9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-804.pdf",
+      "sha256": "e11ce30e895e3bdd9a50640022342c0fc06bf806d4ccbd92dda383977825f081"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-805.pdf",
+      "sha256": "6942258a867cf12d7ac29ac8c98b8d5071b668ee4e6558f08399bc513295cc01"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-806.pdf",
+      "sha256": "13bb3f1960a739e10abd4a5e4ce23774ce0f69e928faf134be57352c31dcf4d4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-807.pdf",
+      "sha256": "03a08ed0ae5a563d44c9ae5a957bd85be2efdce7b7f34240d9670c6a86e4b64a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-808.pdf",
+      "sha256": "4b1dd18ee265a38059c4b9b2fe4ecfa62cb160063d7aa65eadb07c7faac540a9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-809.pdf",
+      "sha256": "35a862dd31c77aad9ccfa3aee50ef54baf60084b2ca94050e4af844d288e1e3b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-810.pdf",
+      "sha256": "58ccff5d9e3d35464b0761772dc6308d65306d5c5749e6001d33d1f60d9e7ea1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-812.pdf",
+      "sha256": "e91b87534255229ef91148b78f13e670b437a96651a41ec3d837391685f9e6a2"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-813.pdf",
+      "sha256": "c88f5ac1daf8a3ed2266dcfec61672d36e7ba82a6fde05034aeaa895ddc95d75"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-814.pdf",
+      "sha256": "97bbfa8faa9c856e42d88dc879526ca668b38704e4ba846b4880ae29a93876c7"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-815.pdf",
+      "sha256": "5f8b27279c902d988ead1635e9be1fa26332c2d324d4b752ddedcc9f23b8f56c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-825.pdf",
+      "sha256": "99560037b729d38117239b6648b69c491121cf497a0a98e19c3b4012957d2953"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-830.pdf",
+      "sha256": "f9ead5effc7d77b2c2b77e93dc098e1cea5a5fcf61cdaf7f958a810fc938c06c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bam-toc.pdf",
+      "sha256": "19d8c766b66931b4148ff28ee90bd33e3617b632a6731ac3022bebe3110edc43"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-100.pdf",
+      "sha256": "2f5c573cdd2548a688f3b718d96565dd65606c4dca84cd94a77611d2125e27dd"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-101.pdf",
+      "sha256": "a3ee419bfa613ea4da6430587f89d73e216b85eb5947196c0f8648d72318f526"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-105.pdf",
+      "sha256": "8ea69eee346b2c62e0c42f3c1dc2618af756934c47089be366f3867266b55a99"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-106.pdf",
+      "sha256": "1cbb339b4c16aff799db8880ba83c7b49e41af4c9b3d08b83147bb4db07795ab"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-110.pdf",
+      "sha256": "098366725a3df59ece9a7d7c778d3f11ff55c28ca90d02e7e4ae6b7e549c71dd"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-111.pdf",
+      "sha256": "e9132c811831c9669cca4b9ffeeb61a6001fd33c44cf6f6ad506a3459d6a4764"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-113.pdf",
+      "sha256": "261ab45412232e1a1756097358b9df26061001aa659b09192e3a6e41c4a5069e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-117.pdf",
+      "sha256": "c2246632a20c4c9229cb41c4bbcba4ded87892cfcf08eabb41cac5b8eef8147f"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-118.pdf",
+      "sha256": "84b4bafbab07d57055823151007224a5ebb7ab564d3378d76de5b1dd69307ecb"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-124.pdf",
+      "sha256": "a4db1f5e8234ff1902e2c3c0c07cc5b94146a24464e0b7a61a186cc16cd4e2df"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-125.pdf",
+      "sha256": "be491c26ecddf733acb62e59b22a9ddf1978568298b1adf20b9f5ed6470787d1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-126.pdf",
+      "sha256": "e654c1b2b0a6dfb0b99c9059efb712ed65ce555d8d2b29e230a8bfce844da604"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-129.pdf",
+      "sha256": "74b14446dfc48c2628b35cc2d3b64da53b19cf1c2b68f3161a812061b4b8306a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-130.pdf",
+      "sha256": "a7e324040dfa490f2646f3f470c592860b7c808d4c6cd019adc4a0733b75c48a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-131.pdf",
+      "sha256": "3d2bfb07ca7066398a6f011245fd9a5a878210363a5bcbe02ab01aebd979ebbf"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-132.pdf",
+      "sha256": "077dce65fed422c99cb820db2f79933a9fd4d1a58d468fc7e474ceb39298dd42"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-135.pdf",
+      "sha256": "2661cf45ee1b062b502bbddc720f840c8798fef78fa62b3122c4652380d49fd2"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-136.pdf",
+      "sha256": "207c56784bba838855c2ef033713217cda5c3959182550259a699feb0a43f8e5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-137.pdf",
+      "sha256": "d93c86827c3e1abc438644262acf67ebb7571f3943385cfc578942a3b220431b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-145.pdf",
+      "sha256": "68ca81e6d73cd1d1b8eebf9175c822b18fcdf5e8ec2f8d2b94e30a6918305e72"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-148.pdf",
+      "sha256": "961c647e59152a57b169117874b0252c4e6b600e4ebf265e9c71529a7ccc0a93"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-150.pdf",
+      "sha256": "f193592e6a478a13ed43ef7a0528ce6bd950c6214af4e8c24d4e448619fa6028"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-155.pdf",
+      "sha256": "2ab80e054dd061242cd6e84b3fdf8827de928cd4477dc75d1f26efe7ac98c128"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-157.pdf",
+      "sha256": "86780f28c0c20c1799d0a68f5e39f6126cf2a3db32163342c84208b2445e6481"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-158.pdf",
+      "sha256": "6590b00ccb8c71d5b2188fda176f7e9e01649a2ef94bf76515dbf2a0d900b2d9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-163.pdf",
+      "sha256": "c3f3c5c8dc25c8f117061b9018ddc436f23a9838fb40f313a3e56b900e849c67"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-164.pdf",
+      "sha256": "3a07d9aa016fa0dfeb879014b150692e2475278c455bdd0097c95a31c5816ac2"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-165.pdf",
+      "sha256": "d2bbf039e9564b8b453982ca9727285f285b540ce85eed5ea7fea904a2267010"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-166.pdf",
+      "sha256": "40142507e1797e7b184c0e304f44892ccf6e3ed085007df98b443be7822c0344"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-167.pdf",
+      "sha256": "3f85675188a75c1d799c8b9c3b15e1f46f4c4d94158b1f4c63396f89a65907df"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-168.pdf",
+      "sha256": "b532f790fce6ee5ff3d5f461847592d59bbb252acc6700d26067ca362ec7adac"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-169.pdf",
+      "sha256": "ae4b31d0e452d5fc7632e9dc180802bb600354aabd1b9575fd314c9447d4a4f3"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-170.pdf",
+      "sha256": "768a49c3cff679fe9e6fc26e5430219495a105d145038cf57e68ed9c22fee959"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-171.pdf",
+      "sha256": "ac5cec6164449dacb9b4273aad0c854f2cf8f70580579d7473b98dd20b9a316f"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-172.pdf",
+      "sha256": "29fdc6fcd419c227cd209ab28123b7c4d1c2ea37c455deaef535f0805b4116a5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-173.pdf",
+      "sha256": "8beac27527230230e3b8fddb96d36138bc287139cd9519a97cf24b38dcd129d2"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-174.pdf",
+      "sha256": "f716cf537fcec6768bd57a59054c008615563288c30e3a64cd386e32549dd448"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-200.pdf",
+      "sha256": "d1f6cc340b9230ed99db979ccc100b5440623797768c85c86d151ed521f3bb99"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-201.pdf",
+      "sha256": "a7ffaeb51fe13116629bfb913418fef3f8290e16f8d1a6050a8259843d79371b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-202.pdf",
+      "sha256": "9997feedd137e011a9205727ad6e67de019d38cb9ff3031970d8dc07eff84281"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-203.pdf",
+      "sha256": "0fe5365c15d88416aeedbd40d76a02be8d17bfb943e36cc4f8112999652e8559"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-205.pdf",
+      "sha256": "f829eaa530a7d6aa6665ad86b940ebb87af7640ba487333cd950002e1f7282eb"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-209.pdf",
+      "sha256": "aeb4ecd7ef88c7ff2a8711695ccad025d0207e3fa412c86cc4b012204a401c74"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-210.pdf",
+      "sha256": "cb39dd9d6677a8836bf5620e4b4ae319be9cb7aa79d3453f42d1b5f79c2b1220"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-211.pdf",
+      "sha256": "5ba0f08d69e4ffb7f544c805fba0e084ed88af310e11265db4a78c9c04b8114b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-212.pdf",
+      "sha256": "481cf806af6ae696dee5bfc198b6592230d11918240fa05cd0e6b4014a410e1e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-213.pdf",
+      "sha256": "ac7c841c4f6516d7b2a74b79f8c0a4c6f17a0fa815a902ba57718377a563b56f"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-214.pdf",
+      "sha256": "d13bcb77707cc9edfd557e83fc1524d16e69b09e3ae9c3201a461af4d175bb9e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-215.pdf",
+      "sha256": "7170be2f86ff27633dc85a7453a113c746d39722d288a30eb839f3cf0280237d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-216.pdf",
+      "sha256": "de3ff9cfa8cd66e5e77201cdb333254d85fba25c05e118626767a31b4206a220"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-220.pdf",
+      "sha256": "0c2b599b763f996aea1df9295a041e6f427e689b152333b287f45a1a9e811e0e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-221.pdf",
+      "sha256": "90cde62ba8f8242eb9654438e7bf8d1214bb390f90917b8723fe7f9248dde73c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-222.pdf",
+      "sha256": "3a74e1432c380e48c44f45c69a578bfaf8a4c44bebb2ace8bd69f50cca0cb07d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-223.pdf",
+      "sha256": "750b639731db3719cf84c9f3e1c3e3985925db8ad203f25aaa7f59579e9a6e03"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-225.pdf",
+      "sha256": "ccddc3cad048028bb5e010cb78f54e1ea2a60e0ddad36ef454d1f29ca98dd4a1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-225a.pdf",
+      "sha256": "deb7e6d58886a098209910643f0d8bde622e0c7ad7eb8e70dc7383eb6a06b29c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-226.pdf",
+      "sha256": "1ac74707ff9f959d43c46071d4b6c5f3d1a500ce1b9eba2c331bd1dcd724c521"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-227.pdf",
+      "sha256": "e61acdc9bb1ad14a9f1aae4491513fd074c4be8aeaa4cc2ab94614dc560aa77c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-228.pdf",
+      "sha256": "c945bdb6bc981669e6ff69f505041540a6327bf6e57bf3731210c04bd5ff24aa"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-229.pdf",
+      "sha256": "887645eda4c6c2b3f290daa00edde757bf1de62547d617f12ae62b3642d781fe"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-230a.pdf",
+      "sha256": "925d00c1c50e66bdeaef2d340630b01cfced76580b98b40eaee4b89966698f09"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-230b.pdf",
+      "sha256": "3021b5c1cb886cb618de84f3858a4dd23034cda174fdf09d2ebfc4d774e82929"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-230c.pdf",
+      "sha256": "78d649729ed959238f4f25fb01943b76e683cd8103000c7ce9eb4616d929d55f"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-232.pdf",
+      "sha256": "670e857f8feddaeb51308b97f141077c52ebdda0777ef6da7525d121e6a1f8ed"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-233a.pdf",
+      "sha256": "0a48cad19d32054d51e30703981e3f333323eefb097b3054c11e70b2b56e4129"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-233b.pdf",
+      "sha256": "b2cbfcd46c107e56d633b1762f280fbc4dd30551a77ab43dd775af616a4fd7e2"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-233c.pdf",
+      "sha256": "aee02f528f5d7afecae253bd49fb72b516badecdc43736eb07017c464220d4f6"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-234.pdf",
+      "sha256": "768bdd74230c9bbd709df5bedd3ba411422b27d13cb07f9ad75c0d0a89567a14"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-240.pdf",
+      "sha256": "583b080b2a4dc6e2f49c05a992836b838d809de8d249103581974f15a5f11f52"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-245.pdf",
+      "sha256": "b7d4bb2f2e74b2f022e04469d9e0efbe9d3c139d82745e4af76bd80cbb984af1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-255.pdf",
+      "sha256": "5daef373b5d36af5cfbab304549716202ac6f42e943ac774e7094b4f54e2a4cc"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-256.pdf",
+      "sha256": "2e93cf043f68dcb0abbe18db0ee4da2d91d31f2a9a6888995b870e04bbaccf7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-257.pdf",
+      "sha256": "e9c014a05a23694ff1cf7da258de4244d9f6c0dbabf725621251794dcb599edf"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-260.pdf",
+      "sha256": "2cc390ea6c0c6c297fb85b9b69fe8b96aa9d4258e735788d11285024cea5ef3b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-261.pdf",
+      "sha256": "e8c53d7f4b7a23cb6664d952e2ce4c437347c53992456108155979843008c00c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-265.pdf",
+      "sha256": "80e8a720b7f8521d00e0c8c6a42b89f1f691f6131e8f8c74bb3d48829a29f7b0"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-270.pdf",
+      "sha256": "0ff6fde6e3be869484b1972e421ace9ceb327737a35129c61a9931a6ef70b392"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-271.pdf",
+      "sha256": "88fa6293bb464fe86af42524833787abd4bb00353b478ba87e104d4601f6ebba"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-272.pdf",
+      "sha256": "2365e4249b970d4affb574ed2d716b7247b95fa63eb843468d55627d70e36eb1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-400.pdf",
+      "sha256": "92bf297af52d245036f2916cbcf073b5035e257ade5ae7e8316dc31f1027186f"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-401.pdf",
+      "sha256": "78141f1d3e389841a207b6796ff845a703b0cee08997bf34feeb79c038fef7c0"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-402.pdf",
+      "sha256": "9b36e768f2637a37cf0782dffd6206355e69254f38331c78d06ef74ac718db8f"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-403.pdf",
+      "sha256": "1ffd7ec24eb5c8e4be6ce2a96567722d85685abf9d9580732e56401c9f969555"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-405.pdf",
+      "sha256": "8879d29861ebe45dcf1cc89a0d47927c5a41cd383efec2ed9f2366731d4a7a03"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-406.pdf",
+      "sha256": "7c6ece2d8b15dfcbdc83eb90c642aeeb46df5239463129cced6bba088bff4c77"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-500.pdf",
+      "sha256": "b8bae0f59d2bc66f64f30734d9271fa99fbee5c61c8c763022f101ecf077d42a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-501.pdf",
+      "sha256": "ee8d0dcf43f8ed326fc67ee27777bcbd0462567f7f2d55566b6c7a989d894f43"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-502.pdf",
+      "sha256": "0ceba6538188edddcd1cb6461290f0b1a963dc9a9281c7e91b443f440deeb44a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-503.pdf",
+      "sha256": "351665e90c5807b2352f96a75304227d86b9f0a563ded4f9958913bfb2a08307"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-504.pdf",
+      "sha256": "1dde038e6b8e50ce995fd05405ff15bd708a446be6fac247caf154507f2f95d4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-505.pdf",
+      "sha256": "6ed243c322abddcfc8898904dc998f19b3dbeb3d7f90ff4a755f2278b827e329"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-515.pdf",
+      "sha256": "a8a40524467e81d31fdf39b59d711f21e018fc644b52c2cf7bdd7c938dacf58e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-518.pdf",
+      "sha256": "7624aa41af5753f75f18ccac9f241c0edc0c10d94dcc10090a9d01077fa50079"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-520.pdf",
+      "sha256": "088b8ac46562075ec5fa23ad1cab525b8ed23fdae8fa2cb4e58cf7936d4f3115"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-525.pdf",
+      "sha256": "915b84f9e795730ed9dd4e3107e13c845e6d799566d4c596153e02b5918d168e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-530.pdf",
+      "sha256": "56f306b0aaf144c2f095cd6268345bb84ffadfe8ace64465c1fc1c3ff0d7bb7a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-536.pdf",
+      "sha256": "c60dfd6c17f7fdf4d1b2e172204b443e7791927359677f4cf5228fc8bafe6355"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-540.pdf",
+      "sha256": "d172693f80511285ff0fc65ff06fdbe766896905b9c3e576467b24ba3dcb442b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-541.pdf",
+      "sha256": "48a66bd09bea7f098c5c2a9bfccdecaf62efb4b3f33eb366f5a7849598d98057"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-544.pdf",
+      "sha256": "391b1386f86edcae9da998dadc91d10d9bfa884da1fa3478f9247848ae71c442"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-545.pdf",
+      "sha256": "d03633b259ff278344d93239be1b63601e042981e2392d6faf036a35f9b9db11"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-546.pdf",
+      "sha256": "0c379504659fe0624240301f0c789627132f6ab40d4ee9d79501cace1366c64e"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-547.pdf",
+      "sha256": "7a28e132de79775474558c04265197e4bf23a7e3da94d7d562939e263b53a857"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-550.pdf",
+      "sha256": "f048db16e5b2c1cf9cbeadc5bca01a012d8f31c62a9bc14744287bfa962c4aa4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-554.pdf",
+      "sha256": "5366546cad16947bd8230f75c6b78835298fa5b46256ec1a28befa0370dac270"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-556.pdf",
+      "sha256": "49df8ab9243f12ccb5b1446869943ab4848ab45dc46d797ba2a33117869941b5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-610.pdf",
+      "sha256": "cd522a6b36466d5c73b4402a5d5d48669db4904d4c22a749ba80d4994c12f319"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-615.pdf",
+      "sha256": "66b0e58d92c7de420ae218af55383f6fb71412888ac1d83dd6267baeb3368fe3"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-616.pdf",
+      "sha256": "7faf3b5df6ac798133ca9baf84e52706c2223c39049470cd9db2bbb9d70ba821"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-617.pdf",
+      "sha256": "d0efcc1463179da49c2074cd99b73466c3ead6231d033170cd75473208fe0026"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-618.pdf",
+      "sha256": "913ca5b43e39d0a7ee88722bf91e67ff48cbb509593d34df80ebc3cb9c983792"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-619.pdf",
+      "sha256": "58875f835fff87d18d9f5ffa2fa3185360a7aecd127b50af3c75558cf11eca12"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-620.pdf",
+      "sha256": "84756fef859781067233477b23c93bb2d4adcfdcffedf6d26bbf4f15eeb2e66c"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-630.pdf",
+      "sha256": "dc7a1d2e56f1882ed04c45d7a75acccb6dc78b4727a6b7dfade1abfd097bc707"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-650.pdf",
+      "sha256": "3704c0eb4318fa47924a0072ddd195c025ff1e717f8b1e277c10ba37834127a4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-657.pdf",
+      "sha256": "b3e0611ea854bed89835fd111934edf576ba1efa05db5f5064d780a9e0b38ff4"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-660.pdf",
+      "sha256": "da1ea5ca1033934138c675b7d9e92df9272ae5c8e54f96bcc8ed6d0dad0d181d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-702.pdf",
+      "sha256": "39e7352a00415a81361eec5095be1bdd931da429d40e028ddb91bbd19b901498"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-703.pdf",
+      "sha256": "2f6c9a0d4d564fbb41d40d144e35ce4e707b2eed1b9e2e9cba0fad90a895b9e5"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-704.pdf",
+      "sha256": "1e7a541284207d4554c45388b67d902d5b188427f0415935dc3c31208ff39311"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-705.pdf",
+      "sha256": "86a3a2910035981b07307644df6847981abbb86aa2b262144e281ce78add472d"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-706.pdf",
+      "sha256": "376f255ca85ff0a04313e5bc1dc5fd75635d231356f46264a8edaaf80289e8c0"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-707.pdf",
+      "sha256": "57d26faf0d8ec91a1c815cc37c64c9c4ceefed72bbf371df682d16f3790df2a1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-708.pdf",
+      "sha256": "a6cfb82aa6ab1b61ec1fbe00a94ca7a809f54ce9e10aa3e3359117b3cf029baa"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-709.pdf",
+      "sha256": "682134ea2019d164aa80f8dbd9f12a2212104c9cf5e7bf708132b17dc6a33588"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-710.pdf",
+      "sha256": "b0f04e95a29b09b3ebdcf5a16daacc37111eec6310d2403ca6ce4bbde2460de3"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-711.pdf",
+      "sha256": "3e65a2fa6ce3e6dac925d045da496e78503d3f3b2733c0264c5b66e7a8b2abe9"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-800.pdf",
+      "sha256": "c05db865d8a1f0a85959fd755803713533e22d3ab4f13c5f4a1e3b36cb6e23b1"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-bem-toc.pdf",
+      "sha256": "a1ccfa2f2de479627214907f82b6422e96b2dc0cf08be8d12213e1aa777a31ac"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-glossary.pdf",
+      "sha256": "b304aa673a22913d1fee820f558d940c6f677d7ea8baa3f4bbc7c33ddbbc7229"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-bridges-updates.pdf",
+      "sha256": "daee9f2896b3b15f30bea37770087b0505c091d92b54f24bb876dc3573dd3f02"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-rfs-305.pdf",
+      "sha256": "d4b69957072a1b82ab6c496d4a698a41517f06b520fcb554fbe42cc987662c41"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-rfs-toc.pdf",
+      "sha256": "02197b4bc4cfe8506ff4eae132e3a0f28c1e7dddb4f6803dd1574777a5afb50b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-rft-248.pdf",
+      "sha256": "f87f1e068786ae96513735beba44916a4555ddfe8fea999955c123c53e67cf57"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-rft-250.pdf",
+      "sha256": "949bd63837403b17c2a8bd2fb2948adcfe884d4abc8b42b4cb73b6d3a402fd7b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-rft-255.pdf",
+      "sha256": "667d3d4ec75e3309673408002b1973b06df518b937741ff1b39d9faa9bbdb369"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-rft-260.pdf",
+      "sha256": "33ae888c3d659ffa36c18399ebbdacf51d38bfaae4884fafbd0fa48ee5d5241a"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-rft-262.pdf",
+      "sha256": "1847979627ebd2ef078fa834474428d75eb5d57be942babae84f8f5817bc81c8"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-rft-295.pdf",
+      "sha256": "55f6ed926af61f98e92199032673779740dea650beba349c128f19cf42c4ed1b"
+    },
+    {
+      "path": "data/corpus/sources/us-mi/manual/2026-07-17-mi-bridges-manual/official-documents/mi-mdhhs-rft-toc.pdf",
+      "sha256": "6b1b053256852518576f3546faad75bb99c338ff7ec8d1474da8d675c52bec9b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "260cdf0c13ac582a34ae304aa6079fae41264019",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus extract-official-documents --base data/corpus --version 2026-07-17-mi-bridges-manual --manifest manifests/us-mi-bridges-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2310,
+    "missing_count": 0,
+    "provision_count": 2310,
+    "source_count": 2310
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-17T17:03:11.426406+00:00",
+  "jurisdiction": "us-mi",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-17-mi-bridges-snap-manual.md",
+      "sha256": "b73e2926ac56ea6f38c721dcfe9499f8b973ef74a335307891e9fe01c0257a65"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "gqdxQebFkq32zoCCU8rHrBk6WPMb3bndA5CKuHkZs7QlOGGDKRj+lujZcBYaNXtIc7utiIkfm9eu6kxUn2AhCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-mi-bridges-manual"
+}

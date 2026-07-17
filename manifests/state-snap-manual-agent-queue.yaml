@@ -271,14 +271,18 @@ states:
       returns HTTP 404 is excluded; the working official DOCX is retained.
   - jurisdiction: us-mi
     name: Michigan
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/html/
     target_manifest: manifests/us-mi-bridges-manual.yaml
     target_scope:
       jurisdiction: us-mi
       document_class: manual
-      version: 2026-05-27-mi-bridges-manual
+      version: 2026-07-17-mi-bridges-manual
+    notes: Current scope retains all 183 chapters listed in the official current-effective
+      BAM and BEM tables of contents, both tables of contents, the Bridges bulletin log
+      and glossary, and the FAP reference tables and 2026 issuance schedule. SNAP-bearing
+      sources are identified explicitly without mislabeling unrelated combined-manual chapters.
   - jurisdiction: us-mn
     name: Minnesota
     queue_status: published_current
