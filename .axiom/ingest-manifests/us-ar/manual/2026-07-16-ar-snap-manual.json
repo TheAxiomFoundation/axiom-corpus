@@ -2,15 +2,19 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/us-ar/manual/2026-07-16-ar-snap-manual.json",
-      "sha256": "7dd075728b07b91672d4999f6072952baf96456add42b072d3c64ab35d9a8f8b"
+      "sha256": "e322a608eb95a0e366caeaa5623cfcf80f97f5202d97bc1d5d8aee8ecd3cedde"
     },
     {
       "path": "data/corpus/inventory/us-ar/manual/2026-07-16-ar-snap-manual.json",
-      "sha256": "fbb95052c20f61a9c161d0f9413ea03244307b7f807fd5be0c1e71cf115c5203"
+      "sha256": "c42d530084949ee33060844b364bd3c50e37ab2627b096263c7f9775b00b7c09"
     },
     {
       "path": "data/corpus/provisions/us-ar/manual/2026-07-16-ar-snap-manual.jsonl",
-      "sha256": "445453bad956817cdced876523f9d59efb9f6e7bcb0c75288206da4b9a10d62a"
+      "sha256": "0469f6a6d2dbd91e7861e5bfa260da95a2ebcfe486fba54f51da2f838829693e"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/manual/2026-07-16-ar-snap-manual/official-documents/ar-dhs-snap-basis-of-issuance-ffy2026.pdf",
+      "sha256": "8378c8f6147e23a68ca820370913c35523e6fc1d29e4d651259ffe66c2a943b8"
     },
     {
       "path": "data/corpus/sources/us-ar/manual/2026-07-16-ar-snap-manual/official-documents/ar-dhs-snap-july-2026-final-filing.pdf",
@@ -18,19 +22,19 @@
     },
     {
       "path": "data/corpus/sources/us-ar/manual/2026-07-16-ar-snap-manual/official-documents/ar-dhs-snap-manual-appendices.pdf",
-      "sha256": "c4a1feee3864c46888c3b9f41f6df3fd609ebaa69a59c5c0a1419d66db8bd4bd"
+      "sha256": "de0dcb9e3701992cc75a7b45420631cab65625b6ae1f1051022ba17bbe4d8375"
     },
     {
       "path": "data/corpus/sources/us-ar/manual/2026-07-16-ar-snap-manual/official-documents/ar-dhs-snap-nutrition-waiver-faq.html",
-      "sha256": "6ac5d9385c2a6175dd2197fca262e6367a209918d64c3c25acf0395f2dc594fd"
+      "sha256": "9f588355f4c54d26307640bf6cf2d54231a3efbd9cf537667f8753a9b1acd0dc"
     },
     {
       "path": "data/corpus/sources/us-ar/manual/2026-07-16-ar-snap-manual/official-documents/ar-dhs-snap-nutrition-waiver.html",
-      "sha256": "8ed671745bd3f5dbf5cf7aa36501d4e7e289e4f92bf3224a6da82806b0a5daed"
+      "sha256": "575523c4912eabe54ff7ca8980af94d3f0b944f96067c46723b5ef5dece2d50f"
     },
     {
       "path": "data/corpus/sources/us-ar/manual/2026-07-16-ar-snap-manual/official-documents/ar-dhs-snap-policy-manual.pdf",
-      "sha256": "4cfd48b906559c08ef128d3b9700524d226bc66aeb6fde59bb6c9aea08d28b76"
+      "sha256": "c0caf435bfce853110eb0cb6eb84c688c227d988d31dd8a2204e7a33fef61e06"
     },
     {
       "path": "data/corpus/sources/us-ar/manual/2026-07-16-ar-snap-manual/official-documents/ar-dhs-snap-quick-reference-fy2026.pdf",
@@ -42,7 +46,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "db7e0b897e7f9cf77f7644a35c84b72df53f2cf0",
+    "commit": "f99424e5df941d32cb5a038a7f91c65fcf7d8da3",
     "dirty_tracked": false,
     "root": "."
   },
@@ -53,20 +57,20 @@
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 840,
+    "matched_count": 810,
     "missing_count": 0,
-    "provision_count": 840,
-    "source_count": 840
+    "provision_count": 810,
+    "source_count": 810
   },
   "document_class": "manual",
-  "generated_at": "2026-07-17T00:45:54.450305+00:00",
+  "generated_at": "2026-07-17T01:23:05.119267+00:00",
   "jurisdiction": "us-ar",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "7gXvOB31oVMlmJMmHyJJJOtATmwlel+YOqPUTNDi9hX6Rk3/k+SUcG2Ur61HA+JFe6YR0Ah0KFWYJiyxw1DoCg=="
+    "value": "6WR05WJ0aCWIqdTLRCLBiJDOXbck66tcbuIO0FRU1QKi9BP6Wc9+WYUckOcaGCLg0qUzjBFn2KQi8js4jBgSCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-16-ar-snap-manual"
