@@ -29,7 +29,7 @@ env -u UV_FROZEN uv run --extra dev axiom-corpus extract-official-documents \
 
 The generated scope contains five source roots plus 737 sections and has complete
 742-of-742 coverage. A second live extraction produced the same aggregate artifact
-digest `6f7a0a26665aa68298bb31ae8ccbd7e22c15842ad290763583fcf6a02e005cc8`.
+digest `5b791e4dfb77e6fbfe7905320d2d5a7afa93c6b26809a2cebcb00569b874cc02`.
 
 The superseded `2026-05-27-ne-snap-rules` scope contains ten derived rows but retains
 none of its five referenced source files. It is removed only after this source-backed
