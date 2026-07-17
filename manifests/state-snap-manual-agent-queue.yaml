@@ -105,14 +105,15 @@ states:
     notes: Current scope retains the official DSS landing page, exact live table of contents, and all 277 linked SNAP Policy Manual topic pages.
   - jurisdiction: us-de
     name: Delaware
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://regulations.delaware.gov/AdminCode/title16/9000
     target_manifest: manifests/us-de-snap-rules.yaml
     target_scope:
       jurisdiction: us-de
       document_class: regulation
-      version: 2026-05-27-de-snap-rules
+      version: 2026-07-17-de-snap-rules
+    notes: Current scope retains the complete official 114-page Title 16 section 9000 consolidated PDF through 29 DE Reg. 531.
   - jurisdiction: us-dc
     name: District of Columbia
     queue_status: source_refetch_required

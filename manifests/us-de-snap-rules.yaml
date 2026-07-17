@@ -7,8 +7,8 @@ documents:
     source_url: https://regulations.delaware.gov/AdminCode/title16/9000
     download_url: https://regulations.delaware.gov/api/AdminCode/title16/9000/35bc7e34-2cc2-40d0-a90a-cb238e3b496c
     source_format: pdf
-    source_as_of: "2026-04-22"
-    expression_date: "2026-04-22"
+    source_as_of: "2026-07-17"
+    expression_date: "2025-12-01"
     extraction:
       segmentation: labeled_sections
       section_heading_pattern: '^(?P<label>9\d{3}(?:\.\d+)*)\s+(?P<heading>[A-Z][A-Za-z0-9 ().,''/-]+)$'
@@ -29,5 +29,9 @@ documents:
       document_subtype: administrative_code
       program: SNAP
       api_pdf_file_id: 35bc7e34-2cc2-40d0-a90a-cb238e3b496c
+      latest_register_citation: 29 DE Reg. 531
+      latest_register_effective_date: "2025-12-01"
+      pdf_document_modified: "2026-02-09"
+      landing_page_last_modified: "2026-06-09"
       source_discovery_group: us-de/regulation/title-16-9000
-      discovered_via: manual-review:state-snap-manual-agent-queue
+      discovered_via: official-api:delaware-administrative-code
