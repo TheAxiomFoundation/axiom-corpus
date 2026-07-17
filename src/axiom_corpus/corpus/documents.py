@@ -396,6 +396,9 @@ def _download_document(
             verify=verify,
             impersonate=impersonate,
         )
+    if _needs_browser_fallback(source, response):
+        response.close()
+        raise RuntimeError(f"official document remained access-blocked: {download_url}")
     response.raise_for_status()
     return _DownloadedDocument(
         source=source,
@@ -669,7 +672,22 @@ def _needs_browser_fallback(
     stripped = response.content.lstrip()
     if declared_format == "pdf" and not response.content.startswith(b"%PDF"):
         return "html" in content_type or stripped.startswith((b"<!doctype", b"<html"))
-    return False
+    return declared_format == "pdf" and _pdf_is_access_denial(response.content)
+
+
+def _pdf_is_access_denial(content: bytes) -> bool:
+    if not content.startswith(b"%PDF"):
+        return False
+    try:
+        with fitz.open(stream=content, filetype="pdf") as document:
+            if document.page_count > 2:
+                return False
+            text = " ".join(
+                " ".join(page.get_text().split()) for page in document
+            ).strip().lower()
+    except (RuntimeError, ValueError):
+        return False
+    return len(text) <= 500 and text.startswith("the request is blocked.")
 
 
 def _get_with_retries(
