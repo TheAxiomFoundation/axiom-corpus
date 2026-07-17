@@ -124,3 +124,35 @@ def test_deduplicate_reports_inherited_canonical_collisions(tmp_path: Path) -> N
     assert report["collision_count"] == 0
     assert report["inherited_collision_count"] == 1
     assert report["inherited_collision_paths"] == ["us-example/statute/1"]
+
+
+def test_deduplicate_preflights_every_scope_before_writing(tmp_path: Path) -> None:
+    corpus = tmp_path / "corpus"
+    canonical = tmp_path / "canonical.json"
+    target = tmp_path / "target.json"
+    _write_scope(
+        corpus,
+        "canonical",
+        ["us-example/statute/1", "us-example/statute/2"],
+    )
+    _write_scope(
+        corpus,
+        "added-a-good",
+        ["us-example/statute/1", "us-example/statute/3"],
+    )
+    _write_scope(
+        corpus,
+        "added-z-bad",
+        ["us-example/statute/2", "us-example/statute/4"],
+    )
+    _write_selector(canonical, ["canonical"])
+    _write_selector(target, ["canonical", "added-a-good", "added-z-bad"])
+    bad_inventory = corpus / "inventory/us-example/statute/added-z-bad.json"
+    _write_json(bad_inventory, {"items": [{"citation_path": "us-example/statute/4"}]})
+    good_provisions = corpus / "provisions/us-example/statute/added-a-good.jsonl"
+    before = good_provisions.read_text()
+
+    with pytest.raises(ValueError, match="expected one inventory item"):
+        deduplicate(corpus, canonical, target, apply=True)
+
+    assert good_provisions.read_text() == before

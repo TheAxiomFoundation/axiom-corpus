@@ -220,10 +220,18 @@ def deduplicate(
             raise ValueError(f"ambiguous citation carrier for {citation_path}: {rendered}")
         removals[added_matches[0]].add(citation_path)
 
-    scopes = [
-        _refresh_scope(corpus, scope, removed_paths, apply=apply)
+    preflight = [
+        _refresh_scope(corpus, scope, removed_paths, apply=False)
         for scope, removed_paths in sorted(removals.items())
     ]
+    scopes = (
+        [
+            _refresh_scope(corpus, scope, removed_paths, apply=True)
+            for scope, removed_paths in sorted(removals.items())
+        ]
+        if apply
+        else preflight
+    )
     return {
         "applied": apply,
         "collision_count": sum(scope["removed_count"] for scope in scopes),
