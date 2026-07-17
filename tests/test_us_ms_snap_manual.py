@@ -98,7 +98,8 @@ def test_mississippi_scope_extracts_every_numbered_rule_once() -> None:
     )
     assert rules_by_label["14.14"]["heading"] == "14.14 Provider Determination."
     assert rules_by_label["14.14"]["body"].startswith(
-        "A. The agency must ensure that E&T providers understand their responsibility"
+        "A. The agency must ensure E&T providers are informed of their authority and "
+        "responsibility"
     )
     assert "Part 14 Chapter" not in rules_by_label["1.15"]["body"]
     assert "or 165 3. Damaged" not in rules_by_label["34.7"]["body"]
