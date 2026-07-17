@@ -14,6 +14,7 @@ from axiom_corpus.corpus.california_mpp import (
     _subsection_provision,
     extract_california_mpp_calfresh,
 )
+from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.parsers.us_ca.regulations import (
     MppParagraph,
     MppSection,
@@ -233,6 +234,28 @@ def test_extract_california_mpp_calfresh_writes_artifacts(monkeypatch, tmp_path)
     assert report.coverage.complete
     assert report.coverage.missing_from_provisions == ()
     assert report.source_paths[0].read_bytes() == b"fake-docx"
+
+    rows = {
+        row["citation_path"]: row
+        for row in map(json.loads, report.provisions_path.read_text().splitlines())
+    }
+    assert set(rows) == {
+        "us-ca/regulation/mpp",
+        "us-ca/regulation/mpp/63",
+        "us-ca/regulation/mpp/63-503",
+        "us-ca/regulation/mpp/63-503.131",
+    }
+    for citation_path, row in rows.items():
+        assert row["id"] == deterministic_provision_id(citation_path)
+    assert "parent_id" not in rows["us-ca/regulation/mpp"]
+    assert "parent_citation_path" not in rows["us-ca/regulation/mpp"]
+    for child_path in (
+        "us-ca/regulation/mpp/63",
+        "us-ca/regulation/mpp/63-503",
+        "us-ca/regulation/mpp/63-503.131",
+    ):
+        child = rows[child_path]
+        assert child["parent_id"] == rows[child["parent_citation_path"]]["id"]
 
     inventory = json.loads(report.inventory_path.read_text())
     assert [item["citation_path"] for item in inventory["items"]] == [

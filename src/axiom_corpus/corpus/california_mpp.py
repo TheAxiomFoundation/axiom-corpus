@@ -52,6 +52,7 @@ from axiom_corpus.corpus.models import (
     ProvisionRecord,
     SourceInventoryItem,
 )
+from axiom_corpus.corpus.supabase import deterministic_provision_id
 from axiom_corpus.parsers.us_ca.regulations import (
     MppSection,
     MppSubsection,
@@ -302,7 +303,7 @@ def _fetch_docx(
 def _section_provision(
     section: MppSection,
     *,
-    parent_citation_path: str,
+    parent_citation_path: str | None,
     run_id: str,
     source_as_of: str,
     expression_date: str,
@@ -312,6 +313,7 @@ def _section_provision(
 ) -> ProvisionRecord:
     citation_path = f"us-ca/regulation/mpp/{section.num}"
     return ProvisionRecord(
+        id=deterministic_provision_id(citation_path),
         jurisdiction=JURISDICTION,
         document_class=DOC_CLASS.value,
         citation_path=citation_path,
@@ -326,6 +328,9 @@ def _section_provision(
         source_as_of=source_as_of,
         expression_date=expression_date,
         parent_citation_path=parent_citation_path,
+        parent_id=(
+            deterministic_provision_id(parent_citation_path) if parent_citation_path else None
+        ),
         level=2,
         ordinal=_ordinal_for(section.num),
         kind="section",
@@ -354,6 +359,7 @@ def _subsection_provision(
     # body is empty. Multi-paragraph subsections keep their existing body.
     body_text = sub.body or sub.title or ""
     return ProvisionRecord(
+        id=deterministic_provision_id(citation_path),
         jurisdiction=JURISDICTION,
         document_class=DOC_CLASS.value,
         citation_path=citation_path,
@@ -368,6 +374,7 @@ def _subsection_provision(
         source_as_of=source_as_of,
         expression_date=expression_date,
         parent_citation_path=parent_citation_path,
+        parent_id=deterministic_provision_id(parent_citation_path),
         level=3,
         ordinal=ordinal,
         kind="subsection",
@@ -395,6 +402,7 @@ def _container_provision(
     source_id: str | None,
 ) -> ProvisionRecord:
     return ProvisionRecord(
+        id=deterministic_provision_id(citation_path),
         jurisdiction=JURISDICTION,
         document_class=DOC_CLASS.value,
         citation_path=citation_path,
@@ -408,6 +416,9 @@ def _container_provision(
         source_as_of=source_as_of,
         expression_date=expression_date,
         parent_citation_path=parent_citation_path,
+        parent_id=(
+            deterministic_provision_id(parent_citation_path) if parent_citation_path else None
+        ),
         level=level,
         ordinal=ordinal,
         kind=kind,

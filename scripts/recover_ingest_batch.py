@@ -464,10 +464,13 @@ def _california_mpp(
                 section_path, source_url, source_key, "docx", str(provenance["sha256"])
             )
         )
+        # Recovery scopes carry no MPP root/division container rows, so
+        # sections are scope roots; a division parent path would dangle and
+        # fail release validation as missing_parent_citation.
         records.append(
             _section_provision(
                 section,
-                parent_citation_path="us-ca/regulation/mpp/63",
+                parent_citation_path=None,
                 run_id=version,
                 source_as_of="2026-07-13",
                 expression_date="2026-07-13",
