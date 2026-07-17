@@ -74,9 +74,16 @@ def test_connecticut_snap_scope_retains_exact_official_sources() -> None:
     assert len(document_items) == 279
     assert all(document["source_as_of"] == "2026-07-17" for document in documents)
     assert all(document["expression_date"] == "2026-01-28" for document in documents)
+    landing_document = next(
+        document
+        for document in documents
+        if document["metadata"]["document_subtype"] == "manual_landing_page_snapshot"
+    )
+    assert "source_last_modified" not in landing_document["metadata"]
     assert all(
         document["metadata"]["source_last_modified"] == "2026-01-28"
         for document in documents
+        if document is not landing_document
     )
     assert all(
         document["metadata"]["discovered_via"]
