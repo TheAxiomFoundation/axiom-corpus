@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ma/regulation/2026-07-17-ma-dta-snap-regulations.json",
-      "sha256": "f84b9b6747e02f4b243e646cb4fc2099fc789e7ef3ccf0516608e9cbc40d3104"
+      "sha256": "d814e9d6a7a8d369ea5e012d984c4a0684adaed1bf285d9133250a02be4179da"
     },
     {
       "path": "data/corpus/provisions/us-ma/regulation/2026-07-17-ma-dta-snap-regulations.jsonl",
-      "sha256": "52f9d8b4a180ab4f7452021dfefaeb122518ae6cb25b9dd93c3b80bcb40c8238"
+      "sha256": "fb59d6ddcc91b23359c631ab547c78d2b58226acb3154fbe3d67ba5b000fa4a7"
     },
     {
       "path": "data/corpus/sources/us-ma/regulation/2026-07-17-ma-dta-snap-regulations/official-documents/ma-dta-106-cmr-343.pdf",
@@ -50,7 +50,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "90931d8aa34243a666817bfcda27703fd7155a18",
+    "commit": "ed52ff58599de0d2abf89619ed380c93349d8d46",
     "dirty_tracked": false,
     "root": "."
   },
@@ -67,14 +67,14 @@
     "source_count": 330
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-17T16:13:19.860872+00:00",
+  "generated_at": "2026-07-17T16:30:42.722843+00:00",
   "jurisdiction": "us-ma",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "j99QMkmufZQL+EP7u14T/23Hs3dA3H+dsDhcYaTkyWpGi85cHL8mrnz5at9FGFG5YHTarounkM6LJUkqPL5KAQ=="
+    "value": "bBXpRvTy9mEzO0h59nmDknjVTRZHzm9X9RgmpNcAG5UeWKXA5GwRdLkpdWj1X4CSBZEWlFR24WHZk1Q8u4rMAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-ma-dta-snap-regulations"
