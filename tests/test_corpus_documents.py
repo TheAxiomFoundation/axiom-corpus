@@ -1973,6 +1973,54 @@ documents:
     assert records[1].body == "Body text."
 
 
+def test_extract_labeled_pdf_sections_preserves_inline_heading_body(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "inline-body-rule.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "001. FIRST POLICY. Inline body starts here.",
+                "Body continues here.",
+                "002. SECOND POLICY. Second inline body.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: inline-body-rule
+    jurisdiction: us-test
+    document_class: regulation
+    title: Inline Body Rule
+    source_url: https://example.test/inline-body-rule.pdf
+    citation_path: us-test/regulation/inline-body-rule
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>\\d{{3}})\\.\\s+(?P<heading>[A-Z ]+\\.)(?:\\s+(?P<body>.*))?$'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-inline-body-rule",
+    )
+
+    assert report.block_count == 2
+    records = load_provisions(report.provisions_path)
+    assert records[1].heading == "001 FIRST POLICY."
+    assert records[1].body == "Inline body starts here. Body continues here."
+    assert records[2].body == "Second inline body."
+
+
 def test_extract_labeled_pdf_sections_from_discontiguous_page_windows(tmp_path: Path) -> None:
     pdf_path = tmp_path / "sliced-statute.pdf"
     document = fitz.open()

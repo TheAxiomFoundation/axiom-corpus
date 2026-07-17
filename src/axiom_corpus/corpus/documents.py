@@ -1079,6 +1079,11 @@ def _extract_labeled_pdf_section_blocks(
             match = None
         if match:
             label, heading_text = match
+            inline_body = ""
+            if section_heading_re is not None:
+                heading_match = section_heading_re.match(line)
+                if heading_match is not None:
+                    inline_body = (heading_match.groupdict().get("body") or "").strip()
             heading_style = line_styles[index] if heading_requires_bold else 0
             consumed_label_heading = False
             if drop_repeated and label == current_label:
@@ -1112,6 +1117,9 @@ def _extract_labeled_pdf_section_blocks(
             current_label = label
             current_heading = f"{label} {heading}".strip()
             current_start_page = page
+            if inline_body:
+                current_body.append(inline_body)
+                current_body_pages.append(page)
             continue
         if current_label is not None:
             current_body.append(line)
