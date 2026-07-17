@@ -200,42 +200,18 @@
   "known_irregulars_ratchet": {
     "description": "A ratcheted ceiling on irregular-family membership, checked by scripts/validate_citation_paths.py. The validator FAILS if a live count exceeds its baseline (a regression: someone introduced more irregular segments than existed at r0) unless the baseline is deliberately raised in this file. It does NOT fail if a count drops (irregulars being cleaned up). Baselines were measured against origin/main @ 9ee50de. Raising a baseline is a reviewed decision recorded in this file's git history.",
     "baselines": {
-        "block_n": 19532,
-      "page_n": 23787,
+      "block_n": 19390,
+      "page_n": 23790,
       "space_segments": 209,
-        "endash_segments": 1795,
-        "uppercase_segments": 9063,
+      "endash_segments": 83,
+      "uppercase_segments": 5690,
       "truncated_segments": 53,
-      "collection_roots": 13
+      "collection_roots": 12
     }
   },
   "identity_drift_ratchet": {
     "description": "Paths whose stored provision `id` matches NEITHER the path-only identity uuid5(NAMESPACE_URL,'axiom:'+citation_path) NOR the versioned identity uuid5(NAMESPACE_URL, json.dumps(['axiom', version, citation_path])). A non-empty set means a path was edited AFTER its UUID was minted, so the stored identity no longer derives from the current path — exactly the failure mode this grammar exists to prevent. These are tracked, not tolerated: the validator fails if the set GROWS beyond the baseline list, and the fix is to re-key (re-ingest) the provision and emit the path-mapping events specified in schema/citation-path.v1.md so downstream (rulespec `corpus_citation_path`, claims, reverse index) can follow. See docs/granularity-policy-proposal.md; several of these are the corpus side of axiom-programs#14.",
-    "baseline_paths": [
-      "ca/policy/cra/t1-2025/child-care-expenses-deduction",
-      "ca/policy/cra/t1-2025/moving-expenses-deduction",
-      "us-ma/guidance/dta/policy-online/snap-cola/2025-10-01",
-      "us-ma/guidance/dta/policy-online/snap-cola/2025-10-01/standard-utility-allowances/heating-cooling",
-      "us-ma/regulation/106-cmr/365/180/A",
-      "us-ny/policy/otda/tanf-state-plan-2024-2026/financial-eligibility-and-income-disregards",
-      "us-ny/policy/otda/tanf-state-plan-2024-2026/shelter-allowance-with-children",
-      "us-ny/policy/otda/tanf-state-plan-2024-2026/shelter-allowance-without-children",
-      "us-ny/policy/otda/tanf-state-plan-2024-2026/standard-of-need-and-monthly-grant",
-      "us/regulation/42/435/550",
-      "us/regulation/42/435/551",
-      "us/regulation/42/435/552",
-      "us/regulation/42/435/553",
-      "us/regulation/42/435/554",
-      "us/regulation/42/435/555",
-      "us/regulation/42/435/556",
-      "us/regulation/42/435/557",
-      "us/regulation/42/435/558",
-      "us/regulation/42/435/559",
-      "us/regulation/42/435/560",
-      "us/regulation/42/435/561",
-      "us/regulation/42/435/562",
-      "us/regulation/42/435/563"
-    ]
+    "baseline_paths": []
   },
   "identity": {
     "provision_id_formula": "uuid5(NAMESPACE_URL, 'axiom:' + citation_path)",
