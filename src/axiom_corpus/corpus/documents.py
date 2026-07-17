@@ -988,6 +988,12 @@ def _extract_labeled_pdf_section_blocks(
     label_heading_re = (
         re.compile(str(label_heading_pattern)) if label_heading_pattern is not None else None
     )
+    heading_continuation_pattern = extraction.get("heading_continuation_pattern")
+    heading_continuation_re = (
+        re.compile(str(heading_continuation_pattern))
+        if heading_continuation_pattern is not None
+        else None
+    )
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
@@ -1125,14 +1131,36 @@ def _extract_labeled_pdf_section_blocks(
                     continue
             flush()
             heading_lines = [heading_text] if heading_text else []
+            continuation_bodies: list[tuple[str, int]] = []
             index += 1
             if consumed_label_heading:
                 index += 1
-            while index < len(lines) and is_heading_continuation(
-                index, heading_style=heading_style
-            ):
-                heading_lines.append(lines[index][0])
-                index += 1
+            if heading_continuation_re is not None and not inline_body:
+                while index < len(lines):
+                    continuation_line, continuation_page = lines[index]
+                    continuation_match = heading_continuation_re.match(continuation_line)
+                    if continuation_match is None:
+                        break
+                    continuation_heading = (
+                        continuation_match.groupdict().get("heading") or ""
+                    ).strip()
+                    if not continuation_heading:
+                        break
+                    heading_lines.append(continuation_heading)
+                    continuation_body = (
+                        continuation_match.groupdict().get("body") or ""
+                    ).strip()
+                    index += 1
+                    if continuation_body:
+                        continuation_bodies.append((continuation_body, continuation_page))
+                    if continuation_body or continuation_heading.endswith("."):
+                        break
+            elif heading_continuation_re is None:
+                while index < len(lines) and is_heading_continuation(
+                    index, heading_style=heading_style
+                ):
+                    heading_lines.append(lines[index][0])
+                    index += 1
             heading = " ".join(part for part in heading_lines if part)
             current_label = label
             current_citation_label = citation_label
@@ -1141,6 +1169,9 @@ def _extract_labeled_pdf_section_blocks(
             if inline_body:
                 current_body.append(inline_body)
                 current_body_pages.append(page)
+            for continuation_body, continuation_page in continuation_bodies:
+                current_body.append(continuation_body)
+                current_body_pages.append(continuation_page)
             continue
         if current_label is not None:
             current_body.append(line)

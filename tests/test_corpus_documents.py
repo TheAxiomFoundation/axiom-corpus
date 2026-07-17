@@ -1981,7 +1981,8 @@ def test_extract_labeled_pdf_sections_preserves_inline_heading_body(tmp_path: Pa
         (72, 72),
         "\n".join(
             [
-                "001(A). FIRST POLICY. Inline body starts here.",
+                "001(A). FIRST POLICY FOR",
+                "APPLICANTS. Inline body starts here.",
                 "Body continues here.",
                 "002(B)(IV). SECOND POLICY. Second inline body.",
             ]
@@ -2003,7 +2004,8 @@ documents:
     local_path: {json.dumps(str(pdf_path))}
     extraction:
       segmentation: labeled_sections
-      section_heading_pattern: '^(?P<label>\\d{{3}}(?:\\([A-Z]+\\))*)\\.\\s+(?P<heading>[A-Z ]+\\.)(?:\\s+(?P<body>.*))?$'
+      section_heading_pattern: '^(?P<label>\\d{{3}}(?:\\([A-Z]+\\))*)\\.\\s+(?P<heading>[A-Z ]+(?:\\.|$))(?:\\s+(?P<body>.*))?$'
+      heading_continuation_pattern: '^(?P<heading>[A-Z][A-Z ]+\\.)(?:\\s+(?P<body>.*))?$'
       normalize_parenthetical_label_components: true
 """
     )
@@ -2018,7 +2020,7 @@ documents:
     assert report.block_count == 2
     records = load_provisions(report.provisions_path)
     assert records[1].citation_path.endswith("/001.a")
-    assert records[1].heading == "001(A) FIRST POLICY."
+    assert records[1].heading == "001(A) FIRST POLICY FOR APPLICANTS."
     assert records[1].metadata["section_label"] == "001(A)"
     assert records[1].body == "Inline body starts here. Body continues here."
     assert records[2].citation_path.endswith("/002.b.iv")
