@@ -51,6 +51,7 @@ def test_mississippi_manifest_pins_official_current_manual() -> None:
         "segmentation": "labeled_sections",
         "section_heading_pattern": r"^Rule (?P<label>\d+\.\d+) (?P<heading>.+)$",
         "section_heading_requires_bold": True,
+        "drop_line_patterns": [r"^\d{1,3}$", r"^Part 14 Chapter \d+:.*$"],
     }
 
 
@@ -86,3 +87,16 @@ def test_mississippi_scope_extracts_every_numbered_rule_once() -> None:
         or "Retrieved At:" in (row.get("body") or "")
         for row in provisions
     )
+
+    rules_by_label = {row["metadata"]["section_label"]: row for row in rules}
+    assert rules_by_label["9.4"]["heading"].endswith("40 Qualifying Quarters of Work.")
+    assert rules_by_label["14.11"]["heading"].endswith(
+        "or an Unemployment Compensation Work Requirement."
+    )
+    assert rules_by_label["22.1"]["heading"].endswith(
+        "Fleeing Felon Disqualifications and Work Requirement Sanctions."
+    )
+    assert "Part 14 Chapter" not in rules_by_label["1.15"]["body"]
+    assert "or 165 3. Damaged" not in rules_by_label["34.7"]["body"]
+    assert "D-SNAP. 167 Source" not in rules_by_label["35.4"]["body"]
+    assert "questionable. 168 Source" not in rules_by_label["35.8"]["body"]

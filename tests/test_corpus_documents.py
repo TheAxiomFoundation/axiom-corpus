@@ -3479,7 +3479,8 @@ def test_extract_labeled_pdf_sections_can_require_bold_headings(
     page.insert_text((72, 96), "Interview requirements apply.")
     page.insert_text((72, 120), "Rule 4.13 Processing Timeframes.", fontname="tiit")
     page.insert_text((72, 144), "Rule 4.13 Processing Timeframes.", fontname="tibi")
-    page.insert_text((72, 168), "The seven-day timeframe applies.")
+    page.insert_text((72, 168), "for Expedited Applications.", fontname="tibi")
+    page.insert_text((72, 192), "The seven-day timeframe applies.")
     document.save(pdf_path)
     document.close()
     manifest_path = tmp_path / "documents.yaml"
@@ -3518,7 +3519,54 @@ documents:
     assert records[1].body == (
         "Interview requirements apply. Rule 4.13 Processing Timeframes."
     )
+    assert records[2].heading == "4.13 Processing Timeframes. for Expedited Applications."
     assert records[2].body == "The seven-day timeframe applies."
+
+
+def test_bold_pdf_headings_compose_with_start_after_filter(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "filtered-styled-manual.pdf"
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text((72, 72), "Rule 4.13 Processing Timeframes.", fontname="tiit")
+    page.insert_text((72, 96), "BEGIN RULE TEXT")
+    page.insert_text((72, 120), "Rule 4.13 Processing Timeframes.", fontname="tibi")
+    page.insert_text((72, 144), "The seven-day timeframe applies.")
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: filtered-styled-manual
+    jurisdiction: us-test
+    document_class: manual
+    title: Filtered Styled Manual
+    source_url: https://example.test/filtered-styled-manual.pdf
+    citation_path: us-test/manual/filtered-styled
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: labeled_sections
+      start_after_pattern: '^BEGIN RULE TEXT$'
+      section_heading_pattern: '^Rule (?P<label>\\d+\\.\\d+) (?P<heading>.+)$'
+      section_heading_requires_bold: true
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-17-filtered-styled-manual",
+    )
+
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-test/manual/filtered-styled",
+        "us-test/manual/filtered-styled/4.13",
+    ]
+    assert records[1].body == "The seven-day timeframe applies."
 
 
 def test_extract_labeled_pdf_sections_supports_label_heading_next_line(
