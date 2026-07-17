@@ -93,8 +93,9 @@ def test_arkansas_snap_scope_retains_complete_current_policy_set() -> None:
     documents_by_id = {document["source_id"]: document for document in documents}
     document_items_by_url = {item["source_url"]: item for item in document_items}
 
+    assert len(documents) == len(documents_by_id) == len(EXPECTED_SOURCES)
+    assert len(document_items) == len(document_items_by_url) == len(EXPECTED_SOURCES)
     assert set(documents_by_id) == set(EXPECTED_SOURCES)
-    assert len(document_items) == len(documents)
     for source_id, expected in EXPECTED_SOURCES.items():
         citation_path, source_url, source_format, source_as_of, expression_date, selector, count = (
             expected
