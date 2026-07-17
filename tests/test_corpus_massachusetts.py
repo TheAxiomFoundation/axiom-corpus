@@ -368,7 +368,8 @@ def test_ma_snap_regulations_scope_retains_complete_official_sources():
     )
     assert len(records) == 330
     assert len({record.citation_path for record in records}) == 330
-    assert Counter(record.citation_path.split("/")[4] for record in records) == {
+    assert all("/dta/" not in record.citation_path for record in records)
+    assert Counter(record.citation_path.split("/")[3] for record in records) == {
         "343": 48,
         "360": 22,
         "361": 49,
@@ -385,7 +386,25 @@ def test_ma_snap_regulations_scope_retains_complete_official_sources():
         if "/106-cmr/365/" in record.citation_path
     }
     assert len(chapter_365) == 53
-    assert {"365.030", "365.180", "365.970"} <= chapter_365
+    assert {"030", "180", "970"} <= chapter_365
+    forbidden_source_headers = (
+        "106 CMR: Department of Transitional Assistance",
+        "Trans. by S.L.",
+        "Prev. S.L.",
+        "Special Situation Households | Chapter | 365",
+        "Page 360.",
+        "Page 361.",
+        "Page 362.",
+        "Page 363.",
+        "Page 364.",
+        "Page 366.",
+        "Page 367.",
+    )
+    assert not [
+        record.citation_path
+        for record in records
+        if any(header in (record.body or "") for header in forbidden_source_headers)
+    ]
 
     coverage = json.loads(
         (

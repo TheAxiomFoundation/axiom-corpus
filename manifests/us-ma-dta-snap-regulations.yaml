@@ -2,7 +2,7 @@ documents:
 - source_id: ma-dta-106-cmr-343
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/343
+  citation_path: us-ma/regulation/106-cmr/343
   title: 'Massachusetts DTA Regulations: Chapter 343: Fair Hearing Rules'
   source_url: https://www.mass.gov/doc/chapter-343-fair-hearing-rules/download
   source_format: pdf
@@ -13,7 +13,8 @@ documents:
   extraction:
     segmentation: labeled_sections
     start_page: 3
-    section_heading_pattern: '^(?P<label>343\.\d{3}):\s*(?P<heading>.*)$'
+    section_heading_pattern: '^343\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
     label_only_heading_pattern: '^[A-Z].+$'
     label_only_requires_heading: true
     drop_line_patterns: &mass_cmr_pdf_headers
@@ -26,7 +27,8 @@ documents:
     - '^(?:343|36[0-7])$'
     - '^Rev\.'
     - '^\(?\d+ of \d+\)?$'
-    - '^Page\s+'
+    - '^Page(?:\s+.*)?$'
+    - '^(?:343|36[0-7])\.\d{3}$'
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -40,7 +42,7 @@ documents:
 - source_id: ma-dta-106-cmr-360
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/360
+  citation_path: us-ma/regulation/106-cmr/360
   title: 'Massachusetts DTA Regulations: Chapter 360: General Provisions'
   source_url: https://www.mass.gov/doc/chapter-360-general-provisions-0/download
   source_format: pdf
@@ -51,7 +53,8 @@ documents:
   extraction:
     segmentation: labeled_sections
     start_page: 2
-    section_heading_pattern: '^(?P<label>360\.\d{3}):\s*(?P<heading>.*)$'
+    section_heading_pattern: '^360\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
     label_only_heading_pattern: '^[A-Z].+$'
     label_only_requires_heading: true
     drop_line_patterns: *mass_cmr_pdf_headers
@@ -68,7 +71,7 @@ documents:
 - source_id: ma-dta-106-cmr-361
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/361
+  citation_path: us-ma/regulation/106-cmr/361
   title: 'Massachusetts DTA Regulations: Chapter 361: The Application Process'
   source_url: https://www.mass.gov/doc/chapter-361-the-application-process-0/download
   source_format: pdf
@@ -79,7 +82,8 @@ documents:
   extraction:
     segmentation: labeled_sections
     start_page: 3
-    section_heading_pattern: '^(?P<label>361\.\d{3}):\s*(?P<heading>.*)$'
+    section_heading_pattern: '^361\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
     label_only_heading_pattern: '^[A-Z].+$'
     label_only_requires_heading: true
     drop_line_patterns: *mass_cmr_pdf_headers
@@ -96,7 +100,7 @@ documents:
 - source_id: ma-dta-106-cmr-362
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/362
+  citation_path: us-ma/regulation/106-cmr/362
   title: 'Massachusetts DTA Regulations: Chapter 362: Nonfinancial Eligibility Standards'
   source_url: https://www.mass.gov/doc/chapter-362-nonfinancial-eligibility-standards-0/download
   source_format: pdf
@@ -107,7 +111,8 @@ documents:
   extraction:
     segmentation: labeled_sections
     start_page: 2
-    section_heading_pattern: '^(?P<label>362\.\d{3}):\s*(?P<heading>.*)$'
+    section_heading_pattern: '^362\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
     label_only_heading_pattern: '^[A-Z].+$'
     label_only_requires_heading: true
     drop_line_patterns: *mass_cmr_pdf_headers
@@ -124,7 +129,7 @@ documents:
 - source_id: ma-dta-106-cmr-363
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/363
+  citation_path: us-ma/regulation/106-cmr/363
   title: 'Massachusetts DTA Regulations: Chapter 363: Financial Eligibility Standards'
   source_url: https://www.mass.gov/doc/chapter-363-financial-eligibility-standards/download
   source_format: pdf
@@ -135,7 +140,8 @@ documents:
   extraction:
     segmentation: labeled_sections
     start_page: 2
-    section_heading_pattern: '^(?P<label>363\.\d{3}):\s*(?P<heading>.*)$'
+    section_heading_pattern: '^363\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
     label_only_heading_pattern: '^[A-Z].+$'
     label_only_requires_heading: true
     drop_line_patterns: *mass_cmr_pdf_headers
@@ -152,7 +158,7 @@ documents:
 - source_id: ma-dta-106-cmr-364
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/364
+  citation_path: us-ma/regulation/106-cmr/364
   title: 'Massachusetts DTA Regulations: Chapter 364: Determining Household Eligibility and Benefit Level'
   source_url: https://www.mass.gov/doc/chapter-364-determining-household-eligibility-and-benefit-level-0/download
   source_format: pdf
@@ -163,7 +169,8 @@ documents:
   extraction:
     segmentation: labeled_sections
     start_page: 3
-    section_heading_pattern: '^(?P<label>364\.\d{3}):\s*(?P<heading>.*)$'
+    section_heading_pattern: '^364\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
     label_only_heading_pattern: '^[A-Z].+$'
     label_only_requires_heading: true
     drop_line_patterns: *mass_cmr_pdf_headers
@@ -180,7 +187,7 @@ documents:
 - source_id: ma-dta-106-cmr-365
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/365
+  citation_path: us-ma/regulation/106-cmr/365
   title: 'Massachusetts DTA Regulations: Chapter 365: Special Situation Households'
   source_url: https://www.mass.gov/doc/chapter-365-special-situation-households/download
   source_format: docx
@@ -191,17 +198,21 @@ documents:
   extraction:
     segmentation: labeled_sections
     start_after_pattern: '^Rev\..*\|\s*Page(?: Page)?\s*\|\s*365\.030$'
-    section_heading_pattern: '^(?P<label>365\.\d{3})(?::\s*|\s*)(?P<heading>[A-Z].+)$'
+    section_heading_pattern: '^365\.(?P<section>\d{3})(?::\s*|\s*)(?P<heading>[A-Z].+)$'
+    section_label_template: '{section}'
     drop_line_patterns:
     - '^106 CMR: Department of Transitional Assistance$'
     - '^Trans\. by S\.L\.'
     - '^Prev\. S\.L\.'
     - '^Supplemental Nutrition Assistance Program$'
+    - '^Prev\. S\.L\..*\| Supplemental Nutrition Assistance Program$'
+    - '^Special Situation Households \| Chapter \| 365$'
     - '^Chapter(?:\s+365)?$'
     - '^365$'
     - '^Rev\.'
     - '^\(?\d+ of \d+\)?$'
     - '^Page\s+'
+    - '^365\.\d{3}$'
   metadata:
     primary_source: true
     source_authority: Massachusetts Department of Transitional Assistance
@@ -215,7 +226,7 @@ documents:
 - source_id: ma-dta-106-cmr-366
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/366
+  citation_path: us-ma/regulation/106-cmr/366
   title: 'Massachusetts DTA Regulations: Chapter 366: Additional Certification Functions'
   source_url: https://www.mass.gov/doc/chapter-366-additional-certification-functions-0/download
   source_format: pdf
@@ -226,7 +237,8 @@ documents:
   extraction:
     segmentation: labeled_sections
     start_page: 2
-    section_heading_pattern: '^(?P<label>366\.\d{3}):\s*(?P<heading>.*)$'
+    section_heading_pattern: '^366\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
     label_only_heading_pattern: '^[A-Z].+$'
     label_only_requires_heading: true
     drop_line_patterns: *mass_cmr_pdf_headers
@@ -243,7 +255,7 @@ documents:
 - source_id: ma-dta-106-cmr-367
   jurisdiction: us-ma
   document_class: regulation
-  citation_path: us-ma/regulation/dta/106-cmr/367
+  citation_path: us-ma/regulation/106-cmr/367
   title: 'Massachusetts DTA Regulations: Chapter 367: Violations Hearings and Claims'
   source_url: https://www.mass.gov/doc/chapter-367-violations-hearings-and-claims-0/download
   source_format: pdf
@@ -254,7 +266,8 @@ documents:
   extraction:
     segmentation: labeled_sections
     start_page: 3
-    section_heading_pattern: '^(?P<label>367\.\d{3}):\s*(?P<heading>.*)$'
+    section_heading_pattern: '^367\.(?P<section>\d{3}):\s*(?P<heading>.*)$'
+    section_label_template: '{section}'
     label_only_heading_pattern: '^[A-Z].+$'
     label_only_requires_heading: true
     drop_line_patterns: *mass_cmr_pdf_headers
