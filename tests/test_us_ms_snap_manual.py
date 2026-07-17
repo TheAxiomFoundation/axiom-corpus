@@ -96,6 +96,10 @@ def test_mississippi_scope_extracts_every_numbered_rule_once() -> None:
     assert rules_by_label["22.1"]["heading"].endswith(
         "Fleeing Felon Disqualifications and Work Requirement Sanctions."
     )
+    assert rules_by_label["14.14"]["heading"] == "14.14 Provider Determination."
+    assert rules_by_label["14.14"]["body"].startswith(
+        "A. The agency must ensure that E&T providers understand their responsibility"
+    )
     assert "Part 14 Chapter" not in rules_by_label["1.15"]["body"]
     assert "or 165 3. Damaged" not in rules_by_label["34.7"]["body"]
     assert "D-SNAP. 167 Source" not in rules_by_label["35.4"]["body"]

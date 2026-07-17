@@ -1009,7 +1009,9 @@ def _extract_labeled_pdf_section_blocks(
     current_start_page: int | None = None
     index = 0
 
-    def is_heading_continuation(candidate_index: int) -> bool:
+    def is_heading_continuation(
+        candidate_index: int, *, allow_bold_continuation: bool
+    ) -> bool:
         candidate = lines[candidate_index][0]
         is_distinct_section = _match_labeled_pdf_section(
             candidate,
@@ -1019,7 +1021,8 @@ def _extract_labeled_pdf_section_blocks(
             label_replacements=label_replacements,
         )
         if (
-            heading_requires_bold
+            allow_bold_continuation
+            and heading_requires_bold
             and line_boldness[candidate_index]
             and not is_distinct_section
         ):
@@ -1074,7 +1077,13 @@ def _extract_labeled_pdf_section_blocks(
             consumed_label_heading = False
             if drop_repeated and label == current_label:
                 index += 1
-                while index < len(lines) and is_heading_continuation(index):
+                allow_bold_continuation = not heading_text.rstrip().endswith((".", "?", "!"))
+                while index < len(lines) and is_heading_continuation(
+                    index, allow_bold_continuation=allow_bold_continuation
+                ):
+                    allow_bold_continuation = not lines[index][0].rstrip().endswith(
+                        (".", "?", "!")
+                    )
                     index += 1
                 continue
             if not heading_text and label_heading_re is not None:
@@ -1092,8 +1101,14 @@ def _extract_labeled_pdf_section_blocks(
             index += 1
             if consumed_label_heading:
                 index += 1
-            while index < len(lines) and is_heading_continuation(index):
+            allow_bold_continuation = not heading_text.rstrip().endswith((".", "?", "!"))
+            while index < len(lines) and is_heading_continuation(
+                index, allow_bold_continuation=allow_bold_continuation
+            ):
                 heading_lines.append(lines[index][0])
+                allow_bold_continuation = not lines[index][0].rstrip().endswith(
+                    (".", "?", "!")
+                )
                 index += 1
             heading = " ".join(part for part in heading_lines if part)
             current_label = label
