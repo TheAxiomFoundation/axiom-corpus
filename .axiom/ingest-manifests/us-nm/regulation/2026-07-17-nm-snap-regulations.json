@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-nm/regulation/2026-07-17-nm-snap-regulations.json",
-      "sha256": "d0706860f28149c3109094e86e6a889239b8c9a32ed218d6d230d8ce783a8081"
+      "sha256": "75cf91dc98a7e7b86527d899c9f8750728bfc7002a5150d2172bcc35541cef30"
     },
     {
       "path": "data/corpus/provisions/us-nm/regulation/2026-07-17-nm-snap-regulations.jsonl",
-      "sha256": "8359b2783c12985db8534a89e05058b12195d1ce27239efdd7223123d5cd3b69"
+      "sha256": "29822e9390f752f5d7845385f1307c67285f6ce07c829c34610286f981374c4f"
     },
     {
       "path": "data/corpus/sources/us-nm/regulation/2026-07-17-nm-snap-regulations/official-documents/nm-srca-nmac-8-100-100.html",
@@ -126,7 +126,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "0f07e5c071077c1221b328c0f63bd6eaae53ff73",
+    "commit": "a4b032a49bca774ec8b13a937b6881d9c817b0ca",
     "dirty_tracked": false,
     "root": "."
   },
@@ -143,19 +143,19 @@
     "source_count": 388
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-17T21:07:50.576044+00:00",
+  "generated_at": "2026-07-17T21:13:33.045414+00:00",
   "jurisdiction": "us-nm",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-17-nm-snap-regulations.md",
-      "sha256": "cc3f46c415ad08b9d6a7e7d75977793177e61429188b464410792de65de730a4"
+      "sha256": "29965757035e017833b783b4daa62aba1efaf7b6dfb668ccf00b55b6cdd0a927"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "OjsZm/7TnoqsKU0+CrRVG2CQfyAgN8YYOiqfQAP1/Saf/sllRTndRBWV0BfUAvAO0XdlDQc+A0GEGuEOYiWCCA=="
+    "value": "DO6ezuofbSZBowYgTJuJseIH2tL68rjzMBa5XEAlfrTvEnxVDXsPiZru7YjrU95xXgOPJM+MPYL97tHFsZ0dAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-17-nm-snap-regulations"
