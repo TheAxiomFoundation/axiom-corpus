@@ -1,0 +1,38 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ca/regulation/2026-05-27-ca-cdss-mpp-calfresh.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ca/regulation/2026-05-27-ca-cdss-mpp-calfresh.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ca/regulation/2026-05-27-ca-cdss-mpp-calfresh.jsonl"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f0e3770ef45832ddc8097a35179bf0c7e180c9a8",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Retire source-less 2026-05-27 California CalFresh scope after complete official-source refetch"
+  },
+  "coverage": null,
+  "document_class": "regulation",
+  "generated_at": "2026-07-17T01:56:03.377991+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FKJs8PGClIXXZDz50ngsnvSgK3jzE69KFn+bHxdaGLBbU26O5pNeqXn19vno+hHUzVlFH8zMfAds7qfIywA0AA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-ca-cdss-mpp-calfresh"
+}
