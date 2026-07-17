@@ -323,14 +323,18 @@ states:
     notes: Official DSS sitemap lists 516 SNAP manual pages. Current scope includes 452 live visible text-bearing pages plus 63 archived official DSS captures for pages that now return password-only shells. The omitted 1142.000.00 parent page has no substantive live or archived body, while its child policy sections are included. Official SOS 13 CSR 40-15 SNAP regulation PDF exists at https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-15.pdf, but Cloudflare currently blocks unattended source capture.
   - jurisdiction: us-mt
     name: Montana
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
-    primary_source_url: https://dphhs.mt.gov/HCSD/snapmanual
+    primary_source_url: https://dphhs.mt.gov/hcsd/Manuals/snapmanual
     target_manifest: manifests/us-mt-snap-manual.yaml
     target_scope:
       jurisdiction: us-mt
       document_class: manual
-      version: 2026-05-27-mt-snap-manual
+      version: 2026-07-17-mt-snap-policy-manual
+    notes: Current scope retains all 82 unique PDFs linked from the official DPHHS SNAP
+      policy manual index, with the index's per-section revision dates and pinned source
+      hashes. It covers the complete regular SNAP manual, including E&T, ABAWD, issuance,
+      case management, hearings, quality control, and provider directories.
   - jurisdiction: us-ne
     name: Nebraska
     queue_status: source_refetch_required
