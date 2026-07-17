@@ -727,6 +727,93 @@ def test_download_document_retries_browser_user_agent_on_declared_pdf_html_chall
     assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
 
 
+def test_download_document_retries_browser_user_agent_on_pdf_access_denial():
+    blocked_pdf = fitz.open()
+    page = blocked_pdf.new_page()
+    page.insert_text((72, 72), "The request is blocked.\n20260717T135819Z-request-id")
+    blocked_content = blocked_pdf.tobytes()
+
+    class FakeResponse:
+        def __init__(self, content: bytes):
+            self.status_code = 200
+            self.content = content
+            self.headers = {"content-type": "application/pdf"}
+            self.url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+            self.calls: list[dict[str, str]] = []
+
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None, verify=None):
+            del url, timeout, allow_redirects, verify
+            self.calls.append(dict(headers or self.headers))
+            if len(self.calls) == 1:
+                return FakeResponse(blocked_content)
+            return FakeResponse(b"%PDF-1.7")
+
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="manual",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+    )
+    session = FakeSession()
+
+    downloaded = _download_document(source, session=session)  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == b"%PDF-1.7"
+    assert session.calls[0]["User-Agent"] == OFFICIAL_DOCUMENT_USER_AGENT
+    assert session.calls[1]["User-Agent"] == OFFICIAL_DOCUMENT_BROWSER_USER_AGENT
+
+
+def test_download_document_rejects_pdf_access_denial_after_browser_retry():
+    blocked_pdf = fitz.open()
+    page = blocked_pdf.new_page()
+    page.insert_text((72, 72), "The request is blocked.\n20260717T135819Z-request-id")
+    blocked_content = blocked_pdf.tobytes()
+
+    class FakeResponse:
+        status_code = 200
+        content = blocked_content
+        headers = {"content-type": "application/pdf"}
+        url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    class FakeSession:
+        def __init__(self):
+            self.headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+
+        def get(self, url, *, headers=None, timeout=None, allow_redirects=None, verify=None):
+            del url, headers, timeout, allow_redirects, verify
+            return FakeResponse()
+
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="manual",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+    )
+
+    with pytest.raises(RuntimeError, match="remained access-blocked"):
+        _download_document(source, session=FakeSession())  # pyright: ignore[reportPrivateUsage]
+
+
 def test_download_document_uses_browser_impersonation_after_browser_ua_fallback(monkeypatch):
     class FakeResponse:
         status_code = 403
@@ -854,6 +941,56 @@ def test_download_document_by_browser_impersonation_uses_curl_cffi(monkeypatch):
             "impersonate": "chrome120",
         }
     ]
+
+
+def test_download_document_by_browser_impersonation_rejects_pdf_access_denial(monkeypatch):
+    blocked_pdf = fitz.open()
+    page = blocked_pdf.new_page()
+    page.insert_text((72, 72), "The request is blocked.\n20260717T135819Z-request-id")
+    blocked_content = blocked_pdf.tobytes()
+
+    class FakeResponse:
+        status_code = 200
+        content = blocked_content
+        headers = {"content-type": "application/pdf"}
+        url = "https://example.test/doc.pdf"
+
+        def close(self):
+            return None
+
+        def raise_for_status(self):
+            return None
+
+    calls = 0
+
+    def fake_get(url, **kwargs):
+        nonlocal calls
+        del url, kwargs
+        calls += 1
+        return FakeResponse()
+
+    fake_curl_cffi = types.SimpleNamespace(requests=types.SimpleNamespace(get=fake_get))
+    monkeypatch.setitem(sys.modules, "curl_cffi", fake_curl_cffi)
+    monkeypatch.setattr(documents_module.time, "sleep", lambda seconds: None)
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="us-test",
+        document_class="manual",
+        title="Document",
+        source_url="https://example.test/doc.pdf",
+        source_format="pdf",
+    )
+
+    with pytest.raises(RuntimeError, match="after browser impersonation"):
+        _download_document_by_browser_impersonation(
+            source,
+            source.source_url,
+            headers=None,
+            verify=True,
+            impersonate="chrome120",
+        )
+
+    assert calls == 4
 
 
 def test_download_document_retries_transient_request_errors(monkeypatch):
