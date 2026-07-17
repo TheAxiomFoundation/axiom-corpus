@@ -710,10 +710,86 @@ def fetch_staged_release_scope_evidence(
     return evidence
 
 
-# A whole-plan released-scope response for a large published jurisdiction
-# exceeds what the origin serves before Cloudflare's proxy deadline
-# (HTTP 520), so the RPC is queried in bounded batches.
-_RELEASED_SCOPE_FETCH_BATCH = 20
+# Each row repeats the signed release object, so response size grows quickly as
+# releases accumulate artifacts. Keep normal requests small and split them
+# further if the origin still rejects a batch.
+_RELEASED_SCOPE_FETCH_BATCH = 5
+_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS = 3
+_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS = 1.0
+
+
+def _fetch_released_scope_object_rows(
+    scopes: Sequence[ReleaseScope],
+    *,
+    service_key: str,
+    supabase_url: str,
+) -> list[object]:
+    requested_keys = {scope.key for scope in scopes}
+    payload = {
+        "p_scopes": [
+            {
+                "jurisdiction": scope.jurisdiction,
+                "document_class": scope.document_class,
+                "version": scope.version,
+            }
+            for scope in scopes
+        ]
+    }
+    req = urllib.request.Request(
+        f"{_rest_url(supabase_url)}/rpc/get_released_scope_objects",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "apikey": service_key,
+            "Authorization": f"Bearer {service_key}",
+            "Accept": "application/json",
+            "Accept-Profile": "corpus",
+            "Content-Type": "application/json",
+            "Content-Profile": "corpus",
+            "User-Agent": USER_AGENT,
+        },
+        method="POST",
+    )
+    for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                rows = json.loads(resp.read())
+            if not isinstance(rows, list):
+                raise RuntimeError("unexpected released-scope response")
+            for row in rows:
+                if not isinstance(row, dict):
+                    raise RuntimeError("released-scope response contains a malformed row")
+                key = (
+                    str(row.get("jurisdiction") or ""),
+                    str(row.get("document_class") or ""),
+                    str(row.get("version") or ""),
+                )
+                if key not in requested_keys:
+                    raise RuntimeError(
+                        f"released-scope response contains an unknown scope: {key!r}"
+                    )
+            return rows
+        except urllib.error.HTTPError as exc:
+            if 400 <= exc.code < 500:
+                raise
+            if len(scopes) > 1:
+                midpoint = len(scopes) // 2
+                return _fetch_released_scope_object_rows(
+                    scopes[:midpoint],
+                    service_key=service_key,
+                    supabase_url=supabase_url,
+                ) + _fetch_released_scope_object_rows(
+                    scopes[midpoint:],
+                    service_key=service_key,
+                    supabase_url=supabase_url,
+                )
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        except (urllib.error.URLError, TimeoutError):
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+
+    raise AssertionError("released-scope retry loop exhausted unexpectedly")
 
 
 def fetch_released_scope_objects(
@@ -739,34 +815,11 @@ def fetch_released_scope_objects(
     }
     for start in range(0, len(scopes), _RELEASED_SCOPE_FETCH_BATCH):
         batch = scopes[start : start + _RELEASED_SCOPE_FETCH_BATCH]
-        payload = {
-            "p_scopes": [
-                {
-                    "jurisdiction": scope.jurisdiction,
-                    "document_class": scope.document_class,
-                    "version": scope.version,
-                }
-                for scope in batch
-            ]
-        }
-        req = urllib.request.Request(
-            f"{_rest_url(supabase_url)}/rpc/get_released_scope_objects",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "apikey": service_key,
-                "Authorization": f"Bearer {service_key}",
-                "Accept": "application/json",
-                "Accept-Profile": "corpus",
-                "Content-Type": "application/json",
-                "Content-Profile": "corpus",
-                "User-Agent": USER_AGENT,
-            },
-            method="POST",
+        rows = _fetch_released_scope_object_rows(
+            batch,
+            service_key=service_key,
+            supabase_url=supabase_url,
         )
-        with urllib.request.urlopen(req, timeout=600) as resp:
-            rows = json.loads(resp.read())
-        if not isinstance(rows, list):
-            raise RuntimeError("unexpected released-scope response")
 
         batch_keys = {scope.key for scope in batch}
         for row in rows:
