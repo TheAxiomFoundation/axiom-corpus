@@ -72,6 +72,7 @@ def test_nebraska_manifest_pins_current_title_475_chapters() -> None:
         for document in documents
     )
     assert documents[0]["metadata"]["official_pdf_blob_name"].endswith("_Official.pdf")
+    assert documents[0]["metadata"]["date_filed"] == "2025-12-19"
     assert all(
         document["request"]
         == {
@@ -148,6 +149,11 @@ def test_nebraska_sections_preserve_inline_text_and_policy_boundaries() -> None:
     assert "us-ne/regulation/title-475/chapter-3/273.11" not in sections
     assert sections["us-ne/regulation/title-475/chapter-3/002.04.b"]["heading"].startswith(
         "002.04(B)"
+    )
+    assert all(row["heading"].endswith(".") for row in sections.values())
+    assert all(
+        row["heading"].startswith(f"{row['metadata']['section_label']} ")
+        for row in sections.values()
     )
     assert not any(
         marker in (row.get("body") or "")
