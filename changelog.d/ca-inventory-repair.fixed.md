@@ -1,1 +1,0 @@
-Regenerated all 99 ca scope source inventories in the canonical shape (`items` key, one expected-provision entry per citation path) and recomputed their coverage reports; every ca scope now passes deep release validation (previously all 99 failed with source_count=0 because the scaffolded inventories used a `sources` key without citation paths).

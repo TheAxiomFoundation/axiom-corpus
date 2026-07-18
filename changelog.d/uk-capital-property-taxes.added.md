@@ -1,1 +1,0 @@
-Ingest UK capital and property tax provisions: Capital Gains Tax (TCGA 1992 s.1H/1I/1K), business rates authority (LGFA 1988 s.43), Land and Buildings Transaction Tax (Scotland) Act 2013 + SSI 2015/126 residential rate schedule, and Land Transaction Tax (Wales) Act 2017 + WSI 2018/128 current residential rate schedule.

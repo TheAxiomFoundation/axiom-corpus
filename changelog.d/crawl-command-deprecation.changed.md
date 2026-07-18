@@ -1,1 +1,0 @@
-Deprecated the `axiom crawl` command (and its `axiom_corpus.crawl` module), superseded by manifest-driven ingest via `axiom-corpus-ingest` (see CLAUDE.md). It now emits a `DeprecationWarning` and a console notice; it remains functional and is scheduled for removal after 2026-Q3 unless a consumer objects.
