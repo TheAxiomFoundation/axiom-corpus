@@ -301,6 +301,7 @@ def test_publication_orders_all_validation_before_activation(tmp_path: Path, mon
         r2_config=_config(),
         private_key=private,
         public_key=public,
+        activate=True,
     )
 
     assert calls == [
@@ -314,6 +315,63 @@ def test_publication_orders_all_validation_before_activation(tmp_path: Path, mon
         "atomic-activate",
     ]
     assert report.activation["active"] is True
+    assert report.release_object["content"]["validation"]["passed"] is True
+
+
+def test_publish_does_not_activate_by_default(tmp_path: Path, monkeypatch) -> None:
+    # A routine publish must not move serving: activation repoints the per-scope
+    # serving map and can displace another jurisdiction (axiom-corpus#408). It is
+    # opt-in via activate=True / the --activate flag.
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: _readback_for(kwargs["release_content"]),
+    )
+    monkeypatch.setattr(
+        publish,
+        "load_provisions_to_supabase",
+        lambda *args, **kwargs: SupabaseLoadReport(rows_total=1, rows_loaded=1, chunk_count=1),
+    )
+    monkeypatch.setattr(
+        publish,
+        "write_navigation_nodes_to_supabase",
+        lambda *args, **kwargs: NavigationSupabaseWriteReport(1, 1, 1, (scope,), 0, 0),
+    )
+    monkeypatch.setattr(
+        publish,
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {scope: _scope_evidence(base, scope)},
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_signed_release_object",
+        lambda release_object, **kwargs: (
+            f"releases/{release_object['release']}/{release_object['content_sha256']}.json"
+        ),
+    )
+    monkeypatch.setattr(
+        publish,
+        "activate_corpus_release",
+        lambda *args, **kwargs: pytest.fail("publish must not activate without activate=True"),
+    )
+
+    report = publish.publish_named_release(
+        repo_root=root,
+        base=base,
+        selector_path=selector,
+        supabase_url="https://example.supabase.co",
+        service_key="service",
+        access_token="management",
+        r2_config=_config(),
+        private_key=private,
+        public_key=public,
+    )
+
+    assert report.activation is None
+    assert report.to_mapping()["activation"] is None
     assert report.release_object["content"]["validation"]["passed"] is True
 
 
@@ -367,6 +425,7 @@ def test_count_mismatch_never_signs_or_activates(tmp_path: Path, monkeypatch) ->
             r2_config=_config(),
             private_key=private,
             public_key=public,
+            activate=True,
         )
     assert activated is False
 
@@ -413,6 +472,7 @@ def test_private_public_key_mismatch_never_activates(tmp_path: Path, monkeypatch
             r2_config=_config(),
             private_key=private,
             public_key=wrong_public,
+            activate=True,
         )
 
 
@@ -504,6 +564,7 @@ def test_released_scope_retry_or_successor_reuses_exact_immutable_rows(
         r2_config=_config(),
         private_key=private,
         public_key=public,
+        activate=True,
     )
 
     assert report.provision_rows == 1

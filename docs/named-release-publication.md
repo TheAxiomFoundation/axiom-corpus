@@ -65,12 +65,22 @@ at the first failure:
 8. Conditionally write the signed object to
    `releases/<name>/<content_sha256>.json`, read it back, and verify its bytes,
    content address, schema, evidence, and signature.
-9. After another local signature verification, use the Supabase Management API
-   to call `corpus.activate_corpus_release`. The staging `service_role` is
-   explicitly forbidden from executing this RPC. The transaction locks the
-   projection tables, repeats exact counts and digests, installs immutable
-   scope membership, moves the singleton production pointer, and refreshes
-   `current_provision_counts`. Any error rolls the transaction back.
+Publication ends here: the release is signed and durable, but serving is
+unchanged.
+
+9. Activation is a separate, deliberate step (`scripts/activate_release.py`, or
+   `publish_corpus.py --activate`), because it moves serving and can displace
+   another jurisdiction's release (axiom-corpus#408). After another local
+   signature verification it uses the Supabase Management API to call
+   `corpus.activate_corpus_release`. The staging `service_role` is explicitly
+   forbidden from executing this RPC. The transaction locks the projection
+   tables (and takes an EXCLUSIVE lock on `active_scope_pointer` to serialize
+   activations), repeats exact counts and digests, installs immutable scope
+   membership, then repoints the per-`(jurisdiction, document_class)` serving map
+   for only the pairs this release carries — recording each takeover in
+   `corpus.scope_activation_history` — and refreshes `current_provision_counts`.
+   Any error rolls the transaction back. Preview the takeover first with
+   `activate_release.py --dry-run`.
 
 Partial staging is inert and safe to inspect or retry. There is no per-scope
 `publish`, mutable `current.json`, publish-on-load, best-effort refresh, or
