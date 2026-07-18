@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/nz/district-plan/2026-07-18-wellington-district-plan.json",
-      "sha256": "0e3fb8e09441246a432999a90bfe6a048da64e781e95052ae2984faf7913775c"
+      "sha256": "1a53956fc9de8f566947d8478f7a7d9b81a7edab8866f54885b17b33675c5506"
     },
     {
       "path": "data/corpus/provisions/nz/district-plan/2026-07-18-wellington-district-plan.jsonl",
-      "sha256": "1f35541cef20f598d0365f433c7685f3334cc19fd2035d54f67b75380b0b0899"
+      "sha256": "4e34f0659f1287ef711fd81bb3dff1a81a61bb278eb6ecba0b14dd46d46929c4"
     },
     {
       "path": "data/corpus/sources/nz/district-plan/2026-07-18-wellington-district-plan/eplan/wellington-city/2024/ccz-228.json",
@@ -42,7 +42,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7deb3370323e04f3ed905d307ae556b358be1055",
+    "commit": "123cc0ed6a0003c2db8feba8639abcecacea8a2d",
     "dirty_tracked": false,
     "root": "."
   },
@@ -59,14 +59,14 @@
     "source_count": 865
   },
   "document_class": "district-plan",
-  "generated_at": "2026-07-18T12:05:01.983879+00:00",
+  "generated_at": "2026-07-18T12:08:14.759205+00:00",
   "jurisdiction": "nz",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "KHuGADs/O6JhxBSNVjcG0ZLNRScp1e3lUpjOk9H4VXxqaBbAvXECBMYB9tiAnOnBtcJF03AtT4ynpVohFfAGDw=="
+    "value": "3uKqp2EMx4zO91dCoxzbeXj7hBI88rE2EOhG2dzwvvxm6b+WeJPf+bx6mxZ2g1ECRK2nDFUUP9AKgeIe3Ej/Cw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-18-wellington-district-plan"
