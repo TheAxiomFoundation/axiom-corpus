@@ -583,6 +583,11 @@ def extract_nz_district_plan(
         territorial_authority=manifest.territorial_authority,
         plan_version=manifest.plan_version,
     )
+    root_source_key = (
+        _source_key(version, document_class, _revision_source_name(manifest))
+        if revision_bytes is not None
+        else None
+    )
     plan_root = _plan_root_record(
         manifest,
         citation_path=plan_root_path,
@@ -590,9 +595,16 @@ def extract_nz_district_plan(
         retrieved_at=retrieval_stamp,
         source_as_of=source_as_of_text,
         expression_date=expression_date_text,
+        source_key=root_source_key,
     )
     records.append(plan_root)
-    inventory.append(_inventory_for(plan_root, source_format=ISOPLAN_SOURCE_FORMAT, sha256=None))
+    inventory.append(
+        _inventory_for(
+            plan_root,
+            source_format=ISOPLAN_REVISION_SOURCE_FORMAT if revision_bytes is not None else ISOPLAN_SOURCE_FORMAT,
+            sha256=revision_sha,
+        )
+    )
 
     for payload in chapter_payloads:
         chapter = payload.chapter
@@ -757,6 +769,7 @@ def _plan_root_record(
     retrieved_at: str,
     source_as_of: str,
     expression_date: str,
+    source_key: str | None = None,
 ) -> ProvisionRecord:
     label = manifest.plan_title or f"{manifest.territorial_authority_name} District Plan"
     return ProvisionRecord(
@@ -769,7 +782,7 @@ def _plan_root_record(
         body=None,
         version=version,
         source_url=manifest.base_url or None,
-        source_path=None,
+        source_path=source_key,
         source_id=manifest.base_url or None,
         source_format=ISOPLAN_SOURCE_FORMAT,
         source_document_id=_plan_document_id(manifest),
