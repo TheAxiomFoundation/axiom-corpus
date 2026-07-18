@@ -257,24 +257,33 @@ states:
       both officially listed section 404 documents.
   - jurisdiction: us-ma
     name: Massachusetts
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_regulations
     primary_source_url: https://www.mass.gov/lists/department-of-transitional-assistance-regulations
     target_manifest: manifests/us-ma-dta-snap-regulations.yaml
     target_scope:
       jurisdiction: us-ma
       document_class: regulation
-      version: 2026-05-27-ma-dta-snap-regulations
+      version: 2026-07-17-ma-dta-snap-regulations
+    notes: Current scope retains the official DTA fair-hearing chapter 343 and all
+      eight SNAP regulation chapters 360 through 367 linked from the official
+      Mass.gov DTA regulations index. The duplicate chapter 365 index link that
+      returns HTTP 404 is excluded; the working official DOCX is retained.
   - jurisdiction: us-mi
     name: Michigan
-    queue_status: source_refetch_required
-    source_kind: official_html_manual
-    primary_source_url: https://mdhhs-pres-prod.michigan.gov/olmweb/ex/html/
+    queue_status: published_current
+    source_kind: official_pdf_manual_tree
+    primary_source_url: https://mdhhs-pres-prod.michigan.gov/OLMWeb/ex/BP/Public/BEM/000.pdf
     target_manifest: manifests/us-mi-bridges-manual.yaml
     target_scope:
       jurisdiction: us-mi
       document_class: manual
-      version: 2026-05-27-mi-bridges-manual
+      version: 2026-07-17-mi-bridges-manual
+    notes: Current scope retains all 183 chapters listed in the official current-effective
+      BAM and BEM PDF tables of contents, both tables of contents, the Bridges bulletin log
+      and glossary, and the FAP reference tables and 2026 issuance schedule. The MDHHS HTML
+      landing page currently links to future-effective documents, so it is not used as the
+      captured source boundary.
   - jurisdiction: us-mn
     name: Minnesota
     queue_status: published_current
@@ -288,14 +297,19 @@ states:
     notes: Current scope uses the official full Combined Manual PDF because dynamic HTML manual pages redirect to an access-protected service.
   - jurisdiction: us-ms
     name: Mississippi
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_pdf_manual
     primary_source_url: https://www.sos.ms.gov/adminsearch/ACCode/00000331c.pdf
     target_manifest: manifests/us-ms-snap-manual.yaml
     target_scope:
       jurisdiction: us-ms
       document_class: manual
-      version: 2026-05-27-ms-snap-manual
+      version: 2026-07-17-ms-snap-policy-manual
+    notes: The official MDHS SNAP and Administrative Codes pages both designate the
+      Secretary of State Part 14 PDF, revised December 20, 2025. The retained PDF is
+      segmented into all 384 uniquely numbered rules using its bold rule headings. An
+      unlinked MDHS upload labeled May 1, 2026 was observed but is not treated as current
+      until MDHS or the Secretary of State designates it as the operative manual.
   - jurisdiction: us-mo
     name: Missouri
     queue_status: published_current
@@ -309,24 +323,32 @@ states:
     notes: Official DSS sitemap lists 516 SNAP manual pages. Current scope includes 452 live visible text-bearing pages plus 63 archived official DSS captures for pages that now return password-only shells. The omitted 1142.000.00 parent page has no substantive live or archived body, while its child policy sections are included. Official SOS 13 CSR 40-15 SNAP regulation PDF exists at https://www.sos.mo.gov/cmsimages/adrules/csr/current/13csr/13c40-15.pdf, but Cloudflare currently blocks unattended source capture.
   - jurisdiction: us-mt
     name: Montana
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
-    primary_source_url: https://dphhs.mt.gov/HCSD/snapmanual
+    primary_source_url: https://dphhs.mt.gov/hcsd/Manuals/snapmanual
     target_manifest: manifests/us-mt-snap-manual.yaml
     target_scope:
       jurisdiction: us-mt
       document_class: manual
-      version: 2026-05-27-mt-snap-manual
+      version: 2026-07-17-mt-snap-policy-manual
+    notes: Current scope retains all 82 unique PDFs linked from the official DPHHS SNAP
+      policy manual index, with the index's per-section revision dates and pinned source
+      hashes. It covers the complete regular SNAP manual, including E&T, ABAWD, issuance,
+      case management, hearings, quality control, and provider directories.
   - jurisdiction: us-ne
     name: Nebraska
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_rules
     primary_source_url: https://rules.nebraska.gov/rules?agencyId=37&titleId=230
     target_manifest: manifests/us-ne-snap-rules.yaml
     target_scope:
       jurisdiction: us-ne
       document_class: regulation
-      version: 2026-05-27-ne-snap-rules
+      version: 2026-07-17-ne-snap-rules
+    notes: Current Title 475 scope retains the five official Nebraska Rules PDFs and
+      segments all 737 unique labeled provisions across general provisions, household
+      processing, eligibility, benefits, and EBT issuance and accountability. The
+      source-backed scope has complete 742-of-742 coverage and pinned source hashes.
   - jurisdiction: us-nv
     name: Nevada
     queue_status: published_current
@@ -350,48 +372,51 @@ states:
     notes: DHHS Food Stamp Manual HTML remains access-blocked from unattended clients; current scope uses official General Court Chapter He-W 700 SNAP administrative rules.
   - jurisdiction: us-nj
     name: New Jersey
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_regulations_page
     primary_source_url: https://www.nj.gov/humanservices/notices/rules-and-fees/rules-and-regulations/
-    target_manifest: manifests/us-nj-snap-rules-reconstructed.yaml
+    target_manifest: manifests/us-nj-snap-rules.yaml
     target_scope:
       jurisdiction: us-nj
       document_class: regulation
-      version: 2026-05-28-nj-snap-rules-reconstructed
-    historical_base_manifest: manifests/us-nj-snap-rules-2017-base.yaml
-    historical_base_scope:
-      jurisdiction: us-nj
-      document_class: regulation
-      version: 2017-02-06-nj-snap-rules-base
-    supporting_manifest: manifests/us-nj-snap-rulemaking-notices.yaml
-    supporting_scope:
-      jurisdiction: us-nj
-      document_class: rulemaking
-      version: 2026-05-28-nj-snap-rulemaking-notices
-    supporting_queue_status: source_refetch_required
-    notes: Official rules-and-regulations page links one current N.J.A.C. 10:87 PDF, but that PDF physically ends at section 10:87-5.5. The current scope is reconstructed from the complete 2017 archived official DHS courtesy PDF plus official DHS/NJ Register rulemaking notices that modify N.J.A.C. 10:87 after that base, including the June 2024 DFD terminology administrative change and September 2025 SNAP amendments. The reconstructed scope is source-first and primary-official, but it is not an OAL/LexisNexis compiled-code export; the 2017 official courtesy PDF states that official New Jersey Administrative Rules are available through LexisNexis, the publisher licensed by the New Jersey Office of Administrative Law, or through local public libraries.
+      version: 2026-07-17-nj-snap-rules
+    notes: The official DHS rules page links a complete 570-page N.J.A.C. 10:87 courtesy copy compiled through the October 6, 2025 New Jersey Register. DHS states that this copy is not the official Code publication and that the official Code controls discrepancies. The current scope retains the PDF and extracts the chapter notes, all 261 codified sections, two subchapter-notes blocks, and Appendix A. Superseded source-less partial, reconstructed, archived-base, and rulemaking artifacts are removed with signed tombstones.
   - jurisdiction: us-nm
     name: New Mexico
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://www.hca.nm.gov/lookingforinformation/income-support-division-1/
     target_manifest: manifests/us-nm-snap-regulations.yaml
     target_scope:
       jurisdiction: us-nm
       document_class: regulation
-      version: 2026-05-27-nm-snap-regulations
-    notes: Current scope includes HCA-linked SRCA NMAC Chapter 100 general public assistance provisions and Chapter 139 food stamp program regulations.
+      version: 2026-07-17-nm-snap-regulations
+    notes: >-
+      The current scope retains 28 official SRCA NMAC HTML documents current
+      through July 1, 2026: ten Chapter 100 general public-assistance parts and
+      eighteen Chapter 139 Food Stamp Program parts, including two repealed source
+      roots. It extracts all 360 independently enumerated codified headings and has
+      complete 388-of-388 coverage. The superseded source-less scope is removed with
+      a signed tombstone.
   - jurisdiction: us-ny
     name: New York
-    queue_status: source_refetch_required
-    source_kind: archived_official_pdf_manual
-    primary_source_url: https://otda.ny.gov/programs/snap/snapsb.pdf
+    queue_status: published_current
+    source_kind: archived_official_pdf_manuals
+    primary_source_url: https://otda.ny.gov/programs/snap/SNAPSB.pdf
     target_manifest: manifests/us-ny-snap-manual.yaml
     target_scope:
       jurisdiction: us-ny
       document_class: manual
-      version: 2026-05-27-ny-snap-source-book
-    notes: Current scope uses a 2025-10-31 Internet Archive capture of the official OTDA SNAP Source Book PDF URL because live OTDA PDF requests return request-validation HTML to unattended clients. Existing SNAP eligibility and SUA regulation slices remain separate.
+      version: 2026-07-17-ny-snap-manuals
+    notes: >-
+      The current scope retains the complete official manual boundary: the
+      576-page September 2025 SNAP Source Book plus all sixteen components and
+      302 pages of the TA and SNAP Employment Policy Manual. Official-URL
+      archive captures are pinned because live OTDA PDF requests reset
+      unattended clients. The extractor publishes 340 source-backed rows with
+      complete coverage. A separate signed regulation scope publishes all 1,678
+      nested provisions in Parts 385 and 387, including the final adopted 2025
+      standard utility allowances, and replaces the prior source-less slices.
   - jurisdiction: us-nc
     name: North Carolina
     queue_status: published_current

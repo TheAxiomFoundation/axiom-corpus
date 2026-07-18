@@ -988,24 +988,80 @@ def _extract_labeled_pdf_section_blocks(
     label_heading_re = (
         re.compile(str(label_heading_pattern)) if label_heading_pattern is not None else None
     )
+    heading_continuation_pattern = extraction.get("heading_continuation_pattern")
+    heading_continuation_re = (
+        re.compile(str(heading_continuation_pattern))
+        if heading_continuation_pattern is not None
+        else None
+    )
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
     label_requires_heading = bool(extraction.get("label_only_requires_heading", False))
-    lines = _filtered_pdf_lines(content, extraction=extraction)
+    label_heading_continuation = bool(
+        extraction.get("label_only_heading_continuation", True)
+    )
     drop_repeated = bool(extraction.get("drop_repeated_section_headings", True))
+    heading_requires_bold = bool(extraction.get("section_heading_requires_bold", False))
+    allow_unstyled_repeated = bool(
+        extraction.get("allow_unstyled_repeated_section_headings", False)
+    )
+    normalize_parentheticals = bool(
+        extraction.get("normalize_parenthetical_label_components", False)
+    )
+    if heading_requires_bold:
+        styled_lines = _filtered_pdf_styled_lines(content, extraction=extraction)
+        lines = tuple((line, page) for line, page, _style in styled_lines)
+        line_styles = tuple(style for _line, _page, style in styled_lines)
+    else:
+        lines = _filtered_pdf_lines(content, extraction=extraction)
+        line_styles = ()
 
     sections: list[_DocumentBlock] = []
     current_label: str | None = None
+    current_citation_label: str | None = None
     current_heading: str | None = None
     current_body: list[str] = []
     current_body_pages: list[int] = []
     current_start_page: int | None = None
     index = 0
 
+    def is_heading_continuation(
+        candidate_index: int, *, heading_style: int
+    ) -> bool:
+        candidate = lines[candidate_index][0]
+        is_distinct_section = _match_labeled_pdf_section(
+            candidate,
+            section_heading_re,
+            section_label_re,
+            label_template=str(label_template) if label_template is not None else None,
+            label_replacements=label_replacements,
+        )
+        if (
+            heading_requires_bold
+            and line_styles[candidate_index] == heading_style
+            and not is_distinct_section
+            and not re.match(r"^(?:[A-Z]|\d+)[.)]\s", candidate)
+            and not re.match(r"^\([A-Za-z0-9]+\)\s", candidate)
+        ):
+            return True
+        return _looks_like_labeled_heading_continuation(
+            candidate,
+            section_heading_re,
+            section_label_re,
+            label_template=str(label_template) if label_template is not None else None,
+            label_replacements=label_replacements,
+        )
+
     def flush() -> None:
-        nonlocal current_label, current_heading, current_body, current_body_pages
+        nonlocal current_label, current_citation_label, current_heading
+        nonlocal current_body, current_body_pages
         nonlocal current_start_page
-        if current_label is None or current_heading is None or current_start_page is None:
+        if (
+            current_label is None
+            or current_citation_label is None
+            or current_heading is None
+            or current_start_page is None
+        ):
             return
         pages = current_body_pages or [current_start_page]
         sections.append(
@@ -1015,7 +1071,7 @@ def _extract_labeled_pdf_section_blocks(
                 heading=current_heading,
                 body=_normalize_text("\n".join(current_body)),
                 metadata={
-                    "citation_suffix": current_label,
+                    "citation_suffix": current_citation_label,
                     "section_label": current_label,
                     "page_start": min(pages),
                     "page_end": max(pages),
@@ -1023,6 +1079,7 @@ def _extract_labeled_pdf_section_blocks(
             )
         )
         current_label = None
+        current_citation_label = None
         current_heading = None
         current_body = []
         current_body_pages = []
@@ -1037,18 +1094,46 @@ def _extract_labeled_pdf_section_blocks(
             label_template=str(label_template) if label_template is not None else None,
             label_replacements=label_replacements,
         )
+        if (
+            match
+            and heading_requires_bold
+            and not line_styles[index] & fitz.TEXT_FONT_BOLD
+            and not (allow_unstyled_repeated and match[0] == current_label)
+        ):
+            match = None
         if match:
             label, heading_text = match
+            citation_label = (
+                re.sub(
+                    r"\(([^)]+)\)",
+                    lambda component: f".{component.group(1).lower()}",
+                    label,
+                )
+                if normalize_parentheticals
+                else label
+            )
+            inline_body = ""
+            if section_heading_re is not None:
+                heading_match = section_heading_re.match(line)
+                if heading_match is not None:
+                    inline_body = (heading_match.groupdict().get("body") or "").strip()
+            heading_style = line_styles[index] if heading_requires_bold else 0
             consumed_label_heading = False
-            if drop_repeated and label == current_label:
+            if drop_repeated and citation_label == current_citation_label:
                 index += 1
-                while index < len(lines) and _looks_like_labeled_heading_continuation(
-                    lines[index][0],
-                    section_heading_re,
-                    section_label_re,
-                    label_template=str(label_template) if label_template is not None else None,
-                    label_replacements=label_replacements,
-                ):
+                full_heading = (current_heading or "").removeprefix(f"{label} ")
+                remaining_heading = (
+                    full_heading.removeprefix(heading_text).strip()
+                    if full_heading.startswith(heading_text)
+                    else ""
+                )
+                while remaining_heading and index < len(lines):
+                    continuation_line = lines[index][0]
+                    if not remaining_heading.startswith(continuation_line):
+                        break
+                    remaining_heading = remaining_heading.removeprefix(
+                        continuation_line
+                    ).strip()
                     index += 1
                 continue
             if not heading_text and label_heading_re is not None:
@@ -1063,22 +1148,49 @@ def _extract_labeled_pdf_section_blocks(
                     continue
             flush()
             heading_lines = [heading_text] if heading_text else []
+            continuation_bodies: list[tuple[str, int]] = []
             index += 1
             if consumed_label_heading:
                 index += 1
-            while index < len(lines) and _looks_like_labeled_heading_continuation(
-                lines[index][0],
-                section_heading_re,
-                section_label_re,
-                label_template=str(label_template) if label_template is not None else None,
-                label_replacements=label_replacements,
+            if heading_continuation_re is not None and not inline_body:
+                while index < len(lines):
+                    continuation_line, continuation_page = lines[index]
+                    continuation_match = heading_continuation_re.match(continuation_line)
+                    if continuation_match is None:
+                        break
+                    continuation_heading = (
+                        continuation_match.groupdict().get("heading") or ""
+                    ).strip()
+                    if not continuation_heading:
+                        break
+                    heading_lines.append(continuation_heading)
+                    continuation_body = (
+                        continuation_match.groupdict().get("body") or ""
+                    ).strip()
+                    index += 1
+                    if continuation_body:
+                        continuation_bodies.append((continuation_body, continuation_page))
+                    if continuation_body or continuation_heading.endswith("."):
+                        break
+            elif heading_continuation_re is None and (
+                not consumed_label_heading or label_heading_continuation
             ):
-                heading_lines.append(lines[index][0])
-                index += 1
+                while index < len(lines) and is_heading_continuation(
+                    index, heading_style=heading_style
+                ):
+                    heading_lines.append(lines[index][0])
+                    index += 1
             heading = " ".join(part for part in heading_lines if part)
             current_label = label
+            current_citation_label = citation_label
             current_heading = f"{label} {heading}".strip()
             current_start_page = page
+            if inline_body:
+                current_body.append(inline_body)
+                current_body_pages.append(page)
+            for continuation_body, continuation_page in continuation_bodies:
+                current_body.append(continuation_body)
+                current_body_pages.append(continuation_page)
             continue
         if current_label is not None:
             current_body.append(line)
@@ -1636,8 +1748,19 @@ def _match_labeled_pdf_section(
 def _filtered_pdf_lines(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[tuple[str, int], ...]:
+    return tuple(
+        (line, page)
+        for line, page, _style in _filtered_pdf_styled_lines(
+            content, extraction=extraction
+        )
+    )
+
+
+def _filtered_pdf_styled_lines(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[tuple[str, int, int], ...]:
     if extraction.get("page_windows") is not None:
-        return _windowed_pdf_lines(content, extraction=extraction)
+        return _windowed_pdf_styled_lines(content, extraction=extraction)
     start_page = _positive_int(extraction.get("start_page"), default=1)
     end_page = extraction.get("end_page")
     parsed_end_page = _positive_int(end_page, default=0) if end_page is not None else None
@@ -1652,22 +1775,21 @@ def _filtered_pdf_lines(
         re.compile(str(start_after_pattern)) if start_after_pattern is not None else None
     )
     started = start_after_re is None
-    lines: list[tuple[str, int]] = []
+    lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         for page_index, page in enumerate(document, start=1):
             if page_index < start_page:
                 continue
             if parsed_end_page is not None and page_index > parsed_end_page:
                 break
-            for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
-                line = _normalize_text(raw_line)
+            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started:
                     if start_after_re is not None and start_after_re.search(line):
                         started = True
                     continue
-                lines.append((line, page_index))
+                lines.append((line, page_index, style))
     return tuple(lines)
 
 
@@ -1716,6 +1838,17 @@ def _parse_pdf_page_windows(extraction: dict[str, Any]) -> tuple[_PdfPageWindow,
 def _windowed_pdf_lines(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[tuple[str, int], ...]:
+    return tuple(
+        (line, page)
+        for line, page, _style in _windowed_pdf_styled_lines(
+            content, extraction=extraction
+        )
+    )
+
+
+def _windowed_pdf_styled_lines(
+    content: bytes, *, extraction: dict[str, Any]
+) -> tuple[tuple[str, int, int], ...]:
     """Collect PDF text lines from discontiguous page windows.
 
     Each window is a mapping with ``start_page``/``end_page`` (1-based,
@@ -1739,7 +1872,7 @@ def _windowed_pdf_lines(
     last_page = max(window.end_page for window in windows)
     started: dict[int, bool] = {id(window): window.start_at_re is None for window in windows}
     stopped: dict[int, bool] = {id(window): False for window in windows}
-    lines: list[tuple[str, int]] = []
+    lines: list[tuple[str, int, int]] = []
     with fitz.open(stream=content, filetype="pdf") as document:
         for page_index, page in enumerate(document, start=1):
             if page_index > last_page:
@@ -1747,8 +1880,7 @@ def _windowed_pdf_lines(
             page_window = window_by_page.get(page_index)
             if page_window is None or stopped[id(page_window)]:
                 continue
-            for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
-                line = _normalize_text(raw_line)
+            for line, style in _pdf_page_styled_lines(page, extraction=extraction):
                 if not line or _drop_pdf_line(line, drop_lines, drop_line_patterns):
                     continue
                 if not started[id(page_window)]:
@@ -1756,12 +1888,47 @@ def _windowed_pdf_lines(
                         line
                     ):
                         started[id(page_window)] = True
-                        lines.append((line, page_index))
+                        lines.append((line, page_index, style))
                     continue
                 if page_window.stop_at_re is not None and page_window.stop_at_re.search(line):
                     stopped[id(page_window)] = True
                     break
-                lines.append((line, page_index))
+                lines.append((line, page_index, style))
+    return tuple(lines)
+
+
+def _pdf_page_styled_lines(
+    page: Any, *, extraction: dict[str, Any]
+) -> tuple[tuple[str, int], ...]:
+    """Pair the normal PDF text stream with first-span font flags by occurrence."""
+    styles: dict[str, list[int]] = {}
+    if not extraction.get("force_ocr"):
+        page_dict = page.get_text("dict", sort=bool(extraction.get("sort_text")))
+        for block in page_dict.get("blocks", ()):
+            for line in block.get("lines", ()):
+                spans = line.get("spans", ())
+                first_span = next(
+                    (span for span in spans if str(span.get("text", "")).strip()),
+                    None,
+                )
+                if first_span is None:
+                    continue
+                text = _normalize_text("".join(str(span.get("text", "")) for span in spans))
+                if text:
+                    styles.setdefault(text, []).append(
+                        int(first_span.get("flags", 0))
+                    )
+
+    occurrences: dict[str, int] = {}
+    lines: list[tuple[str, int]] = []
+    for raw_line in _pdf_page_text(page, extraction=extraction).splitlines():
+        line = _normalize_text(raw_line)
+        if not line:
+            continue
+        occurrence = occurrences.get(line, 0)
+        occurrences[line] = occurrence + 1
+        line_styles = styles.get(line, ())
+        lines.append((line, line_styles[occurrence] if occurrence < len(line_styles) else 0))
     return tuple(lines)
 
 
@@ -2193,6 +2360,9 @@ def _extract_labeled_html_section_blocks(
     section_label_re = re.compile(str(label_pattern)) if label_pattern is not None else None
     label_template = extraction.get("section_label_template")
     label_replacements = _section_label_replacements(extraction)
+    normalize_label_internal_whitespace = bool(
+        extraction.get("normalize_label_internal_whitespace", False)
+    )
     stop_pattern = extraction.get("stop_text_pattern")
     stop_re = re.compile(str(stop_pattern)) if stop_pattern is not None else None
 
@@ -2241,6 +2411,9 @@ def _extract_labeled_html_section_blocks(
         )
         if match is not None:
             label, heading, body = match
+            if normalize_label_internal_whitespace:
+                label = re.sub(r"(?<=\.)\s+(?=\d)", "", label)
+                label = re.sub(r"(?<=\d)\s*-\s*(?=\d)", "-", label)
             flush()
             current_label = label
             current_heading = heading or label

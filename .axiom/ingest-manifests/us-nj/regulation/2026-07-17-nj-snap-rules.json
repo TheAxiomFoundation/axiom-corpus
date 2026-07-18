@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/regulation/2026-07-17-nj-snap-rules.json",
+      "sha256": "6950d396a5c59838a47a79a68880eb56891a041a9e0bf00abb260e096dd55e08"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/regulation/2026-07-17-nj-snap-rules.json",
+      "sha256": "8de57bac05363594a3d84943ea9ebed78c92d78802b08eff61d0fb90bc8ce6a3"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/regulation/2026-07-17-nj-snap-rules.jsonl",
+      "sha256": "ba64438b968c42f36a104846003e4d3ff505e5cb365acc93d14ed60ba0a62a8c"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/regulation/2026-07-17-nj-snap-rules/official-documents/nj-dhs-njac-10-87-snap-manual.pdf",
+      "sha256": "34c913b5be2c7e64b8d7b3d9ac89563f7beba474be88a544609ba9fcd3ac2d64"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "27de99b84f63303a8ec5a71e8d42ef1a139ce4ba",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus extract-official-documents --base data/corpus --version 2026-07-17-nj-snap-rules --manifest manifests/us-nj-snap-rules.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 266,
+    "missing_count": 0,
+    "provision_count": 266,
+    "source_count": 266
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-17T20:31:23.456713+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-17-nj-snap-rules.md",
+      "sha256": "93dba47e6ecf0d84226f22280c556c24bf7534dafcbbefac7f4eb16d4ac54118"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yDbaWoNTjfWRm/zUvabmZuECo0jATxxGU3wfi1xoumViUqtYcEdzlyuuKZwsCF2VT9tyUu/EALbWWE8whZOmAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-nj-snap-rules"
+}

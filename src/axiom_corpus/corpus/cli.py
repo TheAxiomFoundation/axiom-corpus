@@ -91,9 +91,13 @@ from axiom_corpus.corpus.navigation_supabase import (
     fetch_provisions_for_navigation,
     write_navigation_nodes_to_supabase,
 )
-from axiom_corpus.corpus.new_jersey_snap import reconstruct_new_jersey_snap_rules
 from axiom_corpus.corpus.ny_rulemaking import extract_ny_state_register
-from axiom_corpus.corpus.nycrr import extract_nycrr
+from axiom_corpus.corpus.nycrr import (
+    NycrrAdoptedAmendment,
+    NycrrPartSource,
+    extract_nycrr,
+    extract_nycrr_parts,
+)
 from axiom_corpus.corpus.nz_legislation import (
     NZLegislationExtractReport,
     extract_nz_legislation,
@@ -4228,6 +4232,117 @@ def _cmd_extract_nycrr(args: argparse.Namespace) -> int:
     return 0 if report.coverage.complete or args.allow_incomplete else 2
 
 
+def _load_nycrr_part_sources(manifest_path: Path) -> tuple[NycrrPartSource, ...]:
+    manifest = yaml.safe_load(manifest_path.read_text())
+    raw_parts = manifest.get("parts") if isinstance(manifest, dict) else None
+    if not isinstance(raw_parts, list) or not raw_parts:
+        raise ValueError("NYCRR parts manifest must contain a non-empty parts list")
+    sources = []
+    for raw_part in raw_parts:
+        if not isinstance(raw_part, dict):
+            raise ValueError("each NYCRR part declaration must be a mapping")
+        sources.append(
+            NycrrPartSource(
+                part=str(raw_part["part"]),
+                citation_path=str(raw_part["citation_path"]),
+                source_url=str(raw_part["source_url"]),
+                title=str(raw_part["title"]) if raw_part.get("title") else None,
+                expected_document_count=(
+                    int(raw_part["expected_document_count"])
+                    if raw_part.get("expected_document_count") is not None
+                    else None
+                ),
+                expected_section_count=(
+                    int(raw_part["expected_section_count"])
+                    if raw_part.get("expected_section_count") is not None
+                    else None
+                ),
+                metadata=dict(raw_part.get("metadata") or {}),
+            )
+        )
+    return tuple(sources)
+
+
+def _load_nycrr_adopted_amendments(
+    manifest_path: Path,
+) -> tuple[NycrrAdoptedAmendment, ...]:
+    manifest = yaml.safe_load(manifest_path.read_text())
+    raw_amendments = manifest.get("adopted_amendments", [])
+    if not isinstance(raw_amendments, list):
+        raise ValueError("NYCRR adopted_amendments must be a list")
+    amendments = []
+    for raw_amendment in raw_amendments:
+        if not isinstance(raw_amendment, dict):
+            raise ValueError("each adopted amendment must be a mapping")
+        raw_clauses = raw_amendment.get("clauses")
+        if not isinstance(raw_clauses, dict) or not raw_clauses:
+            raise ValueError("each adopted amendment must declare clauses")
+        amendments.append(
+            NycrrAdoptedAmendment(
+                amendment_id=str(raw_amendment["amendment_id"]),
+                target_citation_path=str(raw_amendment["target_citation_path"]),
+                text_source_url=str(raw_amendment["text_source_url"]),
+                adoption_source_url=str(raw_amendment["adoption_source_url"]),
+                effective_date=str(raw_amendment["effective_date"]),
+                text_anchor=str(raw_amendment["text_anchor"]),
+                text_end=str(raw_amendment["text_end"]),
+                adoption_confirmation=str(raw_amendment["adoption_confirmation"]),
+                clause_headings={
+                    str(label): str(clause["heading"])
+                    for label, clause in raw_clauses.items()
+                },
+                required_text={
+                    str(label): tuple(str(value) for value in clause.get("required_text", ()))
+                    for label, clause in raw_clauses.items()
+                },
+            )
+        )
+    return tuple(amendments)
+
+
+def _cmd_extract_nycrr_parts(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
+    report = extract_nycrr_parts(
+        store,
+        version=args.version,
+        part_sources=_load_nycrr_part_sources(args.manifest),
+        adopted_amendments=_load_nycrr_adopted_amendments(args.manifest),
+        source_as_of=args.source_as_of,
+        expression_date=expression_date,
+        delay_seconds=args.delay_seconds,
+        retry_attempts=args.retry_attempts,
+        refresh=args.refresh,
+        progress_stream=sys.stderr,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": args.version,
+                "page_count": report.page_count,
+                "browse_page_count": report.browse_page_count,
+                "document_page_count": report.document_page_count,
+                "source_file_count": len(report.source_paths),
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete or args.allow_incomplete else 2
+
+
 def _cmd_extract_california_mpp_calfresh(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
@@ -4523,43 +4638,6 @@ def _cmd_extract_eli_documents(args: argparse.Namespace) -> int:
                 "provisions_path": str(report.provisions_path),
                 "coverage_path": str(report.coverage_path),
                 "coverage_complete": report.coverage.complete,
-            },
-            indent=2,
-            sort_keys=True,
-        )
-    )
-    return 0 if report.coverage.complete or args.allow_incomplete else 2
-
-
-def _cmd_reconstruct_new_jersey_snap_rules(args: argparse.Namespace) -> int:
-    store = CorpusArtifactStore(args.base)
-    report = reconstruct_new_jersey_snap_rules(
-        store,
-        version=args.version,
-        base_provisions_path=args.base_provisions,
-        rulemaking_provisions_path=args.rulemaking_provisions,
-        source_as_of=args.source_as_of,
-        expression_date=args.expression_date,
-        progress_stream=sys.stderr,
-    )
-    print(
-        json.dumps(
-            {
-                "jurisdiction": report.jurisdiction,
-                "document_class": report.document_class,
-                "version": report.version,
-                "provisions_written": report.provisions_written,
-                "inventory_path": str(report.inventory_path),
-                "provisions_path": str(report.provisions_path),
-                "coverage_path": str(report.coverage_path),
-                "coverage_complete": report.coverage.complete,
-                "source_count": report.coverage.source_count,
-                "provision_count": report.coverage.provision_count,
-                "matched_count": report.coverage.matched_count,
-                "missing_count": len(report.coverage.missing_from_provisions),
-                "extra_count": len(report.coverage.extra_provisions),
-                "modified_count": len(report.modified_citation_paths),
-                "added_count": len(report.added_citation_paths),
             },
             indent=2,
             sort_keys=True,
@@ -6134,6 +6212,23 @@ def build_parser() -> argparse.ArgumentParser:
     extract_nycrr_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_nycrr_cmd.set_defaults(func=_cmd_extract_nycrr)
 
+    extract_nycrr_parts_cmd = sub.add_parser(
+        "extract-nycrr-parts",
+        help="Snapshot explicit NYCRR parts and nested provisions.",
+    )
+    extract_nycrr_parts_cmd.add_argument("--base", type=Path, required=True)
+    extract_nycrr_parts_cmd.add_argument("--version", required=True)
+    extract_nycrr_parts_cmd.add_argument("--manifest", type=Path, required=True)
+    extract_nycrr_parts_cmd.add_argument(
+        "--source-as-of", "--as-of", dest="source_as_of"
+    )
+    extract_nycrr_parts_cmd.add_argument("--expression-date")
+    extract_nycrr_parts_cmd.add_argument("--delay-seconds", type=float, default=0.25)
+    extract_nycrr_parts_cmd.add_argument("--retry-attempts", type=int, default=4)
+    extract_nycrr_parts_cmd.add_argument("--refresh", action="store_true")
+    extract_nycrr_parts_cmd.add_argument("--allow-incomplete", action="store_true")
+    extract_nycrr_parts_cmd.set_defaults(func=_cmd_extract_nycrr_parts)
+
     extract_california_mpp_cmd = sub.add_parser(
         "extract-california-mpp-calfresh",
         help="Snapshot CDSS MPP Division 63 (CalFresh) DOCX files.",
@@ -6262,21 +6357,6 @@ def build_parser() -> argparse.ArgumentParser:
     extract_eli_cmd.add_argument("--allow-superseded", action="store_true")
     extract_eli_cmd.add_argument("--allow-incomplete", action="store_true")
     extract_eli_cmd.set_defaults(func=_cmd_extract_eli_documents)
-
-    reconstruct_nj_snap_cmd = sub.add_parser(
-        "reconstruct-new-jersey-snap-rules",
-        help="Compile current N.J.A.C. 10:87 SNAP rules from official base and notices.",
-    )
-    reconstruct_nj_snap_cmd.add_argument("--base", type=Path, required=True)
-    reconstruct_nj_snap_cmd.add_argument("--version", required=True)
-    reconstruct_nj_snap_cmd.add_argument("--base-provisions", type=Path, required=True)
-    reconstruct_nj_snap_cmd.add_argument("--rulemaking-provisions", type=Path, required=True)
-    reconstruct_nj_snap_cmd.add_argument(
-        "--source-as-of", "--as-of", dest="source_as_of", required=True
-    )
-    reconstruct_nj_snap_cmd.add_argument("--expression-date", required=True)
-    reconstruct_nj_snap_cmd.add_argument("--allow-incomplete", action="store_true")
-    reconstruct_nj_snap_cmd.set_defaults(func=_cmd_reconstruct_new_jersey_snap_rules)
 
     coverage = sub.add_parser(
         "coverage",

@@ -7,7 +7,12 @@ import requests
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.ny_rulemaking import extract_ny_state_register
-from axiom_corpus.corpus.nycrr import extract_nycrr
+from axiom_corpus.corpus.nycrr import (
+    NycrrAdoptedAmendment,
+    NycrrPartSource,
+    extract_nycrr,
+    extract_nycrr_parts,
+)
 
 ROOT_HTML = """
 <html><body><main><section class="co_innertube">
@@ -39,6 +44,64 @@ DOCUMENT_HTML = """
 <div>Current through September 15, 2021</div><table id="co_endOfDocument"><tr><td>End of Document</td></tr></table>
 </div></div>
 </section></main></body></html>
+"""
+
+PART_387_HTML = """
+<html><body><main><section class="co_innertube">
+<h1>Part 387 Supplemental Nutrition Assistance Program</h1>
+<a href="/nycrr/Document/notes387?viewType=FullText&amp;originationContext=documenttoc&amp;transitionType=CategoryPageItem&amp;contextData=(sc.Default)">18 CRR-NY II B 4 387 Notes</a>
+<a href="/nycrr/Document/doc38714?viewType=FullText&amp;originationContext=documenttoc&amp;transitionType=CategoryPageItem&amp;contextData=(sc.Default)">s 387.14 Determination of SNAP eligibility.</a>
+</section></main></body></html>
+"""
+
+PART_NOTES_HTML = """
+<html><body><main><section class="co_innertube">
+<div id="co_docHeaderTitle"><ul><li id="citation">18 CRR-NY II B 4 387 Notes</li></ul></div>
+<div id="co_document">
+<div class="co_title"><div class="co_headtext">Part 387 Notes</div></div>
+<div class="co_contentBlock co_body"><div class="co_paragraph"><div class="co_paragraphText">Official source notes.</div></div></div>
+</div>
+</section></main></body></html>
+"""
+
+PART_SECTION_HTML = """
+<html><body><main><section class="co_innertube">
+<div id="co_docHeaderTitle"><ul><li id="citation">18 CRR-NY 387.14</li></ul></div>
+<div id="co_document">
+<div class="co_title"><div class="co_headtext">387.14 Determination of SNAP eligibility.</div></div>
+<div class="co_contentBlock co_body">
+  <div class="co_contentBlock co_subsection">
+    <div class="co_headtext">(a) Eligibility.</div>
+    <div class="co_paragraph"><div class="co_paragraphText">Eligibility is determined for the whole month.</div></div>
+    <div class="co_paragraph">
+      <div class="co_paragraphText co_indentLeft2">(1) Initial month benefits are prorated.</div>
+      <div class="co_paragraph"><div class="co_paragraphText co_indentLeft4">(i) The first certification month.</div></div>
+      <div class="co_paragraph"><div class="co_paragraphText co_indentLeft4">(ii) A migrant household rule.</div></div>
+    </div>
+    <div class="co_paragraph">
+      <div class="co_paragraphText co_indentLeft2">(5) Categorical eligibility.</div>
+      <div class="co_paragraph">
+        <div class="co_paragraphText co_indentLeft4">(i) Eligible households are exempt from limits.</div>
+        <div class="co_paragraph"><div class="co_paragraphText co_indentLeft6">(a) All members receive assistance.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>Current through June 30, 2026</div><table id="co_endOfDocument"><tr><td>End of Document</td></tr></table>
+</div>
+</section></main></body></html>
+"""
+
+ADOPTED_AMENDMENT_TEXT = """
+Text of emergency/proposed rule: section 387.14(a) is amended to read as follows:
+(a) The standard allowance for heating/cooling is [old] $1,062 and is
+administered by the United States Department ofAgriculture.
+This notice is intended:
+"""
+
+ADOPTION_NOTICE_TEXT = """
+NOTICE OF ADOPTION
+Final rule as compared with last published rule: No changes.
 """
 
 STATE_REGISTER_HTML = """
@@ -120,6 +183,30 @@ class _FlakyNycrrSession(_NycrrSession):
         return super().get(url, timeout=timeout)
 
 
+class _NycrrPartSession:
+    def __init__(self) -> None:
+        self.urls: list[str] = []
+
+    def get(self, url: str, *, timeout: int = 30) -> _FakeResponse:
+        self.urls.append(url)
+        if "guid=part387" in url:
+            return _FakeResponse(PART_387_HTML.encode(), url)
+        if "/nycrr/Document/notes387" in url:
+            return _FakeResponse(PART_NOTES_HTML.encode(), url)
+        if "/nycrr/Document/doc38714" in url:
+            return _FakeResponse(PART_SECTION_HTML.encode(), url)
+        raise AssertionError(f"unexpected URL: {url}")
+
+
+class _NycrrAdoptedAmendmentSession(_NycrrPartSession):
+    def get(self, url: str, *, timeout: int = 30) -> _FakeResponse:
+        if url == "https://dos.ny.gov/amendment-text.pdf":
+            return _FakeResponse(_pdf_bytes(ADOPTED_AMENDMENT_TEXT), url)
+        if url == "https://dos.ny.gov/adoption-notice.pdf":
+            return _FakeResponse(_pdf_bytes(ADOPTION_NOTICE_TEXT), url)
+        return super().get(url, timeout=timeout)
+
+
 def _pdf_bytes(text: str) -> bytes:
     import fitz
 
@@ -187,6 +274,140 @@ def test_extract_nycrr_retries_transient_fetch_errors(tmp_path):
     assert report.coverage.complete
     assert report.page_count == 2
     assert session.failed
+
+
+def test_extract_nycrr_parts_writes_nested_canonical_provisions(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    session = _NycrrPartSession()
+
+    report = extract_nycrr_parts(
+        store,
+        version="2026-07-17-ny-snap-regulations",
+        part_sources=(
+            NycrrPartSource(
+                part="387",
+                citation_path="us-ny/regulation/18-nycrr/387",
+                source_url=(
+                    "https://govt.westlaw.com/nycrr/Browse/Home/NewYork/"
+                    "UnofficialNewYorkCodesRulesandRegulations?guid=part387"
+                ),
+                title="Part 387 Supplemental Nutrition Assistance Program",
+                expected_document_count=2,
+                expected_section_count=1,
+            ),
+        ),
+        source_as_of="2026-07-17",
+        expression_date="2026-06-30",
+        delay_seconds=0,
+        session=session,
+    )
+
+    assert report.coverage.complete
+    assert report.browse_page_count == 1
+    assert report.document_page_count == 2
+    assert len(report.source_paths) == 3
+    records = load_provisions(report.provisions_path)
+    expected_paths = [
+        "us-ny/regulation/18-nycrr/387",
+        "us-ny/regulation/18-nycrr/387/notes",
+        "us-ny/regulation/18-nycrr/387/14",
+        "us-ny/regulation/18-nycrr/387/14/a",
+        "us-ny/regulation/18-nycrr/387/14/a/1",
+        "us-ny/regulation/18-nycrr/387/14/a/1/i",
+        "us-ny/regulation/18-nycrr/387/14/a/1/ii",
+        "us-ny/regulation/18-nycrr/387/14/a/5",
+        "us-ny/regulation/18-nycrr/387/14/a/5/i",
+        "us-ny/regulation/18-nycrr/387/14/a/5/i/a",
+    ]
+    assert [record.citation_path for record in records] == expected_paths
+    assert records[0].kind == "part"
+    assert records[2].source_as_of == "2026-06-30"
+    assert records[3].kind == "subdivision"
+    assert records[4].kind == "paragraph"
+    assert records[5].kind == "subparagraph"
+    assert records[-1].kind == "clause"
+    assert records[-1].citation_label == "18 CRR-NY 387.14(a)(5)(i)(a)"
+    assert "Initial month benefits" in records[3].body
+    assert "All members receive assistance" in records[7].body
+    assert all(record.metadata["primary_source"] is True for record in records)
+    inventory = load_source_inventory(report.inventory_path)
+    assert [item.citation_path for item in inventory] == expected_paths
+    assert len(session.urls) == 3
+
+
+def test_extract_nycrr_parts_applies_adopted_amendment(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    session = _NycrrAdoptedAmendmentSession()
+
+    report = extract_nycrr_parts(
+        store,
+        version="2026-07-17-ny-snap-regulations",
+        part_sources=(
+            NycrrPartSource(
+                part="387",
+                citation_path="us-ny/regulation/18-nycrr/387",
+                source_url=(
+                    "https://govt.westlaw.com/nycrr/Browse/Home/NewYork/"
+                    "UnofficialNewYorkCodesRulesandRegulations?guid=part387"
+                ),
+                title="Part 387 Supplemental Nutrition Assistance Program",
+                expected_document_count=2,
+                expected_section_count=1,
+            ),
+        ),
+        adopted_amendments=(
+            NycrrAdoptedAmendment(
+                amendment_id="test-adoption",
+                target_citation_path="us-ny/regulation/18-nycrr/387/14",
+                text_source_url="https://dos.ny.gov/amendment-text.pdf",
+                adoption_source_url="https://dos.ny.gov/adoption-notice.pdf",
+                effective_date="2026-02-25",
+                text_anchor=(
+                    "Text of emergency/proposed rule: section "
+                    "387.14(a) is amended to read as follows:"
+                ),
+                text_end="This notice is intended:",
+                adoption_confirmation=(
+                    "Final rule as compared with last published rule: No changes."
+                ),
+                clause_headings={"a": "Standard allowance for heating/cooling"},
+                required_text={"a": ("$1,062", "Department of Agriculture")},
+            ),
+        ),
+        source_as_of="2026-07-17",
+        expression_date="2026-06-30",
+        delay_seconds=0,
+        session=session,
+    )
+
+    assert report.coverage.complete
+    assert len(report.source_paths) == 5
+    records = {
+        record.citation_path: record
+        for record in load_provisions(report.provisions_path)
+    }
+    parent = records["us-ny/regulation/18-nycrr/387/14"]
+    first = records["us-ny/regulation/18-nycrr/387/14/a"]
+    assert "$1,062" in parent.body
+    assert "[old]" not in parent.body
+    assert "Department of Agriculture" in first.body
+    assert first.source_format == "ny-state-register-pdf"
+    assert first.source_as_of == "2026-02-25"
+    assert first.metadata["adoption_confirmation"].endswith("No changes.")
+    assert first.metadata["amendment_text_source_sha256"]
+    assert first.metadata["adoption_source_sha256"]
+    assert store.source_path(
+        "us-ny",
+        "regulation",
+        "2026-07-17-ny-snap-regulations",
+        "nycrr/amendment/test-adoption-text.pdf",
+    ).is_file()
+    assert store.source_path(
+        "us-ny",
+        "regulation",
+        "2026-07-17-ny-snap-regulations",
+        "nycrr/amendment/test-adoption-adoption.pdf",
+    ).is_file()
 
 
 def test_extract_ny_state_register_writes_issue_records(tmp_path):
