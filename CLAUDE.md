@@ -76,10 +76,17 @@ uv run axiom-corpus-ingest verify-release-coverage
 `load-supabase` only stages immutable version rows. A tracked named selector is
 only a cut plan. `scripts/publish_corpus.py` content-addresses and reads back R2
 artifacts, checks exact staged provision and navigation counts, deep-validates, then creates an
-Ed25519-signed release object. `corpus.activate_corpus_release` rechecks counts
-and atomically moves the singleton production pointer while refreshing derived
-counts. `corpus.current_provisions` and navigation follow that pointer's exact
-version membership.
+Ed25519-signed release object. Publication does NOT move serving.
+
+Activation is a separate, deliberate step (`scripts/activate_release.py`, or
+`publish_corpus.py --activate`): `corpus.activate_corpus_release` rechecks counts
+and repoints serving. Serving follows a per-`(jurisdiction, document_class)`
+active map (`corpus.active_scope_pointer`), so activating a release repoints only
+the pairs it carries and never un-serves another jurisdiction; overlaps resolve
+last-activation-wins per pair and every takeover is recorded in
+`corpus.scope_activation_history` (see axiom-corpus#408). `corpus.current_provisions`
+and navigation follow that map's exact version membership. Preview a takeover
+with `activate_release.py --dry-run`.
 
 The release name `current`, per-scope `publish`/`unpublish`, publish-on-load,
 scope auto-registration, and missing-parent synthesis do not exist. See

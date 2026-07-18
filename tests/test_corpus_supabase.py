@@ -1491,6 +1491,13 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
                             "active": True,
                             "release": "nz-rulespec-v1",
                             "content_sha256": release_object["content_sha256"],
+                            "scope_count": 1,
+                            "scopes": {
+                                "activated": [
+                                    {"jurisdiction": "nz", "document_class": "statute"}
+                                ],
+                                "reaffirmed": [],
+                            },
                         }
                     }
                 ]

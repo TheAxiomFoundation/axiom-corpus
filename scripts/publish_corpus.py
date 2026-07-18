@@ -73,7 +73,7 @@ class PublicationReport:
     scope_count: int
     provision_rows: int
     r2_release_object_key: str
-    activation: Mapping[str, object]
+    activation: Mapping[str, object] | None
     release_object: Mapping[str, Any]
 
     def to_mapping(self) -> dict[str, Any]:
@@ -83,7 +83,7 @@ class PublicationReport:
             "scope_count": self.scope_count,
             "provision_rows": self.provision_rows,
             "r2_release_object_key": self.r2_release_object_key,
-            "activation": dict(self.activation),
+            "activation": dict(self.activation) if self.activation is not None else None,
             "release_object": dict(self.release_object),
         }
 
@@ -100,9 +100,18 @@ def publish_named_release(
     private_key: str,
     public_key: str,
     chunk_size: int = 500,
+    activate: bool = False,
     r2_client: Any | None = None,
 ) -> PublicationReport:
-    """Execute the sole production publication boundary for one release."""
+    """Execute the sole production publication boundary for one release.
+
+    Publication stages content-addressed R2 artifacts and versioned Supabase
+    rows, then signs and uploads the release object. It does NOT move serving by
+    default: activation repoints the per-scope serving map and can displace
+    another jurisdiction's release, so it is an explicit, separate decision (set
+    ``activate=True`` here, or run ``scripts/activate_release.py`` — with
+    ``--dry-run`` to preview the takeover — after publishing).
+    """
     root = repo_root.resolve()
     corpus_root = base.resolve()
     try:
@@ -248,12 +257,14 @@ def publish_named_release(
         client=r2_client,
     )
 
-    activation = activate_corpus_release(
-        signed,
-        access_token=access_token,
-        public_key=public_key,
-        supabase_url=supabase_url,
-    )
+    activation: Mapping[str, object] | None = None
+    if activate:
+        activation = activate_corpus_release(
+            signed,
+            access_token=access_token,
+            public_key=public_key,
+            supabase_url=supabase_url,
+        )
     return PublicationReport(
         release=release.name,
         content_sha256=str(signed["content_sha256"]),
@@ -555,6 +566,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--r2-endpoint")
     parser.add_argument("--chunk-size", type=int, default=500)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--activate",
+        action="store_true",
+        help=(
+            "Also move serving to this release after publishing. Off by default: "
+            "activation repoints the per-scope serving map and can displace another "
+            "jurisdiction's release, so it is a separate explicit step. Prefer "
+            "scripts/activate_release.py (with --dry-run to preview the takeover)."
+        ),
+    )
     parser.add_argument("--output", type=Path)
     return parser
 
@@ -596,6 +617,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             private_key=_required_env(RELEASE_OBJECT_PRIVATE_KEY_ENV),
             public_key=_required_env(RELEASE_OBJECT_PUBLIC_KEY_ENV),
             chunk_size=args.chunk_size,
+            activate=args.activate,
         )
         payload = report.to_mapping()
 
