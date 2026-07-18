@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/nz/district-plan/2026-07-18-wellington-district-plan.json",
-      "sha256": "6caf0e4887ce1a105acfe59741aeef1e5c1a3888db31a69462673873f05ab6da"
+      "sha256": "1a53956fc9de8f566947d8478f7a7d9b81a7edab8866f54885b17b33675c5506"
     },
     {
       "path": "data/corpus/provisions/nz/district-plan/2026-07-18-wellington-district-plan.jsonl",
-      "sha256": "ac38cfc863a1a5159cfb3cb2e21bceb4794d78fe4bc6e1e01df3dd864c66c111"
+      "sha256": "4e34f0659f1287ef711fd81bb3dff1a81a61bb278eb6ecba0b14dd46d46929c4"
     },
     {
       "path": "data/corpus/sources/nz/district-plan/2026-07-18-wellington-district-plan/eplan/wellington-city/2024/ccz-228.json",
@@ -42,13 +42,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "df57dc57cf0152c5747696c078929a12ed2d2239",
+    "commit": "123cc0ed6a0003c2db8feba8639abcecacea8a2d",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run axiom-corpus-ingest extract-nz-district-plan --base data/corpus --version 2026-07-18-wellington-district-plan --manifest manifests/nz-wellington-district-plan.yaml --source-as-of 14-Jul-2026"
+    "text": "uv run axiom-corpus-ingest extract-nz-district-plan --base data/corpus --version 2026-07-18-wellington-district-plan --manifest manifests/nz-wellington-district-plan.yaml --source-as-of 2026-07-14"
   },
   "coverage": {
     "complete": true,
@@ -59,14 +59,14 @@
     "source_count": 865
   },
   "document_class": "district-plan",
-  "generated_at": "2026-07-18T11:51:32.999592+00:00",
+  "generated_at": "2026-07-18T12:08:14.759205+00:00",
   "jurisdiction": "nz",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "AOpNBOxAYiSZJZLKgNj3KT6zVtRVWHLmpgrzUm3DFAYRrp5h/0RvAZrH7FztHR/z6BmE0q8xHhPZj/px7JszBw=="
+    "value": "3uKqp2EMx4zO91dCoxzbeXj7hBI88rE2EOhG2dzwvvxm6b+WeJPf+bx6mxZ2g1ECRK2nDFUUP9AKgeIe3Ej/Cw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-18-wellington-district-plan"
