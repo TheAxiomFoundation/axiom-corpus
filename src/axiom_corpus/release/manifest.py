@@ -30,9 +30,14 @@ from cryptography.hazmat.primitives.asymmetric.ed25519 import (
 
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord
-from axiom_corpus.corpus.releases import ReleaseManifest, validate_release_name
+from axiom_corpus.corpus.releases import (
+    COMPLETE_EXPRESSION_DATES_PROFILE,
+    ReleaseManifest,
+    validate_release_name,
+)
 
-RELEASE_OBJECT_SCHEMA_VERSION = "axiom-corpus/release-object/v2"
+RELEASE_OBJECT_SCHEMA_V2 = "axiom-corpus/release-object/v2"
+RELEASE_OBJECT_SCHEMA_VERSION = "axiom-corpus/release-object/v3"
 RELEASE_OBJECT_SIGNATURE_ALGORITHM = "ed25519"
 RELEASE_OBJECT_SIGNATURE_KEY_ID = "axiom-corpus-release-v2"
 RELEASE_OBJECT_PRIVATE_KEY_ENV = "AXIOM_CORPUS_RELEASE_PRIVATE_KEY"
@@ -150,7 +155,7 @@ def release_content_sha256(content: Mapping[str, Any]) -> str:
 
 
 def selector_sha256(release: ReleaseManifest) -> str:
-    selector = {
+    selector: dict[str, Any] = {
         "name": release.name,
         "scopes": [
             {
@@ -161,6 +166,8 @@ def selector_sha256(release: ReleaseManifest) -> str:
             for scope in release.scopes
         ],
     }
+    if release.quality_profile is not None:
+        selector["quality_profile"] = release.quality_profile
     return hashlib.sha256(canonical_json_bytes(selector)).hexdigest()
 
 
@@ -271,7 +278,7 @@ def build_release_content(
     if created_at is None:
         created_at = git["committed_at"]
 
-    return {
+    content: dict[str, Any] = {
         "release": release.name,
         "created_at": created_at,
         "selector_sha256": selector_sha256(release),
@@ -282,6 +289,9 @@ def build_release_content(
         "artifacts": sorted(artifacts, key=lambda entry: str(entry["path"])),
         "validation": copy.deepcopy(dict(validation)),
     }
+    if release.quality_profile is not None:
+        content["quality_profile"] = release.quality_profile
+    return content
 
 
 def build_unsigned_release_object(content: Mapping[str, Any]) -> dict[str, Any]:
@@ -290,8 +300,13 @@ def build_unsigned_release_object(content: Mapping[str, Any]) -> dict[str, Any]:
         raise ReleaseManifestError("release content is missing its release name")
     _require_release_name(release)
     materialized = copy.deepcopy(dict(content))
+    schema_version = (
+        RELEASE_OBJECT_SCHEMA_VERSION
+        if "quality_profile" in materialized
+        else RELEASE_OBJECT_SCHEMA_V2
+    )
     return {
-        "schema_version": RELEASE_OBJECT_SCHEMA_VERSION,
+        "schema_version": schema_version,
         "release": release,
         "content_sha256": release_content_sha256(materialized),
         "content": materialized,
@@ -373,7 +388,8 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
         raise ReleaseManifestError(
             f"release object has unsupported top-level fields: {', '.join(sorted(extra))}"
         )
-    if payload.get("schema_version") != RELEASE_OBJECT_SCHEMA_VERSION:
+    schema_version = payload.get("schema_version")
+    if schema_version not in {RELEASE_OBJECT_SCHEMA_V2, RELEASE_OBJECT_SCHEMA_VERSION}:
         raise ReleaseManifestError("release object uses an unsupported schema version")
     release = payload.get("release")
     if not isinstance(release, str):
@@ -382,7 +398,7 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
     content = payload.get("content")
     if not isinstance(content, dict):
         raise ReleaseManifestError("release object content must be a JSON object")
-    if set(content) != {
+    expected_content_fields = {
         "release",
         "created_at",
         "selector_sha256",
@@ -392,8 +408,19 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
         "scopes",
         "artifacts",
         "validation",
-    }:
-        raise ReleaseManifestError("release object content does not match the v2 schema")
+    }
+    if schema_version == RELEASE_OBJECT_SCHEMA_VERSION:
+        expected_content_fields.add("quality_profile")
+    if set(content) != expected_content_fields:
+        raise ReleaseManifestError(
+            f"release object content does not match the {schema_version} schema"
+        )
+    quality_profile = content.get("quality_profile")
+    if (
+        schema_version == RELEASE_OBJECT_SCHEMA_VERSION
+        and quality_profile != COMPLETE_EXPRESSION_DATES_PROFILE
+    ):
+        raise ReleaseManifestError("release object has an unsupported quality profile")
     if content.get("release") != release:
         raise ReleaseManifestError("release object name does not match its content")
     if not isinstance(content.get("created_at"), str) or not content["created_at"]:
@@ -421,13 +448,15 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
     if not isinstance(artifacts, list) or not artifacts:
         raise ReleaseManifestError("release object must contain artifact entries")
     _validate_scope_entries(scopes)
-    selector = {
+    selector: dict[str, Any] = {
         "name": release,
         "scopes": [
             {field: raw[field] for field in ("jurisdiction", "document_class", "version")}
             for raw in scopes
         ],
     }
+    if schema_version == RELEASE_OBJECT_SCHEMA_VERSION:
+        selector["quality_profile"] = quality_profile
     if not isinstance(content.get("selector_sha256"), str) or not _SHA256_RE.fullmatch(
         content["selector_sha256"]
     ):
@@ -453,6 +482,11 @@ def _validate_unsigned_release_object(payload: Mapping[str, Any]) -> None:
         scopes=scopes,
         artifacts=artifacts,
         bucket=bucket,
+        quality_profile=(
+            str(quality_profile)
+            if schema_version == RELEASE_OBJECT_SCHEMA_VERSION
+            else None
+        ),
     )
 
 
@@ -620,14 +654,20 @@ def _validate_validation_attestation(
     scopes: Sequence[Any],
     artifacts: Sequence[Any],
     bucket: str,
+    quality_profile: str | None = None,
 ) -> None:
-    if set(validation) != {
+    expected_fields = {
         "passed",
         "deep_validation",
         "r2_readback",
         "supabase_projection_evidence",
-    }:
-        raise ReleaseManifestError("release validation does not match the v2 schema")
+    }
+    if quality_profile is not None:
+        expected_fields.add("quality_profile")
+    if set(validation) != expected_fields:
+        raise ReleaseManifestError("release validation does not match its object schema")
+    if quality_profile is not None and validation.get("quality_profile") != quality_profile:
+        raise ReleaseManifestError("release validation quality profile is inconsistent")
     deep = validation.get("deep_validation")
     if not isinstance(deep, dict):
         raise ReleaseManifestError("release object lacks deep-validation evidence")

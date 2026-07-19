@@ -15,8 +15,13 @@ from cryptography.hazmat.primitives.asymmetric.rsa import generate_private_key
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
-from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
+from axiom_corpus.corpus.releases import (
+    COMPLETE_EXPRESSION_DATES_PROFILE,
+    ReleaseManifest,
+    ReleaseScope,
+)
 from axiom_corpus.release.manifest import (
+    RELEASE_OBJECT_SCHEMA_V2,
     RELEASE_OBJECT_SCHEMA_VERSION,
     ReleaseManifestError,
     _git_provenance,
@@ -27,6 +32,7 @@ from axiom_corpus.release.manifest import (
     content_addressed_r2_key,
     load_release_object,
     release_object_r2_key,
+    selector_sha256,
     serialize_release_object,
     sign_release_object,
     verify_release_object,
@@ -97,6 +103,7 @@ def _release_tree(
     release = ReleaseManifest(
         name=name,
         scopes=(ReleaseScope("nz", "statute", version),),
+        quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
     )
     selector = root / "manifests" / "releases" / f"{name}.json"
     selector.parent.mkdir(parents=True)
@@ -104,6 +111,7 @@ def _release_tree(
         json.dumps(
             {
                 "name": name,
+                "quality_profile": COMPLETE_EXPRESSION_DATES_PROFILE,
                 "scopes": [
                     {
                         "jurisdiction": "nz",
@@ -156,7 +164,7 @@ def _valid_content(tmp_path: Path) -> dict:
 
 
 def _validation_for(content: dict) -> dict:
-    return {
+    validation = {
         "passed": True,
         "deep_validation": {
             "error_count": 0,
@@ -186,6 +194,21 @@ def _validation_for(content: dict) -> dict:
             for scope in content["scopes"]
         ],
     }
+    if "quality_profile" in content:
+        validation["quality_profile"] = content["quality_profile"]
+    return validation
+
+
+def test_selector_sha256_attests_quality_profile() -> None:
+    scope = (ReleaseScope("nz", "statute", "v1"),)
+    legacy = ReleaseManifest(name="nz-v1", scopes=scope)
+    profiled = ReleaseManifest(
+        name="nz-v1",
+        scopes=scope,
+        quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+    )
+
+    assert selector_sha256(legacy) != selector_sha256(profiled)
 
 
 def test_release_object_is_scope_specific_and_content_addressed(tmp_path: Path) -> None:
@@ -229,6 +252,37 @@ def test_release_object_verifies_with_public_key(tmp_path: Path) -> None:
         f"/{signed['content_sha256']}.json"
     )
     assert serialize_release_object(signed).endswith(b"\n")
+
+
+def test_release_object_verifies_historical_v2_without_quality_profile(
+    tmp_path: Path,
+) -> None:
+    content = _valid_content(tmp_path)
+    content.pop("quality_profile")
+    content["validation"].pop("quality_profile")
+    legacy_release = ReleaseManifest(
+        name=content["release"],
+        scopes=(ReleaseScope("nz", "statute", "2026-07-10-nz-rulespec"),),
+    )
+    content["selector_sha256"] = selector_sha256(legacy_release)
+    private, public = _keys()
+
+    signed = sign_release_object(
+        build_unsigned_release_object(content),
+        private_key=private,
+    )
+
+    assert signed["schema_version"] == RELEASE_OBJECT_SCHEMA_V2
+    verify_release_object(signed, public_key=public)
+
+
+def test_release_object_rejects_profile_missing_from_validation(tmp_path: Path) -> None:
+    content = _valid_content(tmp_path)
+    content["validation"].pop("quality_profile")
+    private, _ = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="validation does not match"):
+        sign_release_object(build_unsigned_release_object(content), private_key=private)
 
 
 def test_release_object_rejects_content_tamper(tmp_path: Path) -> None:
@@ -303,7 +357,7 @@ def test_release_object_rejects_invalid_signature_fields(
         ("schema", "unsupported schema version"),
         ("release_type", "missing its release name"),
         ("content_type", "content must be a JSON object"),
-        ("content_fields", "content does not match the v2 schema"),
+        ("content_fields", "content does not match the axiom-corpus/release-object/v3 schema"),
         ("release_mismatch", "name does not match its content"),
         ("created_at", "invalid creation time"),
         ("git", "invalid git provenance"),
@@ -333,7 +387,7 @@ def test_release_object_rejects_invalid_signature_fields(
         ("artifact_order", "not in canonical path order"),
         ("scope_row_mismatch", "row count does not match"),
         ("artifact_extra", "outside its declared scopes"),
-        ("validation_schema", "validation does not match the v2 schema"),
+        ("validation_schema", "validation does not match its object schema"),
         ("deep_type", "lacks deep-validation evidence"),
         ("deep_mismatch", "deep-validation evidence is inconsistent"),
         ("readback_type", "lacks R2 readback evidence"),
@@ -891,7 +945,7 @@ def test_signature_requires_complete_validation_evidence(tmp_path: Path) -> None
     )
     private, _ = _keys()
 
-    with pytest.raises(ReleaseManifestError, match="validation does not match the v2 schema"):
+    with pytest.raises(ReleaseManifestError, match="validation does not match its object schema"):
         sign_release_object(build_unsigned_release_object(content), private_key=private)
 
 

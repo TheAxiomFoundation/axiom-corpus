@@ -206,6 +206,7 @@ def _signed_prior_object(
     evidence = {scope: _scope_evidence(base, scope)}
     validation = publish._validation_attestation(
         publish.validate_release(base, release),
+        quality_profile="complete-expression-dates-v1",
         r2_report=_readback_for(provisional),
         expected_evidence=evidence,
         actual_evidence=evidence,
@@ -700,12 +701,14 @@ def test_signed_validation_evidence_is_retry_stable(tmp_path: Path) -> None:
     actual_evidence = {scope: _scope_evidence(base, scope)}
     first = publish._validation_attestation(
         report,
+        quality_profile="complete-expression-dates-v1",
         r2_report=R2ReadbackReport("axiom-corpus", 4, 100, 4, 0, ("a", "b")),
         expected_evidence=actual_evidence,
         actual_evidence=actual_evidence,
     )
     retry = publish._validation_attestation(
         report,
+        quality_profile="complete-expression-dates-v1",
         r2_report=R2ReadbackReport("axiom-corpus", 4, 100, 0, 4, ("a", "b")),
         expected_evidence=actual_evidence,
         actual_evidence=actual_evidence,
