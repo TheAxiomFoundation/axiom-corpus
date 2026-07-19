@@ -1,10 +1,18 @@
+from pathlib import Path
+
 import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.r2 import ArtifactReport, ArtifactScopeRow, ArtifactSupabaseGroup
 from axiom_corpus.corpus.release_quality import validate_release
-from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
+from axiom_corpus.corpus.releases import (
+    COMPLETE_EXPRESSION_DATES_PROFILE,
+    ReleaseManifest,
+    ReleaseScope,
+)
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 def _write_source_scope(
@@ -422,6 +430,75 @@ def test_validate_release_reports_scope_invariant_errors(tmp_path):
         "provision_version_mismatch",
         "source_sha256_mismatch",
     }.issubset(codes)
+
+
+def test_validate_release_versions_expression_date_requirement(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    version = "2026-07-19"
+    source = store.source_path("us", "statute", version, "source.xml")
+    source_sha256 = store.write_text(source, "<section>Official source.</section>")
+    source_path = source.relative_to(store.root).as_posix()
+    release = _write_source_scope(
+        store,
+        jurisdiction="us",
+        version=version,
+        inventory=[
+            SourceInventoryItem(
+                citation_path="us/statute/1",
+                source_path=source_path,
+                sha256=source_sha256,
+            )
+        ],
+        provisions=[
+            ProvisionRecord(
+                jurisdiction="us",
+                document_class="statute",
+                citation_path="us/statute/1",
+                body="Official source.",
+                version=version,
+                source_path=source_path,
+                source_as_of=version,
+            )
+        ],
+    )
+
+    legacy_report = validate_release(store.root, release)
+    strict_release = ReleaseManifest(
+        name=release.name,
+        scopes=release.scopes,
+        quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+    )
+    report = validate_release(store.root, strict_release)
+
+    assert legacy_report.ok is True
+    legacy_issue = next(
+        item for item in legacy_report.issues if item.code == "missing_expression_date"
+    )
+    assert legacy_issue.severity == "warning"
+    assert report.ok is False
+    issue = next(item for item in report.issues if item.code == "missing_expression_date")
+    assert issue.severity == "error"
+
+
+def test_historical_us_selector_retains_legacy_expression_date_warnings():
+    release = ReleaseManifest.load(
+        REPO_ROOT / "manifests/releases/us-rulespec-2026-07-18.json"
+    )
+
+    report = validate_release(
+        REPO_ROOT / "data/corpus",
+        release,
+        max_issues=2000,
+    )
+    date_issues = [
+        issue
+        for issue in report.issues
+        if issue.code in {"missing_expression_date", "invalid_expression_date"}
+    ]
+
+    assert report.ok is True
+    assert len(date_issues) == 43
+    assert {issue.severity for issue in date_issues} == {"warning"}
 
 
 def test_validate_release_reports_missing_and_invalid_artifacts(tmp_path):

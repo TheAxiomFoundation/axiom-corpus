@@ -49,6 +49,10 @@ SCOPE_MIGRATION = (
     Path(__file__).resolve().parents[1]
     / "supabase/migrations/20260718193000_scope_level_activation.sql"
 )
+PROFILED_RELEASE_MIGRATION = (
+    Path(__file__).resolve().parents[1]
+    / "supabase/migrations/20260719043000_profiled_release_activation.sql"
+)
 REQUIRED_ROLES = ("anon", "authenticated", "service_role", "postgres")
 TEST_SIGNING_KEY = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
 TEST_PUBLIC_KEY = base64.b64encode(
@@ -324,6 +328,7 @@ def postgres_dsn() -> Iterator[str]:
                     cursor.execute(PRE_MIGRATION_SCHEMA)
                     cursor.execute(MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(SCOPE_MIGRATION.read_text(encoding="utf-8"))
+                    cursor.execute(PROFILED_RELEASE_MIGRATION.read_text(encoding="utf-8"))
                 connection.commit()
             yield dsn
         finally:
@@ -463,6 +468,38 @@ def _activate(connection: Any, release_object: Mapping[str, Any]) -> dict[str, A
     return result[0]
 
 
+def _profiled_release_object(release_object: Mapping[str, Any]) -> dict[str, Any]:
+    profiled = copy.deepcopy(dict(release_object))
+    content = profiled["content"]
+    profile = "complete-expression-dates-v1"
+    content["quality_profile"] = profile
+    content["validation"]["quality_profile"] = profile
+    selector = {
+        "name": content["release"],
+        "quality_profile": profile,
+        "scopes": [
+            {field: scope[field] for field in ("jurisdiction", "document_class", "version")}
+            for scope in content["scopes"]
+        ],
+    }
+    content["selector_sha256"] = hashlib.sha256(_canonical_json_bytes(selector)).hexdigest()
+    unsigned = {
+        "schema_version": "axiom-corpus/release-object/v3",
+        "release": profiled["release"],
+        "content_sha256": hashlib.sha256(_canonical_json_bytes(content)).hexdigest(),
+        "content": content,
+    }
+    signature = TEST_SIGNING_KEY.sign(_canonical_json_bytes(unsigned))
+    return {
+        **unsigned,
+        "signature": {
+            "algorithm": "ed25519",
+            "key_id": "axiom-corpus-release-v2",
+            "value": base64.b64encode(signature).decode(),
+        },
+    }
+
+
 def _active_pointer(connection: Any) -> tuple[str, str] | None:
     with connection.cursor() as cursor:
         cursor.execute(
@@ -566,6 +603,55 @@ def test_postgres_release_fixture_satisfies_the_python_v2_verifier(
         )
 
     verify_release_object(release_object, public_key=TEST_PUBLIC_KEY)
+
+
+def test_profiled_release_fixture_verifies_and_activates(
+    clean_postgres: str,
+) -> None:
+    identity = _scope_identity("profiled-v3")
+    with closing(psycopg2.connect(clean_postgres)) as connection:
+        _seed_scope(connection, identity)
+        release_object = _profiled_release_object(
+            _release_object(
+                "profiled-v3-release",
+                _scope_evidence(connection, identity),
+            )
+        )
+        verify_release_object(release_object, public_key=TEST_PUBLIC_KEY)
+
+        result = _activate(connection, release_object)
+        connection.commit()
+
+    assert result["active"] is True
+    assert result["release"] == "profiled-v3-release"
+
+
+@pytest.mark.parametrize("case", ["missing", "mismatch"])
+def test_profiled_release_activation_rejects_invalid_quality_attestation(
+    clean_postgres: str,
+    case: str,
+) -> None:
+    identity = _scope_identity(f"profile-{case}")
+    with closing(psycopg2.connect(clean_postgres)) as connection:
+        _seed_scope(connection, identity)
+        release_object = _profiled_release_object(
+            _release_object(
+                f"profile-{case}-release",
+                _scope_evidence(connection, identity),
+            )
+        )
+        if case == "missing":
+            release_object["content"].pop("quality_profile")
+        else:
+            release_object["content"]["validation"]["quality_profile"] = "different-profile"
+
+        with pytest.raises(
+            psycopg2.Error,
+            match="unsupported quality profile|validation quality profile does not match",
+        ):
+            _activate(connection, release_object)
+        connection.rollback()
+        assert _active_scope_map(connection) == {}
 
 
 def test_count_mismatch_rolls_back_object_membership_and_active_pointer(
