@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from axiom_corpus.corpus.releases import (
+    COMPLETE_EXPRESSION_DATES_PROFILE,
     ReleaseManifest,
     ReleaseScope,
     resolve_release_manifest_path,
@@ -31,6 +32,54 @@ def test_release_manifest_loads_scope_keys(tmp_path):
 
     assert manifest.name == "nz-rulespec-v1"
     assert manifest.scope_keys == (("us-co", "policy", "2026-04-30"),)
+    assert manifest.quality_profile is None
+    assert manifest.requires_complete_expression_dates is False
+
+
+def test_release_manifest_loads_supported_quality_profile(tmp_path):
+    path = tmp_path / "nz-rulespec-v2.json"
+    path.write_text(
+        json.dumps(
+            {
+                "name": "nz-rulespec-v2",
+                "quality_profile": COMPLETE_EXPRESSION_DATES_PROFILE,
+                "scopes": [
+                    {
+                        "jurisdiction": "nz",
+                        "document_class": "statute",
+                        "version": "v2",
+                    }
+                ],
+            }
+        )
+    )
+
+    manifest = ReleaseManifest.load(path)
+
+    assert manifest.quality_profile == COMPLETE_EXPRESSION_DATES_PROFILE
+    assert manifest.requires_complete_expression_dates is True
+
+
+def test_release_manifest_rejects_unsupported_quality_profile(tmp_path):
+    path = tmp_path / "nz-rulespec-v2.json"
+    path.write_text(
+        json.dumps(
+            {
+                "name": "nz-rulespec-v2",
+                "quality_profile": "unknown-profile",
+                "scopes": [
+                    {
+                        "jurisdiction": "nz",
+                        "document_class": "statute",
+                        "version": "v2",
+                    }
+                ],
+            }
+        )
+    )
+
+    with pytest.raises(ValueError, match="unsupported quality_profile"):
+        ReleaseManifest.load(path)
 
 
 def test_release_manifest_rejects_duplicate_scopes(tmp_path):

@@ -124,6 +124,7 @@ def _tree(tmp_path: Path) -> tuple[Path, Path, Path, tuple[str, str, str]]:
         json.dumps(
             {
                 "name": "nz-rulespec-2026-07-10",
+                "quality_profile": "complete-expression-dates-v1",
                 "scopes": [
                     {
                         "jurisdiction": scope[0],
@@ -235,6 +236,55 @@ def test_dry_run_is_local_and_explicit(tmp_path: Path, monkeypatch) -> None:
         "artifact_count": 4,
         "provision_rows": 1,
     }
+
+
+def test_dry_run_rejects_legacy_quality_profile(tmp_path: Path, monkeypatch) -> None:
+    root, base, selector, _ = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    payload = json.loads(selector.read_text())
+    payload.pop("quality_profile")
+    selector.write_text(json.dumps(payload))
+
+    with pytest.raises(ReleaseManifestError, match="requires quality_profile"):
+        publish.plan_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            r2_bucket="axiom-corpus",
+        )
+
+
+def test_publication_rejects_legacy_profile_before_external_writes(
+    tmp_path: Path, monkeypatch
+) -> None:
+    root, base, selector, _ = _tree(tmp_path)
+    payload = json.loads(selector.read_text())
+    payload.pop("quality_profile")
+    selector.write_text(json.dumps(payload))
+    monkeypatch.setattr(
+        publish,
+        "validate_release",
+        lambda *args, **kwargs: pytest.fail("legacy selector must fail before validation"),
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: pytest.fail("legacy selector must not write to R2"),
+    )
+    private, public = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="requires quality_profile"):
+        publish.publish_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            supabase_url="https://example.supabase.co",
+            service_key="service",
+            access_token="management",
+            r2_config=_config(),
+            private_key=private,
+            public_key=public,
+        )
 
 
 def test_publication_orders_all_validation_before_activation(tmp_path: Path, monkeypatch) -> None:
@@ -491,9 +541,10 @@ def test_released_scope_retry_or_successor_reuses_exact_immutable_rows(
         target_selector = selector.with_name("nz-rulespec-2026-07-11.json")
         target_selector.write_text(
             json.dumps(
-                {
-                    "name": "nz-rulespec-2026-07-11",
-                    "scopes": [
+                    {
+                        "name": "nz-rulespec-2026-07-11",
+                        "quality_profile": "complete-expression-dates-v1",
+                        "scopes": [
                         {
                             "jurisdiction": scope[0],
                             "document_class": scope[1],

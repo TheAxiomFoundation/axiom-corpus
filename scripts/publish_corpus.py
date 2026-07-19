@@ -35,7 +35,11 @@ from axiom_corpus.corpus.navigation import build_navigation_nodes
 from axiom_corpus.corpus.navigation_supabase import write_navigation_nodes_to_supabase
 from axiom_corpus.corpus.r2 import DEFAULT_R2_BUCKET, R2Config, load_r2_config
 from axiom_corpus.corpus.release_quality import ReleaseValidationReport, validate_release
-from axiom_corpus.corpus.releases import ReleaseManifest, resolve_release_manifest_path
+from axiom_corpus.corpus.releases import (
+    COMPLETE_EXPRESSION_DATES_PROFILE,
+    ReleaseManifest,
+    resolve_release_manifest_path,
+)
 from axiom_corpus.corpus.supabase import (
     DEFAULT_ACCESS_TOKEN_ENV,
     DEFAULT_AXIOM_SUPABASE_URL,
@@ -120,6 +124,7 @@ def publish_named_release(
         raise ReleaseManifestError("corpus base must be inside the repository") from exc
     release = ReleaseManifest.load(selector_path)
     _require_canonical_selector(root, selector_path, release)
+    _require_publishable_quality_profile(release)
 
     # A cheap local gate runs before any external writes. The authoritative
     # validation attestation is generated again after remote readback/counting.
@@ -286,6 +291,7 @@ def plan_named_release(
     """Validate and print a no-write publication plan."""
     release = ReleaseManifest.load(selector_path)
     _require_canonical_selector(repo_root.resolve(), selector_path, release)
+    _require_publishable_quality_profile(release)
     report = validate_release(base, release, max_issues=200)
     _require_deep_validation(report, phase="dry-run")
     base_rel = base.resolve().relative_to(repo_root.resolve()).as_posix()
@@ -539,6 +545,14 @@ def _require_canonical_selector(
         raise ReleaseManifestError(
             "release selector must be the exact non-symlink path "
             f"manifests/releases/{release.name}.json"
+        )
+
+
+def _require_publishable_quality_profile(release: ReleaseManifest) -> None:
+    if release.quality_profile != COMPLETE_EXPRESSION_DATES_PROFILE:
+        raise ReleaseManifestError(
+            "release publication requires quality_profile "
+            f"{COMPLETE_EXPRESSION_DATES_PROFILE!r}"
         )
 
 

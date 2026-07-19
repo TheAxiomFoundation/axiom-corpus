@@ -153,7 +153,13 @@ def validate_release(
                 scope=scope,
             )
             continue
-        _validate_scope(store, scope, collector, release_citation_paths)
+        _validate_scope(
+            store,
+            scope,
+            collector,
+            release_citation_paths,
+            require_expression_dates=release.requires_complete_expression_dates,
+        )
     return ReleaseValidationReport(
         release_name=release.name,
         scope_count=len(release.scopes),
@@ -253,6 +259,8 @@ def _validate_scope(
     scope: ReleaseScope,
     collector: _IssueCollector,
     release_citation_paths: set[str],
+    *,
+    require_expression_dates: bool,
 ) -> None:
     inventory_path = store.inventory_path(scope.jurisdiction, scope.document_class, scope.version)
     provisions_path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
@@ -270,6 +278,7 @@ def _validate_scope(
         scope,
         collector,
         release_citation_paths,
+        require_expression_dates=require_expression_dates,
     )
     recomputed = compare_provision_coverage(
         inventory,
@@ -556,6 +565,8 @@ def _validate_provisions(
     scope: ReleaseScope,
     collector: _IssueCollector,
     release_citation_paths: set[str] | None = None,
+    *,
+    require_expression_dates: bool = False,
 ) -> None:
     try:
         DocumentClass(scope.document_class)
@@ -619,7 +630,12 @@ def _validate_provisions(
                 )
     for record in provisions:
         _validate_provision_record(
-            record, by_path, scope, collector, release_citation_paths or set(by_path)
+            record,
+            by_path,
+            scope,
+            collector,
+            release_citation_paths or set(by_path),
+            require_expression_dates=require_expression_dates,
         )
 
 
@@ -660,6 +676,8 @@ def _validate_provision_record(
     scope: ReleaseScope,
     collector: _IssueCollector,
     release_citation_paths: set[str],
+    *,
+    require_expression_dates: bool,
 ) -> None:
     if record.jurisdiction != scope.jurisdiction:
         collector.add(
@@ -723,7 +741,7 @@ def _validate_provision_record(
         record,
         scope,
         collector,
-        required=True,
+        required=require_expression_dates,
     )
 
 

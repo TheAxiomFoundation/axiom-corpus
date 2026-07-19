@@ -1,6 +1,7 @@
 {
   "description": "Strict-cutover completion cut for rulespec-us#911. Replaces the HR6644 current-law and Colorado tax-credit session-law scopes with immutable expression-date repairs; all other July 18 scope selections remain unchanged.",
   "name": "us-rulespec-2026-07-19",
+  "quality_profile": "complete-expression-dates-v1",
   "scopes": [
     {
       "document_class": "form",
