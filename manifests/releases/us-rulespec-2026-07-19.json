@@ -1,6 +1,7 @@
 {
-  "description": "Strict-cutover completion cut for rulespec-us#911: everything in us-rulespec-ny-snap-2026-07-17 plus the HR6644 current-law baseline and dependency-closure statute scopes. current-law is re-versioned (-r2026-07-18-dedup) dropping five rows that duplicate paths already carried by active scopes or by the closure-42 scope; closure titles 12/26/42 are re-versioned dropping their body-less title-container rows, which collide with container rows in already-bound scopes. Closure titles 7/15/38 bind as ingested. Supersedes us-rulespec-2026-07-18: the current-law scope re-versioned once more to add the required expression_date row metadata (= source_as_of, the bills snapshot date).",
+  "description": "Strict-cutover completion cut for rulespec-us#911. Replaces the HR6644 current-law and Colorado tax-credit session-law scopes with immutable expression-date repairs; all other July 18 scope selections remain unchanged.",
   "name": "us-rulespec-2026-07-19",
+  "quality_profile": "complete-expression-dates-v1",
   "scopes": [
     {
       "document_class": "form",
@@ -165,7 +166,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us",
-      "version": "2026-07-15-hr6644-current-law-r2026-07-19-dedup"
+      "version": "2026-07-15-hr6644-current-law-r2026-07-19-expression-date"
     },
     {
       "document_class": "statute",
@@ -380,7 +381,7 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-co",
-      "version": "2026-07-13-us-co-tax-credit-session-laws"
+      "version": "2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date"
     },
     {
       "document_class": "policy",
