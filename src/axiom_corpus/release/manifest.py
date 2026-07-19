@@ -300,13 +300,12 @@ def build_unsigned_release_object(content: Mapping[str, Any]) -> dict[str, Any]:
         raise ReleaseManifestError("release content is missing its release name")
     _require_release_name(release)
     materialized = copy.deepcopy(dict(content))
-    schema_version = (
-        RELEASE_OBJECT_SCHEMA_VERSION
-        if "quality_profile" in materialized
-        else RELEASE_OBJECT_SCHEMA_V2
-    )
+    if materialized.get("quality_profile") != COMPLETE_EXPRESSION_DATES_PROFILE:
+        raise ReleaseManifestError(
+            "new release objects require the complete-expression-dates-v1 quality profile"
+        )
     return {
-        "schema_version": schema_version,
+        "schema_version": RELEASE_OBJECT_SCHEMA_VERSION,
         "release": release,
         "content_sha256": release_content_sha256(materialized),
         "content": materialized,
@@ -327,6 +326,10 @@ def sign_release_object(
     """Attach an Ed25519 signature to an already validated release object."""
     signed = copy.deepcopy(dict(payload))
     signed.pop("signature", None)
+    if signed.get("schema_version") != RELEASE_OBJECT_SCHEMA_VERSION:
+        raise ReleaseManifestError(
+            "new signatures require the current profiled release object schema"
+        )
     _validate_unsigned_release_object(signed)
     signature = _load_ed25519_private_key(private_key).sign(canonical_release_object_bytes(signed))
     signed["signature"] = {

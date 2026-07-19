@@ -5,7 +5,7 @@ from __future__ import annotations
 import copy
 import json
 import subprocess
-from base64 import b64encode
+from base64 import b64decode, b64encode
 from pathlib import Path
 
 import pytest
@@ -29,8 +29,10 @@ from axiom_corpus.release.manifest import (
     _validate_validation_attestation,
     build_release_content,
     build_unsigned_release_object,
+    canonical_release_object_bytes,
     content_addressed_r2_key,
     load_release_object,
+    release_content_sha256,
     release_object_r2_key,
     selector_sha256,
     serialize_release_object,
@@ -267,13 +269,45 @@ def test_release_object_verifies_historical_v2_without_quality_profile(
     content["selector_sha256"] = selector_sha256(legacy_release)
     private, public = _keys()
 
-    signed = sign_release_object(
-        build_unsigned_release_object(content),
-        private_key=private,
+    unsigned = {
+        "schema_version": RELEASE_OBJECT_SCHEMA_V2,
+        "release": content["release"],
+        "content_sha256": release_content_sha256(content),
+        "content": content,
+    }
+    signature = Ed25519PrivateKey.from_private_bytes(b64decode(private)).sign(
+        canonical_release_object_bytes(unsigned)
     )
+    signed = {
+        **unsigned,
+        "signature": {
+            "algorithm": "ed25519",
+            "key_id": "axiom-corpus-release-v2",
+            "value": b64encode(signature).decode(),
+        },
+    }
 
     assert signed["schema_version"] == RELEASE_OBJECT_SCHEMA_V2
     verify_release_object(signed, public_key=public)
+
+
+def test_new_release_object_creation_rejects_missing_quality_profile(tmp_path: Path) -> None:
+    content = _valid_content(tmp_path)
+    content.pop("quality_profile")
+    content["validation"].pop("quality_profile")
+
+    with pytest.raises(ReleaseManifestError, match="require.*quality profile"):
+        build_unsigned_release_object(content)
+
+
+def test_new_signatures_reject_historical_v2_schema(tmp_path: Path) -> None:
+    content = _valid_content(tmp_path)
+    payload = build_unsigned_release_object(content)
+    payload["schema_version"] = RELEASE_OBJECT_SCHEMA_V2
+    private, _ = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="current profiled.*schema"):
+        sign_release_object(payload, private_key=private)
 
 
 def test_release_object_rejects_profile_missing_from_validation(tmp_path: Path) -> None:
@@ -354,7 +388,7 @@ def test_release_object_rejects_invalid_signature_fields(
     ("case", "message"),
     [
         ("top_extra", "unsupported top-level fields"),
-        ("schema", "unsupported schema version"),
+        ("schema", "current profiled.*schema"),
         ("release_type", "missing its release name"),
         ("content_type", "content must be a JSON object"),
         ("content_fields", "content does not match the axiom-corpus/release-object/v3 schema"),
