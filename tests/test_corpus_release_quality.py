@@ -424,6 +424,43 @@ def test_validate_release_reports_scope_invariant_errors(tmp_path):
     }.issubset(codes)
 
 
+def test_validate_release_requires_expression_date_without_strict_warnings(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    version = "2026-07-19"
+    source = store.source_path("us", "statute", version, "source.xml")
+    source_sha256 = store.write_text(source, "<section>Official source.</section>")
+    source_path = source.relative_to(store.root).as_posix()
+    release = _write_source_scope(
+        store,
+        jurisdiction="us",
+        version=version,
+        inventory=[
+            SourceInventoryItem(
+                citation_path="us/statute/1",
+                source_path=source_path,
+                sha256=source_sha256,
+            )
+        ],
+        provisions=[
+            ProvisionRecord(
+                jurisdiction="us",
+                document_class="statute",
+                citation_path="us/statute/1",
+                body="Official source.",
+                version=version,
+                source_path=source_path,
+                source_as_of=version,
+            )
+        ],
+    )
+
+    report = validate_release(store.root, release)
+
+    assert report.ok is False
+    issue = next(item for item in report.issues if item.code == "missing_expression_date")
+    assert issue.severity == "error"
+
+
 def test_validate_release_reports_missing_and_invalid_artifacts(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     version = "2026-04-29"

@@ -717,7 +717,14 @@ def _validate_provision_record(
             scope=scope,
         )
     _validate_date(record.source_as_of, "source_as_of", record, scope, collector)
-    _validate_date(record.expression_date, "expression_date", record, scope, collector)
+    _validate_date(
+        record.expression_date,
+        "expression_date",
+        record,
+        scope,
+        collector,
+        required=True,
+    )
 
 
 def _validate_date(
@@ -726,10 +733,13 @@ def _validate_date(
     record: ProvisionRecord,
     scope: ReleaseScope,
     collector: _IssueCollector,
+    *,
+    required: bool = False,
 ) -> None:
+    severity = "error" if required else "warning"
     if not value:
         collector.add(
-            "warning",
+            severity,
             f"missing_{field}",
             f"{record.citation_path} missing {field}",
             scope=scope,
@@ -739,7 +749,7 @@ def _validate_date(
         date.fromisoformat(value)
     except ValueError:
         collector.add(
-            "warning",
+            severity,
             f"invalid_{field}",
             f"{record.citation_path} has non-ISO {field}: {value}",
             scope=scope,
