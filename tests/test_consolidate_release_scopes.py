@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shutil
 from dataclasses import replace
 
 import pytest
@@ -129,7 +130,7 @@ def test_rejects_conflicting_substantive_duplicates(tmp_path):
             ),
         )
 
-    with pytest.raises(ValueError, match="conflicting duplicate citation_path"):
+    with pytest.raises(ValueError, match="explicit preferred source version"):
         consolidate_release_scopes(
             base=store.root,
             jurisdiction="us",
@@ -137,3 +138,102 @@ def test_rejects_conflicting_substantive_duplicates(tmp_path):
             source_versions=("published-one", "published-two"),
             target_version="published-three",
         )
+
+
+def test_requires_explicit_carrier_for_semantically_different_containers(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    for version, heading in (("published-one", "Section 85"), ("published-two", "Title 26")):
+        _write_scope(
+            store,
+            version=version,
+            records=(
+                ProvisionRecord(
+                    jurisdiction="us",
+                    document_class="statute",
+                    citation_path="us/statute/26",
+                    heading=heading,
+                    body=None,
+                ),
+            ),
+        )
+
+    with pytest.raises(ValueError, match="explicit preferred source version"):
+        consolidate_release_scopes(
+            base=store.root,
+            jurisdiction="us",
+            document_class="statute",
+            source_versions=("published-one", "published-two"),
+            target_version="published-three",
+        )
+
+    consolidate_release_scopes(
+        base=store.root,
+        jurisdiction="us",
+        document_class="statute",
+        source_versions=("published-one", "published-two"),
+        target_version="published-three",
+        preferred_duplicate_versions={"us/statute/26": "published-two"},
+    )
+
+    records = load_provisions(store.provisions_path("us", "statute", "published-three"))
+    assert records[0].heading == "Title 26"
+    inventory = load_source_inventory(
+        store.inventory_path("us", "statute", "published-three")
+    )
+    assert "/published-two/" in inventory[0].source_path
+
+
+def test_copy_failure_leaves_target_retryable(tmp_path, monkeypatch):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    for version, citation in (
+        ("published-one", "us/statute/26/1"),
+        ("published-two", "us/statute/26/2"),
+    ):
+        _write_scope(
+            store,
+            version=version,
+            records=(
+                ProvisionRecord(
+                    jurisdiction="us",
+                    document_class="statute",
+                    citation_path=citation,
+                    body="Text.",
+                ),
+            ),
+        )
+    original_copytree = shutil.copytree
+    calls = 0
+
+    def fail_second_copy(*args, **kwargs):
+        nonlocal calls
+        calls += 1
+        if calls == 2:
+            raise OSError("injected copy failure")
+        return original_copytree(*args, **kwargs)
+
+    monkeypatch.setattr(shutil, "copytree", fail_second_copy)
+    with pytest.raises(OSError, match="injected copy failure"):
+        consolidate_release_scopes(
+            base=store.root,
+            jurisdiction="us",
+            document_class="statute",
+            source_versions=("published-one", "published-two"),
+            target_version="published-three",
+        )
+
+    targets = (
+        store.root / "sources/us/statute/published-three",
+        store.inventory_path("us", "statute", "published-three"),
+        store.provisions_path("us", "statute", "published-three"),
+        store.coverage_path("us", "statute", "published-three"),
+    )
+    assert not any(path.exists() for path in targets)
+    monkeypatch.setattr(shutil, "copytree", original_copytree)
+    consolidate_release_scopes(
+        base=store.root,
+        jurisdiction="us",
+        document_class="statute",
+        source_versions=("published-one", "published-two"),
+        target_version="published-three",
+    )
+    assert all(path.exists() for path in targets)

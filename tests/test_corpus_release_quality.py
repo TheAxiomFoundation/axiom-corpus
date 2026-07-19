@@ -130,6 +130,89 @@ def test_validate_release_accepts_r2_complete_remote_only_scope(tmp_path):
     assert report.issues[0].code == "remote_only_scope_not_deep_validated"
 
 
+@pytest.mark.parametrize(
+    ("local_versions", "remote_versions"),
+    [
+        (("local",), ("remote",)),
+        ((), ("remote-one", "remote-two")),
+    ],
+)
+def test_profiled_release_rejects_unverifiable_remote_uniqueness(
+    tmp_path, local_versions, remote_versions
+):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    scopes = []
+    for version in local_versions:
+        source = store.source_path("us-co", "statute", version, "source.html")
+        source_sha256 = store.write_text(source, "<p>Official source.</p>")
+        relative_source = source.relative_to(store.root).as_posix()
+        _write_source_scope(
+            store,
+            version=version,
+            inventory=[
+                SourceInventoryItem(
+                    citation_path="us-co/statute/39",
+                    source_path=relative_source,
+                    sha256=source_sha256,
+                )
+            ],
+            provisions=[
+                ProvisionRecord(
+                    jurisdiction="us-co",
+                    document_class="statute",
+                    citation_path="us-co/statute/39",
+                    body="Title 39.",
+                    version=version,
+                    source_path=relative_source,
+                    source_as_of="2026-07-19",
+                    expression_date="2026-07-19",
+                )
+            ],
+        )
+        scopes.append(ReleaseScope("us-co", "statute", version))
+    rows = []
+    for version in remote_versions:
+        scopes.append(ReleaseScope("us-co", "statute", version))
+        rows.append(
+            ArtifactScopeRow(
+                jurisdiction="us-co",
+                document_class="statute",
+                version=version,
+                remote_inventory=True,
+                remote_provisions=True,
+                remote_coverage=True,
+                coverage_complete=True,
+                provision_count=1,
+                supabase_count=1,
+            )
+        )
+    report = validate_release(
+        store.root,
+        ReleaseManifest(
+            name="profiled-release",
+            scopes=tuple(scopes),
+            quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+        ),
+        artifact_report=ArtifactReport(
+            local_root=store.root,
+            prefixes=(),
+            local_count=0,
+            local_bytes=0,
+            local_by_prefix={},
+            remote_count=len(rows) * 3,
+            remote_bytes=len(rows) * 3,
+            remote_by_prefix=None,
+            rows=tuple(rows),
+        ),
+    )
+
+    uniqueness_errors = [
+        issue for issue in report.issues if issue.code == "release_citation_uniqueness_unverified"
+    ]
+    assert report.ok is False
+    assert len(uniqueness_errors) == len(remote_versions)
+
+
 def test_validate_release_rejects_cross_scope_citation_duplicates(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     citation_path = "us-co/statute/39"

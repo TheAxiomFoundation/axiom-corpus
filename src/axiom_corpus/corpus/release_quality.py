@@ -195,6 +195,16 @@ def _release_citation_paths(
     owners: dict[str, ReleaseScope] = {}
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
+            if require_unique:
+                collector.add(
+                    "error",
+                    "release_citation_uniqueness_unverified",
+                    (
+                        "profiled release citation uniqueness cannot be verified because "
+                        "the scope provisions are available only in remote artifacts"
+                    ),
+                    scope=scope,
+                )
             continue
         path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
         try:
