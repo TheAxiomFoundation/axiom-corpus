@@ -8,7 +8,7 @@ scans every record in ``data/corpus/provisions/**/*.jsonl``, and checks:
 1. Every ``citation_path`` matches the grammar pattern.
 2. Segment 0 equals the record's ``jurisdiction`` field (when both present).
 3. Segment 1 equals the record's ``document_class`` field (and is in the enum).
-4. Irregular-family counts do not exceed their ratcheted baselines
+4. Unique irregular citation-path counts do not exceed their ratcheted baselines
    (``known_irregulars_ratchet``): a *regression* (someone added more
    ``block-N`` / ``page-N`` / truncated / space / en-dash / uppercase /
    collection-root segments than existed at r0) fails. Counts dropping is fine.
@@ -125,9 +125,14 @@ def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
             if segs[1] not in doc_classes:
                 unknown_docclass.append(p)
 
-    # Irregular-family live counts vs ratcheted baselines.
+    # Immutable scope versions can repeat the same citation identity. Ratchet
+    # citation-path shapes, not the number of versioned rows carrying them.
     baselines = schema["known_irregulars_ratchet"]["baselines"]
-    live_counts = {name: sum(1 for p in paths if pred(p)) for name, pred in IRREGULAR_PREDICATES.items()}
+    unique_paths = set(paths)
+    live_counts = {
+        name: sum(1 for path in unique_paths if predicate(path))
+        for name, predicate in IRREGULAR_PREDICATES.items()
+    }
     ratchet_regressions = {
         name: (live_counts[name], baselines[name])
         for name in baselines
@@ -167,7 +172,7 @@ def validate(provisions_dir: Path, schema: dict[str, Any]) -> dict[str, Any]:
         "ok": ok,
         "provisions_dir": str(provisions_dir),
         "record_count": len(paths),
-        "unique_path_count": len(set(paths)),
+        "unique_path_count": len(unique_paths),
         "json_errors": json_errors,
         "pattern_failures": sorted(set(pattern_failures)),
         "jurisdiction_mismatches": sorted(set(jurisdiction_mismatches)),
