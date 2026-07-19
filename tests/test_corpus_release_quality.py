@@ -130,6 +130,55 @@ def test_validate_release_accepts_r2_complete_remote_only_scope(tmp_path):
     assert report.issues[0].code == "remote_only_scope_not_deep_validated"
 
 
+def test_validate_release_rejects_cross_scope_citation_duplicates(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    citation_path = "us-co/statute/39"
+    scopes = []
+    for version in ("published-one", "published-two"):
+        source = store.source_path("us-co", "statute", version, "source.html")
+        source_sha256 = store.write_text(source, "<p>Official source.</p>")
+        relative_source = source.relative_to(store.root).as_posix()
+        _write_source_scope(
+            store,
+            version=version,
+            inventory=[
+                SourceInventoryItem(
+                    citation_path=citation_path,
+                    source_path=relative_source,
+                    sha256=source_sha256,
+                )
+            ],
+            provisions=[
+                ProvisionRecord(
+                    jurisdiction="us-co",
+                    document_class="statute",
+                    citation_path=citation_path,
+                    body="Title 39.",
+                    version=version,
+                    source_path=relative_source,
+                    source_as_of="2026-07-19",
+                    expression_date="2026-07-19",
+                )
+            ],
+        )
+        scopes.append(ReleaseScope("us-co", "statute", version))
+
+    report = validate_release(
+        store.root,
+        ReleaseManifest(
+            name="test-release",
+            scopes=tuple(scopes),
+            quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+        ),
+    )
+
+    assert report.ok is False
+    duplicate = [issue for issue in report.issues if issue.code == "duplicate_release_citation"]
+    assert len(duplicate) == 1
+    assert duplicate[0].version == "published-two"
+    assert "published-one" in duplicate[0].message
+
+
 def test_validate_release_can_ignore_r2_only_mirror_gaps(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     artifact_report = ArtifactReport(
@@ -481,9 +530,7 @@ def test_validate_release_versions_expression_date_requirement(tmp_path):
 
 
 def test_historical_us_selector_retains_legacy_expression_date_warnings():
-    release = ReleaseManifest.load(
-        REPO_ROOT / "manifests/releases/us-rulespec-2026-07-18.json"
-    )
+    release = ReleaseManifest.load(REPO_ROOT / "manifests/releases/us-rulespec-2026-07-18.json")
 
     report = validate_release(
         REPO_ROOT / "data/corpus",

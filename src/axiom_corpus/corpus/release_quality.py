@@ -140,7 +140,13 @@ def validate_release(
         artifact_rows = {
             (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
         }
-    release_citation_paths = _release_citation_paths(store, release, artifact_rows)
+    release_citation_paths = _release_citation_paths(
+        store,
+        release,
+        artifact_rows,
+        collector,
+        require_unique=release.requires_complete_expression_dates,
+    )
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             collector.add(
@@ -175,6 +181,9 @@ def _release_citation_paths(
     store: CorpusArtifactStore,
     release: ReleaseManifest,
     artifact_rows: Mapping[tuple[str, str, str], Any],
+    collector: _IssueCollector,
+    *,
+    require_unique: bool,
 ) -> set[str]:
     """Collect parents available anywhere in the local release cut.
 
@@ -183,14 +192,31 @@ def _release_citation_paths(
     Parsing errors remain owned by ``_validate_scope`` so they are reported once.
     """
     paths: set[str] = set()
+    owners: dict[str, ReleaseScope] = {}
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             continue
         path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
         try:
-            paths.update(record.citation_path for record in load_provisions(path))
+            provisions = load_provisions(path)
         except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
             continue
+        for record in provisions:
+            owner = owners.get(record.citation_path)
+            if require_unique and owner is not None and owner != scope:
+                collector.add(
+                    "error",
+                    "duplicate_release_citation",
+                    (
+                        f"citation_path {record.citation_path} is also present in "
+                        f"{owner.jurisdiction}/{owner.document_class}/{owner.version}"
+                    ),
+                    scope=scope,
+                    path=path,
+                )
+            else:
+                owners[record.citation_path] = scope
+            paths.add(record.citation_path)
     return paths
 
 
@@ -719,7 +745,9 @@ def _validate_provision_record(
                 f"{record.citation_path} parent not found: {record.parent_citation_path}",
                 scope=scope,
             )
-        elif parent is not None and record.parent_id and parent.id and record.parent_id != parent.id:
+        elif (
+            parent is not None and record.parent_id and parent.id and record.parent_id != parent.id
+        ):
             collector.add(
                 "error",
                 "parent_id_mismatch",
