@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated.json",
+      "sha256": "18fc62650e814505cf82d99e23ed9c5f57eadca7a0b61fb378ecf4b5c52001de"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated.json",
+      "sha256": "6d3df38c9c46962cd351f78c149244b947ef6f098e3107a9406c146d0d579c42"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated.jsonl",
+      "sha256": "875765f755cbcce71b206e9ac1051cc126c0f90cbacd40e26e6b9e5d12fa084f"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated/2026-07-12-crs-2025-title-39-article-22/crs2025-title-39.htm",
+      "sha256": "5dab1d1ab7f4e79a222fdbd32d860ef36148bc9b1d417b66472f8da49074427d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated/2026-07-13-crs-2025-title-39-remaining/crs2025-title-39.htm",
+      "sha256": "5dab1d1ab7f4e79a222fdbd32d860ef36148bc9b1d417b66472f8da49074427d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/statute/2026-07-19-rulespec-us-co-title-39-consolidated/2026-07-13-crs-2025-title-39-remaining/crs2025-title-39.htm.provenance.json",
+      "sha256": "580fc8dfae4c9c39a61c61a4d1584057d110154f8e19c9b01f622ae7370f24e4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4e968595b1788b94ac7639f5f47edce1105f73e0",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us-co --document-class statute --source-version 2026-07-12-crs-2025-title-39-article-22 --source-version 2026-07-13-crs-2025-title-39-remaining --target-version 2026-07-19-rulespec-us-co-title-39-consolidated"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1137,
+    "missing_count": 0,
+    "provision_count": 1137,
+    "source_count": 1137
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-19T15:26:35.861000+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n6X+UyN4IagmZCU9XhRfpZmDvKlE5G6vK1wLALUOkPD4H5ywnGoFMTvdizC+7XzFwtIYyF1nmizXdSuCi9yjCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-19-rulespec-us-co-title-39-consolidated"
+}
