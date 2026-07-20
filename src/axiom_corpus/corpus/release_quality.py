@@ -18,6 +18,8 @@ from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
+_PROFILED_CITATION_UNIQUENESS_GRANDFATHER = frozenset({"us-rulespec-2026-07-19"})
+
 
 @dataclass(frozen=True)
 class ReleaseValidationIssue:
@@ -140,12 +142,25 @@ def validate_release(
         artifact_rows = {
             (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
         }
+    require_unique_citations = (
+        release.requires_complete_expression_dates
+        and release.name not in _PROFILED_CITATION_UNIQUENESS_GRANDFATHER
+    )
+    if (
+        release.requires_complete_expression_dates
+        and release.name in _PROFILED_CITATION_UNIQUENESS_GRANDFATHER
+    ):
+        collector.add(
+            "warning",
+            "legacy_release_citation_uniqueness_grandfathered",
+            "known historical release predates release-wide citation uniqueness enforcement",
+        )
     release_citation_paths = _release_citation_paths(
         store,
         release,
         artifact_rows,
         collector,
-        require_unique=release.requires_complete_expression_dates,
+        require_unique=require_unique_citations,
     )
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):

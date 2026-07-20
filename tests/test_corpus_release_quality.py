@@ -262,6 +262,55 @@ def test_validate_release_rejects_cross_scope_citation_duplicates(tmp_path):
     assert "published-one" in duplicate[0].message
 
 
+def test_known_historical_profiled_release_is_explicitly_grandfathered(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    citation_path = "us/statute/26"
+    scopes = []
+    for version in ("published-one", "published-two"):
+        source = store.source_path("us", "statute", version, "source.xml")
+        source_sha256 = store.write_text(source, "<title>26</title>")
+        relative_source = source.relative_to(store.root).as_posix()
+        _write_source_scope(
+            store,
+            jurisdiction="us",
+            version=version,
+            inventory=[
+                SourceInventoryItem(
+                    citation_path=citation_path,
+                    source_path=relative_source,
+                    sha256=source_sha256,
+                )
+            ],
+            provisions=[
+                ProvisionRecord(
+                    jurisdiction="us",
+                    document_class="statute",
+                    citation_path=citation_path,
+                    body=None,
+                    version=version,
+                    source_path=relative_source,
+                    source_as_of="2026-07-19",
+                    expression_date="2026-07-19",
+                )
+            ],
+        )
+        scopes.append(ReleaseScope("us", "statute", version))
+
+    report = validate_release(
+        store.root,
+        ReleaseManifest(
+            name="us-rulespec-2026-07-19",
+            scopes=tuple(scopes),
+            quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+        ),
+    )
+
+    codes = {issue.code for issue in report.issues}
+    assert report.ok is True
+    assert "legacy_release_citation_uniqueness_grandfathered" in codes
+    assert "duplicate_release_citation" not in codes
+
+
 def test_validate_release_can_ignore_r2_only_mirror_gaps(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     artifact_report = ArtifactReport(
