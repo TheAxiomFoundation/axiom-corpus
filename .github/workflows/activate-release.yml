@@ -1,0 +1,100 @@
+name: Activate named corpus release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Immutable release name
+        required: true
+        type: string
+      content_sha:
+        description: Signed release object content_sha256
+        required: true
+        type: string
+      confirm:
+        description: Move serving after the preview succeeds
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: activate-corpus-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      RELEASE_NAME: ${{ inputs.release }}
+      CONTENT_SHA: ${{ inputs.content_sha }}
+      R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.14"
+
+      - name: Install package
+        run: python -I -m pip install -e .
+
+      - name: Require the activation trust boundary
+        run: |
+          missing=0
+          for var in \
+            SUPABASE_ACCESS_TOKEN \
+            R2_ACCESS_KEY_ID \
+            R2_SECRET_ACCESS_KEY \
+            AXIOM_CORPUS_RELEASE_PUBLIC_KEY; do
+            if [ -z "${!var}" ]; then
+              echo "::error::Required activation value $var is not set."
+              missing=1
+            fi
+          done
+          [ "$missing" = "0" ]
+
+      - name: Preview scope takeovers
+        run: |
+          python scripts/activate_release.py \
+            --release "$RELEASE_NAME" \
+            --content-sha "$CONTENT_SHA" \
+            --dry-run \
+            --output "$RUNNER_TEMP/activation-preview.json"
+
+      - name: Activate signed release
+        if: inputs.confirm
+        run: |
+          python scripts/activate_release.py \
+            --release "$RELEASE_NAME" \
+            --content-sha "$CONTENT_SHA" \
+            --output "$RUNNER_TEMP/activation-result.json"
+
+      - name: Activation summary
+        if: always()
+        run: |
+          {
+            echo "### Named corpus release activation"
+            echo ""
+            echo "- Release: \`$RELEASE_NAME\`"
+            echo "- Content SHA-256: \`$CONTENT_SHA\`"
+            echo "- Confirmation requested: \`${{ inputs.confirm }}\`"
+            if [ -f "$RUNNER_TEMP/activation-result.json" ]; then
+              echo "- Result: activated"
+            elif [ "${{ inputs.confirm }}" = "true" ]; then
+              echo "- Result: activation failed after preview"
+            elif [ -f "$RUNNER_TEMP/activation-preview.json" ]; then
+              echo "- Result: previewed only"
+            else
+              echo "- Result: failed before preview completion"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

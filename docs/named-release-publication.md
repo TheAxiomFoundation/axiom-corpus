@@ -82,6 +82,11 @@ unchanged.
    Any error rolls the transaction back. Preview the takeover first with
    `activate_release.py --dry-run`.
 
+When production credentials are available only to GitHub Actions, dispatch
+`activate-release.yml` with the immutable release name and content SHA-256.
+The workflow always runs signed-object verification and a takeover preview;
+it moves serving only when the boolean `confirm` input is explicitly true.
+
 Partial staging is inert and safe to inspect or retry. There is no per-scope
 `publish`, mutable `current.json`, publish-on-load, best-effort refresh, or
 ambient release selection.
@@ -154,4 +159,18 @@ Verify a downloaded release object using only the public key:
 AXIOM_CORPUS_RELEASE_PUBLIC_KEY=... \
 uv run axiom-corpus-release path/to/release-object.json \
   --repo-root .
+```
+
+Preview and then activate through the protected workflow boundary:
+
+```bash
+gh workflow run activate-release.yml \
+  -f release=us-rulespec-2026-07-19-dedup \
+  -f content_sha=<sha256> \
+  -f confirm=false
+
+gh workflow run activate-release.yml \
+  -f release=us-rulespec-2026-07-19-dedup \
+  -f content_sha=<sha256> \
+  -f confirm=true
 ```
