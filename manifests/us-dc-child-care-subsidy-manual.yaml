@@ -24,6 +24,18 @@ documents:
         - '^DC Child Care Subsidy Program Policy Manual \d+$'
         - '^2\.4\.1 Children who$'
         - '^2\.4\.2 Children who$'
+        - '^reside with a parent\(s\)$'
+        - '^or guardian\(s\) who$'
+        - '^are working,$'
+        - '^attending a job$'
+        - '^training or education$'
+        - '^program, or are$'
+        - '^seeking employment\.$'
+        - '^receive, or need to$'
+        - '^receive protective$'
+        - '^services or are$'
+        - '^considered to be a$'
+        - '^vulnerable child\.$'
       section_label_replacements:
         Section 1: "1"
         Section 2: "2"
