@@ -1,1 +1,1 @@
-Add an explicit preview-first GitHub workflow for activating signed corpus releases with protected production credentials.
+Retain signed publication objects as workflow artifacts and add an explicit preview-first, environment-approved workflow for activating them with step-scoped production credentials.

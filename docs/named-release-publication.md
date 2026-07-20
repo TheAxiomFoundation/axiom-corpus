@@ -82,10 +82,15 @@ unchanged.
    Any error rolls the transaction back. Preview the takeover first with
    `activate_release.py --dry-run`.
 
-When production credentials are available only to GitHub Actions, dispatch
-`activate-release.yml` with the immutable release name and content SHA-256.
-The workflow always runs signed-object verification and a takeover preview;
-it moves serving only when the boolean `confirm` input is explicitly true.
+Publication retains the exact signed release object as a 30-day GitHub Actions
+artifact. When production credentials are available only to GitHub Actions,
+dispatch `activate-release.yml` with that publication run ID, immutable release
+name, and content SHA-256. The `release-preview` environment is restricted to
+the default branch. When activation is requested, the mutation job waits for
+approval in the protected `release-activation` environment after the preview
+job summary is available. The approved job downloads the same publication
+artifact, re-verifies its identity and signature, and reruns the takeover
+preview immediately before the transactional activation RPC.
 
 Partial staging is inert and safe to inspect or retry. There is no per-scope
 `publish`, mutable `current.json`, publish-on-load, best-effort refresh, or
@@ -165,12 +170,17 @@ Preview and then activate through the protected workflow boundary:
 
 ```bash
 gh workflow run activate-release.yml \
+  -f publish_run_id=<publish-run-id> \
   -f release=us-rulespec-2026-07-19-dedup \
   -f content_sha=<sha256> \
-  -f confirm=false
+  -f request_activation=false
 
 gh workflow run activate-release.yml \
+  -f publish_run_id=<publish-run-id> \
   -f release=us-rulespec-2026-07-19-dedup \
   -f content_sha=<sha256> \
-  -f confirm=true
+  -f request_activation=true
 ```
+
+For the second command, inspect the completed preview job summary before
+approving the waiting `release-activation` deployment.
