@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-westminster/manual/2026-07-19-westminster-council-tax-reduction-2026-2027.json",
+      "sha256": "a1ee7847f75ad2e771eda74dfe464c66f4d3819adda94d906d4197f8a78597f0"
+    },
+    {
+      "path": "data/corpus/inventory/uk-westminster/manual/2026-07-19-westminster-council-tax-reduction-2026-2027.json",
+      "sha256": "ba9c0c57bd8f9155e2e4b531dba43b39beae1d74e1a91c151480eacb22428bbe"
+    },
+    {
+      "path": "data/corpus/provisions/uk-westminster/manual/2026-07-19-westminster-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "df125710e86de80816d2a96f8d8035382e329c0020285078589e3c2a502705c7"
+    },
+    {
+      "path": "data/corpus/sources/uk-westminster/manual/2026-07-19-westminster-council-tax-reduction-2026-2027/official-documents/westminster-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "d81f66817f2657e4063366e9f63d8ab3ea06e17d784be8776f79951724b3496d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "92ac9c1bedf62968eeea9a873361f49075364157",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-19-westminster-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-westminster-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-20T11:57:25.569259+00:00",
+  "jurisdiction": "uk-westminster",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3zHPKzg1BVpY/JVFFiIF0I4wwViVtH8vDo9mKgCZzlAs4+HPEwzQu9x6HI9Cnik2oh6cqFht3rhLoSfBGJguBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-19-westminster-council-tax-reduction-2026-2027"
+}
