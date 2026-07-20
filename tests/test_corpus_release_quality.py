@@ -5,7 +5,10 @@ import pytest
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.r2 import ArtifactReport, ArtifactScopeRow, ArtifactSupabaseGroup
-from axiom_corpus.corpus.release_quality import validate_release
+from axiom_corpus.corpus.release_quality import (
+    _citation_uniqueness_grandfathered,
+    validate_release,
+)
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
     ReleaseManifest,
@@ -262,7 +265,7 @@ def test_validate_release_rejects_cross_scope_citation_duplicates(tmp_path):
     assert "published-one" in duplicate[0].message
 
 
-def test_known_historical_profiled_release_is_explicitly_grandfathered(tmp_path):
+def test_modified_historical_profiled_release_is_not_grandfathered(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     citation_path = "us/statute/26"
     scopes = []
@@ -306,9 +309,17 @@ def test_known_historical_profiled_release_is_explicitly_grandfathered(tmp_path)
     )
 
     codes = {issue.code for issue in report.issues}
-    assert report.ok is True
-    assert "legacy_release_citation_uniqueness_grandfathered" in codes
-    assert "duplicate_release_citation" not in codes
+    assert report.ok is False
+    assert "legacy_release_citation_uniqueness_grandfathered" not in codes
+    assert "duplicate_release_citation" in codes
+
+
+def test_exact_historical_profiled_release_fingerprint_is_grandfathered():
+    release = ReleaseManifest.load(
+        REPO_ROOT / "manifests/releases/us-rulespec-2026-07-19.json"
+    )
+
+    assert _citation_uniqueness_grandfathered(release) is True
 
 
 def test_validate_release_can_ignore_r2_only_mirror_gaps(tmp_path):

@@ -17,8 +17,11 @@ from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInv
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+from axiom_corpus.release.manifest import selector_sha256
 
-_PROFILED_CITATION_UNIQUENESS_GRANDFATHER = frozenset({"us-rulespec-2026-07-19"})
+_PROFILED_CITATION_UNIQUENESS_GRANDFATHER = {
+    "us-rulespec-2026-07-19": "79c091b4501eecb2996936ba51c87955f89460d9e3690b0fde88c30742547e9d"
+}
 
 
 @dataclass(frozen=True)
@@ -142,14 +145,11 @@ def validate_release(
         artifact_rows = {
             (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
         }
+    uniqueness_grandfathered = _citation_uniqueness_grandfathered(release)
     require_unique_citations = (
-        release.requires_complete_expression_dates
-        and release.name not in _PROFILED_CITATION_UNIQUENESS_GRANDFATHER
+        release.requires_complete_expression_dates and not uniqueness_grandfathered
     )
-    if (
-        release.requires_complete_expression_dates
-        and release.name in _PROFILED_CITATION_UNIQUENESS_GRANDFATHER
-    ):
+    if release.requires_complete_expression_dates and uniqueness_grandfathered:
         collector.add(
             "warning",
             "legacy_release_citation_uniqueness_grandfathered",
@@ -190,6 +190,11 @@ def validate_release(
         max_issues=max_issues,
         strict_warnings=strict_warnings,
     )
+
+
+def _citation_uniqueness_grandfathered(release: ReleaseManifest) -> bool:
+    expected = _PROFILED_CITATION_UNIQUENESS_GRANDFATHER.get(release.name)
+    return expected is not None and selector_sha256(release) == expected
 
 
 def _release_citation_paths(
