@@ -182,6 +182,20 @@ def test_negative_ratchet_regression_is_caught(tmp_path, schema):
     assert "block_n" in res["ratchet_regressions"]
 
 
+def test_ratchet_counts_unique_citation_identities(tmp_path, schema):
+    tight = json.loads(json.dumps(schema))
+    tight["known_irregulars_ratchet"]["baselines"]["collection_roots"] = 1
+    duplicate = _good_record(path="us-zz/statute")
+    provisions = _write_jsonl(tmp_path, [duplicate, duplicate])
+
+    result = validate_mod.validate(provisions, tight)
+
+    assert result["record_count"] == 2
+    assert result["unique_path_count"] == 1
+    assert result["irregular_live_counts"]["collection_roots"] == 1
+    assert "collection_roots" not in result["ratchet_regressions"]
+
+
 def test_negative_identity_drift_is_caught(tmp_path, schema):
     # Stored id that matches neither identity form == drift, and it's not in the
     # baseline list, so it must be reported as new.

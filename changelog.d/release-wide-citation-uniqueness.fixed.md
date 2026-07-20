@@ -1,0 +1,1 @@
+Reject profiled release selectors with citation paths duplicated across active scopes or with remote-only scopes whose uniqueness cannot be verified. The already-published `us-rulespec-2026-07-19` selector is explicitly grandfathered with a validation warning.
