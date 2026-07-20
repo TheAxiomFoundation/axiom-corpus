@@ -6,11 +6,36 @@ documents:
     title: DC Child Care Subsidy Program Policy Manual
     source_url: https://osse.dc.gov/sites/default/files/dc/sites/osse/publication/attachments/DC%20Child%20Care%20Subsidy%20Program%20Policy%20Manual.pdf
     source_format: pdf
-    source_as_of: "2026-05-11"
-    expression_date: "2026-05-11"
+    source_as_of: "2026-07-19"
+    expression_date: "2026-07-19"
     metadata:
       primary_source: true
       source_authority: District of Columbia Office of the State Superintendent of Education
       document_subtype: policy_manual
       program: child_care_subsidy
       discovered_via: policyengine-us:state_references
+    extraction:
+      start_page: 5
+      segmentation: labeled_sections
+      section_heading_pattern: '^(?P<label>Section \d+|\d+(?:\.\d+)+)\.?\s+(?P<heading>[A-Z].*)$'
+      section_label_pattern: '^(?P<label>Definitions|\d+(?:\.\d+){2,})$'
+      heading_continuation_pattern: '^[a-z(]'
+      drop_line_patterns:
+        - '^DC Child Care Subsidy Program Policy Manual \d+$'
+        - '^2\.4\.1 Children who$'
+        - '^2\.4\.2 Children who$'
+      section_label_replacements:
+        Section 1: "1"
+        Section 2: "2"
+        Section 3: "3"
+        Section 4: "4"
+        Section 5: "5"
+        Section 6: "6"
+        Section 7: "7"
+        Section 8: "8"
+        Section 9: "9"
+        Section 10: "10"
+        Section 11: "11"
+        Section 12: "12"
+        Section 13: "13"
+        Definitions: "definitions"
