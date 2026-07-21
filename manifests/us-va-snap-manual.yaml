@@ -6,13 +6,19 @@ documents:
     title: Virginia SNAP Full Manual
     source_url: https://www.dss.virginia.gov/media/vdss/benefit-programs/documents/snap/snap-manual/Entire-Manual-eff-10012025.pdf
     source_format: pdf
-    source_as_of: "2026-05-27"
+    source_as_of: "2026-07-21"
     expression_date: "2025-10-01"
+    extraction:
+      ocr: true
+      ocr_dpi: 300
     metadata:
       primary_source: true
       source_authority: Virginia Department of Social Services
       document_subtype: policy_manual
       program: SNAP
+      source_document_date: "2025-09-18"
+      source_document_effective_date: "2025-10-01"
+      source_document_effective_date_note: Transmittal 36 identifies specified Public Law 119-21 provisions as effective November 1, 2025.
       manual_landing_page: https://www.dss.virginia.gov/relief/food-assistance/snap/snap-policy--procedures/snap-manual/
       extraction_granularity: pdf_page
       source_discovery_group: us-va/manual/snap
