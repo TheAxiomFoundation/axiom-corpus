@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments.json",
+      "sha256": "6a68464caba34b6a76189798e29e371cb69f886a993dd48a9504735c701c5baa"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments.json",
+      "sha256": "1bf25f052f0c0cb5271bab85c24854b4268149c10cd6261649e3e417fee1ca70"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments.jsonl",
+      "sha256": "abf3c4dcc16224370a4e5e717325fa6374818a5821f3419d981b4cc9c11f6528"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/algiiv_2008/BJNR294200007.xml",
+      "sha256": "6d2f5c0d0db794bd1c2cb4d33c2a2f160d50a1499c7f6306ccf43030da85f6ac"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/bsv_2018/BJNR397600017.xml",
+      "sha256": "eb946f4fbfb57efd114dc8870c1deead519a4bbc99f49e70111bae29f0f03199"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/estdv_1955/BJNR007560955.xml",
+      "sha256": "917f896d8d11e0e1be257e284495ccb789e95497e238a4d9604ea62d81e764a9"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/milov4/BJNR1410A0023.xml",
+      "sha256": "488eabecbcd214aa6b3364cd922b90b34ec5003ad15f94bcd614991565c26f77"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/minuhv/BJNR218800015.xml",
+      "sha256": "dcadd62d68b3d20934bfb8d4bd887d99aff90a797cdac7a0bc0430124bf11879"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/official-documents/de-rbsfv-2025-bgbl-i-312.pdf",
+      "sha256": "8b58f7e5b915873232c642810b30ce7c444cfdf7f32d9537083fbe9814e206f4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/pbav_2025/BJNR1BE0A0024.xml",
+      "sha256": "5e334acea4e079ac2d2172b97c5e7ad48ad29fe8292ac36dc6e1bcee9828d890"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/rvbeitrsbek_2025/BJNR1700A0024.xml",
+      "sha256": "6de6fdd222cbd0c1bb7632f53dac78c22a4e676c5cbc8375cf2e811a01289ad8"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/svbezgrv_2025/BJNR16D0A0024.xml",
+      "sha256": "59576e5f25abd46db802e39af1f035cca05021f90435af37e94e607d0fea25f4"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments/wogv/BJNR020650971.xml",
+      "sha256": "f11b08a667c875e1a3480ff2a29fe76db5e50f644a1a36240e5cb54ca9257518"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e2a4d312e4fe9ca330bf7fe8c9c0a4af8ce3b431",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/compose_scope_versions.py --base data/corpus --jurisdiction de --document-class regulation --source-version 2026-07-16-de-federal-tax-benefit --source-version 2026-07-21-de-2025-operative-verordnungen --source-version 2026-07-21-de-2025-amending-regulations --target-version 2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 172,
+    "missing_count": 0,
+    "provision_count": 172,
+    "source_count": 172
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:04:14.200737+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "A+KSt79rH4RPdYXXMBeJhz5nc3yhoxaM66LRSHfR/ohIrWSWpq3onx3E2FZQysCJktCIpGIv5wp/H42hA4uvBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-de-federal-tax-benefit-r2026-07-21-2025-instruments"
+}
