@@ -27,7 +27,7 @@ successor release selector `us-rulespec-2026-07-21-pa-pit-current` adds this
 scope to `us-rulespec-2026-07-21-mi-pit-current` without changing its existing
 scope membership.
 
-The Michigan predecessor scope and this Pennsylvania scope each add one
-canonical `/block-1` citation identity. The measured `block_n` irregular-family
-ceiling therefore moves from 19,686 to 19,688; no existing citation path is
-rewritten.
+Both the Michigan predecessor and Pennsylvania table use stable semantic child
+paths (`rate-determination` and `rate-table`) instead of generated `/block-N`
+identities. This scope therefore requires no citation-irregularity ratchet
+increase and does not rewrite any existing released citation path.

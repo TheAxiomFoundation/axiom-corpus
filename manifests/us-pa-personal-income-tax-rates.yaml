@@ -12,6 +12,10 @@ documents:
       browser_user_agent: true
     extraction:
       html_content_selector: "section.agencypage-content table"
+      segmentation: anchor_range
+      html_start_selector: "tbody"
+      citation_suffix: rate-table
+      section_heading: Personal income tax rate table
     metadata:
       primary_source: true
       source_authority: Pennsylvania Department of Revenue
