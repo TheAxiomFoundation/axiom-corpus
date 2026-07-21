@@ -603,6 +603,81 @@ def test_guard_reports_manifest_batch_read_failure(
     )
 
 
+@pytest.mark.parametrize("filename", ["résumé.jsonl", "control\tname.jsonl"])
+def test_guard_rejects_unmanifested_quoted_protected_paths(
+    tmp_path: Path,
+    filename: str,
+) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+    artifact = repo / "data/corpus/provisions/nz/statute" / filename
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text('{"citation_path":"nz/statute/example","body":"Example."}\n')
+    _git(repo, "add", str(artifact.relative_to(repo)))
+    _git(repo, "commit", "-m", "Add unmanifested artifact")
+    _key, _private, public = _keys()
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    relative_path = artifact.relative_to(repo).as_posix()
+    assert not result.passed
+    assert result.protected_changes == (relative_path,)
+    assert any(relative_path in issue for issue in result.issues)
+
+
+@pytest.mark.parametrize("filename", ["résumé.md", "control\tname.md"])
+@pytest.mark.parametrize("committed", [False, True])
+def test_guard_rejects_quoted_reasoning_log_drift(
+    tmp_path: Path,
+    filename: str,
+    committed: bool,
+) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs" / filename
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version=artifact.stem,
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[artifact],
+        reasoning_logs=[reasoning_log],
+    )
+    _key, private, public = _keys()
+    _write_manifest(
+        repo,
+        sign_ingest_manifest(manifest, private_key=private),
+        version=artifact.stem,
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+
+    reasoning_log.write_text("changed reasoning\n")
+    if committed:
+        _git(repo, "add", str(reasoning_log.relative_to(repo)))
+        _git(repo, "commit", "-m", "Change reasoning")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit if committed else None,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert any("signed reasoning log entry" in issue for issue in result.issues)
+
+
 def test_guard_checks_reasoning_logs_for_authorized_artifact_changes(tmp_path: Path) -> None:
     repo = _init_repo(tmp_path / "repo")
     artifact = _artifact(repo)

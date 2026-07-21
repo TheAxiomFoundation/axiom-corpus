@@ -249,7 +249,14 @@ def guard_ingested_artifacts(
     """Check changed generated corpus artifacts against signed manifests."""
     repo = repo.resolve()
     public_key = public_key or os.environ.get(INGEST_MANIFEST_PUBLIC_KEY_ENV)
-    changes = _changed_paths(repo=repo, base_ref=base_ref, head_ref=head_ref)
+    try:
+        changes = _changed_paths(repo=repo, base_ref=base_ref, head_ref=head_ref)
+    except (subprocess.CalledProcessError, UnicodeDecodeError, ValueError) as exc:
+        return IngestGuardResult(
+            repo=repo,
+            protected_changes=(),
+            issues=(f"Unable to read changed paths: {exc}",),
+        )
     protected = tuple(path for path in changes if _is_protected_corpus_artifact(path.path))
     if not changes:
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
@@ -782,23 +789,27 @@ def _changed_paths(
 ) -> tuple[_ChangedPath, ...]:
     if base_ref:
         diff_ref = f"{base_ref}...{head_ref or 'HEAD'}"
-        args = ["git", "diff", "--name-status", "--no-renames", diff_ref]
+        args = ["git", "diff", "--name-status", "-z", "--no-renames", diff_ref]
     else:
-        args = ["git", "diff", "--name-status", "--no-renames", "HEAD"]
+        args = ["git", "diff", "--name-status", "-z", "--no-renames", "HEAD"]
     result = subprocess.run(
         args,
         cwd=repo,
         check=True,
         capture_output=True,
-        text=True,
     )
+    fields = result.stdout.split(b"\0")
+    if fields and fields[-1] == b"":
+        fields.pop()
+    if len(fields) % 2:
+        raise ValueError("Malformed NUL-delimited Git diff output.")
+
     changes: list[_ChangedPath] = []
-    for line in result.stdout.splitlines():
-        parts = line.split("\t")
-        if len(parts) < 2:
-            continue
-        status = parts[0]
-        path = parts[-1]
+    for raw_status, raw_path in zip(fields[::2], fields[1::2], strict=True):
+        status = raw_status.decode("ascii")
+        if not status:
+            raise ValueError("Git diff returned an empty change status.")
+        path = os.fsdecode(raw_path)
         changes.append(_ChangedPath(status=status[0], path=path))
     return tuple(changes)
 
