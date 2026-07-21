@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "2c581691928128f6966533ac6048cfb11620e514",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ca-capi-20260627"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,7 +35,7 @@
     "source_count": 24
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-27T00:48:02.866507+00:00",
+  "generated_at": "2026-07-21T11:57:43.727553+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [
     {
@@ -47,7 +47,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "yoy7Kfw7bYHiz3128L+OGlfMcSfjfm8JRGcHozpIWPIyqfT9tGFDCJEiZ3XAZwAeSEoRFdoc5QK0Qkhw8N7PAQ=="
+    "value": "O4uookFWGyYLlUedhUC1LHssbCpIJsGqn5jjHVK/WryWc8RzLcoQ65JX3cLJklNHPA/dW9Rvnn3soMbFpAwlDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-27-ca-capi-regulations"

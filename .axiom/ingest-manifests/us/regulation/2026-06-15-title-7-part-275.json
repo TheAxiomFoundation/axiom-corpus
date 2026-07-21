@@ -22,9 +22,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "a6a4321083271c2cfd990e9f2ecf47e0ca26318f",
-    "dirty_tracked": true,
-    "root": "/private/tmp/axiom-corpus-7-cfr-275"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -39,7 +39,7 @@
     "source_count": 32
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-15T21:35:55.262271+00:00",
+  "generated_at": "2026-07-21T11:57:43.291175+00:00",
   "jurisdiction": "us",
   "reasoning_logs": [
     {
@@ -51,7 +51,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "dFZ1C8QWUjKjndIsfoKhfT6EOKaTYMOMzxyM535bQg38rvnP6C2tc7b8WkHZhphMlWiIuUz2tjvNjQKnKgQRCQ=="
+    "value": "WZZ+CH9vRpw8xLe2rxoBabkjGmA0rX2P4AiYnBC9SOTZOc8OiwbJa4PxwtKHmXJVV68wdNspjwjnWPodvcB+DQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-15-title-7-part-275"

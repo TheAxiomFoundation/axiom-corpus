@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "de9b2eb9bcd03356cc8d5855216f2c83e7a085ab",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/axiom-corpus-issue-95-uk-legislation"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "statute",
-  "generated_at": "2026-06-07T15:11:57.649647+00:00",
+  "generated_at": "2026-07-21T11:42:00.730695+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "AqwMG4EduGBvxnnvEbc57gbCI0GsCci5xMkawiHXiczKsJqO5PQ1hamcu92mY0F8ERP8Y6hdUjq/TvydGZ3BCQ=="
+    "value": "DtsiYM/+DZtxjBeiBrC55GoMNw8cvAMWA0/mDps9K1LBvPoksB11/tLGRuDo7FPINYgEEbD7drBvYHbg9ls3DQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-06-uk-state-pension-credit-section1"

@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "9ce193fefe755c38e27255b88bdf1ffd1e4b44d5",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-belgium-artifacts"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +35,14 @@
     "source_count": 135
   },
   "document_class": "statute",
-  "generated_at": "2026-07-03T17:17:53.937514+00:00",
+  "generated_at": "2026-07-21T11:40:39.802480+00:00",
   "jurisdiction": "be-wal",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "L2ENNuO4flIr6Kk35uALZ13S/oP8LExd7Mb9H5qh6ehx9ZNVawEkj78cTwP6fX8Ip4fcTKRzX27Aaal3B9ZbDQ=="
+    "value": "ADb8hjpRJGdc4KLXLgQnZmDHij7iQGc9J2bGqYkzG8hY4l2mKMmtkJ3TbeKIhLUfPrNDtnIIi8g+0qj/M7OZAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-30-be-tax-benefit"

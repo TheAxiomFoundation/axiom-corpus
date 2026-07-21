@@ -11,16 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-07-uk-lbtt-rates.jsonl",
       "sha256": "84dd9adc878199d43c1f89394a0ead5d4afba0ee7a837dd421b9c14d1c4fec30"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-07-uk-lbtt-rates/ssi/2015/126/regulation-document.xml",
-      "sha256": "aec7039c852a2036069b7127427d216e97249ca9609203e3879c21de4393cb02"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "37b925e3798932b393307e1b742a24490f80faf5",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_parity_workspaces/laneB/axiom-corpus"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +31,14 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-07T16:34:03.163730+00:00",
+  "generated_at": "2026-07-21T11:42:00.530162+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "CvCAnz+XtlL7fxoQCefCSzknVW4o5BE6yKv10yCd8y/Sd0rmn56qjXghDjsIUfUK8rWcYuz9cxEL5yTFtv5kCQ=="
+    "value": "JKrDaqxv+eURYu+7X/wIEhgGcIGtSd0o1Mc7FGYLIGatTt1tWKqJeNgTgtP6HJhgs1uzMl7XDHGGArteMAI0Cw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-07-uk-lbtt-rates"
