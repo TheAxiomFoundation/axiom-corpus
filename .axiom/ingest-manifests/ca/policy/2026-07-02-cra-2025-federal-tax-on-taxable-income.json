@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-federal-tax-on-taxable-income.json",
-      "sha256": "810e7f9e65566a84007a7c56dd70031cc933baab63128d4bdceb944a1ad770d6"
+      "sha256": "3547963f9f859eddb2c0340eb14e52296ce3a90ef93df2c148c23a573851073a"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-tax-on-taxable-income.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 7
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:32.363491+00:00",
+  "generated_at": "2026-07-21T10:50:59.495686+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "XqL+HR9FVzTHFUee6P7SUWT4+exAHM8JkZYox89LcyMQXeY/FcjNSDbqGFAN2tWMbr0uWShAjzXGVzNDD78MCA=="
+    "value": "ymoS0wVF1hwExgUA0J8Ajz9KaUz9zi2/1KSnV5Dxx0JOZ2LHWTRYj4l6jKMO16/V/Xj74GsT8nVNGZuLumoMCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2025-federal-tax-on-taxable-income"

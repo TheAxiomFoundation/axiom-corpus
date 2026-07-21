@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief.json",
-      "sha256": "9041d8226040ff533aaaa81dd9ee3dc9ec46b7aa5c2c60d73ec851531f545dff"
+      "sha256": "5cb33bd074a8932f5af8e9b088ec883d39e2969f090065e831b4fd0af7ed10fe"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:49.347864+00:00",
+  "generated_at": "2026-07-21T10:51:17.330352+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "87pZN319L/zKckVfe5wgQjA7ehQLZNvCNJ/knasTEMzcrRbj/mXZC0m1u1MSA/SVcrzX+agBkFRv0Hzv/Mn7BA=="
+    "value": "PVhhlmiTVO8kGU/2jfCxvxUUs+Ninsc0KP1p0mwe1KrJ2kyTEsr25iUwt7pa+0HLTY4is3DGD9FBofUiDBAtBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-revenu-quebec-2025-schedule-b-tax-relief"

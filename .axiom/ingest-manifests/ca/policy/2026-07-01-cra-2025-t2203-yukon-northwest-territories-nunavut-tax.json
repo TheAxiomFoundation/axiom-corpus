@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax.json",
-      "sha256": "f0ec5a3a6f429cffba9a54e805eb0905e7311172bbe724b341a88eaa475eff13"
+      "sha256": "067220402e0d8d608e0f14160d74654686bedeb1d97e2632b4fc294c3e916951"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 5
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T12:12:22.706601+00:00",
+  "generated_at": "2026-07-21T10:50:48.781788+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "UYN1xVCcDOnFEhttajbuUGRNcrN5WjNG1SvENo4MsZafohZ1lZxL6FV42kE6PRQssK4GEH6ex6u47YariSCqAA=="
+    "value": "cgOsf/0PlP7uIbX/rrfUqomRhW2HGHI7BR1XrVdcqvJaP0t2uGA21JstAia71D/6n20O8H1kB5xT24PyUs4DAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax"

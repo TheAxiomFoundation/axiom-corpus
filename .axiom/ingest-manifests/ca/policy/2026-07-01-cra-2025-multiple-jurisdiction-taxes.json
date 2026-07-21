@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-multiple-jurisdiction-taxes.json",
-      "sha256": "5ce98617101824ff0cabd13c2e40e19105528a6eea56a5773055bec6b5f71ecd"
+      "sha256": "59c13fd30d99fda67949b9f135442de78db0ff7ec6e5740bd0110bc9742cde19"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-multiple-jurisdiction-taxes.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T12:12:16.421405+00:00",
+  "generated_at": "2026-07-21T10:50:39.408784+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "hJ4puwAKWsjGB++FOVvg7zFxlL7zw9h5uN0PqZBX3MEp1Y+WuDbyY0Nl54f9IQfO1pk9LSn5hPm+ePXZHFV6DQ=="
+    "value": "Fi+k/fWzdUg2vzW3IM0PSy7Om4FAJ8QVMunJljd7Oa/aHIgADxgc2fyp6lO+hmVzlLUFM62evkz5JDm7UqlAAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-multiple-jurisdiction-taxes"

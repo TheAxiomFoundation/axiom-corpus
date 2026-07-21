@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit.json",
-      "sha256": "da93a14dd81e74fc240a5eafc6e89d2ce0ab363680eae3073831c7be731d7d22"
+      "sha256": "57b7488b396f82c315429b00e949ff46f3020ad9359673af01ff450dfa17085d"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:38.796890+00:00",
+  "generated_at": "2026-07-21T10:51:06.188555+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "rvfs/fJWRXspP78IDqr4cl7SY07zsJUKAOO8FK2pDvEBWfwqlmDefn4DajZahRAgtfr1fEGphnekhtOOmc3hDw=="
+    "value": "b2AhZJCqfd/WaPCxrhQQud+NzpxF37JMFQQxDnCTTTKT5CKkoKh9d0M/gG3aYV5hOijD3qGlMyM09AaaH+1PBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit"

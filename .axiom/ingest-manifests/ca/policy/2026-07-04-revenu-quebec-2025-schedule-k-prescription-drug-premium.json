@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium.json",
-      "sha256": "2e2d1abf7085918934dfa1d6e3b7474ec24df828c6470f141ea35ceb0c083af4"
+      "sha256": "eafc4576a5ec5cf1e2b4dd53300a41a62f73d6364a9a82bca45bf8f37fc2e2e9"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:55.314752+00:00",
+  "generated_at": "2026-07-21T10:51:23.703922+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "P3rPo55Yec56Qqhy0rR8DwY87k3hem06LLVU1ympiyLoOa8N5ANbtPSE5bQbzHLRzeGB5/lwdsuvvSHqdNfRCw=="
+    "value": "8vCZmUvNO/rjlhQm/0v85elebFpeYZZ6HQGiXZjvOSneZ0aik69DYYj0m8Axc0Y7VEL7aQAZinBtrDI5GS5bCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium"

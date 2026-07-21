@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits.json",
-      "sha256": "00953f0c79189c48c488726176fdad94aa2aa1b7b2a73b3fdd9d1319713d3a9a"
+      "sha256": "1d0ad533e00a5b0a576d9b09215e9d67232728e927bebb5e24bc0ba5c8ee1d2d"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:37.471814+00:00",
+  "generated_at": "2026-07-21T10:51:04.861373+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "rkqGO/WvP/nfCaVgDgbeqm4hxN2gF+6Ot2nutE4SdQTGErJtH+HpLDXZ7fsWfWhrCJGh041q+wMHn0uMam0OCQ=="
+    "value": "k0TgwBPk4zZZM9N9Bm2aptnsnBbj3IZPdSBD6zNhKliGS9HVf1LO36zsuRghzFaMUx/uGoEFn0PA2imre18/Dg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits"

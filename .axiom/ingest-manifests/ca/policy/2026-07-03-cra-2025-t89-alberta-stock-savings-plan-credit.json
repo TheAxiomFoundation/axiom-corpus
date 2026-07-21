@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit.json",
-      "sha256": "9c0b0e2f0fe2fff62ac1e8e70468a13c26aa83ea85d5f0e126a699653f2a0662"
+      "sha256": "54bc5995f9ccf3fc83286d2f43d22d6e7d24a922bcad8dfe2c3172150a75a7e4"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:46.760663+00:00",
+  "generated_at": "2026-07-21T10:51:14.555498+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "bv7/ZQiN78P09QxOKljJ29j6lq1u3Y1vOTIpj9QUJKBvo12PTJu5zaBHpFgPHStHFGmlRxAdCxCUJeYf6cFxAA=="
+    "value": "KBzGWOU4Q7HtXwXhYuUNfVUMWlnPxX4JksLSTZo0U3NSj6+z4To4l8Y991eWvoBWj9SYQM+/PCA1rz2nLEQ9Aw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit"

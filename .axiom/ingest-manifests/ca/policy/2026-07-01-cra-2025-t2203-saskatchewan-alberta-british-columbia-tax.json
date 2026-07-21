@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.json",
-      "sha256": "7def19354a7bcdc31c4865b36663f20ecc4ec0ba6c00329edd395bc1e39502e9"
+      "sha256": "f69562676f6b1af3063bd603ec5a031eac63da5733043fa07e39d6ed2b022c2c"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 5
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T12:12:20.855707+00:00",
+  "generated_at": "2026-07-21T10:50:46.775247+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "N8ZzqNjJe8/OvD6RfHBV5GVHx+NGHWlxqAyA1MnyjOyw2A9qa4IGyvlLGevWx0z3M/mhJBjVVuQ06W+vEqDQCQ=="
+    "value": "mJRyn1lJ9CrsjHO0L2uLV9Nr4QesbZTltP+7LAhcp//jNjvdyco27CkiJ8wCfIF/mOMz3Y2JRSo7SLGdTmC5BA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax"

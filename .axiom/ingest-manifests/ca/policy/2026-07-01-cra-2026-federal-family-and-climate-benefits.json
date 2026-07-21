@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits.json",
-      "sha256": "ce45be83bc835261aebd36cdd8f97e2fa2f9100f84a711986e760a8aa57c47ec"
+      "sha256": "c81fefe3f7c5b66fbf1521781d2aa7400da2903950e485932ae1b5675d0d8636"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-federal-family-and-climate-benefits.jsonl",
@@ -38,13 +38,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -55,14 +55,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:23.497246+00:00",
+  "generated_at": "2026-07-21T10:50:51.467024+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "qrlQ/0H06XXeUB/IY7sLWWi+5OggAuXdJMkcSKoJnHI8RKsCJ9plJgmT/9MxPEeEiBL3tuh6vjqjFjClCxEeBw=="
+    "value": "q8gEkW0HuPN0+H3EqRBzl7dezBSGUk2yC1qVOyNdhR8uPhef1Aycj2CcZrbz7MyzVYbIDuyFyo5HthqYOLmADA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-federal-family-and-climate-benefits"
