@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/statute/2026-07-16-pit-east-us-in-title-6.json",
+      "sha256": "590edd62bc43a491604c37c13c27c54c3becb84cc29eaa85862dbc47a32b4054"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/statute/2026-07-16-pit-east-us-in-title-6.json",
+      "sha256": "72280ef581cdaef7625282cf3f0971195be3b9faca5a5b64e8a655f95883c63e"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/statute/2026-07-16-pit-east-us-in-title-6.jsonl",
+      "sha256": "051a62b1782e95b6adb9b7c6ec5782bee4d234220d2c30717b53c7409d3a9222"
+    },
+    {
+      "path": "data/corpus/sources/us-in/statute/2026-07-16-pit-east-us-in-title-6/indiana-code-html/2025-Indiana-Code-html.zip",
+      "sha256": "6c3c4099381851a25428ac7da8828108fb4d8b3fa75d9fe217c0e69987c4dce0"
+    },
+    {
+      "path": "data/corpus/sources/us-in/statute/2026-07-16-pit-east-us-in-title-6/indiana-code-html/2025_Indiana_Code_HTML/6.html",
+      "sha256": "28f6f293001e752871d0cae6ca2d7e770734549c222d4ba7b330e3381f5fcadf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5530,
+    "missing_count": 0,
+    "provision_count": 5530,
+    "source_count": 5530
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:21.089733+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3uTv5P4+wJbXF8zsbfSRQke1CUjygwVhvfdpNJRzSV6GiPz2f1vQKnlHSdEzTU4BBLatraw5hGNjPpyeG2tnAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-east-us-in-title-6"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ar/statute/2026-07-16-pit-east-us-ar-act-2.json",
+      "sha256": "5077879c7b2d472be6ab42696de5fc97ffb64d06311485911ad616729336c4ce"
+    },
+    {
+      "path": "data/corpus/inventory/us-ar/statute/2026-07-16-pit-east-us-ar-act-2.json",
+      "sha256": "79d8193910e9a94cd82d786abf4ed398ab6e651699be7273f9aed75cc5e56733"
+    },
+    {
+      "path": "data/corpus/provisions/us-ar/statute/2026-07-16-pit-east-us-ar-act-2.jsonl",
+      "sha256": "969439f4b5dd90ef0b9e83ebd82572030b5dda75c3005666a0ab86a788037e72"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-07-16-pit-east-us-ar-act-2/official-documents/ar-act-2-2026.pdf",
+      "sha256": "2f61dcee513b3b3b8b30609a7df520199220e12978c6b03fa0b43dbf75c02c04"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/statute/2026-07-16-pit-east-us-ar-act-2/provenance/ar-act-2-2026.pdf.json",
+      "sha256": "436c7639022afa33c6bd617274274e067eab02cc6615b4ec1282f5d8f7aec169"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:18.233485+00:00",
+  "jurisdiction": "us-ar",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "uYV/71OYCodnHphG5+vEWu+0JZ93y1nyWBUclgnWL20BpDQYIbB0RtlTMjOXCOUVViKjy1RWWLKhTqCbZDZNAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-east-us-ar-act-2"
+}
