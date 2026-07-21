@@ -296,6 +296,12 @@ def test_extract_csv_blocks_validates_configuration_and_empty_data() -> None:
             title=None,
             extraction={"csv_start_row": 1},
         )
+    with pytest.raises(ValueError, match="start row is outside the source"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_start_row": 99},
+        )
     for max_rows in (0, -1):
         with pytest.raises(ValueError, match="max rows must be positive"):
             _extract_csv_blocks(

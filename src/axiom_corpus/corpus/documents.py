@@ -907,6 +907,7 @@ def _extract_csv_blocks(
         if "csv_header_row" in config
         else config.get("header_row", 1)
     )
+    start_row_configured = "csv_start_row" in config or "start_row" in config
     start_row_number = int(
         config["csv_start_row"]
         if "csv_start_row" in config
@@ -916,6 +917,8 @@ def _extract_csv_blocks(
         raise ValueError("csv header row is outside the source")
     if start_row_number <= header_row_number:
         raise ValueError("csv start row must follow the header row")
+    if start_row_configured and start_row_number > len(rows):
+        raise ValueError("csv start row is outside the source")
 
     header_row = rows[header_row_number - 1]
     if not header_row or any(not _xlsx_cell_text(value) for value in header_row):
