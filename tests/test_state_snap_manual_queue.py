@@ -249,17 +249,19 @@ def test_comprehensive_release_tracks_the_state_snap_queue() -> None:
         (scope["jurisdiction"], scope["document_class"], scope["version"])
         for scope in payload["scopes"]
     }
+    assert len(payload["scopes"]) == len(release_scopes) == 200
 
     published_scopes = set()
     refetch_scopes = set()
     for state in _queue():
-        scope = state["target_scope"]
-        identity = (scope["jurisdiction"], scope["document_class"], scope["version"])
-        if state["queue_status"] == PUBLISHED_CURRENT:
-            published_scopes.add(RELEASE_SCOPE_SUBSTITUTIONS.get(identity, identity))
-        else:
-            refetch_scopes.add(identity)
+        for _role, status, _manifest_path, scope in _scope_entries(state):
+            identity = (scope["jurisdiction"], scope["document_class"], scope["version"])
+            if status == PUBLISHED_CURRENT:
+                published_scopes.add(RELEASE_SCOPE_SUBSTITUTIONS.get(identity, identity))
+            else:
+                refetch_scopes.add(identity)
 
+    assert len(published_scopes) == 54
     assert published_scopes <= release_scopes
     assert refetch_scopes.isdisjoint(release_scopes)
     assert SUPERSEDED_RELEASE_SCOPES.isdisjoint(release_scopes)

@@ -1,5 +1,5 @@
 {
-  "description": "Successor to the collision-free RuleSpec US release, adding every complete primary state and District of Columbia SNAP policy scope available on July 21, 2026. Superseded SNAP-only recovery scopes are replaced, Massachusetts legacy and current DTA citations are consolidated, and source-refetch-required states remain excluded.",
+  "description": "Successor to the collision-free RuleSpec US release, adding every published-current primary state and District of Columbia SNAP policy scope, plus every published-current supporting scope, available on July 21, 2026. Superseded SNAP-only recovery scopes are replaced, Massachusetts legacy and current DTA citations are consolidated, and Colorado, Oklahoma, and West Virginia supporting policy documents are included.",
   "name": "us-rulespec-snap-2026-07-21",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -352,6 +352,11 @@
       "document_class": "statute",
       "jurisdiction": "us-ca",
       "version": "2026-07-13-recovery"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "us-co",
+      "version": "2026-07-21-co-snap-policy"
     },
     {
       "document_class": "regulation",
@@ -724,6 +729,11 @@
       "version": "2026-07-13-recovery"
     },
     {
+      "document_class": "manual",
+      "jurisdiction": "us-nd",
+      "version": "2026-07-21-nd-snap-manual"
+    },
+    {
       "document_class": "statute",
       "jurisdiction": "us-nd",
       "version": "2026-07-13-recovery"
@@ -804,6 +814,16 @@
       "version": "2026-07-13-recovery"
     },
     {
+      "document_class": "policy",
+      "jurisdiction": "us-ok",
+      "version": "2026-07-21-ok-snap-policy"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ok",
+      "version": "2026-07-21-ok-snap-rules"
+    },
+    {
       "document_class": "manual",
       "jurisdiction": "us-or",
       "version": "2026-07-16-or-programs-eligibility-notebook"
@@ -812,6 +832,16 @@
       "document_class": "statute",
       "jurisdiction": "us-or",
       "version": "2026-07-13-recovery"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-pa",
+      "version": "2026-07-21-pa-snap-handbook"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ri",
+      "version": "2026-07-21-ri-snap-rules"
     },
     {
       "document_class": "statute",
@@ -842,6 +872,11 @@
       "document_class": "statute",
       "jurisdiction": "us-sc",
       "version": "2026-07-13-recovery"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-sd",
+      "version": "2026-07-21-sd-snap-manual"
     },
     {
       "document_class": "manual",
@@ -899,9 +934,24 @@
       "version": "2026-07-13-recovery"
     },
     {
+      "document_class": "manual",
+      "jurisdiction": "us-va",
+      "version": "2026-07-21-va-snap-manual"
+    },
+    {
       "document_class": "statute",
       "jurisdiction": "us-va",
       "version": "2026-07-13-recovery"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-vt",
+      "version": "2026-07-21-vt-3squaresvt-manual"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-wa",
+      "version": "2026-07-21-wa-eaz-manual"
     },
     {
       "document_class": "regulation",
@@ -922,6 +972,21 @@
       "document_class": "statute",
       "jurisdiction": "us-wa",
       "version": "2026-07-13-recovery"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-wi",
+      "version": "2026-07-21-wi-foodshare-manual"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-wv",
+      "version": "2026-07-21-wv-income-maintenance-manual"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-wv",
+      "version": "2026-07-21-wv-snap-healthy-choices-overlay"
     },
     {
       "document_class": "statute",
