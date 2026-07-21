@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/statute/2026-07-21-ga-pit-session-laws.json",
+      "sha256": "f6b9f130a31f781cd457a76f02051064708b4de156798e0de693014e1cea89b2"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/statute/2026-07-21-ga-pit-session-laws.json",
+      "sha256": "230ad39580b702212d5b24606a2079ef5312773c8934ff5d8fc8fd484b309afd"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/statute/2026-07-21-ga-pit-session-laws.jsonl",
+      "sha256": "c6b232170d7be1e7ef03ed431224cc466514c8638b3da30b583b6f083d0e21cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/statute/2026-07-21-ga-pit-session-laws/official-documents/us-ga-hb1021-signed-act-2024.pdf",
+      "sha256": "eb6d44cdbd7eb58a715fb0b36459582ebfded07d54ab87c0a8a12a8524b9d4ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/statute/2026-07-21-ga-pit-session-laws/official-documents/us-ga-hb136-signed-act-2025.pdf",
+      "sha256": "f9faef3f594f2707c96c19269b12dbf8e9e4f96abaabb2b038e75f34eef8ed12"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/statute/2026-07-21-ga-pit-session-laws/official-documents/us-ga-hb463-signed-act-2026.pdf",
+      "sha256": "1c5fa7abcb2ab99964c09144384d774bceea9a1531ea235c7e637925459f6066"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/statute/2026-07-21-ga-pit-session-laws/official-documents/us-ga-sb56-signed-act-2023.pdf",
+      "sha256": "55ab5a725b5931033c20a1125ec8625e6f4f2bd6179e81e47064647d846b4a8e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "56833b615a7d871921b6bf3e60d0b35d2768b3cd",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-ga-pit-session-laws --manifest manifests/us-ga-pit-session-laws-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T15:23:08.151353+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-ga-pit-primary-sources.md",
+      "sha256": "626433a9c6f4ad466aa0fdef32f9250f7098104d15e2c0b545bcb3cc26b76250"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n9ECkODQQvxrBje+ESEJikWHqzWHDz16EZWYBnRYHmRCBr17KquiyZGtjaguZY7mvDzrxLZj76ftMKhWYBA1Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-ga-pit-session-laws"
+}
