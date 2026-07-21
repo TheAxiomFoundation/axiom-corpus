@@ -2370,6 +2370,8 @@ def _extract_json_record_blocks(
     include_status_set = {str(status) for status in include_statuses or ()}
     exclude_status_set = {str(status) for status in exclude_statuses or ()}
     include_label_set = set(include_labels)
+    matched_labels: set[str] = set()
+    matched_label_prefixes: set[str] = set()
     metadata_field_names = tuple(str(field) for field in metadata_fields)
 
     data = json_loads(content.decode("utf-8"))
@@ -2387,21 +2389,30 @@ def _extract_json_record_blocks(
         if exclude_status_set and str(status) in exclude_status_set:
             continue
 
-        label_value = _json_record_value(row, label_field)
-        label = str(label_value).strip() if label_value not in {None, ""} else ""
-        if (
-            (include_label_set or include_label_prefixes)
-            and label not in include_label_set
-            and not any(label.startswith(prefix) for prefix in include_label_prefixes)
-        ):
-            continue
-
         raw_text_value = _json_record_value(row, text_field)
         raw_text = _json_record_text(raw_text_value)
         if not raw_text:
             continue
         body = _html_fragment_text(raw_text) if text_is_html else _normalize_text(raw_text)
         if not body:
+            continue
+
+        label_value = _json_record_value(row, label_field)
+        if label_value is None or label_value == "":
+            label = ""
+        elif isinstance(label_value, (str, int, float, bool)):
+            label = str(label_value).strip()
+        elif include_label_set or include_label_prefixes:
+            raise ValueError("filtered JSON record labels must be scalar values")
+        else:
+            label = str(label_value).strip()
+        exact_match = label in include_label_set
+        prefix_matches = tuple(
+            prefix for prefix in include_label_prefixes if label.startswith(prefix)
+        )
+        if (include_label_set or include_label_prefixes) and not (
+            exact_match or prefix_matches
+        ):
             continue
 
         citation_suffix_value = _json_record_value(row, citation_suffix_field)
@@ -2442,6 +2453,25 @@ def _extract_json_record_blocks(
                 body=body,
                 metadata=metadata,
             )
+        )
+        if exact_match:
+            matched_labels.add(label)
+        matched_label_prefixes.update(prefix_matches)
+
+    unmatched_labels = [label for label in include_labels if label not in matched_labels]
+    unmatched_prefixes = [
+        prefix
+        for prefix in include_label_prefixes
+        if prefix not in matched_label_prefixes
+    ]
+    if unmatched_labels or unmatched_prefixes:
+        missing = [
+            *(f"label {label!r}" for label in unmatched_labels),
+            *(f"prefix {prefix!r}" for prefix in unmatched_prefixes),
+        ]
+        raise ValueError(
+            "JSON record label filters did not match text-bearing records: "
+            + ", ".join(missing)
         )
     return tuple(blocks)
 
