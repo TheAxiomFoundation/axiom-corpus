@@ -479,14 +479,15 @@ states:
       version: 2026-07-16-or-programs-eligibility-notebook
   - jurisdiction: us-pa
     name: Pennsylvania
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: http://services.dpw.state.pa.us/oimpolicymanuals/snap/index.htm#t=SNAP_Handbook_Title_Page.htm
     target_manifest: manifests/us-pa-snap-handbook.yaml
     target_scope:
       jurisdiction: us-pa
       document_class: manual
-      version: 2026-05-27-pa-snap-handbook
+      version: 2026-07-21-pa-snap-handbook
+    notes: Complete current 297-topic Pennsylvania SNAP Handbook HTML snapshot. Pennsylvania Code Chapter 501, substantive operations-memorandum and policy-clarification attachments, and cross-manual dependencies remain separate follow-up source scopes; this status does not claim complete Pennsylvania SNAP legal authority.
   - jurisdiction: us-ri
     name: Rhode Island
     queue_status: published_current
