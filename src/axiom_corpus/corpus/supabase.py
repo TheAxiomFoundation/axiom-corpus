@@ -784,7 +784,7 @@ def _fetch_released_scope_object_rows(
                 )
             if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
                 raise
-        except (urllib.error.URLError, TimeoutError):
+        except (urllib.error.URLError, ConnectionError, TimeoutError):
             if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
                 raise
         time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
