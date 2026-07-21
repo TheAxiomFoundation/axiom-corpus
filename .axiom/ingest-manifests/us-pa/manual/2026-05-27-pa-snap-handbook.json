@@ -14,9 +14,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -31,14 +31,14 @@
     "source_count": 1055
   },
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:41.775712+00:00",
+  "generated_at": "2026-07-21T11:42:03.124435+00:00",
   "jurisdiction": "us-pa",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "HIeVZpEZlq3n+horaGfiZW0rIsthEzo+BPCyAaf4IdCbgk1iXac6ciqQ0VkKtBTueOIiZSFegfLOCFkcOU+gAw=="
+    "value": "rTz+b7AUixkY1/PrGLsFtN9qRt0ie2/SgDizKwUWYV2O26qskuz8TwA67/pdvr+YonETiuMi3T59ed4EDJMoDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-pa-snap-handbook"

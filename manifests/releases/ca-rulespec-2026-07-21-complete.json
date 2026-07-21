@@ -1,0 +1,522 @@
+{
+  "description": "Immutable complete Canadian policy corpus used by RuleSpec-CA.",
+  "name": "ca-rulespec-2026-07-21-complete",
+  "quality_profile": "complete-expression-dates-v1",
+  "scopes": [
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-alternative-minimum-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-canada-workers-benefit"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-capital-gains-deduction"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-capital-gains-on-gifts"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-capital-gains-or-losses"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-capital-gains-reserves"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-cpp-contributions-and-overpayment"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-cumulative-net-investment-loss"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-deferred-security-options-benefits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-ei-and-ppip-premiums-quebec-nonresidents"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-employee-overpayment-ei-premiums"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-employment-insurance-premiums-self-employment"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-federal-donations-and-gifts"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-federal-foreign-tax-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-federal-spouse-and-dependant-amounts"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-federal-spouse-transfer-amounts"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-federal-tuition-and-training-credit"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-federal-worksheet-credits-and-repayments"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-investment-tax-credit-individuals"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-joint-election-to-split-pension-income"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-multiple-jurisdiction-taxes"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-nonresident-world-income-credits-section-217"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-northern-residents-deductions"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-request-for-loss-carryback"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-t2203-newfoundland-pei-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-t2203-nl-pe-ns-part3-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-t2203-ontario-manitoba-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-t2203-sk-ab-bc-part3-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-tax-on-split-income"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2025-tax-shelter-loss-or-deduction"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2026-claim-codes"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2026-federal-family-and-climate-benefits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2026-federal-td1-personal-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2026-income-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2026-payroll-contributions"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2026-provincial-territorial-tax-rates"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-cra-2026-provincial-territorial-td1-personal-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-esdc-2026-canada-disability-benefit"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-ab428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-bc428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-federal-net-tax-aggregation"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-federal-non-refundable-credit-aggregation"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-federal-other-refundable-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-federal-tax-on-taxable-income"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-mb428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-mb479-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-nl428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-on428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-sk428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-t1-income-net-taxable-income"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2025-t1-return-aggregation"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-bc479-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-nb428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-nl479-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-ns428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-ns479-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-nt428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-nt479-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-nu428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-nu479-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-on479-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-pe428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-sk479-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-yt428-resident-tax"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-cra-2025-yt479-credits"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-revenu-quebec-2025-schedule-a-dependants"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-revenu-quebec-2025-schedule-b-tax-relief"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-revenu-quebec-2025-schedule-c-childcare-expenses"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-revenu-quebec-2025-schedule-d-solidarity-tax-credit"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-revenu-quebec-2025-schedule-f-health-services-fund"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-03-revenu-quebec-2025-tp1-main-return"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-h-caregivers"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-l-business-income"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-n-investment-expense-adjustment"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-p-work-premium"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-s-student-transfer"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-04-revenu-quebec-2025-schedule-t-tuition-examination-fees"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-05-cra-2025-child-care-expenses-deduction"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-05-cra-2025-moving-expenses-deduction"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-21-cra-2025-employment-expenses-deduction"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-21-cra-2025-gst370-employee-partner-rebate"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-21-cra-2025-rc381-interprovincial-cpp-qpp-employment-contributions"
+    },
+    {
+      "document_class": "policy",
+      "jurisdiction": "ca",
+      "version": "2026-07-21-cra-2025-transport-employee-meals-lodging-deduction"
+    }
+  ]
+}

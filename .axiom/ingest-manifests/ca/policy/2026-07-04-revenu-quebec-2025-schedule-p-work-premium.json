@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-p-work-premium.json",
-      "sha256": "8bf38b995a2c83d40c71925a6aa9faf6566537068e52f6514e54ce7f97d48ac4"
+      "sha256": "7489b09e6724dc2bc361de5e3e16724835703d1de5de61dd52fc8d759ce52c23"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-p-work-premium.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:57.793239+00:00",
+  "generated_at": "2026-07-21T11:40:42.757884+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "21vtlrNBTt9W7Gbo8nuJw9pEvE7956pp2W3OnHmsw5srPefXqmeZ3XcUfOCPsjJqG+0DLRIXuW24GgIhid3gCg=="
+    "value": "kyqK/vLsCMfORsQ1T8Zsr+EAN0lvMnmeEy6So/qTlrL8mul0nHuIb5sWNP4Tu9fcbYt5y1Db+v8TP6lekePfCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-p-work-premium"

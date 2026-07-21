@@ -70,9 +70,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "181d83cf0dd971d02e00db190a86f53276ae7924",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ct-ssp-final-20260702"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -87,7 +87,7 @@
     "source_count": 28
   },
   "document_class": "policy",
-  "generated_at": "2026-07-02T02:35:13.537401+00:00",
+  "generated_at": "2026-07-21T11:57:43.791312+00:00",
   "jurisdiction": "us-ct",
   "reasoning_logs": [
     {
@@ -99,7 +99,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "lT1DIde9n4KgpKnR0mk7L9/vvywSMpUBBusE2lpltgz+/YeOpBbSs/6vyXoipex5SoChm63xORg277V32xKAAg=="
+    "value": "Hg3r6pbEAAbv9dr2I9dPoFzwTvIuOfUQmGc+wAYMqYis4MSOX11mvojXzhW0uVLSeNNwGo4ocvhemuqM7okGDw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-02-ct-ssp-upm-and-standards"

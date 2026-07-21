@@ -11,24 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-05-uk-uc-minimum-income-floor.jsonl",
       "sha256": "2b0ca1108d6ad713c65d52fbbbbd15cd9ff082000c04d669866bed2e82c21919"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-uc-minimum-income-floor/uksi/2013/376/regulation-90.xml",
-      "sha256": "3ddf823412d0cb80715fb4c6fe94f391a01ff6ef670444ea4a27c5cd2a3959ea"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-uc-minimum-income-floor/uksi/2015/621/regulation-4.xml",
-      "sha256": "f2c6654305169fa45e0da72170297d84d81cae526d820d0b82f6c73515ea9419"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-uc-minimum-income-floor/uksi/2015/621/regulation-4A.xml",
-      "sha256": "69ffc53c964fa2ad1752b8c0264863acf2fb9203af070dd686a34c8ac6300282"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6bc9344a621aac8217caa7d7837a3ec5feb6e431",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus/_worktrees/ingest-213-217-205"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -43,7 +31,7 @@
     "source_count": 3
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-06T01:27:16.799279+00:00",
+  "generated_at": "2026-07-21T11:57:43.139865+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [
     {
@@ -55,7 +43,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "wKc9DXqvSqnL7b9HS7VyXEkkQ9juFWgfSta+SuWDN2NwbxdZt/N3zjnnB29Z/+yJuTxFn7bYHvgxpOijwCWqDg=="
+    "value": "edbAtdPI3RBRUc5GAX3jzPI4fAQIUS9bAd/M1Sqy3qzRwwA2TAoVTSZp/Xk7sPXCv/UTeKNypVIfGvbMTri7Bg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-uk-uc-minimum-income-floor"

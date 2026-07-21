@@ -26,9 +26,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -43,14 +43,14 @@
     "source_count": 3
   },
   "document_class": "statute",
-  "generated_at": "2026-07-07T19:50:39.955720+00:00",
+  "generated_at": "2026-07-21T11:42:03.041895+00:00",
   "jurisdiction": "us-ny",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "60UcGF8gplmquFhwsTUMa/zX9IozrHEQxHea0LIyNchYZxZ4mwEogZw8gBT2VCKfH6VXyyGlpGAQMOvMyfTlCg=="
+    "value": "LK6SDFyPKiHc8uwnhbBaccIfZ5No9tfvmo8WIyBGKvTUskGt3unhlZxqDFIhfL/dQD4cpVUNNaOh+s0g0Os+Cw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-05-nyc-admin-code"

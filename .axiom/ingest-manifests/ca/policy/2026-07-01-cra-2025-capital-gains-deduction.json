@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-capital-gains-deduction.json",
-      "sha256": "4f4b245f32b920f7df13aaddc0dff8ff036a86a5d1330d28b4bc386f4e3501b0"
+      "sha256": "9da7beafa58511fe64a26b1a9716aea4b67d1fcaa74eb9acc0234046b3812042"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-capital-gains-deduction.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5006100bb3d00116b27ccb1ea6bd187c43547960",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "section T657 into its three Steps (Part markers repeat inside per-year charts; family fall-through)"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:57:37.119881+00:00",
+  "generated_at": "2026-07-21T11:40:39.957290+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "INnDrXPQKZsmcXHDGl6YotAgVQp9qa+PvThBqptxBf+w6/i+hEr+v3icwNfbxuAVmleCT+XiHOvUyNsyNtnHAg=="
+    "value": "/RrUktNrVpb/db7npksrF0B8dGta81yeKgj13juT3KP56S4qWWfjVa8TC2BBb8RVLci/RBeuV+IaC4VXKef+AQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-capital-gains-deduction"

@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts.json",
-      "sha256": "f8509b868ff898f9e25045e174237161313a1de028640d5a4ec188bebb89e982"
+      "sha256": "8fa1c391b767378495c6f010be2f246dc31749556dfab090526d464739204e6a"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:27.970023+00:00",
+  "generated_at": "2026-07-21T11:40:41.389650+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "RgV3M/jT0+JOzKbZ2WfqtchMtx3p2QRLdw5hxk/oXDZhUZ+0A0nycxariYRjr54SU+r+4k2BScoo7tf64v/LAg=="
+    "value": "xh68o0x1ASq+35mU4532oJySIOENHSh2JsHyY7xuYIthLYRoNA73vMFU9wksLtCBxIuxWNGgegrPSC0HD0PAAA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts"
