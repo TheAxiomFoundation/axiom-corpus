@@ -451,7 +451,7 @@ states:
     notes: Division 5101:4 SNAP rules are covered by the full Ohio Administrative Code ingestion, not a separate official-document manifest.
   - jurisdiction: us-ok
     name: Oklahoma
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://rules.ok.gov/home
     target_manifest: manifests/us-ok-snap-rules.yaml
