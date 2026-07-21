@@ -123,9 +123,10 @@ jobs:
           set -euo pipefail
           url="$PUBLIC_BASE_URL/releases/$RELEASE_NAME/$CONTENT_SHA.json"
           ok=""
-          for i in 1 2 3 4 5 6; do
+          for attempt in 1 2 3 4 5 6; do
             code=$(curl -s -o /tmp/public-object.json -w '%{http_code}' "$url" || echo 000)
             if [ "$code" = "200" ]; then ok=1; break; fi
+            echo "Public object not ready (attempt $attempt/6, HTTP $code); retrying."
             sleep 5
           done
           [ -n "$ok" ] || { echo "::error::public URL returns $code: $url"; exit 1; }
