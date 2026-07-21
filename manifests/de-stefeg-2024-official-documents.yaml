@@ -1,0 +1,104 @@
+# Steuerfortentwicklungsgesetz (SteFeG) — the December 2024 amending act that
+# sets the Germany 2025 validation-year tax/benefit parameters (and, in its
+# 2026-effective articles, the values the current gesetze-im-internet
+# consolidations now display). Captured from the official electronic
+# Bundesgesetzblatt (recht.bund.de); since the 2023 BGBl reform the electronic
+# issue IS the legally authoritative version.
+#
+# This is the BGBl-archive route the main DE manifest header documents for
+# instruments the GII portal cannot supply (gesetze-im-internet carries only
+# current consolidations; RBSFV 2025 precedent). The document is marked as an
+# amendment act the same way the dk scope marks ændringslove
+# (metadata `amends` + `document_type` containing "amendment act"), plus a
+# machine-readable `amendment_targets` list of corpus citation paths: the
+# gesetze-im-internet per-norm rows carry no `title`/`title_short` metadata and
+# the `estg` slug has no digits, so name/structured-phrase matching in
+# axiom-encode's amendment discovery cannot fire for EStG targets — exact
+# citation-path relations are the reliable channel.
+#
+# Run:
+#   uv run axiom-corpus-ingest extract-official-documents \
+#     --base data/corpus \
+#     --version <version> \
+#     --manifest manifests/de-stefeg-2024-official-documents.yaml
+documents:
+  - source_id: de-stefeg-2024-bgbl-i-449
+    jurisdiction: de
+    document_class: statute
+    citation_path: de/statute/bgbl-2024-i-449/steuerfortentwicklungsgesetz
+    title: Gesetz zur Fortentwicklung des Steuerrechts und zur Anpassung des Einkommensteuertarifs (Steuerfortentwicklungsgesetz – SteFeG) (BGBl. 2024 I Nr. 449)
+    source_url: 'https://www.recht.bund.de/bgbl/1/2024/449/regelungstext.pdf?__blob=publicationFile&v=3'
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2024-12-23'
+    language: de
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (Bundesgesetzblatt Teil I, recht.bund.de)
+      title_short: SteFeG (BGBl. 2024 I Nr. 449)
+      title_alternative: Steuerfortentwicklungsgesetz
+      document_type: Änderungsgesetz (amendment act)
+      date_document: '2024-12-23'
+      date_publication: '2024-12-30'
+      in_force: true
+      amends: >-
+        Einkommensteuergesetz (EStG), in der Fassung der Bekanntmachung vom
+        8. Oktober 2009 (BGBl. I S. 3366, 3862) — Art. 1 (ab VZ 2025) amends
+        § 32 Abs. 6, § 32a Abs. 1, § 39b Abs. 2 and § 66 Abs. 1; Art. 2
+        (ab VZ 2026) amends the same provisions again and appends § 66
+        Abs. 3. Solidaritätszuschlaggesetz 1995 (SolzG 1995) — Art. 3
+        (ab VZ 2025) amends § 3 Abs. 3, 4, 4a, 5 and appends § 6 Abs. 26;
+        Art. 4 (ab VZ 2026) amends § 3 Abs. 3 again and appends § 6 Abs. 27.
+        Bundeskindergeldgesetz (BKGG 1996) — Art. 5 (2025) amends § 6 Abs. 1
+        and § 6a Abs. 2; Art. 6 (2026) amends § 6. Zweites Buch
+        Sozialgesetzbuch (SGB 2) — Art. 7 amends § 72 Abs. 1. Zwölftes Buch
+        Sozialgesetzbuch (SGB 12) — Art. 8 Abs. 1 amends § 145 Abs. 1 (with a
+        parallel SGB XIV § 93 change in Art. 8 Abs. 2, not in this corpus).
+        Finanzausgleichsgesetz § 12a (Art. 9, not in this corpus).
+      amendment_targets:
+        - de/statute/estg
+        - de/statute/estg/32
+        - de/statute/estg/32a
+        - de/statute/estg/39b
+        - de/statute/estg/66
+        - de/statute/solzg-1995
+        - de/statute/solzg-1995/3
+        - de/statute/solzg-1995/6
+        - de/statute/bkgg-1996
+        - de/statute/bkgg-1996/6
+        - de/statute/bkgg-1996/6a
+        - de/statute/sgb-2
+        - de/statute/sgb-2/72
+        - de/statute/sgb-12
+        - de/statute/sgb-12/145
+      source_family: tax-and-family-benefits/amending-acts
+      source_note: >-
+        Official electronic Bundesgesetzblatt PDF (BGBl. 2024 I Nr. 449,
+        ausgegeben zu Bonn am 30. Dezember 2024), downloaded 2026-07-21 from
+        the stable recht.bund.de publicationFile URL. Text-embedded PDF, no
+        OCR needed. Captured because the lane's validation year (rules in
+        force 2025-06-30) needs the 2025-effective wording that current
+        gesetze-im-internet consolidations no longer state. Key contents,
+        verbatim-verified against the PDF text: Art. 1 Nr. 1 raises the § 32
+        Abs. 6 EStG Kinderfreibetrag "3 306 Euro" to "3 336 Euro"; Art. 1
+        Nr. 2 re-enacts § 32a Abs. 1 EStG "ab dem Veranlagungszeitraum 2025"
+        with Grundfreibetrag "bis 12 096 Euro" and the full 2025 tariff
+        ((932,30 • y + 1 400) • y; (176,64 • z + 2 397) • z + 1 015,13;
+        0,42 • x – 10 911,92; 0,45 • x – 19 246,67); Art. 1 Nr. 4 replaces
+        "250 Euro" with "255 Euro" in § 66 Abs. 1 EStG (Kindergeld). Art. 2
+        re-enacts § 32a for VZ 2026 (Grundfreibetrag 12 348 Euro) and raises
+        § 66 Abs. 1 to "259 Euro". Art. 3 raises the SolzG § 3 Abs. 3
+        Freigrenze to "39 900 Euro" (Nr. 1) and "19 950 Euro" (Nr. 2) for VZ
+        2025; Art. 4 raises them to "40 700 Euro" and "20 350 Euro" for VZ
+        2026. Art. 5 raises BKGG § 6 Abs. 1 to "255 Euro" and the § 6a Abs. 2
+        Satz 4 Kinderzuschlag-Sofortzuschlag from "20 Euro" to "25 Euro";
+        Art. 6 raises BKGG § 6 Abs. 1 to "259 Euro". Art. 7 raises the SGB II
+        § 72 Abs. 1 Satz 1 Sofortzuschlag to "25 Euro". Art. 10 Abs. 1: in
+        force 1. Januar 2025, except Art. 10 Abs. 2: Artikel 2, 4 und 6 in
+        force 1. Januar 2026 — the two-stage structure means this single act
+        evidences both the 2025 validation-year values and the 2026 values
+        the current consolidations display.

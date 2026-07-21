@@ -13,7 +13,13 @@
 #
 # citation_path here is the LAW-LEVEL parent node; the converter appends the
 # per-norm slug derived from each norm's <enbez> (or gliederungskennzahl).
-# All nineteen slugs below were verified HTTP 200 on 2026-07-16.
+# The original nineteen slugs were verified HTTP 200 on 2026-07-16; the three
+# 2025-operative-Verordnung slugs appended 2026-07-21 (pbav_2025, milov4,
+# bsv_2018) were verified HTTP 200 on 2026-07-21. The 2026-07-21 wave ran only
+# those three via manifests/de-2025-operative-verordnungen-gii.yaml so the
+# 2026-07-16 consolidation artifacts stayed byte-identical; future FULL
+# re-ingest waves should run this manifest, which stays the canonical DE GII
+# registry.
 #
 # source_as_of is deliberately NOT set on live-fetch entries: the converter
 # stamps each run with the actual fetch date (a manifest value would relabel
@@ -25,12 +31,27 @@
 # 2025-06-30); where a value was amended after that date, the current XML no
 # longer states the 2025 wording — ground those from the amending act or the
 # BGBl archive (www.recht.bund.de) as separate captures. Known instance:
-# Buergergeld-V is being superseded by GrusiGV.
+# Buergergeld-V is being superseded by GrusiGV. REALIZED 2026-07-21: the
+# 2025-era amending act SteFeG (BGBl. 2024 I Nr. 449 — 2025 Kindergeld 255 €,
+# Grundfreibetrag 12 096 €, SolzG Freigrenze 19 950 €) is captured from the
+# electronic BGBl via manifests/de-stefeg-2024-official-documents.yaml, with
+# dk-style amendment marking (`amends` + `document_type` + machine-readable
+# `amendment_targets` corpus paths). BGBl PDF route: recht.bund.de
+# /bgbl/1/<year>/<nr>/regelungstext.pdf?__blob=publicationFile — direct
+# fetch works with a browser user agent.
 #
 # NOT CAPTURABLE HERE: RBSFV 2025 (Regelbedarfsstufen-Fortschreibungs-
 # verordnung 2025, essential for 2025 SGB II/XII amounts) — its GII xml.zip
-# returns 404; capture from the BGBl 2024 I Nr. 312 archive as an offline
-# ingest with explicit source_as_of.
+# returns 404 (re-verified 2026-07-21); captured 2026-07-21 from the BGBl
+# 2024 I Nr. 312 archive via manifests/de-rbsfv-2025-official-documents.yaml.
+#
+# STILL DEFERRED (Bundesanzeiger source class, no stable unauthenticated PDF
+# route — needs its own converter treatment): BMG Bekanntmachung of the
+# durchschnittlicher Zusatzbeitragssatz (§ 242a Abs. 2 SGB V; 2,5 % for
+# 2025), BMAS Bekanntmachung of the Geringfügigkeitsgrenze and Faktor F
+# (§ 8 Abs. 1a SGB IV; 556 €/month for 2025), and the Kinderzuschlag
+# Höchstbetrag determination (§ 6a Abs. 2 BKGG existence-minimum linkage;
+# ~297 €/month for 2025).
 #
 # Run (per law group; the ingest wave uses signed manifests):
 #   uv run axiom-corpus-ingest extract-de-gii \
@@ -334,3 +355,51 @@ documents:
       source_authority: Bundesministerium der Justiz (juris GmbH)
       jurabk: MinUhV
       source_family: family-benefits/mindestunterhalt
+  - source_id: de-pbav-2025
+    jurisdiction: de
+    document_class: regulation
+    slug: pbav_2025
+    citation_path: de/regulation/pbav-2025
+    title: Pflege-Beitragssatz-Anpassungsverordnung 2025 (PBAV 2025)
+    source_url: 'https://www.gesetze-im-internet.de/pbav_2025/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: PBAV 2025
+      ausfertigung_datum: '2024-12-20'
+      source_family: social-insurance/long-term-care-contribution-rate
+  - source_id: de-milov4
+    jurisdiction: de
+    document_class: regulation
+    slug: milov4
+    citation_path: de/regulation/milov4
+    title: Vierte Verordnung zur Anpassung der Höhe des Mindestlohns (MiLoV4)
+    source_url: 'https://www.gesetze-im-internet.de/milov4/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: MiLoV4
+      ausfertigung_datum: '2023-11-24'
+      source_family: labor/minimum-wage
+  - source_id: de-bsv-2018
+    jurisdiction: de
+    document_class: regulation
+    slug: bsv_2018
+    citation_path: de/regulation/bsv-2018
+    title: Verordnung zur Bestimmung der Beitragssätze in der gesetzlichen Rentenversicherung für das Jahr 2018 (Beitragssatzverordnung 2018 – BSV 2018)
+    source_url: 'https://www.gesetze-im-internet.de/bsv_2018/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: BSV 2018
+      ausfertigung_datum: '2017-12-18'
+      source_family: social-insurance/pension-contribution-rate
