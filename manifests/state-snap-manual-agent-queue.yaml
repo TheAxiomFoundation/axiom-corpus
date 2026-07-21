@@ -584,14 +584,18 @@ states:
       version: 2026-05-27-wv-manuals
   - jurisdiction: us-wi
     name: Wisconsin
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_pdf_handbook
     primary_source_url: https://www.emhandbooks.wisconsin.gov/fsh/fsh.htm#t=home.htm
     target_manifest: manifests/us-wi-foodshare-manual.yaml
     target_scope:
       jurisdiction: us-wi
       document_class: manual
-      version: 2026-05-27-wi-foodshare-manual
+      version: 2026-07-21-wi-foodshare-manual
+    notes: The retained 372-page FoodShare Wisconsin Handbook Release 26-01
+      contains extractable text on every page and states an April 15, 2026
+      release and effective date. The source-backed scope contains one document
+      row and one row for every PDF page, with complete coverage.
   - jurisdiction: us-wy
     name: Wyoming
     queue_status: published_current
