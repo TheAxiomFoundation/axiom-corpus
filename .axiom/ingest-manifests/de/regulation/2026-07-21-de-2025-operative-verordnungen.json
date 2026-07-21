@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/de/regulation/2026-07-21-de-2025-operative-verordnungen.json",
+      "sha256": "b2f241104def2affae99e926a040331af640ea9156f2c9dc7767c4ce25b282ad"
+    },
+    {
+      "path": "data/corpus/inventory/de/regulation/2026-07-21-de-2025-operative-verordnungen.json",
+      "sha256": "8798dd314b745429339146089dc4859b3a6ad0ff30360fa77a9a3d4a488e857e"
+    },
+    {
+      "path": "data/corpus/provisions/de/regulation/2026-07-21-de-2025-operative-verordnungen.jsonl",
+      "sha256": "0ee39e39d69fb817bb94ce782f544ec4340d001c1e76f1f78ceed045ed809d38"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-21-de-2025-operative-verordnungen/bsv_2018/BJNR397600017.xml",
+      "sha256": "eb946f4fbfb57efd114dc8870c1deead519a4bbc99f49e70111bae29f0f03199"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-21-de-2025-operative-verordnungen/milov4/BJNR1410A0023.xml",
+      "sha256": "488eabecbcd214aa6b3364cd922b90b34ec5003ad15f94bcd614991565c26f77"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-21-de-2025-operative-verordnungen/pbav_2025/BJNR1BE0A0024.xml",
+      "sha256": "5e334acea4e079ac2d2172b97c5e7ad48ad29fe8292ac36dc6e1bcee9828d890"
+    },
+    {
+      "path": "data/corpus/sources/de/regulation/2026-07-21-de-2025-operative-verordnungen/rvbeitrsbek_2025/BJNR1700A0024.xml",
+      "sha256": "6de6fdd222cbd0c1bb7632f53dac78c22a4e676c5cbc8375cf2e811a01289ad8"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "99638e3e6e93818edc18436666d32caa75d97252",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-de-gii --base data/corpus --version 2026-07-21-de-2025-operative-verordnungen --manifest manifests/de-2025-operative-verordnungen-gii.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 17,
+    "missing_count": 0,
+    "provision_count": 17,
+    "source_count": 17
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T10:45:45.872745+00:00",
+  "jurisdiction": "de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zswaNxRiBwjnAAnzPjEWiN0fuyuQem405Ta6fKXfDXgvDDFMswv+bv5h0N+KdJXSDtisGrpawabj06bNt2ZVBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-de-2025-operative-verordnungen"
+}
