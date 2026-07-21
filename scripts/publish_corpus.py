@@ -56,9 +56,11 @@ from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_PRIVATE_KEY_ENV,
     RELEASE_OBJECT_PUBLIC_KEY_ENV,
     ReleaseManifestError,
+    ReleaseSignatureMismatchError,
     build_release_content,
     build_unsigned_release_object,
     canonical_json_bytes,
+    canonical_release_public_key,
     serialize_release_object,
     sign_release_object,
     verify_release_object,
@@ -68,6 +70,8 @@ from axiom_corpus.release.publication import (
     stage_release_artifacts,
     stage_signed_release_object,
 )
+
+RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV = "AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS"
 
 
 @dataclass(frozen=True)
@@ -103,6 +107,7 @@ def publish_named_release(
     r2_config: R2Config,
     private_key: str,
     public_key: str,
+    legacy_public_keys: Sequence[str] = (),
     chunk_size: int = 500,
     activate: bool = False,
     r2_client: Any | None = None,
@@ -118,6 +123,10 @@ def publish_named_release(
     """
     root = repo_root.resolve()
     corpus_root = base.resolve()
+    public_key, legacy_public_keys = _trusted_release_public_keys(
+        public_key,
+        legacy_public_keys,
+    )
     try:
         base_rel = corpus_root.relative_to(root).as_posix()
     except ValueError as exc:
@@ -155,7 +164,7 @@ def publish_named_release(
     _require_safe_released_scope_reuse(
         provisional_content,
         released_scopes,
-        public_key=public_key,
+        public_keys=(public_key, *legacy_public_keys),
     )
 
     staged_rows = 0
@@ -468,21 +477,22 @@ def _require_safe_released_scope_reuse(
     content: Mapping[str, Any],
     released: Mapping[tuple[str, str, str], tuple[ReleasedScopeObject, ...]],
     *,
-    public_key: str,
+    public_keys: Sequence[str],
 ) -> None:
+    trusted_keys = tuple(dict.fromkeys(public_keys))
+    if not trusted_keys or any(not key for key in trusted_keys):
+        raise ReleaseManifestError("prior release verification requires non-empty public keys")
     expected_keys = set(_expected_scope_evidence(content))
     if set(released) != expected_keys:
         raise ReleaseManifestError("released-scope lookup did not cover the requested scopes")
     for key, objects in released.items():
         expected_identity = _scope_publication_identity(content, key)
         for released_object in objects:
-            try:
-                verify_release_object(released_object.release_object, public_key=public_key)
-            except ReleaseManifestError as exc:
+            if not _verifies_with_any_key(released_object.release_object, trusted_keys):
                 raise ReleaseManifestError(
                     "database returned an untrusted prior release object for "
                     f"{'/'.join(key)}: {released_object.release_name}"
-                ) from exc
+                )
             prior_content = released_object.release_object.get("content")
             if not isinstance(prior_content, dict):
                 raise ReleaseManifestError("verified prior release object lacks content")
@@ -492,6 +502,19 @@ def _require_safe_released_scope_reuse(
                     f"database projection: {'/'.join(key)} "
                     f"({released_object.release_name})"
                 )
+
+
+def _verifies_with_any_key(
+    release_object: Mapping[str, Any],
+    public_keys: Sequence[str],
+) -> bool:
+    for public_key in public_keys:
+        try:
+            verify_release_object(release_object, public_key=public_key)
+        except ReleaseSignatureMismatchError:
+            continue
+        return True
+    return False
 
 
 def _scope_publication_identity(
@@ -573,6 +596,41 @@ def _required_env(name: str) -> str:
     return value
 
 
+def _legacy_public_keys_from_env() -> tuple[str, ...]:
+    raw = os.environ.get(RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV, "")
+    if not raw:
+        return ()
+    try:
+        payload = json.loads(raw)
+    except json.JSONDecodeError as exc:
+        raise ReleaseManifestError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must be a JSON array of public keys"
+        ) from exc
+    if (
+        not isinstance(payload, list)
+        or any(not isinstance(key, str) or not key for key in payload)
+        or len(set(payload)) != len(payload)
+    ):
+        raise ReleaseManifestError(
+            f"{RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV} must be a unique JSON array "
+            "of non-empty public keys"
+        )
+    return tuple(payload)
+
+
+def _trusted_release_public_keys(
+    current_public_key: str,
+    legacy_public_keys: Sequence[str],
+) -> tuple[str, tuple[str, ...]]:
+    current = canonical_release_public_key(current_public_key)
+    legacy = tuple(canonical_release_public_key(key) for key in legacy_public_keys)
+    if current in legacy:
+        raise ReleaseManifestError("current release public key must not be a legacy key")
+    if len(set(legacy)) != len(legacy):
+        raise ReleaseManifestError("legacy release public keys must be canonically unique")
+    return current, legacy
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -640,6 +698,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             r2_config=r2_config,
             private_key=_required_env(RELEASE_OBJECT_PRIVATE_KEY_ENV),
             public_key=_required_env(RELEASE_OBJECT_PUBLIC_KEY_ENV),
+            legacy_public_keys=_legacy_public_keys_from_env(),
             chunk_size=args.chunk_size,
             activate=args.activate,
         )
