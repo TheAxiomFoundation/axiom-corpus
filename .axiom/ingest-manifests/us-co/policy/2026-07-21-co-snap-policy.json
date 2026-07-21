@@ -1,0 +1,102 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/policy/2026-07-21-co-snap-policy.json",
+      "sha256": "6e49c0921d835a6c97b2d9c3311b571a5a4d0b1624d7aa20f1f56afc8d07fd18"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/policy/2026-07-21-co-snap-policy.json",
+      "sha256": "0f6534d0d9f895107226f5503b5f2fdbc675bc71cec7140475930ed4923e41bf"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/policy/2026-07-21-co-snap-policy.jsonl",
+      "sha256": "347219d0f783440c858aeff653f533c22f92df99075c972e9e89ff20bc89ddf6"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-abawd-page.html",
+      "sha256": "a464f6ed76fd3671466dd5eceb7016cfb2d465b3ec309feee87b56103256f546"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-employment-first-operator-handbook-ffy2026.pdf",
+      "sha256": "f12794cd143b49b1f3d63b829edce7eee3ce134c222c885611da580dd3376caa"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-employment-first-page.html",
+      "sha256": "26e83d7ac14684d994ae4d57e96c17f748b8e3bfe602f44c28235fec6f78241a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-energy-ebt-page.html",
+      "sha256": "81aff4dc43fc29524528406f105233a6d341fe438c955ab13da0bbe2fb9bebfe"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-healthy-choice-waiver-page.html",
+      "sha256": "bde90d32e5582c08caabb8f8f1057fc6df4abf38d3937a922e035d4c97f96f27"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "1ff9517c2ec2105936fdfdda5d202ac95debc11854b34e9752d32c8ea947f40a"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-snap-outreach-page.html",
+      "sha256": "45acbecaff7d131cae92e9a55382b3de2efa469fefbcba9b30e03c30ca6efc49"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-snap-outreach-plan-fy2026.pdf",
+      "sha256": "975872a3ea9706f9f07073ec3ce4b85bfd004c9912851de738fd6061fa90affa"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-snap-page.html",
+      "sha256": "e1580d1dac142adda55dac7a733c4b4841c79e3c7f4401ac40a029dac7cc80c3"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-cdhs-workfare-state-plan-ffy2026.pdf",
+      "sha256": "4cc864a58756d103ec19e4da3a6e33c7af7ad623c956f4205b58cbb70f91910d"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-fns-food-restriction-waiver-approval-2025.pdf",
+      "sha256": "bbf77f7011532d2cd0604de35d307c99003f025e75325e43f31873b0c3360727"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-fns-food-restriction-waiver-modification-2026-01-23.pdf",
+      "sha256": "ac213418b3bb4d8aaacc18e9d448072dd0532d320ef2f021adde8b6566e1af4c"
+    },
+    {
+      "path": "data/corpus/sources/us-co/policy/2026-07-21-co-snap-policy/official-documents/co-fns-food-restriction-waiver-modification-2026-05-11.pdf",
+      "sha256": "c311d5aade08ef7c15a404d06b6fa37c0a9ae4f825c54a5185441067fc86da56"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "31a9288e500f151c9f5303b4eb22d60ddd780e72",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src UV_PROJECT_ENVIRONMENT=/Users/pavelmakarchuk/axiom-corpus-uc/.venv uv run --no-sync axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-co-snap-policy --manifest manifests/us-co-snap-primary-policy.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 598,
+    "missing_count": 0,
+    "provision_count": 598,
+    "source_count": 598
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T20:56:51.573884+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-co-snap-policy.md",
+      "sha256": "5cd5c03a8d398f02eab11540159bcab92ac3a390f6ff158d0445b76caefdb294"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZzM+LwNyEIXNcJF0WIQyZ6xVnSuniQefNtcU6UTyUWzZYzXbtY2OC+Xxn3VoLRomC5k0a7kgWoBCvU9XQEEcDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-co-snap-policy"
+}
