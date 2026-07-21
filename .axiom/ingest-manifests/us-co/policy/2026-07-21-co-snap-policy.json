@@ -66,7 +66,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "13d37700ee4cba60781056c09d03eee471b19dbf",
+    "commit": "434530e32910e8c73bfef7f229a49c564c3b4a22",
     "dirty_tracked": false,
     "root": "."
   },
@@ -83,19 +83,19 @@
     "source_count": 598
   },
   "document_class": "policy",
-  "generated_at": "2026-07-21T21:05:36.514288+00:00",
+  "generated_at": "2026-07-21T21:22:31.510127+00:00",
   "jurisdiction": "us-co",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-21-co-snap-policy.md",
-      "sha256": "5cd5c03a8d398f02eab11540159bcab92ac3a390f6ff158d0445b76caefdb294"
+      "sha256": "e2f804fd6b5bdd2ab2c812da9651d0ed146fdb6995dee49eef8cfdc8523149bb"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "fatIaMy8KT6M5KayM4Vv+v4X0dwmByk6M5L3uZq7Ff5Xr2WOYS/unNP1hXPDr9kSs8QmSf4H+iR7quCMmD6MAw=="
+    "value": "nqgaxg54PmaJn7nGDmJ2OHm7xcGm5vurNQjWuBdar/GDCEzg1gjZhxaiGd7U0cN4ax66qyq/UWc9YmEQmNg/Aw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-21-co-snap-policy"
