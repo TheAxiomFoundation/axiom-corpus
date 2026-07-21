@@ -284,6 +284,25 @@ def test_extract_csv_blocks_validates_configuration_and_empty_data() -> None:
             title=None,
             extraction={"csv_columns": ["Missing"]},
         )
+    with pytest.raises(ValueError, match="csv filter column not found: Missing"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_filters": {"Missing": "1"}},
+        )
+    with pytest.raises(ValueError, match="start row must follow the header row"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_start_row": 1},
+        )
+    for max_rows in (0, -1):
+        with pytest.raises(ValueError, match="max rows must be positive"):
+            _extract_csv_blocks(
+                b"A,B\n1,2\n",
+                title=None,
+                extraction={"csv_max_rows": max_rows},
+            )
     assert (
         _extract_csv_blocks(
             b"A,B\n",
@@ -292,6 +311,19 @@ def test_extract_csv_blocks_validates_configuration_and_empty_data() -> None:
         )
         == ()
     )
+
+
+@pytest.mark.parametrize(
+    ("content", "message"),
+    [
+        (b'A,B\n"unterminated,1\nnext,row\n', "invalid csv source"),
+        (b"A,\n1,2\n", "header cells must be non-empty"),
+        (b"A,B\n1,2,3\n", "row 2 has more cells than the header"),
+    ],
+)
+def test_extract_csv_blocks_rejects_malformed_tables(content: bytes, message: str) -> None:
+    with pytest.raises(ValueError, match=message):
+        _extract_csv_blocks(content, title=None, extraction=None)
 
 
 def test_extract_plain_text_blocks_decodes_and_normalizes_javascript() -> None:

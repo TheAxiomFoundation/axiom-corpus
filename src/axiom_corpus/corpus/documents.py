@@ -895,15 +895,32 @@ def _extract_csv_blocks(
         except csv.Error:
             delimiter = ","
 
-    rows = [tuple(row) for row in csv.reader(StringIO(text), delimiter=delimiter)]
-    header_row_number = int(config.get("csv_header_row") or config.get("header_row") or 1)
+    try:
+        rows = [
+            tuple(row)
+            for row in csv.reader(StringIO(text), delimiter=delimiter, strict=True)
+        ]
+    except csv.Error as exc:
+        raise ValueError(f"invalid csv source: {exc}") from exc
+    header_row_number = int(
+        config["csv_header_row"]
+        if "csv_header_row" in config
+        else config.get("header_row", 1)
+    )
     start_row_number = int(
-        config.get("csv_start_row") or config.get("start_row") or header_row_number + 1
+        config["csv_start_row"]
+        if "csv_start_row" in config
+        else config.get("start_row", header_row_number + 1)
     )
     if header_row_number < 1 or header_row_number > len(rows):
         raise ValueError("csv header row is outside the source")
+    if start_row_number <= header_row_number:
+        raise ValueError("csv start row must follow the header row")
 
-    headers = _xlsx_headers(rows[header_row_number - 1])
+    header_row = rows[header_row_number - 1]
+    if not header_row or any(not _xlsx_cell_text(value) for value in header_row):
+        raise ValueError("csv header cells must be non-empty")
+    headers = _xlsx_headers(header_row)
     index = _xlsx_header_index(headers)
     output_columns = _xlsx_configured_strings(
         config.get("csv_columns") or config.get("columns")
@@ -912,14 +929,23 @@ def _extract_csv_blocks(
     missing_columns = [column for column in output_columns if column not in index]
     if missing_columns:
         raise ValueError(f"csv column not found: {', '.join(missing_columns)}")
+    missing_filter_columns = [column for column in filters if column not in index]
+    if missing_filter_columns:
+        raise ValueError(f"csv filter column not found: {', '.join(missing_filter_columns)}")
     row_columns = output_columns or headers
-    max_rows = config.get("csv_max_rows") or config.get("max_rows")
+    max_rows = (
+        config["csv_max_rows"] if "csv_max_rows" in config else config.get("max_rows")
+    )
     row_limit = int(max_rows) if max_rows is not None else None
+    if row_limit is not None and row_limit < 1:
+        raise ValueError("csv max rows must be positive")
     selected_rows: list[tuple[int, tuple[str, ...]]] = []
 
     for row_number, row in enumerate(rows, start=1):
         if row_number < start_row_number or not any(cell.strip() for cell in row):
             continue
+        if len(row) > len(headers):
+            raise ValueError(f"csv row {row_number} has more cells than the header")
         if not _xlsx_row_matches_filters(row, index=index, filters=filters):
             continue
         selected_rows.append(
