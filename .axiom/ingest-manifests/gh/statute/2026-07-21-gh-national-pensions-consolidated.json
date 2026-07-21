@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/gh/statute/2026-07-21-gh-national-pensions-consolidated.json",
+      "sha256": "c4dd402cd25210b09b22e3b05cb503fe64b7f5b1e33aa506fa3674426619fd2f"
+    },
+    {
+      "path": "data/corpus/inventory/gh/statute/2026-07-21-gh-national-pensions-consolidated.json",
+      "sha256": "6215f88ab204b2bc807e4c40b548193be91f27d3b4706b7d52cc2da59313ee0e"
+    },
+    {
+      "path": "data/corpus/provisions/gh/statute/2026-07-21-gh-national-pensions-consolidated.jsonl",
+      "sha256": "99c2aa1119bf14aa367611172bed71343f870d2342bbdd199ae8dc952d062230"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-21-gh-national-pensions-consolidated/2026-07-07-gh-social-security-national-pensions-contributions/official-documents/gh-act-766-national-pensions-2008-contributions.pdf",
+      "sha256": "b6d33af177a4b1b2f91a8346fc3bc88c6e990e22fcca93a94e745dcc85830e86"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-21-gh-national-pensions-consolidated/2026-07-08-gh-ssnit-tax-relief/official-documents/gh-act-766-national-pensions-2008-tax-reliefs.pdf",
+      "sha256": "b6d33af177a4b1b2f91a8346fc3bc88c6e990e22fcca93a94e745dcc85830e86"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f797531c817c7ccf75e893651f85642c0ce15d78",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction gh --document-class statute --source-version 2026-07-07-gh-social-security-national-pensions-contributions --source-version 2026-07-08-gh-ssnit-tax-relief --target-version 2026-07-21-gh-national-pensions-consolidated --prefer-duplicate-carrier gh/statute/act-766/national-pensions-2008=2026-07-07-gh-social-security-national-pensions-contributions"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T13:09:39.390584+00:00",
+  "jurisdiction": "gh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1rZSWZgZP9jlNCqvU+n7AEz1CeGyPRb6/QgNUYyGnbqTgkIzzxl8aQRKTVFgxXoxjhWS4EY41xX9wJe279jrBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-gh-national-pensions-consolidated"
+}
