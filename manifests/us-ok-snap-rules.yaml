@@ -7,8 +7,8 @@ documents:
     source_url: https://rules.ok.gov/home
     download_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=50
     source_format: json
-    source_as_of: "2026-05-27"
-    expression_date: "2026-05-27"
+    source_as_of: "2026-07-21"
+    expression_date: "2026-07-21"
     extraction:
       segmentation: records
       json_record_text_field: text
