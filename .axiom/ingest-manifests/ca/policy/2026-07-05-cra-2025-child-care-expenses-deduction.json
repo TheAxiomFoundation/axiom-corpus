@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction.json",
-      "sha256": "64e732ddfe93f31f593311235e56f20f6fdb8508d499d09ef14cf920692dbc75"
+      "sha256": "7826bdf78dc9beb78d21a6b8a42144eeaafa0ecd01fef394039013483adee601"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-05-cra-2025-child-care-expenses-deduction.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "54238c000021bc519cf0e1731c2af1d9fbacfed2",
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run python scripts/recover_ingest_batch.py"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-17T00:05:48.478982+00:00",
+  "generated_at": "2026-07-21T10:51:29.990419+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "3rusHtc3/t0gRRnybNtruKAAcmgZde2xyHtcHOz2vACIQsx3DTrta9XQ9NTqnhx0pEp7GrUGJUNuXmhSBDVyAA=="
+    "value": "ACas1NTNE3kvMC/OELES9cVRlPJ3S6sDPlusQG3ol5j8bpWsaWFpQTnqpPspDIor77o3AmSmZ/nCQdrXjlklCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-cra-2025-child-care-expenses-deduction"

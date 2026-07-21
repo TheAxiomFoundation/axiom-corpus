@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax.json",
-      "sha256": "d2594723024e96b59889ed3b37cd27afae2455d19cd6f1430a7a5b99528d351e"
+      "sha256": "8e3ce7c86d5c5fbed0b603e3294307e4675ca7c6ca21cf9b54a8d979e30a060c"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-ontario-manitoba-tax.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T12:12:20.236552+00:00",
+  "generated_at": "2026-07-21T10:50:46.107535+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "dY426dFCuTZPyRAmURCa+XXxktrizAMVUgDtLCPqhxQ67Led6Pfr9bIrHGK9k8FuAXnAqAsXyGidQWNx5dVpAg=="
+    "value": "nJLmtSNor2nno7tZhQ64h8otU1PKiaVQlVgU0ZVXA6mvLlPliRVP8uVCbPXrBJkx0Mcm11wHUYz/IZY3pFgxBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-ontario-manitoba-tax"

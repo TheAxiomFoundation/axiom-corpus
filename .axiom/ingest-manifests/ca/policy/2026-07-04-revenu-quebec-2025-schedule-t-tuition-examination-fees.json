@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-t-tuition-examination-fees.json",
-      "sha256": "0de1694ad4c9058dd179b7bdde1a830c3171d27bc943432c0c97c2e7678c47f0"
+      "sha256": "867742098f1ca08a17bac710a4d00cb22dd4aa8e6c916b47096083a87aee25f1"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-t-tuition-examination-fees.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:38:00.332937+00:00",
+  "generated_at": "2026-07-21T10:51:29.274815+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "vvnWXNkvvhBdTtLCuYH+j/NqMZFdVw0j0dSb2cy0dyxs46o6UKJ7oww0XQdC8kjeCDhKUdunoYqQNhQ1izqZCw=="
+    "value": "WFBi3tVtt5Zw49vQKh215pmtc7nhgfD956sx19tN+U1AdADytImdLsDwcjXJy8PPNCcoivzBN3BrCGxDZa6zDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-revenu-quebec-2025-schedule-t-tuition-examination-fees"

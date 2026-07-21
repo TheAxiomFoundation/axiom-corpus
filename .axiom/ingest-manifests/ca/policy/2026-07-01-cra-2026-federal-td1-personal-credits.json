@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.json",
-      "sha256": "6564f6c6ade6554d4177b3226680b687f56b83aa27cdeade7c104d217ccd4849"
+      "sha256": "3a5f4799eeebacb4f13e71c424f1071d51fcac22752c558f55ce9d3e27cb7f58"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-federal-td1-personal-credits.jsonl",
@@ -26,13 +26,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b1e629503f758ff947cbf86a996ddc87b1c8cd72",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "restructure concatenated multi-capture scopes into per-capture children; revert TOC-artifact step splits on shared t4127 scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -43,14 +43,14 @@
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:51:59.471797+00:00",
+  "generated_at": "2026-07-21T10:50:52.135190+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "wDzLRRVxxRcD7QdvszUov5WK4L4hP/RBwNCXU4buhdHUV5QCSeMwq8XvdXc8c7l3sSp221Dmky4n2yHYy6WKDw=="
+    "value": "XlpABradAZA+B9/+H4eyYZWWsl3L0jTx5gcZoWAXjter4IuUjtJiTZ7mYUhusT7Ha8045iXHlN5CfqirZ8jnBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-federal-td1-personal-credits"

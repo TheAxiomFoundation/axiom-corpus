@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits.json",
-      "sha256": "309364a30b3dcfe27cc276b789531a704c5386f74309fca3eb9d5e23bcab02f8"
+      "sha256": "877942e72bde9ba892631b08efb136a5fd3f803dc2793338283d9dd34f9ee259"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 2
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T12:12:22.075957+00:00",
+  "generated_at": "2026-07-21T10:50:48.114512+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "HdGmy60aVpye7FeNNB42yQfBu2XxpdQiV/wHioz/by6NwwHC2XFiJg/L3Y86n0IAYIoCgQvt1ds1MxS9f1Y3CA=="
+    "value": "IGgks7OzUMQkZtNkE31quU9rJ3wCjRCwkdZoJSWMQ6zZU7hGHmY2VoWKxtR2qk4Cn4XVGu2hBrh+fV++CEzYAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits"

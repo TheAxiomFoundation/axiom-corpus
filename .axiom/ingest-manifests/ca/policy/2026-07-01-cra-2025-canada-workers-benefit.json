@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-canada-workers-benefit.json",
-      "sha256": "076518df8b24df297cea112a0aa4d456110068ec16acd8b9d1aae92b9a53da1a"
+      "sha256": "43588adf77832518adadfd359cdd91db1498f239719800ce702759dbcc310554"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-canada-workers-benefit.jsonl",
@@ -34,13 +34,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "1f3482da5f83fdb9eeab985ba16640e040f32b4a",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "restructure concatenated CWB scope into federal Schedule 6 parent with alberta/nunavut/quebec form-variant children (verified per-capture form codes; old inventory had NU/QC urls swapped)"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -51,14 +51,14 @@
     "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:44:58.709139+00:00",
+  "generated_at": "2026-07-21T10:50:25.233055+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "D0m9/aymK06gDMnX5HudZ3DYOJuSPx5kcFJqZeEb3Y17B09Oc371l94lF/S1j84rs6CLQU1OvlCZ8s22hJqTDA=="
+    "value": "+pG87F4Foi5uSiEdfsiUHb2WAgZPKN/W1hpkE9waH65TLXTE0NFNc4pPTjDpkJku33M5WXfItLa4B1w0/VJwCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-canada-workers-benefit"

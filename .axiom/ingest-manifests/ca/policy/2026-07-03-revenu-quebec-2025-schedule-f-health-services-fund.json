@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-schedule-f-health-services-fund.json",
-      "sha256": "9eb30e06bdc4425426d40799c0fcc321fd46dceb67fbf5da574e697f0beb63b1"
+      "sha256": "956689b6d917363367dc98232d94cd664611964e2f37a95f823f2fefbff895a3"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-f-health-services-fund.jsonl",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:52.006029+00:00",
+  "generated_at": "2026-07-21T10:51:20.165470+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "MJ09UJ34Fa2yBLzLmhKRtRHa/AZRV48m9Q9U/3QowzNnwii2/Hn5RCm4e8SCaRNmYCwKhmUTYdBiOw9b/5NoDw=="
+    "value": "EmeCCcCi9asDbmD1VBRB2+DBy2zjQ41JaoIxs1lEOQHhgw2xjABRXG8apZTCY8ASZ2Vk9Q5nuGw75BRgBzUpCg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-revenu-quebec-2025-schedule-f-health-services-fund"

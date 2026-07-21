@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.json",
-      "sha256": "3a28e81ae67aceaf15b9c79d8ef7c0b12f8760c505217ec984debb50b1c525b4"
+      "sha256": "6b72814df62b2e0c4aff1d7133550516b4e8909dec7ff5bb87c04bbf1dc1e38c"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.jsonl",
@@ -66,13 +66,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "9ab7cb980be7fca006728d183e9cbbb49ffaffb6",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -83,14 +83,14 @@
     "source_count": 13
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T19:50:15.885484+00:00",
+  "generated_at": "2026-07-21T10:50:54.145944+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "0vHyaVrln12++GEWd7RHY5CGS1n9kKNtoXZ01vm+uSKixN7wBitnu6ApM8jc9kkWvJ0/pbGSWX1EgZseRDeXBQ=="
+    "value": "daJuXlSUy7K2tTkiuJhtupsv+Z5VWQhGkljrhBZW6xmXMQoLQ1F7FYzYqtyMVyxem5c4Qk96gs5HqOx+EM+vAQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-provincial-territorial-td1-personal-credits"
