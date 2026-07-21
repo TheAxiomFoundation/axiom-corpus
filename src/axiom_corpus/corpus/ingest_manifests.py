@@ -250,7 +250,39 @@ def guard_ingested_artifacts(
     public_key = public_key or os.environ.get(INGEST_MANIFEST_PUBLIC_KEY_ENV)
     changes = _changed_paths(repo=repo, base_ref=base_ref, head_ref=head_ref)
     protected = tuple(path for path in changes if _is_protected_corpus_artifact(path.path))
-    if not protected:
+    if not changes:
+        return IngestGuardResult(repo=repo, protected_changes=(), issues=())
+
+    read_ref = (head_ref or "HEAD") if base_ref else None
+    manifests = _load_ingest_manifests(repo, ref=read_ref)
+    entries_by_path: dict[str, tuple[Path, dict[str, Any], dict[str, Any]]] = {}
+    reasoning_manifests_by_path: dict[str, set[Path]] = {}
+    for manifest_path, payload in manifests.items():
+        for entry in payload.get("applied_files", []):
+            if not isinstance(entry, dict):
+                continue
+            path = str(entry.get("path") or "").strip()
+            if path:
+                entries_by_path[path] = (manifest_path, payload, entry)
+        for path in _reasoning_log_paths(payload):
+            reasoning_manifests_by_path.setdefault(path, set()).add(manifest_path)
+
+    baseline_ref = base_ref or "HEAD"
+    baseline_manifests = _load_ingest_manifests(repo, ref=baseline_ref)
+    baseline_reasoning_manifests_by_path: dict[str, set[Path]] = {}
+    for manifest_path, payload in baseline_manifests.items():
+        for path in _reasoning_log_paths(payload):
+            baseline_reasoning_manifests_by_path.setdefault(path, set()).add(manifest_path)
+
+    changed_reasoning_paths_by_manifest: dict[Path, set[str]] = {}
+    for change in changes:
+        manifest_paths = reasoning_manifests_by_path.get(change.path, set()) | (
+            baseline_reasoning_manifests_by_path.get(change.path, set())
+        )
+        for manifest_path in manifest_paths:
+            changed_reasoning_paths_by_manifest.setdefault(manifest_path, set()).add(change.path)
+    changed_reasoning_manifests = set(changed_reasoning_paths_by_manifest)
+    if not protected and not changed_reasoning_manifests:
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
     if not public_key:
         return IngestGuardResult(
@@ -261,9 +293,6 @@ def guard_ingested_artifacts(
             ),
         )
 
-    read_ref = (head_ref or "HEAD") if base_ref else None
-    manifests = _load_ingest_manifests(repo, ref=read_ref)
-    entries_by_path: dict[str, tuple[Path, dict[str, Any], dict[str, Any]]] = {}
     manifest_issues: dict[Path, list[str]] = {}
     for manifest_path, payload in manifests.items():
         manifest_issues[manifest_path] = verify_ingest_manifest(
@@ -272,14 +301,9 @@ def guard_ingested_artifacts(
             repo=repo,
             head_ref=head_ref or "HEAD",
         )
-        for entry in payload.get("applied_files", []):
-            if not isinstance(entry, dict):
-                continue
-            path = str(entry.get("path") or "").strip()
-            if path:
-                entries_by_path[path] = (manifest_path, payload, entry)
 
     issues: list[str] = []
+    authorizing_manifests: set[Path] = set()
     for change in protected:
         manifest_entry = entries_by_path.get(change.path)
         if manifest_entry is None:
@@ -289,6 +313,7 @@ def guard_ingested_artifacts(
             )
             continue
         manifest_path, _payload, entry = manifest_entry
+        authorizing_manifests.add(manifest_path)
         if manifest_issues.get(manifest_path):
             for issue in manifest_issues[manifest_path]:
                 issues.append(f"{manifest_path.as_posix()}: {issue}")
@@ -311,6 +336,29 @@ def guard_ingested_artifacts(
             )
             continue
         issues.extend(_artifact_content_issues(repo, change.path, ref=read_ref))
+
+    for manifest_path in sorted(authorizing_manifests | changed_reasoning_manifests):
+        current_payload = manifests.get(manifest_path)
+        if current_payload is None:
+            changed_paths = sorted(changed_reasoning_paths_by_manifest.get(manifest_path, set()))
+            issues.append(
+                f"{manifest_path.as_posix()}: signed manifest was removed while its "
+                f"reasoning log changed: {changed_paths}."
+            )
+            continue
+        if manifest_issues.get(manifest_path):
+            for issue in manifest_issues[manifest_path]:
+                issues.append(f"{manifest_path.as_posix()}: {issue}")
+            continue
+        for issue in _reasoning_log_issues(repo, current_payload, ref=read_ref):
+            issues.append(f"{manifest_path.as_posix()}: {issue}")
+        current_reasoning_paths = _reasoning_log_paths(current_payload)
+        for path in sorted(changed_reasoning_paths_by_manifest.get(manifest_path, set())):
+            if path not in current_reasoning_paths:
+                issues.append(
+                    f"{manifest_path.as_posix()}: changed reasoning log `{path}` is no "
+                    "longer attested by the signed manifest."
+                )
 
     return IngestGuardResult(
         repo=repo,
@@ -525,6 +573,47 @@ def _artifact_content_issues(repo: Path, path: str, *, ref: str | None) -> list[
     if _is_inventory_artifact(path):
         issues.extend(_inventory_primary_source_issues(path, payload))
     return issues
+
+
+def _reasoning_log_issues(
+    repo: Path,
+    payload: dict[str, Any],
+    *,
+    ref: str | None,
+) -> list[str]:
+    raw_entries = payload.get("reasoning_logs")
+    if not isinstance(raw_entries, list):
+        return ["`reasoning_logs` must be a list."]
+
+    issues: list[str] = []
+    for entry in raw_entries:
+        if not isinstance(entry, dict):
+            issues.append("Each reasoning log entry must be an object.")
+            continue
+        path = str(entry.get("path") or "").strip()
+        if not path:
+            issues.append("Each reasoning log entry must have a path.")
+            continue
+        actual_sha = _artifact_sha(repo, path, ref=ref)
+        if actual_sha is None:
+            issues.append(f"Manifested reasoning log is missing: `{path}`.")
+            continue
+        expected_sha = str(entry.get("sha256") or "")
+        if actual_sha != expected_sha:
+            issues.append(f"`{path}` sha256 does not match the signed reasoning log entry.")
+    return issues
+
+
+def _reasoning_log_paths(payload: dict[str, Any]) -> set[str]:
+    raw_entries = payload.get("reasoning_logs")
+    if not isinstance(raw_entries, list):
+        return set()
+    return {
+        path
+        for entry in raw_entries
+        if isinstance(entry, dict)
+        if (path := str(entry.get("path") or "").strip())
+    }
 
 
 def _is_official_document_artifact(path: str) -> bool:
