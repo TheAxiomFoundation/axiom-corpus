@@ -1,0 +1,261 @@
+# Official dependency documents needed to compose the complete Canadian
+# RuleSpec program roots. Extract this scope before rebuilding the consolidated
+# source-complete scope:
+#
+#   uv run axiom-corpus-ingest extract-official-documents \
+#     --base data/corpus \
+#     --version 2026-07-21-ca-rulespec-official-dependencies \
+#     --manifest manifests/ca-rulespec-2026-07-21-official-dependencies.yaml
+documents:
+  - source_id: cra-2026-canada-child-benefit-how-much
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/benefits-2026/federal-family-and-climate-benefits/canada-child-benefit
+    title: CRA Canada Child Benefit amounts for July 2026 to June 2027
+    source_url: https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/how-much.html
+    source_format: html
+    source_as_of: '2026-07-21'
+    expression_date: '2026-07-01'
+    language: en
+    request: &browser_request
+      browser_user_agent: true
+      browser_impersonation_direct: true
+    metadata: &cra_metadata
+      primary_source: true
+      source_authority: Canada Revenue Agency
+
+  - source_id: cra-2026-child-disability-benefit
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/benefits-2026/federal-family-and-climate-benefits/child-disability-benefit
+    title: CRA Child Disability Benefit amounts
+    source_url: https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-disability-benefit.html
+    source_format: html
+    source_as_of: '2026-07-21'
+    expression_date: '2026-07-01'
+    language: en
+    request: *browser_request
+    metadata: *cra_metadata
+
+  - source_id: cra-2026-cgeb-payment-chart
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/benefits-2026/federal-family-and-climate-benefits/cgeb-payment-chart
+    title: CRA Canada Groceries and Essentials Benefit payment chart
+    source_url: https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-groceries-essentials-benefit/how-much/payments-chart.html
+    source_format: html
+    source_as_of: '2026-07-21'
+    expression_date: '2026-07-01'
+    language: en
+    request: *browser_request
+    metadata: *cra_metadata
+
+  - source_id: cra-2026-gst-hst-credit-one-time-top-up
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/benefits-2026/federal-family-and-climate-benefits/gst-hst-credit-top-up
+    title: CRA one-time GST HST credit top-up amounts
+    source_url: https://www.canada.ca/en/revenue-agency/services/child-family-benefits/gst-hst-credit/one-time-top-up.html
+    source_format: html
+    source_as_of: '2026-07-21'
+    expression_date: '2026-06-05'
+    language: en
+    request: *browser_request
+    metadata: *cra_metadata
+
+  - source_id: cra-2025-employee-partner-gst-hst-rebate-guidance
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/federal-other-refundable-credits/employee-partner-gst-hst-rebate
+    title: CRA line 45700 employee and partner GST HST rebate guidance
+    source_url: https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/line-45700-employee-partner-gst-hst-rebate.html
+    source_format: html
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    metadata: *cra_metadata
+
+  - source_id: cra-2025-eligible-educator-school-supply-credit
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/federal-other-refundable-credits/eligible-educator-school-supply-credit
+    title: CRA lines 46800 and 46900 eligible educator school supply tax credit
+    source_url: https://www.canada.ca/en/revenue-agency/services/tax/individuals/topics/about-your-tax-return/tax-return/completing-a-tax-return/deductions-credits-expenses/lines-46800-46900-eligible-educator-school-supply-tax-credit.html
+    source_format: html
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    metadata: *cra_metadata
+
+  - source_id: cra-2026-federal-tax-rates-for-td1
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t4127-2026/federal-td1-personal-credits/federal-tax-rates
+    title: CRA 2026 federal income tax rates and brackets
+    source_url: https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html
+    source_format: html
+    source_as_of: '2026-07-21'
+    expression_date: '2026-01-01'
+    language: en
+    request: *browser_request
+    metadata: *cra_metadata
+
+  - source_id: cra-2025-nb428-worksheet
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/nb428-resident-tax/worksheet
+    title: CRA Worksheet NB428 2025
+    source_url: https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5004-d/5004-d-25e.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    extraction: &single_block
+      segmentation: single_block
+    metadata: *cra_metadata
+
+  - source_id: cra-2025-nt428-worksheet
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/nt428-resident-tax/worksheet
+    title: CRA Worksheet NT428 2025
+    source_url: https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5012-d/5012-d-25e.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    extraction: *single_block
+    metadata: *cra_metadata
+
+  - source_id: cra-2025-nu428-worksheet
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/nu428-resident-tax/worksheet
+    title: CRA Worksheet NU428 2025
+    source_url: https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5014-d/5014-d-25e.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    extraction: *single_block
+    metadata: *cra_metadata
+
+  - source_id: cra-2025-yt428-worksheet
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/yt428-resident-tax/worksheet
+    title: CRA Worksheet YT428 2025
+    source_url: https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5011-d/5011-d-25e.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    extraction: *single_block
+    metadata: *cra_metadata
+
+  - source_id: cra-2025-on479-worksheet
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/on479-credits/worksheet
+    title: CRA Worksheet ON479 2025
+    source_url: https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/5006-d1/5006-d1-25e.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    extraction: *single_block
+    metadata: *cra_metadata
+
+  - source_id: cra-2025-yukon-tax-information
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/yt479-credits/yukon-tax-information
+    title: CRA Yukon 2025 tax information package
+    source_url: https://www.canada.ca/en/revenue-agency/services/forms-publications/tax-packages-years/general-income-tax-benefit-package/yukon/5011-pc.html
+    source_format: html
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    metadata: *cra_metadata
+
+  - source_id: revenu-quebec-2026-employer-principal-changes
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/revenu-quebec/source-deductions-2026/personal-credit-amounts/principal-changes
+    title: Revenu Quebec employers principal changes for 2026
+    source_url: https://www.revenuquebec.ca/en/businesses/source-deductions-and-employer-contributions/employers-principal-changes-for-2026/
+    source_format: html
+    source_as_of: '2026-07-21'
+    expression_date: '2026-01-01'
+    language: en
+    request:
+      browser_user_agent: true
+      browser_impersonation: true
+      browser_impersonation_direct: true
+    metadata: &rq_metadata
+      primary_source: true
+      source_authority: Revenu Quebec
+
+  - source_id: revenu-quebec-2025-tp1-return
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/revenu-quebec/tp1-2025/main-return/tp1-return
+    title: Revenu Quebec 2025 income tax return TP-1.D-V
+    source_url: https://www.revenuquebec.ca/documents/en/formulaires/tp/2025-12/TP-1.D-V%282025-12%29.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    extraction: *single_block
+    metadata: *rq_metadata
+
+  - source_id: revenu-quebec-2025-tp1-calculation-grids
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/revenu-quebec/tp1-2025/main-return/calculation-grids
+    title: Revenu Quebec 2025 TP-1 calculation grids
+    source_url: https://www.revenuquebec.ca/documents/en/formulaires/tp/2025-12/TP-1.D.GR-V%282025-12%29.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    extraction: *single_block
+    metadata: *rq_metadata
+
+  - source_id: revenu-quebec-2025-tp1-guide-main-return
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/revenu-quebec/tp1-2025/main-return/guide
+    title: Revenu Quebec 2025 guide to the income tax return
+    source_url: https://www.revenuquebec.ca/documents/en/formulaires/tp/2025-12/TP-1.G-V%282025-12%29.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    extraction: *single_block
+    metadata: *rq_metadata
+
+  - source_id: revenu-quebec-2025-tp1-guide-schedule-j
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/revenu-quebec/tp1-2025/schedule-j-home-support-seniors/guide
+    title: Revenu Quebec 2025 guide to the income tax return, line 458
+    source_url: https://www.revenuquebec.ca/documents/en/formulaires/tp/2025-12/TP-1.G-V%282025-12%29.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    language: en
+    request: *browser_request
+    extraction: *single_block
+    metadata: *rq_metadata

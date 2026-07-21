@@ -1,0 +1,833 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-21-ca-rulespec-source-complete.json",
+      "sha256": "5d55a591273d76fdc0a8343e571f8b8f9513ff7394a3490725272c3fa57c47dd"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-21-ca-rulespec-source-complete.json",
+      "sha256": "3e1938b9bd8ef707b425b7f8a93697f4ce49e0cf12be17bc4a5e315aea65d1dd"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-21-ca-rulespec-source-complete.jsonl",
+      "sha256": "313a3f6ed90c6a06d95be1752b5d3358ba73fc1316d04214eabf47274dd0b5a5"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-alternative-minimum-tax/official-documents/cra-2025-alternative-minimum-tax.txt",
+      "sha256": "d11e16912de67e39633389614ffd04a0bc36baa43d03c81149d976c3c417492e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-alberta-canada-workers-benefit.txt",
+      "sha256": "ef24f20b9d7999a250315b14cf05fdbc67f9c82213d07fb2a05e6c0d6a40ff4b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-nunavut-canada-workers-benefit.txt",
+      "sha256": "39cf123d929f16c379c2363544d05e48369184c0bcb9132981b0c168e7550996"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-quebec-canada-workers-benefit.txt",
+      "sha256": "bf5f474f90be5cea78336f8e17dbe50237dec4977dfc9053c60ab173d9c9e4a9"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-canada-workers-benefit/official-documents/cra-2025-schedule-6-canada-workers-benefit.txt",
+      "sha256": "7066738937fed9dbc7fc0f2597ac8557b9adde9a280222713da27dc4c9f2904a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-canada-workers-benefit/reasoning/cra-2025-canada-workers-benefit.txt",
+      "sha256": "3a9dacdc65b8da9917c64704c6b35b7781884f62b25956c8e381e9c1a353a3c6"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-capital-gains-deduction/official-documents/cra-2025-capital-gains-deduction.txt",
+      "sha256": "b30163029bf83825a084b78fd8d2a7f8184503fac05b5d843f7fc637922ac57c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-capital-gains-on-gifts/official-documents/cra-2025-capital-gains-on-gifts.txt",
+      "sha256": "a1e0399d593967d8fbe8656631d8e041362b915393ef835d3e2c0a4cae08c311"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-capital-gains-or-losses/official-documents/cra-2025-schedule-3-capital-gains-or-losses.txt",
+      "sha256": "52652ae11d25185f29626e5a7f59ee3e23c43d674523116999c23cc2e760729b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-capital-gains-or-losses/reasoning/cra-2025-capital-gains-or-losses.txt",
+      "sha256": "173c810c158ce471a0595546d3751f12f081cfb816c9c9e7659fce34b81f017c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-capital-gains-reserves/official-documents/cra-2025-capital-gains-reserves.txt",
+      "sha256": "83f87d85b8f7875bc39cfed1f8260543a736c35ce38010e6790c29506b18ae74"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-cpp-contributions-and-overpayment/official-documents/cra-2025-cpp-contributions-and-overpayment.txt",
+      "sha256": "ee68f57d5a513d97e2956a8d58f81439bb02b3a952cf44ebe26c360c24247922"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-cumulative-net-investment-loss/official-documents/cra-2025-cumulative-net-investment-loss.txt",
+      "sha256": "ceaf80db7665009cbbcc0a2db96d4eca098d271189f170da25e2b7ce687e80ca"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-deferred-security-options-benefits/official-documents/cra-2025-deferred-security-options-benefits.txt",
+      "sha256": "1c5aa26a047011616c1e4e7cf68cee4a4314e09497ced2feb951346b62d94368"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-ei-and-ppip-premiums-quebec-nonresidents/official-documents/cra-2025-ei-and-ppip-premiums-quebec-nonresidents.txt",
+      "sha256": "6928c1de6d6cef3de98690a182c33ba933af4fe14a993c2979408748f747d9ef"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-employee-overpayment-ei-premiums/official-documents/cra-2025-employee-overpayment-ei-premiums.txt",
+      "sha256": "df1398cac50c1660310ae60485292a8c6c4a05ed56a6aa946d4dcdf9c45d9b99"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-employment-insurance-premiums-self-employment/official-documents/cra-2025-employment-insurance-premiums-self-employment.txt",
+      "sha256": "9d2510b1d0c9693ca124b7129e166c31f3ce403d7c2eed87c81eb297ee3ded37"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-donations-and-gifts/official-documents/cra-2025-schedule-9-donations-and-gifts.txt",
+      "sha256": "b497fbabf70a51aab0e21f0c339f81f1bc727c6abc9e1a3d5b1c81eae643633e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-donations-and-gifts/official-documents/cra-line-34900-donations-gifts.html",
+      "sha256": "6e9d40b78639e67260b365a1c05a5733717a7654f5512baf083d2ddf107608cd"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-donations-and-gifts/official-documents/cra-p113-gifts-income-tax-2025.html",
+      "sha256": "cf3c94547f519a6fd881f192530add9f0d9755989c20c35c17af7ee9f491b9e7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-donations-and-gifts/reasoning/cra-2025-federal-donations-and-gifts.txt",
+      "sha256": "963615e1ba1295deb37de85394d200f6e545f7f159524af52c62ecd6f28b13ae"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-foreign-tax-credits/official-documents/cra-2025-federal-foreign-tax-credits.txt",
+      "sha256": "5108f149c834c74f84f704e1daf93ba5ce983db8cd642330ce449cfdd7f8cd1a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts/official-documents/cra-2025-schedule-5-spouse-and-dependants.txt",
+      "sha256": "376a97bd5997692c828d7d23243beb16a3366e7aff79581879ba1132ee36d669"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts/reasoning/cra-2025-federal-spouse-and-dependant-amounts.txt",
+      "sha256": "017e418e66ddc92e8a658a0e70848cc0b55368a5d236461d980a43d471fb5367"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-spouse-transfer-amounts/official-documents/cra-2025-schedule-2-spouse-transfer.txt",
+      "sha256": "4c4655503f31cf019fdd3a61b46dd2ca1a87ad2d75ea3988f53ddaa6e5194e80"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-spouse-transfer-amounts/reasoning/cra-2025-federal-spouse-transfer-amounts.txt",
+      "sha256": "af2fd67e871d304ce0dec63815b0dd214bcda265e6e3a4f6589acca62de15339"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-tuition-and-training-credit/official-documents/cra-2025-schedule-11-tuition-training-credit.txt",
+      "sha256": "5101265c16fc92f30bc635f5e7d6416010d65a11de8da67a35a895c2adaa1293"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-tuition-and-training-credit/reasoning/cra-2025-federal-tuition-and-training-credit.txt",
+      "sha256": "d5d420bb561f659fc30114082670721200deebe249f72c4dbcdfd87d1df6910b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments/official-documents/cra-2025-federal-worksheet.txt",
+      "sha256": "a9fcbf632019659a314db93717f12b0ed4d7f77bfed5b00bdce377a7e46aa5a9"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments/official-documents/cra-line-23500-social-benefits-repayment.html",
+      "sha256": "a57644678d8988b31a69759d6f92a435d31655a3465dde10434a70c85cbdf149"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-federal-worksheet-credits-and-repayments/reasoning/cra-2025-federal-worksheet-credits-and-repayments.txt",
+      "sha256": "fbdad22a2d4dbdee3f2e470c918aa14aaca717d7d5fb111d07e9fd6e130db252"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities/official-documents/cra-2025-schedule-15-fhsa.txt",
+      "sha256": "197f22e76b301036e4eba2461c311b1686c41c404c03c62eedc8be0d0074f1e5"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-fhsa-contributions-transfers-and-activities/reasoning/cra-2025-fhsa-contributions-transfers-and-activities.txt",
+      "sha256": "e9c74f7df2346ca281ec94d9633606820652e569818c4f758d5698d5076ef771"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-investment-tax-credit-individuals/official-documents/cra-2025-investment-tax-credit-individuals.txt",
+      "sha256": "08d2cd285d77a456acd5576232c32c24d9359dd5d63b939af0927061370b95de"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-joint-election-to-split-pension-income/official-documents/cra-2025-joint-election-to-split-pension-income.txt",
+      "sha256": "837751213ddb6f04620ac48efd9fe101564e2af3357a57ded6c4cf8adfb9df75"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit/official-documents/cra-2025-schedule-12-mhrtc.txt",
+      "sha256": "91f65f9e6866ecd948febab697b8aa7441a9bdf92cd2e3120b0e45b56f3e7e30"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-multigenerational-home-renovation-tax-credit/reasoning/cra-2025-multigenerational-home-renovation-tax-credit.txt",
+      "sha256": "33e59e3bd4ef5d4037dcf615027dffe170d0fea66aac405040e977be7e4c5a77"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-multiple-jurisdiction-taxes/official-documents/cra-2025-multiple-jurisdiction-taxes.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-nonresident-world-income-credits-section-217/official-documents/cra-2025-nonresident-world-income-credits-section-217.txt",
+      "sha256": "5fd54e9e994ecc4c11a2b763b3f30bfc72c11b02a3d22361481ea5ac93a94dbc"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-northern-residents-deductions/official-documents/cra-2025-northern-residents-deductions.txt",
+      "sha256": "aedc9f64a7f8857415c9a8d18a20e0dc860601a88510a4b9710158816245ff53"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit/official-documents/cra-2025-provincial-territorial-foreign-tax-credit.txt",
+      "sha256": "19781db8cdf66c42c003cc3a768555851cae5fdb1f161aad3eaf31c5d9b7951a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-request-for-loss-carryback/official-documents/cra-2025-request-for-loss-carryback.txt",
+      "sha256": "5cfa6017b9f8500c06aab5672a9b761da51be45c3d36d39c68569deabb58706b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-2025-schedule-7-rrsp-prpp-spp.txt",
+      "sha256": "da45626f1d955cead115f2f1bc3f9d991c5c501766f1ebd1a47a3e046ddd0a0b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-hbp-repay-amounts-withdrawn.html",
+      "sha256": "ca79c81f03f697928244feee07116eee760e6c5840820aa30e1b5765654119c3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/official-documents/cra-llp-repayments.html",
+      "sha256": "91869e4ee31e3a3e329b99652dd701d3550dde6e64e3674e662ea91618c7246d"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-rrsp-prpp-spp-hbp-llp/reasoning/cra-2025-rrsp-prpp-spp-hbp-llp.txt",
+      "sha256": "d296dade45f52c7f41bc5f248c85b6df4f8e059b0658b4899b48b8c3640c1e40"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits/official-documents/cra-2025-t2203-nb-on-mb-part3-credits.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-t2203-newfoundland-pei-tax/official-documents/cra-2025-t2203-newfoundland-pei-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-t2203-nl-pe-ns-part3-credits/official-documents/cra-2025-t2203-nl-pe-ns-part3-credits.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax/official-documents/cra-2025-t2203-nova-scotia-new-brunswick-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-t2203-ontario-manitoba-tax/official-documents/cra-2025-t2203-ontario-manitoba-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-t2203-saskatchewan-alberta-british-columbia-tax/official-documents/cra-2025-t2203-saskatchewan-alberta-british-columbia-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-t2203-sk-ab-bc-part3-credits/official-documents/cra-2025-t2203-sk-ab-bc-part3-credits.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-t2203-yt-nt-nu-part3-credits/official-documents/cra-2025-t2203-yt-nt-nu-part3-credits.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-t2203-yukon-northwest-territories-nunavut-tax/official-documents/cra-2025-t2203-yukon-northwest-territories-nunavut-tax.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-tax-on-split-income/official-documents/cra-2025-tax-on-split-income.txt",
+      "sha256": "c707b60f2bc5cf9e9b6d86688ee7020d6cfc4e81e857408c68dff8bcadee086a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-tax-shelter-loss-or-deduction/official-documents/cra-2025-tax-shelter-loss-or-deduction.txt",
+      "sha256": "dbc169af0721b6e21ca7915af5a547c1c68a8db734f451e12aa57d3dca6578d2"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-claim-codes/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "sha256": "76ad2b661fee5d0a2aa0d6deefaf2137cb8f580b9725c8c885be3f2222d1856b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-claim-codes/reasoning/cra-2026-claim-codes.txt",
+      "sha256": "2f912a8c46fcbe863927c21c97e532191bc4ae3fa2d8e85a96a671c9f9b43398"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-canada-carbon-rebate.html",
+      "sha256": "9583812da3ecb9095152d33606888a202c12bc790292f5f39f21d56c050b919c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-canada-child-benefit-how-much.html",
+      "sha256": "c064d37d167b41bf21aafedd0af8c066be92e9448053c660bbadadc13bfd8f7c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-cgeb-payments-chart.html",
+      "sha256": "615aaea0e4f95b1136395fb5c13d6992f061be11e590c37bd83e8226106b97a6"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-child-disability-benefit.html",
+      "sha256": "b1d6e9d57c0db3e11c3c6d2d968f40276866302392bdb4da89e92ccfd5eab89e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-federal-family-and-climate-benefits/official-documents/cra-gst-hst-credit-one-time-top-up.html",
+      "sha256": "433aec2d8e28e1a038c9926e8d72a5902702002437c857c173eb0938c9cb2ac3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-federal-family-and-climate-benefits/reasoning/cra-2026-federal-family-and-climate-benefits.txt",
+      "sha256": "7b259d498ea61b740729c6d3a12519a4ad95e6e69ae22c43171d4586c1389168"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-td1-form.txt",
+      "sha256": "541a22a104a80fff7fec4dc28963445748ca519101b66777bc08a1a485357aeb"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-federal-td1-personal-credits/official-documents/cra-2026-td1-ws-worksheet.txt",
+      "sha256": "aab582447adb44526c99ab4ab62d0122883e391c75e4a8c53850dbe40626a806"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-federal-td1-personal-credits/reasoning/cra-2026-federal-td1-personal-credits.txt",
+      "sha256": "8bf1554959a907f264ec6a4f05f401d2f55baf18084ea033c2e3a1e57eae9f6d"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-federal-tax-rates-current-year.html",
+      "sha256": "d0913edef2c9a14ba68b6a3ecb8615cc5e632a7d65c81f5f0c9b0ad1f23dab39"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "sha256": "a383303be8ecf3c055ec58cceb48fc0f61f552d4d14e3255b8c3758e3ca3b0de"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-income-tax/reasoning/cra-2026-federal-income-tax.txt",
+      "sha256": "65244fb6f1d9b0eed870dd9af526e70e4cf8d284742ae6c7ff93a132785f6ac5"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-payroll-contributions/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "sha256": "5744c0bb8d31d9318219534f5f178147430988aacbc61411b70a0e0968ae5496"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-payroll-contributions/reasoning/cra-2026-payroll-contributions.txt",
+      "sha256": "991a44b512bbf3218843619536d962e6d17483b597c3285d2cdd3af6824a132d"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "sha256": "05987c195301eef9b703cc2c29682db28d6102b6f45ac037fc9fddef39b79ae9"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/cra-2026-tax-rates-current-year.html",
+      "sha256": "5567a935f34560dea510546b0ebfc5304d4a95d04584c98a0f589346c4a9cd20"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-tax-rates/official-documents/revenu-quebec-income-tax-rates.html",
+      "sha256": "64988659e7a5de477ed4c5a81ad8191b88a7d96d9fa40961455c838cb8a37db7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-tax-rates/reasoning/cra-2026-provincial-territorial-income-tax.txt",
+      "sha256": "06c8e54c0cfdd7827fa228fd627ea76ed71eee852a0e62340613012f9e4b903c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1ab.txt",
+      "sha256": "7169150a063ce6037bd060cdc91d7f1415f1b2bee3d12ded175c8abdf8c06797"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1bc.txt",
+      "sha256": "2067e2a3129828a8e21222bc4decddfdd7524c58a2c8ded1d73a69326d3b9465"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1mb.txt",
+      "sha256": "2a6ea2aebe42ce145b18b8c4cda7b292114168e97de9a62da354802184b5ffda"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1nb.txt",
+      "sha256": "2f35570cb809f35b87dd47c5865ce0fb1e6509468fd72f4e8182dc19c61a7a5c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1nl.txt",
+      "sha256": "29081b797f30883d13d33babf780fd49c42334e547a6338b65631b65bd5b2039"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1ns.txt",
+      "sha256": "2d98dd400ae592ca0d14828320c6e69db7bf0b9b469c1c6a21ebbf30ed0aed97"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1nt.txt",
+      "sha256": "dedaec122c345f7dcfbefca6494e25a39ad98b42266709015f4356eef4466188"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1nu.txt",
+      "sha256": "df8362c8fe8ef91202abe7b91736413fc86b7bfcefe631285ffd5efbe04c5ef3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1on.txt",
+      "sha256": "5af5aac4a8b0a78cbf20e388fd324296991fc3b85399fdcb8e07b7a08ab3206d"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1pe.txt",
+      "sha256": "25972cfdf389af42762970bf2ac323e69d323f3adae944f41333bcad065c401b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1sk.txt",
+      "sha256": "499144083b5e5c74fd45226508873cb74fe78607b90f8ba9c0ee60246a14efab"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1yt.txt",
+      "sha256": "63aa648f9a883aafa31d29bc3957ac51fa6b3f265f053319083ba03f797fc369"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/reasoning/cra-2026-provincial-territorial-td1-personal-credits.txt",
+      "sha256": "c6e7c4f9fd90e60f8857e3d0c3078b4a3009f17c35b8b088270a2d800af034b3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-esdc-2026-canada-disability-benefit/official-documents/esdc-canada-disability-benefit-amount.html",
+      "sha256": "494f76a0759b36bb7095fbc6431f2da6b0c643a01905286993c1282a8b7d15f6"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-esdc-2026-canada-disability-benefit/official-documents/sor-2025-35-canada-disability-benefit-regulations.html",
+      "sha256": "6e0c5f88f71e1ee0b927bea6866698736516f281b6ebeb92f827f7cc7fddd7c7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-esdc-2026-canada-disability-benefit/reasoning/esdc-2026-canada-disability-benefit.txt",
+      "sha256": "e1d8ccab651b81b6adf5fa80cbda348c5e3c5fe390df7baccac9fa979b913bdc"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts/official-documents/revenu-quebec-tp-1015-3-source-deductions-return-2026.txt",
+      "sha256": "01e065826f9c097d3f2ee9542a1d51ef1c149ab5d17b6a841cb0f462619bd508"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-revenu-quebec-2026-source-deduction-personal-credit-amounts/reasoning/revenu-quebec-2026-source-deduction-personal-credit-amounts.txt",
+      "sha256": "50e0410b0341b892fd3bcfd07ab7ad727be335e464b41fc2895bedff17ca9caa"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-ab428-resident-tax/official-documents/5009-c-25e.txt",
+      "sha256": "9954e3368a818bfe6e56ab871bf13f5cf28a0a7228319250fc5530dcb5e77833"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-ab428-resident-tax/official-documents/5009-d-25e.txt",
+      "sha256": "5c9eee54877796e6a083a6d1a81a0d159e5d7eb4b509832d3ff0a6160be499a4"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-bc428-resident-tax/official-documents/5010-c-25e.txt",
+      "sha256": "886abb9b7ef3e22bdd71d046f3a0c07ebb0120ce7c9ab79988f6e66cd8919cd3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-bc428-resident-tax/official-documents/5010-d-25e.txt",
+      "sha256": "117f4b41e66744726659d533da29f6c2998596724f779a1482997683d3789df1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-federal-net-tax-aggregation/official-documents/5000-r-25e.txt",
+      "sha256": "49abf16998ee1b2f4bc21375bdea96024628cbf43044d38e8aa50e33bde522ae"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-federal-non-refundable-credit-aggregation/official-documents/5000-r-25e.txt",
+      "sha256": "49abf16998ee1b2f4bc21375bdea96024628cbf43044d38e8aa50e33bde522ae"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-federal-other-refundable-credits/official-documents/cra-2025-federal-other-refundable-credits.html",
+      "sha256": "4bc968a913b6fd22f9e98d3eed34898d1227450fc22923ca776aa53c627ee9fd"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-federal-tax-on-taxable-income/official-documents/5000-r-25e.txt",
+      "sha256": "49abf16998ee1b2f4bc21375bdea96024628cbf43044d38e8aa50e33bde522ae"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-mb428-resident-tax/official-documents/5007-c-25e.txt",
+      "sha256": "0661d1c472fbdcb79f20f63b3fe2c061aa8e95da73cab29a0bbe72bfe8781ca4"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-mb428-resident-tax/official-documents/5007-d-25e.txt",
+      "sha256": "344b939c1b0b4a785b16b6a40e1b3257d43539db3685257d662ac6d85492272a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-mb479-credits/official-documents/5007-tc-25e.txt",
+      "sha256": "1fc5b1a61def43b112034b1a00b1a5d0aa05000a28feba8637e8af206a937fad"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-nl428-resident-tax/official-documents/5001-c-25e.txt",
+      "sha256": "ba6cf4841248e4333b788bbdba88de801e7686ed523f2002597f730e6285fe02"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-nl428-resident-tax/official-documents/5001-d-25e.txt",
+      "sha256": "6f1f7f10c26e5a0f6dea160b0479aaacc8c716b62cb17a61196e846cb87a4be2"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-on428-resident-tax/official-documents/5006-c-25e.txt",
+      "sha256": "fde08130c7bba00e02b0c6dd8bbd5cfc73deae942be7b9b9206cf247943845ab"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-sk428-resident-tax/official-documents/5008-c-25e.txt",
+      "sha256": "34b2ea8219b8169763d3badec876bde58f27efd14572444b64dbb14717fec3cf"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-sk428-resident-tax/official-documents/5008-d-25e.txt",
+      "sha256": "e2042d658d9b04bd0d966200295586bf4e29ea0c039db77fa82c8ff3b4349f09"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-t1-income-net-taxable-income/official-documents/5000-r-25e.txt",
+      "sha256": "49abf16998ee1b2f4bc21375bdea96024628cbf43044d38e8aa50e33bde522ae"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2025-t1-return-aggregation/official-documents/5000-r-25e.txt",
+      "sha256": "49abf16998ee1b2f4bc21375bdea96024628cbf43044d38e8aa50e33bde522ae"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-02-cra-2026-provincial-territorial-cgeb-linked-credits/official-documents/cra-2026-provincial-territorial-cgeb-linked-credits.html",
+      "sha256": "5b57b4839ad39b027838a7016e688958c694da67f35264692b307a75dd4bb787"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-bc479-credits/official-documents/5010-tc-25e.txt",
+      "sha256": "b8d952015c6a20969e8e4f16503243dceb749a12781d289853ec9bc1033e927c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit/official-documents/5004-s12-25e.txt",
+      "sha256": "ed29723bdeec118e3498b92fc430459a37b94923751457c73719402b4c8f3dec"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-nb428-resident-tax/official-documents/5004-c-25e.txt",
+      "sha256": "98a455cd430f3738daeb5cdd73405c3801801114c5716efa79be0dd4692ba7e2"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-nl479-credits/official-documents/5001-tc-25e.txt",
+      "sha256": "52eca99cdea25a769531113ce71b4887f7e1ce858c708d9c0d9c6fef1b8a3c2e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-ns428-resident-tax/official-documents/5003-c-25e.txt",
+      "sha256": "c2cb37e6242ed9e5e5551bcf0fc94f80e516ab28b7981ebf282ff4abe9908530"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-ns428-resident-tax/official-documents/5003-d-25e.txt",
+      "sha256": "4c1e527227837c6587e914002adf393bfe3aa12d947a0ec91b4a038540e5bd09"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-ns479-credits/official-documents/5003-tc-25e.txt",
+      "sha256": "8220f49cafb1fd8c0d2fabc9c6ff2bc0f2a21f750f8ca9ed707854e8a546c402"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-nt428-resident-tax/official-documents/5012-c-25e.txt",
+      "sha256": "d52f710645ee4c1951b436a4620bdc5492e4c3db907563b864735878d4571798"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-nt479-credits/official-documents/5012-tc-25e.txt",
+      "sha256": "54ef83ee5e86a8eb78e6a0b76377e7634df18788d9971a5e2324a9e0a61f0355"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-nu428-resident-tax/official-documents/5014-c-25e.txt",
+      "sha256": "b90ef4468f747e705054dc3509c3e7e440d90554e99f52fbece8207a9cf1261c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-nu479-credits/official-documents/5014-tc-25e.txt",
+      "sha256": "786ad149552f0cc423415b0a06c6eeadb598d466f09cf6ebc41610ee35e73b8f"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-on479-credits/official-documents/5006-tc-25e.txt",
+      "sha256": "bd56cc45ff22330f17a65a8cb1ab36336ae79eefd9f5e2e37a058b7d22577433"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-pe428-resident-tax/official-documents/5002-c-25e.txt",
+      "sha256": "04c23d9dfa1be05cc78b51b8f500118ba30bc48361af071fd024ff5193500675"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-pe428-resident-tax/official-documents/5002-d-25e.txt",
+      "sha256": "1c4590f89a924896d3b31eb109ec0b45bec67b2cad40205f9343843022eb9103"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-sk479-credits/official-documents/5008-tc-25e.txt",
+      "sha256": "8b51b20a41840dc12fd6b85377d346fd164f74f90edd6fe14bd715567896133e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit/official-documents/t89-25e.pdf",
+      "sha256": "2793b4c733d21e6334ff1338db33a3900b1b6a4226527f22b3ce2f0df14b463e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-yt428-resident-tax/official-documents/5011-c-25e.txt",
+      "sha256": "f4401fbc144796765a39dacdb21473032e32b7f2e4666ad49e9f3192aa7dd5e4"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-cra-2025-yt479-credits/official-documents/5011-tc-25e.txt",
+      "sha256": "ce258664d6dacbe3315fc6d7ece6cad821514022844902001240042db78b4902"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-a-dependants/official-documents/tp-1-d-a-v-2025.pdf",
+      "sha256": "384d29871ff35b67494298a336765d9f21a444cd6d3e3ce016bcb272b23acc42"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-a-dependants/official-documents/tp-1-d-a-v-2025.txt",
+      "sha256": "d6d3b9818f1185026a0ba736144fb933fd8380868f29bb5c9e538278122c94f7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief/official-documents/tp-1-d-b-v-2025.pdf",
+      "sha256": "1918f739ed1f97fc43581fc8875994351b6c676b35af088b023ddcdb3b928346"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief/official-documents/tp-1-d-b-v-2025.txt",
+      "sha256": "94ecf6888436bc2a1655888235cddf83b845168150abc16ebe059cbcf14decdb"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-c-childcare-expenses/official-documents/tp-1-d-c-v-2025.pdf",
+      "sha256": "60c3912b83075a9b4d438ae09bad5f5c60203f6fb7085ee314a9452b7ed57da8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-c-childcare-expenses/official-documents/tp-1-d-c-v-2025.txt",
+      "sha256": "2fc8f147f9ae40a79f304257d3d52dee1db291eb626562ca1a3a23571ea04be1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-d-solidarity-tax-credit/official-documents/tp-1-d-d-v-2025.pdf",
+      "sha256": "c788fe3ee675c6b325a76028e3ef80dac13d7c65649819659a4c622d1af986b7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-d-solidarity-tax-credit/official-documents/tp-1-d-d-v-2025.txt",
+      "sha256": "da1edd43093c303ac648561b4ec7c61e28d6c7febfeb33b87e144949c9fc14ea"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments/official-documents/tp-1-d-e-v-2025.pdf",
+      "sha256": "2a370aa3b18f0e5aee2e8acacf18292dabc02fb33ad9984511f37c3aef997036"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments/official-documents/tp-1-d-e-v-2025.txt",
+      "sha256": "6b16feb99d9b6be5840879700568022d6108dce5f3d13593a26f1b88dadb577e"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-f-health-services-fund/official-documents/tp-1-d-f-v-2025.pdf",
+      "sha256": "0f7cad18747cc8a1ab34aa29617aed8f1d6ddca53fc3911528be8e2a428b8b2f"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-schedule-f-health-services-fund/official-documents/tp-1-d-f-v-2025.txt",
+      "sha256": "95000fbba19934fb52920392764cbf16cbfa13ee1396a157476bd8c9556c9d73"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-03-revenu-quebec-2025-tp1-main-return/official-documents/tp-1-v.html",
+      "sha256": "ec4c1a49142124745f9045c355ab0727ff5739074686a11207f558ac8247683b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses/official-documents/tp-1-d-g-v-2025.pdf",
+      "sha256": "b6983e8d4b305cac8642a944f68d15c16348bd14876cee2d07962dbc70f424f6"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-g-capital-gains-losses/official-documents/tp-1-d-g-v-2025.txt",
+      "sha256": "d4ee813b9035ba8d4613c87c1e91cf8b5cd9360d72a8745e59b4fc093f0bea3b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-h-caregivers/official-documents/tp-1-d-h-v-2025.pdf",
+      "sha256": "9aba12e795b3b95b5c6a7e2235938bf367c088fe4e7f35f4342095e7abc7692b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-h-caregivers/official-documents/tp-1-d-h-v-2025.txt",
+      "sha256": "977b7e2ca819db5dbeda2ce55a372e9370e1222468606623750b123eb36b5bbd"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors/official-documents/tp-1-d-j-v-2025.pdf",
+      "sha256": "18314be8e71d5c20f256d650e8fe122340d742c6626ca6b40bf8b06fc4456f3a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-j-home-support-seniors/official-documents/tp-1-d-j-v-2025.txt",
+      "sha256": "0e86d97c3b9917c1596f67b0af706bcb7d3722fc912fec0e0f4b280ba194ace4"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium/official-documents/tp-1-d-k-v-2025.pdf",
+      "sha256": "c2bece581209574b5931128cc4614903955098a4303266f5c46f3c9a171beb3d"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium/official-documents/tp-1-d-k-v-2025.txt",
+      "sha256": "562ecbfe2b803f451bc9f66b19f5d9241ecaaba60e0a33ddcf2fdf4131706ed2"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-l-business-income/official-documents/tp-1-d-l-v-2025.pdf",
+      "sha256": "48e71d4a197dbc6c9855b77fca09ff9605056d39f225289f9c92f1a4586866b1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-l-business-income/official-documents/tp-1-d-l-v-2025.txt",
+      "sha256": "57800e5f805324aa7ecc81ddf01cb0b2c36a768913c17f257cd868b22d010274"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest/official-documents/tp-1-d-m-v-2025.pdf",
+      "sha256": "4bdea28861766b2fbf3600af27edfbd01edf4ecdcdcef05f3a208a7402fc3365"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest/official-documents/tp-1-d-m-v-2025.txt",
+      "sha256": "f4a6d03447d7e5f441e2d83385d1d424a6f0a2949b431514674e21e1aadf0abe"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-n-investment-expense-adjustment/official-documents/tp-1-d-n-v-2025.pdf",
+      "sha256": "81a5e2b7356e4d33e7d15a75157ae9bea63f53a6ca001fa7b901db8a39efa562"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-n-investment-expense-adjustment/official-documents/tp-1-d-n-v-2025.txt",
+      "sha256": "8adb8383c64fb8b9709a0d0ca35c130cac06381260fe53c132929ac6278a3a12"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-p-work-premium/official-documents/tp-1-d-p-v-2025.pdf",
+      "sha256": "82e629df7de0748099752cd1404af93fa616a81d78f942a2313652ffad9a7e00"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-p-work-premium/official-documents/tp-1-d-p-v-2025.txt",
+      "sha256": "c6e6457d544aff8df17b0882a62857b9cea9c58f024e29c714fddeac69b2d5d8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer/official-documents/tp-1-d-q-v-2025.pdf",
+      "sha256": "9490733d9d6f04bae44f5cbf9fa68f96d5d00ed4292d42aab45d07498dac93c8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-q-retirement-income-transfer/official-documents/tp-1-d-q-v-2025.txt",
+      "sha256": "190950d48ad91cf3e3c55c904207172fd9becd13436c44e5f61d49a104b452b1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium/official-documents/tp-1-d-r-v-2025.pdf",
+      "sha256": "818a9fc06432ec8c9f0a63919414d67bd83087f10eafc5e20b8675fa0dc6acb0"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-r-qpip-premium/official-documents/tp-1-d-r-v-2025.txt",
+      "sha256": "b4f0d06a85da1e1fabe314a2ff55cc57b664bf869d800515fdb39c7e64e3fff4"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer/official-documents/tp-1-d-s-v-2025.pdf",
+      "sha256": "64ac2eb908192908f2da129795f9faa5cf209f2666e1cb50d41708ea6a38a6e1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer/official-documents/tp-1-d-s-v-2025.txt",
+      "sha256": "7ec5b765472186652fa24b02222177a1f704f519f8bec4d808f38323f808026c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-t-tuition-examination-fees/official-documents/tp-1-d-t-v-2025.pdf",
+      "sha256": "7ed4501a85012eda815847ac73bd815c7049a19f94440b4099f12364e0fd7da0"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-04-revenu-quebec-2025-schedule-t-tuition-examination-fees/official-documents/tp-1-d-t-v-2025.txt",
+      "sha256": "bbffe99fae360be54121c83a53dccdd08a4033ecbf7703f596c56674cd96d4d0"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-05-cra-2025-child-care-expenses-deduction/official-documents/cra-2025-t778-child-care-expenses.txt",
+      "sha256": "3caec18864699de88724897e08d9a5d59608ab753a529d63b5d84c92f404dc49"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-05-cra-2025-child-care-expenses-deduction/reasoning/cra-2025-child-care-expenses-deduction.txt",
+      "sha256": "1ee3d013fb78cb82fbc03c08a3bbb1c1d9119f831b219aa79ecad7ca10f998ba"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-05-cra-2025-moving-expenses-deduction/official-documents/cra-2025-t1-m-moving-expenses.txt",
+      "sha256": "f4e00c3a6f9357670ab3913e757c07475e341b95765ea8fcf19eb77c2cc3a1f8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-05-cra-2025-moving-expenses-deduction/reasoning/cra-2025-moving-expenses-deduction.txt",
+      "sha256": "a6df11a93879785b1b60a25e92e75de11b4e6e35692dbde11a656f8e906844f2"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-eligible-educator-school-supply-credit.html",
+      "sha256": "dd2c143785e23eb5eb34eeb329817001c8edfd70be7973ce6e12df84b7ac3bd8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-employee-partner-gst-hst-rebate-guidance.html",
+      "sha256": "9edde72872b65bb928d7d67621296eb3b4db255f807c59f9ee9dbab688fc7cfd"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-nb428-worksheet.pdf",
+      "sha256": "d97a6a4b22980ce9068802ab7c3cd6a51aa0538d87383df0e49e6d6756950eb1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-nt428-worksheet.pdf",
+      "sha256": "2b50dffe744cd186804e0a17ab1d66a403aa8cc8ef6003931f2974438697fed9"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-nu428-worksheet.pdf",
+      "sha256": "0b88bc59a07dd98591f06a3ae1d0beb8442c067b0c82efaf60ba58cd929590b7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-on479-worksheet.pdf",
+      "sha256": "7ac3ee4f9bcd38922430ef4f487f30854aa18a771dc90dfde3fdf7bca288e8e5"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-yt428-worksheet.pdf",
+      "sha256": "b142564095c35bd25f9692508e00782ee4adc4edec7654b21e775ef3ee37a498"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-yukon-tax-information.html",
+      "sha256": "1072dbf170a7927e3e020c6dc795f96291648d86283441c9b7512a381971d123"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-canada-child-benefit-how-much.html",
+      "sha256": "5685b87a66a7a0ff7f6999dcac5a099fbc01f7c975661ab9d204e02e8081d275"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-cgeb-payment-chart.html",
+      "sha256": "af3bb493a4bcdb3d96058a5af45991284effd2c5701d4fd8ac6f6e0e0bab788a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-child-disability-benefit.html",
+      "sha256": "21e2e4032d1d6883b5eac1929513abe3e287d73739488bfeca0ca74867cf7b8c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-federal-tax-rates-for-td1.html",
+      "sha256": "cef748cba315ca42df0e8fd8187fd815dc878aee9fd7fe5bcf5636177b444920"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-gst-hst-credit-one-time-top-up.html",
+      "sha256": "f2b8e13c26bfd55aff53802205fc97e26b711e1b54068f047a1500ae16a42048"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2025-tp1-calculation-grids.pdf",
+      "sha256": "3b457b1938e119cf1c358dfece776c716692e00ad967b076a0ea4d96ca94aefb"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2025-tp1-guide-main-return.pdf",
+      "sha256": "84badbd0c3e35d93d3ea2fd36470b7664f6552c1dca81e8aad3f569637d3317b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2025-tp1-guide-schedule-j.pdf",
+      "sha256": "84badbd0c3e35d93d3ea2fd36470b7664f6552c1dca81e8aad3f569637d3317b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2025-tp1-return.pdf",
+      "sha256": "6e36f48ccb020bbe115c5ebbf85ba1556b21320b7f4d5046148a63592d1f2360"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2026-employer-principal-changes.html",
+      "sha256": "dc6ba3250b837e7ad362b59faa3f3cc583aa48e2dad271ed78fb4edc840feb2d"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-cra-2025-employment-expenses-deduction/official-documents/cra-2025-employment-expenses-deduction.pdf",
+      "sha256": "99e767b0c8a2a841f66f516e28b5f9fe631d6dbd4db6eaae36cb7c82b93f1204"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-cra-2025-employment-expenses-deduction/official-documents/cra-2025-employment-expenses-guide-t4044.pdf",
+      "sha256": "b2d9af2221225548d006df065e0ac2b2319e54c4260defe16aacf0174971c5e2"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-cra-2025-gst370-employee-partner-rebate/official-documents/cra-2025-gst370-employee-partner-rebate.pdf",
+      "sha256": "e21d2363eb53be14414a1b5a08f04be402de79b1435c2a1eeef5aabbe2515113"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-cra-2025-rc381-interprovincial-cpp-qpp-employment-contributions/official-documents/cra-2025-rc381-interprovincial-cpp-qpp-employment-contributions.pdf",
+      "sha256": "3c472af23df02adc22f976d34cfca733e0d702e094f4f5f0335248d41c50fa9b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-cra-2025-transport-employee-meals-lodging-deduction/official-documents/cra-2025-transport-employee-guide-t4044.pdf",
+      "sha256": "b2d9af2221225548d006df065e0ac2b2319e54c4260defe16aacf0174971c5e2"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-cra-2025-transport-employee-meals-lodging-deduction/official-documents/cra-2025-transport-employee-meals-lodging-deduction.pdf",
+      "sha256": "2217b09208373c245dcba3935c590e1156cc204937902f0cdf91415a58903b81"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8e2150fb2bc35ee6f7a885aef72e8cf81098eda0",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Compose the complete Canadian RuleSpec release with official CRA and Revenu Quebec dependency documents"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 461,
+    "missing_count": 0,
+    "provision_count": 461,
+    "source_count": 461
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T13:48:54.951113+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BN/gTJ5bSHaYYc6slUnwQSVPXtVmpbVyFADNonFpKL7gGn6Oegx5z99IWKyS1RddvjLCeLTCt4IJLrcfj2O9CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-ca-rulespec-source-complete"
+}
