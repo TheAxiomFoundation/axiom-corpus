@@ -502,14 +502,17 @@ states:
       version: 2026-05-27-sc-snap-manual
   - jurisdiction: us-sd
     name: South Dakota
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_pdf_manual
     primary_source_url: https://dss.sd.gov/docs/economicassistance/snap/snapmanual.pdf
     target_manifest: manifests/us-sd-snap-manual.yaml
     target_scope:
       jurisdiction: us-sd
       document_class: manual
-      version: 2026-05-27-sd-snap-manual
+      version: 2026-07-21-sd-snap-manual
+    notes: The retained 339-page official DSS SNAP Policy and Procedure Manual
+      identifies itself as updated July 2026. The source-backed scope contains one
+      document row and one row for every PDF page, with complete coverage.
   - jurisdiction: us-tn
     name: Tennessee
     queue_status: published_current
