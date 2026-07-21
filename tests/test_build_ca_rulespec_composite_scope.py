@@ -150,3 +150,32 @@ def test_rejects_duplicate_supplemental_source_version(tmp_path) -> None:
             target_version="combined",
             supplemental_versions=("source-v1",),
         )
+
+
+def test_rejects_additional_citation_already_in_contract(tmp_path) -> None:
+    selector_path = tmp_path / "selector.json"
+    selector_path.write_text(
+        json.dumps(
+            {
+                "name": "ca-test",
+                "scopes": [
+                    {
+                        "jurisdiction": "ca",
+                        "document_class": "policy",
+                        "version": "source-v1",
+                    }
+                ],
+            }
+        )
+    )
+    contract_path = tmp_path / "citations.json"
+    contract_path.write_text(json.dumps({"citation_paths": ["ca/policy/example"]}))
+
+    with pytest.raises(ValueError, match="citation paths must be unique"):
+        build_ca_rulespec_composite_scope(
+            base=tmp_path / "corpus",
+            selector_path=selector_path,
+            citation_contract_path=contract_path,
+            target_version="combined",
+            additional_citation_paths=("ca/policy/example",),
+        )
