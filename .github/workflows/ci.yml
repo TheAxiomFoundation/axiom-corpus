@@ -11,6 +11,14 @@ on:
     - cron: "0 12 * * *"
 
 jobs:
+  workflow-lint:
+    name: Validate GitHub workflows
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - name: Run actionlint
+        uses: docker://rhysd/actionlint:1.7.12
+
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 30

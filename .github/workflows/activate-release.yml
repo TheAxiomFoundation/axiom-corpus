@@ -38,7 +38,6 @@ jobs:
     env:
       RELEASE_NAME: ${{ inputs.release }}
       CONTENT_SHA: ${{ inputs.content_sha }}
-      RELEASE_OBJECT: ${{ runner.temp }}/signed-release-object.json
     steps:
       - uses: actions/checkout@v6.0.2
 
@@ -58,6 +57,8 @@ jobs:
           run-id: ${{ inputs.publish_run_id }}
 
       - name: Select the single signed object
+        env:
+          RELEASE_OBJECT: ${{ runner.temp }}/signed-release-object.json
         run: |
           mapfile -t objects < <(find "$RUNNER_TEMP/publication" -maxdepth 1 -type f -name '*-release-object.json')
           if [ "${#objects[@]}" -ne 1 ]; then
@@ -69,6 +70,7 @@ jobs:
       - name: Preview scope takeovers
         env:
           AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+          RELEASE_OBJECT: ${{ runner.temp }}/signed-release-object.json
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         run: |
           python scripts/activate_release.py \
@@ -114,7 +116,6 @@ jobs:
     env:
       RELEASE_NAME: ${{ inputs.release }}
       CONTENT_SHA: ${{ inputs.content_sha }}
-      RELEASE_OBJECT: ${{ runner.temp }}/signed-release-object.json
     steps:
       - uses: actions/checkout@v6.0.2
 
@@ -134,6 +135,8 @@ jobs:
           run-id: ${{ inputs.publish_run_id }}
 
       - name: Select the single signed object
+        env:
+          RELEASE_OBJECT: ${{ runner.temp }}/signed-release-object.json
         run: |
           mapfile -t objects < <(find "$RUNNER_TEMP/publication" -maxdepth 1 -type f -name '*-release-object.json')
           if [ "${#objects[@]}" -ne 1 ]; then
@@ -145,6 +148,7 @@ jobs:
       - name: Revalidate takeover preview
         env:
           AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+          RELEASE_OBJECT: ${{ runner.temp }}/signed-release-object.json
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         run: |
           python scripts/activate_release.py \
@@ -156,6 +160,7 @@ jobs:
       - name: Activate signed release
         env:
           AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+          RELEASE_OBJECT: ${{ runner.temp }}/signed-release-object.json
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         run: |
           python scripts/activate_release.py \
