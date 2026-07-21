@@ -17,10 +17,14 @@ release log identifies the same effective date.
 
 The live TOC matched the 64 existing topic URLs, titles, and order exactly.
 Existing topic source IDs and citation paths were retained to avoid identity
-churn. The refreshed section 301 classifies Job Retention as a non-qualifying
-E&T component. The official section 1002 HTML contains the malformed strings
-`eligibleClosed` and `Able-bodiedClosed`; the source snapshot preserves those
-upstream bytes without correction.
+churn. The refreshed consolidated section 301 classifies Job Retention only as
+a non-qualifying E&T component. Page 3 of the retained Release 26.5 update PDF
+lists Job Retention under both qualifying and non-qualifying components. Both
+official sources are preserved as proof-bearing rows; encoders should treat
+section 301 as the current consolidated manual text and the PDF as conflicting
+change-history evidence. The official section 1002 HTML contains the malformed
+strings `eligibleClosed` and `Able-bodiedClosed`; the source snapshot
+preserves those upstream bytes without correction.
 
 ## Generation
 
