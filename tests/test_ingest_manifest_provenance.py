@@ -630,7 +630,16 @@ def test_guard_rejects_unmanifested_quoted_protected_paths(
     assert any(relative_path in issue for issue in result.issues)
 
 
-@pytest.mark.parametrize("filename", ["résumé.md", "control\tname.md"])
+@pytest.mark.parametrize(
+    "filename",
+    [
+        "résumé.md",
+        "control\tname.md",
+        "terminal-tab.md\t",
+        "terminal-newline.md\n",
+        "terminal-space.md ",
+    ],
+)
 @pytest.mark.parametrize("committed", [False, True])
 def test_guard_rejects_quoted_reasoning_log_drift(
     tmp_path: Path,

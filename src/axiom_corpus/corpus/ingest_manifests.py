@@ -686,10 +686,11 @@ def _reasoning_log_issues(
         if not isinstance(entry, dict):
             issues.append("Each reasoning log entry must be an object.")
             continue
-        path = str(entry.get("path") or "").strip()
-        if not path:
+        raw_path = entry.get("path")
+        if not isinstance(raw_path, str) or not raw_path:
             issues.append("Each reasoning log entry must have a path.")
             continue
+        path = raw_path
         actual_sha = _artifact_sha(repo, path, ref=ref)
         if actual_sha is None:
             issues.append(f"Manifested reasoning log is missing: `{path}`.")
@@ -708,7 +709,7 @@ def _reasoning_log_paths(payload: dict[str, Any]) -> set[str]:
         path
         for entry in raw_entries
         if isinstance(entry, dict)
-        if (path := str(entry.get("path") or "").strip())
+        if isinstance(path := entry.get("path"), str) and path
     }
 
 
