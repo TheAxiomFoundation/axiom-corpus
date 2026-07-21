@@ -29,6 +29,7 @@ from axiom_corpus.corpus.documents import (
     _DownloadedDocument,
     _extract_anchor_range_html_blocks,
     _extract_blocks,
+    _extract_csv_blocks,
     _extract_doc_blocks,
     _extract_json_html_blocks,
     _extract_json_record_blocks,
@@ -186,6 +187,14 @@ def test_infer_source_format_handles_common_official_downloads(tmp_path: Path) -
         )
         == "javascript"
     )
+    csv_source = source("https://example.test/table.csv?download=1")
+    assert (
+        _infer_source_format(
+            csv_source,
+            downloaded(csv_source, b"name,amount\nA,1\n", "text/csv"),
+        )
+        == "csv"
+    )
     xls = source("https://example.test/file.xls?download=1")
     assert _infer_source_format(xls, downloaded(xls, b"legacy", None)) == "xls"
     doc = source("https://example.test/file")
@@ -236,11 +245,53 @@ def test_extract_blocks_rejects_unsupported_and_bad_json_config() -> None:
     with pytest.raises(ValueError, match="unsupported official document source_format"):
         _extract_blocks(
             b"body",
-            "csv",
+            "xml",
             source_url="https://example.test/file.csv",
             title="File",
             extraction=None,
         )
+
+
+def test_extract_csv_blocks_parses_quoted_filtered_rows() -> None:
+    blocks = _extract_csv_blocks(
+        b'\xef\xbb\xbfName,Amount,Note\r\nA,10,"x, y"\r\nB,20,z\r\n',
+        title="Official table",
+        extraction={
+            "csv_columns": ["Name", "Note"],
+            "csv_filters": {"Name": "A"},
+        },
+    )
+
+    assert len(blocks) == 1
+    assert blocks[0].kind == "sheet"
+    assert blocks[0].heading == "Official table"
+    assert blocks[0].metadata == {"delimiter": ",", "row_count": 1}
+    assert "Row | Name | Note" in blocks[0].body
+    assert "2 | A | x, y" in blocks[0].body
+    assert "B | z" not in blocks[0].body
+
+
+def test_extract_csv_blocks_validates_configuration_and_empty_data() -> None:
+    with pytest.raises(ValueError, match="exactly one character"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_delimiter": "::"},
+        )
+    with pytest.raises(ValueError, match="csv column not found: Missing"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_columns": ["Missing"]},
+        )
+    assert (
+        _extract_csv_blocks(
+            b"A,B\n",
+            title="Empty",
+            extraction=None,
+        )
+        == ()
+    )
 
 
 def test_extract_plain_text_blocks_decodes_and_normalizes_javascript() -> None:
@@ -1807,6 +1858,50 @@ documents:
     assert "2020 | 4 | 110.22 | 2013" in records[1].body
     assert "2024 | 4 | 130.85 | 2013" in records[1].body
     assert "131.12" not in records[1].body
+
+
+def test_extract_official_documents_from_csv_rows(tmp_path: Path) -> None:
+    csv_path = tmp_path / "allotments.csv"
+    csv_path.write_bytes(
+        b"Household,Monthly allotment,Notes\r\n"
+        b'1,$298,"one, person"\r\n'
+        b"2,$546,two people\r\n"
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ok-snap-allotments
+    jurisdiction: us-ok
+    document_class: policy
+    title: Oklahoma SNAP allotments
+    source_url: https://example.test/allotments.csv
+    citation_path: us-ok/policy/snap/allotments
+    source_format: csv
+    local_path: {json.dumps(str(csv_path))}
+    extraction:
+      csv_columns:
+        - Household
+        - Monthly allotment
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-21-ok-snap-allotments",
+    )
+
+    assert report.block_count == 1
+    assert report.source_paths[0].suffix == ".csv"
+    records = load_provisions(report.provisions_path)
+    assert records[1].citation_path == "us-ok/policy/snap/allotments/sheet-1"
+    assert records[1].metadata["row_count"] == 2
+    assert records[1].metadata["delimiter"] == ","
+    assert records[1].body is not None
+    assert "2 | 1 | $298" in records[1].body
+    assert "3 | 2 | $546" in records[1].body
 
 
 def test_extract_official_documents_from_legacy_xls_rows(tmp_path: Path) -> None:
