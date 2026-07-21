@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/manual/2026-06-24-ga-ssp.json",
+      "sha256": "64d74987dbdda8c74354df132642e58bacb5e700cd0b7777f06cd41bc3b9a0cc"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/manual/2026-06-24-ga-ssp.json",
+      "sha256": "0640331cdee0841a5f96e37092a6d84fdf96ee27b60590a1f3f7823b0b988f26"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/manual/2026-06-24-ga-ssp.jsonl",
+      "sha256": "6b9e4da7323b5363eb0a1878cf922fbb680b0dabf9bb3db104b0162771ebb0e8"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-06-24-ga-ssp/official-documents/ga-dfcs-medicaid-2136-institutionalized-hospice.html",
+      "sha256": "50190ee495db5710813ca58a1446cf6ae5850f9c931e5ae2a63066cba7405b03"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-06-24-ga-ssp/official-documents/ga-dfcs-medicaid-2578-ssi-recipients.html",
+      "sha256": "baada881ca6d0afc17a314c2a359199e28fcd356af29f8d362c94eed1d30e1d5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-06-24-ga-ssp --manifest manifests/us-ga-ssp-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T11:57:44.086644+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-ga-manual-2026-06-24-ga-ssp.md",
+      "sha256": "914217c27eaf44ec518d44641359225f98637521a8bd6bf720f73f2870aa5876"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "u8mowIGq9OL66dKZqN5HzHb4iXQJG4f0ZfbE23gDb9rE3ce37SJZ2mpM7ErQork+md8LgiNmGA6ZP9R/4eY/BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-24-ga-ssp"
+}

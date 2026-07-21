@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/regulation/2026-07-02-ut-fep-official-documents.json",
+      "sha256": "3fdd63b51f0e52f4b6749cf520dc942137bf326c939259c536d6ce5af0ace6e9"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/regulation/2026-07-02-ut-fep-official-documents.json",
+      "sha256": "6b2e07a639995fa1dd43466ba3ed90772a5107c8fb6841da18c3afeb320b440f"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/regulation/2026-07-02-ut-fep-official-documents.jsonl",
+      "sha256": "88b127f6490c29491416f4b45949dae0bde910a9d2cb972fe184eb83e1c69fc9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/regulation/2026-07-02-ut-fep-official-documents/official-documents/ut-admin-rules-r986-200-current.html",
+      "sha256": "dfeea52232106a22928363299ce010d5c3aa5e74c8b9cc49c5e07b6fdfe7ecf0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-02-ut-fep-official-documents --manifest manifests/us-ut-fep-official-documents.yaml --source-as-of 2026-07-02 --expression-date 2026-07-02"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:57:44.628592+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-02-ut-fep-official-documents.md",
+      "sha256": "30efc585cd335151d297632e571f751f3db0a1210ae15048a4c3abe7121baa5d"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "k5233UWZlwnmPMEy6DdzKL6lxokq3DLw+yAKwbX5PV3EJCWNR5Cd7xdf6hRQtCsmEhPTlXepN6KDk3SAiIEFCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-ut-fep-official-documents"
+}

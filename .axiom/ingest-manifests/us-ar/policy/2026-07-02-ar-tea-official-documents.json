@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ar/policy/2026-07-02-ar-tea-official-documents.json",
+      "sha256": "bcb19688b6f7d3369eda89861095032293cacfbde47c6189d81f349632c6b623"
+    },
+    {
+      "path": "data/corpus/inventory/us-ar/policy/2026-07-02-ar-tea-official-documents.json",
+      "sha256": "dd18b63610f4046b7f84753757d229b34b312dcc23413be1aaa852606b1e4ef4"
+    },
+    {
+      "path": "data/corpus/provisions/us-ar/policy/2026-07-02-ar-tea-official-documents.jsonl",
+      "sha256": "1818a54283d2e48a7c0ae616817e3d6e137534df864baf2957af71ca788fc722"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-07-02-ar-tea-official-documents/official-documents/ar-dhs-tea-income-limit-increase-2022.pdf",
+      "sha256": "e8a5c3d2433b39a980704dcda56453fe195c76e458ce49fbf0b07a6a69a21297"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-07-02-ar-tea-official-documents/official-documents/ar-dhs-tea-manual-2024-10-01.pdf",
+      "sha256": "65946f0dc9a4c7cd40072a29f7858082eec2a475dd01bc5882e14966111b8dc0"
+    },
+    {
+      "path": "data/corpus/sources/us-ar/policy/2026-07-02-ar-tea-official-documents/official-documents/ar-dhs-tea-quick-reference-2024-04.pdf",
+      "sha256": "efcab8b5cfae0754144056b73c388f5c22232756d074296e4c58c71a4c0a8db7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-02-ar-tea-official-documents --manifest manifests/us-ar-tea-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 219,
+    "missing_count": 0,
+    "provision_count": 219,
+    "source_count": 219
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:57:43.556796+00:00",
+  "jurisdiction": "us-ar",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-02-ar-tea-official-documents.md",
+      "sha256": "7b8c8ed52484f8277db0b83c4cc6059715e4e7be7bb923253f81a145ce9acd2e"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Jddh38JQbJy2suIzZkzsoLmDBZBcGdj1lfdPg2xF7+zhxH1EqBjgwLe/MVCpV9hZehpYLuZAc4gwWgbj5o92Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-ar-tea-official-documents"
+}

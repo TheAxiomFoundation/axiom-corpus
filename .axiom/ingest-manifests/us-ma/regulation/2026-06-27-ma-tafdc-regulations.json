@@ -1,0 +1,82 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/regulation/2026-06-27-ma-tafdc-regulations.json",
+      "sha256": "2495af03a3414aaaa1bc58aa717e19ca4c98e8a6c8855931981d53a1f2491bfd"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/regulation/2026-06-27-ma-tafdc-regulations.json",
+      "sha256": "46d16e972d5f2c6fe144d53487f50bca7103b357ff50075be00af29446992617"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/regulation/2026-06-27-ma-tafdc-regulations.jsonl",
+      "sha256": "224e9f5e74644f7609e6f6e707bf9b72a10a8399218062c01d7b0a571d1d0c72"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-06-27-ma-tafdc-regulations/official-documents/ma-dta-106-cmr-701.docx",
+      "sha256": "c75d5ded353d84a09095679d694773632c37deb2babe0dcb320afb2db410b9c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-06-27-ma-tafdc-regulations/official-documents/ma-dta-106-cmr-702.docx",
+      "sha256": "ed34d95bffa0cbb9e433078a4bf1c1b1d443b11103fd934948a94d71cb8674a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-06-27-ma-tafdc-regulations/official-documents/ma-dta-106-cmr-703.docx",
+      "sha256": "2e31bcd95845e14672cdfe946df77d381761cd11f8eaadb5dad353004f2b3f81"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-06-27-ma-tafdc-regulations/official-documents/ma-dta-106-cmr-704-410-420-table.html",
+      "sha256": "2641f9f40797ac36ee4a3c7c9b3cf1f4ede6e3e6043dbc6d13e77f84a38da850"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-06-27-ma-tafdc-regulations/official-documents/ma-dta-106-cmr-704.docx",
+      "sha256": "bc95ee4ec6592d6f10f1db2cb543083bc4649128dbefb430650077f45dc966e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-06-27-ma-tafdc-regulations/official-documents/ma-dta-106-cmr-705.docx",
+      "sha256": "47c86a84f30bdf2be0f627e2740109de78f6d5265869e3e2fcf20dc079c7bbdf"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-06-27-ma-tafdc-regulations/official-documents/ma-dta-106-cmr-706.docx",
+      "sha256": "f20b946c607e764f999664ffb30a665397281fbc90ae78e083fbe62eca7e9210"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/regulation/2026-06-27-ma-tafdc-regulations/official-documents/ma-dta-106-cmr-707.docx",
+      "sha256": "45cc1cf1501f7ff68ea6b5aeee0a7a8f7ade0b474f698b37268a78c9e9253eaa"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-06-27-ma-tafdc-regulations --manifest manifests/us-ma-tafdc-regulations.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 216,
+    "missing_count": 0,
+    "provision_count": 216,
+    "source_count": 216
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:57:44.373884+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-ma-regulation-2026-06-27-ma-tafdc-regulations.md",
+      "sha256": "74aa4d6f8938a86440e4ed11f8e12962265114a52881b096fe9f32ace737ede1"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rC7+Tf6kb4BcXsEkHccvNjXevWp6Fp5y9fKNjOqkBJPI15NiFu9C8lDjihor2rRbMeOMK6ArWC1+3VEf2PwaAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-27-ma-tafdc-regulations"
+}

@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-06-25-title-42-part-435.json",
+      "sha256": "a1cd341c12427fc2aec18f2eec168b691e0d851787294e35bcc5cbc4173dd90d"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-06-25-title-42-part-435.json",
+      "sha256": "d29e4638a38b9d006924b8c710b4e8e45724fb67be7f37d0fa08fe56d25ec1d4"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-06-25-title-42-part-435.jsonl",
+      "sha256": "fd5fcd9d8e6b1daa6ed40ad6f5ae1f3ee3af5f20aa91cf50f38455ab8cd6dd18"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-25-title-42-part-435/ecfr/title-42-part-435.xml",
+      "sha256": "177fc70138051526f4f36a58af13d894f3de5b7b2fb4d87839656441d3a31a07"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-06-25-title-42-part-435/ecfr/title-42.structure.json",
+      "sha256": "5267c1e3dc3c5998bb3161c51ee77d881b757ef1004d5ef52e3aa1f009a582ed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-ecfr --base data/corpus --version 2026-06-25 --as-of 2026-06-25 --only-title 42 --only-part 435"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 168,
+    "missing_count": 0,
+    "provision_count": 168,
+    "source_count": 168
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:57:43.392169+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-regulation-2026-06-25-title-42-part-435.md",
+      "sha256": "411e60e72e89060b2e8783cebd3350ff7311433545a5dd3eeb7900f90874dbeb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NojSeIuVqWHYUEl2YIz9wmNj2hAQhKDDr5+dVYdp6ZCmGYQ2E3KD6XXPH7e7piprr+qAM8O17EIBose9SjpVBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-25-title-42-part-435"
+}

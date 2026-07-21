@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-03-10-cms-original-medicare-part-a-b.json",
+      "sha256": "a7b58b57a0339544748c638c85f174560035e00cb6a3c7a25d871dfa2d499b61"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-03-10-cms-original-medicare-part-a-b.json",
+      "sha256": "975bb51f6c195c73af4e8a5ba7603c30b1388fcdf987d4683bd90b9060a3b1d9"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-03-10-cms-original-medicare-part-a-b.jsonl",
+      "sha256": "2c3795a63b60c7d7275a9bd791e19c3b0d3a38f8126c2e0d9e64e87450d2af4c"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-03-10-cms-original-medicare-part-a-b/official-documents/cms-original-medicare-part-a-b.html",
+      "sha256": "d6803031e0298d8482059e5bceccb8307cc96680e434263a7c97756aa69dd507"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-03-10-cms-original-medicare-part-a-b --manifest manifests/us-cms-original-medicare-part-a-b.yaml --source-as-of 2026-03-10 --expression-date 2026-03-10"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 31,
+    "missing_count": 0,
+    "provision_count": 31,
+    "source_count": 31
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T11:57:43.259356+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-06-26-cms-original-medicare-part-a-b.md",
+      "sha256": "6a25e7c2d0f92d4bea56a467de6a5ac9bc7b1d349c89edb57e190e21c48a9689"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4Mv6pGoIYO2AMWABL9X1PYbSH31cw8YAbmKA+BiPydp38Ez6Fjq4r59nKDPfaPAWmkPaF+52VW677E1jkuHLBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-03-10-cms-original-medicare-part-a-b"
+}

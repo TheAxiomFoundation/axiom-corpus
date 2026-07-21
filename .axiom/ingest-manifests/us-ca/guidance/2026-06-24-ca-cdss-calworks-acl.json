@@ -1,0 +1,62 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ca/guidance/2026-06-24-ca-cdss-calworks-acl.json",
+      "sha256": "b1955091e43858e5aed8b638f1bfbf633e6b69b46695bd37c2fab645ba1faa1c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ca/guidance/2026-06-24-ca-cdss-calworks-acl.json",
+      "sha256": "6bd50d168c8e827d63ab5749af3a7165f2a79a450ac4d9057f4a70aab50c78d2"
+    },
+    {
+      "path": "data/corpus/provisions/us-ca/guidance/2026-06-24-ca-cdss-calworks-acl.jsonl",
+      "sha256": "d4a34f1241e5d8e4af624d0d1f45806f5be53b997fdadd2960a977aef6bcdf00"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-06-24-ca-cdss-calworks-acl/official-documents/ca-cdss-acl-2024-24-36.pdf",
+      "sha256": "bde2be607c556d3d4d3c737807d26baddb5cd5cc86a3ad94bc75bd1278e8ce84"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-06-24-ca-cdss-calworks-acl/official-documents/ca-cdss-acl-2024-24-54.pdf",
+      "sha256": "76cf9df7f0e8fdff5125b8f80792f28cc25c1a25b48808cc3a4f34c20798b09c"
+    },
+    {
+      "path": "data/corpus/sources/us-ca/guidance/2026-06-24-ca-cdss-calworks-acl/official-documents/ca-cdss-acl-2024-24-55.pdf",
+      "sha256": "d58660184946099db3538021ec5c92976db3b3c765ba47adad83195f21d80e4a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-06-24-ca-cdss-calworks-acl --manifest manifests/us-ca-cdss-calworks-acl-guidance.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 23,
+    "missing_count": 0,
+    "provision_count": 23,
+    "source_count": 23
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T11:57:43.659100+00:00",
+  "jurisdiction": "us-ca",
+  "reasoning_logs": [
+    {
+      "path": ".axiom/reasoning-logs/us-ca-guidance-2026-06-24-ca-cdss-calworks-acl.md",
+      "sha256": "2f7b661d5d6f9c58f15b36dbece761ac3f5e681f0d7d0b3c036f545d2f7c992d"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yc+zhXgYZe3NWrx3gIrtVN+Pzr3+jHOruiHvoK9tDn/Mc/pdyrbz2K1vbHtsP6dD9kUFVHVWabbQFaggLMIeBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-24-ca-cdss-calworks-acl"
+}
