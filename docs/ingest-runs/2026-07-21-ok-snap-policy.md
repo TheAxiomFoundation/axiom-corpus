@@ -1,7 +1,7 @@
 # Oklahoma SNAP policy and cross-chapter dependencies ingest
 
 The current Oklahoma SNAP support scope was generated from ten retained official
-sources: six OKDHS appendix PDFs, the Appendix C-3 landing page and complete
+sources: five OKDHS appendix PDFs, the Appendix C-3 landing page and complete
 1,789-row allotment CSV, and the complete Oklahoma rules API responses for OAC
 Title 340 Chapters 2, 10, and 65.
 
