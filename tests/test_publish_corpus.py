@@ -484,7 +484,7 @@ def test_count_mismatch_never_signs_or_activates(tmp_path: Path, monkeypatch) ->
 def test_private_public_key_mismatch_never_activates(tmp_path: Path, monkeypatch) -> None:
     root, base, selector, scope = _tree(tmp_path)
     _fixed_git(monkeypatch)
-    private, _ = _keys()
+    private, matching_public = _keys()
     _, wrong_public = _keys()
     monkeypatch.setattr(
         publish,
@@ -523,20 +523,24 @@ def test_private_public_key_mismatch_never_activates(tmp_path: Path, monkeypatch
             r2_config=_config(),
             private_key=private,
             public_key=wrong_public,
+            legacy_public_keys=(matching_public,),
             activate=True,
         )
 
 
 @pytest.mark.parametrize("successor", [False, True])
+@pytest.mark.parametrize("rotated_key", [False, True])
 def test_released_scope_retry_or_successor_reuses_exact_immutable_rows(
     tmp_path: Path,
     monkeypatch,
     successor: bool,
+    rotated_key: bool,
 ) -> None:
     root, base, selector, scope = _tree(tmp_path)
     _fixed_git(monkeypatch)
     private, public = _keys()
-    prior_object = _signed_prior_object(root, base, selector, scope, private)
+    prior_private, prior_public = _keys() if rotated_key else (private, public)
+    prior_object = _signed_prior_object(root, base, selector, scope, prior_private)
     target_selector = selector
     if successor:
         target_selector = selector.with_name("nz-rulespec-2026-07-11.json")
@@ -616,11 +620,69 @@ def test_released_scope_retry_or_successor_reuses_exact_immutable_rows(
         r2_config=_config(),
         private_key=private,
         public_key=public,
+        legacy_public_keys=(prior_public,) if rotated_key else (),
         activate=True,
     )
 
     assert report.provision_rows == 1
     assert report.activation["active"] is True
+
+
+def test_released_scope_signed_by_untrusted_legacy_key_is_rejected(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    prior_private, _prior_public = _keys()
+    _current_private, current_public = _keys()
+    prior_object = _signed_prior_object(root, base, selector, scope, prior_private)
+    release = publish.ReleaseManifest.load(selector)
+    content = publish.build_release_content(
+        root,
+        release=release,
+        validation={"passed": True, "phase": "preflight"},
+    )
+    released = {
+        scope: (
+            ReleasedScopeObject(
+                scope_key=scope,
+                release_name=str(prior_object["release"]),
+                content_sha256=str(prior_object["content_sha256"]),
+                release_object=prior_object,
+            ),
+        )
+    }
+
+    with pytest.raises(ReleaseManifestError, match="untrusted prior release object"):
+        publish._require_safe_released_scope_reuse(
+            content,
+            released,
+            public_keys=(current_public,),
+        )
+
+
+@pytest.mark.parametrize(
+    "raw",
+    ["not-json", "{}", '[""]', '["duplicate", "duplicate"]', '["key", 1]'],
+)
+def test_legacy_public_key_environment_is_strict_json(monkeypatch, raw: str) -> None:
+    monkeypatch.setenv(publish.RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV, raw)
+
+    with pytest.raises(ReleaseManifestError, match="JSON array|unique JSON array"):
+        publish._legacy_public_keys_from_env()
+
+
+def test_legacy_public_key_environment_accepts_unique_keys(monkeypatch) -> None:
+    monkeypatch.setenv(
+        publish.RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV,
+        json.dumps(["old-public-key", "older-public-key"]),
+    )
+
+    assert publish._legacy_public_keys_from_env() == (
+        "old-public-key",
+        "older-public-key",
+    )
 
 
 def test_released_scope_with_different_signed_projection_aborts_before_dml(
