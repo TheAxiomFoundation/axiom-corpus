@@ -1,10 +1,14 @@
-# Germany operative Verordnungen behind 2025 validation-year values that the
+# Germany operative instruments behind 2025 validation-year values that the
 # statute text delegates: the PV Beitragssatz (3,6 % from 2025-01-01, set by
 # PBAV 2025 under § 55 Abs. 1a SGB XI), the gesetzlicher Mindestlohn (12,82 €
 # from 2025-01-01, set by MiLoV4, feeding the § 8 Abs. 1a SGB IV
-# Geringfügigkeitsgrenze formula), and the Rentenversicherung Beitragssatz as
-# a *set* value (18,6 %, BSV 2018 under the § 160 SGB VI authority — the SGB
-# VI body only states the § 287 floor).
+# Geringfügigkeitsgrenze formula), and the Rentenversicherung Beitragssatz
+# chain: BSV 2018 (under the § 160 SGB VI authority) SET the 18,6 % rate for
+# 2018, and because § 158 Abs. 4 SGB VI requires the Bundesregierung to
+# announce the continuation of unchanged rates in the Bundesgesetzblatt each
+# year, the operative 2025 instrument is the RVBeitrSBek 2025 continuation
+# notice ("beträgt weiterhin ... 18,6 Prozent"; the SGB VI body itself only
+# states the § 287 floor).
 #
 # Same source class and converter as the main DE manifest
 # (de-federal-tax-benefit-statutes-official-documents.yaml, which also lists
@@ -70,3 +74,36 @@ documents:
       jurabk: BSV 2018
       ausfertigung_datum: '2017-12-18'
       source_family: social-insurance/pension-contribution-rate
+      source_note: >-
+        Sets the allgemeine Rentenversicherung Beitragssatz at 18,6 Prozent
+        "für das Jahr 2018" under the § 160 SGB VI authority. By itself this
+        does not establish the 2025 rate: § 158 Abs. 4 SGB VI requires the
+        Bundesregierung to announce the continuation of unchanged rates in
+        the Bundesgesetzblatt for each following year — the operative 2025
+        instrument is the RVBeitrSBek 2025 continuation notice ingested
+        alongside this document (source_id de-rvbeitrsbek-2025).
+  - source_id: de-rvbeitrsbek-2025
+    jurisdiction: de
+    document_class: regulation
+    slug: rvbeitrsbek_2025
+    citation_path: de/regulation/rvbeitrsbek-2025
+    title: Bekanntmachung der Beitragssätze in der allgemeinen Rentenversicherung und der knappschaftlichen Rentenversicherung für das Jahr 2025 (RVBeitrSBek 2025)
+    source_url: 'https://www.gesetze-im-internet.de/rvbeitrsbek_2025/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: RVBeitrSBek 2025
+      ausfertigung_datum: '2024-11-19'
+      document_type: Bekanntmachung (contribution-rate continuation notice under § 158 Abs. 4 SGB VI)
+      source_family: social-insurance/pension-contribution-rate
+      source_note: >-
+        The § 158 Abs. 4 SGB VI continuation notice for 2025 (BGBl. 2024 I
+        Nr. 368, v. 19.11.2024): "Der Beitragssatz für das Jahr 2025 beträgt
+        weiterhin in der allgemeinen Rentenversicherung 18,6 Prozent und in
+        der knappschaftlichen Rentenversicherung 24,7 Prozent." This is the
+        operative instrument that establishes the unchanged 18,6 % rate for
+        the 2025 validation year; BSV 2018 (ingested alongside) is the
+        instrument that originally set the rate.

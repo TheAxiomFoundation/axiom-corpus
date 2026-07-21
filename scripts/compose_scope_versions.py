@@ -100,6 +100,45 @@ def compose_scope_versions(
             raise ValueError(f"source directory contains a symlink: {directory}")
         source_directories.append((source_version, directory))
 
+    # Aggregate coverage alone would let complementary missing/extra
+    # citations across constituents cancel out; require each constituent
+    # scope to be complete on its own first.
+    for source_version in source_versions:
+        constituent_coverage = compare_provision_coverage(
+            tuple(
+                load_source_inventory(
+                    store.inventory_path(jurisdiction, document_class, source_version)
+                )
+            ),
+            tuple(
+                load_provisions(
+                    store.provisions_path(jurisdiction, document_class, source_version)
+                )
+            ),
+            jurisdiction,
+            document_class,
+            source_version,
+        )
+        if not constituent_coverage.complete:
+            raise ValueError(
+                f"constituent scope does not have complete coverage: {source_version}"
+            )
+
+    # Detect source-file collisions before creating anything so a refused
+    # compose never leaves a partial target behind.
+    seen_relative_files: dict[Path, str] = {}
+    for source_version, directory in source_directories:
+        for path in sorted(directory.rglob("*")):
+            if path.is_dir():
+                continue
+            relative = path.relative_to(directory)
+            if relative in seen_relative_files:
+                raise ValueError(
+                    "source file collides across source versions: "
+                    f"{source_version}/{relative}"
+                )
+            seen_relative_files[relative] = source_version
+
     inventory = []
     seen_inventory_paths: set[str] = set()
     for source_version in source_versions:
@@ -173,24 +212,31 @@ def compose_scope_versions(
     if not coverage.complete:
         raise ValueError("composed scope does not have complete coverage")
 
-    target_directory.mkdir(parents=True)
-    for source_version, directory in source_directories:
-        for path in sorted(directory.rglob("*")):
-            relative = path.relative_to(directory)
-            destination = target_directory / relative
-            if path.is_dir():
-                destination.mkdir(parents=True, exist_ok=True)
-                continue
-            if destination.exists():
-                raise ValueError(
-                    "source file collides across source versions: "
-                    f"{source_version}/{relative}"
-                )
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(path, destination)
-    store.write_inventory(target_inventory_path, inventory_tuple)
-    store.write_provisions(target_provisions_path, provision_tuple)
-    store.write_json(target_coverage_path, coverage.to_mapping())
+    try:
+        target_directory.mkdir(parents=True)
+        for _, directory in source_directories:
+            for path in sorted(directory.rglob("*")):
+                relative = path.relative_to(directory)
+                destination = target_directory / relative
+                if path.is_dir():
+                    destination.mkdir(parents=True, exist_ok=True)
+                    continue
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(path, destination)
+        store.write_inventory(target_inventory_path, inventory_tuple)
+        store.write_provisions(target_provisions_path, provision_tuple)
+        store.write_json(target_coverage_path, coverage.to_mapping())
+    except BaseException:
+        # Never leave a partial target: a later retry must not be rejected by
+        # the existing-target guard because of our own debris.
+        shutil.rmtree(target_directory, ignore_errors=True)
+        for path in (
+            target_inventory_path,
+            target_provisions_path,
+            target_coverage_path,
+        ):
+            path.unlink(missing_ok=True)
+        raise
     return (
         target_directory,
         target_inventory_path,

@@ -157,20 +157,103 @@ def test_compose_rejects_existing_target_and_reused_version(tmp_path):
         )
 
 
-def test_compose_rejects_colliding_source_files(tmp_path):
+def _target_artifacts(store: CorpusArtifactStore, version: str):
+    return (
+        store.root / "sources" / "de" / "statute" / version,
+        store.inventory_path("de", "statute", version),
+        store.provisions_path("de", "statute", version),
+        store.coverage_path("de", "statute", version),
+    )
+
+
+def _write_single_doc_scope(
+    store: CorpusArtifactStore,
+    version: str,
+    citation_path: str,
+    *,
+    source_name: str,
+) -> None:
+    source = store.source_path("de", "statute", version, source_name)
+    source_sha256 = store.write_text(source, f"<doc>{version}</doc>")
+    source_path = source.relative_to(store.root).as_posix()
+    store.write_inventory(
+        store.inventory_path("de", "statute", version),
+        [
+            SourceInventoryItem(
+                citation_path=citation_path,
+                source_path=source_path,
+                sha256=source_sha256,
+            )
+        ],
+    )
+    store.write_provisions(
+        store.provisions_path("de", "statute", version),
+        [
+            ProvisionRecord(
+                jurisdiction="de",
+                document_class="statute",
+                citation_path=citation_path,
+                body="Body.",
+                id=deterministic_provision_id(citation_path, version),
+                version=version,
+                source_path=source_path,
+                source_as_of="2026-07-21",
+                expression_date="2026-07-21",
+            )
+        ],
+    )
+
+
+def test_compose_rejects_colliding_source_files_without_debris(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
-    for version, citation_path in (
-        ("wave-1", "de/statute/estg"),
-        ("wave-2", "de/statute/solzg-1995"),
+    _write_single_doc_scope(store, "wave-1", "de/statute/estg", source_name="same-name.xml")
+    _write_single_doc_scope(
+        store, "wave-2", "de/statute/solzg-1995", source_name="same-name.xml"
+    )
+
+    with pytest.raises(ValueError, match="source file collides"):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="de",
+            document_class="statute",
+            source_versions=["wave-1", "wave-2"],
+            target_version="composed",
+        )
+    # The refusal happens before any target artifact is created, so a
+    # corrected retry is not blocked by the existing-target guard.
+    for path in _target_artifacts(store, "composed"):
+        assert not path.exists()
+
+    _write_single_doc_scope(
+        store, "wave-3", "de/statute/bkgg-1996", source_name="other-name.xml"
+    )
+    compose_scope_versions(
+        base=store.root,
+        jurisdiction="de",
+        document_class="statute",
+        source_versions=["wave-1", "wave-3"],
+        target_version="composed",
+    )
+    for path in _target_artifacts(store, "composed"):
+        assert path.exists()
+
+
+def test_compose_rejects_incomplete_constituents_even_when_aggregate_cancels(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    # wave-1 inventories "a" but provides "b"; wave-2 the reverse. The
+    # aggregate citation sets match, so only a per-constituent check refuses.
+    for version, inventoried, provided in (
+        ("wave-1", "de/statute/a", "de/statute/b"),
+        ("wave-2", "de/statute/b", "de/statute/a"),
     ):
-        source = store.source_path("de", "statute", version, "same-name.xml")
+        source = store.source_path("de", "statute", version, f"{version}.xml")
         source_sha256 = store.write_text(source, f"<doc>{version}</doc>")
         source_path = source.relative_to(store.root).as_posix()
         store.write_inventory(
             store.inventory_path("de", "statute", version),
             [
                 SourceInventoryItem(
-                    citation_path=citation_path,
+                    citation_path=inventoried,
                     source_path=source_path,
                     sha256=source_sha256,
                 )
@@ -182,9 +265,9 @@ def test_compose_rejects_colliding_source_files(tmp_path):
                 ProvisionRecord(
                     jurisdiction="de",
                     document_class="statute",
-                    citation_path=citation_path,
+                    citation_path=provided,
                     body="Body.",
-                    id=deterministic_provision_id(citation_path, version),
+                    id=deterministic_provision_id(provided, version),
                     version=version,
                     source_path=source_path,
                     source_as_of="2026-07-21",
@@ -193,7 +276,7 @@ def test_compose_rejects_colliding_source_files(tmp_path):
             ],
         )
 
-    with pytest.raises(ValueError, match="source file collides"):
+    with pytest.raises(ValueError, match="constituent scope does not have complete"):
         compose_scope_versions(
             base=store.root,
             jurisdiction="de",
@@ -201,3 +284,58 @@ def test_compose_rejects_colliding_source_files(tmp_path):
             source_versions=["wave-1", "wave-2"],
             target_version="composed",
         )
+    for path in _target_artifacts(store, "composed"):
+        assert not path.exists()
+
+
+def test_compose_rejects_symlinked_source_files(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_single_doc_scope(store, "wave-1", "de/statute/estg", source_name="one.xml")
+    _write_single_doc_scope(store, "wave-2", "de/statute/solzg-1995", source_name="two.xml")
+    linked = store.source_path("de", "statute", "wave-2", "sneaky-link.xml")
+    linked.symlink_to(store.source_path("de", "statute", "wave-2", "two.xml"))
+
+    with pytest.raises(ValueError, match="contains a symlink"):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="de",
+            document_class="statute",
+            source_versions=["wave-1", "wave-2"],
+            target_version="composed",
+        )
+
+
+def test_compose_cleans_up_when_a_target_write_fails(tmp_path, monkeypatch):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    _write_single_doc_scope(store, "wave-1", "de/statute/estg", source_name="one.xml")
+    _write_single_doc_scope(store, "wave-2", "de/statute/solzg-1995", source_name="two.xml")
+
+    original = CorpusArtifactStore.write_provisions
+
+    def broken_write_provisions(self, path, records):
+        if "composed" in str(path):
+            raise OSError("disk full")
+        return original(self, path, records)
+
+    monkeypatch.setattr(CorpusArtifactStore, "write_provisions", broken_write_provisions)
+    with pytest.raises(OSError, match="disk full"):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="de",
+            document_class="statute",
+            source_versions=["wave-1", "wave-2"],
+            target_version="composed",
+        )
+    for path in _target_artifacts(store, "composed"):
+        assert not path.exists()
+
+    monkeypatch.setattr(CorpusArtifactStore, "write_provisions", original)
+    compose_scope_versions(
+        base=store.root,
+        jurisdiction="de",
+        document_class="statute",
+        source_versions=["wave-1", "wave-2"],
+        target_version="composed",
+    )
+    for path in _target_artifacts(store, "composed"):
+        assert path.exists()

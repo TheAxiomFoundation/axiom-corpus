@@ -13,13 +13,13 @@
 #
 # citation_path here is the LAW-LEVEL parent node; the converter appends the
 # per-norm slug derived from each norm's <enbez> (or gliederungskennzahl).
-# The original nineteen slugs were verified HTTP 200 on 2026-07-16; the three
-# 2025-operative-Verordnung slugs appended 2026-07-21 (pbav_2025, milov4,
-# bsv_2018) were verified HTTP 200 on 2026-07-21. The 2026-07-21 wave ran only
-# those three via manifests/de-2025-operative-verordnungen-gii.yaml so the
-# 2026-07-16 consolidation artifacts stayed byte-identical; future FULL
-# re-ingest waves should run this manifest, which stays the canonical DE GII
-# registry.
+# The original nineteen slugs were verified HTTP 200 on 2026-07-16; the four
+# 2025-operative-instrument slugs appended 2026-07-21 (pbav_2025, milov4,
+# bsv_2018, rvbeitrsbek_2025) were verified HTTP 200 on 2026-07-21. The
+# 2026-07-21 wave ran only those four via
+# manifests/de-2025-operative-verordnungen-gii.yaml so the 2026-07-16
+# consolidation artifacts stayed byte-identical; future FULL re-ingest waves
+# should run this manifest, which stays the canonical DE GII registry.
 #
 # source_as_of is deliberately NOT set on live-fetch entries: the converter
 # stamps each run with the actual fetch date (a manifest value would relabel
@@ -402,4 +402,21 @@ documents:
       source_authority: Bundesministerium der Justiz (juris GmbH)
       jurabk: BSV 2018
       ausfertigung_datum: '2017-12-18'
+      source_family: social-insurance/pension-contribution-rate
+  - source_id: de-rvbeitrsbek-2025
+    jurisdiction: de
+    document_class: regulation
+    slug: rvbeitrsbek_2025
+    citation_path: de/regulation/rvbeitrsbek-2025
+    title: Bekanntmachung der Beitragssätze in der allgemeinen Rentenversicherung und der knappschaftlichen Rentenversicherung für das Jahr 2025 (RVBeitrSBek 2025)
+    source_url: 'https://www.gesetze-im-internet.de/rvbeitrsbek_2025/xml.zip'
+    source_format: gesetze-im-internet.de-juris-xml
+    request:
+      browser_user_agent: true
+    metadata:
+      primary_source: true
+      source_authority: Bundesministerium der Justiz (juris GmbH)
+      jurabk: RVBeitrSBek 2025
+      ausfertigung_datum: '2024-11-19'
+      document_type: Bekanntmachung (contribution-rate continuation notice under § 158 Abs. 4 SGB VI)
       source_family: social-insurance/pension-contribution-rate

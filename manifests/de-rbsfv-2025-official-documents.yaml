@@ -52,10 +52,10 @@ documents:
       in_force: true
       amends: >-
         Anlage zu § 28 and Anlage zu § 34 of the Zwölftes Buch
-        Sozialgesetzbuch (SGB 12): §§ 2–3 append the "1. Januar 2025" rows
-        (Regelbedarfsstufen and Schulbedarf-Teilbeträge) under the § 40
-        SGB XII authority. It does not change any other SGB XII provision
-        text.
+        Sozialgesetzbuch (SGB 12): under the § 40 SGB XII authority, § 2
+        appends the "1. Januar 2025" Regelbedarfsstufen row and § 3 appends
+        the "gültig im Kalenderjahr 2025" Schulbedarf-Teilbeträge row. It
+        does not change any other SGB XII provision text.
       amendment_targets:
         - de/statute/sgb-12
         - de/statute/sgb-12/anlage-bjne014918130
@@ -72,8 +72,10 @@ documents:
         amounts, so under the § 28a Abs. 5 SGB XII Besitzschutz the 2024
         Eurobeträge continue to apply from 1. Januar 2025 (the "Nullrunde");
         § 2 appends the Anlage zu § 28 row "1. Januar 2025 | 563 | 506 | 451
-        | 471 | 390 | 357" (Regelbedarfsstufen 1–6, the amounts SGB II § 20
-        Bürgergeld encoding needs for the 2025 validation year); § 3 appends
-        the Anlage zu § 34 row for 2025 (Schulbedarf 130 / 65 Euro); § 4: in
-        force 1. Januar 2025, simultaneously repealing the RBSFV 2024 (BGBl.
-        2023 I Nr. 287).
+        | 471 | 390 | 357" (Regelbedarfsstufen 1–6); § 3 appends the Anlage
+        zu § 34 row "gültig im Kalenderjahr 2025" (Schulbedarf 130 / 65
+        Euro); § 4: in force 1. Januar 2025, simultaneously repealing the
+        RBSFV 2024 (BGBl. 2023 I Nr. 287). Context beyond this document's
+        text: these Regelbedarfsstufen amounts are what the SGB II § 20
+        Bürgergeld encoding references for the 2025 validation year (SGB II
+        is not cited in this Verordnung).
