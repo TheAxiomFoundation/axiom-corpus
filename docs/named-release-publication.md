@@ -51,9 +51,10 @@ at the first failure:
    converges only when readback proves the existing bytes are identical.
 3. Download every selected R2 object and verify its exact bytes and hash.
 4. Query prior signed objects for the selected scopes. The controller verifies
-   each object with the trusted Ed25519 public key. An already released scope
-   is reused only when its signed artifacts, row counts, and projection digests
-   exactly match; otherwise publication stops.
+   each object with the current Ed25519 public key or an explicitly configured
+   legacy verification key. An already released scope is reused only when its
+   signed artifacts, row counts, and projection digests exactly match;
+   otherwise publication stops.
 5. Stage versioned provision and navigation rows for unreleased scopes. Loading
    never changes public visibility and never synthesizes missing parents.
 6. Query direct base-table evidence before signing. Exact provision/navigation
@@ -67,6 +68,14 @@ at the first failure:
    content address, schema, evidence, and signature.
 Publication ends here: the release is signed and durable, but serving is
 unchanged.
+
+Key rotation must preserve the retiring public key before replacing the current
+pair. Set `AXIOM_CORPUS_RELEASE_LEGACY_PUBLIC_KEYS` to a JSON array of retired
+public keys, then rotate `AXIOM_CORPUS_RELEASE_PRIVATE_KEY` and
+`AXIOM_CORPUS_RELEASE_PUBLIC_KEY` together. Legacy keys authenticate only prior
+immutable release objects during safe scope reuse. Newly published objects,
+R2 readback, and activation must verify with the current public key. Keep every
+retired key needed by a release that can supply an already published scope.
 
 9. Activation is a separate, deliberate step (`scripts/activate_release.py`, or
    `publish_corpus.py --activate`), because it moves serving and can displace
@@ -154,9 +163,10 @@ uv run --extra dev python scripts/publish_corpus.py \
 
 Production publication requires R2 credentials, a Supabase staging credential,
 a distinct Supabase Management API access token, and the release
-private/public key pair. The staging credential can load rows and read evidence
-but cannot activate a release. CI supplies these values; operators should not
-print or persist them.
+private/public key pair. After a key rotation, publication also requires the
+JSON-array legacy public-key variable described above. The staging credential
+can load rows and read evidence but cannot activate a release. CI supplies these
+values; operators should not print or persist private credentials.
 
 Verify a downloaded release object using only the public key:
 
