@@ -115,6 +115,7 @@ def build_ca_rulespec_composite_scope(
     citation_contract_path: Path,
     target_version: str,
     supplemental_versions: tuple[str, ...] = (),
+    additional_citation_paths: tuple[str, ...] = (),
 ) -> tuple[Path, ...]:
     release = ReleaseManifest.load(selector_path)
     unexpected = sorted(
@@ -124,7 +125,10 @@ def build_ca_rulespec_composite_scope(
     )
     if unexpected:
         raise ValueError(f"selector contains non-Canadian-policy scopes: {unexpected}")
-    citation_paths = _load_citation_contract(citation_contract_path)
+    contracted_paths = _load_citation_contract(citation_contract_path)
+    citation_paths = (*contracted_paths, *additional_citation_paths)
+    if len(citation_paths) != len(set(citation_paths)):
+        raise ValueError("composite citation paths must be unique")
     source_versions = tuple(scope.version for scope in release.scopes)
     all_source_versions = (*source_versions, *supplemental_versions)
     if len(all_source_versions) != len({*all_source_versions}):
@@ -156,6 +160,12 @@ def main() -> int:
         default=[],
         help="Additional ca/policy source version to compose (repeatable).",
     )
+    parser.add_argument(
+        "--additional-citation",
+        action="append",
+        default=[],
+        help="Additional program-root citation outside the base contract (repeatable).",
+    )
     args = parser.parse_args()
     generated = build_ca_rulespec_composite_scope(
         base=args.base,
@@ -163,6 +173,7 @@ def main() -> int:
         citation_contract_path=args.citation_contract,
         target_version=args.target_version,
         supplemental_versions=tuple(args.supplemental_version),
+        additional_citation_paths=tuple(args.additional_citation),
     )
     for path in generated:
         print(path)
