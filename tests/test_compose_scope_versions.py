@@ -302,6 +302,25 @@ def test_compose_rejects_filesystem_equivalent_name_collisions(tmp_path):
             source_versions=["wave-3", "wave-4"],
             target_version="composed",
         )
+
+    # Full canonical caseless matching, not just NFC+casefold: U+015A
+    # (precomposed S-acute) casefolds to precomposed ś while U+017F U+0301
+    # (long s + combining acute) casefolds to a decomposed spelling — only
+    # NFD(casefold(NFD(s))) equates them, and APFS treats them as one entry.
+    _write_single_doc_scope(
+        store, "wave-5", "de/statute/sgb-2", source_name="Ś.xml"
+    )
+    _write_single_doc_scope(
+        store, "wave-6", "de/statute/sgb-12", source_name="ſ́.xml"
+    )
+    with pytest.raises(ValueError, match="source file collides"):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="de",
+            document_class="statute",
+            source_versions=["wave-5", "wave-6"],
+            target_version="composed",
+        )
     for path in _target_artifacts(store, "composed"):
         assert not path.exists()
 

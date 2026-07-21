@@ -130,12 +130,16 @@ def compose_scope_versions(
     # with directories, but a file may never share a relative path with
     # anything from another constituent (including a directory — otherwise
     # copy2 would silently write file "node" INTO directory "node/").
-    # Collision keys are NFC-normalized and casefolded: case-insensitive or
-    # normalizing filesystems (APFS) resolve such spellings to one entry, so
+    # Collision keys use the Unicode canonical caseless form,
+    # NFD(casefold(NFD(s))): case-insensitive, normalization-insensitive
+    # filesystems (APFS) resolve exactly such spellings to one entry, so
     # lexical distinctness alone would let the second copy silently replace
-    # the first.
+    # the first. Plain NFC+casefold is not enough — e.g. "Ś" and "ſ́"
+    # casefold to precomposed vs decomposed ś and only the double-NFD form
+    # equates them.
     def collision_key(relative: Path) -> str:
-        return unicodedata.normalize("NFC", relative.as_posix()).casefold()
+        decomposed = unicodedata.normalize("NFD", relative.as_posix())
+        return unicodedata.normalize("NFD", decomposed.casefold())
 
     seen_relative_paths: dict[str, tuple[str, str, Path]] = {}
     for source_version, directory in source_directories:
