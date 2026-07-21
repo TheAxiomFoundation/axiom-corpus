@@ -10,7 +10,6 @@ import json
 import os
 import re
 import subprocess
-import tarfile
 from base64 import b64decode, b64encode
 from binascii import Error as BinasciiError
 from dataclasses import dataclass
@@ -256,7 +255,16 @@ def guard_ingested_artifacts(
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
 
     read_ref = (head_ref or "HEAD") if base_ref else None
-    manifests = _load_ingest_manifests(repo, ref=read_ref)
+    try:
+        manifests = _load_ingest_manifests(repo, ref=read_ref)
+        baseline_ref = base_ref or "HEAD"
+        baseline_manifests = _load_ingest_manifests(repo, ref=baseline_ref)
+    except ValueError as exc:
+        return IngestGuardResult(
+            repo=repo,
+            protected_changes=tuple(change.path for change in protected),
+            issues=(str(exc),),
+        )
     entries_by_path: dict[str, tuple[Path, dict[str, Any], dict[str, Any]]] = {}
     reasoning_manifests_by_path: dict[str, set[Path]] = {}
     for manifest_path, payload in manifests.items():
@@ -269,8 +277,6 @@ def guard_ingested_artifacts(
         for path in _reasoning_log_paths(payload):
             reasoning_manifests_by_path.setdefault(path, set()).add(manifest_path)
 
-    baseline_ref = base_ref or "HEAD"
-    baseline_manifests = _load_ingest_manifests(repo, ref=baseline_ref)
     baseline_reasoning_manifests_by_path: dict[str, set[Path]] = {}
     for manifest_path, payload in baseline_manifests.items():
         for path in _reasoning_log_paths(payload):
@@ -313,13 +319,19 @@ def guard_ingested_artifacts(
         )
 
     manifest_issues: dict[Path, list[str]] = {}
-    for manifest_path, payload in manifests.items():
-        manifest_issues[manifest_path] = verify_ingest_manifest(
-            payload,
-            public_key=public_key,
-            repo=repo,
-            head_ref=head_ref or "HEAD",
-        )
+
+    def verification_issues(
+        manifest_path: Path,
+        payload: dict[str, Any],
+    ) -> list[str]:
+        if manifest_path not in manifest_issues:
+            manifest_issues[manifest_path] = verify_ingest_manifest(
+                payload,
+                public_key=public_key,
+                repo=repo,
+                head_ref=head_ref or "HEAD",
+            )
+        return manifest_issues[manifest_path]
 
     issues: list[str] = []
     authorizing_manifests: set[Path] = set()
@@ -333,8 +345,9 @@ def guard_ingested_artifacts(
             continue
         manifest_path, _payload, entry = manifest_entry
         authorizing_manifests.add(manifest_path)
-        if manifest_issues.get(manifest_path):
-            for issue in manifest_issues[manifest_path]:
+        current_manifest_issues = verification_issues(manifest_path, _payload)
+        if current_manifest_issues:
+            for issue in current_manifest_issues:
                 issues.append(f"{manifest_path.as_posix()}: {issue}")
             continue
         if change.status == "D":
@@ -365,8 +378,9 @@ def guard_ingested_artifacts(
                 f"reasoning log changed: {changed_paths}."
             )
             continue
-        if manifest_issues.get(manifest_path):
-            for issue in manifest_issues[manifest_path]:
+        current_manifest_issues = verification_issues(manifest_path, current_payload)
+        if current_manifest_issues:
+            for issue in current_manifest_issues:
                 issues.append(f"{manifest_path.as_posix()}: {issue}")
             continue
         for issue in _reasoning_log_issues(repo, current_payload, ref=read_ref):
@@ -547,11 +561,12 @@ def _load_ingest_manifests(repo: Path, *, ref: str | None = None) -> dict[Path, 
 
 def _load_ingest_manifests_from_ref(repo: Path, *, ref: str) -> dict[Path, dict[str, Any]]:
     manifests: dict[Path, dict[str, Any]] = {}
-    result = subprocess.run(
+    tree_result = subprocess.run(
         [
             "git",
-            "archive",
-            "--format=tar",
+            "ls-tree",
+            "-r",
+            "-z",
             ref,
             "--",
             INGEST_MANIFEST_ROOT.as_posix(),
@@ -560,30 +575,60 @@ def _load_ingest_manifests_from_ref(repo: Path, *, ref: str) -> dict[Path, dict[
         check=False,
         capture_output=True,
     )
-    if result.returncode != 0:
+    if tree_result.returncode != 0:
+        detail = tree_result.stderr.decode("utf-8", errors="replace").strip()
+        raise ValueError(f"Unable to list ingest manifests at `{ref}`: {detail}")
+
+    objects: list[tuple[Path, str]] = []
+    for raw_entry in tree_result.stdout.split(b"\0"):
+        if not raw_entry:
+            continue
+        try:
+            metadata, raw_path = raw_entry.split(b"\t", 1)
+            _mode, object_type, raw_oid = metadata.split(b" ", 2)
+        except ValueError as exc:
+            raise ValueError(f"Malformed Git tree entry while reading `{ref}`.") from exc
+        path = Path(raw_path.decode("utf-8", errors="surrogateescape"))
+        if object_type == b"blob" and path.suffix == ".json":
+            objects.append((path, raw_oid.decode("ascii")))
+    objects.sort(key=lambda item: item[0].as_posix())
+    if not objects:
         return manifests
-    with tarfile.open(fileobj=io.BytesIO(result.stdout), mode="r:") as archive:
-        members = sorted(
-            (
-                member
-                for member in archive.getmembers()
-                if member.isfile() and member.name.endswith(".json")
-            ),
-            key=lambda member: member.name,
-        )
-        for member in members:
-            extracted = archive.extractfile(member)
-            if extracted is None:
-                manifests[Path(member.name)] = {}
-                continue
-            blob = extracted.read()
-            try:
-                payload = json.loads(blob.decode("utf-8"))
-            except (UnicodeDecodeError, json.JSONDecodeError):
-                manifests[Path(member.name)] = {}
-                continue
-            if isinstance(payload, dict):
-                manifests[Path(member.name)] = payload
+
+    batch_result = subprocess.run(
+        ["git", "cat-file", "--batch"],
+        cwd=repo,
+        check=False,
+        input="".join(f"{oid}\n" for _path, oid in objects).encode("ascii"),
+        capture_output=True,
+    )
+    if batch_result.returncode != 0:
+        detail = batch_result.stderr.decode("utf-8", errors="replace").strip()
+        raise ValueError(f"Unable to read ingest manifests at `{ref}`: {detail}")
+
+    output = io.BytesIO(batch_result.stdout)
+    for path, expected_oid in objects:
+        header = output.readline().rstrip(b"\n").split()
+        if len(header) != 3 or header[0].decode("ascii", errors="replace") != expected_oid:
+            raise ValueError(f"Malformed Git batch header for ingest manifest `{path}`.")
+        if header[1] != b"blob":
+            raise ValueError(f"Git object for ingest manifest `{path}` is not a blob.")
+        try:
+            size = int(header[2])
+        except ValueError as exc:
+            raise ValueError(f"Malformed Git object size for ingest manifest `{path}`.") from exc
+        blob = output.read(size)
+        if len(blob) != size or output.read(1) != b"\n":
+            raise ValueError(f"Truncated Git object for ingest manifest `{path}`.")
+        try:
+            payload = json.loads(blob.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            manifests[path] = {}
+            continue
+        if isinstance(payload, dict):
+            manifests[path] = payload
+    if output.read(1):
+        raise ValueError(f"Unexpected trailing Git batch output while reading `{ref}`.")
     return manifests
 
 
