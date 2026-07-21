@@ -55,3 +55,5 @@ GRANT EXECUTE ON FUNCTION corpus.get_released_scope_object_sets(jsonb)
   TO postgres, service_role;
 REVOKE EXECUTE ON FUNCTION corpus.get_released_scope_object_sets(jsonb)
   FROM anon, authenticated, PUBLIC;
+
+NOTIFY pgrst, 'reload schema';

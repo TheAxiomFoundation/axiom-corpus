@@ -17,6 +17,7 @@ def test_compact_rpc_returns_one_json_array_without_repeating_objects_per_scope(
     assert "'scopes', matched.scopes" in sql
     assert "'release_object', objects.release_object" in sql
     assert "ORDER BY objects.release_name" in sql
+    assert "NOTIFY pgrst, 'reload schema'" in sql
 
 
 def test_compact_rpc_is_service_role_only() -> None:
