@@ -18,16 +18,18 @@ EXPECTED_TARGET_MANIFEST_PATHS = {
 PUBLISHED_CURRENT = "published_current"
 SOURCE_REFETCH_REQUIRED = "source_refetch_required"
 COMPREHENSIVE_RELEASE = REPO_ROOT / "manifests/releases/us-rulespec-snap-2026-07-21.json"
+CONSOLIDATED_MASSACHUSETTS_VERSION = "2026-07-21-ma-dta-regulations-consolidated"
+CONSOLIDATED_MASSACHUSETTS_SCOPE = (
+    "us-ma",
+    "regulation",
+    CONSOLIDATED_MASSACHUSETTS_VERSION,
+)
 RELEASE_SCOPE_SUBSTITUTIONS = {
     (
         "us-ma",
         "regulation",
         "2026-07-17-ma-dta-snap-regulations",
-    ): (
-        "us-ma",
-        "regulation",
-        "2026-07-21-ma-dta-regulations-consolidated",
-    ),
+    ): CONSOLIDATED_MASSACHUSETTS_SCOPE,
 }
 SUPERSEDED_RELEASE_SCOPES = {
     ("us-co", "regulation", "2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained"),
@@ -213,3 +215,64 @@ def test_comprehensive_release_tracks_the_state_snap_queue() -> None:
     assert published_scopes <= release_scopes
     assert refetch_scopes.isdisjoint(release_scopes)
     assert SUPERSEDED_RELEASE_SCOPES.isdisjoint(release_scopes)
+
+
+def test_massachusetts_consolidation_drops_shadowed_legacy_blocks() -> None:
+    paths = _scope_paths(
+        {
+            "jurisdiction": CONSOLIDATED_MASSACHUSETTS_SCOPE[0],
+            "document_class": CONSOLIDATED_MASSACHUSETTS_SCOPE[1],
+            "version": CONSOLIDATED_MASSACHUSETTS_SCOPE[2],
+        }
+    )
+    rows = [json.loads(line) for line in paths["provisions"].read_text().splitlines()]
+    inventory = json.loads(paths["inventory"].read_text())
+    current_source_fragment = "/2026-07-17-ma-dta-snap-regulations/"
+    legacy_source_fragment = "/2026-05-28/"
+    current_citations = {
+        row["citation_path"]
+        for row in rows
+        if current_source_fragment in (row.get("source_path") or "")
+    }
+    legacy_rows = [
+        row for row in rows if legacy_source_fragment in (row.get("source_path") or "")
+    ]
+
+    assert len(rows) == len(inventory["items"]) == 332
+    assert {row["citation_path"] for row in legacy_rows} == {
+        "us-ma/regulation/106-cmr/364/990",
+        "us-ma/regulation/106-cmr/364/990/block-1",
+    }
+    assert not any(
+        row.get("kind") == "block" and row.get("parent_citation_path") in current_citations
+        for row in legacy_rows
+    )
+    assert "file://" not in json.dumps(rows)
+    assert "file://" not in json.dumps(inventory)
+
+
+def test_massachusetts_consolidation_manifest_is_authenticated() -> None:
+    public_key = os.environ.get("AXIOM_CORPUS_INGEST_PUBLIC_KEY")
+    if not public_key:
+        if os.environ.get("CI"):
+            pytest.fail("AXIOM_CORPUS_INGEST_PUBLIC_KEY is required in CI")
+        pytest.skip("AXIOM_CORPUS_INGEST_PUBLIC_KEY is required for signature verification")
+
+    manifest_path = _scope_paths(
+        {
+            "jurisdiction": CONSOLIDATED_MASSACHUSETTS_SCOPE[0],
+            "document_class": CONSOLIDATED_MASSACHUSETTS_SCOPE[1],
+            "version": CONSOLIDATED_MASSACHUSETTS_SCOPE[2],
+        }
+    )["ingest_manifest"]
+    manifest = json.loads(manifest_path.read_text())
+
+    assert (
+        verify_ingest_manifest(
+            manifest,
+            public_key=public_key,
+            repo=REPO_ROOT,
+            head_ref="HEAD",
+        )
+        == []
+    )
