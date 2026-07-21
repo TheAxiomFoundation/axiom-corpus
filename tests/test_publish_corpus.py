@@ -5,12 +5,15 @@ from __future__ import annotations
 import importlib.util
 import json
 import sys
-from base64 import b64encode
+from base64 import b64decode, b64encode
 from pathlib import Path
 
 import pytest
 from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+from cryptography.hazmat.primitives.asymmetric.ed25519 import (
+    Ed25519PrivateKey,
+    Ed25519PublicKey,
+)
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
@@ -72,6 +75,14 @@ def _keys() -> tuple[str, str]:
             )
         ).decode(),
     )
+
+
+def _public_pem(public_key: str) -> str:
+    loaded = Ed25519PublicKey.from_public_bytes(b64decode(public_key))
+    return loaded.public_bytes(
+        serialization.Encoding.PEM,
+        serialization.PublicFormat.SubjectPublicKeyInfo,
+    ).decode()
 
 
 def _tree(tmp_path: Path) -> tuple[Path, Path, Path, tuple[str, str, str]]:
@@ -662,6 +673,20 @@ def test_released_scope_signed_by_untrusted_legacy_key_is_rejected(
         )
 
 
+def test_invalid_prior_object_is_not_treated_as_a_key_mismatch(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    prior_object = _signed_prior_object(root, base, selector, scope, private)
+    prior_object["signature"]["value"] = "not-base64"
+
+    with pytest.raises(ReleaseManifestError, match="signature encoding is invalid"):
+        publish._verifies_with_any_key(prior_object, (public,))
+
+
 @pytest.mark.parametrize(
     "raw",
     ["not-json", "{}", '[""]', '["duplicate", "duplicate"]', '["key", 1]'],
@@ -674,15 +699,52 @@ def test_legacy_public_key_environment_is_strict_json(monkeypatch, raw: str) -> 
 
 
 def test_legacy_public_key_environment_accepts_unique_keys(monkeypatch) -> None:
+    _first_private, first = _keys()
+    _second_private, second = _keys()
     monkeypatch.setenv(
         publish.RELEASE_OBJECT_LEGACY_PUBLIC_KEYS_ENV,
-        json.dumps(["old-public-key", "older-public-key"]),
+        json.dumps([first, second]),
     )
 
-    assert publish._legacy_public_keys_from_env() == (
-        "old-public-key",
-        "older-public-key",
+    assert publish._legacy_public_keys_from_env() == (first, second)
+
+
+def test_publication_rejects_malformed_legacy_key_before_external_writes(
+    tmp_path: Path,
+    monkeypatch,
+) -> None:
+    root, base, selector, _scope = _tree(tmp_path)
+    private, public = _keys()
+    monkeypatch.setattr(
+        publish,
+        "validate_release",
+        lambda *args, **kwargs: pytest.fail("invalid trust configuration must fail first"),
     )
+
+    with pytest.raises(ReleaseManifestError, match="public key must be raw base64 or PEM"):
+        publish.publish_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            supabase_url="https://example.supabase.co",
+            service_key="service",
+            access_token="management",
+            r2_config=_config(),
+            private_key=private,
+            public_key=public,
+            legacy_public_keys=("not-a-key",),
+        )
+
+
+def test_trusted_release_keys_reject_canonical_duplicates() -> None:
+    _current_private, current = _keys()
+    _legacy_private, legacy = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="canonically unique"):
+        publish._trusted_release_public_keys(current, (legacy, _public_pem(legacy)))
+
+    with pytest.raises(ReleaseManifestError, match="must not be a legacy key"):
+        publish._trusted_release_public_keys(current, (_public_pem(current),))
 
 
 def test_released_scope_with_different_signed_projection_aborts_before_dml(

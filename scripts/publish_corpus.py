@@ -56,9 +56,11 @@ from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_PRIVATE_KEY_ENV,
     RELEASE_OBJECT_PUBLIC_KEY_ENV,
     ReleaseManifestError,
+    ReleaseSignatureMismatchError,
     build_release_content,
     build_unsigned_release_object,
     canonical_json_bytes,
+    canonical_release_public_key,
     serialize_release_object,
     sign_release_object,
     verify_release_object,
@@ -121,6 +123,10 @@ def publish_named_release(
     """
     root = repo_root.resolve()
     corpus_root = base.resolve()
+    public_key, legacy_public_keys = _trusted_release_public_keys(
+        public_key,
+        legacy_public_keys,
+    )
     try:
         base_rel = corpus_root.relative_to(root).as_posix()
     except ValueError as exc:
@@ -505,7 +511,7 @@ def _verifies_with_any_key(
     for public_key in public_keys:
         try:
             verify_release_object(release_object, public_key=public_key)
-        except ReleaseManifestError:
+        except ReleaseSignatureMismatchError:
             continue
         return True
     return False
@@ -610,6 +616,19 @@ def _legacy_public_keys_from_env() -> tuple[str, ...]:
             "of non-empty public keys"
         )
     return tuple(payload)
+
+
+def _trusted_release_public_keys(
+    current_public_key: str,
+    legacy_public_keys: Sequence[str],
+) -> tuple[str, tuple[str, ...]]:
+    current = canonical_release_public_key(current_public_key)
+    legacy = tuple(canonical_release_public_key(key) for key in legacy_public_keys)
+    if current in legacy:
+        raise ReleaseManifestError("current release public key must not be a legacy key")
+    if len(set(legacy)) != len(legacy):
+        raise ReleaseManifestError("legacy release public keys must be canonically unique")
+    return current, legacy
 
 
 def build_parser() -> argparse.ArgumentParser:
