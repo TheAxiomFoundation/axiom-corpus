@@ -1,0 +1,25 @@
+documents:
+  - source_id: us-pa-revenue-personal-income-tax-rates
+    jurisdiction: us-pa
+    document_class: guidance
+    title: Personal Income Tax Rates
+    source_url: https://www.pa.gov/agencies/revenue/resources/tax-rates/personal-income-tax-rates
+    source_format: html
+    source_as_of: "2026-07-21"
+    expression_date: "2026-07-21"
+    citation_path: us-pa/guidance/department-of-revenue/resources/tax-rates/personal-income-tax-rates
+    request:
+      browser_user_agent: true
+    extraction:
+      html_content_selector: "section.agencypage-content table"
+    metadata:
+      primary_source: true
+      source_authority: Pennsylvania Department of Revenue
+      document_subtype: tax_rate_table
+      program: personal_income_tax
+      current_rate_period: 2004-present
+      rate: "0.0307"
+      source_status: current_official_agency_rate_table
+      source_note: >-
+        Official Department of Revenue rate table listing the Pennsylvania
+        personal income-tax rate for 2004 through the present as 3.07 percent.
