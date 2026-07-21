@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import importlib.metadata
+import io
 import json
 import os
 import re
@@ -248,9 +249,72 @@ def guard_ingested_artifacts(
     """Check changed generated corpus artifacts against signed manifests."""
     repo = repo.resolve()
     public_key = public_key or os.environ.get(INGEST_MANIFEST_PUBLIC_KEY_ENV)
-    changes = _changed_paths(repo=repo, base_ref=base_ref, head_ref=head_ref)
+    try:
+        changes = _changed_paths(repo=repo, base_ref=base_ref, head_ref=head_ref)
+    except (subprocess.CalledProcessError, UnicodeDecodeError, ValueError) as exc:
+        return IngestGuardResult(
+            repo=repo,
+            protected_changes=(),
+            issues=(f"Unable to read changed paths: {exc}",),
+        )
     protected = tuple(path for path in changes if _is_protected_corpus_artifact(path.path))
-    if not protected:
+    if not changes:
+        return IngestGuardResult(repo=repo, protected_changes=(), issues=())
+
+    read_ref = (head_ref or "HEAD") if base_ref else None
+    try:
+        manifests = _load_ingest_manifests(repo, ref=read_ref)
+        baseline_ref = base_ref or "HEAD"
+        baseline_manifests = _load_ingest_manifests(repo, ref=baseline_ref)
+    except ValueError as exc:
+        return IngestGuardResult(
+            repo=repo,
+            protected_changes=tuple(change.path for change in protected),
+            issues=(str(exc),),
+        )
+    entries_by_path: dict[str, tuple[Path, dict[str, Any], dict[str, Any]]] = {}
+    reasoning_manifests_by_path: dict[str, set[Path]] = {}
+    for manifest_path, payload in manifests.items():
+        for entry in payload.get("applied_files", []):
+            if not isinstance(entry, dict):
+                continue
+            path = entry.get("path")
+            if isinstance(path, str) and path:
+                entries_by_path[path] = (manifest_path, payload, entry)
+        for path in _reasoning_log_paths(payload):
+            reasoning_manifests_by_path.setdefault(path, set()).add(manifest_path)
+
+    baseline_reasoning_manifests_by_path: dict[str, set[Path]] = {}
+    for manifest_path, payload in baseline_manifests.items():
+        for path in _reasoning_log_paths(payload):
+            baseline_reasoning_manifests_by_path.setdefault(path, set()).add(manifest_path)
+
+    changed_reasoning_paths_by_manifest: dict[Path, set[str]] = {}
+    for change in changes:
+        manifest_paths = reasoning_manifests_by_path.get(change.path, set()) | (
+            baseline_reasoning_manifests_by_path.get(change.path, set())
+        )
+        for manifest_path in manifest_paths:
+            changed_reasoning_paths_by_manifest.setdefault(manifest_path, set()).add(change.path)
+
+    changed_manifest_paths = {
+        Path(change.path)
+        for change in changes
+        if change.path.startswith(f"{INGEST_MANIFEST_ROOT.as_posix()}/")
+        and change.path.endswith(".json")
+    }
+    for manifest_path in changed_manifest_paths:
+        candidate_payload = manifests.get(manifest_path, {})
+        baseline_payload = baseline_manifests.get(manifest_path, {})
+        attested_paths = _reasoning_log_paths(candidate_payload) | _reasoning_log_paths(
+            baseline_payload
+        )
+        if attested_paths:
+            changed_reasoning_paths_by_manifest.setdefault(manifest_path, set()).update(
+                attested_paths
+            )
+    changed_reasoning_manifests = set(changed_reasoning_paths_by_manifest)
+    if not protected and not changed_reasoning_manifests:
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
     if not public_key:
         return IngestGuardResult(
@@ -261,25 +325,23 @@ def guard_ingested_artifacts(
             ),
         )
 
-    read_ref = (head_ref or "HEAD") if base_ref else None
-    manifests = _load_ingest_manifests(repo, ref=read_ref)
-    entries_by_path: dict[str, tuple[Path, dict[str, Any], dict[str, Any]]] = {}
     manifest_issues: dict[Path, list[str]] = {}
-    for manifest_path, payload in manifests.items():
-        manifest_issues[manifest_path] = verify_ingest_manifest(
-            payload,
-            public_key=public_key,
-            repo=repo,
-            head_ref=head_ref or "HEAD",
-        )
-        for entry in payload.get("applied_files", []):
-            if not isinstance(entry, dict):
-                continue
-            path = str(entry.get("path") or "").strip()
-            if path:
-                entries_by_path[path] = (manifest_path, payload, entry)
+
+    def verification_issues(
+        manifest_path: Path,
+        payload: dict[str, Any],
+    ) -> list[str]:
+        if manifest_path not in manifest_issues:
+            manifest_issues[manifest_path] = verify_ingest_manifest(
+                payload,
+                public_key=public_key,
+                repo=repo,
+                head_ref=head_ref or "HEAD",
+            )
+        return manifest_issues[manifest_path]
 
     issues: list[str] = []
+    authorizing_manifests: set[Path] = set()
     for change in protected:
         manifest_entry = entries_by_path.get(change.path)
         if manifest_entry is None:
@@ -289,8 +351,10 @@ def guard_ingested_artifacts(
             )
             continue
         manifest_path, _payload, entry = manifest_entry
-        if manifest_issues.get(manifest_path):
-            for issue in manifest_issues[manifest_path]:
+        authorizing_manifests.add(manifest_path)
+        current_manifest_issues = verification_issues(manifest_path, _payload)
+        if current_manifest_issues:
+            for issue in current_manifest_issues:
                 issues.append(f"{manifest_path.as_posix()}: {issue}")
             continue
         if change.status == "D":
@@ -311,6 +375,30 @@ def guard_ingested_artifacts(
             )
             continue
         issues.extend(_artifact_content_issues(repo, change.path, ref=read_ref))
+
+    for manifest_path in sorted(authorizing_manifests | changed_reasoning_manifests):
+        current_payload = manifests.get(manifest_path)
+        if current_payload is None:
+            changed_paths = sorted(changed_reasoning_paths_by_manifest.get(manifest_path, set()))
+            issues.append(
+                f"{manifest_path.as_posix()}: signed manifest was removed while its "
+                f"reasoning log changed: {changed_paths}."
+            )
+            continue
+        current_manifest_issues = verification_issues(manifest_path, current_payload)
+        if current_manifest_issues:
+            for issue in current_manifest_issues:
+                issues.append(f"{manifest_path.as_posix()}: {issue}")
+            continue
+        for issue in _reasoning_log_issues(repo, current_payload, ref=read_ref):
+            issues.append(f"{manifest_path.as_posix()}: {issue}")
+        current_reasoning_paths = _reasoning_log_paths(current_payload)
+        for path in sorted(changed_reasoning_paths_by_manifest.get(manifest_path, set())):
+            if path not in current_reasoning_paths:
+                issues.append(
+                    f"{manifest_path.as_posix()}: reasoning log `{path}` is no longer "
+                    "attested after a related log or manifest change."
+                )
 
     return IngestGuardResult(
         repo=repo,
@@ -480,18 +568,74 @@ def _load_ingest_manifests(repo: Path, *, ref: str | None = None) -> dict[Path, 
 
 def _load_ingest_manifests_from_ref(repo: Path, *, ref: str) -> dict[Path, dict[str, Any]]:
     manifests: dict[Path, dict[str, Any]] = {}
-    for path in _git_paths_under(repo, ref=ref, path=INGEST_MANIFEST_ROOT.as_posix()):
-        blob = _git_blob(repo, ref=ref, path=path)
-        if blob is None:
-            manifests[Path(path)] = {}
+    tree_result = subprocess.run(
+        [
+            "git",
+            "ls-tree",
+            "-r",
+            "-z",
+            ref,
+            "--",
+            INGEST_MANIFEST_ROOT.as_posix(),
+        ],
+        cwd=repo,
+        check=False,
+        capture_output=True,
+    )
+    if tree_result.returncode != 0:
+        detail = tree_result.stderr.decode("utf-8", errors="replace").strip()
+        raise ValueError(f"Unable to list ingest manifests at `{ref}`: {detail}")
+
+    objects: list[tuple[Path, str]] = []
+    for raw_entry in tree_result.stdout.split(b"\0"):
+        if not raw_entry:
             continue
+        try:
+            metadata, raw_path = raw_entry.split(b"\t", 1)
+            _mode, object_type, raw_oid = metadata.split(b" ", 2)
+        except ValueError as exc:
+            raise ValueError(f"Malformed Git tree entry while reading `{ref}`.") from exc
+        path = Path(raw_path.decode("utf-8", errors="surrogateescape"))
+        if object_type == b"blob" and path.suffix == ".json":
+            objects.append((path, raw_oid.decode("ascii")))
+    objects.sort(key=lambda item: item[0].as_posix())
+    if not objects:
+        return manifests
+
+    batch_result = subprocess.run(
+        ["git", "cat-file", "--batch"],
+        cwd=repo,
+        check=False,
+        input="".join(f"{oid}\n" for _path, oid in objects).encode("ascii"),
+        capture_output=True,
+    )
+    if batch_result.returncode != 0:
+        detail = batch_result.stderr.decode("utf-8", errors="replace").strip()
+        raise ValueError(f"Unable to read ingest manifests at `{ref}`: {detail}")
+
+    output = io.BytesIO(batch_result.stdout)
+    for path, expected_oid in objects:
+        header = output.readline().rstrip(b"\n").split()
+        if len(header) != 3 or header[0].decode("ascii", errors="replace") != expected_oid:
+            raise ValueError(f"Malformed Git batch header for ingest manifest `{path}`.")
+        if header[1] != b"blob":
+            raise ValueError(f"Git object for ingest manifest `{path}` is not a blob.")
+        try:
+            size = int(header[2])
+        except ValueError as exc:
+            raise ValueError(f"Malformed Git object size for ingest manifest `{path}`.") from exc
+        blob = output.read(size)
+        if len(blob) != size or output.read(1) != b"\n":
+            raise ValueError(f"Truncated Git object for ingest manifest `{path}`.")
         try:
             payload = json.loads(blob.decode("utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError):
-            manifests[Path(path)] = {}
+            manifests[path] = {}
             continue
         if isinstance(payload, dict):
-            manifests[Path(path)] = payload
+            manifests[path] = payload
+    if output.read(1):
+        raise ValueError(f"Unexpected trailing Git batch output while reading `{ref}`.")
     return manifests
 
 
@@ -525,6 +669,48 @@ def _artifact_content_issues(repo: Path, path: str, *, ref: str | None) -> list[
     if _is_inventory_artifact(path):
         issues.extend(_inventory_primary_source_issues(path, payload))
     return issues
+
+
+def _reasoning_log_issues(
+    repo: Path,
+    payload: dict[str, Any],
+    *,
+    ref: str | None,
+) -> list[str]:
+    raw_entries = payload.get("reasoning_logs")
+    if not isinstance(raw_entries, list):
+        return ["`reasoning_logs` must be a list."]
+
+    issues: list[str] = []
+    for entry in raw_entries:
+        if not isinstance(entry, dict):
+            issues.append("Each reasoning log entry must be an object.")
+            continue
+        raw_path = entry.get("path")
+        if not isinstance(raw_path, str) or not raw_path:
+            issues.append("Each reasoning log entry must have a path.")
+            continue
+        path = raw_path
+        actual_sha = _artifact_sha(repo, path, ref=ref)
+        if actual_sha is None:
+            issues.append(f"Manifested reasoning log is missing: `{path}`.")
+            continue
+        expected_sha = str(entry.get("sha256") or "")
+        if actual_sha != expected_sha:
+            issues.append(f"`{path}` sha256 does not match the signed reasoning log entry.")
+    return issues
+
+
+def _reasoning_log_paths(payload: dict[str, Any]) -> set[str]:
+    raw_entries = payload.get("reasoning_logs")
+    if not isinstance(raw_entries, list):
+        return set()
+    return {
+        path
+        for entry in raw_entries
+        if isinstance(entry, dict)
+        if isinstance(path := entry.get("path"), str) and path
+    }
 
 
 def _is_official_document_artifact(path: str) -> bool:
@@ -584,17 +770,6 @@ def _decode_text(payload: bytes) -> str | None:
         return None
 
 
-def _git_paths_under(repo: Path, *, ref: str, path: str) -> tuple[str, ...]:
-    result = subprocess.run(
-        ["git", "ls-tree", "-r", "--name-only", ref, "--", path],
-        cwd=repo,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    return tuple(line for line in result.stdout.splitlines() if line)
-
-
 def _git_blob(repo: Path, *, ref: str, path: str) -> bytes | None:
     result = subprocess.run(
         ["git", "show", f"{ref}:{path}"],
@@ -615,23 +790,27 @@ def _changed_paths(
 ) -> tuple[_ChangedPath, ...]:
     if base_ref:
         diff_ref = f"{base_ref}...{head_ref or 'HEAD'}"
-        args = ["git", "diff", "--name-status", "--no-renames", diff_ref]
+        args = ["git", "diff", "--name-status", "-z", "--no-renames", diff_ref]
     else:
-        args = ["git", "diff", "--name-status", "--no-renames", "HEAD"]
+        args = ["git", "diff", "--name-status", "-z", "--no-renames", "HEAD"]
     result = subprocess.run(
         args,
         cwd=repo,
         check=True,
         capture_output=True,
-        text=True,
     )
+    fields = result.stdout.split(b"\0")
+    if fields and fields[-1] == b"":
+        fields.pop()
+    if len(fields) % 2:
+        raise ValueError("Malformed NUL-delimited Git diff output.")
+
     changes: list[_ChangedPath] = []
-    for line in result.stdout.splitlines():
-        parts = line.split("\t")
-        if len(parts) < 2:
-            continue
-        status = parts[0]
-        path = parts[-1]
+    for raw_status, raw_path in zip(fields[::2], fields[1::2], strict=True):
+        status = raw_status.decode("ascii")
+        if not status:
+            raise ValueError("Git diff returned an empty change status.")
+        path = os.fsdecode(raw_path)
         changes.append(_ChangedPath(status=status[0], path=path))
     return tuple(changes)
 

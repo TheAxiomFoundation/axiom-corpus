@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import subprocess
 from base64 import b64encode
@@ -273,6 +274,521 @@ def test_guard_rejects_manifest_commit_outside_guarded_head_history(
 
     assert not result.passed
     assert any("is not an ancestor of guarded head `HEAD`" in issue for issue in result.issues)
+
+
+def test_guard_rejects_changed_reasoning_log_without_resigning(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs/example.md"
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version=artifact.stem,
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[artifact],
+        reasoning_logs=[reasoning_log],
+    )
+    _key, private, public = _keys()
+    manifest_path = _write_manifest(
+        repo,
+        sign_ingest_manifest(manifest, private_key=private),
+        version=artifact.stem,
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+
+    reasoning_log.write_text("changed reasoning\n")
+    _git(repo, "add", str(reasoning_log.relative_to(repo)))
+    _git(repo, "commit", "-m", "Change reasoning")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert result.protected_changes == ()
+    assert any(
+        f"{reasoning_log.relative_to(repo)}` sha256 does not match" in issue
+        for issue in result.issues
+    )
+    assert manifest_path.relative_to(repo).as_posix() in result.issues[0]
+
+
+def test_guard_accepts_changed_reasoning_log_after_resigning(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs/example.md"
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    _key, private, public = _keys()
+
+    def signed_manifest() -> dict[str, object]:
+        manifest = build_ingest_manifest(
+            repo=repo,
+            base=Path("data/corpus"),
+            jurisdiction="nz",
+            document_class="statute",
+            version=artifact.stem,
+            command="axiom-corpus-ingest extract-nz-legislation",
+            applied_files=[artifact],
+            reasoning_logs=[reasoning_log],
+        )
+        return sign_ingest_manifest(manifest, private_key=private)
+
+    manifest_path = _write_manifest(repo, signed_manifest(), version=artifact.stem)
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+
+    reasoning_log.write_text("changed reasoning\n")
+    _git(repo, "add", str(reasoning_log.relative_to(repo)))
+    _git(repo, "commit", "-m", "Change reasoning")
+    manifest_path.write_text(json.dumps(signed_manifest(), indent=2, sort_keys=True) + "\n")
+    _git(repo, "add", str(manifest_path.relative_to(repo)))
+    _git(repo, "commit", "-m", "Re-sign reasoning")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert result.passed
+    assert result.protected_changes == ()
+    assert result.issues == ()
+
+
+def test_guard_rejects_changed_reasoning_log_with_removed_attestation(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs/example.md"
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version=artifact.stem,
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[artifact],
+        reasoning_logs=[reasoning_log],
+    )
+    key, _private, public = _keys()
+    manifest_path = _write_manifest(
+        repo,
+        _sign_unchecked(manifest, key),
+        version=artifact.stem,
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+
+    reasoning_log.write_text("changed reasoning\n")
+    manifest["reasoning_logs"] = []
+    manifest_path.write_text(
+        json.dumps(_sign_unchecked(manifest, key), indent=2, sort_keys=True) + "\n"
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Remove reasoning attestation")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert any("is no longer attested" in issue for issue in result.issues)
+
+
+def test_guard_rejects_manifest_only_reasoning_attestation_removal(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs/example.md"
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version=artifact.stem,
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[artifact],
+        reasoning_logs=[reasoning_log],
+    )
+    _key, private, public = _keys()
+    manifest_path = _write_manifest(
+        repo,
+        sign_ingest_manifest(manifest, private_key=private),
+        version=artifact.stem,
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+
+    payload = json.loads(manifest_path.read_text())
+    payload["reasoning_logs"] = []
+    manifest_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    _git(repo, "add", str(manifest_path.relative_to(repo)))
+    _git(repo, "commit", "-m", "Remove reasoning attestation")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert any("Invalid ingest manifest signature" in issue for issue in result.issues)
+
+
+def test_guard_rejects_uncommitted_reasoning_attestation_removal(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs/example.md"
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version=artifact.stem,
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[artifact],
+        reasoning_logs=[reasoning_log],
+    )
+    _key, private, public = _keys()
+    manifest_path = _write_manifest(
+        repo,
+        sign_ingest_manifest(manifest, private_key=private),
+        version=artifact.stem,
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+
+    payload = json.loads(manifest_path.read_text())
+    payload["reasoning_logs"] = []
+    manifest_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert any("Invalid ingest manifest signature" in issue for issue in result.issues)
+
+
+def test_guard_manifest_reads_ignore_export_attributes(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs/example.md"
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version=artifact.stem,
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[artifact],
+        reasoning_logs=[reasoning_log],
+    )
+    _key, private, public = _keys()
+    manifest_path = _write_manifest(
+        repo,
+        sign_ingest_manifest(manifest, private_key=private),
+        version=artifact.stem,
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+    signed_commit = _git(repo, "rev-parse", "HEAD")
+
+    (repo / ".gitattributes").write_text(
+        f"{manifest_path.relative_to(repo).as_posix()} export-ignore\n"
+    )
+    _git(repo, "add", ".gitattributes")
+    _git(repo, "commit", "-m", "Exclude manifest from archives")
+    attributes_commit = _git(repo, "rev-parse", "HEAD")
+
+    attribute_result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=signed_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+    assert attribute_result.passed
+
+    reasoning_log.write_text("changed reasoning\n")
+    _git(repo, "add", str(reasoning_log.relative_to(repo)))
+    _git(repo, "commit", "-m", "Change reasoning")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=attributes_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert any("signed reasoning log entry" in issue for issue in result.issues)
+
+
+def test_guard_reports_manifest_batch_read_failure(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs/example.md"
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version=artifact.stem,
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[artifact],
+        reasoning_logs=[reasoning_log],
+    )
+    _key, private, public = _keys()
+    _write_manifest(
+        repo,
+        sign_ingest_manifest(manifest, private_key=private),
+        version=artifact.stem,
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+    reasoning_log.write_text("changed reasoning\n")
+    _git(repo, "add", str(reasoning_log.relative_to(repo)))
+    _git(repo, "commit", "-m", "Change reasoning")
+
+    real_run = subprocess.run
+
+    def failing_ls_tree(*args: object, **kwargs: object) -> subprocess.CompletedProcess[bytes]:
+        command = args[0]
+        if isinstance(command, list) and command[:2] == ["git", "ls-tree"]:
+            return subprocess.CompletedProcess(command, 1, b"", b"synthetic failure")
+        return real_run(*args, **kwargs)  # type: ignore[arg-type,return-value]
+
+    monkeypatch.setattr(subprocess, "run", failing_ls_tree)
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert result.issues == (
+        "Unable to list ingest manifests at `HEAD`: synthetic failure",
+    )
+
+
+@pytest.mark.parametrize("filename", ["résumé.jsonl", "control\tname.jsonl"])
+def test_guard_rejects_unmanifested_quoted_protected_paths(
+    tmp_path: Path,
+    filename: str,
+) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+    artifact = repo / "data/corpus/provisions/nz/statute" / filename
+    artifact.parent.mkdir(parents=True)
+    artifact.write_text('{"citation_path":"nz/statute/example","body":"Example."}\n')
+    _git(repo, "add", str(artifact.relative_to(repo)))
+    _git(repo, "commit", "-m", "Add unmanifested artifact")
+    _key, _private, public = _keys()
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    relative_path = artifact.relative_to(repo).as_posix()
+    assert not result.passed
+    assert result.protected_changes == (relative_path,)
+    assert any(relative_path in issue for issue in result.issues)
+
+
+@pytest.mark.parametrize(
+    "filename",
+    [
+        "résumé.md",
+        "control\tname.md",
+        "terminal-tab.md\t",
+        "terminal-newline.md\n",
+        "terminal-space.md ",
+    ],
+)
+@pytest.mark.parametrize("committed", [False, True])
+def test_guard_rejects_quoted_reasoning_log_drift(
+    tmp_path: Path,
+    filename: str,
+    committed: bool,
+) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs" / filename
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version=artifact.stem,
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[artifact],
+        reasoning_logs=[reasoning_log],
+    )
+    _key, private, public = _keys()
+    _write_manifest(
+        repo,
+        sign_ingest_manifest(manifest, private_key=private),
+        version=artifact.stem,
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+
+    reasoning_log.write_text("changed reasoning\n")
+    if committed:
+        _git(repo, "add", str(reasoning_log.relative_to(repo)))
+        _git(repo, "commit", "-m", "Change reasoning")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit if committed else None,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert any("signed reasoning log entry" in issue for issue in result.issues)
+
+
+@pytest.mark.parametrize("suffix", ["\t", "\n", " "])
+@pytest.mark.parametrize("committed", [False, True])
+def test_guard_preserves_exact_applied_file_paths(
+    tmp_path: Path,
+    suffix: str,
+    committed: bool,
+) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact_dir = repo / "data/corpus/provisions/nz/statute"
+    artifact_dir.mkdir(parents=True)
+    signed_artifact = artifact_dir / f"authorized.jsonl{suffix}"
+    changed_artifact = artifact_dir / "authorized.jsonl"
+    signed_body = '{"citation_path":"nz/statute/signed","body":"Authorized."}\n'
+    signed_artifact.write_text(signed_body)
+    changed_artifact.write_text('{"citation_path":"nz/statute/changed","body":"Original."}\n')
+    _git(repo, "add", str(artifact_dir.relative_to(repo)))
+    _git(repo, "commit", "-m", "Add distinct artifact paths")
+
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version="2026-07-10",
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[signed_artifact],
+    )
+    _key, private, public = _keys()
+    _write_manifest(
+        repo,
+        sign_ingest_manifest(manifest, private_key=private),
+        version="2026-07-10",
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Sign padded artifact path")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+
+    changed_artifact.write_text(signed_body)
+    if committed:
+        _git(repo, "add", str(changed_artifact.relative_to(repo)))
+        _git(repo, "commit", "-m", "Change unpadded artifact")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit if committed else None,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert any("Unmanifested corpus artifact change" in issue for issue in result.issues)
+
+
+def test_guard_checks_reasoning_logs_for_authorized_artifact_changes(tmp_path: Path) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact = _artifact(repo)
+    reasoning_log = repo / "docs/ingest-runs/example.md"
+    reasoning_log.parent.mkdir(parents=True)
+    reasoning_log.write_text("original reasoning\n")
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version=artifact.stem,
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[artifact],
+        reasoning_logs=[reasoning_log],
+    )
+    key, _private, public = _keys()
+    manifest_path = _write_manifest(
+        repo,
+        _sign_unchecked(manifest, key),
+        version=artifact.stem,
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Add signed artifact")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+
+    artifact.write_text('{"citation_path":"nz/statute/example","body":"Changed."}\n')
+    reasoning_log.write_text("changed reasoning\n")
+    _git(repo, "add", str(artifact.relative_to(repo)), str(reasoning_log.relative_to(repo)))
+    _git(repo, "commit", "-m", "Change artifact and reasoning")
+
+    manifest["axiom_corpus_git"]["commit"] = _git(repo, "rev-parse", "HEAD")
+    manifest["applied_files"][0]["sha256"] = hashlib.sha256(artifact.read_bytes()).hexdigest()
+    manifest_path.write_text(
+        json.dumps(_sign_unchecked(manifest, key), indent=2, sort_keys=True) + "\n"
+    )
+    _git(repo, "add", str(manifest_path.relative_to(repo)))
+    _git(repo, "commit", "-m", "Re-sign artifact only")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert not any("corpus artifact" in issue for issue in result.issues)
+    assert any("signed reasoning log entry" in issue for issue in result.issues)
 
 
 def test_guard_ignores_noncanonical_manifest_until_it_authorizes_change(
