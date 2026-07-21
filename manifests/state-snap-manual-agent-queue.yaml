@@ -585,14 +585,19 @@ states:
       including OCR fallback for the two image-only appendix pages.
   - jurisdiction: us-wa
     name: Washington
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.dshs.wa.gov/esa/manuals/eaz
     target_manifest: manifests/us-wa-eaz-manual.yaml
     target_scope:
       jurisdiction: us-wa
       document_class: manual
-      version: 2026-05-27-wa-eaz-manual
+      version: 2026-07-21-wa-eaz-manual
+    notes: Complete current 200-page Washington DSHS EA-Z HTML manual snapshot.
+      The companion revision history, rule-change notifications, EA-Z WAC index
+      and underlying WAC chapters, federal SNAP authorities, and linked forms and
+      desk aids remain separate source scopes; this status does not claim complete
+      Washington SNAP legal authority.
   - jurisdiction: us-wv
     name: West Virginia
     queue_status: source_refetch_required

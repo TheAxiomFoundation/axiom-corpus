@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]> <html class="ie8" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" version="XHTML+RDFa 1.1" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#"> <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!--><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" version="XHTML+RDFa 1.1" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#"> <!--<![endif]-->
+
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]},feature_flags:["soft_nav"]};(window.NREUM||(NREUM={})).loader_config={licenseKey:"NRJS-595d3388f4cbdcc440c",applicationID:"1100846724",browserID:"1120286558"};;/*! For license information please see nr-loader-rum-1.318.0.min.js.LICENSE.txt */
+(()=>{var e={8122(e,t,r){"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),s=0===Object.keys(r).length?e:r;for(let o in s)if(void 0!==e[o])try{if(null===e[o]){r[o]=null;continue}Array.isArray(e[o])&&Array.isArray(t[o])?r[o]=Array.from(new Set([...e[o],...t[o]])):e[o]instanceof Map||e[o]instanceof Set||e[o]instanceof Date||e[o]instanceof RegExp?r[o]=e[o]:"object"==typeof e[o]&&null!==t[o]&&"object"==typeof t[o]?r[o]=i(e[o],t[o]):r[o]=e[o]}catch(e){r[o]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},2555(e,t,r){"use strict";r.d(t,{f:()=>o});var n=r(384),i=r(8122);const s={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function o(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}r.d(t,["D",0,e=>(0,i.a)(e,s)])},7699(e,t,r){"use strict";var n=r(860);const i={[n.K7.logging]:!0,[n.K7.genericEvents]:!0,[n.K7.jserrors]:!0,[n.K7.ajax]:!0};r.d(t,["It",0,1e6,"KC",0,i,"qh",0,"SESSION_ERROR"])},9324(e,t,r){"use strict";r.d(t,["xv",0,"1.318.0"])},981(e,t,r){"use strict";r.d(t,["R",0,{AJAX:"AjaxRequest",PA:"PageAction",UA:"UserAction",BP:"BrowserPerformance",WS:"WebSocket",SPV:"SecurityPolicyViolation",JSE:"JavaScriptError",LOG:"Log",PVE:"PageView",PVT:"PageViewTiming",SR:"SessionReplay",ST:"SessionTrace",BI:"BrowserInteraction"}])},6154(e,t,r){"use strict";var n=r(1863);const i="undefined"!=typeof window&&!!window.document,s="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),o=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),a=Boolean("hidden"===o?.document?.visibilityState),c=""+o?.location,u=/iPad|iPhone|iPod/.test(o.navigator?.userAgent),d=u&&"undefined"==typeof SharedWorker,l=((()=>{const e=o.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)());r.d(t,["OF",0,u,"RI",0,i,"WN",0,l,"bv",0,s,"gm",0,o,"m",0,c,"mw",0,a,"sb",0,d,"zk",0,()=>{const e=o?.performance?.getEntriesByType?.("navigation")?.[0];if(e&&e.responseStart>0&&e.responseStart<o.performance.now())return e}])},3241(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(6154);function i(e={}){try{n.gm.dispatchEvent(new CustomEvent("newrelic",{detail:e}))}catch(e){}}},1687(e,t,r){"use strict";r.d(t,{Ak:()=>a,Ze:()=>u,x3:()=>c});var n=r(3241),i=r(3606),s=r(860),o=r(2646);function a(e,t){if(!e)return;const r={staged:!1,priority:s.P3[t]||0};e.runtime.drainRegistry.get(t)||e.runtime.drainRegistry.set(t,r)}function c(e,t){if(!e)return;const r=e.runtime.drainRegistry;r&&(r.get(t)&&r.delete(t),l(e,t,!1),r.size&&d(e))}function u(e,t="feature",r=!1){if(e){if(!e.runtime.drainRegistry.get(t)||r)return l(e,t);e.runtime.drainRegistry.get(t).staged=!0,d(e)}}function d(e){if(!e)return;const t=Array.from(e.runtime.drainRegistry);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{e.runtime.drainRegistry.delete(t),l(e,t)}))}function l(e,t,r=!0){if(!e)return;const s=e.ee,a=i.i.handlers;if(s&&!s.aborted&&s.backlog&&a){if((0,n.W)({type:"lifecycle",name:"drain",feature:t}),r){const e=s.backlog[t],r=a[t];if(r){for(let t=0;e&&t<e.length;++t)f(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0].context()instanceof o.y&&!t[0].listeners(e).includes(t[1])&&t[0].on(e,t[1])})})}}s.isolatedBacklog||delete a[t],s.backlog[t]=null,s.emit("drain-"+t,[])}}function f(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],s=e[2];n.apply(i,s)}})}},7836(e,t,r){"use strict";var n=r(384),i=r(8990),s=r(2646),o=r(5607);const a="nr@context:".concat(o.W),c=function e(t,r){var n={},o={},d={},l=!1;try{l=16===r.length&&u.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,s){!1!==s&&(s=!0);if(c.aborted&&!i)return;t&&s&&t.emit(e,r,n);var a=g(n);m(e).forEach(e=>{e.apply(a,r)});var u=v()[o[e]];u&&u.push([f,e,r,a]);return a},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{o[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[o[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof s.y?e:e?(0,i.I)(e,a,()=>new s.y(a)):new s.y(a)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return d[t]=d[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),u=(0,n.Zm)();u.ee||(u.ee=c),r.d(t,["P",0,a,"ee",0,c])},2646(e,t,r){"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},9908(e,t,r){"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,s){s?(s.buffer([e],i),s.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},3606(e,t,r){"use strict";r.d(t,{i:()=>s});var n=r(9908);s.on=o;var i=s.handlers={};function s(e,t,r,s){o(s||n.d,i,e,t,r)}function o(e,t,r,i,s){s||(s="feature"),e||(e=n.d);var o=t[s]=t[s]||{};(o[r]=o[r]||[]).push([e,i])}},3878(e,t,r){"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function s(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>s,jT:()=>n,sp:()=>i})},5607(e,t,r){"use strict";const n=(0,r(9566).bz)();r.d(t,["W",0,n])},9566(e,t,r){"use strict";r.d(t,{LA:()=>o,bz:()=>s});var n=r(6154);function i(e,t){return e?15&e[t]:16*Math.random()|0}function s(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("").map(e=>"x"===e?i(t,r++).toString(16):"y"===e?(3&i()|8).toString(16):e).join("")}function o(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,s=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const o=[];for(var a=0;a<e;a++)o.push(i(r,s++).toString(16));return o.join("")}},2614(e,t,r){"use strict";r.d(t,["BB",0,18e5,"Wt",0,"NRBA_SESSION::","iL",0,{SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},"tS",0,{STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},"wk",0,144e5])},1863(e,t,r){"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944(e,t,r){"use strict";r.d(t,{R:()=>i});var n=r(3241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},8990(e,t,r){"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},6389(e,t,r){"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},1910(e,t,r){"use strict";r.d(t,{i:()=>s});var n=r(944);const i=new Map;function s(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e?e.toString():"",r=t.includes("[native code]"),s=t.includes("nrWrapper");return r||s||(0,n.R)(64,e?.name||t),i.set(e,r),r})}},5289(e,t,r){"use strict";r.d(t,{GG:()=>o,Qr:()=>c,sB:()=>a});var n=r(3878),i=r(6389);function s(){return"undefined"==typeof document||"complete"===document.readyState}function o(e,t){if(s())return e();const r=(0,i.J)(e),o=setInterval(()=>{s()&&(clearInterval(o),r())},500);(0,n.sp)("load",r,t)}function a(e){if(s())return e();(0,n.DD)("DOMContentLoaded",e)}function c(e){if(s())return e();(0,n.sp)("popstate",e)}},384(e,t,r){"use strict";r.d(t,{Zm:()=>c,bQ:()=>d,dV:()=>u,pV:()=>l});var n=r(6154),i=r(1863),s=r(944),o=r(1910);const a={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function c(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function u(){let e=c();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,o.i)(...Object.values(e.o))),e}function d(e,t){let r=c();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t,2===Object.keys(r.initializedAgents).length&&(0,s.R)(69)}function l(){return function(){let e=c();const t=e.info||{};e.info={beacon:a.beacon,errorBeacon:a.errorBeacon,...t}}(),function(){let e=c();const t=e.init||{};e.init={...t}}(),u(),function(){let e=c();const t=e.loader_config||{};e.loader_config={...t}}(),c()}r.d(t,["NT",0,a])},2843(e,t,r){"use strict";r.d(t,{G:()=>s,u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}function s(e,t,r){(0,n.sp)("pagehide",e,t,r)}},3969(e,t,r){"use strict";const n=r(860).K7.metrics;r.d(t,["TZ",0,n,"XG",0,"storeEventMetrics","xV",0,"storeSupportabilityMetrics"])},6630(e,t,r){"use strict";const n=r(860).K7.pageViewEvent;r.d(t,["T",0,n])},782(e,t,r){"use strict";const n=r(860).K7.pageViewTiming;r.d(t,["T",0,n])},4234(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(1687);class i{constructor(e,t){this.agentRef=e,this.ee=e?.ee,this.featureName=t,this.blocked=!1}deregisterDrain(){(0,n.x3)(this.agentRef,this.featureName)}}},7767(e,t,r){"use strict";var n=r(6154);r.d(t,["V",0,e=>n.RI&&!0===e?.privacy.cookies_enabled])},8362(e,t,r){"use strict";r.d(t,{d:()=>s});var n=r(9566),i=r(1741);class s extends i.W{agentIdentifier=(0,n.LA)(16)}},1741(e,t,r){"use strict";r.d(t,{W:()=>s});var n=r(944),i=r(4261);class s{#e(e,...t){if(this[e]!==s.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e,t=!1){return this.#e(i.Dl,e,t)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e("log",e,t)}start(){return this.#e("start")}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},4261(e,t,r){"use strict";r.d(t,["BL",0,"finished","CH",0,"recordReplay","Dl",0,"setUserId","Fw",0,"setPageViewName","PA",0,"setCurrentRouteName","Pv",0,"consent","Tb",0,"pauseReplay","U2",0,"addToTrace","V1",0,"measure","Wb",0,"wrapLogger","bt",0,"setErrorHandler","cD",0,"setCustomAttribute","dT",0,"interaction","eY",0,"register","fF",0,"recordCustomEvent","hG",0,"addPageAction","k6",0,"addRelease","nb",0,"setApplicationVersion","o5",0,"noticeError"])},1738(e,t,r){"use strict";r.d(t,{U:()=>l,Y:()=>d});var n=r(3241),i=r(9908),s=r(1863),o=r(944),a=r(3969),c=r(8362),u=r(860);function d(e,t,r,s){const d=s||r;!d||d[e]&&d[e]!==c.d.prototype[e]||(d[e]=function(){(0,i.p)(a.xV,["API/"+e+"/called"],void 0,u.K7.metrics,r.ee),(0,n.W)({drained:!!r.runtime?.activatedFeatures,type:"data",name:"api",feature:"api-"+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,o.R)(23,e)}})}function l(e,t,r,n,o){const a=e.info;null===r?delete a.jsAttributes[t]:a.jsAttributes[t]=r,(o||null===r)&&(0,i.p)("api-"+n,[(0,s.t)(),t,r],void 0,"session",e.ee)}},8374(e,t,r){r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860(e,t,r){"use strict";const n="events",i="jserrors",s="browser/blobs",o="browser/logs",a={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations"},c={[a.pageViewEvent]:1,[a.pageViewTiming]:2,[a.metrics]:3,[a.jserrors]:4,[a.softNav]:5,[a.ajax]:6,[a.sessionTrace]:7,[a.sessionReplay]:8,[a.logging]:9,[a.genericEvents]:10},u={[a.pageViewEvent]:"rum",[a.pageViewTiming]:n,[a.ajax]:n,[a.softNav]:n,[a.metrics]:i,[a.jserrors]:i,[a.sessionTrace]:s,[a.sessionReplay]:s,[a.logging]:o,[a.genericEvents]:"ins"};r.d(t,["$J",0,u,"K7",0,a,"P3",0,c,"XX",0,i,"Yy",0,o,"df",0,s])}};const t={};function r(n){const i=t[n];if(void 0!==i)return i.exports;const s=t[n]={exports:{}};return e[n](s,s.exports,r),s.exports}r.m=e,r.d=(e,t)=>{if(Array.isArray(t))for(var n=0;n<t.length;){var i=t[n++],s=t[n++];r.o(e,i)?0===s&&n++:0===s?Object.defineProperty(e,i,{enumerable:!0,value:t[n++]}):Object.defineProperty(e,i,{enumerable:!0,get:s})}else for(var i in t)r.o(t,i)&&!r.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((t,n)=>(r.f[n](e,t),t),[])),r.u=e=>"nr-rum-1.318.0.min.js",r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{const e={},t="NRBA-1.318.0.PROD:";r.l=(n,i,s,o)=>{if(e[n])return void e[n].push(i);let a,c;if(void 0!==s){const e=document.getElementsByTagName("script");for(var u=0;u<e.length;u++){const r=e[u];if(r.getAttribute("src")==n||r.getAttribute("data-webpack")==t+s){a=r;break}}}if(!a){c=!0;var d={296:"sha512-l/aSvO0UYzQns1WyMlY2r8pdkmVR0o/Rze4wpZR98a+X8aP+uRfcG9NMVI6fcdpy4uRK5azdx+CgSn8/UKULRw=="};a=document.createElement("script"),a.charset="utf-8",r.nc&&a.setAttribute("nonce",r.nc),a.setAttribute("data-webpack",t+s),a.src=n,0!==a.src.indexOf(window.location.origin+"/")&&(a.crossOrigin="anonymous"),d[o]&&(a.integrity=d[o])}e[n]=[i];const l=(t,r)=>{a.onerror=a.onload=null,clearTimeout(f);const i=e[n];if(delete e[n],a.parentNode?.removeChild(a),i?.forEach(e=>e(r)),t)return t(r)},f=setTimeout(l.bind(null,void 0,{type:"timeout",target:a}),12e4);a.onerror=l.bind(null,a.onerror),a.onload=l.bind(null,a.onload),c&&document.head.appendChild(a)}})(),r.r=e=>{Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.p="https://js-agent.newrelic.com/",(()=>{const e={374:0,840:0};r.f.j=(t,n)=>{let i=r.o(e,t)?e[t]:void 0;if(0!==i)if(i)n.push(i[2]);else{const s=new Promise((r,n)=>i=e[t]=[r,n]);n.push(i[2]=s);const o=r.p+r.u(t),a=new Error,c=n=>{if(r.o(e,t)&&(i=e[t],0!==i&&(e[t]=void 0),i)){const e=n&&("load"===n.type?"missing":n.type),r=n&&n.target&&n.target.src;a.message="Loading chunk "+t+" failed: ("+e+": "+r+")",a.name="ChunkLoadError",a.type=e,a.request=r,i[1](a)}};r.l(o,c,"chunk-"+t,t)}};const t=(t,n)=>{let[i,s,o]=n;var a,c,u=0;if(i.some(t=>0!==e[t])){for(a in s)r.o(s,a)&&(r.m[a]=s[a]);if(o)o(r)}for(t&&t(n);u<i.length;u++)c=i[u],r.o(e,c)&&e[c]&&e[c][0](),e[c]=0},n=self["webpackChunk:NRBA-1.318.0.PROD"]=self["webpackChunk:NRBA-1.318.0.PROD"]||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})(),(()=>{"use strict";r(8374);var e=r(8362),t=r(860);const n=Object.values(t.K7);var i=r(384),s=r(1741);var o=r(2555),a=r(981);t.K7.genericEvents,a.R.PA,a.R.UA,a.R.BP;const c="experimental.resources",u="register",d=(t.K7.ajax,"none"),l=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var f=r(2614),g=r(944),p=r(8122);const m="[data-nr-mask]",h=e=>(0,p.a)(e,(()=>{const e={feature_flags:[],experimental:{register:!1,resources:!1},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0,capture_payloads:d},api:{register:{get enabled(){return e.feature_flags.includes(u)||e.experimental.register},set enabled(t){e.experimental.register=t},duplicate_data_to_container:!1}},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(c)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:f.wk,inactiveMs:f.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){l(t)?e.mask_selector="".concat(t,",").concat(m):""===t||null===t?e.mask_selector=m:(0,g.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){l(t)?e.block_selector+=",".concat(t):""!==t&&(0,g.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,g.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]},web_sockets:{enabled:!1}}})());var v=r(6154),b=r(9324);let y=0;const _={buildEnv:"PROD",distMethod:"CDN",version:b.xv,originTime:v.WN},w={consented:!1},R={activatedFeatures:void 0,appMetadata:{},configured:!1,get consented(){return this.session?.state?.consent||w.consented},set consented(e){w.consented=e},customTransaction:void 0,denyList:[],disabled:!1,drainRegistry:new Map,harvester:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++y}};var x=r(7836),A=r(3241);const k={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0};function S(e,t={},n,a){let{init:c,info:u,loader_config:d,runtime:l={},exposed:f=!0}=t;if(!u){const e=(0,i.pV)();c=e.init,u=e.info,d=e.loader_config}var g;e.init=h(c||{}),e.loader_config=(g=d||{},(0,p.a)(g,k)),u.jsAttributes??={},v.bv&&(u.jsAttributes.isWorker=!0),e.info=(0,o.D)(u);const m=e.init;e.runtime??=(e=>{const t=(0,p.a)(e,R),r=Object.keys(_).reduce((e,t)=>(e[t]={value:_[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)})(l),m.proxy.assets&&(e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e})(m.proxy.assets),e.runtime.configured||(Object.defineProperty(e,"beacons",{get:()=>[e.info.beacon,e.info.errorBeacon,e.init.proxy.assets,e.init.proxy.beacon].filter(Boolean)}),Object.defineProperty(e.runtime,"denyList",{get:()=>[...e.init.ajax.deny_list||[],...e.init.ajax.block_internal?e.beacons:[]]}),e.runtime.ptid=e.agentIdentifier,function(e){const t=(0,i.pV)();Object.getOwnPropertyNames(s.W.prototype).forEach(r=>{const n=s.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let i=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return i?i(...t):n})})}(e),e.runtime.loaderType=n,e.ee=x.ee.get(e.agentIdentifier),e.exposed=f,(0,A.W)({drained:!!e.runtime.activatedFeatures,type:"lifecycle",name:"initialize",feature:void 0,data:e.config}),e.runtime.configured=!0)}var T=r(9908),E=r(1863),j=r(4261),P=r(1738);var N=r(1687),O=r(4234),M=r(5289),I=r(7767);function V(e){return!!(0,i.dV)().o.MO&&(0,I.V)(e)&&!0===e?.session_trace.enabled}var D=r(6389),W=r(7699);const B=new WeakSet;class K extends O.W{constructor(e,t){super(e,t),this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,D.J)(()=>{(0,N.Ak)(e,this.featureName),t()}))}):(0,N.Ak)(e,t)}importAggregator(e,t,n={}){if(this.featAggregate)return;const i=async()=>{if(await this.deferred,this.#t(e),!(0,o.f)(e.info))return(0,g.R)(43),e.ee.abort(),void this.loadedSuccessfully(!1);let i;try{if((0,I.V)(e.init)){const{setupAgentSession:t}=await r.e(296).then(r.bind(r,8391));i=t(e)}}catch(e){(0,g.R)(20,e),this.ee.emit("internal-error",[e]),(0,T.p)(W.qh,[e],void 0,this.featureName,this.ee)}try{if(!this.#r(this.featureName,i,e.init))return(0,N.Ze)(this.agentRef,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:r}=await t();this.featAggregate=new r(e,n),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,g.R)(34,e),this.abortHandler?.(),(0,N.Ze)(this.agentRef,this.featureName,!0),this.loadedSuccessfully(!1),this.ee&&this.ee.abort()}};v.RI?(0,M.GG)(()=>i(),!0):i()}#r(e,r,n){if(this.blocked)return!1;switch(e){case t.K7.sessionReplay:return V(n)&&!!r;case t.K7.sessionTrace:return!!r;default:return!0}}#t(e){if(!B.has(e)&&(B.add(e),!(0,o.f)(e.info))){const t=(0,i.pV)();let r={...t.info?.jsAttributes};try{r={...r,...e.info?.jsAttributes}}catch(e){}S(e,{...t,info:{...t.info,jsAttributes:r},runtime:e.runtime},e.runtime.loaderType)}}}var C=r(6630);class U extends K{static featureName=C.T;constructor(e){var t;super(e,C.T),this.setupInspectionEvents(),t=e,(0,P.Y)(j.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,T.p)("api-"+j.Fw,[(0,E.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>r.e(296).then(r.bind(r,1324)))}setupInspectionEvents(){const e=(e,t)=>{e&&(0,A.W)({timeStamp:e.timeStamp,loaded:"complete"===e.target.readyState,type:"window",name:t,data:e.target.location+""})};(0,M.sB)(t=>{e(t,"DOMContentLoaded")}),(0,M.GG)(t=>{e(t,"load")}),(0,M.Qr)(t=>{e(t,"navigate")}),this.ee.on(f.tS.UPDATE,(e,t)=>{(0,A.W)({type:"lifecycle",name:"session",data:t})})}}class L extends e.d{constructor(e){var t;(super(),v.gm)?(this.features={},(0,i.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(U),S(this,e,e.loaderType||"agent"),t=this,(0,P.Y)(j.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return(0,P.U)(t,e,r,j.cD,n);(0,g.R)(40,typeof r)}else(0,g.R)(39,typeof e)},t),function(e){(0,P.Y)(j.Dl,function(t,r=!1){if("string"!=typeof t&&null!==t)return void(0,g.R)(41,typeof t);const n=e.info.jsAttributes["enduser.id"];r&&null!=n&&n!==t?(0,T.p)("api-setUserIdAndResetSession",[t],void 0,"session",e.ee):(0,P.U)(e,"enduser.id",t,j.Dl,!0)},e)}(this),function(e){(0,P.Y)(j.nb,function(t){if("string"==typeof t||null===t)return(0,P.U)(e,"application.version",t,j.nb,!1);(0,g.R)(42,typeof t)},e)}(this),function(e){(0,P.Y)("start",function(){e.ee.emit("manual-start-all")},e)}(this),function(e){(0,P.Y)(j.Pv,function(t=!0){if("boolean"==typeof t){if((0,T.p)("api-"+j.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum()})}}else(0,g.R)(65,typeof t)},e)}(this),this.run()):(0,g.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return n.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),r=[...this.desiredFeatures];r.sort((e,r)=>t.P3[e.featureName]-t.P3[r.featureName]),r.forEach(r=>{if(!e[r.featureName]&&r.featureName!==t.K7.pageViewEvent)return;const n=function(e){switch(e){case t.K7.ajax:return[t.K7.jserrors];case t.K7.sessionTrace:return[t.K7.ajax,t.K7.pageViewEvent];case t.K7.sessionReplay:return[t.K7.sessionTrace];case t.K7.pageViewTiming:return[t.K7.pageViewEvent];default:return[]}}(r.featureName).filter(e=>!(e in this.features));n.length>0&&(0,g.R)(36,{targetFeature:r.featureName,missingDependencies:n}),this.features[r.featureName]=new r(this)})}catch(e){(0,g.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,i.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}var G=r(2843),F=r(782);class H extends K{static featureName=F.T;constructor(e){super(e,F.T),v.RI&&((0,G.u)(()=>(0,T.p)("docHidden",[(0,E.t)()],void 0,F.T,this.ee),!0),(0,G.G)(()=>(0,T.p)("winPagehide",[(0,E.t)()],void 0,F.T,this.ee)),this.importAggregator(e,()=>r.e(296).then(r.bind(r,2117))))}}var z=r(3969);class Y extends K{static featureName=z.TZ;constructor(e){super(e,z.TZ),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9623)))}}new L({features:[U,H,Y],loaderType:"lite"})})()})();</script>
+<link rel="prev" href="/esa/income-table-contents/utility-chart" />
+<link rel="up" href="/esa/eligibility-z-manual-ea-z/income-table-contents" />
+<link rel="next" href="/esa/eligibility-z-manual-ea-z/interview-requirements" />
+<link rel="shortcut icon" href="https://www.dshs.wa.gov/sites/default/files/favicon_0.ico" type="image/vnd.microsoft.icon" />
+<meta name="description" content="Revised April 20, 2026 Purpose: This section contains rules and procedures for determining countable income for cash, medical, and Basic Food. WAC 182-509-0001 Countable income for Washington apple health programs. WAC 388-450-0162 How does the department count my income to determine if my assistance unit is eligible and how does the department calculate the amount of my cash" />
+<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="https://www.dshs.wa.gov/esa/income-table-contents/income-effect-income-and-deductions-eligibility-and-benefit-level" />
+<link rel="shortlink" href="https://www.dshs.wa.gov/node/603" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="LgIltX_nBMu-36yI4l_LAGh3rmHHlOzowSBWRVDkKe4" />
+  <meta name="msvalidate.01" content="AC0E60D06EB622D325278B4B6ABD2187" />
+  <title>Income - Effect of Income and Deductions on Eligibility and Benefit Level | DSHS</title>
+  <style>
+@import url("https://www.dshs.wa.gov/modules/system/system.base.css?thviji");
+</style>
+<style>
+@import url("https://www.dshs.wa.gov/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.core.min.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.theme.min.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.accordion.min.css?thviji");
+</style>
+<style>
+@import url("https://www.dshs.wa.gov/sites/all/modules/calendar/css/calendar_multiday.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/date/date_repeat_field/date_repeat_field.css?thviji");
+@import url("https://www.dshs.wa.gov/modules/field/theme/field.css?thviji");
+@import url("https://www.dshs.wa.gov/modules/node/node.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/picture/picture_wysiwyg.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/extlink/css/extlink.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/views/css/views.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/ckeditor/css/ckeditor.css?thviji");
+</style>
+<style>
+@import url("https://www.dshs.wa.gov/sites/all/modules/accordion_blocks/accordion_init.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/ctools/css/ctools.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/taxonomy_access/taxonomy_access.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/date/date_api/date.css?thviji");
+</style>
+<style>
+@import url("https://www.dshs.wa.gov/sites/all/themes/wa_dshs/css/bootstrap.min.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/themes/wa_dshs/css/style.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/themes/wa_dshs/less/watech.css?thviji");
+</style>
+    <!--[if lte IE 8]>
+  <script type="text/javascript" src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script src="https://www.dshs.wa.gov/sites/all/libraries/respondjs/respond.min.js?thviji"></script>
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>window.jQuery || document.write("<script src='/sites/all/modules/jquery_update/replace/jquery/1.12/jquery.min.js'>\x3C/script>")</script>
+<script>document.createElement( "picture" );</script>
+<script>jQuery.migrateMute=true;jQuery.migrateTrace=false;</script>
+<script src="//code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+<script>window.jQuery && window.jQuery.migrateWarnings || document.write("<script src='/sites/all/modules/jquery_update/replace/jquery-migrate/1.4.1/jquery-migrate.min.js'>\x3C/script>")</script>
+<script src="https://www.dshs.wa.gov/misc/jquery-extend-3.4.0.js?v=1.12.4"></script>
+<script src="https://www.dshs.wa.gov/misc/jquery-html-prefilter-3.5.0-backport.js?v=1.12.4"></script>
+<script src="https://www.dshs.wa.gov/misc/jquery.once.js?v=1.2"></script>
+<script src="https://www.dshs.wa.gov/misc/drupal.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/jquery_update/js/jquery_browser.js?v=0.0.1"></script>
+<script src="//code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+<script>window.jQuery.ui || document.write("<script src='/sites/all/modules/jquery_update/replace/ui/ui/minified/jquery-ui.min.js'>\x3C/script>")</script>
+<script src="https://www.dshs.wa.gov/misc/form-single-submit.js?v=7.105"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/entityreference/js/entityreference.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/accordion_blocks/accordion_init.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/google_analytics/googleanalytics.js?thviji"></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=G-GRXF41DXMH"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "G-GRXF41DXMH", {"groups":"default","anonymize_ip":true});gtag("config", "UA-75409032-1", {"groups":"default","anonymize_ip":true});</script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/extlink/js/extlink.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/js/bootstrap.min.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/js/plugins.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/js/general.js?thviji"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","setHasJsCookie":0,"ajaxPageState":{"theme":"wa_dshs","theme_token":"xuQv34phnD56r63g_J04S2u0dzkUtm7SCSGqmWgMMeA","js":{"sites\/all\/modules\/picture\/picturefill\/picturefill.min.js":1,"sites\/all\/modules\/picture\/picture.min.js":1,"sites\/all\/themes\/bootstrap\/js\/bootstrap.js":1,"sites\/all\/libraries\/respondjs\/respond.min.js":1,"\/\/code.jquery.com\/jquery-1.12.4.min.js":1,"0":1,"1":1,"2":1,"\/\/code.jquery.com\/jquery-migrate-1.4.1.min.js":1,"3":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/jquery_update\/js\/jquery_browser.js":1,"\/\/code.jquery.com\/ui\/1.10.2\/jquery-ui.min.js":1,"4":1,"misc\/form-single-submit.js":1,"sites\/all\/modules\/entityreference\/js\/entityreference.js":1,"sites\/all\/modules\/accordion_blocks\/accordion_init.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"https:\/\/www.googletagmanager.com\/gtag\/js?id=G-GRXF41DXMH":1,"5":1,"sites\/all\/modules\/extlink\/js\/extlink.js":1,"sites\/all\/themes\/wa_dshs\/js\/bootstrap.min.js":1,"sites\/all\/themes\/wa_dshs\/js\/plugins.js":1,"sites\/all\/themes\/wa_dshs\/js\/general.js":1},"css":{"modules\/system\/system.base.css":1,"misc\/ui\/jquery.ui.core.css":1,"misc\/ui\/jquery.ui.theme.css":1,"misc\/ui\/jquery.ui.accordion.css":1,"sites\/all\/modules\/calendar\/css\/calendar_multiday.css":1,"sites\/all\/modules\/date\/date_repeat_field\/date_repeat_field.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"sites\/all\/modules\/picture\/picture_wysiwyg.css":1,"sites\/all\/modules\/extlink\/css\/extlink.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/accordion_blocks\/accordion_init.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/taxonomy_access\/taxonomy_access.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/themes\/wa_dshs\/css\/bootstrap.min.css":1,"sites\/all\/themes\/wa_dshs\/css\/style.css":1,"sites\/all\/themes\/wa_dshs\/less\/watech.css":1}},"better_exposed_filters":{"views":{"landing_page_slider":{"displays":{"block":{"filters":[]}}},"red_banner":{"displays":{"block":{"filters":[]}}},"admin_landing_special_fields":{"displays":{"block":{"filters":[]},"block_1":{"filters":[]},"block_2":{"filters":[]}}}}},"googleanalytics":{"account":["G-GRXF41DXMH","UA-75409032-1"],"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"urlIsAjaxTrusted":{"\/esa\/income-table-contents\/income-effect-income-and-deductions-eligibility-and-benefit-level":true},"extlink":{"extTarget":0,"extClass":0,"extLabel":"(link is external)","extImgClass":0,"extIconPlacement":0,"extSubdomains":0,"extExclude":"","extInclude":"","extCssExclude":"","extCssExplicit":"","extAlert":0,"extAlertText":"This link will take you to an external web site.","mailtoClass":0,"mailtoLabel":"(link sends e-mail)","extUseFontAwesome":0},"bootstrap":{"anchorsFix":1,"anchorsSmoothScrolling":1,"formHasError":1,"popoverEnabled":1,"popoverOptions":{"animation":1,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":1,"html":0,"placement":"auto left","selector":"","trigger":"hover focus","delay":0,"container":"body"}}});</script>
+  <script>
+    /* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
+    window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var r=t.document.createElement("link"),a=t.document.getElementsByTagName("script")[0];r.rel="stylesheet",r.href=e[o&&n?0:o?1:2],a.parentNode.insertBefore(r,a)},r=new t.Image;r.onerror=function(){o(!1)},r.onload=function(){o(1===r.width&&1===r.height)},r.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};
+    grunticon( [ "/sites/all/themes/wa_dshs/grunticon/icons.data.svg.css", "/sites/all/themes/wa_dshs/grunticon/icons.data.png.css", "/sites/all/themes/wa_dshs/grunticon/icons.fallback.css" ] );
+  </script>
+  <noscript><link href="/sites/all/themes/wa_dshs/grunticon/icons.fallback.css" rel="stylesheet" /></noscript>
+</head>
+<body class="html not-front not-logged-in one-sidebar sidebar-first page-node page-node- page-node-603 node-type-book" >
+<div id="skip-link">
+  <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+</div>
+<div class="sticky-footer-body">
+<header id="navbar" role="banner" class="navbar container navbar-default">
+    <div class="navbar-header">
+              <a class="logo navbar-btn pull-left" href="/" title="Home">
+          <img src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/logo.png" alt="Home" />
+        </a>
+      
+              <a class="name navbar-brand" href="/" title="Home">Washington State Department of Social and Health Services</a>
+          </div>
+    <div class="search" role="search">
+      <label for="edit-search-block-form--2">How may we help you?</label>
+        <div class="region region-search">
+    <section id="block-search-form" class="block block-search clearfix">
+
+      
+  <form class="form-search content-search" action="/esa/income-table-contents/income-effect-income-and-deductions-eligibility-and-benefit-level" method="post" id="search-block-form" accept-charset="UTF-8"><div><div>
+      <h2 class="element-invisible">Search form</h2>
+    <div class="input-group"><input title="Enter the terms you wish to search for." placeholder="" class="form-control form-text" type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" /><span class="input-group-btn"><button type="submit" class="btn btn-primary">Search</button></span></div><div class="form-actions form-wrapper form-group" id="edit-actions"><button class="element-invisible btn btn-primary form-submit" type="submit" id="edit-submit" name="op" value="Search">Search</button>
+</div><input type="hidden" name="form_build_id" value="form-NdzNpLv9H4hwNZ5LPmFpvRNz2fPHoYK_dNqYivvHqnc" />
+<input type="hidden" name="form_id" value="search_block_form" />
+</div>
+</div></form>
+</section>
+  </div>
+    </div>
+</header>
+  <div class="main-menu">
+    <div class="button-wrap">
+      <ul class="menu-buttons">
+        <li class="menu">
+          <a class="menu-toggle">
+            <span class="menu-icon">
+              <span class="line-top line"></span>
+              <span class="line-middle line"></span>
+              <span class="line-bottom line"></span>
+            </span>Menu</a>
+        </li>
+        <li><a href="/office-locations" class="push-pin">
+            <span class="locator-icon"></span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="30px" height="35px" viewBox="140 -50 518 850">
+
+              <path fill="none" stroke="#000000" stroke-width="40" stroke-miterlimit="40" d="M396.065,792l-10.155-17.896
+			c-1.455-2.567-146.629-258.486-186.97-333.421c-25.627-47.655-55.543-125.467-55.543-187.953C143.397,113.377,256.721,0,396.012,0
+			c139.275,0,252.592,113.377,252.592,252.73c0,60.357-27.957,141.853-54.273,187.899
+			c-47.099,82.138-186.792,330.929-188.192,333.429L396.065,792z"></path>
+              <circle fill="#fff" stroke="#000000" stroke-width="40" stroke-miterlimit="10" cx="396" cy="251" r="101.5"></circle>
+            </svg>
+            Office<br />Locator</a>
+        </li>
+        <li><a href="/report-abuse-and-neglect" class="report-abuse">
+            <span class="report-icon"></span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 148.5 612 543" width="30px" height="30px">
+
+              <path class="warning-triangle" fill="none" stroke="#000000" stroke-width="30" stroke-miterlimit="10" d="M579.423,624.604L328.927,189.948
+			c-4.576-8.007-12.584-12.582-21.733-12.582c-9.152,0-17.157,4.575-21.733,12.582L32.673,626.892
+			c-11.438,19.444,5.719,37.746,21.733,37.746H559.98c13.725,0,24.02-11.438,24.02-25.164
+			C584,633.754,582.856,629.18,579.423,624.604z"></path>
+              <path class="exclamation" fill="#000" d="M278.254,356.574v122.337c0,15.135,12.612,27.747,27.747,27.747c15.134,0,27.746-12.612,27.746-27.747
+			V356.574c0-15.135-12.612-27.747-27.746-27.747C290.866,328.828,278.254,341.439,278.254,356.574z"></path>
+              <path class="exclamation" fill="#000" d="M271.948,564.674c0,18.918,15.135,35.313,34.053,35.313c18.918,0,34.052-16.396,34.052-35.313
+			c0-18.919-15.134-34.053-34.052-34.053C287.083,530.621,271.948,545.755,271.948,564.674"></path>
+            </svg>
+            Report<br />Abuse</a>
+        </li>
+              </ul>
+      <ul class="social">
+        <li><a href="https://www.facebook.com/WaStateDSHS"><span class="icon-facebook">Facebook</span></a></li>
+        <li><a href="https://twitter.com/waDSHS"><span class="icon-twitter">Twitter</span></a></li>
+        <li><a href="https://www.youtube.com/user/WashingtonStateDSHS"><span class="icon-youtube">YouTube</span></a></li>
+        <li><a href="https://www.linkedin.com/company/washingtondepartmentofsocialandhealthservices"><span class="icon-linkedin">LinkedIn</span></a></li>
+        <li><a href="https://dshswa.medium.com/"><span class="icon-medium">Medium</span></a></li>
+      </ul>
+    </div>
+    <nav role="navigation">
+                            <div class="region region-navigation">
+    <section id="block-menu-menu-needs-buckets" class="block block-menu clearfix">
+
+        <h2 class="block-title">By Need</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="/food-cash-medical" title="Food, Cash, Medical">Food, Cash, Medical</a></li>
+<li class="leaf"><a href="/housing-assistance" title="Housing Assistance">Housing Assistance</a></li>
+<li class="leaf"><a href="/child-support" title="Child Support">Child Support</a></li>
+<li class="leaf"><a href="/youth-services" title="Youth Services">Youth Services</a></li>
+<li class="leaf"><a href="/adult-care" title="Adult Care">Adult Care</a></li>
+<li class="leaf"><a href="/mental-health-services" title="Mental Health Services">Mental Health Services</a></li>
+<li class="last leaf"><a href="/disability-support" title="Disability Support">Disability Support</a></li>
+</ul>
+</section>
+<section id="block-menu-block-1" class="block block-menu-block clearfix">
+
+        <h2 class="block-title">By Administration</h2>
+    
+  <div class="menu-block-wrapper menu-block-1 menu-name-menu-administrations-menu parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-558"><a href="/altsa" title="Aging and Long-Term Support Administration">Aging and Long-Term Support Administration (ALTSA)</a></li>
+<li class="leaf menu-mlid-559"><a href="/bha" title="Behavioral Health Administration">Behavioral Health Administration (BHA)</a></li>
+<li class="leaf menu-mlid-561"><a href="/dda" title="Developmental Disabilities Administration">Developmental Disabilities Administration (DDA)</a></li>
+<li class="leaf menu-mlid-11829"><a href="/dvr" title="DVR">Division of Vocational Rehabilitation</a></li>
+<li class="leaf menu-mlid-562"><a href="/esa" title="Economic Services Administration">Economic Services Administration (ESA)</a></li>
+<li class="leaf menu-mlid-564"><a href="/ffa" title="Facilities, Finance and Analytics Administration">Facilities, Finance and Analytics Administration (FFA)</a></li>
+<li class="last collapsed menu-mlid-566"><a href="/os" title="Office of the Secretary">Office of the Secretary</a></li>
+</ul></div>
+
+</section>
+<section id="block-menu-menu-follow-us" class="block block-menu clearfix">
+
+        <h2 class="block-title">Follow Us</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="https://www.facebook.com/WaStateDSHS" title="Facebook">Facebook</a></li>
+<li class="leaf"><a href="https://twitter.com/waDSHS" title="Twitter">Twitter</a></li>
+<li class="leaf"><a href="https://www.youtube.com/user/WashingtonStateDSHS" title="YouTube">YouTube</a></li>
+<li class="last leaf"><a href="https://www.linkedin.com/company/washingtondepartmentofsocialandhealthservices" title="LinkedIn">LinkedIn</a></li>
+</ul>
+</section>
+<section id="block-menu-menu-quick-links" class="block block-menu clearfix">
+
+        <h2 class="block-title">Quick Links</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="/about-us" title="About Us">About Us</a></li>
+<li class="leaf"><a href="/office-locations" title="Locate a Service Office">Locate a Service Office</a></li>
+<li class="leaf"><a href="/contact-department-social-and-health-services" title="Contact Us">Contact Us</a></li>
+<li class="leaf"><a href="https://www.dshs.wa.gov/" title="Office of the Secretary">Office of the Secretary</a></li>
+<li class="last leaf"><a href="/report-abuse-and-neglect" title="Report Abuse">Report Abuse and Neglect</a></li>
+</ul>
+</section>
+  </div>
+          </nav>
+  </div>
+<div class="wrapper">
+      <header role="banner" id="page-header">
+        <div class="region region-header">
+    <section id="block-menu-block-10" class="block block-menu-block clearfix">
+
+        <h2 class="block-title">Economic Services Administration</h2>
+    
+  <div class="menu-block-wrapper menu-block-10 menu-name-menu-esa-primary-nav parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-581"><a href="/esa/about-economic-services-administration" title="About Economic Services Administration">About ESA</a></li>
+<li class="leaf menu-mlid-2937"><a href="/esa/esa-find-office" title="Find an ESA Office">Find an ESA Office</a></li>
+<li class="last leaf menu-mlid-1224"><a href="/esa/faq" title="FAQ">Frequently Asked Questions</a></li>
+</ul></div>
+
+</section>
+  </div>
+    </header> <!-- /#page-header -->
+  
+    
+  
+      <div class="breadcrumb-wrapper">
+      <div class="breadcrumb-container">
+        <ol class="breadcrumb"><li><a href="/">Home</a></li>
+<li class="breadcrumb-node-17"><a href="/esa/eligibility-z-manual-ea-z">Eligibility A-Z Manual (EA-Z)</a></li>
+<li class="breadcrumb-node-612"><a href="/esa/eligibility-z-manual-ea-z/income-table-contents">Income - Table of Contents</a></li>
+<li class="active"><span>Income - Effect of Income and Deductions on Eligibility and Benefit Level</span></li>
+</ol>      </div>
+    </div>
+    <div class="main-container container dshs-admin-unknown" role="main">
+    <div class="row">
+
+      <section class="main-col col-sm-9 col-sm-push-3" >
+        <a id="main-content"></a>
+                          <h1 class="page-header">Income - Effect of Income and Deductions on Eligibility and Benefit Level</h1>
+                                                                            <div class="region region-content">
+    <section id="block-system-main" class="block block-system clearfix">
+
+      
+  <div id="node-603" class="node node-book clearfix" about="/esa/income-table-contents/income-effect-income-and-deductions-eligibility-and-benefit-level" typeof="sioc:Item foaf:Document">
+
+  
+      <span property="dc:title" content="Income - Effect of Income and Deductions on Eligibility and Benefit Level" class="rdf-meta element-hidden"></span>
+  
+    <div class="content admin-id-8">
+    <div class="field field-name-field-created-on field-type-datetime field-label-inline clearfix"><div class="field-label">Created on:&nbsp;</div><div class="field-items"><div class="field-item even"><span  property="dc:date" datatype="xsd:dateTime" content="2019-07-30T00:00:00-07:00" class="date-display-single">Jul 30 2019</span></div></div></div><div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p><strong><a id="Top" name="Top"></a><strong>Revised April 20, 2026</strong></strong></p>
+<h2>Purpose:</h2>
+<p>This section contains rules and procedures for determining countable income for cash, medical, and Basic Food.</p>
+<h3><u><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-509-0001" target="_blank">WAC 182-509-0001</a></u> Countable income for Washington apple health programs.</h3>
+<h3><u><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0162" target="_blank">WAC 388-450-0162</a> </u>How does the department count my income to determine if my assistance unit is eligible and how does the department calculate the amount of my cash and Basic Food benefits?</h3>
+<ul>
+<li>
+<h4><a href="#Clarifying 388-450-0162">Clarifying Information</a> and <a href="#Worker 388-450-0162">Worker Responsibilities</a></h4>
+</li>
+</ul>
+<h3><u><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0165" target="_blank">WAC 388-450-0165</a></u> Gross earned income limit for TANF / SFA.</h3>
+<ul>
+<li>
+<h4><a href="#Clarifying 388-450-0165">Clarifying Information</a></h4>
+</li>
+</ul>
+<h3><u><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-450-0170" target="_blank">WAC 388-450-0170</a></u> Does the department provide an earned income deduction as an incentive for persons who receive TANF/SFA to work?</h3>
+<ul>
+<li>
+<h4><a href="#Clarifying 388-450-0170">Clarifying Information</a></h4>
+</li>
+</ul>
+<h3><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0177" target="_blank" title="Washington State Legislature"><u>WAC 388-450-0177</u> </a> Does the department offer an income deduction for the ABD cash program as an incentive for clients to work?</h3>
+<h3><a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0185" target="_blank"><u>WAC 388-450-0185</u> </a>What income deductions does the department allow when determining if I am eligible for food benefits and the amount of my monthly benefits?</h3>
+<ul>
+<li>
+<h4><a href="#Clarifying 388-450-0185">Clarifying Information</a></h4>
+</li>
+</ul>
+<h3><a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0190" target="_blank"><u>WAC 388-450-0190</u></a> How does the department figure my shelter cost income deduction for Basic Food?</h3>
+<ul>
+<li>
+<h4><a href="#Clarifying 388-450-0190">Clarifying Information</a> and <a href="#Worker 388-450-0190">Worker Responsibilities</a></h4>
+</li>
+</ul>
+<h3><a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0195" target="_blank"><u>WAC 388-450-0195</u> </a>Does the department use my utility costs when calculating my Basic Food or WASHCAP benefits?</h3>
+<ul>
+<li>
+<h4><a href="#Clarifying 388-450-0195">Clarifying Information</a> and <a href="#Worker 388-450-0195">Worker Responsibilities</a></h4>
+</li>
+</ul>
+<h3><u><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0200" target="_blank">WAC 388-450-0200</a></u> Will the medical expenses of elderly persons or individuals with disabilities in my assistance unit be used as an income deduction for Basic Food?</h3>
+<ul>
+<li>
+<h4><a href="#388-450-0200">Clarifying Information</a> and <a href="#Worker 388-450-0200">Worker Responsibilities</a></h4>
+</li>
+</ul>
+<h3>Cost Of Living Adjustment (COLA)</h3>
+<ul>
+<li>
+<h4><a href="#COLA">Clarifying Information</a></h4>
+</li>
+</ul>
+<hr />
+<h3><a id="Clarifying 388-450-0162" name="Clarifying 388-450-0162"></a>Clarifying Information - <u><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0162" target="_blank">WAC 388-450-0162</a></u></h3>
+<ul>
+<li><a href="https://www.dshs.wa.gov/esa/income-table-contents/utility-chart">Utility Chart</a></li>
+</ul>
+<ol>
+<li>We reduce the cash or Basic Food benefit amount by any sanction penalties or overpayment deductions before issuing a benefit.</li>
+<li>For information on calculations to determine the cash benefit amount for the first month of eligibility, see <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0225" target="_blank" title="WAC 388-450-0225">WAC 388-450-0225</a>.</li>
+<li>For cash assistance, when an AU contains eight or more people we calculate the benefit level by subtracting the countable income from the appropriate payment standard. The grant payment <strong>can't</strong> exceed the maximum monthly payment of $1,338.00. See <ins><a href="https://apps.leg.wa.gov/WAC/default.aspx?cite=388-478-0020">WAC 388-478-0020</a></ins> for cash assistance payment standards.</li>
+</ol>
+<div class="callout callout-left"><strong>NOTE:</strong> As of 7/1/2018 means testing for non-needy TANF caregivers is no longer required.  Income verification for a non-needy caregivers is no longer required unless they are applying for other benefits.</div>
+<h4><strong>How to Calculate</strong> <strong>Basic Food Benefits</strong></h4>
+<p>Staff must understand how to calculate Basic Food benefits in order to explain how a client's income and circumstances affect their benefits. Use the following procedures to determine an AU's Basic Food benefits.</p>
+<p><strong>Gross income:</strong></p>
+<ol>
+<li>Determine total gross income for all AUs as follows:
+<ul>
+<li>Include all dollar and cent amounts when calculating;</li>
+<li>Add all non-excluded earned income from all sources;</li>
+<li>Add all non-excluded unearned income from all sources;</li>
+<li>Add all deemed and allocated income;</li>
+<li>Subtract legally obligated child support payments made by an AU member to or for a person who isn't a member of the AU.</li>
+</ul>
+</li>
+<li>Compare total gross income to the gross income standard.</li>
+<li>Deny the application or terminate benefits for AUs with income above the gross income standard under <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-478-0060" target="_blank">WAC 388-478-0060</a> <em>unless</em> the AU:
+<ul>
+<li>Includes an elderly or disabled person; or</li>
+<li>Is categorically eligible (CE) under <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-414-0001" target="_blank" title="WAC 388-414-0001">WAC 388-414-0001</a>.</li>
+</ul>
+</li>
+<li>Determine net income for AUs that meet the gross income standard and for AUs containing an elderly or disabled member.</li>
+</ol>
+<h4><strong>Net income: </strong></h4>
+<p>Start with all dollar and cent amounts for income not excluded for Basic Food and all allowable expenses.</p>
+<ol>
+<li>Subtract the following from the AU’s gross income:
+<ul>
+<li>The appropriate standard deduction based on AU size;</li>
+<li>The earned income deduction, if appropriate, which is 20% of gross earned income;</li>
+<li>Out-of-pocket dependent care expenses;</li>
+<li>Allowable non-reimbursable medical expenses over $35 for persons in the AU who are elderly or disabled.</li>
+</ul>
+</li>
+<li>Calculate the shelter cost income deduction:
+<ul>
+<li>Start with the AU’s allowable monthly shelter costs including the utility deduction;</li>
+<li>Subtract ½ of the result from step 1 above.
+<ul>
+<li>If the AU includes a person who is elderly or has a disability, we use the result from step b above as the shelter cost income deduction.</li>
+<li>If the AU <strong>doesn't</strong> include an elderly or disabled person, we use the lesser amount of the result from step b or the maximum shelter deduction for these households under <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0190" target="_blank">WAC 388-450-0190</a>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Take the result from step 1. Subtract the result from step 2 to calculate the AU’s net income. Round this value to the nearest whole dollar (Round up from $.50 and down from $.49.)</li>
+<li>Compare net income from step 3 to the net income standard.</li>
+</ol>
+<h4><strong>Eligibility:</strong></h4>
+<p>Deny or terminate benefits if they aren't CE under <a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-414-0001" target="_blank">WAC 388-414-0001</a> and their net income is over the net income limit under <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-478-0060" target="_blank">WAC 388-478-0060</a>.</p>
+<h4><strong>Benefit level:</strong></h4>
+<p><strong>For eligible AUs, determine their monthly benefit level by using the allotment formula or basis of issuance tables:</strong></p>
+<p><strong>Allotment formula:</strong></p>
+<ul>
+<li>Multiply the AU's net income by 30%;</li>
+<li>Round this amount up to the next whole dollar; and</li>
+<li>Subtract the result from the Maximum Allotment for the number of eligible AU members.</li>
+</ul>
+<h3><a id="Worker 388-450-0162" name="Worker 388-450-0162"></a>Worker Responsibilities - <u><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0162" target="_blank">WAC 388-450-0162</a></u></h3>
+<p>In an emergency situation when ACES isn't available, calculate benefits for an AU eligible for Basic Food benefits by using Steps 1 - 3 above.</p>
+<p>ACES determines benefits for AUs appropriately based on the circumstances of the household including citizenship and immigration status. For households with non-citizens members, ensure that you code the Alien Status on the Client Information page in ACES 3G correctly and update an immigrant’s information at recertification.</p>
+<hr />
+<h3><a id="Clarifying 388-450-0165" name="Clarifying 388-450-0165"></a>Clarifying Information - <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0165" target="_blank">WAC 388-450-0165</a></h3>
+<p>To find the gross earned income limit for TANF/SFA, see <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-478-0035" target="_blank" title="WAC 388-478-0035">WAC 388-478-0035</a>, Maximum earned income limits for TANF and SFA.</p>
+<hr />
+<h3><a id="Clarifying 388-450-0170" name="Clarifying 388-450-0170"></a>Clarifying Information - <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0170" target="_blank">WAC 388-450-0170</a></h3>
+<ol>
+<li>If a client doesn't report income timely and we later discover this income, we recalculate the client's benefits as if they had reported timely and determine if there is a benefit error. Clients still receive the family earnings disregard, the allocated household income disregard (if eligible) and the 50% earned income incentive.</li>
+<li>ABD clients receive an earned income incentive and as described in <a href="https://app.leg.wa.gov/WAC/default.aspx?cite=388-450-0177">WAC 388-450-0177</a>, ABD earned income incentive .</li>
+<li>When we determine the dependent care maximum deduction, we use a child's age on the first day of the month as the child's age for that month (e.g., If a child turns two on August 15, we consider the child as under two for August and two years of age in September).</li>
+</ol>
+<hr />
+<h3><a id="Clarifying 388-450-0185" name="Clarifying 388-450-0185"></a>Clarifying Information - <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0185" target="_blank">WAC 388-450-0185</a></h3>
+<p>For information on the shelter deductions, see <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0190" target="_blank">WAC 388-450-0190</a>.</p>
+<p>For information on utility allowances, see <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0195" target="_blank">WAC 388-450-0195</a>.</p>
+<p>For information on medical deductions, see <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0200">WAC 388-450-0200</a>.</p>
+<p>Topics related to the above WAC include:</p>
+<ul>
+<li><a href="#Standard">Standard Deductions</a></li>
+<li><a href="#child">Child Support Payments</a></li>
+<li><a href="#Dependent">Dependent Care Deductions</a></li>
+<li><a href="#deductionsforau's">Deductions for AUs with special circumstances</a></li>
+</ul>
+<h4><a id="Standard" name="Standard"></a> Standard Deduction</h4>
+<ol>
+<li>The standard deduction for each household size is updated each October to 8.31% of the net income eligibility standard for household sizes one through six. Households of six or more are capped at 8.31% of the net income standard for a household of six. </li>
+<li>We only count eligible AU members for the standard deduction. We don't count ineligible members such as someone disqualified as an ineligible immigrant, or for an intentional program violation (IPV). We also don't count non-members such as ineligible students or someone who lives in the residence but isn't an AU member under <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-408-0035" target="_blank" title="WAC 388-408-0035">WAC 388-408-0035</a>.</li>
+</ol>
+<h4><strong><a id="child" name="child"></a></strong>Child Support Payments</h4>
+<ol>
+<li>We exempt legally obligated child support payments from gross income prior to administering the gross income test.</li>
+<li>We exempt the lesser of the amount paid or the amount legally obligated. We don't exempt voluntary amounts paid over the legal obligation.<br />
+<div class="callout"><strong>NOTE: </strong>We allow an amount over the monthly support order if it's to repay back child support the client is legally obligated to pay.</div>
+</li>
+<li>We don't exempt payments that aren't legally obligated. Examples of payments that don't qualify for this exemption are voluntary payments and contributions for a child's needs not specified in the court order.</li>
+<li>Clients don't have to report changes in the amount of child support they pay. We don't consider failure to pay child support as a change of circumstance. We are required to act on a change if clients report an increase or decrease in child support.</li>
+<li>In addition to support paid for children outside the home, we allow the exemption when clients pay support for children now in the AU when the support is:
+<ol>
+<li>Legally obligated; and</li>
+<li>For a period of time the child was outside the support payer's home.</li>
+</ol>
+</li>
+<li>If someone outside the AU consistently pays the child support obligation, we allow the child support exemption only if the AU member must repay the amount under a bona fide loan agreement.</li>
+<li>If a child support order requires the client to make an in-kind child support payment instead of, or in addition to a cash payment, we allow the amount the client pays for this expense as a child support exemption. Examples of these in-kind orders include requirements for the non-custodial parent to pay a portion of child care or medical costs.</li>
+</ol>
+<h4><a id="Dependent" name="Dependent"></a>Dependent Care Deductions</h4>
+<ol>
+<li>We allow all out-of-pocket costs for dependent care for the dependent care deduction. This deduction is <strong>not limited</strong> based on the age of the person receiving care.</li>
+<li>Only verify dependent care expenses when questionable.</li>
+<li>Allow activity or other fees necessary to participate in the care.</li>
+<li>Out-of-pocket travel expenses incurred when transporting dependents to and from a child care provider are allowable as part of the Basic Food dependent care deduction.<br />
+<div class="callout"><strong>EXAMPLE</strong>
+<p>The day care center is located on the route the AU member drives to work. Mileage doesn't change for a stop at the day care center. The AU isn't eligible for a dependent care transportation deduction as no additional expense occurs.</p>
+</div>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>The AU member takes her child to a day care center not located on her route to work. The stop at the day care center adds 10 miles in the morning and 10 miles in the afternoon five days per week. The AU is eligible for a dependent care transportation deduction. The actual related transportation expense is the 20 miles per day associated with the travel to the day care center.</p>
+</div>
+<div class="callout"><strong>NOTE:</strong>
+<p>Accept a client’s statement of dependent care transportation mileage unless it is questionable. Use <a href="https://www.mapquest.com/" title="MapQuest">MapQuest</a> or <a href="http://maps.google.com/" title="Google Maps">Google Maps</a> if the mileage is unknown or questionable.</p>
+</div>
+</li>
+<li>Don't include the household's normal commute when determining the mileage incurred for dependent care transportation.</li>
+<li>Only allow the dependent care transportation expense for the additional mileage incurred by the household member. Use the current business <a href="https://www.irs.gov/tax-professionals/standard-mileage-rates" title="IRS mileage rate">State mileage rate</a> to estimate the allowable deduction.</li>
+<li>Costs for other means of transporting dependents to and from the child care facility such as public transportation, paying a friend or relative outside the AU, or paying an additional amount for the daycare provider to transport dependents, are also allowable deductions.</li>
+<li>A claimed amount over the <a href="https://www.irs.gov/tax-professionals/standard-mileage-rates">State mileage rate</a> is questionable and requires verification.</li>
+<li>When a portion of the client's dependent care expenses are paid by Working Connections Child Care (WCCC) or any other source, the client may claim the dependent care deduction for the portion not paid by someone else.</li>
+<li>Some clients have both subsidized and private-pay child care expenses. Clients can receive the deduction for both, as long as the requirements of <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0185" target="_blank">WAC 388-450-0185</a><a href="https://www.dshs.wa.gov/sites/default/files/ESA/eaz-manual/Rules%20WSRs/SHS-4745.5Final.pdf" target="_blank"> </a>are met.</li>
+<li>We allow dependent care expenses for a child that isn't part of the food assistance household so a responsible household member can:</li>
+</ol>
+<ul class="rteindent1">
+<li>Keep work, look for work, or accept work.</li>
+<li>Attend training or education to prepare for employment.</li>
+<li>Meet employment and training requirements under chapter 388-444 WAC.</li>
+</ul>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Client's child visits him three days a week. Client is claiming $200 in child care expenses for the days his child visits. Allow the $200 out of pocket dependent childcare deduction.</p>
+</div>
+<p><strong><a id="Child_care" name="Child care"></a>Child care expenses for educational purposes:</strong></p>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Client receives $1200 Educational Benefits through the Perkins Act for January-March. $400 is for childcare expenses. Client pays $195.00 monthly for the care of her five-year old daughter.<br />
+     $195.00 Monthly cost of childcare <br />
+     $400 Earmarked expense ÷ 3 months - $133 monthly = $61.67 Allowable dependent care deduction</p>
+</div>
+<div class="callout"><strong>NOTE:</strong>
+<p>There is no federal definition for "training or education to prepare for employment." This could be a short-term course or a four-year college, as long as it would be reasonable to expect it to help result in employment.</p>
+</div>
+<ol>
+<li>If we disregard a client's educational benefits under <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0035" target="_blank" title="WAC 388-450-0035">WAC 388-450-0035</a>, we can only allow a deduction for the anticipated child care expense above the amount "earmarked" for dependent care expenses.</li>
+<li>We prorate earmarked funds over the period that the clients intend to use the educational benefits.</li>
+</ol>
+<p><strong>Dependent care deduction when the person with income is an ineligible AU member:</strong></p>
+<ul class="rteindent1">
+<li>If the ineligible member has income and dependent care expense billed to or paid by the ineligible member(s), we determine the deduction by:</li>
+<li>Dividing the expenses evenly among all the AU's eligible and ineligible members; and</li>
+<li>Assigning the prorated share of such expenses to the eligible members.</li>
+</ul>
+<ol>
+<li><strong>WCCC co-payment waived by the provider:</strong>
+<p>We allow the dependent care deduction for a client's WCCC co-pay even if the provider waives the fee on a regular basis.</p>
+<div class="callout"><strong>NOTE:</strong>
+<p>A household can only deduct expenses if someone outside of the assistance unit (AU) provides the service and the household makes a money payment for the service. For example, a dependent care deduction isn't allowed if another household member provides the care, or if compensation is an in-kind benefit, such as food.</p>
+</div>
+</li>
+</ol>
+<h4><a id="deductionsforau's" name="deductionsforau's">Deductions for AUs with Special Circumstances</a></h4>
+<ol>
+<li><strong>Drug and Alcohol Treatment Facilities:</strong> We allow the following deductions for clients who are paying a part of the cost of their own care:
+<ul>
+<li>Standard deduction;</li>
+<li>The amount the client pays as a medical cost if treatment is prescribed by a physician; and</li>
+<li>The amount the client pays that we don't use as a deduction in (ii) above as a shelter expense up to the shelter maximum.</li>
+<li>Clients that don't pay a part of the cost of their own care receive the standard deduction only.<br />
+<div class="callout"><strong>NOTE:</strong>
+<p>The deductions described above for D&amp;A treatment facilities applies <strong>only</strong> when a client has been in the facility for more than 30 days.</p>
+</div>
+</li>
+</ul>
+</li>
+<li><strong>Group living</strong> <strong>arrangements:</strong>
+<p>For clients who live in group-homes, we follow normal eligibility procedures other than shelter costs. We determine the shelter costs for clients that pay room and board by deducting the maximum allotment for one person from the amount paid to the home.</p>
+<p>See <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-478-0060" target="_blank">WAC 388-478-0060 </a>for maximum allotment.</p>
+</li>
+</ol>
+<hr />
+<h3><a id="Clarifying 388-450-0190" name="Clarifying 388-450-0190"></a>Clarifying Information - <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0190" target="_blank">WAC 388-450-0190</a></h3>
+<ol>
+<li>
+<h4><strong>Allowable shelter costs:</strong></h4>
+</li>
+</ol>
+<ul>
+<li>We allow the following ongoing and current shelter costs when calculating the shelter deductions for an assistance unit (AU):
+<ul>
+<li>We allow monthly rent cost including mandatory lease agreement fees for extra non-food expenses (e.g., cable, furniture, garage, and storage).</li>
+<li>We count non-food expenses only when the lease or contract requires the client to pay the fees. For example, if a client's rent includes cable and the cable expense isn't optional, then the expense is considered mandatory and is allowable.</li>
+<li>We don't count a mandatory fee for daily meals or toiletries as a shelter cost.</li>
+<li>We use the monthly rental costs paid on time. We don't change the allowable shelter costs due to discounts for early payment or fees for late payment.</li>
+<li>For AUs receiving HUD, FHA, or other rental subsidies, we allow only the out-of-pocket rent expense for the AU.</li>
+<li>We allow money paid by one AU to another AU living in the same residence for a share of the total rent.</li>
+<li>We allow rent paid in advance as an expense for the month the rent is due.</li>
+</ul>
+</li>
+</ul>
+<div>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Phuong receives a severance package of $1,500 from a former employer. Because Phuong knows that hours where he works vary by season, he decides to pay his $250.00 rent for September through February in July.</p>
+</div>
+<div class="callout"><strong>NOTE:</strong>
+<p>If an ineligible AU member has income, enter the shelter costs on the person's Expense page so that shelter costs will prorate correctly.</p>
+</div>
+</div>
+<ul class="rteindent1" style="list-style-type:circle">
+<li>
+<div>We allow a homeless shelter deduction for households that pay shelter expenses and are considered homeless. For the current homeless shelter deduction, see <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0190" target="_blank">WAC 388-450-0190</a>.</div>
+</li>
+<li>
+<div>If the shelter costs expense is more than the homeless shelter deduction, allow the actual shelter expenses for a higher deduction. Only ask for verification if questionable.</div>
+</li>
+<li>
+<div>See Aces Manual - What is the Homeless Shelter Deduction for Supplemental Nutrition Assistance Program (SNAP) households</div>
+</li>
+</ul>
+<ol start="2">
+<li>
+<div>For group home residents who pay a flat fee for room and board, we calculate allowable shelter costs by subtracting the one-person maximum allotment for Basic Food from the amount paid to the home.</div>
+</li>
+<li>AU members that own or are buying a home can use the following home-ownership expenses as a shelter cost:
+<ul>
+<li>Payments on first and / or second mortgages (including home equity loans &amp; home equity lines of credit).</li>
+<li>Real estate contract payments, loan payments including interest, leading to ownership of the house or mobile home.</li>
+<li>Property taxes. When an AU has their property taxes deferred to a later date, we allow only the deductions for the taxes at the point the tax would be due without a deferral. We don't allow taxes as a shelter cost if the taxes have been waived.</li>
+<li>State and local assessments.</li>
+<li>The entire amount of condo fees.</li>
+<li>Mandatory homeowner's association fees.</li>
+<li>Structural insurance only. We allow the total cost of structural and furnishings insurance only when the structural insurance can't be separated from coverage for furniture and belongings.</li>
+<li>Cost of an unoccupied home as allowed in <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0190" target="_blank">WAC 388-450-0190</a>.</li>
+<li>Cost of home repairs resulting from a natural disaster such as fire or flood. We don't allow costs covered by insurance or other public or private sources.</li>
+<li>Costs for more than one residence in a single month when an AU moves mid-month.</li>
+</ul>
+</li>
+<li><strong>Non-allowable shelter costs:</strong><br />
+	We don't allow the following costs as a part of the shelter deduction:
+<ul>
+<li>The <em>unpaid</em> value of shelter a client receives free or at a reduced cost in exchange for work, referred to as "income in lieu of rent".</li>
+</ul>
+</li>
+</ol>
+<div class="callout"><strong>EXAMPLE:</strong>
+<p>Jacob's rent is $700 each month. He has an agreement with his landlord that he works on the property in exchange for $500 off his rent. He has to pay $200 out of pocket each month. He isn't entitled to the unpaid value of the shelter cost ($500) he receives in exchange for work.</p>
+<p>"Income in lieu" is earned income and must be coded as "in lieu." Budget the in-lieu income amount of $500 and the full shelter cost of $700.</p>
+<p>To compute his hours, divide the $500 by the federal minimum wage, and round to the nearest whole number ($500 ÷ $7.25/hr = 68.9 hours = 69 hours).  ACES will budget the correct shelter deduction of $200.</p></div>
+<ul class="rteindent1" style="list-style-type:circle">
+<li>In-kind or non-cash payments instead of paying rent.</li>
+</ul>
+<div class="callout"><strong>EXAMPLE:</strong>
+<p>Marla's rent is $300 per month. Each month, she provides $100 in household supplies, so she and Jackie, her landlord, have agreed she will pay $200 in rent.</p>
+<p>Marla's shelter expense is $200 on the Expense page.</p></div>
+<ul class="rteindent1" style="list-style-type:circle">
+<li>Payments on a mortgage in excess of monthly minimum payment (pre-paying mortgage).</li>
+<li>Down payments on a mortgage.</li>
+<li>Balloon payments on a mortgage.</li>
+<li>A payment toward the purchase of a home that is made after the last contract payment for the home.</li>
+<li>A payment on a foreclosed home if the client is no longer legally obligated to pay the mortgage.</li>
+<li>A HUD add-on to contract rental charges to recover previously undercharged rent.</li>
+<li>Security or rental deposits.</li>
+<li>Rental insurance not included in the rent which doesn't cover the structure - even if it is mandated by the lease.</li>
+<li>Pre-payment of future rent.</li>
+<li>Payments made directly to landlord or mortgage company by non-AU members.</li>
+<li>Mandatory fees for meals specified in lease agreements.</li>
+<li>Late fees.</li>
+<li>Payments on mortgage or rental costs for a previous time period.</li>
+<li>Costs for an unoccupied home unless allowed in <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0190" target="_blank">WAC 388-450-0190</a>.</li>
+<li>Shelter expenses consistently paid by someone outside the AU. If a parent, friend, or agency pays the client's shelter costs only on occasion, the AU is still eligible for the full shelter expense deduction. Don't allow HUD or FHA or other subsidies as shelter costs.</li>
+<li>Shelter deductions <strong>above</strong> the maximum shelter cost for an AU without an elderly or disabled person or where the only elderly or disabled AU member is an ineligible AU member.</li>
+</ul>
+<div class="callout">
+<p><strong>NOTE:</strong></p>
+<p>A landlord statement or receipt may not separate out any add-on expenses to recover previously undercharged rent.5</p>
+</div>
+<ol start="5" style="list-style-type:decimal">
+<li>
+<div><strong>Shared living / Roomers: </strong></div>
+<ol start="1" style="list-style-type:lower-alpha">
+<li>
+<div><strong><strong>AU owns or is buying home. </strong></strong></div>
+<p>		When an AU owns or is buying a residence and shares the residence with another AU, we consider the AU that owns the home to have a roomer.</p>
+<ol start="1" style="list-style-type:lower-roman">
+<li>Count the rent paid to the homeowner as self-employment earned income. See <a href="https://www.dshs.wa.gov/esa/income-table-contents/income-special-types" title="Calculating Net Self-Employment Income in Special Situations">Self Employment Income- Clarifying Information</a> to determine income from a roomer.</li>
+<li>The roomer receives the shelter deduction for.
+<ol>
+<li>The rent paid to the owner; and</li>
+<li>A standard utility allowance (SUA).</li>
+</ol>
+</li>
+<li>The owner receives the shelter deduction for the standard utility allowance (SUA) and either:
+<ol>
+<li>The portion of shelter costs not used as a self-employment expense based on number of bedrooms in the residence and the number of bedrooms rented out; or</li>
+<li>All expenses the landlord must pay for the housing costs.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Landlord rents out one of the three bedrooms. Total cost of mortgage, taxes, and insurance is $900.00 monthly. The owner can use either of the two options below for her expenses.</p>
+<p>Option 1</p>
+<p>(2/3 of $900) $600 + (SUA) is the Shelter expense. $300 Self-employment expense</p>
+<p>Option 2</p>
+<p>$900 + (SUA) is the Shelter expense</p></div>
+<div class="rteindent1"><strong>     </strong>b.<strong> Renting out areas other than rooms in AU's home.</strong><br />
+When clients rent out an area of their home other than a bedroom, we count this area as another bedroom and determine self-employment expenses as described in ‘AU owns or is buying home ' (above)</div>
+<div class="rteindent1"><strong>     </strong>c. <strong>AU rents residence.</strong></div>
+<ol class="rteindent2" start="1" style="list-style-type:lower-roman">
+<li>
+<div>Consider AUs that rent a residence to have roomers when:</div>
+<ol>
+<li>
+<div>They rent out a portion of the residence to someone outside of the AU; and</div>
+</li>
+<li>The rent they receive is more that the total rent obligation for the AU as shown on the rental agreement or lease.</li>
+</ol>
+</li>
+<li>Count the rent paid to the AU as self-employment earned income. See <a href="https://www.dshs.wa.gov/esa/income-table-contents/self-employment-income#:~:text=Roomer%20income%20(home%20owner%20or%20renter%20who%20receives%20income%20for%20renting%20out%20rooms)">Calculating Net Self-Employment Income in Special Situations</a> to determine income from a roomer.</li>
+<li>The roomer receives the shelter deduction for:
+<ol>
+<li>The rent paid to the AU; and</li>
+<li>A standard utility allowance (SUA).</li>
+</ol>
+</li>
+<li>The AU receives the shelter deduction for the standard utility allowance (SUA) and either:
+<ol>
+<li>The portion of shelter costs not used as a self-employment expense based on number of rooms in the residence and the number of rooms rented out; or</li>
+<li>All costs the AU must pay for the housing. See Clarifying Information of <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0195" target="_blank">WAC 388-450-0195 </a>for information on utilities.</li>
+</ol>
+</li>
+<li>Clients that share a residence <strong>aren't </strong>considered to have roomers if they:
+<ol>
+<li> Don't own the residence;</li>
+<li> Aren't buying the residence; and</li>
+<li> Don't charge their roommates an amount above the total rent as shown on the lease.</li>
+</ol>
+</li>
+</ol>
+<h3><a id="Worker 388-450-0190" name="Worker 388-450-0190"></a>Worker Responsibilities - <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0190" target="_blank">WAC 388-450-0190</a></h3>
+<p><strong>Determining Homeless Shelter Deduction</strong><br />
+The system will determine if the household is entitled to the homeless shelter deduction. To ensure the deduction is correctly determined:</p>
+<ol>
+<li>
+<div>Code the correct living arrangement for the homeless client on Client Details.</div>
+</li>
+<li>
+<div>Review the case for shelter expenses and enter expenses on Shelter Details.</div>
+<ol start="1" style="list-style-type:lower-alpha">
+<li>
+<div>If the client doesn't have shelter expenses they won't qualify for the $198 standard homeless deduction.</div>
+</li>
+<li>
+<div>If the client does have shelter expenses:</div>
+<ol start="1" style="list-style-type:lower-roman">
+<li>
+<div>If the shelter expenses results in the total shelter deduction being equal to or less than $198, the client will receive a homeless shelter deduction in the amount of $198. </div>
+</li>
+<li>
+<div>If the shelter expenses results in the total shelter deduction being more than $198, the client will receive the higher allowable shelter deduction.</div>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<div class="callout"><strong>EXAMPLE</strong>: Jody is currently homeless and is staying with various friends. During the month Jody pays a total of $50 to her friends. The shelter expenses entered is $50. Jody will receive the $198 homeless shelter deduction.</div>
+<div class="callout"><strong>EXAMPLE</strong>: Jameel is currently homeless with shelter and his monthly shelter expense is $750. The worker enters $750 on the shelter expense screen in 3G. Jameel’s homeless shelter deduction will be more than the $198.</div>
+<div class="callout"><strong>EXAMPLE:</strong> Peter is currently homeless and staying with various friends. He has no obligation to pay for any shelter expense. Peter isn't eligible for the homeless shelter deduction as he has no shelter expenses.</div>
+<hr />
+<h3><a id="Clarifying 388-450-0195" name="Clarifying 388-450-0195"></a>Clarifying Information - <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0195" target="_blank">WAC 388-450-0195</a></h3>
+<ol>
+<li>
+<h4><strong>The Standard Utility Allowance (SUA)</strong></h4>
+<ol>
+<li><strong><strong>How can an AU qualify for SUA? </strong></strong><br />
+		An AU qualifies for SUA if the AU:
+<div class="callout"><strong>NOTE:</strong>
+<p>The utility standards come from an average annual expense. Clients that heat with oil and fill the tank once a year are eligible for SUA for the entire year, even though they actually pay the bill in one month.</p>
+<p>WASHCAP households receive SUA as a part of the WASHCAP demonstration project waiver. If a person loses eligibility for WASHCAP, we must review the household's eligibility for SUA, LUA, TUA, or ZUA (zero utility allowance) based on their current circumstances.</p>
+<p>A vendor payment to <em>partially or occasionally </em>cover heating or cooling costs the client is responsible to pay doesn't affect the client’s eligibility for SUA. Examples include when a friend, relative, AREN, or another agency pays the expense.</p>
+</div>
+<ol>
+<li>Is responsible to pay out-of-pocket heating or cooling costs separate from rent or mortgage costs;</li>
+<li>If the household contains an elderly or disabled member and receives a LIHEAA payment (LIHEAP grant, Heat and Eat payment, or other LIHEAA payments) of <strong>more than $20 annually</strong> for the AU's current residence from a state or local agency or from an Indian Tribal Organization; or</li>
+<li>Lives in public housing, uses a shared utility meter, and pays only for excess utility expenses.
+<p>To determine that a household is eligible for the SUA based on getting a LIHEAP benefit of more than $20, we must be able to reasonably expect that the household will receive the benefit, and the household includes an elderly or disabled member.</p>
+<ul>
+<li>​If the household has received this benefit previously, and they haven't moved or had another significant change in circumstances, we can expect that their LIHEAA eligibility hasn't changed.</li>
+<li>If someone received SUA as a part of their WASHCAP benefits and they lose eligibility for WASHCAP, we must redetermine their eligibility for SUA, LUA, TUA, or ZUA based on their <strong>current</strong> circumstances.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>What counts as a heating cost?</strong>
+<p>Clients have a heating cost when they are responsible for out-of-pocket fuel costs to operate a device used as the primary heat source for the living quarters.</p>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>A client who buys a cord of firewood or buys pellets for the client's pellet stove would qualify for SUA. A client who buys a chainsaw, gasoline, and a permit to cut firewood does <strong>not</strong> qualify for SUA if the client has no costs for wood fuel.</p>
+</div>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Client has an apartment with steam heat. An electric fan brings heat into the apartment for which the client pays separately. The heat is included in the cost of renting the apartment. This client <strong>isn't</strong> eligible for SUA.</p>
+</div>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Client has a wood stove and wood provided by the landlord, but the client’s doctor has advised him that the wood stove is aggravating his asthma. The client uses an electric space heater instead, and pays for the electricity for the residence. In this case, we would allow the SUA.</p>
+</div>
+<div class="callout"><strong>NOTE:</strong>
+<p>When we allow the SUA for a client that uses a source different than what is standard for the home, we must document that the source is the client's primary heating source. If a heating cost is included in the rent, we must document why this source of heat isn't available.</p>
+</div>
+<ul>
+<li>If wood is the primary heat source for the residence, the client must have out-of-pocket costs for the wood fuel. Costs to operate a cooking stove, oven, or indirect costs for gathering wood <strong>don't</strong> qualify the AU for SUA.</li>
+<li>If a client is responsible to pay the cost of using a device that delivers heat, but no costs to create the heat, the client doesn't qualify the AU for SUA.</li>
+<li>Costs to operate any device that is used as the client's primary heat source qualifies the AU for SUA when:
+<ul>
+<li>The landlord doesn't include heating costs in the rent; or</li>
+<li>The landlord includes heating costs in the rent, but the heating is unavailable. We consider it to be unavailable if:
+<ul>
+<li>The source of heat isn't working; or</li>
+<li>The client can't use the source of heat for health reasons.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>What counts as a cooling cost? </strong>
+<p>Clients have a cooling cost when they are responsible to pay costs to operate an air conditioning system, room air conditioner, or swamp cooler. (Electric fans don't count as air conditioners.)</p>
+</li>
+<li><strong>How do you tell if the cost is separate from rent? </strong><br />
+		We consider heating or cooling costs as separate from rent when the AU must pay for utilities separately from the rent or itemized individually.</li>
+<li><strong>How do you tell if a client qualifies for a utility allowance or if utilities are included in the rent?</strong>
+<ul>
+<li>If all utilities are clearly included in the rent, clients receive the shelter deduction for the rent amount and no utility allowance.</li>
+<li>If it isn't clear whether all utilities are included with rent, we must determine if the client:
+<ul>
+<li>Pays separately for any utilities;</li>
+<li>Has a specific portion of the rent consistently designated to cover utilities;</li>
+<li>Pays for excess utility usage; or</li>
+<li>Pays rent only.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>What happens when households in separate residences share a common utility meter? </strong>
+<p>When households in two residences share a utility meter for heating or cooling, each AU can receive a SUA. If the shared utility meters aren't for heating or cooling services, each AU can receive a LUA if they pay for another countable utility.</p>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>In a shared residence, one AU pays for all utilities, except phone service. This includes heating. They don't pay for phone service. The other AU receives the phone bill and pays for phone service. <strong>Each AU is eligible for a SUA.</strong></p>
+</div>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Landlord provides heat, but the client uses an additional heat source because the landlord's system doesn't heat well enough. In this case, we don't allow the SUA.</p>
+</div>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Client lives in a trailer and gets electricity (heat source) from an extension cord to a friend's house. The friend gets the bill and charges the client for her share of the bill each month. The client and the friend each qualify for a SUA.</p>
+</div>
+</li>
+</ol>
+</li>
+<li>
+<h4><strong>The Limited Utility Allowance (LUA):</strong></h4>
+<div class="callout"><strong>NOTE:</strong>
+<p>The utility standards come from an average annual expense. Clients that have their septic tank or well system serviced once a year can have this expense count as one of their two qualifying expenses for the LUA.</p>
+</div>
+<ol>
+<li><strong><strong>What is required for an AU to be eligible for LUA? </strong></strong><br />
+		To qualify for the LUA, an AU must be responsible to pay any two allowable out-of-pocket utility costs:
+<ol>
+<li>Separate from rent or mortgage costs;</li>
+<li>That don't qualify the AU for the SUA; and</li>
+<li>May include telephone as one of the costs.</li>
+</ol>
+</li>
+<li><strong>What costs qualify a client for the LUA?<br />
+		Any two of the following expenses will qualify an AU for the LUA:</strong>
+<ol>
+<li>Electricity or gas not used to heat or cool the residence;</li>
+<li>Cooking fuel;</li>
+<li>Water;</li>
+<li>Telephone service:</li>
+<li>Garbage/trash collection; or</li>
+<li>Sewer, well or septic tank costs.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<h4><strong>The Telephone Utility Allowance (TUA):</strong></h4>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Client has a cell phone. The bill for several cell phones are in the client’s mother’s name. The client’s mother verifies that the client is responsible for paying the portion of the bill associated with their phone. The client qualifies for the TUA.</p>
+</div>
+<ol>
+<li><strong>How do clients qualify for the TUA?</strong><br />
+		Clients qualify for the TUA when they:
+<ul>
+<li><strong>Don't</strong> qualify for the SUA or LUA; and&lt;</li>
+<li>Incur or expect to incur costs for telephone service.</li>
+</ul>
+</li>
+<li><strong>​Does voicemail, or a pager qualify a household for the TUA?</strong><br />
+		Costs for alternative phone services such as beepers, voice mail, pagers and cellular phones qualify a household for the TUA if they don’t receive a higher allowance for the SUA or LUA.</li>
+<li><strong>Does an AU qualify for the TUA if the AU must pay the phone bill, but they aren't listed on the bill?</strong><br />
+		Clients qualify for the TUA if they can verify that they are responsible for the telephone service. This is true even if they aren't named on the bill.</li>
+<li><strong>Can two AUs in one residence each have a phone service and each qualify for a TUA? </strong><br />
+		 </li>
+</ol>
+</li>
+<li><strong>How ineligible AU members affect the SUA: </strong>
+<p>Utility allowances (SUA, LUA, or TUA) apply for all Basic Food households, even if there is more than one assistance unit in a single residence.</p>
+<p>When prorating expenses of an ineligible member as described under <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0140" target="_blank">WAC 388-450-0140</a>, utilities allowances aren't prorated.</p>
+</li>
+</ol>
+<h3><a id="Worker 388-450-0195" name="Worker 388-450-0195"></a>Worker Responsibilities - <a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-450-0195" target="_blank">WAC 388-450-0195</a></h3>
+<ol>
+<li><strong>Determine the appropriate utility allowance:</strong>
+<ol>
+<li>Decide if the AU is eligible for:
+<ol>
+<li>The standard utility allowance (SUA);</li>
+<li>The limited utility allowance (LUA)</li>
+<li>The telephone utility allowance (TUA).</li>
+</ol>
+</li>
+<li>Deny utility allowance to AUs:
+<ol>
+<li>When all utility costs are included as part of their rent;</li>
+<li>Who have only <strong>one</strong> utility expense that isn't for heating, cooling, or phone.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>Redetermine if an AU qualifies for the SUA, LUA or TUA:</strong>
+<ol>
+<li>At recertification, including when a household who received WASHCAP benefits is now applying for Basic Food;</li>
+<li>When an AU changes residences; and</li>
+<li>When the client reports the beginning or end of heating and/ or cooling costs. For example: The client has been using free wood for heating and now reports that they are now using heating oil.</li>
+</ol>
+</li>
+</ol>
+<div class="callout"><strong>NOTE:</strong>
+<p>If someone received SUA as a part of their WASHCAP benefits and they lose eligibility for WASHCAP, we must redetermine their eligibility for SUA, LUA, TUA, or ZUA based on their <strong>current</strong> circumstances.</p>
+</div>
+<h4>Go to <a href="https://www.dshs.wa.gov/esa/income-table-contents/utility-chart">Utility Chart</a></h4>
+<hr />
+<h3><a id="388-450-0200" name="388-450-0200"></a>Clarifying Information - <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0200" target="_blank">WAC 388-450-0200</a></h3>
+<ol>
+<li>To be eligible for the medical deduction, people must report all incurred and anticipated medical expenses at application and recertification.</li>
+<li>We must verify all claimed medical expenses.</li>
+<li>We don't have to re-verify ongoing medical expenses during the certification period if they aren't likely to change.</li>
+<li>People don't have to report any changes in medical expenses during the certification period.</li>
+<li>At recertification, verify unchanged expenses that are incomplete, inconsistent, or outdated. <strong>Note</strong>: <em>For ESAP households, see recertification requirements in the <a href="https://www.dshs.wa.gov/esa/eligibility-z-manual-ea-z/elderly-simplified-application-project-esap">ESAP Chapter</a></em>.<br />
+	For non-ESAP assistance units, we don't have to re-verify medical expenses that:
+<ol>
+<li>Don't change by $25 or more, and</li>
+<li>Are from the same provider as previously reported.</li>
+</ol>
+</li>
+<li>Anticipated expenses:
+<p>Persons eligible for a medical deduction may estimate medical expenses they expect to incur during the certification period.</p>
+<ol>
+<li>Base the estimate upon current, verified medical expenses that the AU member incurred, as well as other available information about the member's medical condition and insurance coverage.</li>
+<li>Don't pend an application or certification for verification of medical expenses. We allow the expense when the member provides verification during the certification period.</li>
+<li>We treat the changes in recurring medical expenses that an AU voluntarily reports as a <a href="https://www.dshs.wa.gov/esa/eligibility-z-manual-ea-z/change-circumstances-toc" title="CHANGE OF CIRCUMSTANCES">CHANGE OF CIRCUMSTANCES</a>.</li>
+</ol>
+</li>
+<li>Incurred expenses:
+<p>We allow out-of-pocket medical expenses that the eligible AU member incurs when the person:</p>
+<ol>
+<li>Has an unpaid bill that hasn't been allowed previously,</li>
+<li>Has a paid bill incurred during the certification period not reported previously; or</li>
+<li>Arranges a payment plan for an expense and verifies when the installments are due.</li>
+</ol>
+</li>
+<li>One-time medical expense deduction:
+<p>Customers who report a one-time, nonrecurring medical expense can elect to have the entire expense budgeted in a single month for a one-time deduction. This would be a likely choice for bills that when averaged using one of the options in WAC 388-450-0200(3)(a) wouldn't result in an increase in benefits.</p>
+<div class="callout"><strong>EXAMPLE</strong>
+<p>Joan reports on May 20th that she paid for a doctor visit on May 15th in the amount of $200. She has 10 months remaining in her certification period. Averaging the expense would only allow a $20 monthly expense and wouldn't impact her ongoing Basic Food benefits since she has no other expenses. Joan could choose to budget the $200 in one month and either have her May benefits supplemented or have her June benefits increased.</p>
+</div>
+</li>
+<li>Medical expenses of other AU members:
+<p>This deduction is only for out-of-pocket costs for medical needs of individuals that are elderly or have a disability. We don't allow a deduction for medical expenses of an AU member who isn't an elderly person or doesn't have a disability under WAC <a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-400-0040" target="_blank" title="388-400-0040">388-400-0040</a> even if the individual in the AU who does meet these criteria pays the medical expense.</p>
+</li>
+<li>Medical equipment: We can allow the cost of equipment as a medical deduction if necessary due to the person's medical condition. Examples of allowable medical equipment are:<br />
+<div class="callout"><strong>NOTE:</strong>
+<p>If a person has home modifications related to their medical condition completed along with other home improvements, we only allow the cost of improvements related to the medical condition if identified separately in the billing.</p>
+<p>If a second mortgage pays for the improvements, we allow the entire amount as a shelter expense instead of a medical expense.</p>
+</div>
+<ol>
+<li>Specialized telephone devices or TTY for hearing impaired people; and</li>
+<li>Items needed for people with limited mobility such as:
+<ol>
+<li>Wheelchairs;</li>
+<li>Walkers; and</li>
+<li>Modifications to the person's home such as:
+<ol>
+<li>Grab bars;</li>
+<li>Wheelchair ramps; and</li>
+<li>Lowered countertops</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<h4><strong>Health insurance premiums:</strong></h4>
+<ol>
+<li>We don't allow the cost of third party health and accident insurance when the insurance benefit:
+<ol>
+<li>Is payable in a lump sum payment upon death or dismemberment;</li>
+<li>Covers mortgage or loan payments upon death or disability; or</li>
+<li>Qualifies for reimbursement.</li>
+</ol>
+</li>
+<li>We allow the cost of Medicare premiums as a deduction:
+<ol>
+<li>When the person is responsible to pay the premium;</li>
+<li>incurs an out of pocket expense for the premium; and</li>
+<li>The premium isn't reimbursable.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<div class="callout"><strong>EXAMPLE: </strong>Daryl applies for Basic Food and Medicare Savings Program on April 25. Worker approves Basic Food for April. Medicare Savings Program is approved starting May 1. Daryl is eligible to use his Part B premium amount as a Basic Food deduction for April only.</div>
+<ol start="12">
+<li>
+<h4><strong>Reasonable medical transportation costs: </strong></h4>
+<p>We must determine transportation costs on a case-by-case basis. It is essential that the case documentation clearly show reason for approval or denial. If the cost is reasonable according to the situation, we can allow the costs. Examples of allowable expenses are:</p>
+<ol>
+<li>Bus fare to get to medical appointments;</li>
+<li>Mileage for a privately owned vehicle. Section <a href="https://ofm.wa.gov/wp-content/uploads/2026/02/10.90.pdf" title="Mileage">10.90.20</a> of The Office of Financial Management’s State Administrative and Accounting Manual provides information on the current rate.</li>
+<li>A rental car or taxi in an area or circumstance where bus service or a private vehicle isn't available; and</li>
+<li>Long-distance phone calls to the person's medical practitioner instead of travel.</li>
+</ol>
+</li>
+<li>
+<h4><strong>Postage or shipping cost for mail-order prescriptions:</strong></h4>
+<p>Some people who use mail-order pharmacies must pay a shipping or postage fee in addition to the cost of their medicines. We allow the out-of-pocket costs of medications for certain AU members as an expense for the excess medical expense deduction. This includes postage or shipping fees if they aren't included in the cost of the medications.</p>
+</li>
+<li>
+<h4><strong>Spenddown: </strong></h4>
+<p>We don't allow the total spenddown obligation as a medical expense. We allow the out-of-pocket expenses a client incurs or anticipates.</p>
+</li>
+<li>
+<p><strong>Service Animals:</strong></p>
+<p>	We allow the costs to get and care for seeing, hearing, and specially trained service animals. Service animals must be specially trained to perform functions the client can't perform on their own. A pet the client had before having a service animal prescribed doesn't automatically become a service animal. However, we can't require a specific type of training, credentials, or certification.​</p></li>
+</ol>
+<p class="rteindent1">We don't consider comfort or emotional support animals as service animals.</p>
+<p class="rteindent1">A licensed or qualified medical practitioner has to prescribe the service animal for us to accept associated medical expenses.</p>
+<div class="callout"><strong>EXAMPLE:</strong> 
+<p>Claire has a prescription for a service animal due to her severe seizures. Claire's dog is specially trained to warn her of impending seizures. She doesnt have any certification of this training. She has verification of the prescribed service animal and we have proof of past medical expenses related to her condition. The worker allows the expenses of dog food, veterinary bills, and other related expenses as an excess medical expense deduction.</p></div>
+<ol start="16">
+<li>
+<h4><strong>Attendant care: </strong></h4>
+<p>We allow attendant care that is necessary due to age, infirmity, or illness. Allowable attendant care includes, but isn't limited to:</p>
+<ol>
+<li>Homemaker;</li>
+<li>Home Health Aide; or</li>
+<li>Housekeeper<br />
+<div class="callout"><strong>NOTE:</strong>
+<p>We allow an additional deduction equal to a one-person allotment if the AU provides the majority of the attendant's meals. We update the deduction at the next recertification if allotments are increased during the certification period. * * * * * If attendant care can be claimed as either a dependent care or medical expense, we allow the deduction as a medical expense.</p>
+</div>
+</li>
+</ol>
+</li>
+<li>
+<h4><strong>Expenses from non-standard providers: </strong></h4>
+<p>We allow medical expenses prescribed by a state-licensed practitioner or other state-certified health professional. If the person's health professional prescribes the treatment, we allow the medical deduction. Expenses we allow when prescribed by a licensed or certified health professional include treatment by:</p>
+<ul>
+<li>Acupuncturists;</li>
+<li>Sanipractors;</li>
+<li>Homeopathists;</li>
+<li>Herbalists;</li>
+<li>Massage Therapists; and</li>
+<li>Christian Science practitioners or theological healers</li>
+</ul>
+</li>
+<li>
+<h4><strong>Installment agreements:</strong></h4>
+<p>We allow expenses anticipated to become due in an installment agreement. If the person misses some payments, we don't allow the expense again when it is actually paid, as it has already been allowed based on when it was originally due.</p>
+</li>
+<li>
+<h4><strong>Expenses from medical marijuana:</strong></h4>
+<p>The costs of medical marijuana and transportation expenses as described in # 10 above to and from the medical marijuana dispensary aren't allowable as a medical expense income deduction for Basic Food.</p>
+<div class="callout"><strong>NOTE:</strong>
+<p>There is no need to ask applicants or recipients why the individual went to see a doctor or other medical practitioner to find out if the doctor prescribed marijuana. Allow reasonable transportation costs for visits to licensed medical practitioners without regard to the reason for the visit.</p>
+</div>
+</li>
+</ol>
+<h3><a id="Worker 388-450-0200" name="Worker 388-450-0200"></a>Worker Responsibilities - <a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-450-0200" target="_blank">WAC 388-450-0200</a></h3>
+<h4><strong>Determining Allowable Medical Expenses</strong></h4>
+<ol>
+<li>Review the application for claimed medical expenses.</li>
+<li>Ask all AUs with an elderly person or an individual with a disability if those members have any medical/dental bills or expect to have these expenses.</li>
+<li>Verify the portion of the expense that won't be reimbursed or paid by another source by obtaining:
+<ul>
+<li>A billing from the provider showing the amount due after insurance coverage; or</li>
+<li>Proof of the amount of covered and uncovered expenses from all insurance carriers including Medicare.</li>
+</ul>
+</li>
+<li>Certify the AU's benefits without the claimed deduction if the expense isn't verified.</li>
+<li>Allow the Medicare premium deduction for the month(s) without an approved MSP AU only.</li>
+<li>Enter end of the application months as an end date for the deduction.</li>
+</ol>
+<div class="callout"><strong>EXAMPLE</strong>:
+<p>Stanley applies for MSP on 10/5. Worker processes and approves application on 10/20 and finds Stanley eligible for QMB (S03) coverage starting 11/1. Worker sets the end date of the medical expense deduction to 10/31.</p></div>
+<div class="callout"><strong>EXAMPLE: </strong>
+<p>Stanley applies for MSP on 10/5. Worker processes and approves application on 10/20 and Stanley is found eligible for SLMP (S05) starting 10/1. Therefore, Stanley isn't eligible for a medical expense deduction in the month of October.</p></div>
+<div class="callout"><strong>NOTE</strong>:
+<p>Don't allow the deduction for the Medicare premium if the client's previous MSP AU was closed for less than one benefit month. </p></div>
+<div class="callout"><strong>NOTE: </strong>
+<p>In some circumstances a client is eligible for Medicaid and Health Care Authority (HCA) is paying the premium under the State buy-in program. Don't allow the Medicare Part B premium deduction if HCA is paying it. Verify whether HCA is paying the premium by reviewing the BENDEX cross match on the Income screens. BENDEX will show "State billed for SMI Premium Payments (500)" if HCA is paying the Medicare Part B premium. </p></div>
+<hr />
+<h3><a id="COLA" name="COLA"></a>Clarifying Information - Cost Of Living Adjustment</h3>
+<p>COLA increases aren't counted as income until April 1 of each year for the QMB, SLMB, ESLMB, QDWI, and QI programs.</p>
+<p>The medical programs described in subsection (3) of the above WAC use the TANF / SFA income rules to determine countable income. After determining countable income, treatment of income for medical programs may be different. For example, see the <a href="https://www.dshs.wa.gov/esa/eligibility-z-manual-ea-z/assistance-units" title="Assistance Units">Assistance Units</a> for more information on family financial responsibility and when to establish separate medical assistance units.</p>
+<p>The income exclusion described in subsection (4)(i) assists families to meet the "three out of last six months" federal requirement.</p>
+<p> </p>
+<div class="callout callout-new-grey"><a href="#Top">Top of Page</a></div>
+<p> </p>
+</div></div></div>  <div id="book-navigation-17" class="book-navigation">
+    <div class="book-toc btn-group pull-right">  <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown"> Outline <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li class="first last expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z">Eligibility A-Z Manual (EA-Z)</a><ul class="dropdown-menu" role="menu"><li class="first expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/eligibility-z-ea-z-manual-revisions">Eligibility A-Z (EA-Z) Manual Revisions</a><ul class="dropdown-menu" role="menu"><li class="first last leaf" role="presentation"><a href="/esa/eligibility-z-ea-z-manual-revisions/notification-rule-changes">Notification of Rule Changes</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/eligibility-z-ea-z-wac-rules-index">Eligibility A-Z (EA-Z) WAC (Rules) Index</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/abd-clients-residing-eastern-or-western-state-hospital-or-civilly-committed-community-based-facility">ABD Clients Residing in Eastern or Western State Hospital or Civilly Committed to a Community-Based Facility</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/administrative-disqualification-hearings-food-assistance">Administrative Disqualification Hearings for Food Assistance</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/administrative-hearings">Administrative Hearings</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/administrative-hearings/overview">Overview</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/administrative-hearing-coordinators-role">Administrative Hearing Coordinator&#039;s Role</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/continued-benefits">Continued Benefits</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/equitable-estoppel">Equitable Estoppel</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/hearing-requests">Hearing Requests</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/pre-hearing-conference-administrative-law-judge">Pre-Hearing Conference With An Administrative Law Judge</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/pre-hearing-meeting-dshs-representative">Pre-Hearing Meeting With the DSHS Representative</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/preparation">Preparation</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/presenting-case">Presenting the Case</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/special-procedures-non-grant-medical-assistance-and-health-care-authority-hearings">Special Procedures on Non-Grant Medical Assistance and Health Care Authority hearings</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/administrative-hearings/decision">The Decision</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/age-requirements">Age Requirements</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/applications-assistance">Applications for Assistance</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/applications-assistance/filing-application">Filing an Application</a></li>
+<li class="leaf" role="presentation"><a href="/esa/applications-assistance/expedited-service-basic-food">Expedited Service for Basic Food</a></li>
+<li class="leaf" role="presentation"><a href="/esa/applications-assistance/time-limits-processing">Time Limits for Processing</a></li>
+<li class="leaf" role="presentation"><a href="/esa/applications-assistance/filing-applications-special-situations">Filing Applications - Special Situations</a></li>
+<li class="leaf" role="presentation"><a href="/esa/applications-assistance/completing-process">Completing the Process</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/applications-assistance/information-needed-determine-eligibility">Information Needed to Determine Eligibility</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/assistance-units">Assistance Units</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/assistance-units/assistance-units-basic-food">Assistance Units - Basic Food</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/assistance-units/cash-assistance-programs">Cash Assistance Programs</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/authorized-representative-food-assistance">Authorized Representative - Food Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/authorized-representative-food-cash-and-medical-benefit-issuances">Authorized Representative - Food, Cash and Medical Benefit Issuances</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/automated-client-eligibility-system-aces">Automated Client Eligibility System (ACES)</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/basic-food-employment-and-training-bfet-program">Basic Food Employment and Training (BFET) Program</a><ul class="dropdown-menu" role="menu"><li class="first last leaf" role="presentation"><a href="/esa/basic-food-employment-and-training-bfet-program/bfet-reimbursement-participant-expenses">BFET - Reimbursement of Participant Expenses</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/basic-food-work-requirements">Basic Food - Work Requirements</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/basic-food-work-requirements/basic-food-work-requirements-work-registration"> Basic Food Work Requirements - Work Registration</a></li>
+<li class="leaf" role="presentation"><a href="/esa/basic-food-work-requirements/basic-food-work-registration-exemptions">Basic Food Work Registration Exemptions</a></li>
+<li class="leaf" role="presentation"><a href="/esa/basic-food-work-requirements/abawds-able-bodied-adults-without-dependents">ABAWDs - Able-Bodied Adults Without Dependents</a></li>
+<li class="leaf" role="presentation"><a href="/basic-food-work-requirements/basic-food-work-requirements-good-cause">Basic Food Work Requirements - Good Cause</a></li>
+<li class="leaf" role="presentation"><a href="/esa/basic-food-work-requirements/basic-food-work-requirements-disqualification">Basic Food Work Requirements - Disqualification</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/basic-food-work-requirements/basic-food-work-requirements-unsuitable-employment-and-quitting-job">Basic Food Work Requirements - Unsuitable Employment and Quitting a Job</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/benefit-errors">Benefit Errors</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/benefit-errors/alien-and-alien-sponsor-overpayments">Alien and Alien Sponsor Overpayments</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-errors/basic-food-overpayments">Basic Food Overpayments</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-errors/cash-and-food-assistance-underpayments">Cash and Food Assistance Underpayments</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-errors/cash-and-medical-assistance-overpayment-descriptions">Cash and Medical Assistance Overpayment Descriptions</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-errors/recovery-through-mandatory-grant-reductions">Recovery Through Mandatory Grant Reductions</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/benefit-errors/repayments-overpayments-prior-april-3-1982">Repayments for Overpayments Prior to April 3, 1982</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/benefit-issuances-and-use-benefits">Benefit Issuances and Use of Benefits</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/use-benefits-benefit-issuances">Use of Benefits - Benefit Issuances</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/basic-food-benefit-issuances"> Basic Food - Benefit Issuances</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/cash-assistance-benefit-issuances">Cash Assistance - Benefit Issuances</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/when-and-how-benefits-are-delivered">When and How Benefits are Delivered</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/loss-theft-destruction-or-non-receipt-warrant-clients-or-vendors"> Loss, Theft, Destruction or Non-Receipt of a Warrant to Clients or Vendors</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/endorsing-warrant">Endorsing the Warrant</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/replacement">Replacement</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/returning-warrant">Returning a Warrant</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/categorical-eligibility-basic-food">Categorical Eligibility for Basic Food</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/certification-periods">Certification Periods</a><ul class="dropdown-menu" role="menu"><li class="first last leaf" role="presentation"><a href="/esa/certification-periods/certification-periods-basic-food">Certification Periods - Basic Food</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/change-circumstances-toc">Change of Circumstances - TOC</a><ul class="dropdown-menu" role="menu"><li class="first collapsed" role="presentation"><a href="/esa/change-circumstances-toc/reporting-requirements">Reporting Requirements </a></li>
+<li class="last leaf" role="presentation"><a href="/esa/change-circumstances-toc/effective-date-change-circumstances">Effective Date - Change of Circumstances</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/chemical-dependency-treatment">Chemical Dependency Treatment</a><ul class="dropdown-menu" role="menu"><li class="first last expanded" role="presentation"><a href="/esa/chemical-dependency-treatment/chemical-dependency-treatment-toc">Chemical Dependency Treatment - TOC</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/chemical-dependency-treatment-toc/access-substance-use-treatment">Access to Substance Use Treatment</a></li>
+<li class="leaf" role="presentation"><a href="/esa/chemical-dependency-treatment-toc/chemical-dependency-treatment-and-ssi">Chemical Dependency Treatment and SSI</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/chemical-dependency-treatment-toc/chemical-dependency-treatment-altsa-and-food-assistance">Chemical Dependency Treatment via ALTSA and Food Assistance</a></li>
+</ul></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/child-abuse-and-neglect-reporting">Child Abuse and Neglect Reporting</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/child-support">Child Support</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/citizenship-and-immigration-status">Citizenship and Immigration Status</a><ul class="dropdown-menu" role="menu"><li class="first expanded" role="presentation"><a href="/esa/citizenship-and-alien-status/citizenship-and-immigration-status-requirements-all-programs">Citizenship and Immigration Status Requirements for all Programs</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-all-programs/definitions">Definitions</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-all-programs/cash-and-medical-decision-tree">Cash and Medical Decision Tree</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-all-programs/date-entry">Date of Entry</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-all-programs/social-security-number-requirements">Social Security Number Requirements</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-all-programs/veteran-status">Veteran Status</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-all-programs/citizenship-and-alien-status-work-quarters">Citizenship and Alien Status - Work Quarters</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/citizenship-and-alien-status/citizenship-and-immigration-status-requirements-specific-program">Citizenship and Immigration Status Requirements Specific to Program</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-specific-program/citizenship-and-immigration-status-food-benefits">Citizenship and Immigration Status - For Food Benefits</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-specific-program/citizenship-and-alien-status-temporary-assistance-needy-families-tanf">Citizenship and Alien Status - For Temporary Assistance for Needy Families (TANF) </a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-specific-program/citizenship-and-alien-status-state-cash-programs">Citizenship and Alien Status for State Cash Programs</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-specific-program/public-benefit-eligibility-survivors-certain-crimes">Public Benefit Eligibility for Survivors of Certain Crimes</a></li>
+</ul></li>
+<li class="last expanded" role="presentation"><a href="/esa/citizenship-and-immigration-status/resources-desk-aids-and-links">Resources, Desk Aids and Links </a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/resources-desk-aids-and-links/citizenship-and-identity-documents-medicaid">Citizenship and Identity Documents for Medicaid</a></li>
+<li class="leaf" role="presentation"><a href="/esa/resources-desk-aids-and-links/immigration-law-center-nilc-guide">Immigration Law Center (NILC) Guide</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/resources-desk-aids-and-links/sample-ssn-request-letter">Sample SSN Request Letter</a></li>
+</ul></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/civil-rights-and-complaints">Civil Rights and Complaints</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/confidentiality">Confidentiality</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/confidentiality/confidentiality-address-confidentiality-program-acp-domestic-violence-victims">Confidentiality - Address Confidentiality Program (ACP) for Domestic Violence Victims</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/confidentiality/confidentiality-information">Confidentiality - Information</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/consolidated-emergency-assistance-program-ceap">Consolidated Emergency Assistance Program (CEAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/data-sharing">Data Sharing</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/diaper-related-payment-drp">Diaper Related Payment (DRP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/diversion-cash-assistance">Diversion Cash Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/elderly-simplified-application-project-esap">Elderly Simplified Application Project (ESAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/eligibility-reviewsrecertifications-requirements-food-and-cash-programs">Eligibility Reviews/Recertifications - Requirements for Food and Cash Programs</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/emergency-assistance-programs">Emergency Assistance Programs</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/emergency-assistance-programs/consolidated-emergency-assistance-program-ceap">Consolidated Emergency Assistance Program - CEAP</a></li>
+<li class="leaf" role="presentation"><a href="/esa/emergency-assistance-programs/disaster-cash-assistance-program">Disaster Cash Assistance Program</a></li>
+<li class="leaf" role="presentation"><a href="/esa/emergency-assistance-programs/disaster-supplemental-nutrition-assistance-program-d-snap">Disaster Supplemental Nutrition Assistance Program (D-SNAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/emergency-assistance-programs/emergency-assistance-programs-additional-requirements-emergent-needs-aren">Emergency Assistance Programs - Additional Requirements for Emergent Needs (AREN)</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/emergency-assistance-programs/pandemic-emergency-assistance-fund">Pandemic Emergency Assistance Fund</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/emergency-food-supplements">Emergency Food Supplements</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/equal-access-necessary-supplemental-accommodations">Equal Access (Necessary Supplemental Accommodations)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/exception-rule">Exception to Rule</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/fair-hearings">Fair Hearings</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/fleeing-felons">Fleeing Felons</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/food-assistance-supplemental-nutrition-assistance-program-snap">Food Assistance - Supplemental Nutrition Assistance Program (SNAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/food-assistance-program-fap-legal-immigrants">Food Assistance Program (FAP) for Legal Immigrants</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/food-distribution-program-indian-reservations">Food Distribution Program on Indian Reservations</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/foster-carerelative-placementadoption-supportjuvenile-rehabilitationunaccompanied-minor-program">Foster Care/Relative Placement/Adoption Support/Juvenile Rehabilitation/Unaccompanied Minor Program</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/fraud">Fraud</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/health-care-authority-apple-health-medicaid-manual">Health Care Authority - Apple Health (Medicaid) Manual</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/healthcare-workers-disabilities-hwd">Healthcare for Workers with Disabilities - HWD</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/loco-parentis">In Loco Parentis</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/incapacity-and-disability">Incapacity and Disability</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/income-table-contents">Income - Table of Contents</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/income-table-contents/allocation-and-deeming">Allocation and Deeming</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/indian-agencies-serving-tribes-near-reservation-designation">Indian Agencies Serving Tribes With a Near-Reservation Designation</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/best-estimate-guide">Best Estimate Guide</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/budgeting">Budgeting</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/effect-puyallup-settlement-your-eligibility-public-assistance">Effect of the Puyallup Settlement on Your Eligibility for Public Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/income-indian-agencies-serving-tribes-without-near-reservation-designation">Income - Indian Agencies Serving Tribes Without a Near-Reservation Designation</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/income-ownership-and-availability">Income - Ownership and Availability</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/income-special-types">Income Special Types</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/self-employment-income">Self Employment Income</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/treatment">Treatment</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/treatment-income-chart">Treatment of Income Chart</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/utility-chart">Utility Chart</a></li>
+<li class="last leaf active" role="presentation"><a href="/esa/income-table-contents/income-effect-income-and-deductions-eligibility-and-benefit-level" class="active">Income - Effect of Income and Deductions on Eligibility and Benefit Level</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/interview-requirements">Interview Requirements</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/letters">Letters</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/letters/100-series-reason-code-protocols">100 Series Reason Code Protocols</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/200-series-reason-code-protocols">200 Series Reason Code Protocols</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/300-series-reason-code-protocols">300 Series Reason Code Protocols</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/400-series-reason-code-protocols">400 Series Reason Code Protocols</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/500-series-reason-code-protocols">500 Series Reason Code Protocols</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/information-about-letters">Information about Letters</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/letters-protocols">Letters Protocols</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/letters/reason-codes">Reason Codes</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/limited-english-proficiency-lep">Limited English Proficiency (LEP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/living-relative-or-guardian">Living with a Relative or Guardian</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/long-term-care">Long Term Care</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/lottery-or-gambling-disqualification-basic-food">Lottery or Gambling Disqualification for Basic Food</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/lump-sum-cash-assistance-and-tanfsfa-related-medical-assistance">Lump Sum Cash Assistance and TANF/SFA-Related Medical Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/medical-assistance">Medical Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/mid-certification-reviews">Mid Certification Reviews</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/ongoing-additional-requirements-oar">Ongoing Additional Requirements (OAR)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/overpayments">Overpayments</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/pandemic-ebt-p-ebt-program">Pandemic EBT (P-EBT) Program</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/payees-benefit-issuances-authorized-representatives">Payees on Benefit Issuances - Authorized Representatives</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/payees-benefit-issuances-overview">Payees on Benefit Issuances - Overview</a></li>
+<li class="collapsed" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/payees-benefit-issuances-protective-payees">Payees on Benefit Issuances - Protective Payees</a></li>
+<li class="collapsed" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/pregnancy-and-cash-assistance-eligibility">Pregnancy and Cash Assistance Eligibility</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/prescription-drug-assistance-programs">Prescription Drug Assistance Programs</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/program-summary">Program Summary</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/program-summary/aged-blind-or-disabled-abd-cash">Aged, Blind or Disabled (ABD) Cash</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/food-assistance-program-legal-immigrants-fap">Food Assistance Program for Legal Immigrants (FAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/heat-and-eat">Heat and Eat</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/housing-and-essential-needs-hen-referral">Housing and Essential Needs (HEN) Referral</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/pregnant-women-assistance-pwa">Pregnant Women Assistance (PWA)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/sfa">SFA</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/tanf">TANF</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/washington-basic-food-program">Washington Basic Food Program</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/program-summary/working-family-support">Working Family Support</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/quality-control">Quality Control</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/refugee-assistance-program">Refugee Assistance Program</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-immigration-status-requirements">Refugee - Immigration Status Requirements</a></li>
+<li class="leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-cash-assistance">Refugee Cash Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-income-and-resources">Refugee - Income and Resources</a></li>
+<li class="leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-employment-and-training-services">Refugee - Employment and Training Services</a></li>
+<li class="leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-medical-assistance">Refugee Medical Assistance</a></li>
+<li class="last leaf" role="presentation"><a href="/refugee-assistance-program/refugee-resettlement-agencies-washington">Refugee Resettlement Agencies in Washington</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/residency-requirements">Residency Requirements</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/resources">Resources</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/resources/how-resources-count">How Resources Count</a></li>
+<li class="leaf" role="presentation"><a href="/esa/resources/how-resources-affect-eligibility">How Resources Affect Eligibility</a></li>
+<li class="leaf" role="presentation"><a href="/esa/resources/how-vehicles-count-toward-resource-limit-cash-and-food">How Vehicles Count Toward the Resource Limit for Cash and Food</a></li>
+<li class="leaf" role="presentation"><a href="/esa/resources/resources-excluded-federal-law">Resources Excluded by Federal Law</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/resources/resources-aliens-sponsor">Resources of an Alien&#039;s Sponsor</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/rights-and-responsibilities">Rights and Responsibilities</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/social-security-numbers-ssn">Social Security Numbers (SSN)</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/standards">Standards</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/standards/basic-food">Basic Food</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/standards/cash-assistance">Cash Assistance</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/state-median-income-chart">State Median Income Chart</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/strikers">Strikers</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/student-status">Student Status</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/sun-bucks">Sun Bucks</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/supplemental-security-income-and-state-supplemental-payment">Supplemental Security Income and State Supplemental Payment</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/tanfsfa-minor-parent">TANF/SFA Minor Parent</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/tanfsfa-temporary-absence">TANF/SFA Temporary Absence</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/tanfsfa-time-limits">TANF/SFA Time Limits</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/transfer-property-cash-and-basic-food">Transfer of Property for Cash and Basic Food</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/transitional-cash-assistance">Transitional Cash Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/transitional-food-assistance">Transitional Food Assistance</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/verification">Verification</a><ul class="dropdown-menu" role="menu"><li class="first last leaf" role="presentation"><a href="/esa/manuals/verification-charts">Verification Charts</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/veterans-referrals">Veteran&#039;s Referrals</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/voter-registration">Voter Registration</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/washcap">WASHCAP</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/workfirst-orientation">WorkFirst Orientation</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/workfirst-sanctions-participation">WorkFirst Sanctions-Participation</a></li>
+</ul></li>
+</ul></div>
+        <ul class="pager clearfix">
+              <li class="previous"><a href="/esa/income-table-contents/utility-chart" class="page-previous" title="Go to previous page">‹ Utility Chart</a></li>
+                    <li><a href="/esa/eligibility-z-manual-ea-z/income-table-contents" class="page-up" title="Go to parent page">up</a></li>
+                    <li class="next"><a href="/esa/eligibility-z-manual-ea-z/interview-requirements" class="page-next" title="Go to next page">Interview Requirements ›</a></li>
+          </ul>
+    
+  </div>
+  </div>
+
+  <ul class="links list-inline"><li class="book_printer first last"><a href="/book/export/html/603" title="Show a printer-friendly version of this book page and its sub-pages.">Printer-friendly version</a></li>
+</ul>
+  
+</div>
+</section>
+  </div>
+      </section>
+
+              <aside class="col-sm-3 col-sm-pull-9" role="complementary">
+            <div class="region region-sidebar-first well">
+    <section id="block-menu-block-2" class="block block-menu-block clearfix">
+
+      
+  <div class="menu-block-wrapper menu-block-2 menu-name-menu-esa-business-groups parent-mlid-944 menu-level-1">
+  <h3 class="menu-esa"><a href="/esa">ESA</a></h3><ul class="menu nav"><li class="first collapsed menu-mlid-603"><a href="/esa/online-community-services-office-cso" title="Community Services">Community Services</a></li>
+<li class="collapsed menu-mlid-11904"><a href="/esa/division-child-support" title="Child Support">Child Support</a></li>
+<li class="collapsed menu-mlid-8073"><a href="/esa/disability-determination-services" title="Disability Determination">Disability Determination</a></li>
+<li class="collapsed menu-mlid-7886"><a href="/esa/employment-and-training-programs" title="Employment and Training">Employment and Training</a></li>
+<li class="collapsed menu-mlid-610"><a href="/esa/office-refugee-and-immigrant-assistance" title="Refugee and Immigrant Assistance">Refugee and Immigrant Assistance</a></li>
+<li class="leaf menu-mlid-604"><a href="/esa/community-partnership-program/washington-connection-community-partnership-program" title="Community Connections">Community Partnership Program</a></li>
+<li class="leaf menu-mlid-12998"><a href="/esa/washington-fatherhood-council" title="Washington Fatherhood Council">Washington Fatherhood Council</a></li>
+<li class="leaf menu-mlid-12996"><a href="/esa/esa-strategic-plan" title="Strategic Plan">Strategic Plan</a></li>
+<li class="collapsed menu-mlid-7674"><a href="/esa/reports-and-publications" title="Reports and Publications">Reports and Publications</a></li>
+<li class="collapsed menu-mlid-607"><a href="/esa/manuals" title="Manuals">Manuals</a></li>
+<li class="leaf menu-mlid-12995"><a href="/esa/esa-latest-news" title="Latest News">Latest News</a></li>
+<li class="last leaf menu-mlid-7914"><a href="/esa/contact-esa" title="Contact ESA">Contact ESA</a></li>
+</ul></div>
+
+</section>
+  </div>
+        </aside>  <!-- /#sidebar-first -->
+      
+      
+    </div>
+  </div>
+    </div>
+</div>
+<div class="sticky-footer">
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 footer-logo">
+        <a href="/"><img src="/sites/all/themes/wa_dshs/images/footer-logo.png" width="200" alt="Washington State Department of Social & Health Services" /></a>
+      </div>
+      <div class="col-sm-9 footer-content">
+        <div class="region region-footer">
+    <section id="block-block-3" class="block block-block clearfix">
+
+      
+  <div>
+<h5><strong>Connect with DSHS</strong></h5>
+</div>
+<ul>
+<li><a href="https://www.dshs.wa.gov/staff-access" title="Staff">Staff Access</a></li>
+<li><a href="https://www.dshs.wa.gov/about-us" title="About Us">About Us</a></li>
+<li><a href="https://www.dshs.wa.gov/work-dshs" title="Work at DSHS">Work at DSHS</a></li>
+<li><a href="https://www.dshs.wa.gov/contact-department-social-and-health-services" title="Contact Us">Contact Us</a></li>
+<li><a href="https://www.dshs.wa.gov/office-locations" title="Locate a Service">Locate a Service Office</a></li>
+<li><a href="https://www.dshs.wa.gov/report-abuse-and-neglect" title="Report Abuse">Report Abuse and Neglect</a></li>
+</ul>
+
+</section>
+<section id="block-block-23" class="block block-block clearfix">
+
+      
+  <div>
+<h5><strong>Access and Inclusion</strong></h5>
+</div>
+<ul>
+<li><a href="https://www.dshs.wa.gov/os/publications-library?combine=non-discrimination&amp;field_program_topic_value=All&amp;field_job__value&amp;field_language_available_value=All" title="Nondiscrimination Policy">Nondiscrimination Policy</a></li>
+<li><a href="https://www.dshs.wa.gov/accessibility-statement" title="Accessibility">Accessibility Statement</a></li>
+<li><a href="https://get.adobe.com/reader/" title="Adobe Reader">Adobe Reader</a></li>
+<li><a href="https://www.dshs.wa.gov/sites/default/files/forms/pdf/03-387a.pdf" target="_self" title="Privacy">Notice of Privacy Practices</a></li>
+<li><a href="https://www.dshs.wa.gov/privacy-notice" target="_self" title="Security note">Privacy Notice</a></li>
+<li><a href="https://www.dshs.wa.gov/office-of-the-secretary/dshs-rule-making-process" title="Rule">Rule Making</a></li>
+</ul>
+
+</section>
+<section id="block-block-24" class="block block-block clearfix">
+
+      
+  <div>
+<h5><strong>Language Access</strong></h5>
+</div>
+<p>​<a href="https://www.dshs.wa.gov/office-of-the-secretary/english" title="English">English </a>| <a href="https://www.dshs.wa.gov/office-of-the-secretary/spanish" title="Spanish">Español</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/russian" title="Russian">Русский</a> </p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/chinese" title="Chinese">简体</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/%E4%B8%AD%E6%96%87-%E2%80%93-chinese-traditional" title="Chinese Traditional">繁體 </a>| <a href="https://www.dshs.wa.gov/office-of-the-secretary/korean" title="Korean">한국어</a> </p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/arabic" title="Arabic">عربى</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/khmer" title="Khmer">អក្សរខ្មែរ</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/punjabi" title="Punjabi">&lt;ਪੰਜਾਬੀ</a> </p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/somali" title="Somali">Af-soomaali</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/ukrainian" title="Ukrainian">Українська</a></p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/vietnamese" title="Vietnamese">Tiếng Việt</a>| <a href="https://www.dshs.wa.gov/office-of-the-secretary/amharic" title="Amharic">አማርኛ |</a><a href="https://www.dshs.wa.gov/office-of-the-secretary/farsi" title="Farsi"> فارسی</a> | </p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/tagalog" title="Tagalog">Tagalog</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/lao" title="Laotian">ພາສາລາວ</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/tigrinya" title="Tigrinya">ትግርኛ</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/asl" title="ASL">ASL</a></p>
+
+</section>
+  </div>
+        <ul class="social">
+          <li><a href="https://www.facebook.com/WaStateDSHS"><span class="icon-facebook">Facebook</span></a></li>
+          <li><a href="https://twitter.com/waDSHS"><span class="icon-twitter">Twitter</span></a></li>
+          <li><a href="https://www.youtube.com/user/WashingtonStateDSHS"><span class="icon-youtube">YouTube</span></a></li>
+          <li><a href="https://www.linkedin.com/company/washingtondepartmentofsocialandhealthservices"><span class="icon-linkedin">LinkedIn</span></a></li>
+          <li><a href="https://dshswa.medium.com/"><span class="icon-medium">Medium</span></a></li>
+        </ul>
+            </div>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="https://www.dshs.wa.gov/sites/all/modules/picture/picturefill/picturefill.min.js?v=3.0.1"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/picture/picture.min.js?v=7.105"></script>
+<script src="https://www.dshs.wa.gov/sites/all/themes/bootstrap/js/bootstrap.js?thviji"></script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"NRJS-595d3388f4cbdcc440c","applicationID":"1100846724","transactionName":"NFJWNUFSWhZZBk1aXg0YYRNaHBsMVgFcSx8TX0Q=","queueTime":0,"applicationTime":712,"atts":"GBVVQwlISRg=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
