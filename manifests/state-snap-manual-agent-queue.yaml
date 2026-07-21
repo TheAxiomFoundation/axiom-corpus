@@ -557,14 +557,18 @@ states:
       version: 2026-05-27-vt-3squaresvt-manual
   - jurisdiction: us-va
     name: Virginia
-    queue_status: source_refetch_required
-    source_kind: official_html_manual
+    queue_status: published_current
+    source_kind: official_pdf_manual
     primary_source_url: https://www.dss.virginia.gov/relief/food-assistance/snap/snap-policy--procedures/snap-manual/
     target_manifest: manifests/us-va-snap-manual.yaml
     target_scope:
       jurisdiction: us-va
       document_class: manual
-      version: 2026-05-27-va-snap-manual
+      version: 2026-07-21-va-snap-manual
+    notes: The retained 714-page full manual incorporates SNAP Manual Transmittal
+      36, generally effective October 1, 2025. The source-backed scope contains
+      one document row and 677 rows for every text- or image-bearing PDF page,
+      including OCR fallback for the two image-only appendix pages.
   - jurisdiction: us-wa
     name: Washington
     queue_status: source_refetch_required
