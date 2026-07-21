@@ -482,14 +482,17 @@ states:
       version: 2026-05-27-pa-snap-handbook
   - jurisdiction: us-ri
     name: Rhode Island
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_regulation
     primary_source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-1
     target_manifest: manifests/us-ri-snap-rules.yaml
     target_scope:
       jurisdiction: us-ri
       document_class: regulation
-      version: 2026-05-27-ri-snap-rules
+      version: 2026-07-21-ri-snap-rules
+    notes: The retained 272-page Secretary of State PDF is the current signed
+      amendment of 218-RICR-20-00-1, effective April 5, 2026. Every PDF page
+      contains native extractable text and is represented in the complete scope.
   - jurisdiction: us-sc
     name: South Carolina
     queue_status: published_current

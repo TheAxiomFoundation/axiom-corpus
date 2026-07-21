@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/regulation/2026-07-21-ri-snap-rules.json",
+      "sha256": "e924fb7e71fb3768f9c593f3b01b7624f4ffb31ed4fecfc1a4217aff8f6c6731"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/regulation/2026-07-21-ri-snap-rules.json",
+      "sha256": "65d7ee2a8ae069209f9dd6fa6b460c58f8fffb91cbbd3214921431a91ab4883d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/regulation/2026-07-21-ri-snap-rules.jsonl",
+      "sha256": "1bbe6b0f94f14a1a82cf747ff7969af8cd1987baebc328bc486007ac3533ca2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ri/regulation/2026-07-21-ri-snap-rules/official-documents/ri-dhs-snap-218-20-00-1.pdf",
+      "sha256": "875e5a2a0f5d0ef62d2566f46323be71164bd7a14fa1c2e825985eddb6224983"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0997a92c197d0dc770c997b0552b8ce62292d23b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-ri-snap-rules --manifest manifests/us-ri-snap-rules.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 273,
+    "missing_count": 0,
+    "provision_count": 273,
+    "source_count": 273
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T16:24:03.135952+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/hzWKR3ftMB24xd5ohmvpCEy7MnNL8Kqv4jo99H0TQV9RsLdjfn59DZFFsmnfb0pTSHec8OlAQXPbXrIN8H+Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-ri-snap-rules"
+}
