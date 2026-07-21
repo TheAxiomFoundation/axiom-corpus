@@ -451,15 +451,21 @@ states:
     notes: Division 5101:4 SNAP rules are covered by the full Ohio Administrative Code ingestion, not a separate official-document manifest.
   - jurisdiction: us-ok
     name: Oklahoma
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://rules.ok.gov/home
     target_manifest: manifests/us-ok-snap-rules.yaml
     target_scope:
       jurisdiction: us-ok
       document_class: regulation
-      version: 2026-05-27-ok-snap-rules
-    notes: Current scope uses the public rules.ok.gov production API for OAC 340 Chapter 50 Supplemental Nutrition Assistance Program, exposed by the official Oklahoma Administrative Rules app.
+      version: 2026-07-21-ok-snap-rules
+    supporting_manifest: manifests/us-ok-snap-policy.yaml
+    supporting_scope:
+      jurisdiction: us-ok
+      document_class: policy
+      version: 2026-07-21-ok-snap-policy
+    supporting_queue_status: source_refetch_required
+    notes: The current regulation target retains the public rules.ok.gov production API for OAC 340 Chapter 50 and is published_current. The separately scoped current OKDHS SNAP appendices and cited cross-chapter OAC dependencies remain source_refetch_required.
   - jurisdiction: us-or
     name: Oregon
     queue_status: published_current
