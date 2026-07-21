@@ -62,8 +62,8 @@ EXPECTED_SOURCES = {
         "1ff9517c2ec2105936fdfdda5d202ac95debc11854b34e9752d32c8ea947f40a",
         426,
     ),
-    "co-cdhs-workfare-state-plan-ffy2026": (
-        "co-cdhs-workfare-state-plan-ffy2026.pdf",
+    "co-cdhs-workfare-state-plan": (
+        "co-cdhs-workfare-state-plan.pdf",
         157_934,
         "4cc864a58756d103ec19e4da3a6e33c7af7ad623c956f4205b58cbb70f91910d",
         8,
