@@ -16,6 +16,8 @@ SOURCE_DIR = CORPUS_ROOT / "sources/us-co/policy" / VERSION / "official-document
 INVENTORY_PATH = CORPUS_ROOT / "inventory/us-co/policy" / f"{VERSION}.json"
 PROVISIONS_PATH = CORPUS_ROOT / "provisions/us-co/policy" / f"{VERSION}.jsonl"
 COVERAGE_PATH = CORPUS_ROOT / "coverage/us-co/policy" / f"{VERSION}.json"
+LEGACY_VERSION = "2026-04-30"
+LEGACY_MANIFEST_PATH = REPO_ROOT / ".axiom/ingest-manifests/us-co/policy" / f"{LEGACY_VERSION}.json"
 
 EXPECTED_SOURCES = {
     "co-cdhs-snap-page": (
@@ -242,3 +244,25 @@ def test_colorado_queue_publishes_current_supporting_scope() -> None:
     assert "conflicting ABAWD ages" in state["notes"]
     assert "Federal law" in state["notes"]
     assert "broader active CDHS memo catalog" in state["notes"]
+
+
+def test_colorado_source_less_legacy_scope_has_exact_tombstone() -> None:
+    legacy_paths = {
+        f"data/corpus/{artifact}/us-co/policy/{LEGACY_VERSION}{suffix}"
+        for artifact, suffix in (
+            ("coverage", ".json"),
+            ("inventory", ".json"),
+            ("provisions", ".jsonl"),
+        )
+    }
+    tombstone = json.loads(LEGACY_MANIFEST_PATH.read_text())
+
+    assert all(not (REPO_ROOT / path).exists() for path in legacy_paths)
+    assert tombstone["coverage"] is None
+    assert tombstone["jurisdiction"] == "us-co"
+    assert tombstone["document_class"] == "policy"
+    assert tombstone["version"] == LEGACY_VERSION
+    assert tombstone["axiom_corpus_git"]["dirty_tracked"] is False
+    assert tombstone["applied_files"] == [
+        {"deleted": True, "path": path} for path in sorted(legacy_paths)
+    ]
