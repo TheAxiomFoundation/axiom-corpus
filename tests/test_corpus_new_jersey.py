@@ -74,6 +74,36 @@ def test_parse_new_jersey_statutes_text():
     assert provisions[8].legal_identifier == "N.J. Stat. Title Appendix A, ch. 10"
 
 
+def test_parse_new_jersey_statutes_text_skips_repeated_self_header():
+    provisions = parse_new_jersey_statutes_text(
+        """
+TITLE 54A NEW JERSEY GROSS INCOME TAX ACT
+
+54A:2-1  Imposition of tax.
+    54A:10A-1. Imposition of tax. There is hereby imposed a tax for each
+    taxable year on the New Jersey gross income of every individual.
+
+54A:2-2  Partners and partnerships.
+    A partnership as such shall not be subject to tax under this act.
+""",
+        source=SAMPLE_SOURCE,
+    )
+
+    rate_section = next(
+        provision
+        for provision in provisions
+        if provision.citation_path == "us-nj/statute/54a:2-1"
+    )
+    assert rate_section.body == (
+        "There is hereby imposed a tax for each taxable year on the New Jersey "
+        "gross income of every individual."
+    )
+    assert all(
+        provision.citation_path != "us-nj/statute/54a:10a-1"
+        for provision in provisions
+    )
+
+
 def test_extract_new_jersey_statutes_from_source_dir_writes_complete_artifacts(
     tmp_path,
 ):

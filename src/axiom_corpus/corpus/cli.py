@@ -175,6 +175,13 @@ from axiom_corpus.corpus.state_adapters.massachusetts import (
 from axiom_corpus.corpus.state_adapters.michigan import (
     extract_michigan_compiled_laws,
 )
+from axiom_corpus.corpus.state_adapters.mississippi import (
+    MISSISSIPPI_DOR_RATES_URL,
+    MISSISSIPPI_HB1_HTML_URL,
+    MISSISSIPPI_HB1_PDF_URL,
+    MISSISSIPPI_HB1_SIGNING_URL,
+    extract_mississippi_income_tax_statute,
+)
 from axiom_corpus.corpus.state_adapters.missouri import (
     extract_missouri_revised_statutes,
 )
@@ -197,6 +204,7 @@ from axiom_corpus.corpus.state_adapters.new_york import (
     extract_new_york_openleg_api,
     extract_new_york_openleg_sections,
 )
+from axiom_corpus.corpus.state_adapters.north_dakota import extract_north_dakota_code
 from axiom_corpus.corpus.state_adapters.nyc_admin_code import extract_nyc_admin_code
 from axiom_corpus.corpus.state_adapters.oklahoma import extract_oklahoma_statutes
 from axiom_corpus.corpus.state_adapters.oregon import (
@@ -204,6 +212,9 @@ from axiom_corpus.corpus.state_adapters.oregon import (
     extract_oregon_ors,
 )
 from axiom_corpus.corpus.state_adapters.pennsylvania import extract_pennsylvania_statutes
+from axiom_corpus.corpus.state_adapters.pennsylvania_unconsolidated import (
+    extract_pennsylvania_unconsolidated_statutes,
+)
 from axiom_corpus.corpus.state_adapters.rhode_island import (
     RHODE_ISLAND_GENERAL_LAWS_DEFAULT_YEAR,
     extract_rhode_island_general_laws,
@@ -216,6 +227,7 @@ from axiom_corpus.corpus.state_adapters.utah import (
     UTAH_CODE_SOURCE_URL,
     extract_utah_code,
 )
+from axiom_corpus.corpus.state_adapters.vermont import extract_vermont_statutes
 from axiom_corpus.corpus.state_adapters.west_virginia import extract_west_virginia_code
 from axiom_corpus.corpus.state_adapters.wisconsin import (
     WISCONSIN_STATUTES_TOC_URL,
@@ -2725,6 +2737,7 @@ def _extract_state_statute_source(
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
+            only_article=_optional_text(options.get("only_article")),
             limit=limit,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
             base_url=_optional_text(options.get("base_url")) or "https://ksrevisor.gov/",
@@ -3008,6 +3021,41 @@ def _extract_state_statute_source(
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.02,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 60.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            rate_schedule_url=_optional_text(options.get("rate_schedule_url")),
+            tax_year=_optional_int(options.get("tax_year")) or 2026,
+        )
+    if adapter == "mississippi-session-law":
+        return extract_mississippi_income_tax_statute(
+            store,
+            version=version,
+            source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            only_title=only_title,
+            limit=limit,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            bill_html_url=_optional_text(options.get("bill_html_url"))
+            or source.source_url
+            or MISSISSIPPI_HB1_HTML_URL,
+            bill_pdf_url=_optional_text(options.get("bill_pdf_url"))
+            or MISSISSIPPI_HB1_PDF_URL,
+            signing_url=_optional_text(options.get("signing_url"))
+            or MISSISSIPPI_HB1_SIGNING_URL,
+            rate_guidance_url=_optional_text(options.get("rate_guidance_url"))
+            or MISSISSIPPI_DOR_RATES_URL,
+            tax_year=_optional_int(options.get("tax_year")) or 2026,
+            request_delay_seconds=_optional_float(options.get("request_delay_seconds"))
+            or 0.05,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            legislature_verify_ssl=_optional_bool(
+                options.get("legislature_verify_ssl"),
+                default=True,
+            ),
+            dor_verify_ssl=_optional_bool(
+                options.get("dor_verify_ssl"),
+                default=True,
+            ),
         )
     if adapter == "new-hampshire-rsa":
         return extract_new_hampshire_rsa(
@@ -3017,6 +3065,7 @@ def _extract_state_statute_source(
             source_as_of=source_as_of,
             expression_date=expression_date,
             only_title=only_title,
+            only_chapter=_optional_text(options.get("only_chapter")),
             limit=limit,
             workers=_optional_int(options.get("workers")) or 1,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
@@ -3024,6 +3073,12 @@ def _extract_state_statute_source(
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.25,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 30.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 2,
+            repeal_authority_2021_url=_optional_text(
+                options.get("repeal_authority_2021_url")
+            ),
+            repeal_acceleration_2023_url=_optional_text(
+                options.get("repeal_acceleration_2023_url")
+            ),
         )
     if adapter == "new-jersey-statutes":
         return extract_new_jersey_statutes(
@@ -3140,6 +3195,34 @@ def _extract_state_statute_source(
             workers=_optional_int(options.get("workers")) or 8,
             download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
         )
+    if adapter == "north-dakota-code":
+        return extract_north_dakota_code(
+            store,
+            version=version,
+            source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            only_title=only_title,
+            limit=limit,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            code_index_url=_optional_text(options.get("code_index_url"))
+            or "https://ndlegis.gov/cencode/t57c38.html",
+            code_pdf_url=_optional_text(options.get("code_pdf_url"))
+            or "https://ndlegis.gov/cencode/t57c38.pdf",
+            individual_schedule_url=_optional_text(options.get("individual_schedule_url"))
+            or (
+                "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/"
+                "2025-iit/28709-form-nd-1es-2026.pdf"
+            ),
+            fiduciary_schedule_url=_optional_text(options.get("fiduciary_schedule_url"))
+            or (
+                "https://www.tax.nd.gov/sites/www/files/documents/forms/business/fiduciary/"
+                "2025-fiduciary/28723-form-38-es-2026.pdf"
+            ),
+            tax_year=_optional_int(options.get("tax_year")) or 2026,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+        )
     if adapter == "new-york-consolidated-laws":
         return extract_new_york_consolidated_laws(
             store,
@@ -3211,6 +3294,21 @@ def _extract_state_statute_source(
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 120.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
         )
+    if adapter == "pennsylvania-unconsolidated-statutes":
+        return extract_pennsylvania_unconsolidated_statutes(
+            store,
+            version=version,
+            act_year=_optional_int(options.get("act_year")) or 1971,
+            act_number=_optional_int(options.get("act_number")) or 2,
+            article=_optional_int(options.get("only_article")) or 3,
+            source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            limit=limit,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 120.0,
+        )
     if adapter == "south-carolina-code":
         return extract_south_carolina_code(
             store,
@@ -3225,6 +3323,9 @@ def _extract_state_statute_source(
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.15,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            session_law_url=_optional_text(options.get("session_law_url")),
+            session_law_section=_optional_text(options.get("session_law_section")),
+            session_law_source_id=_optional_text(options.get("session_law_source_id")),
         )
     if adapter == "west-virginia-code":
         return extract_west_virginia_code(
@@ -3241,6 +3342,42 @@ def _extract_state_statute_source(
             request_delay_seconds=_optional_float(options.get("request_delay_seconds")) or 0.05,
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
+        )
+    if adapter == "vermont-statutes":
+        return extract_vermont_statutes(
+            store,
+            version=version,
+            source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
+            source_as_of=source_as_of,
+            expression_date=expression_date,
+            only_title=only_title,
+            only_chapter=_optional_text(options.get("only_chapter")),
+            limit=limit,
+            download_dir=_optional_manifest_path(manifest_path, options, "download_dir"),
+            chapter_index_url=_optional_text(options.get("chapter_index_url"))
+            or "https://legislature.vermont.gov/statutes/chapter/32/151",
+            full_chapter_url=_optional_text(options.get("full_chapter_url"))
+            or "https://legislature.vermont.gov/statutes/fullchapter/32/151",
+            acts_registry_url=_optional_text(options.get("acts_registry_url"))
+            or (
+                "https://legislature.vermont.gov/"
+                "bill/loadBillActsAffectingStatutes/2026"
+            ),
+            act_152_url=_optional_text(options.get("act_152_url"))
+            or (
+                "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT152/"
+                "ACT152%20As%20Enacted.pdf"
+            ),
+            act_164_url=_optional_text(options.get("act_164_url"))
+            or (
+                "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT164/"
+                "ACT164%20As%20Enacted.pdf"
+            ),
+            request_delay_seconds=_optional_float(options.get("request_delay_seconds"))
+            or 0.1,
+            timeout_seconds=_optional_float(options.get("timeout_seconds")) or 90.0,
+            request_attempts=_optional_int(options.get("request_attempts")) or 3,
+            verify_ssl=_optional_bool(options.get("verify_ssl"), default=True),
         )
     if adapter == "new-mexico-statutes":
         return extract_new_mexico_statutes(
@@ -3501,6 +3638,11 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "missouri-revised-statutes": "missouri-revised-statutes",
         "missouri-rs": "missouri-revised-statutes",
         "rsmo": "missouri-revised-statutes",
+        "ms": "mississippi-session-law",
+        "mississippi": "mississippi-session-law",
+        "mississippi-code": "mississippi-session-law",
+        "mississippi-session-law": "mississippi-session-law",
+        "ms-session-law": "mississippi-session-law",
         "mt": "montana-code",
         "montana": "montana-code",
         "montana-code": "montana-code",
@@ -3523,6 +3665,11 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "new-jersey-statutes-text": "new-jersey-statutes",
         "nj-statutes": "new-jersey-statutes",
         "njsa": "new-jersey-statutes",
+        "nd": "north-dakota-code",
+        "north-dakota": "north-dakota-code",
+        "north-dakota-code": "north-dakota-code",
+        "north-dakota-century-code": "north-dakota-code",
+        "ndcc": "north-dakota-code",
         "ok": "oklahoma-statutes",
         "oklahoma": "oklahoma-statutes",
         "oklahoma-statutes": "oklahoma-statutes",
@@ -3578,6 +3725,9 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "pennsylvania-consolidated-statutes-html": "pennsylvania-statutes",
         "pacode": "pennsylvania-statutes",
         "pa-consolidated-statutes": "pennsylvania-statutes",
+        "pennsylvania-unconsolidated-statutes": "pennsylvania-unconsolidated-statutes",
+        "pennsylvania-unconsolidated-statutes-html": "pennsylvania-unconsolidated-statutes",
+        "pa-unconsolidated-statutes": "pennsylvania-unconsolidated-statutes",
         "sc": "south-carolina-code",
         "south-carolina": "south-carolina-code",
         "south-carolina-code": "south-carolina-code",
@@ -3588,6 +3738,11 @@ def _canonical_state_statute_adapter(adapter: str) -> str:
         "west-virginia-code": "west-virginia-code",
         "west-virginia-code-html": "west-virginia-code",
         "wv-code": "west-virginia-code",
+        "vt": "vermont-statutes",
+        "vermont": "vermont-statutes",
+        "vermont-statutes": "vermont-statutes",
+        "vermont-statutes-online": "vermont-statutes",
+        "vsa": "vermont-statutes",
         "nm": "new-mexico-statutes",
         "new-mexico": "new-mexico-statutes",
         "new-mexico-statutes": "new-mexico-statutes",
@@ -3663,10 +3818,12 @@ def _state_statute_source_path_for_plan(
         "massachusetts-general-laws",
         "michigan-compiled-laws",
         "missouri-revised-statutes",
+        "mississippi-session-law",
         "montana-code",
         "nevada-nrs",
         "new-hampshire-rsa",
         "new-jersey-statutes",
+        "north-dakota-code",
         "oklahoma-statutes",
         "south-dakota-codified-laws",
         "utah-code",
@@ -3677,8 +3834,10 @@ def _state_statute_source_path_for_plan(
         "delaware-code",
         "oregon-ors",
         "pennsylvania-statutes",
+        "pennsylvania-unconsolidated-statutes",
         "south-carolina-code",
         "west-virginia-code",
+        "vermont-statutes",
         "new-mexico-statutes",
         "rhode-island-general-laws",
     }:

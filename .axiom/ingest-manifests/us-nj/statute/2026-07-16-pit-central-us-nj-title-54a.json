@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nj/statute/2026-07-16-pit-central-us-nj-title-54a.json",
+      "sha256": "0118c3e9a8ef978f8022084bec69759ac6716f4f2baad8f6ea514428d6214b2f"
+    },
+    {
+      "path": "data/corpus/inventory/us-nj/statute/2026-07-16-pit-central-us-nj-title-54a.json",
+      "sha256": "7b7b05480a96457d96dbf895a24f7c6183eccb64dcf85b7d605493db352737fb"
+    },
+    {
+      "path": "data/corpus/provisions/us-nj/statute/2026-07-16-pit-central-us-nj-title-54a.jsonl",
+      "sha256": "9380644d3d7e5055241baff7188cfd8ff34d184019b3aac78ee4d9d9cb243570"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/statute/2026-07-16-pit-central-us-nj-title-54a/new-jersey-statutes-text/STATUTES.TXT",
+      "sha256": "121d38d6957270ed0f85ec7ed5e64680389eccc7584255f9063e7c505e36a8fa"
+    },
+    {
+      "path": "data/corpus/sources/us-nj/statute/2026-07-16-pit-central-us-nj-title-54a/new-jersey-statutes-text-zip/STATUTES-TEXT.zip",
+      "sha256": "0a399d6bedd9369c4ed875412136f92a9876e717da19e775dc1b99f80472286a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 256,
+    "missing_count": 0,
+    "provision_count": 256,
+    "source_count": 256
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:27.341994+00:00",
+  "jurisdiction": "us-nj",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1HCL3RsO8fx2ngul9JFlN/1pyP1iQjrTf9mJNRA4H/X3orL2qv4UVPS6ssm2+CL2kDYsNw/pD0TpRnQUWKpBDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-central-us-nj-title-54a"
+}

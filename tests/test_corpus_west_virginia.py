@@ -31,6 +31,31 @@ SAMPLE_ARTICLE_JSON = {
 """
 }
 
+SAMPLE_2026_RATE_AUTHORITY_JSON = {
+    "html": """
+<h4>§11-21-4h. Future personal income tax reductions.</h4>
+<p>(b) Beginning on August 15, 2026, and every August 15 thereafter, the Secretary
+of Revenue will determine whether adjusted collections exceed inflation-adjusted
+base-year revenues. Any reduction begins the second taxable year following the
+determination.</p>
+<p>(e) This section applies for taxable years beginning on and after January 1, 2027,
+in lieu of the rates specified in §11-21-4j.</p>
+<h4>§11-21-4j. Rate of tax — Taxable years beginning on and after January 1, 2026.</h4>
+<p>(a) For taxable years beginning on and after January 1, 2026:</p>
+<p>Not over $10,000 2.11% of the taxable income</p>
+<p>Over $10,000 but not over $25,000 $211 plus 2.81% of excess over $10,000</p>
+<p>Over $25,000 but not over $40,000 $632.50 plus 3.16% of excess over $25,000</p>
+<p>Over $40,000 but not over $60,000 $1,106.50 plus 4.22% of excess over $40,000</p>
+<p>Over $60,000 $1,950.50 plus 4.58% of excess over $60,000</p>
+<p>(b) Married individuals filing separate returns:</p>
+<p>Not over $5,000 2.11% of the taxable income</p>
+<p>Over $5,000 but not over $12,500 $105.50 plus 2.81% of excess over $5,000</p>
+<p>Over $12,500 but not over $20,000 $316.25 plus 3.16% of excess over $12,500</p>
+<p>Over $20,000 but not over $30,000 $553.25 plus 4.22% of excess over $20,000</p>
+<p>Over $30,000 $975.25 plus 4.58% of excess over $30,000</p>
+"""
+}
+
 
 def test_parse_west_virginia_code_index_extracts_hierarchy():
     index = parse_west_virginia_code_index(SAMPLE_INDEX_HTML)
@@ -72,6 +97,29 @@ def test_parse_west_virginia_article_sections_json_handles_repealed_paragraphs_a
     assert sections[0].body == "Repealed.\nActs, 1991 Reg. Sess., Ch. 71."
     assert sections[0].status == "repealed"
     assert sections[3].body == "Repealed.\nActs, 2003 Reg. Sess., Ch. 197."
+
+
+def test_parse_west_virginia_article_preserves_2026_rates_and_future_trigger():
+    sections = parse_west_virginia_article_sections_json(
+        json.dumps(SAMPLE_2026_RATE_AUTHORITY_JSON)
+    )
+
+    assert [section.section for section in sections] == ["11-21-4H", "11-21-4J"]
+    trigger, rates = sections
+    assert trigger.body is not None
+    assert "Beginning on August 15, 2026" in trigger.body
+    assert "second taxable year following the determination" in trigger.body
+    assert "beginning on and after January 1, 2027" in trigger.body
+    assert rates.body is not None
+    assert "Not over $10,000 2.11% of the taxable income" in rates.body
+    assert "$211 plus 2.81% of excess over $10,000" in rates.body
+    assert "$632.50 plus 3.16% of excess over $25,000" in rates.body
+    assert "$1,106.50 plus 4.22% of excess over $40,000" in rates.body
+    assert "$1,950.50 plus 4.58% of excess over $60,000" in rates.body
+    assert "$105.50 plus 2.81% of excess over $5,000" in rates.body
+    assert "$316.25 plus 3.16% of excess over $12,500" in rates.body
+    assert "$553.25 plus 4.22% of excess over $20,000" in rates.body
+    assert "$975.25 plus 4.58% of excess over $30,000" in rates.body
 
 
 def test_extract_west_virginia_code_from_source_dir_writes_complete_artifacts(tmp_path):

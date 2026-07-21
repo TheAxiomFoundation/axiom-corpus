@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-pa/statute/2026-07-16-pit-west-us-pa-act-1971-2-article-3.json",
+      "sha256": "9b46f65c80055077b4899ac6818263b439f9d3541dbde564a674ced442b39925"
+    },
+    {
+      "path": "data/corpus/inventory/us-pa/statute/2026-07-16-pit-west-us-pa-act-1971-2-article-3.json",
+      "sha256": "eaf1be364596b01087057ae8cdbb6a303729d940747bdbd14a4789509f363a88"
+    },
+    {
+      "path": "data/corpus/provisions/us-pa/statute/2026-07-16-pit-west-us-pa-act-1971-2-article-3.jsonl",
+      "sha256": "21779a88e294a15cd7fb9d9d0915ea492cc665769727ca3eaebf0fe3bd24e93f"
+    },
+    {
+      "path": "data/corpus/sources/us-pa/statute/2026-07-16-pit-west-us-pa-act-1971-2-article-3/pennsylvania-unconsolidated-statutes-html/act-1971-2/article-3.html",
+      "sha256": "4bdc0d456a0147d7eced96de4ebeeb6807fe73152908bcbbe770c697ae9bdaa5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 115,
+    "missing_count": 0,
+    "provision_count": 115,
+    "source_count": 115
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:29.945837+00:00",
+  "jurisdiction": "us-pa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Qo5hWrJqmavIlrkQrFMehNh554vTzOxPzh78Do507Y6jrR1OxurgxnxyU2QK0ggy86nk1KTYyKtxbmA3MGFxBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-west-us-pa-act-1971-2-article-3"
+}

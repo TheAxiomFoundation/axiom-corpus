@@ -127,7 +127,7 @@ states:
     production_status: productionized_and_validated
     version: "2026-04-29"
     provision_count: 5836
-    notes: Published and validated; existing release uses a CIC source, so prefer a primary official source if rebuilding.
+    notes: Published and validated statewide CIC release; complete primary-source PIT scope for 32 V.S.A. chapter 151 was additionally recovered from official General Assembly HTML and 2026 enacted Acts 152 and 164 on 2026-07-16.
   - jurisdiction: us-va
     name: Virginia
     queue_status: done
@@ -197,7 +197,7 @@ states:
     production_status: supabase_only_legacy
     supabase_count: 25480
     priority: 2
-    notes: Official Mississippi Code public access routes through Lexis; TOC is visible, but section text access triggers CAPTCHA/robot validation. Keep legacy Supabase rows until a primary bulk source, licensed feed, or manual source export is available.
+    notes: Official Mississippi Code public access routes through Lexis; TOC is visible, but section text access triggers CAPTCHA/robot validation. A bounded PIT recovery now covers section 27-7-5 from the complete enacted replacement in 2025 House Bill 1 plus official Governor and DOR confirmation, but statewide recovery remains blocked. Keep legacy Supabase rows until a primary bulk source, licensed feed, or manual source export is available.
   - jurisdiction: us-nm
     name: New Mexico
     queue_status: done
@@ -372,7 +372,7 @@ states:
     production_status: blocked_primary_source
     supabase_count: 584
     priority: 3
-    notes: Source-first adapter and tests were drafted against the official General Court RSA HTML, but the site timed out after title TOC fetches during extraction from this public IP; retry with the polite single-worker adapter after access cools down or use an official bulk/source export.
+    notes: A bounded PIT recovery now covers complete current RSA chapter 77 from official General Court HTML, including its January 1, 2025 repeal and the 2021/2023 chaptered-law authority. Statewide recovery remains blocked by prior title-wide timeouts; retain legacy rows until a polite full extraction or official bulk export succeeds.
   - jurisdiction: us-nj
     name: New Jersey
     queue_status: done

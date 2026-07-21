@@ -802,6 +802,10 @@ def _append_record(
     body: str | None = None,
     parent_citation_path: str | None = None,
 ) -> None:
+    citation_path = _canonical_citation_path(citation_path)
+    if parent_citation_path is not None:
+        parent_citation_path = _canonical_citation_path(parent_citation_path)
+    metadata = _canonical_citation_metadata(metadata)
     item_metadata = {
         **metadata,
         "kind": kind,
@@ -849,6 +853,26 @@ def _append_record(
             metadata=metadata,
         )
     )
+
+
+def _canonical_citation_path(citation_path: str) -> str:
+    """Return a grammar-safe canonical path without changing source labels."""
+    return citation_path.lower().replace("@", "-")
+
+
+def _canonical_citation_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(metadata)
+    for key in ("canonical_citation_path", "parent_citation_path"):
+        value = normalized.get(key)
+        if isinstance(value, str):
+            normalized[key] = _canonical_citation_path(value)
+    references = normalized.get("references_to")
+    if isinstance(references, list):
+        normalized["references_to"] = [
+            _canonical_citation_path(value) if isinstance(value, str) else value
+            for value in references
+        ]
+    return normalized
 
 
 def _chapter_identifiers(chapter: OregonOrsChapter) -> dict[str, str]:

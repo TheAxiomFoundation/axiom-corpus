@@ -1,0 +1,318 @@
+version: "2026-07-16-pit-recovery"
+sources:
+  - source_id: us-la-revised-statutes
+    jurisdiction: us-la
+    document_class: statute
+    adapter: louisiana-revised-statutes
+    source_url: https://www.legis.la.gov/Legis/Laws_Toc.aspx?folder=75&level=Parent
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-05-10"
+      expression_date: "2026-05-10"
+      download_dir: ../data/corpus/downloads/us-la-revised-statutes/2026-07-16-pit-central
+      base_url: https://www.legis.la.gov/Legis/
+      root_folder: "75"
+      only_title: "47"
+      request_delay_seconds: 0.02
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 16
+    metadata:
+      source_authority: Louisiana State Legislature
+      source_scope_note: Current Louisiana Revised Statutes title 47 table of contents and printable law pages from the official Legislature site.
+
+  - source_id: us-mt-code
+    jurisdiction: us-mt
+    document_class: statute
+    adapter: montana-code
+    source_url: https://mca.legmt.gov/bills/mca/index.html
+    version: "2026-07-16-pit-central"
+    options:
+      source_year: 2025
+      source_as_of: "2026-03-24"
+      expression_date: "2026-03-24"
+      only_title: "15"
+      workers: 24
+    metadata:
+      source_authority: Montana Legislature
+      source_scope_note: 2025 Montana Code Annotated title 15 from the official Legislature site.
+
+  - source_id: us-nm-statutes
+    jurisdiction: us-nm
+    document_class: statute
+    adapter: new-mexico-statutes
+    source_url: https://nmonesource.com/nmos/nmsa/en/nav_date.do
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-05-09"
+      expression_date: "2026-05-09"
+      download_dir: ../data/corpus/downloads/us-nm-statutes/2026-07-16-pit-central
+      only_title: "7"
+      request_delay_seconds: 0.1
+    metadata:
+      source_authority: New Mexico Compilation Commission
+      source_scope_note: New Mexico Statutes Annotated chapter 7 from the official Compilation Commission source.
+
+  - source_id: us-ok-statutes
+    jurisdiction: us-ok
+    document_class: statute
+    adapter: oklahoma-statutes
+    source_url: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-05-10"
+      expression_date: "2026-05-10"
+      download_dir: ../data/corpus/downloads/us-ok-statutes/2026-07-16-pit-central
+      base_url: https://www.oklegislature.gov/OK_Statutes/CompleteTitles/
+      only_title: "68"
+      request_delay_seconds: 0.05
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 4
+    metadata:
+      source_authority: Oklahoma Legislature
+      source_scope_note: Current Oklahoma Statutes title 68 RTF from the official Legislature CompleteTitles directory.
+
+  - source_id: us-nj-statutes
+    jurisdiction: us-nj
+    document_class: statute
+    adapter: new-jersey-statutes
+    source_url: https://pub.njleg.state.nj.us/Statutes/STATUTES-TEXT.zip
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-nj-statutes/2026-07-16-pit-central
+      only_title: "54A"
+      timeout_seconds: 180
+      request_attempts: 3
+    metadata:
+      source_authority: New Jersey Legislature
+      source_scope_note: Current New Jersey Statutes title 54A from the official Legislature bulk text release.
+
+  - source_id: us-sc-code
+    jurisdiction: us-sc
+    document_class: statute
+    adapter: south-carolina-code
+    source_url: https://www.scstatehouse.gov/code/statmast.php
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-sc-code/2026-07-16-pit-central
+      only_title: "12"
+      only_chapter: "6"
+      session_law_url: https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm
+      session_law_section: "12-6-510"
+      session_law_source_id: 2026-act-110-h4216
+      request_delay_seconds: 0.15
+      timeout_seconds: 90
+      request_attempts: 3
+    metadata:
+      source_authority: South Carolina Legislative Services Agency
+      source_scope_note: South Carolina Income Tax Act chapter 6 from the official Code of Laws HTML, current through the 2025 General Assembly session, with the operative Section 12-6-510(C) replacement from 2026 Act No. 110 (H.4216).
+
+  - source_id: us-dc-code
+    jurisdiction: us-dc
+    document_class: statute
+    adapter: dc-code
+    source_url: https://code.dccouncil.gov/us/dc/council/code
+    version: "2026-07-16-pit-east"
+    options:
+      source_dir: ../data/corpus/sources/us-dc/statute/2026-07-16-pit-east-title-47/dc-law-xml/titles
+      source_as_of: "2025-12-23"
+      expression_date: "2025-12-23"
+      only_title: "47"
+    metadata:
+      source_authority: Council of the District of Columbia
+      source_scope_note: Current District of Columbia Code title 47 from the Council's official XML repository.
+
+  - source_id: us-hi-hrs
+    jurisdiction: us-hi
+    document_class: statute
+    adapter: hawaii-revised-statutes
+    source_url: https://data.capitol.hawaii.gov/hrscurrent/
+    version: "2026-07-16-pit-east"
+    options:
+      source_as_of: "2026-05-09"
+      expression_date: "2026-05-09"
+      source_dir: ../data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235
+      base_url: https://data.capitol.hawaii.gov/hrscurrent/
+      only_title: "04"
+      only_chapter: "235"
+      request_delay_seconds: 0.01
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 16
+    metadata:
+      source_authority: Hawaii State Legislature
+      source_scope_note: Current Hawaii Revised Statutes chapter 235 from the official Legislature HRS mirror.
+
+  - source_id: us-ia-code
+    jurisdiction: us-ia
+    document_class: statute
+    adapter: iowa-code
+    source_url: https://www.legis.iowa.gov/law/iowaCode?year=2026
+    version: "2026-07-16-pit-east"
+    options:
+      source_year: 2026
+      source_as_of: "2026-05-09"
+      expression_date: "2026-05-09"
+      source_dir: ../data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422
+      only_title: "X"
+      only_chapter: "422"
+      request_delay_seconds: 0.02
+      timeout_seconds: 20
+      request_attempts: 2
+      workers: 8
+    metadata:
+      source_authority: Iowa Legislature
+      source_scope_note: Current Iowa Code chapter 422 from the official Legislature site.
+
+  - source_id: us-in-code
+    jurisdiction: us-in
+    document_class: statute
+    adapter: indiana-code
+    source_url: https://iga.in.gov/ic/2025/2025-Indiana-Code-html.zip
+    version: "2026-07-16-pit-east"
+    options:
+      source_dir: ../data/corpus/sources/us-in/statute/2026-07-16-pit-east-us-in-title-6
+      source_year: 2025
+      source_as_of: "2025-06-30"
+      expression_date: "2025-06-30"
+      only_title: "6"
+    metadata:
+      source_authority: Indiana General Assembly
+      source_scope_note: 2025 Indiana Code title 6 from the official IGA HTML release.
+
+  - source_id: us-wa-rcw
+    jurisdiction: us-wa
+    document_class: statute
+    adapter: washington-rcw
+    source_url: https://app.leg.wa.gov/RCW/default.aspx
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-wa-rcw/2026-07-16-pit-central
+      only_title: "82.87"
+      workers: 4
+    metadata:
+      source_authority: Washington State Legislature / Office of the Code Reviser
+      source_scope_note: Current Revised Code of Washington chapter 82.87 from the official Legislature HTML, including 2025 capital-gains amendments and 2026 chapter 191 effective June 11, 2026.
+
+  - source_id: us-nd-century-code
+    jurisdiction: us-nd
+    document_class: statute
+    adapter: north-dakota-code
+    source_url: https://ndlegis.gov/cencode/t57c38.html
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-nd-century-code/2026-07-16-pit-central
+      only_title: "57-38"
+      code_index_url: https://ndlegis.gov/cencode/t57c38.html
+      code_pdf_url: https://ndlegis.gov/cencode/t57c38.pdf
+      individual_schedule_url: https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/28709-form-nd-1es-2026.pdf
+      fiduciary_schedule_url: https://www.tax.nd.gov/sites/www/files/documents/forms/business/fiduciary/2025-fiduciary/28723-form-38-es-2026.pdf
+      tax_year: 2026
+      timeout_seconds: 90
+      request_attempts: 3
+    metadata:
+      source_authority: North Dakota Legislative Council and Office of State Tax Commissioner
+      source_scope_note: Current North Dakota Century Code chapter 57-38 with the operative 2026 individual, estate, and trust rate schedules prescribed under N.D.C.C. section 57-38-30.3(1)(g) by the State Tax Commissioner.
+
+  - source_id: us-mo-revised-statutes
+    jurisdiction: us-mo
+    document_class: statute
+    adapter: missouri-revised-statutes
+    source_url: https://revisor.mo.gov/main/OneChapter.aspx?chapter=143
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-mo-revised-statutes/2026-07-16-pit-central
+      only_title: "143"
+      base_url: https://revisor.mo.gov/main/
+      rate_schedule_url: https://dor.mo.gov/forms/MO-1040ES_2026.pdf
+      tax_year: 2026
+      workers: 1
+      request_delay_seconds: 0.25
+      timeout_seconds: 90
+      request_attempts: 3
+    metadata:
+      source_authority: Missouri Revisor of Statutes and Missouri Department of Revenue
+      source_scope_note: Current Revised Statutes of Missouri chapter 143 as of July 16, 2026, excluding the future August 28, 2026 version of section 143.611, with the operative 2026 individual rate schedule published on Form MO-1040ES under sections 143.011 and 143.021.
+
+  - source_id: us-ms-income-tax-statute
+    jurisdiction: us-ms
+    document_class: statute
+    adapter: mississippi-session-law
+    source_url: https://billstatus.ls.state.ms.us/documents/2025/html/HB/0001-0099/HB0001SG.htm
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-ms-income-tax-statute/2026-07-16-pit-central
+      only_title: "27-7-5"
+      bill_pdf_url: https://billstatus.ls.state.ms.us/documents/2025/pdf/HB/0001-0099/HB0001SG.pdf
+      signing_url: https://governorreeves.ms.gov/gov-reeves-signs-historic-legislation-eliminating-mississippis-individual-income-tax/
+      rate_guidance_url: https://www.dor.ms.gov/general-information
+      tax_year: 2026
+      request_delay_seconds: 0.05
+      timeout_seconds: 90
+      request_attempts: 3
+      legislature_verify_ssl: false
+      dor_verify_ssl: false
+    metadata:
+      source_authority: Mississippi Legislature, Office of the Governor, and Mississippi Department of Revenue
+      source_scope_note: Bounded recovery of Mississippi Code section 27-7-5 from its complete enacted replacement in 2025 House Bill 1, Section 1, effective July 1, 2025, with official signing confirmation and the operative 2026 individual rate confirmed by Department of Revenue guidance; statewide public Code text remains robot-blocked.
+
+  - source_id: us-nh-interest-dividends-tax
+    jurisdiction: us-nh
+    document_class: statute
+    adapter: new-hampshire-rsa
+    source_url: https://gc.nh.gov/rsa/html/nhtoc.htm
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-nh-interest-dividends-tax/2026-07-16-pit-central
+      only_title: "V"
+      only_chapter: "77"
+      base_url: https://gc.nh.gov/rsa/html/
+      repeal_authority_2021_url: https://gc.nh.gov/legislation/2021/HB0002.html
+      repeal_acceleration_2023_url: https://gc.nh.gov/bill_status/legacy/bs2016/billText.aspx?id=1081&sy=2023&txtFormat=html&v=current
+      workers: 1
+      request_delay_seconds: 0.25
+      timeout_seconds: 60
+      request_attempts: 3
+    metadata:
+      source_authority: New Hampshire General Court
+      source_scope_note: Complete current RSA chapter 77 repealed-chapter scope from official RSA HTML, verified against the original repeal in Laws 2021, chapter 91, section 99(II), and its acceleration by Laws 2023, chapter 79, sections 85 through 88; the interest and dividends tax is not imposed for taxable periods beginning after December 31, 2024.
+
+  - source_id: us-vt-income-tax-statutes
+    jurisdiction: us-vt
+    document_class: statute
+    adapter: vermont-statutes
+    source_url: https://legislature.vermont.gov/statutes/chapter/32/151
+    version: "2026-07-16-pit-central"
+    options:
+      source_as_of: "2026-07-16"
+      expression_date: "2026-07-16"
+      download_dir: ../data/corpus/downloads/us-vt-income-tax-statutes/2026-07-16-pit-central
+      only_title: "32"
+      only_chapter: "151"
+      chapter_index_url: https://legislature.vermont.gov/statutes/chapter/32/151
+      full_chapter_url: https://legislature.vermont.gov/statutes/fullchapter/32/151
+      acts_registry_url: https://legislature.vermont.gov/bill/loadBillActsAffectingStatutes/2026
+      act_152_url: https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT152/ACT152%20As%20Enacted.pdf
+      act_164_url: https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT164/ACT164%20As%20Enacted.pdf
+      request_delay_seconds: 0.1
+      timeout_seconds: 90
+      request_attempts: 3
+      verify_ssl: false
+    metadata:
+      source_authority: Vermont General Assembly
+      source_scope_note: Complete current 32 V.S.A. chapter 151 from the official chapter index and full-chapter HTML through the 2025 session, closed through July 16, 2026 with the official acts-affecting-statutes registry and enacted Acts 152 and 164, including operative and future-effective amendment metadata.

@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nd/statute/2026-07-16-pit-central-us-nd-title-57-38.json",
+      "sha256": "002d7f5542265ce26cfb58c3c16ecadd4a3243064aba2551cac294708ae0f953"
+    },
+    {
+      "path": "data/corpus/inventory/us-nd/statute/2026-07-16-pit-central-us-nd-title-57-38.json",
+      "sha256": "9054b1699054bdfc9829a9dee61fffa0c51fa29d10aad5e4043d54b2bccc536a"
+    },
+    {
+      "path": "data/corpus/provisions/us-nd/statute/2026-07-16-pit-central-us-nd-title-57-38.jsonl",
+      "sha256": "843de7fa6d2341125b8ae6b9d4075ea7196ac411d537b2d55435d3795c5dde3a"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/statute/2026-07-16-pit-central-us-nd-title-57-38/north-dakota-century-code/chapter-57-38.html",
+      "sha256": "6998c7a7ed9bd5aac42ca076056279c5d6fa38979a40886b5fbca1396ce5a384"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/statute/2026-07-16-pit-central-us-nd-title-57-38/north-dakota-century-code/chapter-57-38.pdf",
+      "sha256": "2429bef99ad1fccf9bc14f4e0d4cbb11948c3798fbadc3326677fd34c5e42979"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/statute/2026-07-16-pit-central-us-nd-title-57-38/north-dakota-tax-commissioner/2026-form-38-es.pdf",
+      "sha256": "22e11c840a1cacff947566ae0372c38ddb36871327f3fe75d07c3681fa5ecfe8"
+    },
+    {
+      "path": "data/corpus/sources/us-nd/statute/2026-07-16-pit-central-us-nd-title-57-38/north-dakota-tax-commissioner/2026-form-nd-1es.pdf",
+      "sha256": "8ae79e875b28c19ee124cbfe59a700f880e231cea0f5d6807b79958bf90cb864"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 154,
+    "missing_count": 0,
+    "provision_count": 154,
+    "source_count": 154
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:26.093529+00:00",
+  "jurisdiction": "us-nd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qIuhidVZB7xQDEhHeu0ZSJt95jSiFDhFKegZKT2e4+L39Dr66G1Dkxr7ypfFPlzB8zO7+ASv1TW5KU6XeYkBAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-central-us-nd-title-57-38"
+}
