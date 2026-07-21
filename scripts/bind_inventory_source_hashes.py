@@ -51,6 +51,7 @@ def bind_inventory_source_hashes(
     release = ReleaseManifest.load(release_path)
     changed_files: list[str] = []
     changed_scopes: list[str] = []
+    planned_writes: list[tuple[Path, str]] = []
     bound_items = 0
 
     for scope in release.scopes:
@@ -90,11 +91,16 @@ def bind_inventory_source_hashes(
         relative_inventory = inventory_path.relative_to(repo_root).as_posix()
         changed_files.append(relative_inventory)
         changed_scopes.append("/".join(scope.key))
-        if write:
-            inventory_path.write_text(
+        planned_writes.append(
+            (
+                inventory_path,
                 json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
-                encoding="utf-8",
             )
+        )
+
+    if write:
+        for inventory_path, content in planned_writes:
+            inventory_path.write_text(content, encoding="utf-8")
 
     return {
         "bound_items": bound_items,
