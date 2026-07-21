@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts.json",
+      "sha256": "f1f9c57e6e759c09f0d464437c7b4ca33045048900969751c9d6890bf05e5f49"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts.json",
+      "sha256": "1a991b8b4fe027b537a43245d7c4260c09e75127a3ed3caac3b4fd039b29f488"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts.jsonl",
+      "sha256": "86b56a5aa3ef74af556579f12b9d2081705395506f6d28e3b0c7f41b5b4b3263"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts/official-documents/cra-2025-schedule-2-spouse-transfer.txt",
+      "sha256": "4c4655503f31cf019fdd3a61b46dd2ca1a87ad2d75ea3988f53ddaa6e5194e80"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-transfer-amounts/reasoning/cra-2025-federal-spouse-transfer-amounts.txt",
+      "sha256": "af2fd67e871d304ce0dec63815b0dd214bcda265e6e3a4f6589acca62de15339"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:40.358421+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VU3OpcMw9a7H1grX+IVROcH1FDNEXOJyNcJVlle35371voU59cTGUJUNE0j1HnyGLYMMe3ZeieoupkvEY4N5Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-federal-spouse-transfer-amounts"
+}

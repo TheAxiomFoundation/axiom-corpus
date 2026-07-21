@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.json",
+      "sha256": "1f856b547f0e84fac6ad4b2b28a84e614bdc7ab3dd8e3fc8028bbe1b43ca7843"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.json",
+      "sha256": "fbbdbac14c8732dbf07171c06f9a63e581fda5a9d6ca39dec7932dddb3734f4d"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback.jsonl",
+      "sha256": "1969ffa932768d092518221f23e0618d38d1cad4b5ad2522ae582fdbc989b143"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-request-for-loss-carryback/official-documents/cra-2025-request-for-loss-carryback.txt",
+      "sha256": "5cfa6017b9f8500c06aab5672a9b761da51be45c3d36d39c68569deabb58706b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:40.709879+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IuVvTFqxPnbiKB/e7Czkl10PQb1un/5Ktqc1tJSV/+pZBo0nh97F+jTKjP8F+AryVhlN74aHtfZ5uNBDyXkRAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-request-for-loss-carryback"
+}

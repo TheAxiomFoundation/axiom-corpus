@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium.json",
+      "sha256": "1d7d13423f744beacd2b1fee721af5c1420a1efa1a9de07806a49d03f6607b46"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium.json",
+      "sha256": "eafc4576a5ec5cf1e2b4dd53300a41a62f73d6364a9a82bca45bf8f37fc2e2e9"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium.jsonl",
+      "sha256": "9262c5fa85149deceaefe5881d4fa1f15ba27eb7fdb6a1fd1cd561c33094d56c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium/official-documents/tp-1-d-k-v-2025.pdf",
+      "sha256": "c2bece581209574b5931128cc4614903955098a4303266f5c46f3c9a171beb3d"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium/official-documents/tp-1-d-k-v-2025.txt",
+      "sha256": "562ecbfe2b803f451bc9f66b19f5d9241ecaaba60e0a33ddcf2fdf4131706ed2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.638004+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "g+8Zk+kaOyRIjMxmML0D/ZtN3Mr2ssUstQAVH/BkNHRpfGOrH1KsUoJlbP4miAT5AsjOi7St3Je8vc7/kRB8BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-revenu-quebec-2025-schedule-k-prescription-drug-premium"
+}

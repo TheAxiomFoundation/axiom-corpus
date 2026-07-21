@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/manual/2026-07-03-nc-work-first-manual.json",
+      "sha256": "a2158cc6096165f9f0f6875e82e03015240464d05dec454e8d394997f079f6be"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/manual/2026-07-03-nc-work-first-manual.json",
+      "sha256": "145a0939e1e0c73681590e5c6709d5c21c47b2e1ff4a59a0c03d7af56ff6de09"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/manual/2026-07-03-nc-work-first-manual.jsonl",
+      "sha256": "587284e4503f25a0284ab4c8183359ef26cc8e74720c869ad847a52d62ae4017"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/manual/2026-07-03-nc-work-first-manual/official-documents/nc-dhhs-work-first-114-income-budgeting.pdf",
+      "sha256": "d7327de705ae37b03465156c163f095b57b9e498d6d22933d26664747dc64666"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --project . axiom-corpus extract-official-documents --base data/corpus --version 2026-07-03-nc-work-first-manual --manifest manifests/us-nc-work-first-manual-official-documents.yaml --source-as-of 2026-07-03 --expression-date 2024-01-01"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 18,
+    "missing_count": 0,
+    "provision_count": 18,
+    "source_count": 18
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T11:40:44.740937+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "an6qYPxTLoZYGACCMGFVzB8u/LIBkQKEddn1rG752QUBI/NKMeD4T6JoHPucNsjHnGaIM5+uHpnsgWoaIM2tCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-nc-work-first-manual"
+}

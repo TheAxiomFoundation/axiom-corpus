@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/guidance/2026-07-02-be-onss-work-bonus.json",
+      "sha256": "98c53eb8026cac107041dc0850e79a1c87bee7280f90faccdc6d489fc8af2fe5"
+    },
+    {
+      "path": "data/corpus/inventory/be/guidance/2026-07-02-be-onss-work-bonus.json",
+      "sha256": "96eb6f213fb69958f62bd72b5fbdd20a57fcd9e3777384c0825ff2746b5d4329"
+    },
+    {
+      "path": "data/corpus/provisions/be/guidance/2026-07-02-be-onss-work-bonus.jsonl",
+      "sha256": "19db17d54a0933ebfba69fec144412a7e919a4df56a35e7e2b5ad914d1f3ae9f"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-02-be-onss-work-bonus/official-documents/be-onss-dmfa-workbonus-2025-2.html",
+      "sha256": "fc9486d4995d523d7422605cb311aa36c9435d86a796d8f3ce01ba47c1757b42"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T11:40:38.507621+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "krJPuCzkV6UvurskkcBvf6OKX86Vu/zXYrnvjESXqH0gkn+2JzoK/gKtkdiL4YTLvvAu0rpar8HtPlHHQukUBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-be-onss-work-bonus"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-03-revenu-quebec-2025-tp1-main-return.json",
+      "sha256": "6229e70aa08797bb71a104503ec18637f6901a240e783eeaabedb2ac9a1bdc13"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-tp1-main-return.json",
+      "sha256": "3bbdacde7d6d4276a89656ae756848467527380e0b19165ace6c146873ba3c68"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-tp1-main-return.jsonl",
+      "sha256": "479ba89b431ffe60b4ffe3784f005a2eefc81d99bdb8d1a509585c776bd359cf"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-tp1-main-return/official-documents/tp-1-v.html",
+      "sha256": "ec4c1a49142124745f9045c355ab0727ff5739074686a11207f558ac8247683b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.516681+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KFcbfnIMsefmF1e55TQJJAkJTLXVlIVzuHhVYfBoeeaHBmgkVbrSHbXrN4kwfC+heogFiuu3WEUSI9Q+H1iTCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-revenu-quebec-2025-tp1-main-return"
+}

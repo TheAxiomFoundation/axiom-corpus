@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts.json",
+      "sha256": "b331b3f98edbaaebf2da0e7aadf097b467c0f9d792dc1d3d0c7edde767a80715"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts.json",
+      "sha256": "dd0cfb127f0d7ab1b997d1953017ff03600ffa0de4c7f3af5cbdd8f81bd7151b"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts.jsonl",
+      "sha256": "95f5e001d04dffca296f32dbb00bdfac0fb3b27369fb9c4b6878d63d584a64e6"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts/official-documents/cra-2025-schedule-5-spouse-and-dependants.txt",
+      "sha256": "376a97bd5997692c828d7d23243beb16a3366e7aff79581879ba1132ee36d669"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-federal-spouse-and-dependant-amounts/reasoning/cra-2025-federal-spouse-and-dependant-amounts.txt",
+      "sha256": "017e418e66ddc92e8a658a0e70848cc0b55368a5d236461d980a43d471fb5367"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:40.327516+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NPiBk2oLuOGJm3t2rKVfGeYgr2AI2HGkprYZ2uRffm9CpRWapQz5L9aVrBDiCpOAT3OyKcf407TqN55wwxIbDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-federal-spouse-and-dependant-amounts"
+}

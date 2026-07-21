@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.json",
+      "sha256": "2e3417945a8b7045eabc4e81a96895a3cfe3482ff66d0a42c8e2f9782ef66e55"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.json",
+      "sha256": "fcfd09ed18f9b4d337be50b9d3caea3ac168a65a188ce43c1916d8aac895b8b1"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.jsonl",
+      "sha256": "89a707c38ca46dbf58424e9def0bec48f09bf1e164715b3b613444c83ee79db0"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction/official-documents/cra-2025-tax-shelter-loss-or-deduction.txt",
+      "sha256": "dbc169af0721b6e21ca7915af5a547c1c68a8db734f451e12aa57d3dca6578d2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.099299+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "8hRKnRm4ZwWhRcuNubQWvYI4E/fKjbgSaqTw3axCmAb29HrUrMCrZbnKmoFYp4L6pAUvxl0QnYWqTPR2VF1vCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-tax-shelter-loss-or-deduction"
+}

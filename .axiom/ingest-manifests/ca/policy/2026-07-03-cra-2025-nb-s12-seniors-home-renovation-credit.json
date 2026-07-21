@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit.json",
+      "sha256": "dc8d18988fda2502f4f2a547dd4d0fc12b370e7b3b17ae20c0edc00efdbf447b"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit.json",
+      "sha256": "57b7488b396f82c315429b00e949ff46f3020ad9359673af01ff450dfa17085d"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit.jsonl",
+      "sha256": "7b1bc4bf65570d1d65792dd4644b76df3a7137a51cb0b8bb969680c8f1d7ca9f"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit/official-documents/5004-s12-25e.txt",
+      "sha256": "ed29723bdeec118e3498b92fc430459a37b94923751457c73719402b4c8f3dec"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.878757+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "cUkdZGK0heFrYlgorqynRp2Xs8ExvsnDNvLTFET/W1fIo6nRH/+psyd7CuhxeMkzTPtv/W1RpKJce5PLlcg8Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-cra-2025-nb-s12-seniors-home-renovation-credit"
+}

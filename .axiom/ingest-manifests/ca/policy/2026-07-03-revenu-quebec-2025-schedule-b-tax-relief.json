@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief.json",
+      "sha256": "268081fcea873094bce9c40ffcffd8520ec259b53af558e3869653bab8ace140"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief.json",
+      "sha256": "5cb33bd074a8932f5af8e9b088ec883d39e2969f090065e831b4fd0af7ed10fe"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief.jsonl",
+      "sha256": "ab1dfa6dd0428616f8d54e8994db5b8a19520bda4da8954a6a14986db9f6b018"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief/official-documents/tp-1-d-b-v-2025.pdf",
+      "sha256": "1918f739ed1f97fc43581fc8875994351b6c676b35af088b023ddcdb3b928346"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-b-tax-relief/official-documents/tp-1-d-b-v-2025.txt",
+      "sha256": "94ecf6888436bc2a1655888235cddf83b845168150abc16ebe059cbcf14decdb"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.362965+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1e3JZ8Wa07oi0UmKMiGQmh1LmMQ+q7m3AAriz+L8ZssfzEyvNX5BXHxOJNYi16ZXO5RT+6HllIHmv08TMGBHAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-revenu-quebec-2025-schedule-b-tax-relief"
+}

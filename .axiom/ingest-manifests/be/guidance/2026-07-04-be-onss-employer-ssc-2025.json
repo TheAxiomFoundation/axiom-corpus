@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/guidance/2026-07-04-be-onss-employer-ssc-2025.json",
+      "sha256": "a460b407ae23d389d2bb669342c64eb8eeb2bf563ecdf4f03244fff344515898"
+    },
+    {
+      "path": "data/corpus/inventory/be/guidance/2026-07-04-be-onss-employer-ssc-2025.json",
+      "sha256": "09059b15ce6099a8b3d4f0859c710151309ff93ead9b1ff0edb1789e2e3c965d"
+    },
+    {
+      "path": "data/corpus/provisions/be/guidance/2026-07-04-be-onss-employer-ssc-2025.jsonl",
+      "sha256": "527e463743cb59f135194ade3adff71b776a832042602f8a5215624b9018eedf"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-04-be-onss-employer-ssc-2025/official-documents/be-onss-dmfa-ffe-rates-2025.xls",
+      "sha256": "6947f5c69d598d8654b8cc6781d266766ce0533ee19fd96f9bc8af0555caf656"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-04-be-onss-employer-ssc-2025/official-documents/be-onss-dmfa-social-security-contributions-2025-q1.html",
+      "sha256": "5f0a868ce9de0d279c09af86182376c5695ac8048026cd40e3f8131201ab42a7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-04-be-onss-employer-ssc-2025 --manifest manifests/be-onss-employer-social-security-contributions-2025-documents.yaml --allow-incomplete"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 11,
+    "missing_count": 0,
+    "provision_count": 11,
+    "source_count": 11
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T11:40:38.598524+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OsDq1hvp1v889uJw6eRPhJ5Sc1iWmoV1EkifnzktBb1MkukWvIq3ZFMfDkXnSIS7toKAwOKixeDGRJt2UtSNCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-be-onss-employer-ssc-2025"
+}

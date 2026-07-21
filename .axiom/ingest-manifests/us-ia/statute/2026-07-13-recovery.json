@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/statute/2026-07-13-recovery.json",
+      "sha256": "12f0e6e5e16fbcde7f27095f53ac426453467bc46b3a4d760ce5ac42f4a66672"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/statute/2026-07-13-recovery.json",
+      "sha256": "dc892d504beaeda7ba486f807459d99825359b8acdb4f05f7a20788bf49f6194"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/statute/2026-07-13-recovery.jsonl",
+      "sha256": "fcf92b8335e1478daaa18b1f8a2274c9c18551584a698cca45a51102132804f0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-13-recovery/official-documents/us-ia-code-422.12",
+      "sha256": "4a10aaeae1b1150e076e77582ad38421242a4e0fcca4585c0c7d7c2066e139aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-13-recovery/official-documents/us-ia-code-422.12b",
+      "sha256": "14f4b8e8a788390a6c0f00de726b0df0751b8ee91201b12f4e1919c6846bd28f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-13-recovery/official-documents/us-ia-code-422.12c",
+      "sha256": "8003eeb3179aaebe5d368d5e31ecca742db1312d07dc28682384e2bc242a1e76"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-13-recovery/provenance/us-ia-code-422.12.json",
+      "sha256": "27a939229c7d4f4a7392cd9cb07faf23c73659003ff4a393c708469e7bc949f5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-13-recovery/provenance/us-ia-code-422.12b.json",
+      "sha256": "a71df6002151f19ff14e800c095473a9a4abbf9b7d3d1a5391305dd0715a0cd9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-13-recovery/provenance/us-ia-code-422.12c.json",
+      "sha256": "8fe0ec3461ac8c7052ccd639bb8f5d3961130d701b3330aa7d09ae713cac9779"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:44.053423+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "eOfSFNaUcQfA1M2SlhO0MnOFLaztOvdtcQBCTKCndaMswAt+miB1mpIa9UF95rky5QULo02sf2o58R1SoefkDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

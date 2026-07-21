@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-mb479-credits.json",
+      "sha256": "335454b7e739b8e2a318061718c4655968160379473a0f84fd14375d7473a3f7"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-mb479-credits.json",
+      "sha256": "e95a7cc1361d4a3b0f22fbac4965a478b006451e466ee3170d833d35f16f1417"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-mb479-credits.jsonl",
+      "sha256": "12cbe25cdbb8225771edb4d12b0c24a1975f852a04e1d6f2a284c0488a22e679"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-mb479-credits/official-documents/5007-tc-25e.txt",
+      "sha256": "1fc5b1a61def43b112034b1a00b1a5d0aa05000a28feba8637e8af206a937fad"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.635390+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VmoqyzTj/z6mIii/NspFZ+hjRsJOotS22feAG8ZQ8kDER7AYDRW5Lrxraq+FCgWNSOOWbmBYTxp6By8XVhZwDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-cra-2025-mb479-credits"
+}

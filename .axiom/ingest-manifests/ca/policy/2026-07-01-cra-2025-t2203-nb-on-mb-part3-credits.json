@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits.json",
+      "sha256": "5a910788d6e1f70b29713a4deaa7e1e0f95ff919e3cb9bcd9a5122cfee9434d1"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits.json",
+      "sha256": "7ebe44e7b90cde85b189049fbf718f0c5e611aeea40dfb8b8e9071ec8fb127e5"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits.jsonl",
+      "sha256": "5963996a7d001e14d3f57fdd8814bf7d3b8f5cf0fe9c3b5913d169b0d4c4bdc1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits/official-documents/cra-2025-t2203-nb-on-mb-part3-credits.txt",
+      "sha256": "d9c737a609fc778d3d0de1c247f9baafb978a504472ca24dbc632c99a6f03847"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:40.774143+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Gnemp+SV+vIXBilxAPQEhte54hiTZRE40DVo0GEXUt4QEH+QgB/x45hL1RqxqzJYzQNabIBaijU2zSrchHZ7Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-t2203-nb-on-mb-part3-credits"
+}

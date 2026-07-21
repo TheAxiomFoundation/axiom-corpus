@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/statute/2026-07-02-be-worker-work-bonus.json",
+      "sha256": "b0366e5c59ae0738648979978aa424f332333a6d42a4c4550d9f93907ae2099b"
+    },
+    {
+      "path": "data/corpus/inventory/be/statute/2026-07-02-be-worker-work-bonus.json",
+      "sha256": "956165faaacaff4ce9c71545dd79d3f383fd7ca7ec66f416da6707f582f90063"
+    },
+    {
+      "path": "data/corpus/provisions/be/statute/2026-07-02-be-worker-work-bonus.jsonl",
+      "sha256": "ec76758f431ae8524c72b1b1fb7cfffd3fea8c1c036c062502709cff027ff6cf"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-07-02-be-worker-work-bonus/eli/loi/1999/12/20/2000022052/justel.html",
+      "sha256": "e9e14dbf264715d7c209d5747599d050f4c9dc558d817885881247fa104c766f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:39.027663+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "J7O8L2nadEACTfn2RitZQb0e7uK6JnIpZUbVLvos8aLN4vRC9ojnj/2LBKjRPE1WbDPyWDi5bva5Wtleq0hUBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-be-worker-work-bonus"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-dg/statute/2026-07-01-be-dg-family-benefits.json",
+      "sha256": "3301c1556701116253365317cc4338a24197bbcc91e659607850e69e7a34c2aa"
+    },
+    {
+      "path": "data/corpus/inventory/be-dg/statute/2026-07-01-be-dg-family-benefits.json",
+      "sha256": "c82c19a059a87a183edf295b25e80514266c8fcda45ad05b1c37d874165ce687"
+    },
+    {
+      "path": "data/corpus/provisions/be-dg/statute/2026-07-01-be-dg-family-benefits.jsonl",
+      "sha256": "63e25bf05fcd081149d00cec59782dd99515962e0a2e85d4aa2a9370a71447d4"
+    },
+    {
+      "path": "data/corpus/sources/be-dg/statute/2026-07-01-be-dg-family-benefits/official-documents/be-dg-family-benefits-decree-2018-04-23-justel-current.html",
+      "sha256": "363c01b26e828f8a5f7af3280db1de9373f06e95609350d8f84cd553844fc422"
+    },
+    {
+      "path": "data/corpus/sources/be-dg/statute/2026-07-01-be-dg-family-benefits/official-documents/be-dg-family-benefits-decree-2018-04-23-moniteur-de.html",
+      "sha256": "9df997135b56aef3d019b458b9bddf27ceafd7836b7810ecf03722715fc6bc15"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:39.402222+00:00",
+  "jurisdiction": "be-dg",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "xgCBpHDYZ9hcgzUNHgcyMGbYWDPn1p3+V0LEm7MWwgPqpxCab6WvND98cLqK9+S27DHAIEw7DGnlbTleHMa2Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-be-dg-family-benefits"
+}

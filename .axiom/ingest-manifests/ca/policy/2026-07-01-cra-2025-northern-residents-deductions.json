@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-northern-residents-deductions.json",
+      "sha256": "130e2b26cfead13fa85e37240e9e78956b8ea9c5606c43820b525724bbbce985"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-northern-residents-deductions.json",
+      "sha256": "91bd782a79ee3189d91cf970c6541d50d47a7c163fa10af553f716d33685b6a2"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-northern-residents-deductions.jsonl",
+      "sha256": "a658b6657004db1edc41ebdfa254d82f999765d0d3fd0cc53e038d81c2866e8f"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-northern-residents-deductions/official-documents/cra-2025-northern-residents-deductions.txt",
+      "sha256": "aedc9f64a7f8857415c9a8d18a20e0dc860601a88510a4b9710158816245ff53"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:40.644975+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "akqZfl6Se7Of3i8UPs4q2Od4XkYeCA510BwL5ovEy1eK0fbiRs0nJf5CBxOizuLUPjPcPQVYPn8sud6JKJtsBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-northern-residents-deductions"
+}

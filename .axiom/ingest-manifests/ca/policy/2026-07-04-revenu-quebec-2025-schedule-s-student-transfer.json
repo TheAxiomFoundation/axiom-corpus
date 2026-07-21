@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer.json",
+      "sha256": "5b94ec8fdb1248e702f17d365beef506cef38a987fc775e2b8c20d61fc4da6a2"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer.json",
+      "sha256": "c9011827e86252e6b47d5f447c88eac371bfe6359e8114bbb1aded632491cabb"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer.jsonl",
+      "sha256": "a2afbe0372bebae62a6830a83fa9a9779ebbac1f3c7e08b101d3520d0e0bfdd3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer/official-documents/tp-1-d-s-v-2025.pdf",
+      "sha256": "64ac2eb908192908f2da129795f9faa5cf209f2666e1cb50d41708ea6a38a6e1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-s-student-transfer/official-documents/tp-1-d-s-v-2025.txt",
+      "sha256": "7ec5b765472186652fa24b02222177a1f704f519f8bec4d808f38323f808026c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.850247+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DA7yAN6y1B1eVRUODIqJkGsr4+KKWCL2qBrvs6yomyxlj8Ys4XkJzfCQCafvfUl9d79S7eLpVfcJtoo2m0LCBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-revenu-quebec-2025-schedule-s-student-transfer"
+}

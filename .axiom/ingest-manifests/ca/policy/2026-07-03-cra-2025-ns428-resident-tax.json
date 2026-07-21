@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-03-cra-2025-ns428-resident-tax.json",
+      "sha256": "bfb15d48a8966a8714f248d04332b5c1ae5a9d235f36d700c442ede09e06d876"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-ns428-resident-tax.json",
+      "sha256": "e1d81d77385c6aeb7a9bbc99f69a1f632aa986a266d92b174756b30764099335"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-ns428-resident-tax.jsonl",
+      "sha256": "4f9f42f9113ad9cf7afcf8897b9e151d6e85930dee4b47167350d74c147824f6"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-cra-2025-ns428-resident-tax/official-documents/5003-c-25e.txt",
+      "sha256": "c2cb37e6242ed9e5e5551bcf0fc94f80e516ab28b7981ebf282ff4abe9908530"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-cra-2025-ns428-resident-tax/official-documents/5003-d-25e.txt",
+      "sha256": "4c1e527227837c6587e914002adf393bfe3aa12d947a0ec91b4a038540e5bd09"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.968514+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "S9TZpAqc9V3v6kB0sL4m98uwTa6pKloZFqD0I55ZRRAoAaq6mzmmqhpXHhqUsP3Zbp1y3aTtKb1afL+pSwxADQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-cra-2025-ns428-resident-tax"
+}

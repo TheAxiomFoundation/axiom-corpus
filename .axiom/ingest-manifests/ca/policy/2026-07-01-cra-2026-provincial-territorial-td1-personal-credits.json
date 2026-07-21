@@ -1,0 +1,97 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.json",
+      "sha256": "de923e46c1d1fbcffda32d6fbb08213eaffb1b1af74f5323d6c7bc86770e8539"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.json",
+      "sha256": "6b72814df62b2e0c4aff1d7133550516b4e8909dec7ff5bb87c04bbf1dc1e38c"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits.jsonl",
+      "sha256": "5c8ab6444ff13477495e54f011ca25c916fdca7b4c9f6c0b4416ccd0784c5784"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1ab.txt",
+      "sha256": "7169150a063ce6037bd060cdc91d7f1415f1b2bee3d12ded175c8abdf8c06797"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1bc.txt",
+      "sha256": "2067e2a3129828a8e21222bc4decddfdd7524c58a2c8ded1d73a69326d3b9465"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1mb.txt",
+      "sha256": "2a6ea2aebe42ce145b18b8c4cda7b292114168e97de9a62da354802184b5ffda"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1nb.txt",
+      "sha256": "2f35570cb809f35b87dd47c5865ce0fb1e6509468fd72f4e8182dc19c61a7a5c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1nl.txt",
+      "sha256": "29081b797f30883d13d33babf780fd49c42334e547a6338b65631b65bd5b2039"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1ns.txt",
+      "sha256": "2d98dd400ae592ca0d14828320c6e69db7bf0b9b469c1c6a21ebbf30ed0aed97"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1nt.txt",
+      "sha256": "dedaec122c345f7dcfbefca6494e25a39ad98b42266709015f4356eef4466188"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1nu.txt",
+      "sha256": "df8362c8fe8ef91202abe7b91736413fc86b7bfcefe631285ffd5efbe04c5ef3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1on.txt",
+      "sha256": "5af5aac4a8b0a78cbf20e388fd324296991fc3b85399fdcb8e07b7a08ab3206d"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1pe.txt",
+      "sha256": "25972cfdf389af42762970bf2ac323e69d323f3adae944f41333bcad065c401b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1sk.txt",
+      "sha256": "499144083b5e5c74fd45226508873cb74fe78607b90f8ba9c0ee60246a14efab"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/official-documents/cra-2026-td1yt.txt",
+      "sha256": "63aa648f9a883aafa31d29bc3957ac51fa6b3f265f053319083ba03f797fc369"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-provincial-territorial-td1-personal-credits/reasoning/cra-2026-provincial-territorial-td1-personal-credits.txt",
+      "sha256": "c6e7c4f9fd90e60f8857e3d0c3078b4a3009f17c35b8b088270a2d800af034b3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
+    "missing_count": 0,
+    "provision_count": 13,
+    "source_count": 13
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.327697+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5RXR75Z3b/RzmG+aJn9p6CWOujv/flytQm7PqpQigTRwC/8JFckyKHobheHfkOmY5KKWxIUuBRhoygvKUBEmAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2026-provincial-territorial-td1-personal-credits"
+}

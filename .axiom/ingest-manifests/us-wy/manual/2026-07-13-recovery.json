@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wy/manual/2026-07-13-recovery.json",
+      "sha256": "b45b410f5d20aa83417faee4e50f2ef8df92a6a4ece1c560f97211f620f61d4d"
+    },
+    {
+      "path": "data/corpus/inventory/us-wy/manual/2026-07-13-recovery.json",
+      "sha256": "c1ede42d32cf9bce5d6146a0305107d875298036027db284057b0ec0669f0b5f"
+    },
+    {
+      "path": "data/corpus/provisions/us-wy/manual/2026-07-13-recovery.jsonl",
+      "sha256": "e3da9e1632cb78df23630a325e4d5b3d78483a879cfb16841a089ae5f4ff60e3"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/manual/2026-07-13-recovery/official-documents/release-scope-us-wy-manual-2026-05-27-wy-manuals",
+      "sha256": "9c1513db4c87abd3dcfbd7883ed6c8305b076f6668ef4ab98b8f8e39cd4824a4"
+    },
+    {
+      "path": "data/corpus/sources/us-wy/manual/2026-07-13-recovery/provenance/release-scope-us-wy-manual-2026-05-27-wy-manuals.json",
+      "sha256": "7ec3d17303099d90ecbd410efb290a69db135958f7a50d8e4103a4fc0a324eb7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T11:40:45.666990+00:00",
+  "jurisdiction": "us-wy",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "C+yw4IP66XQwNa9kg9TKEGrBuEc7AK/cYu/adpfKSNTl6VvqFFUurgCFNngou9s9lHz+syjXRObMI4Ysej+eAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

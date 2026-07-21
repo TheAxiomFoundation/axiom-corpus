@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ne/statute/2026-07-13-recovery.json",
+      "sha256": "61f908899910be3974cc3bd9c20e36e8808ebf070cf3e3324cc5a08739950908"
+    },
+    {
+      "path": "data/corpus/inventory/us-ne/statute/2026-07-13-recovery.json",
+      "sha256": "a98cd415705c55a6f70ab16987041c5334d3afd7fe2400d9a6b35586d003a60d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ne/statute/2026-07-13-recovery.jsonl",
+      "sha256": "a5c0d9a727191b1a0712f15140ad6fccc6778079fbfcc1529fa75d381ee54d2b"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-07-13-recovery/official-documents/us-ne-code-77",
+      "sha256": "fb55147b80b04392d38d0d2c6f7ea5d6f80de514f68061ab6c7cadb9edccb5e2"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-07-13-recovery/official-documents/us-ne-code-77-p2",
+      "sha256": "ab917495fa5a24e39cc1c76e1c27b717b3d1b2dc1f6b75534c89cbb5ee12428c"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-07-13-recovery/official-documents/us-ne-code-77-p3",
+      "sha256": "bda8001c2137b548c0554a49aac2a70979b5fa3ae4afcf7dc9b3f4fa3a929306"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-07-13-recovery/provenance/us-ne-code-77-p2.json",
+      "sha256": "3428994685caa15b9f41cb181924eb280a088fc293ac91f53e2535d12f0a060a"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-07-13-recovery/provenance/us-ne-code-77-p3.json",
+      "sha256": "e16eba8ee13bf471837bc5494582af6a3085f2edc084dd7d950d6ceed43ebd2b"
+    },
+    {
+      "path": "data/corpus/sources/us-ne/statute/2026-07-13-recovery/provenance/us-ne-code-77.json",
+      "sha256": "4cb41165a8478f78025a0669ac7e2a8ad37767127acc3cc282a45ec8b29bcc52"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 13,
+    "missing_count": 0,
+    "provision_count": 13,
+    "source_count": 13
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:44.888512+00:00",
+  "jurisdiction": "us-ne",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IK0wR+e+Ah3LZJkBkaV4ovB7RAcA1w08PXqsaEp8+vKSCltgO7Q+WOSkmLeua5LwCvE2PQaO0fvqS/pq2PfKDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

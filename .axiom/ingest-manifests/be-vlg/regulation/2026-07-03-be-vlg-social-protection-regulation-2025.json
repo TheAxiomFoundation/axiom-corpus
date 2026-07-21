@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-vlg/regulation/2026-07-03-be-vlg-social-protection-regulation-2025.json",
+      "sha256": "220f569cc851e81a786cde9b5f085eddfa60e9d5934025e2928a749fa30c3d97"
+    },
+    {
+      "path": "data/corpus/inventory/be-vlg/regulation/2026-07-03-be-vlg-social-protection-regulation-2025.json",
+      "sha256": "fb6d1107bfdf90a24d37d679831bb82fb73e29b536a015065175042e7bfd34f1"
+    },
+    {
+      "path": "data/corpus/provisions/be-vlg/regulation/2026-07-03-be-vlg-social-protection-regulation-2025.jsonl",
+      "sha256": "660737349c794974ec6d5134af5dfdfbd35b068a3cb66b985b31c7dc1986c846"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/regulation/2026-07-03-be-vlg-social-protection-regulation-2025/official-documents/be-vlg-social-protection-implementation-order-2025-codex.html",
+      "sha256": "e9a253912eab1e2cff62ad8403c2bbcdca8a4f337228a169e8f2be1cd9c20841"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --version 2026-07-03-be-vlg-social-protection-regulation-2025 --manifest manifests/be-vlg-social-protection-regulation-2025-documents.yaml; citation paths normalized from block-N to chunk-N and IDs recalculated to satisfy schema/citation-path.v1.json A6"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 298,
+    "missing_count": 0,
+    "provision_count": 298,
+    "source_count": 298
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:40:39.555806+00:00",
+  "jurisdiction": "be-vlg",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1ULROKSo0ybbTS7r7TZpXdEIgrXQT7+jFqdUcEY/XSywMRBvRr9g8GFdNsxHRKcX3MDqSzu9km+Jib7LSpyYAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-be-vlg-social-protection-regulation-2025"
+}

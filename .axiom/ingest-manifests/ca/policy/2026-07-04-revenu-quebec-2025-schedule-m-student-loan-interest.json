@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest.json",
+      "sha256": "755cd9da3e3526f6a37e7f21b936aa79b105c70da86e8b58257ce5c082bea312"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest.json",
+      "sha256": "73aa570fb8e084a062441e9694e214d532cfbac3d10cade208ca412c529c8a2c"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest.jsonl",
+      "sha256": "05b624337de4ed55e7bbfd88b16f3205be31355d4dfbdb3b8f61fe4456f574b9"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest/official-documents/tp-1-d-m-v-2025.pdf",
+      "sha256": "4bdea28861766b2fbf3600af27edfbd01edf4ecdcdcef05f3a208a7402fc3365"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest/official-documents/tp-1-d-m-v-2025.txt",
+      "sha256": "f4a6d03447d7e5f441e2d83385d1d424a6f0a2949b431514674e21e1aadf0abe"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.697558+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "v7Lr+s6i1foMyLht84Hfn5hQjxHCIE3LGU+XC9WdNIeccADjKONcqn8EugNoipq0jZ0MqCHojFcmEJlG7bCLCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-revenu-quebec-2025-schedule-m-student-loan-interest"
+}

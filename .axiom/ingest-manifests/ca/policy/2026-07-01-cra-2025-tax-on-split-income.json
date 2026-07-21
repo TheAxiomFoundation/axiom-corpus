@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-tax-on-split-income.json",
+      "sha256": "08b035e1c8dec542fe1f92aa0a5eac63cc6315629dcc930abcbe8760147c6952"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-tax-on-split-income.json",
+      "sha256": "a32255d3f1ef6870f5c4ef7459245cdc93401d7c4e0eced15d9d0bbaca00da59"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-tax-on-split-income.jsonl",
+      "sha256": "b46d1580b5d2ab3be2704ffcb72dfd416ff09b3eb5f5c15ccd1fa12b7243cf16"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-tax-on-split-income/official-documents/cra-2025-tax-on-split-income.txt",
+      "sha256": "c707b60f2bc5cf9e9b6d86688ee7020d6cfc4e81e857408c68dff8bcadee086a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.067825+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AabpBbr8VCs7Dpzz+ILN/OvOhCO7+A51MdHrZhKZvs1cpCfminY0JS9vrbKPhKRFAWDWdgAeoiwnOxUQGRXQBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-tax-on-split-income"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants.json",
+      "sha256": "81b54525e0744f2d50156ba5cb0fd913145f1bbfe9dae81d22a8ba04c2e5077b"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants.json",
+      "sha256": "983e4a9d958324ece1058286294910e9e7a273f2f77ea604ef267a3292619d6b"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants.jsonl",
+      "sha256": "76dde097d780092a32e4f533d31462e6e67b6ba38b91076c44c0f4cb98c0b1f0"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants/official-documents/tp-1-d-a-v-2025.pdf",
+      "sha256": "384d29871ff35b67494298a336765d9f21a444cd6d3e3ce016bcb272b23acc42"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-a-dependants/official-documents/tp-1-d-a-v-2025.txt",
+      "sha256": "d6d3b9818f1185026a0ba736144fb933fd8380868f29bb5c9e538278122c94f7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.333216+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OX95wy43+3PFqjY7AqQBDXL7sX40SRiMXhVQWXloUyOUX+YHtg90uUaS5zrbc+JG7M/tYUhpMZl+gxPqmh6OCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-revenu-quebec-2025-schedule-a-dependants"
+}

@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction.json",
+      "sha256": "ff4dbc90d2ded9128e470daa751bcb6fdafda07ad8dbd0c8d72afdda2b2a28f0"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction.json",
+      "sha256": "6a858bdb316698bfba7b9e91d6e8ce8a3dfeef34a5d06b1d97f8023bc8fcc62c"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction.jsonl",
+      "sha256": "a272e500b000bd85e240ff64df01571ef4c79e0c33bc537f60c3d4608c44d9fe"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction/official-documents/cra-2025-t1-m-moving-expenses.txt",
+      "sha256": "f4e00c3a6f9357670ab3913e757c07475e341b95765ea8fcf19eb77c2cc3a1f8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-05-cra-2025-moving-expenses-deduction/reasoning/cra-2025-moving-expenses-deduction.txt",
+      "sha256": "a6df11a93879785b1b60a25e92e75de11b4e6e35692dbde11a656f8e906844f2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.941802+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "caqlj2/N1Edp8N6lCZ6SWFWhgHPnlmQSgVCsDqxGy08HITn/vJ3/UERufE7efTqNFRTX8WDjRFZODzOUdZnYAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-cra-2025-moving-expenses-deduction"
+}

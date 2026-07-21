@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/statute/2026-07-13-recovery.json",
+      "sha256": "221d6c536fa6c5c1d7b6d8ce18e6c8f3863986634d6235bd84e8edaed0956f87"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/statute/2026-07-13-recovery.json",
+      "sha256": "626e859b6bdc3155ac365c0628aa23d125ab72fa81fe50f605070c0f97d9729f"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/statute/2026-07-13-recovery.jsonl",
+      "sha256": "6285a27012d5f78d42ab5bab53831caa818c3ab640c348a559648321cd72934a"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/official-documents/us-wv-code-11-21-10",
+      "sha256": "4678fc89e5a4b9f4e732dd4b0277a34675bd642d0b91203a58b7b29a9c6683bf"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/official-documents/us-wv-code-11-21-16",
+      "sha256": "c0ac54a7935bb6713bd7717fa26a1ff0dc14567bf9c2b2c59ea82054b845e356"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/official-documents/us-wv-code-11-21-21",
+      "sha256": "a756dbc14753c0efd0ccb5fe67b28845d5003a5028b7af863423e72721ab7c3c"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/official-documents/us-wv-code-11-21-23",
+      "sha256": "64f82adccd4e9b531fb319e9a62b8744bb09aa398519a1b3202038362db636b5"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/official-documents/us-wv-code-11-21-3",
+      "sha256": "e67ff3b03a00a1358ef0cb3d5401880c37f017378c31f74880d6fde961c36f5b"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/provenance/us-wv-code-11-21-10.json",
+      "sha256": "67743e325d140b436cc809d66acfe1ccb4c76bde20446c0d5902f889b8d16045"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/provenance/us-wv-code-11-21-16.json",
+      "sha256": "e27f85ead9528b570628838bb8d9f7838db08bd23184a03ac054365fe6297546"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/provenance/us-wv-code-11-21-21.json",
+      "sha256": "6309d5cb7fccc4210e876650d0497e0443a09888b97d606bb6aff0a2532de202"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/provenance/us-wv-code-11-21-23.json",
+      "sha256": "fbf0076806c667a533f5bf68d6d5eb508f74a3446a401a1da1c5c77d98e89713"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-13-recovery/provenance/us-wv-code-11-21-3.json",
+      "sha256": "8ca504276a61774f19866b780d1b846108c1c7dcc1c906f8110f36a41199a044"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:45.634080+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "OGudzhu9KqAy5yg7GvcrKp6Kb99u2b/Ds8o0uql0BYO54BVQQ8b+VZ8NUNtCg+IideuhU0mJf32v1NEkMhhVDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

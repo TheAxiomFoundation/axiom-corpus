@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments.json",
+      "sha256": "312c4ce7812a71c70545c39647422e2b4974098431ac0b7e1e2b5af81c54029a"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments.json",
+      "sha256": "466514c1dfafad92b1c8c4a9ef3dd345d3d5183be570681f729296a9960a5f1b"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments.jsonl",
+      "sha256": "88e691222dceb8fab8d120c7df67297622ed52bd4f236fa7292fa48723803188"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments/official-documents/tp-1-d-e-v-2025.pdf",
+      "sha256": "2a370aa3b18f0e5aee2e8acacf18292dabc02fb33ad9984511f37c3aef997036"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments/official-documents/tp-1-d-e-v-2025.txt",
+      "sha256": "6b16feb99d9b6be5840879700568022d6108dce5f3d13593a26f1b88dadb577e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.456817+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NckaeurH5/MDCKAH5vBplK8eZ7xriqCV7NahZJJNf2stg6LppTmkPCXdlW02OmrA0ZX3qdlsHr12Z0QTFaAdDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-revenu-quebec-2025-schedule-e-tax-adjustments"
+}

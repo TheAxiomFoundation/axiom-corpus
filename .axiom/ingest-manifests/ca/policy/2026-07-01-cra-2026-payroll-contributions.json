@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-payroll-contributions.json",
+      "sha256": "cee7de098e9bde1571e6580827ac04cfc59468de902cb59d4c47e17086bb5976"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-payroll-contributions.json",
+      "sha256": "254b014078c0f3cce7c66b13ce2b9ade901b6456c87d7953b112ff0d85c8cae5"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-payroll-contributions.jsonl",
+      "sha256": "7bbec41fbeb32a397ceed430de784df0d12744dcbb5fb600becd4affbbc1b870"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-payroll-contributions/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "sha256": "5744c0bb8d31d9318219534f5f178147430988aacbc61411b70a0e0968ae5496"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-payroll-contributions/reasoning/cra-2026-payroll-contributions.txt",
+      "sha256": "991a44b512bbf3218843619536d962e6d17483b597c3285d2cdd3af6824a132d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Refresh ingest attestation provenance for the complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.262937+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DTGtgTGkIxN9uSGlPkH9rpKymxmxHVcjZtnUJwPSk5ASbBcRemqc2ITlqWc95RyVH1IG3F0sTIczLjpMqqH6CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2026-payroll-contributions"
+}

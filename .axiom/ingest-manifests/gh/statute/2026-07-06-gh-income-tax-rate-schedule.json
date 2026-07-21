@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/gh/statute/2026-07-06-gh-income-tax-rate-schedule.json",
+      "sha256": "6f347c9945ed872eda663d77022f1ab350cfa1bffcd8134959b41c4423784e5a"
+    },
+    {
+      "path": "data/corpus/inventory/gh/statute/2026-07-06-gh-income-tax-rate-schedule.json",
+      "sha256": "814de09f1eec4a6dcaea99de1c7458d31bb31de71234145dafba44d706d68c99"
+    },
+    {
+      "path": "data/corpus/provisions/gh/statute/2026-07-06-gh-income-tax-rate-schedule.jsonl",
+      "sha256": "725e0a212e24075ea72f8b16471e0d47d2de8d6d85b8985bf5062b215e1c6284"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-06-gh-income-tax-rate-schedule/official-documents/gh-act-1111-income-tax-amendment-no2-2023-first-schedule.pdf",
+      "sha256": "6591aea459035e03d553fdcb025d6e0e16638f96d0d620e5e732df83e42bf839"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus extract-official-documents --base data/corpus --version 2026-07-06-gh-income-tax-rate-schedule --manifest manifests/gh-income-tax-rate-schedule-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:43.131772+00:00",
+  "jurisdiction": "gh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4STy6QRUwGIoc4mg6bN3ftvu32nPy8ttHEusZ2c4tlc1O7/rqZV4d21lPS38pnqyR5OjArC9Z0byfOk/RP/UCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-gh-income-tax-rate-schedule"
+}

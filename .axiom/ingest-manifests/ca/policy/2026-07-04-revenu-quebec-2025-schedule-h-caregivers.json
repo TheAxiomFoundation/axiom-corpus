@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.json",
+      "sha256": "821ae32d1432835db3eb612b30a67a66197746392ffe9a2a36631605ef1e1f80"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.json",
+      "sha256": "392341d5fd06100b8db5cae5da835264a3d6a7479efdb438897520c95f5a5663"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers.jsonl",
+      "sha256": "641351b78780d5e73778fa08727c07732fef9d7386f01d80a83a25ee602618a9"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers/official-documents/tp-1-d-h-v-2025.pdf",
+      "sha256": "9aba12e795b3b95b5c6a7e2235938bf367c088fe4e7f35f4342095e7abc7692b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-04-revenu-quebec-2025-schedule-h-caregivers/official-documents/tp-1-d-h-v-2025.txt",
+      "sha256": "977b7e2ca819db5dbeda2ce55a372e9370e1222468606623750b123eb36b5bbd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.578113+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kN094F7gff9geO8t9hf22m+2zKcPY2uiAdIZWwW6eFp7nRNghZ1cSw9hs2grK5LyZQ6CDA/L6Q7xQUb/doh8AA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-revenu-quebec-2025-schedule-h-caregivers"
+}

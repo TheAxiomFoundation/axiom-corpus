@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/guidance/2026-07-03-be-cadastral-income-indexation.json",
+      "sha256": "9b2d72fd45c8f8bcb49f1263fc9c34927e2b8e4bf305cb6229f176611d16d00b"
+    },
+    {
+      "path": "data/corpus/inventory/be/guidance/2026-07-03-be-cadastral-income-indexation.json",
+      "sha256": "2e752d999fd77a649f24c245a1c409d4973530537fe8ba3e99f4710094005382"
+    },
+    {
+      "path": "data/corpus/provisions/be/guidance/2026-07-03-be-cadastral-income-indexation.jsonl",
+      "sha256": "a44c61e725df1f1bcb4a58176c5a07d3e458786a63acc0b244d7ff6881fcf1c3"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-03-be-cadastral-income-indexation/official-documents/be-spf-finances-cadastral-income-indexation-2026.html",
+      "sha256": "786e981a4a11da1da058bb744edc14c2ff024b8c3a20f4d14934aa0638db7e0e"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-03-be-cadastral-income-indexation/official-documents/be-spf-finances-cadastral-income-indexation-previous-years.html",
+      "sha256": "00a83f380fdc33dcfb867498869146264c28b77852393215d9520644b1acc0e0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 25,
+    "missing_count": 0,
+    "provision_count": 25,
+    "source_count": 25
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T11:40:38.537936+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "FGskpb2oSuPNKeNrJGWN/1bGIVeFFwZIm+omAzSTvZnQo7jSQJeDDAYoSFwI5ZwRH5Y8+uiMdjwamCifZ5gEDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-be-cadastral-income-indexation"
+}

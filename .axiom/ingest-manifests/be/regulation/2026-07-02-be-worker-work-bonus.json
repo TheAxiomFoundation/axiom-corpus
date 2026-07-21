@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/regulation/2026-07-02-be-worker-work-bonus.json",
+      "sha256": "9782b496be1e49f9fbaacc2db92651d5ebac13e530ab7b878db7104fa4a82336"
+    },
+    {
+      "path": "data/corpus/inventory/be/regulation/2026-07-02-be-worker-work-bonus.json",
+      "sha256": "91a29b162228aa8af9280c47c07992c9cc86267294d46c3c083d6b6b5a656269"
+    },
+    {
+      "path": "data/corpus/provisions/be/regulation/2026-07-02-be-worker-work-bonus.jsonl",
+      "sha256": "795ab46c6b13788cc88e2a5ad8de2d8eed11f16fbeff1dcc3304e6d39500518f"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-02-be-worker-work-bonus/eli/arrete/2000/01/17/2000022082/justel.html",
+      "sha256": "89dc8d926220913df75c64c253033818ff8315e7c8757e0fa960a1dfac82b0be"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-02-be-worker-work-bonus/eli/arrete/2024/03/05/2024002162/justel.html",
+      "sha256": "d8fc58789a71ff7cc79487ddb96026319bdf46329c536985c8d785ccc6f42136"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:40:38.764658+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3NyWPn1TfQ/xLuoj9ynuJi0rdaqzn5Mik0Su1JL0e3Fmm0EA5SGbudxID4sAm9Njd0pYIfwbIQHkCobPFrTjBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-be-worker-work-bonus"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-employee-overpayment-ei-premiums.json",
+      "sha256": "771dabc09d9b4cb62cc60428d60df58278f24c0ac6f4cebdd8fd374c47a8fac5"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-employee-overpayment-ei-premiums.json",
+      "sha256": "d469d1a30716390a3de60c07b3aecaa12f46df3dc537e724db9277523a48756e"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-employee-overpayment-ei-premiums.jsonl",
+      "sha256": "b7110857e95d50bd979059c41fd6e5250ad26fb62945bbf838e9b6be99e32ac4"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-employee-overpayment-ei-premiums/official-documents/cra-2025-employee-overpayment-ei-premiums.txt",
+      "sha256": "df1398cac50c1660310ae60485292a8c6c4a05ed56a6aa946d4dcdf9c45d9b99"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:40.202332+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "nUVIZQoUp8SXYqbBRBgUoabzIIj+lpyrJA/pvpqKeb2FbbJwBsBzIbFAgQApH2cfStt5sHorzY40L1LKPG8+BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-employee-overpayment-ei-premiums"
+}

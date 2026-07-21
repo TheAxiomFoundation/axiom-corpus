@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2026-income-tax.json",
+      "sha256": "0bd0cc93041ba4ce47c85bd173a94804ae1b2ec569f066ba0c28d3c34aed8358"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-income-tax.json",
+      "sha256": "255c4fd945b7835f1cf811481e09519f208fcbc52a76aa333a9a91decac3bd55"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-income-tax.jsonl",
+      "sha256": "e11dad21be4953bf212ef16ef73b0c6f44a8d11824b7ae29bfed28bb2be6c7e7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-federal-tax-rates-current-year.html",
+      "sha256": "d0913edef2c9a14ba68b6a3ecb8615cc5e632a7d65c81f5f0c9b0ad1f23dab39"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/official-documents/cra-2026-t4127-payroll-deductions-formulas.html",
+      "sha256": "a383303be8ecf3c055ec58cceb48fc0f61f552d4d14e3255b8c3758e3ca3b0de"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2026-income-tax/reasoning/cra-2026-federal-income-tax.txt",
+      "sha256": "65244fb6f1d9b0eed870dd9af526e70e4cf8d284742ae6c7ff93a132785f6ac5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.230332+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "fhPxY8R7qihwlVljk6OcKpcPNLtTxqvGNSBsvrFbwn5NODDRDqL22eF2ZhJXBEGPX0IyNvVbDHpfNu2s6yLuBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2026-income-tax"
+}

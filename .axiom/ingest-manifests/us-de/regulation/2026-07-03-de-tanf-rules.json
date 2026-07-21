@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-de/regulation/2026-07-03-de-tanf-rules.json",
+      "sha256": "9ace7ad0fb6f4e7d44a6b83dd03cbac648655131bdda60fa861615c0b3bf74e4"
+    },
+    {
+      "path": "data/corpus/inventory/us-de/regulation/2026-07-03-de-tanf-rules.json",
+      "sha256": "ab69131c93a6c026917c5e769f31304f0b215bf18bcdff6e2da536e07726a5d0"
+    },
+    {
+      "path": "data/corpus/provisions/us-de/regulation/2026-07-03-de-tanf-rules.jsonl",
+      "sha256": "b857f772702e88dd54e980910c00ae269699e9fd0b200a8aa81e1d13cb2c3f0c"
+    },
+    {
+      "path": "data/corpus/sources/us-de/regulation/2026-07-03-de-tanf-rules/official-documents/de-dhss-dss-4000-financial-responsibility.pdf",
+      "sha256": "29d869cb8ff534e7cdf47b79ad38fdb54c17662bb7ebe2ac2a239d703b1ed4be"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-03-de-tanf-rules --manifest manifests/us-de-tanf-rules.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 41,
+    "missing_count": 0,
+    "provision_count": 41,
+    "source_count": 41
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:40:43.833813+00:00",
+  "jurisdiction": "us-de",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/eWT2RuLmuOP/trjVwyma8SCcr9bOrwJ2SEaLTliFv6lzmg4VlJqWVy3KwMpioHJxwmFQfXAu/WTzfmyQZ39BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-de-tanf-rules"
+}

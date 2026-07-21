@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-cumulative-net-investment-loss.json",
+      "sha256": "c1f78a300f464c882a4f1bc593b989d50d821b7ef676bac2ccf1b09dcfc9178c"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-cumulative-net-investment-loss.json",
+      "sha256": "b05250860bd2639a74f0c9bbb821d69f3cb2b24c71064cdc77929e2b959906a1"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-cumulative-net-investment-loss.jsonl",
+      "sha256": "7c129a54f41a44450f16c8a369f8a9917c21abc7c77bdd943769b221f38147d7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-cumulative-net-investment-loss/official-documents/cra-2025-cumulative-net-investment-loss.txt",
+      "sha256": "ceaf80db7665009cbbcc0a2db96d4eca098d271189f170da25e2b7ce687e80ca"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:40.109127+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "agUC/m/qgc9wfp7mf4l4Lr9eK9xd5tSTN9I5J8/4xjz23FRMz7WRPXazrIznnc8BmPaj61FNYr7PQwcsupg5CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-cumulative-net-investment-loss"
+}

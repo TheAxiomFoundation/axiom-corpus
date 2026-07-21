@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit.json",
+      "sha256": "2ddc1a93415c637d7a1198611ca35acc47910738a9f073b134877e9c418e69eb"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit.json",
+      "sha256": "54bc5995f9ccf3fc83286d2f43d22d6e7d24a922bcad8dfe2c3172150a75a7e4"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit.jsonl",
+      "sha256": "98c0d91ab8d6a51709dfc2556a1eba7e4ae37508d7eef8c76db48a862abe83b3"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit/official-documents/t89-25e.pdf",
+      "sha256": "2793b4c733d21e6334ff1338db33a3900b1b6a4226527f22b3ce2f0df14b463e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:42.242335+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "jEHdr2hYVrJw5cGinIw/lyLV9edavPmj/BoqtiYZptveavJAXTh1otw5K1AkpX/LButd+EYUmv4hLiSQ3dXeDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-03-cra-2025-t89-alberta-stock-savings-plan-credit"
+}

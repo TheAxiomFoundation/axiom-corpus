@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-bru/statute/2026-06-30-be-tax-benefit.json",
+      "sha256": "dbcd7d41f479908071ff9b2bce183edb4a671f10f4fb2cc2c047d14a7ffce653"
+    },
+    {
+      "path": "data/corpus/inventory/be-bru/statute/2026-06-30-be-tax-benefit.json",
+      "sha256": "d0e04cd44dd9bd9c4d336c81b1b619f51d2e90b652a3ca32a5ae25cea6409ee9"
+    },
+    {
+      "path": "data/corpus/provisions/be-bru/statute/2026-06-30-be-tax-benefit.jsonl",
+      "sha256": "261242c523fe55f8a7a98eb134f088ac819d2399ac94f5b7e2354ca585fb7ad7"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-06-30-be-tax-benefit/eli/ordonnance/2003/07/17/2013A31614/justel.html",
+      "sha256": "44ce9e09890ef7dda40949d3c071e6e07a5b4123ac35dcf57ef6b99e9f0e16cf"
+    },
+    {
+      "path": "data/corpus/sources/be-bru/statute/2026-06-30-be-tax-benefit/eli/ordonnance/2019/04/25/2019012118/justel.html",
+      "sha256": "ae277b98f8ce4109dd1c7c9a0d5820d138746c3e2704caefea67044608463e3f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 382,
+    "missing_count": 0,
+    "provision_count": 382,
+    "source_count": 382
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:39.276163+00:00",
+  "jurisdiction": "be-bru",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "k8rXc7Kn/AxZwQXtOhzdExCZ9XURzGeDXyokmEAzd0qTElQ31/GimtvNdNe3Izc6dNF7F4lqqWrmpFhuI54oCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-30-be-tax-benefit"
+}

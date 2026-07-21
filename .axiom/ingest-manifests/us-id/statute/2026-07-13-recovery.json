@@ -1,0 +1,85 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-id/statute/2026-07-13-recovery.json",
+      "sha256": "4276b5b48a1be716aa4d04dd01377e4789d9cd0195280f65a476c45f89fc59d4"
+    },
+    {
+      "path": "data/corpus/inventory/us-id/statute/2026-07-13-recovery.json",
+      "sha256": "0b9c5734d16368cf336f3212bce88ee3122dd8188f5a586ae427419e2c7ac4ad"
+    },
+    {
+      "path": "data/corpus/provisions/us-id/statute/2026-07-13-recovery.jsonl",
+      "sha256": "6987dc19511419b1358437719e648a62784cd50d18fc9d55d86f674209bd4001"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/official-documents/us-id-code-63-3022d",
+      "sha256": "44eba8c61ffbadbe11c07e0a541aaf3a9ef2cc3ed834e9f3796a2ed6c34a667a"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/official-documents/us-id-code-63-3022e",
+      "sha256": "538879d852d0652cb9ca66ed5cbffe149828f0c6591d55a88210b70ffa07b825"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/official-documents/us-id-code-63-3024",
+      "sha256": "918f1a0a8753151fef6954c4263342fc2eea06828c96a3a6b7d36cb16c16eaf6"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/official-documents/us-id-code-63-3024a",
+      "sha256": "eb70c5d89aca0352022eaec307a9da351e84fa0a34a22f2fc1faaa7a32b7cd69"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/official-documents/us-id-code-63-3025d",
+      "sha256": "6439e0077bda1fc6d6dc25f1146cd8cbc077142928b421f526382a931feade7b"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/provenance/us-id-code-63-3022d.json",
+      "sha256": "486f1cfdd8dfc17497a8b3668e1f88f2adaf0e5edb69625aab603ffeab208e34"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/provenance/us-id-code-63-3022e.json",
+      "sha256": "d1a83d9cb06835cb61cf9b18527bdc229f9a47478a0ffb513d67e228b0412a68"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/provenance/us-id-code-63-3024.json",
+      "sha256": "0f0dc9553bd925a7f8917af9170fff91a470a6f52bdc475841a101f1919b5af8"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/provenance/us-id-code-63-3024a.json",
+      "sha256": "3ee4a6cc1692879ec990a3f9415055a7347004ef8a200106183e10c8ceb5a501"
+    },
+    {
+      "path": "data/corpus/sources/us-id/statute/2026-07-13-recovery/provenance/us-id-code-63-3025d.json",
+      "sha256": "894a17f9a11786bc2699cabad0a7794b25c4c2332aadee72090139fc209f4e2f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:44.120970+00:00",
+  "jurisdiction": "us-id",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "GYHmfnHMCWTJwOufT3PZ/OZlPaY4Rz0r87HD+2kRnZCf36ektewggy9iTvBXeFR22TsKYaTJ7WD988FEyoPJBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}

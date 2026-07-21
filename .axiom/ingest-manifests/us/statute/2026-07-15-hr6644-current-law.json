@@ -1,0 +1,30 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-15-hr6644-current-law.jsonl",
+      "sha256": "535ca430b3c315789fe1cb6d0c5bcc8836e2eaf7c6b41fb562947a7c172aa432"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Axiom Bills current-law source fixture for upstream provisions amended by H.R. 6644"
+  },
+  "coverage": null,
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:43.531708+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ScEowMcRVJz7N1hDXSOz9t0yVMu+/bkJd4+mBov6w8U/tR+tOg/lc3wpU0AxBWE/98Swnz052pCgEUww8eCKCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-15-hr6644-current-law"
+}

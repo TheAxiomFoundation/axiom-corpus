@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-wal/statute/2026-06-30-be-tax-benefit.json",
+      "sha256": "43e5f278bc6d7236f8b55b621f880cd802090ac1fd871eefa16ef668effdb3bd"
+    },
+    {
+      "path": "data/corpus/inventory/be-wal/statute/2026-06-30-be-tax-benefit.json",
+      "sha256": "c5d9ebb044d26026c24e2567e840e2c0f8570492e338b40bfd60f92fbead6793"
+    },
+    {
+      "path": "data/corpus/provisions/be-wal/statute/2026-06-30-be-tax-benefit.jsonl",
+      "sha256": "2477ff76ffc058f47c40ea8076ad6b83ce4d3b9f221908f00f14bb550b51e29f"
+    },
+    {
+      "path": "data/corpus/sources/be-wal/statute/2026-06-30-be-tax-benefit/cgi/article_body.pl",
+      "sha256": "3a31b4c246a25661689df31243a0edf3608123bcecb78e8929b2965698e242af"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 135,
+    "missing_count": 0,
+    "provision_count": 135,
+    "source_count": 135
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:39.802480+00:00",
+  "jurisdiction": "be-wal",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ADb8hjpRJGdc4KLXLgQnZmDHij7iQGc9J2bGqYkzG8hY4l2mKMmtkJ3TbeKIhLUfPrNDtnIIi8g+0qj/M7OZAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-30-be-tax-benefit"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/manual/2026-06-27-mn-dhs-msa-revised-sections-2026-01.json",
+      "sha256": "ad4a5eed4788f7d81613bf8a3248897b2960d7e4cbf55f4371f581dd3c90fa8e"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/manual/2026-06-27-mn-dhs-msa-revised-sections-2026-01.json",
+      "sha256": "c5ea061a2e0a63988fd6fba73ac54eb2d6802586aecb57c6738b482f1c670b82"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/manual/2026-06-27-mn-dhs-msa-revised-sections-2026-01.jsonl",
+      "sha256": "f8bdc86cb2ca94407121a6f2c7ca417ad7d373d578d355df8a7189061f93b6a3"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/manual/2026-06-27-mn-dhs-msa-revised-sections-2026-01/official-documents/mn-dhs-msa-revised-sections-2026-01.pdf",
+      "sha256": "d3f5ff517798980e6b4eab7bd273048154768f9a3d62b09de776032d82130506"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-06-27 --manifest manifests/us-mn-combined-manual.yaml --only-source-id mn-dhs-msa-revised-sections-2026-01"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T11:40:44.540321+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ubIoLTmAs+lUdvSKjIKK/r3BV9VQqlGnXWLovdS6vP1z53UjNW75+RbuxSwr1F2McWUTT/vFr/lZ/ukvjyPMDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-27-mn-dhs-msa-revised-sections-2026-01"
+}

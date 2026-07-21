@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-02-cra-2025-federal-other-refundable-credits.json",
+      "sha256": "910a3b49f01867afeb2543828c538f7a4e5b0d2a091a574646a078c4151aced7"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-02-cra-2025-federal-other-refundable-credits.json",
+      "sha256": "2252b0e9173e5d387eee36eeecc20c90d1de44491882d5129bbf7c52ca656c8a"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-02-cra-2025-federal-other-refundable-credits.jsonl",
+      "sha256": "ef27901c3087e97421c7d9d472acb8a14e9986ad3d1d3e7bd40ed3ef233f67de"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-02-cra-2025-federal-other-refundable-credits/official-documents/cra-2025-federal-other-refundable-credits.html",
+      "sha256": "4bc968a913b6fd22f9e98d3eed34898d1227450fc22923ca776aa53c627ee9fd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.543299+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+2vp1myeA3c1AbxA+0wm7gy6yjRYtjcI39lnlS0ouN05ITZd3A76B0UNJfFQf7FExJ3t0fqGOEn85cHP3bdSDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-02-cra-2025-federal-other-refundable-credits"
+}

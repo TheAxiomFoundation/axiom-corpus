@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be-vlg/statute/2026-07-04-be-vlg-property-tax-2025.json",
+      "sha256": "b5d4a70fa825f6a7fbf9bb0ccd84ee80dc4812adf8aad220e015b60cac61d733"
+    },
+    {
+      "path": "data/corpus/inventory/be-vlg/statute/2026-07-04-be-vlg-property-tax-2025.json",
+      "sha256": "8ec93afd0e5fac46b71a62bb73b143d311c08634c08a9ca68725fcc91db06d3c"
+    },
+    {
+      "path": "data/corpus/provisions/be-vlg/statute/2026-07-04-be-vlg-property-tax-2025.jsonl",
+      "sha256": "1969a23a47843b27d22fea1f71ba6ea11cff2593e30e633a0ffaa5b78a1c09f6"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-04-be-vlg-property-tax-2025/official-documents/be-vlg-vcf-article-21401-2025.json",
+      "sha256": "13b480f5f68c5091df7215c130d8f1d23ace4388e11fe37da20d41487aa3a05d"
+    },
+    {
+      "path": "data/corpus/sources/be-vlg/statute/2026-07-04-be-vlg-property-tax-2025/official-documents/be-vlg-vcf-article-21402-2025.json",
+      "sha256": "7d4f78f00d22518029db3c798a2155d16aac00ddd1b1af5f7917bd0c42ad422b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-04-be-vlg-property-tax-2025 --manifest manifests/be-vlg-property-tax-2025-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:39.741936+00:00",
+  "jurisdiction": "be-vlg",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VhvgWw3PeU08rHLXd13zItWw++sFWcPopNiLIbmq8FPf5pmvE1ERTyM6TxEvVHsNM9iyevmIJFDUQkrlfGiUCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-be-vlg-property-tax-2025"
+}

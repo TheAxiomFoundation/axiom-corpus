@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/statute/2026-06-30-be-vat-code-consolidated.json",
+      "sha256": "ec047d72ec2eb6541590cbaa9639946b2b23f505c628a6b6cd4dcb2e4ab26105"
+    },
+    {
+      "path": "data/corpus/inventory/be/statute/2026-06-30-be-vat-code-consolidated.json",
+      "sha256": "07d40f0c4bfb350fd6d99f4f1d6501ef6dab28e4f009a52f8c65eb9e06d3ae20"
+    },
+    {
+      "path": "data/corpus/provisions/be/statute/2026-06-30-be-vat-code-consolidated.jsonl",
+      "sha256": "2caedcb95d8aff1a6c44ab629149990974875b0e0e38fb0920ce83ab68c2e0ce"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-vat-code-consolidated/official-documents/be-vat-code-fisconetplus-current.pdf",
+      "sha256": "bbefaf783f05b851d60e83ede372f1ad2c9bf37acb56f1fde65d07664ebe19a5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:38.932175+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "z7jdDvA7ZYXwx3OJ6Vw4rsyATmhBJeYvnh5+eMKRWQNFTdGP+mNhyb5gRg0FmrywcuzCmVSlqY0bO4accgqfBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-30-be-vat-code-consolidated"
+}

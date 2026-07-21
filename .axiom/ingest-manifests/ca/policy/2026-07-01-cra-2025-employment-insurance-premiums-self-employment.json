@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-cra-2025-employment-insurance-premiums-self-employment.json",
+      "sha256": "b719e5ee34d83fbff0868f2885ff78f72b74c2163941d804c82f3b8f30bcbd6c"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-employment-insurance-premiums-self-employment.json",
+      "sha256": "cc451082cf9667ac2bbed2b53370c90dbf618a4b38551e4bba5ef38a30f2d5d5"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-employment-insurance-premiums-self-employment.jsonl",
+      "sha256": "5b2f3c27a8edee4376d8b52d28b16a6e3c2b0fd1af9e01f337902a4e1c5361aa"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-cra-2025-employment-insurance-premiums-self-employment/official-documents/cra-2025-employment-insurance-premiums-self-employment.txt",
+      "sha256": "9d2510b1d0c9693ca124b7129e166c31f3ce403d7c2eed87c81eb297ee3ded37"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:40.234107+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "5AHhoKNEfuUw+n7JudiJFmLewHEBQxHF7h/4p53oWPDhvaRxMoDDvb8GvbJZz3OLC9Z7ZXXp6g2JXeIE91jZAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-cra-2025-employment-insurance-premiums-self-employment"
+}

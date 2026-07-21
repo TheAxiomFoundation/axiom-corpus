@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/form/2026-07-05-cms-chip-children-coverage-map.json",
+      "sha256": "6b997bf1104f014981f3dff289e22a1698b516fbc591f4ad1c38f844a16b9a1c"
+    },
+    {
+      "path": "data/corpus/inventory/us/form/2026-07-05-cms-chip-children-coverage-map.json",
+      "sha256": "30dc5a3b7c76c3b8501429d11a20571bd5532aa867f18c2f3fd9323ecec8e94b"
+    },
+    {
+      "path": "data/corpus/provisions/us/form/2026-07-05-cms-chip-children-coverage-map.jsonl",
+      "sha256": "2a8a61c9a8f8447d05918a5b5cdc77b5db352bcd40e71efdd656416836f01695"
+    },
+    {
+      "path": "data/corpus/sources/us/form/2026-07-05-cms-chip-children-coverage-map/official-documents/cms-chip-children-coverage-map-20250416.json",
+      "sha256": "b272e978a5eca4545754b2bc56accfe61e5a955bedafe0534d526ee6a421f53c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-05-cms-chip-children-coverage-map --manifest manifests/us-cms-chip-children-coverage-map-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 57,
+    "missing_count": 0,
+    "provision_count": 57,
+    "source_count": 57
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-21T11:40:43.255203+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Rb6NuVZBinYes+oxNzIrt/i1UujcQ+xu7O/fpKnq/SYB5LcXis0kD/rQLsHNezJj0seOxSrmYfnXiLXDRJKGCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-cms-chip-children-coverage-map"
+}

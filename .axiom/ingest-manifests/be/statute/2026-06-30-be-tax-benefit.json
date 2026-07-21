@@ -1,0 +1,97 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/statute/2026-06-30-be-tax-benefit.json",
+      "sha256": "f5d5cb7d6f54fe37681613bb1bba172986755ce68b7d906d7059076b48f93e79"
+    },
+    {
+      "path": "data/corpus/inventory/be/statute/2026-06-30-be-tax-benefit.json",
+      "sha256": "9d9e12c7d9f70d8f7bcce22eac37032c81ceba811d0c7fc904a4b0d1396ffef8"
+    },
+    {
+      "path": "data/corpus/provisions/be/statute/2026-06-30-be-tax-benefit.jsonl",
+      "sha256": "623eb8db6c40a3305bde787147fa19861d05ecc7d1194302948d4012c7424956"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1969/06/27/1969062710/justel.html",
+      "sha256": "9d551dcbe07d8fce5675b797f089eab69d8e18d62124c886d30ae6b584f89270"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1969/07/03/1969070305/justel.html",
+      "sha256": "4bb8dabe0b52d5ba6910521f29e4825eafc5352344365c9ecfe9c6e360ba285b"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1971/07/20/1971072007/justel.html",
+      "sha256": "dbe4af0aa34ca893d4fb4a8e760b3e317e62d16efd3e1cbbed2103c5b48e9665"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1976/07/08/1976D70810/justel.html",
+      "sha256": "137639d20f6f6b0c48446a31d022fb9939c994440cd21dafee97b8fdf6a2b843"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1980/09/01/1980090102/justel.html",
+      "sha256": "19defd407a186e7ead2628612c5bc72d393e31c4934243a37c51dace50d783e7"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1981/06/29/1981001048/justel.html",
+      "sha256": "cffb23480cc58f7563052fb7fb2848b8859da3f215606d2feb5eeb9e54292181"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1987/02/27/1987022077/justel.html",
+      "sha256": "165cee4d7d080e4fb9c955d47724a1065fd0aa71d003cf2b45e4593248578d3b"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1992/04/10/1992041050/justel.html",
+      "sha256": "8f13c309faaa60d5d0d21338969f385461d1797fcf8e03be987411b13d551d20"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1994/03/30/1994021117/justel.html",
+      "sha256": "a4f788433458e1a20014a236ad3e7006104a60e0396fc3093b34e7ade6bbc120"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/1994/07/14/1994071451/justel.html",
+      "sha256": "f4cdb09f9bd9bebdea79ecdeab45eee60617125427058ad3e126f84076c088e4"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/2001/03/22/2001022201/justel.html",
+      "sha256": "69182d57d595abfd2026d33ede6c4d892e876d77d7514067556f271fb62acc71"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/2002/05/26/2002022559/justel.html",
+      "sha256": "55c376ecf0fc5039ad0430b8231c95ba3ad2c1db1d91de6d5bd3ec91fc984939"
+    },
+    {
+      "path": "data/corpus/sources/be/statute/2026-06-30-be-tax-benefit/eli/loi/2019/03/17/2019030319/justel.html",
+      "sha256": "fd06817675f79d69e4071a1fe4b4bf50f07af90eb8e99206eafe075c8a6b34dc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Backfill generated Belgium corpus artifacts from reviewed official-source ingestion."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1181,
+    "missing_count": 0,
+    "provision_count": 1181,
+    "source_count": 1181
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:38.893599+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "KXem3Py0QNHUPfNhoetrjhB0h2lp9aMcqlsaAhbWLQ0OPpOktn+3VlDS7Yhju6WwTSkRSjiIWHpH5PFK7et+Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-30-be-tax-benefit"
+}

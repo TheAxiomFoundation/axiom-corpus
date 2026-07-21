@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit.json",
+      "sha256": "1d49a8d9837f0debf50725edd82290dcdaea00fac1621c32634364d708ea9b4f"
+    },
+    {
+      "path": "data/corpus/inventory/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit.json",
+      "sha256": "8cb328be57bf0d75ce2cc7cd5e5ff6e938822878fb654131975c311f027bfa29"
+    },
+    {
+      "path": "data/corpus/provisions/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit.jsonl",
+      "sha256": "0a5b2da789aecff0d9b0a8d13defa89017e6baf51e83ee9d5670a955d67c60a8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit/official-documents/esdc-canada-disability-benefit-amount.html",
+      "sha256": "494f76a0759b36bb7095fbc6431f2da6b0c643a01905286993c1282a8b7d15f6"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit/official-documents/sor-2025-35-canada-disability-benefit-regulations.html",
+      "sha256": "6e0c5f88f71e1ee0b927bea6866698736516f281b6ebeb92f827f7cc7fddd7c7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-01-esdc-2026-canada-disability-benefit/reasoning/esdc-2026-canada-disability-benefit.txt",
+      "sha256": "e1d8ccab651b81b6adf5fa80cbda348c5e3c5fe390df7baccac9fa979b913bdc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:40:41.358570+00:00",
+  "jurisdiction": "ca",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JMxnOETpNCYK42vU2Tz4fVGLGTM0ZQDMi3Vmo0AacrHcr5qa6AE1R/EQiwaB163QYmfvaf5U3SIjQjCDizDACw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-esdc-2026-canada-disability-benefit"
+}

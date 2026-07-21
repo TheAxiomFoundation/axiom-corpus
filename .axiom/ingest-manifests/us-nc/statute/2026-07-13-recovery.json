@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/statute/2026-07-13-recovery.json",
+      "sha256": "9c6365fff13cfb60f5ceb6f670fae9ff1ddcf5ff90f3c29af21a25886de9afe1"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/statute/2026-07-13-recovery.json",
+      "sha256": "f8e21691427f1cf02d3c7a07e6389985d66ac035a4af2a8cfb41cc126f60417c"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/statute/2026-07-13-recovery.jsonl",
+      "sha256": "671d105b274dc6d7bd7faeadceecf6aa2f5850444d2785c5e752e6e5604c1bb7"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-07-13-recovery/official-documents/us-nc-code-105",
+      "sha256": "5ef104d936836f683570e6b0e04f8ea26204f4650979756a482acb9a163c18e2"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/statute/2026-07-13-recovery/provenance/us-nc-code-105.json",
+      "sha256": "a550072817bb48e6ed620b9612ef74e692a713f688bd00158d67303690ccfc04"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run python scripts/recover_ingest_batch.py"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 57,
+    "missing_count": 0,
+    "provision_count": 57,
+    "source_count": 57
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:40:44.801411+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Dvx8yP1h/8yR+qQDkiIUjAS30qQDLXGLVhtHedPukn+TOfAUBDyvL3EUIgTSLCVbj9UQCSzuMKM6omDANS0+CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-recovery"
+}
