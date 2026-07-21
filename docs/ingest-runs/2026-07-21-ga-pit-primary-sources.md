@@ -41,3 +41,8 @@ uv run --extra dev axiom-corpus-ingest extract-official-documents \
 Both runs write the canonical four artifact families under `sources/`,
 `inventory/`, `provisions/`, and `coverage/`. The successor release selector
 `us-rulespec-2026-07-21-ga-pit-current` remains unpublished.
+
+The Title 48 snapshot adds 25 canonical citation identities with uppercase
+segments, principally verbatim letter-suffixed Georgia chapter and section
+labels such as `48-7A-3`. The citation-path irregular-family ceiling therefore
+moves from 6,291 to the measured 6,316; no existing path was rewritten.
