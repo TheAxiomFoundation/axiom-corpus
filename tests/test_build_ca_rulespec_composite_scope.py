@@ -1,12 +1,18 @@
 from __future__ import annotations
 
+import json
 from dataclasses import replace
+
+import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
-from scripts.build_ca_rulespec_composite_scope import promote_program_roots
+from scripts.build_ca_rulespec_composite_scope import (
+    build_ca_rulespec_composite_scope,
+    promote_program_roots,
+)
 
 
 def test_promotes_program_body_to_attested_primary_document(tmp_path) -> None:
@@ -115,3 +121,32 @@ def test_preserves_existing_bodyless_composite_root(tmp_path) -> None:
 
     records = load_provisions(store.provisions_path("ca", "policy", version))
     assert records == (root, document)
+
+
+def test_rejects_duplicate_supplemental_source_version(tmp_path) -> None:
+    selector_path = tmp_path / "selector.json"
+    selector_path.write_text(
+        json.dumps(
+            {
+                "name": "ca-test",
+                "scopes": [
+                    {
+                        "jurisdiction": "ca",
+                        "document_class": "policy",
+                        "version": "source-v1",
+                    }
+                ],
+            }
+        )
+    )
+    contract_path = tmp_path / "citations.json"
+    contract_path.write_text(json.dumps({"citation_paths": ["ca/policy/example"]}))
+
+    with pytest.raises(ValueError, match="source versions must be unique"):
+        build_ca_rulespec_composite_scope(
+            base=tmp_path / "corpus",
+            selector_path=selector_path,
+            citation_contract_path=contract_path,
+            target_version="combined",
+            supplemental_versions=("source-v1",),
+        )

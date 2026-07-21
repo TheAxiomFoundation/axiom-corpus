@@ -356,6 +356,20 @@ def _download_document(
     request_config = source.request or {}
     verify = bool(request_config.get("verify_tls", True))
     request_headers = _request_headers_from_config(request_config)
+    if request_config.get("browser_impersonation_direct"):
+        impersonation_config = request_config.get("browser_impersonation")
+        impersonate = (
+            OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION
+            if impersonation_config in (None, True)
+            else str(impersonation_config)
+        )
+        return _download_document_by_browser_impersonation(
+            source,
+            download_url,
+            headers=request_headers,
+            verify=verify,
+            impersonate=impersonate,
+        )
     if request_config.get("range_fetch"):
         if request_config.get("range_backend") == "curl":
             return _download_document_by_curl_ranges(
