@@ -1,6 +1,7 @@
 import json
 import os
 from collections.abc import Iterator, Mapping
+from functools import cache
 from pathlib import Path
 from typing import Any, cast
 
@@ -17,6 +18,12 @@ EXPECTED_TARGET_MANIFEST_PATHS = {
 }
 PUBLISHED_CURRENT = "published_current"
 SOURCE_REFETCH_REQUIRED = "source_refetch_required"
+
+
+@cache
+def _sha256_file_cached(path: Path) -> str:
+    """Hash each retained source once even when many inventory rows share it."""
+    return sha256_file(path)
 
 
 def _queue() -> list[dict[str, Any]]:
@@ -155,14 +162,14 @@ def _assert_scope_matches_retained_sources(
             continue
         artifact = REPO_ROOT / relative_path
         assert artifact.is_file(), relative_path
-        assert item.get("sha256") == sha256_file(artifact), relative_path
+        assert item.get("sha256") == _sha256_file_cached(artifact), relative_path
 
     for inventory_item in inventory["items"]:
         source_path = inventory_item.get("source_path")
         assert isinstance(source_path, str) and source_path, inventory_item["citation_path"]
         source = CORPUS_ROOT / source_path
         assert source.is_file(), source_path
-        assert inventory_item.get("sha256") == sha256_file(source), source_path
+        assert inventory_item.get("sha256") == _sha256_file_cached(source), source_path
         for metadata_path in _nested_source_paths(inventory_item.get("metadata", {})):
             assert (CORPUS_ROOT / metadata_path).is_file(), metadata_path
 
