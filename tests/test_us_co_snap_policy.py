@@ -140,7 +140,7 @@ def test_colorado_policy_manifest_uses_exact_current_source_boundary() -> None:
     assert all(document["metadata"]["primary_source"] is True for document in documents)
 
 
-def test_colorado_policy_retained_sources_match_live_hash_ratcheting() -> None:
+def test_colorado_policy_retained_sources_match_capture_hash_ratcheting() -> None:
     actual_files = {path.name: path for path in SOURCE_DIR.iterdir() if path.is_file()}
     expected_files = {values[0] for values in EXPECTED_SOURCES.values()}
 
