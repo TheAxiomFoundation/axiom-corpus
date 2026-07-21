@@ -2,15 +2,15 @@
   "applied_files": [
     {
       "path": "data/corpus/coverage/ca/policy/2026-07-21-ca-rulespec-source-complete.json",
-      "sha256": "079ca285ddcbd6e6b26412f5d7ed0dcee9eacfd71366f63ba7ae1fab2a8e5b48"
+      "sha256": "5d55a591273d76fdc0a8343e571f8b8f9513ff7394a3490725272c3fa57c47dd"
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-21-ca-rulespec-source-complete.json",
-      "sha256": "74fa12aade7ee3edcc194ce0aea74929965dd0ae956b0bd061bcb283dec7395b"
+      "sha256": "3e1938b9bd8ef707b425b7f8a93697f4ce49e0cf12be17bc4a5e315aea65d1dd"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-21-ca-rulespec-source-complete.jsonl",
-      "sha256": "111f423e6dcf67a09dbbffe507c461a82dba241438156ec2d8fc2824b2426248"
+      "sha256": "313a3f6ed90c6a06d95be1752b5d3358ba73fc1316d04214eabf47274dd0b5a5"
     },
     {
       "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-01-cra-2025-alternative-minimum-tax/official-documents/cra-2025-alternative-minimum-tax.txt",
@@ -705,6 +705,78 @@
       "sha256": "a6df11a93879785b1b60a25e92e75de11b4e6e35692dbde11a656f8e906844f2"
     },
     {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-eligible-educator-school-supply-credit.html",
+      "sha256": "dd2c143785e23eb5eb34eeb329817001c8edfd70be7973ce6e12df84b7ac3bd8"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-employee-partner-gst-hst-rebate-guidance.html",
+      "sha256": "9edde72872b65bb928d7d67621296eb3b4db255f807c59f9ee9dbab688fc7cfd"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-nb428-worksheet.pdf",
+      "sha256": "d97a6a4b22980ce9068802ab7c3cd6a51aa0538d87383df0e49e6d6756950eb1"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-nt428-worksheet.pdf",
+      "sha256": "2b50dffe744cd186804e0a17ab1d66a403aa8cc8ef6003931f2974438697fed9"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-nu428-worksheet.pdf",
+      "sha256": "0b88bc59a07dd98591f06a3ae1d0beb8442c067b0c82efaf60ba58cd929590b7"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-on479-worksheet.pdf",
+      "sha256": "7ac3ee4f9bcd38922430ef4f487f30854aa18a771dc90dfde3fdf7bca288e8e5"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-yt428-worksheet.pdf",
+      "sha256": "b142564095c35bd25f9692508e00782ee4adc4edec7654b21e775ef3ee37a498"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2025-yukon-tax-information.html",
+      "sha256": "1072dbf170a7927e3e020c6dc795f96291648d86283441c9b7512a381971d123"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-canada-child-benefit-how-much.html",
+      "sha256": "5685b87a66a7a0ff7f6999dcac5a099fbc01f7c975661ab9d204e02e8081d275"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-cgeb-payment-chart.html",
+      "sha256": "af3bb493a4bcdb3d96058a5af45991284effd2c5701d4fd8ac6f6e0e0bab788a"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-child-disability-benefit.html",
+      "sha256": "21e2e4032d1d6883b5eac1929513abe3e287d73739488bfeca0ca74867cf7b8c"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-federal-tax-rates-for-td1.html",
+      "sha256": "cef748cba315ca42df0e8fd8187fd815dc878aee9fd7fe5bcf5636177b444920"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/cra-2026-gst-hst-credit-one-time-top-up.html",
+      "sha256": "f2b8e13c26bfd55aff53802205fc97e26b711e1b54068f047a1500ae16a42048"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2025-tp1-calculation-grids.pdf",
+      "sha256": "3b457b1938e119cf1c358dfece776c716692e00ad967b076a0ea4d96ca94aefb"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2025-tp1-guide-main-return.pdf",
+      "sha256": "84badbd0c3e35d93d3ea2fd36470b7664f6552c1dca81e8aad3f569637d3317b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2025-tp1-guide-schedule-j.pdf",
+      "sha256": "84badbd0c3e35d93d3ea2fd36470b7664f6552c1dca81e8aad3f569637d3317b"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2025-tp1-return.pdf",
+      "sha256": "6e36f48ccb020bbe115c5ebbf85ba1556b21320b7f4d5046148a63592d1f2360"
+    },
+    {
+      "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-ca-rulespec-official-dependencies/official-documents/revenu-quebec-2026-employer-principal-changes.html",
+      "sha256": "dc6ba3250b837e7ad362b59faa3f3cc583aa48e2dad271ed78fb4edc840feb2d"
+    },
+    {
       "path": "data/corpus/sources/ca/policy/2026-07-21-ca-rulespec-source-complete/2026-07-21-cra-2025-employment-expenses-deduction/official-documents/cra-2025-employment-expenses-deduction.pdf",
       "sha256": "99e767b0c8a2a841f66f516e28b5f9fe631d6dbd4db6eaae36cb7c82b93f1204"
     },
@@ -730,31 +802,31 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "12ddc05fb575e2ac0d523c5b65873624368a920a",
+    "commit": "8e2150fb2bc35ee6f7a885aef72e8cf81098eda0",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "uv run --extra dev python -m scripts.build_ca_rulespec_composite_scope --base data/corpus --selector manifests/releases/ca-rulespec-2026-07-21-complete.json --citation-contract tests/fixtures/releases/ca-rulespec-2026-07-21-complete-citations.json --target-version 2026-07-21-ca-rulespec-source-complete"
+    "text": "Compose the complete Canadian RuleSpec release with official CRA and Revenu Quebec dependency documents"
   },
   "coverage": {
     "complete": true,
     "extra_count": 0,
-    "matched_count": 352,
+    "matched_count": 461,
     "missing_count": 0,
-    "provision_count": 352,
-    "source_count": 352
+    "provision_count": 461,
+    "source_count": 461
   },
   "document_class": "policy",
-  "generated_at": "2026-07-21T12:53:39.577974+00:00",
+  "generated_at": "2026-07-21T13:48:54.951113+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "e7xtGMz/LywhrysG2AgzTzEDB2ked2Pk3Y8hocf4UtuLqV7zN2HBq+8nBTY2ZJdUAby1QbWQk3MABNhlRZVcBQ=="
+    "value": "BN/gTJ5bSHaYYc6slUnwQSVPXtVmpbVyFADNonFpKL7gGn6Oegx5z99IWKyS1RddvjLCeLTCt4IJLrcfj2O9CA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-21-ca-rulespec-source-complete"
