@@ -710,50 +710,43 @@ def fetch_staged_release_scope_evidence(
     return evidence
 
 
-# Fetch compact memberships separately from signed objects. A release object can
-# cover many scopes and contain thousands of artifact records, so joining it
-# onto every membership makes response size grow multiplicatively.
-_RELEASED_SCOPE_FETCH_BATCH = 25
-_RELEASE_OBJECT_FETCH_BATCH = 5
+# The RPC returns each signed object once with all matching scope memberships.
+# Large or transiently rejected requests are recursively split, and duplicate
+# objects from separate halves are required to be byte-for-byte consistent.
 _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS = 3
 _RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS = 1.0
 
 
-def _released_scope_or_filter(scopes: Sequence[ReleaseScope]) -> str:
-    terms = []
-    for scope in scopes:
-        identity = (
-            f"jurisdiction.eq.{_postgrest_in_value(scope.jurisdiction)},"
-            f"document_class.eq.{_postgrest_in_value(scope.document_class)},"
-            f"version.eq.{_postgrest_in_value(scope.version)}"
-        )
-        terms.append(f"and({identity})")
-    return f"({','.join(terms)})"
-
-
-def _fetch_released_scope_membership_rows(
+def _fetch_released_scope_object_sets(
     scopes: Sequence[ReleaseScope],
     *,
     service_key: str,
     supabase_url: str,
 ) -> list[object]:
     requested_keys = {scope.key for scope in scopes}
-    query = urllib.parse.urlencode(
-        {
-            "select": "jurisdiction,document_class,version,release_name",
-            "or": _released_scope_or_filter(scopes),
-            "order": "jurisdiction.asc,document_class.asc,version.asc,release_name.asc",
-        }
-    )
+    payload = {
+        "p_scopes": [
+            {
+                "jurisdiction": scope.jurisdiction,
+                "document_class": scope.document_class,
+                "version": scope.version,
+            }
+            for scope in scopes
+        ]
+    }
     req = urllib.request.Request(
-        f"{_rest_url(supabase_url)}/release_scopes?{query}",
+        f"{_rest_url(supabase_url)}/rpc/get_released_scope_object_sets",
+        data=json.dumps(payload).encode("utf-8"),
         headers={
             "apikey": service_key,
             "Authorization": f"Bearer {service_key}",
             "Accept": "application/json",
             "Accept-Profile": "corpus",
+            "Content-Type": "application/json",
+            "Content-Profile": "corpus",
             "User-Agent": USER_AGENT,
         },
+        method="POST",
     )
     for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
         try:
@@ -764,26 +757,34 @@ def _fetch_released_scope_membership_rows(
             for row in rows:
                 if not isinstance(row, dict):
                     raise RuntimeError("released-scope response contains a malformed row")
-                key = (
-                    str(row.get("jurisdiction") or ""),
-                    str(row.get("document_class") or ""),
-                    str(row.get("version") or ""),
-                )
-                if key not in requested_keys:
-                    raise RuntimeError(
-                        f"released-scope response contains an unknown scope: {key!r}"
+                raw_scopes = row.get("scopes")
+                if not isinstance(raw_scopes, list):
+                    raise RuntimeError("released-scope response contains malformed memberships")
+                for raw_scope in raw_scopes:
+                    if not isinstance(raw_scope, dict):
+                        raise RuntimeError(
+                            "released-scope response contains a malformed membership"
+                        )
+                    key = (
+                        str(raw_scope.get("jurisdiction") or ""),
+                        str(raw_scope.get("document_class") or ""),
+                        str(raw_scope.get("version") or ""),
                     )
+                    if key not in requested_keys:
+                        raise RuntimeError(
+                            f"released-scope response contains an unknown scope: {key!r}"
+                        )
             return rows
         except urllib.error.HTTPError as exc:
-            if 400 <= exc.code < 500:
+            if 400 <= exc.code < 500 and exc.code not in {413, 414}:
                 raise
             if len(scopes) > 1:
                 midpoint = len(scopes) // 2
-                return _fetch_released_scope_membership_rows(
+                return _fetch_released_scope_object_sets(
                     scopes[:midpoint],
                     service_key=service_key,
                     supabase_url=supabase_url,
-                ) + _fetch_released_scope_membership_rows(
+                ) + _fetch_released_scope_object_sets(
                     scopes[midpoint:],
                     service_key=service_key,
                     supabase_url=supabase_url,
@@ -792,68 +793,21 @@ def _fetch_released_scope_membership_rows(
                 raise
         except (urllib.error.URLError, ConnectionError, TimeoutError):
             if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
-                raise
-        time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
-
-    raise AssertionError("released-scope retry loop exhausted unexpectedly")
-
-
-def _fetch_release_object_rows(
-    release_names: Sequence[str],
-    *,
-    service_key: str,
-    supabase_url: str,
-) -> list[object]:
-    query = urllib.parse.urlencode(
-        {
-            "select": "release_name,content_sha256,release_object",
-            "release_name": (
-                "in.("
-                + ",".join(_postgrest_in_value(name) for name in release_names)
-                + ")"
-            ),
-            "order": "release_name.asc",
-        }
-    )
-    req = urllib.request.Request(
-        f"{_rest_url(supabase_url)}/release_objects?{query}",
-        headers={
-            "apikey": service_key,
-            "Authorization": f"Bearer {service_key}",
-            "Accept": "application/json",
-            "Accept-Profile": "corpus",
-            "User-Agent": USER_AGENT,
-        },
-    )
-    for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
-        try:
-            with urllib.request.urlopen(req, timeout=600) as resp:
-                rows = json.loads(resp.read())
-            if not isinstance(rows, list):
-                raise RuntimeError("unexpected released-object response")
-            return rows
-        except urllib.error.HTTPError as exc:
-            if 400 <= exc.code < 500:
-                raise
-            if len(release_names) > 1:
-                midpoint = len(release_names) // 2
-                return _fetch_release_object_rows(
-                    release_names[:midpoint],
+                if len(scopes) == 1:
+                    raise
+                midpoint = len(scopes) // 2
+                return _fetch_released_scope_object_sets(
+                    scopes[:midpoint],
                     service_key=service_key,
                     supabase_url=supabase_url,
-                ) + _fetch_release_object_rows(
-                    release_names[midpoint:],
+                ) + _fetch_released_scope_object_sets(
+                    scopes[midpoint:],
                     service_key=service_key,
                     supabase_url=supabase_url,
                 )
-            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
-                raise
-        except (urllib.error.URLError, ConnectionError, TimeoutError):
-            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
-                raise
         time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
 
-    raise AssertionError("released-object retry loop exhausted unexpectedly")
+    raise AssertionError("released-scope retry loop exhausted unexpectedly")
 
 
 def fetch_released_scope_objects(
@@ -864,92 +818,63 @@ def fetch_released_scope_objects(
 ) -> dict[tuple[str, str, str], tuple[ReleasedScopeObject, ...]]:
     """Return prior signed objects that make requested scopes immutable."""
 
-    scopes = list(release.scopes)
     memberships: dict[tuple[str, str, str], list[str]] = {
         key: [] for key in release.scope_keys
     }
     seen_memberships: set[tuple[tuple[str, str, str], str]] = set()
-    membership_fields = {
-        "jurisdiction",
-        "document_class",
-        "version",
-        "release_name",
-    }
-    for start in range(0, len(scopes), _RELEASED_SCOPE_FETCH_BATCH):
-        scope_batch = scopes[start : start + _RELEASED_SCOPE_FETCH_BATCH]
-        rows = _fetch_released_scope_membership_rows(
-            scope_batch,
-            service_key=service_key,
-            supabase_url=supabase_url,
-        )
-
-        batch_keys = {scope.key for scope in scope_batch}
-        for row in rows:
-            if not isinstance(row, dict) or set(row) != membership_fields:
-                raise RuntimeError("released-scope response contains a malformed row")
-            key = (
-                str(row.get("jurisdiction") or ""),
-                str(row.get("document_class") or ""),
-                str(row.get("version") or ""),
+    objects_by_name: dict[str, tuple[str, Mapping[str, object]]] = {}
+    object_set_fields = {"release_name", "content_sha256", "release_object", "scopes"}
+    membership_fields = {"jurisdiction", "document_class", "version"}
+    rows = _fetch_released_scope_object_sets(
+        release.scopes,
+        service_key=service_key,
+        supabase_url=supabase_url,
+    )
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != object_set_fields:
+            raise RuntimeError("released-scope response contains a malformed row")
+        raw_name = row.get("release_name")
+        try:
+            release_name = validate_release_name(raw_name) if isinstance(raw_name, str) else ""
+        except ValueError as exc:
+            raise RuntimeError("released-scope response has an invalid release name") from exc
+        if not release_name:
+            raise RuntimeError("released-scope response has an invalid release name")
+        content_sha256 = row.get("content_sha256")
+        release_object = row.get("release_object")
+        if (
+            not isinstance(content_sha256, str)
+            or _SHA256_RE.fullmatch(content_sha256) is None
+            or not isinstance(release_object, dict)
+            or release_object.get("release") != release_name
+            or release_object.get("content_sha256") != content_sha256
+        ):
+            raise RuntimeError("released-scope response has inconsistent object identity")
+        prior_object = objects_by_name.get(release_name)
+        if prior_object is not None and prior_object != (content_sha256, release_object):
+            raise RuntimeError(
+                f"released-scope response contains conflicting objects: {release_name!r}"
             )
-            if key not in batch_keys:
+        objects_by_name[release_name] = (content_sha256, release_object)
+
+        raw_scopes = row.get("scopes")
+        if not isinstance(raw_scopes, list) or not raw_scopes:
+            raise RuntimeError("released-scope response contains malformed memberships")
+        for raw_scope in raw_scopes:
+            if not isinstance(raw_scope, dict) or set(raw_scope) != membership_fields:
+                raise RuntimeError("released-scope response contains a malformed membership")
+            key = (
+                str(raw_scope.get("jurisdiction") or ""),
+                str(raw_scope.get("document_class") or ""),
+                str(raw_scope.get("version") or ""),
+            )
+            if key not in memberships:
                 raise RuntimeError(f"released-scope response contains an unknown scope: {key!r}")
-            raw_name = row.get("release_name")
-            try:
-                release_name = validate_release_name(raw_name) if isinstance(raw_name, str) else ""
-            except ValueError as exc:
-                raise RuntimeError("released-scope response has an invalid release name") from exc
-            if not release_name:
-                raise RuntimeError("released-scope response has an invalid release name")
             identity = (key, release_name)
             if identity in seen_memberships:
                 raise RuntimeError(f"released-scope response contains a duplicate: {identity!r}")
             seen_memberships.add(identity)
             memberships[key].append(release_name)
-
-    release_names = sorted({name for names in memberships.values() for name in names})
-    objects_by_name: dict[str, tuple[str, Mapping[str, object]]] = {}
-    object_fields = {"release_name", "content_sha256", "release_object"}
-    for start in range(0, len(release_names), _RELEASE_OBJECT_FETCH_BATCH):
-        object_batch = release_names[start : start + _RELEASE_OBJECT_FETCH_BATCH]
-        rows = _fetch_release_object_rows(
-            object_batch,
-            service_key=service_key,
-            supabase_url=supabase_url,
-        )
-        for row in rows:
-            if not isinstance(row, dict) or set(row) != object_fields:
-                raise RuntimeError("released-object response contains a malformed row")
-            raw_name = row.get("release_name")
-            try:
-                release_name = validate_release_name(raw_name) if isinstance(raw_name, str) else ""
-            except ValueError as exc:
-                raise RuntimeError("released-object response has an invalid release name") from exc
-            if release_name not in object_batch:
-                raise RuntimeError(
-                    f"released-object response contains an unknown release: {release_name!r}"
-                )
-            content_sha256 = row.get("content_sha256")
-            release_object = row.get("release_object")
-            if (
-                not isinstance(content_sha256, str)
-                or _SHA256_RE.fullmatch(content_sha256) is None
-                or not isinstance(release_object, dict)
-                or release_object.get("release") != release_name
-                or release_object.get("content_sha256") != content_sha256
-            ):
-                raise RuntimeError("released-object response has inconsistent object identity")
-            if release_name in objects_by_name:
-                raise RuntimeError(
-                    f"released-object response contains a duplicate: {release_name!r}"
-                )
-            objects_by_name[release_name] = (content_sha256, release_object)
-
-    missing_objects = sorted(set(release_names) - set(objects_by_name))
-    if missing_objects:
-        raise RuntimeError(
-            f"released-object response is missing referenced releases: {missing_objects!r}"
-        )
 
     return {
         key: tuple(

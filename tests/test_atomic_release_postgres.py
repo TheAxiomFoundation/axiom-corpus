@@ -53,6 +53,10 @@ PROFILED_RELEASE_MIGRATION = (
     Path(__file__).resolve().parents[1]
     / "supabase/migrations/20260719043000_profiled_release_activation.sql"
 )
+COMPACT_RELEASE_OBJECTS_MIGRATION = (
+    Path(__file__).resolve().parents[1]
+    / "supabase/migrations/20260721102000_compact_released_scope_objects.sql"
+)
 REQUIRED_ROLES = ("anon", "authenticated", "service_role", "postgres")
 TEST_SIGNING_KEY = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
 TEST_PUBLIC_KEY = base64.b64encode(
@@ -329,6 +333,7 @@ def postgres_dsn() -> Iterator[str]:
                     cursor.execute(MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(SCOPE_MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(PROFILED_RELEASE_MIGRATION.read_text(encoding="utf-8"))
+                    cursor.execute(COMPACT_RELEASE_OBJECTS_MIGRATION.read_text(encoding="utf-8"))
                 connection.commit()
             yield dsn
         finally:
@@ -1490,6 +1495,63 @@ def test_pointer_membership_trigger_rejects_an_uncovered_pair(clean_postgres: st
                 ),
             )
         connection.rollback()
+
+
+def test_compact_released_scope_rpc_returns_each_signed_object_once(
+    clean_postgres: str,
+) -> None:
+    first = _scope_identity("compact-first")
+    second = _scope_identity("compact-second")
+    with closing(psycopg2.connect(clean_postgres)) as connection:
+        _seed_scope(connection, first)
+        _seed_scope(connection, second)
+        release_object = _multi_scope_release_object(
+            "compact-release",
+            [_scope_evidence(connection, first), _scope_evidence(connection, second)],
+        )
+        _activate(connection, release_object)
+        connection.commit()
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT corpus.get_released_scope_object_sets(%s::jsonb)",
+                (Json([first, second]),),
+            )
+            result = cursor.fetchone()[0]
+            cursor.execute(
+                """
+                SELECT
+                  has_function_privilege(
+                    'service_role',
+                    'corpus.get_released_scope_object_sets(jsonb)',
+                    'EXECUTE'
+                  ),
+                  has_function_privilege(
+                    'anon',
+                    'corpus.get_released_scope_object_sets(jsonb)',
+                    'EXECUTE'
+                  ),
+                  has_function_privilege(
+                    'authenticated',
+                    'corpus.get_released_scope_object_sets(jsonb)',
+                    'EXECUTE'
+                  )
+                """
+            )
+            privileges = cursor.fetchone()
+
+    assert len(result) == 1
+    assert result[0]["release_name"] == "compact-release"
+    assert result[0]["release_object"] == release_object
+    assert result[0]["scopes"] == sorted(
+        [first, second],
+        key=lambda scope: (
+            scope["jurisdiction"],
+            scope["document_class"],
+            scope["version"],
+        ),
+    )
+    assert privileges == (True, False, False)
 
 
 def test_seed_carries_the_singleton_served_scopes_into_the_scope_map(
