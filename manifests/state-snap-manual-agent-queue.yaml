@@ -458,8 +458,8 @@ states:
     target_scope:
       jurisdiction: us-ok
       document_class: regulation
-      version: 2026-05-27-ok-snap-rules
-    notes: Current scope uses the public rules.ok.gov production API for OAC 340 Chapter 50 Supplemental Nutrition Assistance Program, exposed by the official Oklahoma Administrative Rules app.
+      version: 2026-07-21-ok-snap-rules
+    notes: Current regulation replacement retains the public rules.ok.gov production API for OAC 340 Chapter 50. Promotion remains pending until the separately scoped current OKDHS SNAP appendices and cited cross-chapter OAC dependencies are retained.
   - jurisdiction: us-or
     name: Oregon
     queue_status: published_current
