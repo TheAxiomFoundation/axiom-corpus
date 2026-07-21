@@ -1,7 +1,7 @@
 # State income-tax source drift observed during release deduplication (2026-07)
 
 The unpublished state individual-income-tax recovery selector extends the canonical
-`us-rulespec-2026-07-17` selector. Its deduplication retained the canonical scope
+`us-rulespec-2026-07-19-dedup` selector. Its deduplication retained the canonical scope
 for each of the 36 citation paths below and removed the later PIT row from the
 added scope. The differences are recorded as source-drift signals for a future
 explicit scope-version refresh; none replaced canonical corpus content.
