@@ -464,8 +464,8 @@ states:
       jurisdiction: us-ok
       document_class: policy
       version: 2026-07-21-ok-snap-policy
-    supporting_queue_status: source_refetch_required
-    notes: The current regulation target retains the public rules.ok.gov production API for OAC 340 Chapter 50 and is published_current. The separately scoped current OKDHS SNAP appendices and cited cross-chapter OAC dependencies remain source_refetch_required.
+    supporting_queue_status: published_current
+    notes: The regulation target retains the complete public rules.ok.gov production API response for OAC 340 Chapter 50. The separately published support scope retains the current OKDHS appendices, full Appendix C-3 allotment CSV, and complete OAC Chapter 2, 10, and 65 API responses while extracting only cited active dependency sections. Appendix B is not currently published by OKDHS; its referenced formula is retained in OAC 340:50-9-1 in the regulation scope.
   - jurisdiction: us-or
     name: Oregon
     queue_status: published_current
