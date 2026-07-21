@@ -459,7 +459,13 @@ states:
       jurisdiction: us-ok
       document_class: regulation
       version: 2026-07-21-ok-snap-rules
-    notes: Current regulation replacement retains the public rules.ok.gov production API for OAC 340 Chapter 50. Promotion remains pending until the separately scoped current OKDHS SNAP appendices and cited cross-chapter OAC dependencies are retained.
+    supporting_manifest: manifests/us-ok-snap-policy.yaml
+    supporting_scope:
+      jurisdiction: us-ok
+      document_class: policy
+      version: 2026-07-21-ok-snap-policy
+    supporting_queue_status: source_refetch_required
+    notes: The current regulation target retains the public rules.ok.gov production API for OAC 340 Chapter 50 and is published_current. The separately scoped current OKDHS SNAP appendices and cited cross-chapter OAC dependencies remain source_refetch_required.
   - jurisdiction: us-or
     name: Oregon
     queue_status: published_current
