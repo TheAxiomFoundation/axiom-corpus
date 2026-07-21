@@ -40,6 +40,101 @@ EXPECTED_PROVISION_COUNTS = {
     "okdhs-appendix-c-3-snap-allotment-table": 4,
     "okdhs-appendix-d-4-c-indian-food-distribution-programs": 5,
 }
+EXPECTED_OAC_SECTIONS = {
+    "ok-oac-340-2-snap-dependencies": {
+        f"340:2-5-{section}"
+        for section in (
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            50,
+            51,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+        )
+    },
+    "ok-oac-340-10-snap-dependencies": {
+        "340:10-1-3",
+        "340:10-2-1",
+        "340:10-2-2",
+        "340:10-2-3",
+        "340:10-2-4",
+        "340:10-2-5",
+        "340:10-2-6",
+        "340:10-2-6.1",
+        "340:10-2-7",
+        "340:10-2-8",
+        "340:10-4-1",
+        "340:10-10-5",
+        "340:10-12-1",
+        "340:10-13-1",
+        "340:10-14-1",
+    },
+    "ok-oac-340-65-snap-dependencies": {
+        "340:65-3-1",
+        "340:65-3-2.1",
+        "340:65-3-4",
+        "340:65-3-5",
+        "340:65-5-1",
+        "340:65-5-3",
+        "340:65-5-6",
+        "340:65-5-60",
+    },
+}
 
 
 def _provisions() -> list[dict]:
@@ -55,9 +150,7 @@ def test_oklahoma_policy_manifest_uses_current_official_sources() -> None:
     assert all(document["source_as_of"] == "2026-07-21" for document in documents)
     assert all(document["metadata"]["primary_source"] is True for document in documents)
     assert all(
-        document["source_url"].startswith(
-            ("https://oklahoma.gov/", "https://rules.ok.gov/")
-        )
+        document["source_url"].startswith(("https://oklahoma.gov/", "https://rules.ok.gov/"))
         for document in documents
     )
 
@@ -81,22 +174,10 @@ def test_oklahoma_policy_extracts_only_cited_active_oac_dependencies() -> None:
         if provision["kind"] == "section":
             sections_by_source.setdefault(provision["source_id"], []).append(provision)
 
-    chapter_2 = sections_by_source["ok-oac-340-2-snap-dependencies"]
-    chapter_10 = sections_by_source["ok-oac-340-10-snap-dependencies"]
-    chapter_65 = sections_by_source["ok-oac-340-65-snap-dependencies"]
-    assert len(chapter_2) == 61
-    assert len(chapter_10) == 15
-    assert len(chapter_65) == 8
-    assert all(row["metadata"]["sectionNum"].startswith("340:2-5-") for row in chapter_2)
-    assert {"340:2-5-63", "340:2-5-65", "340:2-5-76"} <= {
-        row["metadata"]["sectionNum"] for row in chapter_2
-    }
-    assert {"340:10-1-3", "340:10-4-1", "340:10-14-1"} <= {
-        row["metadata"]["sectionNum"] for row in chapter_10
-    }
-    assert {"340:65-3-1", "340:65-3-2.1", "340:65-3-4", "340:65-3-5"} <= {
-        row["metadata"]["sectionNum"] for row in chapter_65
-    }
+    assert {
+        source_id: {row["metadata"]["sectionNum"] for row in rows}
+        for source_id, rows in sections_by_source.items()
+    } == EXPECTED_OAC_SECTIONS
     assert all(
         row["metadata"]["statusName"] not in {"Revoked", "Reserved"}
         for rows in sections_by_source.values()
@@ -115,8 +196,7 @@ def test_oklahoma_policy_generated_scope_is_complete() -> None:
     allotment_rows = next(
         row
         for row in rows
-        if row["source_id"] == "okdhs-appendix-c-3-allotment-table-data"
-        and row["kind"] == "sheet"
+        if row["source_id"] == "okdhs-appendix-c-3-allotment-table-data" and row["kind"] == "sheet"
     )
     assert allotment_rows["metadata"]["row_count"] == 1789
     assert "1790 | 5957-5960" in allotment_rows["body"]
