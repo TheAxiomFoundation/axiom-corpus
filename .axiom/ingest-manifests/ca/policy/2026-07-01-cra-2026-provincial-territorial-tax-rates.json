@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates.json",
-      "sha256": "d17ba8b4cc14fce31a37f0ceddf30b79b8c0dd465c6be9c8c87a4fb26bb64578"
+      "sha256": "b75cceab36c728ea47d4ecd31f594987c0c59d47137b3158e1eb7d9b5ae4728e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2026-provincial-territorial-tax-rates.jsonl",
@@ -30,13 +30,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b1e629503f758ff947cbf86a996ddc87b1c8cd72",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "restructure concatenated multi-capture scopes into per-capture children; revert TOC-artifact step splits on shared t4127 scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -47,14 +47,14 @@
     "source_count": 3
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:52:00.697047+00:00",
+  "generated_at": "2026-07-21T11:40:41.296456+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Zsvq5IpcOeEtBcN3oWUOHk3ACY1MGZmQBTLQW49fL31fKE5uxExrU2lv6DpMMn89/HD7Qi6VjKwhg2Zj1URZAQ=="
+    "value": "L9aETV1OpIOFVmC/f9GFppI8fLEIpjsmQgNugYk1RPIpmOzH1ruz3aMsd6aekMwN9EGZFpDP41wJtsKQ1yrOBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2026-provincial-territorial-tax-rates"

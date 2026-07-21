@@ -86,15 +86,21 @@ jobs:
             exit 0
           fi
           if [ "$(grep -cve '^$' "$RUNNER_TEMP/release-selectors.txt")" -ne 1 ]; then
-            echo "::error::One publication run must activate exactly one named release."
+            echo "::error::One publication run must publish exactly one named release."
             exit 1
           fi
           echo "publish=true" >> "$GITHUB_OUTPUT"
           cat "$RUNNER_TEMP/release-selectors.txt"
 
-      - name: Validate, sign, and activate the named release through the management plane
+      - name: Validate and sign the named release (publish only; activation is separate)
         if: steps.selectors.outputs.publish == 'true'
         run: |
+          # Publication stages content-addressed R2 artifacts + versioned Supabase
+          # rows and signs the release object. It does NOT move serving: activation
+          # repoints the per-scope serving map and can displace another
+          # jurisdiction's release (axiom-corpus#408), so it is a separate,
+          # deliberate step run via scripts/activate_release.py (with --dry-run to
+          # preview the takeover first).
           while IFS= read -r selector; do
             [ -n "$selector" ] || continue
             python scripts/publish_corpus.py \
@@ -102,13 +108,22 @@ jobs:
               --output "$RUNNER_TEMP/$(basename "$selector" .json)-release-object.json"
           done < "$RUNNER_TEMP/release-selectors.txt"
 
+      - name: Retain the signed release object for activation
+        if: steps.selectors.outputs.publish == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: signed-corpus-release-object
+          path: ${{ runner.temp }}/*-release-object.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Publication summary
         if: always()
         run: |
           {
-            echo "### Named corpus release publication"
+            echo "### Named corpus release publication (sign only)"
             echo ""
-            echo "The release must bind the exact artifact/source inventory and canonical provision/navigation projection digests."
-            echo "Conditional R2 writes, exact readback, pre-sign database evidence, local Ed25519 verification, and management-plane transactional activation must all pass."
-            echo "The staging service role cannot activate a release; exact retries only verify and reuse immutable state."
+            echo "The release binds the exact artifact/source inventory and canonical provision/navigation projection digests."
+            echo "Conditional R2 writes, exact readback, pre-sign database evidence, and local Ed25519 verification must all pass."
+            echo "This step does NOT activate: serving is unchanged. Activation is a separate, deliberate step (scripts/activate_release.py, preview with --dry-run) because it repoints the per-scope serving map and can displace another jurisdiction's release (axiom-corpus#408)."
           } >> "$GITHUB_STEP_SUMMARY"

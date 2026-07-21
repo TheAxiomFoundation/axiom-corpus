@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-17-hr6644-dependency-closure-title-26-title-26.json",
+      "sha256": "faaf09253390149bbdc1eb1cd5a17f40ea7523e895277746afd66d27802dcf69"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-17-hr6644-dependency-closure-title-26-title-26.json",
+      "sha256": "981f1774f1535dc55a2e9a11b866899e14256742ad4a19a6e9437eb4d0a88b35"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-17-hr6644-dependency-closure-title-26-title-26.jsonl",
+      "sha256": "2948db14c2bdcd27e29ce4669f701fa97baa7d72c6ff9c618cdca9276101c429"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-17-hr6644-dependency-closure-title-26-title-26/uslm/usc26.xml",
+      "sha256": "2d184212b6d74a13bb604664da24b0edad8528116b44594010be76988b2b9847"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "74549d5a43e054657d306939efe7cb1dca53836c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-usc title 26 HR6644 dependency closure from official US Code releasepoint 119-102not101"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 116,
+    "missing_count": 0,
+    "provision_count": 116,
+    "source_count": 116
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-17T19:10:16.464352+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "66OFkoOtIelorfwkRdR3qrI88AW7ps0slNeDiy2JL2FNFHj64Kxsg8Po999X+v7I0gImexkIyTmTcl/3a27KAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-hr6644-dependency-closure-title-26-title-26"
+}

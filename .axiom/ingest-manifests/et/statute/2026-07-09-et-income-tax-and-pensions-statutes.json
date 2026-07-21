@@ -34,9 +34,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "947068c6a945d05bbbba5340359878fe496e7392",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -51,14 +51,14 @@
     "source_count": 10
   },
   "document_class": "statute",
-  "generated_at": "2026-07-09T06:48:28.011519+00:00",
+  "generated_at": "2026-07-21T11:41:59.462005+00:00",
   "jurisdiction": "et",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "I/atT4YZhv2FIULk8uyUioOvlyiV44KImks7sIJeue9vMF8NDVdr3bh6ynnXRRQ4TAk1sAK4l61eJwYXdKkEBg=="
+    "value": "kAk41u8H5JXMCzKwLjVCwVkRSKXxzSDFVuKSXbsxFBuq1Nl/ATMZlJtN0VW17lNAYjV9EotVqaViyrwWSW7CDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-09-et-income-tax-and-pensions-statutes"

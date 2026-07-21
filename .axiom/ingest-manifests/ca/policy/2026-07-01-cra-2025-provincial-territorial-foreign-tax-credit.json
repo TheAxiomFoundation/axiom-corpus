@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit.json",
-      "sha256": "670b8c846d455c44c69f7c169ba9a95e1f1dea45a36cb321662310b79384c501"
+      "sha256": "ee1cebd463899d6fa0188d247630a401a2228cd98211ddb542b6eb9dd2e474db"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:13.529873+00:00",
+  "generated_at": "2026-07-21T11:40:40.677773+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "kD89gKnOSRQ1Ke7zHexu1ILxvS2RBaFGNvT+LfRyt9d7IIoIb/JkSIVHYl4hBiFL4x7RW7vr11jWwYesWKiVDQ=="
+    "value": "kj8UD/B9MLK9l0rHZ+hcq99IB1K3eAfquuaoXIqeWUGSox0gRFlA/cA6Wx2n2XsV9T0N83K3hb/DZjOGmnuCBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-provincial-territorial-foreign-tax-credit"

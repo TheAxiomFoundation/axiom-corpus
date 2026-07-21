@@ -1,1 +1,0 @@
-Add Scottish income tax statute corpus artifacts (Income Tax Act 2007 s.11A, Scotland Act 1998 s.80C, Scotland Act 2016 s.13) from legislation.gov.uk CLML, grounding the non-savings non-dividend Scottish-rate charging and rate-setting machinery for rulespec-uk Scottish income tax encoding (axiom-corpus#214).

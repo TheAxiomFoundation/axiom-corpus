@@ -1,5 +1,5 @@
 {
-  "description": "Successor to us-rulespec-2026-07-17 adding reviewed official state individual-income-tax statute recoveries; unpublished.",
+  "description": "Successor to us-rulespec-2026-07-19-dedup adding reviewed official state individual-income-tax statute recoveries; unpublished.",
   "name": "us-rulespec-2026-07-17-pit-recovery",
   "scopes": [
     {
@@ -115,11 +115,6 @@
     {
       "document_class": "statute",
       "jurisdiction": "us",
-      "version": "2026-05-10-tax-sections-r2026-07-15-self-contained-r2026-07-15-self-contained"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
       "version": "2026-06-20-ssi-title-xvi-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
     },
     {
@@ -131,11 +126,6 @@
       "document_class": "statute",
       "jurisdiction": "us",
       "version": "2026-06-24-doe-rebates-title-42-title-42-r2026-07-15-self-contained-r2026-07-17-dedup"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us",
-      "version": "2026-06-26-chip-title-xxi-title-42"
     },
     {
       "document_class": "statute",
@@ -165,22 +155,52 @@
     {
       "document_class": "statute",
       "jurisdiction": "us",
+      "version": "2026-07-15-hr6644-current-law-r2026-07-19-expression-date"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
       "version": "2026-07-16-hr6644-dependencies-current-law-title-12"
     },
     {
       "document_class": "statute",
       "jurisdiction": "us",
-      "version": "2026-07-16-hr6644-dependencies-current-law-title-26"
+      "version": "2026-07-17-hr6644-dependency-closure-title-12-title-12-r2026-07-18-dedup"
     },
     {
       "document_class": "statute",
       "jurisdiction": "us",
-      "version": "2026-07-16-hr6644-dependencies-current-law-title-42"
+      "version": "2026-07-17-hr6644-dependency-closure-title-15-title-15"
     },
     {
       "document_class": "statute",
       "jurisdiction": "us",
-      "version": "2026-07-16-hr6644-dependencies-current-law-title-42-1437c-1-title-42"
+      "version": "2026-07-17-hr6644-dependency-closure-title-26-title-26-r2026-07-18-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-17-hr6644-dependency-closure-title-38-title-38"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-17-hr6644-dependency-closure-title-42-title-42-r2026-07-18-dedup"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-17-hr6644-dependency-closure-title-7-title-7"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-19-rulespec-title-26-consolidated"
+    },
+    {
+      "document_class": "statute",
+      "jurisdiction": "us",
+      "version": "2026-07-19-rulespec-title-42-consolidated"
     },
     {
       "document_class": "guidance",
@@ -340,17 +360,12 @@
     {
       "document_class": "statute",
       "jurisdiction": "us-co",
-      "version": "2026-07-12-crs-2025-title-39-article-22"
+      "version": "2026-07-13-us-co-tax-credit-session-laws-r2026-07-19-expression-date"
     },
     {
       "document_class": "statute",
       "jurisdiction": "us-co",
-      "version": "2026-07-13-crs-2025-title-39-remaining"
-    },
-    {
-      "document_class": "statute",
-      "jurisdiction": "us-co",
-      "version": "2026-07-13-us-co-tax-credit-session-laws"
+      "version": "2026-07-19-rulespec-us-co-title-39-consolidated"
     },
     {
       "document_class": "policy",
@@ -761,6 +776,16 @@
       "document_class": "manual",
       "jurisdiction": "us-nv",
       "version": "2026-07-13-recovery"
+    },
+    {
+      "document_class": "manual",
+      "jurisdiction": "us-ny",
+      "version": "2026-07-17-ny-snap-manuals"
+    },
+    {
+      "document_class": "regulation",
+      "jurisdiction": "us-ny",
+      "version": "2026-07-17-ny-snap-regulations"
     },
     {
       "document_class": "statute",

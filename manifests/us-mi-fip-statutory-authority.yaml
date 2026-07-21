@@ -1,0 +1,49 @@
+documents:
+  - source_id: mi-mcl-400-10d-fip-asset-test-current
+    jurisdiction: us-mi
+    document_class: statute
+    title: Michigan Compiled Laws 400.10d, FIP asset test
+    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-400-10d
+    source_format: html
+    source_as_of: "2026-07-16"
+    expression_date: "2026-07-16"
+    citation_path: us-mi/statute/400.10d
+    extraction:
+      html_content_selector: body
+      html_drop_selectors:
+        - nav
+        - header
+        - footer
+        - script
+        - style
+    metadata:
+      primary_source: true
+      source_authority: Michigan Legislature
+      document_subtype: compiled_law_section
+      program: FIP
+      source_status: current_official_statute
+      source_note: Requires an asset test for FIP financial eligibility.
+  - source_id: mi-mcl-400-57a-fip-administration-current
+    jurisdiction: us-mi
+    document_class: statute
+    title: Michigan Compiled Laws 400.57a, FIP administration and eligibility levels
+    source_url: https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-400-57a
+    source_format: html
+    source_as_of: "2026-07-16"
+    expression_date: "2026-07-16"
+    citation_path: us-mi/statute/400.57a
+    extraction:
+      html_content_selector: body
+      html_drop_selectors:
+        - nav
+        - header
+        - footer
+        - script
+        - style
+    metadata:
+      primary_source: true
+      source_authority: Michigan Legislature
+      document_subtype: compiled_law_section
+      program: FIP
+      source_status: current_official_statute
+      source_note: Authorizes the department to establish FIP income and asset levels.

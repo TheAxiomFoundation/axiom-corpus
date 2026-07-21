@@ -1,44 +1,42 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-mi/manual/2026-05-27-mi-bridges-manual.json",
-      "sha256": "bdb36ba7b4d5b293473687a7fdc9a2102a2f8130e973e5b8eb63565ea83375f3"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-mi/manual/2026-05-27-mi-bridges-manual.json"
     },
     {
-      "path": "data/corpus/inventory/us-mi/manual/2026-05-27-mi-bridges-manual.json",
-      "sha256": "3a5ead8845e9ef688158daf5dedf897233568485e1193c24e346ee87b40c951c"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-mi/manual/2026-05-27-mi-bridges-manual.json"
     },
     {
-      "path": "data/corpus/provisions/us-mi/manual/2026-05-27-mi-bridges-manual.jsonl",
-      "sha256": "ec04f5aebe44deb34e5165a249f29c43a2b6b9da9667825c42b777c262fbd375"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-mi/manual/2026-05-27-mi-bridges-manual.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "6f89e79c77dfdbe713608a42bacfda19bdfad317",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "retire source-less Michigan Bridges artifacts after source-backed replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 2069,
-    "missing_count": 0,
-    "provision_count": 2069,
-    "source_count": 2069
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:31.466219+00:00",
+  "generated_at": "2026-07-17T17:21:19.237519+00:00",
   "jurisdiction": "us-mi",
-  "reasoning_logs": [],
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-17-mi-bridges-snap-manual.md",
+      "sha256": "1b4123e817e61bc1b9801c28a6a7797dd04347632b6b4fdb7e81d47d1f2676c3"
+    }
+  ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "UH4M451EGFSqWLs3w1lpP6PyQyMEA/7lSDhAU86z9JFuKMAzkDIjPMWQyCh6SgsphcAXa9n+OwiahGd4XIVfBg=="
+    "value": "MceAA69xU12vekUhGt5KBR5CJEd4gGTDNY40AhDsr5nTyC7OovuQH37wojPYPNYV48E/JeDQnUlEAi7m/Vr0AQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-mi-bridges-manual"

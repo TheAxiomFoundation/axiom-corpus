@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.json",
-      "sha256": "e2465bab4faccb5d03efa4d97d3b2f7b4662a98603ac41118ad45e2b152d4635"
+      "sha256": "fcfd09ed18f9b4d337be50b9d3caea3ac168a65a188ce43c1916d8aac895b8b1"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-tax-shelter-loss-or-deduction.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:22.191662+00:00",
+  "generated_at": "2026-07-21T11:40:41.099299+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "ZJUSRicWmT50x81r/B8GjhCB8bZ3Fquh6Ike34ocT6Uf7hUeEzmmS3fumMeq2JtHv/3FN8FlxJH+OnzP8XCjDA=="
+    "value": "8hRKnRm4ZwWhRcuNubQWvYI4E/fKjbgSaqTw3axCmAb29HrUrMCrZbnKmoFYp4L6pAUvxl0QnYWqTPR2VF1vCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-tax-shelter-loss-or-deduction"

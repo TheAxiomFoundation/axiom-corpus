@@ -9,7 +9,11 @@ import pytest
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
 
-from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
+from axiom_corpus.corpus.releases import (
+    COMPLETE_EXPRESSION_DATES_PROFILE,
+    ReleaseManifest,
+    ReleaseScope,
+)
 from axiom_corpus.release import cli
 from axiom_corpus.release.cli import _verify_local_artifacts
 from axiom_corpus.release.manifest import (
@@ -35,6 +39,7 @@ def _write_object(tmp_path: Path) -> tuple[Path, str, Path]:
     release = ReleaseManifest(
         name="nz-rulespec-v1",
         scopes=(ReleaseScope("nz", "statute", "v1"),),
+        quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
     )
     artifact_paths = {
         "inventory": inventory,
@@ -59,6 +64,7 @@ def _write_object(tmp_path: Path) -> tuple[Path, str, Path]:
     entries.sort(key=lambda entry: entry["path"])
     content = {
         "release": "nz-rulespec-v1",
+        "quality_profile": COMPLETE_EXPRESSION_DATES_PROFILE,
         "created_at": "2026-07-10T00:00:00Z",
         "selector_sha256": selector_sha256(release),
         "corpus_base": "data/corpus",
@@ -83,6 +89,7 @@ def _write_object(tmp_path: Path) -> tuple[Path, str, Path]:
     }
     content["validation"] = {
         "passed": True,
+        "quality_profile": COMPLETE_EXPRESSION_DATES_PROFILE,
         "deep_validation": {"error_count": 0, "warning_count": 0, "scope_count": 1},
         "r2_readback": {
             "bucket": "axiom-corpus",

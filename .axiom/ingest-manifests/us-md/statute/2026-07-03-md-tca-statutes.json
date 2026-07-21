@@ -22,9 +22,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "f42f706136ec4d146eb396e331daf71f8bf5f1b9",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-md-tca-20260703"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -39,19 +39,14 @@
     "source_count": 6
   },
   "document_class": "statute",
-  "generated_at": "2026-07-03T16:51:50.728266+00:00",
+  "generated_at": "2026-07-21T11:40:44.404932+00:00",
   "jurisdiction": "us-md",
-  "reasoning_logs": [
-    {
-      "path": "docs/ingest-runs/2026-07-03-md-tca-primary-sources.md",
-      "sha256": "67131fd706a9657135d05f2b264d742885046110a5ab392db4bb8ce55d8988cc"
-    }
-  ],
+  "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "Uyy+W9SAQpDyT747ePler3lOkGTkYYefOt1EsOpsHTli0j+mEOOYec3uQ8IjzUIXGkLfR2+lEACK7P7L9HkgBQ=="
+    "value": "bgObwy4woyKb49IsXZuwQ7D3I4Ohq8F8p/YaanlqcHplNeU2na/WIE8Oiynr8c7lTblsd24uRQzPzwY8bK+XDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-md-tca-statutes"

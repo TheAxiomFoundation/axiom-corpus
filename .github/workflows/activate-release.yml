@@ -1,0 +1,180 @@
+name: Activate named corpus release
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_run_id:
+        description: Successful publication workflow run containing the signed object
+        required: true
+        type: string
+      release:
+        description: Expected immutable release name
+        required: true
+        type: string
+      content_sha:
+        description: Expected signed release object content_sha256
+        required: true
+        type: string
+      request_activation:
+        description: Request protected approval after the preview succeeds
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: activate-corpus-production
+  cancel-in-progress: false
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  preview:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: release-preview
+    env:
+      RELEASE_NAME: ${{ inputs.release }}
+      CONTENT_SHA: ${{ inputs.content_sha }}
+      RELEASE_OBJECT: ${{ github.workspace }}/signed-release-object.json
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.14"
+
+      - name: Install package
+        run: python -I -m pip install -e .
+
+      - name: Download signed publication object
+        uses: actions/download-artifact@v8
+        with:
+          name: signed-corpus-release-object
+          path: ${{ runner.temp }}/publication
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.publish_run_id }}
+
+      - name: Select the single signed object
+        run: |
+          mapfile -t objects < <(find "$RUNNER_TEMP/publication" -maxdepth 1 -type f -name '*-release-object.json')
+          if [ "${#objects[@]}" -ne 1 ]; then
+            echo "::error::Expected exactly one signed release object artifact."
+            exit 1
+          fi
+          mv "${objects[0]}" "$RELEASE_OBJECT"
+
+      - name: Preview scope takeovers
+        env:
+          AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          python scripts/activate_release.py \
+            --release-object "$RELEASE_OBJECT" \
+            --release "$RELEASE_NAME" \
+            --content-sha "$CONTENT_SHA" \
+            --dry-run \
+            --output "$RUNNER_TEMP/activation-preview.json"
+
+      - name: Publish takeover preview
+        env:
+          PREVIEW_PATH: ${{ runner.temp }}/activation-preview.json
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          import os
+
+          payload = json.load(open(os.environ["PREVIEW_PATH"], encoding="utf-8"))
+          scopes = payload["scopes"]
+          changing = [scope for scope in scopes if scope.get("changes")]
+          print("### Named corpus release activation preview")
+          print()
+          print(f"- Release: `{payload['release']}`")
+          print(f"- Content SHA-256: `{payload['content_sha256']}`")
+          print(f"- Scope pairs: {len(scopes)}")
+          print(f"- Scope pairs changing: {len(changing)}")
+          print()
+          for scope in scopes:
+              marker = "CHANGE" if scope.get("changes") else "same"
+              current = scope.get("current_release_name") or "(none)"
+              print(
+                  f"- `{marker}` `{scope['jurisdiction']}/{scope['document_class']}` "
+                  f"(currently `{current}`)"
+              )
+          PY
+
+  activate:
+    if: inputs.request_activation && github.ref == 'refs/heads/main'
+    needs: preview
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: release-activation
+    env:
+      RELEASE_NAME: ${{ inputs.release }}
+      CONTENT_SHA: ${{ inputs.content_sha }}
+      RELEASE_OBJECT: ${{ github.workspace }}/signed-release-object.json
+    steps:
+      - uses: actions/checkout@v6.0.2
+
+      - uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.14"
+
+      - name: Install package
+        run: python -I -m pip install -e .
+
+      - name: Download signed publication object
+        uses: actions/download-artifact@v8
+        with:
+          name: signed-corpus-release-object
+          path: ${{ runner.temp }}/publication
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.publish_run_id }}
+
+      - name: Select the single signed object
+        run: |
+          mapfile -t objects < <(find "$RUNNER_TEMP/publication" -maxdepth 1 -type f -name '*-release-object.json')
+          if [ "${#objects[@]}" -ne 1 ]; then
+            echo "::error::Expected exactly one signed release object artifact."
+            exit 1
+          fi
+          mv "${objects[0]}" "$RELEASE_OBJECT"
+
+      - name: Revalidate takeover preview
+        env:
+          AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          python scripts/activate_release.py \
+            --release-object "$RELEASE_OBJECT" \
+            --release "$RELEASE_NAME" \
+            --content-sha "$CONTENT_SHA" \
+            --dry-run
+
+      - name: Activate signed release
+        env:
+          AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: |
+          python scripts/activate_release.py \
+            --release-object "$RELEASE_OBJECT" \
+            --release "$RELEASE_NAME" \
+            --content-sha "$CONTENT_SHA" \
+            --output "$RUNNER_TEMP/activation-result.json"
+
+      - name: Activation summary
+        if: always()
+        run: |
+          {
+            echo "### Named corpus release activation"
+            echo ""
+            echo "- Release: \`$RELEASE_NAME\`"
+            echo "- Content SHA-256: \`$CONTENT_SHA\`"
+            if [ -f "$RUNNER_TEMP/activation-result.json" ]; then
+              echo "- Result: activated"
+            else
+              echo "- Result: activation failed"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

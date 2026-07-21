@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/regulation/2026-07-17-me-snap-rules.json",
+      "sha256": "d4cb2b2cdd64f595523d37e927de7c5966df7dbdb2d49243d52c22496f131568"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/regulation/2026-07-17-me-snap-rules.json",
+      "sha256": "847550ef20efa933d49db95b96567e913e328cef98e7c5adf450962af136e4ab"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/regulation/2026-07-17-me-snap-rules.jsonl",
+      "sha256": "8844a67247fb3203829621c01c212355db7b2fefaec6db8c1fcab012b10c6dfc"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-07-17-me-snap-rules/official-documents/me-ofi-snap-et-rules-chapter-609.docx",
+      "sha256": "9e68369bf2462f3fd4ee0fad07361f7eba38af01424294094bfd566164cec9d1"
+    },
+    {
+      "path": "data/corpus/sources/us-me/regulation/2026-07-17-me-snap-rules/official-documents/me-ofi-snap-rules-chapter-301.docx",
+      "sha256": "45ee047d0e2a888dc78ba28dfe64db152db76ffc3682e4b1a6f15ddd6cdb7bb0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b23b456480eb167a3b84fa5c6f5e84f603fa80d4",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-17-me-snap-rules --manifest manifests/us-me-snap-rules.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 223,
+    "missing_count": 0,
+    "provision_count": 223,
+    "source_count": 223
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-17T15:19:29.160272+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oiv9Bx5hnf+68XSASjiqrnbfnvheEIUa8FF18T73riodnF5S0ofkkcpeEyTlzlwfsYoBgECgn+u97qhAoYvMCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-17-me-snap-rules"
+}

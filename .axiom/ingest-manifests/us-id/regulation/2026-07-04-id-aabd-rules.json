@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3796abc05de25dc31a478cc92444c75fc15825cb",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-id-aabd-20260704"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +35,14 @@
     "source_count": 286
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-04T23:07:56.766274+00:00",
+  "generated_at": "2026-07-21T11:42:02.512306+00:00",
   "jurisdiction": "us-id",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "+f3agrxHCW4dplzYGEd4mEt5YOQgapZhwfgdFJ6db84b4YUTxuR7qh8oO6cB0hGbAu3k7DBOKWZr+464KrkbAQ=="
+    "value": "jPsoWU7jw+wWyt898XF14VMHXF1qMhYsPGub8PLHWXutVfg0U7gUrq1GuGoAuXUkyMAfRjgD7sQJjFonwyzzCA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-04-id-aabd-rules"

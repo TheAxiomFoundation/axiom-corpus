@@ -124,6 +124,7 @@ def _tree(tmp_path: Path) -> tuple[Path, Path, Path, tuple[str, str, str]]:
         json.dumps(
             {
                 "name": "nz-rulespec-2026-07-10",
+                "quality_profile": "complete-expression-dates-v1",
                 "scopes": [
                     {
                         "jurisdiction": scope[0],
@@ -205,6 +206,7 @@ def _signed_prior_object(
     evidence = {scope: _scope_evidence(base, scope)}
     validation = publish._validation_attestation(
         publish.validate_release(base, release),
+        quality_profile="complete-expression-dates-v1",
         r2_report=_readback_for(provisional),
         expected_evidence=evidence,
         actual_evidence=evidence,
@@ -235,6 +237,55 @@ def test_dry_run_is_local_and_explicit(tmp_path: Path, monkeypatch) -> None:
         "artifact_count": 4,
         "provision_rows": 1,
     }
+
+
+def test_dry_run_rejects_legacy_quality_profile(tmp_path: Path, monkeypatch) -> None:
+    root, base, selector, _ = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    payload = json.loads(selector.read_text())
+    payload.pop("quality_profile")
+    selector.write_text(json.dumps(payload))
+
+    with pytest.raises(ReleaseManifestError, match="requires quality_profile"):
+        publish.plan_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            r2_bucket="axiom-corpus",
+        )
+
+
+def test_publication_rejects_legacy_profile_before_external_writes(
+    tmp_path: Path, monkeypatch
+) -> None:
+    root, base, selector, _ = _tree(tmp_path)
+    payload = json.loads(selector.read_text())
+    payload.pop("quality_profile")
+    selector.write_text(json.dumps(payload))
+    monkeypatch.setattr(
+        publish,
+        "validate_release",
+        lambda *args, **kwargs: pytest.fail("legacy selector must fail before validation"),
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: pytest.fail("legacy selector must not write to R2"),
+    )
+    private, public = _keys()
+
+    with pytest.raises(ReleaseManifestError, match="requires quality_profile"):
+        publish.publish_named_release(
+            repo_root=root,
+            base=base,
+            selector_path=selector,
+            supabase_url="https://example.supabase.co",
+            service_key="service",
+            access_token="management",
+            r2_config=_config(),
+            private_key=private,
+            public_key=public,
+        )
 
 
 def test_publication_orders_all_validation_before_activation(tmp_path: Path, monkeypatch) -> None:
@@ -301,6 +352,7 @@ def test_publication_orders_all_validation_before_activation(tmp_path: Path, mon
         r2_config=_config(),
         private_key=private,
         public_key=public,
+        activate=True,
     )
 
     assert calls == [
@@ -314,6 +366,63 @@ def test_publication_orders_all_validation_before_activation(tmp_path: Path, mon
         "atomic-activate",
     ]
     assert report.activation["active"] is True
+    assert report.release_object["content"]["validation"]["passed"] is True
+
+
+def test_publish_does_not_activate_by_default(tmp_path: Path, monkeypatch) -> None:
+    # A routine publish must not move serving: activation repoints the per-scope
+    # serving map and can displace another jurisdiction (axiom-corpus#408). It is
+    # opt-in via activate=True / the --activate flag.
+    root, base, selector, scope = _tree(tmp_path)
+    _fixed_git(monkeypatch)
+    private, public = _keys()
+    monkeypatch.setattr(
+        publish,
+        "stage_release_artifacts",
+        lambda *args, **kwargs: _readback_for(kwargs["release_content"]),
+    )
+    monkeypatch.setattr(
+        publish,
+        "load_provisions_to_supabase",
+        lambda *args, **kwargs: SupabaseLoadReport(rows_total=1, rows_loaded=1, chunk_count=1),
+    )
+    monkeypatch.setattr(
+        publish,
+        "write_navigation_nodes_to_supabase",
+        lambda *args, **kwargs: NavigationSupabaseWriteReport(1, 1, 1, (scope,), 0, 0),
+    )
+    monkeypatch.setattr(
+        publish,
+        "fetch_staged_release_scope_evidence",
+        lambda *args, **kwargs: {scope: _scope_evidence(base, scope)},
+    )
+    monkeypatch.setattr(
+        publish,
+        "stage_signed_release_object",
+        lambda release_object, **kwargs: (
+            f"releases/{release_object['release']}/{release_object['content_sha256']}.json"
+        ),
+    )
+    monkeypatch.setattr(
+        publish,
+        "activate_corpus_release",
+        lambda *args, **kwargs: pytest.fail("publish must not activate without activate=True"),
+    )
+
+    report = publish.publish_named_release(
+        repo_root=root,
+        base=base,
+        selector_path=selector,
+        supabase_url="https://example.supabase.co",
+        service_key="service",
+        access_token="management",
+        r2_config=_config(),
+        private_key=private,
+        public_key=public,
+    )
+
+    assert report.activation is None
+    assert report.to_mapping()["activation"] is None
     assert report.release_object["content"]["validation"]["passed"] is True
 
 
@@ -367,6 +476,7 @@ def test_count_mismatch_never_signs_or_activates(tmp_path: Path, monkeypatch) ->
             r2_config=_config(),
             private_key=private,
             public_key=public,
+            activate=True,
         )
     assert activated is False
 
@@ -413,6 +523,7 @@ def test_private_public_key_mismatch_never_activates(tmp_path: Path, monkeypatch
             r2_config=_config(),
             private_key=private,
             public_key=wrong_public,
+            activate=True,
         )
 
 
@@ -431,9 +542,10 @@ def test_released_scope_retry_or_successor_reuses_exact_immutable_rows(
         target_selector = selector.with_name("nz-rulespec-2026-07-11.json")
         target_selector.write_text(
             json.dumps(
-                {
-                    "name": "nz-rulespec-2026-07-11",
-                    "scopes": [
+                    {
+                        "name": "nz-rulespec-2026-07-11",
+                        "quality_profile": "complete-expression-dates-v1",
+                        "scopes": [
                         {
                             "jurisdiction": scope[0],
                             "document_class": scope[1],
@@ -504,6 +616,7 @@ def test_released_scope_retry_or_successor_reuses_exact_immutable_rows(
         r2_config=_config(),
         private_key=private,
         public_key=public,
+        activate=True,
     )
 
     assert report.provision_rows == 1
@@ -588,12 +701,14 @@ def test_signed_validation_evidence_is_retry_stable(tmp_path: Path) -> None:
     actual_evidence = {scope: _scope_evidence(base, scope)}
     first = publish._validation_attestation(
         report,
+        quality_profile="complete-expression-dates-v1",
         r2_report=R2ReadbackReport("axiom-corpus", 4, 100, 4, 0, ("a", "b")),
         expected_evidence=actual_evidence,
         actual_evidence=actual_evidence,
     )
     retry = publish._validation_attestation(
         report,
+        quality_profile="complete-expression-dates-v1",
         r2_report=R2ReadbackReport("axiom-corpus", 4, 100, 0, 4, ("a", "b")),
         expected_evidence=actual_evidence,
         actual_evidence=actual_evidence,

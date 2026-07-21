@@ -710,10 +710,86 @@ def fetch_staged_release_scope_evidence(
     return evidence
 
 
-# A whole-plan released-scope response for a large published jurisdiction
-# exceeds what the origin serves before Cloudflare's proxy deadline
-# (HTTP 520), so the RPC is queried in bounded batches.
-_RELEASED_SCOPE_FETCH_BATCH = 20
+# Each row repeats the signed release object, so response size grows quickly as
+# releases accumulate artifacts. Keep normal requests small and split them
+# further if the origin still rejects a batch.
+_RELEASED_SCOPE_FETCH_BATCH = 5
+_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS = 3
+_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS = 1.0
+
+
+def _fetch_released_scope_object_rows(
+    scopes: Sequence[ReleaseScope],
+    *,
+    service_key: str,
+    supabase_url: str,
+) -> list[object]:
+    requested_keys = {scope.key for scope in scopes}
+    payload = {
+        "p_scopes": [
+            {
+                "jurisdiction": scope.jurisdiction,
+                "document_class": scope.document_class,
+                "version": scope.version,
+            }
+            for scope in scopes
+        ]
+    }
+    req = urllib.request.Request(
+        f"{_rest_url(supabase_url)}/rpc/get_released_scope_objects",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "apikey": service_key,
+            "Authorization": f"Bearer {service_key}",
+            "Accept": "application/json",
+            "Accept-Profile": "corpus",
+            "Content-Type": "application/json",
+            "Content-Profile": "corpus",
+            "User-Agent": USER_AGENT,
+        },
+        method="POST",
+    )
+    for attempt in range(_RELEASED_SCOPE_FETCH_MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=600) as resp:
+                rows = json.loads(resp.read())
+            if not isinstance(rows, list):
+                raise RuntimeError("unexpected released-scope response")
+            for row in rows:
+                if not isinstance(row, dict):
+                    raise RuntimeError("released-scope response contains a malformed row")
+                key = (
+                    str(row.get("jurisdiction") or ""),
+                    str(row.get("document_class") or ""),
+                    str(row.get("version") or ""),
+                )
+                if key not in requested_keys:
+                    raise RuntimeError(
+                        f"released-scope response contains an unknown scope: {key!r}"
+                    )
+            return rows
+        except urllib.error.HTTPError as exc:
+            if 400 <= exc.code < 500:
+                raise
+            if len(scopes) > 1:
+                midpoint = len(scopes) // 2
+                return _fetch_released_scope_object_rows(
+                    scopes[:midpoint],
+                    service_key=service_key,
+                    supabase_url=supabase_url,
+                ) + _fetch_released_scope_object_rows(
+                    scopes[midpoint:],
+                    service_key=service_key,
+                    supabase_url=supabase_url,
+                )
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        except (urllib.error.URLError, TimeoutError):
+            if attempt + 1 == _RELEASED_SCOPE_FETCH_MAX_ATTEMPTS:
+                raise
+        time.sleep(_RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * (2**attempt))
+
+    raise AssertionError("released-scope retry loop exhausted unexpectedly")
 
 
 def fetch_released_scope_objects(
@@ -739,34 +815,11 @@ def fetch_released_scope_objects(
     }
     for start in range(0, len(scopes), _RELEASED_SCOPE_FETCH_BATCH):
         batch = scopes[start : start + _RELEASED_SCOPE_FETCH_BATCH]
-        payload = {
-            "p_scopes": [
-                {
-                    "jurisdiction": scope.jurisdiction,
-                    "document_class": scope.document_class,
-                    "version": scope.version,
-                }
-                for scope in batch
-            ]
-        }
-        req = urllib.request.Request(
-            f"{_rest_url(supabase_url)}/rpc/get_released_scope_objects",
-            data=json.dumps(payload).encode("utf-8"),
-            headers={
-                "apikey": service_key,
-                "Authorization": f"Bearer {service_key}",
-                "Accept": "application/json",
-                "Accept-Profile": "corpus",
-                "Content-Type": "application/json",
-                "Content-Profile": "corpus",
-                "User-Agent": USER_AGENT,
-            },
-            method="POST",
+        rows = _fetch_released_scope_object_rows(
+            batch,
+            service_key=service_key,
+            supabase_url=supabase_url,
         )
-        with urllib.request.urlopen(req, timeout=600) as resp:
-            rows = json.loads(resp.read())
-        if not isinstance(rows, list):
-            raise RuntimeError("unexpected released-scope response")
 
         batch_keys = {scope.key for scope in batch}
         for row in rows:
@@ -778,14 +831,10 @@ def fetch_released_scope_objects(
                 str(row.get("version") or ""),
             )
             if key not in batch_keys:
-                raise RuntimeError(
-                    f"released-scope response contains an unknown scope: {key!r}"
-                )
+                raise RuntimeError(f"released-scope response contains an unknown scope: {key!r}")
             raw_name = row.get("release_name")
             try:
-                release_name = (
-                    validate_release_name(raw_name) if isinstance(raw_name, str) else ""
-                )
+                release_name = validate_release_name(raw_name) if isinstance(raw_name, str) else ""
             except ValueError as exc:
                 raise RuntimeError("released-scope response has an invalid release name") from exc
             if not release_name:
@@ -818,21 +867,85 @@ def fetch_released_scope_objects(
     }
 
 
+# Column list must exactly match corpus.preview_corpus_release_activation's
+# RETURNS TABLE (pair-level; no per-version columns). A postgres test runs this
+# string against the live function so the two cannot drift apart.
+PREVIEW_ACTIVATION_QUERY = (
+    "SELECT jurisdiction, document_class, current_release_name, "
+    "current_content_sha256, changes "
+    "FROM corpus.preview_corpus_release_activation($1::jsonb)"
+)
+
+
+def preview_corpus_release_activation(
+    release_object: Mapping[str, object],
+    *,
+    access_token: str,
+    public_key: str,
+    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+    expected_project_ref: str | None = None,
+) -> list[dict[str, object]]:
+    """Report, per (jurisdiction, document_class) pair the release covers, what
+    activating it would displace.
+
+    Read-only: verifies the Ed25519 signature, then returns one row per pair with
+    the pair's current active release and whether activation would change it.
+    Serving is not moved. ``expected_project_ref``, when set, must match the ref
+    derived from ``supabase_url``.
+    """
+    verify_release_object(release_object, public_key=public_key)
+    project_ref = _project_ref_from_url(supabase_url)
+    if expected_project_ref is not None and project_ref != expected_project_ref:
+        raise RuntimeError(
+            f"refusing to preview against Supabase project {project_ref!r}: "
+            f"expected {expected_project_ref!r}"
+        )
+    rows = _management_api_post_json_with_curl(
+        f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
+        payload={
+            "query": PREVIEW_ACTIVATION_QUERY,
+            "parameters": [json.dumps(release_object, sort_keys=True)],
+            "read_only": True,
+        },
+        access_token=access_token,
+        timeout=120,
+    )
+    if not isinstance(rows, list):
+        raise RuntimeError(f"unexpected activation preview response: {rows!r}")
+    return [row for row in rows if isinstance(row, dict)]
+
+
 def activate_corpus_release(
     release_object: Mapping[str, object],
     *,
     access_token: str,
     public_key: str,
     supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+    expected_project_ref: str | None = None,
 ) -> dict[str, object]:
     """Verify, install, and activate through the trusted management plane.
 
     The staging service role is deliberately unable to invoke the activation
     RPC. This wrapper verifies Ed25519 before using a separate Supabase
     Management API credential to execute the count-and-pointer transaction.
+
+    Activation repoints only the per-(jurisdiction, document_class) serving map
+    for the release's own pairs (last-activation-wins per pair) and records each
+    takeover in ``corpus.scope_activation_history``; it never un-serves a
+    jurisdiction the release does not carry. The returned mapping's ``scopes``
+    field lists which pairs were ``activated`` (with the release each displaced)
+    versus ``reaffirmed`` (already serving this exact release).
+
+    ``expected_project_ref`` guards against activating in the wrong Supabase
+    project: when set, the ref derived from ``supabase_url`` must match it.
     """
     verify_release_object(release_object, public_key=public_key)
     project_ref = _project_ref_from_url(supabase_url)
+    if expected_project_ref is not None and project_ref != expected_project_ref:
+        raise RuntimeError(
+            f"refusing to activate in Supabase project {project_ref!r}: "
+            f"expected {expected_project_ref!r}"
+        )
     query = "SELECT corpus.activate_corpus_release($1::jsonb) AS result"
     rows = _management_api_post_json_with_curl(
         f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
@@ -858,7 +971,54 @@ def activate_corpus_release(
         raise RuntimeError("activated release name does not match the requested object")
     if result.get("content_sha256") != release_object.get("content_sha256"):
         raise RuntimeError("activated release digest does not match the requested object")
+    _require_complete_activation_scopes(result, release_object)
     return result
+
+
+def _require_complete_activation_scopes(
+    result: Mapping[str, object],
+    release_object: Mapping[str, object],
+) -> None:
+    """Reject a response whose activated+reaffirmed pairs are not exactly the
+    release's own distinct (jurisdiction, document_class) pairs.
+
+    Serving state is authoritative in Postgres; this only stops automation from
+    trusting a malformed or truncated takeover report.
+    """
+    content = release_object.get("content")
+    scopes = content.get("scopes") if isinstance(content, Mapping) else None
+    if not isinstance(scopes, list):
+        raise RuntimeError("release object has no scopes to reconcile against")
+    expected_pairs = {
+        (str(scope.get("jurisdiction")), str(scope.get("document_class")))
+        for scope in scopes
+        if isinstance(scope, Mapping)
+    }
+    if result.get("scope_count") != len(scopes):
+        raise RuntimeError(
+            f"activation scope_count {result.get('scope_count')!r} != {len(scopes)} signed scopes"
+        )
+    reported = result.get("scopes")
+    if not isinstance(reported, Mapping):
+        raise RuntimeError("activation response is missing the scopes report")
+    reported_pairs: list[tuple[str, str]] = []
+    for bucket in ("activated", "reaffirmed"):
+        entries = reported.get(bucket)
+        if not isinstance(entries, list):
+            raise RuntimeError(f"activation response {bucket!r} is not a list")
+        for entry in entries:
+            if not isinstance(entry, Mapping):
+                raise RuntimeError(f"activation response {bucket!r} has a non-object entry")
+            reported_pairs.append(
+                (str(entry.get("jurisdiction")), str(entry.get("document_class")))
+            )
+    if len(reported_pairs) != len(set(reported_pairs)):
+        raise RuntimeError("activation response reports a duplicate (jurisdiction, document_class)")
+    if set(reported_pairs) != expected_pairs:
+        raise RuntimeError(
+            "activation response pairs do not match the release's signed pairs: "
+            f"reported {sorted(set(reported_pairs))}, expected {sorted(expected_pairs)}"
+        )
 
 
 def _management_api_post_json_with_curl(

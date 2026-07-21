@@ -1,4 +1,6 @@
+import hashlib
 import json
+from collections import Counter
 from pathlib import Path
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
@@ -319,3 +321,97 @@ def test_ma_snap_package_source_paths_are_available():
         matches = [record for record in records if record.get("citation_path") == citation_path]
         assert len(matches) == 1
         assert expected_text in matches[0]["body"]
+
+
+def test_ma_snap_regulations_scope_retains_complete_official_sources():
+    corpus_root = Path(__file__).resolve().parents[1] / "data" / "corpus"
+    version = "2026-07-17-ma-dta-snap-regulations"
+    source_root = corpus_root / "sources" / "us-ma" / "regulation" / version
+    expected_source_hashes = {
+        "ma-dta-106-cmr-343.pdf": (
+            "ab1ac95b8c591b8c7bb950c9ac9b3b5c67904ae6f603775fb207ed93e1955a2e"
+        ),
+        "ma-dta-106-cmr-360.pdf": (
+            "fd7b27c99d7ee3636e01e8e2b0cb64dc992da948841f55c0d7fc987712346964"
+        ),
+        "ma-dta-106-cmr-361.pdf": (
+            "c9cf8baba5cc8aff2a7f62d94de59516dd97fd8a00857f7f75104b1b60e053b5"
+        ),
+        "ma-dta-106-cmr-362.pdf": (
+            "9746686a82feabdd110c33386aa72c001c8527e918cafb46de92250c5a330e81"
+        ),
+        "ma-dta-106-cmr-363.pdf": (
+            "026e74a26aa3d678cdced52991f7700d9622aaabe04676535ae37f980aa8e7db"
+        ),
+        "ma-dta-106-cmr-364.pdf": (
+            "a67ed6db174ff931b9c6a02a4fbb63dd6d29cef0ad3f90eda353bd4568ba2754"
+        ),
+        "ma-dta-106-cmr-365.docx": (
+            "cfa3440e442b1f834bb882d50674038700212f07e99ac33797ef4d458668a674"
+        ),
+        "ma-dta-106-cmr-366.pdf": (
+            "a9f453c7302448751df406b8570dab11cf38415a9c99f7e2b6dd15f438e12827"
+        ),
+        "ma-dta-106-cmr-367.pdf": (
+            "b130821e98ec2e8694c00614d5e212f58b3ce93a2cf06437a4401370643eb9bf"
+        ),
+    }
+    source_files = sorted((source_root / "official-documents").iterdir())
+
+    assert {path.name for path in source_files} == set(expected_source_hashes)
+    assert {
+        path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in source_files
+    } == expected_source_hashes
+
+    records = load_provisions(
+        corpus_root / "provisions" / "us-ma" / "regulation" / f"{version}.jsonl"
+    )
+    assert len(records) == 330
+    assert len({record.citation_path for record in records}) == 330
+    assert all("/dta/" not in record.citation_path for record in records)
+    assert Counter(record.citation_path.split("/")[3] for record in records) == {
+        "343": 48,
+        "360": 22,
+        "361": 49,
+        "362": 22,
+        "363": 12,
+        "364": 44,
+        "365": 54,
+        "366": 35,
+        "367": 44,
+    }
+    chapter_365 = {
+        record.citation_path.rsplit("/", 1)[-1]
+        for record in records
+        if "/106-cmr/365/" in record.citation_path
+    }
+    assert len(chapter_365) == 53
+    assert {"030", "180", "970"} <= chapter_365
+    forbidden_source_headers = (
+        "106 CMR: Department of Transitional Assistance",
+        "Trans. by S.L.",
+        "Prev. S.L.",
+        "Special Situation Households | Chapter | 365",
+        "Page 360.",
+        "Page 361.",
+        "Page 362.",
+        "Page 363.",
+        "Page 364.",
+        "Page 366.",
+        "Page 367.",
+    )
+    assert not [
+        record.citation_path
+        for record in records
+        if any(header in (record.body or "") for header in forbidden_source_headers)
+    ]
+
+    coverage = json.loads(
+        (
+            corpus_root / "coverage" / "us-ma" / "regulation" / f"{version}.json"
+        ).read_text()
+    )
+    assert coverage["complete"] is True
+    assert coverage["matched_count"] == 330
+    assert coverage["missing_from_provisions"] == []
+    assert coverage["extra_provisions"] == []

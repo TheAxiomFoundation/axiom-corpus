@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "555bd9654631c3f54068b6c59908f7c60eefafa9",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-ca-ssp-20260627"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,7 +35,7 @@
     "source_count": 19
   },
   "document_class": "guidance",
-  "generated_at": "2026-06-27T02:33:28.183231+00:00",
+  "generated_at": "2026-07-21T11:57:43.693973+00:00",
   "jurisdiction": "us-ca",
   "reasoning_logs": [
     {
@@ -47,7 +47,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "J2JpmRMBfQ65guImskPIEOy+m460VxQxCXP3BGnY/h5DrbgQy9ghyK4T++KjSmUyMWrpKT5viU0CRLDgw33MAg=="
+    "value": "HaxxLstjDP5en6yce2PZEUlxndH01wYoXu7J8AlYdcotyzIizS3f2egmmnEV2MGO3hXGy6m2NPn8Omw6b+bfAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-27-ca-dor-ssi-ssp-newsletter"

@@ -1,0 +1,818 @@
+
+
+
+<!DOCTYPE html>
+<!--IR LAYOUT-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#115860" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:image" content="https://www.ird.govt.nz/assets/home/images/social-favicon.png">
+
+    
+
+
+<script type="text/javascript" nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=">window.NREUM||(NREUM={});NREUM.info = {"beacon":"bam.nr-data.net","errorBeacon":"bam.nr-data.net","licenseKey":"NRJS-90435e115ada12916ae","applicationID":"468898334","transactionName":"M1MHZEVYDEVYUkdRXwoZKGZ0FjFfTVRQV0IBdQpeQ0sNWlVUQRd5ClIASA==","queueTime":0,"applicationTime":92,"agent":"","atts":""}</script><script type="text/javascript" nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=">(window.NREUM||(NREUM={})).init={privacy:{cookies_enabled:false},ajax:{deny_list:["bam.nr-data.net"]},feature_flags:["soft_nav"]};(window.NREUM||(NREUM={})).loader_config={xpid:"Vg8EVFNRDhAEUllaDgkEVVA=",licenseKey:"NRJS-90435e115ada12916ae",applicationID:"468898334",browserID:"468902273"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(t){try{s.console&&console.log(t)}catch(e){}}var i,o=t("ee"),a=t(27),s={};try{i=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(s.console=!0,i.indexOf("dev")!==-1&&(s.dev=!0),i.indexOf("nr_dev")!==-1&&(s.nrDev=!0))}catch(c){}s.nrDev&&o.on("internal-error",function(t){r(t.stack)}),s.dev&&o.on("fn-err",function(t,e,n){r(n.stack)}),s.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(s,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,s){try{p?p-=1:i(s||new UncaughtException(t,e,n),!0)}catch(f){try{o("ierr",[f,c.now(),!0])}catch(d){}}return"function"==typeof u&&u.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function i(t,e){var n=e?null:c.now();o("err",[t,n])}var o=t("handle"),a=t(28),s=t("ee"),c=t("loader"),f=t("gos"),u=window.onerror,d=!1,l="nr@seenError";if(!c.disabled){var p=0;c.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(h){"stack"in h&&(t(10),t(9),"addEventListener"in window&&t(6),c.xhrWrappable&&t(11),d=!0)}s.on("fn-start",function(t,e,n){d&&(p+=1)}),s.on("fn-err",function(t,e,n){d&&!n[l]&&(f(n,l,function(){return!0}),this.thrown=!0,i(n))}),s.on("fn-end",function(){d&&!this.thrown&&p>0&&(p-=1)}),s.on("internal-error",function(t){o("ierr",[t,c.now(),!0])})}},{}],3:[function(t,e,n){var r=t("loader");r.disabled||(r.features.ins=!0)},{}],4:[function(t,e,n){function r(){var t=new PerformanceObserver(function(t,e){var n=t.getEntries();s(v,[n])});try{t.observe({entryTypes:["resource"]})}catch(e){}}function i(t){if(s(v,[window.performance.getEntriesByType(w)]),window.performance["c"+l])try{window.performance[h](m,i,!1)}catch(t){}else try{window.performance[h]("webkit"+m,i,!1)}catch(t){}}function o(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var a=t("ee"),s=t("handle"),c=t(10),f=t(9),u=t(5),d=t(19),l="learResourceTimings",p="addEventListener",h="removeEventListener",m="resourcetimingbufferfull",v="bstResource",w="resource",g="-start",y="-end",x="fn"+g,b="fn"+y,E="bstTimer",R="pushState",S=t("loader");if(!S.disabled){S.features.stn=!0,t(8),"addEventListener"in window&&t(6);var O=NREUM.o.EV;a.on(x,function(t,e){var n=t[0];n instanceof O&&(this.bstStart=S.now())}),a.on(b,function(t,e){var n=t[0];n instanceof O&&s("bst",[n,e,this.bstStart,S.now()])}),c.on(x,function(t,e,n){this.bstStart=S.now(),this.bstType=n}),c.on(b,function(t,e){s(E,[e,this.bstStart,S.now(),this.bstType])}),f.on(x,function(){this.bstStart=S.now()}),f.on(b,function(t,e){s(E,[e,this.bstStart,S.now(),"requestAnimationFrame"])}),a.on(R+g,function(t){this.time=S.now(),this.startPath=location.pathname+location.hash}),a.on(R+y,function(t){s("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),u()?(s(v,[window.performance.getEntriesByType("resource")]),r()):p in window.performance&&(window.performance["c"+l]?window.performance[p](m,i,d(!1)):window.performance[p]("webkit"+m,i,d(!1))),document[p]("scroll",o,d(!1)),document[p]("keypress",o,d(!1)),document[p]("click",o,d(!1))}}},{}],5:[function(t,e,n){e.exports=function(){return"PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver}},{}],6:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&i(e)}function i(t){s.inPlace(t,[u,d],"-",o)}function o(t,e){return t[1]}var a=t("ee").get("events"),s=t("wrap-function")(a,!0),c=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(i(window),i(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1];if(null!==n&&("function"==typeof n||"object"==typeof n)){var r=c(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?s(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],7:[function(t,e,n){function r(t,e,n){var r=t[e];"function"==typeof r&&(t[e]=function(){var t=o(arguments),e={};i.emit(n+"before-start",[t],e);var a;e[m]&&e[m].dt&&(a=e[m].dt);var s=r.apply(this,t);return i.emit(n+"start",[t,a],s),s.then(function(t){return i.emit(n+"end",[null,t],s),t},function(t){throw i.emit(n+"end",[t],s),t})})}var i=t("ee").get("fetch"),o=t(28),a=t(27);e.exports=i;var s=window,c="fetch-",f=c+"body-",u=["arrayBuffer","blob","json","text","formData"],d=s.Request,l=s.Response,p=s.fetch,h="prototype",m="nr@context";d&&l&&p&&(a(u,function(t,e){r(d[h],e,f),r(l[h],e,f)}),r(s,"fetch",c),i.on(c+"end",function(t,e){var n=this;if(e){var r=e.headers.get("content-length");null!==r&&(n.rxSize=r),i.emit(c+"done",[null,e],n)}else i.emit(c+"done",[t],n)}))},{}],8:[function(t,e,n){var r=t("ee").get("history"),i=t("wrap-function")(r);e.exports=r;var o=window.history&&window.history.constructor&&window.history.constructor.prototype,a=window.history;o&&o.pushState&&o.replaceState&&(a=o),i.inPlace(a,["pushState","replaceState"],"-")},{}],9:[function(t,e,n){var r=t("ee").get("raf"),i=t("wrap-function")(r),o="equestAnimationFrame";e.exports=r,i.inPlace(window,["r"+o,"mozR"+o,"webkitR"+o,"msR"+o],"raf-"),r.on("raf-start",function(t){t[0]=i(t[0],"fn-")})},{}],10:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function i(t,e,n){this.method=n,this.timerDuration=isNaN(t[1])?0:+t[1],t[0]=a(t[0],"fn-",this,n)}var o=t("ee").get("timer"),a=t("wrap-function")(o),s="setTimeout",c="setInterval",f="clearTimeout",u="-start",d="-";e.exports=o,a.inPlace(window,[s,"setImmediate"],s+d),a.inPlace(window,[c],c+d),a.inPlace(window,[f,"clearImmediate"],f+d),o.on(c+u,r),o.on(s+u,i)},{}],11:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",s)}function i(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,y,"fn-",s)}function o(t){x.push(t),m&&(E?E.then(a):w?w(a):(R=-R,S.data=R))}function a(){for(var t=0;t<x.length;t++)r([],x[t]);x.length&&(x=[])}function s(t,e){return e}function c(t,e){for(var n in t)e[n]=t[n];return e}t(6);var f=t("ee"),u=f.get("xhr"),d=t("wrap-function")(u),l=t(19),p=NREUM.o,h=p.XHR,m=p.MO,v=p.PR,w=p.SI,g="readystatechange",y=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],x=[];e.exports=u;var b=window.XMLHttpRequest=function(t){var e=new h(t);try{u.emit("new-xhr",[e],e),e.addEventListener(g,i,l(!1))}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(c(h,b),b.prototype=h.prototype,d.inPlace(b.prototype,["open","send"],"-xhr-",s),u.on("send-xhr-start",function(t,e){r(t,e),o(e)}),u.on("open-xhr-start",r),m){var E=v&&v.resolve();if(!w&&!v){var R=1,S=document.createTextNode(R);new m(a).observe(S,{characterData:!0})}}else f.on("fn-end",function(t){t[0]&&t[0].type===g||a()})},{}],12:[function(t,e,n){function r(t){if(!s(t))return null;var e=window.NREUM;if(!e.loader_config)return null;var n=(e.loader_config.accountID||"").toString()||null,r=(e.loader_config.agentID||"").toString()||null,f=(e.loader_config.trustKey||"").toString()||null;if(!n||!r)return null;var h=p.generateSpanId(),m=p.generateTraceId(),v=Date.now(),w={spanId:h,traceId:m,timestamp:v};return(t.sameOrigin||c(t)&&l())&&(w.traceContextParentHeader=i(h,m),w.traceContextStateHeader=o(h,v,n,r,f)),(t.sameOrigin&&!u()||!t.sameOrigin&&c(t)&&d())&&(w.newrelicHeader=a(h,m,v,n,r,f)),w}function i(t,e){return"00-"+e+"-"+t+"-01"}function o(t,e,n,r,i){var o=0,a="",s=1,c="",f="";return i+"@nr="+o+"-"+s+"-"+n+"-"+r+"-"+t+"-"+a+"-"+c+"-"+f+"-"+e}function a(t,e,n,r,i,o){var a="btoa"in window&&"function"==typeof window.btoa;if(!a)return null;var s={v:[0,1],d:{ty:"Browser",ac:r,ap:i,id:t,tr:e,ti:n}};return o&&r!==o&&(s.d.tk=o),btoa(JSON.stringify(s))}function s(t){return f()&&c(t)}function c(t){var e=!1,n={};if("init"in NREUM&&"distributed_tracing"in NREUM.init&&(n=NREUM.init.distributed_tracing),t.sameOrigin)e=!0;else if(n.allowed_origins instanceof Array)for(var r=0;r<n.allowed_origins.length;r++){var i=h(n.allowed_origins[r]);if(t.hostname===i.hostname&&t.protocol===i.protocol&&t.port===i.port){e=!0;break}}return e}function f(){return"init"in NREUM&&"distributed_tracing"in NREUM.init&&!!NREUM.init.distributed_tracing.enabled}function u(){return"init"in NREUM&&"distributed_tracing"in NREUM.init&&!!NREUM.init.distributed_tracing.exclude_newrelic_header}function d(){return"init"in NREUM&&"distributed_tracing"in NREUM.init&&NREUM.init.distributed_tracing.cors_use_newrelic_header!==!1}function l(){return"init"in NREUM&&"distributed_tracing"in NREUM.init&&!!NREUM.init.distributed_tracing.cors_use_tracecontext_headers}var p=t(24),h=t(14);e.exports={generateTracePayload:r,shouldGenerateTrace:s}},{}],13:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<l;r++)t.removeEventListener(d[r],this.listener,!1);return e.protocol&&"data"===e.protocol?void g("Ajax/DataUrl/Excluded"):void(e.aborted||(n.duration=a.now()-this.startTime,this.loadCaptureCalled||4!==t.readyState?null==e.status&&(e.status=0):o(this,t),n.cbTime=this.cbTime,s("xhr",[e,n,this.startTime,this.endTime,"xhr"],this)))}}function i(t,e){var n=c(e),r=t.params;r.hostname=n.hostname,r.port=n.port,r.protocol=n.protocol,r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.parsedOrigin=n,t.sameOrigin=n.sameOrigin}function o(t,e){t.params.status=e.status;var n=v(e,t.lastSize);if(n&&(t.metrics.rxSize=n),t.sameOrigin){var r=e.getResponseHeader("X-NewRelic-App-Data");r&&(t.params.cat=r.split(", ").pop())}t.loadCaptureCalled=!0}var a=t("loader");if(a.xhrWrappable&&!a.disabled){var s=t("handle"),c=t(14),f=t(12).generateTracePayload,u=t("ee"),d=["load","error","abort","timeout"],l=d.length,p=t("id"),h=t(20),m=t(18),v=t(15),w=t(19),g=t(21).recordSupportability,y=NREUM.o.REQ,x=window.XMLHttpRequest;a.features.xhr=!0,t(11),t(7),u.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,e.loadCaptureCalled=!1,e.params=this.params||{},e.metrics=this.metrics||{},t.addEventListener("load",function(n){o(e,t)},w(!1)),h&&(h>34||h<10)||t.addEventListener("progress",function(t){e.lastSize=t.loaded},w(!1))}),u.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),u.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid);var n=f(this.parsedOrigin);if(n){var r=!1;n.newrelicHeader&&(e.setRequestHeader("newrelic",n.newrelicHeader),r=!0),n.traceContextParentHeader&&(e.setRequestHeader("traceparent",n.traceContextParentHeader),n.traceContextStateHeader&&e.setRequestHeader("tracestate",n.traceContextStateHeader),r=!0),r&&(this.dt=n)}}),u.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],i=this;if(n&&r){var o=m(r);o&&(n.txSize=o)}this.startTime=a.now(),this.listener=function(t){try{"abort"!==t.type||i.loadCaptureCalled||(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}};for(var s=0;s<l;s++)e.addEventListener(d[s],this.listener,w(!1))}),u.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),u.on("xhr-load-added",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),u.on("xhr-load-removed",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),u.on("xhr-resolved",function(){this.endTime=a.now()}),u.on("addEventListener-end",function(t,e){e instanceof x&&"load"===t[0]&&u.emit("xhr-load-added",[t[1],t[2]],e)}),u.on("removeEventListener-end",function(t,e){e instanceof x&&"load"===t[0]&&u.emit("xhr-load-removed",[t[1],t[2]],e)}),u.on("fn-start",function(t,e,n){e instanceof x&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=a.now()))}),u.on("fn-end",function(t,e){this.xhrCbStart&&u.emit("xhr-cb-time",[a.now()-this.xhrCbStart,this.onload,e],e)}),u.on("fetch-before-start",function(t){function e(t,e){var n=!1;return e.newrelicHeader&&(t.set("newrelic",e.newrelicHeader),n=!0),e.traceContextParentHeader&&(t.set("traceparent",e.traceContextParentHeader),e.traceContextStateHeader&&t.set("tracestate",e.traceContextStateHeader),n=!0),n}var n,r=t[1]||{};"string"==typeof t[0]?n=t[0]:t[0]&&t[0].url?n=t[0].url:window.URL&&t[0]&&t[0]instanceof URL&&(n=t[0].href),n&&(this.parsedOrigin=c(n),this.sameOrigin=this.parsedOrigin.sameOrigin);var i=f(this.parsedOrigin);if(i&&(i.newrelicHeader||i.traceContextParentHeader))if("string"==typeof t[0]||window.URL&&t[0]&&t[0]instanceof URL){var o={};for(var a in r)o[a]=r[a];o.headers=new Headers(r.headers||{}),e(o.headers,i)&&(this.dt=i),t.length>1?t[1]=o:t.push(o)}else t[0]&&t[0].headers&&e(t[0].headers,i)&&(this.dt=i)}),u.on("fetch-start",function(t,e){this.params={},this.metrics={},this.startTime=a.now(),this.dt=e,t.length>=1&&(this.target=t[0]),t.length>=2&&(this.opts=t[1]);var n,r=this.opts||{},o=this.target;if("string"==typeof o?n=o:"object"==typeof o&&o instanceof y?n=o.url:window.URL&&"object"==typeof o&&o instanceof URL&&(n=o.href),i(this,n),"data"!==this.params.protocol){var s=(""+(o&&o instanceof y&&o.method||r.method||"GET")).toUpperCase();this.params.method=s,this.txSize=m(r.body)||0}}),u.on("fetch-done",function(t,e){if(this.endTime=a.now(),this.params||(this.params={}),"data"===this.params.protocol)return void g("Ajax/DataUrl/Excluded");this.params.status=e?e.status:0;var n;"string"==typeof this.rxSize&&this.rxSize.length>0&&(n=+this.rxSize);var r={txSize:this.txSize,rxSize:n,duration:a.now()-this.startTime};s("xhr",[this.params,r,this.startTime,this.endTime,"fetch"],this)})}},{}],14:[function(t,e,n){var r={};e.exports=function(t){if(t in r)return r[t];if(0===(t||"").indexOf("data:"))return{protocol:"data"};var e=document.createElement("a"),n=window.location,i={};e.href=t,i.port=e.port;var o=e.href.split("://");!i.port&&o[1]&&(i.port=o[1].split("/")[0].split("@").pop().split(":")[1]),i.port&&"0"!==i.port||(i.port="https"===o[0]?"443":"80"),i.hostname=e.hostname||n.hostname,i.pathname=e.pathname,i.protocol=o[0],"/"!==i.pathname.charAt(0)&&(i.pathname="/"+i.pathname);var a=!e.protocol||":"===e.protocol||e.protocol===n.protocol,s=e.hostname===document.domain&&e.port===n.port;return i.sameOrigin=a&&(!e.hostname||s),"/"===i.pathname&&(r[t]=i),i}},{}],15:[function(t,e,n){function r(t,e){var n=t.responseType;return"json"===n&&null!==e?e:"arraybuffer"===n||"blob"===n||"json"===n?i(t.response):"text"===n||""===n||void 0===n?i(t.responseText):void 0}var i=t(18);e.exports=r},{}],16:[function(t,e,n){function r(){}function i(t,e,n,r){return function(){return u.recordSupportability("API/"+e+"/called"),o(t+e,[f.now()].concat(s(arguments)),n?null:this,r),n?void 0:this}}var o=t("handle"),a=t(27),s=t(28),c=t("ee").get("tracer"),f=t("loader"),u=t(21),d=NREUM;"undefined"==typeof window.newrelic&&(newrelic=d);var l=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",h=p+"ixn-";a(l,function(t,e){d[e]=i(p,e,!0,"api")}),d.addPageAction=i(p,"addPageAction",!0),d.setCurrentRouteName=i(p,"routeName",!0),e.exports=newrelic,d.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(h+"tracer",[f.now(),t,n],r),function(){if(c.emit((i?"":"no-")+"fn-start",[f.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw c.emit("fn-err",[arguments,this,t],n),t}finally{c.emit("fn-end",[f.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(h,e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),u.recordSupportability("API/noticeError/called"),o("err",[t,f.now(),!1,e])}},{}],17:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],18:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],19:[function(t,e,n){var r=!1;try{var i=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,i),window.removeEventListener("testPassive",null,i)}catch(o){}e.exports=function(t){return r?{passive:!0,capture:!!t}:!!t}},{}],20:[function(t,e,n){var r=0,i=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);i&&(r=+i[1]),e.exports=r},{}],21:[function(t,e,n){function r(t,e){var n=[a,t,{name:t},e];return o("storeMetric",n,null,"api"),n}function i(t,e){var n=[s,t,{name:t},e];return o("storeEventMetrics",n,null,"api"),n}var o=t("handle"),a="sm",s="cm";e.exports={constants:{SUPPORTABILITY_METRIC:a,CUSTOM_METRIC:s},recordSupportability:r,recordCustom:i}},{}],22:[function(t,e,n){function r(){return s.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,s=t(29);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],23:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?p("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&p("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();if(n.length>0){var r=n[n.length-1];if(f&&f<r.startTime)return;var i=[r],o=a({});o&&i.push(o),p("lcp",i)}}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||p("cls",[t])})}function a(t){var e=navigator.connection||navigator.mozConnection||navigator.webkitConnection;if(e)return e.type&&(t["net-type"]=e.type),e.effectiveType&&(t["net-etype"]=e.effectiveType),e.rtt&&(t["net-rtt"]=e.rtt),e.downlink&&(t["net-dlink"]=e.downlink),t}function s(t){if(t instanceof w&&!y){var e=Math.round(t.timeStamp),n={type:t.type};a(n),e<=h.now()?n.fid=h.now()-e:e>h.offset&&e<=Date.now()?(e-=h.offset,n.fid=h.now()-e):e=h.now(),y=!0,p("timing",["fi",e,n])}}function c(t){"hidden"===t&&(f=h.now(),p("pageHide",[f]))}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var f,u,d,l,p=t("handle"),h=t("loader"),m=t(26),v=t(19),w=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){u=new PerformanceObserver(r);try{u.observe({entryTypes:["paint"]})}catch(g){}d=new PerformanceObserver(i);try{d.observe({entryTypes:["largest-contentful-paint"]})}catch(g){}l=new PerformanceObserver(o);try{l.observe({type:"layout-shift",buffered:!0})}catch(g){}}if("addEventListener"in document){var y=!1,x=["click","keydown","mousedown","pointerdown","touchstart"];x.forEach(function(t){document.addEventListener(t,s,v(!1))})}m(c)}},{}],24:[function(t,e,n){function r(){function t(){return e?15&e[n++]:16*Math.random()|0}var e=null,n=0,r=window.crypto||window.msCrypto;r&&r.getRandomValues&&(e=r.getRandomValues(new Uint8Array(31)));for(var i,o="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx",a="",s=0;s<o.length;s++)i=o[s],"x"===i?a+=t().toString(16):"y"===i?(i=3&t()|8,a+=i.toString(16)):a+=i;return a}function i(){return a(16)}function o(){return a(32)}function a(t){function e(){return n?15&n[r++]:16*Math.random()|0}var n=null,r=0,i=window.crypto||window.msCrypto;i&&i.getRandomValues&&Uint8Array&&(n=i.getRandomValues(new Uint8Array(t)));for(var o=[],a=0;a<t;a++)o.push(e().toString(16));return o.join("")}e.exports={generateUuid:r,generateSpanId:i,generateTraceId:o}},{}],25:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var s=navigator.userAgent,c=s.match(a);c&&s.indexOf("Chrome")===-1&&s.indexOf("Chromium")===-1&&(i="Safari",o=c[1])}e.exports={agent:i,version:o,match:r}},{}],26:[function(t,e,n){function r(t){function e(){t(s&&document[s]?document[s]:document[o]?"hidden":"visible")}"addEventListener"in document&&a&&document.addEventListener(a,e,i(!1))}var i=t(19);e.exports=r;var o,a,s;"undefined"!=typeof document.hidden?(o="hidden",a="visibilitychange",s="visibilityState"):"undefined"!=typeof document.msHidden?(o="msHidden",a="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(o="webkitHidden",a="webkitvisibilitychange",s="webkitVisibilityState")},{}],27:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],28:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],29:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?f(t,c,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!p.aborted||o){t&&a&&t(n,r,i);for(var s=e(i),c=m(n),f=c.length,u=0;u<f;u++)c[u].apply(s,r);var l=d[y[n]];return l&&l.push([x,n,r,s]),s}}function o(t,e){g[t]=m(t).concat(e)}function h(t,e){var n=g[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function m(t){return g[t]||[]}function v(t){return l[t]=l[t]||i(n)}function w(t,e){p.aborted||u(t,function(t,n){e=e||"feature",y[n]=e,e in d||(d[e]=[])})}var g={},y={},x={on:o,addEventListener:o,removeEventListener:h,emit:n,get:v,listeners:m,context:e,buffer:w,abort:s,aborted:!1};return x}function o(t){return f(t,c,a)}function a(){return new r}function s(){(d.api||d.feature)&&(p.aborted=!0,d=p.backlog={})}var c="nr@context",f=t("gos"),u=t(27),d={},l={},p=e.exports=i();e.exports.getOrSetContext=o,p.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!O++){var t=S.info=NREUM.info,e=m.getElementsByTagName("script")[0];if(setTimeout(f.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return f.abort();c(E,function(e,n){t[e]||(t[e]=n)});var n=a();s("mark",["onload",n+S.offset],null,"api"),s("timing",["load",n]);var r=m.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=p+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===m.readyState&&o()}function o(){s("mark",["domContent",a()+S.offset],null,"api")}var a=t(22),s=t("handle"),c=t(27),f=t("ee"),u=t(25),d=t(17),l=t(19),p=d.getConfiguration("ssl")===!1?"http":"https",h=window,m=h.document,v="addEventListener",w="attachEvent",g=h.XMLHttpRequest,y=g&&g.prototype,x=!1;NREUM.o={ST:setTimeout,SI:h.setImmediate,CT:clearTimeout,XHR:g,REQ:h.Request,EV:h.Event,PR:h.Promise,MO:h.MutationObserver};var b=""+location,E={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1216.min.js"},R=g&&y&&y[v]&&!/CriOS/.test(navigator.userAgent),S=e.exports={offset:a.getLastTimestamp(),now:a,origin:b,features:{},xhrWrappable:R,userAgent:u,disabled:x};if(!x){t(16),t(23),m[v]?(m[v]("DOMContentLoaded",o,l(!1)),h[v]("load",r,l(!1))):(m[w]("onreadystatechange",i),h[w]("onload",r)),s("mark",["firstbyte",a.getLastTimestamp()],null,"api");var O=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,c,f){function nrWrapper(){var o,a,u,l;try{a=this,o=d(arguments),u="function"==typeof r?r(o,a):r||{}}catch(p){i([p,"",[o,a,c],u],t)}s(n+"start",[o,a,c],u,f);try{return l=e.apply(a,o)}catch(h){throw s(n+"err",[o,a,h],u,f),h}finally{s(n+"end",[o,a,l],u,f)}}return a(e)?e:(n||(n=""),nrWrapper[l]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var s,c,f,u="-"===r.charAt(0);for(f=0;f<e.length;f++)c=e[f],s=t[c],a(s)||(t[c]=n(s,u?c+r:r,i,c,o))}function s(n,r,o,a){if(!h||e){var s=h;h=!0;try{t.emit(n,r,o,e,a)}catch(c){i([c,n,r,o],t)}h=s}}return t||(t=u),n.inPlace=r,n.flag=l,n}function i(t,e){e||(e=u);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)p.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[l])}function s(t,e){var n=e(t);return n[l]=t,o(t,n,u),n}function c(t,e,n){var r=t[e];t[e]=s(r,n)}function f(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var u=t("ee"),d=t(28),l="nr@original",p=Object.prototype.hasOwnProperty,h=!1;e.exports=r,e.exports.wrapFunction=s,e.exports.wrapInPlace=c,e.exports.argsToArray=f},{}]},{},["loader",2,13,4,3]);</script>
+
+    <link rel="canonical"  href="https://www.ird.govt.nz/kiwisaver/kiwisaver-individuals/growing-my-kiwisaver-account/getting-the-kiwisaver-government-contribution">
+    <!-- For Chrome for Android: -->
+    <link rel="icon" sizes="180x180" href="/assets/home/images/apple-touch-icon-180x180-precomposed.png">
+    <!-- For iPhone 6 Plus with 3× display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/home/images/apple-touch-icon-180x180-precomposed.png">
+    <!-- For iPad with 2× display running iOS ≥ 7: -->
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/home/images/apple-touch-icon-152x152-precomposed.png">
+    <!-- For iPad with 2× display running iOS ≤ 6: -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/home/images/apple-touch-icon-144x144-precomposed.png">
+    <!-- For iPhone with 2× display running iOS ≥ 7: -->
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/home/images/apple-touch-icon-120x120-precomposed.png">
+    <!-- For iPhone with 2× display running iOS ≤ 6: -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/home/images/apple-touch-icon-114x114-precomposed.png">
+    <!-- For the iPad mini and the first- and second-generation iPad (1× display) on iOS ≥ 7: -->
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/home/images/apple-touch-icon-76x76-precomposed.png">
+    <!-- For the iPad mini and the first- and second-generation iPad (1× display) on iOS ≤ 6: -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/home/images/apple-touch-icon-72x72-precomposed.png">
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <link rel="apple-touch-icon-precomposed" href="/assets/home/images/apple-touch-icon-precomposed.png"><!-- 57×57px -->
+    <link rel="stylesheet" href="https://use.typekit.net/kgv5gkd.css" />
+
+
+
+
+
+    <link rel="stylesheet" href="/assets/home/css/main.css?v=1.0.335-sc10release&cms=182" />
+
+    
+    
+
+
+    
+
+
+
+    <title>Getting the KiwiSaver government contribution</title>
+
+
+
+
+    <link href="/-/media/themes/ir/shared/favicon.png?modified=20210228002011" rel="shortcut icon" />
+
+
+
+
+<meta property="og:title"  content="Getting the KiwiSaver government contribution"><meta property="og:url"  content="https://www.ird.govt.nz/kiwisaver/kiwisaver-individuals/growing-my-kiwisaver-account/getting-the-kiwisaver-government-contribution">
+
+
+
+<meta  name="description" content="The Government will contribute up to $521.43 towards your retirement savings each year. "><meta  name="keywords" content="government contribution, top up, June 30, KiwiSaver, maximum government contribution, retirement, KiwiSaver">
+
+
+
+<meta property="twitter:title"  content="Getting the KiwiSaver government contribution"><meta property="twitter:card"  content="summary_large_image">
+
+        <!-- Google Tag Manager -->
+        <script nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=" type="text/javascript">
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || []; w[l].push({
+                    'gtm.start':
+                        new Date().getTime(), event: 'gtm.js'
+                }); var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; var n = d.querySelector('[nonce]');
+                n && j.setAttribute('nonce', n.nonce || n.getAttribute('nonce')); f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-58F6MRW');
+        </script>
+
+<script nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=" type="text/javascript">
+        window.TAX_COVEO_CONFIG = {
+            originContext: "PublicSite-Search",
+            noResults: "<p>We couldn't find any results matching your search term</p><p>Search tips</p><ul><li>Check the spelling of your search and try again</li><li>Try a similar search term, like business instead of company</li><li>Keep your search term simple. Our search works best with shorter descriptions</li><li>Use the options to filter your results or try one of our index pages.</li></ul>",
+            searchBlockedMessage: "Your security settings may be blocking our search page. To use this page, please white-list https://newzealandinlandrevenueprod35m1k6es.org.coveo.com/.",
+            searchPageEndpoint: "/search",
+            externalLinks: {
+                taxPolicySearchPage: "https://www.taxpolicy.ird.govt.nz/search#q=",
+                taxTechnicalSearchPage: "https://www.taxtechnical.ird.govt.nz/search#q=",
+            },
+            mediaSearchPageEndpoint:"/index/media-releases",
+            token: "eyJhbGciOiJIUzI1NiJ9.eyJzZWFyY2hIdWIiOiJDb3JlLVNlYXJjaCIsInY4Ijp0cnVlLCJ0b2tlbklkIjoidHlxdjJzczJ5bGVtM3prbjRnbXI3cWtnb2kiLCJvcmdhbml6YXRpb24iOiJuZXd6ZWFsYW5kaW5sYW5kcmV2ZW51ZXByb2QzNW0xazZlcyIsInVzZXJJZHMiOlt7InR5cGUiOiJVc2VyIiwibmFtZSI6ImFub255bW91cyIsInByb3ZpZGVyIjoiRW1haWwgU2VjdXJpdHkgUHJvdmlkZXIifV0sInJvbGVzIjpbInF1ZXJ5RXhlY3V0b3IiXSwiaXNzIjoiU2VhcmNoQXBpIiwiZXhwIjoxNzg0NTU4ODg3LCJpYXQiOjE3ODQ1MzM2ODd9.53gsEMxkcSSqnjlsSj1L08Nkxas-TKzKmKqn-EXfg8o",
+            organisation: "newzealandinlandrevenueprod35m1k6es",
+            searchHub: "Core-Search",
+            coveoHeadless: true,
+            siteName: "Core",
+            nonce: "ahoECgXrbofdMNw/7qVL3fTsfvo=",
+            popularSearches: ["apply for an ird number - new arrival to new zealand","paye calculator","depreciation rate finder","apply for an instalment arrangement","what tax code should i use","income tax calculator","apply for ird number","apply for financial relief","ir3"],
+        };
+        window.recaptchaOptions = {
+            nonce: "ahoECgXrbofdMNw/7qVL3fTsfvo=",
+        };
+
+            window.COOKIE_CONSENT_CONFIG = {
+                geolocationUrl: "/cdn-cgi/trace",
+                countryCodes: "AT,BE,BG,HR,CY,CZ,DK,EE,FI,FR,DE,GR,HU,IE,IT,LV,LT,LU,MT,NL,PL,PT,RO,SK,SI,ES,SE,GB,IS,LI,NO",
+                popupTitle: "Cookie Policy",
+                popupText: "<p>We use some essential cookies to improve your experience. We&rsquo;d like to set analytics cookies to understand how you use our site to improve it. <a href='https://www.ird.govt.nz/about-this-site/your-privacy'>Learn more</a> about cookies.</p>" ,
+                acceptButtonLabel: "Accept",
+                rejectButtonLabel: "Reject",
+                cookieDurationDays: 365,
+                debug: false
+            };
+        </script>
+</head>
+<body class="default-device bodyclass" id="top" data-enable-history="true"
+      data-server-date="Mon, 20 Jul 2026 09:51:11 GMT"
+      data-template="Topic Information">
+            <!-- Google Tag Manager (noscript)-->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58F6MRW"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+
+            <!-- BEGIN NOINDEX -->
+        <a id="skip-main" href="#main-content-wrapper">Skip to main content</a>
+
+
+
+<!--Start Alert-->
+<!--End Alert-->
+<!--Start Topic Alert-->
+<!--End Topic Alert-->
+
+<!--Start Header-->
+<script id="core-header" type="application/json" nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=">
+            {"UtilityLinkItems":[{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"About us","Query":"","Title":"","Url":"/about-us","Target":"","TargetId":"68bb75d2-5f8c-40e1-977b-c83f7aab0e82","Type":4,"Style":""},"LinkUrl":"/about-us","Target":"","CssClass":"","Title":"About us","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"About us","Query":"","Title":"","Url":"/about-us","Target":"","TargetId":"68bb75d2-5f8c-40e1-977b-c83f7aab0e82","Type":4,"Style":""},"LinkUrl":"/about-us","Target":"","CssClass":"","Title":"About us","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"Careers","Query":"","Title":"","Url":"/about-us/careers","Target":"","TargetId":"52c6651d-d959-40ae-be9d-3cccc5305d8c","Type":4,"Style":""},"LinkUrl":"/about-us/careers","Target":"","CssClass":"","Title":"IR careers","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]}]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"","Query":"","Title":"","Url":"https://media.ird.govt.nz/","Target":"_blank","TargetId":"00000000-0000-0000-0000-000000000000","Type":2,"Style":""},"LinkUrl":"https://media.ird.govt.nz/","Target":"_blank","CssClass":"","Title":"News","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"Media Releases","Query":"","Title":"","Url":"/media-releases","Target":"","TargetId":"78f2abfd-2263-4559-bcf9-4a3706d95955","Type":4,"Style":""},"LinkUrl":"/media-releases","Target":"","CssClass":"","Title":"Media releases","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"News","Query":"","Title":"","Url":"/index/news","Target":"","TargetId":"9aab625e-b4b1-4d32-bc6b-b57be0f98b3c","Type":4,"Style":""},"LinkUrl":"/index/news","Target":"","CssClass":"","Title":"Updates","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"Subscription Service","Query":"","Title":"","Url":"/subscription-service","Target":"","TargetId":"6c05476a-fde5-418c-bd94-72e0be3f2302","Type":4,"Style":""},"LinkUrl":"/subscription-service","Target":"","CssClass":"","Title":"Subscribe","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"Seminars","Query":"","Title":"","Url":"/index/events","Target":"","TargetId":"0a4e3450-c574-4f63-a971-355566b72606","Type":4,"Style":""},"LinkUrl":"/index/events","Target":"","CssClass":"","Title":"Seminars","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]}]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"International","Query":"","Title":"","Url":"/international-tax","Target":"","TargetId":"73f1bdb3-079a-41a7-a45b-1e7f39a2463f","Type":4,"Style":""},"LinkUrl":"/international-tax","Target":"","CssClass":"","Title":"Related Websites","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"","Query":"","Title":"","Url":"https://www.taxtechnical.ird.govt.nz","Target":"_blank","TargetId":"00000000-0000-0000-0000-000000000000","Type":2,"Style":""},"LinkUrl":"https://www.taxtechnical.ird.govt.nz","Target":"_blank","CssClass":"","Title":"Tax Technical","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"","Query":"","Title":"","Url":"http://taxpolicy.ird.govt.nz/","Target":"_blank","TargetId":"00000000-0000-0000-0000-000000000000","Type":2,"Style":""},"LinkUrl":"http://taxpolicy.ird.govt.nz/","Target":"_blank","CssClass":"","Title":"Tax Policy","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"International","Query":"","Title":"","Url":"/international-tax","Target":"","TargetId":"73f1bdb3-079a-41a7-a45b-1e7f39a2463f","Type":4,"Style":""},"LinkUrl":"/international-tax","Target":"","CssClass":"","Title":"International","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]}]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"Contact us","Query":"","Title":"","Url":"/contactus","Target":"","TargetId":"c48e4113-3f90-49b0-9286-b73f4b0d5cc7","Type":4,"Style":""},"LinkUrl":"/contactus","Target":"","CssClass":"","Title":"Contact us","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"Contact us","Query":"","Title":"","Url":"/contactus","Target":"","TargetId":"c48e4113-3f90-49b0-9286-b73f4b0d5cc7","Type":4,"Style":""},"LinkUrl":"/contactus","Target":"","CssClass":"","Title":"Contact us","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]},{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"Media queries","Query":"","Title":"","Url":"/media-releases/media","Target":"","TargetId":"fd58c085-5143-4430-bec9-3a357bc7bfec","Type":4,"Style":""},"LinkUrl":"/media-releases/media","Target":"","CssClass":"","Title":"Media queries","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]}]}],"ToolLinkItems":[{"Icon":null,"Link":{"Anchor":"","Class":"myir-help-link","Text":"myIR help","Query":"","Title":"","Url":"/myir-help","Target":"","TargetId":"ae97925a-49d2-4188-8633-5651669dc276","Type":4,"Style":""},"LinkUrl":"/myir-help","Target":"","CssClass":"myir-help-link","Title":"myIR help","TeReoTitle":"","AriaLabel":"","FontAwesome":"fas fa-question-circle","Links":[]},{"Icon":null,"Link":{"Anchor":"#","Class":"language-select__trigger","Text":"English","Query":"","Title":"","Url":"#","Target":"","TargetId":"00000000-0000-0000-0000-000000000000","Type":1,"Style":""},"LinkUrl":"#","Target":"","CssClass":"language-select__trigger","Title":"English","TeReoTitle":"","AriaLabel":"","FontAwesome":"far fa-globe","Links":[]}],"LogoURL":"/-/media/themes/ir/home/ir-theme/images/logo-landscape.svg?la=en&hash=B1C4664A92B15C4D673718A969E620EC","LogoAlt":"Inland Revenue","MobileLogoURL":"/-/media/themes/ir/home/ir-theme/images/logo-mobile.svg?modified=20251201051559","MobileLogoAlt":"Inland Revenue","PrintLogoURL":"/-/media/themes/ir/home/ir-theme/images/logo-landscape-black.png?modified=20210721071728","PrintLogoAlt":"Inland Revenue","PrimarySections":[{"Title":"Individuals and families","TeReoTitle":"Ngā tāngata me ngā whānau","BackgroundColourCssClass":null,"LinkUrl":"/individuals-and-families","LinkTitle":"Go to all","LinkTeReoTitle":"Haere ki te katoa","SubSections":[{"Title":"Popular pages","TeReoTitle":"Ngā wharangi rongonui","BackgroundColourCssClass":"","LinkUrl":"/individuals-and-families","LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[],"SideMenu":null,"Links":[{"Title":"myIR help","TeReoTitle":"Āwhina myIR","Url":"/myir-help"},{"Title":"Māori","TeReoTitle":"Reo Māori","Url":"/maori"},{"Title":"IRD numbers","TeReoTitle":"Ngā tau IRD","Url":"/managing-my-tax/ird-numbers"},{"Title":"File my individual tax return","TeReoTitle":"Te tuku i tētahi puka tāke takitahi","Url":"/income-tax/income-tax-for-individuals/what-happens-at-the-end-of-the-tax-year/individual-income-tax-return---ir3/complete-my-individual-income-tax-return---ir3"},{"Title":"Support for families","TeReoTitle":"Ngā tautoko i ngā whānau","Url":"/support-for-families"},{"Title":"Managing my tax","TeReoTitle":"Te whakahaere i taku tāke","Url":"/managing-my-tax"}]},{"Title":"Families","TeReoTitle":"Ngā whānau","BackgroundColourCssClass":"","LinkUrl":null,"LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[{"Title":"Property and Trusts ","TeReoTitle":"Ngā rawa me ngā whakawhirinaki","BackgroundColourCssClass":null,"LinkUrl":null,"LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":null,"SideMenu":null,"Links":[{"Title":"Trusts and estates","TeReoTitle":"Ngā rōpū kaitiaki me ngā rawa tuku iho","Url":"/income-tax/income-tax-for-businesses-and-organisations/trusts-and-estates"},{"Title":"Property","TeReoTitle":"Ngā rawa","Url":"/property"}]}],"SideMenu":null,"Links":[{"Title":"Working for Families","TeReoTitle":"Working for families","Url":"/working-for-families"},{"Title":"Child support","TeReoTitle":"Te tautoko tamariki","Url":"/child-support"},{"Title":"FamilyBoost","TeReoTitle":"WhakapikiWhānau","Url":"/familyboost"},{"Title":"Paid parental leave","TeReoTitle":"Te utu tiaki pēpi","Url":"/paid-parental-leave"}]},{"Title":"Individuals","TeReoTitle":"Ngā tāngata","BackgroundColourCssClass":"","LinkUrl":null,"LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[],"SideMenu":null,"Links":[{"Title":"Income tax for individuals","TeReoTitle":"Te tāke moni whiwhi mō ngā tāngata takitahi","Url":"/income-tax/income-tax-for-individuals"},{"Title":"Non-residents","TeReoTitle":"Ngā kainoho-tāwāhi","Url":"/roles/non-residents"},{"Title":"Self-employed","TeReoTitle":"Mahi ā-kiri","Url":"/roles/self-employed"},{"Title":"KiwiSaver for individuals","TeReoTitle":"KiwiSaver mā te tangata takitahi","Url":"/kiwisaver/kiwisaver-individuals"},{"Title":"Students","TeReoTitle":"Ngā ākonga","Url":"/students"},{"Title":"Cryptoassets for individuals","TeReoTitle":"Ngā rawa whiti-rangi mā te tangata takitahi","Url":"/cryptoassets/individual"},{"Title":"Unclaimed money","TeReoTitle":"Ngā moni kāore i kerēmetia","Url":"/unclaimedmoney"}]}],"SubSubSections":null,"SideMenu":{"Title":"Situations","TeReoTitle":"Ngā āhuatanga","BackgroundColourCssClass":"col-bg-sub-menu","LinkUrl":"/situations","LinkTitle":"More situations","LinkTeReoTitle":"Ētahi anō tūāhua","SubSections":null,"SubSubSections":[],"SideMenu":null,"Links":[{"Title":"I am going overseas","TeReoTitle":"Kei te haere ahau ki tāwāhi","Url":"/situations/i-am-going-overseas"},{"Title":"I received an income tax assessment","TeReoTitle":"I whiwhi i ahau tētahi aromatawai tāke moni whiwhi","Url":"/situations/i-received-an-income-tax-assessment"},{"Title":"I'm struggling to file and pay my tax","TeReoTitle":"E raru ana au ki te tuku, ki te utu hoki i taku tāke","Url":"/situations/unable-to-pay-my-tax-debt"}]},"Links":null},{"Title":"Business and organisations","TeReoTitle":"Ngā pakihi me ngā whakahaere","BackgroundColourCssClass":null,"LinkUrl":"/business-and-organisations","LinkTitle":"Go to all","LinkTeReoTitle":"Haere ki te katoa","SubSections":[{"Title":"Popular pages","TeReoTitle":"Ngā wharangi rongonui","BackgroundColourCssClass":"","LinkUrl":"/business-and-organisations","LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[],"SideMenu":null,"Links":[{"Title":"File a companies income tax return - IR4","TeReoTitle":"Te tuku i tētahi puka tāke moni whiwhi kamupene - IR4","Url":"/income-tax/income-tax-for-businesses-and-organisations/income-tax-for-companies/file-a-companies-income-tax-return-ir4"},{"Title":"Māori","TeReoTitle":"Reo Māori","Url":"/maori"},{"Title":"Not-for-profits and charities","TeReoTitle":"Ngā rōpū monihua-kore me ngā rōpū mahi aroha","Url":"/roles/not-for-profits-and-charities"},{"Title":"PAYE calculator to work out salary and wage deductions","TeReoTitle":"Te tātaitai Utu i a koe e Whiwhi Moni ana (PAYE) hei whakarite i ngā tangohanga utu ā-tau, utu ā-haora hoki","Url":"/employing-staff/deductions-from-income/deductions-from-salary-and-wages/work-out-paye-deductions-from-salary-or-wages"},{"Title":"Property","TeReoTitle":"Ngā rawa","Url":"/property"},{"Title":"IRD numbers","TeReoTitle":"Ngā tau IRD","Url":"/managing-my-tax/ird-numbers"}]},{"Title":"Income tax","TeReoTitle":"Te tāke moni whiwhi","BackgroundColourCssClass":"","LinkUrl":"","LinkTitle":"Income tax for businesses and organisations","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[{"Title":"GST","TeReoTitle":"Tāke hokohoko (GST)","BackgroundColourCssClass":null,"LinkUrl":"","LinkTitle":"More GST","LinkTeReoTitle":"","SubSections":null,"SubSubSections":null,"SideMenu":null,"Links":[{"Title":"Charging GST","TeReoTitle":"Te uta i te tāke hokohoko","Url":"/gst/charging-gst"},{"Title":"Claiming GST","TeReoTitle":"Te kerēme tāke hokohoko","Url":"/gst/claiming-gst"}]}],"SideMenu":null,"Links":[{"Title":"Types of business income","TeReoTitle":"Ngā momo moni whiwhi pakihi","Url":"/income-tax/income-tax-for-businesses-and-organisations/types-of-business-income"},{"Title":"Tax rates for businesses","TeReoTitle":"Ngā pāpātanga tāke mō te pakihi","Url":"/income-tax/income-tax-for-businesses-and-organisations/tax-rates-for-businesses"},{"Title":"Balance dates","TeReoTitle":"Ngā rā mutunga tau pūtea","Url":"/income-tax/income-tax-for-businesses-and-organisations/balance-dates"}]},{"Title":"Employing staff ","TeReoTitle":"Te tuku mahi ki ngā kaimahi","BackgroundColourCssClass":"","LinkUrl":"","LinkTitle":"Employing staff","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[{"Title":"International","TeReoTitle":"Tāwāhi","BackgroundColourCssClass":null,"LinkUrl":null,"LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":null,"SideMenu":null,"Links":[{"Title":"International tax for business","TeReoTitle":"Te tāke aowhānui mō ngā pakihi","Url":"/international-tax/business"}]}],"SideMenu":null,"Links":[{"Title":"Register as an employer","TeReoTitle":"Te rēhita hei kaituku mahi","Url":"/employing-staff/register-as-an-employer"},{"Title":"Paying staff","TeReoTitle":"Utu kaimahi","Url":"/employing-staff/deductions-from-other-payments"},{"Title":"Payday filing","TeReoTitle":"Te tāpaetanga rā utu","Url":"/employing-staff/payday-filing"},{"Title":"Deductions from income","TeReoTitle":"Ngā tangohanga mai i ngā moni whiwhi","Url":"/employing-staff/deductions-from-income"},{"Title":"KiwiSaver for employers","TeReoTitle":"Te KiwiSaver mō ngā kaituku mahi","Url":"/kiwisaver/kiwisaver-employers"}]}],"SubSubSections":null,"SideMenu":{"Title":"Situations","TeReoTitle":"Ngā āhuatanga","BackgroundColourCssClass":"col-bg-sub-menu","LinkUrl":"/situations","LinkTitle":"More situations","LinkTeReoTitle":"Ētahi anō tūāhua","SubSections":null,"SubSubSections":[],"SideMenu":null,"Links":[{"Title":"I am starting a new business","TeReoTitle":"Kei te tīmata au i tētahi pakihi hou","Url":"/situations/i-am-starting-a-new-business"},{"Title":"My business is making a loss","TeReoTitle":"Kei te hapa taku pakihi","Url":"/situations/my-business-is-making-a-loss"}]},"Links":null},{"Title":"Intermediaries and others","TeReoTitle":"Ngā takawaenga me ētahi atu","BackgroundColourCssClass":null,"LinkUrl":"/intermediaries-and-others","LinkTitle":"Go to all","LinkTeReoTitle":"Haere ki te katoa","SubSections":[{"Title":"Intermediaries","TeReoTitle":"Ngā takawaenga","BackgroundColourCssClass":"","LinkUrl":"/intermediaries-and-others","LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[],"SideMenu":null,"Links":[{"Title":"Becoming an intermediary","TeReoTitle":"Te tū hei takawaenga","Url":"/topics/intermediaries/becoming-an-intermediary"},{"Title":"Getting authority to act","TeReoTitle":"Te whiwhi whakamanatanga","Url":"/topics/intermediaries/getting-authority-to-act"},{"Title":"Executive office holders","TeReoTitle":"Ngā kaipupuri tūnga whakahaere","Url":"/managing-my-tax/getting-someone-to-act-on-my-behalf/executive-office-holders"},{"Title":"Linking client accounts","TeReoTitle":"Te honohono pūkete kiritaki","Url":"/topics/intermediaries/linking-client-accounts"},{"Title":"Nominated person","TeReoTitle":"Te tangata kua whakaingoatia","Url":"/managing-my-tax/getting-someone-to-act-on-my-behalf/nominated-person"},{"Title":"Tax pooling","TeReoTitle":"Te whakarōpū tāke","Url":"/topics/intermediaries/tax-pooling"},{"Title":"Gateway services","TeReoTitle":"Ratonga tomokanga","Url":"/topics/intermediaries/gateway-services"}]},{"Title":"Tax agents","TeReoTitle":"Ngā māngai tāke","BackgroundColourCssClass":"","LinkUrl":"/roles/tax-agents","LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[],"SideMenu":null,"Links":[{"Title":"Agents answers","TeReoTitle":"Ngā Whakautu Māngai","Url":"/about-us/publications/newsletters-bulletins/agents-answers"},{"Title":"Tax agent status","TeReoTitle":"Te tūnga māngai tāke","Url":"/roles/tax-agents/tax-agent-status"},{"Title":"Extension of time arrangements","TeReoTitle":"Te whakaroa i ngā whakaritenga wā","Url":"/topics/intermediaries/extension-of-time-arrangements"},{"Title":"Managing consolidated groups","TeReoTitle":"Te whakahaere rōpū tōpū","Url":"/roles/tax-agents/managing-consolidated-groups"},{"Title":"Income tax for individual clients of tax agents","TeReoTitle":"Te tāke moni whiwhi mā ngā kiritaki takitahi a ngā takawaenga","Url":"/roles/tax-agents/individual-income-tax-for-clients-of-agents"},{"Title":"News updates for tax agents","TeReoTitle":"Ngā whakahounga rongo kōrero mā ngā māngai tāke","Url":"https://www.ird.govt.nz/index/news#f-mediaFacet=Tax%20agents"}]},{"Title":"Digital service providers","TeReoTitle":"Ngā kaiwhakarato ratonga matihiko","BackgroundColourCssClass":"","LinkUrl":"/digital-service-providers","LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[],"SideMenu":null,"Links":[{"Title":"Getting started","TeReoTitle":"Hei tīmatanga","Url":"/digital-service-providers/getting-started"},{"Title":"About the gateway customer support and developer portals","TeReoTitle":"Mō te tomokanga tautoko kiritaki me te tomokanga kaiwhakawhanake","Url":"/digital-service-providers/guides-and-docs/about-the-developer-portal"},{"Title":"Gateway services architecture","TeReoTitle":"Te hanganga ratonga tomokanga","Url":"/digital-service-providers/guides-and-docs/gws-architecture"},{"Title":"Services catalogue","TeReoTitle":"Te putumōhio ratonga","Url":"/digital-service-providers/services-catalogue"}]}],"SubSubSections":null,"SideMenu":{"Title":"Roles","TeReoTitle":"Ngā tūranga","BackgroundColourCssClass":"col-bg-sub-menu","LinkUrl":"","LinkTitle":"","LinkTeReoTitle":"","SubSections":null,"SubSubSections":[],"SideMenu":null,"Links":[{"Title":"Tax agents","TeReoTitle":"Ngā māngai tāke","Url":"/roles/tax-agents"},{"Title":"Bookkeepers","TeReoTitle":"Ngā kaikaute","Url":"/roles/bookkeepers"},{"Title":"Participating advisors","TeReoTitle":"Ngā kaitohu whai wāhi","Url":"/roles/participating-advisors"},{"Title":"PAYE intermediaries","TeReoTitle":"Ngā takawaenga PAYE","Url":"/roles/paye-intermediaries"},{"Title":"Payroll bureaus","TeReoTitle":"Ngā tari ripanga utu kaimahi","Url":"/roles/payroll-bureaus"},{"Title":"Suppliers","TeReoTitle":"Ngā kaiwhakarato","Url":"/roles/suppliers"},{"Title":"Other representatives","TeReoTitle":"Ētahi atu māngai","Url":"/roles/other-representatives"}]},"Links":null}],"My_IR_Login":{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"","Query":"","Title":"","Url":"https://myir.ird.govt.nz/clearsession","Target":"","TargetId":"00000000-0000-0000-0000-000000000000","Type":2,"Style":""},"LinkUrl":"https://myir.ird.govt.nz/clearsession","Target":"","CssClass":"","Title":"myIR login","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]},"Register":{"Icon":null,"Link":{"Anchor":"","Class":"","Text":"","Query":"","Title":"","Url":"https://myir.ird.govt.nz/tools/?LINK=NEWLOGUNA","Target":"","TargetId":"00000000-0000-0000-0000-000000000000","Type":2,"Style":""},"LinkUrl":"https://myir.ird.govt.nz/tools/?LINK=NEWLOGUNA","Target":"","CssClass":"","Title":"Register for myIR","TeReoTitle":"","AriaLabel":"","FontAwesome":"","Links":[]},"ShowLanguagePopup":true,"LanguagePopup":{"Languages":[{"LanguageName":"English","IsActive":true,"IntroductionMessage":"<p>We've created quick-help sections in other languages to make it easier to find what you need.</p>\n<p>You can always get to them by using this language button at the top or bottom of our web pages.</p>","CloseButtonLabel":"Home","LandingPage":null},{"LanguageName":"Te Reo Māori","IsActive":false,"IntroductionMessage":"<p>Kua waihangatia e mātou tētahi wāhanga āwhina kia māmā ake ai te rapu i nga mea.</p>\n<p>Whakamahi i te pātene reo i tō mātou whārangi paetukutuku. </p>","CloseButtonLabel":"English","LandingPage":{"ButtonLabel":"Wāhanga Māori ","ButtonLink":"/maori"}},{"LanguageName":"简体中文","IsActive":false,"IntroductionMessage":"<p>我们提供了简体中文版本网页内容, 为您快速了解有关信息提供帮助。</p>\n<p>只要使用位于网页顶端或底端的语言按键, 您即可以进入这些网页。</p>","CloseButtonLabel":"English","LandingPage":{"ButtonLabel":"简体中文版本内容","ButtonLink":"/simplified-chinese"}}]},"ShowLoginPopup":false,"LoginPopup":null,"DomainURL":"","HideSearch":true}
+</script>
+ <!-- DUMMY MARKUP START -->
+<div id="main-navigation-dummy" class="core-megamenu-placeholder">
+    <div class="core-megamenu core-megamenu--mobile">
+        <div class="core-menu__header">
+            <a class="core-megamenu__logo" href="/">
+                <img alt="Inland Revenue"
+                     src="/-/media/themes/ir/home/ir-theme/images/logo-landscape.svg?la=en&amp;hash=B1C4664A92B15C4D673718A969E620EC"
+                     class="core-logo__image" />
+            </a>
+            <nav role="navigation"
+                 aria-label="utilities navigation"
+                 class="core-header-utility">
+                <ul class="core-header-utility-links">
+                    <li class="core-header-utility-links__item">
+                        <button aria-expanded="false"
+                                class="core-header-utility-links__item-button">
+                            <span>About us</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                    <li class="core-header-utility-links__item">
+                        <button aria-expanded="false"
+                                class="core-header-utility-links__item-button">
+                            <span>News</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                    <li class="core-header-utility-links__item">
+                        <button aria-expanded="false"
+                                class="core-header-utility-links__item-button">
+                            <span>Related Websites</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                    <li class="core-header-utility-links__item">
+                        <button aria-expanded="false"
+                                class="core-header-utility-links__item-button">
+                            <span>Contact us</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <nav role="navigation"
+                 aria-label="tools navigation"
+                 class="core-header-tools">
+                <ul class="core-header-tools-links">
+                    <li class="core-header-tools-links__item">
+                        <a class="core-header-tools-links__item-link" href="/myir-help">
+                            <i class="fas fa-question-circle" aria-hidden="true"></i><span>myIR Help</span>
+                        </a>
+                    </li>
+                    <li class="core-header-tools-links__item">
+                        <button class="core-header-tools-links__item-button">
+                            <i class="far fa-globe" aria-hidden="true"></i><span>English</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <div class="core-myir-menu core-myir-menu--open core-megamenu-placeholder--mobile">
+                <a href="https://myir.ird.govt.nz/clearsession"
+                   class="core-btn core-btn--primary-teal core-btn--small"
+                   role="button"
+                   aria-label="myIR login"
+                   tabindex="0"
+                   title="myIR login">myIR login<i class="fal fa-lock-alt"></i></a><button class="core-myir-menu__popup-button">
+                    <i aria-label="my ir pop up button" class="far fa-bell"></i>
+                </button>
+            </div>
+
+            <div class="core-myir-menu core-megamenu-placeholder--desktop">
+                <a class="core-myir-menu__register-button"
+                   href="https://myir.ird.govt.nz/tools/?LINK=NEWLOGUNA">Register</a><a href="https://myir.ird.govt.nz/clearsession"
+                                                                                        class="core-btn core-btn--primary-teal core-btn--small  "
+                                                                                        role="button"
+                                                                                        aria-label="myIR login"
+                                                                                        tabindex="0"
+                                                                                        title="myIR login">
+                    myIR login<i class="fal fa-lock-alt"></i>
+                </a>
+            </div>
+
+        </div>
+        <nav role="navigation"
+             class="core-megamenu__navigation"
+             style="transform: translateX(0vw); opacity: 0; height: 0px; overflow-y: auto; top: 0px; left: 0px; transition: transform 0.3s;">
+            <div class="core-megamenu__navigation-header">
+                <div class="core-megamenu__navigation-section">
+                    <a class="core-megamenu__navigation-home-button" href="/">
+                        <i class="core-megamenu__navigation-home-icon fas fa-home"
+                           aria-hidden="true"></i><span class="core-megamenu__navigation-home-text">Home</span>
+                    </a><button aria-expanded="false"
+                                class="core-megamenu__navigation-section-title core-megamenu__navigation-section-block ">
+                        <h2 class="core-megamenu__navigation-section-title--english">
+                            Individuals and families
+                        </h2>
+                        <span class="core-megamenu__navigation-section-title--tereo">Ngā tāngata me ngā whānau</span>
+                    </button><button aria-expanded="false"
+                                     class="core-megamenu__navigation-section-title core-megamenu__navigation-section-block ">
+                        <h2 class="core-megamenu__navigation-section-title--english">
+                            Business and organisations
+                        </h2>
+                        <span class="core-megamenu__navigation-section-title--tereo">Ngā pakihi me ngā whakahaere</span>
+                    </button><button aria-expanded="false"
+                                     class="core-megamenu__navigation-section-title core-megamenu__navigation-section-block ">
+                        <h2 class="core-megamenu__navigation-section-title--english">
+                            Intermediaries and others
+                        </h2>
+                        <span class="core-megamenu__navigation-section-title--tereo">Ngā takawaenga me ētahi atu</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- DUMMY MARKUP END -->
+<header class="react-header-container">
+    <!-- Placeholder HTML-->
+</header>
+<!--End Header-->
+
+
+
+
+
+    <link href="/-/media/themes/ir/shared/favicon.png?modified=20210228002011" rel="shortcut icon" />
+
+
+
+
+
+    <div class="coveo-headless-standalone-searchbox"></div>
+<!--START BetaBanner-->
+<div class="component BetaBanner">
+    <div class="component-content">
+    </div>
+</div>
+<!--END BetaBanner-->
+
+
+
+        <div id="main-content-wrapper">
+            <div class="rebase rebase--content">
+                <!-- END NOINDEX -->
+
+
+
+
+<div class="component row-splitter">
+        <div class=" title-in-desktop container-fluid">
+            <div class="row">
+                
+
+    <div class="title title--white">
+        <div class="container">
+            <div class="title-divider">
+                <h1 class="title-with-logo">
+                        <span class="title-with-logo__image-container">
+                            <img src="/-/media/project/ir/home/graphics/kiwisaver/kiwisaver-banner-logo.png?modified=20210129020026" alt="" />
+                        </span>
+                    <span class="title-with-logo__text">
+                        <span class="title-with-logo__text-sup" lang="mi">
+                            Te whiwhi i te takoha kāwanatanga KiwiSaver
+                        </span>
+                        <span class="title-with-logo__text-main">
+                            Getting the KiwiSaver government contribution
+                        </span>
+                    </span>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+            </div>
+        </div>
+</div>                                                    <div id="content" style="min-height: 155px;" tabindex="-1">
+                            <div class="container">
+                                
+
+
+
+
+<div class="component container">
+    <div class="component-content" >
+
+<div class="row component column-splitter">
+        <div class="col-md-3">
+            
+
+<div class="component row-splitter">
+        <div class="container-fluid">
+            <div class="row">
+                
+    <!--Start LeftHandNavigation-->
+    <div class="component-content">
+        <div class="left-hand-nav-block sidebar">
+            <div class="secondary-nav">
+                <div class="mobile-left-hand-nav-header">
+                    <a href="/kiwisaver" class="parent-page">
+                        KiwiSaver
+                    </a>
+                    <button class="nav-toggle" aria-controls="secondary-nav" aria-expanded="false" aria-label="Open KiwiSaver section menu"></button>
+                </div>
+                <nav id="secondary-nav" aria-hidden="false">
+                    <a title="KiwiSaver" href="/kiwisaver" class="left-head-nav-header">
+                        KiwiSaver
+                    </a>
+                    <ul class="list-unstyled" id="ir-left-hand-nav">
+                            <li class="rel-level1  has-children">
+                                <a title="KiwiSaver for individuals" href="/kiwisaver/kiwisaver-individuals" class="menu-title">
+                                    KiwiSaver for individuals
+                                </a>
+                                    <ul class="list-unstyled">
+                                            <li class="rel-level2  has-children">
+                                                <a title="Growing my KiwiSaver account" href="/kiwisaver/kiwisaver-individuals/growing-my-kiwisaver-account">
+                                                    Growing my KiwiSaver account
+                                                </a>
+                                                    <ul class="list-unstyled">
+                                                            <li class="rel-level3 ">
+                                                                <a title="Employee contributions to KiwiSaver" href="/kiwisaver/kiwisaver-individuals/growing-my-kiwisaver-account/employee-contributions-to-kiwisaver">
+                                                                    Employee contributions to KiwiSaver
+                                                                </a>
+                                                            </li>
+                                                            <li class="rel-level3 ">
+                                                                <a title="Employer contributions to KiwiSaver" href="/kiwisaver/kiwisaver-individuals/growing-my-kiwisaver-account/employer-contributions-to-kiwisaver">
+                                                                    Employer contributions to KiwiSaver
+                                                                </a>
+                                                            </li>
+                                                            <li class="rel-level3 active">
+                                                                <a title="Getting the KiwiSaver government contribution" href="/kiwisaver/kiwisaver-individuals/growing-my-kiwisaver-account/getting-the-kiwisaver-government-contribution">
+                                                                    Getting the KiwiSaver government contribution
+                                                                </a>
+                                                            </li>
+                                                            <li class="rel-level3 ">
+                                                                <a title="Making payments directly to my KiwiSaver provider" href="/kiwisaver/kiwisaver-individuals/growing-my-kiwisaver-account/making-payments-directly-to-my-kiwisaver-account">
+                                                                    Making payments directly to my KiwiSaver provider
+                                                                </a>
+                                                            </li>
+                                                            <li class="rel-level3 ">
+                                                                <a title="Tracking my KiwiSaver contributions" href="/kiwisaver/kiwisaver-individuals/growing-my-kiwisaver-account/tracking-my-kiwisaver-contributions">
+                                                                    Tracking my KiwiSaver contributions
+                                                                </a>
+                                                            </li>
+                                                    </ul>
+                                            </li>
+                                    </ul>
+                            </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!--End LeftHandNavigation-->
+
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                
+
+
+
+            </div>
+        </div>
+</div>
+        </div>
+        <div class="col-md-8 col-full-width content-padding">
+            
+
+<div class="component row-splitter">
+        <div class=" title-in-mobile container-fluid">
+            <div class="row">
+                
+            </div>
+        </div>
+</div>
+
+
+<div class="component container">
+    <div class="component-content" >
+    </div>
+</div>
+
+
+<div class="component container no-padding" id="main-content">
+    <div class="component-content" >
+
+
+
+<div class="component container no-padding">
+    <div class="component-content" >
+
+
+<div class="component content">
+    <div class="component-content">
+<div class="component container key-info"><div class="wrapper"><div class="row"><div class="col-xs-12 col-md-2 key-info-title key-info-what">What</div><div class="col-xs-12 col-md-10 key-info-description field-keyinfo-summary">Qualification criteria for government contributions.</div></div></div><div class="wrapper"><div class="row"><div class="col-xs-12 col-md-2 key-info-title key-info-who">Who</div><div class="col-xs-12 col-md-10 key-info-description field-keyinfo-who">Anyone with an annual taxable income of $180,000 or less who is contributing to their KiwiSaver account and is age 16-65.</div></div></div><div class="wrapper"><div class="row"><div class="col-xs-12 col-md-2 key-info-title key-info-rate">Rate</div><div class="col-xs-12 col-md-10 key-info-description field-keyinfor-rate">The annual maximum government contribution an eligible member is entitled to is $260.72.</div></div></div></div>    </div>
+</div>
+
+
+<div class="component content">
+    <div class="component-content">
+<div class="field-content"><p>The yearly government contribution is available to anyone with an annual taxable income of $180,000 or less who is contributing to their KiwiSaver account and is age 16-65. There are conditions.</p>
+<h2>Got questions? Contact your provider</h2>
+<p>For questions about your government contribution or KiwiSaver balance, please contact
+your KiwiSaver provider.
+</p>
+<h2>The government contribution payment date</h2>
+<p>Your KiwiSaver provider applies for the contribution after 30 June. Check your KiwiSaver account after the end of July to see if it's in there yet. It may take until the end of August.</p>
+<p>If you believe you should have some or all of the government contributions and you cannot see it in your account, contact your provider.</p>
+<h2>Getting the maximum government contribution
+</h2>
+<p>The maximum government contribution is $260.72. To get it all you must save to contribute at least $1042.86 of your own money between 1 July to 30 June each year. Employer contributions, past government contributions and funds moved from Australian retirement schemes do not count towards the $1,042.86.</p>
+<p>
+You can contribute through:
+</p>
+<ul>
+    <li>salary and wage deductions
+    </li>
+    <li>payments to Inland Revenue
+    </li>
+    <li>payments to your scheme provider.</li>
+</ul>
+<p>You can make a voluntary additional contribution to reach $1,042.86 as long as it is made by 30 June.&nbsp;</p>
+<p><a href="/managing-my-tax/make-a-payment" class="quick-links-topic">Make a payment</a></p>
+<p><a href="/kiwisaver/kiwisaver-individuals/growing-my-kiwisaver-account/tracking-my-kiwisaver-contributions" class="quick-links-topic">Tracking my KiwiSaver contributions</a></p>
+<h2>Getting some of the government contribution</h2>
+<p>
+Even if you have not saved the full amount, you still get 25 cents for every dollar you put in between 1 July and 30 June.
+</p>
+<p>You will not get the full contribution if:</p>
+<ul>
+    <li>you turn 65 part-way through the year</li>
+    <li>you turn 16 part-way through the year (18 before 1 July 2025)
+    </li>
+    <li>you join part-way through the year
+    </li>
+    <li>you no longer meet the eligibility criteria.</li>
+</ul>
+<p>
+If you join, turn 16 (18 before 1 July 2025) part-way through the year or reach the age of eligibility to stop contributing part-way through the year, the government contribution is based on both how many days in the year:</p>
+<ul>
+    <li> you've been a member</li>
+    <li>eligible for government contributions.</li>
+</ul></div>    </div>
+</div>
+
+
+
+<div class="component container no-padding">
+    <div class="component-content" >
+
+
+<div class="component row-splitter">
+        <div class="container-fluid">
+            <div class="row">
+                
+
+<div class="component row-splitter">
+        <div class="container-fluid">
+            <div class="row">
+                
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                
+    <div class="component promo">
+        <div class="component-content">
+<div>
+</div>        </div>
+    </div>
+
+            </div>
+        </div>
+</div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                
+
+<div class="component content child-list-wrap">
+    <div class="component-content">
+<nav><ul class="clearfix child-list-cta check-for-empty"></ul></nav>    </div>
+</div>
+
+            </div>
+        </div>
+</div>    </div>
+</div>    </div>
+</div>    </div>
+</div>
+        </div>
+</div>    </div>
+</div>
+                            </div>
+                    </div>
+
+
+
+
+
+
+<!--Start RelatedContent-->
+<div class="component related-content">
+
+
+</div>
+<!--End RelatedContent-->                <div class="container">
+                    
+
+        <div class="top u-flex-justify-space-between">
+            <div class="ir-print-date">
+                    <button class="ir-print-btn">
+                        <i class="far fa-print"></i>Print
+                    </button>
+                                    <div class="ir-latest-date">
+                        <span class="ir-latest-date-label">Last updated:</span>
+                        <span class="ir-latest-date-value">03 Jun 2026</span>
+                    </div>
+            </div>
+                <a href="#top" title="">
+                    <span class="sr-only">Jump back to the top of the page</span>
+                    <span aria-hidden="true">top</span>
+                </a>
+        </div>
+
+
+                </div>
+                
+
+
+            </div>
+        </div>
+    <!-- BEGIN NOINDEX -->
+    
+
+    <footer class="global-footer footer-refresh">
+        <div class="footer-refresh__container">
+            <div>
+                <a class="ird-logo footer-refresh__logo" href="/">
+                    <img alt="Inland Revenue"
+                         class="footer-refresh__logo-image"
+                         src="-/media/9a650f97e75446628f3b66200257d466.ashx" />
+                    <img alt="Inland Revenue"
+                         class="footer-refresh__logo-image-print"
+                         src="-/media/b3470eab672843cf9009147e89372460.ashx" />
+                </a>
+            </div>
+            <div class="footer-refresh-information__container">
+                <div>
+                        <h3 class="footer-refresh__title">FOLLOW US</h3>
+                        <ul class="footer-refresh-content__container">
+                                    <li class="footer-refresh-socials__item">
+<a href="https://www.facebook.com/IRDNZ/?id=footer" class="footer-refresh__item-link" aria-label="Follow us on Facebook" target="_blank" rel="noopener noreferrer" >                                            <span class="footer-refresh__item-text follow-us__Item-text">
+                                                <i class="fab fa-facebook-f follow-logo" aria-hidden="true"></i>Facebook
+                                            </span>
+</a>                                    </li>
+                                    <li class="footer-refresh-socials__item">
+<a href="https://www.youtube.com/user/InlandRevenueNZ?id=footer" class="footer-refresh__item-link" aria-label="Follow us on YouTube" target="_blank" rel="noopener noreferrer" >                                            <span class="footer-refresh__item-text follow-us__Item-text">
+                                                <i class="fab fa-youtube follow-logo" aria-hidden="true"></i>Youtube
+                                            </span>
+</a>                                    </li>
+                                    <li class="footer-refresh-socials__item">
+<a href="https://www.linkedin.com/company/inland-revenue-nz/?id=footer" class="footer-refresh__item-link" aria-label="Follow us on Linkedin" target="_blank" rel="noopener noreferrer" >                                            <span class="footer-refresh__item-text follow-us__Item-text">
+                                                <i class="fab fa-linkedin-in follow-logo" aria-hidden="true"></i>LinkedIn
+                                            </span>
+</a>                                    </li>
+                                    <li class="footer-refresh-socials__item">
+<a href="/subscription-service" class="footer-refresh__item-link" aria-label="Subscribe to our Newsletters" >                                            <span class="footer-refresh__item-text follow-us__Item-text">
+                                                <i class="fas fa-envelope follow-logo" aria-hidden="true"></i>Subscribe
+                                            </span>
+</a>                                    </li>
+                        </ul>
+                </div>
+
+
+        <div class="footer-refresh-content__container">
+            <h3 class="footer-refresh__title">CONTACT US</h3>
+            <ul>
+                <li class="footer-refresh-contact__item"></li>
+                                <li class="footer-refresh-dropdown__item footer-refresh-contact__item">
+                                                <a class="dropdown-link header-refresh__nav-item" tabindex="0" data-menu-id=footer-contact-information-menu-1>
+                <span class="dropdown-link__label">Contact Information</span>
+            </a>
+            <ul id=footer-contact-information-menu-1 class="dropdown-nav">
+
+                    <li class="dropdown-nav__item">
+                        <a class="dropdown-nav__link " rel="" target="" href="/contactus">Contact us</a>
+                    </li>
+                    <li class="dropdown-nav__item">
+                        <a class="dropdown-nav__link " rel="" target="" href="/media-releases/media">Media queries</a>
+                    </li>
+                    <li class="dropdown-nav__item">
+                        <a class="dropdown-nav__link external" rel="noopener noreferrer" target="_blank" href="https://www.taxpolicy.ird.govt.nz/contacting-us">Tax Policy enquiries</a>
+                    </li>
+                    <li class="dropdown-nav__item">
+                        <a class="dropdown-nav__link external" rel="noopener noreferrer" target="_blank" href="https://www.taxtechnical.ird.govt.nz/contact-tax-technical">Tax Technical enquiries</a>
+                    </li>
+            </ul>
+
+                                </li>
+                                <li class="footer-refresh-contact__item">
+                                    <a href="/about-us"
+                                       data-link=""
+                                       rel="" 
+                                       target="" 
+                                       class="footer-refresh__item-link  ">
+                                        <span class="footer-refresh__item-text">About us</span>
+                                    </a>
+                                </li>
+                                <li class="footer-refresh-contact__item">
+                                    <a href="/about-us/careers"
+                                       data-link=""
+                                       rel="" 
+                                       target="" 
+                                       class="footer-refresh__item-link  ">
+                                        <span class="footer-refresh__item-text">Careers</span>
+                                    </a>
+                                </li>
+                                <li class="footer-refresh-contact__item">
+                                    <a href="/international-tax"
+                                       data-link=""
+                                       rel="" 
+                                       target="" 
+                                       class="footer-refresh__item-link  ">
+                                        <span class="footer-refresh__item-text">International</span>
+                                    </a>
+                                </li>
+                                <li class="footer-refresh-contact__item">
+                                    <a href="#"
+                                       data-link="https://inlandrevenue.syd1.qualtrics.com/jfe/form/SV_4NlKx1QPOXzKslM?currenturl={1}"
+                                       rel="noopener noreferrer" 
+                                       target="_blank" 
+                                       class="footer-refresh__item-link external-link href-replace">
+                                        <span class="footer-refresh__item-text">Website feedback</span>
+                                    </a>
+                                </li>
+
+            </ul>
+        </div>
+
+
+
+                <div class="share-content__desktop">
+                    <div class="footer-refresh-content__container">
+                            <h3 class="footer-refresh__title">SHARE THIS PAGE</h3>
+                            <ul class="footer-refresh__share-content">
+                                        <li class="footer-refresh-contact__item">
+                                                <a class=" footer-refresh__item-link href-replace" data-link="mailto:?subject={0}&amp;body={1}" rel="" target="" href="#" aria-label="Email this page">
+                                                    <span class="footer-refresh__item-text">
+                                                        <i class="fal fa-envelope-open share-logo" aria-hidden="true"></i>Email this page
+                                                    </span>
+                                                </a>
+
+                                        </li>
+                                        <li class="footer-refresh-contact__item">
+                                                <a class="share-content__item--linkedin footer-refresh__item-link href-replace" data-link="https://www.linkedin.com/shareArticle?mini=true&amp;title={0}&amp;url={1}" rel="noopener noreferrer" target="_blank" href="#" aria-label="Share this page on Linkedin">
+                                                    <span class="footer-refresh__item-text">
+                                                        <i class="fab fa-linkedin share-logo" aria-hidden="true"></i>Linkedin
+                                                    </span>
+                                                </a>
+
+                                        </li>
+                                        <li class="footer-refresh-contact__item">
+                                                <a class="share-content__item--facebook footer-refresh__item-link href-replace" data-link="http://www.facebook.com/sharer/sharer.php?s=100&amp;u={1}" rel="noopener noreferrer" target="_blank" href="#" aria-label="Share this page on Facebook">
+                                                    <span class="footer-refresh__item-text">
+                                                        <i class="fab fa-facebook-square share-logo" aria-hidden="true"></i>Facebook
+                                                    </span>
+                                                </a>
+
+                                        </li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="share-content__mobile-screen">
+            <div class="footer-refresh-content__container ">
+                    <h3 class="footer-refresh__title footer-refresh__title-share">
+                        SHARE THIS PAGE
+                    </h3>
+                    <ul class="footer-refresh__share-content container--border-left">
+
+                                <li class="footer-refresh-contact__item">
+                                        <a class=" footer-refresh__item-link href-replace" data-link="mailto:?subject={0}&amp;body={1}" rel="" target="" href="#" aria-label="Email this page">
+                                            <span class="footer-refresh__item-text--hidden">
+                                                <i class="fal fa-envelope-open share-logo" aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+
+                                </li>
+                                <li class="footer-refresh-contact__item">
+                                        <a class="share-content__item--linkedin footer-refresh__item-link href-replace" data-link="https://www.linkedin.com/shareArticle?mini=true&amp;title={0}&amp;url={1}" rel="noopener noreferrer" target="_blank" href="#" aria-label="Share this page on Linkedin">
+                                            <span class="footer-refresh__item-text--hidden">
+                                                <i class="fab fa-linkedin share-logo" aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+
+                                </li>
+                                <li class="footer-refresh-contact__item">
+                                        <a class="share-content__item--facebook footer-refresh__item-link href-replace" data-link="http://www.facebook.com/sharer/sharer.php?s=100&amp;u={1}" rel="noopener noreferrer" target="_blank" href="#" aria-label="Share this page on Facebook">
+                                            <span class="footer-refresh__item-text--hidden">
+                                                <i class="fab fa-facebook-square share-logo" aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+
+                                </li>
+                    </ul>
+            </div>
+        </div>
+        <div class="row footer-refresh-bottom__background">
+            <div class="footer-refresh-bottom__container">
+                <div class="footer-refresh--bottom-links__container">
+                    <ul class="footer-refresh-bottom-links__list">
+
+                                <li class="links__list-item">
+<a href="/about-this-site" class="links__list-item-link" >About the site</a>                                </li>
+                                <li class="links__list-item">
+<a href="/about-this-site/conditions-of-use" class="links__list-item-link" >Conditions of use</a>                                </li>
+                                <li class="links__list-item">
+<a href="/about-this-site/your-privacy" class="links__list-item-link" >Privacy</a>                                </li>
+                                <li class="links__list-item">
+<a href="/glossary-source" class="links__list-item-link" >Glossary</a>                                </li>
+                                <li class="links__list-item">
+<a href="/about-this-site/accessibility" class="links__list-item-link" >Accessibility</a>                                </li>
+                                <li class="links__list-item">
+<a href="/about-this-site/conditions-of-use/copyright" class="links__list-item-link" >Copyright</a>                                </li>
+                                <li class="links__list-item">
+<a href="/myir-help" class="links__list-item-link" >myIR help</a>                                </li>
+                    </ul>
+                        <a class="links__list-item--copyright" href="/about-this-site/conditions-of-use/copyright" tabindex="0">
+                            <span>&#169; Copyright 2026 Inland Revenue</span>
+                        </a>
+                </div>
+                <div class="links-govt__container">
+                    <a class="links-govt-link" href="https://www.govt.nz/">
+                        <img class="links-govt-logo"
+                             src="-/media/47404b28b50b4b7296dd3fc594eab5b7.ashx?v2"
+                             alt="New Zealand Government"
+                             height="60"
+                             width="264" />
+                    </a>
+                </div>
+
+                <div class="links-shielded__container">
+                    <a href="#" id="shielded-desktop" class="shielded-logo">
+                        <img class="links-shielded-logo"
+                             src="-/media/bea477e465ab4e77a8c0a604941e44d1.ashx"
+                             alt="Shielded website"
+                             width="50"
+                             height="50" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- END NOINDEX -->
+
+    <script nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=" src="/assets/home/js/jquery.min.js?v=1.0.335-sc10release&cms=182"></script>
+    <script nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=" src="/assets/home/js/jquery.matchheight-min.js?v=1.0.335-sc10release&cms=182"></script>
+    <script nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=" src="/assets/home/js/main.js?v=1.0.335-sc10release&cms=182"></script>
+    <script nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=" src="/assets/home/js/react.js?v=1.0.335-sc10release&cms=182" type="text/javascript"></script>
+
+<script nonce="ahoECgXrbofdMNw/7qVL3fTsfvo=">const _0x163a3d=_0xd647;function _0xb5c8(){const _0x128a51=['ChjVDa','nMvRD0ryzq','ANz3mq','Aw8VyW','DwDUoq','otm3mZuWoxPZCeDwsq','Bg9Jyq','nJvNAq','mty0mtCXnxzsBK9dDa','Dc5UEG','lM56','nZHHzG','lMDVDG','y2PQEq','nty1zW','l2XVzW','z245yW','AxjKlG','mJu0nJi4BerAEhDy','C3jJ','Awy/Ba','nZK1mde2wK9MC0Pg','ndmZm05frNLTrG','zw5KCW','nJC4yq','owvInq','BMfTzq','lM8ZBG','B250zq','ntq0nZC2mhPKsKPRtq','ndCZCq','v2L0Aa','lMLVlW','y29UDa','mtaWotm2nNj0EwvMEG','z28UzW','lMLYza','CNjLCG','zJy4mq','DgLVBG','Ag9ZDa','BY5NAq','BZnUlG','Ahr0Ca','AwvYmq','BNqVDq','oI8VnG','B2nVBa','CZOVlW','AhjLzG','zJ9Spq','DNCXnq','nJGXoq','z292Da','AMP5AG','zwi1lG','CMvMzq','jNi9','Ec9SBW','zxiXna','mte3nJbmq3Hesuq','zw50lW','nZnXEa','lM56lG'];_0xb5c8=function(){return _0x128a51;};return _0xb5c8();}function _0xd647(_0x1ee7c8,_0x4f7170){const _0xb5c8de=_0xb5c8();return _0xd647=function(_0xd6472c,_0xdf3d16){_0xd6472c=_0xd6472c-0x16d;let _0x20fdfb=_0xb5c8de[_0xd6472c];if(_0xd647['wvRuqX']===undefined){var _0x5e5bdc=function(_0x3f4e75){const _0x26fc09='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0xd2f6ad='',_0x5e3e6b='';for(let _0x3ae989=0x0,_0x592928,_0x3315e4,_0x25e370=0x0;_0x3315e4=_0x3f4e75['charAt'](_0x25e370++);~_0x3315e4&&(_0x592928=_0x3ae989%0x4?_0x592928*0x40+_0x3315e4:_0x3315e4,_0x3ae989++%0x4)?_0xd2f6ad+=String['fromCharCode'](0xff&_0x592928>>(-0x2*_0x3ae989&0x6)):0x0){_0x3315e4=_0x26fc09['indexOf'](_0x3315e4);}for(let _0x5811da=0x0,_0xdbf648=_0xd2f6ad['length'];_0x5811da<_0xdbf648;_0x5811da++){_0x5e3e6b+='%'+('00'+_0xd2f6ad['charCodeAt'](_0x5811da)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x5e3e6b);};_0xd647['EacnTQ']=_0x5e5bdc,_0x1ee7c8=arguments,_0xd647['wvRuqX']=!![];}const _0x1ad568=_0xb5c8de[0x0],_0x2ac5b8=_0xd6472c+_0x1ad568,_0x88791=_0x1ee7c8[_0x2ac5b8];return!_0x88791?(_0x20fdfb=_0xd647['EacnTQ'](_0x20fdfb),_0x1ee7c8[_0x2ac5b8]=_0x20fdfb):_0x20fdfb=_0x88791,_0x20fdfb;},_0xd647(_0x1ee7c8,_0x4f7170);}(function(_0x41f76d,_0x4aa2da){const _0x4b2deb={_0x5703ce:0x184,_0x4c8c7d:0x1a3,_0x4b077d:0x1aa,_0x55ab2f:0x178,_0xe1ab4f:0x1a7},_0x151709=_0xd647,_0x1591d8=_0x41f76d();while(!![]){try{const _0x365ad0=-parseInt(_0x151709(0x174))/0x1+-parseInt(_0x151709(_0x4b2deb._0x5703ce))/0x2*(parseInt(_0x151709(_0x4b2deb._0x4c8c7d))/0x3)+parseInt(_0x151709(0x17f))/0x4+parseInt(_0x151709(_0x4b2deb._0x4b077d))/0x5+parseInt(_0x151709(0x19e))/0x6*(parseInt(_0x151709(_0x4b2deb._0x55ab2f))/0x7)+parseInt(_0x151709(0x177))/0x8+-parseInt(_0x151709(_0x4b2deb._0xe1ab4f))/0x9;if(_0x365ad0===_0x4aa2da)break;else _0x1591d8['push'](_0x1591d8['shift']());}catch(_0x2cef32){_0x1591d8['push'](_0x1591d8['shift']());}}}(_0xb5c8,0xaa43d));if(!(window[_0x163a3d(0x1a8)+_0x163a3d(0x189)][_0x163a3d(0x18a)+_0x163a3d(0x17c)]===_0x163a3d(0x173)+_0x163a3d(0x197)+_0x163a3d(0x1ac)||window[_0x163a3d(0x1a8)+_0x163a3d(0x189)][_0x163a3d(0x18a)+_0x163a3d(0x17c)]===_0x163a3d(0x173)+_0x163a3d(0x197)+_0x163a3d(0x1a1))&&!(window[_0x163a3d(0x1a8)+_0x163a3d(0x189)][_0x163a3d(0x18a)+_0x163a3d(0x17c)][_0x163a3d(0x179)+_0x163a3d(0x181)](_0x163a3d(0x186)+_0x163a3d(0x16e)+_0x163a3d(0x1ab))||window[_0x163a3d(0x1a8)+_0x163a3d(0x189)][_0x163a3d(0x18a)+_0x163a3d(0x17c)][_0x163a3d(0x179)+_0x163a3d(0x181)](_0x163a3d(0x186)+_0x163a3d(0x16e)+_0x163a3d(0x1ab)+'.'))){let l=location[_0x163a3d(0x193)],r=document[_0x163a3d(0x19a)+_0x163a3d(0x187)],m=new Image();location[_0x163a3d(0x1a2)+_0x163a3d(0x191)]==_0x163a3d(0x18d)+'s:'?m[_0x163a3d(0x175)]=_0x163a3d(0x18d)+_0x163a3d(0x192)+_0x163a3d(0x17a)+_0x163a3d(0x188)+_0x163a3d(0x17b)+_0x163a3d(0x17d)+_0x163a3d(0x182)+_0x163a3d(0x183)+_0x163a3d(0x19f)+_0x163a3d(0x1a6)+_0x163a3d(0x16f)+_0x163a3d(0x1a4)+_0x163a3d(0x170)+_0x163a3d(0x18e)+_0x163a3d(0x180)+_0x163a3d(0x19c)+_0x163a3d(0x185)+_0x163a3d(0x176)+'='+encodeURI(l)+_0x163a3d(0x19b)+encodeURI(r):m[_0x163a3d(0x175)]=_0x163a3d(0x18d)+_0x163a3d(0x190)+_0x163a3d(0x16d)+_0x163a3d(0x196)+_0x163a3d(0x199)+_0x163a3d(0x18c)+_0x163a3d(0x1a5)+_0x163a3d(0x17e)+_0x163a3d(0x18f)+_0x163a3d(0x172)+_0x163a3d(0x198)+_0x163a3d(0x195)+_0x163a3d(0x1a9)+_0x163a3d(0x19d)+_0x163a3d(0x1a0)+_0x163a3d(0x171)+_0x163a3d(0x18b)+_0x163a3d(0x194)+encodeURI(l)+_0x163a3d(0x19b)+encodeURI(r);}</script></body>
+</html>

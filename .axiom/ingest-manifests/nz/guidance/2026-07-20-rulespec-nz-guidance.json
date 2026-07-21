@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/nz/guidance/2026-07-20-rulespec-nz-guidance.json",
+      "sha256": "bec8d97c0174786f4d6ec61373c38614a94529122fe1f78cdc1bc7038837d3cd"
+    },
+    {
+      "path": "data/corpus/inventory/nz/guidance/2026-07-20-rulespec-nz-guidance.json",
+      "sha256": "30979e4f96d6187e7889f805fd6ba6336301fb7f4ac21e9949a27dfaf7f3618a"
+    },
+    {
+      "path": "data/corpus/provisions/nz/guidance/2026-07-20-rulespec-nz-guidance.jsonl",
+      "sha256": "ef9c6aeaf74997e679e7d63ed95c9fd75dc28606082ed017182e84b78db9baa7"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-20-rulespec-nz-guidance/official-documents/nz-employment-parental-leave-payments.html",
+      "sha256": "945e4a10992eb5ea2cb40e8911a9c681e05e1fa1a174f5f271983a87a6fd3fc7"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-20-rulespec-nz-guidance/official-documents/nz-employment-ppl-rate-increase-2024.html",
+      "sha256": "5c8568790cd00c4e042b14fa5bf0d9f60baa7834c82a353f27f94540057e83a6"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-20-rulespec-nz-guidance/official-documents/nz-employment-ppl-rate-increase-2026.html",
+      "sha256": "f349940e2f10ae68bc5d54acc189324a26cf91e75b4bab4e5fd0a0616ec74009"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-20-rulespec-nz-guidance/official-documents/nz-ird-how-kiwisaver-works.html",
+      "sha256": "4b114227ab5d48d81acdbac897d5ede1ad4ab3786770bb6cc33d26573ed2b989"
+    },
+    {
+      "path": "data/corpus/sources/nz/guidance/2026-07-20-rulespec-nz-guidance/official-documents/nz-ird-kiwisaver-government-contribution.html",
+      "sha256": "cb202bd075540bf94290619e1d9414b360b661fee48cf899cfe4fa2edb972e5e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "b09bea1d58a2a26b5acc343f5fc9faed5733174c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-official-documents --manifest manifests/nz-guidance-rate-documents.yaml --source-as-of 2026-07-20 --expression-date 2026-07-20 over 5 live official agency pages (IRD x2, Employment NZ x3), retained as sha256-pinned source snapshots"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 62,
+    "missing_count": 0,
+    "provision_count": 62,
+    "source_count": 62
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-20T11:11:27.755490+00:00",
+  "jurisdiction": "nz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Ous5TVR4D+I5qADgavT8BHHwwDdpe+cl32Kme9bwzfVnPL3xCv1iPUVo5fLjUqbuVsaiogFP7oQCCY6S6CJsDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-20-rulespec-nz-guidance"
+}

@@ -1,0 +1,17 @@
+documents:
+  - source_id: cra-2025-gst370-employee-partner-rebate
+    jurisdiction: ca
+    document_class: policy
+    citation_path: ca/policy/cra/t1-2025/gst370-employee-partner-rebate
+    title: CRA Form GST370 2025 Employee and Partner GST/HST Rebate Application
+    source_url: https://www.canada.ca/content/dam/cra-arc/formspubs/pbg/gst370/gst370-25e.pdf
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-01-01'
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Canada Revenue Agency
+      document_subtype: cra_t1_form
+      program: gst370_employee_partner_rebate

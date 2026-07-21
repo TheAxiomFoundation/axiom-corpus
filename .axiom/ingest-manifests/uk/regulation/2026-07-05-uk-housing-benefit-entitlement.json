@@ -11,52 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-05-uk-housing-benefit-entitlement.jsonl",
       "sha256": "4f8394795c82428673dcf15b265a27bdc61f59b0f43b279869becaf944aeae1e"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/213/regulation-22.xml",
-      "sha256": "2221eaa35a3891be56b928edda37fe7e239265f9d130a2f385ce4d3cdc55ede1"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/213/regulation-70.xml",
-      "sha256": "cc3770eb209314eee1408b528e0fcd8473b582187196c0bc924222d046849945"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/213/regulation-71.xml",
-      "sha256": "5af5de021c69d39c57d5d1130f0c76cc672dc6c03d94622df891ee8ebe4a5d5e"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/213/regulation-74.xml",
-      "sha256": "d659604568500336d3704b91a7f981ea9b50bc8f39e7e22c24788f8490229aa7"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/213/schedule-3.xml",
-      "sha256": "effbb8a49a3f49dba902ef390f299d00a9efc479fe87e7ebe696260c96a3683e"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/214/regulation-22.xml",
-      "sha256": "684547095b4aeeab5a8b68df38cac4d37c46974ce89ba70fab9fe480a1b43d75"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/214/regulation-50.xml",
-      "sha256": "6a48d318a2928d551d4aa8494836adb3faa068d75542730ae7e6a97382bd85b4"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/214/regulation-51.xml",
-      "sha256": "0b991096381e3fae011bcd4b4d7e584b0a04b6f6cdee0db6c325912a7d1b5d6c"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/214/regulation-55.xml",
-      "sha256": "f3303849a4ef8ba1a7bb128be39fa5043f616ef00acd8ba8e75c142ebcebe845"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-05-uk-housing-benefit-entitlement/uksi/2006/214/schedule-3.xml",
-      "sha256": "ffeb75f4a696445a5d012566c0761806ba68113e0fbf8cee3fe4a2b72dda036e"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "341ae9a62c04ea6cc6b1fe7fd9d4c15c679280d2",
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
     "dirty_tracked": false,
-    "root": "/Users/maxghenis/_axiom-worktrees/hb-wave-20260705/axiom-corpus"
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -71,14 +31,14 @@
     "source_count": 10
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-05T21:43:29.886394+00:00",
+  "generated_at": "2026-07-21T11:42:00.295035+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "aFNAaOjj3GnMy93WMFzgRJ5jUIRmOKrNlK6O6zivHwR51Ai3gyz+gXLJ39Hg2WTWnI4i0iMlcnNb8q7KgmdUCg=="
+    "value": "zHXuA9wZKq/hInn/f+wk6BbaVrU0sNhvGZ/UdRJGMn6eG3XeN0DSL8MjNoQC/wdjKopcDzg+ntVXlHDXCy9dDg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-uk-housing-benefit-entitlement"

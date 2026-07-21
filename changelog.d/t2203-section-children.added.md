@@ -1,1 +1,0 @@
-Added per-section navigation children to the 11 T2203-family and northern-residents scopes (province Part 4 blocks, grouped Part 3 credits, guide and Part 5 summary sections, T2222 steps). Parent bodies are unchanged so encoding source-hash pins stay valid; children are verbatim slices of the shared captures.
