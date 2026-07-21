@@ -238,6 +238,28 @@ def test_compose_rejects_colliding_source_files_without_debris(tmp_path):
         assert path.exists()
 
 
+def test_compose_rejects_file_versus_directory_collisions(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    # wave-1 stores a plain file named "node"; wave-2 stores a directory
+    # "node/" holding a file. Copying both would silently write wave-1's
+    # file INTO wave-2's directory, so the preflight must refuse.
+    _write_single_doc_scope(store, "wave-1", "de/statute/estg", source_name="node")
+    _write_single_doc_scope(
+        store, "wave-2", "de/statute/solzg-1995", source_name="node/inside.xml"
+    )
+
+    with pytest.raises(ValueError, match="source file collides"):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="de",
+            document_class="statute",
+            source_versions=["wave-1", "wave-2"],
+            target_version="composed",
+        )
+    for path in _target_artifacts(store, "composed"):
+        assert not path.exists()
+
+
 def test_compose_rejects_incomplete_constituents_even_when_aggregate_cancels(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
     # wave-1 inventories "a" but provides "b"; wave-2 the reverse. The

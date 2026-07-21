@@ -124,20 +124,28 @@ def compose_scope_versions(
                 f"constituent scope does not have complete coverage: {source_version}"
             )
 
-    # Detect source-file collisions before creating anything so a refused
-    # compose never leaves a partial target behind.
-    seen_relative_files: dict[Path, str] = {}
+    # Detect source-path collisions before creating anything so a refused
+    # compose never leaves a partial target behind. Directories may merge
+    # with directories, but a file may never share a relative path with
+    # anything from another constituent (including a directory — otherwise
+    # copy2 would silently write file "node" INTO directory "node/").
+    seen_relative_paths: dict[Path, tuple[str, str]] = {}
     for source_version, directory in source_directories:
         for path in sorted(directory.rglob("*")):
-            if path.is_dir():
-                continue
             relative = path.relative_to(directory)
-            if relative in seen_relative_files:
-                raise ValueError(
-                    "source file collides across source versions: "
-                    f"{source_version}/{relative}"
-                )
-            seen_relative_files[relative] = source_version
+            kind = "directory" if path.is_dir() else "file"
+            previous = seen_relative_paths.get(relative)
+            if previous is None:
+                seen_relative_paths[relative] = (kind, source_version)
+                continue
+            previous_kind, previous_version = previous
+            if kind == "directory" and previous_kind == "directory":
+                continue
+            raise ValueError(
+                "source file collides across source versions: "
+                f"{previous_version}/{relative} ({previous_kind}) vs "
+                f"{source_version}/{relative} ({kind})"
+            )
 
     inventory = []
     seen_inventory_paths: set[str] = set()
