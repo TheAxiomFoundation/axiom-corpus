@@ -1,44 +1,42 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-pa/manual/2026-05-27-pa-snap-handbook.json",
-      "sha256": "dfe7f1c75627f13b9149ec49375c8a729921a5f57c364ac05400e9eb569e6b5e"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-pa/manual/2026-05-27-pa-snap-handbook.json"
     },
     {
-      "path": "data/corpus/inventory/us-pa/manual/2026-05-27-pa-snap-handbook.json",
-      "sha256": "cbd3dd78a2cedace283b78c8a6e2161417b1b2bd3b39ba329426a4ee9f645bad"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-pa/manual/2026-05-27-pa-snap-handbook.json"
     },
     {
-      "path": "data/corpus/provisions/us-pa/manual/2026-05-27-pa-snap-handbook.jsonl",
-      "sha256": "c8d056c48f0b2b29b16e8302dced7dc2c7e190a417772e48504712744834feab"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-pa/manual/2026-05-27-pa-snap-handbook.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "commit": "0f55af3417ab2f72fc6f0e34b31dabed29ee1d16",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "retire source-less Pennsylvania SNAP handbook artifacts after authenticated 2026-07-21 replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 1055,
-    "missing_count": 0,
-    "provision_count": 1055,
-    "source_count": 1055
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-21T11:42:03.124435+00:00",
+  "generated_at": "2026-07-21T19:12:58.190004+00:00",
   "jurisdiction": "us-pa",
-  "reasoning_logs": [],
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-pa-snap-handbook.md",
+      "sha256": "8d41bdce68f2bdc2cd34f263686dbef74f8c1920901033b808c41c88d07ec6e8"
+    }
+  ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "rTz+b7AUixkY1/PrGLsFtN9qRt0ie2/SgDizKwUWYV2O26qskuz8TwA67/pdvr+YonETiuMi3T59ed4EDJMoDg=="
+    "value": "dmfR/fFdY+ORkXb/knoyNmz0IBrUv3XTtcxp+2sy8DjqweNFE6rxMloVaKfpY6FlTJC4D+00TCnRRATqeJOACw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-pa-snap-handbook"
