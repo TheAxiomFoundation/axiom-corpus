@@ -1,0 +1,1 @@
+Add a collision-free RuleSpec corpus release containing all 51 published-current state and District of Columbia SNAP primary scopes and all three published-current supporting scopes, including a consolidated Massachusetts DTA regulation scope.

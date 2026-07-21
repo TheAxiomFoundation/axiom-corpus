@@ -18,6 +18,27 @@ EXPECTED_TARGET_MANIFEST_PATHS = {
 }
 PUBLISHED_CURRENT = "published_current"
 SOURCE_REFETCH_REQUIRED = "source_refetch_required"
+COMPREHENSIVE_RELEASE = REPO_ROOT / "manifests/releases/us-rulespec-snap-2026-07-21.json"
+INHERITED_RELEASE = REPO_ROOT / "manifests/releases/us-rulespec-2026-07-19-dedup.json"
+CONSOLIDATED_MASSACHUSETTS_VERSION = "2026-07-21-ma-dta-regulations-consolidated"
+CONSOLIDATED_MASSACHUSETTS_SCOPE = (
+    "us-ma",
+    "regulation",
+    CONSOLIDATED_MASSACHUSETTS_VERSION,
+)
+RELEASE_SCOPE_SUBSTITUTIONS = {
+    (
+        "us-ma",
+        "regulation",
+        "2026-07-17-ma-dta-snap-regulations",
+    ): CONSOLIDATED_MASSACHUSETTS_SCOPE,
+}
+SUPERSEDED_RELEASE_SCOPES = {
+    ("us-co", "regulation", "2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained"),
+    ("us-la", "manual", "2026-07-13-recovery"),
+    ("us-ma", "regulation", "2026-05-28"),
+    ("us-mi", "manual", "2026-07-13-recovery"),
+}
 
 
 @cache
@@ -221,3 +242,98 @@ def test_published_state_snap_ingest_manifests_are_authenticated() -> None:
                 issues[f"{state['jurisdiction']}:{role}"] = manifest_issues
 
     assert issues == {}
+
+
+def test_comprehensive_release_tracks_the_state_snap_queue() -> None:
+    payload = json.loads(COMPREHENSIVE_RELEASE.read_text())
+    release_scope_keys = [
+        (scope["jurisdiction"], scope["document_class"], scope["version"])
+        for scope in payload["scopes"]
+    ]
+    release_scopes = set(release_scope_keys)
+    assert len(payload["scopes"]) == len(release_scopes) == 200
+    assert release_scope_keys == sorted(release_scope_keys)
+
+    published_scopes = set()
+    refetch_scopes = set()
+    for state in _queue():
+        for _role, status, _manifest_path, scope in _scope_entries(state):
+            identity = (scope["jurisdiction"], scope["document_class"], scope["version"])
+            if status == PUBLISHED_CURRENT:
+                published_scopes.add(RELEASE_SCOPE_SUBSTITUTIONS.get(identity, identity))
+            else:
+                refetch_scopes.add(identity)
+
+    assert len(published_scopes) == 54
+    inherited_payload = json.loads(INHERITED_RELEASE.read_text())
+    inherited_scopes = {
+        (scope["jurisdiction"], scope["document_class"], scope["version"])
+        for scope in inherited_payload["scopes"]
+    }
+    assert inherited_scopes >= SUPERSEDED_RELEASE_SCOPES
+    assert release_scopes == (
+        inherited_scopes - SUPERSEDED_RELEASE_SCOPES
+    ) | published_scopes
+    assert refetch_scopes.isdisjoint(release_scopes)
+    assert SUPERSEDED_RELEASE_SCOPES.isdisjoint(release_scopes)
+
+
+def test_massachusetts_consolidation_drops_shadowed_legacy_blocks() -> None:
+    paths = _scope_paths(
+        {
+            "jurisdiction": CONSOLIDATED_MASSACHUSETTS_SCOPE[0],
+            "document_class": CONSOLIDATED_MASSACHUSETTS_SCOPE[1],
+            "version": CONSOLIDATED_MASSACHUSETTS_SCOPE[2],
+        }
+    )
+    rows = [json.loads(line) for line in paths["provisions"].read_text().splitlines()]
+    inventory = json.loads(paths["inventory"].read_text())
+    current_source_fragment = "/2026-07-17-ma-dta-snap-regulations/"
+    legacy_source_fragment = "/2026-05-28/"
+    current_citations = {
+        row["citation_path"]
+        for row in rows
+        if current_source_fragment in (row.get("source_path") or "")
+    }
+    legacy_rows = [
+        row for row in rows if legacy_source_fragment in (row.get("source_path") or "")
+    ]
+
+    assert len(rows) == len(inventory["items"]) == 332
+    assert {row["citation_path"] for row in legacy_rows} == {
+        "us-ma/regulation/106-cmr/364/990",
+        "us-ma/regulation/106-cmr/364/990/block-1",
+    }
+    assert not any(
+        row.get("kind") == "block" and row.get("parent_citation_path") in current_citations
+        for row in legacy_rows
+    )
+    assert "file://" not in json.dumps(rows)
+    assert "file://" not in json.dumps(inventory)
+
+
+def test_massachusetts_consolidation_manifest_is_authenticated() -> None:
+    public_key = os.environ.get("AXIOM_CORPUS_INGEST_PUBLIC_KEY")
+    if not public_key:
+        if os.environ.get("CI"):
+            pytest.fail("AXIOM_CORPUS_INGEST_PUBLIC_KEY is required in CI")
+        pytest.skip("AXIOM_CORPUS_INGEST_PUBLIC_KEY is required for signature verification")
+
+    manifest_path = _scope_paths(
+        {
+            "jurisdiction": CONSOLIDATED_MASSACHUSETTS_SCOPE[0],
+            "document_class": CONSOLIDATED_MASSACHUSETTS_SCOPE[1],
+            "version": CONSOLIDATED_MASSACHUSETTS_SCOPE[2],
+        }
+    )["ingest_manifest"]
+    manifest = json.loads(manifest_path.read_text())
+
+    assert (
+        verify_ingest_manifest(
+            manifest,
+            public_key=public_key,
+            repo=REPO_ROOT,
+            head_ref="HEAD",
+        )
+        == []
+    )

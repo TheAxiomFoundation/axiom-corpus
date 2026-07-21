@@ -34,6 +34,16 @@ def _rewritten_source_path(
     return f"sources/{jurisdiction}/{document_class}/{target_version}/{source_version}/{relative}"
 
 
+def _portable_metadata(metadata: dict[str, Any] | None) -> dict[str, Any] | None:
+    if metadata is None:
+        return None
+    portable = dict(metadata)
+    download_url = portable.get("download_url")
+    if isinstance(download_url, str) and download_url.startswith("file://"):
+        portable.pop("download_url")
+    return portable or None
+
+
 _DUPLICATE_IGNORED_FIELDS = {
     "body",
     "expression_date",
@@ -81,6 +91,8 @@ def consolidate_release_scopes(
     source_versions: tuple[str, ...],
     target_version: str,
     preferred_duplicate_versions: dict[str, str] | None = None,
+    preferred_duplicate_version: str | None = None,
+    shadowed_block_versions: dict[str, str] | None = None,
 ) -> tuple[Path, ...]:
     """Create one immutable scope from ordered sources, deduping empty containers."""
     if not source_versions:
@@ -90,12 +102,26 @@ def consolidate_release_scopes(
     if target_version in source_versions:
         raise ValueError("target version must differ from source versions")
     preferences = dict(preferred_duplicate_versions or {})
-    unknown_preference_versions = sorted(set(preferences.values()) - set(source_versions))
+    shadowing = dict(shadowed_block_versions or {})
+    preference_versions = set(preferences.values())
+    if preferred_duplicate_version is not None:
+        preference_versions.add(preferred_duplicate_version)
+    unknown_preference_versions = sorted(preference_versions - set(source_versions))
     if unknown_preference_versions:
         raise ValueError(
             "preferred duplicate versions must be source versions: "
             f"{unknown_preference_versions}"
         )
+    unknown_shadow_versions = sorted(
+        (set(shadowing) | set(shadowing.values())) - set(source_versions)
+    )
+    if unknown_shadow_versions:
+        raise ValueError(
+            "shadowed block versions must be source versions: "
+            f"{unknown_shadow_versions}"
+        )
+    if any(source == successor for source, successor in shadowing.items()):
+        raise ValueError("shadowed block source and successor versions must differ")
 
     store = CorpusArtifactStore(base)
     target_inventory_path = store.inventory_path(jurisdiction, document_class, target_version)
@@ -130,6 +156,7 @@ def consolidate_release_scopes(
         for item in load_source_inventory(inventory_path):
             rewritten = replace(
                 item,
+                metadata=_portable_metadata(item.metadata),
                 source_path=_rewritten_source_path(
                     item.source_path,
                     jurisdiction=jurisdiction,
@@ -152,6 +179,7 @@ def consolidate_release_scopes(
                     if record.parent_citation_path
                     else None
                 ),
+                metadata=_portable_metadata(record.metadata),
                 source_path=_rewritten_source_path(
                     record.source_path,
                     jurisdiction=jurisdiction,
@@ -164,6 +192,37 @@ def consolidate_release_scopes(
                 (source_version, rewritten)
             )
 
+    citations_by_version = {
+        source_version: {
+            citation_path
+            for citation_path, candidates in provision_candidates.items()
+            if any(version == source_version for version, _record in candidates)
+        }
+        for source_version in source_versions
+    }
+    for citation_path in tuple(provision_candidates):
+        retained = [
+            (source_version, record)
+            for source_version, record in provision_candidates[citation_path]
+            if not (
+                source_version in shadowing
+                and record.kind == "block"
+                and record.parent_citation_path
+                in citations_by_version[shadowing[source_version]]
+            )
+        ]
+        retained_versions = {source_version for source_version, _record in retained}
+        if retained:
+            provision_candidates[citation_path] = retained
+            inventory_candidates[citation_path] = [
+                (source_version, item)
+                for source_version, item in inventory_candidates[citation_path]
+                if source_version in retained_versions
+            ]
+        else:
+            del provision_candidates[citation_path]
+            del inventory_candidates[citation_path]
+
     if set(inventory_candidates) != set(provision_candidates):
         missing = sorted(set(provision_candidates) - set(inventory_candidates))
         extra = sorted(set(inventory_candidates) - set(provision_candidates))
@@ -173,8 +232,10 @@ def consolidate_release_scopes(
     provisions_by_citation: dict[str, ProvisionRecord] = {}
     used_preferences: set[str] = set()
     for citation_path, candidates in provision_candidates.items():
-        preferred_version = preferences.get(citation_path)
+        explicit_preferred_version = preferences.get(citation_path)
+        preferred_version = explicit_preferred_version
         if len(candidates) > 1:
+            preferred_version = preferred_version or preferred_duplicate_version
             first = candidates[0][1]
             equivalent = all(
                 _is_structural_duplicate(first, candidate) for _, candidate in candidates[1:]
@@ -184,7 +245,7 @@ def consolidate_release_scopes(
                     "conflicting duplicate citation_path requires an explicit preferred "
                     f"source version: {citation_path}"
                 )
-            if preferred_version is not None:
+            if explicit_preferred_version is not None:
                 used_preferences.add(citation_path)
         selected_version = preferred_version or candidates[0][0]
         selected = next(
@@ -284,6 +345,16 @@ def main() -> int:
         default=[],
         metavar="CITATION_PATH=SOURCE_VERSION",
     )
+    parser.add_argument(
+        "--prefer-all-duplicates-from",
+        metavar="SOURCE_VERSION",
+    )
+    parser.add_argument(
+        "--drop-shadowed-block",
+        action="append",
+        default=[],
+        metavar="SOURCE_VERSION=SUCCESSOR_VERSION",
+    )
     args = parser.parse_args()
     preferences: dict[str, str] = {}
     for raw in args.prefer_duplicate_carrier:
@@ -293,6 +364,14 @@ def main() -> int:
         if citation_path in preferences:
             parser.error(f"duplicate preferred carrier for {citation_path}")
         preferences[citation_path] = source_version
+    shadowing: dict[str, str] = {}
+    for raw in args.drop_shadowed_block:
+        source_version, separator, successor_version = raw.partition("=")
+        if not separator or not source_version or not successor_version:
+            parser.error("--drop-shadowed-block must be SOURCE_VERSION=SUCCESSOR_VERSION")
+        if source_version in shadowing:
+            parser.error(f"duplicate shadowed block source version {source_version}")
+        shadowing[source_version] = successor_version
     generated = consolidate_release_scopes(
         base=args.base,
         jurisdiction=args.jurisdiction,
@@ -300,6 +379,8 @@ def main() -> int:
         source_versions=tuple(args.source_version),
         target_version=args.target_version,
         preferred_duplicate_versions=preferences,
+        preferred_duplicate_version=args.prefer_all_duplicates_from,
+        shadowed_block_versions=shadowing,
     )
     for path in generated:
         print(path)
