@@ -1,0 +1,90 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/policy/2026-07-21-ok-snap-policy.json",
+      "sha256": "dfaa833c7ee137ba0a780169b8bdea1d10ec86fb19de800ed912744f6143a5f1"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/policy/2026-07-21-ok-snap-policy.json",
+      "sha256": "633604cf6c411bc45b1b5b53704fdb736ea1a8331b0c62bff1408261edaadf9d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/policy/2026-07-21-ok-snap-policy.jsonl",
+      "sha256": "50529e27b80909157fcc63fb26d2f06fa74e79091a774de2c5037f695a2dcdc6"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/ok-oac-340-10-snap-dependencies.json",
+      "sha256": "c21811db09ecf6870b7f230277c16eab5f78e3dea96d40b949863e4699e78879"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/ok-oac-340-2-snap-dependencies.json",
+      "sha256": "1ab7049c71f0b6c6abd12c9bfd393136a922b214bfbd65573b2907249fee42ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/ok-oac-340-65-snap-dependencies.json",
+      "sha256": "35638b78a8c28e64748bd76092c15199bb57f4a72d9b3b54dd2df7d1304e3b8c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/okdhs-appendix-b-2-deadlines-for-case-actions.pdf",
+      "sha256": "d35ff5d9d5374165b6a936f5a7b1c55e452cd6d020f818f1929fc5a32364ebe8"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/okdhs-appendix-c-1-schedule-of-maximum-income.pdf",
+      "sha256": "f4fdfd4924b1f3193fecd195ac4a2fbea4dbb752a82b69ed2e09092c5f6aea67"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/okdhs-appendix-c-3-a-disaster-income-limits-and-allotments.pdf",
+      "sha256": "1862579b8fcc55fe722037d1877b1c04efe5c137a407deaff77c522af614d571"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/okdhs-appendix-c-3-allotment-table-data.csv",
+      "sha256": "a2f9183f5ec73554545498a5b1e75850cee6e14b4d723daf744a384669a618ea"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/okdhs-appendix-c-3-allotment-table-landing-page.html",
+      "sha256": "36e93feb7607a188ac86627b480213f969d1d5e4d285c0de81c6808f1fd307e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/okdhs-appendix-c-3-snap-allotment-table.pdf",
+      "sha256": "f87dca203cb015fbd90f45a2777dbe06e4a4cf9608e3e89a16fc6a43278205fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/policy/2026-07-21-ok-snap-policy/official-documents/okdhs-appendix-d-4-c-indian-food-distribution-programs.pdf",
+      "sha256": "b2ad5bf13b05f68d958947443f8eec7eba692d2c4aa79b85a7400c283c05c3dc"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5825c3f1eb4937f7a5e6a0dd58f3c05fa9fea7a9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-ok-snap-policy --manifest manifests/us-ok-snap-policy.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 113,
+    "missing_count": 0,
+    "provision_count": 113,
+    "source_count": 113
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T18:36:28.487678+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-ok-snap-policy.md",
+      "sha256": "2936730f604ea87d00a82e17327f13e9a020b44b9854445aaf69c02865b009fb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "t+iEiS0/Vm8lRyX2QV7zRtwWv6avSBieMRwtRZtTF+VA4Ew9G+ti0KKvmkZiDK5sREkYiXMejL+YWQPwskcsDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-ok-snap-policy"
+}
