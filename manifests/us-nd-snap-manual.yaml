@@ -1,4 +1,67 @@
 documents:
+- source_id: nd-hhs-snap-manual-landing
+  jurisdiction: us-nd
+  document_class: manual
+  citation_path: us-nd/manual/hhs/snap/navigation/landing
+  title: North Dakota HHS SNAP Policy Manual landing page
+  source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+  source_format: html
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
+  extraction:
+    html_content_selector: '#mc-main-content'
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Health and Human Services
+    document_subtype: manual_landing_page_snapshot
+    program: SNAP
+    federal_program: SNAP
+    manual_toc_url: https://www.nd.gov/dhs/policymanuals/SNAP/Data/Tocs/Online_Chunk0.js
+    manual_base_url: https://www.nd.gov/dhs/policymanuals/SNAP/
+    current_release: '26.5'
+    source_discovery_group: us-nd/manual/snap
+    discovered_via: official-manual:north-dakota-hhs-snap-policy-manual
+- source_id: nd-hhs-snap-manual-toc
+  jurisdiction: us-nd
+  document_class: manual
+  citation_path: us-nd/manual/hhs/snap/navigation/toc
+  title: North Dakota HHS SNAP Policy Manual official table of contents
+  source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Data/Tocs/Online_Chunk0.js
+  source_format: javascript
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Health and Human Services
+    document_subtype: manual_toc_snapshot
+    program: SNAP
+    federal_program: SNAP
+    manual_landing_page: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+    manual_base_url: https://www.nd.gov/dhs/policymanuals/SNAP/
+    current_release: '26.5'
+    source_discovery_group: us-nd/manual/snap
+    discovered_via: official-manual:north-dakota-hhs-snap-policy-manual
+- source_id: nd-hhs-snap-release-26-5
+  jurisdiction: us-nd
+  document_class: manual
+  citation_path: us-nd/manual/hhs/snap/updates/release-26-5
+  title: North Dakota SNAP Policy Manual Release 26.5 update
+  source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Policy Update Documentation/2026/SNAP Release 26.5 Effective 6.15.2026.pdf
+  source_format: pdf
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
+  metadata:
+    primary_source: true
+    source_authority: North Dakota Health and Human Services
+    document_subtype: policy_manual_release
+    program: SNAP
+    federal_program: SNAP
+    manual_landing_page: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
+    manual_toc_url: https://www.nd.gov/dhs/policymanuals/SNAP/Data/Tocs/Online_Chunk0.js
+    manual_base_url: https://www.nd.gov/dhs/policymanuals/SNAP/
+    release_number: '26.5'
+    source_discovery_group: us-nd/manual/snap
+    discovered_via: official-manual:north-dakota-hhs-snap-policy-manual
 - source_id: nd-hhs-snap-001-dhs-policymanuals-snap-content-1001-case-management-overview-htm
   jurisdiction: us-nd
   document_class: manual
@@ -6,8 +69,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1001 Overview'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1001 Case Management Overview.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -26,8 +89,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1002 Reporting Requirements'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1002 Reporting Requirements.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -46,8 +109,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1003 Mass Change'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1003 Mass Change.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -66,8 +129,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1004 Adding-Removing Household Member'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1004 Adding-Removing Household Member.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -86,8 +149,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1005 Recertification'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1005 Recertification.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -106,8 +169,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1006 Notice of Adverse Action'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1006 Notice of Adverse Action.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -126,8 +189,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1007 Case Narrative'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1007 Narrative.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -146,8 +209,8 @@ documents:
   title: 'North Dakota SNAP Manual: 101 Application Filing - Interview Process'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/101 Application Filing - Interview Process.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -166,8 +229,8 @@ documents:
   title: 'North Dakota SNAP Manual: 102 Household Rights and Responsibilities'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/102 Household Rights and Responsibilities.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -186,8 +249,8 @@ documents:
   title: 'North Dakota SNAP Manual: 103 Verifications'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/103 Verifications.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -206,8 +269,8 @@ documents:
   title: 'North Dakota SNAP Manual: 104 Authorized Representative'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/104 Authorized Representative.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -226,8 +289,8 @@ documents:
   title: 'North Dakota SNAP Manual: 105 Application Approval or Denial'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/105 Application Approval or Denial.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -246,8 +309,8 @@ documents:
   title: 'North Dakota SNAP Manual: 106 Re-Application - Revert to Open'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/106 Re-Application - Revert to Open.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -266,8 +329,8 @@ documents:
   title: 'North Dakota SNAP Manual: 107 Expedited Services'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/107 Expedited Services.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -286,8 +349,8 @@ documents:
   title: 'North Dakota SNAP Manual: 108 Destitue Migrant and Seasonal Farm Workers'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/108 Destitue Migrant and Seasonal Farm Workers.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -306,8 +369,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1101 Overpayments'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1101 Overpayments.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -326,8 +389,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1102 Underpayments'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1102 Underpayments.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -346,8 +409,8 @@ documents:
   title: 'North Dakota SNAP Manual: 1103 Intentional Program Violation'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/1103 Intentional Program Violation.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -366,8 +429,8 @@ documents:
   title: 'North Dakota SNAP Manual: 201 Household Composition'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/201 Household Composition.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -386,8 +449,8 @@ documents:
   title: 'North Dakota SNAP Manual: 202 Parental Control'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/202 Parental Control.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -406,8 +469,8 @@ documents:
   title: 'North Dakota SNAP Manual: 203 Boarders'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/203 Boarders.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -426,8 +489,8 @@ documents:
   title: 'North Dakota SNAP Manual: 204 Student Status'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/204 Student Status.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -446,8 +509,8 @@ documents:
   title: 'North Dakota SNAP Manual: 205 Group Homes'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/205 Group Homes.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -466,8 +529,8 @@ documents:
   title: 'North Dakota SNAP Manual: 206 Residents-Drug/Alcohol or Mental Health Treatment and Rehabilitation Programs'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/206 Residents of Drug and Alcohol Treatment and Rehabilitation Programs.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -486,8 +549,8 @@ documents:
   title: 'North Dakota SNAP Manual: 207 Shelters for Abused Adults and Children'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/207 Shelters for Abused Adults and Children.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -506,8 +569,8 @@ documents:
   title: 'North Dakota SNAP Manual: 208 Dual Participation: SNAP/Tribal Commodities Food Distribution Program on Indian Reservation'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/208 Dual Participation -  SNAP-Tribal Commodities Food Distribution Program on Indian Reservation.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -526,8 +589,8 @@ documents:
   title: 'North Dakota SNAP Manual: 209 NAC - National Accuracy Clearinghouse'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/209 NAC - National Accuracy Clearinghouse.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -546,8 +609,8 @@ documents:
   title: 'North Dakota SNAP Manual: 301 Work Registration Overview'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/301 Work Registration Overview.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -566,8 +629,8 @@ documents:
   title: 'North Dakota SNAP Manual: 302 Good Cause and Unsuitable Employment'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/302 Good Cause and Unsuitable Employment.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -586,8 +649,8 @@ documents:
   title: 'North Dakota SNAP Manual: 303 Disqualification'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/303 Disqualification.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -606,8 +669,8 @@ documents:
   title: 'North Dakota SNAP Manual: 401 Overview'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/401 Overview.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -626,8 +689,8 @@ documents:
   title: 'North Dakota SNAP Manual: 402 Countable Months - Exemptions'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/402 Countable Months-Exemptions.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -646,8 +709,8 @@ documents:
   title: 'North Dakota SNAP Manual: 403 Geographic Waiver'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/403 Geographic Waiver.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -666,8 +729,8 @@ documents:
   title: 'North Dakota SNAP Manual: 404 Disqualification - Regaining Eligibility'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/404 Disqualification - Regaining Eligibility.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -686,8 +749,8 @@ documents:
   title: 'North Dakota SNAP Manual: 501 Citizenship'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/501 Citizenship.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -706,8 +769,8 @@ documents:
   title: 'North Dakota SNAP Manual: 502 Eligible Alien Status'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/502 Eligible Alien Status.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -726,8 +789,8 @@ documents:
   title: 'North Dakota SNAP Manual: 503 Sponsored Aliens'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/503 Sponsored Aliens.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -746,8 +809,8 @@ documents:
   title: 'North Dakota SNAP Manual: 504 Social Security Number'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/504 Social Security Number.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -766,8 +829,8 @@ documents:
   title: 'North Dakota SNAP Manual: 505 Categorical and Broad Based Categorical Eligibility (BBCE)'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/505 Categorical and Broad Based Categorical Eligibility (BBCE).htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -786,8 +849,8 @@ documents:
   title: 'North Dakota SNAP Manual: 601 Resources Overview'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/601 Resources Overview.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -806,8 +869,8 @@ documents:
   title: 'North Dakota SNAP Manual: 602 Ownership/Accessibility/Equity Value'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/602 Ownership-Asscessibility-Equity Value.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -826,8 +889,8 @@ documents:
   title: 'North Dakota SNAP Manual: 603 Countable and Excluded Resources'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/603 Countable and Excluded Resources.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -846,8 +909,8 @@ documents:
   title: 'North Dakota SNAP Manual: 604 Vehicles'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/604 Vehicles.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -866,8 +929,8 @@ documents:
   title: 'North Dakota SNAP Manual: 605 Transfer of Resources Disqualification'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/605 Transfer of Resources Disqualification.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -886,8 +949,8 @@ documents:
   title: 'North Dakota SNAP Manual: 701 Income Overview'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/701 Income Overview.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -906,8 +969,8 @@ documents:
   title: 'North Dakota SNAP Manual: 702 Unearned Income'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/702 Unearned Income.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -926,8 +989,8 @@ documents:
   title: 'North Dakota SNAP Manual: 703 Tribal Payments and IIM Accounts'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/703 Tribal Payments and IIM Accounts.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -946,8 +1009,8 @@ documents:
   title: 'North Dakota SNAP Manual: 704 Earned Income'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/704 Earned Income.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -966,8 +1029,8 @@ documents:
   title: 'North Dakota SNAP Manual: 705 Self-Employment Income'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/705 Self-Employment Income.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -986,8 +1049,8 @@ documents:
   title: 'North Dakota SNAP Manual: 801 Standard, Earned, Dependent Care, Child Support and Representative Payee Fee'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/801 Standard, Earned, Dependent Care, Child Support and Representative Payee Fee.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1006,8 +1069,8 @@ documents:
   title: 'North Dakota SNAP Manual: 802 Medical Deductions'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/802 Medical.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1026,8 +1089,8 @@ documents:
   title: 'North Dakota SNAP Manual: 803 Shelter Deductions'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/803 Shelter Deductions.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1046,8 +1109,8 @@ documents:
   title: 'North Dakota SNAP Manual: 901 Prospective Budgeting'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/901 Prospective Budgeting.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1066,8 +1129,8 @@ documents:
   title: 'North Dakota SNAP Manual: 902 Benefit Determination'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/902 Benefit Determination.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1086,8 +1149,8 @@ documents:
   title: 'North Dakota SNAP Manual: 903 Benefit Availability'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/903 Benefit Availability.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1106,8 +1169,8 @@ documents:
   title: 'North Dakota SNAP Manual: 904 SNAP Replacement Conditions'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/904 SNAP Replacement Conditions.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1126,8 +1189,8 @@ documents:
   title: 'North Dakota SNAP Manual: Appendix A - Glossary'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Appendix A - Glossary.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1146,8 +1209,8 @@ documents:
   title: 'North Dakota SNAP Manual: Appendix B - Table of Standards'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Appendix B - Table of Standards.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1166,8 +1229,8 @@ documents:
   title: 'North Dakota SNAP Manual: Appendix C - General Complaints'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Appendix C - General Complaints.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1186,8 +1249,8 @@ documents:
   title: 'North Dakota SNAP Manual: Appendix D - Civil Rights'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Appendix D - Civil Rights.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1206,8 +1269,8 @@ documents:
   title: 'North Dakota SNAP Manual: Appendix E - Confidentiality'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Appendix E - Confidentiality.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1226,8 +1289,8 @@ documents:
   title: 'North Dakota SNAP Manual: Introduction'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Introduction.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1246,8 +1309,8 @@ documents:
   title: 'North Dakota SNAP Manual: Processing SNAP Reviews'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Processing SNAP Reviews.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
@@ -1266,8 +1329,8 @@ documents:
   title: 'North Dakota SNAP Manual: Release Log'
   source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Release Log.htm
   source_format: html
-  source_as_of: '2026-05-27'
-  expression_date: '2026-04-27'
+  source_as_of: '2026-07-21'
+  expression_date: '2026-06-15'
   extraction:
     html_content_selector: '#mc-main-content'
   metadata:
