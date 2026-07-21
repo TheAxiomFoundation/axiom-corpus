@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import base64
+import csv
 import re
 import shutil
 import subprocess
@@ -13,7 +14,7 @@ import warnings
 import zipfile
 from dataclasses import dataclass
 from datetime import date
-from io import BytesIO
+from io import BytesIO, StringIO
 from json import dumps as json_dumps
 from json import loads as json_loads
 from pathlib import Path
@@ -765,6 +766,8 @@ def _infer_source_format(source: OfficialDocumentSource, downloaded: _Downloaded
         return "html"
     if "javascript" in content_type or source.source_url.lower().split("?", 1)[0].endswith(".js"):
         return "javascript"
+    if "csv" in content_type or source.source_url.lower().split("?", 1)[0].endswith(".csv"):
+        return "csv"
     if "excel" in content_type or source.source_url.lower().split("?", 1)[0].endswith(".xls"):
         return "xls"
     if "msword" in content_type or downloaded.content.startswith(_LEGACY_WORD_DOCUMENT_MAGIC):
@@ -831,6 +834,8 @@ def _extract_blocks(
         )
     if source_format == "javascript":
         return _extract_plain_text_blocks(content, title=title)
+    if source_format == "csv":
+        return _extract_csv_blocks(content, title=title, extraction=extraction)
     if source_format == "docx":
         return _extract_docx_blocks(content, extraction=extraction)
     if source_format == "doc":
@@ -862,6 +867,125 @@ def _extract_plain_text_blocks(
             heading=title,
             body=body,
             metadata={},
+        ),
+    )
+
+
+def _extract_csv_blocks(
+    content: bytes,
+    *,
+    title: str | None,
+    extraction: dict[str, Any] | None,
+) -> tuple[_DocumentBlock, ...]:
+    """Parse a CSV source into one auditable tabular block."""
+    config = extraction or {}
+    try:
+        text = content.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        text = content.decode("cp1252")
+
+    configured_delimiter = config.get("csv_delimiter") or config.get("delimiter")
+    if configured_delimiter is not None:
+        delimiter = str(configured_delimiter)
+        if len(delimiter) != 1:
+            raise ValueError("csv delimiter must be exactly one character")
+    else:
+        try:
+            delimiter = csv.Sniffer().sniff(text[:8192], delimiters=",;\t|").delimiter
+        except csv.Error:
+            delimiter = ","
+
+    try:
+        rows = [
+            tuple(row)
+            for row in csv.reader(StringIO(text), delimiter=delimiter, strict=True)
+        ]
+    except csv.Error as exc:
+        raise ValueError(f"invalid csv source: {exc}") from exc
+    header_row_number = int(
+        config["csv_header_row"]
+        if "csv_header_row" in config
+        else config.get("header_row", 1)
+    )
+    start_row_configured = "csv_start_row" in config or "start_row" in config
+    start_row_number = int(
+        config["csv_start_row"]
+        if "csv_start_row" in config
+        else config.get("start_row", header_row_number + 1)
+    )
+    if header_row_number < 1 or header_row_number > len(rows):
+        raise ValueError("csv header row is outside the source")
+    if start_row_number <= header_row_number:
+        raise ValueError("csv start row must follow the header row")
+    if start_row_configured and start_row_number > len(rows):
+        raise ValueError("csv start row is outside the source")
+
+    header_row = rows[header_row_number - 1]
+    if not header_row or any(not _xlsx_cell_text(value) for value in header_row):
+        raise ValueError("csv header cells must be non-empty")
+    headers = _xlsx_headers(header_row)
+    index = _xlsx_header_index(headers)
+    output_columns = _xlsx_configured_strings(
+        config.get("csv_columns") or config.get("columns")
+    )
+    filters = _xlsx_filters(config.get("csv_filters") or config.get("filters"))
+    missing_columns = [column for column in output_columns if column not in index]
+    if missing_columns:
+        raise ValueError(f"csv column not found: {', '.join(missing_columns)}")
+    missing_filter_columns = [column for column in filters if column not in index]
+    if missing_filter_columns:
+        raise ValueError(f"csv filter column not found: {', '.join(missing_filter_columns)}")
+    row_columns = output_columns or headers
+    max_rows = (
+        config["csv_max_rows"] if "csv_max_rows" in config else config.get("max_rows")
+    )
+    row_limit = int(max_rows) if max_rows is not None else None
+    if row_limit is not None and row_limit < 1:
+        raise ValueError("csv max rows must be positive")
+    selected_rows: list[tuple[int, tuple[str, ...]]] = []
+
+    for row_number, row in enumerate(rows, start=1):
+        if row_number < start_row_number or not any(cell.strip() for cell in row):
+            continue
+        if len(row) > len(headers):
+            raise ValueError(f"csv row {row_number} has more cells than the header")
+        if not _xlsx_row_matches_filters(row, index=index, filters=filters):
+            continue
+        selected_rows.append(
+            (
+                row_number,
+                tuple(
+                    _xlsx_cell_text(row[index[column]])
+                    if index[column] < len(row)
+                    else ""
+                    for column in row_columns
+                ),
+            )
+        )
+        if row_limit is not None and len(selected_rows) >= row_limit:
+            break
+
+    if not selected_rows:
+        return ()
+    body_lines = ["Row | " + " | ".join(row_columns)]
+    body_lines.extend(
+        f"{row_number} | " + " | ".join(values) for row_number, values in selected_rows
+    )
+    metadata: dict[str, Any] = {
+        "delimiter": delimiter,
+        "row_count": len(selected_rows),
+    }
+    citation_suffix = config.get("citation_suffix") or config.get("section_label")
+    if isinstance(citation_suffix, str) and citation_suffix:
+        metadata["citation_suffix"] = citation_suffix
+        metadata["section_label"] = citation_suffix
+    return (
+        _DocumentBlock(
+            kind="sheet",
+            ordinal=1,
+            heading=str(config.get("heading") or title or "CSV data"),
+            body=_normalize_text("\n".join(body_lines)),
+            metadata=metadata,
         ),
     )
 
