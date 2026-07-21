@@ -18,9 +18,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "83f9dc44eb5536b47afbc0a083150c42cafc9e1b",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-corpus/_worktrees/scottish-income-tax"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,19 +35,14 @@
     "source_count": 3
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-05T20:45:15.652815+00:00",
+  "generated_at": "2026-07-21T11:42:00.152811+00:00",
   "jurisdiction": "uk",
-  "reasoning_logs": [
-    {
-      "path": "docs/ingest-runs/2026-07-05-uk-scottish-income-tax.md",
-      "sha256": "0e85f3f7e3c3814d55f329808a709bd35391e24ec8011fe20782ec3a91efd6f0"
-    }
-  ],
+  "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "T7k/shMQjyXnJDqlQiUdBLRZvPqs/XpdiKJIG+sc1BXKr8tcovroDube8eY43d6c2WI+Pk9qMxl40PumAnQqDQ=="
+    "value": "7Z0IWwhDERy0tgnuGykUf63LGP3GPkeA8sY6sNv785t8xkFEEYKmyXkxTQ5ACex9N7VsxhDRqznkhzgYXNtUBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-05-uk-scottish-income-tax"

@@ -11,20 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/statute/2026-07-07-uk-lbtt-scotland.jsonl",
       "sha256": "fd62f4d197b1e35516d9e868dfb04c04c49fdbd834ec8ceeb81c8cacc27127a6"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-lbtt-scotland/asp/2013/11/schedule-2A.xml",
-      "sha256": "09cc8a5940a211944a767c12991a4ee0a57020cedf23b28969c65d5afc353d0e"
-    },
-    {
-      "path": "data/corpus/sources/uk/statute/2026-07-07-uk-lbtt-scotland/asp/2013/11/section-24.xml",
-      "sha256": "089eefb22a92a661dcdc97fc6a832df0cec86e34a5e84d0957a119200bee9d82"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "37b925e3798932b393307e1b742a24490f80faf5",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_parity_workspaces/laneB/axiom-corpus"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -39,14 +31,14 @@
     "source_count": 2
   },
   "document_class": "statute",
-  "generated_at": "2026-07-07T16:34:02.680293+00:00",
+  "generated_at": "2026-07-21T11:42:01.079671+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "X7NF10PDboh71ibRpGbkfOrgL0RCJmgbj1c0T4fr7Qx4ziXQ53kooXEYxDm0yp081Ph9LvhGR/uBo9nRIVT4Aw=="
+    "value": "1+2irC+aHX8pqETGtmoJTEqJXyfU6pgXNFqCs5IwXlRSH0rNWBZ4XVhLP8TrYpc+kYNn3yqMqgbkn9m3LPYNAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-07-uk-lbtt-scotland"

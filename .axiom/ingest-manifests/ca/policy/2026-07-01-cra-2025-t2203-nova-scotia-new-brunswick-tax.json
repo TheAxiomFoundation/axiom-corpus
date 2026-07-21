@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.json",
-      "sha256": "3fdab8a1b625a69a73fdac66394d3032051ea1b36f0c7a04ca946d5aae4ea1ba"
+      "sha256": "8494f635e5c0b4a0f6175c2263f0ce8d5b434b2a363f89395d6fd5fad1bf7d1e"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "b63d0ff331aaa1d9d2c3ef21e56100c914653f70",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "add per-section navigation children (T2203 province/group sections, T2222 steps) without altering parent bodies, preserving encoding source-hash pins"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 4
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T12:12:19.611628+00:00",
+  "generated_at": "2026-07-21T11:40:40.869341+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "biOJ0I1m7oLVRvT3M7ErqTn9iege0aOcanhqiN9p5KQs4ZXW/3BEEWVeWKUv/Mjzzs2WHhIY1BBNA6SeOxIwDQ=="
+    "value": "jObwUq5VhOpXILtfNQwYoUNsIOUvr2SEWinh/771n8fDtvSTU70lnGYt6Ti+HggPx1o+3WbaXr0TqCWLCohsCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-01-cra-2025-t2203-nova-scotia-new-brunswick-tax"

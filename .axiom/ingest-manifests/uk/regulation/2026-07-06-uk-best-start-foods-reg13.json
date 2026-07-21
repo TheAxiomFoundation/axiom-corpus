@@ -11,16 +11,12 @@
     {
       "path": "data/corpus/provisions/uk/regulation/2026-07-06-uk-best-start-foods-reg13.jsonl",
       "sha256": "8f7d8e58669563b9dcfd7b5e5226b7c63f2afb78d46765c6bb18bae46a4fec3c"
-    },
-    {
-      "path": "data/corpus/sources/uk/regulation/2026-07-06-uk-best-start-foods-reg13/ssi/2019/193/regulation-13.xml",
-      "sha256": "4e4e24963458f4d820cb6c03a40551b9b1bb08bbedc679dad6dc92ae81249556"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "025f5d98e446cd4bf26961e0a3249b90238b736b",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/_axiom-worktrees/uk-passport-grants-20260706/axiom-corpus"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -35,14 +31,14 @@
     "source_count": 1
   },
   "document_class": "regulation",
-  "generated_at": "2026-07-06T22:47:14.399506+00:00",
+  "generated_at": "2026-07-21T11:42:00.359034+00:00",
   "jurisdiction": "uk",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "H2/hcQZpKrIzf42jNlE7I99dqVZ5o4MQY865lJc9r5GWXJ5g4V8YQXTj2B6aZ7nf+CnKxYBj63B5SHjHryZiDQ=="
+    "value": "iI4z63czdmEB6d2xQXEO/0a8YGtBP+KbEQ2BAHcZYp4/uP+cEHhaxB6TH6qksIBiAGK1EdmrHnUiM+IBCaB+AQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-06-uk-best-start-foods-reg13"

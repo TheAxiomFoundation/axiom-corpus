@@ -30,9 +30,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "759e76154225bb24803476e851f361c79582ecfd",
-    "dirty_tracked": true,
-    "root": "/Users/maxghenis/TheAxiomFoundation/_worktrees/axiom-corpus-co-oap-artifacts-20260625"
+    "commit": "8d7ad76601ef469f5cc52e152770a8d46fd74ce2",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -47,7 +47,7 @@
     "source_count": 92
   },
   "document_class": "regulation",
-  "generated_at": "2026-06-25T09:53:13.973506+00:00",
+  "generated_at": "2026-07-21T11:57:43.759384+00:00",
   "jurisdiction": "us-co",
   "reasoning_logs": [
     {
@@ -59,7 +59,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "AI3XH1kC234crqBFl+zo8N1TpCiciwwfJCg1vRhGWBo3pcqfUO+LfQbFJ1gK+9s+ALXFORd6SM0A+eK3ZquWBQ=="
+    "value": "D4y+6cLyqW+ygQhi6z5Q8SEkjZLrDrWDV+p2bSyBZvft6kIUtlZ+p66ZCxrIPGUFUpzuzOuucwNVo/tZZny/Aw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-06-19-co-oap-9-ccr-2503-5"

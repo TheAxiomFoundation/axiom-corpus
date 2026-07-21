@@ -14,9 +14,9 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "3b6989cf2cc3a6d4794672d6bef01771ba5249f0",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
@@ -31,14 +31,14 @@
     "source_count": 373
   },
   "document_class": "manual",
-  "generated_at": "2026-07-07T19:50:47.716047+00:00",
+  "generated_at": "2026-07-21T11:42:03.494826+00:00",
   "jurisdiction": "us-wi",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "tSEhf7Ewh4kVxOw9VPFnGGqDujbG7lYA2ZobMZy7l4UFBojh68XjuZfsG4y4FKcrx3oLSAaofy2rpdZWT18vBg=="
+    "value": "X49Hnk3GflvdAasKD3xo64lu9XidLrPnaj0l1jX29n7fKw+K9xNQJgIjKMaAkAm81YBK05fZ5709zUrth/XhAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-wi-foodshare-manual"

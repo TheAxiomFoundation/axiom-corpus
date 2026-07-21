@@ -6,7 +6,7 @@
     },
     {
       "path": "data/corpus/inventory/ca/policy/2026-07-03-cra-2025-on479-credits.json",
-      "sha256": "ecaac7bc497b3875a81602ab5360b413cdb24326f500f71e41279778911e46b5"
+      "sha256": "dcd36a26102fea49cbdbe49134480546c00e86b6542846c75395320512600383"
     },
     {
       "path": "data/corpus/provisions/ca/policy/2026-07-03-cra-2025-on479-credits.jsonl",
@@ -18,13 +18,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "6d8b53869ed43f82d21feac3981cb7994f7c49cb",
-    "dirty_tracked": true,
-    "root": "/Users/pavelmakarchuk/axiom-corpus-canada-tax"
+    "commit": "3af6d6edbda6eb15325d50cd3c5afaecbf1e4aac",
+    "dirty_tracked": false,
+    "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "regenerate source inventories (canonical items key, one expected provision per item) and coverage reports for all ca scopes"
+    "text": "Bind committed official source snapshot SHA-256 values for complete Canadian RuleSpec release."
   },
   "coverage": {
     "complete": true,
@@ -35,14 +35,14 @@
     "source_count": 1
   },
   "document_class": "policy",
-  "generated_at": "2026-07-07T04:37:44.732592+00:00",
+  "generated_at": "2026-07-21T11:40:42.150607+00:00",
   "jurisdiction": "ca",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "HM8TnQDolqMmSUfhTftNz1n0/8ag520cADINXdyYwjEGnXWfMkmT+JBkD8z6pewTvHu0ZuQ5Z12RX3zvckHVAQ=="
+    "value": "sSFvjs9gsPbvPeex2av09DDsOdvBIsGWcQVpuHUKDAYKJgU/tfWoq5DCCfwLMM+rO1ESv7igunAvFtRaIvGXBA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-03-cra-2025-on479-credits"
