@@ -5,10 +5,12 @@ from __future__ import annotations
 import copy
 import hashlib
 import importlib.metadata
+import io
 import json
 import os
 import re
 import subprocess
+import tarfile
 from base64 import b64decode, b64encode
 from binascii import Error as BinasciiError
 from dataclasses import dataclass
@@ -281,6 +283,23 @@ def guard_ingested_artifacts(
         )
         for manifest_path in manifest_paths:
             changed_reasoning_paths_by_manifest.setdefault(manifest_path, set()).add(change.path)
+
+    changed_manifest_paths = {
+        Path(change.path)
+        for change in changes
+        if change.path.startswith(f"{INGEST_MANIFEST_ROOT.as_posix()}/")
+        and change.path.endswith(".json")
+    }
+    for manifest_path in changed_manifest_paths:
+        candidate_payload = manifests.get(manifest_path, {})
+        baseline_payload = baseline_manifests.get(manifest_path, {})
+        attested_paths = _reasoning_log_paths(candidate_payload) | _reasoning_log_paths(
+            baseline_payload
+        )
+        if attested_paths:
+            changed_reasoning_paths_by_manifest.setdefault(manifest_path, set()).update(
+                attested_paths
+            )
     changed_reasoning_manifests = set(changed_reasoning_paths_by_manifest)
     if not protected and not changed_reasoning_manifests:
         return IngestGuardResult(repo=repo, protected_changes=(), issues=())
@@ -356,8 +375,8 @@ def guard_ingested_artifacts(
         for path in sorted(changed_reasoning_paths_by_manifest.get(manifest_path, set())):
             if path not in current_reasoning_paths:
                 issues.append(
-                    f"{manifest_path.as_posix()}: changed reasoning log `{path}` is no "
-                    "longer attested by the signed manifest."
+                    f"{manifest_path.as_posix()}: reasoning log `{path}` is no longer "
+                    "attested after a related log or manifest change."
                 )
 
     return IngestGuardResult(
@@ -528,18 +547,43 @@ def _load_ingest_manifests(repo: Path, *, ref: str | None = None) -> dict[Path, 
 
 def _load_ingest_manifests_from_ref(repo: Path, *, ref: str) -> dict[Path, dict[str, Any]]:
     manifests: dict[Path, dict[str, Any]] = {}
-    for path in _git_paths_under(repo, ref=ref, path=INGEST_MANIFEST_ROOT.as_posix()):
-        blob = _git_blob(repo, ref=ref, path=path)
-        if blob is None:
-            manifests[Path(path)] = {}
-            continue
-        try:
-            payload = json.loads(blob.decode("utf-8"))
-        except (UnicodeDecodeError, json.JSONDecodeError):
-            manifests[Path(path)] = {}
-            continue
-        if isinstance(payload, dict):
-            manifests[Path(path)] = payload
+    result = subprocess.run(
+        [
+            "git",
+            "archive",
+            "--format=tar",
+            ref,
+            "--",
+            INGEST_MANIFEST_ROOT.as_posix(),
+        ],
+        cwd=repo,
+        check=False,
+        capture_output=True,
+    )
+    if result.returncode != 0:
+        return manifests
+    with tarfile.open(fileobj=io.BytesIO(result.stdout), mode="r:") as archive:
+        members = sorted(
+            (
+                member
+                for member in archive.getmembers()
+                if member.isfile() and member.name.endswith(".json")
+            ),
+            key=lambda member: member.name,
+        )
+        for member in members:
+            extracted = archive.extractfile(member)
+            if extracted is None:
+                manifests[Path(member.name)] = {}
+                continue
+            blob = extracted.read()
+            try:
+                payload = json.loads(blob.decode("utf-8"))
+            except (UnicodeDecodeError, json.JSONDecodeError):
+                manifests[Path(member.name)] = {}
+                continue
+            if isinstance(payload, dict):
+                manifests[Path(member.name)] = payload
     return manifests
 
 
@@ -671,17 +715,6 @@ def _decode_text(payload: bytes) -> str | None:
         return payload.decode("utf-8-sig")
     except UnicodeDecodeError:
         return None
-
-
-def _git_paths_under(repo: Path, *, ref: str, path: str) -> tuple[str, ...]:
-    result = subprocess.run(
-        ["git", "ls-tree", "-r", "--name-only", ref, "--", path],
-        cwd=repo,
-        check=True,
-        capture_output=True,
-        text=True,
-    )
-    return tuple(line for line in result.stdout.splitlines() if line)
 
 
 def _git_blob(repo: Path, *, ref: str, path: str) -> bytes | None:
