@@ -1,6 +1,7 @@
 import json
 import os
 from collections.abc import Iterator, Mapping
+from functools import cache
 from pathlib import Path
 from typing import Any, cast
 
@@ -37,6 +38,12 @@ SUPERSEDED_RELEASE_SCOPES = {
     ("us-ma", "regulation", "2026-05-28"),
     ("us-mi", "manual", "2026-07-13-recovery"),
 }
+
+
+@cache
+def _sha256_file_cached(path: Path) -> str:
+    """Hash each retained source once even when many inventory rows share it."""
+    return sha256_file(path)
 
 
 def _queue() -> list[dict[str, Any]]:
@@ -90,84 +97,124 @@ def _nested_source_paths(value: object) -> Iterator[str]:
             yield from _nested_source_paths(nested)
 
 
+def _scope_entries(
+    state: dict[str, Any],
+) -> list[tuple[str, str, str, Mapping[str, Any]]]:
+    entries = [
+        (
+            "target",
+            str(state["queue_status"]),
+            str(state["target_manifest"]),
+            cast(Mapping[str, Any], state["target_scope"]),
+        )
+    ]
+    supporting_values = {
+        "status": state.get("supporting_queue_status"),
+        "manifest": state.get("supporting_manifest"),
+        "scope": state.get("supporting_scope"),
+    }
+    if any(value is not None for value in supporting_values.values()):
+        assert all(supporting_values.values()), state["jurisdiction"]
+        entries.append(
+            (
+                "supporting",
+                str(supporting_values["status"]),
+                str(supporting_values["manifest"]),
+                cast(Mapping[str, Any], supporting_values["scope"]),
+            )
+        )
+    return entries
+
+
+def _assert_scope_matches_retained_sources(
+    *,
+    state: dict[str, Any],
+    role: str,
+    status: str,
+    manifest_path: str,
+    scope: Mapping[str, Any],
+) -> None:
+    label = f"{state['jurisdiction']}:{role}"
+    assert status in {PUBLISHED_CURRENT, SOURCE_REFETCH_REQUIRED}
+    assert (REPO_ROOT / manifest_path).is_file(), label
+    assert all(scope.get(key) for key in ("jurisdiction", "document_class", "version")), label
+
+    paths = _scope_paths(scope)
+    source_files = (
+        sorted(path for path in paths["source_root"].rglob("*") if path.is_file())
+        if paths["source_root"].is_dir()
+        else []
+    )
+    if status == SOURCE_REFETCH_REQUIRED:
+        assert source_files == [], label
+        return
+
+    assert source_files, label
+    assert all(paths[name].is_file() for name in paths if name != "source_root"), label
+
+    coverage = json.loads(paths["coverage"].read_text())
+    inventory = json.loads(paths["inventory"].read_text())
+    ingest_manifest = json.loads(paths["ingest_manifest"].read_text())
+    jurisdiction = str(scope["jurisdiction"])
+    document_class = str(scope["document_class"])
+    version = str(scope["version"])
+    assert coverage["complete"] is True
+    assert coverage["jurisdiction"] == jurisdiction
+    assert coverage["document_class"] == document_class
+    assert str(coverage["version"]) == version
+    assert ingest_manifest["jurisdiction"] == jurisdiction
+    assert ingest_manifest["document_class"] == document_class
+    assert str(ingest_manifest["version"]) == version
+
+    applied = {
+        item["path"]: item
+        for item in ingest_manifest["applied_files"]
+        if isinstance(item, dict) and isinstance(item.get("path"), str)
+    }
+    expected_paths = {
+        path.relative_to(REPO_ROOT).as_posix()
+        for path in [*source_files, paths["inventory"], paths["provisions"], paths["coverage"]]
+    }
+    assert expected_paths <= applied.keys(), label
+    assert all(applied[path].get("deleted") is not True for path in expected_paths), label
+    for relative_path, item in applied.items():
+        if item.get("deleted") is True:
+            continue
+        artifact = REPO_ROOT / relative_path
+        assert artifact.is_file(), relative_path
+        assert item.get("sha256") == _sha256_file_cached(artifact), relative_path
+
+    for inventory_item in inventory["items"]:
+        source_path = inventory_item.get("source_path")
+        assert isinstance(source_path, str) and source_path, inventory_item["citation_path"]
+        source = CORPUS_ROOT / source_path
+        assert source.is_file(), source_path
+        assert inventory_item.get("sha256") == _sha256_file_cached(source), source_path
+        for metadata_path in _nested_source_paths(inventory_item.get("metadata", {})):
+            assert (CORPUS_ROOT / metadata_path).is_file(), metadata_path
+
+    expected_citation_path = EXPECTED_TARGET_MANIFEST_PATHS.get(state["jurisdiction"])
+    if role == "target" and expected_citation_path:
+        manifest_payload = yaml.safe_load((REPO_ROOT / manifest_path).read_text())
+        citation_paths = {
+            document.get("citation_path") for document in manifest_payload.get("documents", [])
+        }
+        assert expected_citation_path in citation_paths
+
+
 def test_state_snap_queue_statuses_match_retained_sources() -> None:
     queue = _queue()
     assert len(queue) == 51
 
     for state in queue:
-        assert state["queue_status"] in {PUBLISHED_CURRENT, SOURCE_REFETCH_REQUIRED}
-        manifest_path = state.get("target_manifest")
-        assert manifest_path and (REPO_ROOT / manifest_path).is_file(), state["jurisdiction"]
-        scope = state.get("target_scope")
-        assert scope and all(
-            scope.get(key) for key in ("jurisdiction", "document_class", "version")
-        ), state["jurisdiction"]
-
-        paths = _scope_paths(scope)
-        source_files = (
-            sorted(path for path in paths["source_root"].rglob("*") if path.is_file())
-            if paths["source_root"].is_dir()
-            else []
-        )
-        if state["queue_status"] == SOURCE_REFETCH_REQUIRED:
-            assert source_files == [], state["jurisdiction"]
-            continue
-
-        assert source_files, state["jurisdiction"]
-        assert all(paths[name].is_file() for name in paths if name != "source_root"), state[
-            "jurisdiction"
-        ]
-
-        coverage = json.loads(paths["coverage"].read_text())
-        inventory = json.loads(paths["inventory"].read_text())
-        ingest_manifest = json.loads(paths["ingest_manifest"].read_text())
-        jurisdiction = str(scope["jurisdiction"])
-        document_class = str(scope["document_class"])
-        version = str(scope["version"])
-        assert coverage["complete"] is True
-        assert coverage["jurisdiction"] == jurisdiction
-        assert coverage["document_class"] == document_class
-        assert str(coverage["version"]) == version
-        assert ingest_manifest["jurisdiction"] == jurisdiction
-        assert ingest_manifest["document_class"] == document_class
-        assert str(ingest_manifest["version"]) == version
-
-        applied = {
-            item["path"]: item
-            for item in ingest_manifest["applied_files"]
-            if isinstance(item, dict) and isinstance(item.get("path"), str)
-        }
-        expected_paths = {
-            path.relative_to(REPO_ROOT).as_posix()
-            for path in [*source_files, paths["inventory"], paths["provisions"], paths["coverage"]]
-        }
-        assert expected_paths <= applied.keys(), state["jurisdiction"]
-        assert all(applied[path].get("deleted") is not True for path in expected_paths), state[
-            "jurisdiction"
-        ]
-        for relative_path, item in applied.items():
-            if item.get("deleted") is True:
-                continue
-            artifact = REPO_ROOT / relative_path
-            assert artifact.is_file(), relative_path
-            assert item.get("sha256") == sha256_file(artifact), relative_path
-
-        for inventory_item in inventory["items"]:
-            source_path = inventory_item.get("source_path")
-            assert isinstance(source_path, str) and source_path, inventory_item["citation_path"]
-            source = CORPUS_ROOT / source_path
-            assert source.is_file(), source_path
-            assert inventory_item.get("sha256") == sha256_file(source), source_path
-            for metadata_path in _nested_source_paths(inventory_item.get("metadata", {})):
-                assert (CORPUS_ROOT / metadata_path).is_file(), metadata_path
-
-        expected_citation_path = EXPECTED_TARGET_MANIFEST_PATHS.get(state["jurisdiction"])
-        if expected_citation_path:
-            manifest_payload = yaml.safe_load((REPO_ROOT / manifest_path).read_text())
-            citation_paths = {
-                document.get("citation_path") for document in manifest_payload.get("documents", [])
-            }
-            assert expected_citation_path in citation_paths
+        for role, status, manifest_path, scope in _scope_entries(state):
+            _assert_scope_matches_retained_sources(
+                state=state,
+                role=role,
+                status=status,
+                manifest_path=manifest_path,
+                scope=scope,
+            )
 
 
 def test_published_state_snap_ingest_manifests_are_authenticated() -> None:
@@ -179,18 +226,19 @@ def test_published_state_snap_ingest_manifests_are_authenticated() -> None:
 
     issues: dict[str, list[str]] = {}
     for state in _queue():
-        if state["queue_status"] != PUBLISHED_CURRENT:
-            continue
-        manifest_path = _scope_paths(state["target_scope"])["ingest_manifest"]
-        manifest = json.loads(manifest_path.read_text())
-        manifest_issues = verify_ingest_manifest(
-            manifest,
-            public_key=public_key,
-            repo=REPO_ROOT,
-            head_ref="HEAD",
-        )
-        if manifest_issues:
-            issues[state["jurisdiction"]] = manifest_issues
+        for role, status, _manifest_path, scope in _scope_entries(state):
+            if status != PUBLISHED_CURRENT:
+                continue
+            manifest_path = _scope_paths(scope)["ingest_manifest"]
+            manifest = json.loads(manifest_path.read_text())
+            manifest_issues = verify_ingest_manifest(
+                manifest,
+                public_key=public_key,
+                repo=REPO_ROOT,
+                head_ref="HEAD",
+            )
+            if manifest_issues:
+                issues[f"{state['jurisdiction']}:{role}"] = manifest_issues
 
     assert issues == {}
 

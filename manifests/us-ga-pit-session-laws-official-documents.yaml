@@ -1,0 +1,88 @@
+# Official signed Georgia acts establishing the current-law transition from
+# the historical O.C.G.A. Title 48 snapshot used by the RuleSpec PIT program.
+documents:
+  - source_id: us-ga-sb56-signed-act-2023
+    jurisdiction: us-ga
+    document_class: statute
+    title: "SB 56 (2023), Act 236: Revenue and taxation revisions — signed act"
+    source_url: https://gov.georgia.gov/document/2023-signed-legislation/sb-56/download
+    source_format: pdf
+    source_as_of: "2023-05-02"
+    expression_date: "2023-05-02"
+    citation_path: us-ga/statute/session-laws/2023/sb56
+    extraction: &single_block
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Georgia Office of the Governor
+      legal_authority_url: https://www.legis.ga.gov/api/legislation/document/20232024/220219
+      act_number: "236"
+      source_family: income-tax
+      source_note: >-
+        Official signed act. Its income-tax provisions establish the 2024
+        standard deductions and the dependent-only personal-exemption
+        transition, among other changes; the act contains multiple effective
+        dates and applicability rules.
+
+  - source_id: us-ga-hb1021-signed-act-2024
+    jurisdiction: us-ga
+    document_class: statute
+    title: "HB 1021 (2024), Act 377: Dependent exemption increase — signed act"
+    source_url: https://gov.georgia.gov/document/2024-signed-legislation/hb-1021/download
+    source_format: pdf
+    source_as_of: "2024-04-18"
+    expression_date: "2024-04-18"
+    citation_path: us-ga/statute/session-laws/2024/hb1021
+    extraction: *single_block
+    metadata:
+      primary_source: true
+      source_authority: Georgia Office of the Governor
+      legal_authority_url: https://www.legis.ga.gov/api/legislation/document/20232024/229350
+      act_number: "377"
+      source_family: income-tax
+      source_note: >-
+        Official signed act increasing the Code Section 48-7-26 dependent
+        exemption from $3,000 to $4,000, effective July 1, 2024 and applicable
+        to taxable years beginning on or after January 1, 2024.
+
+  - source_id: us-ga-hb136-signed-act-2025
+    jurisdiction: us-ga
+    document_class: statute
+    title: "HB 136 (2025), Act 182: Child and dependent tax credits — signed act"
+    source_url: https://gov.georgia.gov/document/2025-signed-legislation/hb-136/download
+    source_format: pdf
+    source_as_of: "2025-05-13"
+    expression_date: "2025-05-13"
+    citation_path: us-ga/statute/session-laws/2025/hb136
+    extraction: *single_block
+    metadata:
+      primary_source: true
+      source_authority: Georgia Office of the Governor
+      legal_authority_url: https://www.legis.ga.gov/api/legislation/document/20252026/239327
+      act_number: "182"
+      source_family: income-tax
+      source_note: >-
+        Official signed act revising child and dependent care credits and
+        creating additional child-related credits. The act contains distinct
+        applicability rules for taxable years beginning in 2025 and 2026.
+
+  - source_id: us-ga-hb463-signed-act-2026
+    jurisdiction: us-ga
+    document_class: statute
+    title: "HB 463 (2026), Act 465: Georgia Economic Growth and Tax Relief Act of 2026 — signed act"
+    source_url: https://gov.georgia.gov/document/2026-signed-legislation/hb-463/download
+    source_format: pdf
+    source_as_of: "2026-05-11"
+    expression_date: "2026-05-11"
+    citation_path: us-ga/statute/session-laws/2026/hb463
+    extraction: *single_block
+    metadata:
+      primary_source: true
+      source_authority: Georgia Office of the Governor
+      legal_authority_url: https://www.legis.ga.gov/api/legislation/document/20252026/249080
+      act_number: "465"
+      source_family: income-tax
+      source_note: >-
+        Official signed act establishing the 4.99 percent individual income-tax
+        rate for taxable years beginning on or after January 1, 2026, with
+        later-year rate, deduction, exclusion, and credit provisions.

@@ -89,9 +89,9 @@ states:
     supporting_scope:
       jurisdiction: us-co
       document_class: policy
-      version: "2026-04-30"
-    supporting_queue_status: source_refetch_required
-    notes: Colorado SNAP policy is covered through 10 CCR 2506-1 plus supplemental CDHS policy documents.
+      version: 2026-07-21-co-snap-policy
+    supporting_queue_status: published_current
+    notes: Colorado SNAP policy is covered through 10 CCR 2506-1 plus a current 13-source supporting scope containing six CDHS pages, four FFY/FY2026 documents, and the non-operative FNS Healthy Choice decision chain. The CDHS discontinuation page controls the historical FNS approvals. The E&T plan is marked FORM STATUS Unsubmitted; the SNAP page retains stale October 2024 amounts and conflicting ABAWD ages; FY2026 materials end September 30, 2026. Federal law and the broader active CDHS memo catalog remain separate dependency scopes.
   - jurisdiction: us-ct
     name: Connecticut
     queue_status: published_current
@@ -429,14 +429,15 @@ states:
       version: 2026-05-27-nc-fns-manuals-r2026-07-15-self-contained
   - jurisdiction: us-nd
     name: North Dakota
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
     target_manifest: manifests/us-nd-snap-manual.yaml
     target_scope:
       jurisdiction: us-nd
       document_class: manual
-      version: 2026-05-27-nd-snap-manual
+      version: 2026-07-21-nd-snap-manual
+    notes: Complete Release 26.5 scope retains the official landing page, TOC, release update PDF, and all 64 live manual topics.
   - jurisdiction: us-oh
     name: Ohio
     queue_status: published_current
@@ -450,15 +451,21 @@ states:
     notes: Division 5101:4 SNAP rules are covered by the full Ohio Administrative Code ingestion, not a separate official-document manifest.
   - jurisdiction: us-ok
     name: Oklahoma
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_code
     primary_source_url: https://rules.ok.gov/home
     target_manifest: manifests/us-ok-snap-rules.yaml
     target_scope:
       jurisdiction: us-ok
       document_class: regulation
-      version: 2026-05-27-ok-snap-rules
-    notes: Current scope uses the public rules.ok.gov production API for OAC 340 Chapter 50 Supplemental Nutrition Assistance Program, exposed by the official Oklahoma Administrative Rules app.
+      version: 2026-07-21-ok-snap-rules
+    supporting_manifest: manifests/us-ok-snap-policy.yaml
+    supporting_scope:
+      jurisdiction: us-ok
+      document_class: policy
+      version: 2026-07-21-ok-snap-policy
+    supporting_queue_status: published_current
+    notes: The regulation target retains the complete public rules.ok.gov production API response for OAC 340 Chapter 50. The separately published support scope retains the current OKDHS appendices, full Appendix C-3 allotment CSV, and complete OAC Chapter 2, 10, and 65 API responses while extracting only cited active dependency sections. Appendix B is not currently published by OKDHS; its referenced formula is retained in OAC 340:50-9-1 in the regulation scope.
   - jurisdiction: us-or
     name: Oregon
     queue_status: published_current
@@ -472,24 +479,28 @@ states:
       version: 2026-07-16-or-programs-eligibility-notebook
   - jurisdiction: us-pa
     name: Pennsylvania
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: http://services.dpw.state.pa.us/oimpolicymanuals/snap/index.htm#t=SNAP_Handbook_Title_Page.htm
     target_manifest: manifests/us-pa-snap-handbook.yaml
     target_scope:
       jurisdiction: us-pa
       document_class: manual
-      version: 2026-05-27-pa-snap-handbook
+      version: 2026-07-21-pa-snap-handbook
+    notes: Complete current 297-topic Pennsylvania SNAP Handbook HTML snapshot. Pennsylvania Code Chapter 501, substantive operations-memorandum and policy-clarification attachments, and cross-manual dependencies remain separate follow-up source scopes; this status does not claim complete Pennsylvania SNAP legal authority.
   - jurisdiction: us-ri
     name: Rhode Island
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_administrative_regulation
     primary_source_url: https://rules.sos.ri.gov/regulations/part/218-20-00-1
     target_manifest: manifests/us-ri-snap-rules.yaml
     target_scope:
       jurisdiction: us-ri
       document_class: regulation
-      version: 2026-05-27-ri-snap-rules
+      version: 2026-07-21-ri-snap-rules
+    notes: The retained 272-page Secretary of State PDF is the current signed
+      amendment of 218-RICR-20-00-1, effective April 5, 2026. Every PDF page
+      contains native extractable text and is represented in the complete scope.
   - jurisdiction: us-sc
     name: South Carolina
     queue_status: published_current
@@ -502,14 +513,17 @@ states:
       version: 2026-05-27-sc-snap-manual
   - jurisdiction: us-sd
     name: South Dakota
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_pdf_manual
     primary_source_url: https://dss.sd.gov/docs/economicassistance/snap/snapmanual.pdf
     target_manifest: manifests/us-sd-snap-manual.yaml
     target_scope:
       jurisdiction: us-sd
       document_class: manual
-      version: 2026-05-27-sd-snap-manual
+      version: 2026-07-21-sd-snap-manual
+    notes: The retained 339-page official DSS SNAP Policy and Procedure Manual
+      identifies itself as updated July 2026. The source-backed scope contains one
+      document row and one row for every PDF page, with complete coverage.
   - jurisdiction: us-tn
     name: Tennessee
     queue_status: published_current
@@ -544,54 +558,82 @@ states:
     notes: Utah SNAP policy is in the integrated Child Care, Financial and SNAP Eligibility Policy Manual.
   - jurisdiction: us-vt
     name: Vermont
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/assets/BRM/100GenInfo.htm
     target_manifest: manifests/us-vt-3squaresvt-manual.yaml
     target_scope:
       jurisdiction: us-vt
       document_class: manual
-      version: 2026-05-27-vt-3squaresvt-manual
+      version: 2026-07-21-vt-3squaresvt-manual
+    notes: The retained scope covers all 32 chapters in the official 3SquaresVT
+      manual TOC, including the July 1, 2026 resources update. It contains 32
+      document rows and 879 structured source blocks with complete coverage.
   - jurisdiction: us-va
     name: Virginia
-    queue_status: source_refetch_required
-    source_kind: official_html_manual
+    queue_status: published_current
+    source_kind: official_pdf_manual
     primary_source_url: https://www.dss.virginia.gov/relief/food-assistance/snap/snap-policy--procedures/snap-manual/
     target_manifest: manifests/us-va-snap-manual.yaml
     target_scope:
       jurisdiction: us-va
       document_class: manual
-      version: 2026-05-27-va-snap-manual
+      version: 2026-07-21-va-snap-manual
+    notes: The retained 714-page full manual incorporates SNAP Manual Transmittal
+      36, generally effective October 1, 2025. The source-backed scope contains
+      one document row and 677 rows for every text- or image-bearing PDF page,
+      including OCR fallback for the two image-only appendix pages.
   - jurisdiction: us-wa
     name: Washington
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.dshs.wa.gov/esa/manuals/eaz
     target_manifest: manifests/us-wa-eaz-manual.yaml
     target_scope:
       jurisdiction: us-wa
       document_class: manual
-      version: 2026-05-27-wa-eaz-manual
+      version: 2026-07-21-wa-eaz-manual
+    notes: Complete current 200-page Washington DSHS EA-Z HTML manual snapshot.
+      The companion revision history, rule-change notifications, EA-Z WAC index
+      and underlying WAC chapters, federal SNAP authorities, and linked forms and
+      desk aids remain separate source scopes; this status does not claim complete
+      Washington SNAP legal authority.
   - jurisdiction: us-wv
     name: West Virginia
-    queue_status: source_refetch_required
-    source_kind: official_html_manual
-    primary_source_url: https://bfa.wv.gov/page/income-maintenance-manual
+    queue_status: published_current
+    source_kind: official_pdf_manual
+    primary_source_url: https://bfa.wv.gov/income-maintenance-manual
     target_manifest: manifests/us-wv-manuals.yaml
     target_scope:
       jurisdiction: us-wv
       document_class: manual
-      version: 2026-05-27-wv-manuals
+      version: 2026-07-21-wv-income-maintenance-manual
+    supporting_queue_status: published_current
+    supporting_manifest: manifests/us-wv-snap-healthy-choices-overlay.yaml
+    supporting_scope:
+      jurisdiction: us-wv
+      document_class: manual
+      version: 2026-07-21-wv-snap-healthy-choices-overlay
+    notes: Complete current 2,275-page integrated Income Maintenance Manual,
+      effective July 1, 2026, plus the July 10 official policy overlay that
+      immediately pauses the SNAP Healthy Choices soda restriction still printed
+      in manual sections 1.4.20 and 16.3. Underlying federal and state authorities,
+      the USDA directive and federal court order, the dead 2014 archive ZIP, and
+      the broken DoHS manual-change search remain explicit gaps.
   - jurisdiction: us-wi
     name: Wisconsin
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_pdf_handbook
     primary_source_url: https://www.emhandbooks.wisconsin.gov/fsh/fsh.htm#t=home.htm
     target_manifest: manifests/us-wi-foodshare-manual.yaml
     target_scope:
       jurisdiction: us-wi
       document_class: manual
-      version: 2026-05-27-wi-foodshare-manual
+      version: 2026-07-21-wi-foodshare-manual
+    notes: The retained 372-page FoodShare Wisconsin Handbook Release 26-01
+      contains extractable text on every page and states an April 15, 2026
+      release and effective date. The source-backed scope contains one document
+      row and one row for every PDF page, with complete coverage.
   - jurisdiction: us-wy
     name: Wyoming
     queue_status: published_current

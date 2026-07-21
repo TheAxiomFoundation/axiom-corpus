@@ -10,6 +10,9 @@ from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 ROOT = Path(__file__).resolve().parents[1]
 RELEASE_PATH = ROOT / "manifests/releases/ca-rulespec-2026-07-21-oracle-complete.json"
+V2_RELEASE_PATH = (
+    ROOT / "manifests/releases/ca-rulespec-2026-07-21-oracle-complete-v2.json"
+)
 CONTRACT_PATH = (
     ROOT / "tests/fixtures/releases/ca-rulespec-2026-07-21-complete-citations.json"
 )
@@ -18,6 +21,7 @@ DEPENDENCIES_PATH = (
 )
 DEPENDENCIES_VERSION = "2026-07-21-ca-rulespec-oracle-dependencies"
 GST_HST_CITATION = "ca/policy/cra/gst-hst-2026/rate-calculator"
+TD1_CITATION = "ca/policy/cra/td1-2026/provincial-territorial-personal-credits"
 
 
 def test_oracle_complete_release_adds_official_gst_hst_program_root() -> None:
@@ -69,3 +73,30 @@ def test_oracle_complete_release_adds_official_gst_hst_program_root() -> None:
         assert record.id == deterministic_provision_id(record.citation_path, version)
         assert record.parent_citation_path in by_path
         assert record.parent_id == by_path[record.parent_citation_path].id
+
+
+def test_oracle_complete_v2_release_has_no_empty_primary_documents() -> None:
+    release = ReleaseManifest.load(V2_RELEASE_PATH)
+    assert len(release.scopes) == 1
+    scope = release.scopes[0]
+    provisions = load_provisions(
+        ROOT
+        / "data/corpus/provisions"
+        / scope.jurisdiction
+        / scope.document_class
+        / f"{scope.version}.jsonl"
+    )
+    inventory = load_source_inventory(
+        ROOT
+        / "data/corpus/inventory"
+        / scope.jurisdiction
+        / scope.document_class
+        / f"{scope.version}.json"
+    )
+
+    assert len(provisions) == len(inventory) == 464
+    assert all(record.body is None or record.body.strip() for record in provisions)
+    assert all(
+        item.citation_path != f"{TD1_CITATION}/primary-document"
+        for item in inventory
+    )

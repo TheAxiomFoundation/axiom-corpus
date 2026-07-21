@@ -1,0 +1,214 @@
+documents:
+  - source_id: okdhs-appendix-b-2-deadlines-for-case-actions
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/okdhs/snap/appendix-b-2
+    title: "OKDHS Appendix B-2: Deadlines for Case Actions 2026"
+    source_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/b-2.pdf
+    source_format: pdf
+    source_as_of: "2026-07-21"
+    expression_date: "2026-01-01"
+    metadata: &okdhs_appendix_metadata
+      primary_source: true
+      source_authority: Oklahoma Department of Human Services
+      official_publisher: Oklahoma Department of Human Services
+      document_subtype: policy_appendix
+      program: SNAP
+      federal_program: SNAP
+      forms_landing_page: https://oklahoma.gov/okdhs/searchcenter/okdhsformresults.html
+      source_discovery_group: us-ok/policy/snap
+      discovered_via: manual-review:state-snap-manual-agent-queue
+
+  - source_id: okdhs-appendix-c-1-schedule-of-maximum-income
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/okdhs/snap/appendix-c-1
+    title: "OKDHS Appendix C-1: Maximum Income, Resource, and Payment Standards"
+    source_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/c-1.pdf
+    source_format: pdf
+    source_as_of: "2026-07-21"
+    expression_date: "2026-07-01"
+    metadata: *okdhs_appendix_metadata
+
+  - source_id: okdhs-appendix-c-3-snap-allotment-table
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/okdhs/snap/appendix-c-3
+    title: "OKDHS Appendix C-3: Maximum Food Benefit Allotments and Standards for Income and Deductions"
+    source_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/c-3.pdf
+    source_format: pdf
+    source_as_of: "2026-07-21"
+    expression_date: "2025-10-01"
+    metadata: *okdhs_appendix_metadata
+
+  - source_id: okdhs-appendix-c-3-allotment-table-landing-page
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/okdhs/snap/appendix-c-3/landing-page
+    title: "OKDHS Appendix C-3 SNAP Allotment Table landing page"
+    source_url: https://oklahoma.gov/okdhs/searchcenter/okdhsformresults/appendix_c-3_allotment_table_10012025.html
+    source_format: html
+    source_as_of: "2026-07-21"
+    expression_date: "2025-10-01"
+    metadata: *okdhs_appendix_metadata
+
+  - source_id: okdhs-appendix-c-3-allotment-table-data
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/okdhs/snap/appendix-c-3/allotment-table-data
+    title: "OKDHS Appendix C-3 SNAP Allotment Table data"
+    source_url: https://oklahoma.gov/okdhs/searchcenter/okdhsformresults/appendix_c-3_allotment_table_10012025.html
+    download_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/advanced-table-csv/okdhs-form-results/c-3_10012025.csv
+    source_format: csv
+    source_as_of: "2026-07-21"
+    expression_date: "2025-10-01"
+    extraction:
+      citation_suffix: rows
+      heading: "Appendix C-3 allotments by monthly net income and household size"
+    metadata: *okdhs_appendix_metadata
+
+  - source_id: okdhs-appendix-c-3-a-disaster-income-limits-and-allotments
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/okdhs/snap/appendix-c-3-a
+    title: "OKDHS Appendix C-3-A: Maximum Gross Income Limits and Benefit Allotments for FNS Declared Disasters"
+    source_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/c-3-a.pdf
+    source_format: pdf
+    source_as_of: "2026-07-21"
+    expression_date: "2025-10-01"
+    metadata: *okdhs_appendix_metadata
+
+  - source_id: okdhs-appendix-d-4-c-indian-food-distribution-programs
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/okdhs/snap/appendix-d-4-c
+    title: "OKDHS Appendix D-4-C: Indian Food Distribution Programs"
+    source_url: https://oklahoma.gov/content/dam/ok/en/okdhs/documents/searchcenter/okdhsformresults/d-4-c.pdf
+    source_format: pdf
+    source_as_of: "2026-07-21"
+    expression_date: "2025-07-09"
+    metadata: *okdhs_appendix_metadata
+
+  - source_id: ok-oac-340-2-snap-dependencies
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/oac/340/2/snap-dependencies
+    title: Oklahoma Administrative Code Title 340 Chapter 2 SNAP dependencies
+    source_url: https://rules.ok.gov/home
+    download_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=2
+    source_format: json
+    source_as_of: "2026-07-21"
+    expression_date: "2026-07-21"
+    extraction: &oac_chapter_2_extraction
+      segmentation: records
+      json_record_text_field: text
+      json_record_text_is_html: true
+      json_record_label_field: sectionNum
+      json_record_heading_field: description
+      json_record_kind_field: name
+      json_record_status_field: statusName
+      json_record_exclude_statuses:
+        - Revoked
+        - Reserved
+      json_record_include_labels:
+        - "340:2-5-63"
+        - "340:2-5-65"
+        - "340:2-5-76"
+      json_record_include_label_prefixes:
+        - "340:2-5-"
+      json_record_metadata_fields: &oac_metadata_fields
+        - id
+        - parentId
+        - name
+        - titleNum
+        - chapterNum
+        - subChapterNum
+        - partNum
+        - sectionNum
+        - appendixNum
+        - description
+        - statusName
+        - segmentStatusId
+        - segmentTypeId
+        - recordStatus
+        - effectiveDate
+        - filingId
+        - hasEmergency
+        - segmentNotes
+    metadata: &oac_metadata
+      primary_source: true
+      source_authority: Oklahoma Department of Human Services
+      official_publisher: Oklahoma Secretary of State Office of Administrative Rules
+      document_subtype: cited_administrative_code_dependencies
+      program: SNAP
+      federal_program: SNAP
+      rules_landing_page: https://rules.ok.gov/home
+      source_discovery_group: us-ok/policy/snap
+      discovered_via: manual-review:state-snap-manual-agent-queue
+
+  - source_id: ok-oac-340-10-snap-dependencies
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/oac/340/10/snap-dependencies
+    title: Oklahoma Administrative Code Title 340 Chapter 10 SNAP dependencies
+    source_url: https://rules.ok.gov/home
+    download_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=10
+    source_format: json
+    source_as_of: "2026-07-21"
+    expression_date: "2026-07-21"
+    extraction:
+      segmentation: records
+      json_record_text_field: text
+      json_record_text_is_html: true
+      json_record_label_field: sectionNum
+      json_record_heading_field: description
+      json_record_kind_field: name
+      json_record_status_field: statusName
+      json_record_exclude_statuses:
+        - Revoked
+        - Reserved
+      json_record_include_labels:
+        - "340:10-1-3"
+        - "340:10-2-1"
+        - "340:10-2-2"
+        - "340:10-2-8"
+        - "340:10-4-1"
+        - "340:10-10-5"
+        - "340:10-12-1"
+        - "340:10-13-1"
+        - "340:10-14-1"
+      json_record_include_label_prefixes:
+        - "340:10-2-"
+      json_record_metadata_fields: *oac_metadata_fields
+    metadata: *oac_metadata
+
+  - source_id: ok-oac-340-65-snap-dependencies
+    jurisdiction: us-ok
+    document_class: policy
+    citation_path: us-ok/policy/oac/340/65/snap-dependencies
+    title: Oklahoma Administrative Code Title 340 Chapter 65 SNAP dependencies
+    source_url: https://rules.ok.gov/home
+    download_url: https://prod-ok-rules-api.tecuity.com/GetSegmentsByChapterNum?titleNum=340&chapterNum=65
+    source_format: json
+    source_as_of: "2026-07-21"
+    expression_date: "2026-07-21"
+    extraction:
+      segmentation: records
+      json_record_text_field: text
+      json_record_text_is_html: true
+      json_record_label_field: sectionNum
+      json_record_heading_field: description
+      json_record_kind_field: name
+      json_record_status_field: statusName
+      json_record_exclude_statuses:
+        - Revoked
+        - Reserved
+      json_record_include_labels:
+        - "340:65-3-1"
+        - "340:65-3-2.1"
+        - "340:65-3-4"
+        - "340:65-3-5"
+      json_record_include_label_prefixes:
+        - "340:65-5-"
+      json_record_metadata_fields: *oac_metadata_fields
+    metadata: *oac_metadata

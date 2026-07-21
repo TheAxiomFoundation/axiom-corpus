@@ -58,16 +58,23 @@ def promote_program_roots(
     promoted_provisions: dict[str, ProvisionRecord] = dict(provisions_by_path)
     for citation_path in citation_paths:
         root = promoted_provisions[citation_path]
-        if root.body is None:
+        child_path = f"{citation_path}/primary-document"
+        if root.body is None or not root.body.strip():
             if not any(
                 record.body is not None
+                and bool(record.body.strip())
                 and record.citation_path.startswith(f"{citation_path}/")
                 for record in provisions
             ):
                 raise ValueError(f"bodyless program root has no document: {citation_path}")
+            if root.body is not None:
+                promoted_provisions[citation_path] = replace(root, body=None)
+            existing_child = promoted_provisions.get(child_path)
+            if existing_child is not None and not (existing_child.body or "").strip():
+                promoted_provisions.pop(child_path)
+                promoted_inventory.pop(child_path, None)
             continue
 
-        child_path = f"{citation_path}/primary-document"
         if child_path in promoted_provisions or child_path in promoted_inventory:
             raise ValueError(f"primary document path already exists: {child_path}")
         inventory_item = promoted_inventory[citation_path]

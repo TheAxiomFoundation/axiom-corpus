@@ -1,0 +1,134 @@
+# Zanzibar (tz-znz) direct-tax, social-insurance and consumption-tax capture -
+# STATUTE class (ZANMOD v1.1 parity, policy years 2019-24; SOUTHMOD full-bundle
+# program lane 1). Sub-jurisdiction code tz-znz follows the corpus hyphenated
+# convention (be-vlg, us-ca) and matches the Akoma Ntoso FRBR country code used
+# by ZanzibarLII for Zanzibar instruments.
+#
+# Four primary instruments. The validation state is ZANMOD v1.1 (report:
+# CR-ZANMOD-v1-1, UNU-WIDER), which simulates for Zanzibar: union personal
+# income tax, ZSSF mandatory contributions, Zanzibar VAT, Zanzibar excise duty
+# (tobacco and kerosene rows), the ZUPS universal pension, and the union PSSN
+# transfers.
+#
+# 1. Value Added Tax Act, No. 4 of 1998 (ZRA compilation, Revised Edition
+#    2025, consolidating amendments to June 2025) - section 8(1): VAT charged
+#    at fifteen percent; section 8(2) Minister may vary by order; First
+#    Schedule zero-rated supplies; Second Schedule exempt supplies. ZANMOD
+#    applies the 15 percent standard rate throughout 2019-24 (tva_zn), with
+#    zero-rated/exempt items mapped per the schedules.
+# 2. Excise Duty Act, No. 8 of 2017 (ZRA compilation, Revised Edition 2025,
+#    consolidating amendments to June 2025) - Schedule 1 excise tariff.
+#    ZANMOD models only the tobacco-product and kerosene/paraffin rows
+#    (tex_zn) and records the schedule as unchanged over 2019-23; excise and
+#    VAT are computed jointly for these items in the model.
+# 3. Zanzibar Social Security Fund Act, No. 2 of 2005 (original enactment
+#    print, ILO NATLEX copy of the official text; image scan captured via
+#    OCR) - Part IV registration and contributions (section 17 contribution
+#    duty, penalties at five per centum); First Schedule contribution rates
+#    as originally enacted (member five per centum; employer contributions
+#    totalling fifteen percent split 12.0 retirement/survivors/disability +
+#    3.0 medical). Assent by President Karume; assent day illegible in the
+#    scan (expression_date uses a 2005-01-01 year-floor convention, noted
+#    here); commencement by ministerial Gazette notice.
+# 4. Written Laws (Miscellaneous Amendment) Act, No. 10 of 2022 (House of
+#    Representatives official print, image scan captured via OCR) - Part Four
+#    amends the Zanzibar Social Security Fund Act No. 2 of 2005 First
+#    Schedule: item 3(b) "thirteen" substituted by "fourteen" (employer
+#    monthly contribution 13 -> 14 percent) and an unemployment benefit one
+#    percent allocation; passed by the House 13 December 2022; in operation
+#    on assent + Gazette publication (ZANMOD applies 14 percent from January
+#    2023 for the private sector, July 2023 for the civil service).
+#
+# ZANMOD comparison notes (targets, never sources): ZANMOD applies employee
+# 7 percent + employer 13 percent (2019-22) / 14 percent (2023) of gross
+# monthly salary for ZSSF (tscee_zn/tscer_zn); the instrument that substituted
+# the original 2005 First Schedule rates (5 percent member) with the
+# seven/thirteen structure - cited in the country report only as "RGoZ 2016" -
+# has not been located online and is recorded as a corpus gap; the captured
+# chain grounds the 2005 baseline and the 2022 thirteen->fourteen amendment.
+# Union-law surfaces are NOT captured here: personal income tax (Income Tax
+# Act Cap. 332 chain; Zanzibar-aligned with the mainland since 2020) and the
+# PSSN transfers live in the existing tz statute/policy scopes and their
+# rulespec-tz encodings; ZANMOD-program composition across tz and tz-znz is an
+# axiom-programs concern, not a corpus-duplication one. The ZUPS universal
+# pension (TZS 20,000/month at age 70+, no income test, 10-year residence,
+# Posho la Wazee exclusion; introduced April 2016, amount raised 2023) is
+# policy-based with no dedicated statute; its governmental program document is
+# tranche 2.
+documents:
+  - source_id: tz-znz-act-1998-4-value-added-tax-re2025
+    jurisdiction: tz-znz
+    document_class: statute
+    citation_path: tz-znz/statute/act-1998-4/value-added-tax-1998
+    title: Value Added Tax Act, No. 4 of 1998 (Revised Edition 2025) - section 8 rate of tax; First Schedule zero-rated supplies; Second Schedule exempt supplies
+    source_url: 'https://www.zanrevenue.org/uploads/THE_VALUE_ADDED_TAX_ACT_No._4_of_1998_finals_consolidated_2025.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-06-30'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Revolutionary Government of Zanzibar (Zanzibar Revenue Authority compilation)
+      publisher: Zanzibar Revenue Authority
+      source_family: vat/rates-and-schedules
+  - source_id: tz-znz-act-2017-8-excise-duty-re2025
+    jurisdiction: tz-znz
+    document_class: statute
+    citation_path: tz-znz/statute/act-2017-8/excise-duty-2017
+    title: Excise Duty Act, No. 8 of 2017 (Revised Edition 2025) - Schedule 1 excise tariff (ZANMOD models the tobacco and kerosene rows)
+    source_url: 'https://www.zanrevenue.org/uploads/THE_EXCISE_DUTY_ACT_NO.8_of_2017_consolidated_2025.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2025-06-30'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Revolutionary Government of Zanzibar (Zanzibar Revenue Authority compilation)
+      publisher: Zanzibar Revenue Authority
+      source_family: excise/tariff-schedule
+  - source_id: tz-znz-act-2005-2-zanzibar-social-security-fund
+    jurisdiction: tz-znz
+    document_class: statute
+    citation_path: tz-znz/statute/act-2005-2/zanzibar-social-security-fund-2005
+    title: Zanzibar Social Security Fund Act, No. 2 of 2005 - Part IV contributions; First Schedule contribution rates as enacted (image scan, OCR capture; assent day illegible, expression_date year-floor convention)
+    source_url: 'https://natlex.ilo.org/dyn/natlex2/natlex2/files/download/101049/TZA101049.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2005-01-01'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      ocr: true
+      ocr_dpi: 300
+    metadata:
+      primary_source: true
+      source_authority: Revolutionary Government of Zanzibar (official enactment print; ILO NATLEX copy)
+      publisher: ILO NATLEX (official text repository)
+      source_family: social-security/contributions
+  - source_id: tz-znz-act-2022-10-written-laws-miscellaneous-amendment
+    jurisdiction: tz-znz
+    document_class: statute
+    citation_path: tz-znz/statute/act-2022-10/written-laws-miscellaneous-amendment-2022
+    title: Written Laws (Miscellaneous Amendment) Act, No. 10 of 2022 - Part Four amends ZSSF Act 2005 First Schedule (employer contribution thirteen to fourteen percent; unemployment benefit one percent) (image scan, OCR capture)
+    source_url: 'https://zanzibarassembly.go.tz/storage/documents/acts/english/all/1675065728.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-21'
+    expression_date: '2022-12-13'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      ocr: true
+      ocr_dpi: 300
+    metadata:
+      primary_source: true
+      source_authority: Revolutionary Government of Zanzibar (House of Representatives official print)
+      publisher: Zanzibar House of Representatives
+      source_family: social-security/contributions

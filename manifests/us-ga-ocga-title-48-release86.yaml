@@ -1,0 +1,30 @@
+# Historical Georgia O.C.G.A. Title 48 snapshot. The input ODT is the raw
+# state-released source file preserved in the Archive.org
+# ``gov.ga.ocga.2018`` item by Public.Resource.Org; Archive.org is the
+# custodian for this capture, not the originating legal publisher.
+version: "2026-07-21-ga-ocga-title-48-release86"
+sources:
+  - source_id: us-ga-ocga-title-48-release86
+    jurisdiction: us-ga
+    document_class: statute
+    adapter: cic-odt
+    source_url: https://archive.org/download/gov.ga.ocga.2018/release86.2022.11/gov.ga.ocga.title.48.odt
+    version: "2026-07-21-ga-ocga-title-48-release86"
+    options:
+      release_dir: ../data/statutes/us-ga/release86.2022.11
+      only_title: "48"
+      source_as_of: "2022-11-01"
+      expression_date: "2022-11-01"
+    metadata:
+      primary_source: true
+      primary_source_origin: State of Georgia
+      source_authority: State of Georgia O.C.G.A. bulk release
+      archival_custody: Archive.org item gov.ga.ocga.2018, preserved by Public.Resource.Org
+      provenance_url: https://archive.org/metadata/gov.ga.ocga.2018
+      source_sha256: bc15945bc27c1bc238d29f81c0e8b036592e26f95ea101ce3169963a772c8224
+      historical_snapshot: true
+      current_law: false
+      source_scope_note: >-
+        Historical O.C.G.A. Title 48 state-release snapshot as of 2022-11-01.
+        This is not a representation of the consolidated Georgia Code in 2026;
+        later changes must be established from official enacted session laws.

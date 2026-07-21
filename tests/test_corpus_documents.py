@@ -29,6 +29,7 @@ from axiom_corpus.corpus.documents import (
     _DownloadedDocument,
     _extract_anchor_range_html_blocks,
     _extract_blocks,
+    _extract_csv_blocks,
     _extract_doc_blocks,
     _extract_json_html_blocks,
     _extract_json_record_blocks,
@@ -186,6 +187,14 @@ def test_infer_source_format_handles_common_official_downloads(tmp_path: Path) -
         )
         == "javascript"
     )
+    csv_source = source("https://example.test/table.csv?download=1")
+    assert (
+        _infer_source_format(
+            csv_source,
+            downloaded(csv_source, b"name,amount\nA,1\n", "text/csv"),
+        )
+        == "csv"
+    )
     xls = source("https://example.test/file.xls?download=1")
     assert _infer_source_format(xls, downloaded(xls, b"legacy", None)) == "xls"
     doc = source("https://example.test/file")
@@ -236,11 +245,91 @@ def test_extract_blocks_rejects_unsupported_and_bad_json_config() -> None:
     with pytest.raises(ValueError, match="unsupported official document source_format"):
         _extract_blocks(
             b"body",
-            "csv",
+            "xml",
             source_url="https://example.test/file.csv",
             title="File",
             extraction=None,
         )
+
+
+def test_extract_csv_blocks_parses_quoted_filtered_rows() -> None:
+    blocks = _extract_csv_blocks(
+        b'\xef\xbb\xbfName,Amount,Note\r\nA,10,"x, y"\r\nB,20,z\r\n',
+        title="Official table",
+        extraction={
+            "csv_columns": ["Name", "Note"],
+            "csv_filters": {"Name": "A"},
+        },
+    )
+
+    assert len(blocks) == 1
+    assert blocks[0].kind == "sheet"
+    assert blocks[0].heading == "Official table"
+    assert blocks[0].metadata == {"delimiter": ",", "row_count": 1}
+    assert "Row | Name | Note" in blocks[0].body
+    assert "2 | A | x, y" in blocks[0].body
+    assert "B | z" not in blocks[0].body
+
+
+def test_extract_csv_blocks_validates_configuration_and_empty_data() -> None:
+    with pytest.raises(ValueError, match="exactly one character"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_delimiter": "::"},
+        )
+    with pytest.raises(ValueError, match="csv column not found: Missing"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_columns": ["Missing"]},
+        )
+    with pytest.raises(ValueError, match="csv filter column not found: Missing"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_filters": {"Missing": "1"}},
+        )
+    with pytest.raises(ValueError, match="start row must follow the header row"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_start_row": 1},
+        )
+    with pytest.raises(ValueError, match="start row is outside the source"):
+        _extract_csv_blocks(
+            b"A,B\n1,2\n",
+            title=None,
+            extraction={"csv_start_row": 99},
+        )
+    for max_rows in (0, -1):
+        with pytest.raises(ValueError, match="max rows must be positive"):
+            _extract_csv_blocks(
+                b"A,B\n1,2\n",
+                title=None,
+                extraction={"csv_max_rows": max_rows},
+            )
+    assert (
+        _extract_csv_blocks(
+            b"A,B\n",
+            title="Empty",
+            extraction=None,
+        )
+        == ()
+    )
+
+
+@pytest.mark.parametrize(
+    ("content", "message"),
+    [
+        (b'A,B\n"unterminated,1\nnext,row\n', "invalid csv source"),
+        (b"A,\n1,2\n", "header cells must be non-empty"),
+        (b"A,B\n1,2,3\n", "row 2 has more cells than the header"),
+    ],
+)
+def test_extract_csv_blocks_rejects_malformed_tables(content: bytes, message: str) -> None:
+    with pytest.raises(ValueError, match=message):
+        _extract_csv_blocks(content, title=None, extraction=None)
 
 
 def test_extract_plain_text_blocks_decodes_and_normalizes_javascript() -> None:
@@ -450,6 +539,120 @@ def test_extract_json_record_blocks_rejects_bad_field_configs() -> None:
     assert len(blocks) == 1
     assert blocks[0].heading == "Record"
     assert blocks[0].body == "Body"
+
+
+def test_extract_json_record_blocks_filters_exact_labels_and_prefixes() -> None:
+    content = json.dumps(
+        [
+            {"label": "A:1", "text": "Exact"},
+            {"label": "A:2", "text": "Excluded"},
+            {"label": "B:1", "text": "Prefix one"},
+            {"label": "B:2", "text": "Prefix two"},
+            {"text": "Unlabeled"},
+        ]
+    ).encode("utf-8")
+
+    blocks = _extract_json_record_blocks(
+        content,
+        source_url="https://example.test/api",
+        fallback_title=None,
+        extraction={
+            "json_record_text_field": "text",
+            "json_record_text_is_html": False,
+            "json_record_label_field": "label",
+            "json_record_include_labels": ["A:1"],
+            "json_record_include_label_prefixes": "B:",
+        },
+    )
+
+    assert [block.metadata["section_label"] for block in blocks] == [
+        "A:1",
+        "B:1",
+        "B:2",
+    ]
+    assert [block.body for block in blocks] == ["Exact", "Prefix one", "Prefix two"]
+
+    with pytest.raises(ValueError, match="label 'A:missing', prefix 'C:'"):
+        _extract_json_record_blocks(
+            content,
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_record_text_field": "text",
+                "json_record_text_is_html": False,
+                "json_record_label_field": "label",
+                "json_record_include_labels": ["A:1", "A:missing"],
+                "json_record_include_label_prefixes": ["B:", "C:"],
+            },
+        )
+
+
+def test_extract_json_record_blocks_ignores_nontext_nonscalar_labels() -> None:
+    assert (
+        _extract_json_record_blocks(
+            b'[{"label": ["invalid"], "text": null}]',
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+            },
+        )
+        == ()
+    )
+
+    with pytest.raises(ValueError, match="labels must be scalar"):
+        _extract_json_record_blocks(
+            b'[{"label": ["invalid"], "text": "Body"}]',
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_record_text_field": "text",
+                "json_record_text_is_html": False,
+                "json_record_label_field": "label",
+                "json_record_include_labels": "A:1",
+            },
+        )
+
+
+@pytest.mark.parametrize(
+    ("extraction", "message"),
+    [
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_include_labels": "A:1",
+            },
+            "require json_record_label_field",
+        ),
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+                "json_record_include_labels": [],
+            },
+            "must contain one or more non-empty strings",
+        ),
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+                "json_record_include_label_prefixes": ["A:", 1],
+            },
+            "must contain one or more non-empty strings",
+        ),
+    ],
+)
+def test_extract_json_record_blocks_rejects_bad_label_filters(
+    extraction: dict[str, object], message: str
+) -> None:
+    with pytest.raises(ValueError, match=message):
+        _extract_json_record_blocks(
+            b"[]",
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction=extraction,
+        )
 
 
 def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
@@ -1809,6 +2012,50 @@ documents:
     assert "131.12" not in records[1].body
 
 
+def test_extract_official_documents_from_csv_rows(tmp_path: Path) -> None:
+    csv_path = tmp_path / "allotments.csv"
+    csv_path.write_bytes(
+        b"Household,Monthly allotment,Notes\r\n"
+        b'1,$298,"one, person"\r\n'
+        b"2,$546,two people\r\n"
+    )
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: ok-snap-allotments
+    jurisdiction: us-ok
+    document_class: policy
+    title: Oklahoma SNAP allotments
+    source_url: https://example.test/allotments.csv
+    citation_path: us-ok/policy/snap/allotments
+    source_format: csv
+    local_path: {json.dumps(str(csv_path))}
+    extraction:
+      csv_columns:
+        - Household
+        - Monthly allotment
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-21-ok-snap-allotments",
+    )
+
+    assert report.block_count == 1
+    assert report.source_paths[0].suffix == ".csv"
+    records = load_provisions(report.provisions_path)
+    assert records[1].citation_path == "us-ok/policy/snap/allotments/sheet-1"
+    assert records[1].metadata["row_count"] == 2
+    assert records[1].metadata["delimiter"] == ","
+    assert records[1].body is not None
+    assert "2 | 1 | $298" in records[1].body
+    assert "3 | 2 | $546" in records[1].body
+
+
 def test_extract_official_documents_from_legacy_xls_rows(tmp_path: Path) -> None:
     workbook_path = tmp_path / "ffe.xls"
     workbook = xlwt.Workbook()
@@ -2843,6 +3090,22 @@ def test_extract_official_documents_from_json_records(tmp_path: Path) -> None:
                 },
                 {
                     "id": 3,
+                    "sectionNum": "340:50-2-1",
+                    "description": "Prefixed dependency",
+                    "name": "Section",
+                    "statusName": "Undefined",
+                    "text": "<div>Included by prefix.</div>",
+                },
+                {
+                    "id": 4,
+                    "sectionNum": "340:50-3-1",
+                    "description": "Unselected section",
+                    "name": "Section",
+                    "statusName": "Undefined",
+                    "text": "<div>Not selected.</div>",
+                },
+                {
+                    "id": 5,
                     "sectionNum": None,
                     "description": "General Provisions",
                     "name": "Subchapter",
@@ -2875,6 +3138,10 @@ documents:
       json_record_status_field: statusName
       json_record_exclude_statuses:
         - Revoked
+      json_record_include_labels:
+        - 340:50-1-1
+      json_record_include_label_prefixes:
+        - 340:50-2-
       json_record_metadata_fields:
         - id
         - sectionNum
@@ -2889,11 +3156,12 @@ documents:
         version="2026-05-27-ok-snap-rules",
     )
 
-    assert report.block_count == 1
+    assert report.block_count == 2
     records = load_provisions(report.provisions_path)
     assert [record.citation_path for record in records] == [
         "us-ok/regulation/oac/340/50",
         "us-ok/regulation/oac/340/50/340-50-1-1",
+        "us-ok/regulation/oac/340/50/340-50-2-1",
     ]
     assert records[1].heading == ("340:50-1-1 Purpose, legal base, and responsibilities")
     assert records[1].kind == "section"
@@ -2901,6 +3169,21 @@ documents:
     assert records[1].metadata["id"] == 1
     assert "SNAP policy text" in (records[1].body or "")
     assert "Old revoked text" not in (records[1].body or "")
+    assert "Included by prefix" in (records[2].body or "")
+    assert "Not selected" not in " ".join(record.body or "" for record in records)
+    retained_source = json.loads(report.source_paths[0].read_text())
+    assert len(retained_source) == 5
+
+    manifest_path.write_text(
+        manifest_path.read_text().replace("340:50-1-1", "340:50-missing"),
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="label '340:50-missing'"):
+        extract_official_documents(
+            CorpusArtifactStore(tmp_path / "unmatched-corpus"),
+            manifest_path=manifest_path,
+            version="2026-05-27-ok-snap-rules",
+        )
 
 
 def test_extract_official_documents_drops_configured_html_selectors(

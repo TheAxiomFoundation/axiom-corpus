@@ -123,6 +123,60 @@ def test_preserves_existing_bodyless_composite_root(tmp_path) -> None:
     assert records == (root, document)
 
 
+def test_normalizes_empty_composite_root_and_removes_empty_primary_document(
+    tmp_path,
+) -> None:
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    version = "ca-composite"
+    root_path = "ca/policy/cra/example"
+    source_path = store.source_path("ca", "policy", version, "example.txt")
+    source_sha256 = store.write_text(source_path, "Document text")
+    relative_source_path = source_path.relative_to(store.root).as_posix()
+    root = ProvisionRecord(
+        jurisdiction="ca",
+        document_class="policy",
+        citation_path=root_path,
+        body="",
+        id=deterministic_provision_id(root_path, version),
+        version=version,
+        source_path=relative_source_path,
+    )
+    document = replace(
+        root,
+        citation_path=f"{root_path}/document-1",
+        body="Document text",
+        id=deterministic_provision_id(f"{root_path}/document-1", version),
+        parent_citation_path=root_path,
+        parent_id=root.id,
+    )
+    empty_primary = replace(
+        root,
+        citation_path=f"{root_path}/primary-document",
+        id=deterministic_provision_id(f"{root_path}/primary-document", version),
+        parent_citation_path=root_path,
+        parent_id=root.id,
+    )
+    inventory = tuple(
+        SourceInventoryItem(
+            citation_path=record.citation_path,
+            source_path=relative_source_path,
+            sha256=source_sha256,
+        )
+        for record in (root, document, empty_primary)
+    )
+    store.write_inventory(store.inventory_path("ca", "policy", version), inventory)
+    store.write_provisions(
+        store.provisions_path("ca", "policy", version),
+        (root, document, empty_primary),
+    )
+
+    promote_program_roots(base=store.root, version=version, citation_paths=(root_path,))
+
+    records = load_provisions(store.provisions_path("ca", "policy", version))
+    assert records == (replace(root, body=None), document)
+    assert all(not record.citation_path.endswith("/primary-document") for record in records)
+
+
 def test_rejects_duplicate_supplemental_source_version(tmp_path) -> None:
     selector_path = tmp_path / "selector.json"
     selector_path.write_text(
