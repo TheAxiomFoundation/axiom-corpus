@@ -240,13 +240,14 @@ def test_compose_rejects_colliding_source_files_without_debris(tmp_path):
 
 def test_compose_rejects_file_versus_directory_collisions(tmp_path):
     store = CorpusArtifactStore(tmp_path / "corpus")
-    # wave-1 stores a plain file named "node"; wave-2 stores a directory
-    # "node/" holding a file. Copying both would silently write wave-1's
-    # file INTO wave-2's directory, so the preflight must refuse.
-    _write_single_doc_scope(store, "wave-1", "de/statute/estg", source_name="node")
+    # The dangerous shape is directory-first, file-second: copy2 would
+    # silently write the later constituent's file INTO the already-copied
+    # directory ("target/node/node"). File-first merely crashes on mkdir.
+    # The preflight must refuse both orders before anything is created.
     _write_single_doc_scope(
-        store, "wave-2", "de/statute/solzg-1995", source_name="node/inside.xml"
+        store, "wave-1", "de/statute/estg", source_name="node/inside.xml"
     )
+    _write_single_doc_scope(store, "wave-2", "de/statute/solzg-1995", source_name="node")
 
     with pytest.raises(ValueError, match="source file collides"):
         compose_scope_versions(
@@ -254,6 +255,51 @@ def test_compose_rejects_file_versus_directory_collisions(tmp_path):
             jurisdiction="de",
             document_class="statute",
             source_versions=["wave-1", "wave-2"],
+            target_version="composed",
+        )
+    with pytest.raises(ValueError, match="source file collides"):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="de",
+            document_class="statute",
+            source_versions=["wave-2", "wave-1"],
+            target_version="composed",
+        )
+    for path in _target_artifacts(store, "composed"):
+        assert not path.exists()
+
+
+def test_compose_rejects_filesystem_equivalent_name_collisions(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    # Case-insensitive or normalizing filesystems (APFS) resolve "A.xml" /
+    # "a.xml" and NFC/NFD spellings of "ä.xml" to the same entry, so the
+    # second copy would silently replace the first despite lexically
+    # distinct relative paths.
+    _write_single_doc_scope(store, "wave-1", "de/statute/estg", source_name="A.xml")
+    _write_single_doc_scope(
+        store, "wave-2", "de/statute/solzg-1995", source_name="a.xml"
+    )
+    with pytest.raises(ValueError, match="source file collides"):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="de",
+            document_class="statute",
+            source_versions=["wave-1", "wave-2"],
+            target_version="composed",
+        )
+
+    _write_single_doc_scope(
+        store, "wave-3", "de/statute/bkgg-1996", source_name="bä.xml"
+    )
+    _write_single_doc_scope(
+        store, "wave-4", "de/statute/wogg", source_name="bä.xml"
+    )
+    with pytest.raises(ValueError, match="source file collides"):
+        compose_scope_versions(
+            base=store.root,
+            jurisdiction="de",
+            document_class="statute",
+            source_versions=["wave-3", "wave-4"],
             target_version="composed",
         )
     for path in _target_artifacts(store, "composed"):

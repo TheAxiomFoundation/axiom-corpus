@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import shutil
+import unicodedata
 from dataclasses import replace
 from pathlib import Path
 
@@ -129,21 +130,32 @@ def compose_scope_versions(
     # with directories, but a file may never share a relative path with
     # anything from another constituent (including a directory — otherwise
     # copy2 would silently write file "node" INTO directory "node/").
-    seen_relative_paths: dict[Path, tuple[str, str]] = {}
+    # Collision keys are NFC-normalized and casefolded: case-insensitive or
+    # normalizing filesystems (APFS) resolve such spellings to one entry, so
+    # lexical distinctness alone would let the second copy silently replace
+    # the first.
+    def collision_key(relative: Path) -> str:
+        return unicodedata.normalize("NFC", relative.as_posix()).casefold()
+
+    seen_relative_paths: dict[str, tuple[str, str, Path]] = {}
     for source_version, directory in source_directories:
         for path in sorted(directory.rglob("*")):
             relative = path.relative_to(directory)
             kind = "directory" if path.is_dir() else "file"
-            previous = seen_relative_paths.get(relative)
+            previous = seen_relative_paths.get(collision_key(relative))
             if previous is None:
-                seen_relative_paths[relative] = (kind, source_version)
+                seen_relative_paths[collision_key(relative)] = (
+                    kind,
+                    source_version,
+                    relative,
+                )
                 continue
-            previous_kind, previous_version = previous
+            previous_kind, previous_version, previous_relative = previous
             if kind == "directory" and previous_kind == "directory":
                 continue
             raise ValueError(
                 "source file collides across source versions: "
-                f"{previous_version}/{relative} ({previous_kind}) vs "
+                f"{previous_version}/{previous_relative} ({previous_kind}) vs "
                 f"{source_version}/{relative} ({kind})"
             )
 
