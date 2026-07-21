@@ -551,14 +551,17 @@ states:
     notes: Utah SNAP policy is in the integrated Child Care, Financial and SNAP Eligibility Policy Manual.
   - jurisdiction: us-vt
     name: Vermont
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.ahsnet.ahs.state.vt.us/Public/3sVT/assets/BRM/100GenInfo.htm
     target_manifest: manifests/us-vt-3squaresvt-manual.yaml
     target_scope:
       jurisdiction: us-vt
       document_class: manual
-      version: 2026-05-27-vt-3squaresvt-manual
+      version: 2026-07-21-vt-3squaresvt-manual
+    notes: The retained scope covers all 32 chapters in the official 3SquaresVT
+      manual TOC, including the July 1, 2026 resources update. It contains 32
+      document rows and 879 structured source blocks with complete coverage.
   - jurisdiction: us-va
     name: Virginia
     queue_status: published_current
