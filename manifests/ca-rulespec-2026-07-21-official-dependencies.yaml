@@ -20,8 +20,6 @@ documents:
     request: &browser_request
       browser_user_agent: true
       browser_impersonation_direct: true
-    extraction: &single_block
-      segmentation: single_block
     metadata: &cra_metadata
       primary_source: true
       source_authority: Canada Revenue Agency
@@ -37,7 +35,6 @@ documents:
     expression_date: '2026-07-01'
     language: en
     request: *browser_request
-    extraction: *single_block
     metadata: *cra_metadata
 
   - source_id: cra-2026-cgeb-payment-chart
@@ -51,7 +48,6 @@ documents:
     expression_date: '2026-07-01'
     language: en
     request: *browser_request
-    extraction: *single_block
     metadata: *cra_metadata
 
   - source_id: cra-2026-gst-hst-credit-one-time-top-up
@@ -65,7 +61,6 @@ documents:
     expression_date: '2026-06-05'
     language: en
     request: *browser_request
-    extraction: *single_block
     metadata: *cra_metadata
 
   - source_id: cra-2025-employee-partner-gst-hst-rebate-guidance
@@ -79,7 +74,6 @@ documents:
     expression_date: '2025-01-01'
     language: en
     request: *browser_request
-    extraction: *single_block
     metadata: *cra_metadata
 
   - source_id: cra-2025-eligible-educator-school-supply-credit
@@ -93,7 +87,6 @@ documents:
     expression_date: '2025-01-01'
     language: en
     request: *browser_request
-    extraction: *single_block
     metadata: *cra_metadata
 
   - source_id: cra-2026-federal-tax-rates-for-td1
@@ -107,7 +100,6 @@ documents:
     expression_date: '2026-01-01'
     language: en
     request: *browser_request
-    extraction: *single_block
     metadata: *cra_metadata
 
   - source_id: cra-2025-nb428-worksheet
@@ -121,7 +113,8 @@ documents:
     expression_date: '2025-01-01'
     language: en
     request: *browser_request
-    extraction: *single_block
+    extraction: &single_block
+      segmentation: single_block
     metadata: *cra_metadata
 
   - source_id: cra-2025-nt428-worksheet
@@ -191,7 +184,6 @@ documents:
     expression_date: '2025-01-01'
     language: en
     request: *browser_request
-    extraction: *single_block
     metadata: *cra_metadata
 
   - source_id: revenu-quebec-2026-employer-principal-changes
@@ -208,7 +200,6 @@ documents:
       browser_user_agent: true
       browser_impersonation: true
       browser_impersonation_direct: true
-    extraction: *single_block
     metadata: &rq_metadata
       primary_source: true
       source_authority: Revenu Quebec
