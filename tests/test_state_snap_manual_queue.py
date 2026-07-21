@@ -17,6 +17,24 @@ EXPECTED_TARGET_MANIFEST_PATHS = {
 }
 PUBLISHED_CURRENT = "published_current"
 SOURCE_REFETCH_REQUIRED = "source_refetch_required"
+COMPREHENSIVE_RELEASE = REPO_ROOT / "manifests/releases/us-rulespec-snap-2026-07-21.json"
+RELEASE_SCOPE_SUBSTITUTIONS = {
+    (
+        "us-ma",
+        "regulation",
+        "2026-07-17-ma-dta-snap-regulations",
+    ): (
+        "us-ma",
+        "regulation",
+        "2026-07-21-ma-dta-regulations-consolidated",
+    ),
+}
+SUPERSEDED_RELEASE_SCOPES = {
+    ("us-co", "regulation", "2026-04-29-10-ccr-2506-1-r2026-07-15-self-contained"),
+    ("us-la", "manual", "2026-07-13-recovery"),
+    ("us-ma", "regulation", "2026-05-28"),
+    ("us-mi", "manual", "2026-07-13-recovery"),
+}
 
 
 def _queue() -> list[dict[str, Any]]:
@@ -173,3 +191,25 @@ def test_published_state_snap_ingest_manifests_are_authenticated() -> None:
             issues[state["jurisdiction"]] = manifest_issues
 
     assert issues == {}
+
+
+def test_comprehensive_release_tracks_the_state_snap_queue() -> None:
+    payload = json.loads(COMPREHENSIVE_RELEASE.read_text())
+    release_scopes = {
+        (scope["jurisdiction"], scope["document_class"], scope["version"])
+        for scope in payload["scopes"]
+    }
+
+    published_scopes = set()
+    refetch_scopes = set()
+    for state in _queue():
+        scope = state["target_scope"]
+        identity = (scope["jurisdiction"], scope["document_class"], scope["version"])
+        if state["queue_status"] == PUBLISHED_CURRENT:
+            published_scopes.add(RELEASE_SCOPE_SUBSTITUTIONS.get(identity, identity))
+        else:
+            refetch_scopes.add(identity)
+
+    assert published_scopes <= release_scopes
+    assert refetch_scopes.isdisjoint(release_scopes)
+    assert SUPERSEDED_RELEASE_SCOPES.isdisjoint(release_scopes)
