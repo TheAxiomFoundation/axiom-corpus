@@ -54,7 +54,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5825c3f1eb4937f7a5e6a0dd58f3c05fa9fea7a9",
+    "commit": "8908b647ce624f1797d84445deb9048e7d0de5e3",
     "dirty_tracked": false,
     "root": "."
   },
@@ -71,19 +71,19 @@
     "source_count": 113
   },
   "document_class": "policy",
-  "generated_at": "2026-07-21T18:36:28.487678+00:00",
+  "generated_at": "2026-07-21T18:49:11.508251+00:00",
   "jurisdiction": "us-ok",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-21-ok-snap-policy.md",
-      "sha256": "2936730f604ea87d00a82e17327f13e9a020b44b9854445aaf69c02865b009fb"
+      "sha256": "fd1beabf67ddd8d68843522798e9fffacfb6cad959449283a19d1549c6e73283"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "t+iEiS0/Vm8lRyX2QV7zRtwWv6avSBieMRwtRZtTF+VA4Ew9G+ti0KKvmkZiDK5sREkYiXMejL+YWQPwskcsDA=="
+    "value": "+nzEqAJ4PNWiDbIFOxnwg1uTCkB/OsG1KonnTNAuoIbTwt5Bhvc/Lue+hqbpeN9nJByA49rTOwAXmTUxV1wxCw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-21-ok-snap-policy"
