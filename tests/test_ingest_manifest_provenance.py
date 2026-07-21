@@ -687,6 +687,59 @@ def test_guard_rejects_quoted_reasoning_log_drift(
     assert any("signed reasoning log entry" in issue for issue in result.issues)
 
 
+@pytest.mark.parametrize("suffix", ["\t", "\n", " "])
+@pytest.mark.parametrize("committed", [False, True])
+def test_guard_preserves_exact_applied_file_paths(
+    tmp_path: Path,
+    suffix: str,
+    committed: bool,
+) -> None:
+    repo = _init_repo(tmp_path / "repo")
+    artifact_dir = repo / "data/corpus/provisions/nz/statute"
+    artifact_dir.mkdir(parents=True)
+    signed_artifact = artifact_dir / f"authorized.jsonl{suffix}"
+    changed_artifact = artifact_dir / "authorized.jsonl"
+    signed_body = '{"citation_path":"nz/statute/signed","body":"Authorized."}\n'
+    signed_artifact.write_text(signed_body)
+    changed_artifact.write_text('{"citation_path":"nz/statute/changed","body":"Original."}\n')
+    _git(repo, "add", str(artifact_dir.relative_to(repo)))
+    _git(repo, "commit", "-m", "Add distinct artifact paths")
+
+    manifest = build_ingest_manifest(
+        repo=repo,
+        base=Path("data/corpus"),
+        jurisdiction="nz",
+        document_class="statute",
+        version="2026-07-10",
+        command="axiom-corpus-ingest extract-nz-legislation",
+        applied_files=[signed_artifact],
+    )
+    _key, private, public = _keys()
+    _write_manifest(
+        repo,
+        sign_ingest_manifest(manifest, private_key=private),
+        version="2026-07-10",
+    )
+    _git(repo, "add", ".")
+    _git(repo, "commit", "-m", "Sign padded artifact path")
+    base_commit = _git(repo, "rev-parse", "HEAD")
+
+    changed_artifact.write_text(signed_body)
+    if committed:
+        _git(repo, "add", str(changed_artifact.relative_to(repo)))
+        _git(repo, "commit", "-m", "Change unpadded artifact")
+
+    result = guard_ingested_artifacts(
+        repo=repo,
+        base_ref=base_commit if committed else None,
+        head_ref="HEAD",
+        public_key=public,
+    )
+
+    assert not result.passed
+    assert any("Unmanifested corpus artifact change" in issue for issue in result.issues)
+
+
 def test_guard_checks_reasoning_logs_for_authorized_artifact_changes(tmp_path: Path) -> None:
     repo = _init_repo(tmp_path / "repo")
     artifact = _artifact(repo)

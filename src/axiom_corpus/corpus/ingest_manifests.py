@@ -278,8 +278,8 @@ def guard_ingested_artifacts(
         for entry in payload.get("applied_files", []):
             if not isinstance(entry, dict):
                 continue
-            path = str(entry.get("path") or "").strip()
-            if path:
+            path = entry.get("path")
+            if isinstance(path, str) and path:
                 entries_by_path[path] = (manifest_path, payload, entry)
         for path in _reasoning_log_paths(payload):
             reasoning_manifests_by_path.setdefault(path, set()).add(manifest_path)
