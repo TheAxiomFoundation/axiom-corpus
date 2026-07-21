@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/manual/2026-07-21-wv-income-maintenance-manual.json",
+      "sha256": "cc9cd345a88b382456d7e27ca9bc6595ab1cd826e386d2e15ff1623355ab74c5"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/manual/2026-07-21-wv-income-maintenance-manual.json",
+      "sha256": "f8cc583fe1dc637bd5344f1ae24230fe555c2316f844f3602eb7ef91e234f60f"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/manual/2026-07-21-wv-income-maintenance-manual.jsonl",
+      "sha256": "6deddfc0b8b6f3b48de93be6982fb1707481c9653369a779d8f3d35e57747bee"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/manual/2026-07-21-wv-income-maintenance-manual/official-documents/wv-bfa-income-maintenance-manual-2026-07-01.pdf",
+      "sha256": "551ed2bcc677262e9bcbc2b28d1474d27b6734d89ad07b1cb5da829dc2c4bb3f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "04659f83f3ec8347478a83b82eb8c7e0ced5cff8",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src UV_PROJECT_ENVIRONMENT=/Users/pavelmakarchuk/axiom-corpus-uc/.venv uv run --no-sync python -m axiom_corpus.corpus.cli extract-official-documents --base data/corpus --version 2026-07-21-wv-income-maintenance-manual --manifest manifests/us-wv-manuals.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2276,
+    "missing_count": 0,
+    "provision_count": 2276,
+    "source_count": 2276
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T20:08:24.162463+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-wv-snap-manual.md",
+      "sha256": "925ebb25d65477fbcedfa3f4d203de0216fe9e7336aac026d0e72aefb70b8746"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "L7c2c725nIyR+TJhi8x3v2U6Mhq3Si3yDFUq3RsGHmJIeZ8B/RJ3MoRBVf1tp7MF1C5rDqmjJyqfna0xoZN9Ag=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-wv-income-maintenance-manual"
+}
