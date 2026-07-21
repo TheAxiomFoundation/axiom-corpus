@@ -1,0 +1,38 @@
+{
+  "applied_files": [
+    {
+      "deleted": true,
+      "path": "data/corpus/coverage/us-ok/regulation/2026-05-27-ok-snap-rules.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/inventory/us-ok/regulation/2026-05-27-ok-snap-rules.json"
+    },
+    {
+      "deleted": true,
+      "path": "data/corpus/provisions/us-ok/regulation/2026-05-27-ok-snap-rules.jsonl"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0f3368faa6f2bed63d77ca96763b69668e3d06d1",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "remove source-less Oklahoma SNAP scope after publishing signed complete 2026-07-21-ok-snap-rules replacement"
+  },
+  "coverage": null,
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T17:57:56.689187+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "oHpLzmAOjQkGuF3eRTa8fcWjQSLNVF6QnQxm5/GMo8CKwSPH/eKzA4bvOsmWiNHY0H1Qk2QPqDR9lYW3lml0DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-ok-snap-rules"
+}
