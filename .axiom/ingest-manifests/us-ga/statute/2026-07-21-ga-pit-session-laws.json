@@ -30,7 +30,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "5895ba2e50c940f47a127e97d785f51c7cbb02f0",
+    "commit": "16d03110ffe9dbe714e9155a94864cf5d1cf1f72",
     "dirty_tracked": false,
     "root": "."
   },
@@ -47,19 +47,19 @@
     "source_count": 8
   },
   "document_class": "statute",
-  "generated_at": "2026-07-21T15:03:42.133912+00:00",
+  "generated_at": "2026-07-21T15:10:11.752935+00:00",
   "jurisdiction": "us-ga",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-21-ga-pit-primary-sources.md",
-      "sha256": "f22e0fee6bf1828a42bd63fa8cfa2e3234e850d6031f937c08ba937a4a5906ee"
+      "sha256": "c12f960bd4af186ea48afe9064057d23e329bf68adc598cd5a78612fd002c9d0"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "/xSGoAuOKhb6qpr6zgy2Rs+QoyReqNpJuMTBBPYbdDT/+GayBhkP2Dkhke00Aew1ZDOPs7bHCSR5F62z6omkAw=="
+    "value": "B3lBU/P7KFHQWUAqmNNligBiAC1COLuL5Sr1lv41EDimxTyOutCKtK8xjLVTNjdM7Qz0m74z6DOlYYF4cEw3Ag=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-21-ga-pit-session-laws"
