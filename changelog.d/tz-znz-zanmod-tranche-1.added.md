@@ -1,0 +1,1 @@
+Ingest the Zanzibar (tz-znz) ZANMOD tranche-1 statutes — VAT Act 4/1998 (R.E. 2025), Excise Duty Act 8/2017 (R.E. 2025), ZSSF Act 2/2005, and the Written Laws (Miscellaneous Amendment) Act 10/2022 — and cut the first Zanzibar selector, tz-znz-rulespec-2026-07-21, opening the SOUTHMOD full-bundle program.
