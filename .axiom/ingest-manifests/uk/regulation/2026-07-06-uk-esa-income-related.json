@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-06-uk-esa-income-related.json",
+      "sha256": "0f54702c3528c86c1d467fc23a7370a51e0040ee5f5431f07ef2013970c09a5e"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-06-uk-esa-income-related.json",
+      "sha256": "acdbc888218033d04cdd4250a7ef0acb8f38eae69b230b3b8073254bbd41f929"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-06-uk-esa-income-related.jsonl",
+      "sha256": "8013016f00b2a6b6e4e947392d42bacd781098b3a3a6f4647a19cbf38f1cd738"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-06-uk-esa-income-related --source clml --citation uksi/2008/794/regulation/67 --citation uksi/2008/794/schedule/4 --citation uksi/2008/794/regulation/68 --source-as-of 2026-07-06 --expression-date 2026-04-06 --allow-incomplete"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:00.391402+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AaVmYiRa5sqAvqME2AfxNQ7Y17aQO+eVyrSerIq47rUakmAu5hK93+eM5I/NbOG2Mhanj6VmSJSpZNgCBlWCDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-uk-esa-income-related"
+}

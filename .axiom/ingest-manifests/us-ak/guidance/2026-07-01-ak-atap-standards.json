@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ak/guidance/2026-07-01-ak-atap-standards.json",
+      "sha256": "bd71ea8e882f358d58f8d993e9ef599fd09df1d038b66ea61df1d379358490f4"
+    },
+    {
+      "path": "data/corpus/inventory/us-ak/guidance/2026-07-01-ak-atap-standards.json",
+      "sha256": "f74795a51a6c7d36c50c602b18927501a3ce620ac10a40ddca4520c6ab1833d1"
+    },
+    {
+      "path": "data/corpus/provisions/us-ak/guidance/2026-07-01-ak-atap-standards.jsonl",
+      "sha256": "1323f678568e926d1fd1be274666b20654e7c6cbaee72355848b8eb7fa62bd25"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/guidance/2026-07-01-ak-atap-standards/official-documents/ak-dpa-ta-standards-2026.pdf",
+      "sha256": "5ab43bed1f7a75f44a5c7ef5ee8fdc51b9014cfe97ee0a1c07c3d9481a7c02e4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-01-ak-atap-standards --manifest manifests/us-ak-atap-standards.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T11:42:01.533283+00:00",
+  "jurisdiction": "us-ak",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "eRfFlKz1INTgAa4hNI2BN9HqzlcaEHkOKIq6TlT5RnFFYfCZSkfVHype8WyQU+1dG5L/d5jtspHQnAf4ZFNRDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-ak-atap-standards"
+}

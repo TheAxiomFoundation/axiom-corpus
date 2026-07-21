@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/et/regulation/2026-07-09-et-income-tax-and-vat-regulations.json",
+      "sha256": "a4c2cd3a3f4dbe143071b6f2ace5515b846a9b78f779a2ee1f90a0c27b31992b"
+    },
+    {
+      "path": "data/corpus/inventory/et/regulation/2026-07-09-et-income-tax-and-vat-regulations.json",
+      "sha256": "b0b29557147c15f3ee6d2577f614c0d2f67477049b8a313f2e733c7a52e0f0ac"
+    },
+    {
+      "path": "data/corpus/provisions/et/regulation/2026-07-09-et-income-tax-and-vat-regulations.jsonl",
+      "sha256": "d1fc5a1e93206fa8878037d9f3fa011b82594bf32d63e34aa6fb36ceab0a30a0"
+    },
+    {
+      "path": "data/corpus/sources/et/regulation/2026-07-09-et-income-tax-and-vat-regulations/official-documents/et-dir-1021-2024-vat-electricity-water-exemption.pdf",
+      "sha256": "9ee5ac20718b3f0ae6ae8d377e72eceed5bd462b386ec96f0fc7478dcee5e70a"
+    },
+    {
+      "path": "data/corpus/sources/et/regulation/2026-07-09-et-income-tax-and-vat-regulations/official-documents/et-reg-410-2017-federal-income-tax.pdf",
+      "sha256": "e5a99605f1275dc34f6fb0019261b598a707e7a1a4e637f43139785170839aff"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-et-income-tax-and-vat-regulations --manifest manifests/et-income-tax-and-vat-regulations-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:41:59.431085+00:00",
+  "jurisdiction": "et",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "LmYX/uBYJrcSkjBY6Qr2RZjeDIRsEdez/VG37eEQHqzoGNhCHeIOLbl2BpPwK2OzUIVM677Nun/Xc3uphE05Aw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-et-income-tax-and-vat-regulations"
+}

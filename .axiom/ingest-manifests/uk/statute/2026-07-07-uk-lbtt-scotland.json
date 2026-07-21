@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/statute/2026-07-07-uk-lbtt-scotland.json",
+      "sha256": "1d41d414724c8ad893bc1a47f61417aaff37df75a7fa8257979c6b5f280e2c01"
+    },
+    {
+      "path": "data/corpus/inventory/uk/statute/2026-07-07-uk-lbtt-scotland.json",
+      "sha256": "f32e862409f8518945a0a52d8f56cca4fcdf92a0539c83b23f763e706fa5c5ed"
+    },
+    {
+      "path": "data/corpus/provisions/uk/statute/2026-07-07-uk-lbtt-scotland.jsonl",
+      "sha256": "fd62f4d197b1e35516d9e868dfb04c04c49fdbd834ec8ceeb81c8cacc27127a6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-07-uk-lbtt-scotland --source clml --citation asp/2013/11/section/24 --citation asp/2013/11/schedule/2A --as-of 2026-06-30 --expression-date 2026-06-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:42:01.079671+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1+2irC+aHX8pqETGtmoJTEqJXyfU6pgXNFqCs5IwXlRSH0rNWBZ4XVhLP8TrYpc+kYNn3yqMqgbkn9m3LPYNAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-uk-lbtt-scotland"
+}

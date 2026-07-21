@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/regulation/2026-06-25-388-478.json",
+      "sha256": "60d092358a51fd1e937b78b72a4f15d2717961538af0179b6eb2e9e249f12101"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/regulation/2026-06-25-388-478.json",
+      "sha256": "3b6ef2ec45766a2a22141d107d4db688dce730b86320d791526805705e513f8b"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/regulation/2026-06-25-388-478.jsonl",
+      "sha256": "17887ea7895f86d8aa99ce52c65f37d3d5c20e1886f237a2395220db951e05b2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478/washington-wac-html/chapters/chapter-388-478-full.html",
+      "sha256": "375b1127bb44f4833d2270d1865ac2b67f660809af9df6b10a4f16119f574d33"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478/washington-wac-html/index.html",
+      "sha256": "425ecebbb744e61c055699144e37cb3f5124817eef5ca2bae5e22ab78aae5220"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/regulation/2026-06-25-388-478/washington-wac-html/titles/title-388.html",
+      "sha256": "2f8cba6ae71b17fe48ac8a2f1ee47bb8c1099af7821779a50688b7512f2d86ac"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-washington-wac --base data/corpus --version 2026-06-25 --only-chapter 388-478 --workers 4"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 15,
+    "missing_count": 0,
+    "provision_count": 15,
+    "source_count": 15
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:03.430867+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1aZBzIR6Ag9WSCgk4msYN8MFnJwi5PyoDYFfz9nLTf/XmUXp7XfFgH00fcOyhUx6y14ysOfZajEUfAzyhJwyBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-25-388-478"
+}

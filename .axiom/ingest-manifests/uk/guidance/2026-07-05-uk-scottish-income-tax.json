@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/guidance/2026-07-05-uk-scottish-income-tax.json",
+      "sha256": "03176e234038e35e3616cfe1d8211050050bd06f31fb3a56246231ff4b877bd1"
+    },
+    {
+      "path": "data/corpus/inventory/uk/guidance/2026-07-05-uk-scottish-income-tax.json",
+      "sha256": "72cb57c018ddff7945be4f28d3d454f4f6ba798a1d35aea0f0d51e0f591f33cc"
+    },
+    {
+      "path": "data/corpus/provisions/uk/guidance/2026-07-05-uk-scottish-income-tax.jsonl",
+      "sha256": "739adbfd56d4c641d80aae4c786ab26697a5874a4e1b27ab1ff4eeb1110af8e6"
+    },
+    {
+      "path": "data/corpus/sources/uk/guidance/2026-07-05-uk-scottish-income-tax/official-documents/uk-gov-scot-scottish-rate-resolution-2026-27-draft-motion.html",
+      "sha256": "ec1741495468468c61c94b477a62a301880559167ec7ddfb92299e6c3b817442"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-05-uk-scottish-income-tax --manifest manifests/uk-scottish-rate-resolution-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T11:42:00.152811+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7Z0IWwhDERy0tgnuGykUf63LGP3GPkeA8sY6sNv785t8xkFEEYKmyXkxTQ5ACex9N7VsxhDRqznkhzgYXNtUBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-uk-scottish-income-tax"
+}

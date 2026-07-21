@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/guidance/2026-07-05-be-pension-withholding-2025.json",
+      "sha256": "845478ce9b59d434e2ab00ffe4772571cf564b9e561ca551047b9dd1cce55a99"
+    },
+    {
+      "path": "data/corpus/inventory/be/guidance/2026-07-05-be-pension-withholding-2025.json",
+      "sha256": "e81de725762e2ab7c7245a04806f391f30af53ce40e3582a002a562b9966b6cf"
+    },
+    {
+      "path": "data/corpus/provisions/be/guidance/2026-07-05-be-pension-withholding-2025.jsonl",
+      "sha256": "ce0fb3c12c69e331bbf6044574de89a6c9b3aa8701faa2904df4c0b685150423"
+    },
+    {
+      "path": "data/corpus/sources/be/guidance/2026-07-05-be-pension-withholding-2025/official-documents/be-sfp-ssom-pension-withholding-ami-solidarity-2025.html",
+      "sha256": "4fb23f76fdd6d9374ead34a4202f2b8f81dfa1d898729b52bb2413fcba595a7f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-05-be-pension-withholding-2025 --manifest manifests/be-pension-withholding-2025-official-documents.yaml --source-as-of 2025-06-22 --expression-date 2025-02-01 --allow-incomplete"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 19,
+    "missing_count": 0,
+    "provision_count": 19,
+    "source_count": 19
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-21T11:41:59.136313+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PDMRJi3N9jxwS1eRuhJs13J756pbmEaneUwskUtPGdLDiDuRYoe39RPySluBSyADguxa87v+RLpDISsF3zR9DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-be-pension-withholding-2025"
+}

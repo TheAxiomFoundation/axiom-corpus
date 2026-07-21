@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/et/policy/2026-07-09-et-psnp-policy.json",
+      "sha256": "604f67bec789781701035ddbb8a6e80821a33d918e97a324a19aa86d10a44477"
+    },
+    {
+      "path": "data/corpus/inventory/et/policy/2026-07-09-et-psnp-policy.json",
+      "sha256": "146c12a47071cbecf20ba7d7b9eaebb25b5600e415fc3468ad4e32f445fa8558"
+    },
+    {
+      "path": "data/corpus/provisions/et/policy/2026-07-09-et-psnp-policy.jsonl",
+      "sha256": "c48cb76b63ccd08a9e8e57a95ff1f1d9469d173538a097b356f2b20c39a4aa82"
+    },
+    {
+      "path": "data/corpus/sources/et/policy/2026-07-09-et-psnp-policy/official-documents/et-moa-psnp-iv-pim-2014.pdf",
+      "sha256": "f20765938cd567bd4f562cd0073e74034fdf91de1131908689338fbc3006e9a0"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-09-et-psnp-policy --manifest manifests/et-psnp-policy-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:41:59.396130+00:00",
+  "jurisdiction": "et",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AxTwqroPwRq76DBcUyxQASoQPXPHAl7/RQQEaTAMDgKpi/JwbTDAVssvJ3xRPB0tiByEO7lv547SkoM0wgxJAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-09-et-psnp-policy"
+}

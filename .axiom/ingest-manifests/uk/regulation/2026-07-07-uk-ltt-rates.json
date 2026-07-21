@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-07-uk-ltt-rates.json",
+      "sha256": "9951abdef8469671af66e10b2fd94402c01f7e8d7029d0091dfb0a9ad6ddfbdc"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-07-uk-ltt-rates.json",
+      "sha256": "111e208a64cce6d5d7e70650baac37d91a58442333c5cf582f32b5d96b3a6a05"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-07-uk-ltt-rates.jsonl",
+      "sha256": "194144e85d884d7e6a26cba7a456c25bbda61ef7b0541b1219cb40b4afe7b82d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-07-uk-ltt-rates --source-xml wsi-2018-128-schedule-2026.xml --as-of 2026-06-30 --expression-date 2026-06-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:00.561297+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "pggjU1DD3paC3aNK02EXP/t9dE/UU3wT7AU+YKawwZ3uFeXPF5Xy++FM88L1n/+/C2OD73I6mjBZmi0f3seSBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-uk-ltt-rates"
+}

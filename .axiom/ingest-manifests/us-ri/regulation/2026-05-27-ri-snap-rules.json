@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ri/regulation/2026-05-27-ri-snap-rules.json",
+      "sha256": "43cf1f05816de5d19e30d92a25c15e42599e13aac5eec551087c0b8097c4bfd6"
+    },
+    {
+      "path": "data/corpus/inventory/us-ri/regulation/2026-05-27-ri-snap-rules.json",
+      "sha256": "1b9cb2246d2b98bb2646885b2391fcb276fc2f3ffe1f539e990cf70d453f20c4"
+    },
+    {
+      "path": "data/corpus/provisions/us-ri/regulation/2026-05-27-ri-snap-rules.jsonl",
+      "sha256": "60718211e6bbd4928e4c1f8cc694803a99828cbcf4e46c25060cf04c63a75a80"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:03.161977+00:00",
+  "jurisdiction": "us-ri",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "IhR7KNy98t2+fozwnEYvb4gkzyyL84ypTDY64iNyj/+Qf1ePxTORYRT1L8vtvI0yqVHyHGzEb9ycjZAzIi3HBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-ri-snap-rules"
+}

@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-05-uk-housing-benefit-entitlement.json",
+      "sha256": "5cb22a962367844596ed4062cc8a704306a23b425f14c77dfea402f690543f86"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-05-uk-housing-benefit-entitlement.json",
+      "sha256": "fe97ee4857eef0e27565e5f1b3ef0ae86f94fe02285c383b1da87ae888d2844a"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-05-uk-housing-benefit-entitlement.jsonl",
+      "sha256": "4f8394795c82428673dcf15b265a27bdc61f59b0f43b279869becaf944aeae1e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-05-uk-housing-benefit-entitlement --source clml --citation uksi/2006/213/regulation/22 --citation uksi/2006/213/regulation/70 --citation uksi/2006/213/regulation/71 --citation uksi/2006/213/regulation/74 --citation uksi/2006/213/schedule/3 --citation uksi/2006/214/regulation/22 --citation uksi/2006/214/regulation/50 --citation uksi/2006/214/regulation/51 --citation uksi/2006/214/regulation/55 --citation uksi/2006/214/schedule/3 --source-as-of 2026-07-05 --expression-date 2026-04-06 --allow-incomplete"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 10,
+    "missing_count": 0,
+    "provision_count": 10,
+    "source_count": 10
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:00.295035+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zHXuA9wZKq/hInn/f+wk6BbaVrU0sNhvGZ/UdRJGMn6eG3XeN0DSL8MjNoQC/wdjKopcDzg+ntVXlHDXCy9dDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-uk-housing-benefit-entitlement"
+}

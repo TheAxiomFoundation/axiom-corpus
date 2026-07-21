@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/manual/2026-05-27-wv-manuals.json",
+      "sha256": "bcfde8b1b59bcc15849293c502f28c8d3309fcad150e563d79c047d3c6142fd0"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/manual/2026-05-27-wv-manuals.json",
+      "sha256": "887f9c17475da7a58fcc579d2b5de677af8b3e6c601445547b9699e5306d2fb7"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/manual/2026-05-27-wv-manuals.jsonl",
+      "sha256": "36f181b6ad5ec7544cad5b6fd5c68046f92aedfbe03d15da78b76cd8d31713b3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T11:42:03.529060+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "clpmOaM8NzORvwzm0hHaeTni+8B8dbzrS8da7F8hduI1VFAbY3AL72r/I7/rFdeRNnIIzZCe6JsZcVbNqWokCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-wv-manuals"
+}

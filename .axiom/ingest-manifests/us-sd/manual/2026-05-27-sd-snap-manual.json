@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sd/manual/2026-05-27-sd-snap-manual.json",
+      "sha256": "012921039d8d27bd03bd1323fbdf2411b6e41c80b99daf7e983f4017d9dcf145"
+    },
+    {
+      "path": "data/corpus/inventory/us-sd/manual/2026-05-27-sd-snap-manual.json",
+      "sha256": "7c5607d64dbea6d5823969c9074c2d6a0826f3c1851362f807d503fbd5b7e930"
+    },
+    {
+      "path": "data/corpus/provisions/us-sd/manual/2026-05-27-sd-snap-manual.jsonl",
+      "sha256": "b9b0ceb150d674f547e5638075c454ba468bb6b95276398c78b720faa0592fd4"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 339,
+    "missing_count": 0,
+    "provision_count": 339,
+    "source_count": 339
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T11:42:03.193585+00:00",
+  "jurisdiction": "us-sd",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Y2UY3uYKXpv3r84Jsxnw4j2PktwljogHCI7zALFci/2FkTifzBV4XG2BLWJhyjlRD1igCadt9Q1CC1YRbAwWDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-05-27-sd-snap-manual"
+}

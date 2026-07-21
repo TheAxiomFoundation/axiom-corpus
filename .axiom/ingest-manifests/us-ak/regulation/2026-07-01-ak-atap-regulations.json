@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ak/regulation/2026-07-01-ak-atap-regulations.json",
+      "sha256": "4d7120ae8fa6896f42492f159954cb97c27c96855d0634db0653dd343f06d76c"
+    },
+    {
+      "path": "data/corpus/inventory/us-ak/regulation/2026-07-01-ak-atap-regulations.json",
+      "sha256": "5f57528ae86c3da8f8ff974356b6c49b2f547f690e54e4427b1132cd91fa9ac7"
+    },
+    {
+      "path": "data/corpus/provisions/us-ak/regulation/2026-07-01-ak-atap-regulations.jsonl",
+      "sha256": "93efffe09a419494c9f9e9924f1396262a0408a4b43dac91341f5f6e42835137"
+    },
+    {
+      "path": "data/corpus/sources/us-ak/regulation/2026-07-01-ak-atap-regulations/official-documents/ak-aac-title-7-chapter-45-atap.html",
+      "sha256": "8f3e032f6320e18133a9b861e02294bc744a222354705d3f5c8ddde4ffd9ac8c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-01-ak-atap-regulations --manifest manifests/us-ak-atap-regulations.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 127,
+    "missing_count": 0,
+    "provision_count": 127,
+    "source_count": 127
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:01.566312+00:00",
+  "jurisdiction": "us-ak",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7F17a60lJFvItNPsigDJXKZIlRiWi1o94ZqeXxEz4LvaGiY4XxB0UDO+ReGiPZjqY2peKhF1sU2U8zJTFUPlCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-01-ak-atap-regulations"
+}

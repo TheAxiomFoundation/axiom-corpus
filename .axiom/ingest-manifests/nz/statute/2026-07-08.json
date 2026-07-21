@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/nz/statute/2026-07-08.json",
+      "sha256": "73912bd92e6725753e3ca38367bd89c36ec228412d730417f861bfd33f86c006"
+    },
+    {
+      "path": "data/corpus/inventory/nz/statute/2026-07-08.json",
+      "sha256": "7dafef37d854b43c2a1241c15d02f09129d058e93362224001204de080eb8d14"
+    },
+    {
+      "path": "data/corpus/provisions/nz/statute/2026-07-08.jsonl",
+      "sha256": "b3ee26be98ffd20c409f580803bfe550ef8f5503f1bca5d13859f7995611606f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "download-nz-legislation-api --legislation-type act --search-term 'Income Tax Act 2007'; extract-nz-legislation --source-xml act_public_2007_97_en_2026-07-01.xml (Income Tax Act 2007, public/2007/97)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4134,
+    "missing_count": 0,
+    "provision_count": 4134,
+    "source_count": 4134
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:41:59.797412+00:00",
+  "jurisdiction": "nz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4oGcFlolCJaeskE/791+7PPNFgHvAlekMEj5dNM3cdX5l1N8a7o/PTg0d3LQAQeHegVwgviRUb0gg87PElzgCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08"
+}

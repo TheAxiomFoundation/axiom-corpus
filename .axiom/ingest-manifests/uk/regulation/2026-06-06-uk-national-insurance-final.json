@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-06-06-uk-national-insurance-final.json",
+      "sha256": "fe5d89a639c4721e66270acbf498cb08d9d8afdacd272ed344b99fe3ae74aebd"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-06-06-uk-national-insurance-final.json",
+      "sha256": "989e78f01386daffb96255c3a8f68087ce500a43309ffd4ecd95bb9290532354"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-06-06-uk-national-insurance-final.jsonl",
+      "sha256": "acd18e659a6407ab348f959c0ea479af22db7c4167b287b196ed79ca371e7086"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-06-06-uk-national-insurance-final/uksi/2001/1004/regulation-100.xml",
+      "sha256": "121064b00fd1a40fd539669ad4b2113149e633678a20fcd5b8876949d1573a23"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-06-06-uk-national-insurance-final --source clml --citation uksi/2001/1004/regulation/100 --source-as-of 2026-06-06 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:00.228223+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zGDJ6EfWfmQPDEoyYsqHiAquhTDXNRswxw11QpHJ82rIA9ZTN8h58gzigBjkJG6nUJ+WRDvii+G5CZ8xd6oMAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-06-uk-national-insurance-final"
+}

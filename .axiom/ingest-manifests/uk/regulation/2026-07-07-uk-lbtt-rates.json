@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-07-uk-lbtt-rates.json",
+      "sha256": "ad3c3f986cced7d8e8cf1b9b093f96fa4ab3555702a3b18e1efb06751d649a6e"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-07-uk-lbtt-rates.json",
+      "sha256": "b3ace7c1c8993d475c670aa379228162589c1866b927d98df235d5e10640e5fd"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-07-uk-lbtt-rates.jsonl",
+      "sha256": "84dd9adc878199d43c1f89394a0ead5d4afba0ee7a837dd421b9c14d1c4fec30"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-07-uk-lbtt-rates --source-xml ssi-2015-126-schedule.xml --as-of 2026-06-30 --expression-date 2026-06-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:00.530162+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JKrDaqxv+eURYu+7X/wIEhgGcIGtSd0o1Mc7FGYLIGatTt1tWKqJeNgTgtP6HJhgs1uzMl7XDHGGArteMAI0Cw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-uk-lbtt-rates"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/be/regulation/2026-07-05-be-rd38-art13-pre-2025.json",
+      "sha256": "e3d0be68e10f92b98c4f43fc4d6583d84cbf923f3ccb2c95e5188c334c3bd71e"
+    },
+    {
+      "path": "data/corpus/inventory/be/regulation/2026-07-05-be-rd38-art13-pre-2025.json",
+      "sha256": "57eac71434fb0de4f4da4c6b2a60f2493eaaa4afbc6375d6d0004a3512d6ca3a"
+    },
+    {
+      "path": "data/corpus/provisions/be/regulation/2026-07-05-be-rd38-art13-pre-2025.jsonl",
+      "sha256": "0b732dab26cf1598db785b91e0298e216a765b4dd978b46e7b9c3c49b01b121c"
+    },
+    {
+      "path": "data/corpus/sources/be/regulation/2026-07-05-be-rd38-art13-pre-2025/moniteur/unknown-date/edition-1/1967072702.html",
+      "sha256": "2bad18270989e3a0e9a49c9a18aae266f8337a5b05388479856c899b2080f09a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-belgian-eli --base data/corpus --version 2026-07-05-be-rd38-art13-pre-2025 --manifest manifests/be-rd38-art13-pre-2025-eli.yaml --source-as-of 2025-09-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 68,
+    "missing_count": 0,
+    "provision_count": 68,
+    "source_count": 68
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:41:59.202964+00:00",
+  "jurisdiction": "be",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bROSeyY4d1oyN2jCfJhGvjgYo2FkRsXw6rsZrAriOxn145K1cAXwBUEMQi3fl5ziwmjgnqVBgW9YIB87mQmTBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-be-rd38-art13-pre-2025"
+}

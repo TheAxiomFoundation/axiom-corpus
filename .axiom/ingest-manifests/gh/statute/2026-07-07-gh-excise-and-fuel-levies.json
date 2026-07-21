@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/gh/statute/2026-07-07-gh-excise-and-fuel-levies.json",
+      "sha256": "c8305be5c83ee6bfe17a7b29506660e267e71b3d8aaa13ba0bb31372186e3ad2"
+    },
+    {
+      "path": "data/corpus/inventory/gh/statute/2026-07-07-gh-excise-and-fuel-levies.json",
+      "sha256": "a67323c8ecaa9f352827ef6d12b0d9468725e6cd74817372417da7a0415f0246"
+    },
+    {
+      "path": "data/corpus/provisions/gh/statute/2026-07-07-gh-excise-and-fuel-levies.jsonl",
+      "sha256": "a7bd424d904429527aeed34ea826c3ba5f45f19160cd0761f849d026f0d00c2d"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-07-gh-excise-and-fuel-levies/official-documents/gh-act-1108-excise-first-schedule-2023.pdf",
+      "sha256": "8870db0aed68dc90d1d950b177f9af8fae3c21f01254bc4b8e21e0154fc90904"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-07-gh-excise-and-fuel-levies/official-documents/gh-act-1135-energy-sector-levies-2025-schedule.pdf",
+      "sha256": "8a1991e0bdd3b3e0d8a1a418d2ecfa762090dce127267728df17d74ef1ed747d"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-07-gh-excise-and-fuel-levies/official-documents/gh-act-1141-esla-amendment-2025.pdf",
+      "sha256": "d4c3c1c0b12e4934cbbd9076a4e34b223cfe1e9b487dd1fb8ebcaa5621bcc4f8"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-07-gh-excise-and-fuel-levies/official-documents/gh-act-1145-esla-amendment-no2-2025.pdf",
+      "sha256": "95449bd4b1dec7612dfde166f23cb0cdb1473adff8ca60ce57c32fffbc75391b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-07-gh-excise-and-fuel-levies --manifest manifests/gh-excise-and-fuel-levies-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:41:59.541987+00:00",
+  "jurisdiction": "gh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "37dGeqFm8z9kGRapuKNdXoZ+BJZe46hutbpObolY0HpVvcKsyux5lCq6lKjaOjVozeQc9h+ghWl3G4Ccbxc4Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-gh-excise-and-fuel-levies"
+}

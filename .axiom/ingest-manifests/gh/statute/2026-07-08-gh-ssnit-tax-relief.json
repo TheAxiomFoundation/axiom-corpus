@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/gh/statute/2026-07-08-gh-ssnit-tax-relief.json",
+      "sha256": "c2cc87e02a5ce79b15c0a78502190247b60c0e800b677308546cfde12e704081"
+    },
+    {
+      "path": "data/corpus/inventory/gh/statute/2026-07-08-gh-ssnit-tax-relief.json",
+      "sha256": "d0607d7ddd61381ea103b34bd13f549d77edd16f0b6214bd5ad16ec021d01380"
+    },
+    {
+      "path": "data/corpus/provisions/gh/statute/2026-07-08-gh-ssnit-tax-relief.jsonl",
+      "sha256": "b7935c7355e39282d72ea6a9bc87b5987c050b061e6e7a5ae12009c128af74ba"
+    },
+    {
+      "path": "data/corpus/sources/gh/statute/2026-07-08-gh-ssnit-tax-relief/official-documents/gh-act-766-national-pensions-2008-tax-reliefs.pdf",
+      "sha256": "b6d33af177a4b1b2f91a8346fc3bc88c6e990e22fcca93a94e745dcc85830e86"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-08-gh-ssnit-tax-relief --manifest manifests/gh-ssnit-tax-relief-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:41:59.733095+00:00",
+  "jurisdiction": "gh",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EExQ9ZXSUEssvPwQb0v2D99U8VLAt+rRv/+KnbSGlVhc/jPb+u2o9Gh874w2UfGsFh90GO4Ow9ICP7bHKtxDCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08-gh-ssnit-tax-relief"
+}

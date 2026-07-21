@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/statute/2026-06-06-uk-national-insurance-final.json",
+      "sha256": "f9edf3e621c179a373bd81cc7aaa2d5d5bb8e1726205fd61b873f62de20fdea3"
+    },
+    {
+      "path": "data/corpus/inventory/uk/statute/2026-06-06-uk-national-insurance-final.json",
+      "sha256": "f1cce8506542268927f19b1f51e8daaa3ab2925470f5dbdee3fd8ec6f84fb881"
+    },
+    {
+      "path": "data/corpus/provisions/uk/statute/2026-06-06-uk-national-insurance-final.jsonl",
+      "sha256": "7776b1fd745ccce0fa8f3d232d5495db314d8d8c9fbf7224b7d82c2e62e2087f"
+    },
+    {
+      "path": "data/corpus/sources/uk/statute/2026-06-06-uk-national-insurance-final/ukpga/1992/4/section-1.xml",
+      "sha256": "121ac1af8a77e0731f04588134bf9e79578442c72c17420518f0e8128b9d0087"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-06-06-uk-national-insurance-final --source clml --citation ukpga/1992/4/section/1 --source-as-of 2026-06-06 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:42:00.699692+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sBdwi282WujCOLO8A+uGAAwirM30RsQMXF3d4AmwnV6ZkgKVwe7uqDhl7zFRRmwPRWz818q35P0rXfw4Z0WrCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-06-uk-national-insurance-final"
+}

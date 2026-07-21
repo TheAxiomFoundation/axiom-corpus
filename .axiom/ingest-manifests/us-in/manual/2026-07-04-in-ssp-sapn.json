@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-in/manual/2026-07-04-in-ssp-sapn.json",
+      "sha256": "d51e7f3bf068fb5158bd26045bf2fca174e2825d329b8307ebeeb0b7beb28849"
+    },
+    {
+      "path": "data/corpus/inventory/us-in/manual/2026-07-04-in-ssp-sapn.json",
+      "sha256": "57746c7767f8ba39781f5f5aacb97af31ccf4dd03391e067881e7fa6d38bc0b8"
+    },
+    {
+      "path": "data/corpus/provisions/us-in/manual/2026-07-04-in-ssp-sapn.jsonl",
+      "sha256": "158143a279d27c5f2e07231690b9ae5deb30aa1ab4651522cf4d1924663726b4"
+    },
+    {
+      "path": "data/corpus/sources/us-in/manual/2026-07-04-in-ssp-sapn/official-documents/in-fssa-medicaid-pm-5000-sapn.pdf",
+      "sha256": "9000ba141c3a7bf207d9b2b099f13f9f2dc89a56a1dcae3b0bc2dd2cefba21f6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-04-in-ssp-sapn --manifest manifests/us-in-ssp-sapn-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T11:42:02.612452+00:00",
+  "jurisdiction": "us-in",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "q3821GQU/2smFHo9icErIoEVUo21K9yAh+siuqLfpq5gVJB65b+OUKR08Q95Fug7lEVFUcBfkY01XbUkI4M0BQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-04-in-ssp-sapn"
+}

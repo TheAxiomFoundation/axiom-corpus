@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-06-uk-best-start-foods-reg13.json",
+      "sha256": "685d32a3342e160b400d5bcfe9cd86fe31b3e9b2ab5a877f816a16334c8fc3c7"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-06-uk-best-start-foods-reg13.json",
+      "sha256": "f3a67e1b9788651b52aa4272815a1bb6a37e4d3c450d164c3cf4084e4c0d2676"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-06-uk-best-start-foods-reg13.jsonl",
+      "sha256": "8f7d8e58669563b9dcfd7b5e5226b7c63f2afb78d46765c6bb18bae46a4fec3c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-06-uk-best-start-foods-reg13 --source clml --citation ssi/2019/193/regulation/13 --source-as-of 2026-07-06 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:00.359034+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iI4z63czdmEB6d2xQXEO/0a8YGtBP+KbEQ2BAHcZYp4/uP+cEHhaxB6TH6qksIBiAGK1EdmrHnUiM+IBCaB+AQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-uk-best-start-foods-reg13"
+}

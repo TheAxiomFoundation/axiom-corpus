@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ug/regulation/2026-07-08-ug-vat-rate-order.json",
+      "sha256": "4f24002c7355423cd2d45d4ebed06ae922c4841e818951635c5e12197eed92d2"
+    },
+    {
+      "path": "data/corpus/inventory/ug/regulation/2026-07-08-ug-vat-rate-order.json",
+      "sha256": "63b1f79e26608315af491db2031cbc73007e056dad80056b8a4e1f1f728e56f6"
+    },
+    {
+      "path": "data/corpus/provisions/ug/regulation/2026-07-08-ug-vat-rate-order.jsonl",
+      "sha256": "41d331f7ed1e4912b055d09d2a5ba657c3ebb0862c714e757452fe2d2f30707f"
+    },
+    {
+      "path": "data/corpus/sources/ug/regulation/2026-07-08-ug-vat-rate-order/official-documents/ug-vat-rate-of-tax-order-2006.pdf",
+      "sha256": "bc35327fc76a7b442a5577a03c6561c23b750fcd5547caa283af3f20f045f80b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-08-ug-vat-rate-order --manifest manifests/ug-vat-rate-order-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:41:59.878841+00:00",
+  "jurisdiction": "ug",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sLXk4LiZgdvHRx2mfAeFsaCQ1e6TuegqMDeVCodO4gzyiptqnECIt1tlyrpGr+SQZZ3wx09ijGt4QrNb+7HaAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08-ug-vat-rate-order"
+}

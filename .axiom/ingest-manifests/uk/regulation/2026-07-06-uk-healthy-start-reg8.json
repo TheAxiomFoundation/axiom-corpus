@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-06-uk-healthy-start-reg8.json",
+      "sha256": "b9045da1bc88d90f76ba5cad8a30f6a716b7876a96f48655bc04ed20b1456b81"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-06-uk-healthy-start-reg8.json",
+      "sha256": "13db191647b3755b2dd0f84c6199f63d32b4a6f0a4d9d48fff7bb7357f571e0c"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-06-uk-healthy-start-reg8.jsonl",
+      "sha256": "3421c0c46fe50840925a51f2cdcaaabd48aeb07de1058cfb1805786454aeaea6"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-06-uk-healthy-start-reg8 --source clml --citation uksi/2005/3262/regulation/8 --source-as-of 2026-07-06 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:00.427217+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "kwF1fnNAxmu1DSA1bHc4JZeSVDKN7an+rfZ3bKMUABU5fRyyg1wIIGHWC6TqfRtuP5AFnUjZdKBQxsDvUz23CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-06-uk-healthy-start-reg8"
+}

@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/statute/2026-07-05-uk-hicbc-itepa.json",
+      "sha256": "257680d79d7be093c58ec43149d44580457a543fa8fe13fbf3508cdbb54ddda7"
+    },
+    {
+      "path": "data/corpus/inventory/uk/statute/2026-07-05-uk-hicbc-itepa.json",
+      "sha256": "d7eb6a0344e6131edadcd5af08e0f69a99320d41172c79435682108531274ce0"
+    },
+    {
+      "path": "data/corpus/provisions/uk/statute/2026-07-05-uk-hicbc-itepa.jsonl",
+      "sha256": "cf876ccdd606ab6bf3aa4d09c4add1ab271a09596d2b7e080eb5731f71e4f734"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-05-uk-hicbc-itepa --source clml --citation ukpga/2003/1/section/681B --citation ukpga/2003/1/section/681C --citation ukpga/2003/1/section/681D --citation ukpga/2003/1/section/681E --citation ukpga/2003/1/section/681F --citation ukpga/2003/1/section/681G --citation ukpga/2003/1/section/681H --source-as-of 2026-07-05 --expression-date 2026-04-06"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:42:00.761153+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "94fj4sDHoTfBXfQJWuwU0PB0g9RJS3/ZhjQNDKz6jvOr68GJqJhO5jZyKLdqiBtOUeJUDzDc6JsV6jrtQK0nBQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-05-uk-hicbc-itepa"
+}

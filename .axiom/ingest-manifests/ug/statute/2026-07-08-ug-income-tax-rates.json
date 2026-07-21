@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/ug/statute/2026-07-08-ug-income-tax-rates.json",
+      "sha256": "2004913267b1871690238b491fe187ad0a296eef1fe4443e81ef9f71fbcefcdc"
+    },
+    {
+      "path": "data/corpus/inventory/ug/statute/2026-07-08-ug-income-tax-rates.json",
+      "sha256": "724654f0f419826346b20c6502fd621b4942cbcb4b84a9cafcbac4b62a994e42"
+    },
+    {
+      "path": "data/corpus/provisions/ug/statute/2026-07-08-ug-income-tax-rates.jsonl",
+      "sha256": "a52ddb690005c4b7994a560731052c4dad70d0119cdc452113e765bb61ceea9a"
+    },
+    {
+      "path": "data/corpus/sources/ug/statute/2026-07-08-ug-income-tax-rates/official-documents/ug-act-2012-4-income-tax-amendment.pdf",
+      "sha256": "8f39ab23347acfd4d5af40bac22a2e07a1e254d7bfe8ef9899206df26481adcd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-08-ug-income-tax-rates --manifest manifests/ug-income-tax-rates-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:41:59.985413+00:00",
+  "jurisdiction": "ug",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "NSkMXAF+3A/xVp8hpedJWrQGTGNsnJTtHZ8KLnD8SzPHrvOkv4PtEx+fAoHxA2OZ+MJZyLjqbW7i4+dmIg39DQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-08-ug-income-tax-rates"
+}

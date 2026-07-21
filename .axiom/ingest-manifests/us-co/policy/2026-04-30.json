@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/policy/2026-04-30.json",
+      "sha256": "62a0317071dad0f6c578a064df29712ed4fbb269b9b62aec2c91903f8e50a9a6"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/policy/2026-04-30.json",
+      "sha256": "a59ce9a44cfa3d91d25fa20cd20efc326981ced93e05a5f8122d0a4718b86ef3"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/policy/2026-04-30.jsonl",
+      "sha256": "2aea8c83b24cd71a6be2fea0a8ca6cfceea31791e92e921ae0a7e74df2920279"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 574,
+    "missing_count": 0,
+    "provision_count": 574,
+    "source_count": 574
+  },
+  "document_class": "policy",
+  "generated_at": "2026-07-21T11:42:01.961250+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "3A1GXu2Z4XLvBB0VazJ+k/toflKv4iQ/19Vs67OofpZfdw2Q1n4hCuht6WHerm7KBvjAVJ/sjSJeaLDF0WfuAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-04-30"
+}

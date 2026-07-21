@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.json",
+      "sha256": "0abd506c0aa4eeec5795c34d002b843b8381009b5034dc4a56e239ef2e4f5af3"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.json",
+      "sha256": "fe34046600ece4a8a32e42fdbcbb3794fc4a46dc55c67bd4268823c5f9a6e792"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7.jsonl",
+      "sha256": "b1cca08d9217f823d6438843289b7441d8f15ef6e1e5c8cb20c7dee43a20fd41"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-06-06-uk-universal-credit-schedule4-paragraph7/uksi/2013/376/schedule-4-paragraph-7.xml",
+      "sha256": "9cfc83f34a14fa6e01645578e87ac95359fe3140873c8b4e56cb6db966b813be"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-06-06-uk-universal-credit-schedule4-paragraph7 --source clml --citation uksi/2013/376/schedule/4/paragraph/7 --source-as-of 2026-06-06 --expression-date 2026-04-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-21T11:42:00.264393+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WGVFCBz62w5M7wbbrzYopfntYGi+WUPAZl3gm5DgXVtLSn0H9zhBHQtwY6PYVJCBqkGYUkg35a7X7PpiaBM2CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-06-06-uk-universal-credit-schedule4-paragraph7"
+}

@@ -1,0 +1,45 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/statute/2026-07-07-uk-capital-gains-tax.json",
+      "sha256": "58e35fc3fb1428312da5789885b1c8a674737d3a5a7b965ff896ce7a59a99eff"
+    },
+    {
+      "path": "data/corpus/inventory/uk/statute/2026-07-07-uk-capital-gains-tax.json",
+      "sha256": "d2d216a38246d58d25892e739ed1582418c26a98b9f82b0af305d17e80f4dd3e"
+    },
+    {
+      "path": "data/corpus/provisions/uk/statute/2026-07-07-uk-capital-gains-tax.jsonl",
+      "sha256": "0725848122e02a93ccc766d45c72a1cc45b08733fbb9734b28e6d1331f15bd3d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-uk-legislation --base data/corpus --version 2026-07-07-uk-capital-gains-tax --source clml --citation ukpga/1992/12/section/1H --citation ukpga/1992/12/section/1I --citation ukpga/1992/12/section/1K --as-of 2026-06-30 --expression-date 2026-06-30"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T11:42:00.957761+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "f20sg9wvPlAs0xxF3DPV2lpacEwhXrzfuo5ujM7b607quy+bSeSX/Ov07T93KILBBxXYu2DMs4dJcjZ3VjRBCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-07-uk-capital-gains-tax"
+}
