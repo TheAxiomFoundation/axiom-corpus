@@ -1,0 +1,850 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/manual/2026-07-21-wa-eaz-manual.json",
+      "sha256": "d8ccb2a0d49fb1afb7c8869bd18c1f372bd2b296dcb5e4d6386010cff55d62b2"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/manual/2026-07-21-wa-eaz-manual.json",
+      "sha256": "b7e93b29dda9678692c44cfac2367e6cfdedc0d7ec08263e247d6cfde1a8a79c"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/manual/2026-07-21-wa-eaz-manual.jsonl",
+      "sha256": "7dfd6337e8e9c5ca8c3ca129b34b6d378e06045ed95334126e0378fc7aa5a51b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-001-r-western-state-hospital-or-civilly-committed-community-based-facility.html",
+      "sha256": "b6a7968d9d236e7c96b1b8cfc8e2d0119c8dbdd56529cfffac247f65e90b4014"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-002-z-manual-ea-z-administrative-disqualification-hearings-food-assistance.html",
+      "sha256": "8fb3835db006b4f6a0b8547e4c5acb99451513c87bea365a9cee8f50e6d11286"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-003-esa-eligibility-z-manual-ea-z-administrative-hearings.html",
+      "sha256": "26acdf1a26cdf6e6f196492039c9418363dc927587c0b1b28d8252e96f8a076c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-004-esa-administrative-hearings-overview.html",
+      "sha256": "66531c7d93d5e489313d1156407d8c6abd3d7b64e30ae4d9d21844bb48f7f252"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-005-esa-administrative-hearings-administrative-hearing-coordinators-role.html",
+      "sha256": "dc4a29bb03c66a4f08e301deeb8bcff120658ee3a1e84aa281e6b5c182d0c45e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-006-esa-administrative-hearings-continued-benefits.html",
+      "sha256": "68277654323bb7a7357d1fa1c6d18e79a08835107743ea94953f946060c579b2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-007-esa-administrative-hearings-equitable-estoppel.html",
+      "sha256": "55932da57ddfb7c251f58aa3b1e89056f76080f669e4e78938886752f5140658"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-008-esa-administrative-hearings-hearing-requests.html",
+      "sha256": "7658eac1ae949dc7bd82ba26e4e505834ac5dbb5684c507989d33c88b6e57cc1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-009-dministrative-hearings-pre-hearing-conference-administrative-law-judge.html",
+      "sha256": "f92fa32e1546ddb3845d52f4cd33de1f7e88903bd49982a123a5b0d8a99ec2fc"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-010-esa-administrative-hearings-pre-hearing-meeting-dshs-representative.html",
+      "sha256": "80b8f2c25880f8df5b30ddc3cc382d6f02498dad1084db15678c75e739f7d597"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-011-esa-administrative-hearings-preparation.html",
+      "sha256": "d2df5c55f9dfae1fa8ffb357724bf0a0b7336c265e7ccfa866b87c95e9960e5a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-012-esa-administrative-hearings-presenting-case.html",
+      "sha256": "8746c71bc983c21dfbd3639c49130eed92ddba518e93629f4f81a591d507f392"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-013-edures-non-grant-medical-assistance-and-health-care-authority-hearings.html",
+      "sha256": "cef7a3090fe4d4a133689e0386859efedcd80e57a60a2af54bc07133eb042922"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-014-esa-administrative-hearings-decision.html",
+      "sha256": "398298e6371d78be9a33c4ae292560eb8fb337471b7438e450bfa614c27d6d5c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-015-esa-eligibility-z-manual-ea-z-age-requirements.html",
+      "sha256": "10dcb7501569457658c3e310aa22c49fa17d58176cd0a480bb23e331099712fb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-016-esa-eligibility-z-manual-ea-z-applications-assistance.html",
+      "sha256": "bb84651a21bd2813228ad06efabfc789cd98b36d9b17ca418049494f5ef6d82f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-017-esa-applications-assistance-filing-application.html",
+      "sha256": "64abf446fa70ff63371e2e990f339742aa605693912332865e8d2b75ed996488"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-018-esa-applications-assistance-expedited-service-basic-food.html",
+      "sha256": "03a14cd8f112ff94b007dee5f87135d0a1477624d03e15cc4e4f201ffe06891e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-019-esa-applications-assistance-time-limits-processing.html",
+      "sha256": "a0be66bb0fa2df40e3647de55334795ecbb314fd38811f14722428b0304d579d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-020-esa-applications-assistance-filing-applications-special-situations.html",
+      "sha256": "7a3c0b3702e8a9c8bf8694e6a29dadc77bc3b4752706440c0b725d565aed2be8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-021-esa-applications-assistance-completing-process.html",
+      "sha256": "b25a0e0b358e442d2fa0ffe2c1d405a1d1be3ad2abef860a990df447121c321b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-022-esa-applications-assistance-information-needed-determine-eligibility.html",
+      "sha256": "7e84a3f8d086732bb2c003e60c75d9ca54b2aeffcbce325d624f91128157b624"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-023-esa-eligibility-z-manual-ea-z-assistance-units.html",
+      "sha256": "bc19e2022b5d218c1e2fdcb0dde337efe21bfab0259dc57abfa072d4336a9173"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-024-esa-assistance-units-assistance-units-basic-food.html",
+      "sha256": "9e235268c05b98b9b072a351ea35db764dc9eb7351503defaabb999d8cd244ec"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-025-esa-assistance-units-cash-assistance-programs.html",
+      "sha256": "9e93418d1357d1d770927a2f8682db424b50a403e1bc3052d315276b22aaa486"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-026-sa-eligibility-z-manual-ea-z-authorized-representative-food-assistance.html",
+      "sha256": "81dcf31ae97037ebb4dcceb65e9bb38606b8e7429269c7a88ec193fbbdab62ad"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-027-ea-z-authorized-representative-food-cash-and-medical-benefit-issuances.html",
+      "sha256": "a17e486caece73eef9f46800f2207b6c8697c87c0e491b95742fb1457c2d03eb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-028-esa-eligibility-z-manual-ea-z-automated-client-eligibility-system-aces.html",
+      "sha256": "32b3adbbaa71912752c489cf6abf67e2eb98a7f2feefca068b35b561d54a173f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-029-gibility-z-manual-ea-z-basic-food-employment-and-training-bfet-program.html",
+      "sha256": "e8604eb821e8c4c4d5c07fb3160908b7edf4a2f5f9cc2ca61c48df20bef28643"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-030-ment-and-training-bfet-program-bfet-reimbursement-participant-expenses.html",
+      "sha256": "08f4c085e73ce947b35e81801642dc8077e953db1a925cedab10a868b2a74b0b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-031-esa-eligibility-z-manual-ea-z-basic-food-work-requirements.html",
+      "sha256": "73adbcbc463873ac2675af51361940da60477eac5745b0130f04ad5c9a19f294"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-032--food-work-requirements-basic-food-work-requirements-work-registration.html",
+      "sha256": "b8029063a35ccc54a17be466b292f002b43c80bc49ce9c8bcc276ee80f96b402"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-033-a-basic-food-work-requirements-basic-food-work-registration-exemptions.html",
+      "sha256": "debbb10625fa5decb4858e934c16643d030f7c490c7722d3e97f54a7602b4712"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-034-ic-food-work-requirements-abawds-able-bodied-adults-without-dependents.html",
+      "sha256": "3dd34d6abec1eb424ce3ca78334ddec6e552839e1adc5f91e93749323447a011"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-035-basic-food-work-requirements-basic-food-work-requirements-good-cause.html",
+      "sha256": "b0fc98eded11784410c2d5d8ae73f6546d26f41e1a5ebf13d9c9270a8b13802b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-036-c-food-work-requirements-basic-food-work-requirements-disqualification.html",
+      "sha256": "e1982146a9ef5bb37e8ddd255af9378ecace1b1f0c6c387df63bc9ee7625d842"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-037-ts-basic-food-work-requirements-unsuitable-employment-and-quitting-job.html",
+      "sha256": "ab04c8c22da7d05b42c86cfc45735fe470ddfadecf731438fad834f838d256c4"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-038-esa-eligibility-z-manual-ea-z-benefit-errors.html",
+      "sha256": "8f409480a2033415ddb902a64b0c240dafff055b9856f4c07778c0b5f8aef3c8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-039-esa-benefit-errors-alien-and-alien-sponsor-overpayments.html",
+      "sha256": "f0185413a55197cf09f225251e5e79fc9578c60607b567576eb3049533a10cee"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-040-esa-benefit-errors-basic-food-overpayments.html",
+      "sha256": "8dbd41cd98ecd3d22e64b4142b46ec7d69ca5d2158cc34810657dada7ea5edb6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-041-esa-benefit-errors-cash-and-food-assistance-underpayments.html",
+      "sha256": "71e09fc9078cf0da2d6ba69090a35fcc0aa02b4e09c00e41bdd2b27124277b0b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-042-sa-benefit-errors-cash-and-medical-assistance-overpayment-descriptions.html",
+      "sha256": "7cf9eb0d49a1d4b86f22e6ad3c470cd2baefe37d9af57fbd168bcc94cb8b08bb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-043-esa-benefit-errors-recovery-through-mandatory-grant-reductions.html",
+      "sha256": "03dc34e3a9b5d5a3bc834789fc15d5d58e32195a874663ed9929df4d098d0f47"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-044-esa-benefit-errors-repayments-overpayments-prior-april-3-1982.html",
+      "sha256": "110bd67a7df6cd5a84fc7632afbf0d07ca99127c66e244734c1359805083c0df"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-045-esa-eligibility-z-manual-ea-z-benefit-issuances-and-use-benefits.html",
+      "sha256": "e8fbc2e50cdb1bd24891994c6465c462c9507f2d407bdf35724c4317faa72f26"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-046-esa-benefit-issuances-and-use-benefits-use-benefits-benefit-issuances.html",
+      "sha256": "8009eb7bc3e03231286aa7517d78298e4332188f0f012d4db8109547a5c0b35d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-047-esa-benefit-issuances-and-use-benefits-basic-food-benefit-issuances.html",
+      "sha256": "93d6cc3eff38c6d0e9c9b03b8f00b13f86f1ad6b4bfd14bf97e473e6f69a241f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-048-a-benefit-issuances-and-use-benefits-cash-assistance-benefit-issuances.html",
+      "sha256": "2443f54838da66fa5e73255cce99d9fca1a9a267348665e272c4bf9213e6b409"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-049-benefit-issuances-and-use-benefits-when-and-how-benefits-are-delivered.html",
+      "sha256": "f25a6dca2852745564235f5c37532d044d845dcf97c8831a465b262334c1056e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-050-efits-loss-theft-destruction-or-non-receipt-warrant-clients-or-vendors.html",
+      "sha256": "d69cd56ab9c2179083e7792b634e30459ae9fbf77cbd71c63b37257c0242d465"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-051-esa-benefit-issuances-and-use-benefits-endorsing-warrant.html",
+      "sha256": "7eaa77f82fae56dd54b07172eba377ac40be7aa29a759744ef1395309795ead9"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-052-esa-benefit-issuances-and-use-benefits-replacement.html",
+      "sha256": "9e0032439d835e4305b103b60c4b0037e559b48daa0808e0cf1378570099e08c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-053-esa-benefit-issuances-and-use-benefits-returning-warrant.html",
+      "sha256": "fd37b9d1e6f852cb70a3a26a3668091fd752b2ce99a7df5dbee7d94d49596975"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-054-esa-eligibility-z-manual-ea-z-categorical-eligibility-basic-food.html",
+      "sha256": "569b68b03b397fd74f47b65eeab4279933ed8a6d10e41361b3676f1be74b854a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-055-esa-eligibility-z-manual-ea-z-certification-periods.html",
+      "sha256": "40486187a07a583eeed22930109d56f8837362647710183d70321e27ebc75ac7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-056-esa-certification-periods-certification-periods-basic-food.html",
+      "sha256": "baf7ca8f63b9e6588b5f1255cb5ecf967e49f61bd905b4a57b8be838794602ca"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-057-esa-eligibility-z-manual-ea-z-change-circumstances-toc.html",
+      "sha256": "208967a34c3d0e8f881fb1a7e80f2bf6575d4bc1f02a714cd0dd1a90948ba938"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-058-esa-change-circumstances-toc-reporting-requirements.html",
+      "sha256": "0b7aac80b2c36389da55a1e772ebe026e2e44cd0d40c5a7d8cbe182b62c67ccb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-059-esa-change-circumstances-toc-effective-date-change-circumstances.html",
+      "sha256": "d1791fc56aa439948743e017adeb278d927c85e5d4dd8badc1364b918775ea8e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-060-esa-eligibility-z-manual-ea-z-chemical-dependency-treatment.html",
+      "sha256": "849ae809e3692d642d442c3fc0ec8f2efc0e9a86a7ea85fa2ceb36095ca855b2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-061-esa-chemical-dependency-treatment-chemical-dependency-treatment-toc.html",
+      "sha256": "47859e2426fff61686ad6e3696a38110d9c934bc3943bba39c634cb38c2e565c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-062-esa-chemical-dependency-treatment-toc-access-substance-use-treatment.html",
+      "sha256": "5deb7818e1afd16485206eb019e16b32e9bbef80e90115f7ffc78cdaf65b1bc8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-063-hemical-dependency-treatment-toc-chemical-dependency-treatment-and-ssi.html",
+      "sha256": "19eaf5826d8b1377c512a3d841cc994da679f36fc866c36ece20399d1aa1c643"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-064--treatment-toc-chemical-dependency-treatment-altsa-and-food-assistance.html",
+      "sha256": "288c1bfd37c34e791c98d1cdcd13948f9b5d62e56b9a7958c6c319b0000de68a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-065-esa-eligibility-z-manual-ea-z-child-abuse-and-neglect-reporting.html",
+      "sha256": "2f08816d4193035cf352528e89116565480dfc1b860b3bb08dbc7aa3a7166716"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-066-esa-eligibility-z-manual-ea-z-child-support.html",
+      "sha256": "4b8f9c70a2ff18659223420835c3310032e596ddc7d829ab4c07410b566ba463"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-067-esa-eligibility-z-manual-ea-z-citizenship-and-immigration-status.html",
+      "sha256": "8086c13a444065b9506608fe51f214eeef664f43d11459b7ddf463c458203e3b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-068-en-status-citizenship-and-immigration-status-requirements-all-programs.html",
+      "sha256": "6b201723f00ca1d4c7af9ca6e300019be0d0dc4ba5f30e964946459b5d23269d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-069-tizenship-and-immigration-status-requirements-all-programs-definitions.html",
+      "sha256": "566dbf1f638dee4edfb1f4675063be915574ca9b6236a030145c3da11e300570"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-070--alien-status-requirements-all-programs-cash-and-medical-decision-tree.html",
+      "sha256": "d9cbc53f5e47887ec1ffc76a017126f366631e099ba0c1cc25cc891b31d6c36f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-071-itizenship-and-immigration-status-requirements-all-programs-date-entry.html",
+      "sha256": "1e4bde8db301173262e4254dda56305726ac20622a7db6116d6aa5eb74d620e7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-072-n-status-requirements-all-programs-social-security-number-requirements.html",
+      "sha256": "d48a4d051c5f52d9e6b8b437726e21bdf7ffe90a26d1c4b9166355ba3c971130"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-073-enship-and-immigration-status-requirements-all-programs-veteran-status.html",
+      "sha256": "a232a45a7468623d4a7fcbcafecac9ec08031c28332cbf3b4703f0d376fc489d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-074-s-requirements-all-programs-citizenship-and-alien-status-work-quarters.html",
+      "sha256": "6466cd224d7e0141eb518229f319e4d13b44e482859f7a5e96b672d3d00ff6de"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-075-tatus-citizenship-and-immigration-status-requirements-specific-program.html",
+      "sha256": "9edfb09765910320e2fc3ef52e633aa4bd3c565a231216081b6d574a3ff7daf0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-076-ents-specific-program-citizenship-and-immigration-status-food-benefits.html",
+      "sha256": "d8ebba1706bf53a7cb993aebd779c325c0a0f12a0a7fbe30ae4bb0310e16b8fd"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-077--citizenship-and-alien-status-temporary-assistance-needy-families-tanf.html",
+      "sha256": "3f9cddae5fd828f7d386ac9ca8acc812c2820712201ae35100f4a11c2dbced9d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-078-ents-specific-program-citizenship-and-alien-status-state-cash-programs.html",
+      "sha256": "e68ae494486518a828f39411389c334281f0a2426d28c422419e019e518a7ce1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-079-s-specific-program-public-benefit-eligibility-survivors-certain-crimes.html",
+      "sha256": "bc0fc9d80168df5339cca773f88c0010a2c4ffb91c258a572eb6c86cb9aa7f68"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-080-esa-citizenship-and-immigration-status-resources-desk-aids-and-links.html",
+      "sha256": "65fd68d59ea5cd91d42afc77bafa669517f114c5834f3c7f49c3b59ce0032906"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-081-ources-desk-aids-and-links-citizenship-and-identity-documents-medicaid.html",
+      "sha256": "df29559a9209be6150c5121a8e7aaeecdcc4a4b88924a63f4a949cf3431ec7ef"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-082-esa-resources-desk-aids-and-links-immigration-law-center-nilc-guide.html",
+      "sha256": "9321b80968bd7719163ef066aaad941a7f784559bdcb117391b95d051e24b4b6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-083-esa-resources-desk-aids-and-links-sample-ssn-request-letter.html",
+      "sha256": "009fba58f36af77ecd7ea1bce7b8c23ddeea1d9ff29645c914ee70da656f7433"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-084-esa-eligibility-z-manual-ea-z-civil-rights-and-complaints.html",
+      "sha256": "17a53de30b81249dd9ae7b6360af50cf25711c9ba26ef5d8ac8d724ac3dcd877"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-085-esa-eligibility-z-manual-ea-z-confidentiality.html",
+      "sha256": "8bdf20f77bd39cdc56c1da0fb900d095157e70e662edbdbfe849d488e62b1e5f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-086-ntiality-address-confidentiality-program-acp-domestic-violence-victims.html",
+      "sha256": "c4b9c12b19bb79c6897d55a1c018a546368b915326d71287dcbd91a08e58a473"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-087-esa-confidentiality-confidentiality-information.html",
+      "sha256": "077e6caff5a99571f8a36b465e9c4e62f8a62f51dd3e0da46b2f7ca72424edc9"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-088-igibility-z-manual-ea-z-consolidated-emergency-assistance-program-ceap.html",
+      "sha256": "d4645db9a86714e171fc9c6f834733b934401256e58db2e0d38fbfff6bd49853"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-089-esa-eligibility-z-manual-ea-z-data-sharing.html",
+      "sha256": "ff645da5540e7544655574bfcd50b6caeb68ba85e8426483b037b156c653eb65"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-090-esa-eligibility-z-manual-ea-z-diaper-related-payment-drp.html",
+      "sha256": "daa5f9e35cc4295d32bf4c994c87d1a7c6ead880cb9cdf6c7733b9a461ce427e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-091-esa-eligibility-z-manual-ea-z-diversion-cash-assistance.html",
+      "sha256": "f4bce0e6176793fbe791e4c56f60908d07260784aeebc64e2d9f19627209d7f0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-092--eligibility-z-manual-ea-z-elderly-simplified-application-project-esap.html",
+      "sha256": "e2430e8084fc0782cba91ccd65152404b1bcc046a423af57d103970c342ada56"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-093-ligibility-reviewsrecertifications-requirements-food-and-cash-programs.html",
+      "sha256": "3f843a4396ec02927e3d7dd2e35a6362685fb2fecab349d9c32f92e2a9faae70"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-094-esa-eligibility-z-manual-ea-z-emergency-assistance-programs.html",
+      "sha256": "904d78a2aacb9d51431565670c57c9add888c31d716eeebf2fed59ee33a3eaf7"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-095-ncy-assistance-programs-consolidated-emergency-assistance-program-ceap.html",
+      "sha256": "4622026f0b25e7b03925722d9587137164e4224a43d601c93c19436fd43689aa"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-096-esa-emergency-assistance-programs-disaster-cash-assistance-program.html",
+      "sha256": "a52aed59d665aa98ba969090705b1f3b1c5c8f1fb0b8e0396f4cdd11b7389abb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-097-nce-programs-disaster-supplemental-nutrition-assistance-program-d-snap.html",
+      "sha256": "19eaa92ae3ac84d8db491c992834f120e36017615a8a71a3966b9c31e53792a8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-098-rgency-assistance-programs-additional-requirements-emergent-needs-aren.html",
+      "sha256": "58a45430a269c8bd71065fa2cb14288689034a8b7077ae464fa5345b30e7af2e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-099-esa-emergency-assistance-programs-pandemic-emergency-assistance-fund.html",
+      "sha256": "b7cec26737b5f6414fc274843a7a9d0de6fae8af88f6fc838b6b1f08a59638cd"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-100-esa-eligibility-z-manual-ea-z-emergency-food-supplements.html",
+      "sha256": "f6a080253e4e0dc97b7593421b6e7ec57062c1348574c92a26ef14c24aa5a05e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-101-ility-z-manual-ea-z-equal-access-necessary-supplemental-accommodations.html",
+      "sha256": "abae65b8923d6f8078ad44cac03a9b373b8b22f4c2a3ac52d7f0effb705afe24"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-102-esa-eligibility-z-manual-ea-z-exception-rule.html",
+      "sha256": "8ccd245e4cf524e60d86f180a93b4ce9928c1717fc5d8a61d1fce2c131008b61"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-103-esa-eligibility-z-manual-ea-z-fair-hearings.html",
+      "sha256": "0319a6d9e87768cf9b77af22619e6fb7bb6fdc87f8e50d0a45e594e0ae9c3a1d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-104-esa-eligibility-z-manual-ea-z-fleeing-felons.html",
+      "sha256": "fa0a6a8b2045560badd5cf85b3cd933a8a31a9954accd011166502f58e856508"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-105-al-ea-z-food-assistance-supplemental-nutrition-assistance-program-snap.html",
+      "sha256": "70a66378e25380a124424134abcdefe1ec386c2c534cbaf02442855f6a0612d4"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-106-eligibility-z-manual-ea-z-food-assistance-program-fap-legal-immigrants.html",
+      "sha256": "3b388985e6d10404ea4a548ae1acc45d50bee75304ae551856f4c9ede4bd1be4"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-107-ligibility-z-manual-ea-z-food-distribution-program-indian-reservations.html",
+      "sha256": "0d056184ef979f6b5efe7f070755722bdbc4812eb63930c9088e3adb52852edc"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-108-mentadoption-supportjuvenile-rehabilitationunaccompanied-minor-program.html",
+      "sha256": "44ad6b0a1b1a4e76d8e8a736608ce10d571092041547988bf9eaf0de51175d1d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-109-esa-eligibility-z-manual-ea-z-fraud.html",
+      "sha256": "0f5c8590897019168323b2e0865a27f9124666ec55b8b3be4e4590b1d3af395f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-110-ility-z-manual-ea-z-health-care-authority-apple-health-medicaid-manual.html",
+      "sha256": "c98d6f42233bb86bcad4b67740453f392fa74fb0939d9d552152ab64fc80bac3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-111-esa-eligibility-z-manual-ea-z-healthcare-workers-disabilities-hwd.html",
+      "sha256": "46686824dc3478b523cfeac0bb1b09a49b5c39df734e6d070b534cf2a7a9cf59"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-112-esa-eligibility-z-manual-ea-z-loco-parentis.html",
+      "sha256": "97f3c62a089aad710c4d6fa6a8da2d514e810290849d3deb1e368ad2a4ab917c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-113-esa-eligibility-z-manual-ea-z-incapacity-and-disability.html",
+      "sha256": "9881ba8d6ff743c6e4963d2449ceea93660283bfab8b0bf0a0d6cdc7a8773532"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-114-esa-eligibility-z-manual-ea-z-income-table-contents.html",
+      "sha256": "dd567e69549ca6b9475e906f59593f69996dc1d962b730e47da417887d6022df"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-115-esa-income-table-contents-allocation-and-deeming.html",
+      "sha256": "3a1d2205ed6711741875b8105411566dfe220e3147b90c28b03476821f97b3d8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-116-e-contents-indian-agencies-serving-tribes-near-reservation-designation.html",
+      "sha256": "53fc710ae9eae5f066c07a200c8c161180e9f4b1c843bc961e88f3cbb3c6c3ca"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-117-esa-income-table-contents-best-estimate-guide.html",
+      "sha256": "15d2982f2c754bfd8063387a12259086b383475ceef5ef665f77f966e52a565d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-118-esa-income-table-contents-budgeting.html",
+      "sha256": "25360dbe5f1ce0ceb984d63609bbaa242eba316bfcb1afea64e3d303311b20c5"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-119-contents-effect-puyallup-settlement-your-eligibility-public-assistance.html",
+      "sha256": "3e7d1a570ac9e604499fd449e5f7ce08ca4a6ca1729e7c8abfb90e4781142eed"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-120-me-indian-agencies-serving-tribes-without-near-reservation-designation.html",
+      "sha256": "5ce01de8260f35f5f5fa5b3d3098ccc8d6b1f7cd6e4b36a40d8269ef344f498f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-121-esa-income-table-contents-income-ownership-and-availability.html",
+      "sha256": "986f147e4e2e9b2a20398badd92c85676736eea6329ebc29abaabdeb5e6c5849"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-122-esa-income-table-contents-income-special-types.html",
+      "sha256": "4ae0c1b06ec68bf2a1818ad841b5f0efa9ee8ec5bcaa94e8039e67fd191b93a4"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-123-esa-income-table-contents-self-employment-income.html",
+      "sha256": "4a7359e1b6a37de55907aacd1e934f1b6fa7eb63ecef2761711b0119adccd232"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-124-esa-income-table-contents-treatment.html",
+      "sha256": "1e8c053f6b90f2531ef4f82c6f9e21c798c803e2a9acecd4b269a705b9a51e70"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-125-esa-income-table-contents-treatment-income-chart.html",
+      "sha256": "cc1184cf275fed9e577edd3c1cacc724c89010172c4dac880c94610fc275fcea"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-126-esa-income-table-contents-utility-chart.html",
+      "sha256": "f6cc04f2f271b480c06b18e44af6b8a9b94c34b098d98436019b13f1cc1654b2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-127-ents-income-effect-income-and-deductions-eligibility-and-benefit-level.html",
+      "sha256": "83261ec3b5bb181c7d325c53b1ad83d0ffd7758ef251ef2abcda0d893b44e9ef"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-128-esa-eligibility-z-manual-ea-z-interview-requirements.html",
+      "sha256": "69b9216daa7614fec36a9ff3ef16684f29deca33ec41ea837c5067f2d2bad5b4"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-129-esa-eligibility-z-manual-ea-z-letters.html",
+      "sha256": "715e86f2dc347cdd951ec2ee4cce50196862c1cfe473621f33b275f9b0145ae4"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-130-esa-letters-100-series-reason-code-protocols.html",
+      "sha256": "fe4fb809c1c96490553c32dcc58a7a61b61d7cd4ec664e5675f5998281a115a1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-131-esa-letters-200-series-reason-code-protocols.html",
+      "sha256": "08dd2df60ff78f4ee4f37c052bf655e50a9343af17976c8a8645969758f97d94"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-132-esa-letters-300-series-reason-code-protocols.html",
+      "sha256": "0ca3f24e57d49566372fbfcf6a509d261c8327d26ce62518f6cf6c7f2374e8bb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-133-esa-letters-400-series-reason-code-protocols.html",
+      "sha256": "c80a79366314d224d9639dc89446ce30bf85b211097b31f0dfbd5a86494d9510"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-134-esa-letters-500-series-reason-code-protocols.html",
+      "sha256": "9d42ac782a7b943960d5bfa56c825a393be13f5a945402c94429c194f226d322"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-135-esa-letters-information-about-letters.html",
+      "sha256": "6272af282871f5d220939889b02a21a2d61f2cdd19a6108e3303227cc8e99ca1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-136-esa-letters-letters-protocols.html",
+      "sha256": "1e04d058ea3931a449f7f2a9715bc98bf20e683b73c91c17c5197fec8ecb6e0c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-137-esa-letters-reason-codes.html",
+      "sha256": "f592384f44fbb9ee573d9fe311586002b5f6446c26cf70cb6c51307a27943eff"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-138-esa-eligibility-z-manual-ea-z-limited-english-proficiency-lep.html",
+      "sha256": "4705d9ee0903b025c580975deea94f3434cde37fc44a44c28ed96ff4b264e9c9"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-139-esa-eligibility-z-manual-ea-z-living-relative-or-guardian.html",
+      "sha256": "b3f12bdad08cf274dbfdc3e26b5547ac275992750598c0755b4c9be2c1c2489a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-140-esa-eligibility-z-manual-ea-z-long-term-care.html",
+      "sha256": "bbd872fa796bbc3d6d14e9679ce6960e9c463bbdff023a4f601ce893f70ab317"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-141-gibility-z-manual-ea-z-lottery-or-gambling-disqualification-basic-food.html",
+      "sha256": "b6c95f99f9c0f4fac135b35afeba734e85aea5dd2dd100b7be0eeaa240a0feb2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-142-l-ea-z-lump-sum-cash-assistance-and-tanfsfa-related-medical-assistance.html",
+      "sha256": "7a3fab1d4bbc099ad87f8e4b58a39ea4468ea01ff9e4392a2da9930b0e2c4c59"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-143-esa-eligibility-z-manual-ea-z-medical-assistance.html",
+      "sha256": "5f4204065a92de606bcd02da61c2ed8619d501a41cd1875467382a62dde2dd33"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-144-esa-eligibility-z-manual-ea-z-mid-certification-reviews.html",
+      "sha256": "c950b4265f2ef6870a5fbb5b4f7f07958d31751062b1a24f75f2fdddd80b8cf6"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-145-esa-eligibility-z-manual-ea-z-ongoing-additional-requirements-oar.html",
+      "sha256": "12728354215453bfe3ab052554ed345dd5523417a592fb550007b949fe5b4430"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-146-esa-eligibility-z-manual-ea-z-overpayments.html",
+      "sha256": "ff9580170f0087bfdfae2cb1add5cf8fb65391d99cebc6a968ab34d87d38cb78"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-147-esa-eligibility-z-manual-ea-z-pandemic-ebt-p-ebt-program.html",
+      "sha256": "086be9c36494c4ccb65ef289ad18c6177fd8261e19fc7bf186e0906a3a4e439b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-148-lity-z-manual-ea-z-payees-benefit-issuances-authorized-representatives.html",
+      "sha256": "848ba51a82d0feb0c864c91fb490351cb89da2292b769b9f701f0bb81425c0b5"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-149-esa-eligibility-z-manual-ea-z-payees-benefit-issuances-overview.html",
+      "sha256": "3e8b7e081147911c5a83b6876a1eb8af528eb46e576e425984b60ab5b8305f78"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-150-a-eligibility-z-manual-ea-z-payees-benefit-issuances-protective-payees.html",
+      "sha256": "a79d80b85a2a01cba4f25074d52bc5fa545d2ff91a57b69d17371105b19891c8"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-151-sa-eligibility-z-manual-ea-z-pregnancy-and-cash-assistance-eligibility.html",
+      "sha256": "e2e10e2c33e19c8391356bb8aa0620ab69e4aacfcea4bde294752543fe94ee19"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-152-esa-eligibility-z-manual-ea-z-prescription-drug-assistance-programs.html",
+      "sha256": "3fa21531bc3fc6bd54abd49adce38012f876e32ff936460fffb0dd8dfa57cf9b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-153-esa-eligibility-z-manual-ea-z-program-summary.html",
+      "sha256": "f5565fadd1f952358db4060d194ca864db9fcf3018e176bd05516cb3da919abd"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-154-esa-program-summary-aged-blind-or-disabled-abd-cash.html",
+      "sha256": "1f12341e77a6174a234371c7c9fd1b366b41b6dd85be443b13efcc7c7eb6c8fa"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-155-esa-program-summary-food-assistance-program-legal-immigrants-fap.html",
+      "sha256": "a25858f3834dfb523496327605170ce85e57ef854971696a4e860e2d27eb5cb2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-156-esa-program-summary-heat-and-eat.html",
+      "sha256": "620e8d42e0eedfc54d51b1651356e01f5906be4907261a5ca3c425e1060db53e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-157-esa-program-summary-housing-and-essential-needs-hen-referral.html",
+      "sha256": "d3776292e0bcb27c4f2ad5027fee6552d955a4d35c6e8b8943b40a70503a0940"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-158-esa-program-summary-pregnant-women-assistance-pwa.html",
+      "sha256": "5a1e6c47cd725695aeef2d52ec9d6cd017d9fa6b0f0bea428064c27508f49a02"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-159-esa-program-summary-sfa.html",
+      "sha256": "25c30ce45b4300188414fe7939dc6a94ac8bacae50d80135f1e9e7f7b1ccf546"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-160-esa-program-summary-tanf.html",
+      "sha256": "5ad2715547c8a1d1f323afc9ce18125e183a187b50a96a3f490778464aa0f570"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-161-esa-program-summary-washington-basic-food-program.html",
+      "sha256": "54df6c5eafbf15755aa4ba341a03b6f6dab54494394849ba0530ead7fdcf2f06"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-162-esa-program-summary-working-family-support.html",
+      "sha256": "a51d287456f8b98d78358d2370e9f6507b1953890b642c683b9bc7df2f386b1d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-163-esa-eligibility-z-manual-ea-z-quality-control.html",
+      "sha256": "527c868e15c0e00818e6788aa8053e01e2296989e36f099999e00636d8c9453f"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-164-esa-eligibility-z-manual-ea-z-refugee-assistance-program.html",
+      "sha256": "4c9d37362227b7da423bc874a7f80acc958c4f99beae20ce4f56aa8de65501ba"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-165-esa-refugee-assistance-program-refugee-immigration-status-requirements.html",
+      "sha256": "0a546f40d32ddaaa47b178a35bdd704e9b9858c60dabda1405b34ffe03892c42"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-166-esa-refugee-assistance-program-refugee-cash-assistance.html",
+      "sha256": "641f7be533a7b9918fd071b2efab7c9c302a9b1948a2f5a6973d104545a4eb13"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-167-esa-refugee-assistance-program-refugee-income-and-resources.html",
+      "sha256": "6038d4d8b9f60ac1af634566dab00b83e9f2cad875f22a075c36030e23d8c903"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-168-sa-refugee-assistance-program-refugee-employment-and-training-services.html",
+      "sha256": "9ea0e9edfe0719a0571b786ac8f3df736f7e91e28a1fd5e66934171f42210ff0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-169-esa-refugee-assistance-program-refugee-medical-assistance.html",
+      "sha256": "7265297fad92c2dcfb945175339f1ccf11b5f6afee13a4d5eee3c13ef2a1d696"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-170-refugee-assistance-program-refugee-resettlement-agencies-washington.html",
+      "sha256": "8106df5eea3fbf4ed37a1bc97a0476afd05dff63ca8211a9d8a5020b37534daa"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-171-esa-eligibility-z-manual-ea-z-residency-requirements.html",
+      "sha256": "b58dd92435c4b91667417aa41476d00b59447815f38f8fbe063278ff0f8f8d60"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-172-esa-eligibility-z-manual-ea-z-resources.html",
+      "sha256": "6b55b65c563585480e21b26f5e242564795ff91d8419334aebd3916315fbe9bc"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-173-esa-resources-how-resources-count.html",
+      "sha256": "a9e54bc03f1093bcb0d3f2c94f2c9e2a156740031a6c92269c91322a365b57c9"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-174-esa-resources-how-resources-affect-eligibility.html",
+      "sha256": "750cda91d6d5283d69cf8a96f211acd25f7fe29dd0363e3ab463b3c64317fef3"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-175-esa-resources-how-vehicles-count-toward-resource-limit-cash-and-food.html",
+      "sha256": "48e1dd34a9912e3b42ac24f24ffb709f842dd8b455bd6d05502e6b5ded1db00a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-176-esa-resources-resources-excluded-federal-law.html",
+      "sha256": "a73019c97bddef58feaa7794b2bd55af60fd476a014a40761dff73ca73ee9c24"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-177-esa-resources-resources-aliens-sponsor.html",
+      "sha256": "6171aff916cc34744113f0836aa195951faede57204b1e9a80dd3cc9e994edc0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-178-esa-eligibility-z-manual-ea-z-rights-and-responsibilities.html",
+      "sha256": "f80da7c20ccdb7dd7198c2d5f72e16e82dc9e8d8cfde3351fb7d401082f80d87"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-179-esa-eligibility-z-manual-ea-z-social-security-numbers-ssn.html",
+      "sha256": "d44ae931575d602eb4260e4317461980a4a452e333c85a91d7892be90b488583"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-180-esa-eligibility-z-manual-ea-z-standards.html",
+      "sha256": "170439d67dcf207a80bb2b9391cd9b562680187dc1823b64bc6acbb4c37d99e2"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-181-esa-standards-basic-food.html",
+      "sha256": "a78e0c5640d46c58e46e1d288fd2f12c31fa05f7c6f82ecc121bde9854831d41"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-182-esa-standards-cash-assistance.html",
+      "sha256": "8d584864555cbb7cb09c4079e000c0c55c6c099a6d8ee6363923003d9b69fd8d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-183-esa-eligibility-z-manual-ea-z-state-median-income-chart.html",
+      "sha256": "16ffd4208ef3c9a423bfdf00d5474cbeca7fda04460497d005932c901ec56819"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-184-esa-eligibility-z-manual-ea-z-strikers.html",
+      "sha256": "0b09ba0b4f8a705abe587b2f9f1016b0d2abd3f70b9c9950fd842edba4448ac1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-185-esa-eligibility-z-manual-ea-z-student-status.html",
+      "sha256": "5aee3ee7704a6d40ec32030fbfdc6ef981736cfa7935af65a6cda6b32c45b0b0"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-186-esa-eligibility-z-manual-ea-z-sun-bucks.html",
+      "sha256": "4c18ec3ca49281dae37f32fd3c2d31b20b35435bdf790eb8f8864dba95843899"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-187-anual-ea-z-supplemental-security-income-and-state-supplemental-payment.html",
+      "sha256": "781947d1638c506ac00be1a3d30d464de584f5fa5c02f59d90467686f88cab16"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-188-esa-eligibility-z-manual-ea-z-tanfsfa-minor-parent.html",
+      "sha256": "8494327296e40f8cbf4c8263bddaaa4002e31d6ea6d4ea012e2341036d7a8a49"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-189-esa-eligibility-z-manual-ea-z-tanfsfa-temporary-absence.html",
+      "sha256": "ed4d5844051563f3f797586a944943f74d440210296efb901b75363804472925"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-190-esa-eligibility-z-manual-ea-z-tanfsfa-time-limits.html",
+      "sha256": "5457c5a4d7f548bc9963c3b2c2c0064b3b0d58df537311734fd0fdb48ee15a87"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-191-esa-eligibility-z-manual-ea-z-transfer-property-cash-and-basic-food.html",
+      "sha256": "c5e18827fdd8f49a950c958c819dce70f216fecd9510e6a2e9bf4b3913d7d598"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-192-esa-eligibility-z-manual-ea-z-transitional-cash-assistance.html",
+      "sha256": "1debaa715e4b917852f546ee9ce07565a75ec1d2c26ffca9e0cb05fdb332b21e"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-193-esa-eligibility-z-manual-ea-z-transitional-food-assistance.html",
+      "sha256": "580ea333cf75c6d94c9f91a8e4257de72e61730ae7ef07ac11b1c7e23244ce88"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-194-esa-eligibility-z-manual-ea-z-verification.html",
+      "sha256": "83d70e5b2c1df664f3173197df0f4e5d0eb2f523e939d84f3d0a529ce0ea0168"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-195-esa-manuals-verification-charts.html",
+      "sha256": "acaabe9240a4bda21470c39f4873bf76c64139d9a1c5ac5130e43de6476c62cb"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-196-esa-eligibility-z-manual-ea-z-veterans-referrals.html",
+      "sha256": "246bce853b4c88a31332de9c4c842b9c1460b4a3ff479e58e31f97cbcf1c8095"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-197-esa-eligibility-z-manual-ea-z-voter-registration.html",
+      "sha256": "c54e72544e2a78f00f8ef0b88ff39306a386197c8fb25fc872fa109eb809dec1"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-198-esa-eligibility-z-manual-ea-z-washcap.html",
+      "sha256": "613cc139f41e3fc72dcc5c920b482b546115c083ee2ead95e81a7cd93f07154a"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-199-esa-eligibility-z-manual-ea-z-workfirst-orientation.html",
+      "sha256": "296f3b528fdb0b3e9707bad07e27239aeb0238c84b18059517ea30fcb2c19a3c"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/manual/2026-07-21-wa-eaz-manual/official-documents/wa-dshs-eaz-200-esa-eligibility-z-manual-ea-z-workfirst-sanctions-participation.html",
+      "sha256": "79fcc47db0e45c1e724983e3a8320eff732d8f80d2d3bcb76356d567bbdd140c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "4c0a7ad862eac9c2702877517780efd7021ffbf0",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "env -u UV_FROZEN uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-wa-eaz-manual --manifest manifests/us-wa-eaz-manual.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1265,
+    "missing_count": 0,
+    "provision_count": 1265,
+    "source_count": 1265
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-21T19:48:33.248229+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-wa-eaz-manual.md",
+      "sha256": "6269fdb3528222d343968be7c1e9e7249dfcf834c9a755281963e3198bcf1805"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "/h/wxOafXZ4dRSwq4Oylc8TBMMomLb6ElIFHoQR3tSP/W1oRbyXtlKxnflkBuemJQYGEpcUtTTc0jrax4WfLDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-wa-eaz-manual"
+}
