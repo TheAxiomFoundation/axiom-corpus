@@ -1,0 +1,693 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235.json",
+      "sha256": "aa6cb4acf1742b449d30abe79a1324d7a8784fff2039b07e0bb038df9031e983"
+    },
+    {
+      "path": "data/corpus/inventory/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235.json",
+      "sha256": "1510189f1fe8ce6ad72fd0b047429e26345e099edae0a179fb06fafc7427b368"
+    },
+    {
+      "path": "data/corpus/provisions/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235.jsonl",
+      "sha256": "dde47cd1e6e5d988afda0544499740eca3b609235777629ba2d5b477af01a47b"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-chapter-directory-html/volume-04/HRS0235.html",
+      "sha256": "b241f127d11a14d00bed0cfe74f3f2bb852aa6d22d57aadcbe247e35d7cdfa3c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-chapter-index-html/volume-04/HRS0235.html",
+      "sha256": "1dcb179d7470fec3b84aa66e4a2dad2d4a81491ded6a64646629f7df7a41d42a"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-root-index-html/index.html",
+      "sha256": "7752addb44ce08b54110f7270139d8eb3557ae40c32baad6b23121570da4cbf4"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0001.htm",
+      "sha256": "347eb9fa608edc57e9c7a5062dcbad154cc69202a3cebf88f71bb0366c5390c0"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0002.htm",
+      "sha256": "f411df8941d7f6f6c43f7bbdb54043afc7cb708cfbdb7f21b36220b672107145"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0002_0003.htm",
+      "sha256": "d4cce2a7634d64f1132f16a46ca350cb77e2bf745462b6f65ff24e9f5910f954"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0002_0003_0005.htm",
+      "sha256": "2e841ea971e4cb17b344bea91ded50e16fc7d61401d107c88091e31a3a3773a0"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0002_0004.htm",
+      "sha256": "e7fc73d89caa513ad878bbc0a0c9f85d5a689215ae3741b196a8d5c782abaf53"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0002_0004_0005.htm",
+      "sha256": "306d076d347d3610ed5d4f4e041204b83f99a238958c2eb47a28fea57f61f259"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0002_0005.htm",
+      "sha256": "0041ba360e420e273bfefa68799c10c06c38cabcfd0002f62efa351ff34c253c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0003.htm",
+      "sha256": "f1356db63607d94988a761371927182e4a21109741351c555aedace0c13199f8"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0004.htm",
+      "sha256": "b86719f0cce01ca6320b886771f984011952e24474abedfa40f6969ae0d592d7"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0004_0002.htm",
+      "sha256": "47ab254ed76717ef0be44de0311e7c8a142bb15195f7f0e130d246f0c6a08def"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0004_0003.htm",
+      "sha256": "0218f37853205013709b41a1680d219b92a35e907430db74e696d23d7015fe37"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0004_0005.htm",
+      "sha256": "b97195204b68a4aa1ba4b76ec64a3f77c938d3ebd1c3b3736875a8afa2415df7"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0005.htm",
+      "sha256": "f7ea180fb8783b76b489d9a2e44589cb16b429b73658acadeb2f7f24e92b0c85"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0005_0005.htm",
+      "sha256": "06bbf3730bd783708c56570e51a02b4bd3bace0ce574274230501087268a4c11"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0005_0006.htm",
+      "sha256": "bda3108a2f2ce21cefda41e51027bc209db4b422a72e2ff2907a03dad296016f"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0006.htm",
+      "sha256": "a3fdbffb76584b960522592cbb4651f8078e5d9d02af3c1c2026484dccb38c41"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0007.htm",
+      "sha256": "b885a081b361d81df900f5d87a01cb5b8e34c4a6c66f24b767a27db258ebe22a"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0007_0003.htm",
+      "sha256": "b7a6f91a53786b083f5a3acf14d13e9257dc6eea1377263349552aa6627b65e6"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0007_0005.htm",
+      "sha256": "0efd3da0cb7102ac82de2c6330d23be458ca9c71736b01b3743f270f6b6a412c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0008.htm",
+      "sha256": "970a07f76454e7d122d728d91c3b8b6361b3b23d7d9c0d10d32b1385f290a6f3"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0009.htm",
+      "sha256": "f3afed93019ca3192e26c537153678d8a97b14e788d7a2dbc2423ae5555b6f5c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0009_0005.htm",
+      "sha256": "8322f5957484ef9f548f1865bebecccf58b5a6e2bc3a2b7b791722f692c5eea2"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0010.htm",
+      "sha256": "43a210786fe7f0317b1bbaf7b50d035c82e7e744cb24a0359d5acd3ba99d2a8a"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0011.htm",
+      "sha256": "8a74d2438a1491c3cb89a175ed332e41b5ee1b819fe1309f3e3c1525244d1e8b"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0012.htm",
+      "sha256": "bf04801aeda48739e0042378f313a404a41e056da396081bad548dc2ffe9642f"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0012_0002.htm",
+      "sha256": "a7e39363e79fed07e79034379923dc19a915a30957040bd8e184b0a0abf94316"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0012_0005.htm",
+      "sha256": "26203f80336230b06ad7c8d807ac0cb635aa9827f729d1035f7306776b6f7d16"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0013.htm",
+      "sha256": "b0b2a4dc96d3d2d3269feecde13a5475eccffe0bb7c66df595e1e9010c48c1ca"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0015.htm",
+      "sha256": "ec4975aa66146dac32402dbabe3de0b8ad780e35a3446910152b4be467d9f6c3"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0016.htm",
+      "sha256": "5110ef9dcbcb8478f7b28e81c31a21ca815a0e48cb23a2b548465f2ea7c82fa9"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0016_0005.htm",
+      "sha256": "1c94f84ab13f51120128373204995d2c8a9c0b8108726e79121bbdea6dcb42dc"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0017.htm",
+      "sha256": "3ba728bb45775f13f557583984bacf31cdda2600575c8bc695340382fc7a9b68"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0017_0005.htm",
+      "sha256": "85367c36ac8265e89ac65a7cf372573cff80cb74a96905c099a8489bfd653c6b"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0018.htm",
+      "sha256": "32ae73da973ab1f2440a3ecb7ae59bd56999ecbb87b25c8501216a4500d1026c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0019.htm",
+      "sha256": "2bc8aa86a1a489163d8f925d8b79351aac96ab6cc9235a32d08413f1dbe0637c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0020.htm",
+      "sha256": "ad5d53224a7104cb7a3c108767302344681a255cfbc51da727b078c7089b461a"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0020_0005.htm",
+      "sha256": "352f58d0ab5014f2e81cecfdda1bde557649840f990da1d788d8b7ff1eb45779"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0021.htm",
+      "sha256": "1f977dafec4ddf1874c2fc6161ad7fb259b1168ae56b56e1bb5288317948e128"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0022.htm",
+      "sha256": "fb76c19e9af6ab4c7b10e74cc570022c500a2ab27bc3b707ee82f5a4b0e0c8f2"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0023.htm",
+      "sha256": "dece2d05587b53a7f262d999d7cbf27ce80b645e387ea4aa34f15df7bbc897ce"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0024.htm",
+      "sha256": "257c5dd2fea2ddb4a1bad2b8c0910b6c88163b6430b7a960194dc8e133641503"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0025.htm",
+      "sha256": "36328cb8ab495db64da511d893e00bbccaf1dad32bac8596107c9f70db355e29"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0026.htm",
+      "sha256": "029925e23fb2a5887c50066518bfad8b02d10aca79fc614bdf266d6860c88a96"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0027.htm",
+      "sha256": "878f09d47c83d78b64caca5bd5469bf69e5a210b1fc23671e4c64e3dbbc987c8"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0028.htm",
+      "sha256": "e1ef8a8da5047599818e68ee93c78900faec2b1824bd7368ce84ee8bad2d8d33"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0029.htm",
+      "sha256": "f823f5b9e12872c077f5fed22f63fbfdab89e2102c3e3b204af1808460062e94"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0030.htm",
+      "sha256": "b875bd0e3cb30f468b4245f7c6a6203a4f42ce766f24a976de9461cca9049e6d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0031.htm",
+      "sha256": "79663a5f3542a0e7b9614545b2efeed820f70ade225b70f4bfe7f35d3c86de3d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0032.htm",
+      "sha256": "16c51979ed5b2b0f4107ed5b933d010939fad3b4d422c621ff92a7ee3d3c7621"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0033.htm",
+      "sha256": "e30acc362fa5802fe1b4050ddafd65551afc2a44658646e01075098b7ee61c5d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0034.htm",
+      "sha256": "ec4b92f38bb28e61e759250d4ceb1c57262745ea7969afbcbba1d6b86a28d2d7"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0035.htm",
+      "sha256": "5cd7f7d64aff42039566592a639b1b740180b0e969a8775c38f415baacfe9ac9"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0036.htm",
+      "sha256": "75797c7a495b4a952f41006e01c0e3464044c9140910581a1735815acbc78f35"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0037.htm",
+      "sha256": "18c0522494e80166726d54c5bc71104fc18787fb7909c0812ef5025923cf8049"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0038.htm",
+      "sha256": "63736f9467d6134d1d329b68e9cfe42fd38130f60d8b9ca6aadc80ae513625a4"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0038_0005.htm",
+      "sha256": "87c250aaab975ccbbf8a993ea92adb8ee1bc70cf20ac52e44f9cd55737a1e0dc"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0039.htm",
+      "sha256": "210b4d31242859f502dad4028cbc6ce4b26ba9ac749d13d094090d7ce78edd8d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0051.htm",
+      "sha256": "acab88d47f94d56fc716b9d54552317fa05478f7d25c65ae12aef2aacc060932"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0051_0005.htm",
+      "sha256": "5fdf42e76d7fd2ee8e3161f815a4bed3ebb1edea3ea57c3a2188a7a746569889"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0052.htm",
+      "sha256": "9e86ec7150f4c6eb5cfd8dbb25abbcf2fa761c98fb1d8a7650fb0b02e715155d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0053.htm",
+      "sha256": "f2f2f68efd0199f0c67033a84d54f7a14cc44d95033483e50c1b1dc063bb6c48"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0054.htm",
+      "sha256": "d8a064ab21e8a759054ec26e5f1a8cc8b417396d40a61414a98eff5be99fda9e"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0055.htm",
+      "sha256": "15e6ca8867df8bae0ad5851b38b7422e4b02085cb1e5ee9438789a9db6052d68"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0055_0005.htm",
+      "sha256": "7dc59e270a74103db0ae8c13d5b6d4254cacd4324fecf85cd8458e4d2c83ae97"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0055_0006.htm",
+      "sha256": "45995fd53be6164c143ee32daf8d67742a2f1bec0a3c5b1b48ff85cc992a89d1"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0055_0007.htm",
+      "sha256": "3f214d54876a042929d73b3f4b7282e423a3c0eb27307994687050b2c7c581ba"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0055_0007_0005.htm",
+      "sha256": "b7ed73c468dd9479ac16caf24697589f2fb22915c565af6a5a5927381cefacaf"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0055_0008.htm",
+      "sha256": "427cb63ccb13369efb8727dd13bcaa7e67e280cc57e03bb2a1a7360d2070e808"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0055_0008_0005.htm",
+      "sha256": "29e7493cf70b61449870069f1053294087da6b1d33af7cd16b6a99e3e40c5c65"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0055_0009.htm",
+      "sha256": "93a5deb2206e7d25c29de0782be7280d5a379da06fd3ce91d2d84b1e911f876e"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0055_0009_0001.htm",
+      "sha256": "3025a1f2a32caa3d81f997d2cbcc74c9a96c5777a166061b922fd801a4d24e73"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0056.htm",
+      "sha256": "55c8729f273992a2dea379f3aba21e90d2eb301909b444c86c3b4646c0c9c5a3"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0058.htm",
+      "sha256": "1bda80541c1e77dab55c4f73897c65850983723562152e0218dd3bff92169847"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0059.htm",
+      "sha256": "3d313c2dc7714a567414877d79989e4398b12093baf73d2498aeddbf1aa9d512"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0060.htm",
+      "sha256": "216174d8e216496a5ef831e3999bca3cc4966eb99638d73661a9387276b20741"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0061.htm",
+      "sha256": "929e58015950471e935a1bdb4b885ce5bb34d0294b5e1e2dd9bb5766c7fbe5ce"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0062.htm",
+      "sha256": "106548fd4e348b5ab8a27306b6c9e733f88de8e95d94ebcfa390be45c4cf084f"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0063.htm",
+      "sha256": "824a777ad2edda69d408b9f0c8515c28f00deaa70df2413d87ac1e8a9559c634"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0064.htm",
+      "sha256": "409fa51cee82adf8234e3add589ee4d8877458a038e7dcc0264a4d4fbba58ddd"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0064_0002.htm",
+      "sha256": "4996e1a10853d3adaf66ffd25e27b2a80fd5867f84b8b6570befd6baa6004896"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0065.htm",
+      "sha256": "579087b87f1d6de30c7dc7894a1fbe9b29b1ebc85b3716a11ccb79e4a2d22412"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0066.htm",
+      "sha256": "70fa2384a25d4b0dad037f6503e33ff236433dfb02e5dae17833624b4720cd62"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0067.htm",
+      "sha256": "3e4d192be4969661d94a2015da837319f3eb4d9dd964fb65b7db66c166deb4b8"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0068.htm",
+      "sha256": "4f3ea04b888beb66a357493435a4c9fec9c1b69563206b7cc53c4dc7df468d8f"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0069.htm",
+      "sha256": "8b3d7107f779117d24ff079c3eba9dfc14b3ca5929139a5443b67de81b9dab1f"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0071.htm",
+      "sha256": "ab983444c13debc476e599205dc42483630b665e5b980bea6783fd444b23419f"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0071_0005.htm",
+      "sha256": "7f06b57889230ff90c17ef863170cfeea9a48c545844671fff34a8d3c4c71c12"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0072.htm",
+      "sha256": "68cd9151c167186c0568eebaf13e25b8111a0383340a490c5f7d2d3b43021d20"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0081.htm",
+      "sha256": "f8d87b00b2d0e53d115bfce45b7b1ef2eb70b8e9a926c0f5bf074014bf898c43"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0091.htm",
+      "sha256": "50098a025a811d7a50af3b387aaed6342978921e16c14456693f9d336800ada7"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0091_0005.htm",
+      "sha256": "c702a84a851a717ae85f6c2b67fad9caa8076d2399c712718eddfb5f4c154a79"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0092.htm",
+      "sha256": "9247553785c20b5845d32752beee14be735c9ce391f59865e094d5c9c0dfd0d2"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0093.htm",
+      "sha256": "7c7a2b223c6a4e52eb1e108cc10c76a36045debe7c2070f9b37e87fad5b2b2db"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0093_0004.htm",
+      "sha256": "927b44f2489cbc49324095e8cd5cb0ee9eb535a026229fedf19d90ed5923f168"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0093_0005.htm",
+      "sha256": "59af5f9b729647e4ec1fb9bc02a435c03aff6f24a267f97d81b47e75ba8bf80d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0094.htm",
+      "sha256": "56019b8e03010857151cdbfe086aa61b7015d83f656d49b6858e819375f7a3dd"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0094_0005.htm",
+      "sha256": "a764067964f9fc885f8935c2fef85e7dda629d4d6c86fc1214a71555d6e749fd"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0095.htm",
+      "sha256": "7c50dbe87d8c6e5232ef6cf5adc71c9814f082e248e72ac6163b8892e546238a"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0096.htm",
+      "sha256": "43714d9dd8e63a21fbda30e502d0dcd6201bab004bb2aa5d8483d9241c9d37b9"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0096_0005.htm",
+      "sha256": "72990da6a47eebd93f1c275fab4235241e25b0a35a44af7fa3667a44c1ceaefd"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0097.htm",
+      "sha256": "f9c5e57b2cad96bf940f42ec26fb2f4ce5208a0d14ef7957f45865fb9a5ee010"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0098.htm",
+      "sha256": "9dab0af581a95033cedae6a9cf267a6a608ef5616d32a04f62950a15cf934d79"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0099.htm",
+      "sha256": "3b2c565c7661278c21661d11db0ff41f7588be1f0c733dc0a207d862acc9f5e6"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0100.htm",
+      "sha256": "9f2b89f6ee450be41a0ff5ae9581f4de4957584357773a3958d3321b47dd80ef"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0100_0005.htm",
+      "sha256": "396cc0d0217ed5faff8b5ca47d237a118b9b8514056e62d78513490a61f7c566"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0101.htm",
+      "sha256": "9ba2308c3e05851039c17276c8482dbc0be356b70251120e73485c6443e9396e"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0102.htm",
+      "sha256": "a59fa0e06c23ee2dac00cae3c76e366e6bc6222f2d12a10f06aaeccb22ffbaf6"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0102_0005.htm",
+      "sha256": "02d879d5d8e8ae42fe3d5a0f320ca8f998a977f5c85a2717c194fec1b8e2af9d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0102_0006.htm",
+      "sha256": "e6ef8541855a42b42a8e9bced9cd25893861541d8ffb132dfd94b032b2fe8d33"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0103.htm",
+      "sha256": "a769e9b7d3a6138dd38a94e72ec389346101d1b4c44a1f16ecdca9f95aff686d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0104.htm",
+      "sha256": "1283fdc5ff5697b2e5639a7c18817762a0d6ee186013f8e0fac1cb861cb3fac2"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0105.htm",
+      "sha256": "85680f967eacbebbd41dd5b2e5f487380b646aab97f35b7cf06a28e046e9ede7"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0106.htm",
+      "sha256": "811d12056f47d2c99a44c880190664647c170a74118345eb4bad1c63312d3a97"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0107.htm",
+      "sha256": "5615d1ef898125cbd99ebb478fa6faf0239451c175791e51bf1b8831e65d02df"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0108.htm",
+      "sha256": "e634ead3456912a719aeca209b6e06216dd00f7494a59e5953e6454657e79e62"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0109.htm",
+      "sha256": "c27cdaa27dd57a08f900557ed6201cb09ad61f0f235f6d5f778eb760074dfa5b"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0109_0005.htm",
+      "sha256": "6cd32a32ca11a8324eae01c9fa6dbffa1f114e1500972991451250e046736248"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110.htm",
+      "sha256": "a9b83830ae0eba468a35d4e7d841cce0e356824785226cd37abbdf851d565ba8"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0002.htm",
+      "sha256": "4a17cad3584f16f9192166307976611dc918004ce6f12f8d77d20e2301b8d42d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0002_0005.htm",
+      "sha256": "532b7746abe0609c481edd5584b12e2a9d58f9a4bf81957601b79b33b89195f8"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0003.htm",
+      "sha256": "353cb0ecabddc7376cecfb67ba5f9bb64c2a2f0d730e822b972d01701fde27c4"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0003_0001.htm",
+      "sha256": "d2717c8f35228a334894cf780fddcf1a8690c95f20f245e6ab7a076fdc6dd99a"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0003_0002.htm",
+      "sha256": "ad76414f1e49f78aeadfc66ed12478380c9bda1fd8382667f209ff6b75646e8f"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0004.htm",
+      "sha256": "21dd857034c6a62dc0e155a06a81bfa81fcaf3737825fab80aa34287a5884086"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0004_0006.htm",
+      "sha256": "ba39408e798b28e9e4761f0a7ca60bb1f29fd9bddab7750e85745579a85eb82c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0005.htm",
+      "sha256": "9a9a6350b03c7dcb76c306941afa44ed8d07800122cd7cc971b3ba3f28b03057"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0005_0001.htm",
+      "sha256": "bae4d60945a2466afec343fcba321f5eeff19da7934b76142c7e49643d9b2e1d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0006.htm",
+      "sha256": "1b77d65fce67f317338c0331db0b7a43a44d112a5c68c59779f9fef4a6d74258"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0006_0005.htm",
+      "sha256": "501bbe0159e11a5725535e2ae3b73f59866ac74834af485e350033bf9f23c0a4"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0007.htm",
+      "sha256": "fba77efaa8aab07663433ee9cf00466b7baedcb685313b82556953ab72f994fa"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0008.htm",
+      "sha256": "727c542191d765294ed7a90343c249199d8a39bb1b21116bf7c384023ab7fa58"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0009.htm",
+      "sha256": "154aab0adf2cf1dfd07e03c8c194bc01e5dc80bb07e0943eabd2bb0a2eb9fa92"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0009_0001.htm",
+      "sha256": "d8bb967ec69171b9776afddf01576cb2954a052563bf0f3ce6c079d1aaebf718"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0009_0002.htm",
+      "sha256": "53c912d5a543892fe63a722f60ba8005840e21ea09676d24622d518a910a73dd"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0009_0003.htm",
+      "sha256": "6564302944d7a263e81ab69da8753f314ade56887c8b37bac90fb01275cdcbdf"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0009_0004.htm",
+      "sha256": "632c5f45dfd406a0be75eb154c6769aa6ce47e41f1a63747b1c07b8c4102966c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0110_0009_0007.htm",
+      "sha256": "075cf1c2c64df47408545188b243607631e8979c46e8a78d20e80a2234a33b09"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0111.htm",
+      "sha256": "21bc29878f43d89c9e7e44112e127c06c784d36b98e3e2684d604d5a3ada2ead"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0111_0005.htm",
+      "sha256": "37143f02a99e093463b4e8f19d04c361fcc3f5bbae62e987b5aacb6afb2c029f"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0112.htm",
+      "sha256": "6abd57a276fc4f478ee96595a3a9efeda9f17df822d3e9399a0a805027f84c73"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0113.htm",
+      "sha256": "41a689b76f01da54eca72df5ec71d6409eb199e8bc2999cc3ccc6c8ab956778c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0114.htm",
+      "sha256": "b77b5ca969db3332ed57557d6e502aed5b2c3ed1d7335f1bf27001fb87631d14"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0115.htm",
+      "sha256": "31ff6aeb5c0c1c74b82a34e5427ab0ed8f05390aca8685c42c7de28013f20628"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0116.htm",
+      "sha256": "41a941df0a236f161ca9b3acdf245afcaeadd0a196ae079da664abb59041dfd4"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0117.htm",
+      "sha256": "fef932fd50eabdb5dc345db431eeae1d2127a0a6e69fba543e65d153892a8f25"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0118.htm",
+      "sha256": "1838138c9406d252e2e31c298d757eb38e03c45ef00df266b1c378a2214fdaf6"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0119.htm",
+      "sha256": "936a0003135e52cda69590846c1c5ab523ad83d5b44e6191cd899132c5b08ab8"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0121.htm",
+      "sha256": "0484de15df60543a2eea283c71536142d3b96dba029b89718bef985493feea7c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0122.htm",
+      "sha256": "8279b2be9b0f3065b66d64e86d7ac42e9909155ead215c457ce9747c4f49ca8f"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0123.htm",
+      "sha256": "72545ff2a4a9289d48c0914b518f0a3e557ec9f0f671e1a7b77f35ec5b34919c"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0124.htm",
+      "sha256": "8d13a002cf4ea6b30bd72c73fed7de42b470eb17178b2dce3d6b987f0feaee73"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0125.htm",
+      "sha256": "b63a9828ba36df0cd4a50909dacb0929330b4e9822ff936beea48668c11b7675"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0125_0005.htm",
+      "sha256": "f17837968fe803121d50071e45ee328d96b571c8b540f5187f4db76f02521d0e"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0126.htm",
+      "sha256": "858697461afafcf218dde7b101786c641f196d1331b2e53970967524eda88af5"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0127.htm",
+      "sha256": "ed30533e5cbf58ca5f369f1932682fa0f82479ff15f836521e9bfa50053f825d"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0128.htm",
+      "sha256": "23416484846dc0646568f6071e0e856abc868cb23eaae0c8278f781be4f2a28e"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0129.htm",
+      "sha256": "88409cfeaecf54dc13e1ad9acdf91716f299a221bdb049b1431f3e592770ba5b"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-section-html/volume-04/HRS0235/HRS_0235-0130.htm",
+      "sha256": "bc7406095c0a5bcd493e80c0e722a65bd32c073bfc70df17d64ea80698825994"
+    },
+    {
+      "path": "data/corpus/sources/us-hi/statute/2026-07-16-pit-east-us-hi-volume-04-chapter-235/hawaii-hrs-volume-directory-html/volume-04.html",
+      "sha256": "bb5087d6c166e41f9a375260266b8c4ba95e869d43aafec3d9e6c46be7738e45"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 156,
+    "missing_count": 0,
+    "provision_count": 156,
+    "source_count": 156
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:19.819760+00:00",
+  "jurisdiction": "us-hi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "EkpC0WH6wt2gF26Kc/i0eRXJGz0s5TClvwEl3W3Ni2FmUhObP2gf7Rm2mrI3h4oV/Ey4Vk8wK3cTGP7fPLFRCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-east-us-hi-volume-04-chapter-235"
+}

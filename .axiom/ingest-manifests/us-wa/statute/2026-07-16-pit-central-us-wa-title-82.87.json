@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/statute/2026-07-16-pit-central-us-wa-title-82.87.json",
+      "sha256": "9044225f9c678c401c0de6f7528d7b862498f86b7aab4a34a3c394043c458c71"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/statute/2026-07-16-pit-central-us-wa-title-82.87.json",
+      "sha256": "1ec346ca0e6d99ee687e07a83fe49ff2115913e17c10a44bbad8adb2bd89d63c"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/statute/2026-07-16-pit-central-us-wa-title-82.87.jsonl",
+      "sha256": "9ac06dcecf683b8a5fc39abb150307e158f554d56b9b3edda93c4b336d16c1d5"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-07-16-pit-central-us-wa-title-82.87/washington-rcw-html/chapters/chapter-82.87-full.html",
+      "sha256": "f0f742ad5af4575f809e4c96bfa94e4ae8fa2d26219a841d04164344ccffbd2d"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-07-16-pit-central-us-wa-title-82.87/washington-rcw-html/index.html",
+      "sha256": "ac9faaa86f4576683183ceeea23f61f52b09de130caac484e8282d751708c60b"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/statute/2026-07-16-pit-central-us-wa-title-82.87/washington-rcw-html/titles/title-82.html",
+      "sha256": "874f6a44fc1934ff7213f655c74ac2da65ec95f51b129f2fe68b33a3b9613d6a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:32.434543+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n5/bYFGRu7FbwJTNEmTpp/uXxzhooHzJb2bUcb7Bp948FW6SpFq05LLufcjhxvfwichxLM0DVM2vM7Cs7PPaAg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-central-us-wa-title-82.87"
+}

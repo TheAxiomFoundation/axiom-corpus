@@ -888,6 +888,65 @@ def test_download_document_uses_browser_impersonation_after_browser_ua_fallback(
     ]
 
 
+def test_download_document_can_use_browser_impersonation_directly(monkeypatch):
+    class UnusedSession:
+        headers = {"User-Agent": OFFICIAL_DOCUMENT_USER_AGENT}
+
+        def get(self, *args, **kwargs):
+            raise AssertionError("direct browser impersonation must bypass requests")
+
+    impersonation_calls: list[dict[str, object]] = []
+
+    def fake_impersonation_download(source, download_url, *, headers, verify, impersonate):
+        impersonation_calls.append(
+            {
+                "source_id": source.source_id,
+                "download_url": download_url,
+                "headers": headers,
+                "verify": verify,
+                "impersonate": impersonate,
+            }
+        )
+        return _DownloadedDocument(
+            source=source,
+            content=b"<html>official</html>",
+            content_type="text/html",
+            final_url=download_url,
+        )
+
+    monkeypatch.setattr(
+        documents_module,
+        "_download_document_by_browser_impersonation",
+        fake_impersonation_download,
+    )
+    source = OfficialDocumentSource(
+        source_id="doc",
+        jurisdiction="ca",
+        document_class="policy",
+        title="Document",
+        source_url="https://example.test/doc",
+        source_format="html",
+        request={
+            "browser_user_agent": True,
+            "browser_impersonation_direct": True,
+            "verify_tls": False,
+        },
+    )
+
+    downloaded = _download_document(source, session=UnusedSession())  # pyright: ignore[reportPrivateUsage]
+
+    assert downloaded.content == b"<html>official</html>"
+    assert impersonation_calls == [
+        {
+            "source_id": "doc",
+            "download_url": "https://example.test/doc",
+            "headers": {"User-Agent": OFFICIAL_DOCUMENT_BROWSER_USER_AGENT},
+            "verify": False,
+            "impersonate": OFFICIAL_DOCUMENT_BROWSER_IMPERSONATION,
+        }
+    ]
+
+
 def test_download_document_by_browser_impersonation_uses_curl_cffi(monkeypatch):
     class FakeResponse:
         status_code = 200

@@ -5,6 +5,11 @@ from axiom_corpus.corpus.state_adapters.pennsylvania import (
     extract_pennsylvania_statutes,
     parse_pennsylvania_title_html,
 )
+from axiom_corpus.corpus.state_adapters.pennsylvania_unconsolidated import (
+    PENNSYLVANIA_UNCONSOLIDATED_SOURCE_FORMAT,
+    extract_pennsylvania_unconsolidated_statutes,
+    parse_pennsylvania_unconsolidated_article_html,
+)
 
 SAMPLE_PENNSYLVANIA_TITLE_HTML = """<!doctype html>
 <html>
@@ -57,6 +62,35 @@ SAMPLE_PENNSYLVANIA_SINGLE_DIGIT_TITLE_HTML = """<!doctype html>
 </html>
 """
 
+SAMPLE_PENNSYLVANIA_UNCONSOLIDATED_ARTICLE_HTML = """<!doctype html>
+<html>
+<head><meta name="revised" content="2025-05-29 10:42:33 AM"></head>
+<body>
+<div class="BodyContainer">
+<div class="Comment">19710002u301h</div>
+<p>ARTICLE III</p>
+<p>PERSONAL INCOME TAX</p>
+<div class="Comment">19710002u301s</div>
+<p>Section 301. Definitions.--The following words have the meanings given.</p>
+<p>(301 amended July 7, 2005, P.L.149, No.40)</p>
+<div class="Comment">19710002u302h</div>
+<p>PART II</p>
+<p>IMPOSITION OF TAX</p>
+<div class="Comment">19710002u302s</div>
+<p>Section 302. Imposition of Tax.--(a) Every resident individual shall pay a tax
+at the rate of three and seven hundredths per cent.</p>
+<p>(b) Every nonresident individual shall pay the same rate.</p>
+<p>(302 amended Dec. 14, 2023, P.L.  , No.64)</p>
+<div class="Comment">19710002u302v</div>
+<p><b>Compiler's Note:</b> Section 2(1) of Act 64 of 2023 applies to tax years.</p>
+<div class="Comment">19710002u302.1s</div>
+<p>Section 302.1. Rate Changes Occurring During the Taxable Year.--The rate shall
+be prorated.</p>
+</div>
+</body>
+</html>
+"""
+
 
 def test_parse_pennsylvania_title_html_extracts_real_comment_marker_structure():
     provisions = parse_pennsylvania_title_html(SAMPLE_PENNSYLVANIA_TITLE_HTML, title=72)
@@ -99,6 +133,73 @@ def test_parse_pennsylvania_title_html_handles_zero_padded_single_digit_markers(
     ]
     assert provisions[1].heading == "Short Title, Form of Citation and Effective Date"
     assert provisions[2].legal_identifier == "1 Pa.C.S. § 101"
+
+
+def test_parse_pennsylvania_unconsolidated_article_extracts_complete_section_bodies():
+    provisions = parse_pennsylvania_unconsolidated_article_html(
+        SAMPLE_PENNSYLVANIA_UNCONSOLIDATED_ARTICLE_HTML,
+        act_year=1971,
+        act_number=2,
+        article=3,
+    )
+
+    assert [provision.kind for provision in provisions] == [
+        "act",
+        "article",
+        "section",
+        "section",
+        "section",
+    ]
+    assert provisions[1].heading == "Personal Income Tax"
+    rate = provisions[3]
+    assert rate.citation_path == "us-pa/statute/act-1971-2/article-3/section-302"
+    assert rate.legal_identifier == "Tax Reform Code of 1971 § 302 (72 P.S. § 7302)"
+    assert rate.heading == "Imposition of Tax"
+    assert rate.body is not None
+    assert "three and seven hundredths per cent" in rate.body
+    assert "Compiler's Note" in rate.body
+    assert "PART II" not in provisions[2].body
+    assert rate.source_history == ("(302 amended Dec. 14, 2023, P.L., No.64)",)
+    assert rate.notes == (
+        "Compiler's Note: Section 2(1) of Act 64 of 2023 applies to tax years.",
+    )
+
+
+def test_extract_pennsylvania_unconsolidated_article_writes_complete_artifacts(tmp_path):
+    source_dir = tmp_path / "source"
+    source_dir.mkdir()
+    (source_dir / "article-3.html").write_text(
+        SAMPLE_PENNSYLVANIA_UNCONSOLIDATED_ARTICLE_HTML,
+        encoding="utf-8",
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_pennsylvania_unconsolidated_statutes(
+        store,
+        version="2026-07-16-pit-west",
+        act_year=1971,
+        act_number=2,
+        article=3,
+        source_dir=source_dir,
+        source_as_of="2025-05-29",
+        expression_date="2025-05-29",
+    )
+
+    assert report.coverage.complete is True
+    assert report.title_count == 1
+    assert report.container_count == 1
+    assert report.section_count == 3
+    assert report.provisions_written == 5
+    inventory = load_source_inventory(report.inventory_path)
+    records = load_provisions(report.provisions_path)
+    assert inventory[2].source_format == PENNSYLVANIA_UNCONSOLIDATED_SOURCE_FORMAT
+    assert records[3].citation_path.endswith("/article-3/section-302")
+    assert records[3].identifiers is not None
+    assert records[3].identifiers["pennsylvania:purdons"] == "72 P.S. § 7302"
+    assert records[3].source_path is not None
+    assert records[3].source_path.endswith(
+        "/pennsylvania-unconsolidated-statutes-html/act-1971-2/article-3.html"
+    )
 
 
 def test_extract_pennsylvania_statutes_from_source_dir_writes_complete_artifacts(tmp_path):
