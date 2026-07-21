@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-mi/guidance/2026-07-21-mi-2026-income-tax-rate-notice.json",
-      "sha256": "772b4ca8325dade6331b2eb94d126102f76bae602c381df6f7a21a63b5878027"
+      "sha256": "faf220f068ad91d7ab0512521d5a85d83d4ec73a22c82ea1a205f0388b412f2d"
     },
     {
       "path": "data/corpus/provisions/us-mi/guidance/2026-07-21-mi-2026-income-tax-rate-notice.jsonl",
-      "sha256": "6bbfedaead8989e26690e81acc73bb3bc66ac44620071c335e3084fac40f1744"
+      "sha256": "8b215e0dd3ecf57cb186314450c9a78bab1f342282222d8fcf2e636f12d824c1"
     },
     {
       "path": "data/corpus/sources/us-mi/guidance/2026-07-21-mi-2026-income-tax-rate-notice/official-documents/us-mi-treasury-2026-individual-income-tax-rate-notice.html",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "27b8adf336b72abf2031fd3eb529a726d0ecbd78",
+    "commit": "ea4e3cc1d8008d0d12cd40c3ce57cf13c5b274ab",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,7 +35,7 @@
     "source_count": 2
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-21T19:56:14.005618+00:00",
+  "generated_at": "2026-07-21T20:12:34.211109+00:00",
   "jurisdiction": "us-mi",
   "reasoning_logs": [
     {
@@ -47,7 +47,7 @@
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "yKjq36aA7wC3gKbQncBKB5r8NPhWaiZvMc2Rz1SDSSJpAjbE+7mi5N5llx9Ao/qAX4OCqmalCNQVHUHYxYDyAA=="
+    "value": "Auw+FCC9vqVcBiugUw2pjrNo5hyOasc7d1WSzbFRm5o7f0wuL9wZNtus3PSaL0b/8K5dF5UuVd+ddSMlv2vRDQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-21-mi-2026-income-tax-rate-notice"
