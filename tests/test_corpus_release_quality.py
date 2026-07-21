@@ -5,7 +5,10 @@ import pytest
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.models import ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.r2 import ArtifactReport, ArtifactScopeRow, ArtifactSupabaseGroup
-from axiom_corpus.corpus.release_quality import validate_release
+from axiom_corpus.corpus.release_quality import (
+    _citation_uniqueness_grandfathered,
+    validate_release,
+)
 from axiom_corpus.corpus.releases import (
     COMPLETE_EXPRESSION_DATES_PROFILE,
     ReleaseManifest,
@@ -128,6 +131,195 @@ def test_validate_release_accepts_r2_complete_remote_only_scope(tmp_path):
     assert report.error_count == 0
     assert report.warning_count == 1
     assert report.issues[0].code == "remote_only_scope_not_deep_validated"
+
+
+@pytest.mark.parametrize(
+    ("local_versions", "remote_versions"),
+    [
+        (("local",), ("remote",)),
+        ((), ("remote-one", "remote-two")),
+    ],
+)
+def test_profiled_release_rejects_unverifiable_remote_uniqueness(
+    tmp_path, local_versions, remote_versions
+):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    scopes = []
+    for version in local_versions:
+        source = store.source_path("us-co", "statute", version, "source.html")
+        source_sha256 = store.write_text(source, "<p>Official source.</p>")
+        relative_source = source.relative_to(store.root).as_posix()
+        _write_source_scope(
+            store,
+            version=version,
+            inventory=[
+                SourceInventoryItem(
+                    citation_path="us-co/statute/39",
+                    source_path=relative_source,
+                    sha256=source_sha256,
+                )
+            ],
+            provisions=[
+                ProvisionRecord(
+                    jurisdiction="us-co",
+                    document_class="statute",
+                    citation_path="us-co/statute/39",
+                    body="Title 39.",
+                    version=version,
+                    source_path=relative_source,
+                    source_as_of="2026-07-19",
+                    expression_date="2026-07-19",
+                )
+            ],
+        )
+        scopes.append(ReleaseScope("us-co", "statute", version))
+    rows = []
+    for version in remote_versions:
+        scopes.append(ReleaseScope("us-co", "statute", version))
+        rows.append(
+            ArtifactScopeRow(
+                jurisdiction="us-co",
+                document_class="statute",
+                version=version,
+                remote_inventory=True,
+                remote_provisions=True,
+                remote_coverage=True,
+                coverage_complete=True,
+                provision_count=1,
+                supabase_count=1,
+            )
+        )
+    report = validate_release(
+        store.root,
+        ReleaseManifest(
+            name="profiled-release",
+            scopes=tuple(scopes),
+            quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+        ),
+        artifact_report=ArtifactReport(
+            local_root=store.root,
+            prefixes=(),
+            local_count=0,
+            local_bytes=0,
+            local_by_prefix={},
+            remote_count=len(rows) * 3,
+            remote_bytes=len(rows) * 3,
+            remote_by_prefix=None,
+            rows=tuple(rows),
+        ),
+    )
+
+    uniqueness_errors = [
+        issue for issue in report.issues if issue.code == "release_citation_uniqueness_unverified"
+    ]
+    assert report.ok is False
+    assert len(uniqueness_errors) == len(remote_versions)
+
+
+def test_validate_release_rejects_cross_scope_citation_duplicates(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    citation_path = "us-co/statute/39"
+    scopes = []
+    for version in ("published-one", "published-two"):
+        source = store.source_path("us-co", "statute", version, "source.html")
+        source_sha256 = store.write_text(source, "<p>Official source.</p>")
+        relative_source = source.relative_to(store.root).as_posix()
+        _write_source_scope(
+            store,
+            version=version,
+            inventory=[
+                SourceInventoryItem(
+                    citation_path=citation_path,
+                    source_path=relative_source,
+                    sha256=source_sha256,
+                )
+            ],
+            provisions=[
+                ProvisionRecord(
+                    jurisdiction="us-co",
+                    document_class="statute",
+                    citation_path=citation_path,
+                    body="Title 39.",
+                    version=version,
+                    source_path=relative_source,
+                    source_as_of="2026-07-19",
+                    expression_date="2026-07-19",
+                )
+            ],
+        )
+        scopes.append(ReleaseScope("us-co", "statute", version))
+
+    report = validate_release(
+        store.root,
+        ReleaseManifest(
+            name="test-release",
+            scopes=tuple(scopes),
+            quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+        ),
+    )
+
+    assert report.ok is False
+    duplicate = [issue for issue in report.issues if issue.code == "duplicate_release_citation"]
+    assert len(duplicate) == 1
+    assert duplicate[0].version == "published-two"
+    assert "published-one" in duplicate[0].message
+
+
+def test_modified_historical_profiled_release_is_not_grandfathered(tmp_path):
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    citation_path = "us/statute/26"
+    scopes = []
+    for version in ("published-one", "published-two"):
+        source = store.source_path("us", "statute", version, "source.xml")
+        source_sha256 = store.write_text(source, "<title>26</title>")
+        relative_source = source.relative_to(store.root).as_posix()
+        _write_source_scope(
+            store,
+            jurisdiction="us",
+            version=version,
+            inventory=[
+                SourceInventoryItem(
+                    citation_path=citation_path,
+                    source_path=relative_source,
+                    sha256=source_sha256,
+                )
+            ],
+            provisions=[
+                ProvisionRecord(
+                    jurisdiction="us",
+                    document_class="statute",
+                    citation_path=citation_path,
+                    body=None,
+                    version=version,
+                    source_path=relative_source,
+                    source_as_of="2026-07-19",
+                    expression_date="2026-07-19",
+                )
+            ],
+        )
+        scopes.append(ReleaseScope("us", "statute", version))
+
+    report = validate_release(
+        store.root,
+        ReleaseManifest(
+            name="us-rulespec-2026-07-19",
+            scopes=tuple(scopes),
+            quality_profile=COMPLETE_EXPRESSION_DATES_PROFILE,
+        ),
+    )
+
+    codes = {issue.code for issue in report.issues}
+    assert report.ok is False
+    assert "legacy_release_citation_uniqueness_grandfathered" not in codes
+    assert "duplicate_release_citation" in codes
+
+
+def test_exact_historical_profiled_release_fingerprint_is_grandfathered():
+    release = ReleaseManifest.load(
+        REPO_ROOT / "manifests/releases/us-rulespec-2026-07-19.json"
+    )
+
+    assert _citation_uniqueness_grandfathered(release) is True
 
 
 def test_validate_release_can_ignore_r2_only_mirror_gaps(tmp_path):
@@ -481,9 +673,7 @@ def test_validate_release_versions_expression_date_requirement(tmp_path):
 
 
 def test_historical_us_selector_retains_legacy_expression_date_warnings():
-    release = ReleaseManifest.load(
-        REPO_ROOT / "manifests/releases/us-rulespec-2026-07-18.json"
-    )
+    release = ReleaseManifest.load(REPO_ROOT / "manifests/releases/us-rulespec-2026-07-18.json")
 
     report = validate_release(
         REPO_ROOT / "data/corpus",

@@ -17,6 +17,11 @@ from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInv
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+from axiom_corpus.release.manifest import selector_sha256
+
+_PROFILED_CITATION_UNIQUENESS_GRANDFATHER = {
+    "us-rulespec-2026-07-19": "79c091b4501eecb2996936ba51c87955f89460d9e3690b0fde88c30742547e9d"
+}
 
 
 @dataclass(frozen=True)
@@ -140,7 +145,23 @@ def validate_release(
         artifact_rows = {
             (row.jurisdiction, row.document_class, row.version): row for row in artifact_report.rows
         }
-    release_citation_paths = _release_citation_paths(store, release, artifact_rows)
+    uniqueness_grandfathered = _citation_uniqueness_grandfathered(release)
+    require_unique_citations = (
+        release.requires_complete_expression_dates and not uniqueness_grandfathered
+    )
+    if release.requires_complete_expression_dates and uniqueness_grandfathered:
+        collector.add(
+            "warning",
+            "legacy_release_citation_uniqueness_grandfathered",
+            "known historical release predates release-wide citation uniqueness enforcement",
+        )
+    release_citation_paths = _release_citation_paths(
+        store,
+        release,
+        artifact_rows,
+        collector,
+        require_unique=require_unique_citations,
+    )
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
             collector.add(
@@ -171,10 +192,18 @@ def validate_release(
     )
 
 
+def _citation_uniqueness_grandfathered(release: ReleaseManifest) -> bool:
+    expected = _PROFILED_CITATION_UNIQUENESS_GRANDFATHER.get(release.name)
+    return expected is not None and selector_sha256(release) == expected
+
+
 def _release_citation_paths(
     store: CorpusArtifactStore,
     release: ReleaseManifest,
     artifact_rows: Mapping[tuple[str, str, str], Any],
+    collector: _IssueCollector,
+    *,
+    require_unique: bool,
 ) -> set[str]:
     """Collect parents available anywhere in the local release cut.
 
@@ -183,14 +212,41 @@ def _release_citation_paths(
     Parsing errors remain owned by ``_validate_scope`` so they are reported once.
     """
     paths: set[str] = set()
+    owners: dict[str, ReleaseScope] = {}
     for scope in release.scopes:
         if _scope_has_remote_artifacts(scope, artifact_rows):
+            if require_unique:
+                collector.add(
+                    "error",
+                    "release_citation_uniqueness_unverified",
+                    (
+                        "profiled release citation uniqueness cannot be verified because "
+                        "the scope provisions are available only in remote artifacts"
+                    ),
+                    scope=scope,
+                )
             continue
         path = store.provisions_path(scope.jurisdiction, scope.document_class, scope.version)
         try:
-            paths.update(record.citation_path for record in load_provisions(path))
+            provisions = load_provisions(path)
         except (OSError, json.JSONDecodeError, KeyError, TypeError, ValueError):
             continue
+        for record in provisions:
+            owner = owners.get(record.citation_path)
+            if require_unique and owner is not None and owner != scope:
+                collector.add(
+                    "error",
+                    "duplicate_release_citation",
+                    (
+                        f"citation_path {record.citation_path} is also present in "
+                        f"{owner.jurisdiction}/{owner.document_class}/{owner.version}"
+                    ),
+                    scope=scope,
+                    path=path,
+                )
+            else:
+                owners[record.citation_path] = scope
+            paths.add(record.citation_path)
     return paths
 
 
@@ -719,7 +775,9 @@ def _validate_provision_record(
                 f"{record.citation_path} parent not found: {record.parent_citation_path}",
                 scope=scope,
             )
-        elif parent is not None and record.parent_id and parent.id and record.parent_id != parent.id:
+        elif (
+            parent is not None and record.parent_id and parent.id and record.parent_id != parent.id
+        ):
             collector.add(
                 "error",
                 "parent_id_mismatch",

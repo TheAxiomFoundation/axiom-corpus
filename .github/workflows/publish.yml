@@ -108,6 +108,15 @@ jobs:
               --output "$RUNNER_TEMP/$(basename "$selector" .json)-release-object.json"
           done < "$RUNNER_TEMP/release-selectors.txt"
 
+      - name: Retain the signed release object for activation
+        if: steps.selectors.outputs.publish == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: signed-corpus-release-object
+          path: ${{ runner.temp }}/*-release-object.json
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Publication summary
         if: always()
         run: |

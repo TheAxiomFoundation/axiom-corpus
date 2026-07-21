@@ -62,21 +62,33 @@ def _required_env(name: str) -> str:
 
 def _load_release_object(args: argparse.Namespace) -> dict[str, Any]:
     if args.release_object is not None:
-        return json.loads(Path(args.release_object).read_bytes())
-    if not args.release or not args.content_sha:
-        raise SystemExit(
-            "provide --release-object PATH, or both --release and --content-sha "
-            "to fetch the signed object from the canonical R2 bucket"
+        payload = json.loads(Path(args.release_object).read_bytes())
+    else:
+        if not args.release or not args.content_sha:
+            raise SystemExit(
+                "provide --release-object PATH, or both --release and --content-sha "
+                "to fetch the signed object from the canonical R2 bucket"
+            )
+        config = load_r2_config(
+            credential_path=args.credentials_file,
+            bucket=args.r2_bucket,
+            endpoint_url=args.r2_endpoint,
         )
-    config = load_r2_config(
-        credential_path=args.credentials_file,
-        bucket=args.r2_bucket,
-        endpoint_url=args.r2_endpoint,
-    )
-    client = make_r2_client(config)
-    key = release_object_r2_key(args.release, args.content_sha)
-    body = client.get_object(Bucket=config.bucket, Key=key)["Body"].read()
-    return json.loads(body)
+        client = make_r2_client(config)
+        key = release_object_r2_key(args.release, args.content_sha)
+        body = client.get_object(Bucket=config.bucket, Key=key)["Body"].read()
+        payload = json.loads(body)
+    if args.release is not None and payload.get("release") != args.release:
+        raise SystemExit(
+            f"release object identity mismatch: expected release {args.release!r}, "
+            f"got {payload.get('release')!r}"
+        )
+    if args.content_sha is not None and payload.get("content_sha256") != args.content_sha:
+        raise SystemExit(
+            "release object identity mismatch: expected content_sha256 "
+            f"{args.content_sha!r}, got {payload.get('content_sha256')!r}"
+        )
+    return payload
 
 
 def _print_preview(rows: list[dict[str, object]]) -> None:
@@ -98,8 +110,14 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help="Path to a signed release object JSON (e.g. publish --output).",
     )
-    parser.add_argument("--release", help="Release name (with --content-sha).")
-    parser.add_argument("--content-sha", help="Release content sha256 (with --release).")
+    parser.add_argument(
+        "--release",
+        help="Release name to fetch or require in a local --release-object.",
+    )
+    parser.add_argument(
+        "--content-sha",
+        help="Content sha256 to fetch or require in a local --release-object.",
+    )
     parser.add_argument("--credentials-file", type=Path)
     parser.add_argument("--r2-bucket")
     parser.add_argument("--r2-endpoint")
