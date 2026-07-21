@@ -1,5 +1,5 @@
 {
-  "description": "Unpublished successor to us-rulespec-2026-07-17-pit-recovery adding a historical state-origin Georgia O.C.G.A. Title 48 snapshot plus official signed 2023-2026 Georgia income-tax session laws.",
+  "description": "Unpublished successor to us-rulespec-2026-07-17-pit-recovery adding a historical state-origin Georgia O.C.G.A. Title 48 snapshot, official signed 2023-2026 Georgia income-tax session laws, and the official 2025 IT-511 booklet.",
   "name": "us-rulespec-2026-07-21-ga-pit-current",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -427,6 +427,11 @@
       "document_class": "regulation",
       "jurisdiction": "us-fl",
       "version": "2026-07-13-recovery"
+    },
+    {
+      "document_class": "form",
+      "jurisdiction": "us-ga",
+      "version": "2026-07-21-ga-it-511-2025"
     },
     {
       "document_class": "guidance",

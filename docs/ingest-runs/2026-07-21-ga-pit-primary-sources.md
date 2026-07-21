@@ -1,6 +1,6 @@
 # Georgia individual-income-tax primary sources (2026-07-21)
 
-This recovery adds two complementary Georgia statute scopes for RuleSpec
+This recovery adds three complementary Georgia scopes for RuleSpec
 individual-income-tax proofs:
 
 - `2026-07-21-ga-ocga-title-48-release86-us-ga-title-48` is a historical
@@ -17,6 +17,12 @@ individual-income-tax proofs:
   transitions used by the current PIT program. The base act citations are
   structural parents; the extracted act text is carried by the corresponding
   `/document-1` citations.
+- `2026-07-21-ga-it-511-2025` contains the official Georgia Department of
+  Revenue 2025 IT-511 Individual Income Tax Booklet. Its text-bearing
+  `us-ga/form/it-511/2025/document-1` provision includes the low-income credit
+  worksheet and its age-65 exemption instructions. The manifest forces
+  300-DPI OCR through the corpus extractor's standard local Tesseract CLI
+  because the worksheet rows are vector outlines rather than PDF text.
 
 The historical Title 48 source was already fetched to the manifest-pinned,
 ignored input location before extraction:
@@ -36,9 +42,14 @@ uv run --extra dev axiom-corpus-ingest extract-official-documents \
   --base data/corpus \
   --version 2026-07-21-ga-pit-session-laws \
   --manifest manifests/us-ga-pit-session-laws-official-documents.yaml
+
+uv run --extra dev axiom-corpus-ingest extract-official-documents \
+  --base data/corpus \
+  --version 2026-07-21-ga-it-511-2025 \
+  --manifest manifests/us-ga-it-511-2025-official-document.yaml
 ```
 
-Both runs write the canonical four artifact families under `sources/`,
+All runs write the canonical four artifact families under `sources/`,
 `inventory/`, `provisions/`, and `coverage/`. The successor release selector
 `us-rulespec-2026-07-21-ga-pit-current` remains unpublished.
 
