@@ -19,6 +19,7 @@ EXPECTED_TARGET_MANIFEST_PATHS = {
 PUBLISHED_CURRENT = "published_current"
 SOURCE_REFETCH_REQUIRED = "source_refetch_required"
 COMPREHENSIVE_RELEASE = REPO_ROOT / "manifests/releases/us-rulespec-snap-2026-07-21.json"
+INHERITED_RELEASE = REPO_ROOT / "manifests/releases/us-rulespec-2026-07-19-dedup.json"
 CONSOLIDATED_MASSACHUSETTS_VERSION = "2026-07-21-ma-dta-regulations-consolidated"
 CONSOLIDATED_MASSACHUSETTS_SCOPE = (
     "us-ma",
@@ -245,11 +246,13 @@ def test_published_state_snap_ingest_manifests_are_authenticated() -> None:
 
 def test_comprehensive_release_tracks_the_state_snap_queue() -> None:
     payload = json.loads(COMPREHENSIVE_RELEASE.read_text())
-    release_scopes = {
+    release_scope_keys = [
         (scope["jurisdiction"], scope["document_class"], scope["version"])
         for scope in payload["scopes"]
-    }
+    ]
+    release_scopes = set(release_scope_keys)
     assert len(payload["scopes"]) == len(release_scopes) == 200
+    assert release_scope_keys == sorted(release_scope_keys)
 
     published_scopes = set()
     refetch_scopes = set()
@@ -262,7 +265,15 @@ def test_comprehensive_release_tracks_the_state_snap_queue() -> None:
                 refetch_scopes.add(identity)
 
     assert len(published_scopes) == 54
-    assert published_scopes <= release_scopes
+    inherited_payload = json.loads(INHERITED_RELEASE.read_text())
+    inherited_scopes = {
+        (scope["jurisdiction"], scope["document_class"], scope["version"])
+        for scope in inherited_payload["scopes"]
+    }
+    assert inherited_scopes >= SUPERSEDED_RELEASE_SCOPES
+    assert release_scopes == (
+        inherited_scopes - SUPERSEDED_RELEASE_SCOPES
+    ) | published_scopes
     assert refetch_scopes.isdisjoint(release_scopes)
     assert SUPERSEDED_RELEASE_SCOPES.isdisjoint(release_scopes)
 
