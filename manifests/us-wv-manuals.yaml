@@ -1,17 +1,29 @@
 documents:
-  - source_id: wv-bcf-income-maintenance-11-3
+  - source_id: wv-bfa-income-maintenance-manual-2026-07-01
     jurisdiction: us-wv
     document_class: manual
-    citation_path: us-wv/manual/bcf/income-maintenance/chapter-11/11-3-assets
-    title: West Virginia Income Maintenance Manual 11.3 Assets
-    source_url: https://dhhr.wv.gov/bcf/Services/familyassistance/PolicyManual/Documents/Chapter%2011/ch11_3.pdf
+    citation_path: us-wv/manual/bfa/income-maintenance-manual
+    title: West Virginia Income Maintenance Manual
+    source_url: https://bfa.wv.gov/media/39948/download?inline=
     source_format: pdf
-    source_as_of: "2026-05-27"
-    expression_date: "2026-05-27"
+    source_as_of: "2026-07-21"
+    expression_date: "2026-07-01"
     metadata:
       primary_source: true
       source_authority: West Virginia Bureau for Family Assistance
-      document_subtype: manual_section
-      program: SNAP
+      document_subtype: integrated_policy_manual
+      programs:
+        - SNAP
+        - SNAP E&T
+        - WV WORKS
+        - Medicaid
+        - Emergency and Special Assistance
+      includes_snap_policy: true
+      manual_landing_page: https://bfa.wv.gov/income-maintenance-manual
+      source_document_filename: Binder4 - Effective 07-01-2026_0.pdf
+      source_document_effective_date: "2026-07-01"
+      extraction_granularity: pdf_page
       source_discovery_group: us-wv/manual/manuals
-      discovered_via: policyengine-us:source-discovery
+      discovered_via: manual-review:state-snap-manual-agent-queue
+      current_snap_asset_section: "5.4"
+      superseded_snap_asset_section: "11.3"

@@ -600,14 +600,26 @@ states:
       Washington SNAP legal authority.
   - jurisdiction: us-wv
     name: West Virginia
-    queue_status: source_refetch_required
-    source_kind: official_html_manual
-    primary_source_url: https://bfa.wv.gov/page/income-maintenance-manual
+    queue_status: published_current
+    source_kind: official_pdf_manual
+    primary_source_url: https://bfa.wv.gov/income-maintenance-manual
     target_manifest: manifests/us-wv-manuals.yaml
     target_scope:
       jurisdiction: us-wv
       document_class: manual
-      version: 2026-05-27-wv-manuals
+      version: 2026-07-21-wv-income-maintenance-manual
+    supporting_queue_status: published_current
+    supporting_manifest: manifests/us-wv-snap-healthy-choices-overlay.yaml
+    supporting_scope:
+      jurisdiction: us-wv
+      document_class: manual
+      version: 2026-07-21-wv-snap-healthy-choices-overlay
+    notes: Complete current 2,275-page integrated Income Maintenance Manual,
+      effective July 1, 2026, plus the July 10 official policy overlay that
+      immediately pauses the SNAP Healthy Choices soda restriction still printed
+      in manual sections 1.4.20 and 16.3. Underlying federal and state authorities,
+      the USDA directive and federal court order, the dead 2014 archive ZIP, and
+      the broken DoHS manual-change search remain explicit gaps.
   - jurisdiction: us-wi
     name: Wisconsin
     queue_status: published_current
