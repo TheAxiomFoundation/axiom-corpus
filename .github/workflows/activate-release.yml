@@ -38,7 +38,7 @@ jobs:
     env:
       RELEASE_NAME: ${{ inputs.release }}
       CONTENT_SHA: ${{ inputs.content_sha }}
-      RELEASE_OBJECT: ${{ runner.temp }}/signed-release-object.json
+      RELEASE_OBJECT: ${{ github.workspace }}/signed-release-object.json
     steps:
       - uses: actions/checkout@v6.0.2
 
@@ -114,7 +114,7 @@ jobs:
     env:
       RELEASE_NAME: ${{ inputs.release }}
       CONTENT_SHA: ${{ inputs.content_sha }}
-      RELEASE_OBJECT: ${{ runner.temp }}/signed-release-object.json
+      RELEASE_OBJECT: ${{ github.workspace }}/signed-release-object.json
     steps:
       - uses: actions/checkout@v6.0.2
 
