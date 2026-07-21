@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wv/statute/2026-07-16-pit-west-us-wv-chapter-11-article-21.json",
+      "sha256": "9a7d6b5920ec0fca57feba0444ab545321c00959b3069bc72ed9f9e032283008"
+    },
+    {
+      "path": "data/corpus/inventory/us-wv/statute/2026-07-16-pit-west-us-wv-chapter-11-article-21.json",
+      "sha256": "1d79def368cd0428328ad3e4f1835948703098e2cf22e2918a536b16596040a8"
+    },
+    {
+      "path": "data/corpus/provisions/us-wv/statute/2026-07-16-pit-west-us-wv-chapter-11-article-21.jsonl",
+      "sha256": "907577781a3ff4501bd72516cc0eab050672e2d80f452f2c800f81acd986b19c"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-16-pit-west-us-wv-chapter-11-article-21/west-virginia-code-article-json/chapter-11/article-21.json",
+      "sha256": "3afe785a8a033a7d9a001422bce432f05f55fb6b2b4a61dcef6e9ca16ff41967"
+    },
+    {
+      "path": "data/corpus/sources/us-wv/statute/2026-07-16-pit-west-us-wv-chapter-11-article-21/west-virginia-code-html/wvcodeentire.html",
+      "sha256": "7fde2947fcc85c6b1e881798ddd22269716b42d8158ddf8b60493a16a885448b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 142,
+    "missing_count": 0,
+    "provision_count": 142,
+    "source_count": 142
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:33.678365+00:00",
+  "jurisdiction": "us-wv",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AXKpqRhZNGYVOZ0SNGr5Omi/IjCnkLls27XwVsyNf1F9dpnLgNUZ52yLQepGJlBxhFrTNE/1AVK2ZBtKSyaqDw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-west-us-wv-chapter-11-article-21"
+}

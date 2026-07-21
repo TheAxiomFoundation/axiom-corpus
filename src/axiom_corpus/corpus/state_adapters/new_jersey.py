@@ -245,6 +245,12 @@ def parse_new_jersey_statutes_text(
             )
             continue
         section_match = _SECTION_HEADER_RE.match(stripped)
+        if section_match is not None and line != line.lstrip():
+            # Official section headers are flush-left. Indented lines commonly
+            # repeat a citation at the start of the provision body and must not
+            # become separate sections (one Title 54A preamble even carries a
+            # historical citation typo).
+            section_match = None
         if section_match is not None:
             section_rows.append(
                 (
@@ -310,12 +316,46 @@ def parse_new_jersey_statutes_text(
         if section_label in seen_sections:
             continue
         seen_sections.add(section_label)
+        body_start_index = line_index + 1
+        body_preamble: list[str] = []
+        next_row_index = row_index + 1
+        while (
+            next_row_index < len(section_rows)
+            and section_rows[next_row_index][1] == section_label
+        ):
+            # The official bulk text commonly repeats the citation and heading
+            # as the first line of the section body. Treat those consecutive
+            # self-headers as body preambles, not empty provision boundaries.
+            repeated_line_index = section_rows[next_row_index][0]
+            repeated_match = _SECTION_HEADER_RE.match(
+                _clean_whitespace(lines[repeated_line_index])
+            )
+            if repeated_match is not None:
+                repeated_text = repeated_match.group("heading")
+                if repeated_text.casefold().startswith(heading.casefold()):
+                    repeated_text = repeated_text[len(heading) :].lstrip(". ")
+                if repeated_text:
+                    body_preamble.append(repeated_text)
+            body_start_index = repeated_line_index + 1
+            next_row_index += 1
         next_line_index = (
-            section_rows[row_index + 1][0]
-            if row_index + 1 < len(section_rows)
+            section_rows[next_row_index][0]
+            if next_row_index < len(section_rows)
             else len(lines)
         )
-        body_lines = lines[line_index + 1 : next_line_index]
+        body_lines = [*body_preamble, *lines[body_start_index:next_line_index]]
+        for body_line_index, body_line in enumerate(body_lines):
+            clean_body_line = _clean_whitespace(body_line)
+            if not clean_body_line:
+                continue
+            repeated_match = _SECTION_HEADER_RE.match(clean_body_line)
+            if repeated_match is not None:
+                repeated_text = repeated_match.group("heading")
+                if repeated_text.casefold().startswith(heading.casefold()):
+                    body_lines[body_line_index] = repeated_text[len(heading) :].lstrip(
+                        ". "
+                    )
+            break
         body = _normalize_body(body_lines)
         history = tuple(_source_history(body_lines))
         refs = tuple(_extract_references("\n".join([heading, body or ""]), section_label))

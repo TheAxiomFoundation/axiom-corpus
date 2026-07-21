@@ -262,7 +262,7 @@ def test_extract_oregon_ors_from_source_dir_writes_complete_artifacts(tmp_path):
         "us-or/statute/90.110",
         "us-or/statute/chapter-090/series-landlord-rights-and-obligations",
         "us-or/statute/90.303",
-        "us-or/statute/90.303@operative-2028-01-02",
+        "us-or/statute/90.303-operative-2028-01-02",
         "us-or/statute/90.304",
     ]
     assert records[0].legal_identifier == "ORS Title 10"

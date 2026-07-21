@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/statute/2026-07-16-pit-central.json",
+      "sha256": "2eb77c2098f6fb1783b793ec61fa9b9f871cc7887ae96294ae12d96e2b42cc95"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/statute/2026-07-16-pit-central.json",
+      "sha256": "f15503146d081fa010756789b07b67d5f15eb64c6746ae5b77f8b62a1100e23e"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/statute/2026-07-16-pit-central.jsonl",
+      "sha256": "c90ee21859962fabee9f721844dda6fe327dc2fb055fda9fce5a1450094fc8aa"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-07-16-pit-central/new-mexico-nmonesource-epub/chapter-7/n-4340-en.epub",
+      "sha256": "a4e4119e4018c15ba8ff1b7c9d3faff8568a1af19bed6f7a23f83c481c3f7939"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-07-16-pit-central/new-mexico-nmonesource-nav-html/nav_date-page-1.html",
+      "sha256": "5f0eea1b00ad5e82a92892a805007fa106ccc9297e5c267ebea446995203305c"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-07-16-pit-central/new-mexico-nmonesource-nav-html/nav_date-page-2.html",
+      "sha256": "18366170103851f84c3679d9776b6be9e37d5624aaef90e9a43e1d0638925e38"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-07-16-pit-central/new-mexico-nmonesource-nav-html/nav_date-page-3.html",
+      "sha256": "1156bb6790185d3c5aa23bccb5aaf5fe03230f6ab67a5ce9c42dc645c419adc6"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/statute/2026-07-16-pit-central/new-mexico-nmonesource-nav-html/nav_date-page-4.html",
+      "sha256": "5b42a2c0f318f36c2eaee585faa7758bca03e98b545114492c828fb57f1588f1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1969,
+    "missing_count": 0,
+    "provision_count": 1969,
+    "source_count": 1969
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-21T12:53:28.050492+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9llJSA/1jJRM5Iry7z3w1QxEyVW1MqXyCYDaHm07/lCeO49UpgE4s31qb0xCto/0dkyuZUnOYymwsF2nCo+vAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-central"
+}

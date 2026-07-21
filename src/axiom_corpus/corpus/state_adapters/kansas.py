@@ -275,6 +275,7 @@ def extract_kansas_statutes(
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
     only_title: str | int | None = None,
+    only_article: str | int | None = None,
     limit: int | None = None,
     download_dir: str | Path | None = None,
     base_url: str = KANSAS_STATUTES_BASE_URL,
@@ -286,7 +287,15 @@ def extract_kansas_statutes(
     """Snapshot official Kansas Statutes HTML and extract provisions."""
     jurisdiction = "us-ks"
     chapter_filter = _chapter_filter(only_title)
-    run_id = _kansas_run_id(version, chapter_filter=chapter_filter, limit=limit)
+    article_filter = _article_filter(only_article)
+    if article_filter is not None and chapter_filter is None:
+        raise ValueError("only_article requires only_title for Kansas Statutes extraction")
+    run_id = _kansas_run_id(
+        version,
+        chapter_filter=chapter_filter,
+        article_filter=article_filter,
+        limit=limit,
+    )
     source_as_of_text = source_as_of or version
     expression_date_text = _date_text(expression_date, source_as_of_text)
     fetcher = _KansasFetcher(
@@ -306,6 +315,7 @@ def extract_kansas_statutes(
     title_count = 0
     container_count = 0
     section_count = 0
+    selected_article_count = 0
     remaining_sections = limit
 
     root_source = fetcher.fetch_root()
@@ -365,6 +375,14 @@ def extract_kansas_statutes(
             source=chapter_recorded,
             base_url=base_url,
         )
+        if article_filter is not None:
+            articles = tuple(
+                article for article in articles if article.article == article_filter
+            )
+            listings = tuple(
+                listing for listing in listings if listing.article == article_filter
+            )
+        selected_article_count += len(articles)
         if _append_unique(
             seen,
             items,
@@ -465,6 +483,8 @@ def extract_kansas_statutes(
 
     if not records:
         raise ValueError("no Kansas Statutes provisions extracted")
+    if article_filter is not None and selected_article_count == 0:
+        raise ValueError(f"no Kansas statute articles selected for filter: {only_article!r}")
 
     inventory_path = store.inventory_path(jurisdiction, DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, items)
@@ -640,14 +660,28 @@ def parse_kansas_section_page(
     print_container = soup.find(id="print")
     if not isinstance(print_container, Tag):
         raise ValueError("missing printable statute container")
-    statute_paragraphs = [
+    statute_blocks = [
         tag
-        for tag in print_container.find_all("p")
+        for tag in print_container.find_all(["p", "ul"])
         if isinstance(tag, Tag)
         and (
-            any(str(class_name).startswith("ksa_stat") for class_name in tag.get("class", []))
-            or tag.find(class_="stat_number") is not None
+            (
+                tag.name == "p"
+                and (
+                    any(
+                        str(class_name).startswith("ksa_stat")
+                        for class_name in tag.get("class", [])
+                    )
+                    or tag.find(class_="stat_number") is not None
+                )
+            )
+            or (tag.name == "ul" and "leaders" in tag.get("class", []))
         )
+    ]
+    statute_paragraphs = [
+        tag
+        for tag in statute_blocks
+        if tag.name == "p"
     ]
     if not statute_paragraphs:
         raise ValueError("missing statute paragraphs")
@@ -667,14 +701,18 @@ def parse_kansas_section_page(
 
     body_lines: list[str] = []
     source_history: list[str] = []
-    for paragraph in statute_paragraphs:
-        classes = {str(class_name) for class_name in paragraph.get("class", [])}
+    for block in statute_blocks:
+        classes = {str(class_name) for class_name in block.get("class", [])}
         if "ksa_stat_hist" in classes:
-            history = _history_text(paragraph)
+            history = _history_text(block)
             if history:
                 source_history.append(history)
             continue
-        text = _statute_body_text(paragraph)
+        text = (
+            _statute_rate_table_text(block)
+            if block.name == "ul"
+            else _statute_body_text(block)
+        )
         if text:
             body_lines.append(text)
     body = _normalize_body("\n".join(body_lines))
@@ -1020,6 +1058,25 @@ def _statute_body_text(paragraph: Tag) -> str:
     return _clean_text(clone)
 
 
+def _statute_rate_table_text(rate_table: Tag) -> str:
+    rows: list[str] = []
+    for item in rate_table.find_all("li", recursive=False):
+        left = item.find(class_="ksa_stat_8pt_left")
+        right = item.find(class_="ksa_stat_8pt_right")
+        cells = [
+            text
+            for text in (
+                _clean_text(left) if isinstance(left, Tag) else "",
+                _clean_text(right) if isinstance(right, Tag) else "",
+            )
+            if text
+        ]
+        row = " | ".join(cells) or _clean_text(item)
+        if row:
+            rows.append(row)
+    return "\n".join(rows)
+
+
 def _history_text(paragraph: Tag) -> str:
     clone = BeautifulSoup(str(paragraph), "lxml")
     for span in clone.select(".history"):
@@ -1043,6 +1100,7 @@ def _section_source_id(section_label: str) -> str:
     source_id = re.sub(r"\s+through\s+", "-through-", source_id, flags=re.I)
     source_id = re.sub(r"\s+to\s+", "-to-", source_id, flags=re.I)
     source_id = re.sub(r",\s+", "-and-", source_id)
+    source_id = source_id.replace(",", "-")
     source_id = re.sub(r"\s+", "", source_id)
     return source_id
 
@@ -1068,13 +1126,16 @@ def _kansas_run_id(
     version: str,
     *,
     chapter_filter: str | None,
+    article_filter: str | None,
     limit: int | None,
 ) -> str:
-    if chapter_filter is None and limit is None:
+    if chapter_filter is None and article_filter is None and limit is None:
         return version
     parts = [version, "us-ks"]
     if chapter_filter is not None:
         parts.append(f"chapter-{chapter_filter.lower()}")
+    if article_filter is not None:
+        parts.append(f"article-{article_filter.lower()}")
     if limit is not None:
         parts.append(f"limit-{limit}")
     return "-".join(parts)
@@ -1085,6 +1146,14 @@ def _chapter_filter(value: str | int | None) -> str | None:
         return None
     text = str(value).strip()
     text = re.sub(r"^(?:chapter|ch\.?)[-\s]*", "", text, flags=re.I)
+    return text.lower() if text else None
+
+
+def _article_filter(value: str | int | None) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    text = re.sub(r"^(?:article|art\.?)[-\s]*", "", text, flags=re.I)
     return text.lower() if text else None
 
 

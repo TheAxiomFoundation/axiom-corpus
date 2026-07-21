@@ -828,6 +828,10 @@ def _append_inventory_and_record(
     body: str | None = None,
     parent_citation_path: str | None = None,
 ) -> None:
+    citation_path = _canonical_citation_path(citation_path)
+    if parent_citation_path is not None:
+        parent_citation_path = _canonical_citation_path(parent_citation_path)
+    metadata = _canonical_citation_metadata(metadata)
     clean_metadata = {key: value for key, value in metadata.items() if value not in (None, [], ())}
     if parent_citation_path is not None:
         clean_metadata["parent_citation_path"] = parent_citation_path
@@ -871,6 +875,26 @@ def _append_inventory_and_record(
             metadata=clean_metadata,
         )
     )
+
+
+def _canonical_citation_path(citation_path: str) -> str:
+    """Return a grammar-safe canonical path without changing source labels."""
+    return citation_path.lower().replace("@", "-")
+
+
+def _canonical_citation_metadata(metadata: dict[str, Any]) -> dict[str, Any]:
+    normalized = dict(metadata)
+    for key in ("canonical_citation_path", "parent_citation_path"):
+        value = normalized.get(key)
+        if isinstance(value, str):
+            normalized[key] = _canonical_citation_path(value)
+    references = normalized.get("references_to")
+    if isinstance(references, list):
+        normalized["references_to"] = [
+            _canonical_citation_path(value) if isinstance(value, str) else value
+            for value in references
+        ]
+    return normalized
 
 
 def _record_source_page(

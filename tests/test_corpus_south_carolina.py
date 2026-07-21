@@ -2,9 +2,11 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters.south_carolina import (
     SOUTH_CAROLINA_SOURCE_FORMAT,
+    apply_south_carolina_session_law_overlay,
     extract_south_carolina_code,
     parse_south_carolina_chapter_html,
     parse_south_carolina_master_index_html,
+    parse_south_carolina_session_law_overlay,
     parse_south_carolina_title_html,
 )
 
@@ -72,6 +74,20 @@ This Chapter, which included SECTIONS 5-23-10 to 5-23-190, was repealed.<br /><b
 South Carolina Legislative Services Agency * 223 Blatt Building
 </body>
 </html>
+"""
+
+SAMPLE_SESSION_LAW_HTML = """<!doctype html>
+<html><body>
+<p>(A110, R117, H4216)</p>
+<p>SECTION 1. Section 12-6-510(C) of the S.C. Code is amended to read:</p>
+<p>(C)(1) For taxable years beginning after 2025, tax is imposed as follows:</p>
+<p>$0 $30,000 1.99% times the amount</p>
+<p>$30,000 or more 5.21% times the amount minus $966</p>
+<p>(D) The department may prescribe tax tables consistent with this section.</p>
+<p>SECTION 2. Section 12-6-50 is amended by adding:</p>
+<p>SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025.</p>
+<p>Approved the 30th day of March, 2026.</p>
+</body></html>
 """
 
 
@@ -202,3 +218,74 @@ def test_extract_south_carolina_code_from_source_dir_writes_complete_artifacts(t
     )
     assert records[3].metadata is not None
     assert records[3].metadata["references_to"] == ["us-sc/statute/12-6-10"]
+
+
+def test_parse_and_apply_south_carolina_session_law_overlay():
+    chapter_html = SAMPLE_CHAPTER_HTML.replace(
+        "</table>\nHISTORY:",
+        "</table>\n(C) The department may prescribe tax tables.<br /><br />\nHISTORY:",
+    )
+    section = parse_south_carolina_chapter_html(chapter_html, title=12, chapter=6)[2]
+
+    overlay = parse_south_carolina_session_law_overlay(
+        SAMPLE_SESSION_LAW_HTML,
+        section="12-6-510",
+    )
+    current = apply_south_carolina_session_law_overlay(section, overlay)
+
+    assert overlay.act_number == "110"
+    assert overlay.bill_number == "4216"
+    assert overlay.effective_text is not None
+    assert current.body is not None
+    assert "1.99% times the amount" in current.body
+    assert "5.21% times the amount minus $966" in current.body
+    assert "(C) The department may prescribe" not in current.body
+    assert "2026 Act No. 110 (H.4216), SECTION 1" in current.body
+
+
+def test_extract_south_carolina_code_applies_official_session_law(tmp_path):
+    source_dir = tmp_path / "source"
+    source_root = source_dir / SOUTH_CAROLINA_SOURCE_FORMAT
+    (source_root / "title-12").mkdir(parents=True)
+    (source_root / "session-laws").mkdir()
+    (source_root / "statmast.html").write_text(SAMPLE_MASTER_HTML, encoding="utf-8")
+    (source_root / "title-12.html").write_text(SAMPLE_TITLE_HTML, encoding="utf-8")
+    (source_root / "title-12" / "chapter-6.html").write_text(
+        SAMPLE_CHAPTER_HTML.replace(
+            "</table>\nHISTORY:",
+            "</table>\n(C) The department may prescribe tax tables.<br /><br />\nHISTORY:",
+        ),
+        encoding="utf-8",
+    )
+    (source_root / "session-laws" / "2026-act-110.html").write_text(
+        SAMPLE_SESSION_LAW_HTML,
+        encoding="utf-8",
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_south_carolina_code(
+        store,
+        version="2026-07-16",
+        source_dir=source_dir,
+        source_as_of="2026-07-16",
+        expression_date="2026-07-16",
+        only_title=12,
+        only_chapter=6,
+        session_law_url="https://example.gov/2026-act-110.html",
+        session_law_section="12-6-510",
+        session_law_source_id="2026-act-110",
+    )
+
+    records = load_provisions(report.provisions_path)
+    current = next(record for record in records if record.citation_path == "us-sc/statute/12-6-510")
+    assert report.coverage.complete is True
+    assert len(report.source_paths) == 4
+    assert current.source_url == "https://example.gov/2026-act-110.html"
+    assert current.body is not None
+    assert "5.21% times the amount minus $966" in current.body
+    assert current.metadata is not None
+    assert current.metadata["session_law_overlay"]["act_number"] == "110"
+    assert [component["role"] for component in current.metadata["source_components"]] == [
+        "codified_base",
+        "operative_session_law_overlay",
+    ]

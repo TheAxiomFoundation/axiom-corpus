@@ -25,6 +25,7 @@ from axiom_corpus.release.manifest import (
     RELEASE_OBJECT_SCHEMA_VERSION,
     ReleaseManifestError,
     _git_provenance,
+    _require_tracked_release_inputs,
     _validate_scope_artifact_membership,
     _validate_validation_attestation,
     build_release_content,
@@ -942,6 +943,49 @@ def test_release_content_rejects_ignored_untracked_source_artifact(tmp_path: Pat
             validation={"passed": True},
             created_at="2026-07-10T00:00:00Z",
         )
+
+
+def test_tracked_release_input_check_does_not_pass_every_path_to_git(
+    tmp_path: Path, monkeypatch
+) -> None:
+    root = tmp_path / "repo"
+    release = ReleaseManifest(
+        name="us-rulespec-large",
+        scopes=(ReleaseScope("us", "statute", "large"),),
+    )
+    selector_relative = "manifests/releases/us-rulespec-large.json"
+    selector = root / selector_relative
+    selector.parent.mkdir(parents=True)
+    selector.write_text(
+        json.dumps(
+            {
+                "name": release.name,
+                "scopes": [
+                    {
+                        "jurisdiction": "us",
+                        "document_class": "statute",
+                        "version": "large",
+                    }
+                ],
+            }
+        )
+    )
+    artifacts = tuple(
+        {"path": f"data/corpus/sources/us/statute/large/source-{index}.html"}
+        for index in range(20_000)
+    )
+    tracked = {selector_relative, *(entry["path"] for entry in artifacts)}
+
+    def run_git(args, *, check, capture_output):
+        assert args == ["git", "-C", str(root), "ls-files", "-z", "--cached"]
+        assert check is True
+        assert capture_output is True
+        stdout = b"\0".join(path.encode("utf-8") for path in sorted(tracked)) + b"\0"
+        return subprocess.CompletedProcess(args, 0, stdout=stdout)
+
+    monkeypatch.setattr("axiom_corpus.release.manifest.subprocess.run", run_git)
+
+    _require_tracked_release_inputs(root, release=release, artifacts=artifacts)
 
 
 def test_release_content_requires_exactly_one_provisions_entry(tmp_path: Path, monkeypatch) -> None:
