@@ -1,44 +1,42 @@
 {
   "applied_files": [
     {
-      "path": "data/corpus/coverage/us-wa/manual/2026-05-27-wa-eaz-manual.json",
-      "sha256": "4c00daec501820cd7b6ce757f51ad709818eb6699cfaf2ee4fa2739f6fe54b27"
+      "deleted": true,
+      "path": "data/corpus/coverage/us-wa/manual/2026-05-27-wa-eaz-manual.json"
     },
     {
-      "path": "data/corpus/inventory/us-wa/manual/2026-05-27-wa-eaz-manual.json",
-      "sha256": "bc6993703e31d136072aa700635f347fa54a03ca1b4677faba8c752ca53fbe96"
+      "deleted": true,
+      "path": "data/corpus/inventory/us-wa/manual/2026-05-27-wa-eaz-manual.json"
     },
     {
-      "path": "data/corpus/provisions/us-wa/manual/2026-05-27-wa-eaz-manual.jsonl",
-      "sha256": "e1496f4c1b0be7eb9cd3bdf4eae7c82cff51b2a5d6116d82df867c8f850eda96"
+      "deleted": true,
+      "path": "data/corpus/provisions/us-wa/manual/2026-05-27-wa-eaz-manual.jsonl"
     }
   ],
   "axiom_corpus_git": {
-    "commit": "111b4ffefd57c6a08f0a17b06084a6db62592700",
+    "commit": "49a4aeb5d7edf344d8b3f7405155a19ca3861a2c",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "derive canonical inventory and recompute coverage from local provisions (artifact-debt repair)"
+    "text": "retire source-less Washington EA-Z artifacts after authenticated 2026-07-21 replacement"
   },
-  "coverage": {
-    "complete": true,
-    "extra_count": 0,
-    "matched_count": 1265,
-    "missing_count": 0,
-    "provision_count": 1265,
-    "source_count": 1265
-  },
+  "coverage": null,
   "document_class": "manual",
-  "generated_at": "2026-07-21T11:42:03.335106+00:00",
+  "generated_at": "2026-07-21T19:48:58.132982+00:00",
   "jurisdiction": "us-wa",
-  "reasoning_logs": [],
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-wa-eaz-manual.md",
+      "sha256": "6269fdb3528222d343968be7c1e9e7249dfcf834c9a755281963e3198bcf1805"
+    }
+  ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "0r+xJWQxATRsvQKs/pCTgX3pzDtFcyfGY0C96OG9cVZFHfhLiZXDxt1XdvlN9kNO5RWKZzfAtzgLfN6Oj5UBDw=="
+    "value": "aYseH4UB13L2oFZvAiTOF5xIz9CTd6v2GE1Ip/0SPRuH+LONJcfn+rt4HQ5vtvNtMYbVNEV76Ikn4unV0VmdAg=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-05-27-wa-eaz-manual"

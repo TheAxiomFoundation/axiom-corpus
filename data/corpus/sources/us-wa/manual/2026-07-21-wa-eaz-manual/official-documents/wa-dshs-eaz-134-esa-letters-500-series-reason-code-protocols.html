@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]> <html class="ie8" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" version="XHTML+RDFa 1.1" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#"> <![endif]-->
+<!--[if (gt IE 8)|!(IE)]><!--><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" version="XHTML+RDFa 1.1" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#"> <!--<![endif]-->
+
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]},feature_flags:["soft_nav"]};(window.NREUM||(NREUM={})).loader_config={licenseKey:"NRJS-595d3388f4cbdcc440c",applicationID:"1100846724",browserID:"1120286558"};;/*! For license information please see nr-loader-rum-1.318.0.min.js.LICENSE.txt */
+(()=>{var e={8122(e,t,r){"use strict";r.d(t,{a:()=>i});var n=r(944);function i(e,t){try{if(!e||"object"!=typeof e)return(0,n.R)(3);if(!t||"object"!=typeof t)return(0,n.R)(4);const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),s=0===Object.keys(r).length?e:r;for(let o in s)if(void 0!==e[o])try{if(null===e[o]){r[o]=null;continue}Array.isArray(e[o])&&Array.isArray(t[o])?r[o]=Array.from(new Set([...e[o],...t[o]])):e[o]instanceof Map||e[o]instanceof Set||e[o]instanceof Date||e[o]instanceof RegExp?r[o]=e[o]:"object"==typeof e[o]&&null!==t[o]&&"object"==typeof t[o]?r[o]=i(e[o],t[o]):r[o]=e[o]}catch(e){r[o]||(0,n.R)(1,e)}return r}catch(e){(0,n.R)(2,e)}}},2555(e,t,r){"use strict";r.d(t,{f:()=>o});var n=r(384),i=r(8122);const s={beacon:n.NT.beacon,errorBeacon:n.NT.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0};function o(e){try{return!!e.licenseKey&&!!e.errorBeacon&&!!e.applicationID}catch(e){return!1}}r.d(t,["D",0,e=>(0,i.a)(e,s)])},7699(e,t,r){"use strict";var n=r(860);const i={[n.K7.logging]:!0,[n.K7.genericEvents]:!0,[n.K7.jserrors]:!0,[n.K7.ajax]:!0};r.d(t,["It",0,1e6,"KC",0,i,"qh",0,"SESSION_ERROR"])},9324(e,t,r){"use strict";r.d(t,["xv",0,"1.318.0"])},981(e,t,r){"use strict";r.d(t,["R",0,{AJAX:"AjaxRequest",PA:"PageAction",UA:"UserAction",BP:"BrowserPerformance",WS:"WebSocket",SPV:"SecurityPolicyViolation",JSE:"JavaScriptError",LOG:"Log",PVE:"PageView",PVT:"PageViewTiming",SR:"SessionReplay",ST:"SessionTrace",BI:"BrowserInteraction"}])},6154(e,t,r){"use strict";var n=r(1863);const i="undefined"!=typeof window&&!!window.document,s="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),o=i?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),a=Boolean("hidden"===o?.document?.visibilityState),c=""+o?.location,u=/iPad|iPhone|iPod/.test(o.navigator?.userAgent),d=u&&"undefined"==typeof SharedWorker,l=((()=>{const e=o.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);Array.isArray(e)&&e.length>=2&&e[1]})(),Date.now()-(0,n.t)());r.d(t,["OF",0,u,"RI",0,i,"WN",0,l,"bv",0,s,"gm",0,o,"m",0,c,"mw",0,a,"sb",0,d,"zk",0,()=>{const e=o?.performance?.getEntriesByType?.("navigation")?.[0];if(e&&e.responseStart>0&&e.responseStart<o.performance.now())return e}])},3241(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(6154);function i(e={}){try{n.gm.dispatchEvent(new CustomEvent("newrelic",{detail:e}))}catch(e){}}},1687(e,t,r){"use strict";r.d(t,{Ak:()=>a,Ze:()=>u,x3:()=>c});var n=r(3241),i=r(3606),s=r(860),o=r(2646);function a(e,t){if(!e)return;const r={staged:!1,priority:s.P3[t]||0};e.runtime.drainRegistry.get(t)||e.runtime.drainRegistry.set(t,r)}function c(e,t){if(!e)return;const r=e.runtime.drainRegistry;r&&(r.get(t)&&r.delete(t),l(e,t,!1),r.size&&d(e))}function u(e,t="feature",r=!1){if(e){if(!e.runtime.drainRegistry.get(t)||r)return l(e,t);e.runtime.drainRegistry.get(t).staged=!0,d(e)}}function d(e){if(!e)return;const t=Array.from(e.runtime.drainRegistry);t.every(([e,t])=>t.staged)&&(t.sort((e,t)=>e[1].priority-t[1].priority),t.forEach(([t])=>{e.runtime.drainRegistry.delete(t),l(e,t)}))}function l(e,t,r=!0){if(!e)return;const s=e.ee,a=i.i.handlers;if(s&&!s.aborted&&s.backlog&&a){if((0,n.W)({type:"lifecycle",name:"drain",feature:t}),r){const e=s.backlog[t],r=a[t];if(r){for(let t=0;e&&t<e.length;++t)f(e[t],r);Object.entries(r).forEach(([e,t])=>{Object.values(t||{}).forEach(t=>{t[0]?.on&&t[0].context()instanceof o.y&&!t[0].listeners(e).includes(t[1])&&t[0].on(e,t[1])})})}}s.isolatedBacklog||delete a[t],s.backlog[t]=null,s.emit("drain-"+t,[])}}function f(e,t){var r=e[1];Object.values(t[r]||{}).forEach(t=>{var r=e[0];if(t[0]===r){var n=t[1],i=e[3],s=e[2];n.apply(i,s)}})}},7836(e,t,r){"use strict";var n=r(384),i=r(8990),s=r(2646),o=r(5607);const a="nr@context:".concat(o.W),c=function e(t,r){var n={},o={},d={},l=!1;try{l=16===r.length&&u.initializedAgents?.[r]?.runtime.isolatedBacklog}catch(e){}var f={on:p,addEventListener:p,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var i=0;i<r.length;i++)r[i]===t&&r.splice(i,1)},emit:function(e,r,n,i,s){!1!==s&&(s=!0);if(c.aborted&&!i)return;t&&s&&t.emit(e,r,n);var a=g(n);m(e).forEach(e=>{e.apply(a,r)});var u=v()[o[e]];u&&u.push([f,e,r,a]);return a},get:h,listeners:m,context:g,buffer:function(e,t){const r=v();if(t=t||"feature",f.aborted)return;Object.entries(e||{}).forEach(([e,n])=>{o[n]=t,t in r||(r[t]=[])})},abort:function(){f._aborted=!0,Object.keys(f.backlog).forEach(e=>{delete f.backlog[e]})},isBuffering:function(e){return!!v()[o[e]]},debugId:r,backlog:l?{}:t&&"object"==typeof t.backlog?t.backlog:{},isolatedBacklog:l};return Object.defineProperty(f,"aborted",{get:()=>{let e=f._aborted||!1;return e||(t&&(e=t.aborted),e)}}),f;function g(e){return e&&e instanceof s.y?e:e?(0,i.I)(e,a,()=>new s.y(a)):new s.y(a)}function p(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function h(t){return d[t]=d[t]||e(f,t)}function v(){return f.backlog}}(void 0,"globalEE"),u=(0,n.Zm)();u.ee||(u.ee=c),r.d(t,["P",0,a,"ee",0,c])},2646(e,t,r){"use strict";r.d(t,{y:()=>n});class n{constructor(e){this.contextId=e}}},9908(e,t,r){"use strict";r.d(t,{d:()=>n,p:()=>i});var n=r(7836).ee.get("handle");function i(e,t,r,i,s){s?(s.buffer([e],i),s.emit(e,t,r)):(n.buffer([e],i),n.emit(e,t,r))}},3606(e,t,r){"use strict";r.d(t,{i:()=>s});var n=r(9908);s.on=o;var i=s.handlers={};function s(e,t,r,s){o(s||n.d,i,e,t,r)}function o(e,t,r,i,s){s||(s="feature"),e||(e=n.d);var o=t[s]=t[s]||{};(o[r]=o[r]||[]).push([e,i])}},3878(e,t,r){"use strict";function n(e,t){return{capture:e,passive:!1,signal:t}}function i(e,t,r=!1,i){window.addEventListener(e,t,n(r,i))}function s(e,t,r=!1,i){document.addEventListener(e,t,n(r,i))}r.d(t,{DD:()=>s,jT:()=>n,sp:()=>i})},5607(e,t,r){"use strict";const n=(0,r(9566).bz)();r.d(t,["W",0,n])},9566(e,t,r){"use strict";r.d(t,{LA:()=>o,bz:()=>s});var n=r(6154);function i(e,t){return e?15&e[t]:16*Math.random()|0}function s(){const e=n.gm?.crypto||n.gm?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".split("").map(e=>"x"===e?i(t,r++).toString(16):"y"===e?(3&i()|8).toString(16):e).join("")}function o(e){const t=n.gm?.crypto||n.gm?.msCrypto;let r,s=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const o=[];for(var a=0;a<e;a++)o.push(i(r,s++).toString(16));return o.join("")}},2614(e,t,r){"use strict";r.d(t,["BB",0,18e5,"Wt",0,"NRBA_SESSION::","iL",0,{SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},"tS",0,{STARTED:"session-started",PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},"wk",0,144e5])},1863(e,t,r){"use strict";function n(){return Math.floor(performance.now())}r.d(t,{t:()=>n})},944(e,t,r){"use strict";r.d(t,{R:()=>i});var n=r(3241);function i(e,t){"function"==typeof console.debug&&(console.debug("New Relic Warning: https://github.com/newrelic/newrelic-browser-agent/blob/main/docs/warning-codes.md#".concat(e),t),(0,n.W)({drained:null,type:"data",name:"warn",feature:"warn",data:{code:e,secondary:t}}))}},8990(e,t,r){"use strict";r.d(t,{I:()=>i});var n=Object.prototype.hasOwnProperty;function i(e,t,r){if(n.call(e,t))return e[t];var i=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:i,writable:!0,enumerable:!1}),i}catch(e){}return e[t]=i,i}},6389(e,t,r){"use strict";function n(e,t=500,r={}){const n=r?.leading||!1;let i;return(...r)=>{n&&void 0===i&&(e.apply(this,r),i=setTimeout(()=>{i=clearTimeout(i)},t)),n||(clearTimeout(i),i=setTimeout(()=>{e.apply(this,r)},t))}}function i(e){let t=!1;return(...r)=>{t||(t=!0,e.apply(this,r))}}r.d(t,{J:()=>i,s:()=>n})},1910(e,t,r){"use strict";r.d(t,{i:()=>s});var n=r(944);const i=new Map;function s(...e){return e.every(e=>{if(i.has(e))return i.get(e);const t="function"==typeof e?e.toString():"",r=t.includes("[native code]"),s=t.includes("nrWrapper");return r||s||(0,n.R)(64,e?.name||t),i.set(e,r),r})}},5289(e,t,r){"use strict";r.d(t,{GG:()=>o,Qr:()=>c,sB:()=>a});var n=r(3878),i=r(6389);function s(){return"undefined"==typeof document||"complete"===document.readyState}function o(e,t){if(s())return e();const r=(0,i.J)(e),o=setInterval(()=>{s()&&(clearInterval(o),r())},500);(0,n.sp)("load",r,t)}function a(e){if(s())return e();(0,n.DD)("DOMContentLoaded",e)}function c(e){if(s())return e();(0,n.sp)("popstate",e)}},384(e,t,r){"use strict";r.d(t,{Zm:()=>c,bQ:()=>d,dV:()=>u,pV:()=>l});var n=r(6154),i=r(1863),s=r(944),o=r(1910);const a={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function c(){return n.gm.NREUM||(n.gm.NREUM={}),void 0===n.gm.newrelic&&(n.gm.newrelic=n.gm.NREUM),n.gm.NREUM}function u(){let e=c();return e.o||(e.o={ST:n.gm.setTimeout,SI:n.gm.setImmediate||n.gm.setInterval,CT:n.gm.clearTimeout,XHR:n.gm.XMLHttpRequest,REQ:n.gm.Request,EV:n.gm.Event,PR:n.gm.Promise,MO:n.gm.MutationObserver,FETCH:n.gm.fetch,WS:n.gm.WebSocket},(0,o.i)(...Object.values(e.o))),e}function d(e,t){let r=c();r.initializedAgents??={},t.initializedAt={ms:(0,i.t)(),date:new Date},r.initializedAgents[e]=t,2===Object.keys(r.initializedAgents).length&&(0,s.R)(69)}function l(){return function(){let e=c();const t=e.info||{};e.info={beacon:a.beacon,errorBeacon:a.errorBeacon,...t}}(),function(){let e=c();const t=e.init||{};e.init={...t}}(),u(),function(){let e=c();const t=e.loader_config||{};e.loader_config={...t}}(),c()}r.d(t,["NT",0,a])},2843(e,t,r){"use strict";r.d(t,{G:()=>s,u:()=>i});var n=r(3878);function i(e,t=!1,r,i){(0,n.DD)("visibilitychange",function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)},r,i)}function s(e,t,r){(0,n.sp)("pagehide",e,t,r)}},3969(e,t,r){"use strict";const n=r(860).K7.metrics;r.d(t,["TZ",0,n,"XG",0,"storeEventMetrics","xV",0,"storeSupportabilityMetrics"])},6630(e,t,r){"use strict";const n=r(860).K7.pageViewEvent;r.d(t,["T",0,n])},782(e,t,r){"use strict";const n=r(860).K7.pageViewTiming;r.d(t,["T",0,n])},4234(e,t,r){"use strict";r.d(t,{W:()=>i});var n=r(1687);class i{constructor(e,t){this.agentRef=e,this.ee=e?.ee,this.featureName=t,this.blocked=!1}deregisterDrain(){(0,n.x3)(this.agentRef,this.featureName)}}},7767(e,t,r){"use strict";var n=r(6154);r.d(t,["V",0,e=>n.RI&&!0===e?.privacy.cookies_enabled])},8362(e,t,r){"use strict";r.d(t,{d:()=>s});var n=r(9566),i=r(1741);class s extends i.W{agentIdentifier=(0,n.LA)(16)}},1741(e,t,r){"use strict";r.d(t,{W:()=>s});var n=r(944),i=r(4261);class s{#e(e,...t){if(this[e]!==s.prototype[e])return this[e](...t);(0,n.R)(35,e)}addPageAction(e,t){return this.#e(i.hG,e,t)}register(e){return this.#e(i.eY,e)}recordCustomEvent(e,t){return this.#e(i.fF,e,t)}setPageViewName(e,t){return this.#e(i.Fw,e,t)}setCustomAttribute(e,t,r){return this.#e(i.cD,e,t,r)}noticeError(e,t){return this.#e(i.o5,e,t)}setUserId(e,t=!1){return this.#e(i.Dl,e,t)}setApplicationVersion(e){return this.#e(i.nb,e)}setErrorHandler(e){return this.#e(i.bt,e)}addRelease(e,t){return this.#e(i.k6,e,t)}log(e,t){return this.#e("log",e,t)}start(){return this.#e("start")}finished(e){return this.#e(i.BL,e)}recordReplay(){return this.#e(i.CH)}pauseReplay(){return this.#e(i.Tb)}addToTrace(e){return this.#e(i.U2,e)}setCurrentRouteName(e){return this.#e(i.PA,e)}interaction(e){return this.#e(i.dT,e)}wrapLogger(e,t,r){return this.#e(i.Wb,e,t,r)}measure(e,t){return this.#e(i.V1,e,t)}consent(e){return this.#e(i.Pv,e)}}},4261(e,t,r){"use strict";r.d(t,["BL",0,"finished","CH",0,"recordReplay","Dl",0,"setUserId","Fw",0,"setPageViewName","PA",0,"setCurrentRouteName","Pv",0,"consent","Tb",0,"pauseReplay","U2",0,"addToTrace","V1",0,"measure","Wb",0,"wrapLogger","bt",0,"setErrorHandler","cD",0,"setCustomAttribute","dT",0,"interaction","eY",0,"register","fF",0,"recordCustomEvent","hG",0,"addPageAction","k6",0,"addRelease","nb",0,"setApplicationVersion","o5",0,"noticeError"])},1738(e,t,r){"use strict";r.d(t,{U:()=>l,Y:()=>d});var n=r(3241),i=r(9908),s=r(1863),o=r(944),a=r(3969),c=r(8362),u=r(860);function d(e,t,r,s){const d=s||r;!d||d[e]&&d[e]!==c.d.prototype[e]||(d[e]=function(){(0,i.p)(a.xV,["API/"+e+"/called"],void 0,u.K7.metrics,r.ee),(0,n.W)({drained:!!r.runtime?.activatedFeatures,type:"data",name:"api",feature:"api-"+e,data:{}});try{return t.apply(this,arguments)}catch(e){(0,o.R)(23,e)}})}function l(e,t,r,n,o){const a=e.info;null===r?delete a.jsAttributes[t]:a.jsAttributes[t]=r,(o||null===r)&&(0,i.p)("api-"+n,[(0,s.t)(),t,r],void 0,"session",e.ee)}},8374(e,t,r){r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},860(e,t,r){"use strict";const n="events",i="jserrors",s="browser/blobs",o="browser/logs",a={ajax:"ajax",genericEvents:"generic_events",jserrors:i,logging:"logging",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations"},c={[a.pageViewEvent]:1,[a.pageViewTiming]:2,[a.metrics]:3,[a.jserrors]:4,[a.softNav]:5,[a.ajax]:6,[a.sessionTrace]:7,[a.sessionReplay]:8,[a.logging]:9,[a.genericEvents]:10},u={[a.pageViewEvent]:"rum",[a.pageViewTiming]:n,[a.ajax]:n,[a.softNav]:n,[a.metrics]:i,[a.jserrors]:i,[a.sessionTrace]:s,[a.sessionReplay]:s,[a.logging]:o,[a.genericEvents]:"ins"};r.d(t,["$J",0,u,"K7",0,a,"P3",0,c,"XX",0,i,"Yy",0,o,"df",0,s])}};const t={};function r(n){const i=t[n];if(void 0!==i)return i.exports;const s=t[n]={exports:{}};return e[n](s,s.exports,r),s.exports}r.m=e,r.d=(e,t)=>{if(Array.isArray(t))for(var n=0;n<t.length;){var i=t[n++],s=t[n++];r.o(e,i)?0===s&&n++:0===s?Object.defineProperty(e,i,{enumerable:!0,value:t[n++]}):Object.defineProperty(e,i,{enumerable:!0,get:s})}else for(var i in t)r.o(t,i)&&!r.o(e,i)&&Object.defineProperty(e,i,{enumerable:!0,get:t[i]})},r.f={},r.e=e=>Promise.all(Object.keys(r.f).reduce((t,n)=>(r.f[n](e,t),t),[])),r.u=e=>"nr-rum-1.318.0.min.js",r.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),(()=>{const e={},t="NRBA-1.318.0.PROD:";r.l=(n,i,s,o)=>{if(e[n])return void e[n].push(i);let a,c;if(void 0!==s){const e=document.getElementsByTagName("script");for(var u=0;u<e.length;u++){const r=e[u];if(r.getAttribute("src")==n||r.getAttribute("data-webpack")==t+s){a=r;break}}}if(!a){c=!0;var d={296:"sha512-l/aSvO0UYzQns1WyMlY2r8pdkmVR0o/Rze4wpZR98a+X8aP+uRfcG9NMVI6fcdpy4uRK5azdx+CgSn8/UKULRw=="};a=document.createElement("script"),a.charset="utf-8",r.nc&&a.setAttribute("nonce",r.nc),a.setAttribute("data-webpack",t+s),a.src=n,0!==a.src.indexOf(window.location.origin+"/")&&(a.crossOrigin="anonymous"),d[o]&&(a.integrity=d[o])}e[n]=[i];const l=(t,r)=>{a.onerror=a.onload=null,clearTimeout(f);const i=e[n];if(delete e[n],a.parentNode?.removeChild(a),i?.forEach(e=>e(r)),t)return t(r)},f=setTimeout(l.bind(null,void 0,{type:"timeout",target:a}),12e4);a.onerror=l.bind(null,a.onerror),a.onload=l.bind(null,a.onload),c&&document.head.appendChild(a)}})(),r.r=e=>{Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.p="https://js-agent.newrelic.com/",(()=>{const e={374:0,840:0};r.f.j=(t,n)=>{let i=r.o(e,t)?e[t]:void 0;if(0!==i)if(i)n.push(i[2]);else{const s=new Promise((r,n)=>i=e[t]=[r,n]);n.push(i[2]=s);const o=r.p+r.u(t),a=new Error,c=n=>{if(r.o(e,t)&&(i=e[t],0!==i&&(e[t]=void 0),i)){const e=n&&("load"===n.type?"missing":n.type),r=n&&n.target&&n.target.src;a.message="Loading chunk "+t+" failed: ("+e+": "+r+")",a.name="ChunkLoadError",a.type=e,a.request=r,i[1](a)}};r.l(o,c,"chunk-"+t,t)}};const t=(t,n)=>{let[i,s,o]=n;var a,c,u=0;if(i.some(t=>0!==e[t])){for(a in s)r.o(s,a)&&(r.m[a]=s[a]);if(o)o(r)}for(t&&t(n);u<i.length;u++)c=i[u],r.o(e,c)&&e[c]&&e[c][0](),e[c]=0},n=self["webpackChunk:NRBA-1.318.0.PROD"]=self["webpackChunk:NRBA-1.318.0.PROD"]||[];n.forEach(t.bind(null,0)),n.push=t.bind(null,n.push.bind(n))})(),(()=>{"use strict";r(8374);var e=r(8362),t=r(860);const n=Object.values(t.K7);var i=r(384),s=r(1741);var o=r(2555),a=r(981);t.K7.genericEvents,a.R.PA,a.R.UA,a.R.BP;const c="experimental.resources",u="register",d=(t.K7.ajax,"none"),l=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var f=r(2614),g=r(944),p=r(8122);const m="[data-nr-mask]",h=e=>(0,p.a)(e,(()=>{const e={feature_flags:[],experimental:{register:!1,resources:!1},mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{ajax:{deny_list:void 0,block_internal:!0,enabled:!0,autoStart:!0,capture_payloads:d},api:{register:{get enabled(){return e.feature_flags.includes(u)||e.experimental.register},set enabled(t){e.experimental.register=t},duplicate_data_to_container:!1}},browser_consent_mode:{enabled:!1},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},get feature_flags(){return e.feature_flags},set feature_flags(t){e.feature_flags=t},generic_events:{enabled:!0,autoStart:!0},harvest:{interval:30},jserrors:{enabled:!0,autoStart:!0},logging:{enabled:!0,autoStart:!0},metrics:{enabled:!0,autoStart:!0},obfuscate:void 0,page_action:{enabled:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,autoStart:!0},performance:{capture_marks:!1,capture_measures:!1,capture_detail:!0,resources:{get enabled(){return e.feature_flags.includes(c)||e.experimental.resources},set enabled(t){e.experimental.resources=t},asset_types:[],first_party_domains:[],ignore_newrelic:!0}},privacy:{cookies_enabled:!0},proxy:{assets:void 0,beacon:void 0},session:{expiresMs:f.wk,inactiveMs:f.BB},session_replay:{autoStart:!0,enabled:!1,preload:!1,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,fix_stylesheets:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){l(t)?e.mask_selector="".concat(t,",").concat(m):""===t||null===t?e.mask_selector=m:(0,g.R)(5,t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){l(t)?e.block_selector+=",".concat(t):""!==t&&(0,g.R)(6,t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,g.R)(7,t)}},session_trace:{enabled:!0,autoStart:!0},soft_navigations:{enabled:!0,autoStart:!0},ssl:void 0,user_actions:{enabled:!0,elementAttributes:["id","className","tagName","type"]},web_sockets:{enabled:!1}}})());var v=r(6154),b=r(9324);let y=0;const _={buildEnv:"PROD",distMethod:"CDN",version:b.xv,originTime:v.WN},w={consented:!1},R={activatedFeatures:void 0,appMetadata:{},configured:!1,get consented(){return this.session?.state?.consent||w.consented},set consented(e){w.consented=e},customTransaction:void 0,denyList:[],disabled:!1,drainRegistry:new Map,harvester:void 0,isolatedBacklog:!1,isRecording:!1,loaderType:void 0,maxBytes:3e4,obfuscator:void 0,onerror:void 0,ptid:void 0,releaseIds:{},session:void 0,timeKeeper:void 0,registeredEntities:[],jsAttributesMetadata:{bytes:0},get harvestCount(){return++y}};var x=r(7836),A=r(3241);const k={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0};function S(e,t={},n,a){let{init:c,info:u,loader_config:d,runtime:l={},exposed:f=!0}=t;if(!u){const e=(0,i.pV)();c=e.init,u=e.info,d=e.loader_config}var g;e.init=h(c||{}),e.loader_config=(g=d||{},(0,p.a)(g,k)),u.jsAttributes??={},v.bv&&(u.jsAttributes.isWorker=!0),e.info=(0,o.D)(u);const m=e.init;e.runtime??=(e=>{const t=(0,p.a)(e,R),r=Object.keys(_).reduce((e,t)=>(e[t]={value:_[t],writable:!1,configurable:!0,enumerable:!0},e),{});return Object.defineProperties(t,r)})(l),m.proxy.assets&&(e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e})(m.proxy.assets),e.runtime.configured||(Object.defineProperty(e,"beacons",{get:()=>[e.info.beacon,e.info.errorBeacon,e.init.proxy.assets,e.init.proxy.beacon].filter(Boolean)}),Object.defineProperty(e.runtime,"denyList",{get:()=>[...e.init.ajax.deny_list||[],...e.init.ajax.block_internal?e.beacons:[]]}),e.runtime.ptid=e.agentIdentifier,function(e){const t=(0,i.pV)();Object.getOwnPropertyNames(s.W.prototype).forEach(r=>{const n=s.W.prototype[r];if("function"!=typeof n||"constructor"===n)return;let i=t[r];e[r]&&!1!==e.exposed&&"micro-agent"!==e.runtime?.loaderType&&(t[r]=(...t)=>{const n=e[r](...t);return i?i(...t):n})})}(e),e.runtime.loaderType=n,e.ee=x.ee.get(e.agentIdentifier),e.exposed=f,(0,A.W)({drained:!!e.runtime.activatedFeatures,type:"lifecycle",name:"initialize",feature:void 0,data:e.config}),e.runtime.configured=!0)}var T=r(9908),E=r(1863),j=r(4261),P=r(1738);var N=r(1687),O=r(4234),M=r(5289),I=r(7767);function V(e){return!!(0,i.dV)().o.MO&&(0,I.V)(e)&&!0===e?.session_trace.enabled}var D=r(6389),W=r(7699);const B=new WeakSet;class K extends O.W{constructor(e,t){super(e,t),this.abortHandler=void 0,this.featAggregate=void 0,this.loadedSuccessfully=void 0,this.onAggregateImported=new Promise(e=>{this.loadedSuccessfully=e}),this.deferred=Promise.resolve(),!1===e.init[this.featureName].autoStart?this.deferred=new Promise((t,r)=>{this.ee.on("manual-start-all",(0,D.J)(()=>{(0,N.Ak)(e,this.featureName),t()}))}):(0,N.Ak)(e,t)}importAggregator(e,t,n={}){if(this.featAggregate)return;const i=async()=>{if(await this.deferred,this.#t(e),!(0,o.f)(e.info))return(0,g.R)(43),e.ee.abort(),void this.loadedSuccessfully(!1);let i;try{if((0,I.V)(e.init)){const{setupAgentSession:t}=await r.e(296).then(r.bind(r,8391));i=t(e)}}catch(e){(0,g.R)(20,e),this.ee.emit("internal-error",[e]),(0,T.p)(W.qh,[e],void 0,this.featureName,this.ee)}try{if(!this.#r(this.featureName,i,e.init))return(0,N.Ze)(this.agentRef,this.featureName),void this.loadedSuccessfully(!1);const{Aggregate:r}=await t();this.featAggregate=new r(e,n),e.runtime.harvester.initializedAggregates.push(this.featAggregate),this.loadedSuccessfully(!0)}catch(e){(0,g.R)(34,e),this.abortHandler?.(),(0,N.Ze)(this.agentRef,this.featureName,!0),this.loadedSuccessfully(!1),this.ee&&this.ee.abort()}};v.RI?(0,M.GG)(()=>i(),!0):i()}#r(e,r,n){if(this.blocked)return!1;switch(e){case t.K7.sessionReplay:return V(n)&&!!r;case t.K7.sessionTrace:return!!r;default:return!0}}#t(e){if(!B.has(e)&&(B.add(e),!(0,o.f)(e.info))){const t=(0,i.pV)();let r={...t.info?.jsAttributes};try{r={...r,...e.info?.jsAttributes}}catch(e){}S(e,{...t,info:{...t.info,jsAttributes:r},runtime:e.runtime},e.runtime.loaderType)}}}var C=r(6630);class U extends K{static featureName=C.T;constructor(e){var t;super(e,C.T),this.setupInspectionEvents(),t=e,(0,P.Y)(j.Fw,function(e,r){"string"==typeof e&&("/"!==e.charAt(0)&&(e="/"+e),t.runtime.customTransaction=(r||"http://custom.transaction")+e,(0,T.p)("api-"+j.Fw,[(0,E.t)()],void 0,void 0,t.ee))},t),this.importAggregator(e,()=>r.e(296).then(r.bind(r,1324)))}setupInspectionEvents(){const e=(e,t)=>{e&&(0,A.W)({timeStamp:e.timeStamp,loaded:"complete"===e.target.readyState,type:"window",name:t,data:e.target.location+""})};(0,M.sB)(t=>{e(t,"DOMContentLoaded")}),(0,M.GG)(t=>{e(t,"load")}),(0,M.Qr)(t=>{e(t,"navigate")}),this.ee.on(f.tS.UPDATE,(e,t)=>{(0,A.W)({type:"lifecycle",name:"session",data:t})})}}class L extends e.d{constructor(e){var t;(super(),v.gm)?(this.features={},(0,i.bQ)(this.agentIdentifier,this),this.desiredFeatures=new Set(e.features||[]),this.desiredFeatures.add(U),S(this,e,e.loaderType||"agent"),t=this,(0,P.Y)(j.cD,function(e,r,n=!1){if("string"==typeof e){if(["string","number","boolean"].includes(typeof r)||null===r)return(0,P.U)(t,e,r,j.cD,n);(0,g.R)(40,typeof r)}else(0,g.R)(39,typeof e)},t),function(e){(0,P.Y)(j.Dl,function(t,r=!1){if("string"!=typeof t&&null!==t)return void(0,g.R)(41,typeof t);const n=e.info.jsAttributes["enduser.id"];r&&null!=n&&n!==t?(0,T.p)("api-setUserIdAndResetSession",[t],void 0,"session",e.ee):(0,P.U)(e,"enduser.id",t,j.Dl,!0)},e)}(this),function(e){(0,P.Y)(j.nb,function(t){if("string"==typeof t||null===t)return(0,P.U)(e,"application.version",t,j.nb,!1);(0,g.R)(42,typeof t)},e)}(this),function(e){(0,P.Y)("start",function(){e.ee.emit("manual-start-all")},e)}(this),function(e){(0,P.Y)(j.Pv,function(t=!0){if("boolean"==typeof t){if((0,T.p)("api-"+j.Pv,[t],void 0,"session",e.ee),e.runtime.consented=t,t){const t=e.features.page_view_event;t.onAggregateImported.then(e=>{const r=t.featAggregate;e&&!r.sentRum&&r.sendRum()})}}else(0,g.R)(65,typeof t)},e)}(this),this.run()):(0,g.R)(21)}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}get api(){return this}run(){try{const e=function(e){const t={};return n.forEach(r=>{t[r]=!!e[r]?.enabled}),t}(this.init),r=[...this.desiredFeatures];r.sort((e,r)=>t.P3[e.featureName]-t.P3[r.featureName]),r.forEach(r=>{if(!e[r.featureName]&&r.featureName!==t.K7.pageViewEvent)return;const n=function(e){switch(e){case t.K7.ajax:return[t.K7.jserrors];case t.K7.sessionTrace:return[t.K7.ajax,t.K7.pageViewEvent];case t.K7.sessionReplay:return[t.K7.sessionTrace];case t.K7.pageViewTiming:return[t.K7.pageViewEvent];default:return[]}}(r.featureName).filter(e=>!(e in this.features));n.length>0&&(0,g.R)(36,{targetFeature:r.featureName,missingDependencies:n}),this.features[r.featureName]=new r(this)})}catch(e){(0,g.R)(22,e);for(const e in this.features)this.features[e].abortHandler?.();const t=(0,i.Zm)();delete t.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator;return t.ee.get(this.agentIdentifier).abort(),!1}}}var G=r(2843),F=r(782);class H extends K{static featureName=F.T;constructor(e){super(e,F.T),v.RI&&((0,G.u)(()=>(0,T.p)("docHidden",[(0,E.t)()],void 0,F.T,this.ee),!0),(0,G.G)(()=>(0,T.p)("winPagehide",[(0,E.t)()],void 0,F.T,this.ee)),this.importAggregator(e,()=>r.e(296).then(r.bind(r,2117))))}}var z=r(3969);class Y extends K{static featureName=z.TZ;constructor(e){super(e,z.TZ),this.importAggregator(e,()=>r.e(296).then(r.bind(r,9623)))}}new L({features:[U,H,Y],loaderType:"lite"})})()})();</script>
+<link rel="prev" href="/esa/letters/400-series-reason-code-protocols" />
+<link rel="up" href="/esa/eligibility-z-manual-ea-z/letters" />
+<link rel="next" href="/esa/letters/information-about-letters" />
+<link rel="shortcut icon" href="https://www.dshs.wa.gov/sites/default/files/favicon_0.ico" type="image/vnd.microsoft.icon" />
+<meta name="description" content="Revised on: August 27, 2024 Purpose: 500 Series Reason Code Protocols Go to the Reason Code Link chart to link directly to a specific reason code or scroll through the list below. For ACES Procedures go to ACES Letters in the ACES User Manual. Staff must add explanatory text to the notice unless the &quot;Recommended Free Form Text&quot; column specifies &quot;None Required.&quot; The" />
+<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="https://www.dshs.wa.gov/esa/letters/500-series-reason-code-protocols" />
+<link rel="shortlink" href="https://www.dshs.wa.gov/node/635" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="LgIltX_nBMu-36yI4l_LAGh3rmHHlOzowSBWRVDkKe4" />
+  <meta name="msvalidate.01" content="AC0E60D06EB622D325278B4B6ABD2187" />
+  <title>500 Series Reason Code Protocols | DSHS</title>
+  <style>
+@import url("https://www.dshs.wa.gov/modules/system/system.base.css?thviji");
+</style>
+<style>
+@import url("https://www.dshs.wa.gov/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.core.min.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.theme.min.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/jquery_update/replace/ui/themes/base/minified/jquery.ui.accordion.min.css?thviji");
+</style>
+<style>
+@import url("https://www.dshs.wa.gov/sites/all/modules/calendar/css/calendar_multiday.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/date/date_repeat_field/date_repeat_field.css?thviji");
+@import url("https://www.dshs.wa.gov/modules/field/theme/field.css?thviji");
+@import url("https://www.dshs.wa.gov/modules/node/node.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/picture/picture_wysiwyg.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/extlink/css/extlink.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/views/css/views.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/ckeditor/css/ckeditor.css?thviji");
+</style>
+<style>
+@import url("https://www.dshs.wa.gov/sites/all/modules/accordion_blocks/accordion_init.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/ctools/css/ctools.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/modules/taxonomy_access/taxonomy_access.css?thviji");
+</style>
+<style>
+@import url("https://www.dshs.wa.gov/sites/all/themes/wa_dshs/css/bootstrap.min.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/themes/wa_dshs/css/style.css?thviji");
+@import url("https://www.dshs.wa.gov/sites/all/themes/wa_dshs/less/watech.css?thviji");
+</style>
+    <!--[if lte IE 8]>
+  <script type="text/javascript" src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script src="https://www.dshs.wa.gov/sites/all/libraries/respondjs/respond.min.js?thviji"></script>
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>window.jQuery || document.write("<script src='/sites/all/modules/jquery_update/replace/jquery/1.12/jquery.min.js'>\x3C/script>")</script>
+<script>document.createElement( "picture" );</script>
+<script>jQuery.migrateMute=true;jQuery.migrateTrace=false;</script>
+<script src="//code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+<script>window.jQuery && window.jQuery.migrateWarnings || document.write("<script src='/sites/all/modules/jquery_update/replace/jquery-migrate/1.4.1/jquery-migrate.min.js'>\x3C/script>")</script>
+<script src="https://www.dshs.wa.gov/misc/jquery-extend-3.4.0.js?v=1.12.4"></script>
+<script src="https://www.dshs.wa.gov/misc/jquery-html-prefilter-3.5.0-backport.js?v=1.12.4"></script>
+<script src="https://www.dshs.wa.gov/misc/jquery.once.js?v=1.2"></script>
+<script src="https://www.dshs.wa.gov/misc/drupal.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/jquery_update/js/jquery_browser.js?v=0.0.1"></script>
+<script src="//code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+<script>window.jQuery.ui || document.write("<script src='/sites/all/modules/jquery_update/replace/ui/ui/minified/jquery-ui.min.js'>\x3C/script>")</script>
+<script src="https://www.dshs.wa.gov/misc/form-single-submit.js?v=7.105"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/entityreference/js/entityreference.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/accordion_blocks/accordion_init.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/google_analytics/googleanalytics.js?thviji"></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=G-GRXF41DXMH"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("set", "developer_id.dMDhkMT", true);gtag("config", "G-GRXF41DXMH", {"groups":"default","anonymize_ip":true});gtag("config", "UA-75409032-1", {"groups":"default","anonymize_ip":true});</script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/extlink/js/extlink.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/js/bootstrap.min.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/js/plugins.js?thviji"></script>
+<script src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/js/general.js?thviji"></script>
+<script>jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"","setHasJsCookie":0,"ajaxPageState":{"theme":"wa_dshs","theme_token":"xuQv34phnD56r63g_J04S2u0dzkUtm7SCSGqmWgMMeA","js":{"sites\/all\/modules\/picture\/picturefill\/picturefill.min.js":1,"sites\/all\/modules\/picture\/picture.min.js":1,"sites\/all\/themes\/bootstrap\/js\/bootstrap.js":1,"sites\/all\/libraries\/respondjs\/respond.min.js":1,"\/\/code.jquery.com\/jquery-1.12.4.min.js":1,"0":1,"1":1,"2":1,"\/\/code.jquery.com\/jquery-migrate-1.4.1.min.js":1,"3":1,"misc\/jquery-extend-3.4.0.js":1,"misc\/jquery-html-prefilter-3.5.0-backport.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/jquery_update\/js\/jquery_browser.js":1,"\/\/code.jquery.com\/ui\/1.10.2\/jquery-ui.min.js":1,"4":1,"misc\/form-single-submit.js":1,"sites\/all\/modules\/entityreference\/js\/entityreference.js":1,"sites\/all\/modules\/accordion_blocks\/accordion_init.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"https:\/\/www.googletagmanager.com\/gtag\/js?id=G-GRXF41DXMH":1,"5":1,"sites\/all\/modules\/extlink\/js\/extlink.js":1,"sites\/all\/themes\/wa_dshs\/js\/bootstrap.min.js":1,"sites\/all\/themes\/wa_dshs\/js\/plugins.js":1,"sites\/all\/themes\/wa_dshs\/js\/general.js":1},"css":{"modules\/system\/system.base.css":1,"misc\/ui\/jquery.ui.core.css":1,"misc\/ui\/jquery.ui.theme.css":1,"misc\/ui\/jquery.ui.accordion.css":1,"sites\/all\/modules\/calendar\/css\/calendar_multiday.css":1,"sites\/all\/modules\/date\/date_repeat_field\/date_repeat_field.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"sites\/all\/modules\/picture\/picture_wysiwyg.css":1,"sites\/all\/modules\/extlink\/css\/extlink.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/accordion_blocks\/accordion_init.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/taxonomy_access\/taxonomy_access.css":1,"sites\/all\/themes\/wa_dshs\/css\/bootstrap.min.css":1,"sites\/all\/themes\/wa_dshs\/css\/style.css":1,"sites\/all\/themes\/wa_dshs\/less\/watech.css":1}},"better_exposed_filters":{"views":{"landing_page_slider":{"displays":{"block":{"filters":[]}}},"red_banner":{"displays":{"block":{"filters":[]}}},"admin_landing_special_fields":{"displays":{"block":{"filters":[]},"block_1":{"filters":[]},"block_2":{"filters":[]}}}}},"googleanalytics":{"account":["G-GRXF41DXMH","UA-75409032-1"],"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"urlIsAjaxTrusted":{"\/esa\/letters\/500-series-reason-code-protocols":true},"extlink":{"extTarget":0,"extClass":0,"extLabel":"(link is external)","extImgClass":0,"extIconPlacement":0,"extSubdomains":0,"extExclude":"","extInclude":"","extCssExclude":"","extCssExplicit":"","extAlert":0,"extAlertText":"This link will take you to an external web site.","mailtoClass":0,"mailtoLabel":"(link sends e-mail)","extUseFontAwesome":0},"bootstrap":{"anchorsFix":1,"anchorsSmoothScrolling":1,"formHasError":1,"popoverEnabled":1,"popoverOptions":{"animation":1,"html":0,"placement":"right","selector":"","trigger":"click","triggerAutoclose":1,"title":"","content":"","delay":0,"container":"body"},"tooltipEnabled":1,"tooltipOptions":{"animation":1,"html":0,"placement":"auto left","selector":"","trigger":"hover focus","delay":0,"container":"body"}}});</script>
+  <script>
+    /* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
+    window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var r=t.document.createElement("link"),a=t.document.getElementsByTagName("script")[0];r.rel="stylesheet",r.href=e[o&&n?0:o?1:2],a.parentNode.insertBefore(r,a)},r=new t.Image;r.onerror=function(){o(!1)},r.onload=function(){o(1===r.width&&1===r.height)},r.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};
+    grunticon( [ "/sites/all/themes/wa_dshs/grunticon/icons.data.svg.css", "/sites/all/themes/wa_dshs/grunticon/icons.data.png.css", "/sites/all/themes/wa_dshs/grunticon/icons.fallback.css" ] );
+  </script>
+  <noscript><link href="/sites/all/themes/wa_dshs/grunticon/icons.fallback.css" rel="stylesheet" /></noscript>
+</head>
+<body class="html not-front not-logged-in one-sidebar sidebar-first page-node page-node- page-node-635 node-type-book" >
+<div id="skip-link">
+  <a href="#main-content" class="element-invisible element-focusable">Skip to main content</a>
+</div>
+<div class="sticky-footer-body">
+<header id="navbar" role="banner" class="navbar container navbar-default">
+    <div class="navbar-header">
+              <a class="logo navbar-btn pull-left" href="/" title="Home">
+          <img src="https://www.dshs.wa.gov/sites/all/themes/wa_dshs/logo.png" alt="Home" />
+        </a>
+      
+              <a class="name navbar-brand" href="/" title="Home">Washington State Department of Social and Health Services</a>
+          </div>
+    <div class="search" role="search">
+      <label for="edit-search-block-form--2">How may we help you?</label>
+        <div class="region region-search">
+    <section id="block-search-form" class="block block-search clearfix">
+
+      
+  <form class="form-search content-search" action="/esa/letters/500-series-reason-code-protocols" method="post" id="search-block-form" accept-charset="UTF-8"><div><div>
+      <h2 class="element-invisible">Search form</h2>
+    <div class="input-group"><input title="Enter the terms you wish to search for." placeholder="" class="form-control form-text" type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" /><span class="input-group-btn"><button type="submit" class="btn btn-primary">Search</button></span></div><div class="form-actions form-wrapper form-group" id="edit-actions"><button class="element-invisible btn btn-primary form-submit" type="submit" id="edit-submit" name="op" value="Search">Search</button>
+</div><input type="hidden" name="form_build_id" value="form-nKNZG0s4KQNErrZUIpUB7N82R2npY98ypIw-JIWC71U" />
+<input type="hidden" name="form_id" value="search_block_form" />
+</div>
+</div></form>
+</section>
+  </div>
+    </div>
+</header>
+  <div class="main-menu">
+    <div class="button-wrap">
+      <ul class="menu-buttons">
+        <li class="menu">
+          <a class="menu-toggle">
+            <span class="menu-icon">
+              <span class="line-top line"></span>
+              <span class="line-middle line"></span>
+              <span class="line-bottom line"></span>
+            </span>Menu</a>
+        </li>
+        <li><a href="/office-locations" class="push-pin">
+            <span class="locator-icon"></span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="30px" height="35px" viewBox="140 -50 518 850">
+
+              <path fill="none" stroke="#000000" stroke-width="40" stroke-miterlimit="40" d="M396.065,792l-10.155-17.896
+			c-1.455-2.567-146.629-258.486-186.97-333.421c-25.627-47.655-55.543-125.467-55.543-187.953C143.397,113.377,256.721,0,396.012,0
+			c139.275,0,252.592,113.377,252.592,252.73c0,60.357-27.957,141.853-54.273,187.899
+			c-47.099,82.138-186.792,330.929-188.192,333.429L396.065,792z"></path>
+              <circle fill="#fff" stroke="#000000" stroke-width="40" stroke-miterlimit="10" cx="396" cy="251" r="101.5"></circle>
+            </svg>
+            Office<br />Locator</a>
+        </li>
+        <li><a href="/report-abuse-and-neglect" class="report-abuse">
+            <span class="report-icon"></span>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 148.5 612 543" width="30px" height="30px">
+
+              <path class="warning-triangle" fill="none" stroke="#000000" stroke-width="30" stroke-miterlimit="10" d="M579.423,624.604L328.927,189.948
+			c-4.576-8.007-12.584-12.582-21.733-12.582c-9.152,0-17.157,4.575-21.733,12.582L32.673,626.892
+			c-11.438,19.444,5.719,37.746,21.733,37.746H559.98c13.725,0,24.02-11.438,24.02-25.164
+			C584,633.754,582.856,629.18,579.423,624.604z"></path>
+              <path class="exclamation" fill="#000" d="M278.254,356.574v122.337c0,15.135,12.612,27.747,27.747,27.747c15.134,0,27.746-12.612,27.746-27.747
+			V356.574c0-15.135-12.612-27.747-27.746-27.747C290.866,328.828,278.254,341.439,278.254,356.574z"></path>
+              <path class="exclamation" fill="#000" d="M271.948,564.674c0,18.918,15.135,35.313,34.053,35.313c18.918,0,34.052-16.396,34.052-35.313
+			c0-18.919-15.134-34.053-34.052-34.053C287.083,530.621,271.948,545.755,271.948,564.674"></path>
+            </svg>
+            Report<br />Abuse</a>
+        </li>
+              </ul>
+      <ul class="social">
+        <li><a href="https://www.facebook.com/WaStateDSHS"><span class="icon-facebook">Facebook</span></a></li>
+        <li><a href="https://twitter.com/waDSHS"><span class="icon-twitter">Twitter</span></a></li>
+        <li><a href="https://www.youtube.com/user/WashingtonStateDSHS"><span class="icon-youtube">YouTube</span></a></li>
+        <li><a href="https://www.linkedin.com/company/washingtondepartmentofsocialandhealthservices"><span class="icon-linkedin">LinkedIn</span></a></li>
+        <li><a href="https://dshswa.medium.com/"><span class="icon-medium">Medium</span></a></li>
+      </ul>
+    </div>
+    <nav role="navigation">
+                            <div class="region region-navigation">
+    <section id="block-menu-menu-needs-buckets" class="block block-menu clearfix">
+
+        <h2 class="block-title">By Need</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="/food-cash-medical" title="Food, Cash, Medical">Food, Cash, Medical</a></li>
+<li class="leaf"><a href="/housing-assistance" title="Housing Assistance">Housing Assistance</a></li>
+<li class="leaf"><a href="/child-support" title="Child Support">Child Support</a></li>
+<li class="leaf"><a href="/youth-services" title="Youth Services">Youth Services</a></li>
+<li class="leaf"><a href="/adult-care" title="Adult Care">Adult Care</a></li>
+<li class="leaf"><a href="/mental-health-services" title="Mental Health Services">Mental Health Services</a></li>
+<li class="last leaf"><a href="/disability-support" title="Disability Support">Disability Support</a></li>
+</ul>
+</section>
+<section id="block-menu-block-1" class="block block-menu-block clearfix">
+
+        <h2 class="block-title">By Administration</h2>
+    
+  <div class="menu-block-wrapper menu-block-1 menu-name-menu-administrations-menu parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-558"><a href="/altsa" title="Aging and Long-Term Support Administration">Aging and Long-Term Support Administration (ALTSA)</a></li>
+<li class="leaf menu-mlid-559"><a href="/bha" title="Behavioral Health Administration">Behavioral Health Administration (BHA)</a></li>
+<li class="leaf menu-mlid-561"><a href="/dda" title="Developmental Disabilities Administration">Developmental Disabilities Administration (DDA)</a></li>
+<li class="leaf menu-mlid-11829"><a href="/dvr" title="DVR">Division of Vocational Rehabilitation</a></li>
+<li class="leaf menu-mlid-562"><a href="/esa" title="Economic Services Administration">Economic Services Administration (ESA)</a></li>
+<li class="leaf menu-mlid-564"><a href="/ffa" title="Facilities, Finance and Analytics Administration">Facilities, Finance and Analytics Administration (FFA)</a></li>
+<li class="last collapsed menu-mlid-566"><a href="/os" title="Office of the Secretary">Office of the Secretary</a></li>
+</ul></div>
+
+</section>
+<section id="block-menu-menu-follow-us" class="block block-menu clearfix">
+
+        <h2 class="block-title">Follow Us</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="https://www.facebook.com/WaStateDSHS" title="Facebook">Facebook</a></li>
+<li class="leaf"><a href="https://twitter.com/waDSHS" title="Twitter">Twitter</a></li>
+<li class="leaf"><a href="https://www.youtube.com/user/WashingtonStateDSHS" title="YouTube">YouTube</a></li>
+<li class="last leaf"><a href="https://www.linkedin.com/company/washingtondepartmentofsocialandhealthservices" title="LinkedIn">LinkedIn</a></li>
+</ul>
+</section>
+<section id="block-menu-menu-quick-links" class="block block-menu clearfix">
+
+        <h2 class="block-title">Quick Links</h2>
+    
+  <ul class="menu nav"><li class="first leaf"><a href="/about-us" title="About Us">About Us</a></li>
+<li class="leaf"><a href="/office-locations" title="Locate a Service Office">Locate a Service Office</a></li>
+<li class="leaf"><a href="/contact-department-social-and-health-services" title="Contact Us">Contact Us</a></li>
+<li class="leaf"><a href="https://www.dshs.wa.gov/" title="Office of the Secretary">Office of the Secretary</a></li>
+<li class="last leaf"><a href="/report-abuse-and-neglect" title="Report Abuse">Report Abuse and Neglect</a></li>
+</ul>
+</section>
+  </div>
+          </nav>
+  </div>
+<div class="wrapper">
+      <header role="banner" id="page-header">
+        <div class="region region-header">
+    <section id="block-menu-block-10" class="block block-menu-block clearfix">
+
+        <h2 class="block-title">Economic Services Administration</h2>
+    
+  <div class="menu-block-wrapper menu-block-10 menu-name-menu-esa-primary-nav parent-mlid-0 menu-level-1">
+  <ul class="menu nav"><li class="first leaf menu-mlid-581"><a href="/esa/about-economic-services-administration" title="About Economic Services Administration">About ESA</a></li>
+<li class="leaf menu-mlid-2937"><a href="/esa/esa-find-office" title="Find an ESA Office">Find an ESA Office</a></li>
+<li class="last leaf menu-mlid-1224"><a href="/esa/faq" title="FAQ">Frequently Asked Questions</a></li>
+</ul></div>
+
+</section>
+  </div>
+    </header> <!-- /#page-header -->
+  
+    
+  
+      <div class="breadcrumb-wrapper">
+      <div class="breadcrumb-container">
+        <ol class="breadcrumb"><li><a href="/">Home</a></li>
+<li class="breadcrumb-node-17"><a href="/esa/eligibility-z-manual-ea-z">Eligibility A-Z Manual (EA-Z)</a></li>
+<li class="breadcrumb-node-621"><a href="/esa/eligibility-z-manual-ea-z/letters">Letters</a></li>
+<li class="active"><span>500 Series Reason Code Protocols</span></li>
+</ol>      </div>
+    </div>
+    <div class="main-container container dshs-admin-unknown" role="main">
+    <div class="row">
+
+      <section class="main-col col-sm-9 col-sm-push-3" >
+        <a id="main-content"></a>
+                          <h1 class="page-header">500 Series Reason Code Protocols</h1>
+                                                                            <div class="region region-content">
+    <section id="block-system-main" class="block block-system clearfix">
+
+      
+  <div id="node-635" class="node node-book clearfix" about="/esa/letters/500-series-reason-code-protocols" typeof="sioc:Item foaf:Document">
+
+  
+      <span property="dc:title" content="500 Series Reason Code Protocols" class="rdf-meta element-hidden"></span>
+  
+    <div class="content admin-id-8">
+    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>Revised on: August 27, 2024</p>
+<h2>Purpose:</h2>
+<ul>
+<li>500 Series Reason Code Protocols</li>
+<li>Go to the <a href="https://www.dshs.wa.gov/esa/letters/reason-codes">Reason Code Link</a> chart to link directly to a specific reason code or scroll through the list below.</li>
+<li>For ACES Procedures go to ACES Letters in the ACES User Manual.</li>
+<li>Staff must add explanatory text to the notice unless the "Recommended Free Form Text" column specifies "None Required."</li>
+<li>The "Recommended Free Form Text" is the suggested wording for a reason code requiring <strong>mandatory explanation </strong>to the client.</li>
+</ul>
+<table border="1" cellpadding="0" cellspacing="1" style="width:95%">
+<thead>
+<tr>
+<th scope="col">
+<p class="rtecenter"><strong>Code</strong></p>
+</th>
+<th scope="col">
+<p class="rtecenter"><strong>Reason Code Title / Text Requirement</strong></p>
+</th>
+<th scope="col">
+<p class="rtecenter"><strong>WAC        References    </strong></p>
+</th>
+<th scope="col">
+<p class="rtecenter"><strong>Recommended Free Form Text</strong></p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<p><a name="501" id="501"><strong>501</strong></a></p>
+</td>
+<td>
+<p><strong>SSA Denial</strong></p>
+<p>You aren't eligible for ABD cash assistance because the Social Security Administration denied your application for Supplemental Security Income (SSI).</p>
+</td>
+<td><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0001" target="_blank">388-449-0001</a></td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="502" id="502"><strong>502</strong></a></p>
+</td>
+<td>
+<p><strong>Gainful Employment</strong></p>
+<p>You aren't eligible for ABD cash assistance. We have determined you aren't disabled because you are currently working.</p>
+</td>
+<td><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0005" target="_blank">388-449-0005</a></td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="503" id="503"><strong>503</strong></a></p>
+</td>
+<td>
+<p><strong>Acceptable Medical Source (and no medical)</strong></p>
+<p>You aren't eligible for ABD cash assistance because you didn't provide medical evidence from an acceptable medical source.</p>
+</td>
+<td><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0060" target="_blank">388-449-0060</a></td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="504" id="504"><strong>504</strong></a></p>
+</td>
+<td>
+<p><strong>Insufficient Information</strong></p>
+<p>You aren't eligible for ABD cash assistance because the medical evidence we received doesn't contain enough information to determine if you are disabled. </p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0060" target="_blank">388-449-0060</a></p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="505" id="505"><strong>505</strong></a></p>
+</td>
+<td>
+<p><strong>Chemical Dependency</strong></p>
+<p>You aren't eligible for ABD cash assistance. We can't determine if you are disabled because the medical evidence we received shows drug or alcohol use is material to your impairment .</p>
+</td>
+<td><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0060" target="_blank">388-449-0060</a></td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="506" id="506"><strong>506</strong></a></p>
+</td>
+<td>
+<p><strong>Duration</strong></p>
+<p>You aren't eligible for ABD cash assistance because your impairment does not meet the minimum duration requirement. </p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0060" target="_blank">388-449-0060</a></p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="509" id="509"><strong>509</strong></a></p>
+</td>
+<td>
+<p><strong>Severity</strong></p>
+<p>You aren't eligible for ABD cash assistance because your impairment is mild and not expected to keep you from working. </p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0060" target="_blank">388-449-0060</a></p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="510" id="510"><strong>510</strong></a></p>
+</td>
+<td>
+<p><strong>Past Work</strong></p>
+<p>You aren't eligible for ABD cash assistance because your impairment doesn't keep you from returning to your past work. </p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0080" target="_blank">388-449-0080</a></p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="511" id="511"><strong>511</strong></a></p>
+</td>
+<td>
+<p><strong>Other Work</strong></p>
+<p>You aren't eligible for ABD cash assistance because you have the residual functional capacity to be employed.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0080" target="_blank">388-449-0080</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-449-0100" target="_blank">388-449-0100</a></p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+<p> </p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="517" id="517"><strong>517</strong></a></p>
+</td>
+<td>
+<p><strong>Termination - No Current Medical</strong></p>
+<p><strong>See INCAP denial form for text</strong></p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-508-0005" target="_blank">182-508-0005</a></p>
+</td>
+<td><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></td>
+</tr>
+<tr>
+<td>
+<p><a name="518" id="518"><strong>518</strong></a></p>
+</td>
+<td>
+<p><strong>Medical Evidence Inconclusive</strong><br />
+			The medical evidence we have doesn’t give us enough information to decide whether you are able to work. As of this date, we can’t confirm your eligibility.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-508-0005" target="_blank">182-508-0005</a></p>
+<p> </p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="519" id="519"><strong>519</strong></a></p>
+</td>
+<td>
+<p><strong>Medical Information Shows Improvement / Decreased Severity    </strong></p>
+<p>The current medical evidence we have leads us to believe that you shouldn’t have received benefits because you were able to work.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-508-0005" target="_blank">182-508-0005</a></p>
+<p> </p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="520" id="520"><strong>520</strong></a></p>
+</td>
+<td>
+<p><strong>Change In Federal Law</strong><br />
+			There has been a change in the Federal law that regulates this program.</p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="521" id="521"><strong>521</strong></a></p>
+</td>
+<td>
+<p><strong>Medical Evidence Shows Clear Improvement – Due to Treatment            </strong> </p>
+<p>Medical evidence shows clear improvement due to treatment.<br />
+			20 CFR 416.920</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-508-0005" target="_blank">182-508-0005</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-449-0060" target="_blank">388-449-0060</a></p>
+</td>
+<td>
+<p>On 00/00/00, I got a report form from Dr. (Name of doctor) that said your (specify condition) has improved so much that you can work now.</p>
+<p>(The Social Worker should provide the FSS with some free-form text via the 14-118).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="522" id="522"><strong>522</strong></a></p>
+</td>
+<td>
+<p><strong>Currently Employed</strong> </p>
+<p>Currently employed.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-508-0005" target="_blank">182-508-0005</a></p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="523" id="523"><strong>523</strong></a></p>
+</td>
+<td>
+<p><strong>Error In Previous Determination Of Incapacity                      </strong> </p>
+<p>Error in previous determination.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-508-0005" target="_blank">182-508-0005</a></p>
+<p> </p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="525" id="525"><strong>525</strong></a></p>
+</td>
+<td>
+<p><strong>No Eligibility Review Form</strong><br />
+			We haven't received your eligibility review or renewal form. </p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-504-0035" target="_blank">182-504-0035</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-434-0005" target="_blank">388-434-0005</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-434-0010" target="_blank">388-434-0010</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-492-0090" target="_blank">388-492-0090</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-492-0110" target="_blank">388-492-0110</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-492-0100" target="_blank">388-492-0100</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0070" target="_blank">388-400-0070</a></p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="528" id="528"><strong>528</strong></a></p>
+</td>
+<td>
+<p><strong>Eligibility Review Form Incomplete</strong><br />
+			The eligibility review or renewal form we received wasn't complete.</p>
+<p> </p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-492-0110" target="_blank">388-492-0110</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-492-0100" target="_blank">388-492-0100</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-504-0035" target="_blank">182-504-0035</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0070" target="_blank">388-400-0070</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-434-0005" target="_blank">388-434-0005</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-434-0010" target="_blank">388-434-0010</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-492-0090" target="_blank">388-492-0090</a></p>
+</td>
+<td>
+<p>You must return the completed form to us by 00/00/00 in order for your benefits to continue.</p>
+</td>
+</tr>
+<tr>
+<td class="rteright"><strong>530</strong></td>
+<td>
+<p><strong>Termination/Cancer Treatment Ends Prior to Cert Period</strong></p>
+<p>The Department of Health has determined that your treatment has ended or you no longer meet the requirements of the program.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-504-0015" target="_blank">182-504-0015</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-505-0120" target="_blank">182-505-0120</a></p>
+</td>
+<td><em>Text should be supplied by unit that works these.</em></td>
+</tr>
+<tr>
+<td>
+<p><a name="531" id="531"><strong>531</strong></a></p>
+</td>
+<td>
+<p><strong>Voluntary Withdrawal for Excess Resources</strong><br />
+			You withdrew your request for assistance because you have too many resources to get assistance right now.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-513-1350" target="_blank">182-513-1350</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-406-0050" target="_blank">388-406-0050</a></p>
+</td>
+<td>
+<p>None required</p>
+</td>
+</tr>
+<tr>
+<td class="rteright"><strong>532</strong></td>
+<td>
+<p><strong>State-Funded LTC - Program Full</strong></p>
+<p>The state-funded long term care services program is subject to caseload limits.  The program is currently full.  We aren't enrolling new members at this time.</p>
+</td>
+<td><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-507-0125" target="_blank">182-507-0125</a></td>
+<td>NA</td>
+</tr>
+<tr>
+<td class="rteright"><strong>533</strong></td>
+<td>
+<p><strong>Employment requirement not met - HWD</strong></p>
+<p>You don't meet the employment requirements for the HWD program.</p>
+</td>
+<td><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-511-1200" target="_blank">182-511-1200</a></td>
+<td>NA</td>
+</tr>
+<tr>
+<td>
+<p><a name="535" id="535"><strong>535</strong></a></p>
+</td>
+<td>
+<p><strong>Error in Initial Eligibility - Removed Continuous Tracking for Child</strong> <br />
+			<strong>- For Administrative Use Only</strong></p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p>Specify the reason for termination and a WAC related to that reason.</p>
+</td>
+</tr>
+<tr>
+<td class="rteright"><strong>536</strong></td>
+<td>
+<p><strong>Error Initial Eligibility - Removed Locked-in Premium Tier.</strong></p>
+<p><strong>- For Administrative Use Only</strong></p>
+</td>
+<td><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-505-0210" target="_blank">182-505-0210</a></td>
+<td>NA</td>
+</tr>
+<tr>
+<td class="rteright"><strong>537</strong></td>
+<td>
+<p><strong>TANF/SFA Background Check Failure</strong></p>
+<p>You can't receive TANF or SFA benefits for the unrelated child living with you because you didn't pass the background check.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-454-0005" target="_blank">388-454-0005</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-454-0006" target="_blank">388-454-0006</a></p>
+</td>
+<td>None Required</td>
+</tr>
+<tr>
+<td class="rteright"><strong>538</strong></td>
+<td>
+<p><strong>TSOA Closure</strong></p>
+<p>You can’t receive services under this program when you are eligible for certain Medicaid programs.</p>
+</td>
+<td>182-513-1615</td>
+<td>
+<p>No Mandatory Freeform Text</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="540" id="540"><strong>540</strong></a></p>
+</td>
+<td>
+<p><strong>CEAP</strong> <strong>Financial Worker Closure- For Administrative Use Only</strong></p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td class="rteright"><strong>541</strong></td>
+<td><strong>CEAP Program Funds Exhausted - For Administrative Use Only</strong></td>
+<td>None</td>
+<td>NA</td>
+</tr>
+<tr>
+<td>
+<p><a name="542" id="542"><strong>542</strong></a></p>
+</td>
+<td>
+<p><strong>Incomplete six-month report</strong></p>
+<p>We received your change report form. Some information is still missing. We sent you a letter telling you what you need to give to us. We did not get it.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-504-0105" target="_blank">182-504-0105</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-504-0120" target="_blank">182-504-0120</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-504-0125" target="_blank">182-504-0125</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-418-0011" target="_blank">388-418-0011</a></p>
+</td>
+<td>
+<p>Specify what is missing.</p>
+</td>
+</tr>
+<tr>
+<td><strong>545</strong></td>
+<td>
+<p><strong>Invalid Working Family Support Composition</strong></p>
+<p>			You can’t be in a separate assistance unit from your spouse or co-parent. If you are eligible for WFS you may be added to your spouse or co-parent’s assistance unit.</p></td>
+<td><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-493-0010">388-493-0010</a></td>
+<td>None Required</td>
+</tr>
+<tr>
+<td><strong><a id="546" name="546"></a>546</strong></td>
+<td>
+<p> </p>
+<p><strong>Non-Cooperation with Asset Verification</strong></p>
+<p>You, or those financially responsible for you, didn’t give the agency permission to contact financial institutions to verify resources through the Asset Verification System. We are unable to determine your eligibility.</p>
+<p>The agency must verify resources to determine eligibility for Aged, Blind or Disabled related medical coverage.</p>
+<p>If you, or those financially responsible for you, decide to provide authorization for Asset Verification, please contact us.   </p>
+<p>See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-503-0080" target="_blank">182-503-0080</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-503-0050" target="_blank">182-503-0050</a></p>
+<p>			<a href="https://app.leg.wa.gov/WAC/default.aspx?cite=182-503-0055">182-503-0055</a></p></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>
+<p><a name="549" id="549"><strong>549</strong></a></p>
+</td>
+<td>
+<p><strong>You asked us to stop TFA; or you are now receiving Basic Food.</strong></p>
+<p>You asked us to stop your Transitional Food benefits; or We approved your request for Basic Food. See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-489-0020" target="_blank">388-489-0020</a></p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="550" id="550"><strong>550</strong></a></p>
+</td>
+<td>
+<p><strong>Voluntary Withdrawal</strong><br />
+			You withdrew your request for assistance. See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-503-0080" target="_blank">182-503-0080</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-406-0050" target="_blank">388-406-0050</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-492-0020" target="_blank">388-492-0020</a></p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="551" id="551"><strong>551</strong></a></p>
+</td>
+<td>
+<p><strong>Whereabouts Unknown</strong><br />
+			We don’t know where you are. SeeWAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-458-0030" target="_blank">388-458-0030</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-492-0020" target="_blank">388-492-0020</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-503-0520" target="_blank">182-503-0520</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-503-0525" target="_blank">182-503-0525</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-504-0105" target="_blank">182-504-0105</a></p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="552" id="552"><strong>552</strong></a></p>
+</td>
+<td>
+<p><strong>Failed To Provide Verification</strong><br />
+			You did not give us the information we needed.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-503-0050" target="_blank">182-503-0050</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0070" target="_blank">388-400-0070</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-472-0005" target="_blank">388-472-0005</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-490-0005" target="_blank">388-490-0005</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-458-0020" target="_blank">388-458-0020</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-492-0020" target="_blank">388-492-0020</a></p>
+</td>
+<td>
+<p>On MM/DD/YYYY we asked you to provide the following items by MM/DD/YYYY.  We haven't received them.  The items we asked for are:</p>
+<p><em>List of items</em></p>
+</td>
+</tr>
+<tr>
+<td class="rteright"><strong>554</strong></td>
+<td>
+<p><strong>RCL Error in Initial Eligibility </strong></p>
+<p>Not Medicaid Eligible on Day of Discharge</p>
+</td>
+<td>182-513-1235</td>
+<td>Describe the reason the client was not initially eligible for Medicaid.</td>
+</tr>
+<tr>
+<td>
+<p><a name="555" id="555"><strong>555</strong></a></p>
+</td>
+<td>
+<p><strong>Application Opened In Error - For Administrative Use Only</strong></p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="556" id="556"><strong>556</strong></a></p>
+</td>
+<td>
+<p><strong>Non-Cooperation With Quality Control - Food Assistance</strong><br />
+			You did not cooperate with the food assistance Quality Control reviewer. See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-464-0001" target="_blank">388-464-0001</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-492-0020" target="_blank">388-492-0020</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-492-0120" target="_blank">388-492-0120</a></p>
+</td>
+<td>
+<p>You cannot get benefits for # months because ___ . You can regain your eligibility by ___ . If you have any questions about this, call the Quality Assurance worker at 000-000-0000.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="557" id="557"><strong>557</strong></a></p>
+</td>
+<td>
+<p><strong>AU Requests Closure</strong><br />
+			You asked us to stop cash, food, or health care coverage.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-458-0030" target="_blank">388-458-0030</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-492-0020" target="_blank">388-492-0020</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-503-0080" target="_blank">182-503-0080</a></p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="558" id="558"><strong>558</strong></a></p>
+</td>
+<td>
+<p><strong>Failed To Cooperate In Securing Other Income And Resources</strong><br />
+			You have income or resources that you could use but you haven’t made a reasonable effort to get them. If there is a good reason why you have not done this, please tell us. See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-503-0050" target="_blank">182-503-0050</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0070" target="_blank">388-400-0070</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-458-0020" target="_blank">388-458-0020</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-472-0005" target="_blank">388-472-0005</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-490-0005" target="_blank">388-490-0005</a></p>
+</td>
+<td>
+<p>You told us that you have (type of income/resource). To become eligible, you must try to make it available by _______ (specify what they must do to make income or resource available).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="559" id="559"><strong>559</strong></a></p>
+</td>
+<td>
+<p><strong>Client Already Received Assistance In Another AU For This Benefit Month</strong><br />
+			Although you can belong to more than one assistance unit, you can only get benefits from one at a time.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0005" target="_blank">388-400-0005</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0010" target="_blank">388-400-0010</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0030" target="_blank">388-400-0030</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0040" target="_blank">388-400-0040</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0060" target="_blank">388-400-0060</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0070" target="_blank">388-400-0070</a></p>
+</td>
+<td>
+<p>You are already getting cash assistance.<br />
+			<em>Or</em><br />
+			You are already getting food assistance.<br />
+			<em>Or</em><br />
+			You are already getting medical assistance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="561" id="561"><strong>561</strong></a></p>
+</td>
+<td>
+<p><strong>AU Screened In Error - System Generated Only</strong></p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="564" id="564"><strong>564</strong></a></p>
+</td>
+<td>
+<p><strong>Non-Cooperation With TPL Process</strong><br />
+			You did not cooperate in obtaining another source of coverage for your medical care. See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-503-0540" target="_blank">182-503-0540</a></p>
+</td>
+<td>
+<p>You told us that you could get help with medical from (specify TPL source).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="566" id="566"><strong>566</strong></a></p>
+</td>
+<td>
+<p><strong>Refused to Cooperate With Application Process</strong><br />
+			You refused to cooperate in the application process. Based on the information we have, we are unable to determine your eligibility. See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-503-0080" target="_blank">182-503-0080</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0070" target="_blank">388-400-0070</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-406-0035" target="_blank">388-406-0035</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-406-0060" target="_blank">388-406-0060</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-452-0005" target="_blank">388-452-0005</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-492-0020" target="_blank">388-492-0020</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-406-0050" target="_blank">388-406-0050</a></p>
+</td>
+<td>
+<p>You did not ____ . If you need help, let me know and I will try to assist you.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="567" id="567"><strong>567</strong></a></p>
+</td>
+<td>
+<p><strong>Drug / Alcohol Center Loses Certification</strong><br />
+			You cannot receive food assistance. The drug or alcohol center where you live is not a certified public or private nonprofit organization. See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-408-0040" target="_blank">388-408-0040</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-492-0020" target="_blank">388-492-0020</a></p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="569" id="569"><strong>569</strong></a></p>
+</td>
+<td>
+<p><strong>Child Accepted To Foster Care</strong><br />
+			Our rules say that a child who is in foster care for 180 days or more must be taken off cash assistance. See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-408-0015" target="_blank">388-408-0015</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-454-0015" target="_blank">388-454-0015</a></p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td class="rteright"><strong>570</strong></td>
+<td>
+<p><strong>Child's Temporary Placement Has Ended</strong></p>
+<p>Your child's absence is no longer temporary.</p>
+</td>
+<td><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-454-0015" target="_blank">388-454-0015</a></td>
+<td>None Required</td>
+</tr>
+<tr>
+<td>
+<p><a name="572" id="572"><strong>572</strong></a></p>
+</td>
+<td>
+<p><strong>User Voided Application - For Administrative Use Only</strong></p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="575" id="575"><strong>575</strong></a></p>
+</td>
+<td>
+<p><strong>Not Receiving Cash Assistance - For Administrative Use Only</strong></p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="577" id="577"><strong>577</strong></a></p>
+</td>
+<td>
+<p><strong>Missed Application Deadline - For Administrative Use Only</strong></p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="578" id="578"><strong>578</strong></a></p>
+</td>
+<td>
+<p><strong>Non-Cooperation with Chemical Dependency Assessment or Treatment</strong></p>
+<p>You aren’t eligible for assistance because you didn’t cooperate with a chemical dependency assessment or treatment.  You aren’t eligible for assistance again until you reapply and cooperate with assessment or treatment.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-508-0005" target="_blank">182-508-0005</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-449-0220" target="_blank">388-449-0220</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0055" target="_blank">388-400-0055</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-447-0120" target="_blank">388-447-0120</a></p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="585" id="585"><strong>585</strong></a></p>
+</td>
+<td>
+<p><strong>DCA</strong> <strong>Adult Eligible For TANF, Established Loan Repayment</strong> <strong>- For Administrative Use Only</strong></p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="586" id="586"><strong>586</strong></a></p>
+</td>
+<td>
+<p><strong>DCA</strong> <strong>Ineligible</strong></p>
+<p>To get Diversion Cash Assistance (DCA) everyone in your family must be able to receive Temporary Assistance for Needy Families/State Family Assistance (TANF/SFA). See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-432-0005" target="_blank">388-432-0005</a></p>
+</td>
+<td>
+<p>Specify which DCA requirement was not met.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="587" id="587"><strong>587</strong></a></p>
+</td>
+<td>
+<p><strong>Already Eligible For Program In Different AU - For Administrative Use Only</strong></p>
+</td>
+<td>
+<p> </p>
+</td>
+<td>
+<p>The following persons aren't eligible for [cash/food] assistance for [MM/YYYY] because they already received [cash/food] assistance in another household:</p>
+<p>[list name of ineligible persons]</p>
+<p><strong>NOTE:</strong> You may need to manually create a denial or termination letter or add text to the ACES system-generated letter and WAC references.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="588" id="588"><strong>588</strong></a></p>
+</td>
+<td>
+<p><strong>Ineligible QI-1 Already Receiving MA</strong><br />
+			You aren't eligible for the Qualified Individual (QI-1) program because you are receiving Washington Apple Health coverage. See WAC rule (Washington Administrative Code):</p>
+<p>You are eligible for the State-funded Buy-In Program. We will pay for your Medicare Part A premiums, if you have any, as well as your Part B premiums, coinsurance, and deductibles.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=182-517-0300" target="_blank">182-517-0300</a></p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a name="589" id="589"><strong>589</strong></a></p>
+</td>
+<td>
+<p><strong>Failed MA Incapacity Requirements</strong></p>
+<p>Based on your current medical information, you are no longer disabled under Social Security rules. See WAC rule (Washington Administrative Code):</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-511-1150" target="_blank">182-511-1150</a></p>
+</td>
+<td>
+<p>None Required</p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="rteright"><strong>590</strong></p>
+</td>
+<td>
+<p><strong>Transfer of Resources - Long Term Care</strong></p>
+<p>You transferred, gave away, or sold resources for less than fair market value. This is called uncompensated value.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-513-1363" target="_blank">182-513-1363</a></p>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=182-513-1367" target="_blank">182-513-1367</a></p>
+</td>
+<td>
+<p>Explain the amount of the transfer used to determine the penalty or penalties periods. Indicate the dates the penalty period starts and ends.</p>
+</td>
+</tr>
+<tr>
+<td class="rteright"><strong>591</strong></td>
+<td>
+<p><strong>Approved disaster area requirement not met.</strong></p>
+<p>			You don’t live or work in the area approved for disaster food assistance</p></td>
+<td><a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-437-0001" target="_blank">388-437-0001 </a></td>
+<td>None Required</td>
+</tr>
+<tr>
+<td class="rteright"><strong>592</strong></td>
+<td>
+<p><strong>No disaster related loss</strong></p>
+<p>			You didn’t have a loss that meets the eligibility requirements for the disaster food assistance program.  </p></td>
+<td><a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-437-0001" target="_blank">388-437-0001</a></td>
+<td>None Required</td>
+</tr>
+<tr>
+<td class="rteright"><strong>593</strong></td>
+<td>
+<p><strong>Living in the shelter for the entire disaster period</strong></p>
+<p>			You live in a shelter and plan to remain in the shelter through the end of the disaster period.</p></td>
+<td><a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-437-0001" target="_blank">388-437-0001</a></td>
+<td>None Required</td>
+</tr>
+<tr>
+<td class="rteright"><strong>594</strong></td>
+<td>
+<p><strong>Maximum food allotment received and no food loss reported</strong></p>
+<p>			You received the maximum food assistance benefit for the month of [MM/YYYY and you told us you didn't lose food bought with food benefits as a result of the disaster.</p></td>
+<td><a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-437-0001" target="_blank">388-437-0001</a></td>
+<td>None Required</td>
+</tr>
+<tr>
+<td class="rteright"><strong>595</strong></td>
+<td>
+<p><strong>Exceeds Disaster Gross Income Limit</strong></p>
+<p>You aren't financially eligible because the amount considered available for your household is over the income and resource limit for this program.</p>
+</td>
+<td><a href="https://app.leg.wa.gov/wac/default.aspx?cite=388-437-0001" target="_blank">388-437-0001</a></td>
+<td>
+<p><strong>NOTE:</strong> Please manually transfer the dollar amounts from Barcode D-SNAP Computation Tool into the corresponding fields on the second page of the letter. See D-SNAP Policy and Procedures for Staff/Denials for more details.</p>
+<p> Disaster SNAP Eligibility Standards can be found on FNS website: <a href="https://www.fns.usda.gov/snap/dsnap/state-agencies-partners-resources" target="_blank">D-SNAP Resources for State Agencies and Partners | Food and Nutrition Service (usda.gov)</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p class="rteright"><strong>596</strong></p>
+</td>
+<td>
+<p><strong>Failure to Pursue Medicaid</strong></p>
+<p>You aren't eligible for ABD cash or Housing and Essential Needs (HEN) Referral because you failed to pursue Medicaid.</p>
+<p> </p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0060" target="_blank">388-400-0060</a></p>
+<p><a href="http://app.leg.wa.gov/wac/default.aspx?cite=388-400-0070" target="_blank">388-400-0070</a></p>
+</td>
+<td>
+<p><em>(Social Service Specialist  provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+<tr>
+<td class="rteright"><strong>597</strong></td>
+<td>
+<p><strong>Manual WASHCAP Earned Income Termination</strong></p>
+<p>You can't receive Washington State Combined Application Project (WASHCAP) food assistance because you've been working more than 3 months.</p>
+</td>
+<td>
+<p><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-492-0030" target="_blank">388-492-0030</a></p>
+<p><a href="http://apps.leg.wa.gov/WAC/default.aspx?cite=388-492-0070">388-492-0070</a></p>
+</td>
+<td>None Required</td>
+</tr>
+<tr>
+<td class="rteright"><strong>598</strong></td>
+<td>
+<p><strong>WASHCAP Invalid Living Arrangement</strong></p>
+<p>You can't receive Washington Combined Application Project food benefits because your living arrangement changed.</p>
+</td>
+<td><a href="http://app.leg.wa.gov/WAC/default.aspx?cite=388-492-0030" target="_blank">388-492-0030</a></td>
+<td>State what the invalid living arrangement is.</td>
+</tr>
+<tr>
+<td>
+<p><a name="599" id="599"><strong>599</strong></a></p>
+</td>
+<td>
+<p><strong>Other - For User Generation Only</strong></p>
+</td>
+<td>
+<p>None</p>
+</td>
+<td>
+<p><em>(If used for ABD or HEN Referral denial or termination, Social Service Specialist provides mandatory free form text via 14-118)</em></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div></div></div>  <div id="book-navigation-17" class="book-navigation">
+    <div class="book-toc btn-group pull-right">  <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown"> Outline <span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li class="first last expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z">Eligibility A-Z Manual (EA-Z)</a><ul class="dropdown-menu" role="menu"><li class="first expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/eligibility-z-ea-z-manual-revisions">Eligibility A-Z (EA-Z) Manual Revisions</a><ul class="dropdown-menu" role="menu"><li class="first last leaf" role="presentation"><a href="/esa/eligibility-z-ea-z-manual-revisions/notification-rule-changes">Notification of Rule Changes</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/eligibility-z-ea-z-wac-rules-index">Eligibility A-Z (EA-Z) WAC (Rules) Index</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/abd-clients-residing-eastern-or-western-state-hospital-or-civilly-committed-community-based-facility">ABD Clients Residing in Eastern or Western State Hospital or Civilly Committed to a Community-Based Facility</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/administrative-disqualification-hearings-food-assistance">Administrative Disqualification Hearings for Food Assistance</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/administrative-hearings">Administrative Hearings</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/administrative-hearings/overview">Overview</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/administrative-hearing-coordinators-role">Administrative Hearing Coordinator&#039;s Role</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/continued-benefits">Continued Benefits</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/equitable-estoppel">Equitable Estoppel</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/hearing-requests">Hearing Requests</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/pre-hearing-conference-administrative-law-judge">Pre-Hearing Conference With An Administrative Law Judge</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/pre-hearing-meeting-dshs-representative">Pre-Hearing Meeting With the DSHS Representative</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/preparation">Preparation</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/presenting-case">Presenting the Case</a></li>
+<li class="leaf" role="presentation"><a href="/esa/administrative-hearings/special-procedures-non-grant-medical-assistance-and-health-care-authority-hearings">Special Procedures on Non-Grant Medical Assistance and Health Care Authority hearings</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/administrative-hearings/decision">The Decision</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/age-requirements">Age Requirements</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/applications-assistance">Applications for Assistance</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/applications-assistance/filing-application">Filing an Application</a></li>
+<li class="leaf" role="presentation"><a href="/esa/applications-assistance/expedited-service-basic-food">Expedited Service for Basic Food</a></li>
+<li class="leaf" role="presentation"><a href="/esa/applications-assistance/time-limits-processing">Time Limits for Processing</a></li>
+<li class="leaf" role="presentation"><a href="/esa/applications-assistance/filing-applications-special-situations">Filing Applications - Special Situations</a></li>
+<li class="leaf" role="presentation"><a href="/esa/applications-assistance/completing-process">Completing the Process</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/applications-assistance/information-needed-determine-eligibility">Information Needed to Determine Eligibility</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/assistance-units">Assistance Units</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/assistance-units/assistance-units-basic-food">Assistance Units - Basic Food</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/assistance-units/cash-assistance-programs">Cash Assistance Programs</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/authorized-representative-food-assistance">Authorized Representative - Food Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/authorized-representative-food-cash-and-medical-benefit-issuances">Authorized Representative - Food, Cash and Medical Benefit Issuances</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/automated-client-eligibility-system-aces">Automated Client Eligibility System (ACES)</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/basic-food-employment-and-training-bfet-program">Basic Food Employment and Training (BFET) Program</a><ul class="dropdown-menu" role="menu"><li class="first last leaf" role="presentation"><a href="/esa/basic-food-employment-and-training-bfet-program/bfet-reimbursement-participant-expenses">BFET - Reimbursement of Participant Expenses</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/basic-food-work-requirements">Basic Food - Work Requirements</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/basic-food-work-requirements/basic-food-work-requirements-work-registration"> Basic Food Work Requirements - Work Registration</a></li>
+<li class="leaf" role="presentation"><a href="/esa/basic-food-work-requirements/basic-food-work-registration-exemptions">Basic Food Work Registration Exemptions</a></li>
+<li class="leaf" role="presentation"><a href="/esa/basic-food-work-requirements/abawds-able-bodied-adults-without-dependents">ABAWDs - Able-Bodied Adults Without Dependents</a></li>
+<li class="leaf" role="presentation"><a href="/basic-food-work-requirements/basic-food-work-requirements-good-cause">Basic Food Work Requirements - Good Cause</a></li>
+<li class="leaf" role="presentation"><a href="/esa/basic-food-work-requirements/basic-food-work-requirements-disqualification">Basic Food Work Requirements - Disqualification</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/basic-food-work-requirements/basic-food-work-requirements-unsuitable-employment-and-quitting-job">Basic Food Work Requirements - Unsuitable Employment and Quitting a Job</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/benefit-errors">Benefit Errors</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/benefit-errors/alien-and-alien-sponsor-overpayments">Alien and Alien Sponsor Overpayments</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-errors/basic-food-overpayments">Basic Food Overpayments</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-errors/cash-and-food-assistance-underpayments">Cash and Food Assistance Underpayments</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-errors/cash-and-medical-assistance-overpayment-descriptions">Cash and Medical Assistance Overpayment Descriptions</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-errors/recovery-through-mandatory-grant-reductions">Recovery Through Mandatory Grant Reductions</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/benefit-errors/repayments-overpayments-prior-april-3-1982">Repayments for Overpayments Prior to April 3, 1982</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/benefit-issuances-and-use-benefits">Benefit Issuances and Use of Benefits</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/use-benefits-benefit-issuances">Use of Benefits - Benefit Issuances</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/basic-food-benefit-issuances"> Basic Food - Benefit Issuances</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/cash-assistance-benefit-issuances">Cash Assistance - Benefit Issuances</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/when-and-how-benefits-are-delivered">When and How Benefits are Delivered</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/loss-theft-destruction-or-non-receipt-warrant-clients-or-vendors"> Loss, Theft, Destruction or Non-Receipt of a Warrant to Clients or Vendors</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/endorsing-warrant">Endorsing the Warrant</a></li>
+<li class="leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/replacement">Replacement</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/benefit-issuances-and-use-benefits/returning-warrant">Returning a Warrant</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/categorical-eligibility-basic-food">Categorical Eligibility for Basic Food</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/certification-periods">Certification Periods</a><ul class="dropdown-menu" role="menu"><li class="first last leaf" role="presentation"><a href="/esa/certification-periods/certification-periods-basic-food">Certification Periods - Basic Food</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/change-circumstances-toc">Change of Circumstances - TOC</a><ul class="dropdown-menu" role="menu"><li class="first collapsed" role="presentation"><a href="/esa/change-circumstances-toc/reporting-requirements">Reporting Requirements </a></li>
+<li class="last leaf" role="presentation"><a href="/esa/change-circumstances-toc/effective-date-change-circumstances">Effective Date - Change of Circumstances</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/chemical-dependency-treatment">Chemical Dependency Treatment</a><ul class="dropdown-menu" role="menu"><li class="first last expanded" role="presentation"><a href="/esa/chemical-dependency-treatment/chemical-dependency-treatment-toc">Chemical Dependency Treatment - TOC</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/chemical-dependency-treatment-toc/access-substance-use-treatment">Access to Substance Use Treatment</a></li>
+<li class="leaf" role="presentation"><a href="/esa/chemical-dependency-treatment-toc/chemical-dependency-treatment-and-ssi">Chemical Dependency Treatment and SSI</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/chemical-dependency-treatment-toc/chemical-dependency-treatment-altsa-and-food-assistance">Chemical Dependency Treatment via ALTSA and Food Assistance</a></li>
+</ul></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/child-abuse-and-neglect-reporting">Child Abuse and Neglect Reporting</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/child-support">Child Support</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/citizenship-and-immigration-status">Citizenship and Immigration Status</a><ul class="dropdown-menu" role="menu"><li class="first expanded" role="presentation"><a href="/esa/citizenship-and-alien-status/citizenship-and-immigration-status-requirements-all-programs">Citizenship and Immigration Status Requirements for all Programs</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-all-programs/definitions">Definitions</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-all-programs/cash-and-medical-decision-tree">Cash and Medical Decision Tree</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-all-programs/date-entry">Date of Entry</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-all-programs/social-security-number-requirements">Social Security Number Requirements</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-all-programs/veteran-status">Veteran Status</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-all-programs/citizenship-and-alien-status-work-quarters">Citizenship and Alien Status - Work Quarters</a></li>
+</ul></li>
+<li class="expanded" role="presentation"><a href="/esa/citizenship-and-alien-status/citizenship-and-immigration-status-requirements-specific-program">Citizenship and Immigration Status Requirements Specific to Program</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-specific-program/citizenship-and-immigration-status-food-benefits">Citizenship and Immigration Status - For Food Benefits</a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-specific-program/citizenship-and-alien-status-temporary-assistance-needy-families-tanf">Citizenship and Alien Status - For Temporary Assistance for Needy Families (TANF) </a></li>
+<li class="leaf" role="presentation"><a href="/esa/citizenship-and-alien-status-requirements-specific-program/citizenship-and-alien-status-state-cash-programs">Citizenship and Alien Status for State Cash Programs</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/citizenship-and-immigration-status-requirements-specific-program/public-benefit-eligibility-survivors-certain-crimes">Public Benefit Eligibility for Survivors of Certain Crimes</a></li>
+</ul></li>
+<li class="last expanded" role="presentation"><a href="/esa/citizenship-and-immigration-status/resources-desk-aids-and-links">Resources, Desk Aids and Links </a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/resources-desk-aids-and-links/citizenship-and-identity-documents-medicaid">Citizenship and Identity Documents for Medicaid</a></li>
+<li class="leaf" role="presentation"><a href="/esa/resources-desk-aids-and-links/immigration-law-center-nilc-guide">Immigration Law Center (NILC) Guide</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/resources-desk-aids-and-links/sample-ssn-request-letter">Sample SSN Request Letter</a></li>
+</ul></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/civil-rights-and-complaints">Civil Rights and Complaints</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/confidentiality">Confidentiality</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/confidentiality/confidentiality-address-confidentiality-program-acp-domestic-violence-victims">Confidentiality - Address Confidentiality Program (ACP) for Domestic Violence Victims</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/confidentiality/confidentiality-information">Confidentiality - Information</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/consolidated-emergency-assistance-program-ceap">Consolidated Emergency Assistance Program (CEAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/data-sharing">Data Sharing</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/diaper-related-payment-drp">Diaper Related Payment (DRP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/diversion-cash-assistance">Diversion Cash Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/elderly-simplified-application-project-esap">Elderly Simplified Application Project (ESAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/eligibility-reviewsrecertifications-requirements-food-and-cash-programs">Eligibility Reviews/Recertifications - Requirements for Food and Cash Programs</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/emergency-assistance-programs">Emergency Assistance Programs</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/emergency-assistance-programs/consolidated-emergency-assistance-program-ceap">Consolidated Emergency Assistance Program - CEAP</a></li>
+<li class="leaf" role="presentation"><a href="/esa/emergency-assistance-programs/disaster-cash-assistance-program">Disaster Cash Assistance Program</a></li>
+<li class="leaf" role="presentation"><a href="/esa/emergency-assistance-programs/disaster-supplemental-nutrition-assistance-program-d-snap">Disaster Supplemental Nutrition Assistance Program (D-SNAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/emergency-assistance-programs/emergency-assistance-programs-additional-requirements-emergent-needs-aren">Emergency Assistance Programs - Additional Requirements for Emergent Needs (AREN)</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/emergency-assistance-programs/pandemic-emergency-assistance-fund">Pandemic Emergency Assistance Fund</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/emergency-food-supplements">Emergency Food Supplements</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/equal-access-necessary-supplemental-accommodations">Equal Access (Necessary Supplemental Accommodations)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/exception-rule">Exception to Rule</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/fair-hearings">Fair Hearings</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/fleeing-felons">Fleeing Felons</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/food-assistance-supplemental-nutrition-assistance-program-snap">Food Assistance - Supplemental Nutrition Assistance Program (SNAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/food-assistance-program-fap-legal-immigrants">Food Assistance Program (FAP) for Legal Immigrants</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/food-distribution-program-indian-reservations">Food Distribution Program on Indian Reservations</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/foster-carerelative-placementadoption-supportjuvenile-rehabilitationunaccompanied-minor-program">Foster Care/Relative Placement/Adoption Support/Juvenile Rehabilitation/Unaccompanied Minor Program</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/fraud">Fraud</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/health-care-authority-apple-health-medicaid-manual">Health Care Authority - Apple Health (Medicaid) Manual</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/healthcare-workers-disabilities-hwd">Healthcare for Workers with Disabilities - HWD</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/loco-parentis">In Loco Parentis</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/incapacity-and-disability">Incapacity and Disability</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/income-table-contents">Income - Table of Contents</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/income-table-contents/allocation-and-deeming">Allocation and Deeming</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/indian-agencies-serving-tribes-near-reservation-designation">Indian Agencies Serving Tribes With a Near-Reservation Designation</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/best-estimate-guide">Best Estimate Guide</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/budgeting">Budgeting</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/effect-puyallup-settlement-your-eligibility-public-assistance">Effect of the Puyallup Settlement on Your Eligibility for Public Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/income-indian-agencies-serving-tribes-without-near-reservation-designation">Income - Indian Agencies Serving Tribes Without a Near-Reservation Designation</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/income-ownership-and-availability">Income - Ownership and Availability</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/income-special-types">Income Special Types</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/self-employment-income">Self Employment Income</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/treatment">Treatment</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/treatment-income-chart">Treatment of Income Chart</a></li>
+<li class="leaf" role="presentation"><a href="/esa/income-table-contents/utility-chart">Utility Chart</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/income-table-contents/income-effect-income-and-deductions-eligibility-and-benefit-level">Income - Effect of Income and Deductions on Eligibility and Benefit Level</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/interview-requirements">Interview Requirements</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/letters">Letters</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/letters/100-series-reason-code-protocols">100 Series Reason Code Protocols</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/200-series-reason-code-protocols">200 Series Reason Code Protocols</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/300-series-reason-code-protocols">300 Series Reason Code Protocols</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/400-series-reason-code-protocols">400 Series Reason Code Protocols</a></li>
+<li class="leaf active" role="presentation"><a href="/esa/letters/500-series-reason-code-protocols" class="active">500 Series Reason Code Protocols</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/information-about-letters">Information about Letters</a></li>
+<li class="leaf" role="presentation"><a href="/esa/letters/letters-protocols">Letters Protocols</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/letters/reason-codes">Reason Codes</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/limited-english-proficiency-lep">Limited English Proficiency (LEP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/living-relative-or-guardian">Living with a Relative or Guardian</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/long-term-care">Long Term Care</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/lottery-or-gambling-disqualification-basic-food">Lottery or Gambling Disqualification for Basic Food</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/lump-sum-cash-assistance-and-tanfsfa-related-medical-assistance">Lump Sum Cash Assistance and TANF/SFA-Related Medical Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/medical-assistance">Medical Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/mid-certification-reviews">Mid Certification Reviews</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/ongoing-additional-requirements-oar">Ongoing Additional Requirements (OAR)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/overpayments">Overpayments</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/pandemic-ebt-p-ebt-program">Pandemic EBT (P-EBT) Program</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/payees-benefit-issuances-authorized-representatives">Payees on Benefit Issuances - Authorized Representatives</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/payees-benefit-issuances-overview">Payees on Benefit Issuances - Overview</a></li>
+<li class="collapsed" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/payees-benefit-issuances-protective-payees">Payees on Benefit Issuances - Protective Payees</a></li>
+<li class="collapsed" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/pregnancy-and-cash-assistance-eligibility">Pregnancy and Cash Assistance Eligibility</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/prescription-drug-assistance-programs">Prescription Drug Assistance Programs</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/program-summary">Program Summary</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/program-summary/aged-blind-or-disabled-abd-cash">Aged, Blind or Disabled (ABD) Cash</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/food-assistance-program-legal-immigrants-fap">Food Assistance Program for Legal Immigrants (FAP)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/heat-and-eat">Heat and Eat</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/housing-and-essential-needs-hen-referral">Housing and Essential Needs (HEN) Referral</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/pregnant-women-assistance-pwa">Pregnant Women Assistance (PWA)</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/sfa">SFA</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/tanf">TANF</a></li>
+<li class="leaf" role="presentation"><a href="/esa/program-summary/washington-basic-food-program">Washington Basic Food Program</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/program-summary/working-family-support">Working Family Support</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/quality-control">Quality Control</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/refugee-assistance-program">Refugee Assistance Program</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-immigration-status-requirements">Refugee - Immigration Status Requirements</a></li>
+<li class="leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-cash-assistance">Refugee Cash Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-income-and-resources">Refugee - Income and Resources</a></li>
+<li class="leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-employment-and-training-services">Refugee - Employment and Training Services</a></li>
+<li class="leaf" role="presentation"><a href="/esa/refugee-assistance-program/refugee-medical-assistance">Refugee Medical Assistance</a></li>
+<li class="last leaf" role="presentation"><a href="/refugee-assistance-program/refugee-resettlement-agencies-washington">Refugee Resettlement Agencies in Washington</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/residency-requirements">Residency Requirements</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/resources">Resources</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/resources/how-resources-count">How Resources Count</a></li>
+<li class="leaf" role="presentation"><a href="/esa/resources/how-resources-affect-eligibility">How Resources Affect Eligibility</a></li>
+<li class="leaf" role="presentation"><a href="/esa/resources/how-vehicles-count-toward-resource-limit-cash-and-food">How Vehicles Count Toward the Resource Limit for Cash and Food</a></li>
+<li class="leaf" role="presentation"><a href="/esa/resources/resources-excluded-federal-law">Resources Excluded by Federal Law</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/resources/resources-aliens-sponsor">Resources of an Alien&#039;s Sponsor</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/rights-and-responsibilities">Rights and Responsibilities</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/social-security-numbers-ssn">Social Security Numbers (SSN)</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/standards">Standards</a><ul class="dropdown-menu" role="menu"><li class="first leaf" role="presentation"><a href="/esa/standards/basic-food">Basic Food</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/standards/cash-assistance">Cash Assistance</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/state-median-income-chart">State Median Income Chart</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/strikers">Strikers</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/student-status">Student Status</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/sun-bucks">Sun Bucks</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/supplemental-security-income-and-state-supplemental-payment">Supplemental Security Income and State Supplemental Payment</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/tanfsfa-minor-parent">TANF/SFA Minor Parent</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/tanfsfa-temporary-absence">TANF/SFA Temporary Absence</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/tanfsfa-time-limits">TANF/SFA Time Limits</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/transfer-property-cash-and-basic-food">Transfer of Property for Cash and Basic Food</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/transitional-cash-assistance">Transitional Cash Assistance</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/transitional-food-assistance">Transitional Food Assistance</a></li>
+<li class="expanded" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/verification">Verification</a><ul class="dropdown-menu" role="menu"><li class="first last leaf" role="presentation"><a href="/esa/manuals/verification-charts">Verification Charts</a></li>
+</ul></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/veterans-referrals">Veteran&#039;s Referrals</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/voter-registration">Voter Registration</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/washcap">WASHCAP</a></li>
+<li class="leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/workfirst-orientation">WorkFirst Orientation</a></li>
+<li class="last leaf" role="presentation"><a href="/esa/eligibility-z-manual-ea-z/workfirst-sanctions-participation">WorkFirst Sanctions-Participation</a></li>
+</ul></li>
+</ul></div>
+        <ul class="pager clearfix">
+              <li class="previous"><a href="/esa/letters/400-series-reason-code-protocols" class="page-previous" title="Go to previous page">‹ 400 Series Reason Code Protocols</a></li>
+                    <li><a href="/esa/eligibility-z-manual-ea-z/letters" class="page-up" title="Go to parent page">up</a></li>
+                    <li class="next"><a href="/esa/letters/information-about-letters" class="page-next" title="Go to next page">Information about Letters ›</a></li>
+          </ul>
+    
+  </div>
+  </div>
+
+  <ul class="links list-inline"><li class="book_printer first last"><a href="/book/export/html/635" title="Show a printer-friendly version of this book page and its sub-pages.">Printer-friendly version</a></li>
+</ul>
+  
+</div>
+</section>
+  </div>
+      </section>
+
+              <aside class="col-sm-3 col-sm-pull-9" role="complementary">
+            <div class="region region-sidebar-first well">
+    <section id="block-menu-block-2" class="block block-menu-block clearfix">
+
+      
+  <div class="menu-block-wrapper menu-block-2 menu-name-menu-esa-business-groups parent-mlid-944 menu-level-1">
+  <h3 class="menu-esa"><a href="/esa">ESA</a></h3><ul class="menu nav"><li class="first collapsed menu-mlid-603"><a href="/esa/online-community-services-office-cso" title="Community Services">Community Services</a></li>
+<li class="collapsed menu-mlid-11904"><a href="/esa/division-child-support" title="Child Support">Child Support</a></li>
+<li class="collapsed menu-mlid-8073"><a href="/esa/disability-determination-services" title="Disability Determination">Disability Determination</a></li>
+<li class="collapsed menu-mlid-7886"><a href="/esa/employment-and-training-programs" title="Employment and Training">Employment and Training</a></li>
+<li class="collapsed menu-mlid-610"><a href="/esa/office-refugee-and-immigrant-assistance" title="Refugee and Immigrant Assistance">Refugee and Immigrant Assistance</a></li>
+<li class="leaf menu-mlid-604"><a href="/esa/community-partnership-program/washington-connection-community-partnership-program" title="Community Connections">Community Partnership Program</a></li>
+<li class="leaf menu-mlid-12998"><a href="/esa/washington-fatherhood-council" title="Washington Fatherhood Council">Washington Fatherhood Council</a></li>
+<li class="leaf menu-mlid-12996"><a href="/esa/esa-strategic-plan" title="Strategic Plan">Strategic Plan</a></li>
+<li class="collapsed menu-mlid-7674"><a href="/esa/reports-and-publications" title="Reports and Publications">Reports and Publications</a></li>
+<li class="collapsed menu-mlid-607"><a href="/esa/manuals" title="Manuals">Manuals</a></li>
+<li class="leaf menu-mlid-12995"><a href="/esa/esa-latest-news" title="Latest News">Latest News</a></li>
+<li class="last leaf menu-mlid-7914"><a href="/esa/contact-esa" title="Contact ESA">Contact ESA</a></li>
+</ul></div>
+
+</section>
+  </div>
+        </aside>  <!-- /#sidebar-first -->
+      
+      
+    </div>
+  </div>
+    </div>
+</div>
+<div class="sticky-footer">
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 footer-logo">
+        <a href="/"><img src="/sites/all/themes/wa_dshs/images/footer-logo.png" width="200" alt="Washington State Department of Social & Health Services" /></a>
+      </div>
+      <div class="col-sm-9 footer-content">
+        <div class="region region-footer">
+    <section id="block-block-3" class="block block-block clearfix">
+
+      
+  <div>
+<h5><strong>Connect with DSHS</strong></h5>
+</div>
+<ul>
+<li><a href="https://www.dshs.wa.gov/staff-access" title="Staff">Staff Access</a></li>
+<li><a href="https://www.dshs.wa.gov/about-us" title="About Us">About Us</a></li>
+<li><a href="https://www.dshs.wa.gov/work-dshs" title="Work at DSHS">Work at DSHS</a></li>
+<li><a href="https://www.dshs.wa.gov/contact-department-social-and-health-services" title="Contact Us">Contact Us</a></li>
+<li><a href="https://www.dshs.wa.gov/office-locations" title="Locate a Service">Locate a Service Office</a></li>
+<li><a href="https://www.dshs.wa.gov/report-abuse-and-neglect" title="Report Abuse">Report Abuse and Neglect</a></li>
+</ul>
+
+</section>
+<section id="block-block-23" class="block block-block clearfix">
+
+      
+  <div>
+<h5><strong>Access and Inclusion</strong></h5>
+</div>
+<ul>
+<li><a href="https://www.dshs.wa.gov/os/publications-library?combine=non-discrimination&amp;field_program_topic_value=All&amp;field_job__value&amp;field_language_available_value=All" title="Nondiscrimination Policy">Nondiscrimination Policy</a></li>
+<li><a href="https://www.dshs.wa.gov/accessibility-statement" title="Accessibility">Accessibility Statement</a></li>
+<li><a href="https://get.adobe.com/reader/" title="Adobe Reader">Adobe Reader</a></li>
+<li><a href="https://www.dshs.wa.gov/sites/default/files/forms/pdf/03-387a.pdf" target="_self" title="Privacy">Notice of Privacy Practices</a></li>
+<li><a href="https://www.dshs.wa.gov/privacy-notice" target="_self" title="Security note">Privacy Notice</a></li>
+<li><a href="https://www.dshs.wa.gov/office-of-the-secretary/dshs-rule-making-process" title="Rule">Rule Making</a></li>
+</ul>
+
+</section>
+<section id="block-block-24" class="block block-block clearfix">
+
+      
+  <div>
+<h5><strong>Language Access</strong></h5>
+</div>
+<p>​<a href="https://www.dshs.wa.gov/office-of-the-secretary/english" title="English">English </a>| <a href="https://www.dshs.wa.gov/office-of-the-secretary/spanish" title="Spanish">Español</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/russian" title="Russian">Русский</a> </p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/chinese" title="Chinese">简体</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/%E4%B8%AD%E6%96%87-%E2%80%93-chinese-traditional" title="Chinese Traditional">繁體 </a>| <a href="https://www.dshs.wa.gov/office-of-the-secretary/korean" title="Korean">한국어</a> </p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/arabic" title="Arabic">عربى</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/khmer" title="Khmer">អក្សរខ្មែរ</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/punjabi" title="Punjabi">&lt;ਪੰਜਾਬੀ</a> </p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/somali" title="Somali">Af-soomaali</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/ukrainian" title="Ukrainian">Українська</a></p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/vietnamese" title="Vietnamese">Tiếng Việt</a>| <a href="https://www.dshs.wa.gov/office-of-the-secretary/amharic" title="Amharic">አማርኛ |</a><a href="https://www.dshs.wa.gov/office-of-the-secretary/farsi" title="Farsi"> فارسی</a> | </p>
+<p><a href="https://www.dshs.wa.gov/office-of-the-secretary/tagalog" title="Tagalog">Tagalog</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/lao" title="Laotian">ພາສາລາວ</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/tigrinya" title="Tigrinya">ትግርኛ</a> | <a href="https://www.dshs.wa.gov/office-of-the-secretary/asl" title="ASL">ASL</a></p>
+
+</section>
+  </div>
+        <ul class="social">
+          <li><a href="https://www.facebook.com/WaStateDSHS"><span class="icon-facebook">Facebook</span></a></li>
+          <li><a href="https://twitter.com/waDSHS"><span class="icon-twitter">Twitter</span></a></li>
+          <li><a href="https://www.youtube.com/user/WashingtonStateDSHS"><span class="icon-youtube">YouTube</span></a></li>
+          <li><a href="https://www.linkedin.com/company/washingtondepartmentofsocialandhealthservices"><span class="icon-linkedin">LinkedIn</span></a></li>
+          <li><a href="https://dshswa.medium.com/"><span class="icon-medium">Medium</span></a></li>
+        </ul>
+            </div>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="https://www.dshs.wa.gov/sites/all/modules/picture/picturefill/picturefill.min.js?v=3.0.1"></script>
+<script src="https://www.dshs.wa.gov/sites/all/modules/picture/picture.min.js?v=7.105"></script>
+<script src="https://www.dshs.wa.gov/sites/all/themes/bootstrap/js/bootstrap.js?thviji"></script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"NRJS-595d3388f4cbdcc440c","applicationID":"1100846724","transactionName":"NFJWNUFSWhZZBk1aXg0YYRNaHBsMVgFcSx8TX0Q=","queueTime":0,"applicationTime":748,"atts":"GBVVQwlISRg=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
