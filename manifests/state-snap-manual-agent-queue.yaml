@@ -429,14 +429,15 @@ states:
       version: 2026-05-27-nc-fns-manuals-r2026-07-15-self-contained
   - jurisdiction: us-nd
     name: North Dakota
-    queue_status: source_refetch_required
+    queue_status: published_current
     source_kind: official_html_manual
     primary_source_url: https://www.nd.gov/dhs/policymanuals/SNAP/Content/Home%202.htm
     target_manifest: manifests/us-nd-snap-manual.yaml
     target_scope:
       jurisdiction: us-nd
       document_class: manual
-      version: 2026-05-27-nd-snap-manual
+      version: 2026-07-21-nd-snap-manual
+    notes: Complete Release 26.5 scope retains the official landing page, TOC, release update PDF, and all 64 live manual topics.
   - jurisdiction: us-oh
     name: Ohio
     queue_status: published_current
