@@ -53,6 +53,10 @@ class ReleaseManifestError(RuntimeError):
     """Raised when a release object cannot be built, signed, or verified."""
 
 
+class ReleaseSignatureMismatchError(ReleaseManifestError):
+    """Raised only when a valid Ed25519 key does not match the signature."""
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -318,6 +322,16 @@ def canonical_release_object_bytes(payload: Mapping[str, Any]) -> bytes:
     return canonical_json_bytes(unsigned)
 
 
+def canonical_release_public_key(public_key: str) -> str:
+    """Validate an Ed25519 public key and return canonical raw base64."""
+    loaded = _load_ed25519_public_key(public_key)
+    raw = loaded.public_bytes(
+        encoding=serialization.Encoding.Raw,
+        format=serialization.PublicFormat.Raw,
+    )
+    return b64encode(raw).decode("ascii")
+
+
 def sign_release_object(
     payload: Mapping[str, Any],
     *,
@@ -366,7 +380,7 @@ def verify_release_object(payload: Mapping[str, Any], *, public_key: str) -> Non
             canonical_release_object_bytes(materialized),
         )
     except InvalidSignature as exc:
-        raise ReleaseManifestError("release object signature is invalid") from exc
+        raise ReleaseSignatureMismatchError("release object signature is invalid") from exc
 
 
 def serialize_release_object(payload: Mapping[str, Any]) -> bytes:

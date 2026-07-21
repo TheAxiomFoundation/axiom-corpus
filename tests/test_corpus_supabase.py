@@ -1878,6 +1878,56 @@ def test_fetch_released_scope_objects_retries_network_error(monkeypatch):
     assert rows[scope.key][0].release_name == "nz-rulespec-v1"
 
 
+def test_fetch_released_scope_objects_retries_connection_reset(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, _public_key = _signed_release_object()
+    scope = ReleaseScope("nz", "statute", "v1")
+    calls = 0
+    sleeps = []
+
+    class FakeResponse:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+        def read(self):
+            return json.dumps(
+                [
+                    {
+                        "jurisdiction": scope.jurisdiction,
+                        "document_class": scope.document_class,
+                        "version": scope.version,
+                        "release_name": "nz-rulespec-v1",
+                        "content_sha256": release_object["content_sha256"],
+                        "release_object": release_object,
+                    }
+                ]
+            ).encode()
+
+    def fake_urlopen(req, **kwargs):
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            raise ConnectionResetError("connection reset by peer")
+        return FakeResponse()
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
+
+    rows = fetch_released_scope_objects(
+        ReleaseManifest(name="nz-rulespec-v2", scopes=(scope,)),
+        service_key="service",
+        supabase_url="https://example.supabase.co",
+    )
+
+    assert calls == 2
+    assert sleeps == [supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS]
+    assert rows[scope.key][0].release_name == "nz-rulespec-v1"
+
+
 def test_fetch_released_scope_objects_exhausts_network_retries(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
@@ -1894,6 +1944,35 @@ def test_fetch_released_scope_objects_exhausts_network_retries(monkeypatch):
     monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
 
     with pytest.raises(TimeoutError, match="network timeout"):
+        fetch_released_scope_objects(
+            ReleaseManifest(name="nz-rulespec-v2", scopes=(scope,)),
+            service_key="service",
+            supabase_url="https://example.supabase.co",
+        )
+
+    assert calls == supabase._RELEASED_SCOPE_FETCH_MAX_ATTEMPTS
+    assert sleeps == [
+        supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS,
+        supabase._RELEASED_SCOPE_FETCH_BASE_BACKOFF_SECONDS * 2,
+    ]
+
+
+def test_fetch_released_scope_objects_exhausts_connection_reset_retries(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    scope = ReleaseScope("nz", "statute", "v1")
+    calls = 0
+    sleeps = []
+
+    def fake_urlopen(req, **kwargs):
+        nonlocal calls
+        calls += 1
+        raise ConnectionResetError("connection reset by peer")
+
+    monkeypatch.setattr(supabase.urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(supabase.time, "sleep", sleeps.append)
+
+    with pytest.raises(ConnectionResetError, match="connection reset by peer"):
         fetch_released_scope_objects(
             ReleaseManifest(name="nz-rulespec-v2", scopes=(scope,)),
             service_key="service",
