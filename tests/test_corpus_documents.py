@@ -541,6 +541,120 @@ def test_extract_json_record_blocks_rejects_bad_field_configs() -> None:
     assert blocks[0].body == "Body"
 
 
+def test_extract_json_record_blocks_filters_exact_labels_and_prefixes() -> None:
+    content = json.dumps(
+        [
+            {"label": "A:1", "text": "Exact"},
+            {"label": "A:2", "text": "Excluded"},
+            {"label": "B:1", "text": "Prefix one"},
+            {"label": "B:2", "text": "Prefix two"},
+            {"text": "Unlabeled"},
+        ]
+    ).encode("utf-8")
+
+    blocks = _extract_json_record_blocks(
+        content,
+        source_url="https://example.test/api",
+        fallback_title=None,
+        extraction={
+            "json_record_text_field": "text",
+            "json_record_text_is_html": False,
+            "json_record_label_field": "label",
+            "json_record_include_labels": ["A:1"],
+            "json_record_include_label_prefixes": "B:",
+        },
+    )
+
+    assert [block.metadata["section_label"] for block in blocks] == [
+        "A:1",
+        "B:1",
+        "B:2",
+    ]
+    assert [block.body for block in blocks] == ["Exact", "Prefix one", "Prefix two"]
+
+    with pytest.raises(ValueError, match="label 'A:missing', prefix 'C:'"):
+        _extract_json_record_blocks(
+            content,
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_record_text_field": "text",
+                "json_record_text_is_html": False,
+                "json_record_label_field": "label",
+                "json_record_include_labels": ["A:1", "A:missing"],
+                "json_record_include_label_prefixes": ["B:", "C:"],
+            },
+        )
+
+
+def test_extract_json_record_blocks_ignores_nontext_nonscalar_labels() -> None:
+    assert (
+        _extract_json_record_blocks(
+            b'[{"label": ["invalid"], "text": null}]',
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+            },
+        )
+        == ()
+    )
+
+    with pytest.raises(ValueError, match="labels must be scalar"):
+        _extract_json_record_blocks(
+            b'[{"label": ["invalid"], "text": "Body"}]',
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction={
+                "json_record_text_field": "text",
+                "json_record_text_is_html": False,
+                "json_record_label_field": "label",
+                "json_record_include_labels": "A:1",
+            },
+        )
+
+
+@pytest.mark.parametrize(
+    ("extraction", "message"),
+    [
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_include_labels": "A:1",
+            },
+            "require json_record_label_field",
+        ),
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+                "json_record_include_labels": [],
+            },
+            "must contain one or more non-empty strings",
+        ),
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+                "json_record_include_label_prefixes": ["A:", 1],
+            },
+            "must contain one or more non-empty strings",
+        ),
+    ],
+)
+def test_extract_json_record_blocks_rejects_bad_label_filters(
+    extraction: dict[str, object], message: str
+) -> None:
+    with pytest.raises(ValueError, match=message):
+        _extract_json_record_blocks(
+            b"[]",
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction=extraction,
+        )
+
+
 def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
     assert (
         _extract_json_html_blocks(
@@ -2976,6 +3090,22 @@ def test_extract_official_documents_from_json_records(tmp_path: Path) -> None:
                 },
                 {
                     "id": 3,
+                    "sectionNum": "340:50-2-1",
+                    "description": "Prefixed dependency",
+                    "name": "Section",
+                    "statusName": "Undefined",
+                    "text": "<div>Included by prefix.</div>",
+                },
+                {
+                    "id": 4,
+                    "sectionNum": "340:50-3-1",
+                    "description": "Unselected section",
+                    "name": "Section",
+                    "statusName": "Undefined",
+                    "text": "<div>Not selected.</div>",
+                },
+                {
+                    "id": 5,
                     "sectionNum": None,
                     "description": "General Provisions",
                     "name": "Subchapter",
@@ -3008,6 +3138,10 @@ documents:
       json_record_status_field: statusName
       json_record_exclude_statuses:
         - Revoked
+      json_record_include_labels:
+        - 340:50-1-1
+      json_record_include_label_prefixes:
+        - 340:50-2-
       json_record_metadata_fields:
         - id
         - sectionNum
@@ -3022,11 +3156,12 @@ documents:
         version="2026-05-27-ok-snap-rules",
     )
 
-    assert report.block_count == 1
+    assert report.block_count == 2
     records = load_provisions(report.provisions_path)
     assert [record.citation_path for record in records] == [
         "us-ok/regulation/oac/340/50",
         "us-ok/regulation/oac/340/50/340-50-1-1",
+        "us-ok/regulation/oac/340/50/340-50-2-1",
     ]
     assert records[1].heading == ("340:50-1-1 Purpose, legal base, and responsibilities")
     assert records[1].kind == "section"
@@ -3034,6 +3169,21 @@ documents:
     assert records[1].metadata["id"] == 1
     assert "SNAP policy text" in (records[1].body or "")
     assert "Old revoked text" not in (records[1].body or "")
+    assert "Included by prefix" in (records[2].body or "")
+    assert "Not selected" not in " ".join(record.body or "" for record in records)
+    retained_source = json.loads(report.source_paths[0].read_text())
+    assert len(retained_source) == 5
+
+    manifest_path.write_text(
+        manifest_path.read_text().replace("340:50-1-1", "340:50-missing"),
+        encoding="utf-8",
+    )
+    with pytest.raises(ValueError, match="label '340:50-missing'"):
+        extract_official_documents(
+            CorpusArtifactStore(tmp_path / "unmatched-corpus"),
+            manifest_path=manifest_path,
+            version="2026-05-27-ok-snap-rules",
+        )
 
 
 def test_extract_official_documents_drops_configured_html_selectors(

@@ -2333,6 +2333,14 @@ def _extract_json_record_blocks(
     status_field = extraction.get("json_record_status_field")
     include_statuses = extraction.get("json_record_include_statuses")
     exclude_statuses = extraction.get("json_record_exclude_statuses", ())
+    include_labels = _json_record_filter_values(
+        extraction.get("json_record_include_labels"),
+        setting="json_record_include_labels",
+    )
+    include_label_prefixes = _json_record_filter_values(
+        extraction.get("json_record_include_label_prefixes"),
+        setting="json_record_include_label_prefixes",
+    )
     metadata_fields = extraction.get("json_record_metadata_fields", ())
     text_is_html = bool(extraction.get("json_record_text_is_html", True))
     citation_suffix_slugify = bool(extraction.get("json_record_citation_suffix_slugify", False))
@@ -2341,6 +2349,10 @@ def _extract_json_record_blocks(
         raise ValueError("records JSON extraction requires json_record_text_field")
     if label_field is not None and not isinstance(label_field, str):
         raise ValueError("json_record_label_field must be a string when configured")
+    if (include_labels or include_label_prefixes) and not label_field:
+        raise ValueError(
+            "JSON record label filters require json_record_label_field"
+        )
     if citation_suffix_field is not None and not isinstance(citation_suffix_field, str):
         raise ValueError("json_record_citation_suffix_field must be a string when configured")
     if heading_field is not None and not isinstance(heading_field, str):
@@ -2357,6 +2369,9 @@ def _extract_json_record_blocks(
         metadata_fields = (metadata_fields,)
     include_status_set = {str(status) for status in include_statuses or ()}
     exclude_status_set = {str(status) for status in exclude_statuses or ()}
+    include_label_set = set(include_labels)
+    matched_labels: set[str] = set()
+    matched_label_prefixes: set[str] = set()
     metadata_field_names = tuple(str(field) for field in metadata_fields)
 
     data = json_loads(content.decode("utf-8"))
@@ -2383,10 +2398,26 @@ def _extract_json_record_blocks(
             continue
 
         label_value = _json_record_value(row, label_field)
+        if label_value is None or label_value == "":
+            label = ""
+        elif isinstance(label_value, (str, int, float, bool)):
+            label = str(label_value).strip()
+        elif include_label_set or include_label_prefixes:
+            raise ValueError("filtered JSON record labels must be scalar values")
+        else:
+            label = str(label_value).strip()
+        exact_match = label in include_label_set
+        prefix_matches = tuple(
+            prefix for prefix in include_label_prefixes if label.startswith(prefix)
+        )
+        if (include_label_set or include_label_prefixes) and not (
+            exact_match or prefix_matches
+        ):
+            continue
+
         citation_suffix_value = _json_record_value(row, citation_suffix_field)
         heading_value = _json_record_value(row, heading_field)
         kind_value = _json_record_value(row, kind_field)
-        label = str(label_value).strip() if label_value not in {None, ""} else ""
         citation_suffix = (
             str(citation_suffix_value).strip()
             if citation_suffix_value not in {None, ""}
@@ -2423,7 +2454,39 @@ def _extract_json_record_blocks(
                 metadata=metadata,
             )
         )
+        if exact_match:
+            matched_labels.add(label)
+        matched_label_prefixes.update(prefix_matches)
+
+    unmatched_labels = [label for label in include_labels if label not in matched_labels]
+    unmatched_prefixes = [
+        prefix
+        for prefix in include_label_prefixes
+        if prefix not in matched_label_prefixes
+    ]
+    if unmatched_labels or unmatched_prefixes:
+        missing = [
+            *(f"label {label!r}" for label in unmatched_labels),
+            *(f"prefix {prefix!r}" for prefix in unmatched_prefixes),
+        ]
+        raise ValueError(
+            "JSON record label filters did not match text-bearing records: "
+            + ", ".join(missing)
+        )
     return tuple(blocks)
+
+
+def _json_record_filter_values(value: Any, *, setting: str) -> tuple[str, ...]:
+    """Normalize one exact-label or label-prefix record filter."""
+    if value is None:
+        return ()
+    values = (value,) if isinstance(value, str) else value
+    if not isinstance(values, (list, tuple)):
+        raise ValueError(f"{setting} must be a string or list of strings")
+    normalized = tuple(item.strip() for item in values if isinstance(item, str))
+    if len(normalized) != len(values) or not normalized or any(not item for item in normalized):
+        raise ValueError(f"{setting} must contain one or more non-empty strings")
+    return normalized
 
 
 def _json_record_text(value: Any) -> str:
