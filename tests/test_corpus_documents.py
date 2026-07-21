@@ -541,6 +541,78 @@ def test_extract_json_record_blocks_rejects_bad_field_configs() -> None:
     assert blocks[0].body == "Body"
 
 
+def test_extract_json_record_blocks_filters_exact_labels_and_prefixes() -> None:
+    content = json.dumps(
+        [
+            {"label": "A:1", "text": "Exact"},
+            {"label": "A:2", "text": "Excluded"},
+            {"label": "B:1", "text": "Prefix one"},
+            {"label": "B:2", "text": "Prefix two"},
+            {"text": "Unlabeled"},
+        ]
+    ).encode("utf-8")
+
+    blocks = _extract_json_record_blocks(
+        content,
+        source_url="https://example.test/api",
+        fallback_title=None,
+        extraction={
+            "json_record_text_field": "text",
+            "json_record_text_is_html": False,
+            "json_record_label_field": "label",
+            "json_record_include_labels": ["A:1"],
+            "json_record_include_label_prefixes": "B:",
+        },
+    )
+
+    assert [block.metadata["section_label"] for block in blocks] == [
+        "A:1",
+        "B:1",
+        "B:2",
+    ]
+    assert [block.body for block in blocks] == ["Exact", "Prefix one", "Prefix two"]
+
+
+@pytest.mark.parametrize(
+    ("extraction", "message"),
+    [
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_include_labels": "A:1",
+            },
+            "require json_record_label_field",
+        ),
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+                "json_record_include_labels": [],
+            },
+            "must contain one or more non-empty strings",
+        ),
+        (
+            {
+                "json_record_text_field": "text",
+                "json_record_label_field": "label",
+                "json_record_include_label_prefixes": ["A:", 1],
+            },
+            "must contain one or more non-empty strings",
+        ),
+    ],
+)
+def test_extract_json_record_blocks_rejects_bad_label_filters(
+    extraction: dict[str, object], message: str
+) -> None:
+    with pytest.raises(ValueError, match=message):
+        _extract_json_record_blocks(
+            b"[]",
+            source_url="https://example.test/api",
+            fallback_title=None,
+            extraction=extraction,
+        )
+
+
 def test_extract_json_html_blocks_errors_and_empty_single_block() -> None:
     assert (
         _extract_json_html_blocks(
