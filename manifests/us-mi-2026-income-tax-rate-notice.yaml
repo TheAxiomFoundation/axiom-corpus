@@ -12,6 +12,10 @@ documents:
       browser_user_agent: true
     extraction:
       html_content_selector: "#pagebody .news-item__section-content"
+      segmentation: anchor_range
+      html_start_selector: "p:first-of-type"
+      citation_suffix: rate-determination
+      section_heading: 2026 individual income-tax rate determination
     metadata:
       primary_source: true
       source_authority: Michigan Department of Treasury, Bureau of Tax Policy
