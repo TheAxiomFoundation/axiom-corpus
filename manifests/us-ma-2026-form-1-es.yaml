@@ -1,0 +1,50 @@
+documents:
+  - source_id: us-ma-dor-2026-form-1-es
+    jurisdiction: us-ma
+    document_class: form
+    title: 2026 Form 1-ES Massachusetts Estimated Income Tax
+    source_url: https://www.mass.gov/doc/2026-form-1-es-estimated-tax-payment-vouchers-instructions-and-worksheets/download
+    source_format: pdf
+    source_as_of: "2026-07-22"
+    expression_date: "2026-01-01"
+    citation_path: us-ma/form/individual-income-tax/2026/1-es
+    extraction:
+      segmentation: single_block
+      sort_text: true
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Revenue
+      source_sha256: d5bdb884a9b70a2b5c04356e58a7edcdccd59ce6841bf1550409b6d9c99f0d19
+      document_subtype: individual_estimated_income_tax_vouchers_instructions_and_worksheet
+      form: 1-ES
+      program: individual_income_tax
+      tax_year: "2026"
+      pdf_last_modified: "2026-02-05"
+      source_status: current_official_estimated_tax_form
+      certification_scope: estimated_tax_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      five_percent_income_rate: "0.05"
+      five_percent_income_categories: >-
+        Wages, salaries, tips, business income, partnership and S corporation
+        income, trust income, rental income, unemployment compensation,
+        taxable alimony, pensions and annuity income, IRA/Keogh distributions,
+        winnings, fees, long-term capital gain income not taxed at 8.5% or
+        12%, interest and dividend income, and other taxable income not taxed
+        at 8.5% or 12%.
+      surtax_threshold: "1107750"
+      surtax_rate: "0.04"
+      estimated_surtax_worksheet_formula: >-
+        Add column A of worksheet lines 1 through 2c, subtract the $1,107,750
+        surtax threshold, and multiply worksheet line 3 by 4%.
+      statutory_rate_corpus_citation: us-ma/statute/62/4/block-2
+      statutory_corpus_version: 2026-07-13-recovery
+      source_note: >-
+        Official tax-year-2026 Form 1-ES estimated-tax instructions and
+        worksheet. Page 3 assigns a 5% rate to the listed ordinary-income
+        categories and computes estimated 4% surtax by adding worksheet
+        column A lines 1 through 2c, subtracting the $1,107,750 threshold, and
+        multiplying line 3 by 4%. This form scope supports estimated-tax
+        calculations only and does not certify final tax-year-2026 Form 1 or
+        Form 1-NR/PY liability.
