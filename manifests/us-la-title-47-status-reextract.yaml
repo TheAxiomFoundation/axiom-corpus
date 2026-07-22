@@ -1,0 +1,21 @@
+version: "2026-07-22-la-title-47-official-current"
+sources:
+  - source_id: us-la-revised-statutes-title-47
+    jurisdiction: us-la
+    document_class: statute
+    adapter: louisiana-revised-statutes
+    source_url: https://www.legis.la.gov/Legis/Laws_Toc.aspx?folder=75&level=Parent
+    version: "2026-07-22-la-title-47-official-current"
+    options:
+      source_as_of: "2026-07-22"
+      expression_date: "2026-07-22"
+      base_url: https://www.legis.la.gov/Legis/
+      root_folder: "75"
+      only_title: "47"
+      request_delay_seconds: 0.02
+      timeout_seconds: 60
+      request_attempts: 3
+      workers: 16
+    metadata:
+      source_authority: Louisiana State Legislature
+      source_scope_note: Fresh official Title 47 snapshot after correcting whole-section repeal classification.
