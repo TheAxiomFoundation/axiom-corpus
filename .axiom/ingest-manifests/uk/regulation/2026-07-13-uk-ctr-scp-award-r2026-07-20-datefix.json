@@ -1,0 +1,81 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix.json",
+      "sha256": "87a9e7a5e7d6f49bdb26d069c35441eb68688ac2ad29d5633c0c03624a09a32c"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix.json",
+      "sha256": "c1a96c0d3659638e429664076ded11276df4affa262b4eb421a202fb3e676671"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix.jsonl",
+      "sha256": "c83b45c299b3a0bb9e7a93e524bcad0cd5fdb61a227c4be77606a59a88e8fb59"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix/ssi/2012/319/regulation-14.xml",
+      "sha256": "a97a6072d4850fe96b95503669d846fc344a7e694403eeda7d485d88a7768864"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix/ssi/2012/319/regulation-14A.xml",
+      "sha256": "21813f64be808488be52504770c7d3b00041d0a92e1b47f88e2675c9bb04beb3"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix/ssi/2012/319/regulation-20.xml",
+      "sha256": "3772856df500ea0a05fd04f15784ddb0ac825586aae40e8ac5564517761c4d0f"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix/ssi/2012/319/regulation-40.xml",
+      "sha256": "a95634de1c548bf0add3d7d2abaec66589b40cbecf6992204abf57248cc3f780"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix/ssi/2012/319/regulation-47.xml",
+      "sha256": "ae75dd5107c84ec96fe6beca79226476932f24332e8f7cdb11b94a9110ce892a"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix/ssi/2012/319/regulation-48.xml",
+      "sha256": "5f6aa0f015dcdb30036812103fa23161284e865c80d51e0942a7add3bad84ec5"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix/ssi/2012/319/regulation-56.xml",
+      "sha256": "49a307acae7669bb85e804253a4b22fda237d9b50034d9b7283d2d98d58543a4"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix/ssi/2012/319/schedule-1-paragraph-2.xml",
+      "sha256": "502097bf21116dbea6f73cc3b7b22d5630fbba4e74dd21d1f73f2907fdc262ad"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix/ssi/2012/319/schedule-5-paragraph-1.xml",
+      "sha256": "d574d537aa3bb0a4f0bbb1a2099e9a6dd769ba95ddfb9f95726140a34791369e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6ba5536d46321a6c5e686e47703b6f3e320e81f3",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:44.175427+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ThH/g2XhZuLpJRovSu8GuYdGAwEdvEcPp0j8YeCVH/swTnkzlbC1qi5uauLjnwHmevMSUUPPazkThwVcFqXbCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-scp-award-r2026-07-20-datefix"
+}
