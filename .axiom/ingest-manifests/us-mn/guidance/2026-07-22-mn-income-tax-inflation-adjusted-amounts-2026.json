@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-mn/guidance/2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026.json",
-      "sha256": "dd8f2e34b3278983c2b5c4d2d7202ef1fc5bd1843b2d163941ab0888bc15455c"
+      "sha256": "6fbb4ba523dd172e0f920102f9a58d4c61b32012f063e02b3da7f66a88e2cbfb"
     },
     {
       "path": "data/corpus/provisions/us-mn/guidance/2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026.jsonl",
-      "sha256": "b7a74752227fa034837397d3dad0f83d7f660e74b82cd033d524b7a4f4e29200"
+      "sha256": "bea6395688d0ebf45cd53f8b801913020ff89c7939d0e97d666526b00fe49557"
     },
     {
       "path": "data/corpus/sources/us-mn/guidance/2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026/official-documents/us-mn-revenue-inflation-adjusted-amounts-2026.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "53ebc384d8659e65490bde2067ea59627fbff7f7",
+    "commit": "1eb79b5f95fd362e2d1133ee095c4eedef2a862e",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 5
   },
   "document_class": "guidance",
-  "generated_at": "2026-07-22T17:49:25.531119+00:00",
+  "generated_at": "2026-07-22T18:04:04.402337+00:00",
   "jurisdiction": "us-mn",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-22-mn-income-tax-inflation-adjusted-amounts.md",
-      "sha256": "78c16be34187193cdf6b449cb5a7dfd0cc5e230977161dd1e6639d52b4d8b9a9"
+      "sha256": "8de7f931636dbccce6a0c692c8cdb6ba830e53b66b1964b1f013ab15891bf5ab"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "PBMNAY5TAKwh2GFXCyzTjqf0vqVgH6FYIC7jVggRNWxJIrY99FZC81qk/GJg3N0PDxLd2GD1/udt5CGTC6DPCA=="
+    "value": "QZJHeIExk17RsGJxRZ/9WuoYY4Ezkdf9gkA4BkAKhVm4RPJBOqLEc6otADA9MvqcP/ThGZlPBhiD6GNwPifOBQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026"
