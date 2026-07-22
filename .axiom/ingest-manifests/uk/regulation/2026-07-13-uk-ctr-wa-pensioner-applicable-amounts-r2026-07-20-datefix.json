@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-applicable-amounts-r2026-07-20-datefix.json",
+      "sha256": "a6a8bd95e86fe464dc74bb3360f7379902a52a9dd9fc232b83d8fb68b1dccce5"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-applicable-amounts-r2026-07-20-datefix.json",
+      "sha256": "d78a5917207cc406079b65fa410c7f8b24c3e448ff50d96e278825e407f91285"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-applicable-amounts-r2026-07-20-datefix.jsonl",
+      "sha256": "2721406d59afb33fb0de05eb0a4929a2971df2384d575f9ef19ecd8603714f14"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-applicable-amounts-r2026-07-20-datefix/wsi/2013/3029/schedule-2-paragraph-1.xml",
+      "sha256": "a4342f04251bc7815514a1deb76defa6ec1d2b7f6f401f1abe3146fb5ef4058e"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-applicable-amounts-r2026-07-20-datefix/wsi/2013/3029/schedule-2-paragraph-2.xml",
+      "sha256": "a1e673f75f53214ca3c6979c090ad8e1171e7dfd5c815fc30de732f909d1cca8"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-applicable-amounts-r2026-07-20-datefix/wsi/2013/3029/schedule-2-paragraph-3.xml",
+      "sha256": "d5b298ff7f6dc955e6692f75d629a2abd01954232199e24d25f5869d5794f395"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c2762a21eb0e23b900fc00077bc2d5d1e119af06",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 3,
+    "missing_count": 0,
+    "provision_count": 3,
+    "source_count": 3
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:45.500290+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Zb9dDRoYYjlc2X2xGmrLVCvtGkCSt2rtx1RGFRmMrg4r6c9PubvdGLUOWLG/gDGashTUaT6OwaTKYYs+60K+Dw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-wa-pensioner-applicable-amounts-r2026-07-20-datefix"
+}

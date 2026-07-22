@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix.json",
+      "sha256": "38f3b93ba6b8da7ae495007c65e5f4000130733f923219e10da9b35d0b09c251"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix.json",
+      "sha256": "efe7f60e8f3d11dbc71135b035ac4afa2c740a5790fe7fd5b03200ff61d52fbd"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix.jsonl",
+      "sha256": "a6bd0aa38ad400bd7cd9a4e10687786b133f36b4d4369970325f8b366ed764bb"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix/wsi/2013/3029/schedule-1-paragraph-1.xml",
+      "sha256": "299542af81aa8830ebdaa0576d58b693d2d21af9ddb4a52bbc5687bd619f53bc"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix/wsi/2013/3029/schedule-1-paragraph-2.xml",
+      "sha256": "4e278beca1349119b4577f632dd46a1d65fc84dafe5ab13603d99c465acf5142"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix/wsi/2013/3029/schedule-1-paragraph-3.xml",
+      "sha256": "72aebfdd650a79233ec63fe020132d8581c690bff485e035b1663d6d61a202f9"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix/wsi/2013/3029/schedule-1-paragraph-31.xml",
+      "sha256": "759e31e518b14edaa5ce59207a656626c231943796f31b6643c0fd5b96c03b23"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix/wsi/2013/3029/schedule-1-paragraph-4.xml",
+      "sha256": "fe0bcdec7b941b237cd2ca56b7c34465719b9c741134e03f123123aca549bf5e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "e4c335e64cf86380f08422c471400cd2b840524d",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:46.197416+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ZWmJ9nZ6+i9Jymc+iPm7jwzpwY+JyqZ0vNsImfHHbGopfydGKHiR5qUNdJyONdq5FDqynIah77ditqoQnafSCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-wa-pensioner-award-r2026-07-20-datefix"
+}
