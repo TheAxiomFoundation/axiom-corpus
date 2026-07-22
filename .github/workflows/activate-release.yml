@@ -153,6 +153,11 @@ jobs:
             --content-sha "$CONTENT_SHA" \
             --dry-run
 
+      - name: Ensure bounded release upload transport
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: python scripts/apply_release_activation_upload_migration.py
+
       - name: Activate signed release
         env:
           AXIOM_CORPUS_RELEASE_PUBLIC_KEY: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}

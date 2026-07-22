@@ -1,1 +1,1 @@
-Send compact signed-release identities through the Supabase Management API during preview and activation, loading the immutable staged release object inside Postgres to avoid request-size failures for comprehensive releases.
+Send compact signed scope evidence for activation previews and upload verified release objects in bounded private chunks before atomic activation, avoiding Management API request-size failures for comprehensive releases.

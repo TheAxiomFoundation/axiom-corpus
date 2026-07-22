@@ -32,7 +32,7 @@ from axiom_corpus.corpus.projection_digest import (
     provision_projection_sha256,
 )
 from axiom_corpus.corpus.supabase import iter_supabase_rows
-from axiom_corpus.release.manifest import verify_release_object
+from axiom_corpus.release.manifest import canonical_json_bytes, verify_release_object
 
 psycopg2 = pytest.importorskip("psycopg2")
 errors = pytest.importorskip("psycopg2.errors")
@@ -56,6 +56,10 @@ PROFILED_RELEASE_MIGRATION = (
 COMPACT_RELEASE_OBJECTS_MIGRATION = (
     Path(__file__).resolve().parents[1]
     / "supabase/migrations/20260721102000_compact_released_scope_objects.sql"
+)
+CHUNKED_ACTIVATION_MIGRATION = (
+    Path(__file__).resolve().parents[1]
+    / "supabase/migrations/20260722021000_chunked_release_activation_upload.sql"
 )
 REQUIRED_ROLES = ("anon", "authenticated", "service_role", "postgres")
 TEST_SIGNING_KEY = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
@@ -334,6 +338,7 @@ def postgres_dsn() -> Iterator[str]:
                     cursor.execute(SCOPE_MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(PROFILED_RELEASE_MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(COMPACT_RELEASE_OBJECTS_MIGRATION.read_text(encoding="utf-8"))
+                    cursor.execute(CHUNKED_ACTIVATION_MIGRATION.read_text(encoding="utf-8"))
                 connection.commit()
             yield dsn
         finally:
@@ -358,6 +363,7 @@ def _reset_database(dsn: str) -> None:
               corpus.scope_activation_history,
               corpus.active_scope_pointer,
               corpus.active_release_pointer,
+              corpus.release_activation_upload_chunks,
               corpus.release_scopes,
               corpus.release_objects,
               corpus.provisions,
@@ -1430,15 +1436,20 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
         release_object = _release_object(
             "preview-contract-release", _scope_evidence(connection, identity)
         )
-        _activate(connection, release_object)
-        connection.commit()
         with connection.cursor() as cursor:
             cursor.execute(
-                f"PREPARE preview_contract (text, text) AS {supabase.PREVIEW_ACTIVATION_QUERY}"
+                f"PREPARE preview_contract (jsonb) AS {supabase.PREVIEW_ACTIVATION_QUERY}"
             )
             cursor.execute(
-                "EXECUTE preview_contract(%s, %s)",
-                (release_object["release"], release_object["content_sha256"]),
+                "EXECUTE preview_contract(%s)",
+                (
+                    Json(
+                        {
+                            "release": release_object["release"],
+                            "content": {"scopes": release_object["content"]["scopes"]},
+                        }
+                    ),
+                ),
             )
             columns = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
@@ -1449,26 +1460,45 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
             "current_content_sha256",
             "changes",
         ]
-        # Previewing the already-active release: current occupant is itself,
-        # changes is False.
+        # This is a first activation: the compact preview does not require a
+        # pre-existing release_objects row and serving remains untouched.
         assert rows == [
             (
                 identity["jurisdiction"],
                 "statute",
-                "preview-contract-release",
-                release_object["content_sha256"],
-                False,
+                None,
+                None,
+                True,
             )
         ]
 
+        raw = canonical_json_bytes(release_object).decode("ascii")
+        upload_id = "a" * 64
+        object_sha256 = hashlib.sha256(raw.encode("ascii")).hexdigest()
         with connection.cursor() as cursor:
             cursor.execute(
-                f"PREPARE activation_contract (text, text) AS "
+                "INSERT INTO corpus.release_activation_upload_chunks ("
+                "upload_id, release_name, content_sha256, chunk_index, chunk_count, chunk_text"
+                ") VALUES (%s, %s, %s, 0, 1, %s)",
+                (
+                    upload_id,
+                    release_object["release"],
+                    release_object["content_sha256"],
+                    raw,
+                ),
+            )
+            cursor.execute(
+                f"PREPARE activation_contract (text, text, text, text) AS "
                 f"{supabase.ACTIVATE_RELEASE_QUERY}"
             )
             cursor.execute(
-                "EXECUTE activation_contract(%s, %s)",
-                (release_object["release"], release_object["content_sha256"]),
+                "EXECUTE activation_contract(%s, %s, %s, %s)",
+                (
+                    upload_id,
+                    release_object["release"],
+                    release_object["content_sha256"],
+                    object_sha256,
+                ),
             )
             result = cursor.fetchone()[0]
         assert result["active"] is True

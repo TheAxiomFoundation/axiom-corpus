@@ -2,16 +2,19 @@
 
 from __future__ import annotations
 
+import hashlib
 import heapq
 import json
 import os
 import re
+import secrets
 import subprocess
 import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from collections.abc import Iterable, Iterator, Mapping, Sequence
+from contextlib import suppress
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from pathlib import Path
@@ -24,7 +27,7 @@ from axiom_corpus.corpus.projection_digest import (
     encode_identifiers_projection,
 )
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope, validate_release_name
-from axiom_corpus.release.manifest import verify_release_object
+from axiom_corpus.release.manifest import canonical_json_bytes, verify_release_object
 
 DEFAULT_AXIOM_SUPABASE_URL = "https://swocpijqqahhuwtuahwc.supabase.co"
 DEFAULT_SERVICE_KEY_ENV = "SUPABASE_SERVICE_ROLE_KEY"
@@ -890,14 +893,7 @@ def fetch_released_scope_objects(
     }
 
 
-# Load the immutable object inside Postgres instead of sending its full artifact
-# inventory through the Management API. Publication has already staged this row,
-# and release_objects is protected by immutable identity triggers.
-_STAGED_RELEASE_OBJECT_QUERY = (
-    "SELECT objects.release_object FROM corpus.release_objects objects "
-    "WHERE objects.release_name = $1::text "
-    "AND objects.content_sha256 = $2::text"
-)
+_RELEASE_ACTIVATION_CHUNK_SIZE = 128 * 1024
 
 
 # Column list must exactly match corpus.preview_corpus_release_activation's
@@ -906,17 +902,68 @@ _STAGED_RELEASE_OBJECT_QUERY = (
 PREVIEW_ACTIVATION_QUERY = (
     "SELECT jurisdiction, document_class, current_release_name, "
     "current_content_sha256, changes "
-    "FROM corpus.preview_corpus_release_activation(("
-    f"{_STAGED_RELEASE_OBJECT_QUERY}"
-    "))"
+    "FROM corpus.preview_corpus_release_activation($1::jsonb)"
 )
 
 
 ACTIVATE_RELEASE_QUERY = (
-    "SELECT corpus.activate_corpus_release(("
-    f"{_STAGED_RELEASE_OBJECT_QUERY}"
+    "SELECT corpus.activate_corpus_release("
+    "corpus.load_release_activation_upload("
+    "$1::text, $2::text, $3::text, $4::text"
     ")) AS result"
 )
+
+
+STAGE_RELEASE_ACTIVATION_CHUNK_QUERY = (
+    "INSERT INTO corpus.release_activation_upload_chunks ("
+    "upload_id, release_name, content_sha256, chunk_index, chunk_count, chunk_text"
+    ") VALUES ($1::text, $2::text, $3::text, $4::integer, $5::integer, $6::text) "
+    "RETURNING chunk_index"
+)
+
+
+DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY = (
+    "DELETE FROM corpus.release_activation_upload_chunks "
+    "WHERE upload_id = $1::text"
+)
+
+
+DELETE_STALE_RELEASE_ACTIVATION_UPLOADS_QUERY = (
+    "DELETE FROM corpus.release_activation_upload_chunks "
+    "WHERE created_at < now() - interval '1 day'"
+)
+
+
+def apply_release_activation_upload_migration(
+    migration_sql: str,
+    *,
+    access_token: str,
+    supabase_url: str = DEFAULT_AXIOM_SUPABASE_URL,
+    expected_project_ref: str | None = None,
+) -> None:
+    """Install the private chunk transport used by protected activation."""
+
+    required_fragments = (
+        "CREATE TABLE IF NOT EXISTS corpus.release_activation_upload_chunks",
+        "CREATE OR REPLACE FUNCTION corpus.load_release_activation_upload",
+        "REVOKE ALL ON corpus.release_activation_upload_chunks",
+    )
+    if any(fragment not in migration_sql for fragment in required_fragments):
+        raise RuntimeError("release activation upload migration is incomplete")
+    project_ref = _project_ref_from_url(supabase_url)
+    if expected_project_ref is not None and project_ref != expected_project_ref:
+        raise RuntimeError(
+            f"refusing to migrate Supabase project {project_ref!r}: "
+            f"expected {expected_project_ref!r}"
+        )
+    rows = _management_api_post_json_with_curl(
+        f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
+        payload={"query": migration_sql, "read_only": False},
+        access_token=access_token,
+        timeout=120,
+    )
+    if rows != []:
+        raise RuntimeError(f"unexpected release activation migration response: {rows!r}")
 
 
 def preview_corpus_release_activation(
@@ -946,9 +993,20 @@ def preview_corpus_release_activation(
         f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
         payload={
             "query": PREVIEW_ACTIVATION_QUERY,
+            # The preview function consumes only these signed fields. Excluding
+            # artifact and validation inventories keeps this request read-only
+            # and bounded even for comprehensive releases.
             "parameters": [
-                str(release_object["release"]),
-                str(release_object["content_sha256"]),
+                json.dumps(
+                    {
+                        "release": release_object["release"],
+                        "content": {
+                            "scopes": release_object["content"]["scopes"],  # type: ignore[index]
+                        },
+                    },
+                    separators=(",", ":"),
+                    sort_keys=True,
+                )
             ],
             "read_only": True,
         },
@@ -991,19 +1049,36 @@ def activate_corpus_release(
             f"refusing to activate in Supabase project {project_ref!r}: "
             f"expected {expected_project_ref!r}"
         )
-    rows = _management_api_post_json_with_curl(
-        f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
-        payload={
-            "query": ACTIVATE_RELEASE_QUERY,
-            "parameters": [
-                str(release_object["release"]),
-                str(release_object["content_sha256"]),
-            ],
-            "read_only": False,
-        },
+    endpoint = f"https://api.supabase.com/v1/projects/{project_ref}/database/query"
+    upload_id, object_sha256 = _stage_release_activation_upload(
+        release_object,
+        endpoint=endpoint,
         access_token=access_token,
-        timeout=600,
     )
+    try:
+        rows = _management_api_post_json_with_curl(
+            endpoint,
+            payload={
+                "query": ACTIVATE_RELEASE_QUERY,
+                "parameters": [
+                    upload_id,
+                    str(release_object["release"]),
+                    str(release_object["content_sha256"]),
+                    object_sha256,
+                ],
+                "read_only": False,
+            },
+            access_token=access_token,
+            timeout=600,
+        )
+    except Exception:
+        with suppress(Exception):
+            _delete_release_activation_upload(
+                upload_id,
+                endpoint=endpoint,
+                access_token=access_token,
+            )
+        raise
     if (
         not isinstance(rows, list)
         or len(rows) != 1
@@ -1019,7 +1094,95 @@ def activate_corpus_release(
     if result.get("content_sha256") != release_object.get("content_sha256"):
         raise RuntimeError("activated release digest does not match the requested object")
     _require_complete_activation_scopes(result, release_object)
+    # Serving is already committed. Stale private chunks are harmless and can
+    # be removed by a later activation without misreporting this one.
+    with suppress(Exception):
+        _delete_release_activation_upload(
+            upload_id,
+            endpoint=endpoint,
+            access_token=access_token,
+        )
     return result
+
+
+def _stage_release_activation_upload(
+    release_object: Mapping[str, object],
+    *,
+    endpoint: str,
+    access_token: str,
+) -> tuple[str, str]:
+    raw = canonical_json_bytes(release_object).decode("ascii")
+    chunks = [
+        raw[offset : offset + _RELEASE_ACTIVATION_CHUNK_SIZE]
+        for offset in range(0, len(raw), _RELEASE_ACTIVATION_CHUNK_SIZE)
+    ]
+    upload_id = secrets.token_hex(32)
+    object_sha256 = hashlib.sha256(raw.encode("ascii")).hexdigest()
+    try:
+        stale_rows = _management_api_post_json_with_curl(
+            endpoint,
+            payload={
+                "query": DELETE_STALE_RELEASE_ACTIVATION_UPLOADS_QUERY,
+                "read_only": False,
+            },
+            access_token=access_token,
+            timeout=120,
+        )
+        if stale_rows != []:
+            raise RuntimeError(
+                f"unexpected stale release activation cleanup response: {stale_rows!r}"
+            )
+        for index, chunk in enumerate(chunks):
+            rows = _management_api_post_json_with_curl(
+                endpoint,
+                payload={
+                    "query": STAGE_RELEASE_ACTIVATION_CHUNK_QUERY,
+                    "parameters": [
+                        upload_id,
+                        str(release_object["release"]),
+                        str(release_object["content_sha256"]),
+                        index,
+                        len(chunks),
+                        chunk,
+                    ],
+                    "read_only": False,
+                },
+                access_token=access_token,
+                timeout=120,
+            )
+            if rows != [{"chunk_index": index}]:
+                raise RuntimeError(
+                    f"unexpected release activation chunk response at index {index}: {rows!r}"
+                )
+    except Exception:
+        with suppress(Exception):
+            _delete_release_activation_upload(
+                upload_id,
+                endpoint=endpoint,
+                access_token=access_token,
+            )
+        raise
+    return upload_id, object_sha256
+
+
+def _delete_release_activation_upload(
+    upload_id: str,
+    *,
+    endpoint: str,
+    access_token: str,
+) -> None:
+    rows = _management_api_post_json_with_curl(
+        endpoint,
+        payload={
+            "query": DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY,
+            "parameters": [upload_id],
+            "read_only": False,
+        },
+        access_token=access_token,
+        timeout=120,
+    )
+    if rows != []:
+        raise RuntimeError(f"unexpected release activation upload cleanup response: {rows!r}")
 
 
 def _require_complete_activation_scopes(
