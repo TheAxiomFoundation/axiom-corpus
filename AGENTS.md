@@ -27,7 +27,7 @@ pipeline under `src/axiom_corpus/corpus/` for new work.
 - Pick one jurisdiction at a time from
   `manifests/state-statute-agent-queue.yaml`.
 - Add or repair one source-first adapter, then wire it through
-  `extract-state-statutes-batch` or a dedicated CLI command.
+  `extract-state-statutes` or a dedicated CLI command.
 - A successful state statute task writes all four scoped artifacts:
   `sources/`, `inventory/`, `provisions/`, and `coverage/`.
 - Coverage must be complete before a state is proposed for release promotion.
