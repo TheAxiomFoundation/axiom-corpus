@@ -1014,6 +1014,112 @@ def test_service_role_cannot_submit_a_signature_shaped_invalid_object(
         assert _active_pointer(connection) is None
 
 
+def test_service_role_cannot_access_release_activation_uploads(clean_postgres: str) -> None:
+    with closing(psycopg2.connect(clean_postgres)) as connection, connection.cursor() as cursor:
+        for privilege in ("SELECT", "INSERT", "UPDATE", "DELETE"):
+            cursor.execute(
+                "SELECT has_table_privilege("
+                "'service_role', 'corpus.release_activation_upload_chunks', %s)",
+                (privilege,),
+            )
+            assert cursor.fetchone()[0] is False
+        cursor.execute(
+            "SELECT has_function_privilege("
+            "'service_role', "
+            "'corpus.load_release_activation_upload(text,text,text,text)', "
+            "'EXECUTE')"
+        )
+        assert cursor.fetchone()[0] is False
+
+        cursor.execute("SET ROLE service_role")
+        denied_statements = (
+            "SELECT * FROM corpus.release_activation_upload_chunks",
+            (
+                "INSERT INTO corpus.release_activation_upload_chunks ("
+                "upload_id, release_name, content_sha256, chunk_index, chunk_count, chunk_text"
+                ") VALUES ('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', "
+                "'denied-release', "
+                "'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', "
+                "0, 1, '{}')"
+            ),
+            (
+                "SELECT corpus.load_release_activation_upload("
+                "'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', "
+                "'denied-release', "
+                "'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', "
+                "'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')"
+            ),
+        )
+        for statement in denied_statements:
+            cursor.execute("SAVEPOINT privilege_check")
+            with pytest.raises(errors.InsufficientPrivilege):
+                cursor.execute(statement)
+            cursor.execute("ROLLBACK TO SAVEPOINT privilege_check")
+
+
+@pytest.mark.parametrize(
+    ("fault", "message"),
+    [
+        ("missing", "upload is incomplete"),
+        ("inconsistent-count", "upload is incomplete"),
+        ("digest", "object digest mismatch"),
+        ("identity", "upload identity mismatch"),
+    ],
+)
+def test_release_activation_upload_rejects_corruption(
+    clean_postgres: str,
+    fault: str,
+    message: str,
+) -> None:
+    identity = _scope_identity(f"upload-{fault}")
+    with closing(psycopg2.connect(clean_postgres)) as connection:
+        _seed_scope(connection, identity)
+        release_object = _release_object(
+            f"upload-{fault}-release",
+            _scope_evidence(connection, identity),
+        )
+        upload_id = hashlib.sha256(fault.encode()).hexdigest()
+        row_release = str(release_object["release"])
+        content_sha256 = str(release_object["content_sha256"])
+        materialized = copy.deepcopy(release_object)
+        if fault == "identity":
+            materialized["release"] = "other-release"
+        raw = canonical_json_bytes(materialized).decode("ascii")
+        object_sha256 = hashlib.sha256(raw.encode("ascii")).hexdigest()
+
+        if fault == "missing":
+            chunks = [(0, 2, raw)]
+        elif fault == "inconsistent-count":
+            midpoint = len(raw) // 2
+            chunks = [(0, 2, raw[:midpoint]), (1, 3, raw[midpoint:])]
+        else:
+            chunks = [(0, 1, raw)]
+        if fault == "digest":
+            object_sha256 = "0" * 64
+
+        with connection.cursor() as cursor:
+            for chunk_index, chunk_count, chunk_text in chunks:
+                cursor.execute(
+                    "INSERT INTO corpus.release_activation_upload_chunks ("
+                    "upload_id, release_name, content_sha256, "
+                    "chunk_index, chunk_count, chunk_text"
+                    ") VALUES (%s, %s, %s, %s, %s, %s)",
+                    (
+                        upload_id,
+                        row_release,
+                        content_sha256,
+                        chunk_index,
+                        chunk_count,
+                        chunk_text,
+                    ),
+                )
+            with pytest.raises(errors.RaiseException, match=message):
+                cursor.execute(
+                    "SELECT corpus.load_release_activation_upload(%s, %s, %s, %s)",
+                    (upload_id, row_release, content_sha256, object_sha256),
+                )
+
+
 @pytest.mark.parametrize(
     "table",
     ["provisions", "navigation_nodes", "release_scopes"],

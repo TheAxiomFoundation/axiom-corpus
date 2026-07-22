@@ -1071,38 +1071,29 @@ def activate_corpus_release(
             access_token=access_token,
             timeout=600,
         )
-    except Exception:
+        if (
+            not isinstance(rows, list)
+            or len(rows) != 1
+            or not isinstance(rows[0], dict)
+            or set(rows[0]) != {"result"}
+        ):
+            raise RuntimeError(f"unexpected corpus activation query response: {rows!r}")
+        result = rows[0]["result"]
+        if not isinstance(result, dict) or result.get("active") is not True:
+            raise RuntimeError(f"unexpected corpus activation response: {result!r}")
+        if result.get("release") != release_object.get("release"):
+            raise RuntimeError("activated release name does not match the requested object")
+        if result.get("content_sha256") != release_object.get("content_sha256"):
+            raise RuntimeError("activated release digest does not match the requested object")
+        _require_complete_activation_scopes(result, release_object)
+        return result
+    finally:
         with suppress(Exception):
             _delete_release_activation_upload(
                 upload_id,
                 endpoint=endpoint,
                 access_token=access_token,
             )
-        raise
-    if (
-        not isinstance(rows, list)
-        or len(rows) != 1
-        or not isinstance(rows[0], dict)
-        or set(rows[0]) != {"result"}
-    ):
-        raise RuntimeError(f"unexpected corpus activation query response: {rows!r}")
-    result = rows[0]["result"]
-    if not isinstance(result, dict) or result.get("active") is not True:
-        raise RuntimeError(f"unexpected corpus activation response: {result!r}")
-    if result.get("release") != release_object.get("release"):
-        raise RuntimeError("activated release name does not match the requested object")
-    if result.get("content_sha256") != release_object.get("content_sha256"):
-        raise RuntimeError("activated release digest does not match the requested object")
-    _require_complete_activation_scopes(result, release_object)
-    # Serving is already committed. Stale private chunks are harmless and can
-    # be removed by a later activation without misreporting this one.
-    with suppress(Exception):
-        _delete_release_activation_upload(
-            upload_id,
-            endpoint=endpoint,
-            access_token=access_token,
-        )
-    return result
 
 
 def _stage_release_activation_upload(

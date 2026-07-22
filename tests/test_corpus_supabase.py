@@ -2177,7 +2177,10 @@ def test_activate_corpus_release_rejects_malformed_rpc_response(
 ):
     import axiom_corpus.corpus.supabase as supabase
 
+    queries = []
+
     def fake_post(_url, *, payload, **_kwargs):
+        queries.append(payload["query"])
         if payload["query"] == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
             return [{"chunk_index": payload["parameters"][3]}]
         if payload["query"] == ACTIVATE_RELEASE_QUERY:
@@ -2194,6 +2197,7 @@ def test_activate_corpus_release_rejects_malformed_rpc_response(
             public_key=public_key,
             supabase_url="https://example.supabase.co",
         )
+    assert supabase.DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY in queries
 
 
 def test_delete_supabase_provisions_scope_fetches_ids_then_deletes_chunks(monkeypatch):
