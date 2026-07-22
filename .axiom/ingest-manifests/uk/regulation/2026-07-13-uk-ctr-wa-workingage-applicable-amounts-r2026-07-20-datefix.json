@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-wa-workingage-applicable-amounts-r2026-07-20-datefix.json",
+      "sha256": "83150c3dc6ce21c03c4e9ff9eb506fc29e72e5e8ce92ccc53b33a06cf786f2ef"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-wa-workingage-applicable-amounts-r2026-07-20-datefix.json",
+      "sha256": "383a02dcd912497fa770bb6db4a98a7227e1b60fd3da5410f3028574f6a3d3a1"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-wa-workingage-applicable-amounts-r2026-07-20-datefix.jsonl",
+      "sha256": "5a645fa8e4bf8c7474d195f103e89cce23328c776273ca95eb8816a4d217f40e"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-workingage-applicable-amounts-r2026-07-20-datefix/wsi/2013/3029/schedule-7-paragraph-1.xml",
+      "sha256": "acbe1afcebc2cff2848d033b0d03767a60ecfc0f54e39f04be69f00947a5a1df"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "f2c69b728e394b3ca7a93506f2de6460a98cc3b0",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:46.890650+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "trtcirQ/YAo1OifTF52m//yg8Wt6npIgFPYGeTZq2dXwhFLMXTu7BHvBjFD2zoy9fj2T1S2q1YeD53BwrLOoCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-wa-workingage-applicable-amounts-r2026-07-20-datefix"
+}
