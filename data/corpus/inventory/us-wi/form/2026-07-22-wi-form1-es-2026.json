@@ -28,7 +28,8 @@
           "spouse_age_65_or_over_joint_return_addition": "$250",
           "spouse_on_joint_return": "$700",
           "taxpayer": "$700",
-          "taxpayer_age_65_or_over_addition": "$250"
+          "taxpayer_age_65_or_over_addition": "$250",
+          "taxpayer_eligibility": "The taxpayer exemption is not available if the taxpayer can be claimed as a dependent on someone else's return."
         },
         "kind": "document",
         "policyengine_parity": "not_asserted",
@@ -41,19 +42,19 @@
         "source_status": "current_official_estimated_tax_instructions",
         "standard_deduction_head_of_household": {
           "filing_status": "head_of_household",
-          "schedule": "Wisconsin income $0-$20,119: $18,030; $20,119-$58,827: $18,030 less 22.515% of the amount over $20,120; $58,827-$136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
+          "schedule": "Wisconsin income not over $20,119: $18,030; over $20,119 but not over $58,827: $18,030 less 22.515% of the amount over $20,120; over $58,827 but not over $136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
         },
         "standard_deduction_married_filing_jointly": {
           "filing_status": "married_filing_jointly",
-          "schedule": "Wisconsin income $0-$29,039: $25,840; $29,039-$159,690: $25,840 less 19.778% of the amount over $29,040; over $159,690: $0."
+          "schedule": "Wisconsin income not over $29,039: $25,840; over $29,039 but not over $159,690: $25,840 less 19.778% of the amount over $29,040; over $159,690: $0."
         },
         "standard_deduction_married_filing_separately": {
           "filing_status": "married_filing_separately",
-          "schedule": "Wisconsin income $0-$13,779: $12,280; $13,779-$75,869: $12,280 less 19.778% of the amount over $13,780; over $75,869: $0."
+          "schedule": "Wisconsin income not over $13,779: $12,280; over $13,779 but not over $75,869: $12,280 less 19.778% of the amount over $13,780; over $75,869: $0."
         },
         "standard_deduction_single": {
           "filing_status": "single",
-          "schedule": "Wisconsin income $0-$20,119: $13,960; $20,119-$136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
+          "schedule": "Wisconsin income not over $20,119: $13,960; over $20,119 but not over $136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
         },
         "tax_year": "2026",
         "title": "2026 Form 1-ES Instructions \u2013 Estimated Income Tax for Individuals, Estates, and Trusts"
@@ -91,7 +92,8 @@
           "spouse_age_65_or_over_joint_return_addition": "$250",
           "spouse_on_joint_return": "$700",
           "taxpayer": "$700",
-          "taxpayer_age_65_or_over_addition": "$250"
+          "taxpayer_age_65_or_over_addition": "$250",
+          "taxpayer_eligibility": "The taxpayer exemption is not available if the taxpayer can be claimed as a dependent on someone else's return."
         },
         "kind": "document",
         "page_count": 3,
@@ -105,19 +107,19 @@
         "source_status": "current_official_estimated_tax_instructions",
         "standard_deduction_head_of_household": {
           "filing_status": "head_of_household",
-          "schedule": "Wisconsin income $0-$20,119: $18,030; $20,119-$58,827: $18,030 less 22.515% of the amount over $20,120; $58,827-$136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
+          "schedule": "Wisconsin income not over $20,119: $18,030; over $20,119 but not over $58,827: $18,030 less 22.515% of the amount over $20,120; over $58,827 but not over $136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
         },
         "standard_deduction_married_filing_jointly": {
           "filing_status": "married_filing_jointly",
-          "schedule": "Wisconsin income $0-$29,039: $25,840; $29,039-$159,690: $25,840 less 19.778% of the amount over $29,040; over $159,690: $0."
+          "schedule": "Wisconsin income not over $29,039: $25,840; over $29,039 but not over $159,690: $25,840 less 19.778% of the amount over $29,040; over $159,690: $0."
         },
         "standard_deduction_married_filing_separately": {
           "filing_status": "married_filing_separately",
-          "schedule": "Wisconsin income $0-$13,779: $12,280; $13,779-$75,869: $12,280 less 19.778% of the amount over $13,780; over $75,869: $0."
+          "schedule": "Wisconsin income not over $13,779: $12,280; over $13,779 but not over $75,869: $12,280 less 19.778% of the amount over $13,780; over $75,869: $0."
         },
         "standard_deduction_single": {
           "filing_status": "single",
-          "schedule": "Wisconsin income $0-$20,119: $13,960; $20,119-$136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
+          "schedule": "Wisconsin income not over $20,119: $13,960; over $20,119 but not over $136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
         },
         "tax_year": "2026",
         "title": "2026 Form 1-ES Instructions \u2013 Estimated Income Tax for Individuals, Estates, and Trusts"
