@@ -120,3 +120,11 @@ UV_CACHE_DIR=/tmp/uv-cache uv run python scripts/activate_release.py \
 
 Serving follows the per-scope map; only the pairs this release carries move, and
 each takeover is recorded in `corpus.scope_activation_history`.
+
+The protected workflow keeps the preview request bounded by sending only the
+verified release name and signed scope evidence. After approval it installs the
+idempotent private upload transport, sends the canonical release object in
+bounded chunks, and requires PostgreSQL to verify the reconstructed object hash
+and identity before entering the existing atomic activation transaction. The
+private chunks are removed after activation and are never readable by public or
+staging roles.

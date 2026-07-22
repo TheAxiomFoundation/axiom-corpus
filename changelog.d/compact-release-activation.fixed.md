@@ -1,0 +1,1 @@
+Send compact signed scope evidence for activation previews and upload verified release objects in bounded private chunks before atomic activation, avoiding Management API request-size failures for comprehensive releases.
