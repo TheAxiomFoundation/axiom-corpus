@@ -5,6 +5,7 @@ from axiom_corpus.corpus.state_adapters.louisiana import (
     LOUISIANA_ROOT_TOC_SOURCE_FORMAT,
     LOUISIANA_TITLE_TOC_SOURCE_FORMAT,
     _RecordedSource,
+    _status,
     extract_louisiana_revised_statutes,
     parse_louisiana_root,
     parse_louisiana_section_page,
@@ -143,6 +144,32 @@ def test_parse_louisiana_indexes_and_section_page():
     assert reserved.heading == "[Reserved.]"
     assert reserved.body is None
     assert reserved.status == "reserved"
+
+
+def test_louisiana_status_only_tombstones_whole_sections():
+    assert _status("Repealed by Acts 2024, No. 11, §4", None, []) == "repealed"
+    assert (
+        _status("§§365, 366 Repealed by Acts 1982, No. 415, §1", None, [])
+        == "repealed"
+    )
+    assert _status("§§ 2751 to 2759 [Expired]", None, []) == "expired"
+    assert _status("[Expired]", None, []) == "expired"
+    assert (
+        _status(
+            "Rates of tax",
+            "A. The tax rate is three percent. B. Repealed by Acts 2024, No. 11.",
+            ["Acts 2024, No. 11, §§4."],
+        )
+        is None
+    )
+    assert (
+        _status(
+            "Individual returns",
+            "A. Returns are required. B. This Subsection expired on January 1, 2025.",
+            [],
+        )
+        is None
+    )
 
 
 def test_extract_louisiana_revised_statutes_from_source_dir_writes_complete_artifacts(
