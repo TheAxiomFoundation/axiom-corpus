@@ -1,0 +1,58 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-22-rulespec-title-7-consolidated.json",
+      "sha256": "7246704930712eabb6c3849fbc411b674fe374a39e94fb1121ebd5684943d87d"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-22-rulespec-title-7-consolidated.json",
+      "sha256": "8cf2b6bfc8498f1988d5ab2b6d4c6ee9617f2572c999d9027c829545147a6549"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-22-rulespec-title-7-consolidated.jsonl",
+      "sha256": "88a56c9032cca614208f3d1f324b15417e3bbee3c26ff3ff3c1ad67d64b38213"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-22-rulespec-title-7-consolidated/2026-07-17-hr6644-dependency-closure-title-7-title-7/uslm/usc7.xml",
+      "sha256": "03564ccd721daff05f0f285704b542d80fd0d2df8967c6c2b6636fcc287547e9"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-22-rulespec-title-7-consolidated/2026-07-21-snap-chapter-51-title-7-title-7/uslm/usc7.xml",
+      "sha256": "1e85a2d4a9e3068671d2f444ad7faeccc9ed0e5f232ca6f1504dbdfc0a25a3d3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "773b40c9ecadfda1a6acbfa9d7b6c464ee08dc03",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "PYTHONPATH=src uv run python scripts/consolidate_release_scopes.py --base data/corpus --jurisdiction us --document-class statute --source-version 2026-07-17-hr6644-dependency-closure-title-7-title-7 --source-version 2026-07-21-snap-chapter-51-title-7-title-7 --target-version 2026-07-22-rulespec-title-7-consolidated --prefer-all-duplicates-from 2026-07-21-snap-chapter-51-title-7-title-7"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 862,
+    "missing_count": 0,
+    "provision_count": 862,
+    "source_count": 862
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-22T00:47:38.365369+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-22-us-rulespec-release.md",
+      "sha256": "e52559434b4db9231c7ba38aee20e17abe1c2e0067d0505b309a1a67126395ca"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "1f0atYcW2x08XyU+Duo5YlCl/ZUPJcOTZlB5ZIkOaSqG3iO/s5PrdAtYQCkER59YPoGUCwguUn8w6K7O31FuCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-rulespec-title-7-consolidated"
+}
