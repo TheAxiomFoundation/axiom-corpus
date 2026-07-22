@@ -26,13 +26,15 @@ The extraction retains the PDF's statutory-year annotations instead of
 rewriting its table. Coverage is complete at five inventory citations and five
 normalized provisions.
 
-The existing `us-mn/statute/290.06` provision in statute scope
-`2026-07-13-recovery` remains the authority for the four rates, schedule
-structure, and annual indexing rule. This guidance intake supplies only the
-Department's resulting tax-year-2026 threshold amounts. It does not infer or
-certify taxable income, tax-table substitution, alternative or net investment
-income taxes, credits, nonresident allocation, rounding, RuleSpec semantics,
-PolicyEngine parity, or final-return liability.
+The existing body-bearing `us-mn/statute/290.06/block-12` provision in statute
+scope `2026-07-13-recovery` remains the authority for the four rates and
+schedule structure. The adjacent `us-mn/statute/290.06/block-13` provision is
+the authority for annual indexing, rounding, and the married-separate bracket
+rule. This guidance intake supplies only the Department's resulting
+tax-year-2026 threshold amounts. It does not infer or certify taxable income,
+tax-table substitution, alternative or net investment income taxes, credits,
+nonresident allocation, RuleSpec semantics, PolicyEngine parity, or
+final-return liability.
 
 No press release or mutable live page is retained. The year-specific official
 PDF is the sole source artifact in this scope.
