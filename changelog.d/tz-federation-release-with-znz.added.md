@@ -1,0 +1,1 @@
+Cut tz-rulespec-2026-07-21: the mainland Tanzania scopes plus the Zanzibar (tz-znz) ZANMOD tranche-1 scope in one federation-style release (rulespec-us precedent), re-signed under the rotated release key.

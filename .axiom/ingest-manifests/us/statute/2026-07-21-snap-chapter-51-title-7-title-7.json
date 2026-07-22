@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/statute/2026-07-21-snap-chapter-51-title-7-title-7.json",
+      "sha256": "0b2a1f107c54d023ef251ae0bf26ccb26ffe0b140ac747e6104b058cda1ba03b"
+    },
+    {
+      "path": "data/corpus/inventory/us/statute/2026-07-21-snap-chapter-51-title-7-title-7.json",
+      "sha256": "09c7ab4ec9b763b824a90e40e62da67df29a9de178cd722de2bd64c2d1b0f50f"
+    },
+    {
+      "path": "data/corpus/provisions/us/statute/2026-07-21-snap-chapter-51-title-7-title-7.jsonl",
+      "sha256": "8e47350b82ff737a75195fad710f07b97a7d10c86be749a6c3aff9e928add686"
+    },
+    {
+      "path": "data/corpus/sources/us/statute/2026-07-21-snap-chapter-51-title-7-title-7/uslm/usc7.xml",
+      "sha256": "1e85a2d4a9e3068671d2f444ad7faeccc9ed0e5f232ca6f1504dbdfc0a25a3d3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "5b9e638b71f15e5f0c4d2abab53030c73fb50e38",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-usc complete 7 U.S.C. Chapter 51 from official OLRC USLM Online@119-100"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 827,
+    "missing_count": 0,
+    "provision_count": 827,
+    "source_count": 827
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-22T00:03:38.319390+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-us-snap-chapter-51.md",
+      "sha256": "f8c8ddbf34a3d70874ed76ff54d1e72b3de7ae8d1e9c26550e6b5e4c5994204b"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lqsHlp0iVvCAHo870VLyu+ZuFdG74DDRdD+Y1qusMRaIr6F1MyDDusuOFVWFay+Ld18s/g2TmUz7/sv92NN5BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-snap-chapter-51-title-7-title-7"
+}

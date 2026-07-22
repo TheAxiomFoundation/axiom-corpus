@@ -32,7 +32,7 @@ from axiom_corpus.corpus.projection_digest import (
     provision_projection_sha256,
 )
 from axiom_corpus.corpus.supabase import iter_supabase_rows
-from axiom_corpus.release.manifest import verify_release_object
+from axiom_corpus.release.manifest import canonical_json_bytes, verify_release_object
 
 psycopg2 = pytest.importorskip("psycopg2")
 errors = pytest.importorskip("psycopg2.errors")
@@ -56,6 +56,10 @@ PROFILED_RELEASE_MIGRATION = (
 COMPACT_RELEASE_OBJECTS_MIGRATION = (
     Path(__file__).resolve().parents[1]
     / "supabase/migrations/20260721102000_compact_released_scope_objects.sql"
+)
+CHUNKED_ACTIVATION_MIGRATION = (
+    Path(__file__).resolve().parents[1]
+    / "supabase/migrations/20260722021000_chunked_release_activation_upload.sql"
 )
 REQUIRED_ROLES = ("anon", "authenticated", "service_role", "postgres")
 TEST_SIGNING_KEY = Ed25519PrivateKey.from_private_bytes(bytes(range(32)))
@@ -334,6 +338,7 @@ def postgres_dsn() -> Iterator[str]:
                     cursor.execute(SCOPE_MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(PROFILED_RELEASE_MIGRATION.read_text(encoding="utf-8"))
                     cursor.execute(COMPACT_RELEASE_OBJECTS_MIGRATION.read_text(encoding="utf-8"))
+                    cursor.execute(CHUNKED_ACTIVATION_MIGRATION.read_text(encoding="utf-8"))
                 connection.commit()
             yield dsn
         finally:
@@ -358,6 +363,7 @@ def _reset_database(dsn: str) -> None:
               corpus.scope_activation_history,
               corpus.active_scope_pointer,
               corpus.active_release_pointer,
+              corpus.release_activation_upload_chunks,
               corpus.release_scopes,
               corpus.release_objects,
               corpus.provisions,
@@ -1008,6 +1014,112 @@ def test_service_role_cannot_submit_a_signature_shaped_invalid_object(
         assert _active_pointer(connection) is None
 
 
+def test_service_role_cannot_access_release_activation_uploads(clean_postgres: str) -> None:
+    with closing(psycopg2.connect(clean_postgres)) as connection, connection.cursor() as cursor:
+        for privilege in ("SELECT", "INSERT", "UPDATE", "DELETE"):
+            cursor.execute(
+                "SELECT has_table_privilege("
+                "'service_role', 'corpus.release_activation_upload_chunks', %s)",
+                (privilege,),
+            )
+            assert cursor.fetchone()[0] is False
+        cursor.execute(
+            "SELECT has_function_privilege("
+            "'service_role', "
+            "'corpus.load_release_activation_upload(text,text,text,text)', "
+            "'EXECUTE')"
+        )
+        assert cursor.fetchone()[0] is False
+
+        cursor.execute("SET ROLE service_role")
+        denied_statements = (
+            "SELECT * FROM corpus.release_activation_upload_chunks",
+            (
+                "INSERT INTO corpus.release_activation_upload_chunks ("
+                "upload_id, release_name, content_sha256, chunk_index, chunk_count, chunk_text"
+                ") VALUES ('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', "
+                "'denied-release', "
+                "'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', "
+                "0, 1, '{}')"
+            ),
+            (
+                "SELECT corpus.load_release_activation_upload("
+                "'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', "
+                "'denied-release', "
+                "'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb', "
+                "'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc')"
+            ),
+        )
+        for statement in denied_statements:
+            cursor.execute("SAVEPOINT privilege_check")
+            with pytest.raises(errors.InsufficientPrivilege):
+                cursor.execute(statement)
+            cursor.execute("ROLLBACK TO SAVEPOINT privilege_check")
+
+
+@pytest.mark.parametrize(
+    ("fault", "message"),
+    [
+        ("missing", "upload is incomplete"),
+        ("inconsistent-count", "upload is incomplete"),
+        ("digest", "object digest mismatch"),
+        ("identity", "upload identity mismatch"),
+    ],
+)
+def test_release_activation_upload_rejects_corruption(
+    clean_postgres: str,
+    fault: str,
+    message: str,
+) -> None:
+    identity = _scope_identity(f"upload-{fault}")
+    with closing(psycopg2.connect(clean_postgres)) as connection:
+        _seed_scope(connection, identity)
+        release_object = _release_object(
+            f"upload-{fault}-release",
+            _scope_evidence(connection, identity),
+        )
+        upload_id = hashlib.sha256(fault.encode()).hexdigest()
+        row_release = str(release_object["release"])
+        content_sha256 = str(release_object["content_sha256"])
+        materialized = copy.deepcopy(release_object)
+        if fault == "identity":
+            materialized["release"] = "other-release"
+        raw = canonical_json_bytes(materialized).decode("ascii")
+        object_sha256 = hashlib.sha256(raw.encode("ascii")).hexdigest()
+
+        if fault == "missing":
+            chunks = [(0, 2, raw)]
+        elif fault == "inconsistent-count":
+            midpoint = len(raw) // 2
+            chunks = [(0, 2, raw[:midpoint]), (1, 3, raw[midpoint:])]
+        else:
+            chunks = [(0, 1, raw)]
+        if fault == "digest":
+            object_sha256 = "0" * 64
+
+        with connection.cursor() as cursor:
+            for chunk_index, chunk_count, chunk_text in chunks:
+                cursor.execute(
+                    "INSERT INTO corpus.release_activation_upload_chunks ("
+                    "upload_id, release_name, content_sha256, "
+                    "chunk_index, chunk_count, chunk_text"
+                    ") VALUES (%s, %s, %s, %s, %s, %s)",
+                    (
+                        upload_id,
+                        row_release,
+                        content_sha256,
+                        chunk_index,
+                        chunk_count,
+                        chunk_text,
+                    ),
+                )
+            with pytest.raises(errors.RaiseException, match=message):
+                cursor.execute(
+                    "SELECT corpus.load_release_activation_upload(%s, %s, %s, %s)",
+                    (upload_id, row_release, content_sha256, object_sha256),
+                )
+
+
 @pytest.mark.parametrize(
     "table",
     ["provisions", "navigation_nodes", "release_scopes"],
@@ -1430,13 +1542,21 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
         release_object = _release_object(
             "preview-contract-release", _scope_evidence(connection, identity)
         )
-        _activate(connection, release_object)
-        connection.commit()
         with connection.cursor() as cursor:
             cursor.execute(
                 f"PREPARE preview_contract (jsonb) AS {supabase.PREVIEW_ACTIVATION_QUERY}"
             )
-            cursor.execute("EXECUTE preview_contract(%s)", (Json(dict(release_object)),))
+            cursor.execute(
+                "EXECUTE preview_contract(%s)",
+                (
+                    Json(
+                        {
+                            "release": release_object["release"],
+                            "content": {"scopes": release_object["content"]["scopes"]},
+                        }
+                    ),
+                ),
+            )
             columns = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
         assert columns == [
@@ -1446,17 +1566,50 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
             "current_content_sha256",
             "changes",
         ]
-        # Previewing the already-active release: current occupant is itself,
-        # changes is False.
+        # This is a first activation: the compact preview does not require a
+        # pre-existing release_objects row and serving remains untouched.
         assert rows == [
             (
                 identity["jurisdiction"],
                 "statute",
-                "preview-contract-release",
-                release_object["content_sha256"],
-                False,
+                None,
+                None,
+                True,
             )
         ]
+
+        raw = canonical_json_bytes(release_object).decode("ascii")
+        upload_id = "a" * 64
+        object_sha256 = hashlib.sha256(raw.encode("ascii")).hexdigest()
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "INSERT INTO corpus.release_activation_upload_chunks ("
+                "upload_id, release_name, content_sha256, chunk_index, chunk_count, chunk_text"
+                ") VALUES (%s, %s, %s, 0, 1, %s)",
+                (
+                    upload_id,
+                    release_object["release"],
+                    release_object["content_sha256"],
+                    raw,
+                ),
+            )
+            cursor.execute(
+                f"PREPARE activation_contract (text, text, text, text) AS "
+                f"{supabase.ACTIVATE_RELEASE_QUERY}"
+            )
+            cursor.execute(
+                "EXECUTE activation_contract(%s, %s, %s, %s)",
+                (
+                    upload_id,
+                    release_object["release"],
+                    release_object["content_sha256"],
+                    object_sha256,
+                ),
+            )
+            result = cursor.fetchone()[0]
+        assert result["active"] is True
+        assert result["release"] == release_object["release"]
+        assert result["content_sha256"] == release_object["content_sha256"]
 
 
 def test_pointer_membership_trigger_rejects_an_uncovered_pair(clean_postgres: str) -> None:

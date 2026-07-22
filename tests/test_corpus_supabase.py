@@ -16,6 +16,8 @@ from axiom_corpus.corpus.releases import (
     ReleaseScope,
 )
 from axiom_corpus.corpus.supabase import (
+    ACTIVATE_RELEASE_QUERY,
+    PREVIEW_ACTIVATION_QUERY,
     StagedScopeEvidence,
     activate_corpus_release,
     delete_supabase_provisions_scope,
@@ -26,6 +28,7 @@ from axiom_corpus.corpus.supabase import (
     fetch_staged_release_scope_evidence,
     iter_supabase_rows,
     load_provisions_to_supabase,
+    preview_corpus_release_activation,
     provision_to_supabase_row,
     refresh_corpus_analytics,
     resolve_service_key,
@@ -35,6 +38,7 @@ from axiom_corpus.corpus.supabase import (
 from axiom_corpus.release.manifest import (
     ReleaseManifestError,
     build_unsigned_release_object,
+    canonical_json_bytes,
     content_addressed_r2_key,
     sign_release_object,
 )
@@ -1480,35 +1484,37 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     import axiom_corpus.corpus.supabase as supabase
 
     release_object, public_key = _signed_release_object()
-    captured = {}
+    captured = []
 
     def fake_run(command, *, input, capture_output, check, timeout):
-        captured["command"] = command
-        captured["payload"] = json.loads(input)
-        captured["capture_output"] = capture_output
-        captured["check"] = check
-        captured["timeout"] = timeout
+        payload = json.loads(input)
+        captured.append((command, payload, capture_output, check, timeout))
+        query = payload["query"]
+        if query == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
+            response = [{"chunk_index": payload["parameters"][3]}]
+        elif query == ACTIVATE_RELEASE_QUERY:
+            response = [
+                {
+                    "result": {
+                        "active": True,
+                        "release": "nz-rulespec-v1",
+                        "content_sha256": release_object["content_sha256"],
+                        "scope_count": 1,
+                        "scopes": {
+                            "activated": [
+                                {"jurisdiction": "nz", "document_class": "statute"}
+                            ],
+                            "reaffirmed": [],
+                        },
+                    }
+                }
+            ]
+        else:
+            response = []
         return supabase.subprocess.CompletedProcess(
             command,
             0,
-            stdout=json.dumps(
-                [
-                    {
-                        "result": {
-                            "active": True,
-                            "release": "nz-rulespec-v1",
-                            "content_sha256": release_object["content_sha256"],
-                            "scope_count": 1,
-                            "scopes": {
-                                "activated": [
-                                    {"jurisdiction": "nz", "document_class": "statute"}
-                                ],
-                                "reaffirmed": [],
-                            },
-                        }
-                    }
-                ]
-            ).encode(),
+            stdout=json.dumps(response).encode(),
             stderr=b"",
         )
 
@@ -1522,21 +1528,168 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     )
 
     assert result["active"] is True
-    command = captured["command"]
-    assert command[0] == "curl"
-    assert "--fail-with-body" in command
-    assert "--data-binary" in command
-    assert command[-1] == "https://api.supabase.com/v1/projects/example/database/query"
-    assert "Authorization: Bearer management" in command
-    assert "User-Agent: axiom-corpus/0.1" in command
-    assert captured["payload"] == {
-        "query": "SELECT corpus.activate_corpus_release($1::jsonb) AS result",
-        "parameters": [json.dumps(release_object, sort_keys=True)],
-        "read_only": False,
+    assert len(captured) == 4
+    for command, _payload, capture_output, check, _timeout in captured:
+        assert command[0] == "curl"
+        assert "--fail-with-body" in command
+        assert "--data-binary" in command
+        assert command[-1] == "https://api.supabase.com/v1/projects/example/database/query"
+        assert "Authorization: Bearer management" in command
+        assert "User-Agent: axiom-corpus/0.1" in command
+        assert capture_output is True
+        assert check is False
+
+    staged = [
+        payload
+        for _command, payload, _capture, _check, _timeout in captured
+        if payload["query"] == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY
+    ]
+    assert len(staged) == 1
+    assert staged[0]["parameters"][1:3] == [
+        "nz-rulespec-v1",
+        release_object["content_sha256"],
+    ]
+    assert staged[0]["parameters"][3:5] == [0, 1]
+    assert staged[0]["parameters"][5] == canonical_json_bytes(release_object).decode("ascii")
+
+    activation = next(
+        payload
+        for _command, payload, _capture, _check, _timeout in captured
+        if payload["query"] == ACTIVATE_RELEASE_QUERY
+    )
+    assert activation["parameters"][1:3] == [
+        "nz-rulespec-v1",
+        release_object["content_sha256"],
+    ]
+    assert activation["read_only"] is False
+
+
+def test_preview_corpus_release_activation_sends_compact_verified_identity(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    captured = {}
+
+    def fake_post(url, *, payload, access_token, timeout):
+        captured.update(
+            url=url,
+            payload=payload,
+            access_token=access_token,
+            timeout=timeout,
+        )
+        return []
+
+    monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
+
+    assert preview_corpus_release_activation(
+        release_object,
+        access_token="management",
+        public_key=public_key,
+        supabase_url="https://example.supabase.co",
+    ) == []
+
+    assert captured["payload"]["query"] == PREVIEW_ACTIVATION_QUERY
+    assert captured["payload"]["read_only"] is True
+    preview_object = json.loads(captured["payload"]["parameters"][0])
+    assert preview_object == {
+        "release": "nz-rulespec-v1",
+        "content": {"scopes": release_object["content"]["scopes"]},
     }
-    assert captured["timeout"] == 610
-    assert captured["capture_output"] is True
-    assert captured["check"] is False
+    assert len(json.dumps(captured["payload"])) < 2_000
+    assert captured["access_token"] == "management"
+    assert captured["timeout"] == 120
+
+
+def test_stage_release_activation_upload_bounds_every_management_request(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object = {
+        "release": "large-release",
+        "content_sha256": "a" * 64,
+        "content": {"artifacts": ["x" * 400_000]},
+    }
+    calls = []
+
+    def fake_post(url, *, payload, access_token, timeout):
+        calls.append(payload)
+        if payload["query"] == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
+            return [{"chunk_index": payload["parameters"][3]}]
+        return []
+
+    monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
+    monkeypatch.setattr(supabase.secrets, "token_hex", lambda _size: "b" * 64)
+
+    upload_id, object_sha256 = supabase._stage_release_activation_upload(
+        release_object,
+        endpoint="https://api.supabase.test/query",
+        access_token="management",
+    )
+
+    staged = [
+        payload
+        for payload in calls
+        if payload["query"] == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY
+    ]
+    assert upload_id == "b" * 64
+    assert object_sha256 == hashlib.sha256(canonical_json_bytes(release_object)).hexdigest()
+    assert len(staged) == 4
+    assert all(len(json.dumps(payload)) < 140_000 for payload in staged)
+    assert "".join(payload["parameters"][5] for payload in staged) == canonical_json_bytes(
+        release_object
+    ).decode("ascii")
+
+
+def test_apply_release_activation_upload_migration_uses_expected_project(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    captured = {}
+    migration = "\n".join(
+        (
+            "CREATE TABLE IF NOT EXISTS corpus.release_activation_upload_chunks",
+            "CREATE OR REPLACE FUNCTION corpus.load_release_activation_upload",
+            "REVOKE ALL ON corpus.release_activation_upload_chunks",
+        )
+    )
+
+    def fake_post(url, *, payload, access_token, timeout):
+        captured.update(
+            url=url,
+            payload=payload,
+            access_token=access_token,
+            timeout=timeout,
+        )
+        return []
+
+    monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
+    supabase.apply_release_activation_upload_migration(
+        migration,
+        access_token="management",
+        supabase_url="https://example.supabase.co",
+        expected_project_ref="example",
+    )
+
+    assert captured == {
+        "url": "https://api.supabase.com/v1/projects/example/database/query",
+        "payload": {"query": migration, "read_only": False},
+        "access_token": "management",
+        "timeout": 120,
+    }
+
+
+def test_apply_release_activation_upload_migration_rejects_incomplete_sql(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    monkeypatch.setattr(
+        supabase,
+        "_management_api_post_json_with_curl",
+        lambda *args, **kwargs: pytest.fail("incomplete migration must not reach the network"),
+    )
+    with pytest.raises(RuntimeError, match="migration is incomplete"):
+        supabase.apply_release_activation_upload_migration(
+            "SELECT 1",
+            access_token="management",
+            supabase_url="https://example.supabase.co",
+        )
 
 
 def test_activate_corpus_release_reports_curl_http_body(monkeypatch):
@@ -2024,11 +2177,17 @@ def test_activate_corpus_release_rejects_malformed_rpc_response(
 ):
     import axiom_corpus.corpus.supabase as supabase
 
-    monkeypatch.setattr(
-        supabase,
-        "_management_api_post_json_with_curl",
-        lambda *args, **kwargs: response,
-    )
+    queries = []
+
+    def fake_post(_url, *, payload, **_kwargs):
+        queries.append(payload["query"])
+        if payload["query"] == supabase.STAGE_RELEASE_ACTIVATION_CHUNK_QUERY:
+            return [{"chunk_index": payload["parameters"][3]}]
+        if payload["query"] == ACTIVATE_RELEASE_QUERY:
+            return response
+        return []
+
+    monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
     release_object, public_key = _signed_release_object()
 
     with pytest.raises(RuntimeError, match=message):
@@ -2038,6 +2197,7 @@ def test_activate_corpus_release_rejects_malformed_rpc_response(
             public_key=public_key,
             supabase_url="https://example.supabase.co",
         )
+    assert supabase.DELETE_RELEASE_ACTIVATION_UPLOAD_QUERY in queries
 
 
 def test_delete_supabase_provisions_scope_fetches_ids_then_deletes_chunks(monkeypatch):

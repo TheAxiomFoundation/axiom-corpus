@@ -80,9 +80,12 @@ retired key needed by a release that can supply an already published scope.
 9. Activation is a separate, deliberate step (`scripts/activate_release.py`, or
    `publish_corpus.py --activate`), because it moves serving and can displace
    another jurisdiction's release (axiom-corpus#408). After another local
-   signature verification it uses the Supabase Management API to call
-   `corpus.activate_corpus_release`. The staging `service_role` is explicitly
-   forbidden from executing this RPC. The transaction locks the projection
+   signature verification it sends compact signed scope evidence for preview.
+   After protected approval, the canonical release object is uploaded through a
+   private bounded-chunk transport; PostgreSQL verifies the reconstructed object
+   hash and identity before calling `corpus.activate_corpus_release`. The staging
+   `service_role` is explicitly forbidden from reading the upload or executing
+   this RPC. The transaction locks the projection
    tables (and takes an EXCLUSIVE lock on `active_scope_pointer` to serialize
    activations), repeats exact counts and digests, installs immutable scope
    membership, then repoints the per-`(jurisdiction, document_class)` serving map
@@ -99,7 +102,8 @@ the default branch. When activation is requested, the mutation job waits for
 approval in the protected `release-activation` environment after the preview
 job summary is available. The approved job downloads the same publication
 artifact, re-verifies its identity and signature, and reruns the takeover
-preview immediately before the transactional activation RPC.
+preview immediately before installing the idempotent private upload schema and
+running the transactional activation RPC.
 
 Partial staging is inert and safe to inspect or retry. There is no per-scope
 `publish`, mutable `current.json`, publish-on-load, best-effort refresh, or
