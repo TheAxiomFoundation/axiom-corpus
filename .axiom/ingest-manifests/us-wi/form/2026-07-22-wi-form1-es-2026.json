@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-wi/form/2026-07-22-wi-form1-es-2026.json",
-      "sha256": "a08f573e3811a9e2050999f6e59cb09271c8ffe4d4647deda647a71f94ac2a2a"
+      "sha256": "574953431c9b66a2bd6500dbac47e823ee937e052a55a461afeb131da3d855b7"
     },
     {
       "path": "data/corpus/provisions/us-wi/form/2026-07-22-wi-form1-es-2026.jsonl",
-      "sha256": "8de35816d0031c81e10c2defe30b0d6bd17e6c4195246e99594d7ba6d7cebabe"
+      "sha256": "c98f72b586be7ea7481380d4777f15e51f9fafcc18ba3dff93c4b76d86cb3373"
     },
     {
       "path": "data/corpus/sources/us-wi/form/2026-07-22-wi-form1-es-2026/official-documents/us-wi-dor-2026-form1-es-instructions.pdf",
@@ -18,7 +18,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "234ea19975412b4bdd504432a2efed74976ac9e6",
+    "commit": "0286544fa8a9224f9c364ed87b811da0699b76bf",
     "dirty_tracked": false,
     "root": "."
   },
@@ -35,19 +35,19 @@
     "source_count": 2
   },
   "document_class": "form",
-  "generated_at": "2026-07-22T16:16:38.342389+00:00",
+  "generated_at": "2026-07-22T16:27:23.766768+00:00",
   "jurisdiction": "us-wi",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-22-wi-form1-es-2026.md",
-      "sha256": "514a1d686d43d1318a91906eda2eb6d0118fea3c7ec550b58df0d78677f51bbb"
+      "sha256": "5e3c1ab002036cca99abddc62c16444fd3bb4323e0c3141644b3da4e5328ac05"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "SFpIhqSAA/S/IwEf2o2OOe44Vv18enVq8KBdKAeAI3Y8hixZqc3TgNtA8tcsrAd/zwEfjCtV+PutmDhCyuKKAA=="
+    "value": "aUYdTgAGZFlc0tCCy9oqzS6T/7NWY5ym9gbYFSUWJDqtUBj0BoJhhlOh8R3+SqAO7NEhwXpisSx8iVmA305hCQ=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-22-wi-form1-es-2026"
