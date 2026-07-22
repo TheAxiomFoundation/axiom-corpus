@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PREDECESSOR = REPO_ROOT / "manifests/releases/us-rulespec-2026-07-21-az-140es-current.json"
 SUCCESSOR = REPO_ROOT / "manifests/releases/us-rulespec-2026-07-22-current.json"
