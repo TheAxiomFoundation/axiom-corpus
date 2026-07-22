@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mn/guidance/2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026.json",
+      "sha256": "cb6c809b9fd5cf49ab308794f3d7c04aaa7644fb18f88d12f905be99717de399"
+    },
+    {
+      "path": "data/corpus/inventory/us-mn/guidance/2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026.json",
+      "sha256": "dd8f2e34b3278983c2b5c4d2d7202ef1fc5bd1843b2d163941ab0888bc15455c"
+    },
+    {
+      "path": "data/corpus/provisions/us-mn/guidance/2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026.jsonl",
+      "sha256": "b7a74752227fa034837397d3dad0f83d7f660e74b82cd033d524b7a4f4e29200"
+    },
+    {
+      "path": "data/corpus/sources/us-mn/guidance/2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026/official-documents/us-mn-revenue-inflation-adjusted-amounts-2026.pdf",
+      "sha256": "db216e8d9c0db86bb381cd4fbe3e338b933eae66e833e9dbe57b27c483557b8b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "53ebc384d8659e65490bde2067ea59627fbff7f7",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026 --manifest manifests/us-mn-income-tax-inflation-adjusted-amounts-2026.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-22T17:49:25.531119+00:00",
+  "jurisdiction": "us-mn",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-22-mn-income-tax-inflation-adjusted-amounts.md",
+      "sha256": "78c16be34187193cdf6b449cb5a7dfd0cc5e230977161dd1e6639d52b4d8b9a9"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "PBMNAY5TAKwh2GFXCyzTjqf0vqVgH6FYIC7jVggRNWxJIrY99FZC81qk/GJg3N0PDxLd2GD1/udt5CGTC6DPCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026"
+}
