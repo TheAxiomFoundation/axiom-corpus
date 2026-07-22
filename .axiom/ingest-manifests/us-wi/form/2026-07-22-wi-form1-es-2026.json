@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/form/2026-07-22-wi-form1-es-2026.json",
+      "sha256": "eeda016216eafe7641cb007969ec1aa5134505c102193c576835f2004b3586fa"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/form/2026-07-22-wi-form1-es-2026.json",
+      "sha256": "a08f573e3811a9e2050999f6e59cb09271c8ffe4d4647deda647a71f94ac2a2a"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/form/2026-07-22-wi-form1-es-2026.jsonl",
+      "sha256": "8de35816d0031c81e10c2defe30b0d6bd17e6c4195246e99594d7ba6d7cebabe"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/form/2026-07-22-wi-form1-es-2026/official-documents/us-wi-dor-2026-form1-es-instructions.pdf",
+      "sha256": "b419054ac3b9ce7c714e40604d93448b8824648be8442862504f12f2eb1374b2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ce387a492cadd9c058921af658fef04baa480cf2",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-wi-form1-es-2026 --manifest manifests/us-wi-2026-form1-es-instructions.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-22T16:07:47.430361+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-22-wi-form1-es-2026.md",
+      "sha256": "514a1d686d43d1318a91906eda2eb6d0118fea3c7ec550b58df0d78677f51bbb"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "6pQyyVksjJftkqTMFxVTEQN/vQ9m6F2QCePajd4gZyCMzHKk84lNln1TzqICp5qZOqONW6W49tL6V7+CAnCaDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-wi-form1-es-2026"
+}
