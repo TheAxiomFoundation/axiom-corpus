@@ -1,0 +1,53 @@
+documents:
+  - source_id: us-mn-revenue-inflation-adjusted-amounts-2026
+    jurisdiction: us-mn
+    document_class: guidance
+    title: Inflation Adjusted Amounts for 2026 — Income Tax Brackets
+    source_url: https://www.revenue.state.mn.us/sites/default/files/2025-12/inflation-adjusted-amounts-2026.pdf
+    source_format: pdf
+    source_as_of: "2026-07-22"
+    expression_date: "2026-01-01"
+    citation_path: us-mn/guidance/department-of-revenue/inflation-adjusted-amounts/2026/income-tax-brackets
+    extraction:
+      segmentation: labeled_sections
+      section_label_pattern: '^(?P<label>Married Joint or Surviving Spouse|Married Separate|Single|Head of Household)$'
+      section_label_replacements:
+        Married Joint or Surviving Spouse: married-joint-or-surviving-spouse
+        Married Separate: married-separate
+        Single: single
+        Head of Household: head-of-household
+      page_windows:
+        - start_page: 2
+          end_page: 3
+          start_at_pattern: '^290\.06, Subd\. 2c$'
+          stop_at_pattern: '^290\.067, Subd\. 1$'
+      drop_lines:
+        - Section
+        - Description
+        - Statutory
+        - Year
+        - Tax Year 2026
+        - Amount
+        - Income Tax Brackets (Cont.)
+    metadata:
+      primary_source: true
+      source_authority: Minnesota Department of Revenue, Tax Research Division
+      source_sha256: db216e8d9c0db86bb381cd4fbe3e338b933eae66e833e9dbe57b27c483557b8b
+      document_subtype: inflation_adjusted_amounts
+      program: individual_income_tax
+      tax_year: "2026"
+      statutory_authority: Minnesota Statutes 270C.22, subd. 2; 290.06, subds. 2c-2d
+      statutory_corpus_citation: us-mn/statute/290.06
+      statutory_corpus_version: 2026-07-13-recovery
+      application_scope: inflation_adjusted_bracket_thresholds_only
+      source_status: current_official_tax_year_adjusted_amounts
+      source_note: >-
+        Official Minnesota Department of Revenue table of inflation-adjusted
+        statutory amounts for tax year 2026. The extracted pages publish only
+        the second-, third-, and fourth-bracket thresholds for each filing
+        status under Minnesota Statutes 290.06, subdivision 2c. Corpus citation
+        us-mn/statute/290.06 remains the authority for the rate percentages,
+        rate-schedule structure, and indexing rule. This guidance scope does
+        not establish taxable income, tax-table substitution, alternative or
+        net investment income taxes, credits, nonresident allocation,
+        rounding, or final-return liability.
