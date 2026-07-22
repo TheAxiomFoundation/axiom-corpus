@@ -1,0 +1,131 @@
+{
+  "items": [
+    {
+      "citation_path": "us-wi/form/individual-income-tax/2026/1-es",
+      "metadata": {
+        "block_count": 1,
+        "certification_scope": "estimated_tax_instructions_only",
+        "content_type": "application/pdf",
+        "document_number": "D-101A",
+        "document_subtype": "individual_estimated_income_tax_instructions",
+        "download_url": "https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf",
+        "final_return_certification": false,
+        "form": "1-ES",
+        "gross_tax_schedule_a": {
+          "brackets": "$0-$15,110: 3.5%; $15,110-$51,950: $528.85 plus 4.4%; $51,950-$332,720: $2,149.81 plus 5.3%; over $332,720: $17,030.62 plus 7.65%.",
+          "filing_statuses": "single_head_of_household_estates_and_trusts"
+        },
+        "gross_tax_schedule_b": {
+          "brackets": "$0-$20,150: 3.5%; $20,150-$69,260: $705.25 plus 4.4%; $69,260-$443,630: $2,866.09 plus 5.3%; over $443,630: $22,707.70 plus 7.65%.",
+          "filing_status": "married_filing_jointly"
+        },
+        "gross_tax_schedule_c": {
+          "brackets": "$0-$10,080: 3.5%; $10,080-$34,630: $352.80 plus 4.4%; $34,630-$221,820: $1,433.00 plus 5.3%; over $221,820: $11,354.07 plus 7.65%.",
+          "filing_status": "married_filing_separately"
+        },
+        "individual_exemptions": {
+          "each_dependent": "$700",
+          "spouse_age_65_or_over_joint_return_addition": "$250",
+          "spouse_on_joint_return": "$700",
+          "taxpayer": "$700",
+          "taxpayer_age_65_or_over_addition": "$250"
+        },
+        "kind": "document",
+        "policyengine_parity": "not_asserted",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "revision": "R. 1-26",
+        "rulespec_semantics": "not_asserted",
+        "source_authority": "Wisconsin Department of Revenue",
+        "source_note": "Official three-page tax-year-2026 Form 1-ES instructions. Page 2 publishes individual exemptions and standard-deduction schedules; page 3 publishes gross-tax Schedules A, B, and C for full-year residents and describes proration for nonresidents and part-year residents. This intake preserves the official estimated-tax source and does not certify final-return liability, RuleSpec semantics, or PolicyEngine parity.",
+        "source_status": "current_official_estimated_tax_instructions",
+        "standard_deduction_head_of_household": {
+          "filing_status": "head_of_household",
+          "schedule": "Wisconsin income $0-$20,119: $18,030; $20,119-$58,827: $18,030 less 22.515% of the amount over $20,120; $58,827-$136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
+        },
+        "standard_deduction_married_filing_jointly": {
+          "filing_status": "married_filing_jointly",
+          "schedule": "Wisconsin income $0-$29,039: $25,840; $29,039-$159,690: $25,840 less 19.778% of the amount over $29,040; over $159,690: $0."
+        },
+        "standard_deduction_married_filing_separately": {
+          "filing_status": "married_filing_separately",
+          "schedule": "Wisconsin income $0-$13,779: $12,280; $13,779-$75,869: $12,280 less 19.778% of the amount over $13,780; over $75,869: $0."
+        },
+        "standard_deduction_single": {
+          "filing_status": "single",
+          "schedule": "Wisconsin income $0-$20,119: $13,960; $20,119-$136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
+        },
+        "tax_year": "2026",
+        "title": "2026 Form 1-ES Instructions \u2013 Estimated Income Tax for Individuals, Estates, and Trusts"
+      },
+      "sha256": "b419054ac3b9ce7c714e40604d93448b8824648be8442862504f12f2eb1374b2",
+      "source_format": "pdf",
+      "source_path": "sources/us-wi/form/2026-07-22-wi-form1-es-2026/official-documents/us-wi-dor-2026-form1-es-instructions.pdf",
+      "source_url": "https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf"
+    },
+    {
+      "citation_path": "us-wi/form/individual-income-tax/2026/1-es/document-1",
+      "metadata": {
+        "block_count": 1,
+        "certification_scope": "estimated_tax_instructions_only",
+        "content_type": "application/pdf",
+        "document_number": "D-101A",
+        "document_subtype": "individual_estimated_income_tax_instructions",
+        "download_url": "https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf",
+        "final_return_certification": false,
+        "form": "1-ES",
+        "gross_tax_schedule_a": {
+          "brackets": "$0-$15,110: 3.5%; $15,110-$51,950: $528.85 plus 4.4%; $51,950-$332,720: $2,149.81 plus 5.3%; over $332,720: $17,030.62 plus 7.65%.",
+          "filing_statuses": "single_head_of_household_estates_and_trusts"
+        },
+        "gross_tax_schedule_b": {
+          "brackets": "$0-$20,150: 3.5%; $20,150-$69,260: $705.25 plus 4.4%; $69,260-$443,630: $2,866.09 plus 5.3%; over $443,630: $22,707.70 plus 7.65%.",
+          "filing_status": "married_filing_jointly"
+        },
+        "gross_tax_schedule_c": {
+          "brackets": "$0-$10,080: 3.5%; $10,080-$34,630: $352.80 plus 4.4%; $34,630-$221,820: $1,433.00 plus 5.3%; over $221,820: $11,354.07 plus 7.65%.",
+          "filing_status": "married_filing_separately"
+        },
+        "individual_exemptions": {
+          "each_dependent": "$700",
+          "spouse_age_65_or_over_joint_return_addition": "$250",
+          "spouse_on_joint_return": "$700",
+          "taxpayer": "$700",
+          "taxpayer_age_65_or_over_addition": "$250"
+        },
+        "kind": "document",
+        "page_count": 3,
+        "policyengine_parity": "not_asserted",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "revision": "R. 1-26",
+        "rulespec_semantics": "not_asserted",
+        "source_authority": "Wisconsin Department of Revenue",
+        "source_note": "Official three-page tax-year-2026 Form 1-ES instructions. Page 2 publishes individual exemptions and standard-deduction schedules; page 3 publishes gross-tax Schedules A, B, and C for full-year residents and describes proration for nonresidents and part-year residents. This intake preserves the official estimated-tax source and does not certify final-return liability, RuleSpec semantics, or PolicyEngine parity.",
+        "source_status": "current_official_estimated_tax_instructions",
+        "standard_deduction_head_of_household": {
+          "filing_status": "head_of_household",
+          "schedule": "Wisconsin income $0-$20,119: $18,030; $20,119-$58,827: $18,030 less 22.515% of the amount over $20,120; $58,827-$136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
+        },
+        "standard_deduction_married_filing_jointly": {
+          "filing_status": "married_filing_jointly",
+          "schedule": "Wisconsin income $0-$29,039: $25,840; $29,039-$159,690: $25,840 less 19.778% of the amount over $29,040; over $159,690: $0."
+        },
+        "standard_deduction_married_filing_separately": {
+          "filing_status": "married_filing_separately",
+          "schedule": "Wisconsin income $0-$13,779: $12,280; $13,779-$75,869: $12,280 less 19.778% of the amount over $13,780; over $75,869: $0."
+        },
+        "standard_deduction_single": {
+          "filing_status": "single",
+          "schedule": "Wisconsin income $0-$20,119: $13,960; $20,119-$136,453: $13,960 less 12% of the amount over $20,120; over $136,453: $0."
+        },
+        "tax_year": "2026",
+        "title": "2026 Form 1-ES Instructions \u2013 Estimated Income Tax for Individuals, Estates, and Trusts"
+      },
+      "sha256": "b419054ac3b9ce7c714e40604d93448b8824648be8442862504f12f2eb1374b2",
+      "source_format": "pdf",
+      "source_path": "sources/us-wi/form/2026-07-22-wi-form1-es-2026/official-documents/us-wi-dor-2026-form1-es-instructions.pdf",
+      "source_url": "https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf"
+    }
+  ]
+}
