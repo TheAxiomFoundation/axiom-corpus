@@ -22,12 +22,12 @@ CI runs the changelog draft, Ruff, mypy, tests with coverage, and a PostgreSQL
 smoke check. Run the relevant subset locally before opening the PR:
 
 ```bash
-python -m pip install -e ".[dev]"
-python -m pip install pytest-cov pytest-timeout
-python -m towncrier build --draft --version 0.0.0
-ruff check .
-mypy src/axiom_corpus/corpus --ignore-missing-imports
-pytest -v --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
+uv sync --extra dev
+uv pip install pytest-cov pytest-timeout
+uv run towncrier build --draft --version 0.0.0
+uv run ruff check .
+uv run mypy src/axiom_corpus/corpus --ignore-missing-imports
+uv run pytest -v --cov=axiom_corpus --cov-report=term-missing --cov-config=pyproject.toml --timeout=60
 ```
 
 ## Repo notes
