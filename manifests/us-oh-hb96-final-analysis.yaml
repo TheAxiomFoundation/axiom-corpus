@@ -1,0 +1,29 @@
+documents:
+  - source_id: us-oh-lsc-hb96-final-analysis-tax
+    jurisdiction: us-oh
+    document_class: guidance
+    title: Ohio H.B. 96 Final Analysis — Income Tax Provisions
+    source_url: https://www.lsc.ohio.gov/assets/legislation/136/hb96/en0/files/hb96-tax-bill-analysis-as-enacted-136th-general-assembly.pdf
+    source_format: pdf
+    source_as_of: "2026-07-21"
+    expression_date: "2025-09-30"
+    citation_path: us-oh/guidance/lsc/hb96/final-analysis/tax
+    request:
+      verify_tls: false
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Ohio Legislative Service Commission
+      document_subtype: enacted_bill_final_analysis
+      legislation: Amended Substitute House Bill 96
+      general_assembly: "136"
+      program: individual_income_tax
+      tax_years: "2025,2026"
+      source_status: official_final_analysis_as_enacted
+      source_note: >-
+        The official as-enacted analysis states the tax-year-2026 table of
+        $332 plus 2.75 percent above $26,050 on page 456 and, under the heading
+        "Inflation indexing adjustments (Section 757.120(A))," states on page
+        457 that the act suspends bracket and personal-exemption inflation
+        adjustments for taxable years 2025 and 2026.
