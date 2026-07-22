@@ -890,13 +890,32 @@ def fetch_released_scope_objects(
     }
 
 
+# Load the immutable object inside Postgres instead of sending its full artifact
+# inventory through the Management API. Publication has already staged this row,
+# and release_objects is protected by immutable identity triggers.
+_STAGED_RELEASE_OBJECT_QUERY = (
+    "SELECT objects.release_object FROM corpus.release_objects objects "
+    "WHERE objects.release_name = $1::text "
+    "AND objects.content_sha256 = $2::text"
+)
+
+
 # Column list must exactly match corpus.preview_corpus_release_activation's
 # RETURNS TABLE (pair-level; no per-version columns). A postgres test runs this
 # string against the live function so the two cannot drift apart.
 PREVIEW_ACTIVATION_QUERY = (
     "SELECT jurisdiction, document_class, current_release_name, "
     "current_content_sha256, changes "
-    "FROM corpus.preview_corpus_release_activation($1::jsonb)"
+    "FROM corpus.preview_corpus_release_activation(("
+    f"{_STAGED_RELEASE_OBJECT_QUERY}"
+    "))"
+)
+
+
+ACTIVATE_RELEASE_QUERY = (
+    "SELECT corpus.activate_corpus_release(("
+    f"{_STAGED_RELEASE_OBJECT_QUERY}"
+    ")) AS result"
 )
 
 
@@ -927,7 +946,10 @@ def preview_corpus_release_activation(
         f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
         payload={
             "query": PREVIEW_ACTIVATION_QUERY,
-            "parameters": [json.dumps(release_object, sort_keys=True)],
+            "parameters": [
+                str(release_object["release"]),
+                str(release_object["content_sha256"]),
+            ],
             "read_only": True,
         },
         access_token=access_token,
@@ -969,12 +991,14 @@ def activate_corpus_release(
             f"refusing to activate in Supabase project {project_ref!r}: "
             f"expected {expected_project_ref!r}"
         )
-    query = "SELECT corpus.activate_corpus_release($1::jsonb) AS result"
     rows = _management_api_post_json_with_curl(
         f"https://api.supabase.com/v1/projects/{project_ref}/database/query",
         payload={
-            "query": query,
-            "parameters": [json.dumps(release_object, sort_keys=True)],
+            "query": ACTIVATE_RELEASE_QUERY,
+            "parameters": [
+                str(release_object["release"]),
+                str(release_object["content_sha256"]),
+            ],
             "read_only": False,
         },
         access_token=access_token,

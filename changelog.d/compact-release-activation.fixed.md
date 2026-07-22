@@ -1,0 +1,1 @@
+Send compact signed-release identities through the Supabase Management API during preview and activation, loading the immutable staged release object inside Postgres to avoid request-size failures for comprehensive releases.

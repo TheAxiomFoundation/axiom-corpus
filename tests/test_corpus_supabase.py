@@ -16,6 +16,8 @@ from axiom_corpus.corpus.releases import (
     ReleaseScope,
 )
 from axiom_corpus.corpus.supabase import (
+    ACTIVATE_RELEASE_QUERY,
+    PREVIEW_ACTIVATION_QUERY,
     StagedScopeEvidence,
     activate_corpus_release,
     delete_supabase_provisions_scope,
@@ -26,6 +28,7 @@ from axiom_corpus.corpus.supabase import (
     fetch_staged_release_scope_evidence,
     iter_supabase_rows,
     load_provisions_to_supabase,
+    preview_corpus_release_activation,
     provision_to_supabase_row,
     refresh_corpus_analytics,
     resolve_service_key,
@@ -1530,13 +1533,53 @@ def test_activate_corpus_release_uses_verified_management_query(monkeypatch):
     assert "Authorization: Bearer management" in command
     assert "User-Agent: axiom-corpus/0.1" in command
     assert captured["payload"] == {
-        "query": "SELECT corpus.activate_corpus_release($1::jsonb) AS result",
-        "parameters": [json.dumps(release_object, sort_keys=True)],
+        "query": ACTIVATE_RELEASE_QUERY,
+        "parameters": [
+            "nz-rulespec-v1",
+            release_object["content_sha256"],
+        ],
         "read_only": False,
     }
     assert captured["timeout"] == 610
     assert captured["capture_output"] is True
     assert captured["check"] is False
+
+
+def test_preview_corpus_release_activation_sends_compact_verified_identity(monkeypatch):
+    import axiom_corpus.corpus.supabase as supabase
+
+    release_object, public_key = _signed_release_object()
+    captured = {}
+
+    def fake_post(url, *, payload, access_token, timeout):
+        captured.update(
+            url=url,
+            payload=payload,
+            access_token=access_token,
+            timeout=timeout,
+        )
+        return []
+
+    monkeypatch.setattr(supabase, "_management_api_post_json_with_curl", fake_post)
+
+    assert preview_corpus_release_activation(
+        release_object,
+        access_token="management",
+        public_key=public_key,
+        supabase_url="https://example.supabase.co",
+    ) == []
+
+    assert captured["payload"] == {
+        "query": PREVIEW_ACTIVATION_QUERY,
+        "parameters": [
+            "nz-rulespec-v1",
+            release_object["content_sha256"],
+        ],
+        "read_only": True,
+    }
+    assert len(json.dumps(captured["payload"])) < 1_000
+    assert captured["access_token"] == "management"
+    assert captured["timeout"] == 120
 
 
 def test_activate_corpus_release_reports_curl_http_body(monkeypatch):

@@ -1434,9 +1434,12 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
         connection.commit()
         with connection.cursor() as cursor:
             cursor.execute(
-                f"PREPARE preview_contract (jsonb) AS {supabase.PREVIEW_ACTIVATION_QUERY}"
+                f"PREPARE preview_contract (text, text) AS {supabase.PREVIEW_ACTIVATION_QUERY}"
             )
-            cursor.execute("EXECUTE preview_contract(%s)", (Json(dict(release_object)),))
+            cursor.execute(
+                "EXECUTE preview_contract(%s, %s)",
+                (release_object["release"], release_object["content_sha256"]),
+            )
             columns = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
         assert columns == [
@@ -1457,6 +1460,20 @@ def test_preview_wrapper_query_matches_the_function_contract(clean_postgres: str
                 False,
             )
         ]
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                f"PREPARE activation_contract (text, text) AS "
+                f"{supabase.ACTIVATE_RELEASE_QUERY}"
+            )
+            cursor.execute(
+                "EXECUTE activation_contract(%s, %s)",
+                (release_object["release"], release_object["content_sha256"]),
+            )
+            result = cursor.fetchone()[0]
+        assert result["active"] is True
+        assert result["release"] == release_object["release"]
+        assert result["content_sha256"] == release_object["content_sha256"]
 
 
 def test_pointer_membership_trigger_rejects_an_uncovered_pair(clean_postgres: str) -> None:
