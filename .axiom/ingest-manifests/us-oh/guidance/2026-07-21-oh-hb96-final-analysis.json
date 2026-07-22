@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-oh/guidance/2026-07-21-oh-hb96-final-analysis.json",
+      "sha256": "8b24f3df92eaba009fdb5eb41db798870853ca984886699327cfe81899facb02"
+    },
+    {
+      "path": "data/corpus/inventory/us-oh/guidance/2026-07-21-oh-hb96-final-analysis.json",
+      "sha256": "c5200be284a0fb6cd7e399fc1921a43a42a5dc9cf25c0b90beb516bfa6042f90"
+    },
+    {
+      "path": "data/corpus/provisions/us-oh/guidance/2026-07-21-oh-hb96-final-analysis.jsonl",
+      "sha256": "316e37feeb31b27013ad98fe8f1f4babc7a3cdae64ac342016a4b5f5d75af868"
+    },
+    {
+      "path": "data/corpus/sources/us-oh/guidance/2026-07-21-oh-hb96-final-analysis/official-documents/us-oh-lsc-hb96-final-analysis-tax.pdf",
+      "sha256": "9c77dc4fdd2c0cae993f2c000e7f618c922c1713b6f514a0c3d24eb769a5547e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "27a5bc48c06b77e2f8d56adb7df67441c2bb5a52",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-oh-hb96-final-analysis --manifest manifests/us-oh-hb96-final-analysis.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-07-22T03:32:31.097421+00:00",
+  "jurisdiction": "us-oh",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-21-oh-hb96-final-analysis.md",
+      "sha256": "cf4b4845ced30844735f37ca27e4101b8e167e5971b54592e571bd362cd7dd94"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "+bOk6hVI4/A8y8sqkN547u5BXzOreu5F73cHVkeoErX2ZwbVHOt2uIEnxoAHLnxyTYzdOLADtt/95rJQZCj7CQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-oh-hb96-final-analysis"
+}
