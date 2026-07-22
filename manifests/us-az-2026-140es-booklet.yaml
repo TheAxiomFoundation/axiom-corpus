@@ -1,0 +1,25 @@
+documents:
+  - source_id: us-az-dor-2026-140es-booklet
+    jurisdiction: us-az
+    document_class: form
+    title: Arizona Form 140ES 2026 Individual Estimated Income Tax Booklet
+    source_url: https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2026_140ESBooklet.pdf
+    source_format: pdf
+    source_as_of: "2026-07-21"
+    expression_date: "2026-01-01"
+    citation_path: us-az/form/individual-income-tax/2026/140es-booklet
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Arizona Department of Revenue
+      document_subtype: individual_estimated_income_tax_booklet
+      form_number: 140ES
+      program: individual_income_tax
+      tax_year: "2026"
+      income_tax_rate: "0.025"
+      worksheet_line: "19"
+      source_status: current_official_tax_year_rate
+      source_note: >-
+        Official tax-year-2026 estimated-tax worksheet; line 19 instructs
+        taxpayers to multiply estimated Arizona taxable income by 2.5 percent.
