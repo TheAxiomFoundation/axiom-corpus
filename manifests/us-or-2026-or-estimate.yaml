@@ -1,0 +1,36 @@
+documents:
+  - source_id: us-or-dor-2026-or-estimate
+    jurisdiction: us-or
+    document_class: form
+    title: 2026 Publication OR-ESTIMATE Oregon Estimated Income Tax Instructions
+    source_url: https://www.oregon.gov/dor/forms/FormsPubs/publication-or-estimate_101-026_2026.pdf
+    source_format: pdf
+    source_as_of: "2026-07-22"
+    expression_date: "2026-01-01"
+    citation_path: us-or/form/individual-income-tax/2026/or-estimate
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Oregon Department of Revenue
+      document_subtype: estimated_income_tax_instructions
+      publication: OR-ESTIMATE
+      document_number: 150-101-026
+      revision: "10-07-25"
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_tax_year_schedule
+      schedule_chart_s:
+        filing_status: single_or_married_filing_separately
+        brackets: >-
+          $0-$4,550: $0 plus 4.75%; $4,550-$11,400: $216 plus 6.75%;
+          $11,400-$125,000: $678 plus 8.75%; over $125,000: $10,618 plus 9.9%.
+      schedule_chart_j:
+        filing_status: joint_head_of_household_or_qualifying_surviving_spouse
+        brackets: >-
+          $0-$9,100: $0 plus 4.75%; $9,100-$22,800: $432 plus 6.75%;
+          $22,800-$250,000: $1,357 plus 8.75%; over $250,000: $21,237 plus 9.9%.
+      source_note: >-
+        Official tax-year-2026 estimated-tax instructions. The tax-rate charts
+        on page 3 provide Chart S for single or married filing separately and
+        Chart J for joint, head of household, or qualifying surviving spouse.
