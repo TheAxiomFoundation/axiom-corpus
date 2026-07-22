@@ -1,0 +1,93 @@
+{
+  "items": [
+    {
+      "citation_path": "us-ne/form/individual-income-tax/2026/1040n-es",
+      "metadata": {
+        "block_count": 1,
+        "certification_scope": "estimated_tax_only",
+        "content_type": "application/pdf",
+        "document_number": "8-014-2025",
+        "document_subtype": "individual_estimated_income_tax_payment_vouchers_and_worksheet",
+        "download_url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_1040N-ES.pdf",
+        "final_return_certification": false,
+        "form": "1040N-ES",
+        "kind": "document",
+        "policyengine_parity": "not_asserted",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "revision": "11-2025",
+        "schedule_head_of_household": {
+          "brackets": "$0-$7,700: 2.46%; $7,700-$39,620: $189.42 plus 3.51%; $39,620-$59,160: $1,309.81 plus 4.55%; over $59,160: $2,198.88 plus 4.55%.",
+          "filing_status": "head_of_household"
+        },
+        "schedule_married_filing_jointly_or_surviving_spouse": {
+          "brackets": "$0-$8,250: 2.46%; $8,250-$49,530: $202.95 plus 3.51%; $49,530-$79,800: $1,651.88 plus 4.55%; over $79,800: $3,029.16 plus 4.55%.",
+          "filing_status": "married_filing_jointly_or_surviving_spouse"
+        },
+        "schedule_single_or_married_filing_separately": {
+          "brackets": "$0-$4,130: 2.46%; $4,130-$24,760: $101.60 plus 3.51%; $24,760-$39,900: $825.71 plus 4.55%; over $39,900: $1,514.58 plus 4.55%.",
+          "filing_status": "single_or_married_filing_separately"
+        },
+        "source_authority": "Nebraska Department of Revenue",
+        "source_note": "Official tax-year-2026 estimated-tax booklet. Page 6 provides the Nebraska Estimated Income Tax Rate Schedule for all individual filing statuses. The booklet expressly limits the schedule to computing 2026 estimated income tax and says not to use it for any tax returns. This ingest does not certify a final-return schedule or PolicyEngine parity.",
+        "source_status": "current_official_estimated_tax_schedule",
+        "standard_deductions": {
+          "head_of_household": "$12,950",
+          "married_filing_jointly": "$17,700",
+          "single_or_married_filing_separately": "$8,850"
+        },
+        "tax_year": "2026",
+        "title": "2026 Nebraska Individual Estimated Income Tax Payment Vouchers and Worksheet"
+      },
+      "sha256": "456e8d651addfb9f3056f996d195e0ae428b87a1e84727c8038a208fb6d880d5",
+      "source_format": "pdf",
+      "source_path": "sources/us-ne/form/2026-07-22-ne-1040n-es-2026/official-documents/us-ne-dor-2026-1040n-es.pdf",
+      "source_url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_1040N-ES.pdf"
+    },
+    {
+      "citation_path": "us-ne/form/individual-income-tax/2026/1040n-es/document-1",
+      "metadata": {
+        "block_count": 1,
+        "certification_scope": "estimated_tax_only",
+        "content_type": "application/pdf",
+        "document_number": "8-014-2025",
+        "document_subtype": "individual_estimated_income_tax_payment_vouchers_and_worksheet",
+        "download_url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_1040N-ES.pdf",
+        "final_return_certification": false,
+        "form": "1040N-ES",
+        "kind": "document",
+        "page_count": 8,
+        "policyengine_parity": "not_asserted",
+        "primary_source": true,
+        "program": "individual_income_tax",
+        "revision": "11-2025",
+        "schedule_head_of_household": {
+          "brackets": "$0-$7,700: 2.46%; $7,700-$39,620: $189.42 plus 3.51%; $39,620-$59,160: $1,309.81 plus 4.55%; over $59,160: $2,198.88 plus 4.55%.",
+          "filing_status": "head_of_household"
+        },
+        "schedule_married_filing_jointly_or_surviving_spouse": {
+          "brackets": "$0-$8,250: 2.46%; $8,250-$49,530: $202.95 plus 3.51%; $49,530-$79,800: $1,651.88 plus 4.55%; over $79,800: $3,029.16 plus 4.55%.",
+          "filing_status": "married_filing_jointly_or_surviving_spouse"
+        },
+        "schedule_single_or_married_filing_separately": {
+          "brackets": "$0-$4,130: 2.46%; $4,130-$24,760: $101.60 plus 3.51%; $24,760-$39,900: $825.71 plus 4.55%; over $39,900: $1,514.58 plus 4.55%.",
+          "filing_status": "single_or_married_filing_separately"
+        },
+        "source_authority": "Nebraska Department of Revenue",
+        "source_note": "Official tax-year-2026 estimated-tax booklet. Page 6 provides the Nebraska Estimated Income Tax Rate Schedule for all individual filing statuses. The booklet expressly limits the schedule to computing 2026 estimated income tax and says not to use it for any tax returns. This ingest does not certify a final-return schedule or PolicyEngine parity.",
+        "source_status": "current_official_estimated_tax_schedule",
+        "standard_deductions": {
+          "head_of_household": "$12,950",
+          "married_filing_jointly": "$17,700",
+          "single_or_married_filing_separately": "$8,850"
+        },
+        "tax_year": "2026",
+        "title": "2026 Nebraska Individual Estimated Income Tax Payment Vouchers and Worksheet"
+      },
+      "sha256": "456e8d651addfb9f3056f996d195e0ae428b87a1e84727c8038a208fb6d880d5",
+      "source_format": "pdf",
+      "source_path": "sources/us-ne/form/2026-07-22-ne-1040n-es-2026/official-documents/us-ne-dor-2026-1040n-es.pdf",
+      "source_url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_1040N-ES.pdf"
+    }
+  ]
+}
