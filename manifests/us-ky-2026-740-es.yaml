@@ -1,0 +1,38 @@
+documents:
+  - source_id: us-ky-dor-2026-740-es-instructions
+    jurisdiction: us-ky
+    document_class: form
+    title: 2026 Instructions for Filing Estimated Tax Vouchers
+    source_url: https://revenue.ky.gov/Forms/740-ES%20Instructions%20%282025%29.pdf
+    source_format: pdf
+    source_as_of: "2026-07-22"
+    expression_date: "2026-01-01"
+    citation_path: us-ky/form/individual-income-tax/2026/740-es
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Kentucky Department of Revenue
+      document_subtype: individual_estimated_income_tax_instructions
+      form: 740-ES
+      document_number: 42A740-S4
+      revision: 9-25
+      program: individual_income_tax
+      tax_year: "2026"
+      standard_deduction: "$3,360"
+      individual_income_tax_rate: "0.035"
+      legal_authority_rate: KRS 141.020
+      legal_authority_standard_deduction: KRS 141.081
+      source_status: current_official_estimated_tax_instructions
+      certification_scope: estimated_tax_worksheet_parameters_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      source_note: >-
+        Official three-page tax-year-2026 estimated-tax instructions. The
+        worksheet directs individuals to deduct the $3,360 standard deduction
+        or allowable itemized deductions, then multiply estimated net income
+        by 3.5 percent. This intake preserves those published estimated-tax
+        parameters and does not certify a complete final-return calculation.

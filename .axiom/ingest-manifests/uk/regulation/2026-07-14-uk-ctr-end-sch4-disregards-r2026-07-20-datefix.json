@@ -1,0 +1,65 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix.json",
+      "sha256": "303a204f4374e54cc12862dca83852f9815008ef6062ff2ce943ebf3f312de0b"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix.json",
+      "sha256": "a57809dc25d151443d9d454167d744bad5fcc5a6dd879685776ce0de2f8c2dad"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix.jsonl",
+      "sha256": "18acd356bf68ffb0402afa0781e03089cee493b70dbaeceb1ee79ad9a6da788d"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix/uksi/2012/2886/appendix-4-paragraph-1.xml",
+      "sha256": "4bb4924d0776e504cc789889cf044769d6a506a1433feae3d8b057cb15c9127c"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix/uksi/2012/2886/appendix-4-paragraph-2.xml",
+      "sha256": "8bff5236e969af403b8042a60b056307d70bf9c6ec335d7aa129318e99f82a1f"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix/uksi/2012/2886/appendix-7-paragraph-9.xml",
+      "sha256": "00dff58fd55d7776744b45acea76b91faf0f3eb38d846801f68e8be75abe4483"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix/uksi/2012/2886/appendix-8-paragraph-20.xml",
+      "sha256": "7f7b0d3539f891ed4074a27dd2c3ad5f3e3b1d00f67e62bbbef7540682ac9868"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix/uksi/2012/2886/appendix-8-paragraph-21.xml",
+      "sha256": "cf57db1c15c17807ed92c51ed0c1824cdde0dd56c60087f86b2d56ba60df588f"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "220f3f8fe021646a24f3d0c8031b37e5eec7ec22",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 5,
+    "missing_count": 0,
+    "provision_count": 5,
+    "source_count": 5
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:50.256190+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "iS7DMkD7xGSVjUi44vRyUVBWzpyFUGs1FBnWTXUVTcelXgNyTv0gBdZYUpdWHvUYkTypSey/j2p1jHX42HcHCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-14-uk-ctr-end-sch4-disregards-r2026-07-20-datefix"
+}

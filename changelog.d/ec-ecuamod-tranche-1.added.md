@@ -1,0 +1,1 @@
+Ingest the Ecuador ECUAMOD tranche-1 instruments (LRTI, Ley de Seguridad Social, the March 2024 VAT-reform organic law, and the MIES BDH legal-basis record — the first Spanish-language and first HTML-capture SOUTHMOD ingests) and cut the first Ecuador selector, ec-rulespec-2026-07-22.

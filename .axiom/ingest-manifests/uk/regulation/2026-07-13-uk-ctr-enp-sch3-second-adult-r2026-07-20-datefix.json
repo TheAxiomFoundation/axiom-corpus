@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-enp-sch3-second-adult-r2026-07-20-datefix.json",
+      "sha256": "4fcda11ff9e6d65722bfdca8d4b324f882da12fc40c082fa70853240087cd8d1"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-enp-sch3-second-adult-r2026-07-20-datefix.json",
+      "sha256": "90d068f6b84dc1eeb04ca792232fe09a841b94ea9e77b7cc3d2d10edbd060d6d"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-enp-sch3-second-adult-r2026-07-20-datefix.jsonl",
+      "sha256": "055ad8062905e233f3a2735cffbd2e8626d1365b0b7bba7b5faa156156731053"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch3-second-adult-r2026-07-20-datefix/uksi/2012/2885/schedule-3-paragraph-1.xml",
+      "sha256": "cf13f5009f24404348f81a6aae66971e4ea6aa217e6384b75515307f892b5479"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-enp-sch3-second-adult-r2026-07-20-datefix/uksi/2012/2885/schedule-3-paragraph-3.xml",
+      "sha256": "11eff663f680a83309ec85a2126bd4355781a1053932328e4ebc17d64f060a0b"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "0153fbfe8205c80cd0c2f012713cfac38c0baed7",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:40.787965+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "BdvwyYrn8dgXHFSxHnaCTBG7/Xr86J1lYUVYpritrn9Z8Y+Lu9J47qYRjQfdcTpet/ym0hSZXXo6HeKn+z9LBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-enp-sch3-second-adult-r2026-07-20-datefix"
+}

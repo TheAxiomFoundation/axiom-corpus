@@ -1,0 +1,69 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix.json",
+      "sha256": "06d285ff366f8ab6ae274ab397d8263a316bf72c3b96434384b2b36089d7fe08"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix.json",
+      "sha256": "8cccb948803a2aa4e98e6d49dd6e4295ba4a74032d07358897d0a3b2bb944c90"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix.jsonl",
+      "sha256": "2d73f3eed7e4dcc2d94aeb26b324da0b5caf4305f0dd0d96de0c1d1e62c007cd"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix/wsi/2013/3029/schedule-6-paragraph-1.xml",
+      "sha256": "f6cba14a96c4ac98f660425d53339f9636337bedce4929514b04acaed0173bb6"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix/wsi/2013/3029/schedule-6-paragraph-3.xml",
+      "sha256": "9271b996ff0b489bff7ee4eca772dbe2a47aa74c126c715a5ca237bcc11c50d2"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix/wsi/2013/3029/schedule-6-paragraph-33.xml",
+      "sha256": "5da58be78a1f53eaed5b9a7376c924030dbbc5ac5919c1f816000b4ab7cd063c"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix/wsi/2013/3029/schedule-6-paragraph-4.xml",
+      "sha256": "34739dd8707a422aaa2ab18fc57e09b8db38a159554eaa6b1dd381551eb3a5dc"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix/wsi/2013/3029/schedule-6-paragraph-5.xml",
+      "sha256": "8cd4883a556ca3d6cf2418fc6c3b690ea40f2a3923d33b8f4de110630fc27de2"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix/wsi/2013/3029/schedule-6-paragraph-6.xml",
+      "sha256": "7f62363a44e8376f99199325c9db6ebf1529dec1a0459f6e8fc60dd00f76883c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "d177c0d4d9b9bb664989439b85de76411126cc8d",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:47.556523+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dTqiwqPUx4z3y33bMopvOMr8RXY2d6ughOOFtHteTmTEt5nWHEnShg2GB65b3d3hpu/yF7uYR7Mk9BUS90CMCw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-13-uk-ctr-wa-workingage-award-r2026-07-20-datefix"
+}

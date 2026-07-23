@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk/regulation/2026-07-14-uk-ctr-wa-reg25-r2026-07-20-datefix.json",
+      "sha256": "2982e9d9a20bdcfd83dcced08e9c8692cd3401da88810e3fb6eb3ef30690f070"
+    },
+    {
+      "path": "data/corpus/inventory/uk/regulation/2026-07-14-uk-ctr-wa-reg25-r2026-07-20-datefix.json",
+      "sha256": "65a09b725ffa116be11f7a3958f7adb4e93dad49432f8d284daa8c11c92412d8"
+    },
+    {
+      "path": "data/corpus/provisions/uk/regulation/2026-07-14-uk-ctr-wa-reg25-r2026-07-20-datefix.jsonl",
+      "sha256": "dd3011f6ca30f60b418e890cb4095da42114bd1acbd8d8f18a066591765f0b01"
+    },
+    {
+      "path": "data/corpus/sources/uk/regulation/2026-07-14-uk-ctr-wa-reg25-r2026-07-20-datefix/wsi/2013/3029/regulation-25.xml",
+      "sha256": "ef9ce5faedc5291ed94717454ca087ce90d677e247e8e752cc83bb0d7e4b303a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "c1813e92df3b5cc12898e78c98c9c17f24d902b6",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "scope re-versioning for corpus#366 (uk-ctr date-fixed keys; see PR body)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-22T16:33:52.313394+00:00",
+  "jurisdiction": "uk",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7hOxq8ML2yuh4KaOjPXjvNyHtAP0bSPIPIJOi13MDNRohTO5MGzCCtDO80pm6+uapAYGKvwf3fjOwUdJ32zjAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-14-uk-ctr-wa-reg25-r2026-07-20-datefix"
+}
