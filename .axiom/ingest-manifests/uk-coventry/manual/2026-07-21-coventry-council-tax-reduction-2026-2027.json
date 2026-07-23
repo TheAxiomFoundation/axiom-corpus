@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-coventry/manual/2026-07-21-coventry-council-tax-reduction-2026-2027.json",
+      "sha256": "d0e4d65882af37f76441645782232f20df7e8e7a64262e6c7e17703a06adc4e9"
+    },
+    {
+      "path": "data/corpus/inventory/uk-coventry/manual/2026-07-21-coventry-council-tax-reduction-2026-2027.json",
+      "sha256": "bb6aec687c6243e4a7c3ebd7dca04fdbfbab7af419e19d3c258f79bf075dd66c"
+    },
+    {
+      "path": "data/corpus/provisions/uk-coventry/manual/2026-07-21-coventry-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "a50b5c019aaa8246a44c2c811655fe9ce0ec39dc57da70e1b0024f04af993c04"
+    },
+    {
+      "path": "data/corpus/sources/uk-coventry/manual/2026-07-21-coventry-council-tax-reduction-2026-2027/official-documents/coventry-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "f70eb3fec47220960b6baa5c9b5629ac564495d602446425718edd708352ed62"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9e5a705e57dd78c39173cbde38552803e492f3be",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-coventry-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-coventry-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 142,
+    "missing_count": 0,
+    "provision_count": 142,
+    "source_count": 142
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-23T14:01:36.535231+00:00",
+  "jurisdiction": "uk-coventry",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "rewK86bDeBmMFC/BqcZ+A103wBZdRO0XXdkpIdH1fEBA64hx+K4NbdrDd+GO16tqqSiK3KeWEQoyjokArYGuBw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-coventry-council-tax-reduction-2026-2027"
+}
