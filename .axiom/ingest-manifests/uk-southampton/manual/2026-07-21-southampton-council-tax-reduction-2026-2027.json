@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-southampton/manual/2026-07-21-southampton-council-tax-reduction-2026-2027.json",
+      "sha256": "c0b73a44877139714ffe353ba73cc7a1c56ba0bb9bc592448c833ec12b7cde49"
+    },
+    {
+      "path": "data/corpus/inventory/uk-southampton/manual/2026-07-21-southampton-council-tax-reduction-2026-2027.json",
+      "sha256": "aae875a2de8519ec7dc011f7ccf288120b075886f3479abaa5cd0daa6ff17f52"
+    },
+    {
+      "path": "data/corpus/provisions/uk-southampton/manual/2026-07-21-southampton-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "ef1f977743357f9815c4f57f8918a684f9488aac209cb65682d55dee7ce9ed99"
+    },
+    {
+      "path": "data/corpus/sources/uk-southampton/manual/2026-07-21-southampton-council-tax-reduction-2026-2027/official-documents/southampton-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "fb7378992d605260d2a42640b475b4f071886efa942f0d5507b033fc515e930a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9e5a705e57dd78c39173cbde38552803e492f3be",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-21-southampton-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-southampton-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 181,
+    "missing_count": 0,
+    "provision_count": 181,
+    "source_count": 181
+  },
+  "document_class": "manual",
+  "generated_at": "2026-07-23T14:01:38.152406+00:00",
+  "jurisdiction": "uk-southampton",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7EqxovM87cCiXiEKOdeComXq0UgT9dlsQ8jh2u80PIz7YYCE9rsj7xaJMrEVVIKuE4B0qjfVhKNY+X5BASWbDQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-21-southampton-council-tax-reduction-2026-2027"
+}
