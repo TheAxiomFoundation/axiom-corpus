@@ -1,0 +1,94 @@
+# Peru (pe) tranche-1 capture - PERUMOD v2.4 parity (policy years 2019-24;
+# SOUTHMOD full-bundle program lane 3; report CR-PERUMOD-v2-4).
+#
+# PERUMOD simulates (S): personal income tax (tin_pe), VAT/IGV and excise
+# (tva_pe/tex_pe), social insurance contributions (employee pension
+# tscee_pe: ten percent AFP or thirteen percent ONP; self-employed health
+# tscse_pe; employer health tscer_pe: EsSalud nine percent, micro-enterprise
+# fifty/fifty split), the Juntos conditional cash transfer (bsa_pe), the
+# Pension 65 subsidised pension (~S/250 payable bimonthly at 65+ under
+# SISFOH targeting), and the 2020-21 COVID bonos.
+#
+# STATUTE class, three instruments:
+#
+# 1. TUO de la Ley del Impuesto a la Renta, Decreto Supremo N. 179-2004-EF
+#    (published 8 December 2004; Congreso library print of the ordered sole
+#    text) - the income-tax baseline PERUMOD's tin_pe builds on (Articles
+#    33-34 categories; UIT-banded schedule). The post-2004 amendment chain
+#    (e.g. Decreto Legislativo 1258 and later UIT-band changes through the
+#    2019-24 window) is a documented tranche-2 gap.
+# 2. TUO de la Ley del Impuesto General a las Ventas e Impuesto Selectivo
+#    al Consumo, Decreto Supremo N. 055-99-EF (MEF-published consolidated
+#    print, 2018 file) - Articulo 17: "La tasa del impuesto es 16%" (the
+#    18 percent PERUMOD applies = 16 percent IGV + 2 percent municipal
+#    promotion tax IPM); ISC provisions for tex_pe.
+# 3. Ley N. 26790, Ley de Modernizacion de la Seguridad Social en Salud
+#    (Congreso library print) - the EsSalud contribution framework behind
+#    the employer nine percent health contribution.
+#
+# PERUMOD comparison notes (targets, never sources): pension employee ten
+# percent (AFP) / thirteen percent (ONP); EsSalud employer nine percent
+# (micro-enterprises split fifty/fifty); IGV eighteen percent total;
+# Pension 65 ~S/250 bimonthly; Juntos CCT under SISFOH. Report reference:
+# CR-PERUMOD-v2-4 (UNU-WIDER) sections 1-2.
+documents:
+  - source_id: pe-ds-179-2004-ef-tuo-lir
+    jurisdiction: pe
+    document_class: statute
+    citation_path: pe/statute/ds-2004-179-ef/tuo-ley-impuesto-a-la-renta
+    title: TUO de la Ley del Impuesto a la Renta, DS 179-2004-EF (8-dic-2004; Congreso library print) - Articulos 33-34 categorias; esquema UIT
+    source_url: 'https://www2.congreso.gob.pe/sicr/cendocbib/con5_uibd.nsf/D1574759DC7CDB2A052582860071D589/$FILE/DS-179-2004-EF_Ley_Impuesto-a-la-Renta.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-22'
+    expression_date: '2004-12-08'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (Congreso de la Republica library print)
+      publisher: Congreso de la Republica
+      source_family: income-tax/consolidated-tuo
+      language: es
+  - source_id: pe-ds-055-99-ef-tuo-igv-isc
+    jurisdiction: pe
+    document_class: statute
+    citation_path: pe/statute/ds-1999-055-ef/tuo-ley-igv-isc
+    title: TUO de la Ley del IGV e ISC, DS 055-99-EF (MEF consolidated print) - Articulo 17 tasa dieciseis por ciento; ISC
+    source_url: 'https://cdn.www.gob.pe/uploads/document/file/250486/225875_file20181218-16260-cpfyeh.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-22'
+    expression_date: '2018-12-18'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (Ministerio de Economia y Finanzas publication)
+      publisher: Ministerio de Economia y Finanzas (gob.pe)
+      source_family: vat-excise/consolidated-tuo
+      language: es
+  - source_id: pe-ley-26790-modernizacion-seguridad-social-salud
+    jurisdiction: pe
+    document_class: statute
+    citation_path: pe/statute/ley-1997-26790/modernizacion-seguridad-social-salud
+    title: Ley 26790, Modernizacion de la Seguridad Social en Salud (Congreso library print) - marco de aportes EsSalud
+    source_url: 'https://leyes.congreso.gob.pe/Documentos/Leyes/26790.pdf'
+    source_format: pdf
+    source_as_of: '2026-07-22'
+    expression_date: '1997-05-17'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+      force_ocr: true
+      ocr_dpi: 300
+      ocr_language: spa
+    metadata:
+      primary_source: true
+      source_authority: Republica del Peru (Congreso de la Republica law library)
+      publisher: Congreso de la Republica
+      source_family: social-security/health-contributions
+      language: es
