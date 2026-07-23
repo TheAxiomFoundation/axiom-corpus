@@ -1,0 +1,46 @@
+documents:
+  - source_id: us-ma-dor-4-percent-surtax-guidance
+    jurisdiction: us-ma
+    document_class: guidance
+    title: Massachusetts 4% Surtax on Taxable Income
+    source_url: https://www.mass.gov/info-details/massachusetts-4-surtax-on-taxable-income
+    source_format: html
+    source_as_of: "2026-07-22"
+    expression_date: "2026-06-01"
+    citation_path: us-ma/guidance/department-of-revenue/4-percent-surtax/2026
+    request:
+      browser_user_agent: true
+      browser_impersonation_direct: true
+    extraction:
+      html_content_selector: "#main-content .page-content"
+      segmentation: anchor_range
+      html_start_selector: "#calculating-income-subject-to-the-4-surtax"
+      html_stop_selector: "#forms--electronic-filing-requirements"
+      citation_suffix: taxable-income-calculation
+      section_heading: Calculating Income Subject to the 4% Surtax
+    metadata:
+      primary_source: true
+      source_authority: Massachusetts Department of Revenue
+      source_sha256: 20332177fd5030dfdfbe1f74543a7a65d1aa8e9daf61a267c34c509418d4c081
+      document_subtype: individual_income_surtax_guidance
+      program: individual_income_tax
+      tax_year: "2026"
+      page_last_updated: "2026-06-01"
+      source_status: current_official_surtax_guidance
+      surtax_threshold: "1107750"
+      surtax_rate: "0.04"
+      taxable_income_parts: Part A, Part B, and Part C
+      negative_part_treatment: Each negative Part is treated as zero
+      cross_part_loss_rule: >-
+        Once taxable income in each Part is determined, a negative amount in
+        one Part cannot reduce taxable income in another Part for the surtax.
+      statutory_rate_corpus_citation: us-ma/statute/62/4/block-2
+      statutory_corpus_version: 2026-07-13-recovery
+      source_note: >-
+        Current official DOR guidance, updated June 1, 2026. The retained
+        calculation section publishes the tax-year-2026 $1,107,750 threshold,
+        the 4% excess-income formula, and the rule that the surtax base sums
+        only positive Part A, Part B, and Part C taxable-income amounts after
+        any cross-Part deductions otherwise allowed by statute. This separate
+        guidance scope clarifies the base boundary; it does not certify a
+        complete final-return calculation.

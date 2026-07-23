@@ -1,0 +1,54 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/form/2026-07-22-ma-2026-form-1-es.json",
+      "sha256": "149f38854a6bf2c4871286e55e759704157b6cb256b174b709673ab0ae1a43ab"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/form/2026-07-22-ma-2026-form-1-es.json",
+      "sha256": "c1eff246f1eda1ac61aaba046c49b0ea3d37b8f2851e3b8a3cbe6097dd1cd512"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/form/2026-07-22-ma-2026-form-1-es.jsonl",
+      "sha256": "f443b7bbd1de4ac797642d1e2fb8e389496cabd051eaa9463bb37bd47be8210d"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/form/2026-07-22-ma-2026-form-1-es/official-documents/us-ma-dor-2026-form-1-es.pdf",
+      "sha256": "d5bdb884a9b70a2b5c04356e58a7edcdccd59ce6841bf1550409b6d9c99f0d19"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "76a70aff79015bb91eba4a6fe35a35b665c3f678",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-ma-2026-form-1-es --manifest manifests/us-ma-2026-form-1-es.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-23T15:17:59.281913+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-22-ma-2026-estimated-tax-and-surtax.md",
+      "sha256": "047c00553f6707893c56091fb1b7c591e291921ffc92a07ba2a14a9b7578b9f8"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WnxLZKsKuwKsyMfugWpV1Xe7UApL+sI8sMA6Pr41rPhMuOv5yilxTwGZWb8z43r/0fB3FHzGKnqZmmFeV7JTAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-ma-2026-form-1-es"
+}
