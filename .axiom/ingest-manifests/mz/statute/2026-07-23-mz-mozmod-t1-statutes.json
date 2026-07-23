@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/mz/statute/2026-07-23-mz-mozmod-t1-statutes.json",
+      "sha256": "95b0d9016cca08de44c05c3ba54c2b2fb8502fde052f097e693f623fe7cb0a02"
+    },
+    {
+      "path": "data/corpus/inventory/mz/statute/2026-07-23-mz-mozmod-t1-statutes.json",
+      "sha256": "19bad45c294000e8e36817e961efb8c56d7877087ccb9d1659e722f632605589"
+    },
+    {
+      "path": "data/corpus/provisions/mz/statute/2026-07-23-mz-mozmod-t1-statutes.jsonl",
+      "sha256": "aa6a6fafa81752f19bf5fc74e520b962620bd4089601420b5fa8236483cd9125"
+    },
+    {
+      "path": "data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes/official-documents/mz-lei-20-2013-irps-revisao.pdf",
+      "sha256": "e9971b37fe1c1c7355bea7d80101c6f891a74f898bacee214994feea88175b13"
+    },
+    {
+      "path": "data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes/official-documents/mz-lei-3-2012-iva-revisao.pdf",
+      "sha256": "1189fa3d8c4aa74ad48e15ac6dbd28e94066e063ed872cc1aa90974756d23e5a"
+    },
+    {
+      "path": "data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes/official-documents/mz-lei-4-2007-proteccao-social.pdf",
+      "sha256": "68f1d60568179e1adee8b24353bb98bdd5db68b0b16353024bc0dd01c1d0ef4e"
+    },
+    {
+      "path": "data/corpus/sources/mz/statute/2026-07-23-mz-mozmod-t1-statutes/official-documents/mz-lei-5-2009-ispc.pdf",
+      "sha256": "fda4c1a0056842dc882013fa422fa77fba5f8fe2d70e205ffa1e00cce30bbacf"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "cefd355e7743be0ca054909568d1d422b7142bd4",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> REQUESTS_CA_BUNDLE=<certifi+sslcom-rsa-subca> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23-mz-mozmod-t1-statutes --manifest manifests/mz-mozmod-t1-statutes-official-documents.yaml (AT docs via manifest local_path: at.gov.mz negotiates DH below OpenSSL 3 minimums; bytes fetched from recorded source_urls, sha256 in manifest header; ISPC sliced from the BR 2009-01-12 I-Serie 3.Sup gazette via single_block page_windows)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-23T23:42:05.184842+00:00",
+  "jurisdiction": "mz",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "qqSCT7LY7FQknQs60CWGE3VaSoKbDzrWu127gxUDn3Fozp1w4gl87avsDc/eYaRayf9qiQqKc1kCnNfbTnsaBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-mz-mozmod-t1-statutes"
+}
