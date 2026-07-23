@@ -1,0 +1,51 @@
+documents:
+  - source_id: us-la-ldr-2026-it-540es-instructions
+    jurisdiction: us-la
+    document_class: form
+    title: 2026 Declaration of Estimated Tax for Individuals — General Information and Instructions
+    source_url: https://dam.ldr.la.gov/taxforms/IT540ESi-2026.pdf
+    source_format: pdf
+    source_as_of: "2026-07-23"
+    expression_date: "2026-01-01"
+    citation_path: us-la/form/individual-income-tax/2026/it-540es-instructions
+    extraction:
+      segmentation: single_block
+      sort_text: true
+    metadata:
+      primary_source: true
+      source_authority: Louisiana Department of Revenue
+      source_sha256: 5733a329213809222d304e87ab6ce17200790843490fc21240ce415ceb5947dd
+      document_subtype: individual_estimated_income_tax_instructions_and_worksheet
+      form: IT-540ESi
+      program: individual_income_tax
+      tax_year: "2026"
+      source_status: current_official_estimated_tax_instructions
+      certification_scope: tax_year_2026_estimated_tax_worksheet_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      resident_standard_deduction_single_or_separate: "12875"
+      resident_standard_deduction_joint_head_or_surviving_spouse: "25750"
+      individual_income_tax_rate: "0.03"
+      estimated_tax_payment_threshold_single: "1000"
+      estimated_tax_payment_threshold_joint: "2000"
+      worksheet_taxable_income_formula: >-
+        Subtract estimated exempt income and the Louisiana estimated standard
+        deduction from estimated federal adjusted gross income.
+      worksheet_income_tax_formula: >-
+        Multiply estimated Louisiana taxable income by 3 percent.
+      worksheet_adjusted_income_tax_formula: >-
+        Subtract estimated 2025 total nonrefundable credits and estimated 2025
+        total refundable credits from estimated Louisiana income tax.
+      source_note: >-
+        Official tax-year-2026 IT-540ESi estimated-tax instructions and
+        worksheet. Page 2 publishes Louisiana estimated standard deductions
+        of $12,875 for single and married-filing-separately filers and $25,750
+        for married-filing-jointly, head-of-household, and qualifying surviving
+        spouse filers. The worksheet subtracts estimated exempt income and the
+        filing-status deduction from estimated federal adjusted gross income,
+        then multiplies estimated Louisiana taxable income by 3%. It directs
+        taxpayers to use the 2025 Form IT-540 and instructions as a guide and
+        refers to estimated 2025 credits without supplying their rules. This
+        source supports the 2026 estimated-tax worksheet only and does not
+        certify a complete final tax-year-2026 resident return.
