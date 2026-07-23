@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/pe/statute/2026-07-22-pe-perumod-t1-statutes.json",
+      "sha256": "25686e88089846017543c18ed2f564178290324a4a7a88a39ad73f5a3cebaa5b"
+    },
+    {
+      "path": "data/corpus/inventory/pe/statute/2026-07-22-pe-perumod-t1-statutes.json",
+      "sha256": "7ec8610a6a6cf9f2583defb7f52670c570f433d72a3cd73b2a1584353821291b"
+    },
+    {
+      "path": "data/corpus/provisions/pe/statute/2026-07-22-pe-perumod-t1-statutes.jsonl",
+      "sha256": "ecdbcc3ff8f5f6e903d62a1328d37b3e29adbb4e1757b0c18303deba3f4579be"
+    },
+    {
+      "path": "data/corpus/sources/pe/statute/2026-07-22-pe-perumod-t1-statutes/official-documents/pe-ds-055-99-ef-tuo-igv-isc.pdf",
+      "sha256": "7659efc789db13259bfd7468235307f8b32125985d7f3caf50ef5b0ec430c253"
+    },
+    {
+      "path": "data/corpus/sources/pe/statute/2026-07-22-pe-perumod-t1-statutes/official-documents/pe-ds-179-2004-ef-tuo-lir.pdf",
+      "sha256": "516c15237d1349cd06a0817d4d18fc6f11773e656aae624042ddb1c66aad9c7b"
+    },
+    {
+      "path": "data/corpus/sources/pe/statute/2026-07-22-pe-perumod-t1-statutes/official-documents/pe-ley-26790-modernizacion-seguridad-social-salud.pdf",
+      "sha256": "3bb3cfda92d62dc870b0d66c2af5c0469d3d1d24d2e599624fda86dd4c241257"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "449849166e93588ed961dcf12eafadfaafaa6866",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-22-pe-perumod-t1-statutes --manifest manifests/pe-perumod-t1-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-23T01:52:14.481860+00:00",
+  "jurisdiction": "pe",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "2EnfR7Bh8rzEvj9Wp8nBNGeQ8klRahfWJn2TBb9B2ASqPMt2XNsvxPc5X9NEUU/DNKEB+MNLjroDiB/wyvG+CA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-22-pe-perumod-t1-statutes"
+}
