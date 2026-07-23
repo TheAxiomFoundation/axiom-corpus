@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/co/statute/2026-07-23-co-colmod-t1-statutes.json",
+      "sha256": "000db8f8f4d3353fbc2fb793d50e92286dca80eb1b7966f984b939d81d0927bf"
+    },
+    {
+      "path": "data/corpus/inventory/co/statute/2026-07-23-co-colmod-t1-statutes.json",
+      "sha256": "51fa7f605b349452dc1c685988f5cb8f05f3243cabaa28f6286f636a8aff798a"
+    },
+    {
+      "path": "data/corpus/provisions/co/statute/2026-07-23-co-colmod-t1-statutes.jsonl",
+      "sha256": "1311d9f8accf95eeb6444c005ad36afdd2e5ea690290ede0aeec4d5d977b7fd6"
+    },
+    {
+      "path": "data/corpus/sources/co/statute/2026-07-23-co-colmod-t1-statutes/official-documents/co-ley-100-1993-seguridad-social-integral.html",
+      "sha256": "8279328ceadda3cae1bd146edccb89d1204e7adcea5d4c7e7c160737935361f8"
+    },
+    {
+      "path": "data/corpus/sources/co/statute/2026-07-23-co-colmod-t1-statutes/official-documents/co-ley-1532-2012-familias-en-accion.html",
+      "sha256": "eb7f549cb8f161a5ed80c331afb7026eee108a622ffcf8ad9c0021432cc4a1bb"
+    },
+    {
+      "path": "data/corpus/sources/co/statute/2026-07-23-co-colmod-t1-statutes/official-documents/co-ley-2010-2019-crecimiento-economico.html",
+      "sha256": "dcbd65344f3ac09bf91e59da03dcb22bf03db7af330d7c01fe7c56787611bb81"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "eb745dfe95e8d21bf0f9a707aea3c9d2827f3d71",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "REQUESTS_CA_BUNDLE=<certifi+sectigo-ev-r36> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23-co-colmod-t1-statutes --manifest manifests/co-colmod-t1-statutes-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 9,
+    "missing_count": 0,
+    "provision_count": 9,
+    "source_count": 9
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-23T09:09:31.120668+00:00",
+  "jurisdiction": "co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "vUBrNas2C6kOW+3WYS+kUhaSu1MPFfYcAJ42cOafb53NbxqO6VeOIhXFjpRfvEN7+KzBOltJ+m5tu4KwcSxBBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-co-colmod-t1-statutes"
+}
