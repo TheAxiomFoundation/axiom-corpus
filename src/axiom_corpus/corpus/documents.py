@@ -1023,6 +1023,16 @@ def _extract_pdf_blocks(
     return tuple(blocks)
 
 
+_SINGLE_BLOCK_PDF_FILTER_KEYS = (
+    "page_windows",
+    "start_page",
+    "end_page",
+    "start_after_pattern",
+    "drop_lines",
+    "drop_line_patterns",
+)
+
+
 def _extract_single_block_pdf(
     content: bytes, *, extraction: dict[str, Any]
 ) -> tuple[_DocumentBlock, ...]:
@@ -1034,13 +1044,30 @@ def _extract_single_block_pdf(
     page texts are concatenated in order under the source's own
     ``citation_path``; a blank-line separator preserves page boundaries for
     readers without emitting page suffixes.
+
+    Page filters (``page_windows`` or the legacy ``start_page``/``end_page``/
+    ``start_after_pattern``/``drop_lines``/``drop_line_patterns``) are honored
+    when present, so one instrument can be sliced out of a larger scan (e.g.
+    a single law inside a multi-law gazette issue) while remaining a single
+    root provision.
     """
     page_texts: list[str] = []
-    with fitz.open(stream=content, filetype="pdf") as document:
-        for page in document:
-            text = _normalize_text(_pdf_page_text(page, extraction=extraction))
-            if text:
-                page_texts.append(text)
+    if any(
+        extraction.get(key) is not None for key in _SINGLE_BLOCK_PDF_FILTER_KEYS
+    ):
+        current_page: int | None = None
+        for line, page_index in _filtered_pdf_lines(content, extraction=extraction):
+            if page_index != current_page:
+                page_texts.append(line)
+                current_page = page_index
+            else:
+                page_texts[-1] = f"{page_texts[-1]}\n{line}"
+    else:
+        with fitz.open(stream=content, filetype="pdf") as document:
+            for page in document:
+                text = _normalize_text(_pdf_page_text(page, extraction=extraction))
+                if text:
+                    page_texts.append(text)
     body = "\n\n".join(page_texts)
     if not body:
         return ()

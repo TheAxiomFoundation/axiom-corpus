@@ -2410,6 +2410,69 @@ documents:
     assert "132" not in records[2].body
 
 
+def test_extract_single_block_pdf_honors_page_windows(tmp_path: Path) -> None:
+    pdf_path = tmp_path / "gazette-issue.pdf"
+    document = fitz.open()
+    first = document.new_page()
+    first.insert_text((72, 72), "Gazette masthead and first-law text to exclude.")
+    middle = document.new_page()
+    middle.insert_text((72, 72), "Second-law text outside the window.")
+    last = document.new_page()
+    last.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                "Tail of the previous law before the anchor.",
+                "Law 5/2009",
+                "Creates the simplified tax for small taxpayers.",
+                "The annual rate is fixed by this law.",
+            ]
+        ),
+    )
+    document.save(pdf_path)
+    document.close()
+    manifest_path = tmp_path / "documents.yaml"
+    manifest_path.write_text(
+        f"""
+documents:
+  - source_id: gazette-sliced-law
+    jurisdiction: us-test
+    document_class: statute
+    title: Gazette Sliced Law
+    source_url: https://example.test/gazette-issue.pdf
+    citation_path: us-test/statute/gazette-sliced-law
+    source_format: pdf
+    local_path: {json.dumps(str(pdf_path))}
+    extraction:
+      segmentation: single_block
+      page_windows:
+        - start_page: 3
+          end_page: 3
+          start_at_pattern: '^Law 5/2009'
+"""
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_official_documents(
+        store,
+        manifest_path=manifest_path,
+        version="2026-07-23-gazette-sliced-law",
+    )
+
+    assert report.block_count == 1
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us-test/statute/gazette-sliced-law",
+        "us-test/statute/gazette-sliced-law/document-1",
+    ]
+    body = records[-1].body or ""
+    assert body.startswith("Law 5/2009")
+    assert "simplified tax for small taxpayers" in body
+    assert "masthead" not in body
+    assert "outside the window" not in body
+    assert "Tail of the previous law" not in body
+
+
 def test_pdf_page_windows_reject_invalid_configs(tmp_path: Path) -> None:
     pdf_bytes_document = fitz.open()
     pdf_bytes_document.new_page().insert_text((72, 72), "51. Text.")

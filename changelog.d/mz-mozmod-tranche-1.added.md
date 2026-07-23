@@ -1,0 +1,1 @@
+First Mozambique (mz) corpus presence: MOZMOD v3.1 tranche-1 statute scope (Lei 4/2007 protecção social; Lei 20/2013 IRPS revision; Lei 5/2009 ISPC, sliced from the AT-hosted Boletim da República 2009-01-12 I Série 3.º Suplemento; Lei 3/2012 IVA revision) plus single_block PDF extraction now honoring page filters (page_windows et al.).
