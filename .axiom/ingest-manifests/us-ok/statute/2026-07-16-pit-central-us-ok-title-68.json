@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ok/statute/2026-07-16-pit-central-us-ok-title-68.json",
-      "sha256": "3200f23ea8bce9fe3fc4e4c9cf8655c38305f7b2e92244a2a832a63de626972d"
+      "sha256": "dbd5ad8fb1a798f85e1f2162256be7787281b80aa386f186c09baa404b658a27"
     },
     {
       "path": "data/corpus/provisions/us-ok/statute/2026-07-16-pit-central-us-ok-title-68.jsonl",
-      "sha256": "351324fabfa87c14caea62790aa3391d1ecf991e7b66d9437f7d412a41e914c7"
+      "sha256": "645a572849d56edd6cd6ff6cb0c1b8cab5dcc5c4b2bbd4c1320bcba3369c1669"
     },
     {
       "path": "data/corpus/sources/us-ok/statute/2026-07-16-pit-central-us-ok-title-68/oklahoma-statutes-rtf/os68.rtf",
@@ -22,13 +22,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "commit": "98032fddf5ebf0a7f1eb437b402e2305be023598",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+    "text": "Correct official Oklahoma section 2358 version statuses after source review: V1/V2 superseded, V3 operative"
   },
   "coverage": {
     "complete": true,
@@ -39,14 +39,14 @@
     "source_count": 1841
   },
   "document_class": "statute",
-  "generated_at": "2026-07-21T12:53:28.655744+00:00",
+  "generated_at": "2026-07-23T23:35:13.631748+00:00",
   "jurisdiction": "us-ok",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "N95p7FlhSSwGPxoYCpiXdAAGh5cavyaCHmlHNtlD0SrJiW/j0BCYoHdEn/5dCciX/7k0fgPw5Ip/SwgAVkeODg=="
+    "value": "7s1ebPrnjNs3zLVFoJU+6PGHZKkeNhXhYty84es1zTnKVFUInafXVP5YStGKse6ABFJ7MaE+5w9o2AOfoF0CAw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-16-pit-central-us-ok-title-68"
