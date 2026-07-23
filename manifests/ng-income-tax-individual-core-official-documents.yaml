@@ -36,7 +36,7 @@ documents:
       browser_user_agent: true
     extraction:
       segmentation: labeled_sections
-      section_heading_pattern: '^(?P<label>30|58)\.(?:\s+(?P<heading>.+))?$'
+      section_heading_pattern: '^(?P<label>30|58)\.(?:\s+(?P<body>.+))?$'
       section_label_pattern: '^(?P<label>Fourth Schedule)$'
       section_label_replacements:
         Fourth Schedule: fourth-schedule
