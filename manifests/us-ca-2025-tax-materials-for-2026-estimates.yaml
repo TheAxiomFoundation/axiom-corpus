@@ -1,0 +1,104 @@
+documents:
+  - source_id: us-ca-ftb-2025-form-540-tax-table
+    jurisdiction: us-ca
+    document_class: form
+    title: 2025 California Tax Table
+    source_url: https://www.ftb.ca.gov/forms/2025/2025-540-taxtable.pdf
+    source_format: pdf
+    source_as_of: "2026-07-23"
+    expression_date: "2025-01-01"
+    citation_path: us-ca/form/individual-income-tax/2025/540-tax-table
+    extraction:
+      segmentation: single_block
+      sort_text: true
+    metadata:
+      primary_source: true
+      source_authority: California Franchise Tax Board
+      source_sha256: 0414ffb02dbcd209966f5fe9bbdfeffd55816cc8d86a08501fd9ef7d79e7087d
+      pdf_last_modified: "2025-11-03"
+      document_subtype: individual_income_tax_table
+      program: individual_income_tax
+      tax_year: "2025"
+      target_tax_year: "2026"
+      application_scope: incorporated_by_2026_form_540_es_estimated_tax_line_4
+      taxable_income_scope: form_540_or_540nr_taxable_income_at_or_below_100000
+      incorporating_source_citation: us-ca/form/individual-income-tax/2026/540-es-instructions/document-1
+      incorporation_rule: >-
+        The official 2026 Form 540-ES worksheet line 4 directs taxpayers to
+        figure tax on worksheet line 3 using the 2025 tax table for Form 540
+        or Form 540NR. The 2025 Form 540 instructions use this table when
+        taxable income is $100,000 or less.
+      certification_scope: 2026_estimated_tax_incorporated_2025_material_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      source_note: >-
+        Official 2025 California Tax Table retained only because the official
+        2026 Form 540-ES worksheet directs its use for 2026 estimated-tax
+        computation. This source does not establish a final tax-year-2026
+        return schedule or independently authorize projecting 2025 values.
+
+  - source_id: us-ca-ftb-2025-form-540-tax-rate-schedules
+    jurisdiction: us-ca
+    document_class: form
+    title: 2025 California Tax Rate Schedules
+    source_url: https://www.ftb.ca.gov/forms/2025/2025-540-tax-rate-schedules.pdf
+    source_format: pdf
+    source_as_of: "2026-07-23"
+    expression_date: "2025-01-01"
+    citation_path: us-ca/form/individual-income-tax/2025/540-tax-rate-schedules
+    extraction:
+      segmentation: single_block
+      sort_text: true
+    metadata:
+      primary_source: true
+      source_authority: California Franchise Tax Board
+      source_sha256: ad70ee345aa7daf5788b64419e04280c76fbebd0c15856820ccea71f3534a8c6
+      pdf_last_modified: "2025-11-13"
+      document_subtype: individual_income_tax_rate_schedules
+      program: individual_income_tax
+      tax_year: "2025"
+      target_tax_year: "2026"
+      application_scope: incorporated_by_2026_form_540_es_estimated_tax_line_4
+      taxable_income_scope: form_540_taxable_income_over_100000
+      incorporating_source_citation: us-ca/form/individual-income-tax/2026/540-es-instructions/document-1
+      incorporation_rule: >-
+        The official 2026 Form 540-ES worksheet line 4 directs taxpayers to
+        use the 2025 Form 540 or Form 540NR tax table. The official 2025 rate
+        schedule material supplies the filing-status schedules used instead
+        of the tabular lookup when Form 540 taxable income exceeds $100,000.
+      schedule_x_filing_statuses: single_or_married_rdp_filing_separately
+      schedule_x_brackets: >-
+        $0-$11,079: 1%; $11,079-$26,264: $110.79 plus 2%;
+        $26,264-$41,452: $414.49 plus 4%; $41,452-$57,542:
+        $1,022.01 plus 6%; $57,542-$72,724: $1,987.41 plus 8%;
+        $72,724-$371,479: $3,201.97 plus 9.3%; $371,479-$445,771:
+        $30,986.19 plus 10.3%; $445,771-$742,953: $38,638.27 plus
+        11.3%; over $742,953: $72,219.84 plus 12.3%.
+      schedule_y_filing_statuses: married_rdp_joint_or_qualifying_surviving_spouse_rdp
+      schedule_y_brackets: >-
+        $0-$22,158: 1%; $22,158-$52,528: $221.58 plus 2%;
+        $52,528-$82,904: $828.98 plus 4%; $82,904-$115,084:
+        $2,044.02 plus 6%; $115,084-$145,448: $3,974.82 plus 8%;
+        $145,448-$742,958: $6,403.94 plus 9.3%; $742,958-$891,542:
+        $61,972.37 plus 10.3%; $891,542-$1,485,906: $77,276.52 plus
+        11.3%; over $1,485,906: $144,439.65 plus 12.3%.
+      schedule_z_filing_status: head_of_household
+      schedule_z_brackets: >-
+        $0-$22,173: 1%; $22,173-$52,530: $221.73 plus 2%;
+        $52,530-$67,716: $828.87 plus 4%; $67,716-$83,805:
+        $1,436.31 plus 6%; $83,805-$98,990: $2,401.65 plus 8%;
+        $98,990-$505,208: $3,616.45 plus 9.3%; $505,208-$606,251:
+        $41,394.72 plus 10.3%; $606,251-$1,010,417: $51,802.15 plus
+        11.3%; over $1,010,417: $97,472.91 plus 12.3%.
+      certification_scope: 2026_estimated_tax_incorporated_2025_material_only
+      final_return_certification: false
+      rulespec_semantics: not_asserted
+      policyengine_parity: not_asserted
+      source_note: >-
+        Official 2025 filing-status rate schedules retained only within the
+        dependency boundary created by the official 2026 Form 540-ES
+        worksheet. The schedule itself says it is used for Form 540 taxable
+        income over $100,000. This source does not establish a final
+        tax-year-2026 return schedule or independently authorize projecting
+        2025 values.
