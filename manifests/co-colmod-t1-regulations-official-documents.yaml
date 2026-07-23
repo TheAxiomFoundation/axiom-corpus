@@ -1,0 +1,32 @@
+# Colombia (co) tranche-1 capture, REGULATION class - companion to the
+# co-colmod-t1 statutes manifest (see its header for the full COLMOD v6.0
+# parity notes). One instrument:
+#
+# 1. Decreto Legislativo 518 de 2020 (SUIN-Juriscol official norm page) -
+#    creates the Programa Ingreso Solidario: unconditional monetary
+#    transfers to households in poverty and vulnerability that are NOT
+#    beneficiaries of Familias en Accion, Colombia Mayor, Jovenes en
+#    Accion, or the IVA compensation - the 2020-22 program COLMOD
+#    simulates. The Colombia Mayor and Jovenes en Accion instruments are
+#    documented tranche-2 gaps (program manuals / decree chain via
+#    Prosperidad Social).
+documents:
+  - source_id: co-decreto-518-2020-ingreso-solidario
+    jurisdiction: co
+    document_class: regulation
+    citation_path: co/regulation/decreto-2020-518/programa-ingreso-solidario
+    title: Decreto Legislativo 518 de 2020 (SUIN-Juriscol official norm page) - crea el Programa Ingreso Solidario (transferencias no condicionadas 2020-22)
+    source_url: 'https://www.suin-juriscol.gov.co/viewDocument.asp?ruta=Decretos/30039043'
+    source_format: html
+    source_as_of: '2026-07-23'
+    expression_date: '2020-04-04'
+    request:
+      browser_user_agent: true
+    extraction:
+      segmentation: single_block
+    metadata:
+      primary_source: true
+      source_authority: Republica de Colombia (Ministerio de Justicia, SUIN-Juriscol)
+      publisher: SUIN-Juriscol
+      source_family: social-assistance/ingreso-solidario
+      language: es
