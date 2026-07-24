@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/bo/statute/2026-07-23-bo-bolmod-t1-statutes.json",
+      "sha256": "36887ff87674b1b1ffa1ee6efab2e5b3e3185deb380150c4a3a45b5fd3f3b003"
+    },
+    {
+      "path": "data/corpus/inventory/bo/statute/2026-07-23-bo-bolmod-t1-statutes.json",
+      "sha256": "2d14072d8bff5e2651ce90dfaf8211434aefc9d8782c8d549c1ba5c014471e73"
+    },
+    {
+      "path": "data/corpus/provisions/bo/statute/2026-07-23-bo-bolmod-t1-statutes.jsonl",
+      "sha256": "791e5ca51d4e639395c7a664dd658fd4637b2f5f2d74b429d88928eb783c7728"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-23-bo-bolmod-t1-statutes/official-documents/bo-ley-065-2010-pensiones.pdf",
+      "sha256": "8bfb91850991c028da740c18c9089126d83a095699fa1e805107a6389ecc3911"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-23-bo-bolmod-t1-statutes/official-documents/bo-ley-3791-2007-renta-dignidad.pdf",
+      "sha256": "590895689330a5ffadfc33c0810fd1912c8c9c4cc2453e66c0b8a1358039fa78"
+    },
+    {
+      "path": "data/corpus/sources/bo/statute/2026-07-23-bo-bolmod-t1-statutes/official-documents/bo-ley-843-texto-ordenado-ds-27947.html",
+      "sha256": "3ed28f147542cfbac9c48db8a9a8e8352ca70a1113ec09e9c44fcdee1b337474"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a141d06730b1f6f78d763e02c70b9011f0c98840",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23-bo-bolmod-t1-statutes --manifest manifests/bo-bolmod-t1-statutes-official-documents.yaml (Ley 843 texto ordenado from the Gaceta Oficial verGratis_gob/25501 HTML view; BCB and APS PDFs fetched directly with verification on)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T01:52:07.185970+00:00",
+  "jurisdiction": "bo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "wJEyFjGSnz5XaU3LMCUA378XqNTixbDOXw3FFrOLNQ7PptpD8qH1EWy7homrPbJq5vKffwvx5WcSXFo8lSg7Cg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-bo-bolmod-t1-statutes"
+}
