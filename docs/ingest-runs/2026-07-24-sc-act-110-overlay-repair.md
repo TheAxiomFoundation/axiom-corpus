@@ -5,19 +5,29 @@ included both the Title 12, Chapter 6 Code HTML and
 [2026 Act No. 110 (H.4216)](https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm).
 The original extraction applied only Act 110 SECTION 1 to the rate schedule in
 Section 12-6-510. This source-first repair applies the same enacted act to all
-four affected normalized sections:
+six affected normalized sections:
 
 - SECTION 1 replaces Section 12-6-510(C);
 - SECTION 2 adds Section 12-6-50(21), which does not adopt Internal Revenue
   Code Section 63(b) through (g);
 - SECTION 3 adds Section 12-6-1140(15), the South Carolina Income Adjusted
   Deduction; and
+- SECTION 4 replaces Section 12-6-4910(1), conforming individual return-filing
+  thresholds to SCIAD;
+- SECTION 5 replaces Section 12-6-1720(2)(a)(i), prorating SCIAD for a
+  nonresident individual; and
 - SECTION 7 replaces Section 12-6-3632 with the earned income tax credit capped
   at two hundred dollars.
 
+The adapter now resolves a complete nested amendment path, rather than only a
+single top-level lettered subsection. It replaces only the targeted subtree, so
+Section 12-6-4910 items (2) through (11), Section 12-6-1720(2)(a)(ii), and all
+following subdivisions remain intact.
+
 Each overlaid provision retains both the codified-base and operative-session-law
-components in metadata and records the applicable Act 110 section in its source
-history. The source snapshot was unchanged: the Act HTML SHA-256 remains
+components in metadata, records the complete amendment path, and records the
+applicable Act 110 section in its source history. The source snapshot was
+unchanged: the Act HTML SHA-256 remains
 `9e3fbbd48551b138866bd5c54f1faadd6404d624ba350195459c0c65477e7493`.
 
 Because the earlier scope was selected by published releases, it remains
@@ -44,7 +54,9 @@ axiom_with_corpus_ingest_key uv run --extra dev axiom-corpus-ingest \
   --only-source-id us-sc-code
 ```
 
-The protected wrapper supplies signing material only to the ingest process.
+The protected wrapper supplies signing material only to the ingest process and
+is also used to refresh the signed ingest manifest after deterministic
+regeneration.
 Private signing material is neither printed nor stored in the repository.
 Release selection, publication, database loading, and RuleSpec changes remain
 separate reviewed steps.

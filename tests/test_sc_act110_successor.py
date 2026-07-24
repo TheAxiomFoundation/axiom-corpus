@@ -79,6 +79,8 @@ def test_act110_scope_contains_operational_2026_income_tax_text() -> None:
 
     section_50 = provisions["us-sc/statute/12-6-50"].body or ""
     section_1140 = provisions["us-sc/statute/12-6-1140"].body or ""
+    section_4910 = provisions["us-sc/statute/12-6-4910"].body or ""
+    section_1720 = provisions["us-sc/statute/12-6-1720"].body or ""
     section_3632 = provisions["us-sc/statute/12-6-3632"].body or ""
 
     assert "Section 63(b) through (g)" in section_50
@@ -89,5 +91,14 @@ def test_act110_scope_contains_operational_2026_income_tax_text() -> None:
     assert "sixty thousand dollars" in section_1140
     assert "eighty thousand dollars" in section_1140
     assert "rounded to the next lowest ten dollars" in section_1140
+    assert "whose South Carolina gross income for the taxable year is more than" in section_4910
+    assert "(2) a corporation subject to taxation under this chapter." in section_4910
+    assert "2026 Act No. 110 (H.4216), SECTION 4" in section_4910
+    assert "South Carolina Income Adjusted Deduction (SCIAD)" in section_1720
+    assert (
+        "(ii) For a nonresident estate or nonresident trust, the personal exemption "
+        "and itemized deductions"
+    ) in section_1720
+    assert "2026 Act No. 110 (H.4216), SECTION 5" in section_1720
     assert "not to exceed two hundred dollars" in section_3632
     assert "2026 Act No. 110 (H.4216), SECTION 7" in section_3632

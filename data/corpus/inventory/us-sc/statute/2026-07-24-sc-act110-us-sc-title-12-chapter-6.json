@@ -119,7 +119,9 @@
           "amendment_section": "2",
           "approved_text": "Approved the 30th day of March, 2026.",
           "bill_number": "4216",
-          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025."
+          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025.",
+          "operation": "add",
+          "subsection_path": ""
         },
         "source_components": [
           {
@@ -191,7 +193,9 @@
           "amendment_section": "1",
           "approved_text": "Approved the 30th day of March, 2026.",
           "bill_number": "4216",
-          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025."
+          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025.",
+          "operation": "replace_subsection",
+          "subsection_path": "(C)"
         },
         "source_components": [
           {
@@ -623,7 +627,9 @@
           "amendment_section": "3",
           "approved_text": "Approved the 30th day of March, 2026.",
           "bill_number": "4216",
-          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025."
+          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025.",
+          "operation": "add",
+          "subsection_path": ""
         },
         "source_components": [
           {
@@ -913,15 +919,38 @@
         "chapter": "6",
         "kind": "section",
         "section": "12-6-1720",
+        "session_law_overlay": {
+          "act_number": "110",
+          "amendment_section": "5",
+          "approved_text": "Approved the 30th day of March, 2026.",
+          "bill_number": "4216",
+          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025.",
+          "operation": "replace_subsection",
+          "subsection_path": "(2)(a)(i)"
+        },
+        "source_components": [
+          {
+            "role": "codified_base",
+            "sha256": "ae31dbc10579d61076ca1b6a48a5a240eab85547ad42df8642e99affbf31909d",
+            "source_path": "sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/title-12/chapter-6.html",
+            "source_url": "https://www.scstatehouse.gov/code/t12c006.php"
+          },
+          {
+            "role": "operative_session_law_overlay",
+            "sha256": "9e3fbbd48551b138866bd5c54f1faadd6404d624ba350195459c0c65477e7493",
+            "source_path": "sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/session-laws/2026-act-110-h4216.html",
+            "source_url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm"
+          }
+        ],
         "source_history": [
-          "HISTORY: 1995 Act No. 76, SECTION 1; 2005 Act No. 161, SECTION 6, eff June 9, 2005."
+          "HISTORY: 1995 Act No. 76, SECTION 1; 2005 Act No. 161, SECTION 6, eff June 9, 2005; 2026 Act No. 110 (H.4216), SECTION 5."
         ],
         "title": "12"
       },
-      "sha256": "ae31dbc10579d61076ca1b6a48a5a240eab85547ad42df8642e99affbf31909d",
+      "sha256": "9e3fbbd48551b138866bd5c54f1faadd6404d624ba350195459c0c65477e7493",
       "source_format": "south-carolina-code-html",
-      "source_path": "sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/title-12/chapter-6.html",
-      "source_url": "https://www.scstatehouse.gov/code/t12c006.php"
+      "source_path": "sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/session-laws/2026-act-110-h4216.html",
+      "source_url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm"
     },
     {
       "citation_path": "us-sc/statute/12-6-2210",
@@ -2313,7 +2342,9 @@
           "amendment_section": "7",
           "approved_text": "Approved the 30th day of March, 2026.",
           "bill_number": "4216",
-          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025."
+          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025.",
+          "operation": "replace_section",
+          "subsection_path": ""
         },
         "source_components": [
           {
@@ -2783,19 +2814,43 @@
           "Editor's Note"
         ],
         "references_to": [
+          "us-sc/statute/12-6-1140",
           "us-sc/statute/12-6-1170",
           "us-sc/statute/12-6-540"
         ],
         "section": "12-6-4910",
+        "session_law_overlay": {
+          "act_number": "110",
+          "amendment_section": "4",
+          "approved_text": "Approved the 30th day of March, 2026.",
+          "bill_number": "4216",
+          "effective_text": "SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025.",
+          "operation": "replace_subsection",
+          "subsection_path": "(1)"
+        },
+        "source_components": [
+          {
+            "role": "codified_base",
+            "sha256": "ae31dbc10579d61076ca1b6a48a5a240eab85547ad42df8642e99affbf31909d",
+            "source_path": "sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/title-12/chapter-6.html",
+            "source_url": "https://www.scstatehouse.gov/code/t12c006.php"
+          },
+          {
+            "role": "operative_session_law_overlay",
+            "sha256": "9e3fbbd48551b138866bd5c54f1faadd6404d624ba350195459c0c65477e7493",
+            "source_path": "sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/session-laws/2026-act-110-h4216.html",
+            "source_url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm"
+          }
+        ],
         "source_history": [
-          "HISTORY: 1995 Act No. 76, SECTION 1; 1999 Act No. 114, SECTION 4; 2000 Act No. 399, SECTION 3(D)(3), eff August 17, 2000; 2005 Act No. 145, SECTION 16.A, eff June 7, 2005."
+          "HISTORY: 1995 Act No. 76, SECTION 1; 1999 Act No. 114, SECTION 4; 2000 Act No. 399, SECTION 3(D)(3), eff August 17, 2000; 2005 Act No. 145, SECTION 16.A, eff June 7, 2005; 2026 Act No. 110 (H.4216), SECTION 4."
         ],
         "title": "12"
       },
-      "sha256": "ae31dbc10579d61076ca1b6a48a5a240eab85547ad42df8642e99affbf31909d",
+      "sha256": "9e3fbbd48551b138866bd5c54f1faadd6404d624ba350195459c0c65477e7493",
       "source_format": "south-carolina-code-html",
-      "source_path": "sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/title-12/chapter-6.html",
-      "source_url": "https://www.scstatehouse.gov/code/t12c006.php"
+      "source_path": "sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/session-laws/2026-act-110-h4216.html",
+      "source_url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm"
     },
     {
       "citation_path": "us-sc/statute/12-6-4920",
