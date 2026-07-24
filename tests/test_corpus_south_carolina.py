@@ -372,6 +372,7 @@ def test_parse_and_apply_south_carolina_addition_and_whole_section_overlays():
     assert "(2) Preserved corporation rule." in (current_4910.body or "")
     assert overlay_1720.subsection_path == ("2", "a", "i")
     assert "South Carolina Income Adjusted Deduction" in (current_1720.body or "")
+    assert "(a)(i) For a nonresident individual" in (current_1720.body or "")
     assert "Old nonresident deduction rule" not in (current_1720.body or "")
     assert "(ii) Preserved estate and trust rule." in (current_1720.body or "")
     assert "(b) Preserved computation rule." in (current_1720.body or "")

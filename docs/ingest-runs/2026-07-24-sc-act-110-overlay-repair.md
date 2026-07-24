@@ -22,7 +22,10 @@ six affected normalized sections:
 The adapter now resolves a complete nested amendment path, rather than only a
 single top-level lettered subsection. It replaces only the targeted subtree, so
 Section 12-6-4910 items (2) through (11), Section 12-6-1720(2)(a)(ii), and all
-following subdivisions remain intact.
+following subdivisions remain intact. When the codified target shares a line
+with an unmatched ancestor marker, the adapter retains that marker; the
+Section 12-6-1720 successor therefore correctly begins the replacement with
+`(a)(i)`.
 
 Each overlaid provision retains both the codified-base and operative-session-law
 components in metadata, records the complete amendment path, and records the

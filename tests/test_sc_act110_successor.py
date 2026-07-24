@@ -95,6 +95,7 @@ def test_act110_scope_contains_operational_2026_income_tax_text() -> None:
     assert "(2) a corporation subject to taxation under this chapter." in section_4910
     assert "2026 Act No. 110 (H.4216), SECTION 4" in section_4910
     assert "South Carolina Income Adjusted Deduction (SCIAD)" in section_1720
+    assert "(a)(i) For a nonresident individual" in section_1720
     assert (
         "(ii) For a nonresident estate or nonresident trust, the personal exemption "
         "and itemized deductions"

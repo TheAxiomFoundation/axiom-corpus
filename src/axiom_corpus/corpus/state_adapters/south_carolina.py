@@ -788,6 +788,44 @@ def _format_subsection_path(path: tuple[str, ...]) -> str:
     return "".join(f"({component})" for component in path)
 
 
+def _retain_co_located_ancestor_markers(
+    *,
+    codified_line: str,
+    replacement_lines: tuple[str, ...],
+    target: str,
+) -> tuple[str, ...]:
+    """Keep ancestor markers that share the codified target's first line."""
+    if not replacement_lines:
+        return replacement_lines
+    codified_markers = _leading_subsection_markers(codified_line)
+    target_index = next(
+        (
+            index
+            for index in range(len(codified_markers) - 1, -1, -1)
+            if codified_markers[index].casefold() == target.casefold()
+        ),
+        None,
+    )
+    if target_index is None or target_index == 0:
+        return replacement_lines
+
+    ancestor_markers = codified_markers[:target_index]
+    replacement_markers = _leading_subsection_markers(replacement_lines[0])
+    expected_prefix = (*ancestor_markers, target)
+    if tuple(
+        marker.casefold() for marker in replacement_markers[: len(expected_prefix)]
+    ) == tuple(marker.casefold() for marker in expected_prefix):
+        return replacement_lines
+    if not replacement_markers or replacement_markers[0].casefold() != target.casefold():
+        return replacement_lines
+
+    ancestor_prefix = _format_subsection_path(ancestor_markers)
+    return (
+        f"{ancestor_prefix}{replacement_lines[0]}",
+        *replacement_lines[1:],
+    )
+
+
 def _subsection_marker_kind(marker: str) -> str:
     if marker.isdigit():
         return "number"
@@ -1005,10 +1043,15 @@ def apply_south_carolina_session_law_overlay(
             overlay.subsection_path,
             section=section.section,
         )
+        replacement_lines = _retain_co_located_ancestor_markers(
+            codified_line=body_lines[start_index],
+            replacement_lines=overlay.replacement_lines,
+            target=overlay.subsection_path[-1],
+        )
         target_kind = _subsection_marker_kind(overlay.subsection_path[-1])
         replacement_siblings = tuple(
             markers[0]
-            for line in overlay.replacement_lines
+            for line in replacement_lines
             if (markers := _leading_subsection_markers(line))
             and _subsection_marker_kind(markers[0]) == target_kind
         )
@@ -1025,7 +1068,7 @@ def apply_south_carolina_session_law_overlay(
                 )
         revised_lines = [
             *body_lines[:start_index],
-            *overlay.replacement_lines,
+            *replacement_lines,
             *body_lines[end_index:],
         ]
         history_line_index = revised_lines.index(body_lines[history_index])
