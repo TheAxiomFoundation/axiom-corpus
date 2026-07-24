@@ -53,7 +53,7 @@ The retained chapter 75 PDF has SHA-256
 `0e323352cafe8a27bb75194f2185ff7b58dcb1603ff6986e9acebfb18a20f419`.
 Coverage is complete at six inventory citations and six normalized
 provisions, with no missing, extra, or duplicate citations. A fresh extraction
-after staging reproduced both PDFs and all generated artifacts byte for byte.
+after staging reproduced all three PDFs and all generated artifacts byte for byte.
 
 Artifacts are generated without publication or database loading:
 
