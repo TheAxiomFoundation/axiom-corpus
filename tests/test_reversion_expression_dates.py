@@ -21,6 +21,10 @@ def test_reversion_repairs_dates_and_preserves_immutable_source_scope(tmp_path):
             citation_path="us/statute/1",
             source_path=source_path,
             sha256=source_sha256,
+            metadata={
+                "index_source_path": source_path,
+                "unrelated": "published-v1",
+            },
         ),
         SourceInventoryItem(
             citation_path="us/statute/1/a",
@@ -39,6 +43,11 @@ def test_reversion_repairs_dates_and_preserves_immutable_source_scope(tmp_path):
             source_path=source_path,
             source_as_of="2026-07-18",
             expression_date=None,
+            metadata={
+                "index_source_path": source_path,
+                "nested": {"source_paths": [source_path]},
+                "unrelated": "published-v1",
+            },
         ),
         ProvisionRecord(
             jurisdiction="us",
@@ -80,6 +89,12 @@ def test_reversion_repairs_dates_and_preserves_immutable_source_scope(tmp_path):
         store.provisions_path("us", "statute", target_version)
     )
     assert all(target_version in item.source_path for item in target_inventory)
+    assert target_inventory[0].metadata == {
+        "index_source_path": (
+            f"sources/us/statute/{target_version}/source.xml"
+        ),
+        "unrelated": "published-v1",
+    }
     assert [record.expression_date for record in target_records] == [
         "2026-07-18",
         "2026-07-18",
@@ -88,6 +103,13 @@ def test_reversion_repairs_dates_and_preserves_immutable_source_scope(tmp_path):
         "us/statute/1", target_version
     )
     assert target_records[1].parent_id == target_records[0].id
+    assert target_records[0].metadata == {
+        "index_source_path": f"sources/us/statute/{target_version}/source.xml",
+        "nested": {
+            "source_paths": [f"sources/us/statute/{target_version}/source.xml"]
+        },
+        "unrelated": "published-v1",
+    }
     assert (store.root / target_records[0].source_path).read_bytes() == source.read_bytes()
 
 

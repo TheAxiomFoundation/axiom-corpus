@@ -8,6 +8,7 @@ import shutil
 from dataclasses import replace
 from datetime import date
 from pathlib import Path
+from typing import Any
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -39,6 +40,46 @@ def _rewrite_source_path(
     if not value.startswith(source_prefix):
         raise ValueError(f"source_path is outside the source scope: {value}")
     return f"sources/{jurisdiction}/{document_class}/{target_version}/{value[len(source_prefix):]}"
+
+
+def _rewrite_nested_source_paths(
+    value: Any,
+    *,
+    jurisdiction: str,
+    document_class: str,
+    source_version: str,
+    target_version: str,
+) -> Any:
+    """Rewrite scope-local source paths nested in artifact metadata."""
+    source_prefix = f"sources/{jurisdiction}/{document_class}/{source_version}/"
+    target_prefix = f"sources/{jurisdiction}/{document_class}/{target_version}/"
+    if isinstance(value, str):
+        if value.startswith(source_prefix):
+            return f"{target_prefix}{value[len(source_prefix):]}"
+        return value
+    if isinstance(value, dict):
+        return {
+            key: _rewrite_nested_source_paths(
+                item,
+                jurisdiction=jurisdiction,
+                document_class=document_class,
+                source_version=source_version,
+                target_version=target_version,
+            )
+            for key, item in value.items()
+        }
+    if isinstance(value, list):
+        return [
+            _rewrite_nested_source_paths(
+                item,
+                jurisdiction=jurisdiction,
+                document_class=document_class,
+                source_version=source_version,
+                target_version=target_version,
+            )
+            for item in value
+        ]
+    return value
 
 
 def reversion_expression_dates(
@@ -102,6 +143,13 @@ def reversion_expression_dates(
                 source_version=source_version,
                 target_version=target_version,
             ),
+            metadata=_rewrite_nested_source_paths(
+                item.metadata,
+                jurisdiction=jurisdiction,
+                document_class=document_class,
+                source_version=source_version,
+                target_version=target_version,
+            ),
         )
         for item in load_source_inventory(source_inventory_path)
     )
@@ -130,6 +178,13 @@ def reversion_expression_dates(
                 expression_date=expression_date,
                 source_path=_rewrite_source_path(
                     record.source_path,
+                    jurisdiction=jurisdiction,
+                    document_class=document_class,
+                    source_version=source_version,
+                    target_version=target_version,
+                ),
+                metadata=_rewrite_nested_source_paths(
+                    record.metadata,
                     jurisdiction=jurisdiction,
                     document_class=document_class,
                     source_version=source_version,
