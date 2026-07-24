@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/bo/regulation/2026-07-23-bo-bolmod-t1-regulations.json",
+      "sha256": "24d9d061fe979b5f347890b4abfbf9a966bc3359454fca0338e97ce244e1733f"
+    },
+    {
+      "path": "data/corpus/inventory/bo/regulation/2026-07-23-bo-bolmod-t1-regulations.json",
+      "sha256": "0b9fb2d7ca6f8315f706c511dbf119654a7a7d334c9a7c9c24ebd653b5410176"
+    },
+    {
+      "path": "data/corpus/provisions/bo/regulation/2026-07-23-bo-bolmod-t1-regulations.jsonl",
+      "sha256": "8188c0751fa5116aed8eecea1f3e35560fa3c8751c12f03887d7dd774bf38d83"
+    },
+    {
+      "path": "data/corpus/sources/bo/regulation/2026-07-23-bo-bolmod-t1-regulations/official-documents/bo-ds-0066-2009-bono-juana-azurduy.pdf",
+      "sha256": "657fd970901c2a50c7bd6802c7a6d7cb52b963c2e15115031afbf1ebb50fb606"
+    },
+    {
+      "path": "data/corpus/sources/bo/regulation/2026-07-23-bo-bolmod-t1-regulations/official-documents/bo-ds-28899-2006-bono-juancito-pinto.pdf",
+      "sha256": "67f62ef553fd75b81f1396591ce40ff42dfc950093eb737ef2024d29c40215d9"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "a141d06730b1f6f78d763e02c70b9011f0c98840",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "TMPDIR=<scratchpad> uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-23-bo-bolmod-t1-regulations --manifest manifests/bo-bolmod-t1-regulations-official-documents.yaml (DS 0066 via manifest local_path: www.bja.gob.bo serves an expired certificate; bytes from the recorded source_url, sha256 in manifest header)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-07-24T01:52:08.824508+00:00",
+  "jurisdiction": "bo",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Ejr0hgA5F99B+IOTVsPZdaL+GwWonZx51oOgnMNBOXh9Jv779k/u/wPpmB93yfKS4NXuxSLaSQQ7l36/Zi29AA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-23-bo-bolmod-t1-regulations"
+}
