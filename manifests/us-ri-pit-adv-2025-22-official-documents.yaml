@@ -1,0 +1,29 @@
+documents:
+  - source_id: us-ri-tax-adv-2025-22-inflation-adjustments
+    jurisdiction: us-ri
+    document_class: guidance
+    citation_path: us-ri/guidance/tax/adv-2025-22
+    title: "ADV 2025-22: Inflation-adjusted amounts set for Tax Year 2026"
+    source_url: https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-11/ADV_2025_22_Inflation_Adjustments.pdf
+    source_format: pdf
+    source_as_of: "2026-07-23"
+    expression_date: "2025-11-03"
+    metadata:
+      primary_source: true
+      source_authority: Rhode Island Department of Revenue, Division of Taxation
+      document_subtype: tax_advisory
+      advisory_number: ADV 2025-22
+      tax_years: "2025,2026"
+      target_tax_year: "2026"
+      source_status: published_official_guidance
+      source_family: personal-income-tax/inflation-adjustments
+      upstream_publication_url: https://tax.ri.gov/guidance/advisories
+      discovered_via: rulespec-us Rhode Island TY2026 resident income-tax end-to-end review
+      source_note: >-
+        Official Division of Taxation advisory publishing the Tax Year 2026
+        personal-income-tax brackets and rates, filing-status standard
+        deductions, personal and dependency exemption amount, deduction and
+        exemption phaseout range, and phaseout increment. The advisory
+        separately reports Tax Year 2025 Social Security, retirement-income,
+        and property-tax-relief parameters; those values are not 2026
+        authority.
