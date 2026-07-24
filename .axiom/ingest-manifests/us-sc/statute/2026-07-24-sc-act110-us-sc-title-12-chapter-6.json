@@ -10,7 +10,7 @@
     },
     {
       "path": "data/corpus/provisions/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6.jsonl",
-      "sha256": "07f083f2e4c4ca59b0a36e4b6fbd1ee163248c88ac63543980a216f82867e325"
+      "sha256": "142cc6e6a0638828bde1906c03e9255786c17cb84658c4a35bcd12920a791c4d"
     },
     {
       "path": "data/corpus/sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/session-laws/2026-act-110-h4216.html",
@@ -30,7 +30,7 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "847532d5d77473daa8bc8ba834e1a26df0d6f14c",
+    "commit": "b9d001add61a1d7c841fb95643bafbfef6d28d9c",
     "dirty_tracked": false,
     "root": "."
   },
@@ -47,19 +47,19 @@
     "source_count": 158
   },
   "document_class": "statute",
-  "generated_at": "2026-07-24T07:06:14.844291+00:00",
+  "generated_at": "2026-07-24T07:11:27.236285+00:00",
   "jurisdiction": "us-sc",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-24-sc-act-110-overlay-repair.md",
-      "sha256": "1832cae1d6fd5d0279d4bbd172dc8724a54440578ea6658a0ebb30eb31606273"
+      "sha256": "411827b80197c9038ff34b96bad0f5c5c70f051e6091bb3e4ccbd66281e4bf2a"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "DErf57jCsYBRDBlvTqEukdOHITiJIHJwwz8vaL1yzvefAR/jaPENAXBQNB4NyhnG4skOv7TGeS65xKdRJONmBw=="
+    "value": "9dxM16uOi8N1TI06hFH+QLifyiQe5wYbzADKkGa+VeOhSgFDmg9TfYhu29mphOfJQXWCzqjmu7928fRWrdy9BA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-24-sc-act110-us-sc-title-12-chapter-6"
