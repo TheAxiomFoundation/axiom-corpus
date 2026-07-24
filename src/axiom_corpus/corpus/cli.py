@@ -3310,6 +3310,18 @@ def _extract_state_statute_source(
             timeout_seconds=_optional_float(options.get("timeout_seconds")) or 120.0,
         )
     if adapter == "south-carolina-code":
+        raw_session_law_sections = options.get("session_law_sections", ())
+        session_law_sections = (
+            (str(raw_session_law_sections),)
+            if isinstance(raw_session_law_sections, str)
+            else tuple(str(item) for item in raw_session_law_sections)
+        )
+        raw_excluded_sections = options.get("excluded_sections", ())
+        excluded_sections = (
+            (str(raw_excluded_sections),)
+            if isinstance(raw_excluded_sections, str)
+            else tuple(str(item) for item in raw_excluded_sections)
+        )
         return extract_south_carolina_code(
             store,
             version=version,
@@ -3325,7 +3337,9 @@ def _extract_state_statute_source(
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
             session_law_url=_optional_text(options.get("session_law_url")),
             session_law_section=_optional_text(options.get("session_law_section")),
+            session_law_sections=session_law_sections,
             session_law_source_id=_optional_text(options.get("session_law_source_id")),
+            excluded_sections=excluded_sections,
         )
     if adapter == "west-virginia-code":
         return extract_west_virginia_code(

@@ -2,6 +2,7 @@ from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
 from axiom_corpus.corpus.state_adapters.south_carolina import (
     SOUTH_CAROLINA_SOURCE_FORMAT,
+    SouthCarolinaSection,
     apply_south_carolina_session_law_overlay,
     extract_south_carolina_code,
     parse_south_carolina_chapter_html,
@@ -84,11 +85,51 @@ SAMPLE_SESSION_LAW_HTML = """<!doctype html>
 <p>$0 $30,000 1.99% times the amount</p>
 <p>$30,000 or more 5.21% times the amount minus $966</p>
 <p>(D) The department may prescribe tax tables consistent with this section.</p>
-<p>SECTION 2. Section 12-6-50 is amended by adding:</p>
+<p>SECTION 2. Section 12-6-50 of the S.C. Code is amended by adding:</p>
+<p>(21) Section 63(b) through (g) relating to standard deductions and the itemized deduction are not adopted.</p>
+<p>SECTION 3. Section 12-6-1140 of the S.C. Code is amended by adding:</p>
+<p>(15)(a) A South Carolina Income Adjusted Deduction equal to twenty-two thousand five hundred dollars for head of household filers.</p>
+<p>(b) The numerator is the amount federal adjusted gross income exceeds sixty thousand dollars and the denominator is eighty-two thousand five hundred.</p>
+<p>SECTION 4. Section 12-6-4910(1) of the S.C. Code is amended to read:</p>
+<p>(1)(a) an individual whose filing status is single, surviving spouse, head of household, or married filing separately and whose South Carolina gross income exceeds the applicable deduction amount.</p>
+<p>(b) an individual who files a joint return and whose combined South Carolina gross income exceeds the applicable deduction amount.</p>
+<p>SECTION 5. Section 12-6-1720(2)(a)(i) of the S.C. Code is amended to read:</p>
+<p>(i) For a nonresident individual, the South Carolina Income Adjusted Deduction must be reduced in proportion to South Carolina adjusted gross income.</p>
+<p>SECTION 7. Section 12-6-3632 of the S.C. Code is amended to read:</p>
+<p>Section 12-6-3632. A full-year resident is allowed one hundred twenty-five percent of the federal earned income tax credit, but not to exceed two hundred dollars.</p>
 <p>SECTION 8. This act takes effect upon approval by the Governor and first applies to tax years beginning after 2025.</p>
 <p>Approved the 30th day of March, 2026.</p>
 </body></html>
 """
+
+SAMPLE_MULTI_OVERLAY_CHAPTER_HTML = SAMPLE_CHAPTER_HTML.replace(
+    "</body>",
+    """<span style="font-weight: bold;"> SECTION 12-6-50.</span> Internal Revenue Code provisions not adopted.<br /><br />
+Existing nonadoption.<br /><br />
+HISTORY: 1995 Act No. 76, SECTION 1.<br /><br />
+<span style="font-weight: bold;"> SECTION 12-6-1140.</span> Deductions from individual taxable income.<br /><br />
+Existing deductions.<br /><br />
+HISTORY: 1995 Act No. 76, SECTION 1.<br /><br />
+<span style="font-weight: bold;"> SECTION 12-6-1720.</span> Taxable income of nonresident individuals.<br /><br />
+(1) Existing source rules.<br /><br />
+(2) Existing adjustment rules.<br /><br />
+(a)(i) Old nonresident deduction rule.<br /><br />
+(ii) Preserved nonresident-estate and trust rule.<br /><br />
+(b) Preserved computation rule.<br /><br />
+(3) Preserved allocation rule.<br /><br />
+HISTORY: 1995 Act No. 76, SECTION 1.<br /><br />
+<span style="font-weight: bold;"> SECTION 12-6-3632.</span> Earned income tax credit.<br /><br />
+Old uncapped credit.<br /><br />
+HISTORY: 2017 Act No. 40, SECTION 16.A.<br /><br />
+<span style="font-weight: bold;"> SECTION 12-6-4910.</span> Persons required to file returns.<br /><br />
+(1)(a) Old individual filing threshold.<br /><br />
+(b) Old joint filing threshold.<br /><br />
+(c) Old special filing rule.<br /><br />
+(2) Preserved corporation filing rule.<br /><br />
+(3) Preserved S Corporation filing rule.<br /><br />
+HISTORY: 1995 Act No. 76, SECTION 1.<br /><br />
+</body>""",
+)
 
 
 def test_parse_south_carolina_master_index_html_extracts_titles():
@@ -243,6 +284,101 @@ def test_parse_and_apply_south_carolina_session_law_overlay():
     assert "2026 Act No. 110 (H.4216), SECTION 1" in current.body
 
 
+def test_parse_and_apply_south_carolina_addition_and_whole_section_overlays():
+    base = {
+        "heading": None,
+        "title": 12,
+        "chapter": "6",
+        "ordinal": 1,
+    }
+    section_50 = SouthCarolinaSection(
+        section="12-6-50",
+        body="Existing nonadoption.\nHISTORY: Prior law.",
+        **base,
+    )
+    section_1140 = SouthCarolinaSection(
+        section="12-6-1140",
+        body="Existing deductions.\nHISTORY: Prior law.",
+        **base,
+    )
+    section_3632 = SouthCarolinaSection(
+        section="12-6-3632",
+        body="Old uncapped credit.\nHISTORY: Prior law.",
+        **base,
+    )
+    section_4910 = SouthCarolinaSection(
+        section="12-6-4910",
+        body=(
+            "(1)(a) Old individual threshold.\n"
+            "(b) Old joint threshold.\n"
+            "(c) Old special rule.\n"
+            "(2) Preserved corporation rule.\n"
+            "HISTORY: Prior law."
+        ),
+        **base,
+    )
+    section_1720 = SouthCarolinaSection(
+        section="12-6-1720",
+        body=(
+            "(1) Existing source rules.\n"
+            "(2) Existing adjustment rules.\n"
+            "(a)(i) Old nonresident deduction rule.\n"
+            "(ii) Preserved estate and trust rule.\n"
+            "(b) Preserved computation rule.\n"
+            "(3) Preserved allocation rule.\n"
+            "HISTORY: Prior law."
+        ),
+        **base,
+    )
+
+    overlay_50 = parse_south_carolina_session_law_overlay(
+        SAMPLE_SESSION_LAW_HTML,
+        section="12-6-50",
+    )
+    overlay_1140 = parse_south_carolina_session_law_overlay(
+        SAMPLE_SESSION_LAW_HTML,
+        section="12-6-1140",
+    )
+    overlay_3632 = parse_south_carolina_session_law_overlay(
+        SAMPLE_SESSION_LAW_HTML,
+        section="12-6-3632",
+    )
+    overlay_4910 = parse_south_carolina_session_law_overlay(
+        SAMPLE_SESSION_LAW_HTML,
+        section="12-6-4910",
+    )
+    overlay_1720 = parse_south_carolina_session_law_overlay(
+        SAMPLE_SESSION_LAW_HTML,
+        section="12-6-1720",
+    )
+
+    current_50 = apply_south_carolina_session_law_overlay(section_50, overlay_50)
+    current_1140 = apply_south_carolina_session_law_overlay(section_1140, overlay_1140)
+    current_3632 = apply_south_carolina_session_law_overlay(section_3632, overlay_3632)
+    current_4910 = apply_south_carolina_session_law_overlay(section_4910, overlay_4910)
+    current_1720 = apply_south_carolina_session_law_overlay(section_1720, overlay_1720)
+
+    assert overlay_50.operation == "add"
+    assert "Section 63(b) through (g)" in (current_50.body or "")
+    assert overlay_1140.operation == "add"
+    assert "twenty-two thousand five hundred dollars" in (current_1140.body or "")
+    assert overlay_3632.operation == "replace_section"
+    assert "two hundred dollars" in (current_3632.body or "")
+    assert "Old uncapped credit" not in (current_3632.body or "")
+    assert "2026 Act No. 110 (H.4216), SECTION 7" in (current_3632.body or "")
+    assert overlay_4910.subsection_path == ("1",)
+    assert "South Carolina gross income exceeds" in (current_4910.body or "")
+    assert "Old individual threshold" not in (current_4910.body or "")
+    assert "(2) Preserved corporation rule." in (current_4910.body or "")
+    assert overlay_1720.subsection_path == ("2", "a", "i")
+    assert "South Carolina Income Adjusted Deduction" in (current_1720.body or "")
+    assert "(a)(i) For a nonresident individual" in (current_1720.body or "")
+    assert "Old nonresident deduction rule" not in (current_1720.body or "")
+    assert "(ii) Preserved estate and trust rule." in (current_1720.body or "")
+    assert "(b) Preserved computation rule." in (current_1720.body or "")
+    assert "(3) Preserved allocation rule." in (current_1720.body or "")
+
+
 def test_extract_south_carolina_code_applies_official_session_law(tmp_path):
     source_dir = tmp_path / "source"
     source_root = source_dir / SOUTH_CAROLINA_SOURCE_FORMAT
@@ -251,7 +387,7 @@ def test_extract_south_carolina_code_applies_official_session_law(tmp_path):
     (source_root / "statmast.html").write_text(SAMPLE_MASTER_HTML, encoding="utf-8")
     (source_root / "title-12.html").write_text(SAMPLE_TITLE_HTML, encoding="utf-8")
     (source_root / "title-12" / "chapter-6.html").write_text(
-        SAMPLE_CHAPTER_HTML.replace(
+        SAMPLE_MULTI_OVERLAY_CHAPTER_HTML.replace(
             "</table>\nHISTORY:",
             "</table>\n(C) The department may prescribe tax tables.<br /><br />\nHISTORY:",
         ),
@@ -272,12 +408,20 @@ def test_extract_south_carolina_code_applies_official_session_law(tmp_path):
         only_title=12,
         only_chapter=6,
         session_law_url="https://example.gov/2026-act-110.html",
-        session_law_section="12-6-510",
+        session_law_sections=(
+            "12-6-510",
+            "12-6-50",
+            "12-6-1140",
+            "12-6-4910",
+            "12-6-1720",
+            "12-6-3632",
+        ),
         session_law_source_id="2026-act-110",
     )
 
     records = load_provisions(report.provisions_path)
-    current = next(record for record in records if record.citation_path == "us-sc/statute/12-6-510")
+    records_by_citation = {record.citation_path: record for record in records}
+    current = records_by_citation["us-sc/statute/12-6-510"]
     assert report.coverage.complete is True
     assert len(report.source_paths) == 4
     assert current.source_url == "https://example.gov/2026-act-110.html"
@@ -289,3 +433,27 @@ def test_extract_south_carolina_code_applies_official_session_law(tmp_path):
         "codified_base",
         "operative_session_law_overlay",
     ]
+    assert "Section 63(b) through (g)" in (
+        records_by_citation["us-sc/statute/12-6-50"].body or ""
+    )
+    assert "twenty-two thousand five hundred dollars" in (
+        records_by_citation["us-sc/statute/12-6-1140"].body or ""
+    )
+    assert "not to exceed two hundred dollars" in (
+        records_by_citation["us-sc/statute/12-6-3632"].body or ""
+    )
+    assert "Old uncapped credit" not in (
+        records_by_citation["us-sc/statute/12-6-3632"].body or ""
+    )
+    assert "South Carolina gross income exceeds" in (
+        records_by_citation["us-sc/statute/12-6-4910"].body or ""
+    )
+    assert "(2) Preserved corporation filing rule." in (
+        records_by_citation["us-sc/statute/12-6-4910"].body or ""
+    )
+    assert "South Carolina Income Adjusted Deduction" in (
+        records_by_citation["us-sc/statute/12-6-1720"].body or ""
+    )
+    assert "(ii) Preserved nonresident-estate and trust rule." in (
+        records_by_citation["us-sc/statute/12-6-1720"].body or ""
+    )

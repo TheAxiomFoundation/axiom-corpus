@@ -95,22 +95,31 @@ sources:
     document_class: statute
     adapter: south-carolina-code
     source_url: https://www.scstatehouse.gov/code/statmast.php
-    version: "2026-07-16-pit-central"
+    version: "2026-07-24-sc-act110"
     options:
+      source_dir: ../data/corpus/sources/us-sc/statute/2026-07-16-pit-central-us-sc-title-12-chapter-6
       source_as_of: "2026-07-16"
       expression_date: "2026-07-16"
       download_dir: ../data/corpus/downloads/us-sc-code/2026-07-16-pit-central
       only_title: "12"
       only_chapter: "6"
+      excluded_sections:
+        - "12-6-520"
       session_law_url: https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm
-      session_law_section: "12-6-510"
+      session_law_sections:
+        - "12-6-510"
+        - "12-6-50"
+        - "12-6-1140"
+        - "12-6-4910"
+        - "12-6-1720"
+        - "12-6-3632"
       session_law_source_id: 2026-act-110-h4216
       request_delay_seconds: 0.15
       timeout_seconds: 90
       request_attempts: 3
     metadata:
       source_authority: South Carolina Legislative Services Agency
-      source_scope_note: South Carolina Income Tax Act chapter 6 from the official Code of Laws HTML, current through the 2025 General Assembly session, with the operative Section 12-6-510(C) replacement from 2026 Act No. 110 (H.4216).
+      source_scope_note: South Carolina Income Tax Act chapter 6 from the official Code of Laws HTML, current through the 2025 General Assembly session, with all operative amendments from 2026 Act No. 110 (H.4216), including Sections 12-6-510(C), 12-6-50(21), 12-6-1140(15), 12-6-4910(1), 12-6-1720(2)(a)(i), and 12-6-3632. Section 12-6-520 remains supplied by the separate South Carolina recovery scope to keep the release collision-free.
 
   - source_id: us-dc-code
     jurisdiction: us-dc

@@ -5,6 +5,7 @@ from __future__ import annotations
 import html as html_module
 import re
 import time
+from contextlib import suppress
 from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
@@ -46,7 +47,8 @@ _REFERENCE_RE = re.compile(r"\b(?P<section>\d{1,2}-\d+[A-Z]?-\d+(?:\.\d+)?[A-Z]?
 _SESSION_LAW_AMENDMENT_RE = re.compile(
     r"^SECTION\s+(?P<amendment_section>\d+)\.\s+Section\s+"
     r"(?P<section>\d{1,2}-\d+[A-Z]?-\d+(?:\.\d+)?[A-Z]?)"
-    r"\((?P<subsection>[A-Z])\)\s+of\s+the\s+S\.C\.\s+Code\s+is\s+amended\s+to\s+read:$",
+    r"(?P<subsection_path>(?:\([A-Z0-9]+\))*)\s+of\s+the\s+S\.C\.\s+Code\s+is\s+amended\s+"
+    r"(?P<action>to\s+read|by\s+adding):$",
     re.I,
 )
 _SESSION_LAW_ACT_RE = re.compile(
@@ -54,7 +56,11 @@ _SESSION_LAW_ACT_RE = re.compile(
     re.I,
 )
 _SESSION_LAW_NEXT_SECTION_RE = re.compile(r"^SECTION\s+\d+\.", re.I)
-_SESSION_LAW_TOP_LEVEL_SUBSECTION_RE = re.compile(r"^\((?P<subsection>[A-Z])\)")
+_SESSION_LAW_SUBSECTION_MARKER_RE = re.compile(r"\((?P<marker>[A-Z0-9]+)\)", re.I)
+_SESSION_LAW_LEADING_SUBSECTION_MARKERS_RE = re.compile(
+    r"^(?P<markers>(?:\([A-Z0-9]+\))+)",
+    re.I,
+)
 
 
 @dataclass(frozen=True)
@@ -124,10 +130,12 @@ class SouthCarolinaSection:
 
 @dataclass(frozen=True)
 class SouthCarolinaSessionLawOverlay:
-    """Operative replacement text for a Code subsection from an enacted session law."""
+    """Operative amendment text for a Code section from an enacted session law."""
 
     section: str
-    subsection: str
+    subsection: str | None
+    subsection_path: tuple[str, ...]
+    operation: str
     replacement_lines: tuple[str, ...]
     amendment_section: str
     act_number: str
@@ -257,12 +265,17 @@ def extract_south_carolina_code(
     timeout_seconds: float = SOUTH_CAROLINA_TIMEOUT_SECONDS,
     session_law_url: str | None = None,
     session_law_section: str | None = None,
+    session_law_sections: tuple[str, ...] = (),
     session_law_source_id: str | None = None,
+    excluded_sections: tuple[str, ...] = (),
 ) -> StateStatuteExtractReport:
     """Snapshot official South Carolina Code HTML and extract provisions."""
     jurisdiction = "us-sc"
     title_filter = _title_filter(only_title)
     chapter_filter = _chapter_filter(only_chapter)
+    excluded_section_keys = {
+        section.strip().lower() for section in excluded_sections if section.strip()
+    }
     run_id = _south_carolina_run_id(
         version,
         title_filter=title_filter,
@@ -295,19 +308,35 @@ def extract_south_carolina_code(
     session_law_path: Path | None = None
     session_law_source_key: str | None = None
     session_law_sha: str | None = None
-    session_law_overlay: SouthCarolinaSessionLawOverlay | None = None
-    session_law_applied = False
+    session_law_overlays: tuple[SouthCarolinaSessionLawOverlay, ...] = ()
+    session_law_applied: set[str] = set()
     if session_law_url is not None:
-        if not session_law_section:
-            raise ValueError("session_law_section is required with session_law_url")
+        requested_sections = tuple(
+            dict.fromkeys(
+                section.strip()
+                for section in (
+                    *session_law_sections,
+                    *((session_law_section,) if session_law_section else ()),
+                )
+                if section.strip()
+            )
+        )
+        if not requested_sections:
+            raise ValueError(
+                "session_law_section or session_law_sections is required with "
+                "session_law_url"
+            )
         source_id = safe_segment(session_law_source_id or "session-law")
         session_law_page = fetcher.fetch(
             f"{SOUTH_CAROLINA_SOURCE_FORMAT}/session-laws/{source_id}.html",
             session_law_url,
         )
-        session_law_overlay = parse_south_carolina_session_law_overlay(
-            session_law_page.data,
-            section=session_law_section,
+        session_law_overlays = tuple(
+            parse_south_carolina_session_law_overlay(
+                session_law_page.data,
+                section=section,
+            )
+            for section in requested_sections
         )
         session_law_path = store.source_path(
             jurisdiction,
@@ -419,10 +448,14 @@ def extract_south_carolina_code(
             chapter_sha = store.write_bytes(chapter_path, chapter_page.data)
             source_paths.append(chapter_path)
             chapter_source_key = _state_source_key(jurisdiction, run_id, chapter_page.relative_path)
-            sections = parse_south_carolina_chapter_html(
-                chapter_page.data,
-                title=title.number,
-                chapter=chapter.number,
+            sections = tuple(
+                section
+                for section in parse_south_carolina_chapter_html(
+                    chapter_page.data,
+                    title=title.number,
+                    chapter=chapter.number,
+                )
+                if section.section.lower() not in excluded_section_keys
             )
             chapter_body_lines = _chapter_note_lines(chapter_page.data) if not sections else []
             chapter_body = "\n".join(chapter_body_lines).strip() or None
@@ -474,7 +507,15 @@ def extract_south_carolina_code(
                 section_source_path = chapter_source_key
                 section_sha = chapter_sha
                 metadata_updates: dict[str, Any] | None = None
-                if session_law_overlay is not None and section.section == session_law_overlay.section:
+                session_law_overlay = next(
+                    (
+                        overlay
+                        for overlay in session_law_overlays
+                        if section.section == overlay.section
+                    ),
+                    None,
+                )
+                if session_law_overlay is not None:
                     if (
                         session_law_page is None
                         or session_law_source_key is None
@@ -485,7 +526,7 @@ def extract_south_carolina_code(
                         section,
                         session_law_overlay,
                     )
-                    session_law_applied = True
+                    session_law_applied.add(session_law_overlay.section)
                     section_source_url = session_law_page.source_url
                     section_source_path = session_law_source_key
                     section_sha = session_law_sha
@@ -508,6 +549,10 @@ def extract_south_carolina_code(
                             "act_number": session_law_overlay.act_number,
                             "bill_number": session_law_overlay.bill_number,
                             "amendment_section": session_law_overlay.amendment_section,
+                            "operation": session_law_overlay.operation,
+                            "subsection_path": _format_subsection_path(
+                                session_law_overlay.subsection_path
+                            ),
                             "effective_text": session_law_overlay.effective_text,
                             "approved_text": session_law_overlay.approved_text,
                         },
@@ -529,10 +574,13 @@ def extract_south_carolina_code(
                 if remaining_sections is not None:
                     remaining_sections -= 1
 
-    if session_law_overlay is not None and not session_law_applied:
+    unapplied_session_law_sections = {
+        overlay.section for overlay in session_law_overlays
+    } - session_law_applied
+    if unapplied_session_law_sections:
         raise ValueError(
-            f"South Carolina session-law overlay target was not extracted: "
-            f"{session_law_overlay.section}"
+            "South Carolina session-law overlay targets were not extracted: "
+            f"{', '.join(sorted(unapplied_session_law_sections))}"
         )
     if not records:
         raise ValueError("no South Carolina provisions extracted")
@@ -726,15 +774,147 @@ def parse_south_carolina_chapter_html(
     return tuple(sections)
 
 
+def _leading_subsection_markers(line: str) -> tuple[str, ...]:
+    match = _SESSION_LAW_LEADING_SUBSECTION_MARKERS_RE.match(line)
+    if match is None:
+        return ()
+    return tuple(
+        marker.group("marker")
+        for marker in _SESSION_LAW_SUBSECTION_MARKER_RE.finditer(match.group("markers"))
+    )
+
+
+def _format_subsection_path(path: tuple[str, ...]) -> str:
+    return "".join(f"({component})" for component in path)
+
+
+def _retain_co_located_ancestor_markers(
+    *,
+    codified_line: str,
+    replacement_lines: tuple[str, ...],
+    target: str,
+) -> tuple[str, ...]:
+    """Keep ancestor markers that share the codified target's first line."""
+    if not replacement_lines:
+        return replacement_lines
+    codified_markers = _leading_subsection_markers(codified_line)
+    target_index = next(
+        (
+            index
+            for index in range(len(codified_markers) - 1, -1, -1)
+            if codified_markers[index].casefold() == target.casefold()
+        ),
+        None,
+    )
+    if target_index is None or target_index == 0:
+        return replacement_lines
+
+    ancestor_markers = codified_markers[:target_index]
+    replacement_markers = _leading_subsection_markers(replacement_lines[0])
+    expected_prefix = (*ancestor_markers, target)
+    if tuple(
+        marker.casefold() for marker in replacement_markers[: len(expected_prefix)]
+    ) == tuple(marker.casefold() for marker in expected_prefix):
+        return replacement_lines
+    if not replacement_markers or replacement_markers[0].casefold() != target.casefold():
+        return replacement_lines
+
+    ancestor_prefix = _format_subsection_path(ancestor_markers)
+    return (
+        f"{ancestor_prefix}{replacement_lines[0]}",
+        *replacement_lines[1:],
+    )
+
+
+def _subsection_marker_kind(marker: str) -> str:
+    if marker.isdigit():
+        return "number"
+    if marker.isupper():
+        return "upper-alpha"
+    if re.fullmatch(r"[ivxlcdm]+", marker):
+        return "lower-roman"
+    return "lower-alpha"
+
+
+def _find_subsection_range(
+    lines: list[str],
+    path: tuple[str, ...],
+    *,
+    section: str,
+) -> tuple[int, int]:
+    if not path:
+        raise ValueError("South Carolina subsection path cannot be empty")
+
+    search_start = 0
+    search_end = len(lines)
+    path_index = 0
+    target_start: int | None = None
+    while path_index < len(path):
+        target = path[path_index]
+        found_index: int | None = None
+        consumed = 0
+        for line_index in range(search_start, search_end):
+            markers = _leading_subsection_markers(lines[line_index])
+            if not markers or markers[0].casefold() != target.casefold():
+                continue
+            consumed = 1
+            while (
+                consumed < len(markers)
+                and path_index + consumed < len(path)
+                and markers[consumed].casefold()
+                == path[path_index + consumed].casefold()
+            ):
+                consumed += 1
+            found_index = line_index
+            break
+        if found_index is None:
+            raise ValueError(
+                f"codified section {section} omits subsection "
+                f"{_format_subsection_path(path)}"
+            )
+
+        target_start = found_index
+        consumed_kinds = {
+            _subsection_marker_kind(component)
+            for component in path[path_index : path_index + consumed]
+        }
+        sibling_index = next(
+            (
+                line_index
+                for line_index in range(found_index + 1, search_end)
+                if (
+                    (markers := _leading_subsection_markers(lines[line_index]))
+                    and _subsection_marker_kind(markers[0]) in consumed_kinds
+                )
+            ),
+            search_end,
+        )
+        search_start = found_index
+        search_end = sibling_index
+        path_index += consumed
+
+    if target_start is None:
+        raise ValueError(
+            f"codified section {section} omits subsection "
+            f"{_format_subsection_path(path)}"
+        )
+    return target_start, search_end
+
+
 def parse_south_carolina_session_law_overlay(
     html: str | bytes,
     *,
     section: str,
 ) -> SouthCarolinaSessionLawOverlay:
-    """Parse enacted replacement subsection text from an official session-law page."""
+    """Parse enacted replacement or addition text from an official session-law page."""
     soup = BeautifulSoup(html, "lxml")
     lines = [_clean_text(line) for line in soup.get_text("\n", strip=True).splitlines()]
     lines = [line for line in lines if line]
+    heading_lines = {
+        _clean_text(tag.get_text(" ", strip=True))
+        for tag in soup.find_all(("b", "strong"))
+        if _clean_text(tag.get_text(" ", strip=True))
+    }
 
     act_match = next(
         (match for line in lines if (match := _SESSION_LAW_ACT_RE.match(line))),
@@ -762,29 +942,55 @@ def parse_south_carolina_session_law_overlay(
         ),
         len(lines),
     )
-    candidates = lines[amendment_index + 1 : next_section_index]
-    subsection = amendment_match.group("subsection").upper()
-    start_index = next(
-        (
-            index
-            for index, line in enumerate(candidates)
-            if line.upper().startswith(f"({subsection})")
-        ),
-        None,
+    candidates = [
+        line
+        for line in lines[amendment_index + 1 : next_section_index]
+        if line not in heading_lines
+    ]
+    raw_subsection_path = amendment_match.group("subsection_path") or ""
+    subsection_path = tuple(
+        match.group("marker")
+        for match in _SESSION_LAW_SUBSECTION_MARKER_RE.finditer(raw_subsection_path)
     )
-    if start_index is None:
-        raise ValueError(f"session law omits replacement subsection ({subsection}) for {section}")
-    last_top_level_index = max(
-        (
-            index
-            for index, line in enumerate(candidates[start_index:], start=start_index)
-            if _SESSION_LAW_TOP_LEVEL_SUBSECTION_RE.match(line)
-        ),
-        default=start_index,
-    )
-    replacement_lines = tuple(candidates[start_index : last_top_level_index + 1])
+    subsection = subsection_path[0] if len(subsection_path) == 1 else None
+    action = " ".join(amendment_match.group("action").lower().split())
+    if subsection_path:
+        operation = "replace_subsection"
+        replacement_marker = subsection_path[-1]
+        start_index = next(
+            (
+                index
+                for index, line in enumerate(candidates)
+                if (
+                    (markers := _leading_subsection_markers(line))
+                    and markers[0].casefold() == replacement_marker.casefold()
+                )
+            ),
+            None,
+        )
+        if start_index is None:
+            raise ValueError(
+                "session law omits replacement subsection "
+                f"{_format_subsection_path(subsection_path)} for {section}"
+            )
+        replacement_lines = tuple(candidates[start_index:])
+    elif action == "by adding":
+        operation = "add"
+        replacement_lines = tuple(candidates)
+    else:
+        operation = "replace_section"
+        replacement_lines = tuple(candidates)
+        if replacement_lines:
+            section_prefix = re.compile(
+                rf"^Section\s+{re.escape(amendment_match.group('section'))}\.\s*",
+                re.I,
+            )
+            replacement_lines = (
+                section_prefix.sub("", replacement_lines[0]),
+                *replacement_lines[1:],
+            )
     if not replacement_lines:
-        raise ValueError(f"session law has no replacement text for South Carolina section {section}")
+        raise ValueError(f"session law has no amendment text for South Carolina section {section}")
 
     effective_text = next(
         (line for line in lines if "takes effect" in line.lower()),
@@ -797,6 +1003,8 @@ def parse_south_carolina_session_law_overlay(
     return SouthCarolinaSessionLawOverlay(
         section=amendment_match.group("section"),
         subsection=subsection,
+        subsection_path=subsection_path,
+        operation=operation,
         replacement_lines=replacement_lines,
         amendment_section=amendment_match.group("amendment_section"),
         act_number=act_match.group("act_number"),
@@ -810,41 +1018,72 @@ def apply_south_carolina_session_law_overlay(
     section: SouthCarolinaSection,
     overlay: SouthCarolinaSessionLawOverlay,
 ) -> SouthCarolinaSection:
-    """Replace a codified subsection with later enacted operative text."""
+    """Apply later-enacted replacement or addition text to a codified section."""
     if section.section.lower() != overlay.section.lower():
         raise ValueError(
             f"session-law overlay for {overlay.section} cannot apply to {section.section}"
         )
     body_lines = (section.body or "").splitlines()
-    start_index = next(
-        (
-            index
-            for index, line in enumerate(body_lines)
-            if line.upper().startswith(f"({overlay.subsection})")
-        ),
-        None,
-    )
-    if start_index is None:
-        raise ValueError(
-            f"codified section {section.section} omits subsection ({overlay.subsection})"
-        )
     history_index = next(
         (
             index
-            for index in range(start_index + 1, len(body_lines))
-            if body_lines[index].upper().startswith("HISTORY:")
+            for index, line in enumerate(body_lines)
+            if line.upper().startswith("HISTORY:")
         ),
         None,
     )
     if history_index is None:
         raise ValueError(f"codified section {section.section} omits source history")
 
-    revised_lines = [
-        *body_lines[:start_index],
-        *overlay.replacement_lines,
-        *body_lines[history_index:],
-    ]
-    history_line_index = start_index + len(overlay.replacement_lines)
+    if overlay.operation == "replace_subsection":
+        if not overlay.subsection_path:
+            raise ValueError("replacement-subsection overlay omits its subsection path")
+        start_index, end_index = _find_subsection_range(
+            body_lines[:history_index],
+            overlay.subsection_path,
+            section=section.section,
+        )
+        replacement_lines = _retain_co_located_ancestor_markers(
+            codified_line=body_lines[start_index],
+            replacement_lines=overlay.replacement_lines,
+            target=overlay.subsection_path[-1],
+        )
+        target_kind = _subsection_marker_kind(overlay.subsection_path[-1])
+        replacement_siblings = tuple(
+            markers[0]
+            for line in replacement_lines
+            if (markers := _leading_subsection_markers(line))
+            and _subsection_marker_kind(markers[0]) == target_kind
+        )
+        if replacement_siblings:
+            final_path = (*overlay.subsection_path[:-1], replacement_siblings[-1])
+            # The enacted replacement may add a sibling that did not exist in
+            # the codified base. The target subtree remains the insertion
+            # boundary in that case.
+            with suppress(ValueError):
+                _, end_index = _find_subsection_range(
+                    body_lines[:history_index],
+                    final_path,
+                    section=section.section,
+                )
+        revised_lines = [
+            *body_lines[:start_index],
+            *replacement_lines,
+            *body_lines[end_index:],
+        ]
+        history_line_index = revised_lines.index(body_lines[history_index])
+    elif overlay.operation == "add":
+        revised_lines = [
+            *body_lines[:history_index],
+            *overlay.replacement_lines,
+            *body_lines[history_index:],
+        ]
+        history_line_index = history_index + len(overlay.replacement_lines)
+    elif overlay.operation == "replace_section":
+        revised_lines = [*overlay.replacement_lines, *body_lines[history_index:]]
+        history_line_index = len(overlay.replacement_lines)
+    else:
+        raise ValueError(f"unsupported South Carolina session-law operation: {overlay.operation}")
     history_line = revised_lines[history_line_index].rstrip().removesuffix(".")
     if overlay.history_citation not in history_line:
         revised_lines[history_line_index] = f"{history_line}; {overlay.history_citation}."
@@ -947,7 +1186,7 @@ def _append_record(
     )
     records.append(
         ProvisionRecord(
-            id=deterministic_provision_id(citation_path),
+            id=deterministic_provision_id(citation_path, version),
             jurisdiction="us-sc",
             document_class=DocumentClass.STATUTE.value,
             citation_path=citation_path,
@@ -962,7 +1201,11 @@ def _append_record(
             source_as_of=source_as_of,
             expression_date=expression_date,
             parent_citation_path=parent_citation_path,
-            parent_id=deterministic_provision_id(parent_citation_path) if parent_citation_path else None,
+            parent_id=(
+                deterministic_provision_id(parent_citation_path, version)
+                if parent_citation_path
+                else None
+            ),
             level=level,
             ordinal=ordinal,
             kind=kind,
