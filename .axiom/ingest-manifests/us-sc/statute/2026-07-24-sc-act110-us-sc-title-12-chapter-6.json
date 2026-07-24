@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6.json",
-      "sha256": "669ee07a8b891002a6a7e91c1ed61faaed44ff3df9dbaf806a081b73b50cae7c"
+      "sha256": "6754b0333d142a0d81f06ce8eefdaec743efacec60d5f687d22526e0a30f9e4f"
     },
     {
       "path": "data/corpus/provisions/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6.jsonl",
-      "sha256": "6573a5905dad4875c0856f2223ecfd91304c0d402d88e298abd98a16103580dc"
+      "sha256": "07f083f2e4c4ca59b0a36e4b6fbd1ee163248c88ac63543980a216f82867e325"
     },
     {
       "path": "data/corpus/sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/session-laws/2026-act-110-h4216.html",
@@ -30,13 +30,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "602cac94edbda1c4d84d83cbdfa03e312b3b88f7",
+    "commit": "847532d5d77473daa8bc8ba834e1a26df0d6f14c",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "extract-state-statutes from retained official South Carolina Code and 2026 Act No. 110 sources; apply sections 1, 2, 3, and 7; no publication or database load"
+    "text": "extract-state-statutes from retained official South Carolina Code and 2026 Act No. 110 sources; apply sections 1, 2, 3, 4, 5, and 7; no publication or database load"
   },
   "coverage": {
     "complete": true,
@@ -47,19 +47,19 @@
     "source_count": 158
   },
   "document_class": "statute",
-  "generated_at": "2026-07-24T06:37:00.243914+00:00",
+  "generated_at": "2026-07-24T07:06:14.844291+00:00",
   "jurisdiction": "us-sc",
   "reasoning_logs": [
     {
       "path": "docs/ingest-runs/2026-07-24-sc-act-110-overlay-repair.md",
-      "sha256": "5ac470da15df373f49b8ffdfb6d0eb3ad339623ac479d3dc80c5e17871e7b8f5"
+      "sha256": "1832cae1d6fd5d0279d4bbd172dc8724a54440578ea6658a0ebb30eb31606273"
     }
   ],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "JX5YJeq++vLR3N3BNgA6yQ5PblSHMWURbor12EfB0flgIxb3xgkUZuUxGFUKzOUFIR+44AdGTw+0uu81DvEICw=="
+    "value": "DErf57jCsYBRDBlvTqEukdOHITiJIHJwwz8vaL1yzvefAR/jaPENAXBQNB4NyhnG4skOv7TGeS65xKdRJONmBw=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-24-sc-act110-us-sc-title-12-chapter-6"
