@@ -1,4 +1,5 @@
 import fitz
+import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
@@ -153,9 +154,10 @@ def test_parse_iowa_section_pdf_does_not_repeal_operative_section_from_subsectio
             body=[
                 "The term “net income” means taxable income with the following adjustments:",
                 "1. Subtract interest and dividends from federal securities.",
+                "45. c. This subsection is repealed January 1, 2028.",
             ],
             notes=[
-                "2023 repeal of former subsections 39, 39B, 43, and 53 applies retroactively."
+                "Former subsection 41 was repealed by its own terms effective January 1, 2026."
             ],
         ),
         section="422.7",
@@ -183,6 +185,43 @@ def test_parse_iowa_section_pdf_retains_whole_section_repeal_status():
     )
 
     assert parsed.body.startswith("Repealed by 2024 Acts, ch 1094, §15")
+    assert parsed.status == "repealed"
+
+
+@pytest.mark.parametrize(
+    ("section", "ocr_tail"),
+    [
+        (
+            "422.11K",
+            "development region revolving fund contribution tax credit. "
+            "Repealed by 2010 Acts, ch 1138, §15, 16.",
+        ),
+        (
+            "422.12G",
+            "preparedness fund. Repealed by its own terms; 2019 Acts, ch 152, §50.",
+        ),
+        (
+            "422.12M",
+            "tax form — indication of dependent child health care coverage. "
+            "Repealed by 2017 Acts, ch 161, §1 – 3.",
+        ),
+    ],
+)
+def test_parse_iowa_section_pdf_retains_ocr_tail_repeal_status(section, ocr_tail):
+    parsed = parse_iowa_section_pdf(
+        _status_pdf(
+            section=section,
+            heading="Historic tax credit.",
+            body=[ocr_tail],
+            notes=[],
+        ),
+        section=section,
+        heading="Historic tax credit.",
+        source_year=2026,
+    )
+
+    assert parsed.body is not None
+    assert "Repealed by" in parsed.body
     assert parsed.status == "repealed"
 
 

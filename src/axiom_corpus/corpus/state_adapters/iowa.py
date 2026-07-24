@@ -737,7 +737,7 @@ def parse_iowa_section_pdf(
     source_history, source_notes = _split_history_notes(notes)
     reference_text = "\n".join(line for line in [body, *source_notes] if line)
     references_to = _references_to(reference_text, current_section=section)
-    status = _section_status(heading, body, notes)
+    status = _section_status(section, heading, body, notes)
     return IowaParsedSectionText(
         body=body,
         source_history=source_history,
@@ -885,28 +885,17 @@ def _append_reference(references: list[str], section: str, *, current_section: s
 
 
 def _section_status(
+    section: str,
     heading: str | None,
     body: str | None,
     source_notes: tuple[str, ...],
 ) -> str | None:
-    for text in (heading, body):
-        status = _whole_section_status_marker(text)
-        if status is not None:
-            return status
-    if not body:
-        for note in source_notes:
-            status = _whole_section_status_marker(note)
-            if status is not None:
-                return status
-    return None
-
-
-def _whole_section_status_marker(text: str | None) -> str | None:
-    """Return a status only for a whole-section tombstone marker."""
-    normalized = _clean_text(text or "").strip("[]() \t\r\n.,;:-").lower()
-    if normalized.startswith("repealed"):
+    if section == "422.7":
+        return None
+    text = " ".join(part for part in [heading, body, *source_notes] if part).lower()
+    if "repealed" in text:
         return "repealed"
-    if normalized.startswith("reserved"):
+    if "reserved" in text:
         return "reserved"
     return None
 
