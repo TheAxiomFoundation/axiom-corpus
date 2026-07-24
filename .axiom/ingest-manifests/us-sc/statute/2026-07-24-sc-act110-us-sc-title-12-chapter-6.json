@@ -1,0 +1,66 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6.json",
+      "sha256": "dc977599ff284c42bffa755a9dcd298170cc5756624c67ad5be02b1b171cd425"
+    },
+    {
+      "path": "data/corpus/inventory/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6.json",
+      "sha256": "669ee07a8b891002a6a7e91c1ed61faaed44ff3df9dbaf806a081b73b50cae7c"
+    },
+    {
+      "path": "data/corpus/provisions/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6.jsonl",
+      "sha256": "6573a5905dad4875c0856f2223ecfd91304c0d402d88e298abd98a16103580dc"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/session-laws/2026-act-110-h4216.html",
+      "sha256": "9e3fbbd48551b138866bd5c54f1faadd6404d624ba350195459c0c65477e7493"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/statmast.html",
+      "sha256": "56769cb0e5f8a761e8d86a5cbdb9e510f765efbe6b2bd4751c856016531b8dd2"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/title-12/chapter-6.html",
+      "sha256": "ae31dbc10579d61076ca1b6a48a5a240eab85547ad42df8642e99affbf31909d"
+    },
+    {
+      "path": "data/corpus/sources/us-sc/statute/2026-07-24-sc-act110-us-sc-title-12-chapter-6/south-carolina-code-html/title-12.html",
+      "sha256": "49f174cca902073591f2f1e16ed0fbd4336d5228d877fa800980793f5f053946"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "602cac94edbda1c4d84d83cbdfa03e312b3b88f7",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "extract-state-statutes from retained official South Carolina Code and 2026 Act No. 110 sources; apply sections 1, 2, 3, and 7; no publication or database load"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 158,
+    "missing_count": 0,
+    "provision_count": 158,
+    "source_count": 158
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T06:37:00.243914+00:00",
+  "jurisdiction": "us-sc",
+  "reasoning_logs": [
+    {
+      "path": "docs/ingest-runs/2026-07-24-sc-act-110-overlay-repair.md",
+      "sha256": "5ac470da15df373f49b8ffdfb6d0eb3ad339623ac479d3dc80c5e17871e7b8f5"
+    }
+  ],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "JX5YJeq++vLR3N3BNgA6yQ5PblSHMWURbor12EfB0flgIxb3xgkUZuUxGFUKzOUFIR+44AdGTw+0uu81DvEICw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-sc-act110-us-sc-title-12-chapter-6"
+}
