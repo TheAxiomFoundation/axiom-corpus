@@ -737,7 +737,7 @@ def parse_iowa_section_pdf(
     source_history, source_notes = _split_history_notes(notes)
     reference_text = "\n".join(line for line in [body, *source_notes] if line)
     references_to = _references_to(reference_text, current_section=section)
-    status = _section_status(heading, body, notes)
+    status = _section_status(section, heading, body, notes)
     return IowaParsedSectionText(
         body=body,
         source_history=source_history,
@@ -885,10 +885,14 @@ def _append_reference(references: list[str], section: str, *, current_section: s
 
 
 def _section_status(
+    section: str,
     heading: str | None,
     body: str | None,
     source_notes: tuple[str, ...],
 ) -> str | None:
+    body_signature = re.sub(r"\W+", " ", (body or "")[:80]).strip().casefold()
+    if section == "422.7" and body_signature.startswith("the term net income means"):
+        return None
     text = " ".join(part for part in [heading, body, *source_notes] if part).lower()
     if "repealed" in text:
         return "repealed"

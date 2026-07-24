@@ -6,11 +6,11 @@
     },
     {
       "path": "data/corpus/inventory/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422.json",
-      "sha256": "3afe46d3b391346d3d32cdeb8a8194da9d63114ca24cdb6ba0ec1d8666f0602f"
+      "sha256": "7c4ff3db7c42fdb94bb82981e536fd2f729f61c110be252ff9d4a39f980c0449"
     },
     {
       "path": "data/corpus/provisions/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422.jsonl",
-      "sha256": "32d3152d6ab432dc2d3e2b2d66d94c3977b6e0470841be3414e3fbce78a3bf5d"
+      "sha256": "75e9331458bb30088d31bcb59dba1173548911a0f4f7d3b459c929960156c672"
     },
     {
       "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422/iowa-code-chapter-index-html/title-X.html",
@@ -514,13 +514,13 @@
     }
   ],
   "axiom_corpus_git": {
-    "commit": "7bdd1ed32b18afe109f1042a44ea254b10185777",
+    "commit": "6a7920102cf3e824d221b68a9bdcf48355ec1b67",
     "dirty_tracked": false,
     "root": "."
   },
   "axiom_corpus_version": "0.1.0",
   "command": {
-    "text": "state-income-tax source-recovery campaign: reviewed source-first statute artifacts for RuleSpec PIT grounding"
+    "text": "repair Iowa Code section-status classification for operative 422.7"
   },
   "coverage": {
     "complete": true,
@@ -531,14 +531,14 @@
     "source_count": 121
   },
   "document_class": "statute",
-  "generated_at": "2026-07-21T12:53:20.456152+00:00",
+  "generated_at": "2026-07-24T00:33:05.233385+00:00",
   "jurisdiction": "us-ia",
   "reasoning_logs": [],
   "schema_version": "axiom-corpus/ingest-manifest/v1",
   "signature": {
     "algorithm": "ed25519",
     "key_id": "axiom-corpus-ingest-v1",
-    "value": "VAu3U56vEPCRz0uugPDulY7yNo3soueVSGPfG/Lro9QbTyHwjYOcf9CW0f/U/oLiLbZUEvpAFzA/GzLq3Cp4CQ=="
+    "value": "TYZ9KXbvAQOCtS60c0RANQUW9VVLZfK3E5zqaxsXuqZpYDArQAZ4Xr1Y+mAEz/hrAO3fiLP2m6CZCqi3yydIDA=="
   },
   "tool": "axiom-corpus-ingest signed ingest manifest",
   "version": "2026-07-16-pit-east-us-ia-title-x-chapter-422"
