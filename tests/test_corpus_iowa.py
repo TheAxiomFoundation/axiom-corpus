@@ -81,6 +81,25 @@ def _sample_pdf() -> bytes:
     return document.tobytes()
 
 
+def _status_pdf(*, section: str, heading: str, body: list[str], notes: list[str]) -> bytes:
+    document = fitz.open()
+    page = document.new_page()
+    page.insert_text(
+        (72, 72),
+        "\n".join(
+            [
+                f"{section} {heading}",
+                *body,
+                "[C35, §6943-f7]",
+                *notes,
+                f"Iowa Code 2026, Section {section} (89, 2)",
+            ]
+        ),
+        fontsize=9,
+    )
+    return document.tobytes()
+
+
 SAMPLE_TITLE = IowaTitle(
     roman="X",
     heading="FINANCIAL RESOURCES",
@@ -124,6 +143,47 @@ def test_parse_iowa_section_pdf_removes_running_text_and_extracts_notes():
     assert parsed.source_history == ("[C35, §6943-f1; C39, §6943.001]",)
     assert parsed.source_notes == ("Referred to in §422.2, 422.3",)
     assert parsed.references_to == ("us-ia/statute/422.2", "us-ia/statute/422.3")
+
+
+def test_parse_iowa_section_pdf_does_not_repeal_operative_section_from_subsection_note():
+    parsed = parse_iowa_section_pdf(
+        _status_pdf(
+            section="422.7",
+            heading="“Net income” — how computed.",
+            body=[
+                "The term “net income” means taxable income with the following adjustments:",
+                "1. Subtract interest and dividends from federal securities.",
+            ],
+            notes=[
+                "2023 repeal of former subsections 39, 39B, 43, and 53 applies retroactively."
+            ],
+        ),
+        section="422.7",
+        heading="“Net income” — how computed.",
+        source_year=2026,
+    )
+
+    assert parsed.body is not None
+    assert parsed.body.startswith("The term")
+    assert "taxable income with the following adjustments" in parsed.body
+    assert parsed.status is None
+
+
+def test_parse_iowa_section_pdf_retains_whole_section_repeal_status():
+    parsed = parse_iowa_section_pdf(
+        _status_pdf(
+            section="422.5A",
+            heading="Tax rates.",
+            body=["Repealed by 2024 Acts, ch 1094, §15 – 17."],
+            notes=["2024 repeal applies to tax years beginning on or after January 1, 2026."],
+        ),
+        section="422.5A",
+        heading="Tax rates.",
+        source_year=2026,
+    )
+
+    assert parsed.body.startswith("Repealed by 2024 Acts, ch 1094, §15")
+    assert parsed.status == "repealed"
 
 
 def test_extract_iowa_code_from_source_dir_writes_complete_artifacts(tmp_path):

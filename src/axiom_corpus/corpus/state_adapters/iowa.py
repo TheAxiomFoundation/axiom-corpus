@@ -889,10 +889,24 @@ def _section_status(
     body: str | None,
     source_notes: tuple[str, ...],
 ) -> str | None:
-    text = " ".join(part for part in [heading, body, *source_notes] if part).lower()
-    if "repealed" in text:
+    for text in (heading, body):
+        status = _whole_section_status_marker(text)
+        if status is not None:
+            return status
+    if not body:
+        for note in source_notes:
+            status = _whole_section_status_marker(note)
+            if status is not None:
+                return status
+    return None
+
+
+def _whole_section_status_marker(text: str | None) -> str | None:
+    """Return a status only for a whole-section tombstone marker."""
+    normalized = _clean_text(text or "").strip("[]() \t\r\n.,;:-").lower()
+    if normalized.startswith("repealed"):
         return "repealed"
-    if "reserved" in text:
+    if normalized.startswith("reserved"):
         return "reserved"
     return None
 
