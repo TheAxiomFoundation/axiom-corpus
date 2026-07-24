@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-or/statute/2026-07-24-or-pit-session-laws.json",
+      "sha256": "2c1e6c9e75bbd7dc2d1f73c19444c8da67eedc44994ea83a4267233e3212873b"
+    },
+    {
+      "path": "data/corpus/inventory/us-or/statute/2026-07-24-or-pit-session-laws.json",
+      "sha256": "fd512c5903c070710ecb87296aec90e8af11fbe00edfefe2dc69150da900a16d"
+    },
+    {
+      "path": "data/corpus/provisions/us-or/statute/2026-07-24-or-pit-session-laws.jsonl",
+      "sha256": "c379bf8623c2238e4fd6c8c31d0a9d39291155de51622da763b374ef2fc5548c"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-24-or-pit-session-laws/official-documents/us-or-2026-hb4084-chapter-50.pdf",
+      "sha256": "f3e11dedf65f2d079f3f30865675d0da5f495ea864dcc52c686e9a99f72c83a3"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-24-or-pit-session-laws/official-documents/us-or-2026-sb1507-chapter-142.pdf",
+      "sha256": "db9c1057f6a67d5cb5416825614192f040e70a6b424c96723d7f2769d21c40cb"
+    },
+    {
+      "path": "data/corpus/sources/us-or/statute/2026-07-24-or-pit-session-laws/official-documents/us-or-2026-sb1510-chapter-75.pdf",
+      "sha256": "0e323352cafe8a27bb75194f2185ff7b58dcb1603ff6986e9acebfb18a20f419"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ac7b6af7803052dc87dc57d45d4391a2d15cb830",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-24-or-pit-session-laws --manifest manifests/us-or-2026-pit-session-laws-official-documents.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 6,
+    "missing_count": 0,
+    "provision_count": 6,
+    "source_count": 6
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T05:30:10.193303+00:00",
+  "jurisdiction": "us-or",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "keGkSm2h8/TjuTf9KmS47TRp5o4J+BDKQ+jfHiOgUv+4HmBdkcBMjS2AwdsuGHcZOaP9eRkofM3CHtAzXh8nCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-24-or-pit-session-laws"
+}
