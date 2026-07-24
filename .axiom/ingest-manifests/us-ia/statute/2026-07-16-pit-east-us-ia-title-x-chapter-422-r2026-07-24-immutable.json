@@ -1,0 +1,545 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable.json",
+      "sha256": "d5b019448d380e94fd3b19c93b5c80c9999cce7305c7cc74b4219247772a88d8"
+    },
+    {
+      "path": "data/corpus/inventory/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable.json",
+      "sha256": "ec5c551a239d740b9a2d105f99f7b63c795233f14e0ba9301885b997c2cd6388"
+    },
+    {
+      "path": "data/corpus/provisions/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable.jsonl",
+      "sha256": "625ac3a9eb79208d3b6afbf4f87eed81ba7282f547a6a6dc35d2a009a3335ee0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-chapter-index-html/title-X.html",
+      "sha256": "0946deca20b6b0aa6106344427babfb94e5f548423ece20d37961f2b698d2ada"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-index-html/chapter-422.html",
+      "sha256": "0f15cf5abff59e1f4604fb6b60b5c12d4c41294db20ba58dc745ec7e219c941a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.1.pdf",
+      "sha256": "a112dc7c72fc1a4a433d5f0ae5a5bea3f78501ecac0240030f2f3a9156093f25"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.10.pdf",
+      "sha256": "82536b068ef9589a0dff9b14b812c7de094e420bae075d314ea4960d285ffd77"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.100.pdf",
+      "sha256": "a9e90335ea7dfa9b7ee6ed3d9f39cc27d6aafb45c15fb44f54fb20adc27a4c65"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.10A.pdf",
+      "sha256": "b1214554a1e0820e475d5b9d1d236648341be1d741ba03303c08a7b228ca5205"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.10B.pdf",
+      "sha256": "3bf089bae7d3e7969f47c00b07e710d0c0babdb32052cf8225d7ec2f804f0a07"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.10C.pdf",
+      "sha256": "ff4a9f2447163668e798208b88142e7f995f4bd4ba1fc4e6f70f866e7602adae"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11.pdf",
+      "sha256": "c3ac77ecb0d44799c9bff3a5b4800593bda184de6c7f622228995137712470f9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.110.pdf",
+      "sha256": "cb5dece926723872bad59de0693ff964ebb2fd84df809de8798f95be212c9651"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.111.pdf",
+      "sha256": "c4fe4aa68a2e48d1c1827a19bb694de37d0dd80fc284e19412caa4d0bdd63945"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.112.pdf",
+      "sha256": "20af47863179adfcc1df4cfd5ed5ebd89d177e451cb5bc809c58d61f68b12361"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11A.pdf",
+      "sha256": "2563bf140175ac5c11be7bbefe5ab61b48f8627a141dc4eb73cc62091b95c3ec"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11B.pdf",
+      "sha256": "a8551a228d4d50f7bd685e69926435178997fdc179179d4b640df7dd562899e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11C.pdf",
+      "sha256": "d8baf6ce75ffcc9637810763b801570085053b9b2f8f174679f733079f5578ab"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11D.pdf",
+      "sha256": "4babca33696a2f5f30993701bf860345dc72a2239d78870e187b0783a4ab1d4f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11E.pdf",
+      "sha256": "a4e1b6f58f82b16eff71205238dbc53497a0ce85bdf60f17b0aed814cc730a00"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11F.pdf",
+      "sha256": "8018a36a3584a026474017f2b5cccb5628acd561acabfd105d028014529622e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11G.pdf",
+      "sha256": "511b8075aad94e8542565fa3b04ca48f8aaf1f28999d0d8878747fdc2a480ac0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11H.pdf",
+      "sha256": "9d7af6184dbf5acd5835fd1b477639fdb5f452b5ca20bf7f9bfc085cc4a96c37"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11I.pdf",
+      "sha256": "2a22827fd11e73abf4e9b2377589cd005e4b6155be97ba08683a45fbc107f8a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11J.pdf",
+      "sha256": "469e6a73bbe0bbc43298addfda0b6d08436822feea35f8d15400890c66b15f87"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11K.pdf",
+      "sha256": "bd2644a9902b69bfcd3801219bf8447b4ae956469218e3d60f08dab7fca7120d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11L.pdf",
+      "sha256": "0c1aacab1dd1986167c728451e95fd03baf8ab9422d3fab6609037daead6d8bc"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11M.pdf",
+      "sha256": "53163476109a703dba7a8e2818d1e711c519faf5f737518ac5e4ecfac7d6ce78"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11N.pdf",
+      "sha256": "7ae331eac4e1eff0b5a2e143c9cbe13439ec81052900bf88cc1f2f32df3999c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11O.pdf",
+      "sha256": "9ea557822460ad41f90b4e1df16a08bc1d8a02f74e1c6c564b05789d6d9426fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11P.pdf",
+      "sha256": "d7736391305bb7c25929e3b7a6f12a46cd6a868318ca9b699088064e5ff5bbf9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11Q.pdf",
+      "sha256": "817adfc63d5092b3174d0b93be5179225c75467b386d534a23c6de5e5db3cc6e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11R.pdf",
+      "sha256": "f784da3681a85e8e39c316b8f2171a6416818b2b9ab2cd87470e0ad6e2ec961a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11S.pdf",
+      "sha256": "975be6c42208f5febfbadb475ce36596ff7aa0c26bbb6b6f214ecafc70336508"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11T.pdf",
+      "sha256": "0626c6dcee53328cdbe952eda75808b0062e9749e5ae8ada6c9b0f9030859b1f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11U.pdf",
+      "sha256": "5d54cc0b3f610d61eeb4ca20554b0c54ca5b13968e401d1a3e23762dfe7fbe4e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11V.pdf",
+      "sha256": "c7eb5ffe995a9ecef680c7463a7d404e8d72094c50ce0a7150d2b89c17a21566"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11W.pdf",
+      "sha256": "d8729346c17e6a5895d40bf9dd2674291f59e2616b3913c2baf2572759248ca7"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11X.pdf",
+      "sha256": "864fd75b6093a8f66b3161f0e4e091d8cbfb1b911338f398762dc839cfb08014"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11Y.pdf",
+      "sha256": "99e408fa5e36e2e9b197b34d7b42021846162280e91c4994911135f38aaffd5e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.11Z.pdf",
+      "sha256": "b07b5b733e80b0ff0cb93835e91e08b4f2254258d4f11dc1bdcf8095647869a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12.pdf",
+      "sha256": "4a10aaeae1b1150e076e77582ad38421242a4e0fcca4585c0c7d7c2066e139aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12A.pdf",
+      "sha256": "8ac2be1a61a8184671ec1d5f8d66b1bddf270e92223b7c7dee9fc9a436ba444e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12B.pdf",
+      "sha256": "14f4b8e8a788390a6c0f00de726b0df0751b8ee91201b12f4e1919c6846bd28f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12C.pdf",
+      "sha256": "8003eeb3179aaebe5d368d5e31ecca742db1312d07dc28682384e2bc242a1e76"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12D.pdf",
+      "sha256": "07cf43f446a37e0dbd65f9610baf9876a6d1b3387555aa1b2c0bd7253bda42b5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12E.pdf",
+      "sha256": "9b0baecfa358f14f12ec47ffb706ba631be8278775255dbd0f49e4f620af9bae"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12F.pdf",
+      "sha256": "7a0807c2ac903922d2f784279379a1d07834ac260c466d1cd5f5cf5782f77b1a"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12G.pdf",
+      "sha256": "6019cb1c90829349d4c07ce9393d834af1c4b959403a912ecde700621f221192"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12H.pdf",
+      "sha256": "f60a23f8d97710729f2c495d9b559f74bf4165e34e31a6c6e7fdbd308e9a202f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12I.pdf",
+      "sha256": "91a789e08250d6a2ebbf98d495e1ff9d3ae1b32a2009960cdb9ab13524684722"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12J.pdf",
+      "sha256": "147c8b4004b6f4bfd39b7e2f7e342879051841e31fd88c98de82d0314e8885f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12K.pdf",
+      "sha256": "ca96d9c1594ae3b20030f8f823d2cc5819e222e8a9cb2a852980bf208b827b0b"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12L.pdf",
+      "sha256": "9860afb5de22090fdd35d12d665f2ecd85bd770a758f344707cf4abecf6d2d8f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12M.pdf",
+      "sha256": "e4ad3bba4953a5ceea3cc8f2ebe385275ac523a285d163383e06d4756c88c9cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12N.pdf",
+      "sha256": "aabea0c4d0be2b90caabac7ca7876dff8b16bddee95ebd0385fc7edeab2f94e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12O.pdf",
+      "sha256": "c4ce8c25fe6c86b5be149f335b4b4adff6344cd14ceef0778ab63ca9e31c9f85"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12P.pdf",
+      "sha256": "16abc4dbe99eb3f964929d9e164ce4f7a0cbdc65100dc3e65cb0e5729fd3e525"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.12Q.pdf",
+      "sha256": "93104984aca550940070199fc97d6eb40507bdb411244e4939999e01957caab4"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.13.pdf",
+      "sha256": "ca78deb13469550e575e2bf67bd1ba96478232be22de7163bdc989075ad60095"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.14.pdf",
+      "sha256": "71275a5ab6724e539dc3c03a75e00b44e63a47c544a9793854be026e558d2106"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.15.pdf",
+      "sha256": "00caa9b75e6c4cf59d85bdb51609093b7a7c5a5b55372052915ac1d3a12b18c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.16.pdf",
+      "sha256": "bfa93a54e8cc7c302cb5bff6f1247666470b22f74db4255574289ca88919b8ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.16A.pdf",
+      "sha256": "ec02f61609981c4bc69e4cb5523c3a3931ab28bcb24c4a810de08ba845287db3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.16B.pdf",
+      "sha256": "df422925b91a4812da2a4e49267a475ec1a934129b0b017d82912062d68d4faa"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.16C.pdf",
+      "sha256": "b072a09024ed0706eb730f8293fcab979e95ac3067369cfa3bb42b1d7404f828"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.17.pdf",
+      "sha256": "e3afbe8fc90a00d8e6068a63f8310315bd4d6cfac96d8829f5184c0d7c073c4e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.19.pdf",
+      "sha256": "4dd462696ae1f5f6710aae70ad80747676bd77cdeb6fbe20e2887e654c8a8013"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.2.pdf",
+      "sha256": "44e84342f94833ea30d7b676088e57e52c3127ebb1149b79427abf967c3d7d10"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.20.pdf",
+      "sha256": "8fc742c74c61aa0a6b80c3069c60b025f7927e05d2b17fbd6085ca58febef74e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.21.pdf",
+      "sha256": "ee8b90de4db4c2788367ce2976d0d897dd0c90674c3c3e98ee3c5ffbb2bf221d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.22.pdf",
+      "sha256": "08c80d53ea05d3da2eac63d584c97320d4ccecd4fad48c53675b4d2757b398fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.23.pdf",
+      "sha256": "54f9d4ca24b9bc564f68fd779432531d6d8b6746a4f43816ff7c6ca5c0166992"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.24.pdf",
+      "sha256": "8550bfd29becf68963c309a558f4a15414b0167092e6c766806a2429325cc51d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.24A.pdf",
+      "sha256": "4f42ce3141ca05375424e30729657976645480332896715cca7aee20542afbdb"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.25.pdf",
+      "sha256": "41a8ee007997580b4244433b4e52f30f98965da9de26dafe67eef1c62186b4e2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.25A.pdf",
+      "sha256": "d9119244e8d1b1dd682476c1d6e647435929a862f042d3717366d16b6a7e4194"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.25B.pdf",
+      "sha256": "5136cbcaa3471ab1b63bda2fbc7fc73bedf501593f25d63665fb15fb1626cdd3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.25C.pdf",
+      "sha256": "47065ce703aee0d4289f390294d7a0b70a9e7c1323308138053060925a84e2fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.26.pdf",
+      "sha256": "7928ad4d03c9ff001ea8498ffddd620bdb3de049b6f17567d5900591823cbe33"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.27.pdf",
+      "sha256": "b40438c2f580ccbb24849593c50145d302302691b58fe60de788e577644d2284"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.28.pdf",
+      "sha256": "0d656f38c7be1e1cf59354eaf3693b87742dd4ddcd03c350c5d8f4af4bcfbef9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.29.pdf",
+      "sha256": "527a32a0b35836f8de75bed25488b2c626cc0aaf302e9154f3f5c4158c6e9966"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.3.pdf",
+      "sha256": "b87c63e35586f1f3598984513cb739c2f162d34deb2b95eaac129218efb7f67f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.30.pdf",
+      "sha256": "dec01b9a7e0aa98ca07cb1ac5535c4adedf18dd968b654fb587288cec11dd595"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.31.pdf",
+      "sha256": "ae4263666a6271e99b6cc1fc0b85dacd42c2f7006afccfe9c1a04f85d6580d35"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.32.pdf",
+      "sha256": "f0f4b1d4d4f765bef4e86d1d694d6cb0f661b10c921c162fafadc7f24ac848d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.33.pdf",
+      "sha256": "0cf41c18fa0ec7fb5e701c0f60f3ad0a4aaacfde8292f8233ea684d4b4a973fd"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.34.pdf",
+      "sha256": "1b1aade7f3d686de11514e30127f340b5b4209b31efb7783bdab172a8aeeb7fe"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.34A.pdf",
+      "sha256": "ef8f4af4853a70b1ad6f89f2a068880b1e6cd5908978b66d3bf87ac4f1920584"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.35.pdf",
+      "sha256": "4ae1e400cf50ab76f0263d55261fc97f717f608cb97fd7bd80afd0a2239f5943"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.36.pdf",
+      "sha256": "f39e819f7a6aa58663cc5212cf83308dac7a184dde419d5cc633e2e54151fb38"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.37.pdf",
+      "sha256": "d738b65416ce10775c151b085bd6755fe58b36eb010aea8dce3eca166531ddde"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.38.pdf",
+      "sha256": "f524849fcb5bdc181c00bbd84d0b73ae11207b9b56082778573514d47d6f4e51"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.39.pdf",
+      "sha256": "2e7bdaae0b8ab1aabe461e0b00c336a01f56d99144c15cebb1c366b2b3ad1866"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.4.pdf",
+      "sha256": "26bf09161e8a8aa0b1ed7dd6197e30b46368a7041e9886ce5581ef9f693c3fd2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.40.pdf",
+      "sha256": "f850de40e587a48a22e21101f7d201bf082f908838f9b9bc24ece92f7d7da5de"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.41.pdf",
+      "sha256": "9d087aa4e057d7689a21bb8c4d2d5d269ab33446e6588d4bf1eb4be5f5287a1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.5.pdf",
+      "sha256": "171f7909ffeed08dae5103ba749e57ebab66a28b2899117a8e84c44787641ad2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.5A.pdf",
+      "sha256": "9bb9de9e930cf5121d09dc6b658fc055629fd10b190357861d9f8a1221e65c76"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.6.pdf",
+      "sha256": "a089559df2ea3ca39aa8add8b710693364e52b83e0d83ae33ccd667aba620ccf"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.60.pdf",
+      "sha256": "82099307d5cf017353da5946d207297ef2e10f0bd43109714adb7137884f5632"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.61.pdf",
+      "sha256": "6e8f381bc41ad7b5c666be945653202fbd11bf2604466cc1f7d0af57a5375cfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.62.pdf",
+      "sha256": "1ea94d2a42a00610f6b3a17a6a0236e80252727b675fd0d3b922960e1243eb2f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.63.pdf",
+      "sha256": "74367628a8abd91baa74056ebdd9048b6ef8a24b6ce89c21faedb064c45d0be3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.65.pdf",
+      "sha256": "899ef1cbfd4eb325f56bf0e9d722a0fe7d853396d5d92f28e95084f329737af0"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.66.pdf",
+      "sha256": "ddab4315453a2e080540c96a678a466669c00f2dac8980b82979c8f25802b621"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.67.pdf",
+      "sha256": "a1ccfd5b614beb117198ecbe4c68255c0561bdbc19c74e3b210a73f54163aba8"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.68.pdf",
+      "sha256": "3bbe45af7268d9deb2f482f38bcb22f9687df49caf3cae531b822f3f25bd2b91"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.69.pdf",
+      "sha256": "ce4631d3c33130987dfefb3e3764ac27194d636d01756996af13a80c96b740d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.7.pdf",
+      "sha256": "c8d486b02447cb45c6ea7ebb0d1692a8776f34742c3d86a7e5737e25253f1185"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.70.pdf",
+      "sha256": "19865fb7c47e99859f1a744515579692355e2ff23217133315fa30dc89b8859e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.71.pdf",
+      "sha256": "1c5751db6544f692dd643fcbd1cc6c0d4fdd0c8d807c9abc5e48a808e31ee918"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.72.pdf",
+      "sha256": "a4dda2c5550d793bd1356c62634fc2213656d0d35d73c9f63ef0f6c64b7c0f26"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.73.pdf",
+      "sha256": "3c6c1ca48c5c52df34627f8e427c30932eb8d12f5cf8f6b0ad307d3c440ef885"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.74.pdf",
+      "sha256": "b6ef54b7f534887a94219d1f8259eed943595b2840e957b48d89a6fc884283b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.75.pdf",
+      "sha256": "5a2b838d65e413218b03244adbac8e654352fa7804ee9b358b12a23b34d331da"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.8.pdf",
+      "sha256": "18898d86403ff70a9893c64de8e04ae3e6062d6e5c3524b0323e42292909c7d3"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.85.pdf",
+      "sha256": "a707b757b46be6973d26953c1b2e61e754ec7012f455e81b21a703503575e307"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.86.pdf",
+      "sha256": "3480039c294534a526f911e79500fea0d48d8d00d0104ad9ecf5324525bdabb2"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.88.pdf",
+      "sha256": "c20b2273babd33b3fdb28c48336d3a2333338b0f1ce8ae546b96eec77b043b1d"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.89.pdf",
+      "sha256": "968ed97148d46c4962ca53e86c7183d26309311e1a0b4ad81ac2bca924cdcf0f"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.9.pdf",
+      "sha256": "7b8a4d2bb93599a40bf1491210cc6e46ecff440b0ef09281fff2980d113d730e"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.90.pdf",
+      "sha256": "bbcaa4289ce9bf566fa912026db1e6b22e9edf243a50cbf1cd2c426268c8109c"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.91.pdf",
+      "sha256": "6f34f64ff157de1d828bbd17b07ae73e74e4ffab38c381e034255f6eacee95d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.92.pdf",
+      "sha256": "7bfa80e7188c0dc298db5f33303d5d48cd09f821e8715fb2f75b45b450070fae"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-section-pdf/chapter-422/422.93.pdf",
+      "sha256": "70ce35f20480e4bfcec124d2afeef19c63c2a5f4d1b7ce2c8525d8453ef3d305"
+    },
+    {
+      "path": "data/corpus/sources/us-ia/statute/2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable/iowa-code-title-index-html/2026.html",
+      "sha256": "6cc0544f4882ee8b9bff60bbc6b5e174115f2b94b4997356c5774d7d8aa1aa4a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3e6fe6997a0a172f18a82cff39dc415e439f7fa5",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "reversion_expression_dates.py: create immutable successor for corrected Iowa Title X Chapter 422 scope after released-scope mutation was detected"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 121,
+    "missing_count": 0,
+    "provision_count": 121,
+    "source_count": 121
+  },
+  "document_class": "statute",
+  "generated_at": "2026-07-24T06:01:28.840309+00:00",
+  "jurisdiction": "us-ia",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "VNIsmAD7e9o0+/mnd31G/zPFszxEMl39e+M4Ggk9gITDA2MMT5RhQZZss0151qlLWPXJpAraDSdeYnGiCogQAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-16-pit-east-us-ia-title-x-chapter-422-r2026-07-24-immutable"
+}
