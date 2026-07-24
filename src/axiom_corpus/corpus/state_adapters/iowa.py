@@ -890,7 +890,8 @@ def _section_status(
     body: str | None,
     source_notes: tuple[str, ...],
 ) -> str | None:
-    if section == "422.7":
+    body_signature = re.sub(r"\W+", " ", (body or "")[:80]).strip().casefold()
+    if section == "422.7" and body_signature.startswith("the term net income means"):
         return None
     text = " ".join(part for part in [heading, body, *source_notes] if part).lower()
     if "repealed" in text:

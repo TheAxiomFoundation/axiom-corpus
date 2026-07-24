@@ -171,6 +171,23 @@ def test_parse_iowa_section_pdf_does_not_repeal_operative_section_from_subsectio
     assert parsed.status is None
 
 
+def test_parse_iowa_section_422_7_retains_future_whole_section_repeal_status():
+    parsed = parse_iowa_section_pdf(
+        _status_pdf(
+            section="422.7",
+            heading="“Net income” — how computed.",
+            body=["Repealed by 2030 Acts, ch 1001, §1."],
+            notes=[],
+        ),
+        section="422.7",
+        heading="“Net income” — how computed.",
+        source_year=2031,
+    )
+
+    assert parsed.body.startswith("Repealed by 2030 Acts, ch 1001")
+    assert parsed.status == "repealed"
+
+
 def test_parse_iowa_section_pdf_retains_whole_section_repeal_status():
     parsed = parse_iowa_section_pdf(
         _status_pdf(
