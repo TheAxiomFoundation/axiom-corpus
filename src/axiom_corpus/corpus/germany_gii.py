@@ -61,6 +61,7 @@ any provision is emitted (provenance: never encode from unretained text).
 from __future__ import annotations
 
 import io
+import logging
 import re
 import time
 import unicodedata
@@ -88,6 +89,8 @@ from axiom_corpus.corpus.models import (
 )
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
+logger = logging.getLogger(__name__)
+
 GERMAN_GII_SOURCE_FORMAT = "gesetze-im-internet.de-juris-xml"
 GII_BASE_URL = "https://www.gesetze-im-internet.de"
 GII_SOURCE_AUTHORITY = "Bundesministerium der Justiz (juris GmbH)"
@@ -113,6 +116,7 @@ _GERMAN_TRANSLITERATION = str.maketrans(
 )
 _WEGGEFALLEN_RE = re.compile(r"weggefallen", re.IGNORECASE)
 _LEADING_INT_RE = re.compile(r"\d+")
+_IMAGE_CONTENT_BLOCK_TAGS = frozenset({"dd", "dt", "entry", "la", "p", "title", "toc"})
 
 
 # ---------------------------------------------------------------------------
@@ -167,6 +171,7 @@ class GermanNorm:
     gliederungsbez: str | None = None
     gliederungskennzahl: str | None = None
     law_metadata: Mapping[str, str] = field(default_factory=dict)
+    content_flags: Mapping[str, Any] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -469,6 +474,7 @@ def _parse_norm(element: Any, *, index: int, root_doknr: str) -> GermanNorm:
         )
 
     body = _render_content(text_content)
+    content_flags = _content_flags(text_content)
     repealed = _is_repealed(titel, body)
 
     kind: str
@@ -509,6 +515,7 @@ def _parse_norm(element: Any, *, index: int, root_doknr: str) -> GermanNorm:
         repealed=repealed,
         gliederungsbez=gliederungsbez,
         gliederungskennzahl=kennzahl,
+        content_flags=content_flags,
     )
 
 
@@ -566,6 +573,7 @@ def _parse_law_frame(
         ordinal=None,
         repealed=False,
         law_metadata=law_metadata,
+        content_flags=_content_flags(fussnoten_content),
     )
 
 
@@ -642,9 +650,26 @@ def _provision_record(
         metadata["repealed"] = True
     if is_parent and norm.law_metadata:
         metadata["law_metadata"] = dict(norm.law_metadata)
+    if norm.content_flags:
+        metadata["content_flags"] = dict(norm.content_flags)
     if law.metadata:
         for key, value in law.metadata.items():
             metadata.setdefault(str(key), value)
+
+    image_only = norm.content_flags.get("image_only_content")
+    if isinstance(image_only, Mapping):
+        names = image_only.get("image_names")
+        rendered_names = (
+            ", ".join(str(name) for name in names)
+            if isinstance(names, Sequence) and not isinstance(names, str)
+            else "<unknown>"
+        )
+        logger.warning(
+            "Image-only content detected in provision %s: %s block(s); images: %s",
+            citation_path,
+            image_only.get("count", "unknown"),
+            rendered_names or "<unknown>",
+        )
 
     return ProvisionRecord(
         id=deterministic_provision_id(citation_path),
@@ -700,6 +725,52 @@ def _parse_xml(data: bytes) -> Any:
         huge_tree=True,
     )
     return etree.fromstring(data, parser=parser)
+
+
+def _content_flags(content: Any | None) -> dict[str, Any]:
+    """Describe image-only blocks that the plain-text renderer cannot preserve."""
+    if content is None:
+        return {}
+
+    blocks: list[Any] = []
+    image_names: list[str] = []
+    for image in content.iter():
+        if not isinstance(image.tag, str) or _local(image).lower() != "img":
+            continue
+        if (image.get("alt") or "").strip():
+            continue
+        block = _image_only_block(image, content=content)
+        if block is None:
+            continue
+        if block not in blocks:
+            blocks.append(block)
+        source = _clean(image.get("SRC") or image.get("src"))
+        if source:
+            name = source.rsplit("/", 1)[-1]
+            if name not in image_names:
+                image_names.append(name)
+
+    if not blocks:
+        return {}
+    details: dict[str, Any] = {"count": len(blocks)}
+    if image_names:
+        details["image_names"] = image_names
+    return {"image_only_content": details}
+
+
+def _image_only_block(image: Any, *, content: Any) -> Any | None:
+    """Return the nearest blank renderable block containing an empty-alt image."""
+    candidate = image.getparent()
+    while candidate is not None and candidate is not content:
+        if (
+            isinstance(candidate.tag, str)
+            and _local(candidate).lower() in _IMAGE_CONTENT_BLOCK_TAGS
+        ):
+            return candidate if not _inline_text(candidate).strip() else None
+        candidate = candidate.getparent()
+    if candidate is content and not _inline_text(content).strip():
+        return content
+    return None
 
 
 def _render_content(content: Any | None) -> str:

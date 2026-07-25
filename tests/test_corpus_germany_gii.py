@@ -15,6 +15,7 @@ from __future__ import annotations
 import hashlib
 import io
 import json
+import logging
 import re
 import zipfile
 from pathlib import Path
@@ -701,6 +702,110 @@ def test_content_rendering_handles_direct_br_dl_and_nested_tables():
     assert "1. erster Punkt" in body
     assert "Einleitung\nFortsetzung" in body
     assert "Zelle" in body
+
+
+IMAGE_ONLY_SECTION = (
+    '<norm doknr="BJNRX00000000BJNE5">'
+    "<metadaten><jurabk>L</jurabk><enbez>§ 5</enbez><titel>Formel</titel></metadaten>"
+    "<textdaten><text><Content>"
+    '<P><IMG SRC="gleichung.jpg"/></P>'
+    "</Content></text></textdaten>"
+    "</norm>"
+)
+
+
+def test_image_only_absatz_is_flagged_without_synthesizing_body():
+    norms = parse_gii_law(_doc(FRAME_ONLY, IMAGE_ONLY_SECTION), law=SAMPLE_LAW)
+    section = norms[1]
+
+    assert section.body == ""
+    assert section.content_flags == {
+        "image_only_content": {
+            "count": 1,
+            "image_names": ["gleichung.jpg"],
+        }
+    }
+
+
+def test_image_with_text_siblings_is_not_flagged():
+    section_xml = IMAGE_ONLY_SECTION.replace(
+        '<P><IMG SRC="gleichung.jpg"/></P>',
+        '<P>Text vor dem Bild <IMG SRC="gleichung.jpg" alt=""/> und danach.</P>',
+    )
+    norms = parse_gii_law(_doc(FRAME_ONLY, section_xml), law=SAMPLE_LAW)
+    section = norms[1]
+
+    assert section.body == "Text vor dem Bild und danach."
+    assert section.content_flags == {}
+
+
+def test_sgb_iv_shaped_formula_tables_flag_each_blank_image_cell():
+    section_xml = (
+        '<norm doknr="BJNRX00000000BJNE20">'
+        "<metadaten><jurabk>SGB 4</jurabk><enbez>§ 20</enbez>"
+        "<titel>Aufbringung der Mittel, Übergangsbereich</titel></metadaten>"
+        "<textdaten><text><Content><P>(2a) Die erste Formel lautet:"
+        "<table><tgroup><tbody><row><entry/><entry>"
+        '<IMG SRC="bgbl1_2022_j1988_0010.jpg" alt=""/>'
+        "</entry><entry/></row></tbody></tgroup></table>"
+        "Danach folgt die zweite Formel:"
+        "<table><tgroup><tbody><row><entry/><entry>"
+        '<IMG SRC="bgbl1_2022_j1988_0020.jpg" alt=""/>'
+        "</entry><entry/></row></tbody></tgroup></table>"
+        "Beide Bilder bleiben untranskribiert.</P></Content></text></textdaten>"
+        "</norm>"
+    )
+    norms = parse_gii_law(_doc(FRAME_ONLY, section_xml), law=SAMPLE_LAW)
+    section = norms[1]
+
+    assert "Die erste Formel lautet:" in section.body
+    assert "Beide Bilder bleiben untranskribiert." in section.body
+    assert "bgbl1_2022" not in section.body
+    assert section.content_flags == {
+        "image_only_content": {
+            "count": 2,
+            "image_names": [
+                "bgbl1_2022_j1988_0010.jpg",
+                "bgbl1_2022_j1988_0020.jpg",
+            ],
+        }
+    }
+
+
+def test_image_only_provision_row_keeps_blank_body_metadata_and_warning(tmp_path, caplog):
+    source = tmp_path / "image_only.xml"
+    source.write_bytes(_doc(FRAME_ONLY, IMAGE_ONLY_SECTION))
+    base = tmp_path / "data" / "corpus"
+
+    with caplog.at_level(logging.WARNING, logger=germany_gii.__name__):
+        extract_german_gii(
+            CorpusArtifactStore(base),
+            version="2026-07-25-de",
+            laws=(GermanLaw(slug="imageg", local_source=source),),
+            source_as_of="2026-07-25",
+        )
+
+    records = {
+        row["citation_path"]: row
+        for row in _read_jsonl(base / "provisions/de/statute/2026-07-25-de.jsonl")
+    }
+    section = records["de/statute/imageg/5"]
+    assert section["body"] is None
+    assert section["metadata"]["content_flags"] == {
+        "image_only_content": {
+            "count": 1,
+            "image_names": ["gleichung.jpg"],
+        }
+    }
+    warnings = [
+        record
+        for record in caplog.records
+        if record.name == germany_gii.__name__
+        and "Image-only content detected" in record.getMessage()
+    ]
+    assert len(warnings) == 1
+    assert "de/statute/imageg/5" in warnings[0].getMessage()
+    assert "gleichung.jpg" in warnings[0].getMessage()
 
 
 @pytest.mark.parametrize(
