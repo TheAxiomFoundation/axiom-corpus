@@ -18,6 +18,10 @@ name: Mirror release object to public bucket
 on:
   workflow_dispatch:
     inputs:
+      publish_run_id:
+        description: Successful publication workflow run containing the signed object
+        required: true
+        type: string
       release:
         description: Release name (e.g. uk-rulespec-2026-07-14)
         required: true
@@ -28,6 +32,7 @@ on:
         type: string
 
 permissions:
+  actions: read
   contents: read
 
 jobs:
@@ -37,6 +42,8 @@ jobs:
     env:
       RELEASE_NAME: ${{ inputs.release }}
       CONTENT_SHA: ${{ inputs.content-sha256 }}
+      RELEASE_OBJECT: ${{ github.workspace }}/signed-release-object.json
+      DESTINATION_PATH: releases/${{ inputs.release }}/${{ inputs.content-sha256 }}.json
       R2_PUBLIC_BUCKET: axiom-corpus-releases
       PUBLIC_BASE_URL: https://pub-a8952f8657fc49fda358146ac001366c.r2.dev
     steps:
@@ -48,6 +55,8 @@ jobs:
           [ "${#RELEASE_NAME}" -le 128 ] || { echo "::error::release name too long."; exit 1; }
 
       - uses: actions/checkout@v6.0.2
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v6.2.0
         with:
@@ -59,6 +68,37 @@ jobs:
           set -euo pipefail
           python -m pip install --quiet 'boto3==1.40.11'
           python -m pip install --quiet -e .
+
+      - name: Download signed publication object
+        uses: actions/download-artifact@v8
+        with:
+          name: signed-corpus-release-object
+          path: ${{ runner.temp }}/publication
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.publish_run_id }}
+
+      - name: Select the single signed publish artifact
+        run: |
+          mapfile -t objects < <(find "$RUNNER_TEMP/publication" -maxdepth 1 -type f -name '*-release-object.json')
+          if [ "${#objects[@]}" -ne 1 ]; then
+            echo "::error::Expected exactly one signed release object artifact."
+            exit 1
+          fi
+          cp "${objects[0]}" "$RELEASE_OBJECT"
+
+      - name: Deterministic mirror gate
+        env:
+          RELEASE_TRUST_ROOT: ${{ vars.AXIOM_CORPUS_RELEASE_PUBLIC_KEY }}
+        run: |
+          python scripts/check_release_gate.py \
+            --release-object "$RELEASE_OBJECT" \
+            --published-artifact "$RELEASE_OBJECT" \
+            --destination-path "$DESTINATION_PATH" \
+            --release "$RELEASE_NAME" \
+            --content-sha "$CONTENT_SHA" \
+            --repo-root "$GITHUB_WORKSPACE" \
+            --mode mirror | tee "$RUNNER_TEMP/release-gate.txt"
+          cat "$RUNNER_TEMP/release-gate.txt" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Verify canonical object and mirror to public bucket
         env:
@@ -86,7 +126,10 @@ jobs:
                             aws_access_key_id=os.environ["R2_ACCESS_KEY_ID"],
                             aws_secret_access_key=os.environ["R2_SECRET_ACCESS_KEY"])
 
-          body = s3.get_object(Bucket=src, Key=key)["Body"].read()
+          body = open(os.environ["RELEASE_OBJECT"], "rb").read()
+          canonical = s3.get_object(Bucket=src, Key=key)["Body"].read()
+          if canonical != body:
+              sys.exit("canonical object bytes differ from the named publish-run artifact")
           payload = json.loads(body)
           if payload.get("release") != name:
               sys.exit("canonical object release name mismatch")
