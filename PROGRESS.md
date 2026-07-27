@@ -6,7 +6,7 @@
 - Review branch: `codex/review-523-round7-df36df`
 - PR target under review: `df36df25594e2cadf87910fec2bac6bfb21e39ba`
 - Target parent: `49b0ae93367c48b7134576bf15a157c516d44a73`
-- Status: probes and history hygiene complete; no verdict yet
+- Status: probes, history, and reproduction invariants complete; no verdict yet
 
 ## Done
 
@@ -98,10 +98,27 @@
   `4c5569fbf37660441db6f8d2cffbd6a061da36c547d088a66a3f7f97b006fbe2`
   and
   `56f7f5dc58046e9757e1b389f7dc1b69490b06a941fccdc6d57b6ae4f922796b`.
+- Captured SHA-256 values for all eleven scoped source, inventory, provision,
+  coverage, and anchor artifacts before reproduction. Their ordered full-line
+  digest was
+  `5e8c0646ab2015987725991f188b08af954f2bc7134c0ccf30a5b8fa43403b02`,
+  and the target-pinned artifact diff was initially empty.
+- The exact requested
+  `uv run --no-cache --extra dev python
+  scripts/repro/us_1401_coordination_repair.py --base data/corpus` wrapper
+  exited 1 before entering the script because sandboxed DNS could not download
+  `pycparser==2.23`. It created an ignored incomplete worktree `.venv`; the
+  failed attempt changed none of the eleven artifacts.
+- Ran the committed repro through the populated root environment with this
+  target's `src` first on `PYTHONPATH`. It exited 0: statute coverage is 21/21
+  with 18 anchors, and regulation coverage is 2/2 with 12 anchors.
+- Every post-repro artifact hash exactly matches its pre-repro hash. The
+  ordered digest remains
+  `5e8c0646ab2015987725991f188b08af954f2bc7134c0ccf30a5b8fa43403b02`,
+  and `git diff --exit-code df36df25 -- <all eleven artifacts>` exits 0.
 
 ## Next
 
-- Reproduce the 1401 repair and prove all eleven artifacts byte-identical.
 - Run focused and repository-wide gates.
 - Run focused and repository-wide gates.
 - Write and commit `FINAL_REPORT.md` with the final verdict and evidence digest.
