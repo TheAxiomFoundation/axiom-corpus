@@ -6,7 +6,7 @@
 - Review branch: `codex/review-523-round7-df36df`
 - PR target under review: `df36df25594e2cadf87910fec2bac6bfb21e39ba`
 - Target parent: `49b0ae93367c48b7134576bf15a157c516d44a73`
-- Status: independent and prior-round probe verification complete; no verdict yet
+- Status: probes and history hygiene complete; no verdict yet
 
 ## Done
 
@@ -80,10 +80,27 @@
   `d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621`;
   canonical result SHA-256:
   `db983eade28d34b2b44657ccb31ef84fdf9afd065f858f6776e8c2dcd56ef7b9`.
+- Pinned delta hygiene to the PR target rather than this review branch. The
+  round-7 delta is exactly one commit, zero merges, with sole parent
+  `49b0ae93367c48b7134576bf15a157c516d44a73`, and its only paths are
+  `src/axiom_corpus/corpus/ecfr.py` and `tests/test_corpus_ecfr.py`.
+- The complete target-pinned PR-only history
+  `a64ec80693ad37f56ab9f1ea5102c4998b9c01d9..df36df25594e` contains five
+  commits and exactly five unique paths: the eCFR and USC modules, their two
+  test modules, and `changelog.d/usc-1401-coordination-repair.fixed.md`.
+  It contains zero progress, report, review-probe, scratch, or session paths.
+- `git merge-base --is-ancestor
+  afab29fc555af3d5bc25bba795e5b0c6ef936adc df36df25594e` exited 0, and
+  the merge base is exactly the attested commit.
+- Both Ed25519 ingest manifests remain complete, clean-tracked attestations of
+  `afab29fc555af3d5bc25bba795e5b0c6ef936adc` (statute 21/21 and regulation
+  2/2). Their SHA-256 values remain
+  `4c5569fbf37660441db6f8d2cffbd6a061da36c547d088a66a3f7f97b006fbe2`
+  and
+  `56f7f5dc58046e9757e1b389f7dc1b69490b06a941fccdc6d57b6ae4f922796b`.
 
 ## Next
 
-- Verify PR-only history, ancestor, manifests, and path hygiene.
 - Reproduce the 1401 repair and prove all eleven artifacts byte-identical.
 - Run focused and repository-wide gates.
 - Run focused and repository-wide gates.
