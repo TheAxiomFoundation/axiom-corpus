@@ -6,7 +6,7 @@
 - Review branch: `codex/review-523-round7-df36df`
 - PR target under review: `df36df25594e2cadf87910fec2bac6bfb21e39ba`
 - Target parent: `49b0ae93367c48b7134576bf15a157c516d44a73`
-- Status: substantive review and test gates complete; final report pending
+- Status: `VERDICT: APPROVE`; final report written
 
 ## Done
 
@@ -137,9 +137,19 @@
   TestPostgresStorageSubsectionConversion::test_dict_to_subsection`.
   Totals are 1 failed, 4,110 passed, 69 skipped, 208 deselected, and 37
   warnings in 350.03 seconds. No second failure occurred.
+- Refreshed the target-local GitNexus index at ledger commit `18dee630`:
+  1,318 files, 20,157 nodes, 56,381 edges, 1,160 communities, 300 processes,
+  and zero embeddings. `gitnexus status` reports the local index up to date.
+- The refresh again completed the usable index before sandbox policy denied
+  the optional global-registry write. The lingering post-index process was
+  interrupted with exit 130.
+- Wrote `FINAL_REPORT.md` with `VERDICT: APPROVE`.
+- Final GitNexus staged detection maps the ledger/report update to two
+  review-only files, five indexed symbols, zero affected processes, and LOW
+  risk. Target-to-review comparison contains three review-only files
+  (`PROGRESS.md`, `FINAL_REPORT.md`, and the independent probe), nine indexed
+  symbols, zero affected processes, and LOW risk.
 
 ## Next
 
-- Refresh GitNexus change detection, write the final report, and close the ledger.
-- Run focused and repository-wide gates.
-- Write and commit `FINAL_REPORT.md` with the final verdict and evidence digest.
+- None. Commit the completed review artifacts and hand off the approval.
