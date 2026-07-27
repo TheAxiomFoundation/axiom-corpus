@@ -4,6 +4,7 @@ import hashlib
 import json
 import sys
 from collections import Counter, defaultdict
+from gc import collect
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
@@ -217,29 +218,41 @@ def main() -> None:
     global_source_ids = Counter(
         element.get("id") for element, _ in source_nodes if element.get("id")
     )
+    identifier_sibling_groups = sibling_groups(root, "identifier")
+    id_sibling_groups = sibling_groups(root, "id")
+    number_groups = numbered_sibling_groups(root)
+    source_kind_occurrences = Counter(local_name(element.tag) for element, _ in source_nodes)
+    source_structural_occurrences = len(source_nodes)
+    del root
+    del source_nodes
+    collect()
 
     document = parse_uslm_title(source_text)
     traversed = parsed_nodes(document)
+    parsed_45x_d_4 = forty_five_x(document)
+    del document
+    collect()
+
     inventory = build_usc_inventory_from_xml(source_text)
-    records = tuple(
-        iter_usc_title_provisions(
+    inventory_paths = [item.citation_path for item in inventory.items]
+    del inventory
+    collect()
+
+    record_paths = [
+        record.citation_path
+        for record in iter_usc_title_provisions(
             source_text,
             version="round4-independent-probe",
             source_path="official-title-26/uslm/usc26.xml",
         )
-    )
-    inventory_paths = [item.citation_path for item in inventory.items]
-    record_paths = [record.citation_path for record in records]
-    identifier_sibling_groups = sibling_groups(root, "identifier")
-    id_sibling_groups = sibling_groups(root, "id")
-    number_groups = numbered_sibling_groups(root)
+    ]
 
     output = {
         "source_sha256": hashlib.sha256(source_bytes).hexdigest(),
         "source_bytes": len(source_bytes),
-        "source_structural_occurrences": len(source_nodes),
+        "source_structural_occurrences": source_structural_occurrences,
         "source_structural_unique_identifiers": len(unique_source_identifiers),
-        "source_kind_occurrences": Counter(local_name(element.tag) for element, _ in source_nodes),
+        "source_kind_occurrences": source_kind_occurrences,
         "source_kind_unique_identifiers": Counter(source_kind_by_identifier.values()),
         "duplicate_identifier_count": len(duplicate_identifiers),
         "duplicate_identifiers": duplicate_identifiers,
@@ -256,9 +269,9 @@ def main() -> None:
         "traversed_structural_occurrences": len(traversed),
         "traversed_kind_occurrences": Counter(kind for kind, _, _ in traversed),
         "traversed_unique_paths": len({path for _, path, _ in traversed}),
-        "inventory_count": len(inventory.items),
+        "inventory_count": len(inventory_paths),
         "inventory_unique_paths": len(set(inventory_paths)),
-        "records_count": len(records),
+        "records_count": len(record_paths),
         "records_unique_paths": len(set(record_paths)),
         "expected_unique_paths": len(expected_paths),
         "inventory_exact_source_path_set": set(inventory_paths) == expected_paths,
@@ -266,7 +279,7 @@ def main() -> None:
         "inventory_records_same_order": inventory_paths == record_paths,
         "source_paths_missing_inventory": sorted(expected_paths - set(inventory_paths))[:50],
         "inventory_paths_not_source": sorted(set(inventory_paths) - expected_paths)[:50],
-        "parsed_45x_d_4": forty_five_x(document),
+        "parsed_45x_d_4": parsed_45x_d_4,
     }
     print(json.dumps(output, indent=2, sort_keys=True))
 
