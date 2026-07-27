@@ -6,7 +6,7 @@
 - Review branch: `codex/review-523-round7-df36df`
 - PR target under review: `df36df25594e2cadf87910fec2bac6bfb21e39ba`
 - Target parent: `49b0ae93367c48b7134576bf15a157c516d44a73`
-- Status: `VERDICT: APPROVE`; final report written
+- Status: complete; `VERDICT: APPROVE`
 
 ## Done
 
@@ -149,7 +149,9 @@
   risk. Target-to-review comparison contains three review-only files
   (`PROGRESS.md`, `FINAL_REPORT.md`, and the independent probe), nine indexed
   symbols, zero affected processes, and LOW risk.
+- Committed the completed `FINAL_REPORT.md` and ledger in review commit
+  `26a469e1e0f6910dfddf9f8bf0a54ccb365b4e21`.
 
 ## Next
 
-- None. Commit the completed review artifacts and hand off the approval.
+- None. Review complete; hand off the approval.
