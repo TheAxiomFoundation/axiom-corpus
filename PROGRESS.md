@@ -6,7 +6,7 @@
 - Review branch: `codex/review-523-round7-df36df`
 - PR target under review: `df36df25594e2cadf87910fec2bac6bfb21e39ba`
 - Target parent: `49b0ae93367c48b7134576bf15a157c516d44a73`
-- Status: all gates except full pytest complete; no verdict yet
+- Status: substantive review and test gates complete; final report pending
 
 ## Done
 
@@ -132,10 +132,14 @@
 - Non-writing coverage validation passes at statute 21/21 and regulation 2/2,
   with no duplicate source paths, duplicate provision paths, missing paths, or
   extra paths.
+- Full pytest completed with exactly the established PostgreSQL-only failure:
+  `tests/test_storage_postgres.py::
+  TestPostgresStorageSubsectionConversion::test_dict_to_subsection`.
+  Totals are 1 failed, 4,110 passed, 69 skipped, 208 deselected, and 37
+  warnings in 350.03 seconds. No second failure occurred.
 
 ## Next
 
-- Run full pytest and confirm the expected-failure envelope.
 - Refresh GitNexus change detection, write the final report, and close the ledger.
 - Run focused and repository-wide gates.
 - Write and commit `FINAL_REPORT.md` with the final verdict and evidence digest.
