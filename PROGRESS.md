@@ -65,6 +65,15 @@
   `_scoped_structure_from_part_xml` were LOW in the graph. Direct USC callers
   include CLI extraction, directory extraction, source slimming, and recovery
   scripts.
+- Created the independent, review-owned
+  `review-probes/usc_official_probe.py`. It derives the official structural
+  identifier/path set directly from retained XML, inventories sibling
+  collisions without adapter helpers, walks pre-output adapter objects, compares
+  exact inventory/provision path sets, and isolates §45X(d)(4). Ruff formatting,
+  Ruff checking, and bytecode compilation pass for the probe.
+- Sandbox failure: `apply_patch` rejected the first attempt to create that
+  probe under `/private/tmp/pr523-round4-main.PMpyfX`, so no file was created
+  there. The durable probe above was created inside this review worktree.
 
 ## Next
 
