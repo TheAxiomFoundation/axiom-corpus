@@ -184,9 +184,16 @@
   commit to two review-artifact files, five indexed ledger symbols, zero
   affected processes, and LOW risk. `FINAL_REPORT.md` was not present in the
   earlier target-local index, so it contributed no indexed symbol.
+- Committed the completed `FINAL_REPORT.md` and ledger at
+  `93e34f4850394f92b7e2abbfb62f3b3d7861e84b`.
+- Refreshed the target-local GitNexus index after committing the review probe
+  and report. `gitnexus status` is up to date at `93e34f48`: 1,319 files,
+  20,165 nodes, 56,396 edges, 1,148 communities, 300 processes, and zero
+  embeddings. The already-disclosed sandbox denial of the global registry
+  write recurred after local index completion, and the hung process was
+  interrupted.
 
 ## Next
 
-- Commit `FINAL_REPORT.md` with this completed ledger.
 - Hand off `REQUEST-CHANGES`; repair mixed parts by traversing immediate
   children once in XML order and add direct-after/empty-only controls.
