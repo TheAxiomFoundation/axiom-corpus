@@ -44,12 +44,15 @@ def direct_text(element: ET.Element, child_name: str) -> str | None:
 
 
 def source_path(identifier: str) -> str:
-    if identifier == "/us/usc/t26":
+    # OLRC sometimes space-separates multiple repealed section identifiers on
+    # one structural node; the first token is the node's rendered citation.
+    primary_identifier = identifier.split()[0]
+    if primary_identifier == "/us/usc/t26":
         return "us/statute/26"
     prefix = "/us/usc/t26/s"
-    if not identifier.startswith(prefix):
+    if not primary_identifier.startswith(prefix):
         raise AssertionError(identifier)
-    return "us/statute/26/" + identifier.removeprefix(prefix)
+    return "us/statute/26/" + primary_identifier.removeprefix(prefix)
 
 
 def walk_with_depth(element: ET.Element, depth: int = 0):
