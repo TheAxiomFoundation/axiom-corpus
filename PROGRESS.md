@@ -103,6 +103,13 @@
   unique paths, in the same order, and each path set was exactly equal to the
   independently derived official source set. This independently verifies the
   corrected 58,351 total rather than trusting the repair tests.
+- Created the independent, review-owned
+  `review-probes/ecfr_parentage_probe.py`. Its `case` mode derives a selected
+  section's formal-subpart parent directly from retained XML and compares
+  hierarchy, inventory, iterator, and optional end-to-end extraction; `scan`
+  exhausts every retained part XML; `synthetic` exercises non-DIV6 subparts,
+  parts without formal subparts, and unselected subparts. Ruff formatting,
+  Ruff checking, and bytecode compilation pass.
 
 ## Next
 
