@@ -6,7 +6,7 @@
 - Review branch: `codex/review-523-round7-df36df`
 - PR target under review: `df36df25594e2cadf87910fec2bac6bfb21e39ba`
 - Target parent: `49b0ae93367c48b7134576bf15a157c516d44a73`
-- Status: delta and blast-radius audit complete; no verdict yet
+- Status: independent ordering verification complete; no verdict yet
 
 ## Done
 
@@ -43,10 +43,25 @@
   because sandbox policy denied the optional global-registry write at
   `/Users/maxghenis/.gitnexus/registry.json`. Direct target-local graph calls
   succeeded.
+- Added the review-owned, assertion-based
+  `review-probes/ecfr_document_order_probe.py`. It uses four fixtures authored
+  independently of the PR regression: direct section before a subpart, direct
+  section after a subpart, direct section between two subparts, and duplicate
+  §913.7 first inside subpart A then directly under the part.
+- The independent probe passed exact record order, parent citation paths,
+  levels, subpart metadata, and distinctive body-marker checks for every
+  emitted section. Both duplicate occurrences are emitted in source order with
+  the subpart body/parent first and direct body/parent second. Canonical result
+  SHA-256:
+  `0163acc589517c57338bf1181d7ff8f0b9c85c0d00d32023b2212f69972147cd`.
+- Ruff and bytecode compilation pass for the independent probe.
+- The first probe execution failed because the review oracle incorrectly
+  expected `metadata.subpart=None` on subpart records; the adapter correctly
+  returned `A`/`B`. Correcting only those expected metadata values made all
+  assertions pass.
 
 ## Next
 
-- Build an independent interleaved eCFR ordering probe.
 - Re-run the required prior-round probes and invariants.
 - Run focused and repository-wide gates.
 - Write and commit `FINAL_REPORT.md` with the final verdict and evidence digest.
