@@ -6,7 +6,7 @@
 - Review branch: `codex/review-523-round7-df36df`
 - PR target under review: `df36df25594e2cadf87910fec2bac6bfb21e39ba`
 - Target parent: `49b0ae93367c48b7134576bf15a157c516d44a73`
-- Status: probes, history, and reproduction invariants complete; no verdict yet
+- Status: all gates except full pytest complete; no verdict yet
 
 ## Done
 
@@ -116,9 +116,26 @@
   ordered digest remains
   `5e8c0646ab2015987725991f188b08af954f2bc7134c0ccf30a5b8fa43403b02`,
   and `git diff --exit-code df36df25 -- <all eleven artifacts>` exits 0.
+- Focused USC/eCFR tests pass: 58 passed.
+- Resolver tests pass: 16 passed and 20 data-dependent skips. A direct
+  subprocess sweep of both anchor files resolves all 30/30 entries exactly,
+  including matching provision IDs, parent paths, and character spans.
+- Ruff passes for the complete review worktree, including the independent
+  probe. Mypy reports zero issues in 89 corpus source files. Towncrier finds
+  the existing USC repair fragment and passes.
+- Citation-path validation passes across 142,992 records and 124,467 unique
+  paths; all seven irregular-family ratchets equal their baselines.
+- Release validation passes for both scopes with zero issues, errors, or
+  warnings.
+- Tracked-scope validation passes for five statute files and four regulation
+  files.
+- Non-writing coverage validation passes at statute 21/21 and regulation 2/2,
+  with no duplicate source paths, duplicate provision paths, missing paths, or
+  extra paths.
 
 ## Next
 
-- Run focused and repository-wide gates.
+- Run full pytest and confirm the expected-failure envelope.
+- Refresh GitNexus change detection, write the final report, and close the ledger.
 - Run focused and repository-wide gates.
 - Write and commit `FINAL_REPORT.md` with the final verdict and evidence digest.
