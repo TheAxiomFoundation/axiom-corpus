@@ -106,6 +106,11 @@
   unique paths, in the same order, and each path set was exactly equal to the
   independently derived official source set. This independently verifies the
   corrected 58,351 total rather than trusting the repair tests.
+- Created `review-probes/usc_collision_matrix_probe.py` to exercise true
+  immediate-sibling triplicates with unique source IDs and with position
+  fallback, repeal→reenact ordering, repeated IDs at different depths/parents,
+  invalid duplicate XML IDs, and cross-title path isolation. Ruff formatting,
+  Ruff checking, and bytecode compilation pass.
 - Created the independent, review-owned
   `review-probes/ecfr_parentage_probe.py`. Its `case` mode derives a selected
   section's formal-subpart parent directly from retained XML and compares
