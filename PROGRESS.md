@@ -6,7 +6,7 @@
 - Review branch: `codex/review-523-round7-df36df`
 - PR target under review: `df36df25594e2cadf87910fec2bac6bfb21e39ba`
 - Target parent: `49b0ae93367c48b7134576bf15a157c516d44a73`
-- Status: independent ordering verification complete; no verdict yet
+- Status: independent and prior-round probe verification complete; no verdict yet
 
 ## Done
 
@@ -59,9 +59,32 @@
   expected `metadata.subpart=None` on subpart records; the adapter correctly
   returned `A`/`B`. Correcting only those expected metadata values made all
   assertions pass.
+- Re-ran round 6's exact `ecfr_delta_adversarial_probe.py` against
+  `data/corpus/sources/us/regulation`. All four cases have identical entry
+  multisets, exact document order, and all section bodies present. The retained
+  census covers seven XML files and has zero direct-after-subpart, empty
+  subpart, reserved-empty-subpart, or cross-placement-duplicate hits. Result
+  SHA-256:
+  `d9aa3da58e82fb47d67464c8662a65ffa8b42e7560254172331e8af00b905f58`.
+- Re-ran round 4's exact `ecfr_parentage_probe.py scan` against the same source
+  root. Across seven XML files and 3,764 section occurrences, source,
+  inventory, and iterator each contain 3,501 unique paths; missing sections,
+  inventory parent mismatches, and iterator parent mismatches are all zero.
+  Result SHA-256:
+  `384c4609027843ef2bc4d84e5966d72ae5ece438ab6f2add125a1d77bd95258c`.
+- Re-ran round 4's exact `usc_official_probe.py` against the retained official
+  Title 26 XML. Source and traversal each contain 58,368 structural
+  occurrences; the independently derived source, inventory, and provisions
+  each contain exactly 58,351 unique paths, with exact sets and order and no
+  missing or extra path. Source SHA-256:
+  `d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621`;
+  canonical result SHA-256:
+  `db983eade28d34b2b44657ccb31ef84fdf9afd065f858f6776e8c2dcd56ef7b9`.
 
 ## Next
 
-- Re-run the required prior-round probes and invariants.
+- Verify PR-only history, ancestor, manifests, and path hygiene.
+- Reproduce the 1401 repair and prove all eleven artifacts byte-identical.
+- Run focused and repository-wide gates.
 - Run focused and repository-wide gates.
 - Write and commit `FINAL_REPORT.md` with the final verdict and evidence digest.
