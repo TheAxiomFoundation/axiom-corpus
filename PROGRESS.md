@@ -304,9 +304,23 @@
 - One diagnostic `jq paths(...)` command exited 5 because it applied paths from
   the first manifest to a second JSON input. Direct `.axiom_corpus_git.commit`
   queries then succeeded and supplied the attestation results above.
+- USC subreview recovered diagnostics: a guessed full `7e1c8ab9` SHA caused
+  one invalid-revision exit; `git rev-parse` supplied the correct hash. One
+  `npx --no-install gitnexus` attempt hung and was interrupted (130); a bare
+  `python` shim and absent worktree `.venv/bin/python` each exited 127; a
+  no-cache uv probe could not fetch `pyparsing`; a query without `--repo`
+  exited 1; three private helpers were absent from the older registered graph;
+  `apply_patch` rejected a temporary path; and two git diagnostics run from a
+  non-repository exited 128. Correct-hash, cached-GitNexus, `/usr/bin/python3`,
+  populated-repository-environment, target-local graph, permitted-temp-helper,
+  and review-worktree retries succeeded. Initial temporary-probe Ruff found
+  three auto-fixable import diagnostics; final formatted durable probes pass.
+- Final staged GitNexus `detect_changes` over `PROGRESS.md` and the new
+  `FINAL_REPORT.md` reported two changed files, five indexed review-ledger
+  symbols, zero affected processes, and LOW risk. The new report is not present
+  in the target-era graph; every mapped symbol belongs to `PROGRESS.md`.
 
 ## Next
 
-- Commit this completed invariant/gate ledger step.
-- Run final GitNexus change detection, write and commit `FINAL_REPORT.md`, and
-  hand off `REQUEST-CHANGES`.
+- Hand off `REQUEST-CHANGES`; next repair should iterate direct sections
+  alongside formal subparts and regression-test the real §1302.1 body.
