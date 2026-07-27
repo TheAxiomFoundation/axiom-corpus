@@ -7,6 +7,9 @@
 - No PR-branch, remote, GitHub, publication, or production writes are allowed.
 - Item 1(c) passes: all three derived Part 416 artifacts reproduce byte-for-byte.
 - GitNexus maps the executable addition as LOW risk with no affected process.
+- Round-3 review resumed from checkpoint `28cddc28` on 2026-07-27.
+- The local GitNexus index is current at `28cddc28`; its global registry refresh
+  was sandbox-blocked after the local index completed.
 
 ## Done
 
@@ -16,6 +19,8 @@
 - Ran the Part 416 reproduction against a source-only temporary corpus base.
 - Confirmed 622 full source rows, 14 selected rows, and complete coverage.
 - Confirmed exact inventory, provisions, and coverage hashes and byte sizes.
+- Confirmed the checkpoint ledger is committed and only two prior review JSON
+  outputs remain untracked; neither will be committed.
 
 ## Next
 
