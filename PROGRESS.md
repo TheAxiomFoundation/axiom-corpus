@@ -111,6 +111,31 @@
   fallback, repeal→reenact ordering, repeated IDs at different depths/parents,
   invalid duplicate XML IDs, and cross-title path isolation. Ruff formatting,
   Ruff checking, and bytecode compilation pass.
+- Ran that matrix against `a64ec806` and `1e0fde9b` with the same base/target
+  `PYTHONPATH` isolation used by the official-source probe. Base result digest
+  was `2794d2911d394e8d375ebe32ee03324e9ba1f720e1134b72adbfdc79dc49ff96`;
+  target digest was
+  `555d87d32acfead1f10e824a40ad9535fc9305400aeb63318e8adc8efe4022fc`.
+- Target retained all three immediate colliding siblings and unique A/B/C
+  branches both when each sibling had a distinct source `id` and when all
+  lacked `id` and position fallback applied; base retained only the first/A.
+  Reusing an `id` at different depths or beneath different parents did not
+  collide, and identical printed section numbers in titles 26 and 42 produced
+  disjoint paths.
+- A synthetic same-parent duplicate `id` makes target drop the later unique
+  branch because `_source_traversal_key` treats `id` as identity. This is
+  invalid USLM input, not a retained-source blocker: a direct full-document
+  census printed `id_occurrences=82680 unique_ids=82680 duplicates=0`, and the
+  official USLM User Guide defines `id` as an XML Schema ID whose values are
+  document-unique:
+  `https://xml.house.gov/schemas/uslm/1.0/USLM-User-Guide.pdf`.
+- Residual modeling limitation: the schema-valid repeal→reenact triplicate is
+  fully retained before normalized emission and all unique A/B/C descendants
+  survive, but citation-unique inventory/provision output intentionally keeps
+  only the first colliding parent's heading/body (`Repealed`) rather than
+  separately representing `Reenacted` and `Third enactment`. No retained Title
+  26 collision group is repeal→reenact, so this is non-blocking for the
+  reviewed official source.
 - Created the independent, review-owned
   `review-probes/ecfr_parentage_probe.py`. Its `case` mode derives a selected
   section's formal-subpart parent directly from retained XML and compares
