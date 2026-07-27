@@ -2,7 +2,7 @@
 
 ## State
 
-- Verdict: `IN PROGRESS`
+- Verdict: `REQUEST-CHANGES`
 - Target PR head: `1e0fde9ba3bb3a9cfaa90c16bff02326d4b8667a`
 - Target parent: `7e1c8ab9b5efffa104841ce49fa42a30f63268b6`
 - Round-3 target: `a64ec80693ad37f56ab9f1ea5102c4998b9c01d9`
@@ -10,6 +10,9 @@
 - Review worktree:
   `/Users/maxghenis/TheAxiomFoundation/axiom-corpus/.git/review-worktrees/pr523-round4-1e0fde`
 - Mode: review only; no PR-branch, remote, GitHub, or publication writes
+- Blocking state: MEDIUM retained mixed-part eCFR iteration omits direct
+  §1302.1, causing a false structure-only body and making the required
+  hierarchy/iterator agreement invariant fail.
 
 ## Done
 
@@ -110,10 +113,58 @@
   exhausts every retained part XML; `synthetic` exercises non-DIV6 subparts,
   parts without formal subparts, and unselected subparts. Ruff formatting,
   Ruff checking, and bytecode compilation pass.
+- Independently reproduced the round-3 eCFR defect with retained official
+  `data/corpus/sources/us/regulation/2026-06-24-title-45-part-1302/ecfr/title-45-part-1302.xml`
+  (SHA-256
+  `1dc1b061cbb4b7ebb342b374ad58fdf6c66f118a39299b0e08b3bdb0e225e4b2`)
+  and selector `1302.10`:
+  `PYTHONPATH=<base-or-target>/src
+  /Users/maxghenis/TheAxiomFoundation/axiom-corpus/.venv/bin/python
+  review-probes/ecfr_parentage_probe.py case <xml> --title 45 --part 1302
+  --section 1302.10 --extract`.
+- At `a64ec806`, scoped hierarchy/inventory flattened §1302.10 under the part
+  at level 1 while the iterator emitted it at level 2 beneath absent
+  `subpart-A`; the independent result digest was
+  `33b86059cdeb54000dc547d74a5f1a6a5ffe6e3a7a38cbca632d71d9a781fdb0`.
+  At `1e0fde9b`, hierarchy, inventory, iterator, and extraction agree on
+  part → subpart A → §1302.10 at levels 0/1/2, with body present and no
+  dangling parent; result digest
+  `dfac703cf86df44edb624ba1f186b424fe7a49c9d3e676f4558fcb10de39a413`.
+  The stated round-3 eCFR defect is therefore fixed.
+- **MEDIUM finding:** the same retained part contains direct §1302.1 before
+  ten formal DIV6 subparts. The repaired scoped hierarchy correctly places it
+  directly under the part, but `iter_ecfr_title_provisions` enters its
+  `subpart_divs` branch and `continue`s after iterating subpart sections,
+  skipping every direct section. The independent target command above with
+  `--section 1302.1 --extract` found inventory
+  `[us/regulation/45/1302, us/regulation/45/1302/1]` but iterator
+  `[us/regulation/45/1302]`; result digest
+  `4cc7dc7c48519493bab1e9d75f46488c94843841b5ed5f54baa3f413da455de0`.
+  End-to-end extraction misleadingly reports complete coverage by manufacturing
+  §1302.1 with `body=None`, `structure_only=true`, and
+  `body_status=not_in_ecfr_full_xml`, even though the retained XML contains its
+  text. The same digest at `a64ec806` confirms this is pre-existing, but it
+  directly violates the requested round-4 retained-scope invariant and leaves
+  the eCFR repair incomplete.
+- Exhaustively ran target probe mode
+  `ecfr_parentage_probe.py scan data/corpus/sources/us/regulation`.
+  Across all 7 retained canonical part XML files, 3,764 section occurrences,
+  and 3,501 unique section paths, hierarchy/inventory exactly matched
+  independently derived source parents. Iterator output had 3,500 unique
+  sections, zero parent mismatches among those emitted, and exactly one missing
+  path: `us/regulation/45/1302/1`. All 78 retained formal subparts were direct
+  `DIV6` children; the only retained no-subpart part (26 CFR part 1) passed.
+  One mixed direct-section/formal-subpart part exists, and it is the failing
+  45 CFR part 1302. Scan result digest:
+  `03abab761762002fcfc586a59a2d5210632ff8a89e7f0f46a727cd423d950ac1`.
+- Target synthetic eCFR probe result
+  `43b4dca61a6879debd519e536b2842ef285c8643771390b93abb9fd2e4c2461b`
+  confirms a non-DIV6 `TYPE=SUBPART` variant is consistently flattened by both
+  hierarchy and iterator, a part with only `DIV6 TYPE=SUBJGRP` agrees at the
+  part parent, and selecting subpart A emits neither unselected subpart B nor
+  its section. No retained non-DIV6 formal-subpart variant exists.
 
 ## Next
 
-- Independently reproduce both round-3 defects at `a64ec806` and probe the
-  repairs at `1e0fde9b`.
 - Run all requested invariants and local gates.
 - Commit each coherent evidence update and the final report.
