@@ -2,7 +2,7 @@
 
 ## State
 
-- Verdict: `REQUEST-CHANGES` candidate, pending completion of all gates.
+- Verdict: `REQUEST-CHANGES`.
 - Target PR head:
   `49b0ae93367c48b7134576bf15a157c516d44a73`.
 - Target parent:
@@ -14,7 +14,7 @@
   `/Users/maxghenis/TheAxiomFoundation/axiom-corpus/.git/review-worktrees/pr523-round6-49b0ae`.
 - Mode: blind, delta-scoped review only; no PR-branch, remote, GitHub, or
   publication writes.
-- Blocking state: MEDIUM candidate. In a valid mixed part whose direct section
+- Blocking state: MEDIUM. In a valid mixed part whose direct section
   follows a formal subpart in XML order, the target emits every direct section
   before every subpart. Presence, body, and parentage are correct, but raw
   provision order no longer matches the official document. The iterator's two
@@ -97,7 +97,7 @@
   no-formal-subpart control (26 CFR part 1), zero direct sections after a
   formal subpart, zero empty/reserved formal subparts, and zero duplicate
   section paths across direct and subpart placements.
-- **MEDIUM candidate:** the direct-after fixture's official sequence is
+- **MEDIUM:** the direct-after fixture's official sequence is
   part → subpart A → §900.1 → direct §900.2 → subpart B → §900.3, while the
   target yields part → direct §900.2 → subpart A → §900.1 → subpart B →
   §900.3. The empty/reserved-subpart fixture is reordered the same way. The new
@@ -110,9 +110,83 @@
 - Tool-call failure: the first attempt to expand this ledger used an
   `apply_patch` context that did not exactly match the wrapped worktree path;
   it exited without changing the file. This full-file replacement succeeded.
+- Staged GitNexus `detect_changes` before committing the adversarial probe.
+  It mapped two review-artifact files, five indexed ledger symbols, zero
+  affected processes, and LOW risk. Committed the probe and expanded ledger at
+  `3ff087e9d68fe571b22371c2a38984e5bc865bfa`.
+- Re-ran round 4's §1302.1 end-to-end case mode. Source, inventory, iterator,
+  and extracted record all agree on part parent and level 1; the section has a
+  real body, no structure-only/body-status marker, complete coverage, no
+  missing path, and no dangling parent. Result SHA-256:
+  `7efe47ca396b8eda364c245d2a6a1f9806a81bb75ba8325492a318ecac52522b`.
+- Captured the ordered SHA-256 list for all eleven reproduction artifacts.
+  Before reproduction, the individual hashes were:
+  `d405deff27cc0d05566100b852feff5f5a125fb81c6dd2896092f0262c9dbec0`,
+  `d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621`,
+  `1e5ca5d86df2ebf303d2df1eb9d162412e549896118779621d41139c9662001a`,
+  `014369a372affa906a3afc2ce058d96364e0e6f631bd5ec0bd49d33d1fb430bf`,
+  `ed035858bb79b09e3bb83f6d7ed6f8893d3fbf9d6971df5bb1d844f0532213bb`,
+  `cda76f0ea15210b1df7a5800d985ddb6abc016b5e694ea5d35e60f0f01a36a54`,
+  `73c1f3e656fefb1d9101cb6fd281654583f621be93224635af3bf199d6bbbc9b`,
+  `c4af9dbafd80857116ab94b5ac1a968abaaf4b7abce13cba0a85ddc6bb6ec7cc`,
+  `2a3ecdfaaa2b7c92eab01bb4593c9622f29bbc726a8f3a2eb1358c0f823e861a`,
+  `b9bb848c6ea0901d54149aeab03cd210ed1fe385fdbdc28130166dac396f59ed`,
+  and
+  `c42504293a8528d240a5f470b01867f2fcceeab697f7786cf3baf280a89c3e7c`.
+  Their ordered full-line digest was
+  `5e8c0646ab2015987725991f188b08af954f2bc7134c0ccf30a5b8fa43403b02`.
+- The exact
+  `uv run --no-cache --extra dev python
+  scripts/repro/us_1401_coordination_repair.py --base data/corpus` wrapper
+  exited 1 before the script because sandboxed DNS could not fetch locked
+  `jiter==0.12.0`; it created an ignored, incomplete worktree `.venv`. Its
+  failed attempt did not change any artifact.
+- Tool-call failure: the first pre/post comparison used GNU-style
+  `diff --exit-code`, which macOS `diff` rejects with exit 2. The retry used
+  `cmp -s` and passed.
+- Ran the committed reproduction script with target-first source and the
+  populated locked repository environment:
+  `PYTHONPATH="$PWD/src"
+  /Users/maxghenis/TheAxiomFoundation/axiom-corpus/.venv/bin/python
+  scripts/repro/us_1401_coordination_repair.py --base data/corpus`.
+  It exited 0 with statute coverage 21/21 plus 18 anchors and regulation
+  coverage 2/2 plus 12 anchors. All eleven post-run hashes were byte-identical,
+  their ordered digest remained
+  `5e8c0646ab2015987725991f188b08af954f2bc7134c0ccf30a5b8fa43403b02`,
+  and target-pinned `git diff --exit-code` passed for every artifact.
+- Required and final gates:
+  Ruff passed; Towncrier found the existing repair fragment and passed; mypy
+  reported zero issues in 89 source files; focused USC/eCFR tests were
+  57 passed; resolver tests were 16 passed and 20 data-dependent skips.
+- Citation validation passed with 142,992 records and 124,467 unique paths;
+  all seven irregular-family ratchets equal their baselines. Release validation
+  passed for two scopes with zero issues, errors, or warnings. Tracked-scope
+  checks passed for five statute and four regulation files. Non-writing
+  coverage passed at statute 21/21 and regulation 2/2 with no duplicates,
+  missing paths, or extras. The direct resolver sweep was 30/30 exact.
+- Full pytest exited 1 solely for the established PostgreSQL-only failure
+  `tests/test_storage_postgres.py::
+  TestPostgresStorageSubsectionConversion::test_dict_to_subsection`.
+  Exact totals were 1 failed, 4,109 passed, 69 skipped, 208 deselected, and
+  37 warnings in 236.73 seconds.
+- Reconfirmed both signed manifests attest
+  `afab29fc555af3d5bc25bba795e5b0c6ef936adc`; their SHA-256 values remain
+  `4c5569fbf37660441db6f8d2cffbd6a061da36c547d088a66a3f7f97b006fbe2`
+  (statute) and
+  `56f7f5dc58046e9757e1b389f7dc1b69490b06a941fccdc6d57b6ae4f922796b`
+  (regulation). The exact requested
+  `git merge-base --is-ancestor afab29fc HEAD` check exited 0.
+- Confirmed the review commits do not modify the target source or target test:
+  `git diff --quiet 49b0ae93 -- src/axiom_corpus/corpus/ecfr.py
+  tests/test_corpus_ecfr.py` exited 0. No PR branch, remote, GitHub, or
+  publication write was made.
+- Final staged GitNexus `detect_changes` mapped the completed ledger/report
+  commit to two review-artifact files, five indexed ledger symbols, zero
+  affected processes, and LOW risk. `FINAL_REPORT.md` was not present in the
+  earlier target-local index, so it contributed no indexed symbol.
 
 ## Next
 
-- Commit the adversarial probe and this expanded ledger.
-- Reproduce all eleven artifacts and execute the required gates.
-- Commit the completed ledger and `FINAL_REPORT.md`, then report the verdict.
+- Commit `FINAL_REPORT.md` with this completed ledger.
+- Hand off `REQUEST-CHANGES`; repair mixed parts by traversing immediate
+  children once in XML order and add direct-after/empty-only controls.
