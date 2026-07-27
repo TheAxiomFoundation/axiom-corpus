@@ -15,13 +15,17 @@ from axiom_corpus.corpus.usc import (
 
 def triplicate_xml(*, idless: bool = False) -> str:
     paragraphs = []
-    for index, label in enumerate(("A", "B", "C"), start=1):
+    headings = ("Repealed", "Reenacted", "Third enactment")
+    for index, (label, heading) in enumerate(
+        zip(("A", "B", "C"), headings, strict=True),
+        start=1,
+    ):
         id_attribute = "" if idless else f' id="paragraph-{index}"'
         status = ' status="repealed"' if index == 1 else ""
         paragraphs.append(
             f"""
 <paragraph{id_attribute}{status} identifier="/us/usc/t99/s1/a/1">
-  <num>(1)</num><heading>Form {index}</heading><content><p>Body {index}.</p></content>
+  <num>(1)</num><heading>{heading}</heading><content><p>Body {index}.</p></content>
   <subparagraph id="branch-{label}" identifier="/us/usc/t99/s1/a/1/{label}">
     <num>({label})</num><content><p>Branch {label}.</p></content>
   </subparagraph>
