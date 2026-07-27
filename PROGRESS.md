@@ -74,6 +74,35 @@
 - Sandbox failure: `apply_patch` rejected the first attempt to create that
   probe under `/private/tmp/pr523-round4-main.PMpyfX`, so no file was created
   there. The durable probe above was created inside this review worktree.
+- Extracted the exact round-3 `src/axiom_corpus` tree without checkout using
+  `git archive a64ec80693ad37f56ab9f1ea5102c4998b9c01d9
+  src/axiom_corpus | tar -x -C
+  /private/tmp/pr523-round4-main.PMpyfX/base`, then ran the same independent
+  probe with that tree first on `PYTHONPATH` and with the target tree first on
+  `PYTHONPATH`.
+- Independent retained-OLRC reproduction:
+  `PYTHONPATH=<base-or-target>/src
+  /Users/maxghenis/TheAxiomFoundation/axiom-corpus/.venv/bin/python
+  review-probes/usc_official_probe.py
+  data/corpus/sources/us/statute/2026-07-24-1401-coordination-repair-title-26/uslm/usc26.xml`.
+  The input is 55,856,053 bytes with SHA-256
+  `d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621`.
+- The probe independently found 58,368 structural source occurrences and
+  58,351 unique official identifiers/citation paths. It found 16 duplicated
+  identifiers (17 excess occurrences), 13 immediate-sibling identifier
+  collision groups, all pairs, and zero duplicate official `id` attributes.
+  Thus there are no retained triplicate identifier siblings and no official
+  source-identity collisions.
+- At `a64ec806`, the adapter traversed/emitted only 58,347 paths. The exact
+  four missing official paths were `us/statute/26/45X/d/4/A`,
+  `.../A/i`, `.../A/ii`, and `.../B`; only the first §45X(d)(4) paragraph
+  survived pre-output traversal.
+- At `1e0fde9b`, pre-output traversal retained all 58,368 structural
+  occurrences, including both §45X(d)(4) paragraphs and all four unique
+  descendants. Inventory and provision iteration each emitted exactly 58,351
+  unique paths, in the same order, and each path set was exactly equal to the
+  independently derived official source set. This independently verifies the
+  corrected 58,351 total rather than trusting the repair tests.
 
 ## Next
 
