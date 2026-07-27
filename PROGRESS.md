@@ -7,8 +7,11 @@
 - Review result: `VERDICT: APPROVE`.
 - No PR-branch, remote, GitHub, R2, Supabase, publication, or production write
   was made.
-- All requested substantive review work is complete. The only remaining action
-  is delivery of the verdict to the requested external output path.
+- All requested substantive review work is complete.
+- The sandbox rejected the required external verdict path because it is outside
+  the writable project. A complete fallback report is available at
+  `/private/tmp/rereview3-506-VERDICT.md`, SHA-256
+  `3a804010809ce66ac97774637d22581753217c2ec140ba7182ddab9327679a57`.
 - Two disposable release selectors remain untracked:
   `.review-release-regulation.json` and `.review-release-guidance.json`.
   They are review inputs only and will not be committed.
@@ -236,10 +239,15 @@ PYTHONPATH=src uv run --no-sync --extra dev
 - Initial exploratory hierarchy and exact-resolver commands had input/import
   errors; corrected commands passed. No failed exploratory command changed
   tracked repository content.
+- `apply_patch` rejected both the requested external destination and a direct
+  `/private/tmp` fallback as outside its project boundary. The fallback was
+  safely created inside the worktree, copied to `/private/tmp`, verified, and
+  removed from the worktree.
 
 ## Next
 
-- Commit this completed substantive-review ledger.
-- Write the verdict report to
-  `/Users/maxghenis/TheAxiomFoundation/ops/fed-parity-campaign/rereview3-506-VERDICT.md`
-  and record whether the external sandbox permits the write.
+- No review work remains. Outside this sandbox, copy the fallback report to:
+
+  ```text
+  /Users/maxghenis/TheAxiomFoundation/ops/fed-parity-campaign/rereview3-506-VERDICT.md
+  ```
