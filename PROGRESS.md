@@ -11,7 +11,7 @@
 - The sandbox rejected the required external verdict path because it is outside
   the writable project. A complete fallback report is available at
   `/private/tmp/rereview3-506-VERDICT.md`, SHA-256
-  `3a804010809ce66ac97774637d22581753217c2ec140ba7182ddab9327679a57`.
+  `3d67ae771478acee16cf718559c1ec993d524018db15629a4e3d42d656af565e`.
 - Two disposable release selectors remain untracked:
   `.review-release-regulation.json` and `.review-release-guidance.json`.
   They are review inputs only and will not be committed.
@@ -243,6 +243,33 @@ PYTHONPATH=src uv run --no-sync --extra dev
   `/private/tmp` fallback as outside its project boundary. The fallback was
   safely created inside the worktree, copied to `/private/tmp`, verified, and
   removed from the worktree.
+
+### Final resume spot-check
+
+- The resumed session found that the throwaway branch had advanced from the
+  requested `28cddc28` checkpoint through four committed ledger-only steps;
+  each intervening commit changes only `PROGRESS.md`. The substantive review
+  was therefore not rerun.
+- Independent read-only checks reconfirmed the four-commit linear PR history,
+  16 in-scope paths, no review artifacts, no current-main path overlap, and
+  zero byte-safe merge-tree conflict markers.
+- Direct target-blob checks reconfirmed both attested commits, both literal
+  commands, all nine applied-file hashes, 14 regulation provision rows, and
+  complete 14/14 coverage.
+- The fallback verdict was expanded to record the literal gate invocations,
+  copied to `/private/tmp/rereview3-506-VERDICT.md`, and verified at 323 lines,
+  13,138 bytes, with first line exactly `VERDICT: APPROVE` and SHA-256
+  `3d67ae771478acee16cf718559c1ec993d524018db15629a4e3d42d656af565e`.
+- One exploratory locale-sensitive merge-tree scan failed on the retained PDF;
+  the corrected `LC_ALL=C grep -a` scan passed. One exact-string `git grep`
+  missed the multiline runbook command; normalized extraction passed.
+- A final `npx gitnexus status` invocation stalled and was interrupted. The
+  already-completed local-backend GitNexus review remains the applicable
+  result; the direct cached CLI entry point is used for the final
+  `detect-changes` check.
+- The first direct `detect-changes` invocation required an explicit repository;
+  the corrected `--repo mirror-wf --scope all` command returned
+  `No changes detected`, as expected for a ledger-only Markdown edit.
 
 ## Next
 
