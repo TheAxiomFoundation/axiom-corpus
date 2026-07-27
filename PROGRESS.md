@@ -193,8 +193,120 @@
   hierarchy and iterator, a part with only `DIV6 TYPE=SUBJGRP` agrees at the
   part parent, and selecting subpart A emits neither unselected subpart B nor
   its section. No retained non-DIV6 formal-subpart variant exists.
+- Re-ran the target-pinned history and scope checks. Target commit and tree are
+  `1e0fde9ba3bb3a9cfaa90c16bff02326d4b8667a` and
+  `91c0d556adcdb526cd52a1c9d5a077b424d3a5af`. The local comparison base is
+  `origin/main` at `5b5ad3b83259e90b9452c1554eb8e3b759bd175d`.
+  `git rev-list --count
+  5b5ad3b83259e90b9452c1554eb8e3b759bd175d..1e0fde9b`
+  reports seven PR-only commits. The a64→target delta contains the two exact
+  linear commits requested and five files, not the prompt's literal six:
+  `src/axiom_corpus/corpus/{usc,ecfr}.py`,
+  `tests/test_corpus_{usc,ecfr}.py`, and the changelog fragment.
+- `git log --format= --name-only
+  5b5ad3b83259e90b9452c1554eb8e3b759bd175d..1e0fde9b |
+  sort -u | rg '(^|/)(PROGRESS\.md|scratchpad|session)'` returned no paths.
+  The same target-pinned diff contains no `.github/workflows`, `CODEOWNERS`,
+  `pyproject.toml`, or `uv.lock` change.
+- Both signed ingest manifests record
+  `axiom_corpus_git.commit=afab29fc555af3d5bc25bba795e5b0c6ef936adc`;
+  `git merge-base --is-ancestor <recorded> 1e0fde9b` returned 0 for each.
+  Both record the committed command
+  `uv run --extra dev python
+  scripts/repro/us_1401_coordination_repair.py --base data/corpus`, and both
+  signatures are `ed25519`, key `axiom-corpus-ingest-v1`, with 88-character
+  values. Manifest SHA-256 values are statute
+  `4c5569fbf37660441db6f8d2cffbd6a061da36c547d088a66a3f7f97b006fbe2`
+  and regulation
+  `56f7f5dc58046e9757e1b389f7dc1b69490b06a941fccdc6d57b6ae4f922796b`.
+- Attempted the required exact reproduction command:
+  `uv run --no-cache --extra dev python
+  scripts/repro/us_1401_coordination_repair.py --base data/corpus`.
+  It exited 1 before entering the script because sandboxed DNS could not fetch
+  `fsspec` after three retries. The incomplete ignored `.venv` was moved to
+  `/private/tmp/pr523-round4-1e0fde-failed-no-cache-venv`; a later failed uv
+  probe created another ignored 76 KiB `.venv`. Neither changed tracked files.
+- Ran the script itself with the target source and already-populated locked
+  repository environment:
+  `PYTHONPATH="$PWD/src"
+  /Users/maxghenis/TheAxiomFoundation/axiom-corpus/.venv/bin/python
+  scripts/repro/us_1401_coordination_repair.py --base data/corpus`.
+  It exited 0 with statute 21/21 and 18 anchors plus regulation 2/2 and 12
+  anchors. Pre/post SHA-256 comparison proved all eleven scoped artifacts
+  byte-identical; the ordered-hash digest was
+  `5e8c0646ab2015987725991f188b08af954f2bc7134c0ccf30a5b8fa43403b02`.
+  Individual unchanged hashes were:
+  ZIP `d405deff27cc0d05566100b852feff5f5a125fb81c6dd2896092f0262c9dbec0`,
+  USC XML
+  `d2f67de8052e9e2a96e3da34d84cbe2d677bc1b5840e8fa0e79cbfa7e9b28621`,
+  eCFR XML
+  `1e5ca5d86df2ebf303d2df1eb9d162412e549896118779621d41139c9662001a`,
+  statute inventory
+  `014369a372affa906a3afc2ce058d96364e0e6f631bd5ec0bd49d33d1fb430bf`,
+  regulation inventory
+  `ed035858bb79b09e3bb83f6d7ed6f8893d3fbf9d6971df5bb1d844f0532213bb`,
+  statute provisions
+  `cda76f0ea15210b1df7a5800d985ddb6abc016b5e694ea5d35e60f0f01a36a54`,
+  regulation provisions
+  `73c1f3e656fefb1d9101cb6fd281654583f621be93224635af3bf199d6bbbc9b`,
+  statute coverage
+  `c4af9dbafd80857116ab94b5ac1a968abaaf4b7abce13cba0a85ddc6bb6ec7cc`,
+  regulation coverage
+  `2a3ecdfaaa2b7c92eab01bb4593c9622f29bbc726a8f3a2eb1358c0f823e861a`,
+  statute anchors
+  `b9bb848c6ea0901d54149aeab03cd210ed1fe385fdbdc28130166dac396f59ed`,
+  and regulation anchors
+  `c42504293a8528d240a5f470b01867f2fcceeab697f7786cf3baf280a89c3e7c`.
+  `git diff --exit-code` passed afterward.
+- Because network-blocked uv could not materialize this worktree's environment,
+  all remaining gates used
+  `PYTHONPATH="$PWD/src"
+  /Users/maxghenis/TheAxiomFoundation/axiom-corpus/.venv/bin/<tool>` so that
+  imports remained pinned to the exact target source. These exited 0:
+  `ruff check .`; `towncrier check`;
+  `python scripts/validate_citation_paths.py`;
+  `axiom-corpus-ingest validate-release --base data/corpus --release
+  manifests/releases/us-2026-07-24-1401-coordination-repair.json --max-issues
+  100`; both `verify-scope-tracked` commands for the statute and regulation
+  versions; both non-writing `coverage` commands with their exact scoped
+  inventory/provision paths; `python -m pytest -q
+  tests/test_corpus_usc.py tests/test_corpus_ecfr.py`; and
+  `python -m pytest -q tests/test_provision_anchors.py`.
+- Gate outcomes: citation validation checked 142,992 records / 124,467 unique
+  paths with every ratchet exact; release validation reported two scopes and
+  zero issues; tracked-scope checks reported five statute and four regulation
+  files; coverage was 21/21 and 2/2; focused adapter tests were 56 passed; the
+  resolver module was 16 passed and 20 data-dependent skips. A direct CLI
+  resolver sweep over both anchor JSONLs resolved 30/30 exactly, including
+  operative anchor `b5ca26f8-eb9f-5d11-b715-4df58e67143c` beneath
+  `us/regulation/26/1/1401-1` at span `[2881,3299]`.
+- Full test command
+  `PYTHONPATH="$PWD/src"
+  /Users/maxghenis/TheAxiomFoundation/axiom-corpus/.venv/bin/python -m pytest
+  -q` exited 1 with exactly the expected known PostgreSQL-only failure,
+  `tests/test_storage_postgres.py::
+  TestPostgresStorageSubsectionConversion::test_dict_to_subsection`;
+  totals were 1 failed, 4,108 passed, 69 skipped, 208 deselected, 37 warnings in
+  140.85 seconds.
+- The uncached CI mypy command
+  `PYTHONPATH="$PWD/src"
+  /Users/maxghenis/TheAxiomFoundation/axiom-corpus/.venv/bin/mypy
+  --no-incremental src/axiom_corpus/corpus --ignore-missing-imports` exited 0
+  on target and current `origin/main`: 89 files, zero issues on both. The
+  prompt's older 180-error “full mypy” baseline could not be reproduced with
+  the available installed environments. The system `mypy` 1.19.1 gave equal
+  212 errors on target and current `origin/main` for the same focused path
+  because development stubs were absent. Two exploratory broader invocations
+  with the populated environment (`mypy src` and
+  `mypy src/axiom_corpus`) exited 1 with 2,201 errors because they are outside
+  the configured CI scope. A temporary incomplete `origin/main` archive
+  invocation exited 1 with 161 errors and is not a valid parity result.
+- One diagnostic `jq paths(...)` command exited 5 because it applied paths from
+  the first manifest to a second JSON input. Direct `.axiom_corpus_git.commit`
+  queries then succeeded and supplied the attestation results above.
 
 ## Next
 
-- Run all requested invariants and local gates.
-- Commit each coherent evidence update and the final report.
+- Commit this completed invariant/gate ledger step.
+- Run final GitNexus change detection, write and commit `FINAL_REPORT.md`, and
+  hand off `REQUEST-CHANGES`.
