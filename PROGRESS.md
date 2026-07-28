@@ -7,8 +7,8 @@
 - Independently resolved PR head: `a942613cb190f09f191657aeb7199d31c8774f13`
 - PR base reported by GitHub: `db12795577c5809009168982cf8a72fb58440620`
 - Output file: `PR-550-REVIEW.md`
-- Current phase: all requested evidence and gates audited; final report and
-  final change-scope check pending.
+- Current phase: review complete; final change-scope check and report commit
+  pending.
 
 ## Done
 
@@ -69,9 +69,9 @@
   the known PostgreSQL MagicMock conversion test failed. That individual test
   fails identically on the pinned base. Exact-head GitHub CI run `30327101788`
   completed successfully, including full pytest and its real PostgreSQL job.
+- Wrote the final approval and evidence digest to `PR-550-REVIEW.md`.
 
 ## Next
 
-- Write `PR-550-REVIEW.md` with the verdict and evidence digest.
-- Refresh/detect final review-branch changes, commit the ledger/report, and
+- Run the final GitNexus change-scope check, commit this ledger and report, and
   confirm the PR tree remains untouched.
