@@ -138,7 +138,7 @@
 
 - Scoped confirmation is complete at immutable target
   `5fe8dbf3217fd33f546b4c6a2ceed5230aff6ebb`.
-- All four requested checks pass; the pending final report will record
+- All four requested checks pass; `PR-552-ROUND-3-CONFIRM.md` records
   `VERDICT: APPROVE`.
 - Disposable local review branch:
   `review/pr-552-r3-5fe8dbf3-blind`.
@@ -182,10 +182,11 @@
   the target. The worktree remained clean.
 - Ran GitNexus compare-scope detection and document impact/context checks:
   LOW risk, zero affected execution flows, modules, or direct dependents.
+- Wrote the final evidence report to `PR-552-ROUND-3-CONFIRM.md`.
 - No PR-branch, remote, GitHub, publication, R2, Supabase, or serving-database
   writes were performed.
 
 ## Next
 
-- Write and commit `PR-552-ROUND-3-CONFIRM.md`, update this ledger with its
-  final handoff state, and return the required verdict.
+- Return the committed report and required approval verdict. No PR-side action
+  remains in this scoped confirmation.
