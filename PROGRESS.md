@@ -10,6 +10,7 @@
 - Disposable review branch: `review/pr-552-058cf9f-blind`.
 - Disposable worktree:
   `.git/review-worktrees/pr-552-058cf9f`.
+- Output file: `PR-552-REVIEW.md`.
 - Review is in progress. No PR branch, remote, GitHub, publication, or serving
   database writes are authorized.
 
@@ -28,11 +29,26 @@
   used for review queries.
 - Ran pre-edit impact analysis for `PROGRESS.md`: LOW risk, with zero direct
   dependents, affected processes, or affected modules.
+- Inventoried the immutable PR range: 23 changed paths, 12 PR commits, and 39
+  indexed changed symbols.
+- Ran GitNexus compare-scope change detection against the exact base: LOW risk
+  and zero affected execution flows.
+- Ran upstream impact analysis on every uniquely named non-trivial repro
+  function. Each is LOW risk; direct callers stay inside the new standalone
+  repro chain and focused test.
+- GitNexus's name-only impact interface selected unrelated same-named symbols
+  for `_load_jsonl`, `_verify_generated_scope`, `reproduce`, and `main`.
+  Exact-UID context fallback confirmed their complete incoming/outgoing chain
+  is confined to the new repro script and its deterministic replay test, with
+  no execution-flow participation.
+- Confirmed the target shape is 12 corpus artifacts, two signed ingest
+  manifests, one source manifest, one release selector, one repro script, one
+  focused test file, one ingest run record, one changelog fragment, one
+  citation census edit, `.gitattributes`, and the expected tracked
+  `PROGRESS.md`.
 
 ## Next
 
-- Commit this initial review ledger.
-- Inventory the PR diff and map changed symbols/processes.
 - Independently verify retained-source authenticity, byte hashes, document
   identity, and current substantive authority.
 - Verify normalization, literal offline reproduction, signed manifests,
