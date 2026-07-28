@@ -11,12 +11,13 @@
 - Disposable worktree:
   `.git/review-worktrees/pr-552-r2-40e8513e`.
 - Output file: `PR-552-ROUND-2-REVIEW.md`.
-- The substantive authority audit and all local release/hygiene gates are
-  complete. One independently confirmed review blocker remains: the final
-  tracked run document and PR-head ledger still describe the repaired
+- Review is complete with verdict `REQUEST-CHANGES`. The authority,
+  cross-version reproduction, ACL 14-63, normalization, and cryptographic
+  manifest dimensions pass. One independently confirmed blocker remains: the
+  final tracked run document and PR-head ledger still describe the repaired
   manifests as stale and awaiting re-signing, contrary to the final two PR
   commits. No PR-branch, remote, GitHub, publication, R2, Supabase, or
-  serving-database writes are authorized.
+  serving-database writes were performed.
 
 ## Done
 
@@ -99,7 +100,14 @@
   untouched legacy files at head and clean base under the installed MyPy
   1.19.0 environment. Exact-head GitHub CI independently passes its MyPy step,
   ingest guard, release gates, and full test job under its fresh environment.
+- Wrote the complete evidence digest, per-parameter authority table, exhaustive
+  gate audit, reproduction hashes, sandbox disclosures, and required repair to
+  `PR-552-ROUND-2-REVIEW.md`. Its first line records the required verdict.
 
 ## Next
 
-- Write and commit the final evidence report and completed ledger.
+- PR owner: correct the false stale-signing statements in the run document and
+  immutable-head ledger; no applied artifact needs regeneration or re-signing
+  unless that repair changes protected content.
+- Round-3 reviewer: recheck the two final-state documents and rerun the
+  documentation/hygiene gates.
