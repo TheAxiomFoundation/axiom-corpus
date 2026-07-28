@@ -131,3 +131,34 @@
 - The round-one review statements that the manifests "remain unsigned" and
   the round-two statements that they "remain stale" describe intermediate
   states and are superseded by this entry.
+
+# PR #552 Round-3 Review Ledger (review-only)
+
+## State
+
+- Scoped confirmation is in progress at immutable target
+  `5fe8dbf3217fd33f546b4c6a2ceed5230aff6ebb`.
+- Disposable local review branch:
+  `review/pr-552-r3-5fe8dbf3-blind`.
+- Disposable worktree:
+  `.git/review-worktrees/pr-552-r3-5fe8dbf3`.
+- Output file: `PR-552-ROUND-3-CONFIRM.md`.
+- No PR-branch, remote, GitHub, publication, R2, Supabase, or serving-database
+  writes are authorized or planned.
+
+## Done
+
+- Read the repository rules and GitNexus PR-review workflow.
+- Created the disposable worktree at the exact requested head.
+- Built a fresh exact-head GitNexus index: 20,300 nodes, 56,657 edges,
+  1,173 clusters, and 300 flows.
+- Ran pre-edit impact analysis for `PROGRESS.md`: LOW risk, with zero direct
+  dependents, affected processes, or affected modules.
+
+## Next
+
+- Verify the signing paragraph against the manifests, Git ancestry,
+  `guard-ingested`, and absence of the superseded manifest.
+- Audit the immutable-head closing entry and the exact delta from `40e8513e`.
+- Replay determinism under one PyMuPDF version, run the change-scope check,
+  write the final report, and record the verdict.
