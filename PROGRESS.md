@@ -11,9 +11,8 @@
 - Disposable worktree:
   `.git/review-worktrees/pr-552-058cf9f`.
 - Output file: `PR-552-REVIEW.md`.
-- Review is in progress with a preliminary `REQUEST-CHANGES` verdict. No PR
-  branch, remote, GitHub, publication, or serving database writes are
-  authorized.
+- Review is complete with a `REQUEST-CHANGES` verdict. No PR branch, remote,
+  GitHub, publication, or serving database writes were made.
 
 ## Done
 
@@ -94,8 +93,14 @@
   `1 failed, 4118 passed, 69 skipped, 208 deselected`. The sole shared local
   failure is the pre-existing PostgreSQL mock test. Exact-head CI independently
   fails the new deterministic-replay test and is red.
+- Wrote the complete evidence digest and per-parameter authority determination
+  to `PR-552-REVIEW.md`; its first line records the required verdict.
 
 ## Next
 
-- Run final change-scope and worktree-cleanliness checks.
-- Write and commit the complete evidence report in `PR-552-REVIEW.md`.
+- PR owner: stabilize the PDF extraction contract across supported installs,
+  correct the incomplete current-exclusions map, and update stale final-state
+  documentation.
+- After remediation: regenerate and re-sign any changed applied artifacts,
+  then rerun fresh-install deterministic replay, authority-completeness, full
+  CI, manifest guard, and release gates.
