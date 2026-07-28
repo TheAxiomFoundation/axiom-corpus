@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-va/form/2026-07-26-va-2026-760es.json",
+      "sha256": "2f600bd91ab6f12a27102676ac1e49249c2a42d7464bffab2e1486a2fa4627f9"
+    },
+    {
+      "path": "data/corpus/inventory/us-va/form/2026-07-26-va-2026-760es.json",
+      "sha256": "0e86f4c9e826c82fa194a626b25422be0d9fbce75a9b0be65111185ac118add2"
+    },
+    {
+      "path": "data/corpus/provisions/us-va/form/2026-07-26-va-2026-760es.jsonl",
+      "sha256": "12820f994614de8373eaedda554ba4e126b372ad07a3f5ac1bd372cd8dfe89a0"
+    },
+    {
+      "path": "data/corpus/sources/us-va/form/2026-07-26-va-2026-760es/official-documents/us-va-tax-2026-760es.pdf",
+      "sha256": "d2f9a56c429ffcabea81d985f980835223cf403867fe3613a2aa9377f990efa1"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "9689d8ac268897147af3363ee5ff5c3d5741a741",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-07-26-va-2026-760es --manifest manifests/us-va-2026-760es.yaml"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 2,
+    "missing_count": 0,
+    "provision_count": 2,
+    "source_count": 2
+  },
+  "document_class": "form",
+  "generated_at": "2026-07-26T11:54:50.667479+00:00",
+  "jurisdiction": "us-va",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "49pAvYfH/e+U7L0yQwmWnzJHSmsC+E+ukTW0NRR1tcoe4KXWv552Y7B+SgOHWIhrGUgy2D+YkQCuB/n4DiC7BA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-07-26-va-2026-760es"
+}
