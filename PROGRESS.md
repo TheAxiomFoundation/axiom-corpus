@@ -7,8 +7,8 @@
 - Independently resolved PR head: `a942613cb190f09f191657aeb7199d31c8774f13`
 - PR base reported by GitHub: `db12795577c5809009168982cf8a72fb58440620`
 - Output file: `PR-550-REVIEW.md`
-- Current phase: exact diff and reproduction audited; provenance,
-  normalization, manifest, and gate audits continue.
+- Current phase: all requested evidence and gates audited; final report and
+  final change-scope check pending.
 
 ## Done
 
@@ -34,10 +34,44 @@
 - Recomputed the five artifact hashes after replay; all match the manifest:
   coverage `4f7fc692...`, inventory `4db559b4...`, provisions `d7c41106...`,
   ZIP `d405deff...`, and XML `d2f67de8...`.
+- Independently established the base §63 defect: both actual §63 inventory
+  entries cite the §45A reader URL and a 177,385-byte retained XHTML blob
+  (`ce8b0ed8...`) that self-identifies as §45A and contains no §63 heading.
+- Verified the repair uses the §63 URL and exact retained House ZIP/XML bytes.
+  The ZIP has one `usc26.xml` member equal to the committed XML; the PR reuses
+  identical source blobs already retained on the base. No source bytes were
+  hand-edited.
+- Verified the decoded §63 section body is byte-identical across both defective
+  base copies and the repaired scope: 8,119 bytes, SHA-256 `7fa5f5d7...`.
+- Independently walked the official §165 USLM tree. It has exactly 100
+  operative nodes (section + 13 subsections + 35 paragraphs + 41 subparagraphs
+  + 10 clauses). Provision and inventory rows match source preorder, bodies,
+  identifiers, parents, and kinds exactly, with no missing, extra, duplicate,
+  or duplicate-numbered sibling nodes.
+- Confirmed all 68 structural-looking unidentified elements are editorial
+  amendment quotations under notes and correctly excluded; §165 has no USLM
+  `subpart` element, and all 41 formal subparagraphs are present. The Title 26
+  row has `body: null`, so the retained archive is not represented as an atom.
+- Native `guard-ingested` verification passed against the explicit PR
+  base/head with the configured Ed25519 public key: signature, five applied
+  hashes, protected paths, and attested-commit ancestry all passed with zero
+  issues. The recorded command is literal, parseable, and contains no angle
+  brackets.
+- Scope hygiene passed: exactly 12 relevant PR files, a changelog fragment,
+  and no review/session/worker artifacts. The uppercase citation-path ratchet
+  `6327 -> 6409` is exactly explained by the 82 new uppercase-bearing paths.
+- Local gates passed: ruff, towncrier, citation-path validation, new-selector
+  release validation, tracked-scope verification, and two focused tests.
+- Local mypy reports 180 pre-existing errors in 26 untouched files. The pinned
+  base reports the exact same output byte-for-byte (output SHA-256
+  `76c2b020...`); exact-head clean Python 3.14 CI mypy passes.
+- Local full pytest result: 4,115 passed, 69 skipped, 208 deselected, and only
+  the known PostgreSQL MagicMock conversion test failed. That individual test
+  fails identically on the pinned base. Exact-head GitHub CI run `30327101788`
+  completed successfully, including full pytest and its real PostgreSQL job.
 
 ## Next
 
-- Establish the §63 defect independently on the pinned base and verify the repair.
-- Finish the cryptographic manifest/signature audit.
-- Audit §165 normalization/completeness and scope hygiene.
-- Run all requested gates and compare any failures against clean main.
+- Write `PR-550-REVIEW.md` with the verdict and evidence digest.
+- Refresh/detect final review-branch changes, commit the ledger/report, and
+  confirm the PR tree remains untouched.
