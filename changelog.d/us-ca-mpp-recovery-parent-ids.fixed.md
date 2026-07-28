@@ -1,0 +1,1 @@
+Stamp deterministic provision ids and parent ids in the California MPP CalFresh writers, make recovered MPP sections scope roots instead of dangling division children, and backfill identity onto the committed `us-ca/regulation/2026-07-13-recovery` scope so US RuleSpec release validation reports zero `missing_parent_id` warnings.
