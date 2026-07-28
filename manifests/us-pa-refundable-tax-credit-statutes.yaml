@@ -1,0 +1,41 @@
+version: "2026-07-26-pa-refundable-tax-credit-statutes"
+sources:
+  - source_id: us-pa-fiscal-code-refundable-tax-credit-articles
+    jurisdiction: us-pa
+    document_class: statute
+    adapter: pennsylvania-unconsolidated-statutes
+    source_url: https://www.palegis.us/statutes/unconsolidated/law-information?ActNum=176&SessInd=0&SessYr=1929
+    version: "2026-07-26-pa-refundable-tax-credit-statutes"
+    options:
+      act_year: 1929
+      act_number: 176
+      act_name: The Fiscal Code
+      only_articles:
+        - 16W
+        - 16W.2
+      source_dir: >-
+        ../data/corpus/sources/us-pa/statute/2026-07-26-pa-refundable-tax-credit-statutes-us-pa-act-1929-176-articles-16w-16w.2
+      timeout_seconds: 120
+      request_attempts: 3
+    metadata:
+      source_authority: Pennsylvania General Assembly
+      source_scope_note: >-
+        Official current-as-amended HTML for The Fiscal Code Article XVI-W,
+        Pennsylvania Child and Dependent Care Enhancement Tax Credit Program,
+        and Article XVI-W.2, Working Pennsylvanians Tax Credit. The Article
+        XVI-W source page reports revision on January 3, 2024. The article was
+        added by Act 34 of 2023, effective December 13, 2023, and section
+        1603-W(c) applies its 100 percent formula to taxable years beginning
+        after December 31, 2022. The Article XVI-W.2 source page reports
+        revision on December 3, 2025. That article was added by Act 45 of 2025,
+        effective November 12, 2025, and section 1606-W.2 expressly applies it
+        to taxable years beginning after December 31, 2024.
+      enacting_sources:
+        - act: "2023-34"
+          source_url: https://www.palegis.us/statutes/unconsolidated/law-information/view-statute?ActNum=0034.&SessInd=0&SessYr=2023&txtType=PDF
+          effective_date: "2023-12-13"
+          tax_year_applicability: Taxable years beginning after December 31, 2021; the 100 percent formula applies after December 31, 2022.
+        - act: "2025-45"
+          source_url: https://www.palegis.us/statutes/unconsolidated/law-information/view-statute?ActNum=0045.&SessInd=0&SessYr=2025&txtType=PDF
+          effective_date: "2025-11-12"
+          tax_year_applicability: Taxable years beginning after December 31, 2024.

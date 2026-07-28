@@ -3317,12 +3317,20 @@ def _extract_state_statute_source(
             request_attempts=_optional_int(options.get("request_attempts")) or 3,
         )
     if adapter == "pennsylvania-unconsolidated-statutes":
+        raw_articles = options.get("only_articles", ())
+        articles = (
+            (raw_articles,)
+            if isinstance(raw_articles, (str, int))
+            else tuple(str(item) for item in raw_articles)
+        )
         return extract_pennsylvania_unconsolidated_statutes(
             store,
             version=version,
             act_year=_optional_int(options.get("act_year")) or 1971,
             act_number=_optional_int(options.get("act_number")) or 2,
-            article=_optional_int(options.get("only_article")) or 3,
+            article=_optional_text(options.get("only_article")) or "3",
+            articles=articles,
+            act_name=_optional_text(options.get("act_name")) or "Tax Reform Code of 1971",
             source_dir=_optional_manifest_path(manifest_path, options, "source_dir"),
             source_as_of=source_as_of,
             expression_date=expression_date,
