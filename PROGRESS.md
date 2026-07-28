@@ -136,8 +136,10 @@
 
 ## State
 
-- Scoped confirmation is in progress at immutable target
+- Scoped confirmation is complete at immutable target
   `5fe8dbf3217fd33f546b4c6a2ceed5230aff6ebb`.
+- All four requested checks pass; the pending final report will record
+  `VERDICT: APPROVE`.
 - Disposable local review branch:
   `review/pr-552-r3-5fe8dbf3-blind`.
 - Disposable worktree:
@@ -154,11 +156,36 @@
   1,173 clusters, and 300 flows.
 - Ran pre-edit impact analysis for `PROGRESS.md`: LOW risk, with zero direct
   dependents, affected processes, or affected modules.
+- Verified both active ingest manifests contain Ed25519 signatures. Recomputed
+  every applied-file digest against the immutable target: all 9 guidance and
+  all 5 statute hashes match.
+- Verified the attested-to-signing ancestry pairs with
+  `git merge-base --is-ancestor`: guidance
+  `256634f6 -> b1d42e7e` and statute `b1d42e7e -> 40e8513e`.
+- Ran the keyed full-PR `guard-ingested` check from base `10142cb0` to target
+  `5fe8dbf3`: `passed: true`, 14 protected changes, and `issues: []`.
+  The docs-only `40e8513e..5fe8dbf3` guard also passes with zero protected
+  changes and zero issues.
+- Confirmed the superseded one-section statute manifest and all artifacts
+  under its old version name are absent. Commit `40e8513e` added the combined
+  manifest and deleted the superseded manifest together.
+- Audited immutable-target `PROGRESS.md`. Its dated closing entry explicitly
+  labels the earlier unsigned/stale statements as intermediate and superseded;
+  every factual claim in the entry is supported by manifests, hashes, ancestry,
+  history, and guard output.
+- Verified `40e8513e..5fe8dbf3` is exactly one linear, non-merge commit whose
+  parent is `40e8513e`, touching only `PROGRESS.md` and the CA BBCE ingest run
+  document. `git diff --check` passes.
+- Ran the literal offline reproduction command under PyMuPDF 1.26.7 / MuPDF
+  1.26.12. It exited zero with 47 guidance rows, 2 statute rows, seven MCE
+  gates, and all 14 regenerated artifacts byte-for-byte and hash-identical to
+  the target. The worktree remained clean.
+- Ran GitNexus compare-scope detection and document impact/context checks:
+  LOW risk, zero affected execution flows, modules, or direct dependents.
+- No PR-branch, remote, GitHub, publication, R2, Supabase, or serving-database
+  writes were performed.
 
 ## Next
 
-- Verify the signing paragraph against the manifests, Git ancestry,
-  `guard-ingested`, and absence of the superseded manifest.
-- Audit the immutable-head closing entry and the exact delta from `40e8513e`.
-- Replay determinism under one PyMuPDF version, run the change-scope check,
-  write the final report, and record the verdict.
+- Write and commit `PR-552-ROUND-3-CONFIRM.md`, update this ledger with its
+  final handoff state, and return the required verdict.
