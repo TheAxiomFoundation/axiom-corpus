@@ -7,8 +7,7 @@
 - Independently resolved PR head: `a942613cb190f09f191657aeb7199d31c8774f13`
 - PR base reported by GitHub: `db12795577c5809009168982cf8a72fb58440620`
 - Output file: `PR-550-REVIEW.md`
-- Current phase: review complete; final change-scope check and report commit
-  pending.
+- Current phase: complete. Verdict and evidence report are committed.
 
 ## Done
 
@@ -70,8 +69,12 @@
   fails identically on the pinned base. Exact-head GitHub CI run `30327101788`
   completed successfully, including full pytest and its real PostgreSQL job.
 - Wrote the final approval and evidence digest to `PR-550-REVIEW.md`.
+- Final staged GitNexus detection found only the ledger and report (15
+  documentation symbols), zero affected processes, and LOW risk.
+- Confirmed the committed throwaway branch differs from the exact PR head only
+  by `PROGRESS.md` and `PR-550-REVIEW.md`; the worktree is clean and the PR
+  tree remains untouched.
 
 ## Next
 
-- Run the final GitNexus change-scope check, commit this ledger and report, and
-  confirm the PR tree remains untouched.
+- Hand off `VERDICT: APPROVE` and the committed output report.
