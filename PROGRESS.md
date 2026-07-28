@@ -7,7 +7,8 @@
 - Independently resolved PR head: `f1176ed6641d31b09b1750eb1bc8eed84dd2159e`
 - PR base reported by GitHub: `db12795577c5809009168982cf8a72fb58440620`
 - Output file: `PR-551-REVIEW.md`
-- Current phase: requested gates and final verdict synthesis in progress.
+- Current phase: complete.
+- Verdict: `REQUEST-CHANGES`.
 
 ## Done
 
@@ -29,9 +30,13 @@
 - Verified all five manifest hashes, the Ed25519 signature, and that attested commit `c2f51414…` is an ancestor of the exact PR head.
 - Confirmed two reproduction-command inconsistencies for final assessment: the committed run document and script's printed `REPRO_COMMAND` still retain the superseded `PYTHONPATH=src ... --no-cache --no-sync` command. That command exits one with `ModuleNotFoundError: pydantic` in the same clean environment.
 - Compared concurrent PR #550 head `a942613c…`: the branches have one forced content conflict in `schema/citation-path.v1.json`. PR #551 records 6,710 live uppercase paths, PR #550 adds 82 disjoint paths, and the correct combined census is 6,792.
+- Ran all requested gates: ruff, isolated-cache mypy, towncrier, citation validation, 78 release selectors, scoped tracking, coverage, and signed-ingest verification pass.
+- Ran the full suite: 4,116 passed, 69 skipped, and 208 deselected; the sole PostgreSQL conversion failure reproduces identically on clean main.
+- Audited normalization against neighboring main-branch Title 26 scopes, target-diff hygiene, the citation census delta, and the complete 14-file target scope.
+- Wrote the evidence digest and verdict to `PR-551-REVIEW.md`.
 
 ## Next
 
-- Run every requested gate and compare any new failures against clean main.
-- Finish hygiene and neighboring-section normalization assessment.
-- Write and commit `PR-551-REVIEW.md`, update this ledger, and issue the evidence-backed verdict.
+- Author: replace the stale command in the run document and reproduction script, then rerun and re-attest/re-sign.
+- Author: correct the claimed per-section counts to `1/43/17/98/131/1/1/259`.
+- Integrator: resolve the PR #550/#551 citation census to 6,792 and revalidate after both scopes are combined.
