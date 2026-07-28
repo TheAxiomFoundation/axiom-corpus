@@ -34,6 +34,7 @@
 - Ran the full suite: 4,116 passed, 69 skipped, and 208 deselected; the sole PostgreSQL conversion failure reproduces identically on clean main.
 - Audited normalization against neighboring main-branch Title 26 scopes, target-diff hygiene, the citation census delta, and the complete 14-file target scope.
 - Wrote the evidence digest and verdict to `PR-551-REVIEW.md`.
+- Recorded that policy blocked cleanup of ignored review-local `.venv` and `.gitnexus` directories; neither is committed or part of the PR target.
 
 ## Next
 

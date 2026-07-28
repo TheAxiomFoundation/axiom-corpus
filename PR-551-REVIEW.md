@@ -246,6 +246,9 @@ The requested target scope passes.
   inventory/provision callers; focused and full tests cover both. Final
   change detection found only the intended review documents on the throwaway
   branch.
+- Final removal of the review-created ignored `.venv` and `.gitnexus`
+  directories was blocked by execution policy. They remain only inside the
+  disposable review worktree and are absent from all target and review
+  commits.
 - No remote, PR branch, GitHub, publication, R2, Supabase, or production state
   was modified.
-
