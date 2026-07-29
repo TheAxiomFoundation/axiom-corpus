@@ -5583,9 +5583,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--citation",
         action="append",
         help=(
-            "Fetch a UK citation. With --source lex, act-level (ukpga/2007/3) "
-            "ingests every section; section-level (ukpga/2007/3/section/35) "
-            "ingests one. CLML requires section-level."
+            "Fetch a UK citation. Act-level (ukpga/2007/3) ingests every "
+            "section — CLML enumerates the contents feed (sections and "
+            "schedules), Lex its provision list (sections only). "
+            "Section-level (ukpga/2007/3/section/35) ingests one."
         ),
     )
     extract_uk_cmd.add_argument(
