@@ -4,7 +4,7 @@ from datetime import date
 import pytest
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
-from axiom_corpus.corpus.uk_legislation import extract_uk_legislation_sections
+from axiom_corpus.corpus.uk_legislation import _date_text, extract_uk_legislation_sections
 from axiom_corpus.fetchers.legislation_uk import UKLegislationFetcher
 from axiom_corpus.models_uk import UKCitation
 from axiom_corpus.parsers.clml import parse_section
@@ -813,3 +813,109 @@ def test_extract_uk_legislation_lex_matches_section_case_insensitively(tmp_path,
     )
     assert row["citation_path"] == "uk/statute/ukpga/2007/3/11D"
     assert row["body"] == "Savings nil rate."
+
+
+# ---------------------------------------------------------------------------
+# _date_text: fail-closed date-text resolution (axiom-corpus#358 /
+# rulespec-uk#140). The fallback chain is
+#   source_as_of_text = _date_text(source_as_of, version, flag="--source-as-of")
+#   expression_date_text = _date_text(expression_date, source_as_of_text, ...)
+# so both ``value`` (when given) and ``fallback`` (when ``value`` is None) are
+# validated by the exact same code path -- these cases exercise both roles.
+# ---------------------------------------------------------------------------
+
+
+def test_date_text_date_instance_returns_isoformat():
+    # (a) a `date` instance is converted via isoformat, regardless of fallback.
+    assert _date_text(date(2026, 4, 6), "unused-fallback", flag="--expression-date") == "2026-04-06"
+
+
+def test_date_text_exact_iso_string_value_unchanged():
+    # (b) an exact ISO string value is returned unchanged; fallback is not consulted.
+    assert _date_text("2026-04-06", "unused-fallback", flag="--expression-date") == "2026-04-06"
+
+
+def test_date_text_exact_iso_string_fallback_unchanged():
+    # (b) via the None-value fallback path.
+    assert _date_text(None, "2026-04-06", flag="--source-as-of") == "2026-04-06"
+
+
+def test_date_text_slug_value_extracts_leading_date():
+    # (c) a leading YYYY-MM-DD prefix followed by non-date content (the ingest
+    # version-slug shape) has the validated prefix extracted.
+    assert (
+        _date_text("2026-07-13-uk-ctr-enp-regs", "unused-fallback", flag="--expression-date")
+        == "2026-07-13"
+    )
+
+
+def test_date_text_slug_fallback_extracts_leading_date():
+    # (c) via the None-value fallback path -- this is the exact shape of the
+    # rulespec-uk#140 bug: value is None, fallback is the ingest version slug.
+    assert _date_text(None, "2026-07-13-uk-ctr-enp-regs", flag="--source-as-of") == "2026-07-13"
+
+
+def test_date_text_non_date_value_raises_naming_value_and_flag():
+    # (d) anything else raises, naming both the offending value and the flag
+    # the caller must pass explicitly.
+    with pytest.raises(ValueError, match=r"--expression-date") as exc_info:
+        _date_text("ctr", "unused-fallback", flag="--expression-date")
+    assert "'ctr'" in str(exc_info.value)
+
+
+def test_date_text_non_date_fallback_raises_naming_value_and_flag():
+    # (d) via the None-value fallback path.
+    with pytest.raises(ValueError, match=r"--source-as-of") as exc_info:
+        _date_text(None, "ctr", flag="--source-as-of")
+    assert "'ctr'" in str(exc_info.value)
+
+
+def test_date_text_invalid_calendar_date_raises():
+    # (d) a string shaped like a leading ISO date but not a real calendar date
+    # (2026-02-30: February has no 30th) must not be silently truncated to a
+    # bogus prefix -- it is fail-closed like any other non-date text.
+    with pytest.raises(ValueError, match=r"--expression-date"):
+        _date_text("2026-02-30-uk-thing", "unused-fallback", flag="--expression-date")
+
+
+def test_extract_uk_legislation_slug_version_writes_iso_prefix_dates(tmp_path):
+    """Regression test for axiom-corpus#358 / rulespec-uk#140.
+
+    When neither --source-as-of nor --expression-date is given (the exact
+    campaign call shape that produced the bug), the writer must derive both
+    date fields from the leading ISO date in the version slug -- never
+    persist the raw slug, trailing description included, into a date field.
+    """
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "child-benefit-reg-2.xml"
+    source_xml.write_text(SAMPLE_UKSI_REGULATION_XML)
+
+    report = extract_uk_legislation_sections(
+        CorpusArtifactStore(base),
+        version="2026-07-13-uk-ctr-enp-regs",
+        source_xmls=(source_xml,),
+    )
+
+    assert report.provisions_written == 1
+    provisions_path = base / "provisions/uk/regulation/2026-07-13-uk-ctr-enp-regs.jsonl"
+    row = json.loads(provisions_path.read_text().strip())
+    assert row["source_as_of"] == "2026-07-13"
+    assert row["expression_date"] == "2026-07-13"
+    assert row["source_as_of"] != "2026-07-13-uk-ctr-enp-regs"
+    assert row["expression_date"] != "2026-07-13-uk-ctr-enp-regs"
+
+
+def test_extract_uk_legislation_non_date_version_without_explicit_dates_raises(tmp_path):
+    # End-to-end fail-closed check: a version with no leading date and no
+    # explicit --source-as-of/--expression-date must raise rather than write
+    # a bare label like "ctr" into a date field.
+    base = tmp_path / "data" / "corpus"
+    source_xml = tmp_path / "child-benefit-reg-2.xml"
+    source_xml.write_text(SAMPLE_UKSI_REGULATION_XML)
+
+    with pytest.raises(ValueError, match="--source-as-of"):
+        extract_uk_legislation_sections(
+            CorpusArtifactStore(base),
+            version="ctr",
+            source_xmls=(source_xml,),
+        )
