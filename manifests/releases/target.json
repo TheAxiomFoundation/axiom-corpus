@@ -1,5 +1,5 @@
 {
-  "description": "UNNAMED TARGET rehearsal successor to us-rulespec-2026-08-03-ecps-pit-tariff-union. It replaces the tariff rulemaking, HTS schedule, HTS notes, and New York TANF scopes one-for-one; adds the retained ABAWD memo and asserted CFR 1401 parent scope; and intentionally adds no Massachusetts successor pending source/citation resolution.",
+  "description": "UNNAMED TARGET rehearsal successor to us-rulespec-2026-08-08-obbb-alien-snap. It replaces the tariff rulemaking, HTS schedule, HTS notes, and New York TANF scopes one-for-one; adds the retained ABAWD memo and asserted CFR 1401 parent scope; preserves the retained OBBB alien-eligibility memo; and intentionally adds no Massachusetts successor because its gaps require RuleSpec correction to current carriers.",
   "name": "target",
   "quality_profile": "complete-expression-dates-v1",
   "scopes": [
@@ -72,6 +72,11 @@
       "document_class": "guidance",
       "jurisdiction": "us",
       "version": "2026-08-03-snap-obbb-abawd-exceptions-implementation-memo"
+    },
+    {
+      "document_class": "guidance",
+      "jurisdiction": "us",
+      "version": "2026-08-07-snap-obbb-alien-eligibility-implementation-memo"
     },
     {
       "document_class": "policy",
