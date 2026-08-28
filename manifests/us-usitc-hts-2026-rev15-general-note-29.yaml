@@ -1,0 +1,33 @@
+shared_metadata: &shared_metadata
+  primary_source: true
+  source_authority: United States International Trade Commission
+  edition: '2026'
+  revision: 15
+  revision_effective_date: '2026-08-03'
+  release: 2026HTSRev15
+  release_landing_page: https://www.usitc.gov/harmonized_tariff_information/hts/archive/list
+  release_status: archive
+  archived_official_source: true
+  verified_on: '2026-08-28'
+  current_release_comparator: 2026HTSRev17
+  normalized_text_unchanged_through_comparator: true
+  normalized_text_comparison: 'pdftotext -layout; revision header number normalized'
+
+documents:
+  - source_id: usitc-hts-2026-rev15-general-note-29
+    jurisdiction: us
+    document_class: statute
+    citation_path: us/statute/hts/general-note-29
+    title: 'Harmonized Tariff Schedule of the United States (2026) Revision 15, General Note 29: Dominican Republic-Central America-United States Free Trade Agreement Implementation Act'
+    source_url: https://hts.usitc.gov/reststop/file?release=2026HTSRev15&filename=General%20Note%2029
+    source_format: pdf
+    source_as_of: '2026-08-28'
+    expression_date: '2026-08-03'
+    request:
+      browser_impersonation: true
+    extraction:
+      page_citation_prefix: page
+    metadata:
+      <<: *shared_metadata
+      document_subtype: hts_general_note
+      note_number: 29
