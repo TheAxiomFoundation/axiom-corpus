@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/rulemaking/2026-08-29-tariff-232-proclamation-11021-annex-iv-page-43.json",
+      "sha256": "6fd06c2fe46e1a83ee8e91bedba2b12d93d57a01106ea5e683476a4156f775a6"
+    },
+    {
+      "path": "data/corpus/inventory/us/rulemaking/2026-08-29-tariff-232-proclamation-11021-annex-iv-page-43.json",
+      "sha256": "87a312bb29f8a3dcacf7e7a7469ddc39b91dafa9cf7f27f25e707fc6ea0b3f45"
+    },
+    {
+      "path": "data/corpus/provisions/us/rulemaking/2026-08-29-tariff-232-proclamation-11021-annex-iv-page-43.jsonl",
+      "sha256": "92a7aa2ca28779965dafc471e4f7d288527eb87a62c4e8c7903efcf85a9460cf"
+    },
+    {
+      "path": "data/corpus/sources/us/rulemaking/2026-08-29-tariff-232-proclamation-11021-annex-iv-page-43/official-documents/Metals-ANNEXES-I-A-I-B-II-III-IV.pdf",
+      "sha256": "9657a6c4589e1013ecebbc9eaf04db0ab865efde25ddfe81c463b29e5f0180f7"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "08bd0d8cdcdf1b34b0c7962bff71ecf42bdcd32b",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev python scripts/repro/us_proclamation_11021_annex_iv_page_43.py --base data/corpus"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 1,
+    "missing_count": 0,
+    "provision_count": 1,
+    "source_count": 1
+  },
+  "document_class": "rulemaking",
+  "generated_at": "2026-08-29T05:13:52.420847+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "WTqJgHClyFpM3dbdIYq3b5FXNEyRty/TMra4O0Pvdv7ubI2tKM9lAPi+76XUqiMLVbnkwwxjb5K59KFyrW11Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-29-tariff-232-proclamation-11021-annex-iv-page-43"
+}
