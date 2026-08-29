@@ -11,6 +11,27 @@ VERSION = "2026-08-29-tariff-232-proclamation-11021-annex-iv-page-43"
 CITATION_PATH = "us/rulemaking/federal-register/2026-04-09/2026-06960/annex-iv/page-43"
 SOURCE_SHA256 = "9657a6c4589e1013ecebbc9eaf04db0ab865efde25ddfe81c463b29e5f0180f7"
 BODY_SHA256 = "8bb8ff988becea34d3e4331b35350f023e68750419a62c724b36311870218d57"
+PREDECESSOR_RELEASE = (
+    REPO_ROOT
+    / "manifests/releases/us-rulespec-2026-08-23-canada-338-suspension-union.json"
+)
+SUCCESSOR_RELEASE = (
+    REPO_ROOT / "manifests/releases/us-rulespec-2026-08-28-gn29-union.json"
+)
+GENERAL_NOTE_29_SCOPE = (
+    "us",
+    "statute",
+    "2026-08-28-usitc-hts-2026-rev15-general-note-29",
+)
+PROCLAMATION_SCOPE = ("us", "rulemaking", VERSION)
+
+
+def _release_scope_keys(path: Path) -> list[tuple[str, str, str]]:
+    release = json.loads(path.read_text())
+    return [
+        (scope["jurisdiction"], scope["document_class"], scope["version"])
+        for scope in release["scopes"]
+    ]
 
 
 def test_proclamation_11021_annex_iv_page_43_is_source_pinned() -> None:
@@ -69,3 +90,14 @@ def test_proclamation_11021_annex_iv_page_43_is_source_pinned() -> None:
         "source_count": 1,
         "version": VERSION,
     }
+
+
+def test_gn29_union_adds_only_reviewed_tariff_scopes() -> None:
+    predecessor = set(_release_scope_keys(PREDECESSOR_RELEASE))
+    successor_keys = _release_scope_keys(SUCCESSOR_RELEASE)
+    successor = set(successor_keys)
+
+    assert successor == predecessor | {GENERAL_NOTE_29_SCOPE, PROCLAMATION_SCOPE}
+    assert len(predecessor) == 275
+    assert len(successor_keys) == len(successor) == 277
+    assert successor_keys.count(PROCLAMATION_SCOPE) == 1
