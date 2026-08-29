@@ -1,0 +1,1 @@
+Retain the official White House Proclamation 11021 annex PDF and add a source-pinned page-43 witness for the Annex IV effective date, U.S. note 16(c) 15-percent proviso, and the portion of the derivative-aluminum list containing HTS 7612.10.00.

@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "citation_path": "us/rulemaking/federal-register/2026-04-09/2026-06960/annex-iv/page-43",
+      "metadata": {
+        "annex_iv_pdf_pages": "43\u201358",
+        "block_count": 1,
+        "citation_suffix": "page-43",
+        "content_type": "application/pdf",
+        "document_subtype": "annex_text_rendition_page_witness",
+        "download_url": "https://web.archive.org/web/20260404165018id_/https://www.whitehouse.gov/wp-content/uploads/2026/04/Metals-ANNEXES-I-A-I-B-II-III-IV.pdf",
+        "effective_date": "2026-04-06",
+        "existing_body_version": "2026-08-01-tariff-232-annex-restructure-types-presdocu-term-strengthening-actions",
+        "extraction_method": "PyMuPDF page.get_text('text', sort=False) through the standard corpus PDF page extractor; no OCR or text replacements",
+        "federal_register_annex_graphics_only": true,
+        "federal_register_annex_pages": "18209\u201318266",
+        "federal_register_citation": "91 FR 18201\u201318266",
+        "federal_register_document_number": "2026-06960",
+        "federal_register_equivalent_page": 18251,
+        "kind": "page",
+        "logical_parent_citation_path": "us/rulemaking/federal-register/2026-04-09/2026-06960/annex-iv",
+        "operator_visual_verification": "White House PDF page 43 visually verified against its rendered page; verified 2026-08-29",
+        "page_number": 43,
+        "primary_source": true,
+        "proclamation_date": "2026-04-02",
+        "proclamation_number": "11021",
+        "publication_date": "2026-04-09",
+        "rendition_role": "focused page-level text for the graphics-only Federal Register annex",
+        "repro_command": "uv run --extra dev python scripts/repro/us_proclamation_11021_annex_iv_page_43.py --base data/corpus",
+        "selected_pdf_pages": [
+          43
+        ],
+        "selection_scope": "single complete PDF page containing the Annex IV effective date, U.S. note 16(c) 15-percent proviso, and the page-43 portion of subdivision (c)(ii), including HTS 7612.10.00",
+        "source_authority": "The White House",
+        "source_cross_verified_on": "2026-08-29",
+        "source_pdf_page_count": 58,
+        "source_pdf_sha256": "9657a6c4589e1013ecebbc9eaf04db0ab865efde25ddfe81c463b29e5f0180f7",
+        "source_pdf_size_bytes": 633053,
+        "title": "Annex IV to Proclamation 11021\u2014Official White House Text Rendition",
+        "wayback_byte_identical_to_official": true,
+        "wayback_timestamp": "20260404165018",
+        "wayback_url": "https://web.archive.org/web/20260404165018id_/https://www.whitehouse.gov/wp-content/uploads/2026/04/Metals-ANNEXES-I-A-I-B-II-III-IV.pdf",
+        "whitehouse_landing_page_url": "https://www.whitehouse.gov/presidential-actions/2026/04/strengthening-actions-taken-to-adjust-imports-of-aluminum-steel-and-copper-into-the-united-states/",
+        "whitehouse_source_url": "https://www.whitehouse.gov/wp-content/uploads/2026/04/Metals-ANNEXES-I-A-I-B-II-III-IV.pdf"
+      },
+      "sha256": "9657a6c4589e1013ecebbc9eaf04db0ab865efde25ddfe81c463b29e5f0180f7",
+      "source_format": "pdf",
+      "source_path": "sources/us/rulemaking/2026-08-29-tariff-232-proclamation-11021-annex-iv-page-43/official-documents/Metals-ANNEXES-I-A-I-B-II-III-IV.pdf",
+      "source_url": "https://www.whitehouse.gov/wp-content/uploads/2026/04/Metals-ANNEXES-I-A-I-B-II-III-IV.pdf"
+    }
+  ]
+}
