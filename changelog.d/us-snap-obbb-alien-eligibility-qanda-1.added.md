@@ -1,0 +1,1 @@
+Ingest USDA/FNS's revised December 9, 2025 OBBB alien SNAP eligibility Q&A, retaining the exact official PDF and its clarification of the five-year waiting-period clock and post-LPR-adjustment treatment.
