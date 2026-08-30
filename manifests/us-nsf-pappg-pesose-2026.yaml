@@ -1,17 +1,4 @@
 documents:
-  - source_id: nsf-bio-data-management-sharing-plans
-    jurisdiction: us
-    document_class: guidance
-    citation_path: us/guidance/nsf/bio/data-management-sharing-plans
-    title: "NSF BIO Data Management and Sharing Plan Guidance"
-    source_url: https://www.nsf.gov/bio/data-management-plans
-    source_format: html
-    source_as_of: "2026-08-30"
-    expression_date: "2026-04-27"
-    metadata:
-      primary_source: true
-      source_authority: U.S. National Science Foundation, Directorate for Biological Sciences
-      document_subtype: data_management_sharing_guidance
   - source_id: nsf-pesose-26-506
     jurisdiction: us
     document_class: guidance
@@ -21,6 +8,12 @@ documents:
     source_format: html
     source_as_of: "2026-08-30"
     expression_date: "2026-02-19"
+    extraction:
+      html_content_selector: ".solicitation__content"
+      html_drop_selectors:
+        - ".solicitations--toc"
+        - ".document-info"
+        - ".print"
     metadata:
       primary_source: true
       source_authority: U.S. National Science Foundation
@@ -36,77 +29,14 @@ documents:
     source_format: html
     source_as_of: "2026-08-30"
     expression_date: "2024-05-20"
+    extraction:
+      html_content_selector: "main article.node--type-layout-builder-page .layout__region--main"
+      html_drop_selectors:
+        - ".layout__region--main > .block-inline-blockcomponent-accordion"
+        - ".region-sidebar-first"
+        - ".print"
     metadata:
       primary_source: true
       source_authority: U.S. National Science Foundation
       document_subtype: proposal_policy
       document_number: NSF 24-1 Chapter II
-  - source_id: nsf-pappg-24-1-chapter-i
-    jurisdiction: us
-    document_class: guidance
-    citation_path: us/guidance/nsf/pappg/24-1/chapter-i
-    title: "PAPPG 24-1 Chapter I: Pre-Submission Information"
-    source_url: https://www.nsf.gov/policies/pappg/24-1/ch-1-pre-submission
-    source_format: html
-    source_as_of: "2026-08-30"
-    expression_date: "2024-05-20"
-    metadata:
-      primary_source: true
-      source_authority: U.S. National Science Foundation
-      document_subtype: proposal_policy
-      document_number: NSF 24-1 Chapter I
-  - source_id: nsf-pappg-24-1-supplement-1
-    jurisdiction: us
-    document_class: guidance
-    citation_path: us/guidance/nsf/pappg/24-1/supplement-1
-    title: "PAPPG 24-1 Supplement 1"
-    source_url: https://www.nsf.gov/policies/document/pappg24-1-supplement-1
-    source_format: html
-    source_as_of: "2026-08-30"
-    expression_date: "2025-12-08"
-    metadata:
-      primary_source: true
-      source_authority: U.S. National Science Foundation
-      document_subtype: proposal_policy_notice
-      document_number: NSF 26-200
-  - source_id: nsf-pappg-24-1-supplement-2
-    jurisdiction: us
-    document_class: guidance
-    citation_path: us/guidance/nsf/pappg/24-1/supplement-2
-    title: "PAPPG 24-1 Supplement 2"
-    source_url: https://www.nsf.gov/policies/document/pappg24-1-supplement-2
-    source_format: html
-    source_as_of: "2026-08-30"
-    expression_date: "2026-01-22"
-    metadata:
-      primary_source: true
-      source_authority: U.S. National Science Foundation
-      document_subtype: proposal_policy_notice
-      document_number: PAPPG 24-1 Supplement 2
-  - source_id: nsf-eng-data-management-sharing-plans
-    jurisdiction: us
-    document_class: guidance
-    citation_path: us/guidance/nsf/eng/data-management-sharing-plans
-    title: "NSF Engineering Data Management and Sharing Plans"
-    source_url: https://www.nsf.gov/eng/data-management-sharing-plans
-    source_format: html
-    source_as_of: "2026-08-30"
-    expression_date: "2026-07-01"
-    metadata:
-      primary_source: true
-      source_authority: U.S. National Science Foundation, Directorate for Engineering
-      document_subtype: data_management_sharing_guidance
-  - source_id: nsf-important-notice-149-research-security
-    jurisdiction: us
-    document_class: guidance
-    citation_path: us/guidance/nsf/important-notice/149-research-security
-    title: "Important Notice No. 149: Updates to NSF Research Security Policies"
-    source_url: https://www.nsf.gov/notices/important/important-notice-no-149-updates-nsf-research-security/in149
-    source_format: html
-    source_as_of: "2026-08-30"
-    expression_date: "2025-01-25"
-    metadata:
-      primary_source: true
-      source_authority: U.S. National Science Foundation
-      document_subtype: important_notice
-      document_number: Important Notice No. 149
