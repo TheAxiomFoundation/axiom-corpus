@@ -6,8 +6,10 @@ import json
 from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import date
+from hashlib import sha256
 from pathlib import Path
 from typing import Any
+from zipfile import BadZipFile, ZipFile
 
 from axiom_corpus.corpus.artifacts import CorpusArtifactStore
 from axiom_corpus.corpus.coverage import compare_provision_coverage
@@ -17,6 +19,7 @@ from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInv
 from axiom_corpus.corpus.r2 import ArtifactReport, _sha256_file
 from axiom_corpus.corpus.releases import ReleaseManifest, ReleaseScope
 from axiom_corpus.corpus.supabase import deterministic_provision_id
+from axiom_corpus.corpus.usc import MAX_USLM_ARCHIVE_MEMBER_BYTES
 from axiom_corpus.release.manifest import selector_sha256
 
 _PROFILED_CITATION_UNIQUENESS_GRANDFATHER = {
@@ -326,11 +329,14 @@ def _validate_scope(
     coverage = _load_coverage_for_validation(coverage_path, scope, collector)
     if inventory is None or provisions is None:
         return
-    inventory_source_paths = _validate_inventory(store.root, inventory, scope, collector)
+    inventory_source_paths, inventory_sources = _validate_inventory(
+        store.root, inventory, scope, collector
+    )
     _validate_provisions(
         store.root,
         provisions,
         inventory_source_paths,
+        inventory_sources,
         scope,
         collector,
         release_citation_paths,
@@ -442,9 +448,11 @@ def _validate_inventory(
     inventory: tuple[SourceInventoryItem, ...],
     scope: ReleaseScope,
     collector: _IssueCollector,
-) -> set[str]:
+) -> tuple[set[str], dict[str, SourceInventoryItem]]:
     source_hashes: dict[str, str] = {}
     inventory_source_paths: set[str] = set()
+    inventory_sources: dict[str, SourceInventoryItem] = {}
+    archive_provenance: dict[str, tuple[str, str, str]] = {}
     for item in inventory:
         if not item.citation_path:
             collector.add(
@@ -464,6 +472,17 @@ def _validate_inventory(
         if validated is not None:
             source_identity, source_path = validated
             inventory_source_paths.add(source_identity)
+            existing = inventory_sources.get(source_identity)
+            if existing is None:
+                inventory_sources[source_identity] = item
+            elif _source_archive_signature(existing) != _source_archive_signature(item):
+                collector.add(
+                    "error",
+                    "inconsistent_inventory_source_provenance",
+                    f"inventory records disagree about archive provenance for {source_identity}",
+                    scope=scope,
+                    path=source_path,
+                )
         else:
             source_identity = None
             source_path = None
@@ -490,7 +509,8 @@ def _validate_inventory(
                     )
                     continue
                 source_hashes[source_identity] = digest
-            if digest != item.sha256:
+            source_digest_matches = digest == item.sha256
+            if not source_digest_matches:
                 collector.add(
                     "error",
                     "source_sha256_mismatch",
@@ -498,7 +518,151 @@ def _validate_inventory(
                     scope=scope,
                     path=source_path,
                 )
-    return inventory_source_paths
+            signature = _source_archive_signature(item)
+            if item.source_format == "uslm-xml+zip":
+                if signature is None:
+                    collector.add(
+                        "error",
+                        "missing_archive_member_provenance",
+                        (
+                            f"USLM ZIP inventory item {item.citation_path} must provide "
+                            "archive_member and archive_member_sha256 metadata"
+                        ),
+                        scope=scope,
+                        path=source_path,
+                    )
+                elif signature[0] != item.sha256:
+                    collector.add(
+                        "error",
+                        "archive_sha256_metadata_mismatch",
+                        (
+                            f"archive_sha256 metadata does not match inventory sha256 "
+                            f"for {source_identity}"
+                        ),
+                        scope=scope,
+                        path=source_path,
+                    )
+                elif source_identity not in archive_provenance:
+                    archive_provenance[source_identity] = signature
+                    if source_digest_matches:
+                        _validate_archive_member_hash(
+                            source_path,
+                            member_name=signature[1],
+                            expected_sha256=signature[2],
+                            scope=scope,
+                            collector=collector,
+                        )
+                elif archive_provenance[source_identity] != signature:
+                    collector.add(
+                        "error",
+                        "inconsistent_inventory_archive_member",
+                        f"inventory records select different members for {source_identity}",
+                        scope=scope,
+                        path=source_path,
+                    )
+            elif signature is not None:
+                collector.add(
+                    "error",
+                    "archive_provenance_source_format_mismatch",
+                    (
+                        f"inventory item {item.citation_path} has archive provenance "
+                        f"but source_format is {item.source_format!r}"
+                    ),
+                    scope=scope,
+                    path=source_path,
+                )
+    return inventory_source_paths, inventory_sources
+
+
+def _source_archive_signature(
+    item: SourceInventoryItem | ProvisionRecord,
+) -> tuple[str, str, str] | None:
+    metadata = item.metadata
+    if not isinstance(metadata, dict):
+        return None
+    archive_sha256 = metadata.get("archive_sha256")
+    member = metadata.get("archive_member")
+    member_sha256 = metadata.get("archive_member_sha256")
+    if not isinstance(archive_sha256, str) or not archive_sha256:
+        return None
+    if not isinstance(member, str) or not member:
+        return None
+    if not isinstance(member_sha256, str) or not member_sha256:
+        return None
+    return archive_sha256, member, member_sha256
+
+
+def _validate_archive_member_hash(
+    source_path: Path,
+    *,
+    member_name: str,
+    expected_sha256: str,
+    scope: ReleaseScope,
+    collector: _IssueCollector,
+) -> None:
+    try:
+        with ZipFile(source_path) as archive:
+            matches = [item for item in archive.infolist() if item.filename == member_name]
+            if len(matches) != 1:
+                collector.add(
+                    "error",
+                    "archive_member_not_unique",
+                    (
+                        f"archive member {member_name!r} occurs {len(matches)} times "
+                        f"in {source_path.name}"
+                    ),
+                    scope=scope,
+                    path=source_path,
+                )
+                return
+            member = matches[0]
+            if member.file_size > MAX_USLM_ARCHIVE_MEMBER_BYTES:
+                collector.add(
+                    "error",
+                    "archive_member_too_large",
+                    (
+                        f"archive member {member_name!r} exceeds "
+                        f"{MAX_USLM_ARCHIVE_MEMBER_BYTES} bytes"
+                    ),
+                    scope=scope,
+                    path=source_path,
+                )
+                return
+            member_digest = sha256()
+            bytes_read = 0
+            with archive.open(member) as member_file:
+                while chunk := member_file.read(1024 * 1024):
+                    bytes_read += len(chunk)
+                    if bytes_read > MAX_USLM_ARCHIVE_MEMBER_BYTES:
+                        collector.add(
+                            "error",
+                            "archive_member_too_large",
+                            (
+                                f"archive member {member_name!r} exceeds "
+                                f"{MAX_USLM_ARCHIVE_MEMBER_BYTES} bytes while reading"
+                            ),
+                            scope=scope,
+                            path=source_path,
+                        )
+                        return
+                    member_digest.update(chunk)
+    except (BadZipFile, OSError, RuntimeError) as exc:
+        collector.add(
+            "error",
+            "unreadable_archive_member",
+            f"cannot read archive member {member_name!r}: {exc}",
+            scope=scope,
+            path=source_path,
+        )
+        return
+    if member_digest.hexdigest() != expected_sha256:
+        collector.add(
+            "error",
+            "archive_member_sha256_mismatch",
+            f"archive member sha256 mismatch for {member_name!r}",
+            scope=scope,
+            path=source_path,
+        )
 
 
 def _validate_source_file(
@@ -618,6 +782,7 @@ def _validate_provisions(
     root: Path,
     provisions: tuple[ProvisionRecord, ...],
     inventory_source_paths: set[str],
+    inventory_sources: dict[str, SourceInventoryItem],
     scope: ReleaseScope,
     collector: _IssueCollector,
     release_citation_paths: set[str] | None = None,
@@ -680,6 +845,36 @@ def _validate_provisions(
                     (
                         f"provision {record.citation_path} source_path is not present "
                         f"in the scope inventory: {record.source_path}"
+                    ),
+                    scope=scope,
+                    path=record.source_path,
+                )
+        if isinstance(record.source_path, str):
+            inventory_item = inventory_sources.get(record.source_path)
+            record_archive = _source_archive_signature(record)
+            inventory_archive = (
+                _source_archive_signature(inventory_item) if inventory_item is not None else None
+            )
+            archive_provenance_expected = inventory_item is not None and (
+                inventory_item.source_format == "uslm-xml+zip"
+                or record.source_format == "uslm-xml+zip"
+                or inventory_archive is not None
+                or record_archive is not None
+            )
+            if (
+                archive_provenance_expected
+                and inventory_item is not None
+                and (
+                    record.source_format != inventory_item.source_format
+                    or record_archive != inventory_archive
+                )
+            ):
+                collector.add(
+                    "error",
+                    "provision_source_provenance_mismatch",
+                    (
+                        f"provision {record.citation_path} source format or archive "
+                        "member provenance differs from its inventory source"
                     ),
                     scope=scope,
                     path=record.source_path,

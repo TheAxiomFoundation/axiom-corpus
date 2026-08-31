@@ -1,6 +1,7 @@
 import json
 import subprocess
 from base64 import b64encode
+from zipfile import ZipFile
 
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
@@ -44,6 +45,11 @@ SAMPLE_USLM_CLI = """
   </title>
 </uscDoc>
 """
+SAMPLE_USLM_CLI_OFFICIAL = SAMPLE_USLM_CLI.replace(
+    "<uscDoc ",
+    '<uscDoc xmlns="http://xml.house.gov/schemas/uslm/1.0" ',
+    1,
+)
 
 
 def _git(repo, *args):
@@ -1164,7 +1170,8 @@ def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
     )
 
     def fake_extract(*args, **kwargs):
-        assert kwargs["source_xml"] == source_xml
+        assert kwargs["source_payload"].source_path == source_xml
+        assert "source_xml" not in kwargs
         assert kwargs["allowed_citation_paths"] is None
         return UscExtractReport(
             title="26",
@@ -1199,6 +1206,66 @@ def test_extract_usc_cli(tmp_path, capsys, monkeypatch):
     assert '"provisions_written": 2' in output
 
 
+def test_extract_usc_archive_cli(tmp_path, capsys, monkeypatch):
+    import axiom_corpus.corpus.cli as cli
+
+    base = tmp_path / "corpus"
+    source_archive = tmp_path / "xml_usc26@119-102.zip"
+    with ZipFile(source_archive, "w") as archive:
+        archive.writestr("official/usc26.xml", SAMPLE_USLM_CLI_OFFICIAL)
+    coverage = ProvisionCoverageReport(
+        jurisdiction="us",
+        document_class="statute",
+        version="2026-04-29-title-26",
+        source_count=2,
+        provision_count=2,
+        matched_count=2,
+        missing_from_provisions=(),
+        extra_provisions=(),
+    )
+
+    def fake_extract(*args, **kwargs):
+        assert kwargs["source_payload"].source_path == source_archive
+        assert kwargs["source_payload"].archive_member == "official/usc26.xml"
+        assert "source_xml" not in kwargs
+        assert "source_archive" not in kwargs
+        assert "archive_member" not in kwargs
+        assert kwargs["allowed_citation_paths"] is None
+        return UscExtractReport(
+            title="26",
+            title_count=1,
+            section_count=1,
+            provisions_written=2,
+            inventory_path=base / "inventory/us/statute/2026-04-29-title-26.json",
+            provisions_path=base / "provisions/us/statute/2026-04-29-title-26.jsonl",
+            coverage_path=base / "coverage/us/statute/2026-04-29-title-26.json",
+            coverage=coverage,
+            source_paths=(
+                base / "sources/us/statute/2026-04-29-title-26/olrc/xml_usc26@119-102.zip",
+            ),
+        )
+
+    monkeypatch.setattr(cli, "extract_usc", fake_extract)
+
+    exit_code = main(
+        [
+            "extract-usc",
+            "--base",
+            str(base),
+            "--version",
+            "2026-04-29",
+            "--source-archive",
+            str(source_archive),
+            "--archive-member",
+            "official/usc26.xml",
+        ]
+    )
+    output = capsys.readouterr().out
+
+    assert exit_code == 0
+    assert '"source_file_count": 1' in output
+
+
 def test_extract_usc_cli_filters_sections(tmp_path, capsys, monkeypatch):
     import axiom_corpus.corpus.cli as cli
 
@@ -1217,7 +1284,8 @@ def test_extract_usc_cli_filters_sections(tmp_path, capsys, monkeypatch):
     )
 
     def fake_extract(*args, **kwargs):
-        assert kwargs["source_xml"] == source_xml
+        assert kwargs["source_payload"].source_path == source_xml
+        assert "source_xml" not in kwargs
         assert kwargs["allowed_citation_paths"] == {"us/statute/26/32"}
         return UscExtractReport(
             title="26",

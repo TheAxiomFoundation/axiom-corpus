@@ -280,6 +280,7 @@ from axiom_corpus.corpus.usc import (
     extract_usc,
     extract_usc_directory,
     infer_uslm_title,
+    load_usc_source,
     usc_run_id,
 )
 from axiom_corpus.corpus.virginia_vac import extract_virginia_vac
@@ -1280,8 +1281,14 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
     store = CorpusArtifactStore(args.base)
     expression_date = date.fromisoformat(args.expression_date) if args.expression_date else None
     try:
+        source = load_usc_source(
+            source_xml=args.source_xml,
+            source_archive=args.source_archive,
+            archive_member=args.archive_member,
+            title=args.title,
+        )
         allowed_citation_paths = _usc_allowed_citation_paths(
-            args.title or infer_uslm_title(decode_uslm_bytes(args.source_xml.read_bytes())),
+            args.title or infer_uslm_title(source.xml_content),
             sections=args.section,
             citation_paths=args.citation_path,
             include_title=args.include_title,
@@ -1292,7 +1299,7 @@ def _cmd_extract_usc(args: argparse.Namespace) -> int:
     report = extract_usc(
         store,
         version=args.version,
-        source_xml=args.source_xml,
+        source_payload=source,
         title=args.title,
         source_as_of=args.source_as_of,
         expression_date=expression_date,
@@ -5777,7 +5784,25 @@ def build_parser() -> argparse.ArgumentParser:
     )
     extract_usc_cmd.add_argument("--base", type=Path, required=True)
     extract_usc_cmd.add_argument("--version", required=True)
-    extract_usc_cmd.add_argument("--source-xml", type=Path, required=True)
+    extract_usc_source = extract_usc_cmd.add_mutually_exclusive_group(required=True)
+    extract_usc_source.add_argument(
+        "--source-xml",
+        type=Path,
+        help="Retained uncompressed USLM title XML (legacy-compatible input).",
+    )
+    extract_usc_source.add_argument(
+        "--source-archive",
+        type=Path,
+        help="Retained official OLRC ZIP containing USLM title XML.",
+    )
+    extract_usc_cmd.add_argument(
+        "--archive-member",
+        help=(
+            "Exact USLM XML member inside --source-archive. Required when the "
+            "archive has more than one XML member and --title cannot select a "
+            "unique usc{title}.xml basename."
+        ),
+    )
     extract_usc_cmd.add_argument("--title")
     extract_usc_cmd.add_argument("--source-as-of", "--as-of", dest="source_as_of")
     extract_usc_cmd.add_argument("--expression-date")
