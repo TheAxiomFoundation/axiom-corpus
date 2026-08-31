@@ -61,7 +61,7 @@ _NUMBERED_APPENDIX_RE = re.compile(
     re.IGNORECASE,
 )
 _AUTHORITY_APPENDIX_RE = re.compile(
-    r"^\s*Հավելված(?:\s+N\s*(?P<label>\d+(?:[.․]\d+)?))?\s+(?:"
+    r"^\s*Հավելված(?:\s+N\s*(?P<label>\d+(?:[.․]\d+)?)\s*|\s+)(?:"
     r"ՀՀ\s+կառավարության\b.*\s+որոշման|"
     r"«[^»]+»\s+Հայաստանի\s+Հանրապետության\s+օրենքի"
     r")\s*$",
@@ -622,6 +622,7 @@ def parse_armenia_arlis_html(
     article_ordinal = 0
     structural_ordinal = 0
     appendix_ordinal = 0
+    encountered_appendix_labels: set[str] = set()
     encountered_headers: set[int] = set()
 
     def flush_pending() -> None:
@@ -749,12 +750,22 @@ def parse_armenia_arlis_html(
 
         appendix_marker = _appendix_marker(node)
         if appendix_marker is not None:
+            appendix_label, raw_marker = appendix_marker
+            if (
+                pending is not None
+                and pending.kind == "appendix"
+                and appendix_label is not None
+                and appendix_label in encountered_appendix_labels
+                and _NUMBERED_APPENDIX_RE.fullmatch(raw_marker) is not None
+            ):
+                pending.blocks.append(_render_block(node))
+                continue
             flush_article()
             flush_pending()
             appendix_ordinal += 1
             structural_ordinal += 1
-            appendix_label, raw_marker = appendix_marker
             appendix_label = appendix_label or str(appendix_ordinal)
+            encountered_appendix_labels.add(appendix_label)
             pending = _PendingProvision(
                 citation_path=f"{document_path}/appendix-{appendix_label}",
                 parent_citation_path=document_path,

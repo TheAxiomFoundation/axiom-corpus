@@ -20,6 +20,9 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 AM_TAXBEN_CORE_VERSION = "2026-08-29-am-taxben-core"
 AM_RULESPEC_SOURCE_PACK_VERSION = "2026-08-30-am-rulespec-source-pack"
 AM_TAX_CODE_2024_CONTINUITY_VERSION = "2026-08-30-am-tax-code-2024-continuity"
+AM_IMPLEMENTING_REGULATIONS_2024_VERSION = (
+    "2026-08-31-am-implementing-regulations-2024"
+)
 
 SAMPLE_ARLIS_HTML = """\
 <!doctype html>
@@ -548,6 +551,45 @@ def test_parse_numbered_official_appendices_preserves_two_appendix_scopes():
     assert "Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ" in appendix_2.body
 
 
+def test_parse_numbered_authority_appendix_accepts_arlis_collapsed_boundary():
+    content = NUMBERED_APPENDICES_66111_HTML.replace(
+        "Հավելված N 1 ՀՀ կառավարության",
+        "Հավելված N 1ՀՀ կառավարության",
+    ).encode()
+    source = ArmeniaARLISSource.from_mapping(
+        _numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    )
+
+    provisions = parse_armenia_arlis_html(content, source=source)
+
+    assert [item.citation_path for item in provisions] == [
+        "am/regulation/act-66111",
+        "am/regulation/act-66111/appendix-1",
+        "am/regulation/act-66111/appendix-2",
+    ]
+
+
+def test_parse_nested_bare_appendix_label_does_not_duplicate_decision_appendix():
+    content = NUMBERED_APPENDICES_66111_HTML.replace(
+        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+        "<p>Հավելված N 1</p><p>ՆԵՐԴՐՎԱԾ ՁԵՎ</p>"
+        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+    ).encode()
+    source = ArmeniaARLISSource.from_mapping(
+        _numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    )
+
+    provisions = parse_armenia_arlis_html(content, source=source)
+
+    assert [item.citation_path for item in provisions] == [
+        "am/regulation/act-66111",
+        "am/regulation/act-66111/appendix-1",
+        "am/regulation/act-66111/appendix-2",
+    ]
+    assert provisions[2].body is not None
+    assert "Հավելված N 1\nՆԵՐԴՐՎԱԾ ՁԵՎ" in provisions[2].body
+
+
 def test_manifest_defaults_to_statute_for_existing_callers():
     mapping = _source_mapping(sha256="0" * 64)
     mapping.pop("document_class")
@@ -1008,6 +1050,231 @@ def test_checked_in_rulespec_pack_binds_2024_evidence_expressions(tmp_path):
     assert minimum_wage.heading is None
     assert minimum_wage.body is not None
     assert "75000 դրամ" in minimum_wage.body
+
+
+def test_implementing_regulations_manifest_covers_2024_without_date_gaps():
+    manifest = ArmeniaARLISManifest.load(
+        REPO_ROOT / "manifests" / "am-implementing-regulations-2024-arlis.yaml"
+    )
+
+    assert [
+        (
+            source.source_id,
+            source.act_id,
+            source.base_act_id,
+            source.official_number,
+            source.expression_date,
+            source.expression_end_date,
+            source.expected_appendix_count,
+        )
+        for source in manifest.documents
+    ] == [
+        (
+            "family-social-benefit-2024",
+            "188042",
+            "128090",
+            "N 50-Ն",
+            "2023-12-29",
+            "2025-01-17",
+            1,
+        ),
+        (
+            "childbirth-grant-2024-q1",
+            "186765",
+            "89331",
+            "N 275-Ն",
+            "2023-12-17",
+            "2024-03-08",
+            4,
+        ),
+        (
+            "childbirth-grant-2024-rest",
+            "190575",
+            "89331",
+            "N 275-Ն",
+            "2024-03-08",
+            "2026-08-14",
+            4,
+        ),
+        (
+            "under-two-care-benefit-2024-jan-feb",
+            "186284",
+            "102848",
+            "N 1566-Ն",
+            "2023-12-01",
+            "2024-03-01",
+            4,
+        ),
+        (
+            "under-two-care-benefit-2024-mar-dec",
+            "190187",
+            "102848",
+            "N 1566-Ն",
+            "2024-03-01",
+            "2025-02-21",
+            4,
+        ),
+        (
+            "social-allowances-2024",
+            "179721",
+            "87643",
+            "N 1489-Ն",
+            "2023-06-30",
+            "2026-04-01",
+            0,
+        ),
+        (
+            "pension-parameters-2024",
+            "179718",
+            "64854",
+            "N 1734-Ն",
+            "2023-06-30",
+            "2026-04-01",
+            0,
+        ),
+    ]
+
+    intervals_by_number = {
+        number: sorted(
+            (source.expression_date, source.expression_end_date)
+            for source in manifest.documents
+            if source.official_number == number
+        )
+        for number in {source.official_number for source in manifest.documents}
+    }
+    assert intervals_by_number == {
+        "N 50-Ն": [("2023-12-29", "2025-01-17")],
+        "N 275-Ն": [
+            ("2023-12-17", "2024-03-08"),
+            ("2024-03-08", "2026-08-14"),
+        ],
+        "N 1566-Ն": [
+            ("2023-12-01", "2024-03-01"),
+            ("2024-03-01", "2025-02-21"),
+        ],
+        "N 1489-Ն": [("2023-06-30", "2026-04-01")],
+        "N 1734-Ն": [("2023-06-30", "2026-04-01")],
+    }
+    for intervals in intervals_by_number.values():
+        assert intervals[0][0] <= "2024-01-01"
+        assert intervals[-1][1] is not None
+        assert intervals[-1][1] > "2024-12-31"
+        assert all(
+            left[1] == right[0]
+            for left, right in zip(intervals[:-1], intervals[1:], strict=True)
+        )
+
+
+def test_checked_in_implementing_regulations_bind_2024_rules_and_amounts(tmp_path):
+    source_dir = (
+        REPO_ROOT
+        / "data"
+        / "corpus"
+        / "sources"
+        / "am"
+        / "regulation"
+        / AM_IMPLEMENTING_REGULATIONS_2024_VERSION
+        / "arlis"
+    )
+    manifest_path = (
+        REPO_ROOT / "manifests" / "am-implementing-regulations-2024-arlis.yaml"
+    )
+    manifest = ArmeniaARLISManifest.load(manifest_path)
+
+    for source in manifest.documents:
+        content = (source_dir / source.source_file).read_bytes()
+        assert hashlib.sha256(content).hexdigest() == source.sha256
+
+    report = extract_armenia_arlis(
+        CorpusArtifactStore(tmp_path / "corpus"),
+        version=AM_IMPLEMENTING_REGULATIONS_2024_VERSION,
+        manifest_path=manifest_path,
+        source_dir=source_dir,
+    )
+
+    assert {
+        item.source_id: (item.article_count, item.structural_count)
+        for item in report.document_reports
+    } == {
+        "family-social-benefit-2024": (0, 1),
+        "childbirth-grant-2024-q1": (0, 4),
+        "childbirth-grant-2024-rest": (0, 4),
+        "under-two-care-benefit-2024-jan-feb": (0, 4),
+        "under-two-care-benefit-2024-mar-dec": (0, 4),
+        "social-allowances-2024": (0, 0),
+        "pension-parameters-2024": (0, 0),
+    }
+    assert report.document_count == 7
+    assert report.article_count == 0
+    assert report.structural_count == 17
+    assert report.provisions_written == 24
+    assert report.coverage.complete
+
+    records = load_provisions(report.provisions_path)
+    records_by_path = {record.citation_path: record for record in records}
+    assert len(records_by_path) == 24
+
+    family = records_by_path["am/regulation/act-188042"]
+    assert family.expression_date == "2023-12-29"
+    assert family.metadata["expression_end_date"] == "2025-01-17"
+    assert family.identifiers["arlis.am:base_act_id"] == "128090"
+    assert family.body is not None
+    for value in (
+        "28.00 միավոր",
+        "բազային մասը` 20000 դրամ",
+        "սոցիալական նպաստի չափը` 20000 դրամ",
+        "երեխայի ծննդյան դեպքում` 50000 դրամ",
+        "եռամսյակային հրատապ օգնության ամսական չափը` 20000 դրամ",
+    ):
+        assert value in family.body
+    family_budget = records_by_path["am/regulation/act-188042/appendix-1"]
+    assert family_budget.body is not None
+    assert "26,028,814,433" in family_budget.body
+
+    for act_id in ("186765", "190575"):
+        childbirth = records_by_path[f"am/regulation/act-{act_id}"]
+        assert childbirth.body is not None
+        for value in (
+            "երեք հարյուր հազար դրամ",
+            "մեկ միլիոն դրամ",
+            "մեկ միլիոն հինգ հարյուր հազար դրամ",
+            "ամենաբարձր կարգաթիվ ունեցող երեխայի համար սահմանված չափով",
+        ):
+            assert value in childbirth.body
+
+    for act_id in ("186284", "190187"):
+        care = records_by_path[f"am/regulation/act-{act_id}"]
+        assert care.body is not None
+        assert "31600 դրամ" in care.body
+        assert "50 տոկոսի չափով" in care.body
+        appendices = {
+            path
+            for path in records_by_path
+            if path.startswith(f"am/regulation/act-{act_id}/appendix-")
+        }
+        assert appendices == {
+            f"am/regulation/act-{act_id}/appendix-{label}" for label in range(1, 5)
+        }
+    nested_forms = records_by_path["am/regulation/act-186284/appendix-3"]
+    assert nested_forms.body is not None
+    assert "Հավելված N 1" in nested_forms.body
+    assert "Հավելված N 2" in nested_forms.body
+
+    allowances = records_by_path["am/regulation/act-179721"]
+    assert allowances.body is not None
+    for value in ("36000 դրամ", "39000 դրամ", "37500 դրամ", "100000 դրամ"):
+        assert value in allowances.body
+
+    pensions = records_by_path["am/regulation/act-179718"]
+    assert pensions.body is not None
+    for value in (
+        "24000 դրամ",
+        "առաջին տասը տարվա համար 950 դրամ",
+        "տասը տարին գերազանցող յուրաքանչյուր տարվա համար 500 դրամ",
+        "զինվորական ծառայության ստաժի մեկ տարվա արժեքը՝ 1750 դրամ",
+        "նվազագույն կենսաթոշակի չափը` 36000 դրամ",
+    ):
+        assert value in pensions.body
 
 
 def test_extract_armenia_arlis_rejects_hash_before_writing_artifacts(tmp_path):

@@ -1,0 +1,132 @@
+# Bounded 2024 amount-and-program-rule pack. The companion N 145-Ն family
+# vulnerability and benefit-administration decision is intentionally not
+# claimed here: its exact 2024 ARLIS expressions are acts 187129
+# [2023-12-15, 2024-03-30) and 191274 [2024-03-30, 2025-01-23), but each page
+# has three legal-body sections and requires a separately reviewed extension
+# of the adapter's one-section authentication contract before ingestion.
+documents:
+  - source_id: family-social-benefit-2024
+    jurisdiction: am
+    document_class: regulation
+    act_id: "188042"
+    base_act_id: "128090"
+    official_number: "N 50-Ն"
+    adopted: "2019-01-24"
+    title: "ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ ՈՐՈՇՈՒՄԸ ԸՆՏԱՆԵԿԱՆ ՆՊԱՍՏԻ, ՍՈՑԻԱԼԱԿԱՆ ՆՊԱՍՏԻ ԵՎ ՀՐԱՏԱՊ ՕԳՆՈՒԹՅԱՆ ՉԱՓԵՐԸ, 2024 ԹՎԱԿԱՆԻ ԸՆՏԱՆԵԿԱՆ ՆՊԱՍՏԻ ԵՎ ՍՈՑԻԱԼԱԿԱՆ ՆՊԱՍՏԻ ՀԱՄԱՐ ԸՆՏԱՆԻՔԻ ԱՆԱՊԱՀՈՎՈՒԹՅԱՆ ՍԱՀՄԱՆԱՅԻՆ ՄԻԱՎՈՐԸ ՍԱՀՄԱՆԵԼՈՒ ԵՎ 2024 ԹՎԱԿԱՆԻՆ ԸՆՏԱՆԵԿԱՆ ՆՊԱՍՏԻ, ՍՈՑԻԱԼԱԿԱՆ ՆՊԱՍՏԻ ԵՎ ՀՐԱՏԱՊ ՕԳՆՈՒԹՅԱՆ ՎՃԱՐՄԱՆ ՀԱՄԱՐ ՆԱԽԱՏԵՍՎԱԾ ՖԻՆԱՆՍԱԿԱՆ ՄԻՋՈՑՆԵՐԻ ՉԱՓԵՐՆ ԸՍՏ ՄԻԱՍՆԱԿԱՆ ՍՈՑԻԱԼԱԿԱՆ ԾԱՌԱՅՈՒԹՅԱՆ ՏԱՐԱԾՔԱՅԻՆ ԿԵՆՏՐՈՆՆԵՐԻ ՀԱՍՏԱՏԵԼՈՒ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/188042"
+    source_file: family-social-benefit-188042-2023-12-29.html
+    sha256: 76ae07e7e36303dde7184b5772544e9154e6c0413981da13cc916f433041862c
+    source_as_of: "2026-08-31"
+    expression_date: "2023-12-29"
+    expression_end_date: "2025-01-17"
+    language: hy
+    expected_article_count: 0
+    expected_appendix_count: 1
+
+  - source_id: childbirth-grant-2024-q1
+    jurisdiction: am
+    document_class: regulation
+    act_id: "186765"
+    base_act_id: "89331"
+    official_number: "N 275-Ն"
+    adopted: "2014-03-06"
+    title: "ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ ՈՐՈՇՈՒՄԸ ԵՐԵԽԱՅԻ ԾՆՆԴՅԱՆ ՄԻԱՆՎԱԳ ՆՊԱՍՏԻ ՉԱՓԸ ՍԱՀՄԱՆԵԼՈՒ, ԵՐԵԽԱՅԻ ԾՆՆԴՅԱՆ ՄԻԱՆՎԱԳ ՆՊԱՍՏ ՆՇԱՆԱԿԵԼՈՒ ԵՎ ՎՃԱՐԵԼՈՒ ԿԱՐԳԸ ՀԱՍՏԱՏԵԼՈՒ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/186765"
+    source_file: childbirth-grant-186765-2023-12-17.html
+    sha256: a9ace63583287558a5a12f399098d0e8f11049fbb81e668cdc84961b561e38ba
+    source_as_of: "2026-08-31"
+    expression_date: "2023-12-17"
+    expression_end_date: "2024-03-08"
+    language: hy
+    expected_article_count: 0
+    expected_appendix_count: 4
+
+  - source_id: childbirth-grant-2024-rest
+    jurisdiction: am
+    document_class: regulation
+    act_id: "190575"
+    base_act_id: "89331"
+    official_number: "N 275-Ն"
+    adopted: "2014-03-06"
+    title: "ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ ՈՐՈՇՈՒՄԸ ԵՐԵԽԱՅԻ ԾՆՆԴՅԱՆ ՄԻԱՆՎԱԳ ՆՊԱՍՏԻ ՉԱՓԸ ՍԱՀՄԱՆԵԼՈՒ, ԵՐԵԽԱՅԻ ԾՆՆԴՅԱՆ ՄԻԱՆՎԱԳ ՆՊԱՍՏ ՆՇԱՆԱԿԵԼՈՒ ԵՎ ՎՃԱՐԵԼՈՒ ԿԱՐԳԸ ՀԱՍՏԱՏԵԼՈՒ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/190575"
+    source_file: childbirth-grant-190575-2024-03-08.html
+    sha256: 5b38f0848de3feb48d31b5b99642229029a6f3c1c8941e3ddab86ecc01e23da6
+    source_as_of: "2026-08-31"
+    expression_date: "2024-03-08"
+    expression_end_date: "2026-08-14"
+    language: hy
+    expected_article_count: 0
+    expected_appendix_count: 4
+
+  - source_id: under-two-care-benefit-2024-jan-feb
+    jurisdiction: am
+    document_class: regulation
+    act_id: "186284"
+    base_act_id: "102848"
+    official_number: "N 1566-Ն"
+    adopted: "2015-12-29"
+    title: "ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ ՈՐՈՇՈՒՄԸ ՄԻՆՉԵՎ ԵՐԿՈՒ ՏԱՐԵԿԱՆ ԵՐԵԽԱՅԻ ԽՆԱՄՔԻ ՆՊԱՍՏ ՆՇԱՆԱԿԵԼՈՒ ԵՎ ՎՃԱՐԵԼՈՒ ԿԱՐԳԸ ՀԱՍՏԱՏԵԼՈՒ ԵՎ ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ 2014 ԹՎԱԿԱՆԻ ՀՈՒՆՎԱՐԻ 30-Ի N 145-Ն ՈՐՈՇՄԱՆ ՄԵՋ ՓՈՓՈԽՈՒԹՅՈՒՆ ԿԱՏԱՐԵԼՈՒ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/186284"
+    source_file: under-two-care-benefit-186284-2023-12-01.html
+    sha256: b58ef4e1b9a6c6a4efe519cd414540946eec1676b220c8a64e9efe4694d02ab2
+    source_as_of: "2026-08-31"
+    expression_date: "2023-12-01"
+    expression_end_date: "2024-03-01"
+    language: hy
+    expected_article_count: 0
+    expected_appendix_count: 4
+
+  - source_id: under-two-care-benefit-2024-mar-dec
+    jurisdiction: am
+    document_class: regulation
+    act_id: "190187"
+    base_act_id: "102848"
+    official_number: "N 1566-Ն"
+    adopted: "2015-12-29"
+    title: "ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ ՈՐՈՇՈՒՄԸ ՄԻՆՉԵՎ ԵՐԿՈՒ ՏԱՐԵԿԱՆ ԵՐԵԽԱՅԻ ԽՆԱՄՔԻ ՆՊԱՍՏ ՆՇԱՆԱԿԵԼՈՒ ԵՎ ՎՃԱՐԵԼՈՒ ԿԱՐԳԸ ՀԱՍՏԱՏԵԼՈՒ ԵՎ ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ 2014 ԹՎԱԿԱՆԻ ՀՈՒՆՎԱՐԻ 30-Ի N 145-Ն ՈՐՈՇՄԱՆ ՄԵՋ ՓՈՓՈԽՈՒԹՅՈՒՆ ԿԱՏԱՐԵԼՈՒ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/190187"
+    source_file: under-two-care-benefit-190187-2024-03-01.html
+    sha256: c2d4ce162e081292586fd5d341f3240becc49049aa8b2710daad2c74d6482286
+    source_as_of: "2026-08-31"
+    expression_date: "2024-03-01"
+    expression_end_date: "2025-02-21"
+    language: hy
+    expected_article_count: 0
+    expected_appendix_count: 4
+
+  - source_id: social-allowances-2024
+    jurisdiction: am
+    document_class: regulation
+    act_id: "179721"
+    base_act_id: "87643"
+    official_number: "N 1489-Ն"
+    adopted: "2013-12-26"
+    title: "ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ ՈՐՈՇՈՒՄԸ ԾԵՐՈՒԹՅԱՆ, ՀԱՇՄԱՆԴԱՄՈՒԹՅԱՆ, ԿԵՐԱԿՐՈՂԻՆ ԿՈՐՑՆԵԼՈՒ ԴԵՊՔՈՒՄ ՆՊԱՍՏՆԵՐԻ ԵՎ ԹԱՂՄԱՆ ՆՊԱՍՏԻ ՉԱՓԵՐԸ ՍԱՀՄԱՆԵԼՈՒ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/179721"
+    source_file: social-allowances-179721-2023-06-30.html
+    sha256: 0a46af3118a3b37604444afb68e537f3a1c1d9e4508659f31092df1f36845359
+    source_as_of: "2026-08-31"
+    expression_date: "2023-06-30"
+    expression_end_date: "2026-04-01"
+    language: hy
+    expected_article_count: 0
+    expected_appendix_count: 0
+
+  - source_id: pension-parameters-2024
+    jurisdiction: am
+    document_class: regulation
+    act_id: "179718"
+    base_act_id: "64854"
+    official_number: "N 1734-Ն"
+    adopted: "2010-12-30"
+    title: "ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ ՈՐՈՇՈՒՄԸ ՀԻՄՆԱԿԱՆ ԿԵՆՍԱԹՈՇԱԿԻ, ՆՎԱԶԱԳՈՒՅՆ ԿԵՆՍԱԹՈՇԱԿԻ ԵՎ ԹԱՂՄԱՆ ՆՊԱՍՏԻ ՉԱՓԵՐԸ, ՍՏԱԺԻ ՄԵԿ ՏԱՐՎԱ ԱՐԺԵՔԸ, ՊԱՐՏԱԴԻՐ ԺԱՄԿԵՏԱՅԻՆ ԶԻՆՎՈՐԱԿԱՆ ԾԱՌԱՅՈՒԹՅԱՆ ՇԱՐՔԱՅԻՆ ԿԱԶՄԻ ԶԻՆԾԱՌԱՅՈՂՆԵՐԻ ՀԱՇՄԱՆԴԱՄՈՒԹՅԱՆ ԵՎ ՆՐԱՆՑ ԸՆՏԱՆԻՔՆԵՐԻ ԱՆԴԱՄՆԵՐԻ ԿԵՐԱԿՐՈՂԻՆ ԿՈՐՑՆԵԼՈՒ ԴԵՊՔՈՒՄ ԿԵՆՍԱԹՈՇԱԿՆԵՐԻ ՉԱՓԵՐԸ ՍԱՀՄԱՆԵԼՈՒ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/179718"
+    source_file: pension-parameters-179718-2023-06-30.html
+    sha256: 0a4a21e88dd644474cd60cb47950bae9d1e8bfe18c0055b3b13bc18002ae944a
+    source_as_of: "2026-08-31"
+    expression_date: "2023-06-30"
+    expression_end_date: "2026-04-01"
+    language: hy
+    expected_article_count: 0
+    expected_appendix_count: 0
