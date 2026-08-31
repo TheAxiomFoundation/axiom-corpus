@@ -1,0 +1,42 @@
+# Complete half-open 2024 expression chain for Government Decision N 145-Ն.
+# The March 30 boundary carries Decision N 442-Ն's change to the temporary
+# income-update treatment in point 6.2; both expressions retain the same
+# vulnerability formula and core benefit-administration rules.
+documents:
+  - source_id: state-benefits-implementation-2024-q1
+    jurisdiction: am
+    document_class: regulation
+    act_id: "187129"
+    base_act_id: "88741"
+    official_number: "N 145-Ն"
+    adopted: "2014-01-30"
+    title: "ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ ՈՐՈՇՈՒՄԸ «ՊԵՏԱԿԱՆ ՆՊԱՍՏՆԵՐԻ ՄԱՍԻՆ» ՀՀ ՕՐԵՆՔԻ ԿԻՐԱՐԿՈՒՄՆ ԱՊԱՀՈՎԵԼՈՒ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/187129"
+    source_file: state-benefits-implementation-187129-2023-12-15.html
+    sha256: 29c2afd8ba90d46385d7b5235450d3b361377ad431d9dd60a083aa63b4dae4dc
+    source_as_of: "2026-08-31"
+    expression_date: "2023-12-15"
+    expression_end_date: "2024-03-30"
+    language: hy
+    expected_body_section_count: 3
+    expected_article_count: 0
+    expected_appendix_count: 15
+
+  - source_id: state-benefits-implementation-2024-rest
+    jurisdiction: am
+    document_class: regulation
+    act_id: "191274"
+    base_act_id: "88741"
+    official_number: "N 145-Ն"
+    adopted: "2014-01-30"
+    title: "ՀՀ ԿԱՌԱՎԱՐՈՒԹՅԱՆ ՈՐՈՇՈՒՄԸ «ՊԵՏԱԿԱՆ ՆՊԱՍՏՆԵՐԻ ՄԱՍԻՆ» ՀՀ ՕՐԵՆՔԻ ԿԻՐԱՐԿՈՒՄՆ ԱՊԱՀՈՎԵԼՈՒ ՄԱՍԻՆ"
+    source_url: "https://www.arlis.am/hy/acts/191274"
+    source_file: state-benefits-implementation-191274-2024-03-30.html
+    sha256: 464f0fd9fe29e1d748dfe47e0c51bbb448464f85bc4939fe6f31a8e54e8bb81a
+    source_as_of: "2026-08-31"
+    expression_date: "2024-03-30"
+    expression_end_date: "2025-01-23"
+    language: hy
+    expected_body_section_count: 3
+    expected_article_count: 0
+    expected_appendix_count: 15

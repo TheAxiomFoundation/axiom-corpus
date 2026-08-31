@@ -126,6 +126,7 @@ class ArmeniaARLISSource:
     expression_date: str
     expression_end_date: str | None
     language: str
+    expected_body_section_count: int
     expected_article_count: int
     expected_appendix_count: int | None
 
@@ -209,6 +210,16 @@ class ArmeniaARLISSource:
                 f"ARLIS source {source_id} requires a non-negative expected_appendix_count"
             )
 
+        expected_body_section_count = data.get("expected_body_section_count", 1)
+        if (
+            isinstance(expected_body_section_count, bool)
+            or not isinstance(expected_body_section_count, int)
+            or expected_body_section_count not in {1, 3}
+        ):
+            raise ValueError(
+                f"ARLIS source {source_id} expected_body_section_count must be 1 or 3"
+            )
+
         expression_date = _required_iso_date(data, "expression_date")
         expression_end_date = _optional_iso_date(data, "expression_end_date")
         if expression_end_date is not None and expression_end_date <= expression_date:
@@ -236,6 +247,7 @@ class ArmeniaARLISSource:
             expression_date=expression_date,
             expression_end_date=expression_end_date,
             language=language,
+            expected_body_section_count=expected_body_section_count,
             expected_article_count=expected_article_count,
             expected_appendix_count=expected_appendix_count,
         )
@@ -581,6 +593,81 @@ def extract_armenia_arlis(
     )
 
 
+def _require_legal_body_section(
+    html: str | bytes,
+    *,
+    soup: BeautifulSoup,
+    source: ArmeniaARLISSource,
+) -> Tag:
+    """Authenticate ARLIS body wrappers and return the isolated legal section."""
+    act_bodies = soup.select("[id='act_body']")
+    if len(act_bodies) != 1:
+        raise ValueError(
+            f"ARLIS source {source.source_id} must contain exactly one #act_body, "
+            f"got {len(act_bodies)}"
+        )
+    act_body = act_bodies[0]
+    roots = act_body.select(".act-block__section")
+    expected = source.expected_body_section_count
+    if len(roots) != expected:
+        raise ValueError(
+            f"ARLIS source {source.source_id} must contain exactly {expected} "
+            f"#act_body .act-block__section bodies, got {len(roots)}"
+        )
+    if expected == 1:
+        return roots[0]
+
+    main_roots = act_body.select(".act-block_main > .act-block__section")
+    comparison_roots = act_body.select(
+        ".compare-modal__part > .act-block > .act-block__section"
+    )
+    authenticated_ids = {id(root) for root in (*main_roots, *comparison_roots)}
+    if (
+        len(main_roots) != 1
+        or len(comparison_roots) != 2
+        or authenticated_ids != {id(root) for root in roots}
+    ):
+        raise ValueError(
+            f"ARLIS source {source.source_id} three-body layout must contain one "
+            "main legal section and two comparison placeholders"
+        )
+    for comparison_root in comparison_roots:
+        if any(
+            isinstance(child, Tag) or str(child).strip()
+            for child in comparison_root.contents
+        ):
+            raise ValueError(
+                f"ARLIS source {source.source_id} comparison body must be empty"
+            )
+
+    # Large legacy Word exports can leave a table open across the main section's
+    # closing tag. lxml then recovers the surrounding ARLIS comparison UI inside
+    # the legal root. The stdlib parser honors that explicit closing tag; reparse
+    # only its authenticated main-section bytes with lxml to recover flat legal
+    # blocks without admitting page chrome.
+    boundary_soup = BeautifulSoup(html, "html.parser")
+    boundary_bodies = boundary_soup.select("[id='act_body']")
+    boundary_roots = boundary_soup.select(
+        "[id='act_body'] .act-block_main > .act-block__section"
+    )
+    if len(boundary_bodies) != 1 or len(boundary_roots) != 1:
+        raise ValueError(
+            f"ARLIS source {source.source_id} cannot isolate exactly one main legal body"
+        )
+    if boundary_roots[0].find(class_="act-block__section") is not None:
+        raise ValueError(
+            f"ARLIS source {source.source_id} main legal body contains a nested body section"
+        )
+    isolated_soup = BeautifulSoup(str(boundary_roots[0]), "lxml")
+    isolated_roots = isolated_soup.select(".act-block__section")
+    if len(isolated_roots) != 1:
+        raise ValueError(
+            f"ARLIS source {source.source_id} isolated legal body is ambiguous: "
+            f"got {len(isolated_roots)} sections"
+        )
+    return isolated_roots[0]
+
+
 def parse_armenia_arlis_html(
     html: str | bytes,
     *,
@@ -588,13 +675,7 @@ def parse_armenia_arlis_html(
 ) -> tuple[ArmeniaARLISProvision, ...]:
     """Parse one official ARLIS consolidation without dropping legal blocks."""
     soup = BeautifulSoup(html, "lxml")
-    roots = soup.select("#act_body .act-block__section")
-    if len(roots) != 1:
-        raise ValueError(
-            f"ARLIS source {source.source_id} must contain exactly one "
-            f"#act_body .act-block__section, got {len(roots)}"
-        )
-    root = roots[0]
+    root = _require_legal_body_section(html, soup=soup, source=source)
     validity_kind = _require_expression_date(soup, source)
     _require_source_identity(soup, source, validity_kind=validity_kind)
     candidate_headers: dict[int, _ArticleHeader] = {}
@@ -1418,6 +1499,8 @@ def _source_metadata(source: ArmeniaARLISSource) -> dict[str, Any]:
         "expected_article_count": source.expected_article_count,
         "verified_source_sha256": source.sha256,
     }
+    if source.expected_body_section_count != 1:
+        metadata["expected_body_section_count"] = source.expected_body_section_count
     if source.expression_end_date is not None:
         metadata["expression_end_date"] = source.expression_end_date
     if source.expected_appendix_count is not None:

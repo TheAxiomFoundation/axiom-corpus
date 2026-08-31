@@ -23,6 +23,9 @@ AM_TAX_CODE_2024_CONTINUITY_VERSION = "2026-08-30-am-tax-code-2024-continuity"
 AM_IMPLEMENTING_REGULATIONS_2024_VERSION = (
     "2026-08-31-am-implementing-regulations-2024"
 )
+AM_STATE_BENEFITS_IMPLEMENTATION_2024_VERSION = (
+    "2026-08-31-am-state-benefits-implementation-2024"
+)
 
 SAMPLE_ARLIS_HTML = """\
 <!doctype html>
@@ -255,6 +258,45 @@ NUMBERED_APPENDICES_66111_HTML = f"""\
 """
 
 
+def _three_body_regulation_html(
+    *,
+    placeholder_count: int = 2,
+    placeholder_body: str = "",
+) -> str:
+    placeholders = "".join(
+        f"""\
+      <div class="compare-modal__part">
+        <div class="act-block">
+          <div class="act-block__section">{placeholder_body}</div>
+        </div>
+      </div>
+"""
+        for _ in range(placeholder_count)
+    )
+    html = MAIN_ACT_179204_HTML.replace(
+        """\
+    <div id="act_body">
+      <div class="act-block__section">""",
+        """\
+    <div id="act_body">
+      <div class="act-block act-block_main">
+      <div class="act-block__section">""",
+        1,
+    )
+    return html.replace(
+        """\
+      </div>
+    </div>
+  </body>""",
+        f"""\
+      </div>
+      </div>
+{placeholders}    </div>
+  </body>""",
+        1,
+    )
+
+
 def _source_mapping(*, sha256: str, expected_article_count: int = 2) -> dict[str, object]:
     return {
         "source_id": "sample-statute",
@@ -462,8 +504,10 @@ def test_extract_armenia_arlis_writes_versioned_complete_artifacts(tmp_path):
     assert article.language == "hy"
     assert article.source_path is not None
     assert article.source_path.endswith(f"/am/statute/{AM_TAXBEN_CORE_VERSION}/arlis/sample.html")
+    assert "expected_body_section_count" not in article.metadata
     assert inventory[0].source_format == ARMENIA_ARLIS_SOURCE_FORMAT
     assert inventory[0].sha256 == hashlib.sha256(content).hexdigest()
+    assert "expected_body_section_count" not in inventory[0].metadata
 
 
 def test_extract_main_act_regulation_writes_regulation_scope(tmp_path):
@@ -588,6 +632,92 @@ def test_parse_nested_bare_appendix_label_does_not_duplicate_decision_appendix()
     ]
     assert provisions[2].body is not None
     assert "Հավելված N 1\nՆԵՐԴՐՎԱԾ ՁԵՎ" in provisions[2].body
+
+
+def test_parse_explicit_three_body_layout_isolates_the_main_legal_section():
+    content = _three_body_regulation_html().encode()
+    mapping = _main_act_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    mapping["expected_body_section_count"] = 3
+    source = ArmeniaARLISSource.from_mapping(mapping)
+
+    provisions = parse_armenia_arlis_html(content, source=source)
+
+    assert [item.citation_path for item in provisions] == [
+        "am/regulation/act-179204",
+        "am/regulation/act-179204/appendix-1",
+    ]
+    assert provisions[0].body is not None
+    assert "Հիմք ընդունելով" in provisions[0].body
+    assert "compare-modal" not in provisions[0].body
+
+
+def test_parse_ordinary_source_does_not_implicitly_admit_comparison_bodies():
+    content = _three_body_regulation_html().encode()
+    source = ArmeniaARLISSource.from_mapping(
+        _main_act_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    )
+
+    with pytest.raises(ValueError, match="exactly 1 .* bodies, got 3"):
+        parse_armenia_arlis_html(content, source=source)
+
+
+@pytest.mark.parametrize("placeholder_count", [1, 3])
+def test_parse_three_body_source_rejects_missing_or_extra_body(placeholder_count):
+    content = _three_body_regulation_html(placeholder_count=placeholder_count).encode()
+    mapping = _main_act_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    mapping["expected_body_section_count"] = 3
+    source = ArmeniaARLISSource.from_mapping(mapping)
+
+    with pytest.raises(ValueError, match="exactly 3 .* bodies"):
+        parse_armenia_arlis_html(content, source=source)
+
+
+def test_parse_three_body_source_rejects_nonempty_comparison_body():
+    content = _three_body_regulation_html(placeholder_body="ՉՎՍՏԱՀՎԱԾ ՏԵՔՍՏ").encode()
+    mapping = _main_act_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    mapping["expected_body_section_count"] = 3
+    source = ArmeniaARLISSource.from_mapping(mapping)
+
+    with pytest.raises(ValueError, match="comparison body must be empty"):
+        parse_armenia_arlis_html(content, source=source)
+
+
+def test_parse_three_body_source_rejects_ambiguous_placeholder_parent():
+    html = _three_body_regulation_html().replace(
+        '<div class="compare-modal__part">',
+        '<div class="untrusted-placeholder">',
+        1,
+    )
+    content = html.encode()
+    mapping = _main_act_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    mapping["expected_body_section_count"] = 3
+    source = ArmeniaARLISSource.from_mapping(mapping)
+
+    with pytest.raises(ValueError, match="one main legal section and two comparison"):
+        parse_armenia_arlis_html(content, source=source)
+
+
+def test_parse_three_body_source_rejects_duplicate_act_body():
+    html = _three_body_regulation_html().replace(
+        "</body>",
+        '<div id="act_body"></div></body>',
+    )
+    content = html.encode()
+    mapping = _main_act_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    mapping["expected_body_section_count"] = 3
+    source = ArmeniaARLISSource.from_mapping(mapping)
+
+    with pytest.raises(ValueError, match="exactly one #act_body, got 2"):
+        parse_armenia_arlis_html(content, source=source)
+
+
+@pytest.mark.parametrize("value", [True, 0, 2, 4, "3"])
+def test_manifest_rejects_unrecognized_body_section_count(value):
+    mapping = _main_act_regulation_mapping(sha256="0" * 64)
+    mapping["expected_body_section_count"] = value
+
+    with pytest.raises(ValueError, match="expected_body_section_count must be 1 or 3"):
+        ArmeniaARLISSource.from_mapping(mapping)
 
 
 def test_manifest_defaults_to_statute_for_existing_callers():
@@ -1275,6 +1405,182 @@ def test_checked_in_implementing_regulations_bind_2024_rules_and_amounts(tmp_pat
         "նվազագույն կենսաթոշակի չափը` 36000 դրամ",
     ):
         assert value in pensions.body
+
+
+def test_state_benefits_implementation_manifest_covers_2024_without_date_gaps():
+    manifest = ArmeniaARLISManifest.load(
+        REPO_ROOT / "manifests" / "am-state-benefits-implementation-2024-arlis.yaml"
+    )
+
+    assert [
+        (
+            source.source_id,
+            source.act_id,
+            source.base_act_id,
+            source.expression_date,
+            source.expression_end_date,
+            source.expected_body_section_count,
+            source.expected_appendix_count,
+        )
+        for source in manifest.documents
+    ] == [
+        (
+            "state-benefits-implementation-2024-q1",
+            "187129",
+            "88741",
+            "2023-12-15",
+            "2024-03-30",
+            3,
+            15,
+        ),
+        (
+            "state-benefits-implementation-2024-rest",
+            "191274",
+            "88741",
+            "2024-03-30",
+            "2025-01-23",
+            3,
+            15,
+        ),
+    ]
+    intervals = [
+        (source.expression_date, source.expression_end_date)
+        for source in manifest.documents
+    ]
+    assert intervals[0][0] <= "2024-01-01"
+    assert intervals[-1][1] is not None
+    assert intervals[-1][1] > "2024-12-31"
+    assert all(
+        left[1] == right[0]
+        for left, right in zip(intervals[:-1], intervals[1:], strict=True)
+    )
+
+
+def test_checked_in_state_benefits_implementation_binds_2024_rules(tmp_path):
+    source_dir = (
+        REPO_ROOT
+        / "data"
+        / "corpus"
+        / "sources"
+        / "am"
+        / "regulation"
+        / AM_STATE_BENEFITS_IMPLEMENTATION_2024_VERSION
+        / "arlis"
+    )
+    manifest_path = (
+        REPO_ROOT
+        / "manifests"
+        / "am-state-benefits-implementation-2024-arlis.yaml"
+    )
+    manifest = ArmeniaARLISManifest.load(manifest_path)
+
+    for source in manifest.documents:
+        content = (source_dir / source.source_file).read_bytes()
+        assert hashlib.sha256(content).hexdigest() == source.sha256
+
+    report = extract_armenia_arlis(
+        CorpusArtifactStore(tmp_path / "corpus"),
+        version=AM_STATE_BENEFITS_IMPLEMENTATION_2024_VERSION,
+        manifest_path=manifest_path,
+        source_dir=source_dir,
+    )
+
+    assert {
+        item.source_id: (item.article_count, item.structural_count)
+        for item in report.document_reports
+    } == {
+        "state-benefits-implementation-2024-q1": (0, 15),
+        "state-benefits-implementation-2024-rest": (0, 15),
+    }
+    assert report.document_count == 2
+    assert report.article_count == 0
+    assert report.structural_count == 30
+    assert report.provisions_written == 32
+    assert report.coverage.complete
+
+    records = load_provisions(report.provisions_path)
+    records_by_path = {record.citation_path: record for record in records}
+    assert len(records_by_path) == len(records) == 32
+    expected_appendices = {
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "8.1",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+    }
+    for act_id in ("187129", "191274"):
+        document_path = f"am/regulation/act-{act_id}"
+        assert {
+            path.removeprefix(f"{document_path}/appendix-")
+            for path in records_by_path
+            if path.startswith(f"{document_path}/appendix-")
+        } == expected_appendices
+        document = records_by_path[document_path]
+        assert document.metadata["expected_body_section_count"] == 3
+        assert document.identifiers["arlis.am:base_act_id"] == "88741"
+
+        score = records_by_path[f"{document_path}/appendix-2"]
+        assert score.body is not None
+        for value in (
+            "ֆունկցիոնալության խորն աստիճանի սահմանափակում ունեցող անձ | Հ11 | 48",
+            "հաշմանդամություն ունեցող երեխա | Հ44 | 45",
+            "երեխա` մինչև 5 տարեկանը լրանալը | Ա55 | 35",
+            "Pմիջ. = (1/n) x (P1 + P2 +.....+ Pn)",
+            "Kընտ = 1,00 + 0,02 m",
+            "Kեր = 1,00 + 0,01 m",
+            "վարկային պարտավորությունների գծով 100 հազար դրամ և ավելի",
+            "Kեկ = 1.2 – 0,022",
+            (
+                "P = Pմիջ x Kընտ x Kեր x Kտ x Kբն x Kավ x Kձ x Kագ x "
+                "Kէ x Kբգ x Kվարկ x Kեկ x Kմաքս x Kբ"
+            ),
+            "մեկ հարյուրերորդականի ճշտությամբ",
+        ):
+            assert value in score.body
+
+        administration = records_by_path[f"{document_path}/appendix-8"]
+        assert administration.body is not None
+        for value in (
+            "անապահովության սահմանային մեծության միավորից բարձր միավոր ունեցող ընտանիքին",
+            "դիմելու ամսվան հաջորդող ամսվանից",
+            "նպաստի իրավունք չունեցող և «0» միավորից բարձր",
+            "Եռամսյակային հրատապ օգնությունը նշանակվում է 3 ամիս ժամկետով",
+        ):
+            assert value in administration.body
+
+        final_appendix = records_by_path[f"{document_path}/appendix-14"]
+        assert final_appendix.body is not None
+        assert "հավելվածն ուժը կորցրել է 31.03.22 N 415-Ն" in final_appendix.body
+
+    q1_document = records_by_path["am/regulation/act-187129"]
+    assert q1_document.expression_date == "2023-12-15"
+    assert q1_document.metadata["expression_end_date"] == "2024-03-30"
+    assert q1_document.body is not None
+    assert "մինչև 2024 թվականի մարտի 1-ը չեն հաշվարկվում" in q1_document.body
+
+    rest_document = records_by_path["am/regulation/act-191274"]
+    assert rest_document.expression_date == "2024-03-30"
+    assert rest_document.metadata["expression_end_date"] == "2025-01-23"
+    assert rest_document.body is not None
+    assert "մինչև 2024 թվականի հուլիսի 1-ը չեն հաշվարկվում" in rest_document.body
+    assert "28.03.24 N 442-Ն" in rest_document.body
+
+    page_chrome = ("Share Act", "Տպել ամբողջ ակտը", "compare-modal")
+    assert all(
+        marker not in (record.heading or "") and marker not in (record.body or "")
+        for record in records
+        for marker in page_chrome
+    )
 
 
 def test_extract_armenia_arlis_rejects_hash_before_writing_artifacts(tmp_path):
