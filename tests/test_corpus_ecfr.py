@@ -90,6 +90,47 @@ SAMPLE_SUBPART_STRUCTURE = {
     ],
 }
 
+SAMPLE_APPENDIX_STRUCTURE = {
+    "identifier": "45",
+    "label": "Title 45-Public Welfare",
+    "type": "title",
+    "children": [
+        {
+            "identifier": "VI",
+            "label": "Chapter VI-National Science Foundation",
+            "type": "chapter",
+            "children": [
+                {
+                    "identifier": "604",
+                    "label": "Part 604-New Restrictions on Lobbying",
+                    "type": "part",
+                    "children": [
+                        {
+                            "identifier": "604.100",
+                            "label": "§ 604.100 Conditions on use of funds.",
+                            "label_description": "Conditions on use of funds.",
+                            "type": "section",
+                        },
+                        {
+                            "identifier": "Appendix A to Part 604",
+                            "label": (
+                                "Appendix A to Part 604-Certification Regarding "
+                                "Lobbying"
+                            ),
+                            "type": "appendix",
+                        },
+                        {
+                            "identifier": "Appendix B to Part 604",
+                            "label": "Appendix B to Part 604-Disclosure Form",
+                            "type": "appendix",
+                        },
+                    ],
+                }
+            ],
+        }
+    ],
+}
+
 SAMPLE_TITLE_XML = """
 <ECFR>
   <DIV5 N="273" TYPE="PART">
@@ -228,6 +269,30 @@ SAMPLE_INTERLEAVED_PART_XML = """
 </ECFR>
 """
 
+SAMPLE_APPENDIX_XML = """
+<ECFR>
+  <DIV5 N="604" TYPE="PART">
+    <HEAD>PART 604-NEW RESTRICTIONS ON LOBBYING</HEAD>
+    <DIV8 N="§ 604.100" TYPE="SECTION" NODE="45:3.1.1.2.40.1.1.1">
+      <HEAD>§ 604.100 Conditions on use of funds.</HEAD>
+      <P>(a) No appropriated funds may be used for covered lobbying.</P>
+    </DIV8>
+    <DIV9 N="Appendix A to Part 604" TYPE="APPENDIX" NODE="45:3.1.1.2.40.1.3">
+      <HEAD>Appendix A to Part 604-Certification Regarding Lobbying</HEAD>
+      <HD2>Certification for Contracts, Grants, Loans, and Cooperative Agreements</HD2>
+      <P>The undersigned certifies, to the best of his or her knowledge and belief.</P>
+      <FP>(3) The undersigned shall require that the language of this certification be included in all subcontracts.</FP>
+    </DIV9>
+    <DIV9 N="Appendix B to Part 604" TYPE="APPENDIX" NODE="45:3.1.1.2.40.1.4">
+      <HEAD>Appendix B to Part 604-Disclosure Form</HEAD>
+      <FP><IMG src="/graphics/EC01JA91.007.gif"/></FP>
+      <FP><IMG src="/graphics/EC01JA91.008.gif"/></FP>
+      <FP><IMG src="/graphics/EC01JA91.009.gif"/></FP>
+    </DIV9>
+  </DIV5>
+</ECFR>
+"""
+
 OFFICIAL_TITLE_45_PART_1302_XML = (
     Path(__file__).parents[1]
     / "data/corpus/sources/us/regulation/"
@@ -283,6 +348,77 @@ def test_build_ecfr_inventory_from_structure_includes_subparts():
         "sources/us/regulation/2026-04-29-title-7-part-273/ecfr/title-7-part-273.xml"
     )
     assert inventory.items[0].sha256 == "abc123"
+
+
+def test_build_ecfr_inventory_from_structure_includes_appendices():
+    inventory = build_ecfr_inventory_from_structures(
+        (SAMPLE_APPENDIX_STRUCTURE,),
+        run_id="2026-08-30-title-45-part-604",
+        only_part="604",
+    )
+
+    assert [item.citation_path for item in inventory.items] == [
+        "us/regulation/45/604",
+        "us/regulation/45/604/100",
+        "us/regulation/45/604/appendix-a",
+        "us/regulation/45/604/appendix-b",
+    ]
+    appendix = inventory.items[2]
+    assert appendix.metadata["kind"] == "appendix"
+    assert appendix.metadata["parent_citation_path"] == "us/regulation/45/604"
+    assert appendix.metadata["heading"] == "Certification Regarding Lobbying"
+    assert appendix.source_url.endswith(
+        "/appendix-Appendix%20A%20to%20Part%20604"
+    )
+
+
+def test_build_ecfr_inventory_fails_closed_for_unsupported_appendix_shape():
+    unsupported = {
+        **SAMPLE_APPENDIX_STRUCTURE,
+        "children": [
+            {
+                **SAMPLE_APPENDIX_STRUCTURE["children"][0],
+                "children": [
+                    {
+                        **SAMPLE_APPENDIX_STRUCTURE["children"][0]["children"][0],
+                        "children": [
+                            {
+                                "identifier": "Appendix to Subpart A of Part 604",
+                                "label": "Appendix to Subpart A of Part 604",
+                                "type": "appendix",
+                            }
+                        ],
+                    }
+                ],
+            }
+        ],
+    }
+
+    with pytest.raises(
+        ValueError,
+        match="unsupported nonreserved eCFR appendix identifier",
+    ):
+        build_ecfr_inventory_from_structures((unsupported,), only_part="604")
+
+
+def test_iter_ecfr_title_provisions_fails_closed_for_unsupported_appendix_xml():
+    unsupported_xml = SAMPLE_APPENDIX_XML.replace(
+        "Appendix A to Part 604",
+        "Appendix II to Part 604",
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="unsupported nonreserved eCFR appendix XML identifier",
+    ):
+        tuple(
+            iter_ecfr_title_provisions(
+                unsupported_xml,
+                (EcfrPartTarget(title=45, part="604", chapter="VI"),),
+                version="2026-08-30-title-45-part-604",
+                source_path="ecfr/title-45-part-604.xml",
+            )
+        )
 
 
 def test_build_ecfr_inventory_filters_exact_section_with_ancestors():
@@ -544,6 +680,71 @@ def test_iter_ecfr_title_provisions_keeps_document_order_for_interleaved_parts()
     assert subpart_section.level == 2
 
 
+def test_iter_ecfr_title_provisions_preserves_appendix_text_and_images():
+    records = tuple(
+        iter_ecfr_title_provisions(
+            SAMPLE_APPENDIX_XML,
+            (EcfrPartTarget(title=45, part="604", chapter="VI"),),
+            version="2026-08-30-title-45-part-604",
+            source_path=(
+                "sources/us/regulation/2026-08-30-title-45-part-604/"
+                "ecfr/title-45-part-604.xml"
+            ),
+        )
+    )
+
+    assert [record.citation_path for record in records] == [
+        "us/regulation/45/604",
+        "us/regulation/45/604/100",
+        "us/regulation/45/604/appendix-a",
+        "us/regulation/45/604/appendix-b",
+    ]
+    appendix_a = records[2]
+    assert appendix_a.kind == "appendix"
+    assert appendix_a.parent_citation_path == "us/regulation/45/604"
+    assert appendix_a.identifiers["ecfr:appendix"] == "a"
+    assert appendix_a.ordinal is not None
+    assert records[1].ordinal is not None
+    assert appendix_a.ordinal > records[1].ordinal
+    assert appendix_a.body is not None
+    assert "Certification for Contracts" in appendix_a.body
+    assert "included in all subcontracts" in appendix_a.body
+    appendix_b = records[3]
+    assert appendix_b.ordinal is not None
+    assert appendix_b.ordinal > appendix_a.ordinal
+    assert appendix_b.body is not None
+    assert appendix_b.body.split("\n\n") == [
+        "[Official source image: ecfr/graphics/EC01JA91.007.png]",
+        "[Official source image: ecfr/graphics/EC01JA91.008.png]",
+        "[Official source image: ecfr/graphics/EC01JA91.009.png]",
+    ]
+
+
+def test_iter_ecfr_title_provisions_applies_appendix_formula_transcriptions():
+    appendix_formula_xml = SAMPLE_APPENDIX_XML.replace(
+        "<P>The undersigned certifies, to the best of his or her knowledge and belief.</P>",
+        (
+            "<P>The undersigned certifies, to the best of his or her knowledge "
+            "and belief.</P><MATH><IMG src=\"/graphics/ER07OC94.022.gif\"/></MATH>"
+        ),
+    )
+    records = tuple(
+        iter_ecfr_title_provisions(
+            appendix_formula_xml,
+            (EcfrPartTarget(title=45, part="604", chapter="VI"),),
+            version="2026-08-30-title-45-part-604",
+            source_path="ecfr/title-45-part-604.xml",
+            graphic_transcriptions={"ER07OC94.022": "X = (a * b) / c"},
+        )
+    )
+
+    assert records[2].body is not None
+    assert (
+        "Formula (ER07OC94.022, verified official image): X = (a * b) / c"
+        in records[2].body
+    )
+
+
 def test_extract_ecfr_writes_source_inventory_provisions_and_coverage(tmp_path, monkeypatch):
     import axiom_corpus.corpus.ecfr as ecfr
 
@@ -790,6 +991,63 @@ def test_extract_ecfr_archives_sha_bound_formula_graphics(tmp_path, monkeypatch)
     assert '"sha256"' in evidence_path.read_text()
     records = load_provisions(report.provisions_path)
     assert "verified official image" in (records[1].body or "")
+
+
+def test_extract_ecfr_archives_appendix_graphics_and_reports_complete_coverage(
+    tmp_path, monkeypatch
+):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    graphics = {
+        identifier: b"\x89PNG\r\n\x1a\n" + identifier.encode()
+        for identifier in (
+            "EC01JA91.007",
+            "EC01JA91.008",
+            "EC01JA91.009",
+        )
+    }
+    monkeypatch.setattr(
+        ecfr,
+        "fetch_ecfr_structure",
+        lambda title, as_of: SAMPLE_APPENDIX_STRUCTURE,
+    )
+    monkeypatch.setattr(
+        ecfr,
+        "fetch_ecfr_part_xml",
+        lambda title, part, as_of: SAMPLE_APPENDIX_XML,
+    )
+    monkeypatch.setattr(
+        ecfr,
+        "fetch_ecfr_graphic",
+        lambda identifier: graphics[identifier],
+    )
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_ecfr(
+        store,
+        version="2026-08-30",
+        as_of="2026-08-27",
+        expression_date=date(2026, 8, 27),
+        only_title=45,
+        only_part="604",
+    )
+
+    assert report.coverage.complete
+    assert report.provisions_written == 4
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us/regulation/45/604",
+        "us/regulation/45/604/100",
+        "us/regulation/45/604/appendix-a",
+        "us/regulation/45/604/appendix-b",
+    ]
+    for identifier, graphic in graphics.items():
+        graphic_path = (
+            store.root
+            / "sources/us/regulation/2026-08-30-title-45-part-604/"
+            / f"ecfr/graphics/{identifier}.png"
+        )
+        assert graphic_path.read_bytes() == graphic
 
 
 def test_extract_ecfr_reprocesses_complete_scope_for_graphic_transcriptions(
