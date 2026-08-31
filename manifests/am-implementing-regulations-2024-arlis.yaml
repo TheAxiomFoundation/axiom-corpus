@@ -22,6 +22,8 @@ documents:
     language: hy
     expected_article_count: 0
     expected_appendix_count: 1
+    expected_appendices:
+      - {label: "1", marker_role: authority}
 
   - source_id: childbirth-grant-2024-q1
     jurisdiction: am
@@ -40,6 +42,11 @@ documents:
     language: hy
     expected_article_count: 0
     expected_appendix_count: 4
+    expected_appendices:
+      - {label: "1", marker_role: authority}
+      - {label: "2", marker_role: authority}
+      - {label: "3", marker_role: authority}
+      - {label: "4", marker_role: authority}
 
   - source_id: childbirth-grant-2024-rest
     jurisdiction: am
@@ -58,6 +65,11 @@ documents:
     language: hy
     expected_article_count: 0
     expected_appendix_count: 4
+    expected_appendices:
+      - {label: "1", marker_role: authority}
+      - {label: "2", marker_role: authority}
+      - {label: "3", marker_role: authority}
+      - {label: "4", marker_role: authority}
 
   - source_id: under-two-care-benefit-2024-jan-feb
     jurisdiction: am
@@ -76,6 +88,11 @@ documents:
     language: hy
     expected_article_count: 0
     expected_appendix_count: 4
+    expected_appendices:
+      - {label: "1", marker_role: authority}
+      - {label: "2", marker_role: authority}
+      - {label: "3", marker_role: authority}
+      - {label: "4", marker_role: authority}
     expected_nested_appendices:
       "3": ["1", "2"]
 
@@ -96,6 +113,11 @@ documents:
     language: hy
     expected_article_count: 0
     expected_appendix_count: 4
+    expected_appendices:
+      - {label: "1", marker_role: authority}
+      - {label: "2", marker_role: authority}
+      - {label: "3", marker_role: authority}
+      - {label: "4", marker_role: authority}
     expected_nested_appendices:
       "3": ["1", "2"]
 
@@ -116,6 +138,7 @@ documents:
     language: hy
     expected_article_count: 0
     expected_appendix_count: 0
+    expected_appendices: []
 
   - source_id: pension-parameters-2024
     jurisdiction: am
@@ -134,3 +157,4 @@ documents:
     language: hy
     expected_article_count: 0
     expected_appendix_count: 0
+    expected_appendices: []

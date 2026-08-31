@@ -20,9 +20,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 AM_TAXBEN_CORE_VERSION = "2026-08-29-am-taxben-core"
 AM_RULESPEC_SOURCE_PACK_VERSION = "2026-08-30-am-rulespec-source-pack"
 AM_TAX_CODE_2024_CONTINUITY_VERSION = "2026-08-30-am-tax-code-2024-continuity"
-AM_IMPLEMENTING_REGULATIONS_2024_VERSION = (
-    "2026-08-31-am-implementing-regulations-2024"
-)
+AM_IMPLEMENTING_REGULATIONS_2024_VERSION = "2026-08-31-am-implementing-regulations-2024"
 
 SAMPLE_ARLIS_HTML = """\
 <!doctype html>
@@ -300,6 +298,7 @@ def _main_act_regulation_mapping(*, sha256: str) -> dict[str, object]:
         "language": "hy",
         "expected_article_count": 0,
         "expected_appendix_count": 1,
+        "expected_appendices": [{"label": "1", "marker_role": "authority"}],
     }
 
 
@@ -322,6 +321,7 @@ def _incorporation_regulation_mapping(*, sha256: str) -> dict[str, object]:
         "language": "hy",
         "expected_article_count": 0,
         "expected_appendix_count": 1,
+        "expected_appendices": [{"label": "1", "marker_role": "authority"}],
     }
 
 
@@ -343,6 +343,10 @@ def _numbered_appendices_regulation_mapping(*, sha256: str) -> dict[str, object]
         "language": "hy",
         "expected_article_count": 0,
         "expected_appendix_count": 2,
+        "expected_appendices": [
+            {"label": "1", "marker_role": "authority"},
+            {"label": "2", "marker_role": "authority"},
+        ],
     }
 
 
@@ -577,9 +581,7 @@ def test_parse_manifested_nested_appendix_is_hierarchical_and_addressable():
     ).encode()
     source = ArmeniaARLISSource.from_mapping(
         {
-            **_numbered_appendices_regulation_mapping(
-                sha256=hashlib.sha256(content).hexdigest()
-            ),
+            **_numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest()),
             "expected_nested_appendices": {"2": ["1"]},
         }
     )
@@ -645,7 +647,7 @@ def test_parse_rejects_reordered_top_level_appendix_labels():
 
     with pytest.raises(
         ValueError,
-        match="out-of-order top-level appendix label 1 after 2",
+        match="top-level appendix label mismatch at position 1: expected 1, got 2",
     ):
         parse_armenia_arlis_html(content, source=source)
 
@@ -653,19 +655,75 @@ def test_parse_rejects_reordered_top_level_appendix_labels():
 def test_parse_rejects_table_wrapped_duplicate_as_manifested_nested_appendix():
     content = NUMBERED_APPENDICES_66111_HTML.replace(
         "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
-        "<table><tr><td>Հավելված N 1</td></tr></table>"
-        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+        "<table><tr><td>Հավելված N 1</td></tr></table><p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
     ).encode()
     source = ArmeniaARLISSource.from_mapping(
         {
-            **_numbered_appendices_regulation_mapping(
-                sha256=hashlib.sha256(content).hexdigest()
-            ),
+            **_numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest()),
             "expected_nested_appendices": {"2": ["1"]},
         }
     )
 
     with pytest.raises(ValueError, match="repeats top-level appendix label 1"):
+        parse_armenia_arlis_html(content, source=source)
+
+
+def test_parse_rejects_gapped_top_level_appendix_labels():
+    content = NUMBERED_APPENDICES_66111_HTML.replace(
+        "Հավելված N 2 ՀՀ կառավարության",
+        "Հավելված N 3 ՀՀ կառավարության",
+        1,
+    ).encode()
+    source = ArmeniaARLISSource.from_mapping(
+        _numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="top-level appendix label mismatch at position 2: expected 2, got 3",
+    ):
+        parse_armenia_arlis_html(content, source=source)
+
+
+def test_parse_rejects_nested_shaped_marker_substituted_for_top_level_authority():
+    html = NUMBERED_APPENDICES_66111_HTML.replace(
+        "<p>Հավելված N 2 ՀՀ կառավարության 2011 թվականի փետրվարի 17-ի N 174-Ն որոշման</p>",
+        '<p align="right">Հավելված N 2</p>',
+        1,
+    )
+    content = html.encode()
+    source = ArmeniaARLISSource.from_mapping(
+        _numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="top-level appendix marker role mismatch for label 2: expected authority, "
+        "got numbered",
+    ):
+        parse_armenia_arlis_html(content, source=source)
+
+
+@pytest.mark.parametrize(
+    "injected",
+    [
+        "<table><tr><td>ԿՐԿՆՎՈՂ</td><td>Հավելված N 1</td></tr></table>",
+        '<p align="right">Հավելված N 1.</p>',
+        '<p align="right">ԿՐԿՆՎՈՂ<br>Հավելված N 1<br>ՎԵՐՆԱԳԻՐ</p>',
+        "<p>Հավելված N 1 Հավելված N 1.</p>",
+    ],
+)
+def test_parse_rejects_descendant_and_punctuated_appendix_marker_smuggling(injected):
+    content = NUMBERED_APPENDICES_66111_HTML.replace(
+        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+        f"{injected}<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+        1,
+    ).encode()
+    source = ArmeniaARLISSource.from_mapping(
+        _numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    )
+
+    with pytest.raises(ValueError, match="unrecognized appendix marker"):
         parse_armenia_arlis_html(content, source=source)
 
 
@@ -712,6 +770,7 @@ def test_manifest_rejects_unsupported_and_mixed_document_classes(tmp_path):
                 **_source_mapping(sha256=hashlib.sha256(SAMPLE_ARLIS_HTML.encode()).hexdigest()),
                 "document_class": "regulation",
                 "expected_appendix_count": 1,
+                "expected_appendices": [{"label": "1", "marker_role": "authority"}],
             },
         ),
     ],
@@ -741,6 +800,55 @@ def test_regulation_manifest_requires_non_negative_expected_appendix_count():
         ArmeniaARLISSource.from_mapping({**mapping, "expected_appendix_count": -1})
 
 
+def test_regulation_manifest_authenticates_exact_ordered_top_level_appendices():
+    mapping = _numbered_appendices_regulation_mapping(sha256="0" * 64)
+    source = ArmeniaARLISSource.from_mapping(mapping)
+    assert source.expected_appendices == (
+        ("1", "authority"),
+        ("2", "authority"),
+    )
+
+    without_expected = {
+        key: value for key, value in mapping.items() if key != "expected_appendices"
+    }
+    with pytest.raises(ValueError, match="requires an expected_appendices list"):
+        ArmeniaARLISSource.from_mapping(without_expected)
+    with pytest.raises(ValueError, match="length must equal expected_appendix_count"):
+        ArmeniaARLISSource.from_mapping(
+            {**mapping, "expected_appendices": mapping["expected_appendices"][:1]}
+        )
+    with pytest.raises(ValueError, match="explicitly quoted numeric strings"):
+        ArmeniaARLISSource.from_mapping(
+            {
+                **mapping,
+                "expected_appendices": [
+                    {"label": 1, "marker_role": "authority"},
+                    {"label": "2", "marker_role": "authority"},
+                ],
+            }
+        )
+    with pytest.raises(ValueError, match="marker_role must be one of"):
+        ArmeniaARLISSource.from_mapping(
+            {
+                **mapping,
+                "expected_appendices": [
+                    {"label": "1", "marker_role": "authority"},
+                    {"label": "2", "marker_role": "reference"},
+                ],
+            }
+        )
+    with pytest.raises(ValueError, match="must be strictly increasing"):
+        ArmeniaARLISSource.from_mapping(
+            {
+                **mapping,
+                "expected_appendices": [
+                    {"label": "2", "marker_role": "authority"},
+                    {"label": "1", "marker_role": "authority"},
+                ],
+            }
+        )
+
+
 def test_manifest_validates_explicit_nested_appendix_structure():
     mapping = _numbered_appendices_regulation_mapping(sha256="0" * 64)
     source = ArmeniaARLISSource.from_mapping(
@@ -754,16 +862,16 @@ def test_manifest_validates_explicit_nested_appendix_structure():
     with pytest.raises(ValueError, match="explicitly quoted numeric strings"):
         ArmeniaARLISSource.from_mapping({**mapping, "expected_nested_appendices": {2: ["1"]}})
     with pytest.raises(ValueError, match="is not an expected top-level appendix"):
-        ArmeniaARLISSource.from_mapping(
-            {**mapping, "expected_nested_appendices": {"3": ["1"]}}
-        )
+        ArmeniaARLISSource.from_mapping({**mapping, "expected_nested_appendices": {"3": ["1"]}})
     with pytest.raises(ValueError, match="requires a non-empty label list"):
-        ArmeniaARLISSource.from_mapping(
-            {**mapping, "expected_nested_appendices": {"2": []}}
-        )
+        ArmeniaARLISSource.from_mapping({**mapping, "expected_nested_appendices": {"2": []}})
     with pytest.raises(ValueError, match="repeats nested appendix label 1"):
         ArmeniaARLISSource.from_mapping(
             {**mapping, "expected_nested_appendices": {"2": ["1", "1"]}}
+        )
+    with pytest.raises(ValueError, match="must be strictly increasing"):
+        ArmeniaARLISSource.from_mapping(
+            {**mapping, "expected_nested_appendices": {"2": ["2", "1"]}}
         )
 
 
@@ -1064,8 +1172,7 @@ def test_tax_code_2024_continuity_manifest_closes_the_endpoint_gap():
     assert intervals[0] == ("2024-01-01", "2024-03-24")
     assert intervals[-1] == ("2024-12-23", "2025-01-01")
     assert all(
-        left[1] == right[0]
-        for left, right in zip(intervals[:-1], intervals[1:], strict=True)
+        left[1] == right[0] for left, right in zip(intervals[:-1], intervals[1:], strict=True)
     )
 
 
@@ -1088,9 +1195,7 @@ def test_checked_in_tax_code_2024_continuity_sources_match_manifest():
         content = (source_dir / source.source_file).read_bytes()
         assert hashlib.sha256(content).hexdigest() == source.sha256
         provisions = parse_armenia_arlis_html(content, source=source)
-        assert sum(item.kind == "article" for item in provisions) == (
-            source.expected_article_count
-        )
+        assert sum(item.kind == "article" for item in provisions) == (source.expected_article_count)
 
 
 def test_checked_in_rulespec_pack_binds_2024_evidence_expressions(tmp_path):
@@ -1265,8 +1370,7 @@ def test_implementing_regulations_manifest_covers_2024_without_date_gaps():
         assert intervals[-1][1] is not None
         assert intervals[-1][1] > "2024-12-31"
         assert all(
-            left[1] == right[0]
-            for left, right in zip(intervals[:-1], intervals[1:], strict=True)
+            left[1] == right[0] for left, right in zip(intervals[:-1], intervals[1:], strict=True)
         )
     assert {
         source.source_id: source.expected_nested_appendices
@@ -1275,6 +1379,19 @@ def test_implementing_regulations_manifest_covers_2024_without_date_gaps():
     } == {
         "under-two-care-benefit-2024-jan-feb": (("3", ("1", "2")),),
         "under-two-care-benefit-2024-mar-dec": (("3", ("1", "2")),),
+    }
+    assert {source.source_id: source.expected_appendices for source in manifest.documents} == {
+        "family-social-benefit-2024": (("1", "authority"),),
+        "childbirth-grant-2024-q1": tuple((str(label), "authority") for label in range(1, 5)),
+        "childbirth-grant-2024-rest": tuple((str(label), "authority") for label in range(1, 5)),
+        "under-two-care-benefit-2024-jan-feb": tuple(
+            (str(label), "authority") for label in range(1, 5)
+        ),
+        "under-two-care-benefit-2024-mar-dec": tuple(
+            (str(label), "authority") for label in range(1, 5)
+        ),
+        "social-allowances-2024": (),
+        "pension-parameters-2024": (),
     }
 
 
@@ -1289,9 +1406,7 @@ def test_checked_in_implementing_regulations_bind_2024_rules_and_amounts(tmp_pat
         / AM_IMPLEMENTING_REGULATIONS_2024_VERSION
         / "arlis"
     )
-    manifest_path = (
-        REPO_ROOT / "manifests" / "am-implementing-regulations-2024-arlis.yaml"
-    )
+    manifest_path = REPO_ROOT / "manifests" / "am-implementing-regulations-2024-arlis.yaml"
     manifest = ArmeniaARLISManifest.load(manifest_path)
 
     for source in manifest.documents:
@@ -1399,6 +1514,8 @@ def test_checked_in_implementing_regulations_bind_2024_rules_and_amounts(tmp_pat
         }
         nested_1 = records_by_path[f"{parent_path}/appendix-1"]
         nested_2 = records_by_path[f"{parent_path}/appendix-2"]
+        top_level_1 = records_by_path[f"am/regulation/act-{act_id}/appendix-1"]
+        top_level_2 = records_by_path[f"am/regulation/act-{act_id}/appendix-2"]
         assert nested_1.level == nested_2.level == 2
         assert nested_1.ordinal == 1
         assert nested_2.ordinal == 2
@@ -1406,6 +1523,25 @@ def test_checked_in_implementing_regulations_bind_2024_rules_and_amounts(tmp_pat
         assert "ՎՃԱՐՄԱՆ ՑՈՒՑԱԿՈՒՄ ՆԵՐԱՌՎՈՂ ՏՎՅԱԼՆԵՐԻ" in nested_1.body
         assert nested_2.body is not None
         assert "ՓՈԽԱԴԱՐՁ ՀԱՇՎԱՐԿՆԵՐԻ ԱԿՏՈՒՄ ՆԵՐԱՌՎՈՂ ՏՎՅԱԼՆԵՐԻ" in nested_2.body
+        assert top_level_1.citation_label == "N 1566-Ն, appendix 1"
+        assert top_level_2.citation_label == "N 1566-Ն, appendix 2"
+        assert nested_1.citation_label == "N 1566-Ն, appendix 3, appendix 1"
+        assert nested_2.citation_label == "N 1566-Ն, appendix 3, appendix 2"
+        assert nested_1.legal_identifier == nested_1.citation_label
+        assert nested_2.legal_identifier == nested_2.citation_label
+        assert top_level_1.identifiers["arlis.am:appendix"] == "1"
+        assert top_level_2.identifiers["arlis.am:appendix"] == "2"
+        assert nested_1.identifiers["arlis.am:appendix"] == "3/1"
+        assert nested_2.identifiers["arlis.am:appendix"] == "3/2"
+
+    for act_id in {record.identifiers["arlis.am:act_id"] for record in records}:
+        expression_records = [
+            record for record in records if record.identifiers["arlis.am:act_id"] == act_id
+        ]
+        semantic_labels = [record.citation_label for record in expression_records]
+        legal_identifiers = [record.legal_identifier for record in expression_records]
+        assert len(semantic_labels) == len(set(semantic_labels))
+        assert len(legal_identifiers) == len(set(legal_identifiers))
 
     allowances = records_by_path["am/regulation/act-179721"]
     assert allowances.body is not None
@@ -1503,15 +1639,47 @@ def test_extract_regulation_rejects_appendix_count_before_writing_artifacts(tmp_
     mapping = {
         **_main_act_regulation_mapping(sha256=hashlib.sha256(content).hexdigest()),
         "expected_appendix_count": 2,
+        "expected_appendices": [
+            {"label": "1", "marker_role": "authority"},
+            {"label": "2", "marker_role": "authority"},
+        ],
     }
     manifest_path = tmp_path / "manifest.yaml"
     _write_manifest(manifest_path, mapping)
     base = tmp_path / "corpus"
 
-    with pytest.raises(ValueError, match="appendix count mismatch.*expected 2, got 1"):
+    with pytest.raises(ValueError, match="top-level appendix sequence mismatch"):
         extract_armenia_arlis(
             CorpusArtifactStore(base),
             version="2026-08-30-am-regulation-adapter-test",
+            manifest_path=manifest_path,
+            source_dir=source_dir,
+        )
+
+    assert not base.exists()
+
+
+def test_extract_rejects_smuggled_appendix_marker_before_writing_artifacts(tmp_path):
+    content = NUMBERED_APPENDICES_66111_HTML.replace(
+        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+        "<table><tr><td>ԿՐԿՆՎՈՂ</td><td>Հավելված N 1</td></tr></table>"
+        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+        1,
+    ).encode()
+    source_dir = tmp_path / "source"
+    source_dir.mkdir()
+    (source_dir / "act-66111.html").write_bytes(content)
+    manifest_path = tmp_path / "manifest.yaml"
+    _write_manifest(
+        manifest_path,
+        _numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest()),
+    )
+    base = tmp_path / "corpus"
+
+    with pytest.raises(ValueError, match="unrecognized appendix marker"):
+        extract_armenia_arlis(
+            CorpusArtifactStore(base),
+            version="2026-08-30-am-regulation-adapter-smuggling-test",
             manifest_path=manifest_path,
             source_dir=source_dir,
         )
@@ -1527,7 +1695,11 @@ def test_parse_zero_article_source_rejects_empty_legal_body():
     _body, suffix = remainder.split("</div>", maxsplit=1)
     html = f'{prefix}<div class="act-block__section"></div>{suffix}'
     source = ArmeniaARLISSource.from_mapping(
-        _main_act_regulation_mapping(sha256=hashlib.sha256(html.encode()).hexdigest())
+        {
+            **_main_act_regulation_mapping(sha256=hashlib.sha256(html.encode()).hexdigest()),
+            "expected_appendix_count": 0,
+            "expected_appendices": [],
+        }
     )
 
     with pytest.raises(ValueError, match="no extractable legal content"):

@@ -67,7 +67,14 @@ _AUTHORITY_APPENDIX_RE = re.compile(
     r")\s*$",
     re.IGNORECASE,
 )
-_APPENDIX_WORD_RE = re.compile(r"^\s*Հավելված(?:\s|$)", re.IGNORECASE)
+_APPENDIX_HEADER_TOKEN_RE = re.compile(
+    r"(?<![Ա-Ֆա-ֆ])Հավելված(?:\s+(?:N\s*)?\d+(?:[.․]\d+)?)?"
+    r"(?=$|[\s.․։:;!?՞])"
+)
+_APPENDIX_HEADER_FRAGMENT_RE = re.compile(
+    r"^\s*Հավելված(?:\s+(?:N\s*)?\d+(?:[.․]\d+)?)?\s*[.․։:;!?՞]*\s*$"
+)
+_APPENDIX_MARKER_ROLES = frozenset({"authority", "numbered"})
 _NUMERIC_LABEL_RE = re.compile(r"^\d+(?:[.․]\d+)?$")
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _SOURCE_ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -129,6 +136,7 @@ class ArmeniaARLISSource:
     language: str
     expected_article_count: int
     expected_appendix_count: int | None
+    expected_appendices: tuple[tuple[str, str], ...]
     expected_nested_appendices: tuple[tuple[str, tuple[str, ...]], ...]
 
     @classmethod
@@ -210,10 +218,16 @@ class ArmeniaARLISSource:
             raise ValueError(
                 f"ARLIS source {source_id} requires a non-negative expected_appendix_count"
             )
+        expected_appendices = _expected_appendices(
+            data.get("expected_appendices"),
+            source_id=source_id,
+            document_class=document_class,
+            expected_appendix_count=expected_appendix_count,
+        )
         expected_nested_appendices = _expected_nested_appendices(
             data.get("expected_nested_appendices"),
             source_id=source_id,
-            expected_appendix_count=expected_appendix_count,
+            expected_appendix_labels=tuple(label for label, _role in expected_appendices),
         )
 
         expression_date = _required_iso_date(data, "expression_date")
@@ -245,6 +259,7 @@ class ArmeniaARLISSource:
             language=language,
             expected_article_count=expected_article_count,
             expected_appendix_count=expected_appendix_count,
+            expected_appendices=expected_appendices,
             expected_nested_appendices=expected_nested_appendices,
         )
 
@@ -355,6 +370,13 @@ class _ArticleHeader:
     court_decision_urls: tuple[str, ...]
 
 
+@dataclass(frozen=True)
+class _AppendixMarker:
+    label: str | None
+    raw_marker: str
+    role: str
+
+
 @dataclass
 class _PendingProvision:
     citation_path: str
@@ -426,8 +448,7 @@ def extract_armenia_arlis(
                 f"expected {source.expected_article_count}, got {article_count}"
             )
         top_level_appendix_count = sum(
-            item.kind == "appendix"
-            and item.parent_citation_path == source.document_citation_path
+            item.kind == "appendix" and item.parent_citation_path == source.document_citation_path
             for item in provisions
         )
         if (
@@ -439,8 +460,7 @@ def extract_armenia_arlis(
                 f"expected {source.expected_appendix_count}, got {top_level_appendix_count}"
             )
         nested_appendix_count = sum(
-            item.kind == "appendix"
-            and item.parent_citation_path != source.document_citation_path
+            item.kind == "appendix" and item.parent_citation_path != source.document_citation_path
             for item in provisions
         )
         expected_nested_appendix_count = sum(
@@ -533,7 +553,10 @@ def extract_armenia_arlis(
                         "arlis.am:official_number": source.official_number,
                         "arlis.am:source_id": source.source_id,
                         "arlis.am:expression_start": source.expression_date,
-                        f"arlis.am:{provision.kind}": provision.label,
+                        f"arlis.am:{provision.kind}": _hierarchical_identifier_value(
+                            source,
+                            provision,
+                        ),
                         **(
                             {"arlis.am:base_act_id": source.base_act_id}
                             if source.base_act_id is not None
@@ -647,6 +670,7 @@ def parse_armenia_arlis_html(
     article_ordinal = 0
     structural_ordinal = 0
     appendix_ordinal = 0
+    expected_appendices = source.expected_appendices
     expected_nested_appendices = dict(source.expected_nested_appendices)
     encountered_top_level_appendix_labels: set[str] = set()
     encountered_nested_appendices: dict[str, list[str]] = {
@@ -793,13 +817,14 @@ def parse_armenia_arlis_html(
 
         appendix_marker = _appendix_marker(node)
         if appendix_marker is not None:
-            appendix_label, raw_marker = appendix_marker
+            appendix_label = appendix_marker.label
+            raw_marker = appendix_marker.raw_marker
             # Bare numbered labels are nested only when both the manifest and
             # the direct ARLIS paragraph shape identify the exact child slot.
             if (
                 active_top_level_appendix is not None
                 and appendix_label is not None
-                and _NUMBERED_APPENDIX_RE.fullmatch(raw_marker) is not None
+                and appendix_marker.role == "numbered"
                 and appendix_label
                 in expected_nested_appendices.get(active_top_level_appendix[0], ())
                 and _is_nested_appendix_marker(node)
@@ -834,15 +859,40 @@ def parse_armenia_arlis_html(
                     level=2,
                     ordinal=expected_index + 1,
                     blocks=[],
-                    metadata={
-                        "hierarchy": [
-                            {"kind": "appendix", "citation_path": parent_path}
-                        ]
-                    },
+                    metadata={"hierarchy": [{"kind": "appendix", "citation_path": parent_path}]},
                 )
                 continue
 
-            resolved_appendix_label = appendix_label or str(appendix_ordinal + 1)
+            if (
+                appendix_label is not None
+                and appendix_label in encountered_top_level_appendix_labels
+            ):
+                raise ValueError(
+                    f"ARLIS source {source.source_id} repeats top-level appendix label "
+                    f"{appendix_label}"
+                )
+            if source.expected_appendix_count is not None:
+                if appendix_ordinal >= len(expected_appendices):
+                    raise ValueError(
+                        f"ARLIS source {source.source_id} has unexpected top-level appendix "
+                        f"marker {raw_marker!r} after all expected appendices"
+                    )
+                expected_label, expected_role = expected_appendices[appendix_ordinal]
+                resolved_appendix_label = appendix_label or expected_label
+                if resolved_appendix_label != expected_label:
+                    raise ValueError(
+                        f"ARLIS source {source.source_id} top-level appendix label mismatch "
+                        f"at position {appendix_ordinal + 1}: expected {expected_label}, "
+                        f"got {resolved_appendix_label}"
+                    )
+                if appendix_marker.role != expected_role:
+                    raise ValueError(
+                        f"ARLIS source {source.source_id} top-level appendix marker role "
+                        f"mismatch for label {expected_label}: expected {expected_role}, "
+                        f"got {appendix_marker.role}"
+                    )
+            else:
+                resolved_appendix_label = appendix_label or str(appendix_ordinal + 1)
             if resolved_appendix_label in encountered_top_level_appendix_labels:
                 raise ValueError(
                     f"ARLIS source {source.source_id} repeats top-level appendix label "
@@ -900,6 +950,12 @@ def parse_armenia_arlis_html(
 
     flush_article()
     flush_pending()
+    if source.expected_appendix_count is not None and appendix_ordinal != len(expected_appendices):
+        raise ValueError(
+            f"ARLIS top-level appendix sequence mismatch for {source.source_id}: "
+            f"expected {[label for label, _role in expected_appendices]}, "
+            f"got {sorted(encountered_top_level_appendix_labels, key=_numeric_label_key)}"
+        )
     for parent_label in expected_nested_appendices:
         require_nested_appendices_complete(parent_label)
     if encountered_headers != set(candidate_headers):
@@ -927,7 +983,7 @@ def parse_armenia_arlis_html(
         },
     )
     provisions = (document, *parsed)
-    _require_unique_parsed_citations(provisions, source.source_id)
+    _require_unique_parsed_citations(provisions, source)
     return provisions
 
 
@@ -957,31 +1013,80 @@ def _optional_iso_date(data: Mapping[str, Any], field: str) -> str | None:
     return _required_iso_date(data, field)
 
 
+def _expected_appendices(
+    value: Any,
+    *,
+    source_id: str,
+    document_class: str,
+    expected_appendix_count: int | None,
+) -> tuple[tuple[str, str], ...]:
+    if expected_appendix_count is None:
+        if value is not None:
+            raise ValueError(
+                f"ARLIS source {source_id} expected_appendices requires expected_appendix_count"
+            )
+        return ()
+    if not isinstance(value, list):
+        raise ValueError(f"ARLIS {document_class} {source_id} requires an expected_appendices list")
+    if len(value) != expected_appendix_count:
+        raise ValueError(
+            f"ARLIS source {source_id} expected_appendices length must equal "
+            f"expected_appendix_count {expected_appendix_count}, got {len(value)}"
+        )
+
+    expected: list[tuple[str, str]] = []
+    for index, raw_item in enumerate(value, start=1):
+        if not isinstance(raw_item, Mapping) or set(raw_item) != {"label", "marker_role"}:
+            raise ValueError(
+                f"ARLIS source {source_id} expected_appendices item {index} must contain "
+                "exactly label and marker_role"
+            )
+        raw_label = raw_item["label"]
+        if not isinstance(raw_label, str) or _NUMERIC_LABEL_RE.fullmatch(raw_label) is None:
+            raise ValueError(
+                f"ARLIS source {source_id} expected appendix labels must be explicitly "
+                "quoted numeric strings"
+            )
+        label = _normalized_numeric_label(raw_label)
+        marker_role = raw_item["marker_role"]
+        if not isinstance(marker_role, str) or marker_role not in _APPENDIX_MARKER_ROLES:
+            raise ValueError(
+                f"ARLIS source {source_id} expected appendix marker_role must be one of "
+                f"{sorted(_APPENDIX_MARKER_ROLES)}, got {marker_role!r}"
+            )
+        if expected and _numeric_label_key(label) <= _numeric_label_key(expected[-1][0]):
+            raise ValueError(
+                f"ARLIS source {source_id} expected appendix labels must be strictly "
+                f"increasing; got {label} after {expected[-1][0]}"
+            )
+        expected.append((label, marker_role))
+    return tuple(expected)
+
+
 def _expected_nested_appendices(
     value: Any,
     *,
     source_id: str,
-    expected_appendix_count: int | None,
+    expected_appendix_labels: tuple[str, ...],
 ) -> tuple[tuple[str, tuple[str, ...]], ...]:
     if value is None:
         return ()
     if not isinstance(value, Mapping):
-        raise ValueError(
-            f"ARLIS source {source_id} expected_nested_appendices must be a mapping"
-        )
-    if expected_appendix_count is None:
+        raise ValueError(f"ARLIS source {source_id} expected_nested_appendices must be a mapping")
+    if not expected_appendix_labels:
         raise ValueError(
             f"ARLIS source {source_id} expected_nested_appendices requires "
-            "expected_appendix_count"
+            "at least one expected top-level appendix"
         )
 
-    allowed_parent_labels = {str(index) for index in range(1, expected_appendix_count + 1)}
+    allowed_parent_labels = set(expected_appendix_labels)
     nested: list[tuple[str, tuple[str, ...]]] = []
     normalized_parents: set[str] = set()
     for raw_parent_label, raw_labels in value.items():
-        if not isinstance(raw_parent_label, str) or _NUMERIC_LABEL_RE.fullmatch(
-            raw_parent_label
-        ) is None:
+        if (
+            not isinstance(raw_parent_label, str)
+            or _NUMERIC_LABEL_RE.fullmatch(raw_parent_label) is None
+        ):
             raise ValueError(
                 f"ARLIS source {source_id} nested appendix parent labels must be "
                 "explicitly quoted numeric strings"
@@ -1014,6 +1119,12 @@ def _expected_nested_appendices(
                 raise ValueError(
                     f"ARLIS source {source_id} repeats nested appendix label {label} "
                     f"under parent {parent_label}"
+                )
+            if labels and _numeric_label_key(label) <= _numeric_label_key(labels[-1]):
+                raise ValueError(
+                    f"ARLIS source {source_id} nested appendix labels under parent "
+                    f"{parent_label} must be strictly increasing; got {label} after "
+                    f"{labels[-1]}"
                 )
             labels.append(label)
         nested.append((parent_label, tuple(labels)))
@@ -1376,16 +1487,46 @@ def _reject_unbound_article_markers(
 
 def _reject_unbound_appendix_markers(root: Tag, source_id: str) -> None:
     for block in root.find_all(recursive=False):
-        marker = _inline_text(block)
-        if _APPENDIX_WORD_RE.match(marker) is None:
+        marker = _appendix_marker(block)
+        occurrences = _appendix_header_occurrences(block)
+        if marker is not None:
+            if len(occurrences) != 1:
+                raise ValueError(
+                    f"ARLIS source {source_id} contains {len(occurrences)} appendix "
+                    f"header occurrences inside one bound marker: {_inline_text(block)!r}"
+                )
             continue
-        if _appendix_marker(block) is not None:
+        if not occurrences:
             continue
-        if block.name != "table" and marker.endswith(("։", ".", "!", "?")):
+        if len(occurrences) == 1 and _is_genuine_appendix_reference(block):
             continue
         raise ValueError(
-            f"ARLIS source {source_id} contains an unrecognized appendix marker: {marker!r}"
+            f"ARLIS source {source_id} contains an unrecognized appendix marker: "
+            f"{occurrences[0]!r} in {_inline_text(block)[:120]!r}"
         )
+
+
+def _appendix_header_occurrences(block: Tag) -> list[str]:
+    occurrences: list[str] = []
+    for text_node in block.find_all(string=True):
+        text = _render_text(str(text_node))
+        if not text:
+            continue
+        occurrences.extend(
+            match.group(0).strip() for match in _APPENDIX_HEADER_TOKEN_RE.finditer(text)
+        )
+    return occurrences
+
+
+def _is_genuine_appendix_reference(block: Tag) -> bool:
+    if block.name != "p" or block.find(["br", "table", "p", "div"]) is not None:
+        return False
+    if str(block.get("align", "")).casefold() in {"center", "right"}:
+        return False
+    marker = _inline_text(block)
+    if _APPENDIX_HEADER_FRAGMENT_RE.fullmatch(marker) is not None:
+        return False
+    return marker.endswith(("։", ".", "!", "?", "՞"))
 
 
 def _require_empty_header_wrapper(block: Tag, table: Tag, source_id: str) -> None:
@@ -1423,17 +1564,25 @@ def _structure_marker(block: Tag) -> tuple[str, str, str, str | None] | None:
     )
 
 
-def _appendix_marker(block: Tag) -> tuple[str | None, str] | None:
+def _appendix_marker(block: Tag) -> _AppendixMarker | None:
     raw_marker = _inline_text(block)
     numbered_match = _NUMBERED_APPENDIX_RE.fullmatch(raw_marker)
     if numbered_match is not None:
         label = numbered_match.group("label")
-        return (_normalized_numeric_label(label) if label else None), raw_marker
+        return _AppendixMarker(
+            label=_normalized_numeric_label(label) if label else None,
+            raw_marker=raw_marker,
+            role="numbered",
+        )
     authority_match = _AUTHORITY_APPENDIX_RE.fullmatch(raw_marker)
     if authority_match is None:
         return None
     label = authority_match.group("label")
-    return (_normalized_numeric_label(label) if label else None), raw_marker
+    return _AppendixMarker(
+        label=_normalized_numeric_label(label) if label else None,
+        raw_marker=raw_marker,
+        role="authority",
+    )
 
 
 def _is_nested_appendix_marker(block: Tag) -> bool:
@@ -1584,7 +1733,41 @@ def _citation_label(
         return f"{source.official_number} — {source.title}"
     if provision.kind == "article":
         return f"{source.official_number}, Հոդված {provision.label}"
-    return f"{source.official_number}, {provision.kind} {provision.label}"
+    hierarchy = _citation_hierarchy(source, provision)
+    return f"{source.official_number}, " + ", ".join(f"{kind} {label}" for kind, label in hierarchy)
+
+
+def _citation_hierarchy(
+    source: ArmeniaARLISSource,
+    provision: ArmeniaARLISProvision,
+) -> tuple[tuple[str, str], ...]:
+    prefix = f"{source.document_citation_path}/"
+    if not provision.citation_path.startswith(prefix):
+        raise ValueError(
+            f"ARLIS provision path is outside source document: {provision.citation_path!r}"
+        )
+    hierarchy: list[tuple[str, str]] = []
+    for segment in provision.citation_path[len(prefix) :].split("/"):
+        kind, separator, label = segment.partition("-")
+        if not separator or not kind or not label:
+            raise ValueError(f"invalid ARLIS provision citation segment: {segment!r}")
+        hierarchy.append((kind, label))
+    return tuple(hierarchy)
+
+
+def _hierarchical_identifier_value(
+    source: ArmeniaARLISSource,
+    provision: ArmeniaARLISProvision,
+) -> str:
+    if provision.kind == "document":
+        return provision.label
+    hierarchy = _citation_hierarchy(source, provision)
+    matching_labels = [label for kind, label in hierarchy if kind == provision.kind]
+    if not matching_labels:
+        raise ValueError(
+            f"ARLIS provision path lacks {provision.kind} segment: {provision.citation_path!r}"
+        )
+    return "/".join(matching_labels)
 
 
 def _source_metadata(source: ArmeniaARLISSource) -> dict[str, Any]:
@@ -1604,17 +1787,20 @@ def _source_metadata(source: ArmeniaARLISSource) -> dict[str, Any]:
         metadata["expression_end_date"] = source.expression_end_date
     if source.expected_appendix_count is not None:
         metadata["expected_appendix_count"] = source.expected_appendix_count
+        metadata["expected_appendices"] = [
+            {"label": label, "marker_role": marker_role}
+            for label, marker_role in source.expected_appendices
+        ]
     if source.expected_nested_appendices:
         metadata["expected_nested_appendices"] = {
-            parent_label: list(labels)
-            for parent_label, labels in source.expected_nested_appendices
+            parent_label: list(labels) for parent_label, labels in source.expected_nested_appendices
         }
     return metadata
 
 
 def _require_unique_parsed_citations(
     provisions: Sequence[ArmeniaARLISProvision],
-    source_id: str,
+    source: ArmeniaARLISSource,
 ) -> None:
     article_labels = [provision.label for provision in provisions if provision.kind == "article"]
     duplicate_article_labels = sorted(
@@ -1622,7 +1808,7 @@ def _require_unique_parsed_citations(
     )
     if duplicate_article_labels:
         raise ValueError(
-            f"ARLIS source {source_id} produced duplicate article labels: "
+            f"ARLIS source {source.source_id} produced duplicate article labels: "
             f"{', '.join(duplicate_article_labels[:5])}"
         )
 
@@ -1630,8 +1816,18 @@ def _require_unique_parsed_citations(
     duplicates = sorted(path for path in set(paths) if paths.count(path) > 1)
     if duplicates:
         raise ValueError(
-            f"ARLIS source {source_id} produced duplicate citation paths: "
+            f"ARLIS source {source.source_id} produced duplicate citation paths: "
             f"{', '.join(duplicates[:5])}"
+        )
+
+    semantic_labels = [_citation_label(source, provision) for provision in provisions]
+    duplicate_semantic_labels = sorted(
+        label for label in set(semantic_labels) if semantic_labels.count(label) > 1
+    )
+    if duplicate_semantic_labels:
+        raise ValueError(
+            f"ARLIS source {source.source_id} produced duplicate semantic citation labels: "
+            f"{', '.join(duplicate_semantic_labels[:5])}"
         )
 
 
