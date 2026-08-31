@@ -1,0 +1,73 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/am/regulation/2026-08-31-am-implementing-regulations-2024.json",
+      "sha256": "17ea1254197ea9a092a19c363f9e48f29a9a0bf75b219d39e504e082dd91521b"
+    },
+    {
+      "path": "data/corpus/inventory/am/regulation/2026-08-31-am-implementing-regulations-2024.json",
+      "sha256": "64f97f3aeb582ad6aabc94648c0bd179a94569e117b05e5ff06e1ebf51cbb1bf"
+    },
+    {
+      "path": "data/corpus/provisions/am/regulation/2026-08-31-am-implementing-regulations-2024.jsonl",
+      "sha256": "f60bef4b75bc083ed72a6ad3a8f77ebb347b298226153386631a3f27bd33f5c2"
+    },
+    {
+      "path": "data/corpus/sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/childbirth-grant-186765-2023-12-17.html",
+      "sha256": "a9ace63583287558a5a12f399098d0e8f11049fbb81e668cdc84961b561e38ba"
+    },
+    {
+      "path": "data/corpus/sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/childbirth-grant-190575-2024-03-08.html",
+      "sha256": "5b38f0848de3feb48d31b5b99642229029a6f3c1c8941e3ddab86ecc01e23da6"
+    },
+    {
+      "path": "data/corpus/sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/family-social-benefit-188042-2023-12-29.html",
+      "sha256": "76ae07e7e36303dde7184b5772544e9154e6c0413981da13cc916f433041862c"
+    },
+    {
+      "path": "data/corpus/sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/pension-parameters-179718-2023-06-30.html",
+      "sha256": "0a4a21e88dd644474cd60cb47950bae9d1e8bfe18c0055b3b13bc18002ae944a"
+    },
+    {
+      "path": "data/corpus/sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/social-allowances-179721-2023-06-30.html",
+      "sha256": "0a46af3118a3b37604444afb68e537f3a1c1d9e4508659f31092df1f36845359"
+    },
+    {
+      "path": "data/corpus/sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/under-two-care-benefit-186284-2023-12-01.html",
+      "sha256": "b58ef4e1b9a6c6a4efe519cd414540946eec1676b220c8a64e9efe4694d02ab2"
+    },
+    {
+      "path": "data/corpus/sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/under-two-care-benefit-190187-2024-03-01.html",
+      "sha256": "c2d4ce162e081292586fd5d341f3240becc49049aa8b2710daad2c74d6482286"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "6c3729b7c19498381e80aa67894646d51e543284",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run axiom-corpus-ingest extract-am-arlis --base data/corpus --version 2026-08-31-am-implementing-regulations-2024 --manifest manifests/am-implementing-regulations-2024-arlis.yaml --source-dir data/corpus/sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 28,
+    "missing_count": 0,
+    "provision_count": 28,
+    "source_count": 28
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-08-31T12:53:41.538478+00:00",
+  "jurisdiction": "am",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "yWD+yQvUSsANRNyM8QfTIvGPfwN1R0IUWtbrv+zsJNPowDVGkxBODtIVuRnndtXBApIzo2w3a5SdyOdPk5lTDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-08-31-am-implementing-regulations-2024"
+}
