@@ -76,6 +76,8 @@ documents:
     language: hy
     expected_article_count: 0
     expected_appendix_count: 4
+    expected_nested_appendices:
+      "3": ["1", "2"]
 
   - source_id: under-two-care-benefit-2024-mar-dec
     jurisdiction: am
@@ -94,6 +96,8 @@ documents:
     language: hy
     expected_article_count: 0
     expected_appendix_count: 4
+    expected_nested_appendices:
+      "3": ["1", "2"]
 
   - source_id: social-allowances-2024
     jurisdiction: am

@@ -68,6 +68,7 @@ _AUTHORITY_APPENDIX_RE = re.compile(
     re.IGNORECASE,
 )
 _APPENDIX_WORD_RE = re.compile(r"^\s*Հավելված(?:\s|$)", re.IGNORECASE)
+_NUMERIC_LABEL_RE = re.compile(r"^\d+(?:[.․]\d+)?$")
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _SOURCE_ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 _VALIDITY_PERIOD_PATTERN = (
@@ -128,6 +129,7 @@ class ArmeniaARLISSource:
     language: str
     expected_article_count: int
     expected_appendix_count: int | None
+    expected_nested_appendices: tuple[tuple[str, tuple[str, ...]], ...]
 
     @classmethod
     def from_mapping(cls, data: Mapping[str, Any]) -> Self:
@@ -208,6 +210,11 @@ class ArmeniaARLISSource:
             raise ValueError(
                 f"ARLIS source {source_id} requires a non-negative expected_appendix_count"
             )
+        expected_nested_appendices = _expected_nested_appendices(
+            data.get("expected_nested_appendices"),
+            source_id=source_id,
+            expected_appendix_count=expected_appendix_count,
+        )
 
         expression_date = _required_iso_date(data, "expression_date")
         expression_end_date = _optional_iso_date(data, "expression_end_date")
@@ -238,6 +245,7 @@ class ArmeniaARLISSource:
             language=language,
             expected_article_count=expected_article_count,
             expected_appendix_count=expected_appendix_count,
+            expected_nested_appendices=expected_nested_appendices,
         )
 
     @property
@@ -417,14 +425,31 @@ def extract_armenia_arlis(
                 f"ARLIS article count mismatch for {source.source_id}: "
                 f"expected {source.expected_article_count}, got {article_count}"
             )
-        appendix_count = sum(item.kind == "appendix" for item in provisions)
+        top_level_appendix_count = sum(
+            item.kind == "appendix"
+            and item.parent_citation_path == source.document_citation_path
+            for item in provisions
+        )
         if (
             source.expected_appendix_count is not None
-            and appendix_count != source.expected_appendix_count
+            and top_level_appendix_count != source.expected_appendix_count
         ):
             raise ValueError(
-                f"ARLIS appendix count mismatch for {source.source_id}: "
-                f"expected {source.expected_appendix_count}, got {appendix_count}"
+                f"ARLIS top-level appendix count mismatch for {source.source_id}: "
+                f"expected {source.expected_appendix_count}, got {top_level_appendix_count}"
+            )
+        nested_appendix_count = sum(
+            item.kind == "appendix"
+            and item.parent_citation_path != source.document_citation_path
+            for item in provisions
+        )
+        expected_nested_appendix_count = sum(
+            len(labels) for _parent, labels in source.expected_nested_appendices
+        )
+        if nested_appendix_count != expected_nested_appendix_count:
+            raise ValueError(
+                f"ARLIS nested appendix count mismatch for {source.source_id}: "
+                f"expected {expected_nested_appendix_count}, got {nested_appendix_count}"
             )
         prepared.append(
             _PreparedSource(
@@ -622,8 +647,26 @@ def parse_armenia_arlis_html(
     article_ordinal = 0
     structural_ordinal = 0
     appendix_ordinal = 0
-    encountered_appendix_labels: set[str] = set()
+    expected_nested_appendices = dict(source.expected_nested_appendices)
+    encountered_top_level_appendix_labels: set[str] = set()
+    encountered_nested_appendices: dict[str, list[str]] = {
+        parent_label: [] for parent_label in expected_nested_appendices
+    }
+    active_top_level_appendix: tuple[str, str] | None = None
+    previous_numbered_top_level_appendix_label: str | None = None
     encountered_headers: set[int] = set()
+
+    def require_nested_appendices_complete(parent_label: str) -> None:
+        expected = expected_nested_appendices.get(parent_label)
+        if expected is None:
+            return
+        actual = tuple(encountered_nested_appendices[parent_label])
+        if actual != expected:
+            raise ValueError(
+                f"ARLIS source {source.source_id} nested appendices under top-level "
+                f"appendix {parent_label} do not match manifest: expected {expected}, "
+                f"got {actual}"
+            )
 
     def flush_pending() -> None:
         nonlocal pending
@@ -751,26 +794,88 @@ def parse_armenia_arlis_html(
         appendix_marker = _appendix_marker(node)
         if appendix_marker is not None:
             appendix_label, raw_marker = appendix_marker
+            # Bare numbered labels are nested only when both the manifest and
+            # the direct ARLIS paragraph shape identify the exact child slot.
             if (
-                pending is not None
-                and pending.kind == "appendix"
+                active_top_level_appendix is not None
                 and appendix_label is not None
-                and appendix_label in encountered_appendix_labels
                 and _NUMBERED_APPENDIX_RE.fullmatch(raw_marker) is not None
+                and appendix_label
+                in expected_nested_appendices.get(active_top_level_appendix[0], ())
+                and _is_nested_appendix_marker(node)
             ):
-                pending.blocks.append(_render_block(node))
+                parent_label, parent_path = active_top_level_appendix
+                expected_labels = expected_nested_appendices[parent_label]
+                actual_labels = encountered_nested_appendices[parent_label]
+                expected_index = len(actual_labels)
+                if (
+                    expected_index >= len(expected_labels)
+                    or appendix_label != expected_labels[expected_index]
+                ):
+                    expected_label = (
+                        expected_labels[expected_index]
+                        if expected_index < len(expected_labels)
+                        else None
+                    )
+                    raise ValueError(
+                        f"ARLIS source {source.source_id} has unexpected nested appendix "
+                        f"{appendix_label} under top-level appendix {parent_label}; "
+                        f"expected {expected_label!r}"
+                    )
+                flush_article()
+                flush_pending()
+                actual_labels.append(appendix_label)
+                pending = _PendingProvision(
+                    citation_path=f"{parent_path}/appendix-{appendix_label}",
+                    parent_citation_path=parent_path,
+                    kind="appendix",
+                    label=appendix_label,
+                    raw_marker=raw_marker,
+                    level=2,
+                    ordinal=expected_index + 1,
+                    blocks=[],
+                    metadata={
+                        "hierarchy": [
+                            {"kind": "appendix", "citation_path": parent_path}
+                        ]
+                    },
+                )
                 continue
+
+            resolved_appendix_label = appendix_label or str(appendix_ordinal + 1)
+            if resolved_appendix_label in encountered_top_level_appendix_labels:
+                raise ValueError(
+                    f"ARLIS source {source.source_id} repeats top-level appendix label "
+                    f"{resolved_appendix_label}"
+                )
+            if (
+                appendix_label is not None
+                and previous_numbered_top_level_appendix_label is not None
+                and _numeric_label_key(appendix_label)
+                <= _numeric_label_key(previous_numbered_top_level_appendix_label)
+            ):
+                raise ValueError(
+                    f"ARLIS source {source.source_id} has out-of-order top-level appendix "
+                    f"label {appendix_label} after {previous_numbered_top_level_appendix_label}"
+                )
+            if active_top_level_appendix is not None:
+                require_nested_appendices_complete(active_top_level_appendix[0])
             flush_article()
             flush_pending()
             appendix_ordinal += 1
             structural_ordinal += 1
-            appendix_label = appendix_label or str(appendix_ordinal)
-            encountered_appendix_labels.add(appendix_label)
+            encountered_top_level_appendix_labels.add(resolved_appendix_label)
+            if appendix_label is not None:
+                previous_numbered_top_level_appendix_label = appendix_label
+            active_top_level_appendix = (
+                resolved_appendix_label,
+                f"{document_path}/appendix-{resolved_appendix_label}",
+            )
             pending = _PendingProvision(
-                citation_path=f"{document_path}/appendix-{appendix_label}",
+                citation_path=active_top_level_appendix[1],
                 parent_citation_path=document_path,
                 kind="appendix",
-                label=appendix_label,
+                label=resolved_appendix_label,
                 raw_marker=raw_marker,
                 level=1,
                 ordinal=structural_ordinal,
@@ -795,6 +900,8 @@ def parse_armenia_arlis_html(
 
     flush_article()
     flush_pending()
+    for parent_label in expected_nested_appendices:
+        require_nested_appendices_complete(parent_label)
     if encountered_headers != set(candidate_headers):
         missing = len(set(candidate_headers) - encountered_headers)
         raise ValueError(
@@ -848,6 +955,69 @@ def _optional_iso_date(data: Mapping[str, Any], field: str) -> str | None:
     if field not in data:
         return None
     return _required_iso_date(data, field)
+
+
+def _expected_nested_appendices(
+    value: Any,
+    *,
+    source_id: str,
+    expected_appendix_count: int | None,
+) -> tuple[tuple[str, tuple[str, ...]], ...]:
+    if value is None:
+        return ()
+    if not isinstance(value, Mapping):
+        raise ValueError(
+            f"ARLIS source {source_id} expected_nested_appendices must be a mapping"
+        )
+    if expected_appendix_count is None:
+        raise ValueError(
+            f"ARLIS source {source_id} expected_nested_appendices requires "
+            "expected_appendix_count"
+        )
+
+    allowed_parent_labels = {str(index) for index in range(1, expected_appendix_count + 1)}
+    nested: list[tuple[str, tuple[str, ...]]] = []
+    normalized_parents: set[str] = set()
+    for raw_parent_label, raw_labels in value.items():
+        if not isinstance(raw_parent_label, str) or _NUMERIC_LABEL_RE.fullmatch(
+            raw_parent_label
+        ) is None:
+            raise ValueError(
+                f"ARLIS source {source_id} nested appendix parent labels must be "
+                "explicitly quoted numeric strings"
+            )
+        parent_label = _normalized_numeric_label(raw_parent_label)
+        if parent_label not in allowed_parent_labels:
+            raise ValueError(
+                f"ARLIS source {source_id} nested appendix parent {parent_label} is not "
+                "an expected top-level appendix"
+            )
+        if parent_label in normalized_parents:
+            raise ValueError(
+                f"ARLIS source {source_id} repeats nested appendix parent {parent_label}"
+            )
+        normalized_parents.add(parent_label)
+        if not isinstance(raw_labels, list) or not raw_labels:
+            raise ValueError(
+                f"ARLIS source {source_id} nested appendix parent {parent_label} "
+                "requires a non-empty label list"
+            )
+        labels: list[str] = []
+        for raw_label in raw_labels:
+            if not isinstance(raw_label, str) or _NUMERIC_LABEL_RE.fullmatch(raw_label) is None:
+                raise ValueError(
+                    f"ARLIS source {source_id} nested appendix labels must be "
+                    "explicitly quoted numeric strings"
+                )
+            label = _normalized_numeric_label(raw_label)
+            if label in labels:
+                raise ValueError(
+                    f"ARLIS source {source_id} repeats nested appendix label {label} "
+                    f"under parent {parent_label}"
+                )
+            labels.append(label)
+        nested.append((parent_label, tuple(labels)))
+    return tuple(sorted(nested, key=lambda item: _numeric_label_key(item[0])))
 
 
 def _require_source_identity(
@@ -1266,6 +1436,14 @@ def _appendix_marker(block: Tag) -> tuple[str | None, str] | None:
     return (_normalized_numeric_label(label) if label else None), raw_marker
 
 
+def _is_nested_appendix_marker(block: Tag) -> bool:
+    return (
+        block.name == "p"
+        and str(block.get("align", "")).casefold() == "right"
+        and block.find("table") is None
+    )
+
+
 def _structure_parent(
     kind: str,
     contexts: Mapping[str, tuple[str, int]],
@@ -1394,6 +1572,10 @@ def _normalized_numeric_label(value: str) -> str:
     return value.replace("․", ".")
 
 
+def _numeric_label_key(value: str) -> tuple[int, ...]:
+    return tuple(int(part) for part in _normalized_numeric_label(value).split("."))
+
+
 def _citation_label(
     source: ArmeniaARLISSource,
     provision: ArmeniaARLISProvision,
@@ -1422,6 +1604,11 @@ def _source_metadata(source: ArmeniaARLISSource) -> dict[str, Any]:
         metadata["expression_end_date"] = source.expression_end_date
     if source.expected_appendix_count is not None:
         metadata["expected_appendix_count"] = source.expected_appendix_count
+    if source.expected_nested_appendices:
+        metadata["expected_nested_appendices"] = {
+            parent_label: list(labels)
+            for parent_label, labels in source.expected_nested_appendices
+        }
     return metadata
 
 

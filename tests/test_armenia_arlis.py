@@ -569,14 +569,19 @@ def test_parse_numbered_authority_appendix_accepts_arlis_collapsed_boundary():
     ]
 
 
-def test_parse_nested_bare_appendix_label_does_not_duplicate_decision_appendix():
+def test_parse_manifested_nested_appendix_is_hierarchical_and_addressable():
     content = NUMBERED_APPENDICES_66111_HTML.replace(
         "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
-        "<p>Հավելված N 1</p><p>ՆԵՐԴՐՎԱԾ ՁԵՎ</p>"
+        '<p align="right">Հավելված N 1</p><p>ՆԵՐԴՐՎԱԾ ՁԵՎ</p>'
         "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
     ).encode()
     source = ArmeniaARLISSource.from_mapping(
-        _numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+        {
+            **_numbered_appendices_regulation_mapping(
+                sha256=hashlib.sha256(content).hexdigest()
+            ),
+            "expected_nested_appendices": {"2": ["1"]},
+        }
     )
 
     provisions = parse_armenia_arlis_html(content, source=source)
@@ -585,9 +590,83 @@ def test_parse_nested_bare_appendix_label_does_not_duplicate_decision_appendix()
         "am/regulation/act-66111",
         "am/regulation/act-66111/appendix-1",
         "am/regulation/act-66111/appendix-2",
+        "am/regulation/act-66111/appendix-2/appendix-1",
     ]
-    assert provisions[2].body is not None
-    assert "Հավելված N 1\nՆԵՐԴՐՎԱԾ ՁԵՎ" in provisions[2].body
+    nested = provisions[3]
+    assert nested.parent_citation_path == "am/regulation/act-66111/appendix-2"
+    assert nested.level == 2
+    assert nested.ordinal == 1
+    assert nested.metadata == {
+        "hierarchy": [
+            {
+                "kind": "appendix",
+                "citation_path": "am/regulation/act-66111/appendix-2",
+            }
+        ],
+        "raw_marker": "Հավելված N 1",
+    }
+    assert nested.body is not None
+    assert nested.body.startswith("ՆԵՐԴՐՎԱԾ ՁԵՎ")
+
+
+def test_parse_rejects_repeated_top_level_appendix_label():
+    content = NUMBERED_APPENDICES_66111_HTML.replace(
+        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+        '<p align="right">Հավելված N 1</p><p>ԿՐԿՆՎՈՂ ՀԱՎԵԼՎԱԾ</p>'
+        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+    ).encode()
+    source = ArmeniaARLISSource.from_mapping(
+        _numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    )
+
+    with pytest.raises(ValueError, match="repeats top-level appendix label 1"):
+        parse_armenia_arlis_html(content, source=source)
+
+
+def test_parse_rejects_reordered_top_level_appendix_labels():
+    html = NUMBERED_APPENDICES_66111_HTML.replace(
+        "Հավելված N 1 ՀՀ կառավարության",
+        "Հավելված N 9 ՀՀ կառավարության",
+        1,
+    )
+    html = html.replace(
+        "Հավելված N 2 ՀՀ կառավարության",
+        "Հավելված N 1 ՀՀ կառավարության",
+        1,
+    ).replace(
+        "Հավելված N 9 ՀՀ կառավարության",
+        "Հավելված N 2 ՀՀ կառավարության",
+        1,
+    )
+    content = html.encode()
+    source = ArmeniaARLISSource.from_mapping(
+        _numbered_appendices_regulation_mapping(sha256=hashlib.sha256(content).hexdigest())
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="out-of-order top-level appendix label 1 after 2",
+    ):
+        parse_armenia_arlis_html(content, source=source)
+
+
+def test_parse_rejects_table_wrapped_duplicate_as_manifested_nested_appendix():
+    content = NUMBERED_APPENDICES_66111_HTML.replace(
+        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+        "<table><tr><td>Հավելված N 1</td></tr></table>"
+        "<p>Է Լ Ե Կ Տ Ր Ո Ն Ա Յ Ի Ն Ձ ԵՎ Ա Չ Ա Փ</p>",
+    ).encode()
+    source = ArmeniaARLISSource.from_mapping(
+        {
+            **_numbered_appendices_regulation_mapping(
+                sha256=hashlib.sha256(content).hexdigest()
+            ),
+            "expected_nested_appendices": {"2": ["1"]},
+        }
+    )
+
+    with pytest.raises(ValueError, match="repeats top-level appendix label 1"):
+        parse_armenia_arlis_html(content, source=source)
 
 
 def test_manifest_defaults_to_statute_for_existing_callers():
@@ -660,6 +739,32 @@ def test_regulation_manifest_requires_non_negative_expected_appendix_count():
         ArmeniaARLISSource.from_mapping(without_count)
     with pytest.raises(ValueError, match="requires a non-negative expected_appendix_count"):
         ArmeniaARLISSource.from_mapping({**mapping, "expected_appendix_count": -1})
+
+
+def test_manifest_validates_explicit_nested_appendix_structure():
+    mapping = _numbered_appendices_regulation_mapping(sha256="0" * 64)
+    source = ArmeniaARLISSource.from_mapping(
+        {**mapping, "expected_nested_appendices": {"2": ["1", "2"]}}
+    )
+    assert source.expected_nested_appendices == (("2", ("1", "2")),)
+    assert ArmeniaARLISSource.from_mapping(mapping).expected_nested_appendices == ()
+
+    with pytest.raises(ValueError, match="must be a mapping"):
+        ArmeniaARLISSource.from_mapping({**mapping, "expected_nested_appendices": []})
+    with pytest.raises(ValueError, match="explicitly quoted numeric strings"):
+        ArmeniaARLISSource.from_mapping({**mapping, "expected_nested_appendices": {2: ["1"]}})
+    with pytest.raises(ValueError, match="is not an expected top-level appendix"):
+        ArmeniaARLISSource.from_mapping(
+            {**mapping, "expected_nested_appendices": {"3": ["1"]}}
+        )
+    with pytest.raises(ValueError, match="requires a non-empty label list"):
+        ArmeniaARLISSource.from_mapping(
+            {**mapping, "expected_nested_appendices": {"2": []}}
+        )
+    with pytest.raises(ValueError, match="repeats nested appendix label 1"):
+        ArmeniaARLISSource.from_mapping(
+            {**mapping, "expected_nested_appendices": {"2": ["1", "1"]}}
+        )
 
 
 @pytest.mark.parametrize(
@@ -1163,6 +1268,14 @@ def test_implementing_regulations_manifest_covers_2024_without_date_gaps():
             left[1] == right[0]
             for left, right in zip(intervals[:-1], intervals[1:], strict=True)
         )
+    assert {
+        source.source_id: source.expected_nested_appendices
+        for source in manifest.documents
+        if source.expected_nested_appendices
+    } == {
+        "under-two-care-benefit-2024-jan-feb": (("3", ("1", "2")),),
+        "under-two-care-benefit-2024-mar-dec": (("3", ("1", "2")),),
+    }
 
 
 def test_checked_in_implementing_regulations_bind_2024_rules_and_amounts(tmp_path):
@@ -1199,20 +1312,33 @@ def test_checked_in_implementing_regulations_bind_2024_rules_and_amounts(tmp_pat
         "family-social-benefit-2024": (0, 1),
         "childbirth-grant-2024-q1": (0, 4),
         "childbirth-grant-2024-rest": (0, 4),
-        "under-two-care-benefit-2024-jan-feb": (0, 4),
-        "under-two-care-benefit-2024-mar-dec": (0, 4),
+        "under-two-care-benefit-2024-jan-feb": (0, 6),
+        "under-two-care-benefit-2024-mar-dec": (0, 6),
         "social-allowances-2024": (0, 0),
         "pension-parameters-2024": (0, 0),
     }
     assert report.document_count == 7
     assert report.article_count == 0
-    assert report.structural_count == 17
-    assert report.provisions_written == 24
+    assert report.structural_count == 21
+    assert report.provisions_written == 28
     assert report.coverage.complete
+    assert json.loads(report.coverage_path.read_text(encoding="utf-8")) == {
+        "complete": True,
+        "document_class": "regulation",
+        "duplicate_provision_citations": [],
+        "duplicate_source_citations": [],
+        "extra_provisions": [],
+        "jurisdiction": "am",
+        "matched_count": 28,
+        "missing_from_provisions": [],
+        "provision_count": 28,
+        "source_count": 28,
+        "version": AM_IMPLEMENTING_REGULATIONS_2024_VERSION,
+    }
 
     records = load_provisions(report.provisions_path)
     records_by_path = {record.citation_path: record for record in records}
-    assert len(records_by_path) == 24
+    assert len(records_by_path) == 28
 
     family = records_by_path["am/regulation/act-188042"]
     assert family.expression_date == "2023-12-29"
@@ -1249,16 +1375,37 @@ def test_checked_in_implementing_regulations_bind_2024_rules_and_amounts(tmp_pat
         assert "50 տոկոսի չափով" in care.body
         appendices = {
             path
-            for path in records_by_path
-            if path.startswith(f"am/regulation/act-{act_id}/appendix-")
+            for path, record in records_by_path.items()
+            if record.parent_citation_path == f"am/regulation/act-{act_id}"
+            and record.kind == "appendix"
         }
         assert appendices == {
             f"am/regulation/act-{act_id}/appendix-{label}" for label in range(1, 5)
         }
-    nested_forms = records_by_path["am/regulation/act-186284/appendix-3"]
-    assert nested_forms.body is not None
-    assert "Հավելված N 1" in nested_forms.body
-    assert "Հավելված N 2" in nested_forms.body
+        assert records_by_path[f"am/regulation/act-{act_id}/appendix-4"].ordinal == 4
+        parent_path = f"am/regulation/act-{act_id}/appendix-3"
+        parent = records_by_path[parent_path]
+        assert parent.body is not None
+        assert "Հավելված N 1" not in parent.body
+        assert "Հավելված N 2" not in parent.body
+        nested_paths = {
+            path
+            for path, record in records_by_path.items()
+            if record.parent_citation_path == parent_path
+        }
+        assert nested_paths == {
+            f"{parent_path}/appendix-1",
+            f"{parent_path}/appendix-2",
+        }
+        nested_1 = records_by_path[f"{parent_path}/appendix-1"]
+        nested_2 = records_by_path[f"{parent_path}/appendix-2"]
+        assert nested_1.level == nested_2.level == 2
+        assert nested_1.ordinal == 1
+        assert nested_2.ordinal == 2
+        assert nested_1.body is not None
+        assert "ՎՃԱՐՄԱՆ ՑՈՒՑԱԿՈՒՄ ՆԵՐԱՌՎՈՂ ՏՎՅԱԼՆԵՐԻ" in nested_1.body
+        assert nested_2.body is not None
+        assert "ՓՈԽԱԴԱՐՁ ՀԱՇՎԱՐԿՆԵՐԻ ԱԿՏՈՒՄ ՆԵՐԱՌՎՈՂ ՏՎՅԱԼՆԵՐԻ" in nested_2.body
 
     allowances = records_by_path["am/regulation/act-179721"]
     assert allowances.body is not None

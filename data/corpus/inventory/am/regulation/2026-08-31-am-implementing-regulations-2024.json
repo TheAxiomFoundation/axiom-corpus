@@ -285,12 +285,18 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2024-03-01",
         "official_number": "N 1566-\u0546",
         "source_authority": "ARLIS (Armenian Legal Information System)",
         "source_id": "under-two-care-benefit-2024-jan-feb",
         "source_language": "hy",
-        "structural_count": 4,
+        "structural_count": 6,
         "title": "\u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 \u0548\u0550\u0548\u0547\u0548\u0552\u0544\u0538 \u0544\u053b\u0546\u0549\u0535\u054e \u0535\u0550\u053f\u0548\u0552 \u054f\u0531\u0550\u0535\u053f\u0531\u0546 \u0535\u0550\u0535\u053d\u0531\u0545\u053b \u053d\u0546\u0531\u0544\u0554\u053b \u0546\u054a\u0531\u054d\u054f \u0546\u0547\u0531\u0546\u0531\u053f\u0535\u053c\u0548\u0552 \u0535\u054e \u054e\u0543\u0531\u0550\u0535\u053c\u0548\u0552 \u053f\u0531\u0550\u0533\u0538 \u0540\u0531\u054d\u054f\u0531\u054f\u0535\u053c\u0548\u0552 \u0535\u054e \u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 2014 \u0539\u054e\u0531\u053f\u0531\u0546\u053b \u0540\u0548\u0552\u0546\u054e\u0531\u0550\u053b 30-\u053b N 145-\u0546 \u0548\u0550\u0548\u0547\u0544\u0531\u0546 \u0544\u0535\u054b \u0553\u0548\u0553\u0548\u053d\u0548\u0552\u0539\u0545\u0548\u0552\u0546 \u053f\u0531\u054f\u0531\u0550\u0535\u053c\u0548\u0552 \u0544\u0531\u054d\u053b\u0546",
         "verified_source_sha256": "b58ef4e1b9a6c6a4efe519cd414540946eec1676b220c8a64e9efe4694d02ab2"
       },
@@ -307,6 +313,12 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2024-03-01",
         "hierarchy": [],
         "official_number": "N 1566-\u0546",
@@ -330,6 +342,12 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2024-03-01",
         "hierarchy": [],
         "official_number": "N 1566-\u0546",
@@ -353,10 +371,84 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2024-03-01",
         "hierarchy": [],
         "official_number": "N 1566-\u0546",
         "raw_marker": "\u0540\u0561\u057e\u0565\u056c\u057e\u0561\u056e N 3\u0540\u0540 \u056f\u0561\u057c\u0561\u057e\u0561\u0580\u0578\u0582\u0569\u0575\u0561\u0576 2015 \u0569\u057e\u0561\u056f\u0561\u0576\u056b\u0564\u0565\u056f\u057f\u0565\u0574\u0562\u0565\u0580\u056b 29-\u056b N 1566-\u0546 \u0578\u0580\u0578\u0577\u0574\u0561\u0576",
+        "source_authority": "ARLIS (Armenian Legal Information System)",
+        "source_id": "under-two-care-benefit-2024-jan-feb",
+        "source_language": "hy",
+        "title": "\u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 \u0548\u0550\u0548\u0547\u0548\u0552\u0544\u0538 \u0544\u053b\u0546\u0549\u0535\u054e \u0535\u0550\u053f\u0548\u0552 \u054f\u0531\u0550\u0535\u053f\u0531\u0546 \u0535\u0550\u0535\u053d\u0531\u0545\u053b \u053d\u0546\u0531\u0544\u0554\u053b \u0546\u054a\u0531\u054d\u054f \u0546\u0547\u0531\u0546\u0531\u053f\u0535\u053c\u0548\u0552 \u0535\u054e \u054e\u0543\u0531\u0550\u0535\u053c\u0548\u0552 \u053f\u0531\u0550\u0533\u0538 \u0540\u0531\u054d\u054f\u0531\u054f\u0535\u053c\u0548\u0552 \u0535\u054e \u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 2014 \u0539\u054e\u0531\u053f\u0531\u0546\u053b \u0540\u0548\u0552\u0546\u054e\u0531\u0550\u053b 30-\u053b N 145-\u0546 \u0548\u0550\u0548\u0547\u0544\u0531\u0546 \u0544\u0535\u054b \u0553\u0548\u0553\u0548\u053d\u0548\u0552\u0539\u0545\u0548\u0552\u0546 \u053f\u0531\u054f\u0531\u0550\u0535\u053c\u0548\u0552 \u0544\u0531\u054d\u053b\u0546",
+        "verified_source_sha256": "b58ef4e1b9a6c6a4efe519cd414540946eec1676b220c8a64e9efe4694d02ab2"
+      },
+      "sha256": "b58ef4e1b9a6c6a4efe519cd414540946eec1676b220c8a64e9efe4694d02ab2",
+      "source_format": "arlis.am-consolidated-html",
+      "source_path": "sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/under-two-care-benefit-186284-2023-12-01.html",
+      "source_url": "https://www.arlis.am/hy/acts/186284"
+    },
+    {
+      "citation_path": "am/regulation/act-186284/appendix-3/appendix-1",
+      "metadata": {
+        "act_id": "186284",
+        "adopted": "2015-12-29",
+        "consolidated_expression": true,
+        "expected_appendix_count": 4,
+        "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
+        "expression_end_date": "2024-03-01",
+        "hierarchy": [
+          {
+            "citation_path": "am/regulation/act-186284/appendix-3",
+            "kind": "appendix"
+          }
+        ],
+        "official_number": "N 1566-\u0546",
+        "raw_marker": "\u0540\u0561\u057e\u0565\u056c\u057e\u0561\u056e N 1",
+        "source_authority": "ARLIS (Armenian Legal Information System)",
+        "source_id": "under-two-care-benefit-2024-jan-feb",
+        "source_language": "hy",
+        "title": "\u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 \u0548\u0550\u0548\u0547\u0548\u0552\u0544\u0538 \u0544\u053b\u0546\u0549\u0535\u054e \u0535\u0550\u053f\u0548\u0552 \u054f\u0531\u0550\u0535\u053f\u0531\u0546 \u0535\u0550\u0535\u053d\u0531\u0545\u053b \u053d\u0546\u0531\u0544\u0554\u053b \u0546\u054a\u0531\u054d\u054f \u0546\u0547\u0531\u0546\u0531\u053f\u0535\u053c\u0548\u0552 \u0535\u054e \u054e\u0543\u0531\u0550\u0535\u053c\u0548\u0552 \u053f\u0531\u0550\u0533\u0538 \u0540\u0531\u054d\u054f\u0531\u054f\u0535\u053c\u0548\u0552 \u0535\u054e \u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 2014 \u0539\u054e\u0531\u053f\u0531\u0546\u053b \u0540\u0548\u0552\u0546\u054e\u0531\u0550\u053b 30-\u053b N 145-\u0546 \u0548\u0550\u0548\u0547\u0544\u0531\u0546 \u0544\u0535\u054b \u0553\u0548\u0553\u0548\u053d\u0548\u0552\u0539\u0545\u0548\u0552\u0546 \u053f\u0531\u054f\u0531\u0550\u0535\u053c\u0548\u0552 \u0544\u0531\u054d\u053b\u0546",
+        "verified_source_sha256": "b58ef4e1b9a6c6a4efe519cd414540946eec1676b220c8a64e9efe4694d02ab2"
+      },
+      "sha256": "b58ef4e1b9a6c6a4efe519cd414540946eec1676b220c8a64e9efe4694d02ab2",
+      "source_format": "arlis.am-consolidated-html",
+      "source_path": "sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/under-two-care-benefit-186284-2023-12-01.html",
+      "source_url": "https://www.arlis.am/hy/acts/186284"
+    },
+    {
+      "citation_path": "am/regulation/act-186284/appendix-3/appendix-2",
+      "metadata": {
+        "act_id": "186284",
+        "adopted": "2015-12-29",
+        "consolidated_expression": true,
+        "expected_appendix_count": 4,
+        "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
+        "expression_end_date": "2024-03-01",
+        "hierarchy": [
+          {
+            "citation_path": "am/regulation/act-186284/appendix-3",
+            "kind": "appendix"
+          }
+        ],
+        "official_number": "N 1566-\u0546",
+        "raw_marker": "\u0540\u0561\u057e\u0565\u056c\u057e\u0561\u056e N 2",
         "source_authority": "ARLIS (Armenian Legal Information System)",
         "source_id": "under-two-care-benefit-2024-jan-feb",
         "source_language": "hy",
@@ -376,6 +468,12 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2024-03-01",
         "hierarchy": [],
         "official_number": "N 1566-\u0546",
@@ -400,12 +498,18 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2025-02-21",
         "official_number": "N 1566-\u0546",
         "source_authority": "ARLIS (Armenian Legal Information System)",
         "source_id": "under-two-care-benefit-2024-mar-dec",
         "source_language": "hy",
-        "structural_count": 4,
+        "structural_count": 6,
         "title": "\u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 \u0548\u0550\u0548\u0547\u0548\u0552\u0544\u0538 \u0544\u053b\u0546\u0549\u0535\u054e \u0535\u0550\u053f\u0548\u0552 \u054f\u0531\u0550\u0535\u053f\u0531\u0546 \u0535\u0550\u0535\u053d\u0531\u0545\u053b \u053d\u0546\u0531\u0544\u0554\u053b \u0546\u054a\u0531\u054d\u054f \u0546\u0547\u0531\u0546\u0531\u053f\u0535\u053c\u0548\u0552 \u0535\u054e \u054e\u0543\u0531\u0550\u0535\u053c\u0548\u0552 \u053f\u0531\u0550\u0533\u0538 \u0540\u0531\u054d\u054f\u0531\u054f\u0535\u053c\u0548\u0552 \u0535\u054e \u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 2014 \u0539\u054e\u0531\u053f\u0531\u0546\u053b \u0540\u0548\u0552\u0546\u054e\u0531\u0550\u053b 30-\u053b N 145-\u0546 \u0548\u0550\u0548\u0547\u0544\u0531\u0546 \u0544\u0535\u054b \u0553\u0548\u0553\u0548\u053d\u0548\u0552\u0539\u0545\u0548\u0552\u0546 \u053f\u0531\u054f\u0531\u0550\u0535\u053c\u0548\u0552 \u0544\u0531\u054d\u053b\u0546",
         "verified_source_sha256": "c2d4ce162e081292586fd5d341f3240becc49049aa8b2710daad2c74d6482286"
       },
@@ -422,6 +526,12 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2025-02-21",
         "hierarchy": [],
         "official_number": "N 1566-\u0546",
@@ -445,6 +555,12 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2025-02-21",
         "hierarchy": [],
         "official_number": "N 1566-\u0546",
@@ -468,10 +584,84 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2025-02-21",
         "hierarchy": [],
         "official_number": "N 1566-\u0546",
         "raw_marker": "\u0540\u0561\u057e\u0565\u056c\u057e\u0561\u056e N 3\u0540\u0540 \u056f\u0561\u057c\u0561\u057e\u0561\u0580\u0578\u0582\u0569\u0575\u0561\u0576 2015 \u0569\u057e\u0561\u056f\u0561\u0576\u056b\u0564\u0565\u056f\u057f\u0565\u0574\u0562\u0565\u0580\u056b 29-\u056b N 1566-\u0546 \u0578\u0580\u0578\u0577\u0574\u0561\u0576",
+        "source_authority": "ARLIS (Armenian Legal Information System)",
+        "source_id": "under-two-care-benefit-2024-mar-dec",
+        "source_language": "hy",
+        "title": "\u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 \u0548\u0550\u0548\u0547\u0548\u0552\u0544\u0538 \u0544\u053b\u0546\u0549\u0535\u054e \u0535\u0550\u053f\u0548\u0552 \u054f\u0531\u0550\u0535\u053f\u0531\u0546 \u0535\u0550\u0535\u053d\u0531\u0545\u053b \u053d\u0546\u0531\u0544\u0554\u053b \u0546\u054a\u0531\u054d\u054f \u0546\u0547\u0531\u0546\u0531\u053f\u0535\u053c\u0548\u0552 \u0535\u054e \u054e\u0543\u0531\u0550\u0535\u053c\u0548\u0552 \u053f\u0531\u0550\u0533\u0538 \u0540\u0531\u054d\u054f\u0531\u054f\u0535\u053c\u0548\u0552 \u0535\u054e \u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 2014 \u0539\u054e\u0531\u053f\u0531\u0546\u053b \u0540\u0548\u0552\u0546\u054e\u0531\u0550\u053b 30-\u053b N 145-\u0546 \u0548\u0550\u0548\u0547\u0544\u0531\u0546 \u0544\u0535\u054b \u0553\u0548\u0553\u0548\u053d\u0548\u0552\u0539\u0545\u0548\u0552\u0546 \u053f\u0531\u054f\u0531\u0550\u0535\u053c\u0548\u0552 \u0544\u0531\u054d\u053b\u0546",
+        "verified_source_sha256": "c2d4ce162e081292586fd5d341f3240becc49049aa8b2710daad2c74d6482286"
+      },
+      "sha256": "c2d4ce162e081292586fd5d341f3240becc49049aa8b2710daad2c74d6482286",
+      "source_format": "arlis.am-consolidated-html",
+      "source_path": "sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/under-two-care-benefit-190187-2024-03-01.html",
+      "source_url": "https://www.arlis.am/hy/acts/190187"
+    },
+    {
+      "citation_path": "am/regulation/act-190187/appendix-3/appendix-1",
+      "metadata": {
+        "act_id": "190187",
+        "adopted": "2015-12-29",
+        "consolidated_expression": true,
+        "expected_appendix_count": 4,
+        "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
+        "expression_end_date": "2025-02-21",
+        "hierarchy": [
+          {
+            "citation_path": "am/regulation/act-190187/appendix-3",
+            "kind": "appendix"
+          }
+        ],
+        "official_number": "N 1566-\u0546",
+        "raw_marker": "\u0540\u0561\u057e\u0565\u056c\u057e\u0561\u056e N 1",
+        "source_authority": "ARLIS (Armenian Legal Information System)",
+        "source_id": "under-two-care-benefit-2024-mar-dec",
+        "source_language": "hy",
+        "title": "\u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 \u0548\u0550\u0548\u0547\u0548\u0552\u0544\u0538 \u0544\u053b\u0546\u0549\u0535\u054e \u0535\u0550\u053f\u0548\u0552 \u054f\u0531\u0550\u0535\u053f\u0531\u0546 \u0535\u0550\u0535\u053d\u0531\u0545\u053b \u053d\u0546\u0531\u0544\u0554\u053b \u0546\u054a\u0531\u054d\u054f \u0546\u0547\u0531\u0546\u0531\u053f\u0535\u053c\u0548\u0552 \u0535\u054e \u054e\u0543\u0531\u0550\u0535\u053c\u0548\u0552 \u053f\u0531\u0550\u0533\u0538 \u0540\u0531\u054d\u054f\u0531\u054f\u0535\u053c\u0548\u0552 \u0535\u054e \u0540\u0540 \u053f\u0531\u054c\u0531\u054e\u0531\u0550\u0548\u0552\u0539\u0545\u0531\u0546 2014 \u0539\u054e\u0531\u053f\u0531\u0546\u053b \u0540\u0548\u0552\u0546\u054e\u0531\u0550\u053b 30-\u053b N 145-\u0546 \u0548\u0550\u0548\u0547\u0544\u0531\u0546 \u0544\u0535\u054b \u0553\u0548\u0553\u0548\u053d\u0548\u0552\u0539\u0545\u0548\u0552\u0546 \u053f\u0531\u054f\u0531\u0550\u0535\u053c\u0548\u0552 \u0544\u0531\u054d\u053b\u0546",
+        "verified_source_sha256": "c2d4ce162e081292586fd5d341f3240becc49049aa8b2710daad2c74d6482286"
+      },
+      "sha256": "c2d4ce162e081292586fd5d341f3240becc49049aa8b2710daad2c74d6482286",
+      "source_format": "arlis.am-consolidated-html",
+      "source_path": "sources/am/regulation/2026-08-31-am-implementing-regulations-2024/arlis/under-two-care-benefit-190187-2024-03-01.html",
+      "source_url": "https://www.arlis.am/hy/acts/190187"
+    },
+    {
+      "citation_path": "am/regulation/act-190187/appendix-3/appendix-2",
+      "metadata": {
+        "act_id": "190187",
+        "adopted": "2015-12-29",
+        "consolidated_expression": true,
+        "expected_appendix_count": 4,
+        "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
+        "expression_end_date": "2025-02-21",
+        "hierarchy": [
+          {
+            "citation_path": "am/regulation/act-190187/appendix-3",
+            "kind": "appendix"
+          }
+        ],
+        "official_number": "N 1566-\u0546",
+        "raw_marker": "\u0540\u0561\u057e\u0565\u056c\u057e\u0561\u056e N 2",
         "source_authority": "ARLIS (Armenian Legal Information System)",
         "source_id": "under-two-care-benefit-2024-mar-dec",
         "source_language": "hy",
@@ -491,6 +681,12 @@
         "consolidated_expression": true,
         "expected_appendix_count": 4,
         "expected_article_count": 0,
+        "expected_nested_appendices": {
+          "3": [
+            "1",
+            "2"
+          ]
+        },
         "expression_end_date": "2025-02-21",
         "hierarchy": [],
         "official_number": "N 1566-\u0546",
