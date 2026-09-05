@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-south-oxfordshire/manual/2026-09-05-south-oxfordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "0a17c14ed02804c85e71ac2931f305951c50e63cb7017937253158ce26e90b13"
+    },
+    {
+      "path": "data/corpus/inventory/uk-south-oxfordshire/manual/2026-09-05-south-oxfordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "f504f4b6dec299f76fcfad41aa15bc6b9976b192f818f4394b082581e76f61ea"
+    },
+    {
+      "path": "data/corpus/provisions/uk-south-oxfordshire/manual/2026-09-05-south-oxfordshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "1de0212ba106615efe71221501a95dc03aaf8b47864cf46cf60fd2ce9cc76d5d"
+    },
+    {
+      "path": "data/corpus/sources/uk-south-oxfordshire/manual/2026-09-05-south-oxfordshire-council-tax-reduction-2026-2027/official-documents/south-oxfordshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "69cb2be31afca37bb015e8e477cfd0695920cd96badd39b9d43c8773cac00936"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea616f59ff4c63b9be97082e6ebd4d6cb6f99c1f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-south-oxfordshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-south-oxfordshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 157,
+    "missing_count": 0,
+    "provision_count": 157,
+    "source_count": 157
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:35:14.991075+00:00",
+  "jurisdiction": "uk-south-oxfordshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9mLBDhothjHEvO5uziiWNqNaL7DZKEJ34pbITQthCMwIkWs2j4fuOOnd7CXZ5n58aafKCc9oASmeGUiipHaUDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-south-oxfordshire-council-tax-reduction-2026-2027"
+}

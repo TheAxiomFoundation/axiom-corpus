@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-cherwell/manual/2026-09-05-cherwell-council-tax-reduction-2026-2027.json",
+      "sha256": "3649ce295b57efde116b98a34275e6b5a29109fd1a1a6ab10ac7f44bca0c8fd7"
+    },
+    {
+      "path": "data/corpus/inventory/uk-cherwell/manual/2026-09-05-cherwell-council-tax-reduction-2026-2027.json",
+      "sha256": "b5e099ce8df23385a6d2da63241965a5aa6826e0f155534dc3747f2802756106"
+    },
+    {
+      "path": "data/corpus/provisions/uk-cherwell/manual/2026-09-05-cherwell-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "bcab46f338b7b3cca91890180e467e77457535e72671360349712d8f60c26d43"
+    },
+    {
+      "path": "data/corpus/sources/uk-cherwell/manual/2026-09-05-cherwell-council-tax-reduction-2026-2027/official-documents/cherwell-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "eeaddbd3d4f5ab4798e19a11a88c55b3d8b2934c8a972e3f136b041687270431"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3aa571d4672ebc68e619bc712e448b1662ac100f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-cherwell-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-cherwell-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 150,
+    "missing_count": 0,
+    "provision_count": 150,
+    "source_count": 150
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:32:17.423378+00:00",
+  "jurisdiction": "uk-cherwell",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "zaa2jrt4tnJayKA9dn6mdhb79Gbd4MiJyCpGXIFerHGlperIPcaexh+Q32ucTAGxn5D/ZBK+FkAsTs/VrkYhCA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-cherwell-council-tax-reduction-2026-2027"
+}

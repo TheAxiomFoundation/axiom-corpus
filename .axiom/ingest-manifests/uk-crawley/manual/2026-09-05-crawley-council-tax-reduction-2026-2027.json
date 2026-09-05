@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-crawley/manual/2026-09-05-crawley-council-tax-reduction-2026-2027.json",
+      "sha256": "e5f186be8eac0182cf0f9eb380e4e4d56f4e4557e02bc8ff2054ef557e2158a5"
+    },
+    {
+      "path": "data/corpus/inventory/uk-crawley/manual/2026-09-05-crawley-council-tax-reduction-2026-2027.json",
+      "sha256": "ccb4010a5bffe91167c941c6b6e234a95e31b4c5146aabdd815d8c53ce4fa675"
+    },
+    {
+      "path": "data/corpus/provisions/uk-crawley/manual/2026-09-05-crawley-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "bf721aba018cc75712289c0cff5b54ea85e47f488ca427b6738599ce75b04e8e"
+    },
+    {
+      "path": "data/corpus/sources/uk-crawley/manual/2026-09-05-crawley-council-tax-reduction-2026-2027/official-documents/crawley-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "21f75d24218bde2b22e6661329d58ffe0ffc2552a619b9194b42cf244de5a1ed"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3aa571d4672ebc68e619bc712e448b1662ac100f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-crawley-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-crawley-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 133,
+    "missing_count": 0,
+    "provision_count": 133,
+    "source_count": 133
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:32:19.763995+00:00",
+  "jurisdiction": "uk-crawley",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7SgXVZ763wTVhdYuTxJIe6K0lcYvozQ+iBskvufFj9CoHDCGhyu7xBw/52cL9Tw6tuc4+OdqZVkTc6NrdT24Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-crawley-council-tax-reduction-2026-2027"
+}
