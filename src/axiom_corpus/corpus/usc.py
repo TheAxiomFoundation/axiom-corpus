@@ -5,19 +5,25 @@ from __future__ import annotations
 import re
 from collections.abc import Iterable, Iterator
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
-from pathlib import Path
+from io import BytesIO
+from pathlib import Path, PurePosixPath
+from stat import S_ISLNK
 from typing import Any, cast
 from xml.etree import ElementTree as ET
+from zipfile import BadZipFile, LargeZipFile, ZipFile, ZipInfo
 
-from axiom_corpus.corpus.artifacts import CorpusArtifactStore
+from axiom_corpus.corpus.artifacts import CorpusArtifactStore, sha256_bytes
 from axiom_corpus.corpus.coverage import ProvisionCoverageReport, compare_provision_coverage
 from axiom_corpus.corpus.models import DocumentClass, ProvisionRecord, SourceInventoryItem
 from axiom_corpus.corpus.supabase import deterministic_provision_id
 
 USC_READER_BASE = "https://uscode.house.gov/view.xhtml"
 USLM_SOURCE_FORMAT = "uslm-xml"
+USLM_ZIP_SOURCE_FORMAT = "uslm-xml+zip"
+USLM_XML_NAMESPACE = "http://xml.house.gov/schemas/uslm/1.0"
+MAX_USLM_ARCHIVE_MEMBER_BYTES = 512 * 1024 * 1024
 
 US_CODE_TITLE_NAMES: dict[str, str] = {
     "1": "General Provisions",
@@ -230,6 +236,23 @@ class UscExtractReport:
     source_paths: tuple[Path, ...]
 
 
+@dataclass(frozen=True)
+class UscSourcePayload:
+    """One local USLM input and the exact bytes retained for provenance."""
+
+    source_path: Path
+    retained_bytes: bytes
+    xml_bytes: bytes
+    source_format: str
+    archive_member: str | None = None
+    archive_member_sha256: str | None = None
+    declared_title: str | None = None
+
+    @property
+    def xml_content(self) -> str:
+        return decode_uslm_bytes(self.xml_bytes)
+
+
 def usc_run_id(version: str, title: str | int | None = None, limit: int | None = None) -> str:
     parts = [version]
     if title is not None:
@@ -242,6 +265,189 @@ def usc_run_id(version: str, title: str | int | None = None, limit: int | None =
 def decode_uslm_bytes(data: bytes) -> str:
     """Decode a USLM XML payload while tolerating a UTF-8 BOM."""
     return data.decode("utf-8-sig")
+
+
+def load_usc_source(
+    *,
+    source_xml: str | Path | None = None,
+    source_archive: str | Path | None = None,
+    archive_member: str | None = None,
+    title: str | int | None = None,
+) -> UscSourcePayload:
+    """Load exactly one retained XML or official OLRC USLM ZIP input.
+
+    Archive selection is exact when ``archive_member`` is supplied. Otherwise,
+    a requested title selects a unique ``usc{title}.xml`` basename, or the
+    archive must contain exactly one XML member. Archives fail closed on unsafe
+    or duplicate member names, ambiguous selection, encrypted/symlink members,
+    oversized members, corrupt ZIP data, and non-OLRC USLM XML content.
+    """
+    if (source_xml is None) == (source_archive is None):
+        raise ValueError("provide exactly one of source_xml or source_archive")
+    if source_xml is not None:
+        if archive_member is not None:
+            raise ValueError("archive_member requires source_archive")
+        source_path = Path(source_xml)
+        source_bytes = source_path.read_bytes()
+        return UscSourcePayload(
+            source_path=source_path,
+            retained_bytes=source_bytes,
+            xml_bytes=source_bytes,
+            source_format=USLM_SOURCE_FORMAT,
+        )
+    return _load_usc_archive(
+        Path(cast(str | Path, source_archive)),
+        archive_member=archive_member,
+        title=title,
+    )
+
+
+def _load_usc_archive(
+    source_archive: Path,
+    *,
+    archive_member: str | None,
+    title: str | int | None,
+) -> UscSourcePayload:
+    if source_archive.suffix.lower() != ".zip":
+        raise ValueError(f"USLM source archive must be a ZIP file: {source_archive}")
+    archive_bytes = source_archive.read_bytes()
+    try:
+        with ZipFile(BytesIO(archive_bytes)) as archive:
+            members = archive.infolist()
+            _validate_usc_archive_members(members)
+            selected = _select_usc_archive_member(
+                members,
+                archive_member=archive_member,
+                title=title,
+            )
+            if selected.file_size > MAX_USLM_ARCHIVE_MEMBER_BYTES:
+                raise ValueError(
+                    f"USLM archive member exceeds {MAX_USLM_ARCHIVE_MEMBER_BYTES} "
+                    f"bytes: {selected.filename}"
+                )
+            try:
+                xml_bytes = archive.read(selected)
+            except (BadZipFile, RuntimeError, OSError) as exc:
+                raise ValueError(f"cannot read USLM archive member {selected.filename!r}") from exc
+    except (BadZipFile, LargeZipFile) as exc:
+        raise ValueError(f"invalid USLM ZIP archive: {source_archive}") from exc
+
+    declared_title = _validate_archived_uslm_xml(
+        xml_bytes,
+        member_name=selected.filename,
+        requested_title=title,
+    )
+    return UscSourcePayload(
+        source_path=source_archive,
+        retained_bytes=archive_bytes,
+        xml_bytes=xml_bytes,
+        source_format=USLM_ZIP_SOURCE_FORMAT,
+        archive_member=selected.filename,
+        archive_member_sha256=sha256_bytes(xml_bytes),
+        declared_title=declared_title,
+    )
+
+
+def _validate_usc_archive_members(members: list[ZipInfo]) -> None:
+    if not members:
+        raise ValueError("USLM ZIP archive is empty")
+    seen: set[str] = set()
+    for member in members:
+        name = member.filename
+        if name in seen:
+            raise ValueError(f"USLM ZIP archive contains duplicate member {name!r}")
+        seen.add(name)
+        if not _safe_usc_archive_member_name(name):
+            raise ValueError(f"USLM ZIP archive contains unsafe member {name!r}")
+        if S_ISLNK(member.external_attr >> 16):
+            raise ValueError(f"USLM ZIP archive contains symlink member {name!r}")
+        if member.flag_bits & 0x1:
+            raise ValueError(f"USLM ZIP archive contains encrypted member {name!r}")
+
+
+def _safe_usc_archive_member_name(name: str) -> bool:
+    if not name or "\x00" in name or "\\" in name or name.startswith("/"):
+        return False
+    trimmed = name[:-1] if name.endswith("/") else name
+    if not trimmed or re.match(r"^[A-Za-z]:", trimmed):
+        return False
+    parts = trimmed.split("/")
+    return all(part not in {"", ".", ".."} for part in parts)
+
+
+def _select_usc_archive_member(
+    members: list[ZipInfo],
+    *,
+    archive_member: str | None,
+    title: str | int | None,
+) -> ZipInfo:
+    files = [member for member in members if not member.is_dir()]
+    if archive_member is not None:
+        if not _safe_usc_archive_member_name(archive_member):
+            raise ValueError(f"unsafe USLM archive member request: {archive_member!r}")
+        matches = [member for member in files if member.filename == archive_member]
+        if not matches:
+            raise ValueError(f"USLM archive member not found: {archive_member!r}")
+        selected = matches[0]
+        if PurePosixPath(selected.filename).suffix.lower() != ".xml":
+            raise ValueError(f"USLM archive member must be an XML file: {selected.filename!r}")
+        return selected
+
+    xml_members = [
+        member for member in files if PurePosixPath(member.filename).suffix.lower() == ".xml"
+    ]
+    if title is not None:
+        expected_name = f"usc{_clean_title_token(title)}.xml".casefold()
+        title_matches = [
+            member
+            for member in xml_members
+            if PurePosixPath(member.filename).name.casefold() == expected_name
+        ]
+        if len(title_matches) == 1:
+            return title_matches[0]
+        if len(title_matches) > 1:
+            raise ValueError(
+                f"USLM ZIP archive has ambiguous members for title {title}: "
+                + ", ".join(sorted(member.filename for member in title_matches))
+            )
+    if len(xml_members) == 1:
+        return xml_members[0]
+    if not xml_members:
+        raise ValueError("USLM ZIP archive contains no XML member")
+    raise ValueError(
+        "USLM ZIP archive has ambiguous XML members; specify archive_member: "
+        + ", ".join(sorted(member.filename for member in xml_members))
+    )
+
+
+def _validate_archived_uslm_xml(
+    xml_bytes: bytes,
+    *,
+    member_name: str,
+    requested_title: str | int | None,
+) -> str:
+    try:
+        root = ET.fromstring(decode_uslm_bytes(xml_bytes))
+    except (UnicodeDecodeError, ET.ParseError) as exc:
+        raise ValueError(f"USLM archive member is not valid UTF-8 XML: {member_name!r}") from exc
+    if root.tag != f"{{{USLM_XML_NAMESPACE}}}uscDoc":
+        raise ValueError(
+            f"USLM archive member is not official OLRC USLM title XML: {member_name!r}"
+        )
+    try:
+        declared_title = _title_from_xml(root)
+    except ValueError as exc:
+        raise ValueError(
+            f"USLM archive member does not declare a US Code title: {member_name!r}"
+        ) from exc
+    if requested_title is not None:
+        expected_title = _clean_title_token(requested_title)
+        if declared_title != expected_title:
+            raise ValueError(
+                f"USLM archive member declares title {declared_title}, "
+                f"not requested title {expected_title}"
+            )
+    return declared_title
 
 
 def infer_uslm_title(xml_content: str) -> str:
@@ -996,7 +1202,10 @@ def extract_usc(
     store: CorpusArtifactStore,
     *,
     version: str,
-    source_xml: str | Path,
+    source_payload: UscSourcePayload | None = None,
+    source_xml: str | Path | None = None,
+    source_archive: str | Path | None = None,
+    archive_member: str | None = None,
     title: str | int | None = None,
     source_as_of: str | None = None,
     expression_date: date | str | None = None,
@@ -1004,20 +1213,43 @@ def extract_usc(
     limit: int | None = None,
     allowed_citation_paths: set[str] | None = None,
 ) -> UscExtractReport:
-    source_xml_path = Path(source_xml)
-    source_bytes = source_xml_path.read_bytes()
-    xml_content = decode_uslm_bytes(source_bytes)
+    if source_payload is not None:
+        if source_xml is not None or source_archive is not None or archive_member is not None:
+            raise ValueError(
+                "source_payload cannot be combined with source_xml, "
+                "source_archive, or archive_member"
+            )
+        source = source_payload
+    else:
+        source = load_usc_source(
+            source_xml=source_xml,
+            source_archive=source_archive,
+            archive_member=archive_member,
+            title=title,
+        )
+    if title is not None and source.declared_title is not None:
+        expected_title = _clean_title_token(title)
+        if source.declared_title != expected_title:
+            raise ValueError(
+                f"USLM source payload declares title {source.declared_title}, "
+                f"not requested title {expected_title}"
+            )
+    xml_content = source.xml_content
     document = parse_uslm_title(xml_content, title=title)
     run_id = usc_run_id(version, document.title, limit)
-    source_relative_name = _usc_source_relative_name(document.title)
+    source_relative_name = (
+        _usc_archive_source_relative_name(source.source_path)
+        if source.archive_member is not None
+        else _usc_source_relative_name(document.title)
+    )
     source_artifact_path = store.source_path(
         "us",
         DocumentClass.STATUTE,
         run_id,
         source_relative_name,
     )
-    source_sha256 = store.write_bytes(source_artifact_path, source_bytes)
-    source_key = _usc_source_key(run_id, document.title)
+    source_sha256 = store.write_bytes(source_artifact_path, source.retained_bytes)
+    source_key = _usc_source_key_for_relative_name(run_id, source_relative_name)
     inventory = build_usc_inventory_from_xml(
         xml_content,
         title=document.title,
@@ -1027,6 +1259,21 @@ def extract_usc(
         limit=limit,
         allowed_citation_paths=allowed_citation_paths,
     )
+    archive_metadata = _usc_archive_metadata(source, source_sha256)
+    if archive_metadata is not None:
+        inventory = replace(
+            inventory,
+            items=tuple(
+                replace(
+                    item,
+                    source_path=source_key,
+                    source_format=source.source_format,
+                    sha256=source_sha256,
+                    metadata=_merge_source_metadata(item.metadata, archive_metadata),
+                )
+                for item in inventory.items
+            ),
+        )
     inventory_citation_paths = {item.citation_path for item in inventory.items}
     records = tuple(
         record
@@ -1046,6 +1293,16 @@ def extract_usc(
         )
         if record.citation_path in inventory_citation_paths
     )
+    if archive_metadata is not None:
+        records = tuple(
+            replace(
+                record,
+                source_path=source_key,
+                source_format=source.source_format,
+                metadata=_merge_source_metadata(record.metadata, archive_metadata),
+            )
+            for record in records
+        )
     inventory_path = store.inventory_path("us", DocumentClass.STATUTE, run_id)
     store.write_inventory(inventory_path, inventory.items)
     provisions_path = store.provisions_path("us", DocumentClass.STATUTE, run_id)
@@ -1902,8 +2159,36 @@ def _usc_source_relative_name(title: str) -> str:
     return f"uslm/usc{title}.xml"
 
 
+def _usc_archive_source_relative_name(source_archive: Path) -> str:
+    return f"olrc/{source_archive.name}"
+
+
 def _usc_source_key(run_id: str, title: str) -> str:
     return f"sources/us/{DocumentClass.STATUTE.value}/{run_id}/{_usc_source_relative_name(title)}"
+
+
+def _usc_source_key_for_relative_name(run_id: str, relative_name: str) -> str:
+    return f"sources/us/{DocumentClass.STATUTE.value}/{run_id}/{relative_name}"
+
+
+def _usc_archive_metadata(
+    source: UscSourcePayload,
+    archive_sha256: str,
+) -> dict[str, str] | None:
+    if source.archive_member is None or source.archive_member_sha256 is None:
+        return None
+    return {
+        "archive_sha256": archive_sha256,
+        "archive_member": source.archive_member,
+        "archive_member_sha256": source.archive_member_sha256,
+    }
+
+
+def _merge_source_metadata(
+    metadata: dict[str, Any] | None,
+    source_metadata: dict[str, str],
+) -> dict[str, Any]:
+    return {**(metadata or {}), **source_metadata}
 
 
 def _usc_identifiers(
