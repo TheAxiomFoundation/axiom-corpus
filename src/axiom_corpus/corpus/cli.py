@@ -77,6 +77,7 @@ from axiom_corpus.corpus.ingest_manifests import (
     write_signed_ingest_manifest,
 )
 from axiom_corpus.corpus.io import load_provisions, load_source_inventory
+from axiom_corpus.corpus.israel_openlaw import extract_israel_openlaw
 from axiom_corpus.corpus.maryland_comar import extract_maryland_comar
 from axiom_corpus.corpus.models import (
     CorpusManifest,
@@ -1444,6 +1445,42 @@ def _cmd_extract_am_arlis(args: argparse.Namespace) -> int:
                 "document_count": report.document_count,
                 "article_count": report.article_count,
                 "structural_count": report.structural_count,
+                "provisions_written": report.provisions_written,
+                "inventory_path": str(report.inventory_path),
+                "provisions_path": str(report.provisions_path),
+                "coverage_path": str(report.coverage_path),
+                "coverage_complete": report.coverage.complete,
+                "source_count": report.coverage.source_count,
+                "provision_count": report.coverage.provision_count,
+                "matched_count": report.coverage.matched_count,
+                "missing_count": len(report.coverage.missing_from_provisions),
+                "extra_count": len(report.coverage.extra_provisions),
+            },
+            indent=2,
+            sort_keys=True,
+        )
+    )
+    return 0 if report.coverage.complete else 2
+
+
+def _cmd_extract_il_openlaw(args: argparse.Namespace) -> int:
+    store = CorpusArtifactStore(args.base)
+    report = extract_israel_openlaw(
+        store,
+        version=args.version,
+        manifest_path=args.manifest,
+        source_dir=args.source_dir,
+    )
+    print(
+        json.dumps(
+            {
+                "jurisdiction": report.jurisdiction,
+                "document_class": report.document_class,
+                "version": report.version,
+                "document_count": report.document_count,
+                "section_count": report.section_count,
+                "schedule_item_count": report.schedule_item_count,
+                "navigation_count": report.navigation_count,
                 "provisions_written": report.provisions_written,
                 "inventory_path": str(report.inventory_path),
                 "provisions_path": str(report.provisions_path),
@@ -5510,6 +5547,7 @@ _COMMAND_GROUPS: tuple[tuple[str, tuple[str, ...]], ...] = (
         "Extract: international",
         (
             "extract-am-arlis",
+            "extract-il-openlaw",
             "extract-uk-legislation",
             "extract-nz-legislation",
             "extract-nz-district-plan",
@@ -5899,6 +5937,30 @@ def build_parser() -> argparse.ArgumentParser:
         help="Directory containing the pinned local ARLIS HTML snapshots.",
     )
     extract_am_cmd.set_defaults(func=_cmd_extract_am_arlis)
+
+    extract_il_cmd = sub.add_parser(
+        "extract-il-openlaw",
+        help="Extract hash-pinned Israeli statutes from local ספר החוקים הפתוח HTML snapshots.",
+        description=(
+            "Extract hash-pinned Israeli consolidated statutes from local he.wikisource.org "
+            "OpenLaw HTML snapshots."
+        ),
+    )
+    extract_il_cmd.add_argument("--base", type=Path, required=True)
+    extract_il_cmd.add_argument("--version", required=True)
+    extract_il_cmd.add_argument(
+        "--manifest",
+        type=Path,
+        required=True,
+        help="Manifest pinning Israeli statutes, expression dates, and structural counts.",
+    )
+    extract_il_cmd.add_argument(
+        "--source-dir",
+        type=Path,
+        required=True,
+        help="Directory containing the pinned local OpenLaw HTML snapshots.",
+    )
+    extract_il_cmd.set_defaults(func=_cmd_extract_il_openlaw)
 
     extract_nz_cmd = sub.add_parser(
         "extract-nz-legislation",
