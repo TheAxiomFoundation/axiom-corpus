@@ -1,1 +1,3 @@
-Preserve eCFR appendices as cited provisions and archive their official source graphics, including image-only regulatory forms.
+Add opt-in eCFR part appendix ingestion with `--include-appendices` (Python: `include_appendices=True`). Preserve supported appendices as cited provisions and archive their official source images, including image-only regulatory forms.
+Keep default ingestion section-only with unchanged ordinary section text and formula-image capture. Apply section and citation scopes before appendix validation; opted-in selected unsupported or contradictory appendix identifiers fail closed.
+Traverse appendices within part and subpart subject groups in source order. Document the frozen producer and official source hashes for the unchanged 622-entry, 14-record deeming reproduction.

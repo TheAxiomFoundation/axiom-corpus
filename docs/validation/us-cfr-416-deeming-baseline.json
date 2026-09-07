@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "description": "Section-only compatibility baseline replayed from the retained July sources; this is not the published July provisions artifact.",
+  "producer": {
+    "commit": "f22e9a458aa23ce8d0d28f05c58d2fe25360c8fc",
+    "equivalent_base_commit": "17f9ace7291d4c1c284eb2007422dded17bba2f3",
+    "files_sha256": {
+      ".python-version": "a876e0b10411037a012498b9fe18d9bc1df32ed8b722a13564dc944ddcfd9135",
+      "pyproject.toml": "c476839b2c34dd1df708a7c7dd18f0dbf5820837a5e417147aba262560d115a1",
+      "scripts/repro_us_cfr_416_deeming_slice.py": "7afd3c20c68df6187464ef9d74ee22fc958938f015a6288db2f250de5ab47500",
+      "src/axiom_corpus/corpus/artifacts.py": "caa7867e904406278e39e625317cecc1b2586831af205ed88cba27867bda4cf8",
+      "src/axiom_corpus/corpus/coverage.py": "544ebf9db5322f4fc8adae0905ca5f6d449a2fe374e907575d441092dcc049dc",
+      "src/axiom_corpus/corpus/ecfr.py": "b9be869d56f8e597bfafa5a169f661c6eb56fb17d3cd429e5b129dbf673383f1",
+      "src/axiom_corpus/corpus/models.py": "7e583ff42b52bc48175a5bf6e4ee73d4e789215dccfc33afddbdb75019ef64fe",
+      "uv.lock": "97544c9baf8499d2184f84b4e4d1443e46f2c8d8803e87a04c11bf495c840222"
+    },
+    "git_tree_oid": {
+      "data/corpus/sources/us/regulation/2026-07-23-title-20-part-416": "2323ab1206a18820ece0a54f8d977f5f89778857",
+      "src/axiom_corpus": "0cfe67c81528357c58af3b3b3930f14bd4ac105a"
+    }
+  },
+  "replay": {
+    "verified_on": "2026-09-06",
+    "python": "3.14.4",
+    "uv": "0.11.7",
+    "platform": "macOS-26.6.2-arm64",
+    "working_directory": "Checkout of producer.commit",
+    "environment": {
+      "UV_PROJECT_ENVIRONMENT": "$replay_root/locked-venv",
+      "PYTHONPATH": "src"
+    },
+    "sync_command": "uv sync --frozen --no-install-project --python 3.14.4",
+    "generator_command": "uv run --frozen --no-sync --python 3.14.4 python scripts/repro_us_cfr_416_deeming_slice.py --source-base data/corpus --base \"$replay_root/output\""
+  },
+  "source_sha256": {
+    "sources/us/regulation/2026-07-23-title-20-part-416/ecfr/title-20.structure.json": "f3946c95dd8e4c88f51910538b7c99e98f6563fcd667786771c34d14801b1228",
+    "sources/us/regulation/2026-07-23-title-20-part-416/ecfr/title-20-part-416.xml": "11ec5a3f11457ebdca99bc958c9666740590a544cd44bd88e681f29b9bf41b26"
+  },
+  "expected_report": {
+    "full_source_count": 622,
+    "selected_count": 14,
+    "coverage_complete": true,
+    "container_component_counts": {
+      "us/regulation/20/416": 10,
+      "us/regulation/20/416/subpart-K": 5,
+      "us/regulation/20/416/subpart-L": 2,
+      "us/regulation/20/416/subpart-R": 3
+    }
+  },
+  "output_sha256": {
+    "sources/us/regulation/2026-07-23-title-20-part-416/ecfr/title-20.structure.json": "f3946c95dd8e4c88f51910538b7c99e98f6563fcd667786771c34d14801b1228",
+    "sources/us/regulation/2026-07-23-title-20-part-416/ecfr/title-20-part-416.xml": "11ec5a3f11457ebdca99bc958c9666740590a544cd44bd88e681f29b9bf41b26",
+    "inventory/us/regulation/2026-07-23-title-20-part-416.json": "2dd439932c96eee232a54c737c4b7f5a752f520801f4b342c13d47068386ac33",
+    "provisions/us/regulation/2026-07-23-title-20-part-416.jsonl": "94b7ada5c604b276813b0854b67a15d869baae6e846159730801b412b7f4daa6",
+    "coverage/us/regulation/2026-07-23-title-20-part-416.json": "93209bef1ffb0588956fd75290ab0703c67e0c5191f6cfdac95a3577dde08076"
+  },
+  "published_provisions": {
+    "relative_path": "provisions/us/regulation/2026-07-23-title-20-part-416.jsonl",
+    "sha256": "b7cbb4a14b218bcbcafa498ac97f4bd912004258e0cd2e6f1fb4d88f88dd794b",
+    "ingest_record": "docs/ingest-runs/2026-07-23-us-cfr-416-deeming-and-irs-notice-2025-67.md"
+  }
+}

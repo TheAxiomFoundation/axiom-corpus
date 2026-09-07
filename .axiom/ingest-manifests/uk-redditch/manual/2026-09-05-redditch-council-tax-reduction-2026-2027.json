@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-redditch/manual/2026-09-05-redditch-council-tax-reduction-2026-2027.json",
+      "sha256": "ca63fb67a2ac9463246e6bb96cbb82feeb0ca74969a14c6ea80c3e468ac91e3c"
+    },
+    {
+      "path": "data/corpus/inventory/uk-redditch/manual/2026-09-05-redditch-council-tax-reduction-2026-2027.json",
+      "sha256": "28211023f80ef060532df05b266c4e35fb21ba524851013831cf04ae2e2147e1"
+    },
+    {
+      "path": "data/corpus/provisions/uk-redditch/manual/2026-09-05-redditch-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "72e4e789421118751e12d05213ede8f0d834efe318278f1e3713f347142db46f"
+    },
+    {
+      "path": "data/corpus/sources/uk-redditch/manual/2026-09-05-redditch-council-tax-reduction-2026-2027/official-documents/redditch-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "c805a64c88a9ca9e5ff1ab4133886a6aac3aeb3ec20c6ccb6fe6010b41a20183"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea616f59ff4c63b9be97082e6ebd4d6cb6f99c1f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-redditch-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-redditch-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 87,
+    "missing_count": 0,
+    "provision_count": 87,
+    "source_count": 87
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:35:10.872526+00:00",
+  "jurisdiction": "uk-redditch",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "AujV6B1XlCZk32AFT/FWKBZFm9kFtu7McOmjlNI70IWJhmORiiPlaYhC50PoL73wIahSTGqcGoiVnTlVMPgPBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-redditch-council-tax-reduction-2026-2027"
+}

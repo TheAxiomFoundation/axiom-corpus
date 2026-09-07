@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-bedford/manual/2026-09-05-bedford-council-tax-reduction-2026-2027.json",
+      "sha256": "11f21c9131d54eb188c03eea7ce5d5d54d07e8ca8fc37c6cd07efc5ef4e9f8e4"
+    },
+    {
+      "path": "data/corpus/inventory/uk-bedford/manual/2026-09-05-bedford-council-tax-reduction-2026-2027.json",
+      "sha256": "212527da29c9744a8fcbf378b06a2797e5e754524ff0f1e69f92f9a9efc44aae"
+    },
+    {
+      "path": "data/corpus/provisions/uk-bedford/manual/2026-09-05-bedford-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "133b165377181463818106e586e5aaa08bcb63f62e2604fe0002988e2bb8b076"
+    },
+    {
+      "path": "data/corpus/sources/uk-bedford/manual/2026-09-05-bedford-council-tax-reduction-2026-2027/official-documents/bedford-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "6d7b54176bc2748794f93e9ce10e50aa4e7b185147284a7f8cb863c6a90c3131"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-bedford-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-bedford-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 16,
+    "missing_count": 0,
+    "provision_count": 16,
+    "source_count": 16
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:47.463807+00:00",
+  "jurisdiction": "uk-bedford",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "65nZ4yMyxQ3y1l7kdgS+WxOCd/OyrKpSCtCa9yiqcV3dlgacYhlvAPsjbzdnKfKIlptxa7KvfwBVX7Mn+pLiBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-bedford-council-tax-reduction-2026-2027"
+}

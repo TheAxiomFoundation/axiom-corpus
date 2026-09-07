@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-portsmouth/manual/2026-09-05-portsmouth-council-tax-reduction-2026-2027.json",
+      "sha256": "b55eb81d30f38bb355561b2d1ddd9b593ed92eedbe4032ac4c3e03a5fa6b55a7"
+    },
+    {
+      "path": "data/corpus/inventory/uk-portsmouth/manual/2026-09-05-portsmouth-council-tax-reduction-2026-2027.json",
+      "sha256": "c14feaf9714cb4f1812edf678d8c448f4d8d7c03bf3f1b27decdcfe8c88837ab"
+    },
+    {
+      "path": "data/corpus/provisions/uk-portsmouth/manual/2026-09-05-portsmouth-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "3755eb14a3eff2c4a0ab03f74a2843f5af1a5156a45e1ee4f6921ab5c5b50945"
+    },
+    {
+      "path": "data/corpus/sources/uk-portsmouth/manual/2026-09-05-portsmouth-council-tax-reduction-2026-2027/official-documents/portsmouth-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "1d88e45d8f5078ebc8afad8afd7c8b90521b832223833e292121cf5cab6def78"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-portsmouth-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-portsmouth-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 88,
+    "missing_count": 0,
+    "provision_count": 88,
+    "source_count": 88
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:10:56.001635+00:00",
+  "jurisdiction": "uk-portsmouth",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lxS9xad80DjcjxwcPx5VsG9PQE1qkCVYZwjdHYZDjI0vo4nSSs7HwedIDlVkoRjkyV7AZZjGeXe67YSFeDtuAw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-portsmouth-council-tax-reduction-2026-2027"
+}

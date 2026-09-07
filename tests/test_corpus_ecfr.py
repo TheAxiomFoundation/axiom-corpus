@@ -355,6 +355,7 @@ def test_build_ecfr_inventory_from_structure_includes_appendices():
         (SAMPLE_APPENDIX_STRUCTURE,),
         run_id="2026-08-30-title-45-part-604",
         only_part="604",
+        include_appendices=True,
     )
 
     assert [item.citation_path for item in inventory.items] == [
@@ -370,6 +371,379 @@ def test_build_ecfr_inventory_from_structure_includes_appendices():
     assert appendix.source_url.endswith(
         "/appendix-Appendix%20A%20to%20Part%20604"
     )
+
+
+@pytest.mark.parametrize("entrypoint", ["lower", "public", "iterator", "extract", "inventory-cli", "extract-cli"])
+def test_retained_416_default_scope_ignores_unsupported_appendix(
+    tmp_path, monkeypatch, capsys, entrypoint
+):
+    import axiom_corpus.corpus.ecfr as ecfr
+    from axiom_corpus.corpus.cli import main
+
+    source = (
+        Path(__file__).parents[1] / "data/corpus/sources/us/regulation"
+        / "2026-07-23-title-20-part-416/ecfr"
+    )
+    structure = json.loads((source / "title-20.structure.json").read_text())
+    xml = (source / "title-20-part-416.xml").read_text()
+    assert "Appendix to Subpart K of Part 416" in xml
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: pytest.fail("unexpected graphic fetch"))
+    kwargs = {"only_title": 20, "only_part": "416", "as_of": "2026-07-23"}
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    def run(include_appendices=False):
+        # Omit the keyword entirely on default calls to exercise public defaults.
+        opt_in = {"include_appendices": True} if include_appendices else {}
+        if entrypoint == "lower":
+            return build_ecfr_inventory_from_structures((structure,), only_part="416", **opt_in)
+        if entrypoint == "public":
+            return build_ecfr_inventory(**kwargs, **opt_in)
+        if entrypoint == "iterator":
+            return tuple(iter_ecfr_title_provisions(
+                xml, tuple(t for t in part_targets_from_structure(structure) if t.part == "416"),
+                version="2026-07-23", source_path="official.xml", **opt_in,
+            ))
+        if entrypoint == "extract":
+            return extract_ecfr(store, version="2026-07-23", **kwargs, **opt_in)
+        command = "inventory-ecfr" if entrypoint == "inventory-cli" else "extract-ecfr"
+        return main([
+            command, "--base", str(store.root), "--version", "2026-07-23",
+            "--as-of", "2026-07-23", "--only-title", "20", "--only-part", "416",
+            *(["--include-appendices"] if include_appendices else []),
+        ])
+
+    result = run()
+    if entrypoint in {"lower", "public"}:
+        assert len(result.items) == 622
+        assert not any(item.metadata["kind"] == "appendix" for item in result.items)
+    elif entrypoint == "iterator":
+        assert not any(record.kind == "appendix" for record in result)
+        inventory_paths = {item.citation_path for item in build_ecfr_inventory(**kwargs).items}
+        assert len(inventory_paths) == 622
+        assert inventory_paths <= {record.citation_path for record in result}
+    elif entrypoint == "extract":
+        assert result.coverage.source_count == result.provisions_written == 622
+        assert result.title_errors == ()
+    else:
+        assert result == 0
+        output = json.loads(capsys.readouterr().out)
+        key = "items_written" if entrypoint == "inventory-cli" else "provisions_written"
+        assert output[key] == 622
+    if entrypoint.endswith("-cli"):
+        assert run(include_appendices=True) == 2
+        error = capsys.readouterr()
+        assert error.out == ""
+        assert "unsupported nonreserved eCFR appendix" in error.err
+        assert "Appendix to Subpart K of Part 416" in error.err
+    else:
+        with pytest.raises(ValueError, match="unsupported nonreserved eCFR appendix.*Appendix to Subpart K of Part 416"):
+            run(include_appendices=True)
+
+
+@pytest.mark.parametrize("container", ["title", "chapter", "subchapter"])
+def test_part_scope_excludes_unrelated_uncontained_appendix(tmp_path, monkeypatch, container):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
+    outside = {"identifier": "Appendix A to Chapter VI", "type": "appendix"}
+    if container == "title":
+        structure["children"].append(outside)
+    elif container == "chapter":
+        structure["children"][0]["children"].append(outside)
+    else:
+        structure["children"][0]["children"].append({
+            "identifier": "A", "type": "subchapter", "children": [outside],
+        })
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: SAMPLE_APPENDIX_XML)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: b"\x89PNG\r\n\x1a\n" + identifier.encode())
+
+    inventory = build_ecfr_inventory_from_structures(
+        (structure,), only_part="604", include_appendices=True,
+    )
+    expected = ["us/regulation/45/604", "us/regulation/45/604/100", "us/regulation/45/604/appendix-a", "us/regulation/45/604/appendix-b"]
+    assert [item.citation_path for item in inventory.items] == expected
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-08-30", as_of="2026-08-27",
+        only_title=45, only_part="604", include_appendices=True,
+    )
+    assert report.title_errors == ()
+    assert report.coverage.complete
+    assert [record.citation_path for record in load_provisions(report.provisions_path)] == expected
+    # Without a part selector the unsupported appendix is in scope and must fail.
+    with pytest.raises(ValueError, match="unsupported nonreserved eCFR appendix without a part-scoped identifier"):
+        build_ecfr_inventory_from_structures((structure,), include_appendices=True)
+
+
+@pytest.mark.parametrize("identifier", ["Appendix II to Part 604", "Appendix A to Part 605"])
+def test_extract_ecfr_validates_appendix_inventory_before_writing(tmp_path, monkeypatch, identifier):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
+    structure["children"][0]["children"][0]["children"][1]["identifier"] = identifier
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda *args: pytest.fail("invalid inventory fetched XML"))
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    with pytest.raises(ValueError, match="unsupported.*appendix|appendix part.*conflicts"):
+        extract_ecfr(
+            store, version="2026-08-30", as_of="2026-08-27", only_title=45,
+            only_part="604", include_appendices=True,
+        )
+
+    assert not store.root.exists()
+
+
+def test_retained_source_inventory_failure_preserves_existing_run_bytes(tmp_path, monkeypatch):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    # A retained-source run must be section-scoped. Its unsupported appendix is
+    # excluded, but the requested foreign-part section fails inventory validation
+    # after the local XML was read and the scoped structure was constructed.
+    xml = SAMPLE_APPENDIX_XML.replace("§ 604.100", "§ 605.100").replace(
+        "Appendix A to Part 604", "Appendix II to Part 604"
+    )
+    source = tmp_path / "official.xml"
+    source.write_bytes(xml.encode())
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    retained = store.root / "sources/us/regulation/2026-08-30-title-45-part-604/ecfr/title-45-part-604.xml"
+    retained.parent.mkdir(parents=True)
+    retained.write_bytes(b"previous retained source")
+    before = {path.relative_to(store.root): path.read_bytes() for path in store.root.rglob("*") if path.is_file()}
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda *args: pytest.fail("local run fetched structure"))
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda *args: pytest.fail("local run fetched XML"))
+
+    with pytest.raises(ValueError, match=r"eCFR section selector\(s\) not found: 605\.100"):
+        extract_ecfr(
+            store, version="2026-08-30", as_of="2026-08-27", source_xml=source,
+            only_title=45, only_part="604", only_sections=("605.100",), include_appendices=True,
+        )
+
+    assert source.read_bytes() == xml.encode()
+    after = {path.relative_to(store.root): path.read_bytes() for path in store.root.rglob("*") if path.is_file()}
+    assert after == before
+
+
+@pytest.mark.parametrize("command", ["inventory-ecfr", "extract-ecfr"])
+@pytest.mark.parametrize("identifier", ["Appendix II to Part 604", "Appendix A to Part 605"])
+@pytest.mark.parametrize("existing_run", [False, True])
+def test_ecfr_cli_reports_invalid_appendix_without_writes(
+    tmp_path, monkeypatch, capsys, command, identifier, existing_run
+):
+    import axiom_corpus.corpus.ecfr as ecfr
+    from axiom_corpus.corpus.cli import main
+
+    structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
+    structure["children"][0]["children"][0]["children"][1]["identifier"] = identifier
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda *args: pytest.fail("invalid inventory fetched XML"))
+    output = tmp_path / "corpus"
+    existing = output / "sources/us/regulation/2026-08-30-title-45-part-604/ecfr/title-45.structure.json"
+    if existing_run:
+        existing.parent.mkdir(parents=True)
+        existing.write_bytes(b"previous run bytes")
+    before = {path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}
+
+    result = main([
+        command, "--base", str(output), "--version", "2026-08-30",
+        "--as-of", "2026-08-27", "--only-title", "45", "--only-part", "604",
+        "--include-appendices",
+    ])
+
+    assert result == 2
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert identifier in captured.err
+    assert "unsupported nonreserved eCFR appendix" in captured.err or "conflicts with enclosing part" in captured.err
+    assert "Traceback" not in captured.err
+    after = {path.relative_to(output): path.read_bytes() for path in output.rglob("*") if path.is_file()}
+    assert after == before
+    if not existing_run:
+        assert not output.exists()
+
+
+@pytest.mark.parametrize("include_appendices", [False, True])
+def test_extract_ecfr_preserves_ordinary_section_body_and_formula_only_capture(
+    tmp_path, monkeypatch, include_appendices
+):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    section = """
+      <HEAD>§ 604.100 Conditions on use of funds.</HEAD>
+      <HED>Retained HED<IMG src="/graphics/SECTION.001.gif"/></HED>
+      <HD1>Legacy omitted HD1<IMG src="/graphics/SECTION.002.gif"/><P>Nested paragraph</P></HD1>
+      <HD2>Legacy omitted HD2</HD2><HD3>Legacy omitted HD3</HD3>
+      <P>Paragraph text<IMG src="/graphics/SECTION.003.gif"/></P>
+      <TABLE><TR><TD>Table text<IMG src="/graphics/SECTION.004.gif"/></TD></TR></TABLE>
+      <IMG src="/graphics/SECTION.005.gif"/>
+      <MATH><IMG src="/graphics/ER07OC94.022.gif"/></MATH>
+    """
+    xml = SAMPLE_APPENDIX_XML.replace(
+        '<P>(a) No appropriated funds may be used for covered lobbying.</P>', section
+    )
+    assert section in xml
+    fetched = []
+    graphics = {
+        identifier: b"\x89PNG\r\n\x1a\n" + identifier.encode()
+        for identifier in ("ER07OC94.022", "EC01JA91.007", "EC01JA91.008", "EC01JA91.009")
+    }
+
+    def fetch_graphic(identifier):
+        fetched.append(identifier)
+        return graphics[identifier]
+
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: SAMPLE_APPENDIX_STRUCTURE)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", fetch_graphic)
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-08-30", as_of="2026-08-27",
+        only_title=45, only_part="604", include_appendices=include_appendices,
+    )
+
+    assert report.title_errors == ()
+    assert report.coverage.complete
+    records = load_provisions(report.provisions_path)
+    assert records[1].body.split("\n\n") == [
+        "Retained HED", "Nested paragraph", "Paragraph text", "Table text",
+        "[Official formula image: ecfr/graphics/ER07OC94.022.png]",
+    ]
+    expected_ids = list(graphics) if include_appendices else ["ER07OC94.022"]
+    assert fetched == expected_ids
+    assert {path.stem: path.read_bytes() for path in report.source_paths if path.suffix == ".png"} == {
+        identifier: graphics[identifier] for identifier in expected_ids
+    }
+    assert len(records) == (4 if include_appendices else 2)
+
+
+def test_inventory_rejects_selected_appendix_part_conflict():
+    structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
+    structure["children"][0]["children"][0]["children"][1]["identifier"] = "Appendix A to Part 605"
+    with pytest.raises(ValueError, match="appendix part '605' conflicts with enclosing part '604'"):
+        build_ecfr_inventory_from_structures((structure,), only_part="604", include_appendices=True)
+    assert len(build_ecfr_inventory_from_structures((structure,), only_part="604").items) == 2
+    assert len(build_ecfr_inventory_from_structures(
+        (structure,), only_part="604", only_sections=("604.100",), include_appendices=True,
+    ).items) == 2
+
+
+@pytest.mark.parametrize("allowed_paths", [None, {"us/regulation/45/604/appendix-a"}, {"us/regulation/45/605/appendix-a"}])
+def test_iterator_rejects_selected_appendix_part_conflict(allowed_paths):
+    xml = SAMPLE_APPENDIX_XML.replace("Appendix A to Part 604", "Appendix A to Part 605")
+    kwargs = {
+        "targets": (EcfrPartTarget(title=45, part="604"),),
+        "version": "2026-08-30", "source_path": "official.xml",
+    }
+    with pytest.raises(ValueError, match="appendix part '605' conflicts with enclosing part '604'"):
+        tuple(iter_ecfr_title_provisions(xml, **kwargs, allowed_citation_paths=allowed_paths, include_appendices=True))
+    assert len(tuple(iter_ecfr_title_provisions(xml, **kwargs))) == 2
+    scoped = tuple(iter_ecfr_title_provisions(
+        xml, **kwargs, allowed_citation_paths={"us/regulation/45/604/100"}, include_appendices=True,
+    ))
+    assert [record.citation_path for record in scoped] == ["us/regulation/45/604/100"]
+
+
+@pytest.mark.parametrize("appendix_id,ordinal", [("A", 1_000_065), ("12", 1_000_012)])
+@pytest.mark.parametrize("include_appendices", [False, True])
+def test_ecfr_cli_opt_in_retains_direct_appendix_image(
+    tmp_path, monkeypatch, capsys, appendix_id, ordinal, include_appendices
+):
+    import axiom_corpus.corpus.ecfr as ecfr
+    from axiom_corpus.corpus.cli import main
+
+    identifier = f"Appendix {appendix_id} to Part 604"
+    structure = {"identifier": "45", "type": "title", "children": [{
+        "identifier": "604", "type": "part", "label": "Part 604-Forms",
+        "children": [{"identifier": identifier, "type": "appendix", "label": f"{identifier}-Form"}],
+    }]}
+    xml = (
+        '<ECFR><DIV5 N="604" TYPE="PART"><HEAD>Part 604-Forms</HEAD>'
+        f'<DIV9 N="{identifier}" TYPE="APPENDIX"><HEAD>{identifier}-Form</HEAD>'
+        '<IMG src="/graphics/EC01JA91.007.gif"/></DIV9></DIV5></ECFR>'
+    )
+    png = b"\x89PNG\r\n\x1a\nretained-form"
+    fetched = []
+
+    def fetch_graphic(graphic_id):
+        fetched.append(graphic_id)
+        assert graphic_id == "EC01JA91.007"
+        return png
+
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", fetch_graphic)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    for command in ("inventory-ecfr", "extract-ecfr"):
+        assert main([
+            command, "--base", str(store.root), "--version", "2026-08-30",
+            "--as-of", "2026-08-27", "--only-title", "45", "--only-part", "604",
+            *(["--include-appendices"] if include_appendices else []),
+        ]) == 0
+        output = json.loads(capsys.readouterr().out)
+        count_key = "items_written" if command == "inventory-ecfr" else "provisions_written"
+        assert output[count_key] == (2 if include_appendices else 1)
+    records = load_provisions(Path(output["provisions_path"]))
+    assert fetched == (["EC01JA91.007"] if include_appendices else [])
+    if include_appendices:
+        appendix = records[-1]
+        assert appendix.citation_path == f"us/regulation/45/604/appendix-{appendix_id.lower()}"
+        assert appendix.ordinal == ordinal
+        assert appendix.heading == "Form"
+        assert appendix.body == "[Official source image: ecfr/graphics/EC01JA91.007.png]"
+        graphic_path = store.root / "sources/us/regulation/2026-08-30-title-45-part-604/ecfr/graphics/EC01JA91.007.png"
+        assert graphic_path.read_bytes() == png
+
+
+@pytest.mark.parametrize("appendix_id,ordinal", [("A", 1_000_065), ("12", 1_000_012)])
+def test_extract_ecfr_retains_missing_xml_appendix_source_identity(
+    tmp_path, monkeypatch, appendix_id, ordinal
+):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    identifier = f"Appendix {appendix_id} to Part 604"
+    structure = {"identifier": "45", "type": "title", "children": [{
+        "identifier": "604", "type": "part", "label": "Part 604-Forms",
+        "children": [{
+            "identifier": identifier, "type": "appendix",
+            "label_description": "Official retained form.",
+        }],
+    }]}
+    xml = '<ECFR><DIV5 N="604" TYPE="PART"><HEAD>Part 604-Forms</HEAD></DIV5></ECFR>'
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda graphic_id: pytest.fail("missing XML has no image to fetch"))
+    kwargs = {"version": "2026-08-30", "as_of": "2026-08-27", "only_title": 45, "only_part": "604", "include_appendices": True}
+    report = extract_ecfr(CorpusArtifactStore(tmp_path / "missing"), **kwargs)
+
+    assert report.title_errors == ()
+    records = load_provisions(report.provisions_path)
+    placeholder = records[-1]
+    item = load_source_inventory(report.inventory_path)[-1]
+    assert placeholder.citation_path == item.citation_path == f"us/regulation/45/604/appendix-{appendix_id.lower()}"
+    assert placeholder.kind == "appendix"
+    assert placeholder.body is None
+    assert placeholder.heading == "Official retained form"
+    assert placeholder.legal_identifier == f"45 CFR part 604, appendix {appendix_id}"
+    assert placeholder.parent_citation_path == records[0].citation_path == "us/regulation/45/604"
+    assert placeholder.parent_id == records[0].id
+    assert placeholder.level == 1
+    assert placeholder.ordinal == ordinal
+    assert placeholder.source_path == item.source_path
+    assert placeholder.source_url == item.source_url
+    assert item.sha256 == sha256_bytes(xml.encode())
+    assert placeholder.metadata["structure_only"] is True
+    assert placeholder.metadata["body_status"] == "not_in_ecfr_full_xml"
+    assert placeholder.identifiers == {"ecfr:title": "45", "ecfr:part": "604", "ecfr:appendix": appendix_id.lower()}
+
+    # A later XML snapshot supplies text without changing the provision's identity.
+    xml_with_appendix = xml.replace('</DIV5>', f'<DIV9 N="{identifier}" TYPE="APPENDIX"><P>Official form text</P></DIV9></DIV5>')
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml_with_appendix)
+    parsed_report = extract_ecfr(CorpusArtifactStore(tmp_path / "present"), **kwargs)
+    parsed = load_provisions(parsed_report.provisions_path)[-1]
+    assert parsed.id == placeholder.id
+    assert parsed.body == "Official form text"
+    assert not parsed.metadata.get("structure_only")
 
 
 def test_build_ecfr_inventory_fails_closed_for_unsupported_appendix_shape():
@@ -398,7 +772,7 @@ def test_build_ecfr_inventory_fails_closed_for_unsupported_appendix_shape():
         ValueError,
         match="unsupported nonreserved eCFR appendix identifier",
     ):
-        build_ecfr_inventory_from_structures((unsupported,), only_part="604")
+        build_ecfr_inventory_from_structures((unsupported,), only_part="604", include_appendices=True)
 
 
 def test_iter_ecfr_title_provisions_fails_closed_for_unsupported_appendix_xml():
@@ -417,8 +791,265 @@ def test_iter_ecfr_title_provisions_fails_closed_for_unsupported_appendix_xml():
                 (EcfrPartTarget(title=45, part="604", chapter="VI"),),
                 version="2026-08-30-title-45-part-604",
                 source_path="ecfr/title-45-part-604.xml",
+                include_appendices=True,
             )
         )
+
+
+@pytest.mark.parametrize(
+    "identifier",
+    ["Appendix II to Part 604", "Appendix to Subpart A of Part 604", ""],
+)
+def test_build_ecfr_inventory_section_scope_excludes_unsupported_appendices(identifier):
+    structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
+    structure["children"][0]["children"][0]["children"][1]["identifier"] = identifier
+
+    inventory = build_ecfr_inventory_from_structures(
+        (structure,), only_part="604", only_sections=("604.100",),
+        include_appendices=True,
+    )
+
+    assert [item.citation_path for item in inventory.items] == [
+        "us/regulation/45/604",
+        "us/regulation/45/604/100",
+    ]
+    with pytest.raises(ValueError, match="unsupported nonreserved eCFR appendix"):
+        build_ecfr_inventory_from_structures((structure,), only_part="604", include_appendices=True)
+
+
+@pytest.mark.parametrize("with_subpart", [False, True])
+@pytest.mark.parametrize(
+    "allowed_paths",
+    [
+        set(),
+        {"us/regulation/45/604", "us/regulation/45/604/100"},
+        {"us/regulation/45/604/appendix-b"},
+    ],
+)
+def test_iter_ecfr_title_provisions_scope_excludes_unsupported_appendix(
+    with_subpart, allowed_paths
+):
+    xml = SAMPLE_APPENDIX_XML.replace("Appendix A to Part 604", "Appendix II to Part 604")
+    if with_subpart:
+        xml = xml.replace(
+            '<DIV8 N="§ 604.100"',
+            '<DIV6 N="A" TYPE="SUBPART"><HEAD>Subpart A-General</HEAD><DIV8 N="§ 604.100"',
+        ).replace("</DIV8>", "</DIV8></DIV6>")
+
+    records = tuple(
+        iter_ecfr_title_provisions(
+            xml,
+            (EcfrPartTarget(title=45, part="604", chapter="VI"),),
+            version="2026-08-30-title-45-part-604",
+            source_path="ecfr/title-45-part-604.xml",
+            allowed_citation_paths=allowed_paths,
+            include_appendices=True,
+        )
+    )
+
+    assert {record.citation_path for record in records} == allowed_paths
+    if "us/regulation/45/604/appendix-b" in allowed_paths:
+        assert "[Official source image: ecfr/graphics/EC01JA91.007.png]" in records[0].body
+
+
+@pytest.mark.parametrize("retained_xml", [False, True])
+def test_extract_ecfr_section_scope_excludes_unsupported_appendix_and_its_graphics(
+    tmp_path, monkeypatch, retained_xml
+):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
+    structure["children"][0]["children"][0]["children"][2]["identifier"] = (
+        "Appendix II to Part 604"
+    )
+    xml = SAMPLE_APPENDIX_XML.replace("Appendix B to Part 604", "Appendix II to Part 604")
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(
+        ecfr, "fetch_ecfr_graphic", lambda identifier: pytest.fail("excluded graphic fetched")
+    )
+    source_xml = None
+    if retained_xml:
+        source_xml = tmp_path / "official-part-604.xml"
+        source_xml.write_text(xml)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+
+    report = extract_ecfr(
+        store,
+        version="2026-08-30",
+        as_of="2026-08-27",
+        only_title=45,
+        only_part="604",
+        only_sections=("604.100",),
+        source_xml=source_xml,
+        include_appendices=True,
+    )
+
+    assert report.title_errors == ()
+    assert report.coverage.complete
+    assert report.provisions_written == 2
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us/regulation/45/604",
+        "us/regulation/45/604/100",
+    ]
+    assert records[1].body == "(a) No appropriated funds may be used for covered lobbying."
+    assert [item.citation_path for item in load_source_inventory(report.inventory_path)] == [
+        record.citation_path for record in records
+    ]
+    retained_path = next(path for path in report.source_paths if path.suffix == ".xml")
+    assert retained_path.read_bytes() == xml.encode()
+    assert not any(path.suffix == ".png" for path in report.source_paths)
+
+
+def test_iter_ecfr_title_provisions_rejects_requested_unsupported_appendix():
+    xml = SAMPLE_APPENDIX_XML.replace("Appendix A to Part 604", "Appendix II to Part 604")
+
+    with pytest.raises(ValueError, match="unsupported nonreserved eCFR appendix XML identifier"):
+        tuple(
+            iter_ecfr_title_provisions(
+                xml,
+                (EcfrPartTarget(title=45, part="604", chapter="VI"),),
+                version="2026-08-30-title-45-part-604",
+                source_path="ecfr/title-45-part-604.xml",
+                allowed_citation_paths={"us/regulation/45/604/appendix-ii"},
+                include_appendices=True,
+            )
+        )
+
+
+
+def _nested_appendix_xml(wrapper, identifier="A"):
+    xml = SAMPLE_APPENDIX_XML.replace("Appendix A to Part 604", f"Appendix {identifier} to Part 604")
+    start = '<DIV7 TYPE="SUBJECT"><HEAD>Forms</HEAD>'
+    end = '</DIV7>'
+    if wrapper == "subpart":
+        start = '<DIV6 N="A" TYPE="SUBPART"><HEAD>Subpart A-General</HEAD>' + start
+        end += '</DIV6>'
+    else:
+        # A sibling subpart used to switch traversal into a direct-child-only
+        # mode that also lost appendices under a part-level subject group.
+        start = '<DIV6 N="A" TYPE="SUBPART"><HEAD>Subpart A-General</HEAD></DIV6>' + start
+    return xml.replace(f'<DIV9 N="Appendix {identifier} to Part 604"', start + f'<DIV9 N="Appendix {identifier} to Part 604"', 1).replace(
+        '</DIV5>', end + '<DIV8 N="§ 604.200" TYPE="SECTION"><HEAD>§ 604.200 After forms.</HEAD><P>Text after forms.</P></DIV8></DIV5>'
+    )
+
+
+@pytest.mark.parametrize("wrapper", ["part", "subpart"])
+def test_iter_ecfr_nested_appendices_preserves_source_order_and_selection(wrapper):
+    xml = _nested_appendix_xml(wrapper)
+    kwargs = {
+        "targets": (EcfrPartTarget(title=45, part="604", chapter="VI"),),
+        "version": "2026-08-30-title-45-part-604",
+        "source_path": "ecfr/title-45-part-604.xml",
+    }
+    records = tuple(iter_ecfr_title_provisions(xml, **kwargs, include_appendices=True))
+    assert [record.citation_path for record in records] == [
+        "us/regulation/45/604", "us/regulation/45/604/100",
+        "us/regulation/45/604/subpart-A", "us/regulation/45/604/appendix-a",
+        "us/regulation/45/604/appendix-b", "us/regulation/45/604/200",
+    ]
+    assert "included in all subcontracts" in records[3].body
+    assert "ecfr/graphics/EC01JA91.007.png" in records[4].body
+    assert records[3].parent_citation_path == "us/regulation/45/604"
+    selected = tuple(iter_ecfr_title_provisions(
+        xml, **kwargs, allowed_citation_paths={"us/regulation/45/604/appendix-a"},
+        include_appendices=True,
+    ))
+    assert selected == (records[3],)
+
+
+@pytest.mark.parametrize("wrapper", ["part", "subpart"])
+@pytest.mark.parametrize("allowed_paths", [None, {"us/regulation/45/604/appendix-ii"}])
+def test_iter_ecfr_nested_appendices_rejects_requested_unsupported(wrapper, allowed_paths):
+    with pytest.raises(ValueError, match="unsupported nonreserved eCFR appendix XML identifier"):
+        tuple(iter_ecfr_title_provisions(
+            _nested_appendix_xml(wrapper, "II"),
+            (EcfrPartTarget(title=45, part="604", chapter="VI"),),
+            version="2026-08-30-title-45-part-604",
+            source_path="ecfr/title-45-part-604.xml",
+            allowed_citation_paths=allowed_paths,
+            include_appendices=True,
+        ))
+
+
+@pytest.mark.parametrize("wrapper", ["part", "subpart"])
+@pytest.mark.parametrize("allowed_paths", [set(), {"us/regulation/45/604/appendix-b"}])
+def test_iter_ecfr_nested_appendices_skips_excluded_unsupported(wrapper, allowed_paths):
+    records = tuple(iter_ecfr_title_provisions(
+        _nested_appendix_xml(wrapper, "II"),
+        (EcfrPartTarget(title=45, part="604", chapter="VI"),),
+        version="2026-08-30-title-45-part-604",
+        source_path="ecfr/title-45-part-604.xml",
+        allowed_citation_paths=allowed_paths,
+        include_appendices=True,
+    ))
+    assert {record.citation_path for record in records} == allowed_paths
+
+
+@pytest.mark.parametrize("retained_xml", [False, True])
+def test_extract_ecfr_nested_section_scope_does_not_fetch_excluded_graphics(
+    tmp_path, monkeypatch, retained_xml
+):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    xml = _nested_appendix_xml("subpart", "II")
+    structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
+    structure["children"][0]["children"][0]["children"][1]["identifier"] = "Appendix II to Part 604"
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: pytest.fail("excluded graphic fetched"))
+    source_xml = None
+    if retained_xml:
+        source_xml = tmp_path / "official.xml"
+        source_xml.write_text(xml)
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-08-30", as_of="2026-08-27",
+        only_title=45, only_part="604", only_sections=("604.100",), source_xml=source_xml,
+        include_appendices=True,
+    )
+    assert report.coverage.complete
+    assert report.title_errors == ()
+    assert [record.citation_path for record in load_provisions(report.provisions_path)] == [
+        "us/regulation/45/604", "us/regulation/45/604/100",
+    ]
+    assert not any(path.suffix == ".png" for path in report.source_paths)
+
+
+
+@pytest.mark.parametrize("wrapper", ["part", "subpart"])
+def test_extract_ecfr_archives_selected_nested_appendix_graphics(tmp_path, monkeypatch, wrapper):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    xml = _nested_appendix_xml(wrapper)
+    structure = json.loads(json.dumps(SAMPLE_APPENDIX_STRUCTURE))
+    part = structure["children"][0]["children"][0]
+    section, *appendices = part["children"]
+    subject = {"type": "subject", "children": appendices}
+    subpart = {"identifier": "A", "label": "Subpart A-General", "type": "subpart", "children": [subject] if wrapper == "subpart" else []}
+    part["children"] = [section, subpart] + ([subject] if wrapper == "part" else []) + [
+        {"identifier": "604.200", "label": "§ 604.200 After forms.", "type": "section"}
+    ]
+    graphics = {f"EC01JA91.00{number}": b"\x89PNG\r\n\x1a\n" + bytes([number]) for number in (7, 8, 9)}
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: graphics[identifier])
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-08-30", as_of="2026-08-27",
+        only_title=45, only_part="604",
+        include_appendices=True,
+    )
+    assert report.coverage.complete
+    assert report.title_errors == ()
+    records = load_provisions(report.provisions_path)
+    assert [record.citation_path for record in records] == [
+        "us/regulation/45/604", "us/regulation/45/604/100", "us/regulation/45/604/subpart-A",
+        "us/regulation/45/604/appendix-a", "us/regulation/45/604/appendix-b", "us/regulation/45/604/200",
+    ]
+    assert [item.citation_path for item in load_source_inventory(report.inventory_path)] == [record.citation_path for record in records]
+    retained_graphics = {path.stem: path.read_bytes() for path in report.source_paths if path.suffix == ".png"}
+    assert retained_graphics == graphics
+    assert "[Official source image: ecfr/graphics/EC01JA91.007.png]" in records[4].body
 
 
 def test_build_ecfr_inventory_filters_exact_section_with_ancestors():
@@ -690,6 +1321,7 @@ def test_iter_ecfr_title_provisions_preserves_appendix_text_and_images():
                 "sources/us/regulation/2026-08-30-title-45-part-604/"
                 "ecfr/title-45-part-604.xml"
             ),
+            include_appendices=True,
         )
     )
 
@@ -720,6 +1352,82 @@ def test_iter_ecfr_title_provisions_preserves_appendix_text_and_images():
     ]
 
 
+@pytest.mark.parametrize("container", ["TABLE", "HED", "HD1", "HD2", "HD3"])
+@pytest.mark.parametrize("mixed_text", [False, True])
+def test_extract_ecfr_preserves_appendix_graphics_in_consumed_containers(
+    tmp_path, monkeypatch, container, mixed_text
+):
+    import axiom_corpus.corpus.ecfr as ecfr
+
+    images = '<IMG src="/graphics/EC01JA91.007.gif"/><IMG src="/graphics/EC01JA91.008.gif"/>'
+    content = "Form " + images + " caption" if mixed_text else images
+    if container == "TABLE":
+        content = f"<TR><TD>{content}</TD></TR>"
+    xml = (
+        '<ECFR><DIV5 N="604" TYPE="PART"><HEAD>Part 604</HEAD>'
+        '<DIV9 N="Appendix A to Part 604" TYPE="APPENDIX"><HEAD>Form</HEAD>'
+        f'<{container}>{content}</{container}>'
+        '</DIV9></DIV5></ECFR>'
+    )
+    structure = {
+        "identifier": "45", "type": "title", "children": [{
+            "identifier": "604", "type": "part", "children": [{
+                "identifier": "Appendix A to Part 604", "type": "appendix"
+            }]
+        }]
+    }
+    graphics = {
+        identifier: b"\x89PNG\r\n\x1a\n" + identifier.encode()
+        for identifier in ("EC01JA91.007", "EC01JA91.008")
+    }
+    monkeypatch.setattr(ecfr, "fetch_ecfr_structure", lambda title, as_of: structure)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_part_xml", lambda title, part, as_of: xml)
+    monkeypatch.setattr(ecfr, "fetch_ecfr_graphic", lambda identifier: graphics[identifier])
+
+    report = extract_ecfr(
+        CorpusArtifactStore(tmp_path / "corpus"), version="2026-08-30", as_of="2026-08-27",
+        only_title=45, only_part="604",
+        include_appendices=True,
+    )
+
+    assert report.coverage.complete
+    assert report.title_errors == ()
+    appendix = load_provisions(report.provisions_path)[-1]
+    assert appendix.citation_path == "us/regulation/45/604/appendix-a"
+    expected = ["Form caption"] if mixed_text else []
+    expected += [f"[Official source image: ecfr/graphics/{identifier}.png]" for identifier in graphics]
+    assert appendix.body.split("\n\n") == expected
+    assert {path.stem: path.read_bytes() for path in report.source_paths if path.suffix == ".png"} == graphics
+
+
+@pytest.mark.parametrize("container", ["TABLE", "HD2"])
+def test_appendix_container_graphics_do_not_relabel_math_images(container):
+    formula = '<MATH><IMG src="/graphics/ER07OC94.022.gif"/></MATH>'
+    content = '<IMG src="/graphics/EC01JA91.007.gif"/>' + formula
+    if container == "TABLE":
+        content = f"<TR><TD>{content}</TD></TR>"
+    xml = (
+        '<ECFR><DIV5 N="604" TYPE="PART"><HEAD>Part 604</HEAD>'
+        '<DIV9 N="Appendix A to Part 604" TYPE="APPENDIX"><HEAD>Form</HEAD>'
+        f'<{container}>{content}</{container}>{formula}'
+        '</DIV9></DIV5></ECFR>'
+    )
+
+    records = tuple(iter_ecfr_title_provisions(
+        xml, (EcfrPartTarget(title=45, part="604"),),
+        version="2026-08-30", source_path="ecfr/title-45-part-604.xml",
+        graphic_transcriptions={"ER07OC94.022": "X = (a * b) / c"},
+        include_appendices=True,
+    ))
+
+    # Non-math discovery must not turn a formula into an ordinary image.
+    # Standalone MATH keeps its existing transcription behavior.
+    assert records[-1].body.split("\n\n") == [
+        "[Official source image: ecfr/graphics/EC01JA91.007.png]",
+        "Formula (ER07OC94.022, verified official image): X = (a * b) / c",
+    ]
+
+
 def test_iter_ecfr_title_provisions_applies_appendix_formula_transcriptions():
     appendix_formula_xml = SAMPLE_APPENDIX_XML.replace(
         "<P>The undersigned certifies, to the best of his or her knowledge and belief.</P>",
@@ -735,6 +1443,7 @@ def test_iter_ecfr_title_provisions_applies_appendix_formula_transcriptions():
             version="2026-08-30-title-45-part-604",
             source_path="ecfr/title-45-part-604.xml",
             graphic_transcriptions={"ER07OC94.022": "X = (a * b) / c"},
+            include_appendices=True,
         )
     )
 
@@ -1030,6 +1739,7 @@ def test_extract_ecfr_archives_appendix_graphics_and_reports_complete_coverage(
         expression_date=date(2026, 8, 27),
         only_title=45,
         only_part="604",
+        include_appendices=True,
     )
 
     assert report.coverage.complete

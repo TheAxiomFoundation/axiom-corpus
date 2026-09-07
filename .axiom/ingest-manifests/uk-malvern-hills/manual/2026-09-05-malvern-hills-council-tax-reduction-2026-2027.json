@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-malvern-hills/manual/2026-09-05-malvern-hills-council-tax-reduction-2026-2027.json",
+      "sha256": "79cefd1f4d80a7aa1f15a74283e65bef9a581a29accc3eb80ffa141bffc7a80e"
+    },
+    {
+      "path": "data/corpus/inventory/uk-malvern-hills/manual/2026-09-05-malvern-hills-council-tax-reduction-2026-2027.json",
+      "sha256": "ce9f70b2953ca4539cd60360e3acfda8d7697fea120002d6a657baf38e6c1747"
+    },
+    {
+      "path": "data/corpus/provisions/uk-malvern-hills/manual/2026-09-05-malvern-hills-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "93b35404720725e5bccbd3b557034c755b0b107ef28e35aed602e71f5fc43fa3"
+    },
+    {
+      "path": "data/corpus/sources/uk-malvern-hills/manual/2026-09-05-malvern-hills-council-tax-reduction-2026-2027/official-documents/malvern-hills-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "a67ab9aa050320124a8ffa5cbe17b60959573a492d8f08fa80360e0f66f68bd3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ea616f59ff4c63b9be97082e6ebd4d6cb6f99c1f",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-malvern-hills-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-malvern-hills-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 136,
+    "missing_count": 0,
+    "provision_count": 136,
+    "source_count": 136
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T17:35:06.523209+00:00",
+  "jurisdiction": "uk-malvern-hills",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lCJG7jmqRZIjy8GTGX7p1WM6kJse4QNd17SuBFKFY9PAFShDo2XriTqyfcMxJu2OJDI9FDMtwel/B/eXGhsvCg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-malvern-hills-council-tax-reduction-2026-2027"
+}

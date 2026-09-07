@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/uk-west-oxfordshire/manual/2026-09-05-west-oxfordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "22a988bfd4f9371303ce17ac8c47c4128004159a9f3aac9a448bd4d0376e9227"
+    },
+    {
+      "path": "data/corpus/inventory/uk-west-oxfordshire/manual/2026-09-05-west-oxfordshire-council-tax-reduction-2026-2027.json",
+      "sha256": "7023b09e75ecfa7b76c8d07d727114afe5e98deab983987c1aa705f9919ccc74"
+    },
+    {
+      "path": "data/corpus/provisions/uk-west-oxfordshire/manual/2026-09-05-west-oxfordshire-council-tax-reduction-2026-2027.jsonl",
+      "sha256": "02c03f3681782cb95b9874d05d2fa822b2e8759be777ba265eaa5bb9dd4f7b96"
+    },
+    {
+      "path": "data/corpus/sources/uk-west-oxfordshire/manual/2026-09-05-west-oxfordshire-council-tax-reduction-2026-2027/official-documents/west-oxfordshire-council-tax-reduction-scheme-2026-2027.pdf",
+      "sha256": "c17650e9671a754010191e3404fa8e58bc15e986aae65c580a8eafe76dc1fc6e"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "ca23f2014baf3517257f683c49b9be25dc5aa7dc",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "uv run --extra dev axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-05-west-oxfordshire-council-tax-reduction-2026-2027 --manifest .axiom/corpus-manifests/uk-west-oxfordshire-council-tax-reduction.json"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 97,
+    "missing_count": 0,
+    "provision_count": 97,
+    "source_count": 97
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-05T19:11:01.254212+00:00",
+  "jurisdiction": "uk-west-oxfordshire",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "A4imd2Ntgo8VHr1ce8aP/n+C+g7nUaydmBNHCugRYBxSu/UhKdd9Rr4GNYZueFAJo62fW7puIiWyQZFYmqNDDA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-05-west-oxfordshire-council-tax-reduction-2026-2027"
+}
