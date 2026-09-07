@@ -1,10 +1,11 @@
+import struct
 from collections import Counter
 from dataclasses import replace
 from datetime import date
 from hashlib import sha256
 from pathlib import Path
 from xml.etree import ElementTree as ET
-from zipfile import ZipFile, ZipInfo
+from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 import pytest
 
@@ -157,6 +158,66 @@ def _write_uslm_archive(path: Path, members: dict[str, str]) -> Path:
         for name, content in members.items():
             archive.writestr(name, content)
     return path
+
+
+def _corrupt_deflated_member(path: Path) -> None:
+    with ZipFile(path) as archive:
+        member = archive.getinfo("usc26.xml")
+    content = bytearray(path.read_bytes())
+    name_length, extra_length = struct.unpack_from("<HH", content, member.header_offset + 26)
+    payload_offset = member.header_offset + 30 + name_length + extra_length
+    # A final DEFLATE block with reserved BTYPE=3 triggers a real zlib error.
+    content[payload_offset] = 0b111
+    path.write_bytes(content)
+
+
+def test_load_usc_source_rejects_corrupt_deflate_stream(tmp_path):
+    archive_path = tmp_path / "corrupt.zip"
+    with ZipFile(archive_path, "w", compression=ZIP_DEFLATED) as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    _corrupt_deflated_member(archive_path)
+
+    with pytest.raises(ValueError, match="cannot read USLM archive member"):
+        load_usc_source(source_archive=archive_path)
+
+
+def test_release_quality_reports_corrupt_deflate_stream(tmp_path):
+    archive_path = tmp_path / "corrupt.zip"
+    with ZipFile(archive_path, "w", compression=ZIP_DEFLATED) as archive:
+        archive.writestr("usc26.xml", SAMPLE_USLM)
+    store = CorpusArtifactStore(tmp_path / "corpus")
+    report = extract_usc(store, version="2026-04-29", source_archive=archive_path)
+    retained_archive = report.source_paths[0]
+    _corrupt_deflated_member(retained_archive)
+    archive_sha = sha256(retained_archive.read_bytes()).hexdigest()
+    # Keep the retained-file digest valid so validation reaches decompression.
+    store.write_inventory(
+        report.inventory_path,
+        [
+            replace(
+                item,
+                sha256=archive_sha,
+                metadata={**(item.metadata or {}), "archive_sha256": archive_sha},
+            )
+            for item in load_source_inventory(report.inventory_path)
+        ],
+    )
+    store.write_provisions(
+        report.provisions_path,
+        [
+            replace(record, metadata={**(record.metadata or {}), "archive_sha256": archive_sha})
+            for record in load_provisions(report.provisions_path)
+        ],
+    )
+    release = ReleaseManifest(
+        name="test-usc-corrupt-deflate",
+        scopes=(ReleaseScope("us", "statute", "2026-04-29-title-26"),),
+    )
+
+    validation = validate_release(store.root, release)
+
+    assert not validation.ok
+    assert {issue.code for issue in validation.issues} == {"unreadable_archive_member"}
 
 
 def test_usc_run_id_scopes_title_and_limit():

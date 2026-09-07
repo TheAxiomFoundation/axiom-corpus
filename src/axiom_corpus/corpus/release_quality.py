@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import zlib
 from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import date
@@ -646,7 +647,7 @@ def _validate_archive_member_hash(
                         )
                         return
                     member_digest.update(chunk)
-    except (BadZipFile, OSError, RuntimeError) as exc:
+    except (BadZipFile, OSError, RuntimeError, zlib.error) as exc:
         collector.add(
             "error",
             "unreadable_archive_member",

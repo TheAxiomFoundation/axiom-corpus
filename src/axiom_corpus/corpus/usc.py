@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import zlib
 from collections.abc import Iterable, Iterator
 from copy import deepcopy
 from dataclasses import dataclass, replace
@@ -327,7 +328,7 @@ def _load_usc_archive(
                 )
             try:
                 xml_bytes = archive.read(selected)
-            except (BadZipFile, RuntimeError, OSError) as exc:
+            except (BadZipFile, RuntimeError, OSError, zlib.error) as exc:
                 raise ValueError(f"cannot read USLM archive member {selected.filename!r}") from exc
     except (BadZipFile, LargeZipFile) as exc:
         raise ValueError(f"invalid USLM ZIP archive: {source_archive}") from exc
