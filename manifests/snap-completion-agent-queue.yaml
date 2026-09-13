@@ -294,6 +294,48 @@ states:
   index_url: https://www.ecfr.gov/api/versioner/v1/structure/2026-09-10/title-7.json
   index_document_count: 6
   taken_count: 6
+- jurisdiction: us
+  name: Federal
+  queue_status: agent_ready
+  federal_guidance_scope:
+    jurisdiction: us
+    document_class: guidance
+    version: 2026-09-13-snap-fns-guidance
+    target_manifest: manifests/us-snap-fns-guidance-2026-09-13.yaml
+    document_count: 15
+    citation_paths:
+    - us/guidance/usda/fns/snap-fy2026-cola-memo
+    - us/guidance/usda/fns/snap-obbb-implementation-memo
+    - us/guidance/usda/fns/snap-obbb-abawd-waivers-implementation-memo
+    - us/guidance/usda/fns/snap-obbb-qc-variance-exclusion-qas
+    - us/guidance/usda/fns/snap-obbb-time-limit-changes-qas-1
+    - us/guidance/usda/fns/snap-fy2026-sua-simplified-process-memo
+    - us/guidance/usda/fns/snap-obbb-energy-assistance-payments-memo
+    - us/guidance/usda/fns/snap-obbb-internet-energy-assistance-qas-1
+    - us/guidance/usda/fns/snap-obbb-admin-cost-sharing-qas
+    - us/guidance/usda/fns/snap-obbb-alien-eligibility-qas-1
+    - us/guidance/usda/fns/snap-fy2026-standard-utility-allowances
+    - us/guidance/usda/fns/snap-abawd-waiver-status-fy2026-q1
+    - us/guidance/usda/fns/snap-abawd-waiver-status-fy2026-q2
+    - us/guidance/usda/fns/snap-abawd-waiver-status-fy2026-q3
+    - us/guidance/usda/fns/snap-bbce-state-chart-2026-06
+    closure_elements:
+    - snap_g09
+    - snap_g10
+    - snap_g11
+    - snap_g12
+    - snap_g15
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+    notes: '2026-09-13 closure run (needs-closure-2026-09-11 snap_g09-g12, g15): the FY 2026 COLA memorandum, the FY 2026
+      state SUA table, the FY 2026 quarterly ABAWD waiver status lists, the June 2026 BBCE chart and the OBBB implementation
+      memoranda and Q&As not yet held, all from www.fna.usda.gov (the publisher''s front door answered HTTP 200 on 2026-09-13;
+      memo PDFs from the USDA guidance portal with browser impersonation). The State Options Report (snap_g16) stays out under
+      the forbidden-sources policy.'
+  notes: '2026-09-13 closure run (needs-closure-2026-09-11 snap_g09-g12, g15): the FY 2026 COLA memorandum, the FY 2026 state
+    SUA table, the FY 2026 quarterly ABAWD waiver status lists, the June 2026 BBCE chart and the OBBB implementation memoranda
+    and Q&As not yet held, all from www.fna.usda.gov (the publisher''s front door answered HTTP 200 on 2026-09-13; memo PDFs
+    from the USDA guidance portal with browser impersonation). The State Options Report (snap_g16) stays out under the forbidden-sources
+    policy.'
 - jurisdiction: us-al
   name: Alabama
   queue_status: done
@@ -1632,6 +1674,6 @@ states:
       body. Extraction 6 s; validate-release on the swapped selector ok, 0 errors. The 2026-09-10 completion scope (Glossary,
       Policy Clarifications, Table I, purchasing page) is untouched.'
 status_counts:
-  agent_ready: 20
+  agent_ready: 21
   done: 20
   blocked_primary_source: 6

@@ -143,7 +143,10 @@ states:
     memo PDFs from the USDA guidance portal with browser impersonation. Taken: FY2025 memos #2025-1..#2025-5, FY2026 memos
     #2026-1, #2026-2, #2026-4, #2026-5 (no #2026-3 is listed), and the 2025-2026 and 2026-2027 Income Eligibility Guidelines
     Federal Register notices from govinfo. 7 CFR 246 is already in the corpus (data/corpus/provisions/us/regulation/2026-07-13-recovery-r2026-07-17-dedup.jsonl,
-    268 provisions under us/regulation/7/246) and was not re-ingested.'
+    268 provisions under us/regulation/7/246) and was not re-ingested. 2026-09-13 closure run (needs-closure-2026-09-11 wic_g04/g07/g08):
+    nutrition risk criteria (WPM 2011-5), infant formula rebate and vendor cost-containment guidance, and the ABFA state-plan
+    memorandum from the FNA resource browser''s WIC Guidance Documents family (195 documents). The pre-FY 2025 policy memoranda
+    (wic_g05) and the Federal Register notices family (wic_g06) remain not taken.'
   index_url: https://www.fna.usda.gov/resources?f[0]=program:32&f[1]=resource_type:160
   index_document_count: 154
   taken_count: 11
@@ -218,6 +221,28 @@ states:
       '1992': 6
       '1991': 1
       total: 154
+  guidance_documents_scope:
+    jurisdiction: us
+    document_class: guidance
+    version: 2026-09-13-wic-fns-guidance-documents
+    target_manifest: manifests/us-wic-fns-guidance-documents-2026-09-13.yaml
+    document_count: 6
+    citation_paths:
+    - us/guidance/fns/wic/guidance/nutrition-risk-criteria
+    - us/guidance/fns/wic/guidance/infant-formula-rebate-solicitations-bidding
+    - us/guidance/fns/wic/guidance/evaluation-criteria-infant-formula-rebate-contracts
+    - us/guidance/fns/wic/guidance/interim-guidance-vendor-cost-containment
+    - us/guidance/fns/wic/guidance/vendor-cost-containment-interim-rule-clarification
+    - us/guidance/fns/wic/guidance/wpm-2024-3-implementing-abfa-requirements-state-plans
+    closure_elements:
+    - wic_g04
+    - wic_g07
+    - wic_g08
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+    notes: '2026-09-13 closure run (needs-closure-2026-09-11 wic_g04/g07/g08): nutrition risk criteria (WPM 2011-5), infant
+      formula rebate and vendor cost-containment guidance, and the ABFA state-plan memorandum from the FNA resource browser''s
+      WIC Guidance Documents family (195 documents). The pre-FY 2025 policy memoranda (wic_g05) and the Federal Register notices
+      family (wic_g06) remain not taken.'
 - jurisdiction: us
   name: Federal statute (42 U.S.C., uscode.house.gov USLM)
   queue_status: agent_ready

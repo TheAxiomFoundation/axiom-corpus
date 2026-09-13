@@ -58,7 +58,30 @@ states:
   notes: 'Drafted from the lead list; a reviewer must confirm the primary official source, add agency manuals the lead list
     does not cite, set source_kind and target_scope, then move queue_status to agent_ready. 2026-09-13: 45 CFR part 96 (subpart
     H, LIHEAP, 96.80-96.89, inside the whole part) taken as us/regulation 2026-09-13-title-45-part-96 (see the federal_regulation_ecfr
-    row below and docs/ingest-runs/2026-09-13-federal-cfr-layer.md).'
+    row below and docs/ingest-runs/2026-09-13-federal-cfr-layer.md). 2026-09-13 closure run (needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/SMI):
+    the 2026 HHS poverty guidelines notice (91 FR 1797) and ASPE page, and ACF LIHEAP IM 2026-01 with its FPG and SMI tables
+    (acf.gov). The statute, 45 CFR 96 subpart H and the model plan (LIHEAP-F-GUID-MODELPLAN) are not part of this scope.'
+  annual_figures_scope:
+    jurisdiction: us
+    document_class: guidance
+    version: 2026-09-13-liheap-annual-figures-2026
+    target_manifest: manifests/us-liheap-annual-figures-2026.yaml
+    document_count: 6
+    citation_paths:
+    - us/guidance/hhs/aspe/poverty-guidelines/2026/federal-register
+    - us/guidance/hhs/aspe/poverty-guidelines/2026
+    - us/guidance/acf/ocs/liheap-im/2026-01
+    - us/guidance/acf/ocs/liheap-im/2026-01/memorandum
+    - us/guidance/acf/ocs/liheap-im/2026-01/attachment-4-smi-table
+    - us/guidance/acf/ocs/liheap-im/2026-01/attachment-2-fpg-tables
+    closure_elements:
+    - LIHEAP-F-ANN-POVERTY
+    - LIHEAP-F-ANN-SMI
+    - MED-F-ANN-POVERTY
+    run_note: docs/ingest-runs/2026-09-13-federal-guidance-layer.md
+    notes: '2026-09-13 closure run (needs-closure-2026-09-11 LIHEAP-F-ANN-POVERTY/SMI): the 2026 HHS poverty guidelines notice
+      (91 FR 1797) and ASPE page, and ACF LIHEAP IM 2026-01 with its FPG and SMI tables (acf.gov). The statute, 45 CFR 96
+      subpart H and the model plan (LIHEAP-F-GUID-MODELPLAN) are not part of this scope.'
 - jurisdiction: us
   name: Federal statute (42 U.S.C., uscode.house.gov USLM)
   queue_status: agent_ready
