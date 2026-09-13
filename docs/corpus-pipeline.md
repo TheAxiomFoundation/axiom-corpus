@@ -147,6 +147,15 @@ The Versioner API's full-XML endpoint requires response compression (it answers
 `406 Not Acceptable`, support code 11, to a request without an `Accept-Encoding`
 header); the adapter offers gzip and deflate and decodes the reply itself.
 
+Title 26 numbers many sections after the Code subsection they implement
+(`1.401(k)-1`, `31.3121(a)(1)-1`, `31.3121(a)-1T`). Parentheses are not legal in a
+citation-path segment, so the adapter folds each parenthesised group into hyphens in the
+path (`us/regulation/26/1/401-k-1`, `us/regulation/26/31/3121-a-1-1`) while the
+citation label, legal identifier, `ecfr:section` identifier, metadata and reader URL keep
+the official form. `--section` selectors take the official form (`--section '1.401(k)-1'`).
+Before 2026-09-13 such identifiers were skipped by the inventory and truncated by the XML
+pass, so no earlier scope contains one.
+
 Targeted rebuilds are scoped and do not certify the whole source:
 
 ```bash
