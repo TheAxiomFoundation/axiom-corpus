@@ -2040,7 +2040,7 @@ states:
   target_manifest: manifests/us-ak-title-43-individual-income-tax-2026.yaml
   target_scope:
     jurisdiction: us-ak
-    document_class: null
+    document_class: statute
     version: 2026-07-24-ak-individual-income-tax
   lead_counts:
     ready_for_manifest: 2
@@ -3141,7 +3141,7 @@ states:
   target_manifest: manifests/us-az-2026-140es-booklet.yaml
   target_scope:
     jurisdiction: us-az
-    document_class: null
+    document_class: form
     version: 2026-07-21-az-140es-2026
   lead_counts:
     ready_for_manifest: 30
@@ -3726,7 +3726,7 @@ states:
   target_manifest: manifests/us-ca-2026-form-540-es-instructions.yaml
   target_scope:
     jurisdiction: us-ca
-    document_class: null
+    document_class: form
     version: 2026-07-23-ca-2026-form-540-es
   lead_counts:
     ready_for_manifest: 49
@@ -5321,7 +5321,7 @@ states:
   target_manifest: manifests/us-ct-2026-supplement-section-12-704e.yaml
   target_scope:
     jurisdiction: us-ct
-    document_class: null
+    document_class: statute
     version: 2026-07-24-ct-income-tax-supplement
   lead_counts:
     ready_for_manifest: 14
@@ -6206,7 +6206,7 @@ states:
   target_manifest: manifests/us-fl-individual-income-tax-zero-liability.yaml
   target_scope:
     jurisdiction: us-fl
-    document_class: null
+    document_class: statute
     version: 2026-07-24-fl-individual-income-tax-zero-liability
   lead_counts:
     ready_for_manifest: 2
@@ -6251,7 +6251,7 @@ states:
   target_manifest: manifests/us-ga-it-511-2025-official-document.yaml
   target_scope:
     jurisdiction: us-ga
-    document_class: null
+    document_class: form
     version: 2026-07-21-ga-it-511-2025
   lead_counts:
     ready_for_manifest: 2
@@ -6739,7 +6739,7 @@ states:
   target_manifest: manifests/us-hi-2025-n11-capital-gain-worksheet.yaml
   target_scope:
     jurisdiction: us-hi
-    document_class: null
+    document_class: form
     version: 2026-07-22-hi-2025-n11-capital-gain-worksheet
   lead_counts:
     ready_for_manifest: 27
@@ -8294,7 +8294,7 @@ states:
   target_manifest: manifests/us-il-2026-resident-income-tax-core.yaml
   target_scope:
     jurisdiction: us-il
-    document_class: null
+    document_class: statute
     version: 2026-07-24-il-individual-income-tax-resident-core
   lead_counts:
     ready_for_manifest: 21
@@ -9003,7 +9003,7 @@ states:
   target_manifest: manifests/us-ks-2026-k40es.yaml
   target_scope:
     jurisdiction: us-ks
-    document_class: null
+    document_class: guidance
     version: 2026-07-21-ks-k40es-2026
   lead_counts:
     ready_for_manifest: 10
@@ -9295,7 +9295,7 @@ states:
   target_manifest: manifests/us-ky-2026-740-es.yaml
   target_scope:
     jurisdiction: us-ky
-    document_class: null
+    document_class: form
     version: 2026-740-es
   lead_counts:
     ready_for_manifest: 38
@@ -9816,7 +9816,7 @@ states:
   target_manifest: manifests/us-la-2026-it-540es-instructions.yaml
   target_scope:
     jurisdiction: us-la
-    document_class: null
+    document_class: form
     version: 2026-07-23-la-2026-it-540es-instructions
   lead_counts:
     ready_for_manifest: 15
@@ -10193,7 +10193,7 @@ states:
   target_manifest: manifests/us-ma-2026-form-1-es.yaml
   target_scope:
     jurisdiction: us-ma
-    document_class: null
+    document_class: form
     version: 2026-07-22-ma-2026-form-1-es
   lead_counts:
     ready_for_manifest: 20
@@ -11263,7 +11263,7 @@ states:
   target_manifest: manifests/us-me-individual-income-tax-rates-2026.yaml
   target_scope:
     jurisdiction: us-me
-    document_class: null
+    document_class: guidance
     version: 2026-07-23-me-individual-income-tax-rates-2026
   lead_counts:
     ready_for_manifest: 25
@@ -12115,7 +12115,7 @@ states:
   target_manifest: manifests/us-mi-2026-income-tax-rate-notice.yaml
   target_scope:
     jurisdiction: us-mi
-    document_class: null
+    document_class: guidance
     version: 2026-07-21-mi-2026-income-tax-rate-notice
   lead_counts:
     ready_for_manifest: 27
@@ -12738,7 +12738,7 @@ states:
   target_manifest: manifests/us-mn-income-tax-inflation-adjusted-amounts-2026.yaml
   target_scope:
     jurisdiction: us-mn
-    document_class: null
+    document_class: guidance
     version: 2026-07-22-mn-income-tax-inflation-adjusted-amounts-2026
   lead_counts:
     ready_for_manifest: 23
@@ -15516,7 +15516,7 @@ states:
   target_manifest: manifests/us-nc-ty2026-income-tax-core.yaml
   target_scope:
     jurisdiction: us-nc
-    document_class: null
+    document_class: statute
     version: 2026-07-26-nc-ty2026-income-tax-core
   lead_counts:
     ready_for_manifest: 18
@@ -16153,7 +16153,7 @@ states:
   target_manifest: manifests/us-ne-2026-1040n-es.yaml
   target_scope:
     jurisdiction: us-ne
-    document_class: null
+    document_class: form
     version: 2026-07-22-ne-1040n-es-2026
   lead_counts:
     ready_for_manifest: 22
@@ -17583,7 +17583,7 @@ states:
   target_manifest: manifests/us-nv-individual-income-tax-zero-liability.yaml
   target_scope:
     jurisdiction: us-nv
-    document_class: null
+    document_class: statute
     version: 2026-07-24-nv-individual-income-tax-zero-liability
   lead_counts:
     needs_review: 2
@@ -17619,7 +17619,7 @@ states:
   target_manifest: manifests/us-ny-tax-current-forms.yaml
   target_scope:
     jurisdiction: us-ny
-    document_class: null
+    document_class: form
     version: 2026-06-05-ny-tax-current-forms
   lead_counts:
     ready_for_manifest: 10
@@ -18821,7 +18821,7 @@ states:
   target_manifest: manifests/us-or-2026-or-estimate.yaml
   target_scope:
     jurisdiction: us-or
-    document_class: null
+    document_class: form
     version: 2026-07-22-or-estimate-2026
   lead_counts:
     ready_for_manifest: 20
@@ -19313,7 +19313,7 @@ states:
   target_manifest: manifests/us-pa-personal-income-tax-rates.yaml
   target_scope:
     jurisdiction: us-pa
-    document_class: null
+    document_class: guidance
     version: 2026-07-21-pa-personal-income-tax-rates
   lead_counts:
     ready_for_manifest: 12
@@ -19644,7 +19644,7 @@ states:
   target_manifest: manifests/us-ri-pit-adv-2025-22-official-documents.yaml
   target_scope:
     jurisdiction: us-ri
-    document_class: null
+    document_class: guidance
     version: 2026-07-23-ri-pit-adv-2025-22
   lead_counts:
     ready_for_manifest: 20
@@ -20608,7 +20608,7 @@ states:
   target_manifest: manifests/us-sd-2026-personal-income-tax-zero-liability.yaml
   target_scope:
     jurisdiction: us-sd
-    document_class: null
+    document_class: guidance
     version: 2026-07-24-sd-personal-income-tax-zero-liability
   lead_counts:
     ready_for_manifest: 1
@@ -20653,7 +20653,7 @@ states:
   target_manifest: manifests/us-tn-2026-individual-income-tax-zero-liability-guidance.yaml
   target_scope:
     jurisdiction: us-tn
-    document_class: null
+    document_class: guidance
     version: 2026-07-24-tn-individual-income-tax-zero-liability-guidance
   lead_counts:
     needs_review: 5
@@ -20740,7 +20740,7 @@ states:
   target_manifest: manifests/us-tx-2026-individual-income-tax-prohibition.yaml
   target_scope:
     jurisdiction: us-tx
-    document_class: null
+    document_class: statute
     version: 2026-07-24-tx-individual-income-tax-prohibition
   lead_counts:
     ready_for_manifest: 3
@@ -23009,7 +23009,7 @@ states:
   target_manifest: manifests/us-wi-2026-form1-es-instructions.yaml
   target_scope:
     jurisdiction: us-wi
-    document_class: null
+    document_class: form
     version: 2026-07-22-wi-form1-es-2026
   lead_counts:
     ready_for_manifest: 58
@@ -23967,7 +23967,7 @@ states:
   target_manifest: manifests/us-wy-2026-individual-income-tax-absence.yaml
   target_scope:
     jurisdiction: us-wy
-    document_class: null
+    document_class: guidance
     version: 2026-07-24-wy-individual-income-tax-absence
   lead_counts:
     ready_for_manifest: 1
