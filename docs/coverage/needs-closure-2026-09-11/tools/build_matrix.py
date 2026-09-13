@@ -24,10 +24,19 @@ Pass 2 (2026-09-12) search rules, see build_schema.py:
     when a CMS-posted state plan family or an untaken publisher family carries the element; else REVIEW.
 """
 from __future__ import annotations
-import argparse, csv, json, os, re, sys, time, collections
+
+import argparse
+import collections
+import csv
+import json
+import os
+import re
+import sys
+import time
+
 import yaml
 
-STATES = ['us-'+s for s in 'ak al ar az ca co ct dc de fl ga hi ia id il in ks ky la ma md me mi mn mo ms mt nc nd ne nh nj nm nv ny oh ok or pa ri sc sd tn tx ut va vt wa wi wv wy'.split()]
+STATES = ['us-'+s for s in ['ak', 'al', 'ar', 'az', 'ca', 'co', 'ct', 'dc', 'de', 'fl', 'ga', 'hi', 'ia', 'id', 'il', 'in', 'ks', 'ky', 'la', 'ma', 'md', 'me', 'mi', 'mn', 'mo', 'ms', 'mt', 'nc', 'nd', 'ne', 'nh', 'nj', 'nm', 'nv', 'ny', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'va', 'vt', 'wa', 'wi', 'wv', 'wy']]
 STATE_NAMES = {}
 # pointer scopes: queue rows say the program text is already held in these released scopes
 POINTER = {

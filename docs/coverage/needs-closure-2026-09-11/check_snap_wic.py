@@ -35,7 +35,6 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import os
 import re
 import sys
 import time
@@ -110,11 +109,7 @@ def snap_scopes_for(j, eff):
         if jj != j:
             continue
         if j == "us":
-            if dc == "statute" and "title-7-consolidated" in v:
-                out.append((dc, v))
-            elif dc == "regulation" and ("7-cfr-273" in v or "title-7-part-275" in v or v == "2026-07-13-recovery-r2026-07-17-dedup"):
-                out.append((dc, v))
-            elif dc == "guidance" and ("snap" in v or v == "2026-07-13-recovery"):
+            if dc == "statute" and "title-7-consolidated" in v or dc == "regulation" and ("7-cfr-273" in v or "title-7-part-275" in v or v == "2026-07-13-recovery-r2026-07-17-dedup") or dc == "guidance" and ("snap" in v or v == "2026-07-13-recovery"):
                 out.append((dc, v))
             continue
         if dc not in ("manual", "regulation", "policy", "guidance"):
@@ -137,9 +132,7 @@ def wic_scopes_for(j, eff):
     for jj, dc, v in eff:
         if jj != j:
             continue
-        if j == "us" and ((dc == "guidance" and "wic" in v) or (dc == "regulation" and v == "2026-07-13-recovery-r2026-07-17-dedup")):
-            out.append((dc, v))
-        elif j != "us" and "wic-state-policy-manual" in v:
+        if j == "us" and ((dc == "guidance" and "wic" in v) or (dc == "regulation" and v == "2026-07-13-recovery-r2026-07-17-dedup")) or j != "us" and "wic-state-policy-manual" in v:
             out.append((dc, v))
     return sorted(set(out))
 

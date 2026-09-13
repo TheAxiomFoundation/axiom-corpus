@@ -14,7 +14,11 @@ conf:  high = the search pattern is specific enough that a body match counts as 
        low  = a match is only a candidate and is reported as REVIEW.
 """
 from __future__ import annotations
-import sys, yaml
+
+import sys
+
+import yaml
+
 
 def E(id, title, cite, level, fam, pe, rs, pats, conf='high', notes='', **flags):
     d = dict(id=id, title=title, federal_citation=cite, level={'F':'federal_only','FS':'federal_with_state_option','S':'state'}[level],

@@ -44,10 +44,7 @@ from collections import Counter, defaultdict
 
 import yaml
 
-STATES = (
-    "ak al ar az ca co ct dc de fl ga hi ia id il in ks ky la ma md me mi mn mo ms "
-    "mt nc nd ne nh nj nm nv ny oh ok or pa ri sc sd tn tx ut va vt wa wi wv wy"
-).split()
+STATES = ["ak", "al", "ar", "az", "ca", "co", "ct", "dc", "de", "fl", "ga", "hi", "ia", "id", "il", "in", "ks", "ky", "la", "ma", "md", "me", "mi", "mn", "mo", "ms", "mt", "nc", "nd", "ne", "nh", "nj", "nm", "nv", "ny", "oh", "ok", "or", "pa", "ri", "sc", "sd", "tn", "tx", "ut", "va", "vt", "wa", "wi", "wv", "wy"]
 NO_BROAD_TAX = {"ak", "fl", "nv", "nh", "sd", "tn", "tx", "wa", "wy"}
 TAX_STATES = [s for s in STATES if s not in NO_BROAD_TAX]
 
@@ -80,22 +77,22 @@ INCOME_TAX_CHAPTER = {
 # from EXTRACTABLE when the corpus lacks the fact. Flagged uncertain in the
 # schema; a reviewer should verify each set against the state code.
 K = {
-    "eitc": set("ca co ct de dc hi il in ia ks la me md ma mi mn mo mt ne nj nm ny oh ok or ri sc ut vt va wa wi".split()),
-    "ctc": set("az ca co ga id il me md ma mn nj nm ny ok or ut vt nc".split()),
-    "cdcc": set("ar ca co de dc ga hi ia ks ky la me md mn ne nm ny oh ok or pa ri sc vt va wi wv nj mt".split()),
-    "amt": set("ca co ct mn".split()),
-    "no_std_ded": set("il in ma mi nj oh pa wv ct co nd sc ut".split()),
-    "no_itemized": set("il in ma mi nj oh pa wv ct ut".split()),
-    "no_pers_exemption": set("co nd sc mo ut la".split()),  # states with no separate personal exemption/credit
-    "indexed": set("ca id me mn mo mt ne nd oh or ri sc vt wi ar ia nm ny nj il ma".split()),  # see schema note
-    "cap_gains": set("ar az co hi ia id ks? ma mt nm nd ok sc vt wi wa ne mo".split()),
-    "surtax": set("ca ma ny nh tn wa".split()),
-    "local": set("al co de in ia ky md mi mo nj ny oh or pa wv".split()),
+    "eitc": set(["ca", "co", "ct", "de", "dc", "hi", "il", "in", "ia", "ks", "la", "me", "md", "ma", "mi", "mn", "mo", "mt", "ne", "nj", "nm", "ny", "oh", "ok", "or", "ri", "sc", "ut", "vt", "va", "wa", "wi"]),
+    "ctc": set(["az", "ca", "co", "ga", "id", "il", "me", "md", "ma", "mn", "nj", "nm", "ny", "ok", "or", "ut", "vt", "nc"]),
+    "cdcc": set(["ar", "ca", "co", "de", "dc", "ga", "hi", "ia", "ks", "ky", "la", "me", "md", "mn", "ne", "nm", "ny", "oh", "ok", "or", "pa", "ri", "sc", "vt", "va", "wi", "wv", "nj", "mt"]),
+    "amt": set(["ca", "co", "ct", "mn"]),
+    "no_std_ded": set(["il", "in", "ma", "mi", "nj", "oh", "pa", "wv", "ct", "co", "nd", "sc", "ut"]),
+    "no_itemized": set(["il", "in", "ma", "mi", "nj", "oh", "pa", "wv", "ct", "ut"]),
+    "no_pers_exemption": set(["co", "nd", "sc", "mo", "ut", "la"]),  # states with no separate personal exemption/credit
+    "indexed": set(["ca", "id", "me", "mn", "mo", "mt", "ne", "nd", "oh", "or", "ri", "sc", "vt", "wi", "ar", "ia", "nm", "ny", "nj", "il", "ma"]),  # see schema note
+    "cap_gains": set(["ar", "az", "co", "hi", "ia", "id", "ks?", "ma", "mt", "nm", "nd", "ok", "sc", "vt", "wi", "wa", "ne", "mo"]),
+    "surtax": set(["ca", "ma", "ny", "nh", "tn", "wa"]),
+    "local": set(["al", "co", "de", "in", "ia", "ky", "md", "mi", "mo", "nj", "ny", "oh", "or", "pa", "wv"]),
     "other_state_credit": set(TAX_STATES) - {"nj"} | {"nj"},
-    "low_income": set("ar az dc ga hi ia ks ky md me mo nm ny oh ok pa va wi wv".split()),
-    "circuit_breaker": set("az ca co ct dc hi ia il in ks ma md me mi mn mo mt nj nm ny nd oh ok or pa ri sc ut vt wi wv".split()),
-    "ss_partial_tax": set("co ct mn mt nm ri ut vt wv".split()),
-    "flat": set("az co ga id il in ia ky la ms mi nc pa ut".split()),
+    "low_income": set(["ar", "az", "dc", "ga", "hi", "ia", "ks", "ky", "md", "me", "mo", "nm", "ny", "oh", "ok", "pa", "va", "wi", "wv"]),
+    "circuit_breaker": set(["az", "ca", "co", "ct", "dc", "hi", "ia", "il", "in", "ks", "ma", "md", "me", "mi", "mn", "mo", "mt", "nj", "nm", "ny", "nd", "oh", "ok", "or", "pa", "ri", "sc", "ut", "vt", "wi", "wv"]),
+    "ss_partial_tax": set(["co", "ct", "mn", "mt", "nm", "ri", "ut", "vt", "wv"]),
+    "flat": set(["az", "co", "ga", "id", "il", "in", "ia", "ky", "la", "ms", "mi", "nc", "pa", "ut"]),
 }
 K["cap_gains"].discard("ks?")
 

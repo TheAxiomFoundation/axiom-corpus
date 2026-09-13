@@ -4,8 +4,12 @@ selected (draft union selector or one of the three 2026-09-11 federal scopes the
 and a citation_path that exists in that scope with a non-empty body (or, for a container/document
 row, a descendant with a non-empty body). Prints failures and, with --dump, the heading and the
 opening of the body of every state-level PRESENT row so a reader can judge the evidence."""
-import argparse, csv, json, sys
+import argparse
+import csv
+import json
+import sys
 from pathlib import Path
+
 HERE = Path(__file__).resolve().parent
 EXTRA = {("us", "regulation", "2026-09-11-title-20-part-416"), ("us", "manual", "2026-09-11-medicare-cms-iom-100-02"),
          ("us", "manual", "2026-09-11-medicare-cms-iom-100-04")}

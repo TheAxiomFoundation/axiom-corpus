@@ -1,6 +1,11 @@
 """Roll-ups from a <program>-matrix.csv: status totals, per-jurisdiction table, top gaps, gap families, PE cross-check.
 Usage: python3 summarize.py <program> <out_dir>   (prints markdown to stdout)"""
-import csv, sys, collections, yaml
+import collections
+import csv
+import sys
+
+import yaml
+
 prog, out = sys.argv[1], sys.argv[2]
 rows = list(csv.DictReader(open(f'{out}/{prog}-matrix.csv')))
 schema = {e['id']: e for e in yaml.safe_load(open(f'{out}/{prog}-schema.yaml'))['elements']}

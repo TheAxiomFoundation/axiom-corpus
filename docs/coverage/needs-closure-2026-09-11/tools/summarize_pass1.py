@@ -1,5 +1,10 @@
 """Roll-ups from a <program>-matrix.csv: status totals, per-jurisdiction table, top gap families, markdown out."""
-import csv, sys, collections, yaml
+import collections
+import csv
+import sys
+
+import yaml
+
 prog, out = sys.argv[1], sys.argv[2]
 rows = list(csv.DictReader(open(f'{out}/{prog}-matrix.csv')))
 schema = {e['id']: e for e in yaml.safe_load(open(f'{out}/{prog}-schema.yaml'))['elements']}
@@ -21,7 +26,7 @@ print('\n## Federal row (us)\n')
 fed = [r for r in rows if r['jurisdiction']=='us']
 c = collections.Counter(r['status'] for r in fed)
 print('| Status | Elements |\n| --- | ---: |')
-for s in ST: 
+for s in ST:
     if c.get(s): print(f'| {s} | {c[s]} |')
 print('\nFederal elements not PRESENT:\n')
 for r in fed:

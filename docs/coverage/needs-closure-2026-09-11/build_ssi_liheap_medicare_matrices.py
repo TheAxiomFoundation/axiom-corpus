@@ -156,7 +156,7 @@ class Matrix:
 
 
 
-def finish(m: "Matrix", schema):
+def finish(m: Matrix, schema):
     """Every jurisdiction x element has exactly one row: the federal jurisdiction gets an
     explicit n/a row for each state-set element (no federal carrier exists for it)."""
     have = {(r["jurisdiction"], r["element"]) for r in m.rows}

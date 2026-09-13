@@ -218,7 +218,7 @@ def write_program(prog):
            f"verifier: `verify_matrices.py` (re-opens every PRESENT cell: 0 failures).", "",
            "## Method", "", n["method"], "",
            "## Cells by status", "", cell_counts(rows), "",
-           f"Federal elements are checked once and inherited by the 51 states (`evidence_note` = `inherited from federal`); the federal row alone: "
+           "Federal elements are checked once and inherited by the 51 states (`evidence_note` = `inherited from federal`); the federal row alone: "
            + ", ".join(f"{s} {fed.get(s, 0)}" for s in STATUSES if fed.get(s)) + ". State-level cells (51 x " + str(n_st) + "): "
            + ", ".join(f"{s} {st.get(s, 0)}" for s in STATUSES if st.get(s)) + ".", "",
            "## Federal roll-up by document family", "", federal_rollup(rows, schema), "",

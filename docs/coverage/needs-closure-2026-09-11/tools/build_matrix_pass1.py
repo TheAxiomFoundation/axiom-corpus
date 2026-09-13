@@ -13,10 +13,19 @@ Statuses:
   NOT_APPLICABLE part 436 (GU/PR/VI only) at the state level; state-only structure elements at the federal level
 """
 from __future__ import annotations
-import argparse, csv, json, os, re, sys, time, collections
+
+import argparse
+import collections
+import csv
+import json
+import os
+import re
+import sys
+import time
+
 import yaml
 
-STATES = ['us-'+s for s in 'ak al ar az ca co ct dc de fl ga hi ia id il in ks ky la ma md me mi mn mo ms mt nc nd ne nh nj nm nv ny oh ok or pa ri sc sd tn tx ut va vt wa wi wv wy'.split()]
+STATES = ['us-'+s for s in ['ak', 'al', 'ar', 'az', 'ca', 'co', 'ct', 'dc', 'de', 'fl', 'ga', 'hi', 'ia', 'id', 'il', 'in', 'ks', 'ky', 'la', 'ma', 'md', 'me', 'mi', 'mn', 'mo', 'ms', 'mt', 'nc', 'nd', 'ne', 'nh', 'nj', 'nm', 'nv', 'ny', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'va', 'vt', 'wa', 'wi', 'wv', 'wy']]
 STATE_NAMES = {}
 CTX = re.compile(r'medicaid|medical assistance|\bchip\b|children.s health|kidcare|husky|medi-cal|masshealth|badgercare|apple health|soonercare|tenncare|healthnet|ahcccs|denali|hawk-i|peachcare|famis|healthy steps|dynasaur|all kids|child health plus|medquest|\bquest\b|mainecare|healthy connections|health first colorado|medi-?cal|ohp\b|oregon health plan|husky|nj familycare|hoosier healthwise|healthy montana|coverkids|arkids|michild|mchp|chp\+|nevada check up|wvchip|kchip|lachip|cubcare|kid care|title xix|title xxi|1902|435\.', re.I)
 CHIPCTX = re.compile(r'\bchip\b|\bs-?chip\b|\bm-?chip\b|title xxi|children.s health (insurance|plan)|kidcare|kid care|husky b|child health plus|peachcare|famis|all kids|hawk-i|denali kidcare|healthy steps|dynasaur|nevada check up|coverkids|cub ?care|healthy montana kids|arkids (first-?)?b|michild|mchp|maryland children.s health|chp\+|child health plan plus|florida kidcare|healthy kids|badgercare plus|wvchip|kchip|lachip|hoosier healthwise|package c|mo healthnet for kids|nj familycare|apple health for kids|partners for healthy children|health first colorado|sooner ?care|kancare|alabama.s health|delaware healthy children|dr\. dynasaur|1397|457\.|targeted low.income', re.I)
@@ -183,7 +192,7 @@ def state_row(prog, e, pats, j, rows, mq, cq, spa, covmap, fed):
                     src = h if p.search(h) else b
                     win = src[max(0, m.start()-400): m.end()+400]
                     if not CTX.search(win): continue
-            if chipctx and not ('chip' in v):
+            if chipctx and 'chip' not in v:
                 if not (CHIPCTX.search(h) or CHIPCTX.search(b[max(0, m.start()-600): m.end()+600])): continue
             score = (4 if inprog else 0) + (2 if p.search(h) else 0) + (1 if re.search('medicaid|chip', v) else 0) + (1 if 200 <= len(b) <= 40000 else 0)
             if best is None or score > best[0]:
