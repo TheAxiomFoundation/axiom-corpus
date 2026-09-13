@@ -1,0 +1,1196 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-id-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 206
+- source_id: us-id-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 206
+- source_id: us-id-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 6
+    index_records_total: 206
+- source_id: us-id-cms-medicaid-state-plan-spa-id-25-0001-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-25-0001: Approval Document (approved January 17, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ID-25-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-25-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-25-0001
+    cms_node_id: '176306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=176306
+    approval_date: '2025-01-17'
+    effective_date: '2025-01-01'
+    summary: This SPA provides Idaho with approval to provide 12 months of continuous postpartum coverage to individuals enrolled
+      in its Medicaid program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-22-0003-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-22-0003: Approval Document (approved May 19, 2022, effective January 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ID-22-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-22-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-22-0003
+    cms_node_id: '136001'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=136001
+    approval_date: '2022-05-19'
+    effective_date: '2022-01-01'
+    summary: This amendment to update the Idaho State Plan regarding third party liability.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-20-0016-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-20-0016: Approval Document (approved November 3, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/id-20-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-20-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-20-0016
+    cms_node_id: '103821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103821
+    approval_date: '2020-11-03'
+    effective_date: '2020-07-01'
+    summary: Adds coverage of Targeted Case Management for At Risk Children to the Enhanced Plan.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-20-0015-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-20-0015: Approval Document (approved November 3, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/id-20-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-20-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-20-0015
+    cms_node_id: '103826'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103826
+    approval_date: '2020-11-03'
+    effective_date: '2020-07-01'
+    summary: Adds coverage of Targeted Case Management for At Risk Children to the Basic Plan.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-20-0009-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-20-0009: Approval Document (approved September 3, 2020, effective March 18, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ID-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-18'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-20-0009
+    cms_node_id: '101771'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=101771
+    approval_date: '2020-09-03'
+    effective_date: '2020-03-18'
+    summary: CMS is approving this time-limited state plan amendment to respond to the COVID-19 national emergency. The purpose
+      of this amendment is to suspend copayments for all adult enrollees for all services, and make specific temporary changes
+      to the home health benefit (supplies and equipment) and requirements for referrals from primary care.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0010-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0010: Approval Document (approved July 14, 2020, effective January 1, 2021)'
+  source_url: https://www.medicaid.gov/media/file/id-19-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0010
+    cms_node_id: '100551'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100551
+    approval_date: '2020-07-14'
+    effective_date: '2021-01-01'
+    summary: Modifies the state’s primary care case management (PCCM) program, known as Healthy Connections, to allow for
+      the state’s new value-based model of care
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-20-0013-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-20-0013: Approval Document (approved June 18, 2020, effective April 17, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ID-20-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-04-17'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-20-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-20-0013
+    cms_node_id: '183711'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183711
+    approval_date: '2020-06-18'
+    effective_date: '2020-04-17'
+    summary: Removes the state’s 1915(l) option from the state plan, as Idaho is transitioning coverage of substance use disorder
+      (SUD) treatment in institutions of mental disease from the state plan to the state’s SUD section 1115(a) demonstration,
+      known as Idaho Behavioral Health Transformation
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-20-0001-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-20-0001: Approval Document (approved June 15, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-20-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-20-0001
+    cms_node_id: '100146'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100146
+    approval_date: '2020-06-15'
+    effective_date: '2020-01-01'
+    summary: The purpose of this SPA is to update the State Plan to reflect the 2020 income and resource limits for the State
+      of Idaho
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0003-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0003: Approval Document (approved June 15, 2020, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ID-19-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0003
+    cms_node_id: '100951'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100951
+    approval_date: '2020-06-15'
+    effective_date: '2019-07-01'
+    summary: Imposes a premium as a condition of eligibility
+    topics:
+    - Eligibility
+    - Premiums
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-20-0005-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-20-0005: Approval Document (approved May 29, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-spa/downloads/ID-20-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-20-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-20-0005
+    cms_node_id: '100331'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100331
+    approval_date: '2020-05-29'
+    effective_date: '2020-01-01'
+    summary: Amends State Plan Attachment 3.1-F to add the Adult Group to the list of eligibility group that are included
+      and enrolled into the state’s Healthy Connections program.
+    topics:
+    - Current State Plan
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0008-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0008: Approval Document (approved May 28, 2020, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-spa/downloads/ID-19-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0008
+    cms_node_id: '100326'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=100326
+    approval_date: '2020-05-28'
+    effective_date: '2019-07-01'
+    summary: Amends State Plan Attachment 3.1-F to implement a fixed enrollment process for beneficiaries that are enrolled
+      into the state’s Healthy Connections program
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0023-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0023: Approval Document (approved April 7, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-19-0023.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0023/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0023
+    cms_node_id: '90956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=90956
+    approval_date: '2020-04-07'
+    effective_date: '2020-01-01'
+    summary: Add 1915(I) State Plan Option for reimbursement of state plan substance use disorder services delivered in an
+      IMD setting.
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0020-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0020: Approval Document (approved January 24, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-19-0020 ABP Basic
+    Partial Hospitalization Approval Package (1-24-20) redacted.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0020
+    cms_node_id: '58321'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58321
+    approval_date: '2020-01-24'
+    effective_date: '2020-01-01'
+    summary: Amends Idaho’s Basic Alternative Benefit Plan (Basic ABP) to add Partial Hospitalization services to the Basic
+      ABP
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0022-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0022: Approval Document (approved January 17, 2020, effective October 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/ID-19-0022_1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-10-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0022/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0022
+    cms_node_id: '59181'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=59181
+    approval_date: '2020-01-17'
+    effective_date: '2019-10-01'
+    summary: Clarifies populations eligible to receive all medically necessary services, as provided under the Idaho State
+      Plan
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0025a-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0025a: Approval Document (approved December 13, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-19-0025a.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0025a/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0025a
+    cms_node_id: '52776'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52776
+    approval_date: '2019-12-13'
+    effective_date: '2019-07-01'
+    summary: The purpose of this SPA is to revise eligibility criteria to ensure children who were receiving support services
+      under Idaho’s expired 1915(c) waivers (ID-0887 and ID 0859) can continue to receive support services under Idaho’s 1915(i)
+      benefit for Children with Developmental Disabilities (Supplement 1 to Attachment 3.1-A).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0007-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0007: Approval Document (approved November 13, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-19-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0007
+    cms_node_id: '4276'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4276
+    approval_date: '2019-11-13'
+    effective_date: '2020-01-01'
+    summary: Expand Medicaid coverage to the adult group described in Title 42 of the Code of Federal Regulations (CFR) §435.119.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0015-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0015: Approval Document (approved November 13, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-19-0015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0015
+    cms_node_id: '4286'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4286
+    approval_date: '2019-11-13'
+    effective_date: '2020-01-01'
+    summary: Amends Idaho's Basic Alternative Benefit Plan (Basic ABP) to add the adult group as a covered eligibility group.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0006-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0006: Approval Document (approved November 13, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-19-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0006
+    cms_node_id: '4291'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4291
+    approval_date: '2019-11-13'
+    effective_date: '2020-01-01'
+    summary: Increased and describes FMAP rates, available under the provisions of the Affordable Care Act for the new adult
+      group.
+    topics:
+    - Cost Sharing
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-19-0016-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-19-0016: Approval Document (approved November 13, 2019, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-19-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-19-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-19-0016
+    cms_node_id: '4296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4296
+    approval_date: '2019-11-13'
+    effective_date: '2020-01-01'
+    summary: Amends Idaho's Enhanced Alternative Benefit Plan (Enhanced ABP) to add the adult group as a covered eligibility
+      group.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-17-0007-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-17-0007: Approval Document (approved June 13, 2017, effective July 1, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-17-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-07-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-17-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-17-0007
+    cms_node_id: '14816'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=14816
+    approval_date: '2017-06-13'
+    effective_date: '2017-07-01'
+    summary: This SPA provides for the verification of assets for the purposes of determining and redetermining Medicaid eligibility
+      for aged, blind and disabled Medicaid applicants and recipients using an Asset Verification System (AVS).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-14-0009-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-14-0009: Approval Document (approved June 26, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-14-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-14-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-14-0009
+    cms_node_id: '35871'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35871
+    approval_date: '2014-06-26'
+    effective_date: '2014-01-01'
+    summary: Defines the Medicare - Medicaid Coordinated Alternative Benefit Plan (MMCP ABP).
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-14-0005-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-14-0005: Approval Document (approved June 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-14-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-14-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-14-0005
+    cms_node_id: '35876'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35876
+    approval_date: '2014-06-11'
+    effective_date: '2014-01-01'
+    summary: Defines the Basic Alternative Benefit Plan (Basic ABP) Targeted to Serve Low-Income Children and working Age
+      Adults with Eligible Dependent Children.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-13-0022-mm-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-13-0022-MM: Approval Document (approved April 2, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-13-0022-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-13-0022-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-13-0022-MM
+    cms_node_id: '37916'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37916
+    approval_date: '2014-04-02'
+    effective_date: '2014-01-01'
+    summary: Specifies Options for Presumptive Eligibility Conducted by Hospitals into Medicaid State Plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-13-0011-mm-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-13-0011-MM: Approval Document (approved November 26, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-13-0011-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-13-0011-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-13-0011-MM
+    cms_node_id: '35776'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35776
+    approval_date: '2013-11-26'
+    effective_date: '2014-01-01'
+    summary: Incorporates Residency Requirements Into Medicaid State Plan In Accordance with the Affordable Care Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-13-0012-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-13-0012: Approval Document (approved November 26, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-13-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-13-0012/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-13-0012
+    cms_node_id: '23101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23101
+    approval_date: '2013-11-26'
+    effective_date: '2014-01-01'
+    summary: Incorporates the citizen and non-citizen eligibility requirements into the Medicaid State Plan in accordance
+      with the ACA.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-13-0021-mm-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-13-0021-MM: Approval Document (approved November 6, 2013, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-13-0021-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-13-0021-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-13-0021-MM
+    cms_node_id: '39626'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39626
+    approval_date: '2013-11-06'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-13-0010-mm-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-13-0010-MM: Approval Document (approved November 6, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-13-0010-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-13-0010-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-13-0010-MM
+    cms_node_id: '35786'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35786
+    approval_date: '2013-11-06'
+    effective_date: '2014-01-01'
+    summary: Incorporates the Modified Adjusted Gross Income (MAGI) Based Methodologies.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-12-007-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-12-007: Approval Document (approved July 31, 2012, effective June 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-12-007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-06-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-12-007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-12-007
+    cms_node_id: '31571'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31571
+    approval_date: '2012-07-31'
+    effective_date: '2012-06-01'
+    summary: This SPA amends Idaho's current 1915(i) State plan benefit by adding clarifying language to the services available
+      to eligible participants. In addition, this SPA adds language to indicate that on June 30, 2013, Intensive Behavioral
+      Intervention (IBI), IBI consultation, Developmental Therapy (DT), and Children's Service Coordination (CSC) will sunset
+      in Idaho's Basic and Enhanced Benchmark Benefit plans.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-12-006-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-12-006: Approval Document (approved May 30, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-12-006-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-12-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-12-006
+    cms_node_id: '33191'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33191
+    approval_date: '2012-05-30'
+    effective_date: '2012-04-01'
+    summary: This SPA implements the Medicaid/CHIP Provider Screening and Enrollment provision under section 6401 of the Affordable
+      Care Act and section 1866(j)(2)(A) of the Act to establish procedures under which screening is conducted with respect
+      to providers of medical or other forms of service under Medicare, Medicaid and CHIP.
+    topics: &id002
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-12-006-form-cms-179
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-12-006: Form CMS-179 (approved May 30, 2012, effective April 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-12-006-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-04-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-12-006/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: ID-12-006
+    cms_node_id: '33191'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=33191
+    approval_date: '2012-05-30'
+    effective_date: '2012-04-01'
+    summary: This SPA implements the Medicaid/CHIP Provider Screening and Enrollment provision under section 6401 of the Affordable
+      Care Act and section 1866(j)(2)(A) of the Act to establish procedures under which screening is conducted with respect
+      to providers of medical or other forms of service under Medicare, Medicaid and CHIP.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-id-cms-medicaid-state-plan-spa-id-12-001-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-12-001: Approval Document (approved March 6, 2012, effective January 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-12-001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-12-001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-12-001
+    cms_node_id: '31586'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=31586
+    approval_date: '2012-03-06'
+    effective_date: '2012-01-01'
+    summary: This transmittal updates the optional state supplement standards for special income level groups consistent with
+      the published 2012 federal poverty levels.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-10-002-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-10-002: Approval Document (approved May 13, 2010, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-10-002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-10-002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-10-002
+    cms_node_id: '29431'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29431
+    approval_date: '2010-05-13'
+    effective_date: '2010-01-01'
+    summary: This amendment implements Section 112 of MIPPA, which increases the resource standards for QMBs, SLMBs and Qls
+      to conform to the resources limits for individuals who qualify for Medicare Part D Low-Income Subsidy (LIS).
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-09-014b-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-09-014B: Approval Document (approved May 11, 2010, effective July 12, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-09-014B.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-07-12'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-09-014b/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-09-014B
+    cms_node_id: '29441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29441
+    approval_date: '2010-05-11'
+    effective_date: '2009-07-12'
+    summary: This amendment represents a complete rewrite of Attachment 4.19-D for ICF/MRs. and freezes ICF/MR per diem rates
+      for SFY 2010 to the rates in place on June 30, 2009.
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-id-cms-medicaid-state-plan-spa-id-09-015-approval-document
+  jurisdiction: us-id
+  document_class: policy
+  title: 'Idaho Medicaid SPA ID-09-015: Approval Document (approved February 23, 2010, effective October 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/ID/ID-09-015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-10-01'
+  citation_path: us-id/policy/cms/medicaid-state-plan/spa/id-09-015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Idaho
+    source_discovery_group: us-id/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: ID-09-015
+    cms_node_id: '29436'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=29436
+    approval_date: '2010-02-23'
+    effective_date: '2009-10-01'
+    summary: This SPA makes technical corrections to identify how incontinence supplies are reimbursed which reflects current
+      practice and aligns with the current Medicare Advantage contracts.
+    topics:
+    - Current State Plan
+    - Financing & Reimbursement
+    link_label: Approval Document

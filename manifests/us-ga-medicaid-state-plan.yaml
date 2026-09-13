@@ -1,0 +1,1024 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ga-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=776&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 2
+    index_records_on_page: 100
+    index_records_total: 194
+- source_id: us-ga-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 2'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=776&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 2
+    index_records_on_page: 94
+    index_records_total: 194
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-25-0001-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-25-0001: Approval Document (approved March 6, 2026, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-25-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-25-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-25-0001
+    cms_node_id: '190081'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=190081
+    approval_date: '2026-03-06'
+    effective_date: '2025-01-01'
+    summary: This amendment seeks to establish the mandatory inclusion of services for eligible juveniles who are inmates
+      of public institutions following adjudication, as well as the addition of targeted case management services for these
+      juveniles.
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-25-0013-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-25-0013: Approval Document (approved October 30, 2025, effective October 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-25-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-10-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-25-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-25-0013
+    cms_node_id: '187391'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187391
+    approval_date: '2025-10-30'
+    effective_date: '2025-10-01'
+    summary: The purpose of this amendment is to implement the Program of All-inclusive Care for the Elderly (PACE) in the
+      state.
+    topics:
+    - Coverage
+    - Eligibility
+    - Home and Community Based Services
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-25-0007-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-25-0007: Approval Document (approved September 30, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-25-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-25-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-25-0007
+    cms_node_id: '185356'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=185356
+    approval_date: '2025-09-30'
+    effective_date: '2025-07-01'
+    summary: This amendment proposes to add the Therapeutic Care Model (TCM) to Georgia's Medicaid State Plan as a Rehabilitative
+      service.
+    topics:
+    - Eligibility
+    - Other Licensed Practitioners
+    - Prior Authorization
+    - Reimbursement
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-25-0009-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-25-0009: Approval Document (approved September 9, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-25-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-25-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-25-0009
+    cms_node_id: '184836'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=184836
+    approval_date: '2025-09-09'
+    effective_date: '2025-07-01'
+    summary: This amendment updates Georgia’s Medicaid State Plan to reflect federal requirements for Third-Party Liability,
+      ensuring compliance with the Consolidated Appropriations Act of 2022.
+    topics:
+    - Coverage
+    - Program Administration
+    - Reimbursement
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-24-0002-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-24-0002: Approval Document (approved June 7, 2024, effective March 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-24-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-03-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-24-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-24-0002
+    cms_node_id: '165731'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=165731
+    approval_date: '2024-06-07'
+    effective_date: '2024-03-01'
+    summary: This amendment proposes to expand Express Lane Eligibility to include Childcare and Parental Services (CAPS),
+      Refugee Cash Assistance, and the Supplemental Nutrition Program for Women, Infants, and Children (WIC) and is being
+      submitted pursuant to Georgia's amended State Fiscal Year 2023 Appropriations Act.
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-23-0001-cech-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-23-0001-CECH: Approval Document (approved February 27, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-23-0001-CECH.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-23-0001-cech/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-23-0001-CECH
+    cms_node_id: '160006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=160006
+    approval_date: '2024-02-27'
+    effective_date: '2024-01-01'
+    summary: The purpose of this amendment is to comply with Section 5112 of the Consolidated Appropriations Act, 2023 (CAA,
+      2023) amended Titles XIX to require that states provide 12 months of continuous eligibility (CE) for children under
+      the age of 19 in Medicaid.
+    topics:
+    - Benefits
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-23-0002-vlp-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-23-0002-VLP: Approval Document (approved November 22, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-23-0002-VLP.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-23-0002-vlp/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-23-0002-VLP
+    cms_node_id: '156086'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=156086
+    approval_date: '2023-11-22'
+    effective_date: '2024-01-01'
+    summary: This amendment is to provide full coverage of Medicaid benefits for lawfully present non-citizen pregnant women
+      and children under 19, effective January 1, 2024.
+    topics:
+    - Benefits
+    - Coverage
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-23-0001-fffc-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-23-0001-FFFC: Approval Document (approved September 21, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-23-0001-FFFC.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-23-0001-fffc/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-23-0001-FFFC
+    cms_node_id: '153311'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=153311
+    approval_date: '2023-09-21'
+    effective_date: '2023-01-01'
+    summary: This amendment is to adopt the changes to the eligibility rules for the Former Foster Care Children eligibility
+      group, as enacted by the Substance-Use Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients
+      and Communities (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-22-0002-path-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-22-0002-PATH: Approval Document (approved June 16, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-22-0002-PATH.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-22-0002-path/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-22-0002-PATH
+    cms_node_id: '151186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=151186
+    approval_date: '2023-06-16'
+    effective_date: '2023-07-01'
+    summary: This SPA establishes a new eligibility category of assistance for parents, caretakers, or guardians with household
+      incomes from 35% to 100% of the FPL who are not currently eligible for Medicaid and adults without dependent children
+      with household incomes up to 100% of the FPL who are not currently eligible for Medicaid. Individuals must be between
+      the ages of 19 and 64. To be determined eligible for Pathways, an individual must meet the required hours and activities
+      threshold of 80 hours per month and meet the income eligibility requirement described above.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-22-0004-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-22-0004: Approval Document (approved August 11, 2022, effective October 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-22-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-10-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-22-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-22-0004
+    cms_node_id: '138726'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=138726
+    approval_date: '2022-08-11'
+    effective_date: '2022-10-01'
+    summary: This amendment proposes to implement Express Lane Eligibility (ELE).
+    topics:
+    - Coverage
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-21-0013-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-21-0013: Approval Document (approved March 9, 2022, effective October 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-21-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-10-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-21-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-21-0013
+    cms_node_id: '133651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=133651
+    approval_date: '2022-03-09'
+    effective_date: '2021-10-01'
+    summary: This amendment proposes to cost avoid for all prenatal, labor and delivery, and postpartum services.
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-21-0001-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-21-0001: Approval Document (approved December 17, 2021, effective June 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/GA-21-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-06-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-21-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-21-0001
+    cms_node_id: '139276'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139276
+    approval_date: '2021-12-17'
+    effective_date: '2021-06-01'
+    summary: Revised the alternative paper application used for multiple human services program, and the alternative single,
+      streamlined online application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-20-0006-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-20-0006: Approval Document (approved May 20, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-20-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-20-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-20-0006
+    cms_node_id: '98586'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98586
+    approval_date: '2020-05-20'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to provide flexibilities for presumptive eligibility, suspend all copayments, allow telehealth and provide an associated
+      payment methodology, allow brand name products if generic prescription drugs are unavailable from the preferred drug
+      list, and make interim payments to skilled nursing facilities.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-20-0001-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-20-0001: Approval Document (approved March 10, 2020, effective January 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/AR/AR-20-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-20-0001
+    cms_node_id: '87401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=87401
+    approval_date: '2020-03-10'
+    effective_date: '2020-01-01'
+    summary: Proposes to allow the state to comply with the Medicaid Drug Utilization Review (DUR) provisions included in
+      Section 1004 of the Substance Use-Disorder Prevention that promotes Opioid Recovery and Treatment (SUPPORT)
+    topics:
+    - Current State Plan
+    - Prescription Drugs
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-19-0006-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-19-0006: Approval Document (approved December 18, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-19-0006_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-19-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-19-0006
+    cms_node_id: '58221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=58221
+    approval_date: '2019-12-18'
+    effective_date: '2019-07-01'
+    summary: Proposes to make Graduate Medical Education (GME) paid claims Add-On Payments for Community Service Boards (CSBs)
+      with GME programs that are accredited by the Accreditation Council for Graduate Medical Education (ACGME).
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-19-0005-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-19-0005: Approval Document (approved December 5, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-19-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-19-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-19-0005
+    cms_node_id: '52036'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=52036
+    approval_date: '2019-12-05'
+    effective_date: '2019-07-01'
+    summary: Revises the DSH language in the plan
+    topics:
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-18-0001-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-18-0001: Approval Document (approved March 16, 2018, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-18-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-18-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-18-0001
+    cms_node_id: '11301'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11301
+    approval_date: '2018-03-16'
+    effective_date: '2018-01-01'
+    summary: Removes from the state plan the eligibility of former foster care youth under age 26 who were in foster care
+      under the responsibility of another state, and enrolled in Medicaid at the time they turned 18 or aged out of the foster
+      care system in the other state.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-17-015-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-17-015: Approval Document (approved January 11, 2018, effective January 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-17-015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-17-015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-17-015
+    cms_node_id: '11906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11906
+    approval_date: '2018-01-11'
+    effective_date: '2018-01-01'
+    summary: This SPA adds coverage of Autism Spectrum Disorder (ASD) services, and enrollment and reimbursement of Board
+      Certified Behavior Analysts for providing ASD services.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-0028-mm7-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-0028-MM7: Approval Document (approved February 6, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-0028-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-0028-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0028-MM7
+    cms_node_id: '27821'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=27821
+    approval_date: '2015-02-06'
+    effective_date: '2014-01-01'
+    summary: Establishes that One or More Qualified Hospitals are Determining Presumptive Eligibility, and that the State
+      is Providing Coverage for Individuals Determined Presumptively Eligible.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-14-003-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-14-003: Approval Document (approved June 20, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-14-003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-14-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-14-003
+    cms_node_id: '35006'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=35006
+    approval_date: '2014-06-20'
+    effective_date: '2014-01-01'
+    summary: Supports the Early Assessment of Pregnant Women by Local Public Health Agencies at the Time of the Presumptive
+      Eligibility Determination.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-0023-mm5-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-0023-MM5: Approval Document (approved February 12, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-0023-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-0023-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0023-MM5
+    cms_node_id: '38756'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38756
+    approval_date: '2014-02-12'
+    effective_date: '2014-01-01'
+    summary: Affirms State Residency Regulations and Addresses Interstate Agreements and Temporary Absence.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-0024-mm6-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-0024-MM6: Approval Document (approved February 12, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-0024-MM6.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-0024-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0024-MM6
+    cms_node_id: '38761'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38761
+    approval_date: '2014-02-12'
+    effective_date: '2014-01-01'
+    summary: Affirms Citizenship Regulations, Specifies Reasonable Opportunity Options, and Specifies Policy Options Related
+      to Immigrant Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-015-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-015: Approval Document (approved February 11, 2014, effective October 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-015.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-10-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-015/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-015
+    cms_node_id: '38681'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38681
+    approval_date: '2014-02-11'
+    effective_date: '2014-10-01'
+    summary: The SPA implements a medical coordination program for the aged blind and disabled population in the state plan.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-0020-mm1-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-0020-MM1: Approval Document (approved February 7, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-0020-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-0020-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0020-MM1
+    cms_node_id: '38766'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38766
+    approval_date: '2014-02-07'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI-Based Eligibility Group SPA.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-0021-mm2-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-0021-MM2: Approval Document (approved February 7, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-0021-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-0021-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0021-MM2
+    cms_node_id: '37671'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37671
+    approval_date: '2014-02-07'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-0022-mm3-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-0022-MM3: Approval Document (approved December 6, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-0022-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-0022-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-0022-MM3
+    cms_node_id: '40096'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40096
+    approval_date: '2013-12-06'
+    effective_date: '2014-01-01'
+    summary: Incorporates the MAGI-Based Income Methodologies.
+    topics:
+    - Cost Sharing
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-008-approval-document
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-008: Approval Document (approved July 3, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-008-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: GA-13-008
+    cms_node_id: '45921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45921
+    approval_date: '2013-07-03'
+    effective_date: '2013-04-01'
+    summary: Provides for coverage of curative and hospice care in accordance with Section 2302 of the Affordable Care Act.
+    topics: &id002
+    - Benefits
+    - Eligibility
+    - Health Services Initiatives
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-008-attachment
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-008: Attachment (approved July 3, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-008-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-008/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: GA-13-008
+    cms_node_id: '45921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45921
+    approval_date: '2013-07-03'
+    effective_date: '2013-04-01'
+    summary: Provides for coverage of curative and hospice care in accordance with Section 2302 of the Affordable Care Act.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ga-cms-medicaid-state-plan-spa-ga-13-008-form-cms-179
+  jurisdiction: us-ga
+  document_class: policy
+  title: 'Georgia Medicaid SPA GA-13-008: Form CMS-179 (approved July 3, 2013, effective April 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/GA/GA-13-008-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-04-01'
+  citation_path: us-ga/policy/cms/medicaid-state-plan/spa/ga-13-008/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Georgia
+    source_discovery_group: us-ga/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: GA-13-008
+    cms_node_id: '45921'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=45921
+    approval_date: '2013-07-03'
+    effective_date: '2013-04-01'
+    summary: Provides for coverage of curative and hospice care in accordance with Section 2302 of the Affordable Care Act.
+    topics: *id002
+    link_label: Form CMS-179

@@ -1,0 +1,1078 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-va-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 267
+- source_id: us-va-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 3
+    index_records_on_page: 100
+    index_records_total: 267
+- source_id: us-va-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 3'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 3
+    index_records_on_page: 67
+    index_records_total: 267
+- source_id: us-va-cms-medicaid-state-plan-spa-va-26-0005-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-26-0005: Approval Document (approved August 11, 2026, effective April 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-26-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-26-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-26-0005
+    cms_node_id: '195216'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=195216
+    approval_date: '2026-08-11'
+    effective_date: '2026-04-01'
+    summary: This amendment removes redundant and unnecessary case management language from the State Plan.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-26-0008-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-26-0008: Approval Document (approved August 11, 2026, effective April 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-26-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-26-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-26-0008
+    cms_node_id: '195206'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=195206
+    approval_date: '2026-08-11'
+    effective_date: '2026-04-01'
+    summary: This amendment removes duplicative and out-of-date language from the State Plan.
+    topics:
+    - Coverage
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-25-0009-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-25-0009: Approval Document (approved May 21, 2026, effective September 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-25-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-09-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-25-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-25-0009
+    cms_node_id: '192976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192976
+    approval_date: '2026-05-21'
+    effective_date: '2025-09-01'
+    summary: This amendment provides coverage of targeted case management, in the 30 days pre-release and immediately post-release
+      to eligible incarcerated youth and young adults to comply with section 5121 of the federal Consolidated Appropriations
+      Act of 2023.
+    topics:
+    - Coverage
+    - Eligibility
+    - Reimbursement
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-26-0002-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-26-0002: Approval Document (approved May 13, 2026, effective April 1, 2026)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-26-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2026-04-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-26-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-26-0002
+    cms_node_id: '192461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=192461
+    approval_date: '2026-05-13'
+    effective_date: '2026-04-01'
+    summary: This amendment updates language regarding Income and Eligibility Verification Systems Procedures.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-25-0013-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-25-0013: Approval Document (approved October 31, 2025, effective July 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-25-0013.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-07-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-25-0013/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-25-0013
+    cms_node_id: '186021'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=186021
+    approval_date: '2025-10-31'
+    effective_date: '2025-07-01'
+    summary: This SPA provides assurance that the state has rules in place that bar liable third-party payers from refusing
+      payment for an item or services solely on the basis that such item or service did not receive prior authorization under
+      the third-party payer’s rules. Additionally, the SPA provides clarity relating to the lien amounts arising from the
+      Medicaid program and asserted against personal injury claims proceeds.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-25-0005-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-25-0005: Approval Document (approved July 21, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-25-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-25-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-25-0005
+    cms_node_id: '182901'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=182901
+    approval_date: '2025-07-21'
+    effective_date: '2025-01-01'
+    summary: This SPA amends the Medicaid State Plan to provide for mandatory coverage in accordance with section 1902(a)(84)(D)
+      of the Social Security Act for eligible juveniles who are incarcerated in a public institution post-adjudication of
+      charges. This SPA is effective on January 1, 2025, and will sunset on December 31, 2026.
+    topics:
+    - Coverage
+    - Eligibility
+    - Targeted Case Management
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-24-0011-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-24-0011: Approval Document (approved September 13, 2024, effective July 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-24-0011.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-07-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-24-0011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-24-0011
+    cms_node_id: '169881'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=169881
+    approval_date: '2024-09-13'
+    effective_date: '2024-07-01'
+    summary: Disregards portions of Social Security Disability Insurance (SSDI) income when calculating financial eligibility
+      for certain sections 1915(c) waivers.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-24-0002-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-24-0002: Approval Document (approved April 19, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-24-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-24-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-24-0002
+    cms_node_id: '163556'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163556
+    approval_date: '2024-04-19'
+    effective_date: '2024-01-01'
+    summary: To implement 12-months of continuous eligibility for children as required by the 2023 Consolidated Appropriations
+      Act. This SPA also makes a technical change to note that the Virginia Department of Medical Assistance Services processes
+      the eligibility applications of individuals who are returning to the community after a period of incarceration. Additionally,
+      this SPA makes technical corrections to the "Eligibility Determinations and Fair Hearings" and "Organization and Administration"
+      reviewable units approved in VA-23-0007 regarding Virginia's transition to a new State-Based Exchange.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-24-0004-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-24-0004: Approval Document (approved April 4, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-24-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-24-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-24-0004
+    cms_node_id: '163166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=163166
+    approval_date: '2024-04-04'
+    effective_date: '2024-01-01'
+    summary: To increase the income standard for its Ticket to Work Basic eligibility group and disregard “Work Incentive
+      Accounts” in determining resource eligibility for certain non-MAGI eligibility groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-23-0003-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-23-0003: Approval Document (approved May 31, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-23-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-23-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-23-0003
+    cms_node_id: '148441'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148441
+    approval_date: '2023-05-31'
+    effective_date: '2023-01-01'
+    summary: To adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as enacted
+      by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT)
+      Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-23-0004-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-23-0004: Approval Document (approved May 2, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-23-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-23-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-23-0004
+    cms_node_id: '147521'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=147521
+    approval_date: '2023-05-02'
+    effective_date: '2023-01-01'
+    summary: To disregard certain resources for various eligibility groups covered under the state plan.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-22-0001-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-22-0001: Approval Document (approved January 9, 2023, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-22-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-22-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-22-0001
+    cms_node_id: '143636'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=143636
+    approval_date: '2023-01-09'
+    effective_date: '2022-07-01'
+    summary: To amend the state's paper alternative single streamlined application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-22-0014-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-22-0014: Approval Document (approved July 25, 2022, effective April 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-22-0014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-04-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-22-0014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-22-0014
+    cms_node_id: '138226'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=138226
+    approval_date: '2022-07-25'
+    effective_date: '2022-04-01'
+    summary: To update the State Plan to be in compliance with federal rules related to third party liability.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-21-0002-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-21-0002: Approval Document (approved July 2, 2021, effective March 31, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-21-0002.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-31'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-21-0002/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-21-0002
+    cms_node_id: '110961'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=110961
+    approval_date: '2021-07-02'
+    effective_date: '2021-03-31'
+    summary: Effective March 31, 2021, this amendment removes a limit for psychiatric hospitalization that prevented more
+      than 21 days in a hospital in a 60-day period for the same or similar diagnosis or treatment plan and updates practitioner
+      terminology as it relates to working titles.
+    topics:
+    - Benefits
+    - Current State Plan
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-21-0005-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-21-0005: Approval Document (approved April 16, 2021, effective April 1, 2021)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/VA-21-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-04-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-21-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-21-0005
+    cms_node_id: '127501'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=127501
+    approval_date: '2021-04-16'
+    effective_date: '2021-04-01'
+    summary: Changes the eligibility section in the state plan to remove the requirement for 40 qualifying quarters of employment
+      for lawful permanent residents.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-20-0008-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-20-0008: Approval Document (approved November 5, 2020, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/VA-20-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-20-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-20-0008
+    cms_node_id: '103781'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103781
+    approval_date: '2020-11-05'
+    effective_date: '2020-10-01'
+    summary: The purpose of this SPA is to update the ARTS state plan pages to incorporate general updates to the program,
+      including updates related to medication assisted treatment, defining the scope of practice for certified substance abuse
+      counselors, including substance use disorder counseling within that scope, and guidance related to telemedicine requirements.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-20-0017-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-20-0017: Approval Document (approved October 27, 2020, effective October 25, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/VA-20-0017.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-25'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-20-0017/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-20-0017
+    cms_node_id: '103526'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=103526
+    approval_date: '2020-10-27'
+    effective_date: '2020-10-25'
+    summary: The purpose of this SPA is to amend the state plan to allow nurse practitioners, clinical nurse specialists,
+      and physician assistants to order and certify home health services.
+    topics:
+    - Current State Plan
+    - Health Homes
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-20-0010-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-20-0010: Approval Document (approved May 27, 2020, effective March 12, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-20-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-12'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-20-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-20-0010
+    cms_node_id: '98701'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98701
+    approval_date: '2020-05-27'
+    effective_date: '2020-03-12'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to consider individuals who are evacuated or absent from the state due to the disaster or public health emergency
+      and who intend to return to the state, to continue to be residents of the state. The amendment makes adjustments to
+      the day supply and quantity limit for covered outpatient medications and will make exceptions to their published Preferred
+      Drug List if drug shortages occur. In addition, the amendment increases payment rates for nursing facilities, specialized
+      care providers, and updates the dental fee schedule.
+    topics:
+    - Benefits
+    - Disaster Relief
+    - Eligibility
+    - Financing & Reimbursement
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-20-0009-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-20-0009: Approval Document (approved April 2, 2020, effective March 13, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-20-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-13'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-20-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-20-0009
+    cms_node_id: '89296'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=89296
+    approval_date: '2020-04-02'
+    effective_date: '2020-03-13'
+    summary: proposes to not charge cost sharing (deductibles, co-insurance or co-payments) to individuals covered under Medicaid
+    topics:
+    - Cost Sharing
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-18-006-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-18-006: Approval Document (approved September 5, 2018, effective January 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-18-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-18-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-18-006
+    cms_node_id: '9201'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=9201
+    approval_date: '2018-09-05'
+    effective_date: '2019-01-01'
+    summary: This provides assurance that the state complies with statutory requirements in section 1906, Health Insurance
+      Premium Payment (HIPP) program, and section 1906A, HIPP for Kids premium assistance program.
+    topics:
+    - Financing & Reimbursement
+    - Premiums
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-17-028-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-17-028: Approval Document (approved January 18, 2018, effective December 20, 2017)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-17-028.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2017-12-20'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-17-028/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-17-028
+    cms_node_id: '11976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=11976
+    approval_date: '2018-01-18'
+    effective_date: '2017-12-20'
+    summary: Dental Fee Schedule Update.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Dental
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-15-004-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-15-004: Approval Document (approved July 30, 2015, effective July 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-15-004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-07-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-15-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-15-004
+    cms_node_id: '23976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23976
+    approval_date: '2015-07-30'
+    effective_date: '2015-07-01'
+    summary: Proposes to Disregard Payments Made to Compensate Individuals Who were Involuntarily Sterilized Pursuant to the
+      Virginia Eugenical Sterilization Act (And who are living as of February 1, 2015) in Determination of Medicaid Eligibility
+      for New or Current Enrollees.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-14-0007-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-14-0007: Approval Document (approved July 28, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-14-0007.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-14-0007/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-14-0007
+    cms_node_id: '23926'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=23926
+    approval_date: '2015-07-28'
+    effective_date: '2014-01-01'
+    summary: Proposes that One or More Qualified Hospitals Determine Presumptive Eligibility and Virginia Provides Medicaid
+      Coverage for Individuals Determined Presumptively Eligible.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-15-0021-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-15-0021: Approval Document (approved April 1, 2015, effective January 1, 2015)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-15-0021.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2015-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-15-0021/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-15-0021
+    cms_node_id: '28061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=28061
+    approval_date: '2015-04-01'
+    effective_date: '2015-01-01'
+    summary: Amends MAGI-Based Eligibility Group Options for Coverage of Individuals Eligible for Family Planning S59 by Increasing
+      Maximum Income Standard to 200% FPL.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-14-0018-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-14-0018: Approval Document (approved September 22, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-14-0018.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-14-0018/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-14-0018
+    cms_node_id: '32881'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=32881
+    approval_date: '2014-09-22'
+    effective_date: '2014-07-01'
+    summary: This SPA proposes to amend Eligibility Groups - Mandatory Coverage Former Foster Care Children S33 to cover children
+      who were in foster care and on Medicaid in any State at the time they turned 18, or aged out of the foster care system.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-13-0010-mm2-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-13-0010-MM2: Approval Document (approved April 30, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-13-0010-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-13-0010-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-13-0010-MM2
+    cms_node_id: '37221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37221
+    approval_date: '2014-04-30'
+    effective_date: '2013-10-01'
+    summary: Incorporates MAGI-Based Eligibility Process Requirements, Including Single Streamlined Application.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-13-0009-mm1-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-13-0009-MM1: Approval Document (approved February 21, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-13-0009-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-13-0009-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-13-0009-MM1
+    cms_node_id: '38506'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38506
+    approval_date: '2014-02-21'
+    effective_date: '2014-01-01'
+    summary: Incorporates MAGI Based Eligibility Group SPA.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-13-0012-mm4-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-13-0012-MM4: Approval Document (approved December 20, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-13-0012-MM4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-13-0012-mm4/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-13-0012-MM4
+    cms_node_id: '34866'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=34866
+    approval_date: '2013-12-20'
+    effective_date: '2014-01-01'
+    summary: Clarifies Authority and Responsibilities of the Single State Agency and Its Relationship to Other Federal and
+      State Agencies, The Fair Hearing Process, and the Process of Determining Eligibility.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-13-0014-mm3-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-13-0014 MM3: Approval Document (approved December 19, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-13-0014-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-13-0014-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-13-0014 MM3
+    cms_node_id: '39221'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39221
+    approval_date: '2013-12-19'
+    effective_date: '2014-01-01'
+    summary: Identifies the non-financial eligibility requirements for both citizens and eligible non-citizens and incorporates
+      them into Virginia State Plan.
+    topics:
+    - Eligibility
+    - Financing & Reimbursement
+    link_label: Approval Document
+- source_id: us-va-cms-medicaid-state-plan-spa-va-13-0013-mm5-approval-document
+  jurisdiction: us-va
+  document_class: policy
+  title: 'Virginia Medicaid SPA VA-13-0013-MM5: Approval Document (approved December 19, 2012, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/VA/VA-13-0013-MM5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-va/policy/cms/medicaid-state-plan/spa/va-13-0013-mm5/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Virginia
+    source_discovery_group: us-va/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: VA-13-0013-MM5
+    cms_node_id: '39226'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39226
+    approval_date: '2012-12-19'
+    effective_date: '2014-01-01'
+    summary: Incorporates the residency requirements at 42 Code of Federal Regulations 435.403 into Virginia Medicaid State
+      Plan in accordance with the Affordable Care Act.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document

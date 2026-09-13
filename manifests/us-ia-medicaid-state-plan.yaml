@@ -1,0 +1,1768 @@
+version: 2026-09-13-medicaid-state-plan
+documents:
+- source_id: us-ia-cms-medicaid-state-plan-spa-index-p01
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid state plan amendments on medicaid.gov: SPA index page 1 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=696&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 329
+- source_id: us-ia-cms-medicaid-state-plan-spa-index-p02
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid state plan amendments on medicaid.gov: SPA index page 2 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=696&limit=100&sort=field_approval_date%3Adesc&page=1
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa-index/p02
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 2
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 329
+- source_id: us-ia-cms-medicaid-state-plan-spa-index-p03
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid state plan amendments on medicaid.gov: SPA index page 3 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=696&limit=100&sort=field_approval_date%3Adesc&page=2
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa-index/p03
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 3
+    index_pages: 4
+    index_records_on_page: 100
+    index_records_total: 329
+- source_id: us-ia-cms-medicaid-state-plan-spa-index-p04
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid state plan amendments on medicaid.gov: SPA index page 4 of 4'
+  source_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bfield_state%5D%5Bin%5D%5B%5D=696&limit=100&sort=field_approval_date%3Adesc&page=3
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa-index/p04
+  request: *id001
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 4
+    index_pages: 4
+    index_records_on_page: 29
+    index_records_total: 329
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-25-0025-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-25-0025: Approval Document (approved October 17, 2025, effective August 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-25-0025.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-25-0025/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-25-0025
+    cms_node_id: '187061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=187061
+    approval_date: '2025-10-17'
+    effective_date: '2025-08-01'
+    summary: This amendment adjusted the premium scale based on the average state employee health insurance premium and adjusts
+      the personal needs allowance for disabled individuals.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-24-0016-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-24-0016: Approval Document (approved January 6, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-24-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-24-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-24-0016
+    cms_node_id: '176461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=176461
+    approval_date: '2025-01-06'
+    effective_date: '2025-01-01'
+    summary: Through this SPA, the state modifies its income levels in both its separate CHIP and title XXI funded Medicaid
+      expansion program for children from ages 0 to 1.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-25-0001-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-25-0001: Approval Document (approved January 6, 2025, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-25-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-25-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-25-0001
+    cms_node_id: '175426'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=175426
+    approval_date: '2025-01-06'
+    effective_date: '2025-01-01'
+    summary: This SPA provides Iowa with approval to provide 12 months of continuous postpartum coverage to individuals enrolled
+      in its Medicaid program.
+    topics:
+    - Benefits
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-24-0009-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-24-0009: Approval Document (approved November 29, 2024, effective August 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-24-0009.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-24-0009/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-24-0009
+    cms_node_id: '173481'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=173481
+    approval_date: '2024-11-29'
+    effective_date: '2024-08-01'
+    summary: This amendment is to adjust the premium scale per 441 IAC 75.1(39)”b”. The maximum premium amount is based on
+      the avg. state employee health insurance premium which is, for a single person, $958.50 effective January 1, 2024.
+    topics:
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-23-0026-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-23-0026: Approval Document (approved February 23, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-23-0026.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-23-0026/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-23-0026
+    cms_node_id: '159851'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=159851
+    approval_date: '2024-02-23'
+    effective_date: '2024-01-01'
+    summary: This amendment complies with the federal requirement that the state implement a tracking system that ensures
+      that cost sharing and premiums of a Medicaid beneficiary will not exceed five percent of the family income.
+    topics:
+    - Cost Sharing
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-25-0003-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-25-0003: Approval Document (approved January 6, 2024, effective January 1, 2025)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-25-00030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2025-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-25-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-25-0003
+    cms_node_id: '175461'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=175461
+    approval_date: '2024-01-06'
+    effective_date: '2025-01-01'
+    summary: State is reducing the income eligibility standard for certain pregnant women and infants.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-23-0020-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-23-0020: Approval Document (approved November 9, 2023, effective July 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-23-0020.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-07-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-23-0020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-23-0020
+    cms_node_id: '155746'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155746
+    approval_date: '2023-11-09'
+    effective_date: '2023-07-01'
+    summary: This amendment makes language change to Iowa's Third Party Rules related to prior authorization.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-23-0016-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-23-0016: Approval Document (approved November 3, 2023, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-23-0016.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-23-0016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-23-0016
+    cms_node_id: '155166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=155166
+    approval_date: '2023-11-03'
+    effective_date: '2024-01-01'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to Modify end
+      date of premiums suspension for Hawki and Medicaid for Employed People with Disabilities (MEPD) enrollees effective
+      January 1, 2024.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-23-0010-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-23-0010: Approval Document (approved June 14, 2023, effective May 12, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-23-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-05-12'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-23-0010/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-23-0010
+    cms_node_id: '148906'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148906
+    approval_date: '2023-06-14'
+    effective_date: '2023-05-12'
+    summary: CMS is approving this time-limited state plan amendment to allow the state to implement temporary policies while
+      returning to normal operations after the COVID-19 national emergency. The purpose of this amendment is to Address premiums
+      and cost-sharing requirements upon the end of the national COVID-19 public health emergency (PHE). Iowa will continue
+      to suspend all co-payments and premiums for all Medicaid enrollees until June 1, 2024.
+    topics:
+    - Disaster Relief
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-23-0004-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-23-0004: Approval Document (approved May 19, 2023, effective January 1, 2023)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-23-0004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-23-0004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-23-0004
+    cms_node_id: '148121'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=148121
+    approval_date: '2023-05-19'
+    effective_date: '2023-01-01'
+    summary: The State adopt the changes to the eligibility rules for the Former Foster Care Children eligibility group, as
+      enacted by the Substance Use-Disorder Prevention that Promotes Opioid Recovery and Treatment for Patients and Communities
+      (SUPPORT) Act, Pub. L. No. 115-217, section 1002.
+    topics:
+    - Eligibility
+    - Medicaid and CHIP Program (MACPro)
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-22-0008-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-22-0008: Approval Document (approved August 25, 2022, effective July 1, 2022)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-22-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2022-07-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-22-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-22-0008
+    cms_node_id: '139196'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=139196
+    approval_date: '2022-08-25'
+    effective_date: '2022-07-01'
+    summary: This amendment proposes language change to Iowa’s Third Party Liability Payment Claims section 1B and 1C.
+    topics:
+    - Third Party Liability
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-21-0006-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-21-0006: Approval Document (approved August 13, 2021, effective October 1, 2020)'
+  source_url: https://www.medicaid.gov/Medicaid/spa/downloads/IA-21-0006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-10-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-21-0006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-21-0006
+    cms_node_id: '110826'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=110826
+    approval_date: '2021-08-13'
+    effective_date: '2020-10-01'
+    summary: Proposes to add medication-assisted treatment (MAT) as a mandatory benefit in the Medicaid state plan
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-20-0005-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-20-0005: Approval Document (approved June 24, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-20-0005_0.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-20-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-20-0005
+    cms_node_id: '183751'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183751
+    approval_date: '2020-06-24'
+    effective_date: '2020-07-01'
+    summary: This SPA seeks an exception to 42 CFR § 455.502, which requires each state to establish a Recovery Audit Contractor
+      (RAC) program. The state seeks this exception because it is unable to procure a RAC vendor due to the small fee-for-service
+      claims volume in the state.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-20-0001-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-20-0001: Approval Document (approved June 19, 2020, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-20-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-20-0001/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-20-0001
+    cms_node_id: '183706'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=183706
+    approval_date: '2020-06-19'
+    effective_date: '2020-07-01'
+    summary: Updates the scope of the state's pharmacist-covered services in order to align with Iowa's new protocols for
+      (1) pharmacists ordering and dispensing naloxone and nicotine replacement therapy tobacco cessation products, and (2)
+      pharmacists ordering and administering vaccines.
+    topics:
+    - Current State Plan
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-20-0003-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-20-0003: Approval Document (approved May 21, 2020, effective August 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-20-0003.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-20-0003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-20-0003
+    cms_node_id: '99581'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=99581
+    approval_date: '2020-05-21'
+    effective_date: '2020-08-01'
+    summary: Increase the premiums assessed to individuals enrolled in the eligibility group under section 1902(a)(10)(A)(ii)(XIII)
+      of the Social Security Act beginning on August 1, 2020
+    topics:
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-20-0008-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-20-0008: Approval Document (approved May 18, 2020, effective March 1, 2020)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-20-0008.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-03-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-20-0008/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-20-0008
+    cms_node_id: '98486'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=98486
+    approval_date: '2020-05-18'
+    effective_date: '2020-03-01'
+    summary: This time-limited state plan amendment responds to the COVID-19 national emergency. The purpose of this amendment
+      is to cover the new optional group for COVID testing, allow for flexibility in hospital presumptive eligibility, suspend
+      cost sharing and premiums for all services for all beneficiaries, add new services under 1915(i), and allow for other
+      flexibilities in the 1915(i) program.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Disaster Relief
+    - Eligibility
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-19-0005-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-19-0005: Approval Document (approved October 7, 2019, effective August 1, 2019)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-19-0005.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-19-0005/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-19-0005
+    cms_node_id: '4741'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=4741
+    approval_date: '2019-10-07'
+    effective_date: '2019-08-01'
+    summary: Adjusts the premium scale for the Medicaid for Employed People with Disabilities (MEPD) program.
+    topics:
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-18-014-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-18-014: Approval Document (approved November 5, 2018, effective October 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-18-014.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-18-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-18-014
+    cms_node_id: '8306'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=8306
+    approval_date: '2018-11-05'
+    effective_date: '2018-10-01'
+    summary: Implement changes to Iowa's 1915(i) State Plan Home and Community-Based Services (HCBS) program.
+    topics:
+    - Outreach & Enrollment
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-18-006-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-18-006: Approval Document (approved June 19, 2018, effective August 1, 2018)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-18-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-18-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-18-006
+    cms_node_id: '10076'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=10076
+    approval_date: '2018-06-19'
+    effective_date: '2018-08-01'
+    summary: To adjust premiums for persons who are eligible under the Medicaid for Employed Persons with Disabilities (MEPD)
+      group.
+    topics:
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-14-0020-mm1-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-14-0020-MM1: Approval Document (approved November 25, 2014, effective July 1, 2014)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/IA-14-0020-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-07-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-14-0020-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-14-0020-MM1
+    cms_node_id: '173666'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=173666
+    approval_date: '2014-11-25'
+    effective_date: '2014-07-01'
+    summary: 'This SPA submission replaces MMDL pages replaces S25: Parents and Other Caretaker Relatives; S28: Pregnant Women;
+      S30: Infants and Children under Age 19; and S33: Mandatory Coverage Former Foster Care children; replacing those sections
+      as originally approved in SPA 13-0026-MM1. This SPA is to adding presumptive eligibility determinations for these eligibility
+      groups.'
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-14-0005-mm7-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-14-0005-MM7: Approval Document (approved May 19, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-14-0005-MM7.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-14-0005-mm7/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-14-0005-MM7
+    cms_node_id: '36411'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=36411
+    approval_date: '2014-05-19'
+    effective_date: '2014-01-01'
+    summary: One or more qualified hospitals will determine presumptive eligibility under 42 CFR 435.1110, and Iowa is providing
+      Medicaid coverage for individuals determined presumptively eligible under this provision.
+    topics:
+    - Benefits
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-0026-mm1-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-0026-MM1: Approval Document (approved May 5, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-0026-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-0026-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-13-0026-MM1
+    cms_node_id: '37516'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37516
+    approval_date: '2014-05-05'
+    effective_date: '2014-01-01'
+    summary: Describes the MAGI Adjusted Gross Income MAGI Based Eligibility Groups in Accordance with the Affordable Care
+      Act.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-14-004-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-14-004: Approval Document (approved April 3, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-14-004.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-14-004/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-14-004
+    cms_node_id: '37976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37976
+    approval_date: '2014-04-03'
+    effective_date: '2014-01-01'
+    summary: Alternative Benefit Plan - Iowa Wellness.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Eligibility
+    - Financing & Reimbursement
+    - Managed Care
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-14-006-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-14-006: Approval Document (approved April 2, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-14-006.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-14-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-14-006
+    cms_node_id: '37956'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37956
+    approval_date: '2014-04-02'
+    effective_date: '2014-01-01'
+    summary: Alternative Benefit Plan - Iowa Marketplace Choice.
+    topics:
+    - Benefits
+    - Cost Sharing
+    - Eligibility
+    - Financing & Reimbursement
+    - Managed Care
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-0029-mm6-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-0029-MM6: Approval Document (approved March 11, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-0029-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-0029-mm6/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-13-0029-MM6
+    cms_node_id: '38261'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38261
+    approval_date: '2014-03-11'
+    effective_date: '2014-01-01'
+    summary: Describes Non-Financial Eligibility Citizenship and Non-Citizen Eligibility that will apply to all Modified Adjusted
+      Gross Income (MAGI) based eligibility criteria covered under the Iowa Medicaid state plan.
+    topics:
+    - Benefits
+    - Eligibility
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-0025-mm2-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-0025-MM2: Approval Document (approved March 6, 2014, effective December 31, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-0025-MM2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-12-31'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-0025-mm2/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-13-0025-MM2
+    cms_node_id: '38256'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38256
+    approval_date: '2014-03-06'
+    effective_date: '2013-12-31'
+    summary: Describes processing of applications and verifying eligibility that will apply to all Modified Adjusted Gross
+      Income (MAGI) based eligibility criteria.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-14-0007-mm1-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-14-0007-MM1: Approval Document (approved February 21, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-14-0007-MM1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-14-0007-mm1/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-14-0007-MM1
+    cms_node_id: '37651'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=37651
+    approval_date: '2014-02-21'
+    effective_date: '2014-01-01'
+    summary: 'Elects to cover new adult group: non-pregnant individuals ages 19-64, not otherwise mandatorily eligible, with
+      income at or below 133 percent of Federal Poverty Level.'
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-028-mm-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-028-MM: Approval Document (approved January 31, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-028-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-028-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-13-028-MM
+    cms_node_id: '38976'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=38976
+    approval_date: '2014-01-31'
+    effective_date: '2014-01-01'
+    summary: Describes Non-Financial Eligibility On State Residency that will apply to all Modified Adjusted Gross Income
+      MAGI-Based Eligibility Criteria.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-0027-mm3-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-0027-MM3: Approval Document (approved January 23, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-0027-MM3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-0027-mm3/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-13-0027-MM3
+    cms_node_id: '39061'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39061
+    approval_date: '2014-01-23'
+    effective_date: '2014-01-01'
+    summary: Describes Financial Eligibility Methodologies that will apply to all Modified Adjusted Gross Income MAGI-Based
+      Eligibility Groups.
+    topics:
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-032-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-032: Approval Document (approved December 19, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-032-MSPA.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-032/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-13-032
+    cms_node_id: '39711'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=39711
+    approval_date: '2013-12-19'
+    effective_date: '2014-01-01'
+    summary: To include individuals eligible for the Wellness Plan thru Medicaid expansion under provisions of the Affordable
+      Care Act as demonstrated in the applicable Section 1115 waiver.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-038-mm-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-038-MM: Approval Document (approved October 23, 2013, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-038-MM.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-038-mm/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-13-038-MM
+    cms_node_id: '40051'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=40051
+    approval_date: '2013-10-23'
+    effective_date: '2014-01-01'
+    summary: Clarifies the Authority and Responsibilities of the Single State Agency, and Its Relationship to Other Federal
+      and State Agencies, the Fair Hearings Process, and the Process of Determining Eligibility.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-014-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-014: Approval Document (approved September 12, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-014-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-13-014
+    cms_node_id: '43991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43991
+    approval_date: '2013-09-12'
+    effective_date: '2013-07-01'
+    summary: Increase the pharmacy dispensing free from $10.02 to $10.12.
+    topics: &id002
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-014-attachment
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-014: Attachment (approved September 12, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-014-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IA-13-014
+    cms_node_id: '43991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43991
+    approval_date: '2013-09-12'
+    effective_date: '2013-07-01'
+    summary: Increase the pharmacy dispensing free from $10.02 to $10.12.
+    topics: *id002
+    link_label: Attachment
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-13-014-form-cms-179
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-13-014: Form CMS-179 (approved September 12, 2013, effective July 1, 2013)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-13-014-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-07-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-13-014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IA-13-014
+    cms_node_id: '43991'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=43991
+    approval_date: '2013-09-12'
+    effective_date: '2013-07-01'
+    summary: Increase the pharmacy dispensing free from $10.02 to $10.12.
+    topics: *id002
+    link_label: Form CMS-179
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-11-016-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-11-016: Approval Document (approved August 2, 2012, effective August 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-11-016-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-11-016/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-11-016
+    cms_node_id: '44166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44166
+    approval_date: '2012-08-02'
+    effective_date: '2011-08-01'
+    summary: This change implements a change to the pharmacy dispensing fee from $4.34 to $6.20 for date.
+    topics: &id003
+    - Premiums
+    - Prescription Drugs
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-11-016-attachment
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-11-016: Attachment (approved August 2, 2012, effective August 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-11-016-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-11-016/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IA-11-016
+    cms_node_id: '44166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44166
+    approval_date: '2012-08-02'
+    effective_date: '2011-08-01'
+    summary: This change implements a change to the pharmacy dispensing fee from $4.34 to $6.20 for date.
+    topics: *id003
+    link_label: Attachment
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-11-016-form-cms-179
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-11-016: Form CMS-179 (approved August 2, 2012, effective August 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-11-016-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-11-016/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IA-11-016
+    cms_node_id: '44166'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44166
+    approval_date: '2012-08-02'
+    effective_date: '2011-08-01'
+    summary: This change implements a change to the pharmacy dispensing fee from $4.34 to $6.20 for date.
+    topics: *id003
+    link_label: Form CMS-179
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-12-003-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-12-003: Approval Document (approved June 26, 2012, effective August 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-12-003-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-12-003/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-12-003
+    cms_node_id: '44101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44101
+    approval_date: '2012-06-26'
+    effective_date: '2012-08-01'
+    summary: Adjust premiums for the Medicaid for Employed People with Disabilities (MEPD) eligibility group.
+    topics: &id004
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-12-003-attachment
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-12-003: Attachment (approved June 26, 2012, effective August 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-12-003-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-12-003/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IA-12-003
+    cms_node_id: '44101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44101
+    approval_date: '2012-06-26'
+    effective_date: '2012-08-01'
+    summary: Adjust premiums for the Medicaid for Employed People with Disabilities (MEPD) eligibility group.
+    topics: *id004
+    link_label: Attachment
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-12-003-form-cms-179
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-12-003: Form CMS-179 (approved June 26, 2012, effective August 1, 2012)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-12-003-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2012-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-12-003/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IA-12-003
+    cms_node_id: '44101'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44101
+    approval_date: '2012-06-26'
+    effective_date: '2012-08-01'
+    summary: Adjust premiums for the Medicaid for Employed People with Disabilities (MEPD) eligibility group.
+    topics: *id004
+    link_label: Form CMS-179
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-11-011-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-11-011: Approval Document (approved September 11, 2011, effective August 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-11-011-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-11-011/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-11-011
+    cms_node_id: '44186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44186
+    approval_date: '2011-09-11'
+    effective_date: '2011-08-01'
+    summary: Required due to a premium scale adjustment per 441 IAC 75.1(39). The maximum premium amount is based on avg.
+      state employee health insurance premium, & that amount increased. Therefore, premiums for MEPD have increased.
+    topics: &id005
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-11-011-attachment
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-11-011: Attachment (approved September 11, 2011, effective August 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-11-011-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-11-011/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IA-11-011
+    cms_node_id: '44186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44186
+    approval_date: '2011-09-11'
+    effective_date: '2011-08-01'
+    summary: Required due to a premium scale adjustment per 441 IAC 75.1(39). The maximum premium amount is based on avg.
+      state employee health insurance premium, & that amount increased. Therefore, premiums for MEPD have increased.
+    topics: *id005
+    link_label: Attachment
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-11-011-form-cms-179
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-11-011: Form CMS-179 (approved September 11, 2011, effective August 1, 2011)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-11-011-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2011-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-11-011/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IA-11-011
+    cms_node_id: '44186'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44186
+    approval_date: '2011-09-11'
+    effective_date: '2011-08-01'
+    summary: Required due to a premium scale adjustment per 441 IAC 75.1(39). The maximum premium amount is based on avg.
+      state employee health insurance premium, & that amount increased. Therefore, premiums for MEPD have increased.
+    topics: *id005
+    link_label: Form CMS-179
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-09-014-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-09-014: Approval Document (approved December 17, 2010, effective March 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-09-014-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-03-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-09-014/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-09-014
+    cms_node_id: '44366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44366
+    approval_date: '2010-12-17'
+    effective_date: '2010-03-01'
+    summary: Iowa is implementing presumptive eligibility for children. The initial estimate assumes 1,176 children will become
+      eligible because of presumptive eligibility by the end of FFY 2010, and 2,446 children will become eligible by the end
+      of FFY 2011.
+    topics: &id006
+    - Eligibility
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-09-014-attachment
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-09-014: Attachment (approved December 17, 2010, effective March 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-09-014-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-03-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-09-014/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IA-09-014
+    cms_node_id: '44366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44366
+    approval_date: '2010-12-17'
+    effective_date: '2010-03-01'
+    summary: Iowa is implementing presumptive eligibility for children. The initial estimate assumes 1,176 children will become
+      eligible because of presumptive eligibility by the end of FFY 2010, and 2,446 children will become eligible by the end
+      of FFY 2011.
+    topics: *id006
+    link_label: Attachment
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-09-014-form-cms-179
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-09-014: Form CMS-179 (approved December 17, 2010, effective March 1, 2010)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-09-014-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-03-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-09-014/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IA-09-014
+    cms_node_id: '44366'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44366
+    approval_date: '2010-12-17'
+    effective_date: '2010-03-01'
+    summary: Iowa is implementing presumptive eligibility for children. The initial estimate assumes 1,176 children will become
+      eligible because of presumptive eligibility by the end of FFY 2010, and 2,446 children will become eligible by the end
+      of FFY 2011.
+    topics: *id006
+    link_label: Form CMS-179
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-09-020-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-09-020: Approval Document (approved August 19, 2010, effective December 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-09-020-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-12-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-09-020/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-09-020
+    cms_node_id: '44336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44336
+    approval_date: '2010-08-19'
+    effective_date: '2009-12-01'
+    summary: Reductions in payment rates and changes in payment standards for inpatient hospital and NFs related to across
+      the board budget cuts made by the Governor.
+    topics: &id007
+    - Premiums
+    - Program Administration
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-09-020-attachment
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-09-020: Attachment (approved August 19, 2010, effective December 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-09-020-Att.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-12-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-09-020/attachment
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_attachment
+    transmittal_number: IA-09-020
+    cms_node_id: '44336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44336
+    approval_date: '2010-08-19'
+    effective_date: '2009-12-01'
+    summary: Reductions in payment rates and changes in payment standards for inpatient hospital and NFs related to across
+      the board budget cuts made by the Governor.
+    topics: *id007
+    link_label: Attachment
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-09-020-form-cms-179
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-09-020: Form CMS-179 (approved August 19, 2010, effective December 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-09-020-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-12-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-09-020/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IA-09-020
+    cms_node_id: '44336'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44336
+    approval_date: '2010-08-19'
+    effective_date: '2009-12-01'
+    summary: Reductions in payment rates and changes in payment standards for inpatient hospital and NFs related to across
+      the board budget cuts made by the Governor.
+    topics: *id007
+    link_label: Form CMS-179
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-09-006-approval-document
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-09-006: Approval Document (approved December 18, 2009, effective August 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-09-006-Ltr.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-09-006/approval-document
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: IA-09-006
+    cms_node_id: '44401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44401
+    approval_date: '2009-12-18'
+    effective_date: '2009-08-01'
+    summary: Adjust the premium scale for persons covered under Iowa's Medicaid for Employed People with Disabilities (MEPD)
+      program.
+    topics: &id008
+    - Premiums
+    link_label: Approval Document
+- source_id: us-ia-cms-medicaid-state-plan-spa-ia-09-006-form-cms-179
+  jurisdiction: us-ia
+  document_class: policy
+  title: 'Iowa Medicaid SPA IA-09-006: Form CMS-179 (approved December 18, 2009, effective August 1, 2009)'
+  source_url: https://www.medicaid.gov/State-resource-center/Medicaid-State-Plan-Amendments/Downloads/IA/IA-09-006-179.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2009-08-01'
+  citation_path: us-ia/policy/cms/medicaid-state-plan/spa/ia-09-006/form-cms-179
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: MEDICAID
+    state: Iowa
+    source_discovery_group: us-ia/policy/cms-medicaid-state-plan
+    discovered_via: manual-review:medicaid-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_cms_179_form
+    transmittal_number: IA-09-006
+    cms_node_id: '44401'
+    cms_record_url: https://www.medicaid.gov/medicaid/medicaid-state-plan-amendments?filter%5Bnid%5D%5Beq%5D=44401
+    approval_date: '2009-12-18'
+    effective_date: '2009-08-01'
+    summary: Adjust the premium scale for persons covered under Iowa's Medicaid for Employed People with Disabilities (MEPD)
+      program.
+    topics: *id008
+    link_label: Form CMS-179

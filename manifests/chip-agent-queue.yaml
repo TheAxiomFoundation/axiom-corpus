@@ -22,6 +22,9 @@ policy:
   - The lead list under-names agency manuals and state plans. Reviewers must add them from the official publisher before the
     queue is agent_ready.
   - 'policyengine-us 84253b6afafb (2026-08-17); lead file: policyengine-us-committed-program-references.jsonl'
+  - 'CMS state plan family (2026-09-13): one `family: cms_state_plan` row per state for the medicaid.gov SPA index and eligibility-bearing
+    approval packages, version 2026-09-13-chip-state-plan, document_class policy, citation root us-xx/policy/cms/chip-state-plan.
+    Generator: scripts/build_cms_state_plan_manifests.py --program chip.'
 lead_list:
   source: policyengine-us
   commit: 84253b6afafbb1875c65f12e654c6535744728b7
@@ -30,7 +33,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   done: 14
-  agent_ready: 33
+  agent_ready: 84
   blocked_primary_source: 10
 states:
 - jurisdiction: us
@@ -323,6 +326,44 @@ states:
     is HTTP 404.
   index_families:
     magi_manual_topic_html: 64
+- jurisdiction: us-ak
+  name: Alaska
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ak-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ak
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=896&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 6
+  taken_count: 8
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Eligibility:
+      found: 3
+      taken: 3
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 5 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 7 PDF(s) of the 5 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-al
   name: Alabama
   queue_status: agent_ready
@@ -366,6 +407,80 @@ states:
   index_url: https://www.alabamapublichealth.gov/allkids/index.html
   index_document_count: 17
   taken_count: 2
+- jurisdiction: us-al
+  name: Alabama
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-al-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-al
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=871&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=871&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 34
+  taken_count: 28
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Behavioral Health Services:
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 11
+      taken: 11
+    spa_topic:Cost Sharing:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 0
+    spa_topic:Eligibility:
+      found: 6
+      taken: 6
+    spa_topic:Expansion:
+      found: 2
+      taken: 2
+    spa_topic:Financing & Reimbursement:
+      found: 5
+      taken: 2
+    spa_topic:Grants:
+      found: 1
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 8
+      taken: 6
+    spa_topic:Maternal Health:
+      found: 1
+      taken: 1
+    spa_topic:Premiums:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 6
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 33 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 27 PDF(s) of the 23 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ar
   name: Arkansas
   lead_counts: {}
@@ -388,6 +503,68 @@ states:
     artifacts share data/corpus in the main checkout. Nothing separate to add.
   pointer: us-ar/manual/dco/medicaid/policy-manual (DCO Medical Services Policy Manual, 563 page provisions; ARKids First-B
     is determined under it)
+- jurisdiction: us-ar
+  name: Arkansas
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ar-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ar
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=891&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=891&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 22
+  taken_count: 17
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Current State Plan:
+      found: 3
+      taken: 3
+    spa_topic:Delivery System:
+      found: 1
+      taken: 0
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 0
+    spa_topic:Program Administration:
+      found: 2
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 21 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 16 PDF(s) of the 15 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-as
   name: American Samoa
   lead_counts: {}
@@ -437,6 +614,65 @@ states:
     (A.A.C. 9-31) still returns the Cloudflare challenge. Nothing separate to add.'
   pointer: us-az/manual/ahcccs/medicaid/policy-chapter-400-ahcccs-medical-assistance-programs-ma0408 (408 KidsCare; also 528
     B, 1204, 1308; AHCCCS Eligibility Policy Manual, 743 documents, 4712 provisions)
+- jurisdiction: us-az
+  name: Arizona
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-az-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-az
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=901&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 23
+  taken_count: 19
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 6
+      taken: 6
+    spa_topic:Cost Sharing:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 5
+      taken: 5
+    spa_topic:Financing & Reimbursement:
+      found: 2
+      taken: 0
+    spa_topic:Outreach & Enrollment:
+      found: 1
+      taken: 1
+    spa_topic:Premiums:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 8
+      taken: 3
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 22 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 18 PDF(s) of the 16 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ca
   name: California
   lead_counts: {}
@@ -459,6 +695,68 @@ states:
     scope carries Medi-Cal or CHIP eligibility text. 0 taken. retried 2026-09-10T21:35Z from US network, same failure (HTTP
     200 with an Incapsula 'Request unsuccessful' JavaScript-challenge iframe, 843-byte body, plain and chrome120; no MEPM
     index reachable).
+- jurisdiction: us-ca
+  name: California
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ca-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ca
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=726&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 21
+  taken_count: 19
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Cost Sharing:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 0
+    spa_topic:Eligibility:
+      found: 3
+      taken: 3
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 3
+      taken: 2
+    spa_topic:Managed Care:
+      found: 1
+      taken: 0
+    spa_topic:Premiums:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 1
+      taken: 0
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 20 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 18 PDF(s) of the 15 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-co
   name: Colorado
   lead_counts: {}
@@ -484,6 +782,68 @@ states:
   index_families:
     ccr_rule_document_chp_plus: 1
     ccr_rule_document_medical_assistance: 21
+- jurisdiction: us-co
+  name: Colorado
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-co-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-co
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=991&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 34
+  taken_count: 23
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 4
+      taken: 0
+    spa_topic:Benefits:
+      found: 9
+      taken: 9
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 3
+      taken: 3
+    spa_topic:Disaster Relief:
+      found: 3
+      taken: 0
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Expansion:
+      found: 2
+      taken: 2
+    spa_topic:Financing & Reimbursement:
+      found: 5
+      taken: 1
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 1
+    spa_topic:Managed Care:
+      found: 1
+      taken: 0
+    spa_topic:Program Administration:
+      found: 5
+      taken: 2
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 33 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 22 PDF(s) of the 20 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ct
   name: Connecticut
   queue_status: agent_ready
@@ -527,6 +887,65 @@ states:
   index_url: https://portal.ct.gov/dss/find-benefits-and-support/healthcare-coverage
   index_document_count: 9
   taken_count: 2
+- jurisdiction: us-ct
+  name: Connecticut
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ct-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ct
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=711&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 18
+  taken_count: 16
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 5
+      taken: 5
+    spa_topic:Cost Sharing:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Delivery System:
+      found: 1
+      taken: 0
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 0
+    spa_topic:Eligibility:
+      found: 5
+      taken: 5
+    spa_topic:Financing & Reimbursement:
+      found: 5
+      taken: 4
+    spa_topic:Program Administration:
+      found: 3
+      taken: 3
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 17 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 15 PDF(s) of the 13 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-dc
   name: District of Columbia
   lead_counts: {}
@@ -548,6 +967,44 @@ states:
     rule text and PDF is served only through ASP.NET __doPostBack form posts with no GET URL, which the official-documents
     extractor cannot fetch and this run will not emulate. dhcf.dc.gov requires JavaScript and publishes no eligibility manual.
     0 taken.'
+- jurisdiction: us-dc
+  name: District of Columbia
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-dc-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-dc
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=836&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=836&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 4
+  taken_count: 5
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Eligibility:
+      found: 2
+      taken: 2
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 3 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 4 PDF(s) of the 3 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-de
   name: Delaware
   queue_status: agent_ready
@@ -587,6 +1044,59 @@ states:
   index_url: https://regulations.delaware.gov/AdminCode/title16
   index_document_count: 1
   taken_count: 1
+- jurisdiction: us-de
+  name: Delaware
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-de-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-de
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=796&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=796&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 22
+  taken_count: 24
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Cost Sharing:
+      found: 3
+      taken: 3
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Health Services Initiatives:
+      found: 2
+      taken: 2
+    spa_topic:Program Administration:
+      found: 1
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 21 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 23 PDF(s) of the 20 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-fl
   name: Florida
   queue_status: blocked_primary_source
@@ -623,6 +1133,71 @@ states:
   index_url: https://www.floridakidcare.org/
   index_document_count: 14
   taken_count: 0
+- jurisdiction: us-fl
+  name: Florida
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-fl-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-fl
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=756&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=756&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 19
+  taken_count: 18
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 4
+      taken: 4
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Delivery System:
+      found: 1
+      taken: 1
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 3
+      taken: 2
+    spa_topic:Eligibility:
+      found: 6
+      taken: 6
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 4
+      taken: 1
+    spa_topic:Tribal Issues:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 18 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 17 PDF(s) of the 13 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ga
   name: Georgia
   queue_status: agent_ready
@@ -677,6 +1252,68 @@ states:
   index_url: https://pamms.dhs.ga.gov/dfcs/medicaid/
   index_document_count: 241
   taken_count: 1
+- jurisdiction: us-ga
+  name: Georgia
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ga-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ga
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=776&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=776&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 30
+  taken_count: 26
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 5
+      taken: 5
+    spa_topic:Cost Sharing:
+      found: 3
+      taken: 3
+    spa_topic:Delivery System:
+      found: 1
+      taken: 0
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 13
+      taken: 13
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 5
+      taken: 4
+    spa_topic:Managed Care:
+      found: 2
+      taken: 0
+    spa_topic:Outreach & Enrollment:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 10
+      taken: 5
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 29 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 25 PDF(s) of the 21 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-gu
   name: Guam
   lead_counts: {}
@@ -727,6 +1364,53 @@ states:
   index_families:
     har_title_17_med_quest_chapter_pdf_17xx: 49
     har_title_17_other_chapter_pdf: 91
+- jurisdiction: us-hi
+  name: Hawaii
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-hi-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-hi
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=1001&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=1001&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 9
+  taken_count: 9
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 3
+      taken: 3
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Eligibility:
+      found: 2
+      taken: 2
+    spa_topic:Health Services Initiatives:
+      found: 3
+      taken: 3
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 8 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 8 PDF(s) of the 7 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ia
   name: Iowa
   queue_status: agent_ready
@@ -759,6 +1443,74 @@ states:
   index_url: https://hhs.iowa.gov/about/policy-manuals/income-maintenance
   index_document_count: 58
   taken_count: 1
+- jurisdiction: us-ia
+  name: Iowa
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ia-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ia
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=696&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=696&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 30
+  taken_count: 27
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Cost Sharing:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Delivery System:
+      found: 1
+      taken: 0
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 3
+      taken: 1
+    spa_topic:Eligibility:
+      found: 10
+      taken: 10
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 4
+      taken: 3
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 1
+    spa_topic:Managed Care:
+      found: 2
+      taken: 0
+    spa_topic:Program Administration:
+      found: 10
+      taken: 8
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 29 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 26 PDF(s) of the 22 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-id
   name: Idaho
   queue_status: agent_ready
@@ -790,6 +1542,65 @@ states:
   index_url: https://healthandwelfare.idaho.gov/services-programs/medicaid-health/childrens-health-insurance-program-chip
   index_document_count: 2
   taken_count: 1
+- jurisdiction: us-id
+  name: Idaho
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-id-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-id
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=986&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 25
+  taken_count: 23
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 14
+      taken: 14
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 4
+      taken: 4
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 0
+    spa_topic:Medicaid and CHIP Program (MACPro):
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 5
+      taken: 2
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 24 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 22 PDF(s) of the 19 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-il
   name: Illinois
   queue_status: done
@@ -821,6 +1632,62 @@ states:
   index_url: https://hfs.illinois.gov/medicalprograms/allkids.html
   index_document_count: 14
   taken_count: 0
+- jurisdiction: us-il
+  name: Illinois
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-il-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-il
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=931&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 19
+  taken_count: 15
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 3
+      taken: 3
+    spa_topic:Financing & Reimbursement:
+      found: 2
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 2
+      taken: 2
+    spa_topic:Program Administration:
+      found: 2
+      taken: 0
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 18 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 14 PDF(s) of the 13 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-in
   name: Indiana
   queue_status: agent_ready
@@ -853,6 +1720,62 @@ states:
   index_url: https://www.in.gov/fssa/ompp/forms-documents-and-tools/medicaid-eligibility-policy-manual/
   index_document_count: 24
   taken_count: 2
+- jurisdiction: us-in
+  name: Indiana
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-in-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-in
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=816&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=816&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 25
+  taken_count: 22
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Current State Plan:
+      found: 4
+      taken: 4
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 8
+      taken: 8
+    spa_topic:Financing & Reimbursement:
+      found: 2
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 2
+      taken: 2
+    spa_topic:Prescription Drugs:
+      found: 1
+      taken: 0
+    spa_topic:Program Administration:
+      found: 1
+      taken: 0
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 24 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 21 PDF(s) of the 19 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ks
   name: Kansas
   queue_status: done
@@ -891,6 +1814,62 @@ states:
     mkeesm_manual_release: 29
   pointer: us-ks/manual/kdhe/medicaid/kfmam-01000 ... kfmam-08000 (Kansas Family Medical Assistance Manual, 117 documents,
     757 provisions)
+- jurisdiction: us-ks
+  name: Kansas
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ks-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ks
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=976&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=976&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 31
+  taken_count: 26
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 6
+      taken: 6
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 17
+      taken: 17
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 5
+      taken: 3
+    spa_topic:Managed Care:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 7
+      taken: 4
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 30 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 25 PDF(s) of the 24 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ky
   name: Kentucky
   lead_counts: {}
@@ -913,6 +1892,71 @@ states:
     Manual Volume IVA (Medicaid) at chfs.ky.gov was not located on a public index in this run.'
   index_families:
     kar_regulation_html: 2
+- jurisdiction: us-ky
+  name: Kentucky
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ky-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ky
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=861&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 23
+  taken_count: 22
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Delivery System:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 6
+      taken: 6
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 0
+    spa_topic:MCHIP Program:
+      found: 1
+      taken: 1
+    spa_topic:Managed Care:
+      found: 1
+      taken: 0
+    spa_topic:Premiums:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 3
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 22 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 21 PDF(s) of the 17 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-la
   name: Louisiana
   queue_status: done
@@ -953,6 +1997,77 @@ states:
     chart_pdf_z: 17
     other_section_pdf: 19
   pointer: us-la/manual/ldh/medicaid/h-3030, h-3040, h-3050, z-2500 (LDH Medicaid Eligibility Manual, all 99 PDFs, 891 provisions)
+- jurisdiction: us-la
+  name: Louisiana
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-la-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-la
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=926&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 28
+  taken_count: 22
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Delivery System:
+      found: 1
+      taken: 0
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 8
+      taken: 8
+    spa_topic:Financing & Reimbursement:
+      found: 3
+      taken: 0
+    spa_topic:Grants:
+      found: 1
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 1
+    spa_topic:Premiums:
+      found: 1
+      taken: 1
+    spa_topic:Prescription Drugs:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 5
+      taken: 4
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 27 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 21 PDF(s) of the 21 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ma
   name: Massachusetts
   queue_status: agent_ready
@@ -984,6 +2099,68 @@ states:
   index_url: https://www.mass.gov/law-library/130-cmr
   index_document_count: 2
   taken_count: 2
+- jurisdiction: us-ma
+  name: Massachusetts
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ma-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ma
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=841&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 24
+  taken_count: 20
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Cost Sharing:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Delivery System:
+      found: 1
+      taken: 1
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 6
+      taken: 6
+    spa_topic:Financing & Reimbursement:
+      found: 3
+      taken: 3
+    spa_topic:Health Services Initiatives:
+      found: 3
+      taken: 1
+    spa_topic:Program Administration:
+      found: 4
+      taken: 2
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 23 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 19 PDF(s) of the 18 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-md
   name: Maryland
   lead_counts: {}
@@ -1009,6 +2186,59 @@ states:
   index_families:
     comar_regulation_section_html_in_force: 15
     comar_regulation_section_html_repealed: 2
+- jurisdiction: us-md
+  name: Maryland
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-md-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-md
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=541&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=541&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 12
+  taken_count: 11
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 5
+      taken: 5
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Eligibility:
+      found: 1
+      taken: 1
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 2
+      taken: 1
+    spa_topic:Health Services Initiatives:
+      found: 4
+      taken: 4
+    spa_topic:Program Administration:
+      found: 1
+      taken: 0
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 11 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 10 PDF(s) of the 9 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-me
   name: Maine
   lead_counts: {}
@@ -1033,6 +2263,65 @@ states:
     rule_chapter_docx: 2
     rule_chapter_doc: 3
     rule_appendices_docx: 1
+- jurisdiction: us-me
+  name: Maine
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-me-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-me
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=996&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 21
+  taken_count: 20
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 9
+      taken: 9
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Disaster Relief Activation:
+      found: 1
+      taken: 1
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Health Services Initiatives:
+      found: 2
+      taken: 2
+    spa_topic:MCHIP Program:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 3
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 20 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 19 PDF(s) of the 17 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-mi
   name: Michigan
   queue_status: done
@@ -1062,6 +2351,68 @@ states:
   index_url: https://mdhhs-pres-prod.michigan.gov/OLMWeb/ex/BP/Public/BEM/000.pdf
   index_document_count: 196
   taken_count: 0
+- jurisdiction: us-mi
+  name: Michigan
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mi-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-mi
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=806&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 23
+  taken_count: 17
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Children's Health Insurance Program:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 3
+      taken: 3
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Eligibility:
+      found: 2
+      taken: 2
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 4
+      taken: 2
+    spa_topic:Health Services Initiatives:
+      found: 3
+      taken: 0
+    spa_topic:Premiums:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 6
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 22 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 16 PDF(s) of the 14 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-mn
   name: Minnesota
   lead_counts: {}
@@ -1086,6 +2437,59 @@ states:
     composition, income methodology) also apply.'
   index_families:
     epm_ma_fca_topic: 23
+- jurisdiction: us-mn
+  name: Minnesota
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mn-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-mn
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=966&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 17
+  taken_count: 17
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Delivery System:
+      found: 1
+      taken: 1
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 1
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 16 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 16 PDF(s) of the 15 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-mo
   name: Missouri
   queue_status: agent_ready
@@ -1174,6 +2578,68 @@ states:
   index_url: https://dssmanuals.mo.gov/family-mo-healthnet-magi/
   index_document_count: 28
   taken_count: 2
+- jurisdiction: us-mo
+  name: Missouri
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mo-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-mo
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=781&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=781&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 23
+  taken_count: 20
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 6
+      taken: 6
+    spa_topic:Cost Sharing:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 3
+      taken: 3
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 8
+      taken: 8
+    spa_topic:Financing & Reimbursement:
+      found: 4
+      taken: 4
+    spa_topic:Health Services Initiatives:
+      found: 2
+      taken: 1
+    spa_topic:Medicaid and CHIP Program (MACPro):
+      found: 1
+      taken: 1
+    spa_topic:Premiums:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 8
+      taken: 6
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 22 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 19 PDF(s) of the 18 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-mp
   name: Northern Mariana Islands
   lead_counts: {}
@@ -1226,6 +2692,68 @@ states:
   index_families:
     eligibility_manual_chapter_pdf: 7
     eligibility_manual_appendix_pdf: 20
+- jurisdiction: us-ms
+  name: Mississippi
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ms-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ms
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=886&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=886&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 20
+  taken_count: 19
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 9
+      taken: 9
+    spa_topic:Children's Health Insurance Program:
+      found: 2
+      taken: 1
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 5
+      taken: 5
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 1
+    spa_topic:Managed Care:
+      found: 1
+      taken: 0
+    spa_topic:Medicaid and CHIP Program (MACPro):
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 2
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 19 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 18 PDF(s) of the 16 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-mt
   name: Montana
   lead_counts: {}
@@ -1248,6 +2776,71 @@ states:
     the member guide and evidence of coverage, not an eligibility manual or rule. 0 taken. retried 2026-09-10T21:35Z from
     US network, same failure (rules.mt.gov now answers HTTP 405 with a ''Human Verification'' CAPTCHA page requiring JavaScript,
     plain and chrome120).'
+- jurisdiction: us-mt
+  name: Montana
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-mt-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-mt
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=911&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 22
+  taken_count: 21
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Children's Health Insurance Program:
+      found: 1
+      taken: 1
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 5
+      taken: 5
+    spa_topic:Expansion:
+      found: 3
+      taken: 3
+    spa_topic:Grants:
+      found: 1
+      taken: 0
+    spa_topic:Medicaid and CHIP Program (MACPro):
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 1
+      taken: 0
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 21 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 20 PDF(s) of the 18 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-nc
   name: North Carolina
   lead_counts: {}
@@ -1270,6 +2863,71 @@ states:
     artifacts share data/corpus in the main checkout. policies.ncdhhs.gov returns HTTP 403 to the WebFetch client; the index
     count is the Medicaid run's inventory. Nothing separate to add.
   pointer: us-nc/manual/dhb/medicaid/ma-3xxx (Family and Children's Medicaid manual, 64 documents incl. fcm table of contents)
+- jurisdiction: us-nc
+  name: North Carolina
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nc-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-nc
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=766&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 22
+  taken_count: 16
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Delivery System:
+      found: 1
+      taken: 0
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 0
+    spa_topic:Eligibility:
+      found: 3
+      taken: 3
+    spa_topic:Financing & Reimbursement:
+      found: 3
+      taken: 2
+    spa_topic:Health Services Initiatives:
+      found: 2
+      taken: 1
+    spa_topic:Managed Care:
+      found: 1
+      taken: 0
+    spa_topic:Program Administration:
+      found: 4
+      taken: 4
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 21 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 15 PDF(s) of the 14 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-nd
   name: North Dakota
   lead_counts: {}
@@ -1294,6 +2952,62 @@ states:
   index_families:
     service_chapter_510_03_topic_html: 133
     archive_or_site_page_html: 8
+- jurisdiction: us-nd
+  name: North Dakota
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nd-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-nd
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=811&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 12
+  taken_count: 11
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 3
+      taken: 3
+    spa_topic:Children's Health Insurance Program:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 3
+      taken: 3
+    spa_topic:Eligibility:
+      found: 2
+      taken: 2
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 2
+      taken: 1
+    spa_topic:Program Administration:
+      found: 2
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 11 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 10 PDF(s) of the 8 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ne
   name: Nebraska
   lead_counts: {}
@@ -1318,6 +3032,71 @@ states:
     numbering) and the non-MAGI chapters.'
   index_families:
     nac_477_chapter_pdf: 29
+- jurisdiction: us-ne
+  name: Nebraska
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ne-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ne
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=851&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 21
+  taken_count: 18
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 4
+      taken: 4
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Delivery System:
+      found: 1
+      taken: 0
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Expansion:
+      found: 2
+      taken: 2
+    spa_topic:Financing & Reimbursement:
+      found: 2
+      taken: 1
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 0
+    spa_topic:Managed Care:
+      found: 2
+      taken: 0
+    spa_topic:Program Administration:
+      found: 4
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 20 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 17 PDF(s) of the 15 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-nh
   name: New Hampshire
   lead_counts: {}
@@ -1340,6 +3119,53 @@ states:
     SNAP scope (156 sections), stopping at Appendix A.'
   index_families:
     he_w_chapter_html: 1
+- jurisdiction: us-nh
+  name: New Hampshire
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nh-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-nh
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=916&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 7
+  taken_count: 9
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Eligibility:
+      found: 2
+      taken: 2
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Outreach & Enrollment:
+      found: 1
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 6 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 8 PDF(s) of the 6 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-nj
   name: New Jersey
   lead_counts: {}
@@ -1362,6 +3188,68 @@ states:
     The HTML index page for that PDF folder was not re-located in this run (three candidate DHS URLs returned 404); the folder
     listing count is the Medicaid run''s inventory. Nothing separate to add.'
   pointer: us-nj/manual/dhs/medicaid/njac-10-79 (N.J.A.C. 10:79 NJ FamilyCare-Children's Program, 115 page provisions)
+- jurisdiction: us-nj
+  name: New Jersey
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nj-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-nj
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=876&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=876&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 25
+  taken_count: 22
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 2
+      taken: 0
+    spa_topic:Benefits:
+      found: 10
+      taken: 10
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 2
+      taken: 2
+    spa_topic:Managed Care:
+      found: 1
+      taken: 0
+    spa_topic:Premiums:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 2
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 24 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 21 PDF(s) of the 18 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-nm
   name: New Mexico
   lead_counts: {}
@@ -1386,6 +3274,47 @@ states:
     date in each part.'
   index_families:
     nmac_part_html_in_force: 4
+- jurisdiction: us-nm
+  name: New Mexico
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nm-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-nm
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=1006&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=1006&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 5
+  taken_count: 6
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Eligibility:
+      found: 2
+      taken: 2
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 4 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 5 PDF(s) of the 4 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-nv
   name: Nevada
   lead_counts: {}
@@ -1413,6 +3342,62 @@ states:
     mam_full_manual_pdf: 1
     mam_table_of_contents_pdf: 1
     manual_transmittal_letter_pdf: 59
+- jurisdiction: us-nv
+  name: Nevada
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-nv-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-nv
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=716&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 23
+  taken_count: 22
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 0
+    spa_topic:Eligibility:
+      found: 8
+      taken: 8
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 1
+    spa_topic:Medicaid and CHIP Program (MACPro):
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 2
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 22 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 21 PDF(s) of the 19 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ny
   name: New York
   queue_status: agent_ready
@@ -1504,6 +3489,71 @@ states:
   index_url: https://www.health.ny.gov/health_care/child_health_plus/
   index_document_count: 8
   taken_count: 1
+- jurisdiction: us-ny
+  name: New York
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ny-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ny
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=786&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 35
+  taken_count: 36
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 12
+      taken: 12
+    spa_topic:Cost Sharing:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 3
+      taken: 1
+    spa_topic:Eligibility:
+      found: 9
+      taken: 9
+    spa_topic:Expansion:
+      found: 2
+      taken: 2
+    spa_topic:Health Services Initiatives:
+      found: 4
+      taken: 2
+    spa_topic:Outreach & Enrollment:
+      found: 1
+      taken: 1
+    spa_topic:Premiums:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 5
+      taken: 4
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 34 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 35 PDF(s) of the 28 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-oh
   name: Ohio
   lead_counts: {}
@@ -1529,6 +3579,50 @@ states:
   index_families:
     oac_rule_html: 6
   pointer: us-oh/manual/odm/medicaid/5160-1-4-01 ... 5160-1-4-06 (OAC 5160:1 eligibility rules, 96 rule documents, 192 provisions)
+- jurisdiction: us-oh
+  name: Ohio
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-oh-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-oh
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=881&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 9
+  taken_count: 9
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Eligibility:
+      found: 3
+      taken: 3
+    spa_topic:Health Services Initiatives:
+      found: 3
+      taken: 2
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 8 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 8 PDF(s) of the 7 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ok
   name: Oklahoma
   lead_counts: {}
@@ -1558,6 +3652,62 @@ states:
     oac_part: 29
     oac_subchapter: 17
     oac_chapter: 1
+- jurisdiction: us-ok
+  name: Oklahoma
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ok-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ok
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=971&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=971&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 19
+  taken_count: 15
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 5
+      taken: 5
+    spa_topic:Expansion:
+      found: 2
+      taken: 2
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 1
+    spa_topic:Health Services Initiatives:
+      found: 3
+      taken: 1
+    spa_topic:Program Administration:
+      found: 5
+      taken: 4
+    spa_topic:Tribal Issues:
+      found: 1
+      taken: 0
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 18 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 14 PDF(s) of the 14 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-or
   name: Oregon
   lead_counts: {}
@@ -1581,6 +3731,71 @@ states:
     under these rules. Taken 1: the division page, 40 labeled rule sections.'
   index_families:
     oar_rule_in_division_200: 40
+- jurisdiction: us-or
+  name: Oregon
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-or-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-or
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=826&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=826&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 29
+  taken_count: 30
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 4
+      taken: 4
+    spa_topic:Children's Health Insurance Program:
+      found: 1
+      taken: 0
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 11
+      taken: 11
+    spa_topic:Expansion:
+      found: 5
+      taken: 5
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 1
+    spa_topic:Health Services Initiatives:
+      found: 3
+      taken: 1
+    spa_topic:Managed Care:
+      found: 1
+      taken: 0
+    spa_topic:Program Administration:
+      found: 2
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 28 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 29 PDF(s) of the 22 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-pa
   name: Pennsylvania
   lead_counts: {}
@@ -1609,6 +3824,65 @@ states:
     chip_state_plan_pdf: 1
     privacy_notice_pdf: 1
     program_web_page: 12
+- jurisdiction: us-pa
+  name: Pennsylvania
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-pa-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-pa
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=961&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 22
+  taken_count: 15
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 3
+      taken: 1
+    spa_topic:Eligibility:
+      found: 3
+      taken: 3
+    spa_topic:Financing & Reimbursement:
+      found: 6
+      taken: 2
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 0
+    spa_topic:Program Administration:
+      found: 4
+      taken: 3
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 21 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 14 PDF(s) of the 13 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-pr
   name: Puerto Rico
   lead_counts: {}
@@ -1659,6 +3933,62 @@ states:
     like us-ri-snap-rules.yaml. Not taken: parts 3 (application and renewal) and 4 (hospital presumptive eligibility).'
   index_families:
     ricr_part_active: 4
+- jurisdiction: us-ri
+  name: Rhode Island
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ri-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ri
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=736&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=736&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 21
+  taken_count: 19
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 5
+      taken: 5
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 9
+      taken: 9
+    spa_topic:Financing & Reimbursement:
+      found: 2
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 1
+      taken: 0
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 20 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 18 PDF(s) of the 16 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-sc
   name: South Carolina
   lead_counts: {}
@@ -1689,6 +4019,50 @@ states:
     miap_manual_docx: 1
   pointer: us-sc/manual/scdhhs/medicaid/section-200 (MPPM Section 200 MAGI Related Programs, chapter-level; 18 MPPM documents,
     68 provisions)
+- jurisdiction: us-sc
+  name: South Carolina
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-sc-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-sc
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=831&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 6
+  taken_count: 8
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Eligibility:
+      found: 2
+      taken: 2
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 5 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 7 PDF(s) of the 5 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-sd
   name: South Dakota
   lead_counts: {}
@@ -1712,6 +4086,56 @@ states:
     number and are not sections.'
   index_families:
     arsd_chapter: 13
+- jurisdiction: us-sd
+  name: South Dakota
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-sd-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-sd
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=846&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=846&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 19
+  taken_count: 20
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Eligibility:
+      found: 9
+      taken: 9
+    spa_topic:Enrollment:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 1
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 18 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 19 PDF(s) of the 18 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-tn
   name: Tennessee
   lead_counts: {}
@@ -1735,6 +4159,65 @@ states:
     (chapter 1200-13 / rule chapter 21 / rule NN).'
   index_families:
     tenncare_rule_chapter_pdf: 22
+- jurisdiction: us-tn
+  name: Tennessee
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-tn-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-tn
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=946&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=946&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 25
+  taken_count: 19
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 8
+      taken: 8
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Delivery System:
+      found: 1
+      taken: 0
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 0
+    spa_topic:Eligibility:
+      found: 6
+      taken: 6
+    spa_topic:Financing & Reimbursement:
+      found: 3
+      taken: 2
+    spa_topic:Program Administration:
+      found: 10
+      taken: 7
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 24 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 18 PDF(s) of the 17 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-tx
   name: Texas
   queue_status: agent_ready
@@ -1777,6 +4260,62 @@ states:
   index_url: https://fhb.hhs.texas.gov/handbooks/texas-works-handbook/part-d-childrens-health-insurance-program
   index_document_count: 23
   taken_count: 1
+- jurisdiction: us-tx
+  name: Texas
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-tx-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-tx
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=791&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 24
+  taken_count: 21
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 10
+      taken: 10
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Dental:
+      found: 1
+      taken: 1
+    spa_topic:Eligibility:
+      found: 5
+      taken: 5
+    spa_topic:Expansion:
+      found: 2
+      taken: 2
+    spa_topic:Financing & Reimbursement:
+      found: 7
+      taken: 3
+    spa_topic:Medicaid and CHIP Program (MACPro):
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 5
+      taken: 3
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 23 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 20 PDF(s) of the 18 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-ut
   name: Utah
   lead_counts: {}
@@ -1806,6 +4345,68 @@ states:
     faq_topic_html: 3
     glossary_topic_html: 1
     welcome_and_whats_new_html: 2
+- jurisdiction: us-ut
+  name: Utah
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-ut-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-ut
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=746&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=746&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 31
+  taken_count: 23
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 11
+      taken: 11
+    spa_topic:Cost Sharing:
+      found: 5
+      taken: 5
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Delivery System:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 0
+    spa_topic:Eligibility:
+      found: 5
+      taken: 5
+    spa_topic:Financing & Reimbursement:
+      found: 5
+      taken: 1
+    spa_topic:Grants:
+      found: 1
+      taken: 0
+    spa_topic:Medicaid and CHIP Program (MACPro):
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 6
+      taken: 3
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 30 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 22 PDF(s) of the 21 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-va
   name: Virginia
   lead_counts: {}
@@ -1827,6 +4428,65 @@ states:
     2026-09-10-medicaid-state-eligibility-manual). Manifest lives on the parallel Medicaid branch (discovery/ingest-medicaid);
     artifacts share data/corpus in the main checkout. Nothing separate to add.
   pointer: us-va/manual/dmas/medicaid/m21 (Chapter M21 FAMIS, 22 provisions; also m22 FAMIS MOMS, m23 FAMIS Prenatal)
+- jurisdiction: us-va
+  name: Virginia
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-va-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-va
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=866&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 29
+  taken_count: 23
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 11
+      taken: 11
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Delivery System:
+      found: 1
+      taken: 0
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Financing & Reimbursement:
+      found: 4
+      taken: 4
+    spa_topic:Health Services Initiatives:
+      found: 3
+      taken: 1
+    spa_topic:Program Administration:
+      found: 7
+      taken: 4
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 28 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 22 PDF(s) of the 21 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-vi
   name: Virgin Islands
   lead_counts: {}
@@ -1880,6 +4540,50 @@ states:
     hbee_proposed_pdf: 10
     repealed_legacy_rule_pdf: 5
     other_pdf: 1
+- jurisdiction: us-vt
+  name: Vermont
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-vt-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-vt
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=956&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=956&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 9
+  taken_count: 13
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 2
+      taken: 2
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Eligibility:
+      found: 4
+      taken: 4
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 8 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 12 PDF(s) of the 8 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-wa
   name: Washington
   lead_counts: {}
@@ -1905,6 +4609,65 @@ states:
     magi_program_chapter: 9
     magi_financial_eligibility_chapter: 3
     magi_client_notice_chapter: 4
+- jurisdiction: us-wa
+  name: Washington
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wa-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-wa
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=681&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 20
+  taken_count: 20
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 3
+      taken: 1
+    spa_topic:Health Services Initiatives:
+      found: 1
+      taken: 1
+    spa_topic:Outreach & Enrollment:
+      found: 1
+      taken: 1
+    spa_topic:Program Administration:
+      found: 1
+      taken: 0
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 19 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 19 PDF(s) of the 16 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-wi
   name: Wisconsin
   queue_status: done
@@ -1940,6 +4703,71 @@ states:
   taken_count: 0
   pointer: us-wi/manual/dhs/medicaid/badgercare-plus-handbook-release-26-03 (BadgerCare Plus Eligibility Handbook Release
     26-03 PDF p10171-26-03, 330 page provisions; also meh-release-26-03, 503)
+- jurisdiction: us-wi
+  name: Wisconsin
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wi-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-wi
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=941&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 25
+  taken_count: 17
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 6
+      taken: 6
+    spa_topic:Cost Sharing:
+      found: 2
+      taken: 2
+    spa_topic:Current State Plan:
+      found: 2
+      taken: 2
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 7
+      taken: 7
+    spa_topic:Expansion:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 4
+      taken: 0
+    spa_topic:Grants:
+      found: 1
+      taken: 0
+    spa_topic:Health Services Initiatives:
+      found: 4
+      taken: 3
+    spa_topic:Managed Care:
+      found: 1
+      taken: 0
+    spa_topic:Program Administration:
+      found: 2
+      taken: 0
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 24 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 16 PDF(s) of the 16 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-wv
   name: West Virginia
   lead_counts: {}
@@ -1962,6 +4790,65 @@ states:
     Nothing separate to add.
   pointer: us-wv/manual/bfa/income-maintenance-manual (Income Maintenance Manual effective 2026-07-01, 2276 page provisions;
     WVCHIP eligibility chapters included)
+- jurisdiction: us-wv
+  name: West Virginia
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wv-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-wv
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=731&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=731&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 22
+  taken_count: 19
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:(untagged):
+      found: 1
+      taken: 0
+    spa_topic:Benefits:
+      found: 7
+      taken: 7
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 3
+      taken: 3
+    spa_topic:Disaster Relief:
+      found: 2
+      taken: 1
+    spa_topic:Eligibility:
+      found: 6
+      taken: 6
+    spa_topic:Financing & Reimbursement:
+      found: 2
+      taken: 1
+    spa_topic:Health Services Initiatives:
+      found: 2
+      taken: 1
+    spa_topic:Program Administration:
+      found: 1
+      taken: 1
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 21 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 18 PDF(s) of the 17 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'
 - jurisdiction: us-wy
   name: Wyoming
   lead_counts: {}
@@ -1982,3 +4869,56 @@ states:
     are ASP.NET postbacks with no GET listing or file URL, so the rules cannot be confirmed from a fetchable index. health.wyo.gov/healthcarefin/chip/
     (HTTP 200) publishes only member pages (Does My Child Qualify, copays, renewal, FAQ, handbooks) and no eligibility manual
     or rule text; the programs-and-eligibility page is 404. 0 taken.'
+- jurisdiction: us-wy
+  name: Wyoming
+  family: cms_state_plan
+  lead_counts: {}
+  candidate_sources: []
+  target_manifest: manifests/us-wy-chip-state-plan.yaml
+  target_scope:
+    jurisdiction: us-wy
+    document_class: policy
+    version: 2026-09-13-chip-state-plan
+  queue_status: agent_ready
+  source_kind: cms_posted_state_plan_amendments
+  primary_source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=981&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=981&limit=100&sort=field_approval_date%3Adesc&page=0
+  index_document_count: 12
+  taken_count: 10
+  index_families:
+    spa_index_page:
+      found: 1
+      taken: 1
+    spa_topic:Benefits:
+      found: 4
+      taken: 4
+    spa_topic:Cost Sharing:
+      found: 1
+      taken: 1
+    spa_topic:Current State Plan:
+      found: 1
+      taken: 1
+    spa_topic:Disaster Relief:
+      found: 1
+      taken: 0
+    spa_topic:Eligibility:
+      found: 1
+      taken: 1
+    spa_topic:Financing & Reimbursement:
+      found: 1
+      taken: 0
+    spa_topic:Program Administration:
+      found: 5
+      taken: 2
+    spa_topic:State Plan Factsheet:
+      found: 1
+      taken: 1
+  notes: 'CMS state plan row (2026-09-13): medicaid.gov posts no compiled CHIP state plan; the CMS SPA index lists 11 approved
+    CHIP SPAs for the state. Taken: all 1 index page(s) (every SPA record with transmittal number, summary, approval and effective
+    dates, topics, links) and the 9 PDF(s) of the 7 records tagged with an eligibility-bearing topic (Benefits, Cost Sharing,
+    Current State Plan, Dental, Eligibility, Enrollment, Expansion, MCHIP Program, Outreach & Enrollment, Premiums, State
+    Plan Factsheet); records tagged only with other topics and untagged records are inventoried in index_families and not
+    taken. Approval packages carry the approved state plan pages (attachment 2.2-A, 2.6-A supplements, 4.18, MACPro S-series
+    pages for Medicaid; sections 4-9 pages for CHIP). medicaid.gov answers plain clients HTTP 403 (Akamai) and answers curl_cffi
+    browser impersonation (request: browser_impersonation_direct); TLS verified, no mirror. Generator: scripts/build_cms_state_plan_manifests.py
+    --program chip.'

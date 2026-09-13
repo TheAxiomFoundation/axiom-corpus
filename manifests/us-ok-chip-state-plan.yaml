@@ -1,0 +1,487 @@
+version: 2026-09-13-chip-state-plan
+documents:
+- source_id: us-ok-cms-chip-state-plan-spa-index-p01
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP state plan amendments on medicaid.gov: SPA index page 1 of 1'
+  source_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bfield_state%5D%5Bin%5D%5B%5D=971&limit=100&sort=field_approval_date%3Adesc&page=0
+  source_format: html
+  source_as_of: '2026-09-13'
+  expression_date: '2026-09-13'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa-index/p01
+  request: &id001
+    browser_impersonation_direct: true
+  extraction:
+    html_content_selector: .medicaid-solr-searches-results
+    html_drop_selectors:
+    - .mailto
+    - a.mailto
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_spa_index_page
+    index_page: 1
+    index_pages: 1
+    index_records_on_page: 18
+    index_records_total: 18
+- source_id: us-ok-cms-chip-state-plan-spa-ok-24-0012-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-24-0012: Approval Package (approved November 18, 2024, effective January 1, 2024)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK-24-0012.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2024-01-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-24-0012/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-24-0012
+    cms_node_id: '173091'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=173091
+    approval_date: '2024-11-18'
+    effective_date: '2024-01-01'
+    summary: Through this SPA, the state provides 12 months of continuous eligibility (CE) coverage to individuals enrolled
+      in its separate CHIP, pursuant to section 5112 of the Consolidated Appropriations Act, 2023 (CAA, 2023).
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-24-0010-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-24-0010: Approval Package (approved July 26, 2024, effective October 1, 2023)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK-24-0010.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2023-10-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-24-0010/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-24-0010
+    cms_node_id: '169766'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=169766
+    approval_date: '2024-07-26'
+    effective_date: '2023-10-01'
+    summary: Through this SPA, the state has demonstrated compliance with the Inflation Reduction Act (IRA) section 11405(b)(1)
+      to cover adult vaccines, without cost sharing.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-23-0022-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-23-0022: Approval Package (approved May 10, 2023, effective March 11, 2021)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK-23-0022.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2021-03-11'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-23-0022/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-23-0022
+    cms_node_id: '147806'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=147806
+    approval_date: '2023-05-10'
+    effective_date: '2021-03-11'
+    summary: This SPA demonstrates compliance with requirements in the American Rescue Plan Act of 2021 (ARP) that 1) mandate
+      coverage of COVID-19 testing, treatment, and vaccines and their administration without cost-sharing or amount, duration,
+      or scope limitations; and 2) require states to cover, without cost sharing, the treatment of conditions that may seriously
+      complicate COVID- 19 treatment, during the period when a beneficiary is diagnosed with or is presumed to have COVID-19.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-20-0030-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-20-0030: Approval Package (approved September 1, 2022, effective July 1, 2020)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK-20-0030.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2020-07-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-20-0030/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-20-0030
+    cms_node_id: '139601'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=139601
+    approval_date: '2022-09-01'
+    effective_date: '2020-07-01'
+    summary: This SPA demonstrates the state’s compliance with section 5022 of the Substance Use-Disorder Prevention that
+      Promotes Opioid Recovery and Treatment for Patients and Communities (SUPPORT) Act.
+    topics:
+    - Benefits
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-18-0024-factsheet
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-18-0024: Factsheet (approved November 1, 2019, effective September 1, 2019)'
+  source_url: https://www.medicaid.gov/medicaid/spa/downloads/OK-18-0024.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-09-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-18-0024/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: OK-18-0024
+    cms_node_id: '92341'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=92341
+    approval_date: '2019-11-01'
+    effective_date: '2019-09-01'
+    summary: This SPA demonstrates compliance with CHIP mental health parity regulations.
+    topics:
+    - Benefits
+    link_label: Factsheet
+- source_id: us-ok-cms-chip-state-plan-spa-ok-19-0041-factsheet
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-19-0041: Factsheet (approved October 31, 2019, effective July 1, 2019)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-19-0041.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2019-07-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-19-0041/factsheet
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_state_plan_factsheet
+    transmittal_number: OK-19-0041
+    cms_node_id: '92346'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=92346
+    approval_date: '2019-10-31'
+    effective_date: '2019-07-01'
+    summary: Demonstrates compliance with CHIP managed care regulations
+    topics:
+    - Current State Plan
+    link_label: Factsheet
+- source_id: us-ok-cms-chip-state-plan-spa-ok-chipspa-18-0001-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-CHIPSPA-18-0001: Approval Package (approved June 7, 2018, effective October 1, 2018)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-CHIPSPA-18-0001.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2018-10-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-chipspa-18-0001/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-CHIPSPA-18-0001
+    cms_node_id: '3871'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3871
+    approval_date: '2018-06-07'
+    effective_date: '2018-10-01'
+    summary: 'The state proposed three health service initiatives (HSIs) in this SPA: 1) providing kits to children with Sickle
+      Cell disease; 2) promoting safe sleep by providing safe sleep kits to vulnerable infants; and 3) increasing the availability
+      of long-acting reversible contraceptives at Oklahoma health departments for women under 19 years of age.'
+    topics:
+    - Benefits
+    - Health Services Initiatives
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-14-0006-mc5-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-14-0006-MC5: Approval Package (approved January 29, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-14-0006-MC5.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-14-0006-mc5/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-14-0006-MC5
+    cms_node_id: '3041'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3041
+    approval_date: '2015-01-29'
+    effective_date: '2014-01-01'
+    summary: Clarifies the state's non-financial eligibility policies on residency, citizenship, social security numbers,
+      substitution of coverage, non-payment of premiums, and other eligibility standards.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-14-0002-mc1-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-14-0002-MC1: Approval Package (approved January 29, 2015, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-14-0002-MC1.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-14-0002-mc1/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-14-0002-MC1
+    cms_node_id: '3026'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3026
+    approval_date: '2015-01-29'
+    effective_date: '2014-01-01'
+    summary: Provides assurance that the state will apply methodologies based on MAGI for all separate CHIP covered groups,
+      using the approved MAGI conversion plan income thresholds.
+    topics:
+    - Benefits
+    - Financing & Reimbursement
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-14-0003-mc2-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-14-0003-MC2: Approval Package (approved June 17, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-14-0003-MC2.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-14-0003-mc2/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-14-0003-MC2
+    cms_node_id: '3031'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3031
+    approval_date: '2014-06-17'
+    effective_date: '2014-01-01'
+    summary: Converts the state's existing income eligibility standards to MAGI-equivalent standards, by age group, for children
+      covered in its title XXI-funded Medicaid program.
+    topics:
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-14-0004-mc3-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-14-0004-MC3: Approval Package (approved June 17, 2014, effective January 1, 2014)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-14-0004-MC3.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2014-01-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-14-0004-mc3/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-14-0004-MC3
+    cms_node_id: '3036'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=3036
+    approval_date: '2014-06-17'
+    effective_date: '2014-01-01'
+    summary: Describes the state's plan to provide coverage in its separate CHIP, for the children subject to Section 2101(f)
+      of the Affordable Care Act, as specified in the state's submission of CS14; Children Ineligible for Medicaid as a Result
+      of the Elimination of Income Disregards.
+    topics:
+    - Benefits
+    - Eligibility
+    - Program Administration
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-14-0005-mc4-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-14-0005-MC4: Approval Package (approved April 15, 2014, effective October 1, 2013)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-14-0005-MC4.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2013-10-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-14-0005-mc4/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-14-0005-MC4
+    cms_node_id: '2756'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=2756
+    approval_date: '2014-04-15'
+    effective_date: '2013-10-01'
+    summary: This SPA incorporates the MAGI-based eligibility process requirements in accordance with the Affordable Care
+      Act.
+    topics:
+    - Eligibility
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-cspa-6-approval-package
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-CSPA-6: Approval Package (approved December 18, 2009, effective January 1, 2010)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-CSPA-6-AL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2010-01-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-cspa-6/approval-package
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: spa_approval_package
+    transmittal_number: OK-CSPA-6
+    cms_node_id: '1951'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1951
+    approval_date: '2009-12-18'
+    effective_date: '2010-01-01'
+    summary: Expansion from 185% FPL to 300% FPL; exempts Census income.
+    topics:
+    - Expansion
+    link_label: Approval Package
+- source_id: us-ok-cms-chip-state-plan-spa-ok-cspa-05-final-approved-state-plan
+  jurisdiction: us-ok
+  document_class: policy
+  title: 'Oklahoma CHIP SPA OK-CSPA-05: Final Approved State Plan (approved December 4, 2009, effective June 1, 2003)'
+  source_url: https://www.medicaid.gov/CHIP/Downloads/OK/OK-CSPA-5-FINAL.pdf
+  source_format: pdf
+  source_as_of: '2026-09-13'
+  expression_date: '2003-06-01'
+  citation_path: us-ok/policy/cms/chip-state-plan/spa/ok-cspa-05/final-approved-state-plan
+  request: *id001
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Centers for Medicare & Medicaid Services (medicaid.gov)
+    program: CHIP
+    state: Oklahoma
+    source_discovery_group: us-ok/policy/cms-chip-state-plan
+    discovered_via: manual-review:chip-agent-queue state-plan row; CMS SPA index https://www.medicaid.gov/chip/state-program-information/chip-spa
+    publisher_note: medicaid.gov answers plain clients HTTP 403 (Akamai); fetched with curl_cffi browser impersonation, TLS
+      verified
+    document_subtype: cms_compiled_state_plan
+    transmittal_number: OK-CSPA-05
+    cms_node_id: '1801'
+    cms_record_url: https://www.medicaid.gov/chip/state-program-information/chip-spa?filter%5Bnid%5D%5Beq%5D=1801
+    approval_date: '2009-12-04'
+    effective_date: '2003-06-01'
+    summary: Creates Separate CHIP Expands coverage to unborn children.
+    topics:
+    - Expansion
+    link_label: Final Approved State Plan
