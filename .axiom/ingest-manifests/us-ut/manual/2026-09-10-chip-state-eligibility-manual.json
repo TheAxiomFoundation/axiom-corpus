@@ -1,0 +1,869 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ut/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "0010e24e9f8b90e89163b63dbbd27a8cab56a53ea029d68a76e21e767dc30635"
+    },
+    {
+      "path": "data/corpus/inventory/us-ut/manual/2026-09-10-chip-state-eligibility-manual.json",
+      "sha256": "651f334578e60d408191112c811d162d2be7c5afa227ba39f703a2fbb42cb75d"
+    },
+    {
+      "path": "data/corpus/provisions/us-ut/manual/2026-09-10-chip-state-eligibility-manual.jsonl",
+      "sha256": "d838c5a7ad155bd5c4b1cf625665eb25723f42e98cbd0b447d86cf95c1f033d4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-100-general-provisions.html",
+      "sha256": "2346c4ca5e9141881821afdaa4b1ca51fa801bfa6f8dfe405dcdbca15a20d074"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1000-state-children-s-health-insurance-program-chip.html",
+      "sha256": "e48a4b032d099af9269170b208231dd07bc94a986a197f39cfd1854fc94aaafe"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-101-2-special-safeguards-for-irs-income-match-data.html",
+      "sha256": "e463322783e606a30a05f40b17db7f688ddff4eec8e6600885683835755b9677"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-101-3-who-may-have-access-to-income-match-records.html",
+      "sha256": "a6945cc2e6ded99c68fbb55f60ef780e741b363480b3922605fd3742340488a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-101-enrollee-rights.html",
+      "sha256": "758c2f1166e2cef23ba37594e84207063b715d846dbe870aa18c4d35cc8c35de"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-102-1-completion-of-an-application.html",
+      "sha256": "abd0928de91f4ba1c643debad6b0b78a7d759a0a43e8dda1c23e82409cf4cfac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-102-2-verification.html",
+      "sha256": "685e0b7cd4404bffa3c5c4eb875fba2d369002313c01d07a8deea68e2822707d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-102-3-report-changes.html",
+      "sha256": "848f43d147f53039a8dcee17438ede6f0979fa779a0cfce71733d3a365b86486"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-102-5-cooperate-with-quality-reviews.html",
+      "sha256": "9f5ecdcdfcd11eabb3f2ee8b2c362f9ee279ff4561c76ad67f60da63ea5d208d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-102-enrollee-responsibilities.html",
+      "sha256": "ecc9c4f0c1b5142b0340e6908e779242ffe86578d9be977dbc31ab9b559b397a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-103-1-prohibited-action.html",
+      "sha256": "921859754134e131b62ac21f3f2e02beb84099edf1b18352deae1cfa7ac11173"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-103-worker-responsibilities.html",
+      "sha256": "ecac16d92eea2a5958a0cfc491231cfd236c2e5465e48057056969023c5c152e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-104-authority-of-the-office-director.html",
+      "sha256": "29f1ba836d31300f843d8bf522e6aced22047be34536db1fb5c7a0a1b0ef9288"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-110-1-safeguards-of-income-match-data.html",
+      "sha256": "41d7abb2be834e303aa4707caed5f8d54d4b09fa97985ca8c1507ce8fd7d1310"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-110-safeguarding-information.html",
+      "sha256": "4891500097febb8b57865d9699ab8248c13a4daa39bdf2a66b511254a790f578"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-111-1-releasing-information-to-the-enrollee.html",
+      "sha256": "9e822c486fbd46ade43b48a2cc485a06114612cfafe415df0683e7b81c780d2f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-111-2-use-of-confidential-information.html",
+      "sha256": "2ea53f5753a560624784a90febecaac679c03062c0b888e1d24096962c60769a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-111-3-releasing-information-to-others.html",
+      "sha256": "ce6edaf37502b07f1a0383a757f9eae374506c3335457fac0bf85afaf39806f3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-111-confidential-information.html",
+      "sha256": "6235931baebedbd24a5fb883a65ecb3d5dd71c4f7e93390e07a431b91239c1ac"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-120-1-agency-conferences.html",
+      "sha256": "03fe4725a82ce0823cbdd57b1138dd295169cd5a4a113648f26f281c29833e2a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-120-2-fair-hearings.html",
+      "sha256": "d497ee7075d773088cb4a96970cef9e0dcbf82cde40aebc1395395fbdd6da775"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-120-3-fair-hearing-requests.html",
+      "sha256": "201b0a7232df6f81241fc711fa5da2ddc979b13e299a27dcec71b235d2a89cf5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-120-4-the-hearing.html",
+      "sha256": "893ccfb690d02f92dedd7b2354ea307f7e9a5c3db0208b55c5e7cf375f55f0e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-120-5-benefits-pending-a-hearing-decision.html",
+      "sha256": "3d0a51f805eea7b2033f3cf91d96930d9b11a0824a7bec9f95e387f0ef438dbf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-120-6-what-happens-during-a-fair-hearing.html",
+      "sha256": "50bbf96af250dc842e9df7d0dba765398e6ea663aac090ee7349757bef620fcf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-120-8-fair-hearing-decisions.html",
+      "sha256": "e2534026af440c7260ef2d1892bf5f4e6c94d9be2328ffac79806e5af451dd5e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-120-9-how-to-appeal-a-decision.html",
+      "sha256": "b2d0d1143b824aada5992c654eaa0e24da9e288c356a5d4f7dc3b371ba3b0406"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-120-complaints.html",
+      "sha256": "6dafd60243de37490da342dd96f9722f3cbc235d4bd8dc93383a9f5351371800"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1200-program-standards.html",
+      "sha256": "aff64865b2cf2ddc35c3933c620dc8f0083753efd903f67d50f7a8d77aa152fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1202-citizenship-status-requirements.html",
+      "sha256": "fd8b4bdc80674ed9c9b826cbb4567c28d56fb91f5b4f378938ee1bf5047e7148"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1203-1-verification-of-utah-residence.html",
+      "sha256": "d57ed83a7a7cfeb16c7fd8c9d9e2a5943bb8544bd41a3fdd0227e499cae1fca1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1203-utah-residence.html",
+      "sha256": "5b0e2379ea0632ec9557dc626de504c8d6f841be74e21310390554dcb6958bf7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1211-social-security-numbers.html",
+      "sha256": "e631de388420466cfbd59a02c5a571aa2cf4547bfb1de38d4d440bea632af75a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1230-employment-requirement.html",
+      "sha256": "37bb47d85a9fda75da7edc80ace8d2641f1aac9e83d9977863911c81f586ab9f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1250-open-enrollment-periods.html",
+      "sha256": "8f34d8182fd26adebda592d1d0b0904ae1dd90c3cdfec3a820416e1d02a7dafd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-130-hipaa-health-insurance-portability-and-accountability-act-of-1996.html",
+      "sha256": "2f34ec9a38146002345e8957de5a41c259f07d70c8f525c4662993867166b78b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1700-eligibility-determination-and-redetermination.html",
+      "sha256": "7afea83b38bb8042de0f3154055790226288d541c0a1e924712e159655bef013"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1701-1-what-is-an-application.html",
+      "sha256": "b04ec2348d62cf1a3e44f04cabc10838f406d832a01e0659067addb3ab7b6598"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1701-2-date-of-application.html",
+      "sha256": "aa12673a6898748314b5496da74f08e022dd954da9373636fc6be902f85a94e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1701-3-effective-dates-of-certification.html",
+      "sha256": "6ed6ae1f0bf05d6741e1c65890fcab5c79dc39f5fc777c3307fbd48b831219b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1701-4-what-to-do-with-an-application.html",
+      "sha256": "266427e8f13f1f0257b63b40d38217301bb290de287b6cfb69806d25c585322a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1701-application.html",
+      "sha256": "1e42337f9894c80289e86d847e5b4fb542c5b7501b415f72d972199fd76d70a1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1702-1-transitions-between-state-chip-and-upp.html",
+      "sha256": "92495be92709a603fe75063bb17dea79b67d3868f18223fc5a76e1dc69dd7119"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-1702-re-opening-state-chip.html",
+      "sha256": "9b7ebdfc2337590b2f535c7d3de3a68283f6a54db38e4fe0b164828e67c1b565"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-200-program-standards.html",
+      "sha256": "98b018ab4b64554159799f0b42b8198780fe89525d3ab32d6b1d980d6ce8e265"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-201-1-screening-for-medicaid-eligibility.html",
+      "sha256": "384545f2457c09937aa2cf03ce776a298274a49cb984fe7352d3f352ea41f95f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-201-medicaid-eligibility.html",
+      "sha256": "c8251e0947bdebd3c86bca20c6dd597681752be33bb40f7458e2cf077b163ab2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-202-1-u-s-citizens.html",
+      "sha256": "0f1f1b8312470fc8343cfc6f78ecade59899c428e2e2da12c08e5cb686e7284d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-202-2-1-lawfully-present-children.html",
+      "sha256": "a01017b433d361a5de058aa091bd40dffc9527ae3f1b4b3b74a2557ab705e86a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-202-2-qulaified-non-citizen.html",
+      "sha256": "d5faa265228d6299513f0fed5010d5ede3254ad43501935336a3e38f2d3251be"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-202-3-verification-of-non-citizen-status.html",
+      "sha256": "73bd6598df40b136dc0cb3bd3b0b526ff817841bd1cf37801bd83b0adc49ac08"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-202-4-sponsored-non-citizens.html",
+      "sha256": "cfc0007840036899bd2a9cf4b5a14cc72ed545501e8d143227b8f69466f71973"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-202-citizenship-and-non-citizen-status-requirements.html",
+      "sha256": "53666e08183d2928b9a51ad89a6ea965ccbd97906dab3e9a61158fc23da561bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-203-1-determining-residency.html",
+      "sha256": "73d25a23c8b5cc6510313b2fd719cae512de0e8f97eed0db315bacba575f4d67"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-203-2-who-is-capable-of-expressing-intent.html",
+      "sha256": "5d34f931a1dbc18161132bc097e35c9ba0884393d1b3237030fe70fbdeb54f82"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-203-4-determining-residency-for-individuals-under-21.html",
+      "sha256": "9468cc3204a79fb0da95bff78ff5a1e747ba89e9bb97fce5fb0f6e45e3553456"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-203-5-factors-indicating-no-intent-to-reside-in-utah.html",
+      "sha256": "42dfb967a923a341b692889b07f0075d9ada28fa9cf2342c6cf15dd7b8a4747a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-203-6-moving-from-state-to-state.html",
+      "sha256": "6b87b539641b994738f89e4151d707be6f705a92cceb184852f943ecfe5a7895"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-203-utah-residence.html",
+      "sha256": "6fe7e519468e650c796fe615b4afe377d40fa4671425db12fb18bdfbc1195daf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-204-1-what-is-an-institution.html",
+      "sha256": "24249feab4c973a92931ef4e42f4514df3d4ef1c9ee9952d75510f50e3cabd3d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-204-2-what-is-a-public-non-medical-institution.html",
+      "sha256": "c7515304204aff79894bc410748f0005cc11617bd05406cdb75978cef81cabe6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-204-3-who-is-a-resident-of-a-household.html",
+      "sha256": "906a48570c9b4b321346c602db81915f2cf993e3d73c49f4cc2b564d2406e307"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-204-4-who-is-a-resident-of-an-institution.html",
+      "sha256": "19b1b52387d8fade2bf9df3668c2533903e31be6c5df18596ccc9187274f88ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-204-residents-of-institutions.html",
+      "sha256": "bcaf41ea07368b20f9b713e09c23e7046fc720c913c81a586f8a9d986107778a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-210-age-of-a-child.html",
+      "sha256": "541bc8d9afa69d6bb1b1e78049bf6514c367b1cc30a30bf4df84bc19cd1fc31a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-211-1-verifying-social-security-numbers.html",
+      "sha256": "7f936f36f44672f4106072912dd8302e3d9a3ad250c0a4e5513ce500002c0793"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-211-2-applying-for-a-social-security-number.html",
+      "sha256": "1441e551f3b5acd7a8e0fc0b49f038ed8bdcafe181c25649ce517fff4194b120"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-211-3-who-does-not-have-to-provide-a-social-security-number.html",
+      "sha256": "c17e31ba1588bd4e2796f6c9165b80095fe6d66923ba79eb55be9a660d8ae393"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-211-4-good-cause-for-not-applying-for-the-ssn-card.html",
+      "sha256": "5e57ec83471eb776bd2ba4c5b32d491a17256d5d0bc85b8523a3fcf99dac0d82"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-211-social-security-numbers-ssn.html",
+      "sha256": "d0ba058bcf9d01b99585c3078471c7938f673c4c3a5da1605535f563746fbb09"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-215-1-parent.html",
+      "sha256": "ecf9fbc21ea0e8f5b11f785dcf1822eac158543e5838356279ee59cee279741a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-215-3-when-unrelated-adults-live-in-the-home.html",
+      "sha256": "3d66f016f5905cab55aab549c477f3adef3d9a09732f84b2324e9319e76e5839"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-215-relationship.html",
+      "sha256": "88319c508933751f8c8573696fe336827834a0b1a09b519d595dd540d0f582a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-1-definitions.html",
+      "sha256": "c48378124660bb19f1dd041f6779154378629f6e22f38cbd701f0364895481ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-2-coverage-under-a-health-insurance-plan.html",
+      "sha256": "9fbca85e2de8bd98a81f786b7b7d5035c6dba133ffbb42ce494f7473c622a6be"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-3-coverage-only-under-a-limited-coverage-plan.html",
+      "sha256": "4e75566ecbdcc8d9b99a59c94254c322d522bfd76571d01b844773dae05fd133"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-4-access-to-employer-sponsored-health-insurance.html",
+      "sha256": "97f5fda36f256dc5f104d15d8561b81660eb1582149a2434ea5aa4e6c6dfd62d"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-5-health-insurance-coverage-through-a-non-custodial-parent.html",
+      "sha256": "f20cc9565e356ac988bd377cee8f2357da624ddd68334d4441583714afab4272"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-6-coverage-or-access-to-coverage-under-a-state-employees-group-health-plan.html",
+      "sha256": "d9ee57a39f9ede712c03b26748084f138f0fec83aa0db0c09ca3d5195f1dbeff"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-7-coverage-under-indian-health-services.html",
+      "sha256": "dd659c1b3e9abc5363ff1fd0ec706e750bb6f3e6e289499ad1dba28640690367"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-8-termination-of-health-insurance-coverage.html",
+      "sha256": "37fe0165d9032edb2d2d20eac1f56325c396d0d0071a8d679d8141dfd825367e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-9-coordination-with-the-federally-facilitated-marketplace-ffm.html",
+      "sha256": "090399349bef9f6303204bef517282314de0a38cb156a6e0b9ccc5c5735f24a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-220-health-insurance-coverage.html",
+      "sha256": "7686c782a99ecfa74289fb7dbef77b302a4d6143a0c9c756d6b0fd4e4a0bc059"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-222-1-deemed-newborn.html",
+      "sha256": "9cda64ad937c12af2ec2977b439e25b58f43cb224a1dfff27d58cffefc4e2673"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-222-pregnancy-and-postpartum.html",
+      "sha256": "52801851031589a027460fb8b3e0828ccab63e134bf1b3ef854cb65e8bdb3489"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-245-child-support-services.html",
+      "sha256": "4ab524599eccc6b9440071080630a80d3fc2a00846f8287fd80fb25a784269a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-400-1-joint-custody-and-temporary-absence.html",
+      "sha256": "2f81b2dd0615cdb474eaf166e2c91bd0cbe4e78ddb6b058a67a65bda701d0ecb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-400-income-standards-and-household-composition.html",
+      "sha256": "6569f620e93ffc4d5ab7da798966c2bd83fd229bf2c0d47d76a5a8f714ca7f3e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-401-1-the-magi-household.html",
+      "sha256": "5cfa0981bc531e9212f760e37b06b48859de233575d43c8d6e5166f10597a57c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-401-2-tax-filer-s-magi-household.html",
+      "sha256": "908bba7702386df4f075b9c8c5c87543766640bf482599490d98bff1a3496dea"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-401-3-non-tax-filer-s-magi-household.html",
+      "sha256": "ecd0d8f1bbbe580d0340073ee80ac52ae73196dbd5fa1398d0957497aebc3a7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-401-magi-household-composition.html",
+      "sha256": "f89cd40fe8c08f8aeb0d203ca312e1ed9ac30b10a70e01d71cc1aadef4ed7fe7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-413-1-what-is-income.html",
+      "sha256": "4ff23beee9e325a8a4c6088a4022d05dbdc993e1302245eeece775c98b6b3b77"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-413-4-ownership-of-income.html",
+      "sha256": "f1e0a72e2320eaca35d8fac733a98e693b000916343d8d4135a68b5574151c3a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-413-5-deposits-to-joint-checking-and-or-savings-accounts.html",
+      "sha256": "00d322410e244d81fc79b1962f9e5fb916500f021417b13ae417af0657e4cae6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-413-6-what-is-not-income.html",
+      "sha256": "5eeb55298fe96ddecbb54201fea6c16b50b8a1abd94516979b96f45bed56b83f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-413-introduction-to-types-of-income.html",
+      "sha256": "646d64a4121d757901b8750fa8695132c6b72397df18b0d59e628407d2b7d627"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-1-examples-of-unearned-income.html",
+      "sha256": "e7c52cfbd96083bc63ba77d4405196335f74e122442962b7fd67cff65c7657e2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-12-personal-injury-and-tpl-settlements.html",
+      "sha256": "cbcf7f0024b70577c6b2495a04b61b4089cdd63144a63e6644c551561d0fe28c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-13-countable-payments-to-american-indians-alaska-natives.html",
+      "sha256": "e977b3daabb45d7961648a761d93f97900386579ab26a949c3f4b1e543a69970"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-2-veterans-administration-benefits.html",
+      "sha256": "d7d6e62681c658622d0598f3fa29a3c3e7c89e7fc6365f702f24ddff40d6850f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-3-when-the-entitlement-amount-differs-from-the-payment-amount.html",
+      "sha256": "b0c7d70a9f2d75f057a8e63e58901198c56e2cc28d068cfaa9f0fd86df53ff08"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-4-income-from-rental-property.html",
+      "sha256": "e496f67bfe4f8df27727d68357559562c3ea7266d0dcf7f4dea4471689f7c63a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-5-child-support-payments.html",
+      "sha256": "acb67e6bde6848873a8b55b2a264bc4a803f4983b9abe3fe9b51fdc46b6679c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-6-educational-assistance.html",
+      "sha256": "80e071798d0a2075418fb64954fd640f1c0b6696e3771ed18760046177b29945"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-7-certain-interest-or-dividend-income-irregular-and-infrequent-income.html",
+      "sha256": "83c85dc8397dae0bf21ef5bd4211a0d60e84d4add3ead68ae6cbb4e71104f29f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-8-sales-contracts.html",
+      "sha256": "aaf7ce5ecec2c9bbb40b109f572eca3f615c16db68b6d6d9bc7802862fd47106"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-9-payments-to-replace-or-repair-lost-stolen-or-damaged-property.html",
+      "sha256": "599af12e568641872736d8da387ab0374842817b171f1e67b73e9ba67a66dca8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-415-unearned-income.html",
+      "sha256": "1b417d0dd04b028f434a927b09f0e7b790f50c8114b9fcf4005cea256d0b83dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-1-rental-subsidies-and-relocation-assistance.html",
+      "sha256": "4979c01fdd2d645a0616b3b7dc44f1e7b89afd7212bb5b853532f9e057d9870c"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-10-income-excluded-under-a-pass-plan.html",
+      "sha256": "09ad1b155ba2e9bd7c913e9704de0fa6f3120ca4113e0bc3f0831d674da05492"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-11-home-produce-for-consumption.html",
+      "sha256": "9752c5e371dc84a030a0655eb1d0b6b966ca6a0913c16f96bb3c1fbec3fee19b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-12-proceeds-from-a-bona-fide-loan.html",
+      "sha256": "ea04479df0b431fe4c63c41f155f4c352df17c63306a9abf2d76c347e30472d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-14-payments-to-american-indians-alaska-natives.html",
+      "sha256": "61cd15f03ec61d98f43089011cb4cea7fa78585575e686b5c43ff777c36ef1a8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-15-gifts-made-to-a-child-with-a-life-threatening-disease-by-non-profit-organizations.html",
+      "sha256": "7f2e07fcbb36a77ea6fbf2edc641dcdc486371932bbe6764591618900f841ce8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-16-income-from-assets.html",
+      "sha256": "a7fa9c076ed3e94e74204b6c596f11cebcf8404ebb6cfb6be663fed6c38da2ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-17-public-assistance-exclusions.html",
+      "sha256": "ef94e5838981a41bf17ac30e6664b43b24ab16540d787b246d976d3fb6218589"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-18-employment-and-volunteer-program-payments.html",
+      "sha256": "f0c85eb6bc50eb1babafd126bd5ecd84138fd8fd88aef28e08d6ee6fe91a494a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-19-reparations-payments.html",
+      "sha256": "6905d531949c4e48a8db2d3ed0a37ca0883af605f3f33beca59f6098eb88b6d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-2-trust-funds.html",
+      "sha256": "97417cdaadb0d1a66682e9c840669bdc02430818de3c770a83a8a386d59644bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-20-settlements-disaster-relief-payments.html",
+      "sha256": "c28b1c9273c266ca617d62682b71c4a3915e0e8aa9c01a2c47605716c6e0e55e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-21-covid-19-recovery-rebate-payments.html",
+      "sha256": "23f78374d3cc5d5a8c2c94950548e890134c9f60494501052bf4d5a489a6e1e8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-3-tax-refunds-and-tax-credits.html",
+      "sha256": "b5ab35331ada5ab4a79ae1fb14caf29397852de3cf415dfe00b0b0c9c0dc32f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-4-transportation-tickets-for-domestic-travel.html",
+      "sha256": "eb48a88349cb2e82e1dbc2f8415cce756a8425f4fe8bec3453de3a0ff3ea9f6b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-6-death-benefits.html",
+      "sha256": "b76f8d3339faf258172acb10613991c59fd00edc27d5d4bab1580759aa2697f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-7-credit-life-and-credit-disability-insurance-benefits.html",
+      "sha256": "f56ec9fd223e96a566188026b1cf31b88577bd897c8f3fefa861b717baf340c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-8-payments-under-the-national-flood-insurance-program.html",
+      "sha256": "ea39f6230ab2a40b16000ecde19b26f451a1e12a8e430ada48e504f4d910ddc9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-9-payments-for-clinical-trial-participation.html",
+      "sha256": "b4446cd99b95c341b3614d78a0b6e78950604a8fac43d2962ff8aff113c90c23"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-417-unearned-income-exclusions.html",
+      "sha256": "8a676dbf26900d40c3b69c4100d7ff0b3a51c83d9c7b208f31af8acace7c50f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-419-1-sources-of-earned-income.html",
+      "sha256": "b959130989970dfcd6b64d17f4068c6a9d62940a880d85b155501a229ab85901"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-419-2-income-received-from-a-business.html",
+      "sha256": "5eaf4647c9bf9421b8c527c74413fe67d2a3c6ea87148e9f0031724959743b11"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-419-3-self-employment-income.html",
+      "sha256": "7d23ccb4749bf721f2545b77335335ee6de5f9567d2abde4514921285f49aa24"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-419-4-self-employment-expenses.html",
+      "sha256": "6e572f54103fe005f30a1540f7d92012f62085e46e24e3141fb592ba40c36627"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-419-5-earned-income-exclusions.html",
+      "sha256": "5f239e90fa4d72ac6b048e6ed998fc552e34276e3e2af431671a6fb7d21deef7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-419-earned-income.html",
+      "sha256": "d7c74b886377eaae70dcc7170fa01118a280b3ab1fa62c86a77ed783f449f139"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-421-lump-sum-payments.html",
+      "sha256": "b67f936ae289c6d685564662621954ce532b3048507996489f0769254d8a3774"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-425-2-deeming-from-a-non-citizen-s-sponsor.html",
+      "sha256": "3a0d2d98ce493b249b28f4a36aa78d8cbfe2ab6b13681f729eb8280a54fc112b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-435-1-definitions.html",
+      "sha256": "acd4515911ffb0cc4b6be37a3ba10b3c9dafa3a336bac77eb0b0053d09855330"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-435-2-determine-a-best-estimate-of-income.html",
+      "sha256": "3e768c87092765560b59b74af3eb60e2dda40f02693856b4c5e4e57f03341184"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-435-budgeting-income.html",
+      "sha256": "89d3a45d21ef231b9b57687d35dd6de095e4718c222c83228fa8a097fcbd8d54"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-440-1-magi-methodology-general-rules.html",
+      "sha256": "726973b22b48114571716df9b8e144acd3037ed1815afc60181e017f8ca96e12"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-440-2-magi-based-income-requirements.html",
+      "sha256": "e2f280b0c83c6125f091dc37b558cbcc8ec8fea00e626af64807629ceb4cec18"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-440-3-income-for-magi-methodology.html",
+      "sha256": "9c901a817eb7a1ee279318af32507c2a8fb034dca2421f26f8cf4c48d6269ff8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-440-4-specific-treatment-of-income-for-magi-based-programs.html",
+      "sha256": "43d265f530a110c8a5af022574c2f1f6287977dfc7edc27c47b74b25670a884b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-440-5-calculating-income-for-magi-based-programs.html",
+      "sha256": "aa9728ccba416ee7a22d682096aad77145428f3c475be3afca851308bdbbf473"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-440-6-whose-income-counts-for-magi-household.html",
+      "sha256": "d1da8ef3c751abe4549dcd96da920f770e96e9c9f07edbb0fb2a7bd8e5529177"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-440-determine-countable-income.html",
+      "sha256": "d1bc9204a1abf6d6bf50be036931f1b47fdcb07253a8046d12f7296a83dd094f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-600-program-benefits.html",
+      "sha256": "4d386933cdc35e2f25d81d5301a9d351d4692d30003cbd8a32e9171ae1ce555a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-601-health-plan-selections-and-education.html",
+      "sha256": "e741a47552bac01942ffe7b505cb18a3bc089f8835c5e72051d35ccbcd0e8b26"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-602-cost-sharing-requirements.html",
+      "sha256": "6933e0143b6a17895eecd69537ac35463f4c82d2ccf2592ba7da5381bba772ab"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-603-chip-member-id-cards.html",
+      "sha256": "1f50d969c35dfff8903abe241588929946b83a1d52f86426577c1d7aec577311"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-604-suspension-of-benefits.html",
+      "sha256": "588cfa2b86870b66151cb70d02d1ffbd16a4f95685c1ab49f1c2f3f9f59546fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-700-eligibility-determination-and-redetermination.html",
+      "sha256": "29f54da73af8176349c5f73012ef2e0119b201fe1bdef1f3fe723cf4f6667618"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-701-1-what-is-an-application.html",
+      "sha256": "b8f862837b065a331f36598722b46f78e2425395d641732d193b144d1d8b9692"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-701-2-date-of-application.html",
+      "sha256": "2d7509a03b8466223a25ce1265c9ac54d1df95dfb9970dfefab7ef74143fa3b2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-701-3-effective-dates-of-certification.html",
+      "sha256": "b94fb9f039f0cef5b8850cf5a99be49ed3de689d41780e9f6e64a38370e4dfe2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-701-4-what-to-do-with-an-application.html",
+      "sha256": "7e4b78b89f2f8240059e24fd4a610913b8ef3e01451e57510e584002bd410eba"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-701-5-eligibility-decisions.html",
+      "sha256": "921493424faf432f57f4bffdd8960c1fa17d3f2abd55a8d64c7d1235b8cdcbc3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-701-6-incarcerated-individuals-in-jail-or-prison.html",
+      "sha256": "85a314eea33ca82613dca1a9d2705ae02c82c9b54262ebdee5ecc461c05f78ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-701-application.html",
+      "sha256": "e7618b4417eda06b78cf90ffeae152a33100666d175630a6d29ceffef13d73d3"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-702-1-transitions-between-chip-upp-and-medicaid.html",
+      "sha256": "84d6de6b6f8d401f23530ac753a9896064e91308fa2d7ef5381970e65358b5c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-702-re-opening-chip.html",
+      "sha256": "bceec5c11c8b2611856e789ee208b93f4c578c54231c93c25ebff61f56683ce6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-703-1-length-of-the-certification-period.html",
+      "sha256": "307b3918a3bdea86af3fa99d328d6d47c2c44a8abb1e418d49ba899ebb8ae788"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-703-certification-period.html",
+      "sha256": "92e8a5faeea56444db99b7ee617bf78515de06a7f2c327beda9fab00650e973e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-704-1-ex-parte-reviews-reviews-not-requiring-member-participation.html",
+      "sha256": "d46eec6382d114253a78edb17d7b89262f707b40b60a1f046ca413c739c123f0"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-704-2-reviews-requiring-member-participation.html",
+      "sha256": "db6c3bbbbc235d8110deb31ad8f9c6d1e19c12606c3fb68ba0eb8c0c1b77c979"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-704-eligibility-review.html",
+      "sha256": "915213a38572ea6c7f308f4cb0fa25777169fd8078d4ac0edcadb6ccfe60cbad"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-705-2-what-is-acceptable-verification.html",
+      "sha256": "dc09a57697d4bd171eaa0cc25d8eb9a8ef230cd615b2ddda6f87c19df157e133"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-705-4-verification-from-collateral-contacts.html",
+      "sha256": "93dd8fdf47e3dbdbe449651375cf49c3207ea8de4def956600ff997692667035"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-705-6-verification-of-ssa-benefits.html",
+      "sha256": "3af043077a0cc0c672ae6529293b38dba3042a3b18f4a854530c4ffc41c7bbc7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-705-verification.html",
+      "sha256": "fca2ee4fb7f51b76827abe94b89c49caba2c8a9b4bd1ed644ec9b203c9624b75"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-706-1-sources-of-ievs-data.html",
+      "sha256": "019c5d55defde095a2979ce00b5787c9ff2fc004aa8491d1f052a6673e7cb39a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-706-2-special-rules-for-income-matches-when-enrollees-apply.html",
+      "sha256": "6bd76d774f32988037f90a67704fdab6df3e0c4f781cd34d51b270e8b3956256"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-706-3-what-to-do-with-match-reports.html",
+      "sha256": "89389cd4af9df0eafe92322841d5f414c4d98f0a27337ca49183500c60ce5196"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-706-4-taking-actions-on-responses.html",
+      "sha256": "da18f2dd68e9fbcf14c81b6c8108862d861cbcd0cc8fd6b1757634ce8b6b12c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-706-5-what-to-do-with-an-ineligible-case.html",
+      "sha256": "b2296cb785c39905623bb248089930e54717306beebf50c898cc0ce997ba2289"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-706-6-special-rule-for-the-irs-match.html",
+      "sha256": "9e84c1949160d20ea1852cb7d5cac6a9b6b701960142ac39da4221f951cf8032"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-706-income-match.html",
+      "sha256": "3fb1f3ff56b1138d1d5f10b44d08be11014fe31acfb1b9f6fdec5804dd8c9ce7"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-800-records-and-case-management.html",
+      "sha256": "5e734f70da254cfcbaafc0d77f22e0b8ddff7f6fefd9f9e2185a82eb1c17e88a"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-801-1-creating-and-maintaining-case-records.html",
+      "sha256": "6d7cfea8202c887f58cd7f75e668f49f9e17909f99a10e41087f1f74b07debfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-801-2-removing-old-material-from-the-case-record.html",
+      "sha256": "c08f855730ccf0957b3b45017082446f49bd200b28714bc1ca9f4137d96169c6"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-801-case-records.html",
+      "sha256": "342517d9819c46545e3f2abc33a9bfb102376e2f18a42ab88d7bc578aeb65dd8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-802-case-numbers-and-member-identification-numbers.html",
+      "sha256": "3485dafe3de2bcea1e0609059f9049741e8ab4c5886b595fffc0a5013dd6d034"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-803-2-returned-mail.html",
+      "sha256": "52ba39123dc3464f7f406a47267665fe93432dec6c972c41488735fd2488e33e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-803-notification.html",
+      "sha256": "7f1b1e02e5bf4422336b72d46add13c33d4a64ab36dd5e9deb953edee0f6b4e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-804-1-change-of-address.html",
+      "sha256": "60d0c456935e6d02cb792453a8c9a9057dfda8e44dbad3da190ff03f330093bf"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-804-2-change-in-access-to-health-insurance.html",
+      "sha256": "d794beffaf578c6cf57f7918c6acda264fa93891dc1bb916513a754f626bc310"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-804-3-adding-eligible-children-to-open-chip-cases.html",
+      "sha256": "05a8a61f0e97b64ef2bf7c0250517787a7ff9f51e603912b5513997b74e013c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-804-4-removing-children-from-chip.html",
+      "sha256": "e915adbfc2033df1685d38eba20711a62420c71d11947da9f6ac7ccc6479c986"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-804-5-income-changes.html",
+      "sha256": "399eeadde1a4c58906565fdcc62a2866a0cc6869b7b7fbafbcbb854498ffabda"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-804-changes.html",
+      "sha256": "08540e68045a6167bef083e99be36771ac66986cf2d59337bf4a3837b08ca61b"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-805-case-closure.html",
+      "sha256": "7a9b36d265b4d613a7da62334db632b542ea2a5cba17606b94a90435387ad846"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-806-1-causes-of-improper-chip-coverage.html",
+      "sha256": "f47cfe6a49084ceb4e1a63e1b91fbf8748eeac49a2d0fc7b27c4316d42f4fd44"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-806-2-what-to-do-when-improper-chip-coverage-occurs.html",
+      "sha256": "dfa056b531101e6a0e850dd0ae34a58f569c3d4f15723998ecb4835a20adccfc"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-806-improper-chip-coverage.html",
+      "sha256": "84abc706a26657c75634ed0e65f024d3028f33ceb7cbb99250341d84f610fd9e"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-i-a-5-federal-poverty-level-deduction-amount.html",
+      "sha256": "249a08505c23a8c0669d84ade0d4c488718ea222edb3c1ac427fc07c3e865330"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-i-b-state-chip-maximum-out-of-pocket.html",
+      "sha256": "fad4ef93107947227a31faf0ecb2fb18116a9ee0423881f284c9bec9a1857fc1"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-i-income-limits.html",
+      "sha256": "714b861ef22eba5a8c8b6993d668c3aba330ba22d312829879b3d1b15d562d97"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-iii-172-hour-rule.html",
+      "sha256": "057b3889f5e3f2db84748154f2194bf7ce9c5d7f5c7b1387be3ff8274c8eaff5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-iv-proof-of-u-s-citizenship-and-identification.html",
+      "sha256": "c36fec657d28ce0636a76fc710cf59950f5cc43ebf80d578419722a7b605cdcb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-v-telephone-numbers.html",
+      "sha256": "6b6163829774023a33f01d61a054e6fedd82f4d005ef9c8923f88c5dd4ac96e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-vi-verification-and-interface-match.html",
+      "sha256": "593f98f370ef44a84d929bbefd9e154a5c79e39b4a592e5778b91963a3a5354f"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-vii-a.html",
+      "sha256": "b68fb625fb1a9492a5f58e2468e3e9bae6080ab2903f2a057b51b604c84be7bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-vii-approved-halfway-houses.html",
+      "sha256": "33a62986ac2e4e89bed885ad3fdcd8cba2fbec8e4c4bb046a901898c04792527"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-vii-b-facilities-reporting-data-to-ccjj.html",
+      "sha256": "d299dfc57a36338ee48038a584c101fbd30ce21d20d978c81976c301049e24ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ut/manual/2026-09-10-chip-state-eligibility-manual/official-documents/ut-dhhs-chip-table-viii-data-retention.html",
+      "sha256": "eed9ff33852392d63f646466375f7bd5909510f62905f8a02cf12004cd02bbff"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-chip-state-eligibility-manual --manifest manifests/us-ut-chip-state-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 436,
+    "missing_count": 0,
+    "provision_count": 436,
+    "source_count": 436
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T12:56:44.818564+00:00",
+  "jurisdiction": "us-ut",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "n0ijcWWF8CnSqkMShI6lloQ9dk61DL7QvqDWpDVlH+Ci8kS3NZXx3DAHteIggP/vvvsS8GxU8nix+Phr+bCXBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-chip-state-eligibility-manual"
+}

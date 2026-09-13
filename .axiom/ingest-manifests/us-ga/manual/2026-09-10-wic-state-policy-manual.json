@@ -1,0 +1,553 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ga/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "0dcaafa66dcc9c17475b8b4914220997cd4d76b6c0deff924c2517fc4010c8b9"
+    },
+    {
+      "path": "data/corpus/inventory/us-ga/manual/2026-09-10-wic-state-policy-manual.json",
+      "sha256": "92bf0bcc11a3c43dba533eb4dbccf6f2f960d83c0b3f121d1c5987dabde03223"
+    },
+    {
+      "path": "data/corpus/provisions/us-ga/manual/2026-09-10-wic-state-policy-manual.jsonl",
+      "sha256": "74150c9293b70ebbbd42efe9c78c0c6ab94c47bbb41778146020618d4740bfea"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1220.01.pdf",
+      "sha256": "71aadbac7e8391eddbb60f6ac84add2b6126e9be3b374ab6915c71f28d4c708d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1240.01.pdf",
+      "sha256": "698de884f4a589c7c909e89d22ccc9773783f348cdc4792815681e9108c1a677"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1260.01.pdf",
+      "sha256": "90d444b8abdab0630efd9a7f37d09a223ebfe09a07dfd3a469992c77a57de3d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1260.06.pdf",
+      "sha256": "0a6f5af7d6e93ed463904803033fcf8db91ed2a2e401ce49747f3a89e86e9788"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1260.07.pdf",
+      "sha256": "27df5d117d1ca1f5a2c1f3e852ed311c00474e887acf29d75b5b5f093fb430aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1260.08.pdf",
+      "sha256": "487c5bd094eb0276c5936d443c6c0a9197ea31c821ddc074461d9161eaa33d9a"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1260.09.pdf",
+      "sha256": "00840548453551628eddf595da6a13fc5a48cbf6a36175fb1a452ade490657d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1260.11.pdf",
+      "sha256": "397664eec8adcdca821483b9baf0a1ecbfcc6694407faa4c2078e0d9911bf040"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1290.01.pdf",
+      "sha256": "0f83fa56271653150da047c1ff90aa15ffa00c39a7426640c273ce3e47455ae9"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1290.02.pdf",
+      "sha256": "e94caff2868d92d6c05a1e76c13919c38979b25825961fdc548ff80ad1e67447"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-bf-1290.03.pdf",
+      "sha256": "c27380580dcf821e5b23c55d66524f5f86bb9e652e92bfa5d2f8cbe0b00552ce"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cm-700.03.pdf",
+      "sha256": "9164f84407579c0903fb397f45ddbd0b2d8867995d35675b7df061f6cfb2963f"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cm-710.01.pdf",
+      "sha256": "286012b909c5ca14cc1ee85a60fa7ddbe4a6173301d3ce66d89c5ddaa82847e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cm-730.01.pdf",
+      "sha256": "e608f5349db56c4db766b95435f9ae48a68ff4840dc531c875cb3e78d39a0a04"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cm-740.01.pdf",
+      "sha256": "383642758356be1b06dc29782d9e3b3fd4b79b4840fde731611cd1e947940bde"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cm-740.02.pdf",
+      "sha256": "a85ddcf59164092d1e65ed61c50497cdc264481cadcee05657aeb12e55de3ebe"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cm-740.03.pdf",
+      "sha256": "1bd11f4a5c32f4dfffe69cc391ef65ba1c1c37c2d225e2f2fd547e9b91262b04"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cr-1100.01.pdf",
+      "sha256": "e951db35ef2ca2ef2457fdb67ef2c7753e2b786c39875b19bd56bebfa6f12649"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cr-1110.02.pdf",
+      "sha256": "98e7dda6eaeeab33b3ece33866f2e490fbc4bddda7c4e22945ac20eff75f3df1"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cr-1130.01.pdf",
+      "sha256": "7eaee78655832a4e98cd795b331be7e19940a7039ce57a0d07e2771124ba5921"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cr-1140.01.pdf",
+      "sha256": "55b28bf5385cf76753c0f281df37d6a944ad86f8ccffbc5fbc3b28ca135f50e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cr-1140.02.pdf",
+      "sha256": "28f970c32916e1db29f16f146281569de24f9908fa4d906bad22f260d0e187bf"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-cr-1150.01.pdf",
+      "sha256": "89b4f61cd4889d3648ca0590ae97021782e5fec15efe06c517823592d63d2a43"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.02.pdf",
+      "sha256": "807c9778e7c4d80e38baaa84ab4f9061853282ec563810241ba6e1a74a316afb"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.03.pdf",
+      "sha256": "df1a913c2d100a02d3118d394a6c991000fc108b6393b8e1b32114d05f9fd9c1"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.04.pdf",
+      "sha256": "7b7b4c334d5da90d6e362604ddd34eebefa0719f680e76dfd1472f61113a93aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.05.pdf",
+      "sha256": "c3047710e30410de224a933a5efa9a4be1a5b3eed41b83ae53d62af2916bc1ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.08.pdf",
+      "sha256": "a2bfae02700118a2bb97a7c0dd6ea0f594a9a69534908cc16bea4a11cdc08646"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.11.pdf",
+      "sha256": "c1d4883509fa1f474b828d569ad1b36d004a61da54195c3fddc99f34653d59cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.12.pdf",
+      "sha256": "16ac2069daa061e0577d7eb28d77b4e0e8c4c275d16837155e3ff73c94625a82"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.14.pdf",
+      "sha256": "6d88994e430fb6d608fa0f77e936ba830285da37b1162a3fa26175c65d7cdba9"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.15.pdf",
+      "sha256": "85a9a1f40ea600f688be674ac988f20206bfa05315f6ae24e89fd6afaa44e77e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-800.16.pdf",
+      "sha256": "c15e5cbd590550b757c33bb00f0ef35207a04310956a0b58968faf1aa031445d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-810.01.pdf",
+      "sha256": "b4dba42b520f2f30618014fe56114247b15f2f3dcb7d6a6eee2e0e0cfbb6500e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-810.02.pdf",
+      "sha256": "efd35d7a24b37a55f33f012aee110ec02b2d1d97060a0242088bef083d230817"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-810.04.pdf",
+      "sha256": "00b7905a7467b8cb661be50f606ebb704ccc5950347ed1989077ea76bba92359"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-810.05.pdf",
+      "sha256": "d1b29449ed754eaa6287835fa04bf89662bdf17cbd94e33992de86092376775d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-820.01.pdf",
+      "sha256": "81c9bb6d9726cac998c1ead4ec53b6adc284986263db7e1e1161dcdcdee5a8ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-820.04.pdf",
+      "sha256": "bf1711d32c9e32695a8ba795e87310ad1cfc0932e4de7d916db4bae03e67d8a0"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-830.01.pdf",
+      "sha256": "32a42cd6f7863960fd673a11c27bb131293ca34a9851d6a17ec7d9c95b5aae3a"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-830.02.pdf",
+      "sha256": "af2fea6e9f03d6afb7d783d383351c00dedae4d7d2602a1ed1a2a7fc298a861a"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-830.03.pdf",
+      "sha256": "01c69b0c7dc4df1dbec7724f406d4b1392a27a1c86da154f8eda4f7607cda797"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-830.04.pdf",
+      "sha256": "aea62c5261d6010fc8e54520a9ec0ebbd954c1be840662e4d7dfc236412acdc2"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-840.01.pdf",
+      "sha256": "c4e841c5579b7290c946076963afe5254b18b4c2c29d7e1a222b0515570f203e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-840.02.pdf",
+      "sha256": "8895dbe3e0b8d841623a5e02a83c068a4e35ca4517a59adebe808edaec2425fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-840.03.pdf",
+      "sha256": "85d7525db78311fbad66bf694b9207c073ab4125f5b58e8e40a0015039a361a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-840.04.pdf",
+      "sha256": "a09e62075a2ec33ee8e596db26e508b97d884c4f5151581bc5e5dfcd810ea85a"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-840.05.pdf",
+      "sha256": "3d1819441adeb96a4a918ab318f6e956003b2e89c1866785728abc894c5ea6a6"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-840.06.pdf",
+      "sha256": "8c34de982d9ef4dd9bf2ccee84a04a6e08f85a43c994ca6749b1b8243162014e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-840.07.pdf",
+      "sha256": "3103adfb66f8a6327b09383ba3a468c428b3a0c314c4d802a983cdb78bcf1cae"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-840.08.pdf",
+      "sha256": "2458d8eeacde7840f3d4daa73b25428f444899501f3dc27fdf98e4b251c174ba"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-850.01.pdf",
+      "sha256": "6b5808fea650ac023c1f52f01a54d9f208363cb39fe0204ec2d04e08be8d5de8"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-860.02.pdf",
+      "sha256": "b7336b44f1098e28b95ed51cc10b3bc3de29e65167f324e9d25bc215ba8b2fb4"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-860.03.pdf",
+      "sha256": "c9079429edf1e3e7a3fae2ec043e92a77eae4808c79d61fd6e4d54e18dc2483e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ct-860.05.pdf",
+      "sha256": "5f814dffd0b4986a143e8cc0626bc6f31987d4c49aa5722c7405d267599f5db9"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-900.02.pdf",
+      "sha256": "8393a6715fa9821a5d1e868bdc8ada0d69f0a40f60c81244d19bc7ad8b025996"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-900.04.pdf",
+      "sha256": "80ba0cf9523fa57c842fea0d394c13b45f808c28065e2616f7db76d72b5a6d2d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-900.05.pdf",
+      "sha256": "2a12d918acc9c10d49da7e64ba450070e219c963e504e028d20878a9a683033a"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-900.06.pdf",
+      "sha256": "831187af86a2519cc4c06cce17e12323dd11eb607bf06b5f6ac7e97bc45de5f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-910.01.pdf",
+      "sha256": "56a79319a0e3fa11a5dd9b1974d825948e24678c63fe79fb1fc4537fde03e46e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-910.03.pdf",
+      "sha256": "ee12e6190717f88059f95f89c95317621e05c456ccb45070f55f14f4714a6e49"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-910.04.pdf",
+      "sha256": "8aed8cebc3908abea6b077a04a8c82dde2683f8a9d953d678b7257b5e93bee17"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-910.05.pdf",
+      "sha256": "d29693c7553482561ce43fda278984fe4ea3d34a7398e11f5bded4f503a83170"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-920.01.pdf",
+      "sha256": "d4fdd6174d4bd0243fbb0220dbf47a731b5452255e3cbd468229c87d8a84b949"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-920.02.pdf",
+      "sha256": "2c71500fa9dd405a57ab42f19e58346b1f4798edea02792030620c233492f186"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-fd-920.04.pdf",
+      "sha256": "93d58d1724c96c82f5069521a5c5e78e416257f01ab5fc0793b883010fa4dbdb"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ffm-600.02.pdf",
+      "sha256": "dd02f0d6dd683a5aa508a5e21ab168550e042c202f9224dc3aaf897ed2037d87"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-is-300.01.pdf",
+      "sha256": "6ed5da00dca8e962baf4a5bf776c91994a3f706e25401e246619bd7667776181"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-is-320.01.pdf",
+      "sha256": "76d263d6a562fea348471840851cd27d123e832d2319418907c313bde4a3c01c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-is-320.02.pdf",
+      "sha256": "fed04ac1321a720d4561f800947df5d9dbbe0f57bb0df371d71bad47f558b439"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-mo-1000.02.pdf",
+      "sha256": "7d3c0dad9ac7f5a675d4509dce26cbf7e72cf075015afc8a430e4c4951893860"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-200.01.pdf",
+      "sha256": "dbff90decb9a37e9fbe6331783a8576f5219e7e59e3695c4dcd18557effa733d"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-200.04.pdf",
+      "sha256": "57232d0107914712c65880e220273bbdfc7a2452a006c13c7c1b2320d1b3229e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-200.05.pdf",
+      "sha256": "139c57343c4fd002f6290ec183e2077e7aa5f94e8b2a28110b3076ed7713ad4f"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-200.06.pdf",
+      "sha256": "7c716e07baf63089fe5150bca364577bc8cb5fa651fe898844df0959e22b0a90"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-200.07.pdf",
+      "sha256": "4c23c6002afc9c829457ec24baf934dab95e765fae8e6bf5325c27a590cb00cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-200.08.pdf",
+      "sha256": "606b4d550d907a160b4875f56756f8c32db251d3173a5de039b6dba847f082ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-200.09.pdf",
+      "sha256": "038e0b00c877f6086378eb8fd4f3c7776c8ea1fe0df16891d41ab4412a8d4e74"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-200.11.pdf",
+      "sha256": "9b63fa9ed97646113f662a34a0347da93e0d10030254bbcabc27f2522f07cd95"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-200.12.pdf",
+      "sha256": "f599dcfb2897aa4ae6c4556a4c7654193c205ab8f255cfd29f927172970aa406"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.01.pdf",
+      "sha256": "91bb6768f67f5ff0a8c03fa5a93eadedc48e34c9a55144edf383b9e249157b5c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.02.pdf",
+      "sha256": "d1e52849ef37956cfddfc9898d11426187a27c20a6af67b2ec11e3bbf2978f1f"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.07.pdf",
+      "sha256": "189d9609e33c557e1a0374758f963a008b333663391267c9ae0b6fe2cb3829fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.11.pdf",
+      "sha256": "3d0fb186f0fc3af0794ace10cda9ba7cd4eff54d860a6e652a479e0ec06a6eac"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.12.pdf",
+      "sha256": "530133ae029458473568ccb93b193aef664fb317ba26784e8032b01a6bebd69b"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.15.pdf",
+      "sha256": "cfa54a2ea11a397099fb376223fbc5d4d6cdac708f22dc79ade880960b07f41c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.16.pdf",
+      "sha256": "dde991ca51f19abe6b1b378d3a1df22d000fbac8fdabfc6eb175d37c0e2ebf0e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.18.pdf",
+      "sha256": "81d41b684fc51ccdcbd72574d4d5d221b4f271030aa5c577bf18f9e6cb42f8f1"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.19.pdf",
+      "sha256": "bb131b10acb2cd6c6d3b6a745c972b06ee300a61d46a65f564446507d3d45de6"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.20.pdf",
+      "sha256": "8469839f17888a9200cd503ed38211b35de4e5dd5ba1ebf2d35d1a13a2047015"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-210.21.pdf",
+      "sha256": "8d5dc943658241e2b6f11ac6c4b977269c255d75dc829007e6f05ed512f01200"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-220.01.pdf",
+      "sha256": "d0edf6790696d3092b21328d6fda1933d5dac006bea748142db33c44d60f26af"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-220.03.pdf",
+      "sha256": "95450a427f2752b6f444b7bd90f30413e623bc967dadebb50db3d00b2c852b10"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-220.04.pdf",
+      "sha256": "6af44695273a6620bb1ecaa020c13f2950faa46cab80efc774eb56bf63aee166"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-220.06.pdf",
+      "sha256": "c0734688f19a7b4f0526c8f67313d64be9be6db7a0eced90c0f37659f3d440cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-ns-230.01.pdf",
+      "sha256": "6214983b73a0b778fa643b2fae232cd0f45f09f41ed45b3df762d805bafaf430"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-nsa-500.01.pdf",
+      "sha256": "a0dcb605a0b4bbfb82636235f597600e42191b0b17da14ed2a99bae565359131"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-nsa-500.02.pdf",
+      "sha256": "fda58bcdd38717d8b5e6abed58c18b480264e900f9b3a5f927868cd4a022edd1"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-nsa-500.03.pdf",
+      "sha256": "0a587ba54b94bc33db192178029570a772fcf0cfdf6cd1dc073fcb779840b776"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-nsa-500.04.pdf",
+      "sha256": "e8297c54a19ea3fb3b394554db4466439abd00ceb54b3d4165a7268ef65c55b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-nsa-500.05.pdf",
+      "sha256": "f4c9539a775fb527b581aa7a4447b35376e57f95e51fdd3eac3aab26fd02656e"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-nsa-500.10.pdf",
+      "sha256": "cb36014f974f691864a59d31e577f84d0a8b8768f73b38b8bd3105007cd97d43"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-nsa-500.17.pdf",
+      "sha256": "0197e3da03daf92096d704e448ee21d91bd92b4a39ab511bd4431c2332a1a691"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-om-400.02.pdf",
+      "sha256": "6b98323dcf7532af31c9e109852e86c24c3fb492d7d6ca452ae6508df527a390"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-om-420.01.pdf",
+      "sha256": "5fa1e057803c79b6464eec45fd0f785e814cd74c1aeb809ceee2114bb7a3424b"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-om-420.02.pdf",
+      "sha256": "efc83b77e2584ecb909f332cd9fefb6e5257a3435cea433f94699d3b2855ae85"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-om-420.04.pdf",
+      "sha256": "14d39aaca0dfb55f0454e84125836fe87660c7481602afe0f6701f41f92d51aa"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-om-430.01.pdf",
+      "sha256": "3f2d0423fd34192c8cd286d6cee7d3119493be78d353dfcb18504ba7728598de"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-om-440.02.pdf",
+      "sha256": "b2060f91985a33739d9568111076bcc4fa6ca59311b235060501de0787ab5df8"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-om-450.01.pdf",
+      "sha256": "53dae06950944cf565f47b2413f8a970081b5bed1d483b7070a1c168b9518d3f"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.01.pdf",
+      "sha256": "b034025d294b4cb25ae5bd6c41a8cf8c71cd6e2abe0226010c87fea533b84ddc"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.02.pdf",
+      "sha256": "84325794f799887c110824b1e0cf7c143105f16cceced0f7d9d8806c0c71c9cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.03.pdf",
+      "sha256": "2c24f23456e076a88c5db49e48c8ea895b27d8c0afc9f586b1ff77c3f2b17409"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.04.pdf",
+      "sha256": "d050b8f727352951168a6924b5cee6d737e780268a43ea99c1f2e04196db2983"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.05.pdf",
+      "sha256": "00c9cfab0dc9296917dc0efb4330784b01bc3d40aff940677f5a3433596204cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.06.pdf",
+      "sha256": "4ba75219e215c0be100a57b7ddfdb41bf439a98c31e5c79f170a83211d7e4261"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.07.pdf",
+      "sha256": "0b844bcd83433dee679ef6a46795a9a4787ab0fef38e8018cc53fe749e3f78fd"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.08.pdf",
+      "sha256": "6401e1d197068c3d5f7c3365df3590edaed09eea46a5230d20d994cfe37ae61c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.09.pdf",
+      "sha256": "797b5bf668ce428cb70b8ea17e0f56e4f3de526c355f64f2417c270e90538e05"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.10.pdf",
+      "sha256": "cdc361cb8ba32696f1f61d6372f7f0bfb2e345b7c10f7783fc3cb5db75575732"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.11.pdf",
+      "sha256": "e7e9ecbe64ffac82a555567523842452c5941b18ffb59e60da94b2817f98227c"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-100.12.pdf",
+      "sha256": "ea83607e8affa427bf9d8b17a5ea8d3b29f618f3f5b9e88d4ee1158c0139e11b"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-110.01.pdf",
+      "sha256": "4f7a40b7f5f47ac90082f1d4eea1c113e8eee3a8596fb357e863483f47306327"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-130.01.pdf",
+      "sha256": "f427689a303e4bb1e596458df4a52fd066f3b3931b54ed992e8de6c2f2c5f4b3"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-130.02.pdf",
+      "sha256": "edf05d1d8ad84d4a4c31f59dc928ad72dd00c967d3e6521b3d32d93005966635"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-130.03.pdf",
+      "sha256": "6fe1c5190c8ded8b41f83c2ab1caf868e0ff0ddf39eb1a669c8dc3fbd760f335"
+    },
+    {
+      "path": "data/corpus/sources/us-ga/manual/2026-09-10-wic-state-policy-manual/official-documents/us-ga-wic-manual-vm-140.01.pdf",
+      "sha256": "7fd0c75b3024d86fb3728d5c86da0032db7ef99b4e3ad2b1640f5e887cfe74c5"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-state-policy-manual --manifest manifests/us-ga-wic-policy-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 254,
+    "missing_count": 0,
+    "provision_count": 254,
+    "source_count": 254
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:43:37.352278+00:00",
+  "jurisdiction": "us-ga",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "Wb6WOpDyDHe+aYkQkND/BoJVn6Ct8mp7gLL2Nxl0kCMWE6r7US6ItksC9u8hDcWwyo30uE0FhOX0+pnKwGjpDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-state-policy-manual"
+}

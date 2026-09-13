@@ -1,0 +1,101 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "40199f5c9af0138a33886bf9834b6bc25e61e3a0c260985b4d3ae67b48d25bf3"
+    },
+    {
+      "path": "data/corpus/inventory/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "7fd36cca0824dcdca13dda25c1f0f54a44ad5b0f7db1110ce24bbdbce209f353"
+    },
+    {
+      "path": "data/corpus/provisions/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "ebd6923ed2579029ae6cb89a30c8452ef0ae49ecbe2d3aa4d2dc4e911fcbaeaf"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-501.pdf",
+      "sha256": "7af3a6df515e4623a4644622e08827414b31ce31ed4e1524f3fc4087f902a96d"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-502.pdf",
+      "sha256": "6db51a4edbb3333ab1a03f6d3c01cfbd1380a4a61ddebb69b10f93332f94fb21"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-503.pdf",
+      "sha256": "d0a6d0b5f59bdb035807847a0716163d540d3316d5934c835d64aa5a748d5ad9"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-504.pdf",
+      "sha256": "cadf5d823ffeb0711775f5c32d1f8c57272198d28dfa4718a7f5291898c6f878"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-505.pdf",
+      "sha256": "bdcef59688fe7a6421924608ac83001a3c0f5744a0176c7d1882e4261d45e4ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-506.pdf",
+      "sha256": "0ce46a8b3fa6381621f727b98e863aef3cf01d526644b78efed663261a0b08e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-508.pdf",
+      "sha256": "82a6cb3360255aa68db9771251d1163fcb9e14edec3e8ddc8ef35f518db86d7a"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-515.pdf",
+      "sha256": "c6ac9d4e8e959056150fa5088bead17785cd8303ee704cd36d4bb4afe5b05d6c"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-516.pdf",
+      "sha256": "b95dedbd6a5cf0655a3c6d39d6504b6a8619c0e225ae764cd89592ece1edbc2b"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-517.pdf",
+      "sha256": "9d77f1ff30611a6a7506e5a2f7d921a36188c404893c814df697830a1a797704"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-518.pdf",
+      "sha256": "6c0165ce122d7300eed0a33dbdb6e1e693cd771175f8be0856dadc0d8df03d82"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-519.pdf",
+      "sha256": "9413ca7190028e67547714a758c6805bf9fcb7054be5999a03ac43ce1ce583c5"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-520.pdf",
+      "sha256": "79b660fa84d2c03ca1faa34c13377bb21f9c5d3aa5e52b9aaf961b8f796fa175"
+    },
+    {
+      "path": "data/corpus/sources/us-ma/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ma-medicaid-130-cmr-522.pdf",
+      "sha256": "554750ce6ce69816f4e3415ab114296d9af8f41291ac7fcbeba7a05e303e1d1d"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-ma-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 276,
+    "missing_count": 0,
+    "provision_count": 276,
+    "source_count": 276
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:55:10.945517+00:00",
+  "jurisdiction": "us-ma",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "DXzwFrdvWGz21dXuQJ92QmclY/5z0JYj1IsjcmTvDGCKEdDiiuEYLySRNcnCFHr979Lc5zvbIaVpJu6kuy5TBg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

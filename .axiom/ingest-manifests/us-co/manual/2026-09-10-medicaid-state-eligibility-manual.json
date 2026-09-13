@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-co/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "d42c2eb0ba4273a646a860128b5d26a09494eec2435d4d623409b5dab7177096"
+    },
+    {
+      "path": "data/corpus/inventory/us-co/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "7fa7be4b6a0a0aa86404af6709b03918ca095b5220a13c01ae4fcffd196ae03c"
+    },
+    {
+      "path": "data/corpus/provisions/us-co/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "6840463a9b3236419fea49c7b498809a1e3adc601f2f2195a1ac6192c5846f8b"
+    },
+    {
+      "path": "data/corpus/sources/us-co/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-co-medicaid-10-ccr-2505-10-8-100.pdf",
+      "sha256": "08ed1c706c32426d67db5fccad3dafc621591f72cadfa91151ca1ac63b1db905"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-co-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 291,
+    "missing_count": 0,
+    "provision_count": 291,
+    "source_count": 291
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:37:00.960184+00:00",
+  "jurisdiction": "us-co",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "lne6aX6Hzfq7GAwBCnJ5vCSQQDqW/tDqBorPgPNSWIe3rhWpQ3qxRqNY5KESJbixFMJR2ZiIMdHhtH8kDt4rDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "d1ed36009490d90f6e93b2dd163360c5ed124c3118da11d96dfdfb7fa7058843"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/manual/2026-09-10-snap-state-manual-completion.json",
+      "sha256": "a06631d6029a29eec87f0c83f715c6f9a24d6d3a69c131b62c8084285fb0b9b8"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/manual/2026-09-10-snap-state-manual-completion.jsonl",
+      "sha256": "7f619563b48085c3d1753613364dd08fe44bf7cd5ebc9e0edd2ef755b494736c"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-snap-state-manual-completion/official-documents/ky-dcbs-dfs-om-vol-i.pdf",
+      "sha256": "ca003816d2a5939860aa7afa6a983ecdb8daa8ce4fba0fc0fb9b8c1a69d94689"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-snap-state-manual-completion --manifest manifests/us-ky-snap-manual-completion.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 257,
+    "missing_count": 0,
+    "provision_count": 257,
+    "source_count": 257
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:51:06.713251+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "sYUmvqM8sYF0GsDqr+03zj47OVAC8DUluI3z+1YP+pqQ/lpv2GhaipMlEjM0EIE0f8jRH28B8iUFgL8ku0eMAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-snap-state-manual-completion"
+}

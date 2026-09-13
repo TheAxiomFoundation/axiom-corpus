@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ky/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "f5591cbb01b691b8282d69b91c5169aa41b13b96ee0caabd759a8a8a60b6ea6b"
+    },
+    {
+      "path": "data/corpus/inventory/us-ky/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "11508cf81fc5ad9cb5611ff67978341f45a28ab863685542e9a960b99f03f7db"
+    },
+    {
+      "path": "data/corpus/provisions/us-ky/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "143bbd6111990e139e93953e6c5e6068b8c29c2d7111fa33a3d7345ac4de74e6"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ky-medicaid-volume-iva.pdf",
+      "sha256": "c18a4addefc8011bb6d398603b0bab775a204eabfcd564bbbd205915fc0f2a76"
+    },
+    {
+      "path": "data/corpus/sources/us-ky/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ky-medicaid-volume-ivb.pdf",
+      "sha256": "24ab321c5d97daea2d7510f33ba2d39cfaca7a972b4492be8d071017342ced13"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-ky-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 502,
+    "missing_count": 0,
+    "provision_count": 502,
+    "source_count": 502
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T21:50:48.934820+00:00",
+  "jurisdiction": "us-ky",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "MimcmYFKLU//BW3iMOUEkc6+dQn69T+CLnqdpXpZ78fw2iLawwY0EhZbjQcMm3rARVhuNGOLfmjhXGkOGUR4DA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

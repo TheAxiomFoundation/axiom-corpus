@@ -1,0 +1,1 @@
+(function() {    var toc =  [{"name":"A.  Hold Harmless for SSI Applicants and Recipients","type":"item","tilePath":"","description":"","url":"433/433-3_permanent_fund_dividend.htm#433-3_a._____hold_harlmess_for_ssi_applicants_and_recipients"}];    window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });    })();
