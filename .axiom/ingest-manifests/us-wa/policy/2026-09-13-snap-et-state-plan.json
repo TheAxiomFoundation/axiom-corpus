@@ -1,0 +1,49 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wa/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "04238f7de457c7a94eb93b742d1a2312a86e35e0bbd31bf6d1178fe2495d7310"
+    },
+    {
+      "path": "data/corpus/inventory/us-wa/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "5884bc409c9bb1eae3817dd064e454cdd4b98a47f462a06f5e6378de5d6962d8"
+    },
+    {
+      "path": "data/corpus/provisions/us-wa/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "e315622358609c8f7a9899d3e32f257d8afa1de7225d52292c88b5178f4fefd9"
+    },
+    {
+      "path": "data/corpus/sources/us-wa/policy/2026-09-13-snap-et-state-plan/official-documents/wa-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "7cee94120d01ea02499ec2f46feb230c31359cd31dc5067e09544765b93929a2"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 310,
+    "missing_count": 0,
+    "provision_count": 310,
+    "source_count": 310
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:27:34.325652+00:00",
+  "jurisdiction": "us-wa",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ko3hJTiM3AaHaElxmdn/SO8Q64KnP9jTpeOVDbq/Jjii0nXqKfHWE5yrItPIJBoT6z5f+HWbAXf/VfIbx7IVDg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}

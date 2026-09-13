@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/regulation/2026-09-13-title-7-part-276.json",
+      "sha256": "6f965ccf7296ae4486d393f06e159c5720e1151ef187feb5b1a99e91aa5ade81"
+    },
+    {
+      "path": "data/corpus/inventory/us/regulation/2026-09-13-title-7-part-276.json",
+      "sha256": "3e810a87dd191fad1f86a9074bac249047eb2dd424d6bfe739aac30bf1b19baf"
+    },
+    {
+      "path": "data/corpus/provisions/us/regulation/2026-09-13-title-7-part-276.jsonl",
+      "sha256": "d0f62014e4710bf34d03e369ebbce4bea82790045d08f87df9b53a58f28aa9af"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-7-part-276/ecfr/title-7-part-276.xml",
+      "sha256": "0ccfd4d7583eed07aed910d8783f928452ec260a330611d6eaf382c8e7ea5422"
+    },
+    {
+      "path": "data/corpus/sources/us/regulation/2026-09-13-title-7-part-276/ecfr/title-7.structure.json",
+      "sha256": "d7582cd2e4e68a469ad78f56db5e204aa4903e8f39ea4ee41d24ab05aa538384"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-title-7-part-276 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "regulation",
+  "generated_at": "2026-09-13T20:49:46.434628+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "7P1OmK7XsNkyBUiNKx2slJZSzmoddw7LGiIrhD+uGUrZR11g8ItNYT0H3WBplRUgbFuMihFwgMBYwMRCIrUeCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-title-7-part-276"
+}

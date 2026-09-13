@@ -1,0 +1,57 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-me/policy/2026-09-13-ccdf-rate-schedules.json",
+      "sha256": "4fcb77333349ff41e2fbdd3da20b53f17439d1c3b16a7ade2c6870e64c3c2809"
+    },
+    {
+      "path": "data/corpus/inventory/us-me/policy/2026-09-13-ccdf-rate-schedules.json",
+      "sha256": "106f42e1f50aa1bc862acd454d01715da5cac3e9e83ea8101782abef96956875"
+    },
+    {
+      "path": "data/corpus/provisions/us-me/policy/2026-09-13-ccdf-rate-schedules.jsonl",
+      "sha256": "c0bce412705c3f63393530b567f575f9a258ae55d281c52c33433da0650d01b6"
+    },
+    {
+      "path": "data/corpus/sources/us-me/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-me-ccdf-rate-schedule-ccap-income-guidelines-2026-04-18.docx",
+      "sha256": "0b66f8bf6384ebd5f6ac04bde3ba25d8ffd7c1720cbfea0fe161eba8f36025e2"
+    },
+    {
+      "path": "data/corpus/sources/us-me/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-me-ccdf-rate-schedule-ccap-parent-fee-guide-fy26.pdf",
+      "sha256": "ecd2e751a644f2666e6f1c1ec12e40f1c3c3dbf9f80e62b00e31821e250cc80b"
+    },
+    {
+      "path": "data/corpus/sources/us-me/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-me-ccdf-rate-schedule-child-care-market-rates-2025-05-19.pdf",
+      "sha256": "993145801bdb8e51a72f32f80e96023814268530a9d5f20d55d3aa18bea09168"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-rate-schedules (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 7,
+    "missing_count": 0,
+    "provision_count": 7,
+    "source_count": 7
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:40:26.272650+00:00",
+  "jurisdiction": "us-me",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "bZM79YDBTpFm3wWgdm6cp4IGjwwjPftdD01Tnj61wcrbB2MSI2g/+2Zu67dZJlWogoJFYFCyx2a4+VB3YYLwAQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-rate-schedules"
+}

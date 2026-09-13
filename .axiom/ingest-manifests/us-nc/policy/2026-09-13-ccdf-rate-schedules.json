@@ -1,0 +1,61 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nc/policy/2026-09-13-ccdf-rate-schedules.json",
+      "sha256": "19a97844c76f5378c6639382c9f0684adb97cd0520bdadb98bf250514af680be"
+    },
+    {
+      "path": "data/corpus/inventory/us-nc/policy/2026-09-13-ccdf-rate-schedules.json",
+      "sha256": "630ee032fc93956e5117c19437e2c9c3a8ec1fedccc09c95506acd28ee5f0ae2"
+    },
+    {
+      "path": "data/corpus/provisions/us-nc/policy/2026-09-13-ccdf-rate-schedules.jsonl",
+      "sha256": "e48d25433502ae95c050640f3959e0612747bc5f96f0887e206ad40923f5c993"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-nc-ccdf-rate-schedule-subsidized-market-rates-centers-2023-10-01.pdf",
+      "sha256": "824fa9953d93bbcf035428801dc9a862be534588df1e93b3d0a4f0bacf82c159"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-nc-ccdf-rate-schedule-subsidized-market-rates-centers-2026-10-01.pdf",
+      "sha256": "87aeca432e61722b00600f9c7594b8ebc207dfc3d3b3e1621cc00fff972ada55"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-nc-ccdf-rate-schedule-subsidized-market-rates-homes-2023-10-01.pdf",
+      "sha256": "ef6719134bee89f6f5a5d8c1ded5b4686b3d89ea9827e6cb3f536afc3316e967"
+    },
+    {
+      "path": "data/corpus/sources/us-nc/policy/2026-09-13-ccdf-rate-schedules/official-documents/us-nc-ccdf-rate-schedule-subsidized-market-rates-homes-2026-10-01.pdf",
+      "sha256": "500204e78baaf4cd87d1d657f7ce320c309bc57643b936fc4ec5c5cbee918376"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-ccdf-rate-schedules (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 8,
+    "missing_count": 0,
+    "provision_count": 8,
+    "source_count": 8
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T21:51:04.682156+00:00",
+  "jurisdiction": "us-nc",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "9t62bhOP+34xuEvSvLOJfi6EfhIGBbJ+6i8iGs5c9jbA4qq1f6DCLsqq4jD975CI9EqJvH2zyJPZdDl+Qzs2Dg=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-ccdf-rate-schedules"
+}

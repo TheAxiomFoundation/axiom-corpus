@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-nm/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "7cad890e8cc03b716563aec6624e752dd2992f87c282da3ad86ad98a66124731"
+    },
+    {
+      "path": "data/corpus/inventory/us-nm/policy/2026-09-13-snap-et-state-plan.json",
+      "sha256": "c0a8e7e60adf694fe92d09b7f30a2bb729f2111a50cba6e0e00586087922c32c"
+    },
+    {
+      "path": "data/corpus/provisions/us-nm/policy/2026-09-13-snap-et-state-plan.jsonl",
+      "sha256": "3b41231a9b3fa1b7c6130505e70c340dc75845e8d8e5569a6174343ced12dd58"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-snap-et-state-plan/official-documents/nm-snap-et-state-plan-ffy2026-amendment-1.pdf",
+      "sha256": "d6c8591dd83f9cf7e47304e18cb02b298c7e88f70b78c2cee3bd0f1c95c8f946"
+    },
+    {
+      "path": "data/corpus/sources/us-nm/policy/2026-09-13-snap-et-state-plan/official-documents/nm-snap-et-state-plan-ffy2026.pdf",
+      "sha256": "c5b8bc2967190b522479ac332ea75b2566237eadeb8bdbd324fd0112ebe5f02a"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "abaf05eef1ae816cedf75f4661181dd73fd7d13c",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-13-snap-et-state-plan (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 178,
+    "missing_count": 0,
+    "provision_count": 178,
+    "source_count": 178
+  },
+  "document_class": "policy",
+  "generated_at": "2026-09-13T22:00:44.043091+00:00",
+  "jurisdiction": "us-nm",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "4DOnLvHt6YD1SLKLiQd752m8iHoY9T4EAit4gbrmFs9DUpvmXn+DDxcVy3T8ZvKDNnMeFccAqcTxYTv53GIzCQ=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-13-snap-et-state-plan"
+}
