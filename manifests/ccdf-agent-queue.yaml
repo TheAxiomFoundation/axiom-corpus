@@ -237,7 +237,11 @@ states:
   taken_count: 0
   notes: 'Publisher blocked: TLS: www.dhss.as presents a self-signed, expired certificate (CN=cmaster70); verification impossible,
     not disabled; retried 2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (SSLCertVerificationError
-    / curl 60 self-signed, expired certificate). Nothing was worked around.'
+    / curl 60 self-signed, expired certificate); retried 2026-09-11T21:15Z from a US network (territories pass), same failure:
+    openssl reports the self-signed CN=cmaster70 certificate with verify return code 10 (certificate has expired), curl 60
+    for the plain client and for curl_cffi chrome120 alike; the plain-HTTP site http://dhss.as/index.html answers 200 but
+    its Child Care, ASNAP and ASWIC menu entries all point at the ''coming.html'' placeholder, so no plan is posted there
+    either. Nothing was worked around.'
 - jurisdiction: us-az
   name: Arizona
   queue_status: blocked_primary_source
@@ -927,8 +931,10 @@ states:
   target_manifest: manifests/us-mp-ccdf-state-plan-fy2025-2027.yaml
   taken_count: 0
   notes: 'Publisher blocked: HTTP 403 (nginx) for requests with browser UA and curl_cffi chrome120/safari17_0/edge101; retried
-    2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 nginx). Nothing was
-    worked around.'
+    2026-09-10T18:36Z, same failure; retried 2026-09-10T21:35Z from US network, same failure (HTTP 403 nginx); retried 2026-09-11T21:15Z
+    from a US network (territories pass), same failure (HTTP 403, server nginx/1.29.8, 358-byte body, for the plain browser
+    UA and curl_cffi chrome120; the parent Department of Community and Cultural Affairs site www.dcca.gov.mp answers the same
+    403). Nothing was worked around.'
 - jurisdiction: us-oh
   name: Ohio
   queue_status: agent_ready
@@ -1027,7 +1033,11 @@ states:
   taken_count: 0
   notes: 'Not extracted: publisher''s documents page lists only ''Borrador Plan Estatal Child Care 2025-2027'' (draft) plus
     hearing notices and supporting studies; no approved plan; retried 2026-09-10: unchanged (draft, hearing notice, ''Fee
-    Scale State Plan 2025-2027'' supporting document, emergency plan); no approved or certified plan. Nothing was worked around.'
+    Scale State Plan 2025-2027'' supporting document, emergency plan); no approved or certified plan; re-read 2026-09-11T21:15Z
+    (territories pass): unchanged, the documents page (84 file links) still lists only the ''Borrador Plan Estatal Child Care
+    2025-2027'' draft with its hearing notice, fee-scale study and emergency-plan attachments, plus the Child Care 2026-27
+    proposal guide and forms and the adopted Reglamento del Programa Child Care (Num. 8687 de 2016), which is a separate regulation
+    family. Nothing was worked around.'
 - jurisdiction: us-ri
   name: Rhode Island
   queue_status: agent_ready
@@ -1190,7 +1200,10 @@ states:
   notes: 'Not extracted: publisher''s site lists only a CCDF preprint draft for FFY 2019-2021; no FFY 2025-2027 plan found;
     retried 2026-09-10: the home page still lists the 2019-2021 preprint draft and the Office of Child Care & Regulatory Services
     page lists the FFY 2022-2024 plan (submitted 2021-09-17), policy memoranda and the 2022 market rate survey; site search
-    for ''CCDF 2025'' returns nothing; no FFY 2025-2027 plan. Nothing was worked around.'
+    for ''CCDF 2025'' returns nothing; no FFY 2025-2027 plan; re-read 2026-09-11T21:15Z (territories pass): unchanged, the
+    Office of Child Care & Regulatory Services page (36 PDFs) lists the FFY 2022-2024 plan (submitted 9-17-2021), the 2019
+    policy memoranda 101-106, the subsidy rules, the 2022 market rate survey and the ACF-218 QPR for FFY 2022; no FFY 2025-2027
+    plan. Nothing was worked around.'
 - jurisdiction: us-va
   name: Virginia
   queue_status: agent_ready

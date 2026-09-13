@@ -31,8 +31,8 @@ lead_list:
 status_counts:
   needs_review: 1
   done: 26
-  agent_ready: 24
-  blocked_primary_source: 1
+  blocked_primary_source: 4
+  agent_ready: 26
 states:
 - jurisdiction: us
   name: Federal
@@ -374,6 +374,28 @@ states:
   lead_counts: null
   candidate_sources: []
   notes: 'Batch 2 check: Arkansas TEA official documents already ingested. Done.'
+- jurisdiction: us-as
+  name: American Samoa
+  queue_status: blocked_primary_source
+  source_kind: program_not_operated
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section619&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-as
+    document_class: null
+    version: null
+  lead_counts: null
+  candidate_sources: []
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): American
+    Samoa is a ''State'' for TANF under 42 U.S.C. 619(5) but has never operated a TANF program; ACF''s TANF grantees are the
+    50 states, DC, Guam, Puerto Rico and the Virgin Islands (ACF OFA TANF program pages and the OPRE Welfare Rules Databook
+    territory coverage). The Department of Human and Social Services site (http://dhss.as; the https host presents a self-signed,
+    expired certificate, verification not disabled) lists no TANF program and its program pages are ''coming.html'' placeholders.
+    No territory TANF document exists to inventory; nothing was fetched. (2026-09-11 territories pass.)'
+  program_applicability: not_applicable
+  index_url: http://dhss.as/index.html
+  index_document_count: 0
+  taken_count: 0
 - jurisdiction: us-az
   name: Arizona
   queue_status: done
@@ -1453,6 +1475,26 @@ states:
     - policyengine-us#parameters/gov/states/ga/dfcs/tanf/resources/limit.yaml
     - policyengine-us#variables/gov/states/ga/dfcs/tanf/eligibility/ga_tanf_resources_eligible.py
   notes: Georgia DFCS TANF Policy Manual already ingested. Done per the prior-ingest list.
+- jurisdiction: us-gu
+  name: Guam
+  queue_status: agent_ready
+  source_kind: official_pdf_state_plan
+  primary_source_url: https://dphss.guam.gov/sites/default/files/GUAM%20TANF%20State%20Plan%20Renewal%20FY%202024%20-%202026%20FINAL%20CERTIFIED%20(1).pdf
+  target_manifest: manifests/us-gu-tanf-state-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-gu
+    document_class: policy
+    version: 2026-09-11-tanf-territory-state-plan
+  lead_counts: null
+  candidate_sources: []
+  notes: 'Territories pass (2026-09-11). Primary source confirmed from the publisher''s own index. Inventory: 6 PDFs on the
+    Bureau of Economic Security page: Application for Public Benefits, SNAP change report forms and self-employment income
+    form (application family), FY26 SNAP Employment and Training State Plan (E&T family), FY26 TANF State Plan (the FY 2024-2026
+    certified renewal); the ''FY26 SNAP State Plan'' entry has no link; taken 1. Extraction proven 2026-09-11 (coverage complete,
+    0 missing/extra/duplicate).'
+  index_url: https://dphss.guam.gov/bureau-economic-security-bes
+  index_document_count: 6
+  taken_count: 1
 - jurisdiction: us-hi
   name: Hawaii
   queue_status: done
@@ -2553,6 +2595,27 @@ states:
   index_url: https://dssmanuals.mo.gov/temporary-assistance-case-management/
   index_document_count: 486
   taken_count: 486
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  queue_status: blocked_primary_source
+  source_kind: federal_statute_excludes_jurisdiction
+  primary_source_url: https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section619&num=0&edition=prelim
+  target_manifest: null
+  target_scope:
+    jurisdiction: us-mp
+    document_class: null
+    version: null
+  lead_counts: null
+  candidate_sources: []
+  notes: 'Not applicable (recorded as blocked_primary_source because the queue schema has no not-applicable status): 42 U.S.C.
+    619(5) defines ''State'' for title IV-A as the 50 States, the District of Columbia, Puerto Rico, the Virgin Islands, Guam
+    and American Samoa; the Northern Mariana Islands is not a TANF jurisdiction and receives no TANF block grant (42 U.S.C.
+    619 is not in the corpus; cited from uscode.house.gov). No territory TANF document exists to inventory; nothing was fetched.
+    (2026-09-11 territories pass.)'
+  program_applicability: not_applicable
+  index_url: null
+  index_document_count: null
+  taken_count: 0
 - jurisdiction: us-ms
   name: Mississippi
   queue_status: agent_ready
@@ -3900,6 +3963,26 @@ states:
   index_url: http://services.dpw.state.pa.us/oimpolicymanuals/cash/index.htm
   index_document_count: 365
   taken_count: 365
+- jurisdiction: us-pr
+  name: Puerto Rico
+  queue_status: agent_ready
+  source_kind: official_pdf_regulation
+  primary_source_url: https://serviciosenlinea.adsef.pr.gov/documents/2.ReglamentoTANF.pdf
+  target_manifest: manifests/us-pr-tanf-state-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-pr
+    document_class: regulation
+    version: 2026-09-11-tanf-territory-regulation
+  lead_counts: null
+  candidate_sources: []
+  notes: 'Territories pass (2026-09-11). Primary source confirmed from the publisher''s own index. Inventory: 16 PDFs on the
+    ADSEF Reglamentos page: 2 adopted regulations (PAN 8684, taken by the SNAP/NAP territories row; TANF 7653, taken here),
+    3 program state plans (TEFAP 2025, CSFP 2025, NAP 2023), 8 application and certification forms, and public notices (LIHEAP
+    benefits, TANF services convocatoria, NAP-to-SNAP transition RFP); taken 1. Extraction proven 2026-09-11 (coverage complete,
+    0 missing/extra/duplicate).'
+  index_url: https://serviciosenlinea.adsef.pr.gov/sobre-adsef/reglamento
+  index_document_count: 16
+  taken_count: 1
 - jurisdiction: us-ri
   name: Rhode Island
   queue_status: agent_ready
@@ -4651,6 +4734,26 @@ states:
   index_url: https://www.dss.virginia.gov/relief/tanf/tanf-manual/
   index_document_count: 12
   taken_count: 10
+- jurisdiction: us-vi
+  name: Virgin Islands
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: null
+  target_manifest: manifests/us-vi-tanf-state-policy-manual.yaml
+  target_scope:
+    jurisdiction: us-vi
+    document_class: manual
+    version: null
+  lead_counts: null
+  candidate_sources: []
+  notes: 'Territories pass (2026-09-11): the Virgin Islands Department of Human Services, Division of Family Assistance page
+    (HTTP 200 to the plain client) lists 24 PDFs: SNAP application packets and forms, the FY 2026 SNAP income-limits chart
+    and simplified-reporting notice, the SNAP E&T plan and handbook, ABAWD flyers, ECAP forms, waivers and one TANF brochure
+    (participant leaflet). No TANF policy manual, adopted rule or state plan is posted; the TANF state plan is filed with
+    ACF through OLDC and not published by the territory. 0 taken. Nothing was worked around.'
+  index_url: https://dhs.vi.gov/family-assistance-programs/
+  index_document_count: 24
+  taken_count: 0
 - jurisdiction: us-vt
   name: Vermont
   queue_status: agent_ready

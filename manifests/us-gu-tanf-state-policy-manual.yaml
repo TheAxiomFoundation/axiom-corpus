@@ -1,0 +1,29 @@
+version: '2026-09-11'
+documents:
+- source_id: us-gu-dphss-tanf-state-plan-fy2024-2026
+  jurisdiction: us-gu
+  document_class: policy
+  title: Guam TANF State Plan Renewal, FY 2024-2026 (final, certified)
+  source_url: https://dphss.guam.gov/sites/default/files/GUAM%20TANF%20State%20Plan%20Renewal%20FY%202024%20-%202026%20FINAL%20CERTIFIED%20(1).pdf
+  source_format: pdf
+  source_as_of: '2026-09-11'
+  expression_date: '2023-10-01'
+  citation_path: us-gu/policy/acf/tanf-plan/fy2024-2026
+  extraction:
+    ocr: true
+  metadata:
+    primary_source: true
+    source_authority: Guam Department of Public Health and Social Services, Division of Public Welfare, Bureau of Economic
+      Security
+    document_subtype: state_plan_pdf
+    program: TANF
+    state_program: Guam TANF (Cash Assistance Program)
+    federal_program: TANF
+    manual_landing_page: https://dphss.guam.gov/bureau-economic-security-bes
+    source_discovery_group: us-gu/policy/tanf
+    discovered_via: manual-review:tanf-agent-queue; index https://dphss.guam.gov/bureau-economic-security-bes
+    plan_period: 2023-10-01 to 2026-09-30
+    plan_status: final certified renewal submitted to ACF OFA (cover letters dated December 2023)
+    source_last_modified: null
+    extraction_granularity: pdf_page
+    ocr_note: scanned image-only PDF; Tesseract (eng) page OCR

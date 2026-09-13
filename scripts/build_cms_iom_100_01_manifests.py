@@ -721,6 +721,67 @@ def update_queue(
     return queue["status_counts"]
 
 
+
+# ---------------------------------------------------------------- territories (2026-09-11 pass)
+# Medicare is federally administered in every territory (42 U.S.C. 1395x(x) includes Puerto Rico, the
+# Virgin Islands, Guam, American Samoa and the Northern Mariana Islands in "United States" for title
+# XVIII); no territory agency publishes a Medicare eligibility document, and the governing manual is the
+# Pub 100-01 scope already in the corpus. One done-by-pointer row per territory, applied with
+# --territory-rows (no cms.gov fetch, no manifest change).
+IOM_100_01_PAGE = f"{BASE}/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111"
+IOM_100_01_SCOPE = {"jurisdiction": "us", "document_class": "manual", "version": "2026-09-10-medicare-cms-iom-100-01"}
+TERRITORY_POINTERS = {
+    "us-pr": ("Puerto Rico", "us/manual/cms/iom/100-01/chapter-2/40.2 (automatic SMI enrollment does not apply to residents of Puerto Rico) and chapter-1 (entitlement)"),
+    "us-gu": ("Guam", "us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Guam-specific section)"),
+    "us-vi": ("Virgin Islands", "us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Virgin Islands-specific section)"),
+    "us-as": ("American Samoa", "us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no American Samoa-specific section)"),
+    "us-mp": ("Northern Mariana Islands", "us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Northern Mariana Islands-specific section)"),
+}
+
+
+def apply_territory_rows(queue_path: Path, only: set[str] | None = None) -> dict[str, int]:
+    queue = yaml.safe_load(queue_path.read_text())
+    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    for jur, (name, pointer) in TERRITORY_POINTERS.items():
+        if only and jur not in only:
+            continue
+        row = rows.get(jur) or {"jurisdiction": jur, "name": name, "lead_counts": {}, "candidate_sources": []}
+        row.update(
+            {
+                "queue_status": "done",
+                "source_kind": "federal_manual_pointer",
+                "primary_source_url": IOM_100_01_PAGE,
+                "target_manifest": "manifests/us-cms-iom-100-01.yaml",
+                "target_scope": dict(IOM_100_01_SCOPE),
+                "index_url": INDEX,
+                "index_document_count": 0,
+                "taken_count": 0,
+                "pointer": pointer,
+                "index_families": (
+                    "no territory Medicare document family: Medicare is federally administered and the territory "
+                    "publishes no eligibility document; the CMS Pub 100-01 family is already in the corpus"
+                ),
+                "notes": (
+                    f"Done by pointer (2026-09-11 territories pass): Medicare operates in {name} as federal law "
+                    "(42 U.S.C. 1395x(x) counts the territories as part of the United States for title XVIII; the "
+                    "section is not in the corpus). No territory agency publishes a Medicare eligibility or entitlement "
+                    "document (reviewed 2026-09-11: the territory health, human-services and Medicaid publishers list "
+                    "only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub "
+                    "100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on "
+                    "2026-09-10 (7 chapters, 341 provisions). Nothing was fetched."
+                ),
+            }
+        )
+        rows[jur] = row
+    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["status_counts"] = {}
+    for s in queue["states"]:
+        queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
+    queue["queue_status"] = "in_progress"
+    queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    return queue["status_counts"]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument(
@@ -736,7 +797,15 @@ def main() -> int:
         help="where chapter PDFs are cached while computing per-chapter extraction settings "
         "(default ~/.axiom/cache/cms-iom-<publication>)",
     )
+    parser.add_argument("--territory-rows", action="store_true",
+                        help="apply only the five territory done-by-pointer rows to the queue (no cms.gov fetch)")
+    parser.add_argument("--only", help="comma-separated jurisdictions to apply with --territory-rows")
     args = parser.parse_args()
+    if args.territory_rows:
+        only = set(args.only.split(",")) if args.only else None
+        counts = apply_territory_rows(ROOT / "manifests" / "medicare-agent-queue.yaml", only)
+        print(f"territory rows applied; queue {counts}")
+        return 0
     publication = PUBLICATIONS[args.publication]
     download_dir = args.download_dir or Path.home() / ".axiom" / "cache" / f"cms-iom-{publication.number}"
     session = requests.Session()

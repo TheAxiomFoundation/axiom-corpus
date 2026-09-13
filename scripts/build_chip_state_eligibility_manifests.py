@@ -11,6 +11,7 @@ are recorded on the queue rows only; no manifest is written for them.
 """
 from __future__ import annotations
 
+import argparse
 import re
 from pathlib import Path
 
@@ -2593,12 +2594,79 @@ DONE_BATCH4: dict[str, dict] = {
 
 
 
+# ---------------------------------------------------------------- territories (2026-09-11 pass)
+# All five territories run Medicaid-expansion CHIP (medicaid.gov "CHIP Program by State" map), so CHIP
+# eligibility lives in the Medicaid state plan and eligibility documents; none publishes a separate CHIP
+# manual, handbook or rule. CMS's CHIP State Plan Amendments page (read with the existing
+# browser_impersonation option: the plain client gets HTTP 403 from Akamai) hosts SPA approval packages
+# and the title XXI template, not territory CHIP plans. The Medicaid finding of the same pass
+# (scripts/build_medicaid_state_eligibility_manual_manifests.py --batch 6) is repeated per row.
+CMS_CHIP_SPA_INDEX = "https://www.medicaid.gov/chip/state-program-information/chip-spa"
+NEW_ROW_NAMES_TERRITORIES: dict[str, str] = {
+    "us-pr": "Puerto Rico", "us-gu": "Guam", "us-vi": "Virgin Islands", "us-as": "American Samoa",
+    "us-mp": "Northern Mariana Islands",
+}
+TERRITORY_MEDICAID_FINDING = {
+    "us-pr": ("https://medicaid.pr.gov/CMS/5", 138,
+              "the Puerto Rico Medicaid Program (medicaid.pr.gov, chain completed with the committed DigiCert G2 intermediate) "
+              "publishes applicant document lists, a pre-screening calculator and 138 provider-enrollment files, no eligibility "
+              "manual or reglamento; Plan Vital (ASES) pages are insurer and plan information"),
+    "us-gu": ("https://dphss.guam.gov/services/medicaremedicaid", 0,
+              "Guam DPHSS's Medicare/Medicaid and BHCFA pages are text-only with no document links, and the 2019 state plan "
+              "and handbook PDFs answer 404"),
+    "us-vi": ("https://dhs.vi.gov/office-of-medicaid/", 10,
+              "the Virgin Islands DHS Office of Medicaid page lists nine application forms and the Providers General "
+              "Information Manual (provider family), no eligibility manual or state plan"),
+    "us-as": ("https://medicaid.as.gov/", None,
+              "the American Samoa Medicaid State Agency site medicaid.as.gov has no DNS A record and cannot be reached"),
+    "us-mp": ("https://www.cnmimedicaid.org/departments/eligibility-enrollment", 3,
+              "the Commonwealth Medicaid Agency's Eligibility & Enrollment page links two application packets and an FAQ on "
+              "Google Drive and describes income limits only as percentages of the SSI Federal Benefit Rate; its SPA page "
+              "links a Google Sheet and the medicaid.gov SPA index"),
+}
+
+
+def territory_chip_row(jur: str) -> dict:
+    index_url, count, finding = TERRITORY_MEDICAID_FINDING[jur]
+    name = NEW_ROW_NAMES_TERRITORIES[jur]
+    return {
+        "queue_status": "blocked_primary_source",
+        "source_kind": "official_medicaid_expansion_chip_no_separate_document",
+        "primary_source_url": index_url,
+        "target_manifest": None,
+        "target_scope": {"jurisdiction": jur, "document_class": "manual", "version": None},
+        "index_url": index_url,
+        "index_document_count": count,
+        "taken_count": 0,
+        "index_families": {"separate_chip_eligibility_document": {"found": 0, "taken": 0}},
+        "notes": (
+            f"Blocked (2026-09-11 territories pass; first probe 2026-09-11T21:15Z from a US network). {name}'s CHIP is a "
+            "Medicaid-expansion CHIP (all five territories per the medicaid.gov CHIP Program by State map), so CHIP "
+            "eligibility is set in the Medicaid state plan and the Medicaid eligibility documents, and the territory "
+            f"publishes no separate CHIP manual, handbook or rule. The Medicaid finding of the same pass applies: {finding}. "
+            f"CMS's CHIP State Plan Amendments page ({CMS_CHIP_SPA_INDEX}) hosts SPA approval packages and the title XXI "
+            "template, not territory CHIP plans. 0 taken. Nothing was worked around."
+        ),
+    }
+
+
+
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--only", help="comma-separated territory jurisdictions whose rows are (re)applied; "
+                        "state rows and manifests are regenerated from the static tables either way")
+    args = parser.parse_args()
+    only = set(args.only.split(",")) if args.only else None
     queue = yaml.safe_load(QUEUE.read_text())
     rows = {s["jurisdiction"]: s for s in queue["states"]}
     for jur, name in {**NEW_ROW_NAMES, **NEW_ROW_NAMES_BATCH3, **NEW_ROW_NAMES_BATCH4}.items():
         rows.setdefault(jur, {"jurisdiction": jur, "name": name, "lead_counts": {},
                               "candidate_sources": []})
+    for jur, name in NEW_ROW_NAMES_TERRITORIES.items():
+        if only and jur not in only:
+            continue
+        row = rows.setdefault(jur, {"jurisdiction": jur, "name": name, "lead_counts": {}, "candidate_sources": []})
+        row.update(territory_chip_row(jur))
     written: list[str] = []
     for jur, spec in {**CONFIRMED, **CONFIRMED_BATCH2, **CONFIRMED_BATCH3, **CONFIRMED_BATCH4}.items():
         stem = f"{jur}-chip-state-eligibility-manual"

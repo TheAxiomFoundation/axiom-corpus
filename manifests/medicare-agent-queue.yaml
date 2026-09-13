@@ -30,6 +30,7 @@ lead_list:
   classifier: axiom_corpus.corpus.source_discovery.build_source_discovery_report
 status_counts:
   agent_ready: 1
+  done: 5
 states:
 - jurisdiction: us
   name: Federal
@@ -834,3 +835,125 @@ states:
     title: Information Security Acceptable Risk Safeguards Manual
     chapter_count: 0
     status: whole_manual_download_only
+- jurisdiction: us-as
+  name: American Samoa
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: federal_manual_pointer
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 0
+  taken_count: 0
+  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no American Samoa-specific section)
+  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
+    eligibility document; the CMS Pub 100-01 family is already in the corpus'
+  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in American Samoa as federal law (42 U.S.C. 1395x(x)
+    counts the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency
+    publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and
+    Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub
+    100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters,
+    341 provisions). Nothing was fetched.'
+- jurisdiction: us-gu
+  name: Guam
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: federal_manual_pointer
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 0
+  taken_count: 0
+  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Guam-specific section)
+  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
+    eligibility document; the CMS Pub 100-01 family is already in the corpus'
+  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Guam as federal law (42 U.S.C. 1395x(x) counts
+    the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency publishes
+    a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and Medicaid
+    publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub 100-01 (Medicare
+    General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters, 341 provisions).
+    Nothing was fetched.'
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: federal_manual_pointer
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 0
+  taken_count: 0
+  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Northern Mariana Islands-specific
+    section)
+  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
+    eligibility document; the CMS Pub 100-01 family is already in the corpus'
+  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Northern Mariana Islands as federal law (42
+    U.S.C. 1395x(x) counts the territories as part of the United States for title XVIII; the section is not in the corpus).
+    No territory agency publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health,
+    human-services and Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing
+    text is CMS Pub 100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10
+    (7 chapters, 341 provisions). Nothing was fetched.'
+- jurisdiction: us-pr
+  name: Puerto Rico
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: federal_manual_pointer
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 0
+  taken_count: 0
+  pointer: us/manual/cms/iom/100-01/chapter-2/40.2 (automatic SMI enrollment does not apply to residents of Puerto Rico) and
+    chapter-1 (entitlement)
+  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
+    eligibility document; the CMS Pub 100-01 family is already in the corpus'
+  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Puerto Rico as federal law (42 U.S.C. 1395x(x)
+    counts the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency
+    publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and
+    Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub
+    100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters,
+    341 provisions). Nothing was fetched.'
+- jurisdiction: us-vi
+  name: Virgin Islands
+  lead_counts: {}
+  candidate_sources: []
+  queue_status: done
+  source_kind: federal_manual_pointer
+  primary_source_url: https://www.cms.gov/regulations-and-guidance/guidance/manuals/internet-only-manuals-ioms-items/cms050111
+  target_manifest: manifests/us-cms-iom-100-01.yaml
+  target_scope:
+    jurisdiction: us
+    document_class: manual
+    version: 2026-09-10-medicare-cms-iom-100-01
+  index_url: https://www.cms.gov/medicare/regulations-guidance/manuals/internet-only-manuals-ioms
+  index_document_count: 0
+  taken_count: 0
+  pointer: us/manual/cms/iom/100-01/chapter-1 and chapter-2 (entitlement and enrollment; no Virgin Islands-specific section)
+  index_families: 'no territory Medicare document family: Medicare is federally administered and the territory publishes no
+    eligibility document; the CMS Pub 100-01 family is already in the corpus'
+  notes: 'Done by pointer (2026-09-11 territories pass): Medicare operates in Virgin Islands as federal law (42 U.S.C. 1395x(x)
+    counts the territories as part of the United States for title XVIII; the section is not in the corpus). No territory agency
+    publishes a Medicare eligibility or entitlement document (reviewed 2026-09-11: the territory health, human-services and
+    Medicaid publishers list only SHIP counseling notices and Part D information sheets), so the governing text is CMS Pub
+    100-01 (Medicare General Information, Eligibility and Entitlement Manual), extracted in full on 2026-09-10 (7 chapters,
+    341 provisions). Nothing was fetched.'

@@ -42,6 +42,9 @@ policy:
     (released scopes untouched; the next selector swaps the released version for the superseding one). Document-level citation
     paths are identical to the released scopes; page/block sub-paths move where a revised edition changed its page or block
     count. See docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-1.md.'
+  - 'Territories pass (2026-09-11, US network): PR (Reglamento 8684, the NAP eligibility regulation) and MP (FFY 2025 NAP
+    block-grant MOU) extracted; GU and VI (SNAP) and AS (ASNAP) publish no manual or plan. Generator: scripts/build_snap_state_manual_completion_manifests.py
+    --only us-pr --only us-mp --only us-gu --only us-vi --only us-as --corpus-base <corpus>.'
 states:
 - jurisdiction: us-al
   name: Alabama
@@ -135,10 +138,36 @@ states:
     notes: 'Superseding scope taken 2026-09-11 (whole policy set re-extraction, same eight citation paths): SNAP Certification
       Manual 07.01.2026 (589 pages, text changed) and Appendices 07.30.2026 (88 pages, was 85) replace the April/May editions;
       the nutrition-waiver and time-limit pages changed only in their sub-navigation line (site menu), the FAQ, final filing,
-      quick reference and NBI chart are text-identical. humanservices.arkansas.gov (Cloudflare) answers HTTP 403 (146-548 bytes)
-      to the plain client, the browser user agent and the chrome120 fingerprint, and HTTP 200 to the safari17_0 fingerprint
-      with its own user agent, so the manifest uses browser_impersonation: safari17_0 (direct), TLS verified. Extraction 6 s;
-      validate-release on the swapped selector ok, 0 errors.'
+      quick reference and NBI chart are text-identical. humanservices.arkansas.gov (Cloudflare) answers HTTP 403 (146-548
+      bytes) to the plain client, the browser user agent and the chrome120 fingerprint, and HTTP 200 to the safari17_0 fingerprint
+      with its own user agent, so the manifest uses browser_impersonation: safari17_0 (direct), TLS verified. Extraction 6
+      s; validate-release on the swapped selector ok, 0 errors.'
+- jurisdiction: us-as
+  name: American Samoa
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_document_not_published
+  primary_source_url: http://dhss.as/index.html
+  target_manifest: manifests/us-as-nap-plan.yaml
+  target_scope:
+    jurisdiction: us-as
+    document_class: policy
+    version: null
+  index_url: https://fns-prod.azureedge.us/nap/nutrition-assistance-program-block-grants
+  index_document_count: 1
+  taken_count: 0
+  index_families:
+    fna_nap_summary_factsheet_pdf:
+      found: 1
+      taken: 0
+    asnap_plan_of_operation_or_manual:
+      found: 0
+      taken: 0
+  notes: 'Territories pass (2026-09-11): American Samoa runs the ASNAP block grant instead of SNAP (7 U.S.C. 2028). The administering
+    agency, the Department of Human and Social Services, presents a self-signed, expired certificate on https://www.dhss.as
+    (verification not disabled; curl 60 plain and curl_cffi chrome120) and its plain-HTTP site http://dhss.as/index.html (HTTP
+    200) has ''coming.html'' placeholders for ASNAP, ASWIC and Child Care; FNA''s NAP page hosts only the FY 2025 American
+    Samoa NAP summary factsheet and links the DHSS site. No plan of operation or eligibility manual is published. 0 taken.
+    Nothing was worked around.'
 - jurisdiction: us-az
   name: Arizona
   queue_status: blocked_primary_source
@@ -283,6 +312,37 @@ states:
     document_class: manual
     version: 2026-07-13-recovery-r2026-07-17-dedup-r2026-09-11-snap-supersede-dedup
     replaces: 2026-07-13-recovery-r2026-07-17-dedup
+- jurisdiction: us-gu
+  name: Guam
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: https://dphss.guam.gov/bureau-economic-security-bes
+  target_manifest: manifests/us-gu-snap-manual-completion.yaml
+  target_scope:
+    jurisdiction: us-gu
+    document_class: manual
+    version: null
+  index_url: https://dphss.guam.gov/bureau-economic-security-bes
+  index_document_count: 6
+  taken_count: 0
+  index_families:
+    application_and_change_report_form_pdf:
+      found: 4
+      taken: 0
+    snap_employment_and_training_state_plan_pdf:
+      found: 1
+      taken: 0
+    tanf_state_plan_pdf:
+      found: 1
+      taken: 0
+    snap_state_plan_or_manual:
+      found: 0
+      taken: 0
+  notes: 'Territories pass (2026-09-11): Guam runs SNAP (7 U.S.C. 2012(r)) through DPHSS''s Bureau of Economic Security, whose
+    page (HTTP 200) lists the Application for Public Benefits, change-report and self-employment forms, the FY26 SNAP Employment
+    and Training State Plan and the FY26 TANF State Plan; its ''FY26 SNAP State Plan'' entry carries no link (the anchor is
+    commented out in the page source) and the SNAP services page is a text-only description. No SNAP policy manual or plan
+    of operation is published. 0 taken. Nothing was worked around.'
 - jurisdiction: us-hi
   name: Hawaii
   queue_status: done
@@ -522,10 +582,10 @@ states:
     revised_documents:
     - me-ofi-snap-et-rules-chapter-609
     run_note: docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-2.md
-    notes: 'Superseding scope taken 2026-09-11 (both rulebooks re-extracted, same two citation paths): Ch. 609 SNAP E&T is the
-      edition amended August 30, 2026 (filing 2026-191, file 144c609-2026-191-AMD.docx, Last-Modified 2026-08-28), body changed;
-      Ch. 301 is the same 144c301-2026-133-NSC.docx and text-identical. Extraction 1 s; validate-release on the swapped selector
-      ok, 0 errors.'
+    notes: 'Superseding scope taken 2026-09-11 (both rulebooks re-extracted, same two citation paths): Ch. 609 SNAP E&T is
+      the edition amended August 30, 2026 (filing 2026-191, file 144c609-2026-191-AMD.docx, Last-Modified 2026-08-28), body
+      changed; Ch. 301 is the same 144c301-2026-133-NSC.docx and text-identical. Extraction 1 s; validate-release on the swapped
+      selector ok, 0 errors.'
 - jurisdiction: us-mi
   name: Michigan
   queue_status: done
@@ -596,6 +656,35 @@ states:
     document_class: manual
     version: 2026-09-11-mi-snap-manual-supersede
   superseding_queue_status: agent_ready
+- jurisdiction: us-mp
+  name: Northern Mariana Islands
+  queue_status: agent_ready
+  source_kind: official_pdf_block_grant_mou
+  primary_source_url: https://cnminap.gov.mp/
+  target_manifest: manifests/us-mp-nap-mou-fy2025.yaml
+  target_scope:
+    jurisdiction: us-mp
+    document_class: policy
+    version: 2026-09-11-snap-nap-mou
+  index_url: https://cnminap.gov.mp/
+  index_document_count: 27
+  taken_count: 1
+  index_families:
+    nap_block_grant_mou_pdf:
+      found: 1
+      taken: 1
+    disaster_nap_application_and_checklist_pdf:
+      found: 2
+      taken: 0
+    summer_ebt_waiver_pdf:
+      found: 1
+      taken: 0
+    application_center_forms_guides_and_reports_pdf:
+      found: 23
+      taken: 0
+  notes: 'Territories pass (2026-09-11): 1 documents taken from the publisher''s own index (27 documents inventoried across
+    4 families; 1 taken; citation paths checked against every us-mp provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
+    Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-11-territories-ten-programs.md.'
 - jurisdiction: us-mt
   name: Montana
   queue_status: done
@@ -722,13 +811,13 @@ states:
     - nd-hhs-snap-manual-toc
     - 62 of the 64 topics
     run_note: docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-2.md
-    notes: 'Superseding scope taken 2026-09-11 (whole Release 26.5 document set re-extraction, same 67 citation paths) at the
-      publisher''s Release 26.7 edition (''Last published Sep 02, 2026''; every file Last-Modified 2026-09-02): landing page
-      (now carries the Release 26.7 summary), TOC (66 topics) and 62 topics changed; the ABAWD topics 401/402, 601, Appendix
-      B standards, 107, 302, 502 and the release log carry policy text changes, the rest differ by the republished MadCap template
-      (the ''Overview'' paragraph became an h2 heading); topics Appendix A glossary and Introduction and the Release 26.5 PDF
-      are text-identical. Extraction 9 s; validate-release on the swapped selector ok, 0 errors. The 2026-09-10 completion scope
-      (two new topics, Release 26.6 and 26.7 PDFs) is untouched.'
+    notes: 'Superseding scope taken 2026-09-11 (whole Release 26.5 document set re-extraction, same 67 citation paths) at
+      the publisher''s Release 26.7 edition (''Last published Sep 02, 2026''; every file Last-Modified 2026-09-02): landing
+      page (now carries the Release 26.7 summary), TOC (66 topics) and 62 topics changed; the ABAWD topics 401/402, 601, Appendix
+      B standards, 107, 302, 502 and the release log carry policy text changes, the rest differ by the republished MadCap
+      template (the ''Overview'' paragraph became an h2 heading); topics Appendix A glossary and Introduction and the Release
+      26.5 PDF are text-identical. Extraction 9 s; validate-release on the swapped selector ok, 0 errors. The 2026-09-10 completion
+      scope (two new topics, Release 26.6 and 26.7 PDFs) is untouched.'
 - jurisdiction: us-ne
   name: Nebraska
   queue_status: done
@@ -774,10 +863,10 @@ states:
     run_note: docs/ingest-runs/2026-09-11-snap-superseding-scopes-batch-2.md
     notes: 'Superseding scope taken 2026-09-11 (whole Title 475 re-extraction of the same manifest, same five citation paths):
       chapters 2 and 3 are the 07-28-2026 editions (bodies changed; chapters 1, 4, 5 byte-identical text). The publisher no
-      longer serves any _Official blob the API names (HTTP 400 ''blob doesn''t exist'' for chapters 1-3), so every chapter is
-      taken from the API''s pdfBlobName copy; chapter 1 is the same 12-24-2025 edition as a 33-page file. TLS verified with
-      the DigiCert intermediate under data/certs/ (REQUESTS_CA_BUNDLE and CURL_CA_BUNDLE); verify_tls: false removed from the
-      manifest. Extraction 5 s; validate-release on the swapped selector ok, 0 errors.'
+      longer serves any _Official blob the API names (HTTP 400 ''blob doesn''t exist'' for chapters 1-3), so every chapter
+      is taken from the API''s pdfBlobName copy; chapter 1 is the same 12-24-2025 edition as a 33-page file. TLS verified
+      with the DigiCert intermediate under data/certs/ (REQUESTS_CA_BUNDLE and CURL_CA_BUNDLE); verify_tls: false removed
+      from the manifest. Extraction 5 s; validate-release on the swapped selector ok, 0 errors.'
 - jurisdiction: us-nh
   name: New Hampshire
   queue_status: agent_ready
@@ -1007,6 +1096,38 @@ states:
     document_class: policy
     version: 2026-09-11-ok-snap-manual-supersede
   superseding_queue_status: agent_ready
+- jurisdiction: us-pr
+  name: Puerto Rico
+  queue_status: agent_ready
+  source_kind: official_pdf_regulation
+  primary_source_url: https://serviciosenlinea.adsef.pr.gov/sobre-adsef/reglamento
+  target_manifest: manifests/us-pr-nap-eligibility-regulation.yaml
+  target_scope:
+    jurisdiction: us-pr
+    document_class: regulation
+    version: 2026-09-11-snap-nap-regulation
+  index_url: https://serviciosenlinea.adsef.pr.gov/sobre-adsef/reglamento
+  index_document_count: 16
+  taken_count: 1
+  index_families:
+    adsef_reglamento_pdf:
+      found: 2
+      taken: 1
+    nap_state_plan_of_operations_pdf:
+      found: 1
+      taken: 0
+    other_program_state_plan_pdf:
+      found: 2
+      taken: 0
+    application_and_certification_form_pdf:
+      found: 8
+      taken: 0
+    public_notice_and_rfp_pdf:
+      found: 3
+      taken: 0
+  notes: 'Territories pass (2026-09-11): 1 documents taken from the publisher''s own index (16 documents inventoried across
+    5 families; 1 taken; citation paths checked against every us-pr provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
+    Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-11-territories-ten-programs.md.'
 - jurisdiction: us-tn
   name: Tennessee
   queue_status: done
@@ -1115,6 +1236,46 @@ states:
   notes: 'Batch 1 (2026-09-10, #680): 283 documents taken from the publisher''s own index (507 documents inventoried across
     17 families; 283 taken; citation paths checked against every us-tx provisions file in /Users/pavelmakarchuk/axiom-corpus/data/corpus).
     Extraction proven with the official-documents extractor; see docs/ingest-runs/2026-09-10-snap-state-manual-completion-batch-1.md.'
+- jurisdiction: us-vi
+  name: Virgin Islands
+  queue_status: blocked_primary_source
+  source_kind: official_state_agency_manual_not_published
+  primary_source_url: https://dhs.vi.gov/family-assistance-programs/
+  target_manifest: manifests/us-vi-snap-manual-completion.yaml
+  target_scope:
+    jurisdiction: us-vi
+    document_class: manual
+    version: null
+  index_url: https://dhs.vi.gov/family-assistance-programs/
+  index_document_count: 24
+  taken_count: 0
+  index_families:
+    snap_application_packet_and_form_pdf:
+      found: 10
+      taken: 0
+    fy2026_snap_income_limits_and_simplified_reporting_pdf:
+      found: 2
+      taken: 0
+    snap_employment_and_training_plan_and_handbook_pdf:
+      found: 2
+      taken: 0
+    abawd_flyer_and_form_pdf:
+      found: 4
+      taken: 0
+    summer_ebt_and_child_nutrition_waiver_pdf:
+      found: 3
+      taken: 0
+    ecap_tanf_and_nondiscrimination_pdf:
+      found: 3
+      taken: 0
+    snap_policy_manual_or_plan_of_operation:
+      found: 0
+      taken: 0
+  notes: 'Territories pass (2026-09-11): the Virgin Islands runs SNAP (7 U.S.C. 2012(r)) through the Department of Human Services,
+    Division of Family Assistance, whose page (HTTP 200) lists 24 PDFs: application packets and forms, the FY 2026 income-eligibility
+    limits chart and simplified-reporting notice, the FY 2026 SNAP E&T plan and handbook, ABAWD flyers, Summer EBT and child-nutrition
+    waivers, ECAP forms and a TANF brochure. No SNAP policy manual or plan of operation is published (the ''Plan for Operations
+    Management'' file on the page is the FY 2025 Summer EBT iPOM). 0 taken. Nothing was worked around.'
 - jurisdiction: us-vt
   name: Vermont
   queue_status: done
@@ -1224,5 +1385,5 @@ states:
       Policy Clarifications, Table I, purchasing page) is untouched.'
 status_counts:
   done: 20
-  blocked_primary_source: 3
-  agent_ready: 5
+  blocked_primary_source: 6
+  agent_ready: 7

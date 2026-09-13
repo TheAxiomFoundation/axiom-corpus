@@ -12,6 +12,7 @@ REQUESTS_CA_BUNDLE pointing at certifi + that file. No verification is disabled.
 """
 from __future__ import annotations
 
+import argparse
 import datetime as dt
 import html
 import re
@@ -50,6 +51,56 @@ EXTRACTION = {
 }
 
 
+# Territories not on the Clearinghouse index (reviewed 2026-09-11): the index's "Territory LIHEAP
+# Plans" table (last updated 11/14/2025) lists AS, GU, MP and PR, which the index loop above handles
+# like the states. The Virgin Islands is not on the index and its grantee posts no plan. Applied with
+# --territories: only these queue rows change (no index fetch, no manifest rewrite).
+TERRITORY_ROWS_NOT_ON_INDEX: dict[str, dict] = {
+    "us-vi": {
+        "name": "Virgin Islands",
+        "queue_status": "blocked_primary_source",
+        "source_kind": "official_state_plan_not_published",
+        "primary_source_url": None,
+        "target_manifest": f"manifests/us-vi-liheap-state-plan-fy{FY}.yaml",
+        "target_scope": {"jurisdiction": "us-vi", "document_class": "policy", "version": None},
+        "index_url": INDEX,
+        "index_document_count": 0,
+        "publisher_index_url": "https://dhs.vi.gov/family-assistance-programs/",
+        "taken_count": 0,
+        "notes": (
+            "Blocked 2026-09-11 (territories pass): the ACF LIHEAP Clearinghouse index carries a 'Territory "
+            "LIHEAP Plans' table (last updated 11/14/2025) with FY 2026 Detailed Model Plans for American Samoa, "
+            "Guam, the Northern Mariana Islands and Puerto Rico only; no Virgin Islands plan is listed and the "
+            "index's file paths for VI (/docs/2026/state-plans/VI_Plan_2026.pdf and the /sites/default/files/"
+            "webfiles/ variant) answer 404. The grantee, the Virgin Islands Department of Human Services, "
+            "Division of Family Assistance (HTTP 200 to the plain client 2026-09-11T21:15Z from a US network), "
+            "runs LIHEAP as the Energy Crisis Assistance Program (ECAP) and posts only the ECAP Checklist and "
+            "Criteria and the ECAP Intake Form (application family); no plan, manual or policy document is "
+            "posted. Nothing was worked around."
+        ),
+    },
+}
+
+
+def apply_territory_rows(only: set[str] | None = None) -> dict[str, int]:
+    queue_path = ROOT / "manifests" / "liheap-agent-queue.yaml"
+    queue = yaml.safe_load(queue_path.read_text())
+    rows = {s["jurisdiction"]: s for s in queue["states"]}
+    for jur, facts in TERRITORY_ROWS_NOT_ON_INDEX.items():
+        if only and jur not in only:
+            continue
+        row = rows.get(jur) or {"jurisdiction": jur, "name": facts["name"], "lead_counts": {}, "candidate_sources": []}
+        row.update(facts)
+        rows[jur] = row
+    queue["states"] = [rows[j] for j in sorted(rows, key=lambda j: (j != "us", j))]
+    queue["status_counts"] = {}
+    for s in queue["states"]:
+        queue["status_counts"][s["queue_status"]] = queue["status_counts"].get(s["queue_status"], 0) + 1
+    queue["queue_status"] = "in_progress"
+    queue_path.write_text(yaml.safe_dump(queue, sort_keys=False, allow_unicode=True, width=120))
+    return queue["status_counts"]
+
+
 def ca_bundle() -> Path:
     out = ROOT / "data" / "certs" / "liheapch-ca-bundle.pem"
     out.write_text(Path(certifi.where()).read_text() + "\n" + INTERMEDIATE.read_text())
@@ -57,6 +108,15 @@ def ca_bundle() -> Path:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--territories", action="store_true",
+                        help="apply only TERRITORY_ROWS_NOT_ON_INDEX to the queue (no index fetch, no manifests)")
+    parser.add_argument("--only", help="comma-separated jurisdictions to apply with --territories")
+    args = parser.parse_args()
+    if args.territories:
+        only = set(args.only.split(",")) if args.only else None
+        print(f"territory rows applied; queue {apply_territory_rows(only)}")
+        return 0
     bundle = ca_bundle()
     resp = requests.get(INDEX, headers={"User-Agent": "axiom-corpus/0.1 (source discovery)"}, timeout=60, verify=str(bundle))
     resp.raise_for_status()
