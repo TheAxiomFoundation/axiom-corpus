@@ -262,6 +262,14 @@ states:
     policy PDFs (IID policy, informal resolution process) and the FY2027 state-plan public notice; no page lists the manual.
     Selected in the third batch as one of the next ten states by population (CO, MN, SC, AL, LA, KY, OR, OK, CT, UT). re-probed
     2026-09-10T21:38Z from US network, still not published (page reachable, no manual link).'
+  state_plan_scope:
+    jurisdiction: us-al
+    document_class: policy
+    version: 2026-09-13-wic-state-plan
+    manifest: manifests/us-al-wic-state-plan.yaml
+    document_count: 1
+    queue: manifests/fns-state-plan-agent-queue.yaml
+    run_note: docs/ingest-runs/2026-09-13-fns-state-plans.md
 - jurisdiction: us-ar
   name: Arkansas
   lead_counts: {}
@@ -411,6 +419,14 @@ states:
   notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
     listed there, single_block extraction. Selected in the third batch as one of the next ten states by population (CO, MN,
     SC, AL, LA, KY, OR, OK, CT, UT).
+  state_plan_scope:
+    jurisdiction: us-ct
+    document_class: policy
+    version: 2026-09-13-wic-state-plan
+    manifest: manifests/us-ct-wic-state-plan.yaml
+    document_count: 2
+    queue: manifests/fns-state-plan-agent-queue.yaml
+    run_note: docs/ingest-runs/2026-09-13-fns-state-plans.md
 - jurisdiction: us-dc
   name: District of Columbia
   lead_counts: {}
@@ -746,6 +762,14 @@ states:
     answers 403 to non-browser clients. Selected in the second batch as one of the next ten states by population (NJ, VA,
     WA, AZ, TN, MA, IN, MD, MO, WI). retried 2026-09-10T21:34Z from US network, same failure (HTTP 403 for the WIC organization
     page).'
+  state_plan_scope:
+    jurisdiction: us-ma
+    document_class: policy
+    version: 2026-09-13-wic-state-plan
+    manifest: manifests/us-ma-wic-state-plan.yaml
+    document_count: 1
+    queue: manifests/fns-state-plan-agent-queue.yaml
+    run_note: docs/ingest-runs/2026-09-13-fns-state-plans.md
 - jurisdiction: us-md
   name: Maryland
   lead_counts: {}
@@ -944,6 +968,14 @@ states:
     Plan attachments under assets/ecfsd/WIC/StatePlan/), which is the state-plan document family, not a policy/procedure manual
     index. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states by population (NE, WV, ID,
     HI, NH, ME, MT, RI, DE, SD).'
+  state_plan_scope:
+    jurisdiction: us-mt
+    document_class: policy
+    version: 2026-09-13-wic-state-plan
+    manifest: manifests/us-mt-wic-state-plan.yaml
+    document_count: 112
+    queue: manifests/fns-state-plan-agent-queue.yaml
+    run_note: docs/ingest-runs/2026-09-13-fns-state-plans.md
 - jurisdiction: us-nc
   name: North Carolina
   lead_counts: {}
@@ -1352,6 +1384,14 @@ states:
   notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
     listed there, single_block extraction. Selected in the third batch as one of the next ten states by population (CO, MN,
     SC, AL, LA, KY, OR, OK, CT, UT).
+  state_plan_scope:
+    jurisdiction: us-ut
+    document_class: policy
+    version: 2026-09-13-wic-state-plan
+    manifest: manifests/us-ut-wic-state-plan.yaml
+    document_count: 157
+    queue: manifests/fns-state-plan-agent-queue.yaml
+    run_note: docs/ingest-runs/2026-09-13-fns-state-plans.md
 - jurisdiction: us-va
   name: Virginia
   lead_counts: {}
@@ -1424,6 +1464,14 @@ states:
     and data reports; Information for Grocers links the Vermont WIC Grocer Handbook and vendor forms (vendor family); the
     site search for ''WIC policy manual'' returns only those pages. Selected in the fifth batch as one of the last five jurisdictions
     without a queue row (AK, DC, ND, VT, WY).'
+  state_plan_scope:
+    jurisdiction: us-vt
+    document_class: policy
+    version: 2026-09-13-wic-state-plan
+    manifest: manifests/us-vt-wic-state-plan.yaml
+    document_count: 1
+    queue: manifests/fns-state-plan-agent-queue.yaml
+    run_note: docs/ingest-runs/2026-09-13-fns-state-plans.md
 - jurisdiction: us-wa
   name: Washington
   lead_counts: {}
@@ -1474,6 +1522,14 @@ states:
     are FY 2025 state-plan sections, not a manual index. Selected in the second batch as one of the next ten states by population
     (NJ, VA, WA, AZ, TN, MA, IN, MD, MO, WI). re-probed 2026-09-10T21:38Z from US network, still not published (page reachable,
     no manual link).'
+  state_plan_scope:
+    jurisdiction: us-wi
+    document_class: policy
+    version: 2026-09-13-wic-state-plan
+    manifest: manifests/us-wi-wic-state-plan.yaml
+    document_count: 2
+    queue: manifests/fns-state-plan-agent-queue.yaml
+    run_note: docs/ingest-runs/2026-09-13-fns-state-plans.md
 - jurisdiction: us-wv
   name: West Virginia
   lead_counts: {}
@@ -1524,6 +1580,14 @@ states:
   notes: Current WIC policy manual confirmed on the state WIC agency's own index page; one document per policy/chapter PDF
     listed there, single_block extraction. Selected in the fourth batch (retry) as one of the next ten not-yet-attempted states
     by population (NE, WV, ID, HI, NH, ME, MT, RI, DE, SD).
+  state_plan_scope:
+    jurisdiction: us-wv
+    document_class: policy
+    version: 2026-09-13-wic-state-plan
+    manifest: manifests/us-wv-wic-state-plan.yaml
+    document_count: 76
+    queue: manifests/fns-state-plan-agent-queue.yaml
+    run_note: docs/ingest-runs/2026-09-13-fns-state-plans.md
 - jurisdiction: us-wy
   name: Wyoming
   lead_counts: {}
