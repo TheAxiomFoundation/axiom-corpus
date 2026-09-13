@@ -132,6 +132,7 @@ def test_michigan_scope_retains_every_pdf_page_with_complete_coverage() -> None:
     coverage = json.loads(COVERAGE_PATH.read_text())
     retained_files = sorted(SOURCE_ROOT.glob("official-documents/*.pdf"))
     rows_by_source = Counter(row["source_id"] for row in provisions)
+    revised_documents: set[str] = set()
 
     assert len(retained_files) == len(documents) == EXPECTED_DOCUMENT_COUNT
     assert len(inventory) == len(provisions) == 2310
@@ -152,10 +153,19 @@ def test_michigan_scope_retains_every_pdf_page_with_complete_coverage() -> None:
         with fitz.open(source_file) as pdf:
             expected_rows = pdf.page_count + 1
 
-        assert source_hash == document["metadata"]["source_sha256"]
+        if document["source_as_of"] == "2026-07-17":
+            assert source_hash == document["metadata"]["source_sha256"]
+        else:
+            # The manifest now pins the superseding 2026-09-11 edition for this document;
+            # the released 2026-07-17 artifacts keep the earlier bytes, verified against
+            # their own inventory below, and must differ from the re-pinned hash.
+            assert source_hash != document["metadata"]["source_sha256"]
+            revised_documents.add(source_id)
         assert len(source_items) == rows_by_source[source_id] == expected_rows
         assert all(item["sha256"] == source_hash for item in source_items)
         assert all(item["source_url"] == document["source_url"] for item in source_items)
+
+    assert len(revised_documents) == 20
 
     assert not any(
         "Source URL:" in (row.get("body") or "")
