@@ -32,7 +32,10 @@ TARGET="manifests/releases/$NAME.json"
 [ ! -e "$TARGET" ] || { echo "$TARGET already exists; selectors are immutable" >&2; exit 1; }
 
 # Unreleased scopes: draft minus predecessor, as "jurisdiction document_class version" lines.
-mapfile -t SCOPES < <(python3 - "$DRAFT" "$PREDECESSOR" <<'PY'
+# (macOS ships bash 3.2: no mapfile, and no heredoc inside a process substitution.)
+SCOPE_LIST=$(mktemp)
+trap 'rm -f "$SCOPE_LIST"' EXIT
+python3 - "$DRAFT" "$PREDECESSOR" > "$SCOPE_LIST" <<'PY'
 import json, sys
 draft, predecessor = (json.load(open(p))["scopes"] for p in sys.argv[1:3])
 released = {(s["jurisdiction"], s["document_class"], s["version"]) for s in predecessor}
@@ -41,7 +44,8 @@ for s in sorted(draft, key=lambda s: (s["jurisdiction"], s["document_class"], s[
     if key not in released:
         print(*key)
 PY
-)
+SCOPES=()
+while IFS= read -r line; do SCOPES+=("$line"); done < "$SCOPE_LIST"
 echo "unreleased scopes: ${#SCOPES[@]} (draft $NAME)"
 [ "${#SCOPES[@]}" -gt 0 ] || { echo "nothing to sign" >&2; exit 1; }
 

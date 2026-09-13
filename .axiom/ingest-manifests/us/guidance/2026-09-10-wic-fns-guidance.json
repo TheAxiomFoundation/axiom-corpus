@@ -1,0 +1,89 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us/guidance/2026-09-10-wic-fns-guidance.json",
+      "sha256": "bb357a9eb00db244d845e78112c5ea290beb4197d5b657e4a926e7dc1a443043"
+    },
+    {
+      "path": "data/corpus/inventory/us/guidance/2026-09-10-wic-fns-guidance.json",
+      "sha256": "cf9afb09148e0dc1e4319c94d53865f890bc3fb4f055e8330df0f368d1755059"
+    },
+    {
+      "path": "data/corpus/provisions/us/guidance/2026-09-10-wic-fns-guidance.jsonl",
+      "sha256": "1c79b3c57dfaff69316f7612bcbcc73f3eeacd8779b777c4670bd2f920a21979"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-income-eligibility-guidelines-2025-2026.html",
+      "sha256": "eb3d4bacef61e0df4828180a6e26d382239f17ada01724fd45e9ee6f9c8a34fc"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-income-eligibility-guidelines-2026-2027.html",
+      "sha256": "8c8cba4d31cd60fc5dc877eab47f7fd90457c154473bdc3ea15f657df365c519"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-policy-memo-2025-1.pdf",
+      "sha256": "13ac1db779548d995e07661af2efce0f4c537da50710730a78f8bf7354bcdb0d"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-policy-memo-2025-2.pdf",
+      "sha256": "3b92044ac50caa86d580bf4f8d5a1ce56e6e5d94faa499783fa7178ae982fb62"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-policy-memo-2025-3.pdf",
+      "sha256": "fc4c98032f002f6132a47cea876dc61668a49002c19160c1f5a88fd813b4d7a6"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-policy-memo-2025-4.pdf",
+      "sha256": "6fbba7519eaa4273574c790fc682df76536275dc967ba35436d9416b895ef2c9"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-policy-memo-2025-5.pdf",
+      "sha256": "01ab8874e892049c72056487d1032e41d244ec30df0f015fa3c9edb43c00aa3e"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-policy-memo-2026-1.pdf",
+      "sha256": "3df94ddcb17f225bbb09e2d1154ff6ccbd3f4352b06570f0bc883dd29d77f79e"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-policy-memo-2026-2.pdf",
+      "sha256": "2bf9dc7f9d7de1c7741ba33140819d30d22dd88f7c348d9967d3fd2c1a697a39"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-policy-memo-2026-4.pdf",
+      "sha256": "213c5d666bb3447051ab9e51a1048c6cfb42c3c2bb88b9c4998928c9ad7e20a4"
+    },
+    {
+      "path": "data/corpus/sources/us/guidance/2026-09-10-wic-fns-guidance/official-documents/us-fns-wic-policy-memo-2026-5.pdf",
+      "sha256": "1c72c707df467bf6c88bc3e4928b1b6b5ce2970f44687fe4a2284558635ea5c3"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-wic-fns-guidance --manifest manifests/us-wic-fns-guidance.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 22,
+    "missing_count": 0,
+    "provision_count": 22,
+    "source_count": 22
+  },
+  "document_class": "guidance",
+  "generated_at": "2026-09-11T21:32:29.201600+00:00",
+  "jurisdiction": "us",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ppM84UKH/4whqoKA2xxsGQjuOgdHS0psy6uVnMKwzDFCDdD+o0dRgfkIxKFVXVD/Tdwioz9mC2O4tY/iSvRcBA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-wic-fns-guidance"
+}

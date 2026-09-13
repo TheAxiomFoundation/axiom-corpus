@@ -1,0 +1,1271 @@
+<!DOCTYPE html><html>
+<head>
+<title>SSA - POMS: SI 02005.084 - MMSS Eligibility and Payment Computations Under RMA - 09/08/2023</title>
+<!-- REQUIRED META INFORMATION -->
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="MMSS Eligibility and Payment Computations Under RMA" />
+<meta name="DCTERMS:coderOffice" content="DCRDP:ODEPP:OPPS" />
+<meta name="DCTERMS:coder" content="eestes" />
+<meta name="DCTERMS:dateCertified" content="2016-10-11" />
+<!-- FRAMEWORK STYLES & SCRIPTS -->
+<link href="https://ssa.gov/framework/css/phoenix.css" rel="stylesheet" media="all" />
+<!-- SMARTPHONE ICON -->
+<link rel="apple-touch-icon-precomposed" href="https://ssa.gov/framework/images/icons/png/apple-touch-icon.png">
+<!-- SSA INTERNET HEAD SCRIPTS -->
+<script src="https://ssa.gov/framework/js/ssa.internet.head.js"></script>
+<!-- InstanceBeginEditable name="head" -->
+<!-- CUSTOM STYLES & SCRIPTS -->
+<link href="../ppoms.css" type="text/css" rel="stylesheet" media="all" />
+<link href="../overrides.css" type="text/css" rel="stylesheet" media="all" />
+<script language="JavaScript" type="text/javascript" src="/apps10/PublicSharedElements.nsf/kwdSearchLib.js!OpenJavascriptLibrary"></script>
+<!-- InstanceEndEditable -->
+
+<META NAME='date' content='2023-09-08'>
+<META NAME='title' content='SSA - POMS: SI 02005.084 - MMSS Eligibility and Payment Computations Under RMA'>
+
+<script language="JavaScript" type="text/javascript">
+<!-- 
+document._domino_target = "_self";
+function _doClick(v, o, t) {
+  var returnValue = false;
+  var url="/poms.nsf/lnx/0502005084!OpenDocument&Click=" + v;
+  if (o.href != null) {
+    o.href = url;
+    returnValue = true;
+  } else {
+    if (t == null)
+      t = document._domino_target;
+    window.open(url, t);
+  }
+  return returnValue;
+}
+// -->
+</script>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" class="nav-sidebar">
+
+<form onsubmit="return false;return true;" action=""><script type="text/javascript">
+	appProfile = {"ProfileName":"PublicPolicyNet",
+"Status":"Enabled",
+"HTTP_POMS":"https://policy.ssa.gov",
+"NSF_POMS":"poms.nsf",
+"HTTP_POMSArchive":"https://policy.ssa.gov",
+"NSF_POMSArchive":"pomsarchive.nsf",
+"HTTP_Reference":"https://policy.ssa.gov",
+"NSF_Reference":"reference.nsf",
+"HTTP_ReferenceArchive":"https://policy.ssa.gov",
+"NSF_ReferenceArchive":"referencearchive.nsf",
+"HTTP_YUILibraries":"https://policy.ssa.gov",
+"NSF_YUILibraries":"web20/yui280.nsf",
+"defaultPage":"/home!readform"
+};	
+	//getFields will return a comma separated list of fields stored in the appProfile object
+	appProfile.getFields = function() {
+		var fieldsList;
+		for(var x in appProfile) {
+			if(typeof this[x] != 'function') {
+				if(fieldsList == undefined) { 
+					fieldsList = x; 
+				} else { 
+					fieldsList += ", "+x;
+				}
+			}
+		}
+		return fieldsList;
+	} // getFields
+	//get will return the object stored for the passed FieldName
+	appProfile.get = function(strFieldName) {
+		strFieldName = (typeof strFieldName == 'undefined') ? this.ProfileName : strFieldName;	
+		return this[strFieldName];
+	} // get
+</script><input  type='hidden' id='searchParams' name='searchParams' value='&start=1&count=500' />
+<input id='Start' name='Start' type='hidden' value=''>
+<input id='Finish' name='Finish' type='hidden' value='@ERROR'>
+<input id='TotalHits' name='TotalHits' type='hidden' value='@ERROR'>
+<input id='Count' name='Count' type='hidden' value='500'>
+<input id='Hits' name='Hits' type='hidden' value=''>
+<input  type='hidden' id='Query' name='Query' value='' />
+    <!-- PAGE CONTAINER -->
+    <div id="page">
+<!-- ACCESSIBILITY OPTIONS -->
+<div class="bg-dark-gray accessibility" id="accessibility">
+ <a id="skip-navigation" href="#content">Skip to content</a>
+</div>
+<!-- BANNER -->
+<header class="banner-neo" id="banner" role="banner">
+    <div class="banner-wrapper">
+        <h1 class="banner-logo">
+            <a class="banner-logo__link" href="/apps10/">Social Security</a>
+        </h1>
+        <nav class="banner-nav" id="banner-nav">
+            <a class="banner-nav__link banner-search" href="/apps10/poms.nsf/pomssearch!SearchView&query=&searchorder=1&start=1&count=500">
+                <svg class="banner-nav__icon" focusable="false" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M 10 23 C 11.219 23 12.384 22.762 13.496 22.285 C 14.608 21.808 15.565 21.169 16.367 20.367 C 17.169 19.565 17.808 18.608 18.285 17.496 C 18.762 16.384 19 15.219 19 14 C 19 12.953 18.829 11.951 18.488 10.992 C 18.147 10.033 17.661 9.164 17.031 8.383 L 22.711 2.711 C 22.904 2.518 23 2.281 23 2 C 23 1.713 22.905 1.475 22.715 1.285 C 22.525 1.095 22.287 1 22 1 C 21.719 1 21.482 1.096 21.289 1.289 L 15.617 6.969 C 14.836 6.339 13.966 5.853 13.008 5.512 C 12.05 5.171 11.047 5 10 5 C 8.781 5 7.616 5.238 6.504 5.715 C 5.392 6.192 4.435 6.831 3.633 7.633 C 2.831 8.435 2.192 9.392 1.715 10.504 C 1.238 11.616 1 12.781 1 14 C 1 15.219 1.238 16.384 1.715 17.496 C 2.192 18.608 2.831 19.565 3.633 20.367 C 4.435 21.169 5.392 21.808 6.504 22.285 C 7.616 22.762 8.781 23 10 23 Z M 10 21 C 9.052 21 8.146 20.815 7.281 20.445 C 6.416 20.075 5.672 19.578 5.047 18.953 C 4.422 18.328 3.925 17.584 3.555 16.719 C 3.185 15.854 3 14.948 3 14 C 3 13.052 3.185 12.146 3.555 11.281 C 3.925 10.416 4.422 9.672 5.047 9.047 C 5.672 8.422 6.416 7.925 7.281 7.555 C 8.146 7.185 9.052 7 10 7 C 10.948 7 11.854 7.185 12.719 7.555 C 13.584 7.925 14.328 8.422 14.953 9.047 C 15.578 9.672 16.075 10.416 16.445 11.281 C 16.815 12.146 17 13.052 17 14 C 17 14.948 16.815 15.854 16.445 16.719 C 16.075 17.584 15.578 18.328 14.953 18.953 C 14.328 19.578 13.584 20.075 12.719 20.445 C 11.854 20.815 10.948 21 10 21 Z" transform="matrix(-1, 0, 0, -1, 24.000001, 24.000001)" vector-effect="non-scaling-stroke"></path>
+                </svg><span>Search</span></a>
+            <a class="banner-nav__link banner-menu" href="https://ssa.gov/site/menu/en/" id="ssa-menu">
+                <svg class="banner-nav__icon" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M3 5h18q.414 0 .707.293T22 6t-.293.707T21 7H3q-.414 0-.707-.293T2 6t.293-.707T3 5zm0 12h18q.414 0 .707.293T22 18t-.293.707T21 19H3q-.414 0-.707-.293T2 18t.293-.707T3 17zm0-6h18q.414 0 .707.293T22 12t-.293.707T21 13H3q-.414 0-.707-.293T2 12t.293-.707T3 11z" vector-effect="non-scaling-stroke"></path>
+                </svg><span>Menu</span></a>
+            <a class="banner-nav__link banner-languages" href="https://ssa.gov/site/languages/en/" id="ssa-languages" title="Languages">
+                <svg class="banner-nav__icon" focusable="false" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12c.812 0 1.604-.08 2.37-.235-.31-.147-.343-1.255-.037-1.887.34-.703 1.406-2.485.35-3.08-1.053-.6-.76-.868-1.405-1.56-.644-.692-.38-.796-.422-.974-.14-.61.62-1.523.656-1.616.035-.094.035-.446.023-.55-.012-.107-.48-.387-.597-.4-.117-.01-.176.188-.34.2-.164.012-.88-.433-1.03-.55-.154-.117-.224-.398-.435-.61-.21-.212-.235-.047-.562-.175-.327-.13-1.382-.516-2.19-.844-.81-.33-.88-.79-.892-1.114-.012-.325-.492-.797-.718-1.137-.225-.342-.267-.81-.348-.705-.082.106.422 1.336.34 1.37-.083.037-.26-.338-.493-.643-.235-.304.245-.14-.505-1.617-.75-1.476.235-2.23.282-3 .048-.77.633.28.328-.21-.304-.493.023-1.524-.21-1.9-.235-.374-1.57.423-1.57.423.034-.363 1.17-.985 1.99-1.56.82-.573 1.322-.128 1.982.083.66.21.703.142.48-.07-.222-.21.094-.316.61-.235.516.082.656.704 1.442.645.784-.06.08.152.186.35.105.2-.117.177-.633.53-.516.35.012.35.926 1.02.913.667.632-.447.538-.94-.094-.49.668-.105.668-.105.563.375.46.02.87.15.408.13 1.52 1.07 1.52 1.07-1.395.762-.516.844-.282 1.02.235.175-.48.515-.48.515-.294-.293-.34.012-.528.117-.187.105-.012.375-.012.375-.97.153-.75 1.173-.738 1.418.012.247-.62.622-.786.973-.164.35.423 1.113.117 1.16-.305.048-.61-1.148-2.25-.703-.495.134-1.593.703-1.008 1.863.585 1.16 1.558-.328 1.886-.164.33.163-.093.902-.023.913.07.012.927.033.974 1.032.048 1 1.3.914 1.57.938.27.023 1.173-.74 1.3-.774.13-.035.646-.47 1.77.175 1.126.644 1.7.55 2.086.82.387.27.117.81.48.985.365.176 1.818-.058 2.18.54.364.597-1.5 3.597-2.085 3.925-.586.328-.856 1.078-1.442 1.558-.69.563-1.418 1.076-2.18 1.535-.684.407-.807 1.137-1.112 1.367C19.984 22.52 24 17.73 24 12c0-6.627-5.373-12-12-12zm2.813 11.262c-.165.047-.504.352-1.336-.14-.832-.494-1.406-.4-1.477-.48 0 0-.07-.2.293-.236.747-.072 1.688.692 1.9.704.21.012.315-.21.69-.09.375.12.094.195-.07.242zM10.887 1.196c-.082-.06.068-.128.157-.246.05-.07.013-.182.078-.246.175-.177 1.043-.423.874.058-.17.48-.98.527-1.11.434zm2.098 1.523c-.293-.013-.983-.086-.856-.212.494-.492-.188-.633-.61-.668-.423-.036-.598-.27-.388-.294.21-.024 1.055.013 1.196.13.14.117.902.422.95.644.047.223 0 .41-.293.4zm2.542-.083c-.234.188-1.413-.673-1.64-.867-.985-.844-1.513-.563-1.72-.703-.206-.142-.132-.33.184-.61.318-.282 1.21.094 1.724.152.516.058 1.113.457 1.125.93.01.474.562.91.327 1.097z" vector-effect="non-scaling-stroke"></path>
+                </svg><span>Languages</span></a>
+            <a class="banner-nav__link banner-signin" href="https://ssa.gov/site/signin/en/" id="ssa-signin">
+                <svg class="banner-nav__icon" focusable="false" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M12 17.016q-.797 0-1.406-.61t-.61-1.405.61-1.405 1.406-.61 1.406.61.61 1.406-.61 1.407-1.406.61zm6 3V9.986H6v10.03h12zm-6-17.11q-1.266 0-2.18.914T8.906 6H9v2.016h6.094V6q0-1.266-.914-2.18T12 2.906zm6 5.11q.797 0 1.406.586t.61 1.383v10.03q0 .798-.61 1.384T18 21.984H6q-.797 0-1.406-.586t-.61-1.384V9.986q0-.798.61-1.384T6 8.016h.984V6q0-2.063 1.477-3.54T12 .985t3.54 1.477T17.015 6v2.016H18z" vector-effect="non-scaling-stroke"></path>
+                </svg><span>Sign in / up</span></a>
+        </nav>
+    </div>
+</header>
+<!-- PAGE TITLE -->
+<div id="title-bar"><h2>Program Operations Manual System (POMS)</h2></div>
+
+<!-- CONTENT -->
+<div id="content" role="main">
+
+
+<!-- GRID -->
+<div class="grid">
+
+<div class="row-12 equal-heights">
+
+<div class="column-12">
+<div id="divBody"><!-- DO NOT CHANGE THIS TAG -->
+<!-- OPPS CUSTOMIZATION using template's breacrumbs div -->
+<div class="breadcrumbs">
+	<span class="floatl">Effective Dates:&nbsp;09/08/2023 - Present</span>
+	<span class="floatr print-hide"> <a href="0502005082SF" id="linkPreviousDocument" title="Previous Document">Previous</a> | <a href="0502005086" id="linkNextDocument" title = "Next Document">Next</a></span>
+	<div style="clear:both;"></div>
+</div>
+<div class="poms">
+   <p align="right" class="tninfo">TN 24 (09-23)</p>
+   <h1 xmlns="http://www.w3.org/1999/xhtml" class="sectitle"><a class="poms" id="SI-020-05-084">SI 02005.084 </a>MMSS Eligibility and Payment Computations Under RMA
+   </h1>
+   
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="a"></a><span class="poms-subsection1-label">A.&nbsp;</span>Policy
+         </h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <p class="poms-para">MMSS payments are always computed using countable income received in the CM. To be
+            eligible for MMSS, an individual's MIL must be greater than the sum of:
+         </p>
+         <ul class="poms-ul">
+            <li class="poms-li">
+               <div class="poms-li">
+                  <div class="poms-ul-mark">•</div>
+                  <div class="poms-ul-p1">
+                     <p class="listing">CM FCI/SCI;</p>
+                     
+                  </div>
+               </div>
+            </li>
+            <li class="poms-li">
+               <div class="poms-li">
+                  <div class="poms-ul-mark">•</div>
+                  <div class="poms-ul-p1">
+                     <p class="listing">In-kind income in the CM, if any; and</p>
+                     
+                  </div>
+               </div>
+            </li>
+            <li class="poms-li">
+               <div class="poms-li">
+                  <div class="poms-ul-mark">•</div>
+                  <div class="poms-ul-p1">
+                     <p class="listing">Federal eligibility amount.</p>
+                     
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="b"></a><span class="poms-subsection1-label">B.&nbsp;</span>Definitions
+         </h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="b1"></a><span class="poms-subsection2-label">1.&nbsp;</span>Federal Eligibility Amount
+               </h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">The Federal eligibility amount is the difference between the CM FBR and the CM FCI.</p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="b2"></a><span class="poms-subsection2-label">2.&nbsp;</span>Value Of The One-Third Reduction (VTR)
+               </h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">The Value of the One-Third Reduction (VTR) is the income value assigned (for Federal
+                  purposes) to in-kind support and maintenance received by an SSI recipient when living
+                  in the household of another during the CM. (See <a class="poms" href="../lnx/0500835200">SI 00835.200</a> ff. and <a class="poms" href="../lnx/0502005084#d2">SI 02005.084D.2.</a>)
+               </p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="b3"></a><span class="poms-subsection2-label">3.&nbsp;</span>In-Kind Income
+               </h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">In-kind income is the value assigned to in-kind support and maintenance for MMSS purposes
+                  only. It may or may not be the same amount as the VTR.
+               </p>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="c"></a><span class="poms-subsection1-label">C.&nbsp;</span>Procedure
+         </h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="c1"></a><span class="poms-subsection2-label">1.&nbsp;</span>MMSS Eligibility
+               </h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <p class="poms-para">Use the following formula to determine an individual's MMSS eligibility: MMSS eligibility
+                  = MIL - (CM Federal eligibility amount + CM FCI/SCI + CM in-kind income).
+               </p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="c2"></a><span class="poms-subsection2-label">2.&nbsp;</span>MMSS Payment Computation
+               </h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <ol class="poms-ol">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">a.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">Use the following formula to compute an individual's MMSS payment: MMSS payment =
+                              MIL - (CM Federal payment + CM FCI/SCI + CM in-kind income).
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">b.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">The difference represents the MMSS payment. Compare that amount to any optional State
+                              supplementation (OSS) payable and pay the higher amount. If the two payments are equal,
+                              pay the OSS.
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </li>
+               </ol>
+               <div class="poms-note">
+                  <div class="poms-note-text">
+                     <p class="poms-para"><span class="poms-bold">NOTE:</span>&nbsp;Always perform MMSS computations separately for each recipient, even for members
+                        of an eligible couple. The MIL and the income used in eligible couple cases are affected
+                        by both members; but the computation to determine eligibility and payment is performed
+                        separately.
+                     </p>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div xmlns="http://www.w3.org/1999/xhtml" class="poms-subsection1">
+      <div class="poms-subsection1-title">
+         <h2 class="sectitle"><a name="d"></a><span class="poms-subsection1-label">D.&nbsp;</span>Examples
+         </h2>
+      </div>
+      <div class="poms-subsection1-body">
+         <p class="poms-para">There are three different methods to apply the MMSS eligibility and payment computation
+            formulas depending on the individual's living arrangement in December 1973 and their
+            CM Federal living arrangement (FLA). FLA's are defined in <a class="poms" href="../lnx/0501415001">SI 01415.001</a>. Use the chart below to decide which method applies.
+         </p>
+         <div class="poms-table-div">
+            <table id="tbl_1" border="0" class="poms-table" width="95%">
+               <colgroup>
+                  <col width="14%"></col>
+                  <col width="10%"></col>
+                  <col width="19%"></col>
+                  <col width="19%"></col>
+                  <col width="19%"></col>
+                  <col width="19%"></col>
+               </colgroup>
+               <tbody class="cals">
+                  
+                  <tr>
+                     
+                     <td colspan="6" class="poms-td poms-rowsep poms-colsep">
+                        <p class="poms-para"><span class="poms-bold">December 1973 Federal Living Arrangement</span></p>
+                        
+                     </td>
+                     
+                  </tr>
+                  <tr>
+                     
+                     <td class="poms-td poms-rowsep poms-colsep">&nbsp;</td>
+                     
+                  </tr>
+                  <tr>
+                     
+                     <td class="poms-td poms-colsep">&#8203;</td>
+                     
+                     <td class="poms-td poms-rowsep poms-colsep">&#8203;</td>
+                     
+                     <td class="poms-td poms-rowsep poms-colsep">&nbsp;&nbsp;A</td>
+                     
+                     <td class="poms-td poms-colsep">&nbsp;&nbsp;B</td>
+                     
+                     <td class="poms-td poms-colsep">&nbsp;&nbsp;C</td>
+                     
+                     <td class="poms-td poms-colsep">&nbsp;&nbsp;D</td>
+                     
+                  </tr>
+                  <tr>
+                     
+                     <td class="poms-td poms-colsep">CM FLA</td>
+                     
+                     <td class="poms-td poms-rowsep poms-colsep">A</td>
+                     
+                     <td class="poms-td poms-rowsep poms-colsep">Method 1</td>
+                     
+                     <td class="poms-td poms-colsep">Method 1</td>
+                     
+                     <td class="poms-td poms-colsep">Method 1</td>
+                     
+                     <td class="poms-td poms-colsep">Method 1</td>
+                     
+                  </tr>
+                  <tr>
+                     
+                     <td class="poms-td poms-colsep">&#8203;</td>
+                     
+                     <td class="poms-td poms-rowsep poms-colsep">B</td>
+                     
+                     <td class="poms-td poms-rowsep poms-colsep">Method 2</td>
+                     
+                     <td class="poms-td poms-colsep">Method 1</td>
+                     
+                     <td class="poms-td poms-colsep">Method 2</td>
+                     
+                     <td class="poms-td poms-colsep">Method 2</td>
+                     
+                  </tr>
+                  <tr>
+                     
+                     <td class="poms-td poms-colsep">&#8203;</td>
+                     
+                     <td class="poms-td poms-rowsep poms-colsep">C</td>
+                     
+                     <td class="poms-td poms-rowsep poms-colsep">Method 1</td>
+                     
+                     <td class="poms-td poms-colsep">Method 1</td>
+                     
+                     <td class="poms-td poms-colsep">Method 1</td>
+                     
+                     <td class="poms-td poms-colsep">Method 1</td>
+                     
+                  </tr>
+                  <tr>
+                     
+                     <td class="poms-td poms-colsep">&#8203;</td>
+                     
+                     <td class="poms-td poms-colsep">D</td>
+                     
+                     <td class="poms-td poms-colsep">Method 3</td>
+                     
+                     <td class="poms-td poms-colsep">Method 3</td>
+                     
+                     <td class="poms-td poms-colsep">Method 3</td>
+                     
+                     <td class="poms-td poms-colsep">Method 1</td>
+                     
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="d1"></a><span class="poms-subsection2-label">1.&nbsp;</span>Method 1 — Basic MMSS Computations
+               </h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <ol class="poms-ol">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">a.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">This is the basic MMSS computation. Use it when neither the VTR nor the FBR payment
+                              limit for living in a title XIX facility applies, with two exceptions. Do not use
+                              this formula for:
+                           </p>
+                           
+                           <ul class="poms-ul">
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Recipients converted in the household of another and currently subject to the VTR
+                                          (whether or not the individual was continually subject to the VTR). The VTR has already
+                                          been taken into account in the MIL, and it is unnecessary to consider it again in
+                                          the computation. Follow method 2 for recipients currently subject to the VTR who were
+                                          not converted in FLA-B.
+                                       </p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Recipients converted in a title XIX institution and currently residing in a title
+                                          XIX institution (whether or not the individual was continually in FLA-D). Follow method
+                                          3 for recipients residing in a title XIX facility who were not converted in FLA-D.
+                                       </p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">b.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">Example</p>
+                           
+                           <ul class="poms-ul">
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Basic Computation</p>
+                                       
+                                       <p class="listing">Franklin Hightower has a MIL of $400. In January 1990, Franklin's income is a $120
+                                          per month private pension. In November and December 1989, in addition to the pension,
+                                          Franklin received rental income of $139.70 per month. FCI may be used in place of
+                                          SCI in the computation. Compute their MMSS for January 1990.
+                                       </p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">The Eligibility Test</p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                  </li>
+               </ol>
+               <div class="poms-table-div">
+                  <table id="tbl_2" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$400</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">MIL in January</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">-100</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">FCI in January ($120 pension - $20 general exclusion)</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> -286</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">Federal eligibility amount based on January FCI ($386 FBR - $100 FCI)</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$ 14</td>
+                           
+                           <td class="poms-td poms-colsep">Franklin is eligible for MMSS</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <ul class="poms-ul">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">The Payment Computation</p>
+                           
+                           <p class="listing">The amount of Franklin's January Federal SSI benefit is based on their income from
+                              November, the Federal BM.
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+               <div class="poms-table-div">
+                  <table id="tbl_3" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$386.00</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">FBR in January</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> -239.70</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">FCI in November ($120 pension +$139.70 rent - $20 general exclusion)</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$146.30</td>
+                           
+                           <td class="poms-td poms-colsep">Federal payment due for January</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="poms-para">The amount of Franklin's MMSS is based on their Federal payment and FCI for January.</p>
+               <div class="poms-table-div">
+                  <table id="tbl_4" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$400.00</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">MIL in January</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">-100.00</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">FCI in January</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> -146.30</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">SSI for January</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$153.70</td>
+                           
+                           <td class="poms-td poms-colsep">MMSS for January</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="poms-para">If Franklin is due an OSS payment equal to or greater than $153.70, pay the OSS instead
+                  of the MMSS.
+               </p>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="d2"></a><span class="poms-subsection2-label">2.&nbsp;</span>Method 2 — Individual Subject To The VTR For Federal Purposes
+               </h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <ol class="poms-ol">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">a.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">Use method 2 when an eligible individual or couple:</p>
+                           
+                           <ul class="poms-ul">
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Were converted to SSI in FLA-A, C, or D (but not B); and</p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Begin living in the household of another and receiving food and shelter (i.e., subject
+                                          to the VTR).
+                                       </p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">b.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">The MMSS VTR can never exceed the value of one-third of the A FBR in effect at the
+                              time that the most recent move into FLA-B became effective. When only one member of
+                              a couple meets the above requirements, the amount of the MMSS VTR is limited to one-sixth
+                              of the couple's FBR at the time that the most recent move into FLA-B became effective.
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">c.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">Follow these steps to determine the amount of the in-kind income for MMSS purposes.</p>
+                           
+                           <ul class="poms-ul">
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Step (1): Subtract the computation month's FCI (never use SCI) from the FBR in effect
+                                          at the time of the most recent change to the household of another. If this results
+                                          in an amount of zero or less, no in-kind income for MMSS purposes exists.
+                                       </p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Step (2): Subtract the computation month's FCI (never use SCI) from the FBR in effect
+                                          at the time of the most recent change to the household of another less one-third.
+                                          If the result is zero or less, use zero in step 3.
+                                       </p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Step (3): Subtract the result obtained in step (2) from the result obtained in step
+                                          (1). The remainder is the amount of in-kind income in the month for MMSS purposes.
+                                       </p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">d.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">This example shows the MMSS computation involving the VTR.</p>
+                           
+                           <p class="listing">Individual Becomes Subject To The VTR</p>
+                           
+                           <p class="listing">Adam was converted to SSI in an FLA-A with a MIL of $400. They have no income other
+                              than SSI. In February 1990, Adam moves into their nephew's home, and begins receiving
+                              both food and shelter. Compute the March 1990 MMSS as follows:
+                           </p>
+                           
+                           <ul class="poms-ul">
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">In-kind Income Computation:</p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                  </li>
+               </ol>
+               <p class="poms-para">Step (1):</p>
+               <div class="poms-table-div">
+                  <table id="tbl_5" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$386.00</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">FBR in March (effective month of move)</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> - 0.00</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">FCI in March</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$386.00</td>
+                           
+                           <td class="poms-td poms-colsep">Step (1) Result</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="poms-para">Step (2):</p>
+               <div class="poms-table-div">
+                  <table id="tbl_6" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$257.33</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">FBR in March less the VTR</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> - 0.00</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">FCI for March</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$257.33</td>
+                           
+                           <td class="poms-td poms-colsep">Step (2) Result</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="poms-para">Step (3):</p>
+               <div class="poms-table-div">
+                  <table id="tbl_7" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$386.00</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">Step (1) Result</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> -257.33</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">Step (2) Result</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$128.67</td>
+                           
+                           <td class="poms-td poms-colsep">In-kind income for March for MMSS purposes</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <ul class="poms-ul">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-ul-mark">•</div>
+                        <div class="poms-ul-p1">
+                           <p class="listing">MMSS Computation for March 1990:</p>
+                           
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+               <div class="poms-table-div">
+                  <table id="tbl_8" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$400.00</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">MIL</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> -386.00</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">($ 257.33 March Federal payment +0 FCI/SCI + $128.67 MMSS in-kind income)</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$ 14.00</td>
+                           
+                           <td class="poms-td poms-colsep">MMSS Payment for March</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+         <div class="poms-subsection2">
+            <div class="poms-subsection2-title">
+               <h3 class="sectitle"><a name="d3"></a><span class="poms-subsection2-label">3.&nbsp;</span>Method 3 — MMSS Suspended For Living In A Title XIX Facility
+               </h3>
+            </div>
+            <div class="poms-subsection2-body">
+               <ol class="poms-ol">
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">a.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">State supplementary payments may be suspended in months during which an individual's
+                              Federal payment limit is $30 (effective July 1, 1988) due to their stay in a title
+                              XIX facility. Upon discharge from the institution, the individual may again receive
+                              federally administered MMSS payments based on the MIL or, if higher, a federally administered
+                              OSS.
+                           </p>
+                           
+                           <div class="poms-note">
+                              <div class="poms-note-text">
+                                 <p class="poms-para"><span class="poms-bold">NOTE:</span>&nbsp;(1) MMSS payments are not suspended if the individual was converted in December 1973
+                                    while residing in a Medicaid facility. (2) The benefits described in section 1619
+                                    of the act and sections 1611(e)(1)E and 1611(e)(1)G of the act do not apply to the
+                                    above discussions about title XIX institutions.
+                                 </p>
+                                 
+                              </div>
+                           </div>
+                           
+                        </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">b.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">When only one member of an eligible couple resides in a title XIX facility, MMSS computations
+                              follow the Federal rule that each member of the couple is treated as an individual.
+                              See <a class="poms" href="../lnx/0502005030#c">SI 02005.030C.</a> for Federal and OSS computations under RMA.
+                           </p>
+                           
+                        </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">c.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">Follow these steps to compute the MMSS payment for this couple:</p>
+                           
+                           <ul class="poms-ul">
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Establish separate MIL's for each couple member. Follow the procedures in <a class="poms" href="../lnx/0502005082#d6">SI 02005.082D.6.</a></p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">Compute the MMSS payment for the noninstitutionalized member, and the MMSS payment
+                                          for the institutionalized member if they was converted in FLA-D, independently.
+                                       </p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="poms-li">
+                                 <div class="poms-li">
+                                    <div class="poms-ul-mark">•</div>
+                                    <div class="poms-ul-p1">
+                                       <p class="listing">From the individual MIL(s) subtract the total of the individual's Federal SSI benefit
+                                          and Randy's own income.
+                                       </p>
+                                       
+                                    </div>
+                                 </div>
+                              </li>
+                           </ul>
+                           
+                        </div>
+                     </div>
+                  </li>
+                  <li class="poms-li">
+                     <div class="poms-li">
+                        <div class="poms-li-num">d.&nbsp;</div>
+                        <div class="poms-li-p1">
+                           <p class="listing">EXAMPLE: One Member of an Eligible Couple Resides in a Title XIX Facility — Other
+                              Member in Own Household
+                           </p>
+                           
+                           <p class="listing">Randy and Laura were converted in the same State as eligible individuals in their
+                              own households. Randy's MIL was established as $450 based on a December 1973 GA of
+                              $410 and SCI of $40. Lauras' MIL was established as $300 based the December 1973 GA
+                              of $260 and SCI of $40. Their State of conversion does not elect to maintain supplementary
+                              payment levels for passalong purposes. They married in 1975. Their December 1973 incomes
+                              and grant amounts were combined to form new MIL's based on couple status.
+                           </p>
+                           
+                           <p class="listing">MIL Computation:</p>
+                           
+                        </div>
+                     </div>
+                  </li>
+               </ol>
+               <div class="poms-table-div">
+                  <table id="tbl_9" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$410</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">Randy's December 1973 GA</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">260</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">Lauras' December 1973 GA</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">40</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">Randy's December 1973 SCI</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> +40</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">Lauras' December 1973 SCI</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$750</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="poms-para">$750 divided by 2 = $375 MIL for each couple member.</p>
+               <p class="poms-para">In September 1990 Laura enters a nursing home and Medicaid covers the entire cost
+                  of theircare. For every month that Laura remains subject to the $30 payment limit,
+                  the MMSS payments are suspended.
+               </p>
+               <p class="poms-para">Randy remains in their own household. Randy continues to receive the $55 company pension
+                  of which $40 was countable under the State plan. In October 1990 Randy begins receiving
+                  a monthly payment of $10 from a sibling. (Randy's State plan would not have counted
+                  the $10 had it been received in December 1973 because of the State's unearned income
+                  exclusion.)
+               </p>
+               <p class="poms-para">October 1990: This is the first month throughout which Laura is residing in the title
+                  XIX facility. Compute Randy's payment as an individual.
+               </p>
+               <p class="poms-para">Step (1): The MMSS Eligibility Test</p>
+               <div class="poms-table-div">
+                  <table id="tbl_10" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$450</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">MIL in October (the original individual MIL)</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> -341</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">Federal eligibility amount ($55 pension +$10 from sister - $20 general exclusion =
+                              $45 FCI. $386 FBR - $45 October FCI = $341)
+                           </td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$109</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> - 40</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">SCI for October</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$ 69</td>
+                           
+                           <td class="poms-td poms-colsep">Randy is MMSS eligible</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <p class="poms-para">Step (2): The MMSS Payment Computation</p>
+               <div class="poms-table-div">
+                  <table id="tbl_11" border="0" class="poms-table" width="95%">
+                     <colgroup>
+                        <col width="30%"></col>
+                        <col width="70%"></col>
+                     </colgroup>
+                     <tbody class="cals">
+                        
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$450</td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">MIL in October (the original individual MIL)</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> -351</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">Federal payment amount ($55 pension - $20 general exclusion = $35 FCI. $386 FBR -
+                              $35 August FCI = $351)
+                           </td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right">$ 99</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep poms-align-right"><span class="poms-underline"> - 40</span></td>
+                           
+                           <td class="poms-td poms-rowsep poms-colsep">SCI for October</td>
+                           
+                        </tr>
+                        <tr>
+                           
+                           <td class="poms-td poms-colsep poms-align-right">$ 59</td>
+                           
+                           <td class="poms-td poms-colsep">MMSS Payment for October</td>
+                           
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <!-- Created on May 3, 2024 08:10:20 p.m. using Saxonica SAXON version HE 9.7.0.14 -->
+</div>
+</div><!--divBody-->
+<HR>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr valign="top"><td style="line-height: 1em" width="50%"><i><font size="1" face="Arial">To Link to this section - Use this URL: </font></i><br><small><font face='arial'><a href="http://policy.ssa.gov/poms.nsf/lnx/0502005084">http://policy.ssa.gov/poms.nsf/lnx/0502005084</a></font></small><br></td><td style="line-height: 1em" width="50%"><div align="right"><i><font size="1" face="Times New Roman">SI 02005.084 - MMSS Eligibility and Payment Computations Under RMA - 09/08/2023</font></i><br>
+<i><font size="1" color="#C0C0C0" face="Times New Roman">Batch run: </font></i><i><font size="1" face="Times New Roman">09/08/2023</font></i><br>
+<i><font size="1" color="#C0C0C0" face="Times New Roman">Rev:</font></i><i><font size="1" face="Times New Roman">09/08/2023</font></i></div></td></tr>
+</table>
+<div align="right"></div>
+<!-- END COLUMN -->
+
+</div>
+<!-- END ROW -->
+
+</div>
+<!-- END GRID -->
+
+</div>
+<!-- END PAGE CONTENT -->
+
+        <!-- PAGE FOOTER -->
+        <!-- FOOTER -->
+<footer class="footer" id="footer" role="contentinfo">
+
+<div class="important-info">
+<h4>Important Information:</h4>
+<ul>
+<li><a href="https://ssa.gov/accessibility/">Accessibility</a></li>
+<li><a href="https://ssa.gov/foia/">FOIA</a></li>
+<li><a href="https://ssa.gov/open/">Open Government</a></li>
+<li><a href="https://ssa.gov/agency/glossary/">Glossary</a></li>
+<li><a href="https://ssa.gov/agency/privacy.html">Privacy</a></li>
+<li><a href="http://oig.ssa.gov/report-fraud-waste-or-abuse">Report Fraud, Waste or Abuse</a></li>
+<li><a href="https://ssa.gov/sitemap.htm">Site Map</a></li>
+<li><a href="https://ssa.gov/agency/websitepolicies.html">Website Policies</a></li>
+</ul>
+</div>
+
+<div class="gov-sites">
+<h4>Other Government Websites:</h4>
+<ul>
+<li><a href="http://www.govbenefits.gov">Benefits.gov</a></li>
+<li><a href="https://www.disability.gov/">Disability.gov</a></li>
+<li><a href="https://www.healthcare.gov">Healthcare.gov</a></li>
+<li><a href="http://mymoney.gov">MyMoney.gov</a></li>
+<li><a href="https://regulations.gov">Regulations.gov</a></li>
+<li><a href="https://www.usa.gov">USA.gov</a></li>
+<li><a href="https://ssa.gov/agency/other-gov-websites.html">Other Government Sites</a></li>
+</ul>
+</div>
+
+<div class="social-media">
+<h4>Follow:</h4>
+<ul>
+<li><a class="btn-twitter" href="//twitter.com/socialsecurity/" title="Twitter"><span class="visually-hidden">Twitter</span></a></li>
+<li><a class="btn-facebook" href="//facebook.com/socialsecurity/" title="Facebook"><span class="visually-hidden">Facebook</span></a></li>
+<li><a class="btn-youtube" href="//youtube.com/socialsecurityonline/" title="YouTube"><span class="visually-hidden">YouTube</span></a></li>
+<li><a class="btn-blog" href="//blog.ssa.gov/" title="Blog"><span class="visually-hidden">Blog</span></a></li>
+<li><a class="btn-more" href="https://ssa.gov/socialmedia/" title="More Social Media"><span class="visually-hidden">More Social Media</span></a></li>
+</ul>
+</div>
+
+<p class="align-center margin-top">This website is produced and published at U.S. taxpayer expense.</p>
+
+</footer>
+<!-- END FOOTER -->
+
+    </div>
+<!-- END PAGE CONTAINER -->
+
+<!-- SSA INTERNET BODY SCRIPTS -->
+<script src="https://ssa.gov/framework/js/ssa.internet.body.js"></script>
+
+</div>
+<input name="$$HTMLFrontMatter" type="hidden" value="&lt;!DOCTYPE html&gt;">
+<input name="appProfile" type="hidden" value="PublicPolicyNet">
+<input name="YUIPath" type="hidden" value="web20/yui280.nsf">
+<input name="NSF_POMS" type="hidden" value="poms.nsf">
+<input name="NSF_POMSArchive" type="hidden" value="pomsarchive.nsf">
+<input name="NSF_Rules" type="hidden" value="">
+<input name="NSF_Redir" type="hidden" value="">
+<input name="NSF_SystemStatus" type="hidden" value="">
+<input name="NSF_Reference" type="hidden" value="reference.nsf">
+<input name="NSF_ReferenceArchive" type="hidden" value="referencearchive.nsf">
+<input name="NSF_Homepage" type="hidden" value="">
+<input name="NSF_ClosedGuidelines" type="hidden" value="">
+<input name="NSF_ClosedPrereqs" type="hidden" value="">
+<input name="NSF_ClosedDigital" type="hidden" value="">
+<input name="NSF_ClosedYouth" type="hidden" value="">
+<input name="SectionTitle" type="hidden" value="MMSS Eligibility and Payment Computations Under RMA">
+<input name="Audience" type="hidden" value="">
+<input name="PartNumber" type="hidden" value="05">
+<input name="Chapter" type="hidden" value="020">
+<input name="SubChapter" type="hidden" value="05">
+<input name="Sensitive" type="hidden" value="N">
+<input name="ComputedID" type="hidden" value="SI 02005.084">
+<input name="Filename" type="hidden" value="">
+<input name="PartAbbreviation" type="hidden" value="SI">
+<input name="Title" type="hidden" value="SI 02005.084 - MMSS Eligibility and Payment Computations Under RMA - 09/08/2023">
+<input name="PulledDate" type="hidden" value="09/08/2023">
+<input name="LastUpdate" type="hidden" value="09/08/2023">
+<input name="Author" type="hidden" value="PolicyNet/SSA">
+<input name="DocSize" type="hidden" value="60335">
+<input name="ArchivedOK" type="hidden" value="">
+<input name="SectionBookmarkHook" type="hidden" value="0502005084">
+<input name="Section" type="hidden" value="084">
+<input name="ISO8601date" type="hidden" value="2023-09-08">
+<input name="SupplementType" type="hidden" value="">
+<input name="PartTextLookup" type="hidden" value="Supplemental Security Income"></form>
+</body>
+</html>

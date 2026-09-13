@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-wi/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "a4610fe6b73ed453aece4b48e601137fd5276495877b10f07089c1c31cfce517"
+    },
+    {
+      "path": "data/corpus/inventory/us-wi/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "e1c5003d5b297481d79b0563b4517244e8742574e2cdee2c26d51e2985c5dc23"
+    },
+    {
+      "path": "data/corpus/provisions/us-wi/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "16557cbc77cc5891e4e158443757662d9119d2eda4ae14e01f2707b5c7bc1935"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wi-medicaid-badgercare-plus-handbook-release-26-03.pdf",
+      "sha256": "2baa4569287dee2915a652e5418fe19dd2389f4c974c7e2eb4565b6a9e2a16fe"
+    },
+    {
+      "path": "data/corpus/sources/us-wi/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-wi-medicaid-meh-release-26-03.pdf",
+      "sha256": "d1dc1825c60d326c60be10992e6d01913c489e5c845ff4260725ad14a5e6d11c"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-wi-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 833,
+    "missing_count": 0,
+    "provision_count": 833,
+    "source_count": 833
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-12T13:08:11.355911+00:00",
+  "jurisdiction": "us-wi",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "dQG49198gKG0kEEaVZ0NYotzpwYNfNfCIfGg0fuTuMEfNBlnIPXfBn1lNSSLJ64O4pi0mXQZylorzxoSnyUdAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}

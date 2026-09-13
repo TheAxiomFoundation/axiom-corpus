@@ -1,0 +1,53 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-mt/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "6335f7cd249e238f29235cefe48fe7718a10fbf7d6e328f7ee78af95f668ee8d"
+    },
+    {
+      "path": "data/corpus/inventory/us-mt/form/2026-09-10-tax-state-forms-ty2025.json",
+      "sha256": "da47c02c2ccb2c06d91037ab9fc407242e6c6fada21e531f757115381f268a98"
+    },
+    {
+      "path": "data/corpus/provisions/us-mt/form/2026-09-10-tax-state-forms-ty2025.jsonl",
+      "sha256": "b898c4d7d4bd11d112ab617a7134c91c728677d310c17b27eae0042161351d12"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-mt-mtdor-form-2-instructions-ty2025.pdf",
+      "sha256": "bed29192ae2fb020272962d8629101f05133ca00ccda04bf508c8bf939d2ef98"
+    },
+    {
+      "path": "data/corpus/sources/us-mt/form/2026-09-10-tax-state-forms-ty2025/official-documents/us-mt-mtdor-form-2-ty2025.pdf",
+      "sha256": "4671aef667749732670c07fd51cbeed6bc824dc6466cfe19597787b3d6ba2b37"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-tax-state-forms-ty2025 (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 4,
+    "missing_count": 0,
+    "provision_count": 4,
+    "source_count": 4
+  },
+  "document_class": "form",
+  "generated_at": "2026-09-11T22:06:54.072524+00:00",
+  "jurisdiction": "us-mt",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "seWTSp3VdpdUzPv062g2dhNC1Do3HRW/w8hobwKPemtYeox/p2sBsuCAwBKsRvv6n6uLD0A8iQzo64A8vPDpAA=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-tax-state-forms-ty2025"
+}

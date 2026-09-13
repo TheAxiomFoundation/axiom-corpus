@@ -1,0 +1,1445 @@
+{
+  "applied_files": [
+    {
+      "path": "data/corpus/coverage/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "0f65dc60e804a8df120b2761b67385dc1fd52c5b920dbb56ef6924b84ee86d57"
+    },
+    {
+      "path": "data/corpus/inventory/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual.json",
+      "sha256": "17b205a938fb1d85b54b8cda63aa7f2e9bd951c9f1b5884011b1744b8e5abd54"
+    },
+    {
+      "path": "data/corpus/provisions/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual.jsonl",
+      "sha256": "c10d9657f30376f172add58fa84e962062ef088d753f965a27ff4f0732380c90"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-1-1.html",
+      "sha256": "c8a442d883431ab63de1426007a9ba79c56272b4437d821055f063500f92db40"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-1-2.html",
+      "sha256": "f65a3da4655180c218ebeda670b64c8985b27128d76c903ae7b003a76a18eae0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-1-3.html",
+      "sha256": "01d566efcaff7ed335a806456e06ed7c886c2b549ecfa1bf762923e2685d9104"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-1.html",
+      "sha256": "77d1d8d179d517a16790b37587454d3d91782b19d7bd54bd5e96a717026fa84c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-10.html",
+      "sha256": "e9caf151b29f9a9f59a29967f1cf16d2040eaddaeb6ef689de3e5bb57b9124d5"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-100.html",
+      "sha256": "3feca882e9b5982556e50644564069330090cf882c9ca3237bbd0a32210044a5"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-105.html",
+      "sha256": "e4f1c82a686f222975648447669215c6bbe4a03c858ae79cace5bc83e9fae687"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-106.html",
+      "sha256": "7c0381a097f6f6f88471b40076cb4f9123eca141b5665d6d2f334f10cc2b8b01"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-107.html",
+      "sha256": "681c35fda267ac403dd92e5bdc2acd2b48269877582a762bc94b33e9a26744c1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-108.html",
+      "sha256": "90cf4135a41469bc632de13bda3c68d0487e1fee89e86b904656fb6842c657ed"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-109.html",
+      "sha256": "c979e5ec4518d9e983b37705f37f7807bf9a690f9213044b660bdf03f94836b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-11.html",
+      "sha256": "bb0e9a4dbb5e491554cfa1128c8b2785d176f616e3ea6a56e004ccaa900d45b3"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-110.html",
+      "sha256": "533822c69b0c53ea1372186bea393f98550790dc0353f4abd0f2cdd54fe10b82"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-111.html",
+      "sha256": "45a883d21f706f41cdae4931bc002d92a64d0e175e844476a1cfdf6f872cd396"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-112.html",
+      "sha256": "0148bd41fe043e3fb1c5504fa47bc5af0d6416941fded8ea8f2f9ff9c6450d98"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-113.html",
+      "sha256": "df7365e8b8908b77377b3427b7ebbb40765be1c6fb08f8d35ec18f06ff1635a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-12.html",
+      "sha256": "947c4e5eb3fb17e9a8e2cc3a993a4f1767c9ebbd2d15d1fe7fa3334ecac37740"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-13.html",
+      "sha256": "6cd2807d18681a909a9352c1d4b8edaf95a6e88e6e8c6945cd997b668f19fbbb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-14.html",
+      "sha256": "62dd5940186bb0d881626c345f2197598753f78e5b5676687f62a9dfcc75e15d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-15.html",
+      "sha256": "ff7aeb79a1f6f32accb8ac8b93d374807194ece6dbf51c4b0371882462ec2446"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-16.html",
+      "sha256": "48b59f9c0ae9bd564988376784167851683f1c65ca3f29747adb362f32499bc1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-17.html",
+      "sha256": "ca2396f05701711ea701bf5a9b1bbfa27fa1b23295ccc4f628d79ec5b9c80b9c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-18.html",
+      "sha256": "9c36376ebdc00c9b46397415b60776b3ef12a42a635b07fc0790a2a297a610b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-2.html",
+      "sha256": "8047db3bbe5d97f2e32bc006f98cae8a441251a0a3bc84ea9d95dbe422be63b4"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-25.html",
+      "sha256": "cb07b561d89acebdb8ead05bd7b4f3847dbc105d86e842b87aacef1cacdf1c77"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-26.html",
+      "sha256": "f76cdb759e577e8f005d7bc6eaba1581c9bb3ad030671498929a96c6a46d47d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-27.html",
+      "sha256": "3d6ca9dfceca9809506bd0a30b6911534f2291a21bcb0abdf43b5b085ac684db"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-28.html",
+      "sha256": "42a6746f9ffa84355424255aa6d2fb89b0b0389726da5042c8016434b884b241"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-29.html",
+      "sha256": "f003e99190f5acb03463168e00ed46b9782dddf33c08076989aa64f64c803ab5"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-30.html",
+      "sha256": "9cda2b7e74cb8cf80248890bbe524054a7dbc40dd268dd3b26160524dccf372f"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-31.html",
+      "sha256": "19e12257417858207feaabce44532bbddb0c3162675bd4c79abed401fd038282"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-32.html",
+      "sha256": "4cd5cc851df3b24b83caf0b5320c78689e93a1c14a47e770fe22cb6c761346b1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-33.html",
+      "sha256": "e1dcd886d56704e09e373baacf137d1f2aadd3d7caf1128183de1f1f64a7f36f"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-34.html",
+      "sha256": "0fd53aa822f698fee5dd1ff7a99f68a8e65587ec8c1be51023e77caa679d2fdd"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-35.html",
+      "sha256": "e18afa663b7e0752ddb371a4eeca906a550e1fea99f621dde02f0a57a1739116"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-36.html",
+      "sha256": "08e2afd3bf52e27e4182a6a45c2f704cc517add81108a9b8b7e3e7e7de88aded"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-37.html",
+      "sha256": "1f6c57285c7b1bc1e27e6a15c2122c8057dc516eb39ce5d980115a4c9a5c6c84"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-38.html",
+      "sha256": "69e7246baabb8e7f7efab786cab16e283ea0d5fd999a73adeade7b5a4ed798ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-55.html",
+      "sha256": "975317921e408f0d016001fb413db3e0669f88976a999caee90627f63cde4ff1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-56.html",
+      "sha256": "3037b2da60473b8fe14d847688fe7fab9b4ae8952482838e032cf5ec1758f7a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-57.html",
+      "sha256": "d79493e91e5f87e9ffc7ddef6e0360089eafa879167c4e1a4a2c53859134bb95"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-58.html",
+      "sha256": "a70cebd606f20d19a8a3d7bb42bb1a2e870d88c3ddbb46bd4327aa4cc412b7ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-65.html",
+      "sha256": "2983ee27af29508d7240450ffda50258834c17876ed81e08ec61c6af1f5cde29"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-66.html",
+      "sha256": "4396daf4ac6915eec2d73095a1088ad102b14f96f68809c33aa3cddbeb97455b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-67.html",
+      "sha256": "1d42ce3354625e99dae6cab21029806b3ca19046d11640992e541401f989a9ee"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-68.html",
+      "sha256": "191aaca1380894747b3e3f47b56364825bb3d3b233df5ea0b60fbd495893af22"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-75.html",
+      "sha256": "1a52d157aa4fdaa8ebdb2dcb708c54a6f0bdda32c886d03297859543611adc03"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-76.html",
+      "sha256": "1a4902bbe672dc0fe2bdac14f53d48743f52967043ea4f4b1ec45b13330e99ff"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-77.html",
+      "sha256": "d79a450bfdf7f5f6beda87264d4c109a12f3f453bea1e43ac479532a9b4234e3"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-85.html",
+      "sha256": "89ee81a0d0385cf8bda18a7c92f0e4e392bcbe740ae1d194ad4d73a3c56260f0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-86.html",
+      "sha256": "0aea58fae699f4fa5edd0fb536cd9e1ce708dc3594610f051f14114f5629540c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-87.html",
+      "sha256": "95b53523fc8ed92674e48bfcd400a758694ab08acfa7d319aa3aa58024c59767"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-88.html",
+      "sha256": "35a61ab73866d145802ad52070d516e9baaf9910f9fafd4d39cd5171c1cfc66c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-89.html",
+      "sha256": "5e289f5efb92217118930bfe0e222e561af1ddebbfc26a805916c2db3f80fd54"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-90.html",
+      "sha256": "355facb0547ed9948988de90039582313f8766881e9a549edd9c09997ccf536b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-91.html",
+      "sha256": "c1dd9dc5e7378dd87e9a4212ab195ca696e96e196cb960cd29058f8ca7dc9951"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-92.html",
+      "sha256": "d4789619889e7d0fa3f87d2d6bd42c3c4c3be7aaa2bec862401d4d589c64c598"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-94.html",
+      "sha256": "2749328c0c401021829b8630ea7b05551743ae81b7442b45017c52029350fe5b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-10-95.html",
+      "sha256": "9754c20ae974e2bb140e888e8fc2c1393f34c6e6c798f65bf131d1978e0e42d8"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-11-1.html",
+      "sha256": "06e5cf1dacfbafc72b0fdc9ce11f74314700042939cb2c765f776c4290704c01"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-11-2.html",
+      "sha256": "49bffbd523dc06b6da3a63e0db4ffcc91390840c925113e22b16da5d2f55485e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-13-1.html",
+      "sha256": "ae9b63a3095ef91282987861947730f36c2c03b268d6c590da2fc98fe6477d86"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-13-2.html",
+      "sha256": "04d3368b4130a75aaae19544b64208a7d86d2774a60adc196689b2bde784073e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-13-3.html",
+      "sha256": "ddf18d27ef8fe336ef93ebaf716f29970b04608d78b6baf2ebc0944314256ac0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-13-4.html",
+      "sha256": "c739177dc54aacd34a767fc3ad4f3309912e1fa690cfe419ca86eb8be15a1cb8"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-13-5.html",
+      "sha256": "58a87d56d5177cdee6d48f70424a58b74f25c0d56af21401e1b87d3805c7ddcc"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-13-6.html",
+      "sha256": "06efe86d1db9b2f7e71633ed4709b96aacd9759427a35e25b7cd2b36771fea9b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-13-7.html",
+      "sha256": "7dc6423118e8f95abc8d38f1f3c3ba20870996af25cbe2808f730e31a00297cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-1.html",
+      "sha256": "22e47a74088048c86f3448d4f5220a51629be2b957ab9171172fb8f15681ffac"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-10.html",
+      "sha256": "11e4328843f8338c7a37f0df71a29b6d65d1b1651333cc0f251e4327fe921894"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-11.html",
+      "sha256": "614f4de4f15ed167fdee77d7254272a8eae6adb698d8f372d3d2786871891008"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-12.html",
+      "sha256": "4988acaa29f8cb8fce0152ba1fb35e5424080fbdd86439a181a34f966d718155"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-13-1.html",
+      "sha256": "84c4352969e51c734567e672c5e212f1d7861ebd871eebb51aca38936c4d63b7"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-13-2.html",
+      "sha256": "1462249ffd01afdc6c68f9b2b3d9341df8526a61006da1289c7ca6bad43deb8b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-13.html",
+      "sha256": "75d780ca591ed8b534578c327e7e7a2dffd0d47897f2e286521adaea57765524"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-14.html",
+      "sha256": "324042db5c7f1b63ee3b2a8f28798a423bb9dbd9fce86d59800a1809fa6143d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-15.html",
+      "sha256": "82ddc9cdac488a568ffb5b272f2ca3d98cf3422462c002b4a3b6002094e1e018"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-2.html",
+      "sha256": "e68a5eb652e149413a84665afb71830e5e3721d8b37c55fdb2ce9b46dc00f4dd"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-3.html",
+      "sha256": "a0fc31b343d6b68b472e965d11c37b6659d7151f5c72d434cb54a454a7a2d39d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-4.html",
+      "sha256": "97305d46998e35010844abf3aad5536355816317305429daaedbc52817118b64"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-5.html",
+      "sha256": "b1945428bf37939b7ac45c1f2a4f8299167a0895ac653d5c487d6f5c80bb3a08"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-6.html",
+      "sha256": "9491a3ab1599b5e898277ee87ccfb3ba72151fe27c75950cd267fca89a18f456"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-7.html",
+      "sha256": "4a2b7367e9df89d9883cdcf25b3f96ea9246ad4b814c77fca8fd4e115621970c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-8-1.html",
+      "sha256": "f98e4efd64494ea4fb5eca440405e4d48be6f3889ed279360b17a19977015a30"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-8-2.html",
+      "sha256": "8196b3b1ab7a5fc79e971207467eaa17b54143e82b45c1670421e6cc7a348a86"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-8.html",
+      "sha256": "73beac4ea907af57721afe2c8b5f8af2ef29505f79f2fc22441b096f14fb3a7f"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-15-9.html",
+      "sha256": "b99f6b4c29379f483dbfbadc033066dcccc4e03e9d2fab7424a6c4049e8f24f7"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-1.html",
+      "sha256": "95269d43612b669cf8393ab4ac4fbf8e509b4dbd5b4d77d4df3d71fb59218b32"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-10.html",
+      "sha256": "675aa962ed286869e69982473b2dc256027ea9e3fe1c56dae3e9e10a0284bd18"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-2.html",
+      "sha256": "47a0bafb3914f72fe271ae16eef1686925293148583d06a46c42f91a0b5d9370"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-3-certification-for-state-plan-personal-care.html",
+      "sha256": "a29662e0397587065a0085bbdc7746221441d4b8bfa0756f0da1efbf286c41a4"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-3-general-financial-eligibility-requirements.html",
+      "sha256": "380ba5143ba48f08f753e4adf0b7f4ac59d901d5830c88dd6eebaf040861f27d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-4-agency-sppc-service-authorization-and-monitoring.html",
+      "sha256": "f4ce1affbe45e6a864469dc3cf571bbf7b4a3789a123ce7c0d3962566f9cc339"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-4-determining-financial-eligibility-categorically-needy-indivi.html",
+      "sha256": "232a0bfa4a609a22ad1d00122f8dcf9e7e3b7325d81d65341740694be2322f6a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-5.html",
+      "sha256": "2582ae1184889d5cacfb60b51bb661b4b3c9e29ae0fc47733ec93b13d2673bfa"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-6.html",
+      "sha256": "96e2d61245e58cc9f8cb9847627d8c8ae0ecf6828e1d1c429e8ff9d12542fd46"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-7.html",
+      "sha256": "d1e44271a2dbeabd28994a3aa591974faf43d866cdf0f79c6fce6cd1e2033eb0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-8.html",
+      "sha256": "0b135798036d49861ad3a872f4ea1c53b7b5982462cb7eb38bf94a77468300bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-16-9.html",
+      "sha256": "3dfa3cfa50c6badf45c1d395ceee785741e57420ab100000dcabd9c638a1a573"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-1.html",
+      "sha256": "81a5f699c1dab51ef7e8de7d779bb07e16393e4767e76151862504afc843fb00"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-10.html",
+      "sha256": "d86d196dab15f2cd550f2d94a188bccad774ef8fd689066bfb8b6a48e48488b6"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-11.html",
+      "sha256": "af32d392f30d6e54fde2b87fc6df696be9151752c8ef05a47a8479c3e4ef1500"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-12.html",
+      "sha256": "ab30436a2017e5326305c41444998bc41432fe70c84d3658aa44bd82855f82bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-13.html",
+      "sha256": "20d1b51a13a94465666fc9e4bfa1ae774c82e9dc0271d257be022ea4463533bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-14.html",
+      "sha256": "a5d5920bacaac44a263a38da3cdd4461b24897d7da379141fa7c9ecca517d5cd"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-15.html",
+      "sha256": "3f7016d4c5c68f8e463696effa70b666d6e759d6d29c05c7352f6043ab7e5fcc"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-16.html",
+      "sha256": "7d27bc7e3e1ab316d8e9337c0491aefb5f93dbc028215ad48725efbc1e05fa1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-17.html",
+      "sha256": "125ff4fc5559ecdba129a46cd434a67c77740d6230bda75132fa5fac200b5e7f"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-18.html",
+      "sha256": "6264c6da3f04860afaea291f4f1d218d11044743e92f083b036a47206e94b569"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-19.html",
+      "sha256": "9951840ced07ebb14efa2ed20b4c743dbe8b1ab5c8035ddb2227dd2ceeb90777"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-2.html",
+      "sha256": "3b62b66124cf1628291095dfec2b547cf5fd59adfa986d875fdd56a8121668c4"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-20.html",
+      "sha256": "a92cd0a7e783284f37dc3511a76e1c58fc8739954872b0bcf4b0c0a45fddb307"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-21-1.html",
+      "sha256": "4d00d76970a1ef5bdaf30775476ce02c7c9928e83ee75a7dc3b44b120fb3eb80"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-21.html",
+      "sha256": "82e5aecebaf3868442b6a53c9234854ef606aa15eac835843135661e33cdda8c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-22.html",
+      "sha256": "66dedf75772a5b6324bb69bce8f4834f9336f4472f2eb33e02cacdde874bc1cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-23.html",
+      "sha256": "4bf66fc0b0b50a5e5142bad2855341df2985fe246546a7bf5900d688024ead84"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-24.html",
+      "sha256": "6a227db03efa66f5ab2baa060ced3586f40a5b6e5dacb53970292667849d783e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-25.html",
+      "sha256": "1cd1ee94483183e5f8ded69cbc24c2678e47f8f55c1c44fdff3b410093edbeda"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-26.html",
+      "sha256": "b18ae79d22822e1ddf3dadd9f8386775c3f2837c6ba56757e07a69598544b56c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-27.html",
+      "sha256": "8d9da0fe0a6a7e367d6909293dd9781061e36f0f423dd3304ffb844048c33eb1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-3.html",
+      "sha256": "099b003babdf191d2776d98ea6057db7739f7c6255c5b5ceac5f37baa227a513"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-4.html",
+      "sha256": "0985616649ef50553c912b1da4c186849fa50a39bb4c2e306e3b21c8c849c9fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-5.html",
+      "sha256": "bf95c1e2d22446566bf610dc39251a66b2f9ef96b007fc619955718073946b4b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-6.html",
+      "sha256": "4a3b570eda3af4374004c3eec77d7786c0839404577b8121ebc6338ee60de202"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-7.html",
+      "sha256": "9acde29a4f9e8804fb425d59f70981a839b1a637866900cc42e1895156b79766"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-8-1.html",
+      "sha256": "28c47ba791f61b213b8093aa315ec487b4f242ce1436fccfaf1c277f125b6242"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-17-9.html",
+      "sha256": "497e418307c74286145658c1e932e84213db75bdc33eabcafd00884eb6c08bd1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-1.html",
+      "sha256": "94fc37f98eb97c71aeb5f7aa363848988d8bb6dd33c148b9896b4b97b4773a62"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-10.html",
+      "sha256": "91046046e445cbed4101acc7f03f9b7963b0c066ac7f9ec8f42a7006b55a1160"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-11.html",
+      "sha256": "1643101f951d09b24d90b15d3f7464bb473932f74bec2f00148709436aa8cdcf"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-12.html",
+      "sha256": "2f37e338d7f19a1a490dc8e6c219d0f0278b956102c63a6e33f8bd9865e85541"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-2.html",
+      "sha256": "fb97d4a9898bd8eec6e0c094f4afe9061b5b89d4492dd181de76bd603241531a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-3.html",
+      "sha256": "3f6ec675622f884bb3948c22a8d47b349162c8ad85bd42840d0edec64ed27691"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-4.html",
+      "sha256": "d5c19a17f33d7b34539f1f7fc917f906c41eebe972a182ac6dd0a47ca8b74e0f"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-5.html",
+      "sha256": "c0e3f7d68a9685442c8346b32e1a0da605c02127c476f17543b0f5db62e25279"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-6.html",
+      "sha256": "dba4c506ab894b1731317d889fcd7e779b7f139457112532d9b488c8e7845130"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-7.html",
+      "sha256": "602ea1f7aa11e40f06aaae5b0cd751a9d75df1d0439414406fe8dda32836aa92"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-8.html",
+      "sha256": "6ea6494d384bfeeee4cbf0ed453d74d41e371ad4611900555c8454bc70ad6718"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-18-9.html",
+      "sha256": "75eb4e269d3b121c0254bc0da6b31e5379ccde134b6a02bcf52cc2c525d3b427"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-1.html",
+      "sha256": "cfe44cadfe833a41ae430c36b2b9105d45320646175c8bc02f5442ce0dfcd64b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-10.html",
+      "sha256": "db307a0c10bb4061b9405c732001702f2bfb14cb9c2d8f88fd1dafba46bf3c76"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-11.html",
+      "sha256": "475baa0078563c9e90d4498ca6faf3a9d3b97086959a94ff73de9f02a308e3e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-12.html",
+      "sha256": "8ab3e17b6c30b11c966130e1f01726ed7aced92c0d5a489fe1edf3e0a0d8b23b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-13.html",
+      "sha256": "0207a8ab1aeb46872d80507b929cb1aec4a140c583454d7493f3e012e0afd860"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-14.html",
+      "sha256": "c301e0f2193896503d1b9d75bbb61d51f5139ba16b8b3ea4a1d5f693ee2568f2"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-15.html",
+      "sha256": "d3f5978ebc26e825bf28f62ae1bf850748277d8dd9098064b5612f926077cfbd"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-16.html",
+      "sha256": "fe9a61c3628a1f6b40bb3df39c1807cbb4bade90c7ebc0c5c652de60a82cab5e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-18.html",
+      "sha256": "4044de29a6c6939600dbe6786cf5a29c35495531afbd5e6440854fcb8f386289"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-19.html",
+      "sha256": "8a333a4ad15defa2b3d68eb64fc846085c25204ec6498bdac66bf75799240879"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-2.html",
+      "sha256": "fac146c8982e0274fda9d94a890b1b0716a3f74e405c9629db8bb5fc63a24bf2"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-20.html",
+      "sha256": "80cbcb704629c5b61d0b78c6128bd31426edea2be669ffdd1a1c874b66c90d4c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-21.html",
+      "sha256": "ffb141b72d503700e63ba1b2fb88f159784cff63849ac2a11d6b3f73f2fa62b8"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-22-1.html",
+      "sha256": "23ed45298de4341151391a6e8540b7c7b482895ce3b24450646f888ec3a8a46d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-22.html",
+      "sha256": "dab1dd7658742062b571d54bb1f51c1263ae260db749ceb98111d0151c0c79bf"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-23.html",
+      "sha256": "136acd3a01dfa1fc50797d848eca052cf4984686039222886acee5ac6aa2674c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-24.html",
+      "sha256": "efacfb8a90e70556f7e5eddda7ecfd6a567bed24c5d48672f811c3119b828957"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-25.html",
+      "sha256": "d11a0363f9e0913fd285a9784d9ff823b7c642a791f974fea11e92dd57249948"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-26.html",
+      "sha256": "94db48c1f9038b3693354b5ff99f5a152f4aeb226200e35917144f09a0a90a56"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-27.html",
+      "sha256": "f6e2238a97d12528ec8ef4345452356b36f1750ba659baa22bbd9fb2861e4ffc"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-28.html",
+      "sha256": "cf3ee2a2331f9f68f3d523f1ce272e91b533154a3e729b889662b38e3d744126"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-29.html",
+      "sha256": "39a62e60a7d60563adfeae185f1056fcb719dad208a89b5a27efad5acaeb8442"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-3.html",
+      "sha256": "d142e2cfd898e17ff2ef2c10fc5703739771862e3d20091aca20dca1531c545b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-30.html",
+      "sha256": "4a099dcf681b584f7420170fee46d872b3b128393ef0022c966d44242c53fdac"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-31.html",
+      "sha256": "d861a1a62577edb36846be3bfeeddf62eb7c8617485f4cb818d13e7705ab5de0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-4.html",
+      "sha256": "9c1f65cb45edd6b822923dd75a66ea3f764ec2ed204f28a4b3dff2a16f7cfe0b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-5.html",
+      "sha256": "8fc163cb9a177d8226b8be7f83fcbe0816b3998f99964bf1024df2b60f04ee2b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-6.html",
+      "sha256": "f097eb3f7483406bd847e84270180f578fac5a6211b2975379873cbbd5d06225"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-7-1.html",
+      "sha256": "380cd1b500374a1c5e4d4c8bde25f766e7bca2f59f311043861eb971ffab37b7"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-7.html",
+      "sha256": "98601defe3d007ecf3560336b3be74c772181d5a9f856e8743f5ab1b424b3ffb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-8.html",
+      "sha256": "bf7b060900826d2939d5882cb2443807f924c33ef918ad2952ce1f77682ee6fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-19-9.html",
+      "sha256": "f8872f5bd91e7792e9b3b79f0c06f944b4d773563162022fb8e51a28667cd641"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-1.html",
+      "sha256": "493db0ada29fc8683bf8bcd73b33b6264fa028121635442c4c0d28007a545a51"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-10.html",
+      "sha256": "e538de95015ec4a204e4530571b226e60a4955d5eda687cc9b395c5a615bfe31"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-11.html",
+      "sha256": "c0858d906669b36c4c5aed9ec1b31a9ab19fb50f60dcdd3fd2c991dba691d2cc"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-12.html",
+      "sha256": "9c8f6283d3d53a7b8e7bf6efd27a707f64111b969de4abf648985df3474013bd"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-13.html",
+      "sha256": "3ef8b7a86ea834eb9d697025864b05009883a0d55957d7a7eb69d8694c80b4c2"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-14.html",
+      "sha256": "0983d34870df4986cdc53815d83c5e00078a7d0d032ff285ba32876d28fb89c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-2.html",
+      "sha256": "4541adc7175a26563528529f696f2dfb1c72999817376c2c49c5a9b2d9ef4d92"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-3.html",
+      "sha256": "da714591f4583115a1e670de2417359fb2639849d4e9b1d5a03ff5182c5225d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-4.html",
+      "sha256": "33b0a925e7b6736ac6e0a65680c75f61c0846606523de87ac4178912d5c33e68"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-5.html",
+      "sha256": "237d7e65ed0c90fd971373a7e9ccb9669a07f94b4579d5b9ded882ae8f374481"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-6.html",
+      "sha256": "5921fdb04411fc79761f39e1bb73fbc472eca49f51c4cdb577bca8b79966e41d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-7.html",
+      "sha256": "2947b4bfb06a08e202705ea96f4aaa014797f94bcf226b99a8a995533f09a6c7"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-8.html",
+      "sha256": "f861546a157467d49edce896708515e3a364cf27bac9fecddfb9fba7d888a105"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-21-9.html",
+      "sha256": "2e952d6f214282459698f14c68e3a6df29a67121655b3174469a3a9101a998e5"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-1.html",
+      "sha256": "34dc89b8d1ade40d3057f348fbe19ce7dd66da0a0ccf30e86d259d0baa44c301"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-10.html",
+      "sha256": "283bd08c8bea4afd749d57a949002a6b9c9f28733e244eab870280f7dc622c49"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-11.html",
+      "sha256": "59c135f58572351a018955d8268812a086a0d86ac24c029cef18398efe6ee02a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-2-1.html",
+      "sha256": "412130f34994bf3b5bdfa1818757a29c6aeb41422828f81c8bc79f1094523c32"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-2.html",
+      "sha256": "6b3f3d43dbf24676f4b4dcb518b062c10926c76719d0413a80c95ef6f8715e9b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-3.html",
+      "sha256": "4d42ee193ae0570d6cab6f874495ec8f50a8b4d74208b6c7f1414002d1ef5a1d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-4.html",
+      "sha256": "37e5b77f23f43d103114726b55b363e1924ffe37815667f72912d67f81b70d5b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-5.html",
+      "sha256": "9633681234c6db89decedb0e0440bf2434f5f09fdb01ec31186ee2e4cc36fa02"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-6.html",
+      "sha256": "79210c39a418768954838d90262d2b62c4f7fdf467fec351ee0353f7b1455b7e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-7.html",
+      "sha256": "0fc85470edbd52bf7d36821cd8c337ceb8477930f1c5db63c1e00f285f8e0391"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-8.html",
+      "sha256": "471ec3f10d551704e7fbee10678d5e714e77caa1baaf0814f0214fe35d49ecba"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-22-9.html",
+      "sha256": "40017026556c3d96e470c48bf7c1d5cd6060a6fa87d388e09e2dc10b80f0f8b1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-23-1.html",
+      "sha256": "01d1e305628f97549bb9e48e594c6b1af58299ebb35ca42ef3b02e8f07dfd43a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-23-2.html",
+      "sha256": "e0deec31d40ad21af68d3efc8117efba4b318abbae2b8e81d57fb267e251f17d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-23-3.html",
+      "sha256": "2d7331ab9ed92d7af1550983d7be39637cd6e57d90542f44ec58d37aefbcba52"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-23-4.html",
+      "sha256": "5de83c1eafd97a7dbfc911c74b3b1d569a7dcd8b75624b51ad4f693e0de93cfd"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-3-1.html",
+      "sha256": "950eb3a6fcb1be4997dc62f0cc7423fcc23882aa89efe5112fc03fcb3d9270d9"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-3-2.html",
+      "sha256": "fdfcb5fadcf7a218a0c77db1076195e2a2f35b0e9eb731ccf00bf6be6cc49b14"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-3-3.html",
+      "sha256": "afbe2e647f56d1b1a99b6abb5a6487a0fef63ad3dfbe1fd023825c11f09d50f0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-1.html",
+      "sha256": "f452ff149df5e86f5e543173149cadfe92d14766f3b67f23ea68756afcdc5637"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-2.html",
+      "sha256": "d14956a9748aafbd5927bcb420f1f35ac01148bc36dcb22268a6d32a812ab4a3"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-25.html",
+      "sha256": "c9d6c81772f1fb864b63624274144a1f8e979692aa624b9ba6d6971dcdf0488b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-26.html",
+      "sha256": "964c8972769c90a976da5aba2b5cc982c34399cd854b5a3a82cf951879c2e5f5"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-27.html",
+      "sha256": "5c2aa1ba9cadbeb87ec2dd28a2ca01a7a94286b0e966ba751843ffa3f9c7592e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-3.html",
+      "sha256": "25b2da081b6173bc6fe6b4ac7ee411b9c6524c053174728b27389fc10b4c9c38"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-4-1.html",
+      "sha256": "69b0eaad6be95eaa6715bbf924d55b6337f73e7ba57552032aed3640830d448c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-4-2.html",
+      "sha256": "1883f7658de9ad0ebe47200d9af88ecda8b9838446686917ef55eb165fea81e9"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-4-3.html",
+      "sha256": "63dca787a5221690e63955bfa0d9e915961bc48983218be0d095a8a96557a711"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-4.html",
+      "sha256": "2513d4f68183deb6fe10fce4e86d391634c51c3846e78d47f726c6d7a11fad1c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-40.html",
+      "sha256": "b3a233930fd4adf2dae7637227eef998952df1e914faad8c4605483530d04db4"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-1.html",
+      "sha256": "313034155ef2d1390a95ef4f3a8426e4d4a997a8598841d0a6e12f4cc95d5eb8"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-10.html",
+      "sha256": "8a0a8feeb99f2a8c30dfd482e68b69bdc58dceac158efa0628f056cb0515269b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-11.html",
+      "sha256": "b9b98c891d87c22e105b4efb198449a99f7b92b22330a365a91df08a811b8510"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-12.html",
+      "sha256": "ec98ac91521c57e76cea4cc66c5dae1d4050f41dcb019558c57ff0cd69b49e78"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-2.html",
+      "sha256": "372e972751f5513a567900f065801a1294ff399c7f1220d22badd30c227926e7"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-3.html",
+      "sha256": "eecbd7a1eeb9714522774a1bcf69a79db6046e52a787c6ad8c00683fb4ab3245"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-4.html",
+      "sha256": "4ff8ed471041709a88786b30575aca8febe032f6bae213063a2e5b5aaf0bfd01"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-5.html",
+      "sha256": "b31d432b111a40b2d18206b9274684f593a5e2d473878220f472191a9d491309"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-6.html",
+      "sha256": "099442af687adb64fbaa5bb664f0d1f4649fc29b25ab7cf5d12d95c896706ef1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-7.html",
+      "sha256": "9633bab624edcaeb435117e6f6b44b25b1932ecf3f16480f3c22d6f8de89f5af"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-8.html",
+      "sha256": "d94ea907b2bf47d15510a874d865b21e63562212613a67356491a508fe6d785f"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41-9.html",
+      "sha256": "0542e8812cad9c7db85470fa3a0444eb6ae30010a80dbf000a3c9fc43993cbb1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-41.html",
+      "sha256": "5f8f4050fe9127890032d8ead7e25bf3393f5fdadbf0230502d55ce1210f702c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-42.html",
+      "sha256": "f18aa2ad12a1f13dabc58dc91a12eda6cb0efbbca19502dc0e2d120f78945abd"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-43.html",
+      "sha256": "ce9c6be6849f12cee802d55fca9ef950eeb4a4a84e9ed664e0ce5834bb81f973"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-44.html",
+      "sha256": "13b0f89d3c674d6ce1d706f047b95525ccc3996727fcdd4eec92f354af5d3fb2"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-45.html",
+      "sha256": "e40d6fff463ff6d3893a35d76c13a23fda768224aeb85e119ebd5c0deb2eaa28"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-46.html",
+      "sha256": "4146f442cc59e3dc9456419fc0f62dd40065c955b533f0394b93877546faae9a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-47.html",
+      "sha256": "dd4cc437362bb02e3fb21efef5c7782db1520618a7b30cef799eaeac24873e50"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-48.html",
+      "sha256": "d771a84ff641b26c20fedea84074851d8686a22340e7d5828715cf3347465ded"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-49.html",
+      "sha256": "231902deb4ac4000fe632a0f535cd23aa832237db6892d82a9c1806de4e1ae07"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-5.html",
+      "sha256": "4dd42e53b3fe5c0e7abe0d4c14e1b65b8963c1e7958484f7b46cf00bf9e4abbb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-6-1.html",
+      "sha256": "8ef6970b1938e5fa65c7687da30a3e994f910f39727c4e797c08cce33c4be150"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-6.html",
+      "sha256": "d063a6c056966e044f48ab464f1a24e3d612dfb355eb6510928fc52fcc8a6ba4"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-60.html",
+      "sha256": "738f417ee7ee01a3fcc6f9ec24d17097ed7fe01fae541de98df09ce8e124b440"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-61.html",
+      "sha256": "b42e8729b666dae5f878dcfc7da0dd49596fe3ab5f7b000c6ae3d9f7bb0c03ea"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-62-1.html",
+      "sha256": "d3a39ddc7c172bc6c01b34cd1b29d07057d8952585f7b2709d61fcb11cb0651f"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-62.html",
+      "sha256": "953f175e6d4fe2388ee981acc30c1d6b4e6c60773391929c4678eec0e38927d0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-63.html",
+      "sha256": "8b2d223bca3b68bc4379e5cb816874b81342e10de395874274f4ce1380fbd4da"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-64.html",
+      "sha256": "2ba8edc5759e66ea8558c89716ccb2e973759de25c64fb40c4156df8373f0d7b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-65.html",
+      "sha256": "d03ea709b9b2eb2b8d60b114495196af9aed628ede872e20d43e4e1814593c9e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-66.html",
+      "sha256": "d25558f1257e9d5600cf1fa1e95c2d32da05d1832aea80b9246ed304d761d22a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-67.html",
+      "sha256": "a8567a5e7292a62238a15f4e88f2627d7373c0bcacc64936bf99093624e42b0c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-7.html",
+      "sha256": "afa51f8aea868343c229fd6dc93d2d4a6561ed8c165e5710ca81d51800e3bd39"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-8.html",
+      "sha256": "4869fca8439b74b4e836b768a9d20a3b67ce28dc35d8d3a88c4bf14bf9fe44fc"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-5-9.html",
+      "sha256": "031fb692fa21a0d018a50fea91a0aaa4d7b8da6af3df447ccc0f306c596fe180"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-1.html",
+      "sha256": "5bb0397f0ff7b0ab8dd13117f08b6ead077b038c88cb7bd5f0741d94d0e5feed"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-15.html",
+      "sha256": "61bbf746da810ecf7f74b8d826d29a7579f2a84c582c46dbf0bc8a9486092d63"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-35.html",
+      "sha256": "705b3ecb82b792ae9e7497e0fef969b341b3ae7d7bd160854041d07c4e4a381e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-36.html",
+      "sha256": "b0740dd2b11bbc52ec984b11a9b0571b0af99545dfff30faea112736f0c0b2fa"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-37.html",
+      "sha256": "45b4d588c0772533a6fa15e7e9c4e4ccc0a4cb0d2598ca4831a1012df2ebb4d7"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-38.html",
+      "sha256": "f2947664c74ea818b0d607e2d186726d86fdca9b5a1f9dfaab3fa9508fb0ed81"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-39.html",
+      "sha256": "7c294e3dabacd7c25e0dc9db27d1684f27ec6669529382b1c17fe5399c48c53e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-40.html",
+      "sha256": "840fbbbcf1b6eb5fdb6e830032b6705c22267a8a330464162fb6b1eaaa327057"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-41.html",
+      "sha256": "fccce2d049744d61d7b11748a6ec00c59f65a4d63b13b68962fb2b907f6734c0"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-42.html",
+      "sha256": "101360278b248bc4a1a62760b58382b41ba5e5988cf97055666a3348c4a1b479"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-43.html",
+      "sha256": "5d89c34dd5c5d1251a83dafe11e2578dcda9503fa6a8bcf2e20dcdd967471e34"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-44.html",
+      "sha256": "0a456e12a5ddb4aad7dfb291fac476f2b6cb1d54f08aee383a0164e3e212da30"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-45.html",
+      "sha256": "291976605d587ebd25f544604e479cc2887f6bce6cb47c7573ff3d2fa529852f"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-50.html",
+      "sha256": "e4a05bc1337dcfd0604c6770e69ef5a27ec52a4b19a82499cad8faab2784e6d6"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-51.html",
+      "sha256": "968129562572ddffc076eda539dc1211b33c748a5ca0e654f54f9d4c473d2b12"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-52.html",
+      "sha256": "3f42c8f15445d6b7fa0728b99d29d21be7743de35c4ae6fd199c1d6ce08ea4b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-53.html",
+      "sha256": "7cb6cd92a91f763338c9888cc328420d79dd62f116229f6424b9e0ddeb39c8dc"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-54.html",
+      "sha256": "2b6f441914e473972f21a5fc64e1397bf3e902c758a6735d4345571c439fb048"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-55.html",
+      "sha256": "1d183378d5c2b2a2325a7f307eeacd2916f09ec855e8cdafcca1dd2f954363cf"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-60-1.html",
+      "sha256": "aa3f29842005dbca7a8e079f2ed85fdb2007b30799b505577b18bb696bff898b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-60-2.html",
+      "sha256": "bca7175a23f169d2b6ca1f2dd60f8273081fc0bdff2661158b9b88b3f6f1e8e4"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-60.html",
+      "sha256": "ea24220932e2cd8f61a2d4eadbd3c1e6aba7ed4633ddbd34413256a642c4f025"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-61.html",
+      "sha256": "8f43301e5d9379582b688e0838670981150e1428f9c454a775268e62af070b94"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-62-1.html",
+      "sha256": "b0bd8defb48a3ad96ada4d55d42434b305e7b4038112bc27f8d9ae89f70eb6f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-62.html",
+      "sha256": "8fac52169ab564946130a2d3b84c7edfb0053e4bb4918e3c69e2827fe1673edb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-63.html",
+      "sha256": "572425b884775d7e65d7e4446759fcae09846d0013a37d253999ea9f2aac5b80"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-64-1.html",
+      "sha256": "28be81ecb5c2591629bf11ad956dcef4137925a729ef174aed84bc0f069f087a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-64.html",
+      "sha256": "fe836bb4d6d3db1c7a0ba825caa06c078f542b97b8a62cf0d557380eb2657a26"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-6-65.html",
+      "sha256": "2d3d67baff0c8915d266abcbcb0006fff9ebc4ffae83a4eae755852573982915"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-1.html",
+      "sha256": "47f666168bd331ec41e9bfbd07131b31e85021df7efa9bea5f86dc5e9897e923"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-15.html",
+      "sha256": "ef753b17e71b8d74207c5b9de27d4e92b6276e8c8583ee02367e57c3058f610c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-16.html",
+      "sha256": "b2eabe6b8882f9b2c3301aa9270d23d31f304202f14e9824911b364a58016123"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-17.html",
+      "sha256": "5d664485c661f7ab572325a2d8bfb0fa4f6c5b358e9aa4b9dff455d36fc479bb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-18.html",
+      "sha256": "f89d258aeddacb0bf3c2973139a7b75b66f275a78585447df5e6a9c941a255fb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-19.html",
+      "sha256": "3d9f9cefcafa7f27818ad80016f8388109c8f1a9f07124a37b0876c0eedead41"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-35.html",
+      "sha256": "12148e85526a724107fe6573b0a4a79ea0f5c465fbbe0c66e75c7f8b307e8f5c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-36.html",
+      "sha256": "ddeb3e7afb6c1dd329693592edcfebc4b8ebc50578197c6fc6e2b9b376e60f1b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-37.html",
+      "sha256": "6d0e3ed31f652a8a31f3f541a28461a507bfd5c9e8218adb32a43ac21cbbd78d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-38.html",
+      "sha256": "1a88f04c652648942513ca17f137a53a4c5bea5cb996ac47566cf54a37c6a750"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-39.html",
+      "sha256": "e5c90e7e3bd866c1d3ce4efe1d896104e3ecf19aebb1cfc664357aa6a159cdc8"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-40.html",
+      "sha256": "09925a0fca4a5f9e1b2bc8d339b3973d1c635d9a52f5140b1c353ae881afbda5"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-41.html",
+      "sha256": "f64b8d248129c44ef06c660d65232cf93561efdaca36ce186dbbfb5cb8f97d02"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-42.html",
+      "sha256": "ed2d8c73316619d23bc824c5daafda58df5d76b4571ad84bba5cf13291ea160e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-43.html",
+      "sha256": "d348284a982ecf0c70198675f8f409a3f9beb016e7aa12db23bb42cc03fc8f9a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-44.html",
+      "sha256": "c2a141a8bea3db94e8789c9117320d2a7158ed536ca188b1277377b2dd60a314"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-45.html",
+      "sha256": "d6b901c87cb48dfd9b0db4a08149c3ac3f051ab771330b026739b4f8228e31b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-46.html",
+      "sha256": "ff4f57aaeeb04e253f9e530c9c9ede4cb941fb260731ddf737d814a78258ac72"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-48.html",
+      "sha256": "942e95182990c54b7c078fc55ca4df33709b38eae4cc8d66b09d6f4d3946b224"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-60-1.html",
+      "sha256": "26c32479815553a42c413b7117acd15a4a45ea80635da15086a944beae7a36a9"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-60.html",
+      "sha256": "5d3881aa395141a2d85bcd58b62fe9e06348ffee484d868df7d52d6e7f59c712"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-61-1.html",
+      "sha256": "1fb209bfc8b8b7e978c6141a689eef6ba130fc00964bb3e8406bf75573e238f6"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-61.html",
+      "sha256": "48a1f9ebf210d7eb73f99ba452350760cf1c3e1baafa395f117039e1069d78ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-62.html",
+      "sha256": "ffff3086ce988a6284b48efd381b7cc355bf87860e4e9d1ee0061d3927499821"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-63.html",
+      "sha256": "121f3403bb70d0ce4350b08ad3be66ff31df94b25479362bd42faaf29e33471c"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-64.html",
+      "sha256": "3c33fa764ef9e59635d4f320b0caaad7118431b51f0f433db2b894379935c040"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-65.html",
+      "sha256": "85cdca1ae857ff9cc4942a0f0298c132262d9e545e8b6dd5e46425df1e63bb2e"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-7-66.html",
+      "sha256": "415fc339e4c8872f2d9facdd239dd2e48e8ce3dadfbd9c3f0647c33b6f42d933"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-1.html",
+      "sha256": "abc45f4d0f0434709949225b2a1a291a91dfc54534cf490c4170e683abd82bfa"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-100.html",
+      "sha256": "940a0a5578895edb58b206208e5d1d0b93380093a6061b9d1e5c5e9e33f1723d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-101.html",
+      "sha256": "fa46f8bb1592aef3a4b6b75246efad9dc456c7463c14165fbbde9397062e6d2b"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-102.html",
+      "sha256": "7d2f4f0e8923f836499427cbc90d6e01222d72c0a19d1bbdeed9498eff8c1795"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-103.html",
+      "sha256": "1384ffe6c407b5dd8e7b2d93f20116b2c7b63d55884d2f05b2290cb24391c532"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-15.html",
+      "sha256": "06c703e0610d6c5bf4f0861f5b0da44d5eb5e1817ac81fd93f9ef73e59ff1d1a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-2.html",
+      "sha256": "4219059a1bb87b1515fb8f070dc3ec679bee88a6d60024a81d78803a0459f889"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-25.html",
+      "sha256": "6bf05eb500410d910809c2535dfd416d54dbf6d92ae944eb90ffcdc778d23c11"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-26.html",
+      "sha256": "51603a88f3b22c3dc4a7726fc6044a33550783f966af27bbf8455fa9db7c4452"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-27.html",
+      "sha256": "24a7df5f8a5a05a093874b2ef03805015fcba05a96f0c7a683c2595773574b66"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-28.html",
+      "sha256": "db2d2012e8f56d971782ec7f09ff95224e513f59857a2f081264c8591c854c23"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-29.html",
+      "sha256": "0b4a7dd7b1683ccf7156075d3741d3e698d302067f381a72e7487765e3ebc1ad"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-3.html",
+      "sha256": "3626acbfa99a0d24fab79fa2bd751bd5d0de483369f4c8008a2baf992f4a07f5"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-30.html",
+      "sha256": "057a9fd0fe177e29da91e8d0b7243582f378a841355d274193e9e779f5556a86"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-4.html",
+      "sha256": "2ce967ab24301bb5af303fee7ef861893357cc4874adef4ce4545b40fa045dd4"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-45-1.html",
+      "sha256": "066e8a718de2bfefaa90bff83a6a46246c663cdabe14355db1a857485b21fc5a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-45.html",
+      "sha256": "7f64110c38b7305066068a297ab61ac8af7999417e4988ec3be41cf2ece09f6d"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-46.html",
+      "sha256": "6b5a230170d28a69e8968f8977b312b25e7ae333011f1ed08a39eedc1d1208d1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-47.html",
+      "sha256": "69f43a6caae67e751f20cb65336ac3e8b77d67457ce7221bd0449bbdbf0df6c8"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-48-1.html",
+      "sha256": "594b74d6a0a9c3965dcb3af55a34db7472799d185f5ac81d015d3a77fc053dff"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-48.html",
+      "sha256": "a7e6eb344b1e3801e1a8dd4d35975924d0cdb1c1b9f2e17494110e588f418f62"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-49.html",
+      "sha256": "3c066a8c3e23a77f337ba4c27721205c7187bbb98d2f8df06c488d161d15eac3"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-5-1.html",
+      "sha256": "d94438bf2b7918e7bef2d4f263f817540d5fc76be6068937f53ef4820a05f157"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-5.html",
+      "sha256": "d15fbe5504fda65cd179c85d88cc7c281665099fb35d7cf1eccc82e1c9e827cb"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-50.html",
+      "sha256": "e6146e56286706ee4a8c425b4f852706dba3b20a826b017056155ed9b0e96163"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-51.html",
+      "sha256": "141f7cb5a47fad57db73f432bc40bd000619bb68e67ac25438a42e80efc9cd50"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-52.html",
+      "sha256": "d85f44a9971cbf864d981e9b2a0f26bd586c08d020b47d911a654377417b1965"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-6.html",
+      "sha256": "9c85b7c5bfbb80a88f6e94d1877dc140c053dcfdbf0b9234c0142a69dedda375"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-65.html",
+      "sha256": "794e9777308d376ffb2479c4a3d1113034281cdf25b3d7637310cd98da82e1b9"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-66.html",
+      "sha256": "51905ea12406ce14e43972c5c4c24dd4d4ea13d06583325591e79f336b8c415a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-67.html",
+      "sha256": "c5a9b2e10e335790e44d8cf2726f38b8d1670c2bc9f9ea0814d44281ca490abe"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-68.html",
+      "sha256": "9bff2bf519f95dc77b387504ae5dee3085d7bc4bf5c99611d0d81428d91f1069"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-7.html",
+      "sha256": "e441fb52b3c5a54e31112480cd9923e6bfec39223a20e975f2fcd035bde5fa97"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-75.html",
+      "sha256": "bc090dfc811e1346a9a06fa1d14eed5e35c61059839dcb061c332aa1ca44648a"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-76.html",
+      "sha256": "f85472004a757ede805351ed4477623e14a727a9f5578030dfad54dee00d85a2"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-77.html",
+      "sha256": "34dd1b25e0aff0c56ff3ec268d33f451116ece2c20c32126fd9f526d906b4da1"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-78.html",
+      "sha256": "9740fbcda4d02c5e3ee5df2092960582021d85682ad1050d219192802c094ec5"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-95.html",
+      "sha256": "509fb556626305466bc0258431b2ada7157e0b80b4e30a786f78d5ddd34f1964"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-96.html",
+      "sha256": "b82944bcc3c2cfeaf337bc971eb97669fe952f63333a658577bb4444e2924f55"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-97.html",
+      "sha256": "117a96e434a14a96be8e9af6d61963686b132d46820bb4cdd5539b2679f98f06"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-98.html",
+      "sha256": "e123fe000054f614a8be9d393de9829cfe3121fba0228f57cc3063544720d170"
+    },
+    {
+      "path": "data/corpus/sources/us-ok/manual/2026-09-10-medicaid-state-eligibility-manual/official-documents/us-ok-medicaid-317-35-9-99.html",
+      "sha256": "821edf756e495279b7f526babc753db4d2ba7d0efb4a316fbfba376ef8f63ccd"
+    }
+  ],
+  "axiom_corpus_git": {
+    "commit": "3643139c72f856a5f38127df61cf7592313051b9",
+    "dirty_tracked": false,
+    "root": "."
+  },
+  "axiom_corpus_version": "0.1.0",
+  "command": {
+    "text": "axiom-corpus-ingest extract-official-documents --base data/corpus --version 2026-09-10-medicaid-state-eligibility-manual --manifest manifests/us-ok-medicaid-eligibility-manual.yaml (run note: docs/ingest-runs/2026-09-10-*.md)"
+  },
+  "coverage": {
+    "complete": true,
+    "extra_count": 0,
+    "matched_count": 700,
+    "missing_count": 0,
+    "provision_count": 700,
+    "source_count": 700
+  },
+  "document_class": "manual",
+  "generated_at": "2026-09-11T22:30:26.285231+00:00",
+  "jurisdiction": "us-ok",
+  "reasoning_logs": [],
+  "schema_version": "axiom-corpus/ingest-manifest/v1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "axiom-corpus-ingest-v1",
+    "value": "ezHC5/F84g8StmD78nXSRi0Au6TKiRNztuPDEQeoPZzX9aSJ3tu+qF0iSaSvUuIcfz/FcAA/2iWvPhGw/c+9Bw=="
+  },
+  "tool": "axiom-corpus-ingest signed ingest manifest",
+  "version": "2026-09-10-medicaid-state-eligibility-manual"
+}
